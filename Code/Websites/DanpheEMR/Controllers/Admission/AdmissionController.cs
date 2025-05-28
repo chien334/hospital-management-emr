@@ -29,7 +29,6 @@ using DanpheEMR.ServerModel.InsuranceModels;
 using DanpheEMR.ViewModel.ADT;
 using System.Data.Entity.Infrastructure;
 using DanpheEMR.ServerModel.PatientModels;
-using System.Web.Security;
 using DanpheEMR.Services.Admission;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.Services.Discharge;

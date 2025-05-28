@@ -9,7 +9,6 @@ using System.Data;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Web.UI;
 
 namespace DanpheEMR.Controllers.Reporting
 {

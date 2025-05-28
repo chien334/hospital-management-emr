@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,29 +25,44 @@ namespace DanpheEMR
             // Add Swagger
             services.AddSwaggerGen(config =>
             {
-                config.SwaggerDoc("v1", new Info
+                config.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "DanpheEMR APIs",
                     Version = "v1",
-                    Contact = new Contact()
+                    Contact = new OpenApiContact()
                     {
                         Name = "DanpheEMR",
                         Email = "info.danphe-emr.com",
-                        Url = new Uri("https://danphehealth.com/").ToString()
+                        Url = new Uri("https://danphehealth.com/")
                     },
                     Description = "We are testing Swagger in DanpheEMR",
-                    TermsOfService = "This section includes Terms and Services"
+                    TermsOfService = new Uri("https://danphehealth.com/terms")
                 });
-                config.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    In = "header",
+                    In = ParameterLocation.Header,
                     Description = "Please enter your JWT token here starting with Bearer followed by single white space",
                     Name = "Authorization",
-                    Type = "apiKey"
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
                 });
 
-                config.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
-                { "Bearer", Enumerable.Empty<string>() },
+                config.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                        },
+                        new List<string>()
+                    }
                 });
 
                 //DanpheEmrAPI.xml file is created by the Project>build event

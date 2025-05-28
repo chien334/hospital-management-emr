@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>DanpheEMR.Jobs</RootNamespace>
-    <AssemblyName>DanpheEMR.Jobs</AssemblyName>
+    <RootNamespace>DanpheEMR.AccTransfer</RootNamespace>
+    <AssemblyName>DanpheEMR.AccTransfer</AssemblyName>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -30,28 +30,32 @@
   
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.1" />
+    <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\DanpheEMR.Core\DanpheEMR.Core.csproj" />
-    <ProjectReference Include="..\DanpheEMR.DalLayer\DanpheEMR.DalLayer.csproj" />
-    <ProjectReference Include="..\DanpheEMR.ServerModel\DanpheEMR.ServerModel.csproj" />
-    <ProjectReference Include="..\DanpheEMR.Sync\DanpheEMR.Sync.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
+    <Compile Include="Accounting\AccountingTransferData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransferToACC.cs" />
   </ItemGroup>
   
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <!-- Reduced dependencies to break circular references -->
+    <ProjectReference Include="..\DanpheEMR.Core\DanpheEMR.Core.csproj" />
+    <ProjectReference Include="..\DanpheEMR.DalLayer\DanpheEMR.DalLayer.csproj" />
+    <ProjectReference Include="..\DanpheEMR.ServerModel\DanpheEMR.ServerModel.csproj" />
   </ItemGroup>
 </Project>

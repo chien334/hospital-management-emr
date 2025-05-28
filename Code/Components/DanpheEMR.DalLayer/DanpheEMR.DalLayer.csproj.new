@@ -10,7 +10,7 @@
   
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
   
@@ -72,8 +72,8 @@
   </ItemGroup>
   
   <ItemGroup>
+    <!-- Breaking circular dependency by removing reference to Security -->
     <ProjectReference Include="..\DanpheEMR.Core\DanpheEMR.Core.csproj" />
     <ProjectReference Include="..\DanpheEMR.ServerModel\DanpheEMR.ServerModel.csproj" />
-    <ProjectReference Include="..\DanpheEMR.Security\DanpheEMR.Security.csproj" />
   </ItemGroup>
 </Project>

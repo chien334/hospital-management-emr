@@ -30,6 +30,7 @@ using DanpheEMR.Utilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
@@ -38,7 +39,6 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -52,9 +52,9 @@ namespace DanpheEMR
     {
 
         public IConfigurationRoot Configuration { get; }
-        public IHostingEnvironment CurrentEnvironment { get; set; }
+        public IWebHostEnvironment CurrentEnvironment { get; set; }
 
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -97,7 +97,8 @@ namespace DanpheEMR
             //services.AddSession();
 
             // Adds a default in-memory implementation of IDistributedCache.
-            //services.AddDistributedMemoryCache();//removed after using sqlserver-distributed cache-18apr'17-sudarshan
+            // This is required for sessions to work in .NET Core 3.1+
+            services.AddDistributedMemoryCache();
 
             services.AddSession(options =>
             {
@@ -105,7 +106,7 @@ namespace DanpheEMR
                 //keep short timeout like max 2-3 hours, 
                 //we've to redirect to login once the session expires.
                 options.IdleTimeout = TimeSpan.FromHours(2);
-                options.CookieHttpOnly = true;
+                options.Cookie.HttpOnly = true;
 
             });
             //end--for rbac-testing--sudarshanr
@@ -157,8 +158,8 @@ namespace DanpheEMR
             //end: sud-9Jan'19 for pwd encryption testing
 
 
-            services.AddMvc()
-                        .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()); // added for disabling serialising json with  camel case
+            services.AddControllers()
+                        .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()); // added for disabling serialising json with  camel case
 
             //services.AddMvc().AddApplicationPart(typeof(LoginViewModel).Assembly);
             //start: using service configuration for caching class.--sudarshan 1march'17
@@ -205,6 +206,9 @@ namespace DanpheEMR
             services.AddSingleton<FileUploader>(new FileUploader(storagePath));
 
 
+            //NOTE: Runtime compilation configuration is not available in .NET Core 3.1+
+            //The following code was used for runtime compilation in older versions
+            /*
             services.Configure((RazorViewEngineOptions options) =>
                 {
                     var previous = options.CompilationCallback;
@@ -240,29 +244,40 @@ namespace DanpheEMR
                              AddReferences(MetadataReference.CreateFromFile(typeof(DanpheCache).Assembly.Location));
 
                     };
-                }); ;
+                }); 
+            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-            app.UseDeveloperExceptionPage();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseMiddleware<RewindMiddleWare>();
             //start--for rbac-testing--sudarshanr--2march-2017
             app.UseSession();
 
             //end--for rbac-testing--sudarshanr
 
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-            app.UseMvc(
-                routes =>
-                {
-                    routes.MapRoute("DefaultRoute", "{controller}/{action}");
-                    routes.MapRoute(name: "Default", template: "{controller}/{action}", defaults: new { controller = "Account", action = "Login" });
-                }
-                );
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "DefaultRoute", 
+                    pattern: "{controller}/{action}");
+                endpoints.MapControllerRoute(
+                    name: "Default", 
+                    pattern: "{controller}/{action}", 
+                    defaults: new { controller = "Account", action = "Login" });
+            });
+
             app.UseFileServer();
 
             // set a home page
@@ -283,17 +298,20 @@ namespace DanpheEMR
 
             string isDevEnv = Configuration["environment:isdevelopment"];
 
-
             if (bool.Parse(isDevEnv))//env.IsDevelopment build it only if it's development.
             {
-                var provider = new PhysicalFileProvider(
-                              Path.Combine(env.ContentRootPath, "wwwroot\\DanpheApp\\node_modules")
-                          );
-                var options = new FileServerOptions();
-                options.RequestPath = "/node_modules";
-                options.StaticFileOptions.FileProvider = provider;
-                options.EnableDirectoryBrowsing = true;
-                app.UseFileServer(options);
+                string nodeModulesPath = Path.Combine(env.ContentRootPath, "wwwroot", "DanpheApp", "node_modules");
+                
+                // Only configure node_modules serving if the directory exists
+                if (Directory.Exists(nodeModulesPath))
+                {
+                    var provider = new PhysicalFileProvider(nodeModulesPath);
+                    var options = new FileServerOptions();
+                    options.RequestPath = "/node_modules";
+                    options.StaticFileOptions.FileProvider = provider;
+                    options.EnableDirectoryBrowsing = true;
+                    app.UseFileServer(options);
+                }
 
                 //Use Swagger
                 app.UseSwagger();

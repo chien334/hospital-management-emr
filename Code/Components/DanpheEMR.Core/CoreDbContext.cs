@@ -1,22 +1,18 @@
 using System;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using DanpheEMR.Core.Parameters;
 using DanpheEMR.ServerModel;
 using DanpheEMR.Core.DynTemplates;
-using Audit.EntityFramework;
 using DanpheEMR.Core.DynamicTemplate;
 
 namespace DanpheEMR.Core
 {
-    public class CoreDbContext : AuditDbContext
+    public class CoreDbContext : DbContext
     {
-        public CoreDbContext(string connString)
-            : base(connString)
+        public CoreDbContext(DbContextOptions<CoreDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<ParameterModel> Parameters { get; set; }
@@ -58,7 +54,7 @@ namespace DanpheEMR.Core
         public DbSet<TemplateFieldMappingModel> TemplateFieldMappings { get; set; }
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ParameterModel>().ToTable("CORE_CFG_Parameters");
             modelBuilder.Entity<LookupsModel>().ToTable("CORE_CFG_LookUps");

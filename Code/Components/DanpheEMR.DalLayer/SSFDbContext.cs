@@ -1,9 +1,9 @@
 ﻿using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.PatientModels;
 using DanpheEMR.ServerModel.SSFModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +17,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<PatientSchemeMapModel> PatientSchemeMaps { get; set; }
         public DbSet<VisitModel> Visits { get; set; }
         public DbSet<SSFClaimBookingModel> SSFClaimBookings { get; set; }
-        public SSFDbContext(string conn) : base(conn)
+        public SSFDbContext(DbContextOptions<SSFDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AdminParametersModel>().ToTable("CORE_CFG_Parameters");
             modelBuilder.Entity<SSFClaimResponseDetails>().ToTable("PAT_SSFClaimResponseDetails");

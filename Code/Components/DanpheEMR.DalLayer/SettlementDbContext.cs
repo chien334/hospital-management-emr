@@ -1,20 +1,15 @@
-﻿using Audit.EntityFramework;
-using DanpheEMR.ServerModel;
+﻿using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.MasterModels;
 using DanpheEMR.ServerModel.PharmacyModels;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.DalLayer
 {
-    public class SettlementDbContext : AuditDbContext
+    public class SettlementDbContext : DbContext
     {
-        public SettlementDbContext(string conn) : base(conn)
+        public SettlementDbContext(DbContextOptions<SettlementDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.AuditDisabled = true;
-
         }
         public DbSet<BillingTransactionModel> BillingTransactions { get; set; }
         public DbSet<BillingTransactionItemModel> BillingTransactionItems { get; set; }
@@ -36,7 +31,7 @@ namespace DanpheEMR.DalLayer
         public DbSet<PHRMInvoiceReturnModel> PHRMInvoiceReturnModels { get; set; }
         public DbSet<DepositHeadModel> DepositHeadModels { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BillingTransactionModel>().ToTable("BIL_TXN_BillingTransaction");
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");

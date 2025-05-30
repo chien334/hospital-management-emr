@@ -65,128 +65,141 @@ namespace DanpheEMR.Controllers
         //IncludeHeaders = true, IncludeResponseHeaders = true, IncludeResponseBody = true, IncludeRequestBody = true, IncludeModelState = true)]
         public IActionResult Login(string returnUrl = null)
         {
-            DateTime centuryBegin = new DateTime(2001, 1, 1);
-            DateTime currentDate = DateTime.Now;
-            //Generate unique tick to make it a selector
-            long ticksElapsed = currentDate.Ticks - centuryBegin.Ticks;
-
-            //Generate unique string associated with selector --called Validator
-            Guid gd = Guid.NewGuid();
-            string GuidString = Convert.ToBase64String(gd.ToByteArray());
-            GuidString = GuidString.Replace("=", "");
-            GuidString = GuidString.Replace("+", "");
-
-            //tick is also used as a salt
-            GuidString = GuidString + ticksElapsed.ToString();
-
-            //generate Hash of the Validator, that can be used as a token
-            string msgDigest = ComputeSha256Hash(GuidString);
-
-
-            CoreDbContext coreDbContext = new CoreDbContext(connString);
-
-            ParameterModel licenseParam = coreDbContext.Parameters.Where(p => p.ParameterGroupName == "TenantMgnt" && p.ParameterName == "SoftwareLicense")
-                        .FirstOrDefault();
-
-            string paramValue = licenseParam != null ? licenseParam.ParameterValue : null;
-
-            if (paramValue != null)
+            try
             {
-                // var paramValueJson = Newtonsoft.Json.Linq.JObject.Parse(paramValue);
-                //format of parameter:softwarelicense is as below
-                var definition = new { StartDate = "", EndDate = "", ExpiryNoticeDays = "", LicenseType = "" };
-                var license = JsonConvert.DeserializeAnonymousType(paramValue, definition);
+                // Force the database initialization to run here with proper constraints
+                // This ensures it's properly initialized before any other operations
+                DanpheEMR.Utilities.DatabaseInitializer.Initialize(connString);
+                
+                DateTime centuryBegin = new DateTime(2001, 1, 1);
+                DateTime currentDate = DateTime.Now;
+                //Generate unique tick to make it a selector
+                long ticksElapsed = currentDate.Ticks - centuryBegin.Ticks;
 
-                DateTime startDate = Convert.ToDateTime(RBAC.DecryptPassword(license.StartDate));
-                DateTime endDate = Convert.ToDateTime(RBAC.DecryptPassword(license.EndDate));
-                int expiryNoticeDays = Convert.ToInt32(RBAC.DecryptPassword(license.ExpiryNoticeDays));
+                //Generate unique string associated with selector --called Validator
+                Guid gd = Guid.NewGuid();
+                string GuidString = Convert.ToBase64String(gd.ToByteArray());
+                GuidString = GuidString.Replace("=", "");
+                GuidString = GuidString.Replace("+", "");
 
-                double remainingDays = (endDate - DateTime.Now).TotalDays;
+                //tick is also used as a salt
+                GuidString = GuidString + ticksElapsed.ToString();
 
-                if (remainingDays < 0)
+                //generate Hash of the Validator, that can be used as a token
+                string msgDigest = ComputeSha256Hash(GuidString);
+
+
+                CoreDbContext coreDbContext = new CoreDbContext(connString);
+
+                ParameterModel licenseParam = coreDbContext.Parameters.Where(p => p.ParameterGroupName == "TenantMgnt" && p.ParameterName == "SoftwareLicense")
+                            .FirstOrDefault();
+
+                string paramValue = licenseParam != null ? licenseParam.ParameterValue : null;
+
+                if (paramValue != null)
                 {
-                    TempData["LicenseMessage"] = "License expired on: " + endDate.ToString("yyyy-MMM-dd");
+                    // var paramValueJson = Newtonsoft.Json.Linq.JObject.Parse(paramValue);
+                    //format of parameter:softwarelicense is as below
+                    var definition = new { StartDate = "", EndDate = "", ExpiryNoticeDays = "", LicenseType = "" };
+                    var license = JsonConvert.DeserializeAnonymousType(paramValue, definition);
 
-                    return RedirectToAction("LicenseExpired", "Account");
-                }
+                    DateTime startDate = Convert.ToDateTime(RBAC.DecryptPassword(license.StartDate));
+                    DateTime endDate = Convert.ToDateTime(RBAC.DecryptPassword(license.EndDate));
+                    int expiryNoticeDays = Convert.ToInt32(RBAC.DecryptPassword(license.ExpiryNoticeDays));
 
-                if (expiryNoticeDays > remainingDays)
-                {
-                    ViewData["ExpiryNotice"] = "Notice ! Your Software License is expiring in " + Convert.ToInt32(remainingDays) + " days.";
+                    double remainingDays = (endDate - DateTime.Now).TotalDays;
 
-                    //display remaining days through viewdata.
-                }
-            }
-            else
-            {
-                TempData["LicenseMessage"] = "License Information not found..";
-
-                return RedirectToAction("LicenseExpired", "Account");
-            }
-
-
-            //start: sud:16Jul'19-- If One user is already logged in - (check from session) - Load home index page directly. 
-            RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
-            if (currentUser != null && currentUser.UserId != 0)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            //end: sud:16Jul'19-- If One user is already logged in - (check from session) - Load home index page directly.
-
-
-            if (!string.IsNullOrEmpty(Request.Cookies["uRef"]))
-            {
-                SystemAdminDbContext adminDbContext = new SystemAdminDbContext(connStringAdmin);
-
-                var selector = Convert.ToInt64(Request.Cookies["uRef"]);
-                var validatorWithSalt = Request.Cookies["uData"] + Request.Cookies["uRef"];
-                var hashedValidator = ComputeSha256Hash(validatorWithSalt);
-
-                //To make sure that only one UserId will be selected at a time
-                var userIdList = (from sysAuthInfo in adminDbContext.CookieInformation
-                                  where sysAuthInfo.Selector == selector
-                                  && sysAuthInfo.HashedToken == hashedValidator
-                                  select sysAuthInfo.UserId).ToList();
-
-
-                if (userIdList.Count == 1)
-                {
-                    RbacUser validUser = RBAC.GetUser(userIdList[0]);
-                    LoginViewModel model = new LoginViewModel();
-                    model.UserName = validUser.UserName;
-
-                    //seting session for current valid user
-                    if (validUser != null)
+                    if (remainingDays < 0)
                     {
-                        //Check user status is Active or not, If user is InActive then return to login page
-                        if (validUser.IsActive == false)
-                        {
-                            RemoveRememberMeCookie();
-                            RemoveSessionValues();
-                            ViewData["status"] = "user-inactive";
-                            return View(model);
-                        }
+                        TempData["LicenseMessage"] = "License expired on: " + endDate.ToString("yyyy-MMM-dd");
 
-                        validUser.Password = "";
+                        return RedirectToAction("LicenseExpired", "Account");
+                    }
 
-                        UpdateRememberMeCookie(selector);
-                        SetSessionVariable(validUser);
-                        return RedirectToAction("Index", "Home");
+                    if (expiryNoticeDays > remainingDays)
+                    {
+                        ViewData["ExpiryNotice"] = "Notice ! Your Software License is expiring in " + Convert.ToInt32(remainingDays) + " days.";
+
+                        //display remaining days through viewdata.
                     }
                 }
                 else
                 {
-                    RemoveRememberMeCookie();
-                    RemoveSessionValues();
-                    return View();
+                    TempData["LicenseMessage"] = "License Information not found..";
+
+                    return RedirectToAction("LicenseExpired", "Account");
                 }
+
+
+                //start: sud:16Jul'19-- If One user is already logged in - (check from session) - Load home index page directly. 
+                RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
+                if (currentUser != null && currentUser.UserId != 0)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                //end: sud:16Jul'19-- If One user is already logged in - (check from session) - Load home index page directly.
+
+
+                if (!string.IsNullOrEmpty(Request.Cookies["uRef"]))
+                {
+                    SystemAdminDbContext adminDbContext = new SystemAdminDbContext(connStringAdmin);
+
+                    var selector = Convert.ToInt64(Request.Cookies["uRef"]);
+                    var validatorWithSalt = Request.Cookies["uData"] + Request.Cookies["uRef"];
+                    var hashedValidator = ComputeSha256Hash(validatorWithSalt);
+
+                    //To make sure that only one UserId will be selected at a time
+                    var userIdList = (from sysAuthInfo in adminDbContext.CookieInformation
+                                      where sysAuthInfo.Selector == selector
+                                      && sysAuthInfo.HashedToken == hashedValidator
+                                      select sysAuthInfo.UserId).ToList();
+
+
+                    if (userIdList.Count == 1)
+                    {
+                        RbacUser validUser = RBAC.GetUser(userIdList[0]);
+                        LoginViewModel model = new LoginViewModel();
+                        model.UserName = validUser.UserName;
+
+                        //seting session for current valid user
+                        if (validUser != null)
+                        {
+                            //Check user status is Active or not, If user is InActive then return to login page
+                            if (validUser.IsActive == false)
+                            {
+                                RemoveRememberMeCookie();
+                                RemoveSessionValues();
+                                ViewData["status"] = "user-inactive";
+                                return View(model);
+                            }
+
+                            validUser.Password = "";
+
+                            UpdateRememberMeCookie(selector);
+                            SetSessionVariable(validUser);
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    else
+                    {
+                        RemoveRememberMeCookie();
+                        RemoveSessionValues();
+                        return View();
+                    }
+                }
+
+
+
+
+                ViewData["ReturnUrl"] = returnUrl;
+                return View();
             }
-
-
-
-
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            catch (Exception ex)
+            {
+                // Log the exception
+                // Return an error view or message
+                return View("Error");
+            }
         }
         // POST: /Account/Login
         [HttpPost]

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,29 +23,29 @@ namespace DanpheEMR.DalLayer
         public DbSet<EmployeeModel> Employee { get; set; }
         public DbSet<BillMapPriceCategoryServiceItemModel> BillPriceCategoryServiceItems { get; set; }
 
-        public FractionDbContext(string conn) : base(conn)
+        public FractionDbContext(DbContextOptions<FractionDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+            //this.Configuration.LazyLoadingEnabled = true;
+            //this.Configuration.ProxyCreationEnabled = false;
         }
 
         public DataTable GetFractionApplicable()
         {
-            DataTable result = DALFunctions.GetDataTableFromStoredProc("SP_FRC_GetFractionApplicableList", this);
+            DataTable result = DALFunctions.GetDataTableFromStoredProc("SP_FRC_GetFractionApplicableList", this as Microsoft.EntityFrameworkCore.DbContext);
             return result;
         }
         public DataTable GetFractionReportByItemList()
         {
-            DataTable result = DALFunctions.GetDataTableFromStoredProc("SP_FRC_GetTotalFractionbyItem", this);
+            DataTable result = DALFunctions.GetDataTableFromStoredProc("SP_FRC_GetTotalFractionbyItem", this as Microsoft.EntityFrameworkCore.DbContext);
             return result;
         }
         public DataTable GetFractionReportByDoctorList(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataTable result = DALFunctions.GetDataTableFromStoredProc("SP_FRC_GetTotalFractionbyDoctor", paramList,  this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable result = DALFunctions.GetDataTableFromStoredProc("SP_FRC_GetTotalFractionbyDoctor", paramList,  this as Microsoft.EntityFrameworkCore.DbContext);
             return result;
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DesignationModel>().ToTable("FRC_Designation");
             modelBuilder.Entity<FractionPercentModel>().ToTable("FRC_PercentSetting");

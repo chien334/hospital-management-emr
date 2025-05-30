@@ -1,5 +1,4 @@
-﻿using Audit.EntityFramework;
-using DanpheEMR.Security;
+﻿using DanpheEMR.Security;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.CommonModels;
@@ -9,25 +8,20 @@ using DanpheEMR.ServerModel.PatientModels;
 using DanpheEMR.ServerModel.PharmacyModels;
 using DanpheEMR.ServerModel.PharmacyModels.Provisional;
 using DanpheEMR.ServerModel.VerificationModels.Pharmacy;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Data.SqlClient;
 
 namespace DanpheEMR.DalLayer
 {
-    [AuditDbContext(Mode = AuditOptionMode.OptIn)]
-    public class PharmacyDbContext : AuditDbContext
+    public class PharmacyDbContext : DbContext
     {
-
-        public PharmacyDbContext(string conn) : base(conn)
+        public PharmacyDbContext(DbContextOptions<PharmacyDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.Database.CommandTimeout = 180;
         }
+
         public DbSet<PHRMRackModel> PHRMRack { get; set; }
         public DbSet<PHRM_MAP_ItemToRack> PHRMRackItem { get; set; }
 
@@ -120,7 +114,7 @@ namespace DanpheEMR.DalLayer
         public DbSet<PHRMTransactionProvisionalReturnItemsModel> ProvisionalReturnItems { get; set; }
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             modelBuilder.Entity<PHRMSettlementModel>().ToTable("PHRM_TXN_Settlement");
@@ -218,23 +212,19 @@ namespace DanpheEMR.DalLayer
             //Store Stock to Master Stock Relationship
             modelBuilder.Entity<PHRMStoreStockModel>()
                 .ToTable("PHRM_TXN_StoreStock")
-                .HasRequired(a => a.StockMaster)
+                .HasOne(a => a.StockMaster)
                 .WithMany(a => a.StoreStocks)
                 .HasForeignKey(a => a.StockId);
 
             // Stock Barcodes
             modelBuilder.Entity<PHRMStockBarcode>().ToTable("PHRM_MST_StockBarcode");
             modelBuilder.Entity<PHRMStockMaster>()
-                .HasOptional(a => a.StockBarcode);
+                .HasOne(a => a.StockBarcode)
+                .WithOne()
+                .HasForeignKey<PHRMStockMaster>(a => a.StockBarcodeId);
 
-            //sud/sanjit:4Sept'21--We're converting All Decimal Type properties of all models in this DBContext to Decimal(16,4)---
-            //By default decimal take: Decimal(18,2), which was rounding off the input value (after 2digits)
-            //and giving wrong calculation of SubTotal value (GrItemPrice*ReceivedQuantity)
-            //Issue Came when ReceivedQty was in large number. eg: 10,000 or more----
-            //making 4digits after decimal (from default 2) reduces the error margin by 100--times.. :)---
-            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
-
+            // Configure decimal properties explicitly as needed, e.g.:
+            // modelBuilder.Entity<SomeEntity>().Property(e => e.SomeDecimal).HasColumnType("decimal(16,4)");
 
 
         }

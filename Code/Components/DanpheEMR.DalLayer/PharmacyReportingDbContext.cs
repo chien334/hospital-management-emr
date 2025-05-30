@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using DanpheEMR.ServerModel;
 using System.Text;
@@ -26,13 +26,13 @@ namespace DanpheEMR.DalLayer
         #region Purchase Order Report
         public DataTable PHRMPurchaseOrderReport(DateTime FromDate, DateTime ToDate, string Status)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                 new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                 new SqlParameter("@Status", Status)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                 new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@Status", Status)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -47,11 +47,11 @@ namespace DanpheEMR.DalLayer
         #region stock manage detail report
         public DataTable PHRMStockManageDetailReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -75,10 +75,10 @@ namespace DanpheEMR.DalLayer
         #region Dispensary Store Stock report
         public DataTable PHRMDispensaryStoreStockReport(string Status)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-               new SqlParameter("@Status", Status),
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+               new Microsoft.Data.SqlClient.SqlParameter("@Status", Status),
             };
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -119,12 +119,12 @@ namespace DanpheEMR.DalLayer
         //}
         public DynamicReport PHRMUserwiseCollectionReport(DateTime FromDate, DateTime ToDate, string CounterId, string CreatedBy, int? StoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-            new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                    new SqlParameter("@CounterId", CounterId),
-                            new SqlParameter("@CreatedBy", CreatedBy == null ? string.Empty : CreatedBy),
-                                 new SqlParameter("@StoreId", StoreId)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+            new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                    new Microsoft.Data.SqlClient.SqlParameter("@CounterId", CounterId),
+                            new Microsoft.Data.SqlClient.SqlParameter("@CreatedBy", CreatedBy == null ? string.Empty : CreatedBy),
+                                 new Microsoft.Data.SqlClient.SqlParameter("@StoreId", StoreId)
 
               };
 
@@ -147,10 +147,10 @@ namespace DanpheEMR.DalLayer
         #region PHRM CashCollectionSummary Report DataTable
         public DataTable PHRMCashCollectionSummaryReport(DateTime FromDate, DateTime ToDate, int? StoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                  new SqlParameter("@StoreId", StoreId)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                  new Microsoft.Data.SqlClient.SqlParameter("@StoreId", StoreId)
             };
 
             //foreach (SqlParameter parameter in paramList)
@@ -169,12 +169,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM Sale Return DataTable
         public DataTable PHRMSaleReturnReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -191,12 +191,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM Counterwise Collection DataTable
         public DataTable PHRMCunterwiseCollectionReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -212,13 +212,13 @@ namespace DanpheEMR.DalLayer
         #region PHRM_ItemWise Sales Report
         public DataTable PHRMItemWiseSalesReport(DateTime FromDate, DateTime ToDate, int? ItemId, int? StoreId, int? CounterId, int? UserId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                 new SqlParameter("@ItemId", ItemId),
-                 new SqlParameter("@StoreId", StoreId),
-                 new SqlParameter("@CounterId", CounterId),
-                 new SqlParameter("@CreatedBy", UserId)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ItemId", ItemId),
+                 new Microsoft.Data.SqlClient.SqlParameter("@StoreId", StoreId),
+                 new Microsoft.Data.SqlClient.SqlParameter("@CounterId", CounterId),
+                 new Microsoft.Data.SqlClient.SqlParameter("@CreatedBy", UserId)
             };
 
             DataTable itemWiseSalesData = DALFunctions.GetDataTableFromStoredProc("SP_PHRM_ItemWiseSalesReport", paramList, this);
@@ -230,12 +230,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM Breakage Items DataTable
         public DataTable PHRMBreakageItemReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -251,12 +251,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM Return To Supplier DataTable
         public DataTable PHRMReturnToSupplierReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -272,12 +272,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM Return To Store DataTable
         public DataTable PHRMTransferToStoreReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -294,12 +294,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM Return To Dispensary DataTable
         public DataTable PHRMTransferToDispensaryReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -315,13 +315,13 @@ namespace DanpheEMR.DalLayer
         #region PHRM Goods Receipt Product 
         public DataTable PHRMGoodReceiptProductReport(DateTime FromDate, DateTime ToDate, int ItemId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                 new SqlParameter("@ItemId", ItemId)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ItemId", ItemId)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -355,15 +355,15 @@ namespace DanpheEMR.DalLayer
         #region PHRM Credit InOut Patient Report        
         public DataTable PHRMCreditInOutPatReport(DateTime FromDate, DateTime ToDate, bool IsInOutPat, string patientName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@IsInOutPat", IsInOutPat)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@IsInOutPat", IsInOutPat)
                 //new SqlParameter("@patientName", patientName)
             };
 
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -380,10 +380,10 @@ namespace DanpheEMR.DalLayer
         #region PHRM Supplier Stock Summary Report        
         public DataTable PHRMSupplierStockSummaryReport(string SupplierName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@SupplierName", SupplierName) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@SupplierName", SupplierName) };
 
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -399,8 +399,8 @@ namespace DanpheEMR.DalLayer
         #region PHRM Stock Items Report        
         public DataTable PHRMStockItemsReport(string ItemName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@ItemName", ItemName) };
-            foreach (SqlParameter parameter in paramList)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@ItemName", ItemName) };
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -416,10 +416,10 @@ namespace DanpheEMR.DalLayer
         #region PHRM Stock Movement Report        
         public DataTable PHRMStockMovementReport(string ItemName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@ItemName", ItemName) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@ItemName", ItemName) };
 
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -435,10 +435,10 @@ namespace DanpheEMR.DalLayer
         #region PHRM Batch Stock Report        
         public DataTable PHRMBatchStockReport(string ItemName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@ItemName", ItemName) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@ItemName", ItemName) };
 
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -454,12 +454,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM Expiry Report        
         public DataTable PHRMExpiryReport(int? ItemId, int? StoreId, DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@ItemId", ItemId),
-                 new SqlParameter("@StoreId", StoreId),
-                  new SqlParameter("@FromDate", FromDate),
-                   new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@ItemId", ItemId),
+                 new Microsoft.Data.SqlClient.SqlParameter("@StoreId", StoreId),
+                  new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                   new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
 
             DataTable expiryStock = DALFunctions.GetDataTableFromStoredProc("SP_PHRMReport_ExpiryReport", paramList, this);
@@ -470,13 +470,13 @@ namespace DanpheEMR.DalLayer
         #region PHRM Item Wise Purchase Report SP call
         public DataTable PHRMItemWisePurchaseReport(DateTime FromDate, DateTime ToDate, int? itemId, string invoiceNo, int? grNo, int? supplierId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                  new SqlParameter("@ItemId", (Object)itemId ?? DBNull.Value),
-                   new SqlParameter("@InvoiceNo", (Object)invoiceNo ?? DBNull.Value),
-                    new SqlParameter("@GoodsReceiptNo", (Object)grNo ?? DBNull.Value),
-                      new SqlParameter("@SupplierId", (Object)supplierId ?? DBNull.Value)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                  new Microsoft.Data.SqlClient.SqlParameter("@ItemId", (Object)itemId ?? DBNull.Value),
+                   new Microsoft.Data.SqlClient.SqlParameter("@InvoiceNo", (Object)invoiceNo ?? DBNull.Value),
+                    new Microsoft.Data.SqlClient.SqlParameter("@GoodsReceiptNo", (Object)grNo ?? DBNull.Value),
+                      new Microsoft.Data.SqlClient.SqlParameter("@SupplierId", (Object)supplierId ?? DBNull.Value)
             };
             DataTable purchaseDetails = DALFunctions.GetDataTableFromStoredProc("SP_PHRMReport_ItemWisePurchaseReport", paramList, this);
             return purchaseDetails;
@@ -486,10 +486,10 @@ namespace DanpheEMR.DalLayer
         #region PHRM Minimum Report    
         public DataTable PHRMMinStockReport(string ItemName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@ItemName", ItemName) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@ItemName", ItemName) };
 
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -506,11 +506,11 @@ namespace DanpheEMR.DalLayer
         #region PHRM ABC/VED Stock Report    
         public DataTable PHRMABCVEDStockReport(string Status)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@Status", Status)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@Status", Status)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -527,15 +527,15 @@ namespace DanpheEMR.DalLayer
         #region PHRM Supplier Stock Report        
         public DataTable PHRMSupplierStockReport(DateTime FromDate, DateTime ToDate, int SupplierId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@SupplierId", SupplierId),
-                new SqlParameter("@fromDate",FromDate),
-                new SqlParameter("@toDate",ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@SupplierId", SupplierId),
+                new Microsoft.Data.SqlClient.SqlParameter("@fromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@toDate",ToDate)
             };
 
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -551,10 +551,10 @@ namespace DanpheEMR.DalLayer
         #region PHRM Ending Stock Summary Report        
         public DataTable PHRMEndingStockSummaryReport(string ItemName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@ItemName", ItemName) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@ItemName", ItemName) };
 
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -570,11 +570,11 @@ namespace DanpheEMR.DalLayer
         #region PHRM Billing Report        
         public DataTable PHRMBillingReport(DateTime FromDate, DateTime ToDate, int InvoiceNumber)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@InvoiceNumber", InvoiceNumber) };
-            foreach (SqlParameter parameter in paramList)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@InvoiceNumber", InvoiceNumber) };
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -590,12 +590,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM Daily Stock Summary Report        
         public DataTable PHRMDailyStockSummaryReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
              };
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -611,12 +611,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM  Stock Summary Report        
         public DataTable PHRMStockSummaryReport(DateTime FromDate, DateTime ToDate, int FiscalYearId, int? StoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@FiscalYearId", FiscalYearId),
-                new SqlParameter("@StoreId", (Object)StoreId ?? DBNull.Value)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@FiscalYearId", FiscalYearId),
+                new Microsoft.Data.SqlClient.SqlParameter("@StoreId", (Object)StoreId ?? DBNull.Value)
              };
             //foreach (SqlParameter parameter in paramList)
             //{
@@ -634,13 +634,13 @@ namespace DanpheEMR.DalLayer
         #region PHRM  Item Txn Stock Summary Report        
         public DataTable PHRMItemTxnSummaryReport(DateTime FromDate, DateTime ToDate, int ItemId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@Itemid", ItemId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@Itemid", ItemId)
              };
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -672,12 +672,12 @@ namespace DanpheEMR.DalLayer
         #region pharmacy store stock
         public DataTable PHRMStoreStock(String Status)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@Status", Status)
+                new Microsoft.Data.SqlClient.SqlParameter("@Status", Status)
             };
 
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -694,12 +694,12 @@ namespace DanpheEMR.DalLayer
         #region PHRM Drug Category Wise Report        
         public DataTable PHRMDrugCategoryWiseReport(DateTime FromDate, DateTime ToDate, string category)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@Category", category)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@Category", category)
             };
-            foreach (SqlParameter parameter in paramList)
+            foreach (Microsoft.Data.SqlClient.SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
                 {
@@ -715,11 +715,11 @@ namespace DanpheEMR.DalLayer
         #region Date Wise Purchase Repoprt
         public DataTable PHRMDateWisePurchaseReport(DateTime FromDate, DateTime ToDate, int? supplierId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate),
-                new SqlParameter("@SupplierId",supplierId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@SupplierId",supplierId)
             };
 
             DataTable dateWisePurchaseDetails = DALFunctions.GetDataTableFromStoredProc("SP_PHRMReport_DateWisePurchaseReport", paramList, this);
@@ -730,12 +730,12 @@ namespace DanpheEMR.DalLayer
         #region Get Return From Customer Report Data
         public DataTable ReturnFromCustomerReport(DateTime fromDate, DateTime toDate, int? userId, int? dispensaryId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",fromDate),
-                new SqlParameter("@ToDate",toDate),
-                new SqlParameter("@UserId",userId),
-                new SqlParameter("@DispensaryId",dispensaryId),
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",fromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",toDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@UserId",userId),
+                new Microsoft.Data.SqlClient.SqlParameter("@DispensaryId",dispensaryId),
             };
             DataTable returnFromCustomerResult = DALFunctions.GetDataTableFromStoredProc("SP_PHRMReport_ReturnFromCustomerReport", paramList, this);
             return returnFromCustomerResult;
@@ -746,10 +746,10 @@ namespace DanpheEMR.DalLayer
         public DataTable SalesStatementReport(DateTime FromDate, DateTime ToDate)
         {
             //var ToDatePlusOne = ToDate.AddDays(1);//sud:12ul'22--No need to add 1 day. In SP, Convert DATETIME -> DATE and Compare the Date.
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate),
             };
             DataTable returnFromCustomerResult = DALFunctions.GetDataTableFromStoredProc("PHRM_RPT_SalesStatementReport", paramList, this);
             return returnFromCustomerResult;
@@ -760,14 +760,14 @@ namespace DanpheEMR.DalLayer
         public DataTable InsurancePatientBimaReport(DateTime FromDate, DateTime ToDate, int? CounterId, int? UserId, Int64? ClaimCode, string NSHINumber)
         {
             //var ToDatePlusOne = ToDate.AddDays(1);//sud:12ul'22--No need to add 1 day. In SP, Convert DATETIME -> DATE and Compare the Date.
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate),
-                new SqlParameter("@CounterId",CounterId),
-                new SqlParameter("@UserId",UserId),
-                new SqlParameter("@ClaimCode",ClaimCode),
-                new SqlParameter("@NSHINumber",NSHINumber)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@CounterId",CounterId),
+                new Microsoft.Data.SqlClient.SqlParameter("@UserId",UserId),
+                new Microsoft.Data.SqlClient.SqlParameter("@ClaimCode",ClaimCode),
+                new Microsoft.Data.SqlClient.SqlParameter("@NSHINumber",NSHINumber)
             };
             DataTable returnFromCustomerResult = DALFunctions.GetDataTableFromStoredProc("PHRM_RPT_INS_PATIENT_BIMA", paramList, this);
             return returnFromCustomerResult;
@@ -778,14 +778,14 @@ namespace DanpheEMR.DalLayer
         public DataTable PatientSalesDetailReport(DateTime FromDate, DateTime ToDate, int? PatientId, int? CounterId, int? UserId, int? StoreId)
         {
             //var ToDatePlusOne = ToDate.AddDays(1);//sud:12ul'22--No need to add 1 day. In SP, Convert DATETIME -> DATE and Compare the Date.
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate),
-                new SqlParameter("@CounterId",CounterId),
-                new SqlParameter("@UserId",UserId),
-                new SqlParameter("@StoreId",StoreId),
-                new SqlParameter("@PatientId",PatientId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@CounterId",CounterId),
+                new Microsoft.Data.SqlClient.SqlParameter("@UserId",UserId),
+                new Microsoft.Data.SqlClient.SqlParameter("@StoreId",StoreId),
+                new Microsoft.Data.SqlClient.SqlParameter("@PatientId",PatientId)
             };
             DataTable returnFromCustomerResult = DALFunctions.GetDataTableFromStoredProc("PHRM_RPT_PatientSalesDetail", paramList, this);
             return returnFromCustomerResult;
@@ -796,10 +796,10 @@ namespace DanpheEMR.DalLayer
         public DataTable SalesSummaryReport(DateTime FromDate, DateTime ToDate)
         {
             //var ToDatePlusOne = ToDate.AddDays(1);//sud:12ul'22--No need to add 1 day. In SP, Convert DATETIME -> DATE and Compare the Date.
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate)
             };
             DataTable settlementSummaryResult = DALFunctions.GetDataTableFromStoredProc("PHRM_RPT_SalesSummary", paramList, this);
             return settlementSummaryResult;
@@ -809,11 +809,11 @@ namespace DanpheEMR.DalLayer
         #region Settlement Summary Report
         public DataTable SettlementSummaryReport(DateTime FromDate, DateTime ToDate, int? StoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate),
-                new SqlParameter("@StoreId",StoreId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@StoreId",StoreId)
             };
             DataTable settlementSummaryResult = DALFunctions.GetDataTableFromStoredProc("SP_PHRM_GetSettlementSummaryReport", paramList, this);
             return settlementSummaryResult;
@@ -822,11 +822,11 @@ namespace DanpheEMR.DalLayer
         #region narcotics daily saled  report
         public DataTable NarcoticsDailySalesReport(DateTime FromDate, DateTime ToDate, int? ItemId, int? StoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                 new SqlParameter("@ItemId", ItemId),
-                 new SqlParameter("@StoreId", StoreId),
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ItemId", ItemId),
+                 new Microsoft.Data.SqlClient.SqlParameter("@StoreId", StoreId),
             };
             DataTable narcoticsDailySalesData = DALFunctions.GetDataTableFromStoredProc("PHRM_NarcoticsDailySalesReport", paramList, this);
             return narcoticsDailySalesData;
@@ -838,11 +838,11 @@ namespace DanpheEMR.DalLayer
         public DataTable PurchaseSummaryReport(DateTime FromDate, DateTime ToDate, int? StoreId)
         {
             //var ToDatePlusOne = ToDate.AddDays(1);//sud:12ul'22--No need to add 1 day. In SP, Convert DATETIME -> DATE and Compare the Date.
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate),
-                new SqlParameter("@StoreId",StoreId),
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@StoreId",StoreId),
             };
             DataTable returnFromCustomerResult = DALFunctions.GetDataTableFromStoredProc("PHRM_RPT_PurchaseSummary", paramList, this);
             return returnFromCustomerResult;
@@ -853,9 +853,9 @@ namespace DanpheEMR.DalLayer
         public DataTable StockSummarySecondReport(DateTime TillDate)
         {
             //var TillDatePlusOne = TillDate.AddDays(1);//sud:12ul'22--No need to add 1 day. In SP, Convert DATETIME -> DATE and Compare the Date.
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@TillDate",TillDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@TillDate",TillDate)
             };
             DataTable returnFromCustomerResult = DALFunctions.GetDataTableFromStoredProc("PHRM_RPT_StockSummary2", paramList, this);
             return returnFromCustomerResult;
@@ -866,14 +866,14 @@ namespace DanpheEMR.DalLayer
         public DataTable PHRMStockTransfersReport(DateTime FromDate, DateTime ToDate, int? itemId, int? sourceStoreId, int? targetStoreId, bool notReceivedStocks)
         {
             //var ToDatePlusOne = ToDate.AddDays(1);//sud:12ul'22--No need to add 1 day. In SP, Convert DATETIME -> DATE and Compare the Date.
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate),
-                new SqlParameter("@ItemId",itemId),
-                new SqlParameter("@SourceStoreId",sourceStoreId),
-                new SqlParameter("@TargetStoreId",targetStoreId),
-                new SqlParameter("@NotReceivedStocks",notReceivedStocks)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ItemId",itemId),
+                new Microsoft.Data.SqlClient.SqlParameter("@SourceStoreId",sourceStoreId),
+                new Microsoft.Data.SqlClient.SqlParameter("@TargetStoreId",targetStoreId),
+                new Microsoft.Data.SqlClient.SqlParameter("@NotReceivedStocks",notReceivedStocks)
             };
             DataTable stockTransfersResult = DALFunctions.GetDataTableFromStoredProc("PHRM_RPT_StockTransfers", paramList, this);
             return stockTransfersResult;
@@ -883,13 +883,13 @@ namespace DanpheEMR.DalLayer
         #region Supplier Wise Stock report
         public DataTable PHRMSupplierWiseStockReport(DateTime FromDate, DateTime ToDate, int? itemId, int? storeId, int? supplierId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate),
-                new SqlParameter("@ItemId",itemId),
-                new SqlParameter("@StoreId",storeId),
-                new SqlParameter("@SupplierId",supplierId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ItemId",itemId),
+                new Microsoft.Data.SqlClient.SqlParameter("@StoreId",storeId),
+                new Microsoft.Data.SqlClient.SqlParameter("@SupplierId",supplierId)
             };
             DataTable supplierWiseStockReportResult = DALFunctions.GetDataTableFromStoredProc("SP_Report_Pharmacy_SupplierWiseStock", paramList, this);
             return supplierWiseStockReportResult;
@@ -899,9 +899,9 @@ namespace DanpheEMR.DalLayer
         #region Return On Investment Report
         public DataTable ReturnOnInvestmentReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
             DataTable narcoticsDailySalesData = DALFunctions.GetDataTableFromStoredProc("SP_PHRM_Report_ReturnOnInvestment", paramList, this);
             return narcoticsDailySalesData;
@@ -910,12 +910,12 @@ namespace DanpheEMR.DalLayer
         #region Multiple PaymentModeWiseReport
         public DynamicReport PHRM_PaymentModeWiseReport(DateTime FromDate, DateTime ToDate, string PaymentMode, string Type, int? User, int? StoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@FromDate", FromDate),
-                            new SqlParameter("@ToDate", ToDate),
-                            new SqlParameter("@PaymentMode", PaymentMode),
-                            new SqlParameter("@Type", Type),
-                            new SqlParameter("@User", User),
-                            new SqlParameter("@StoreId", StoreId)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {  new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@PaymentMode", PaymentMode),
+                            new Microsoft.Data.SqlClient.SqlParameter("@Type", Type),
+                            new Microsoft.Data.SqlClient.SqlParameter("@User", User),
+                            new Microsoft.Data.SqlClient.SqlParameter("@StoreId", StoreId)
                               };
             DataSet dataSet = DALFunctions.GetDatasetFromStoredProc("SP_PHRM_MultiplePaymentModeWiseReport", paramList, this);
             DynamicReport dReport = new DynamicReport();
@@ -937,12 +937,12 @@ namespace DanpheEMR.DalLayer
         public DataTable RankMembershipwiseSalesReport(DateTime FromDate, DateTime ToDate, string Rank, string Membership)
         {
 
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate",FromDate),
-                new SqlParameter("@ToDate",ToDate),
-                new SqlParameter("@Ranks", Rank),
-                new SqlParameter("@Memberships", Membership),
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate",FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate",ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@Ranks", Rank),
+                new Microsoft.Data.SqlClient.SqlParameter("@Memberships", Membership),
 
             };
 

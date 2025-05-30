@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel.ReportingModels;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Data.Common;
 
 namespace DanpheEMR.DalLayer
 {
@@ -17,11 +19,11 @@ namespace DanpheEMR.DalLayer
     {
         private string connStr = null;
 
-        public GovernmentReportDbContext(string Conn) : base(Conn)
+        public GovernmentReportDbContext(DbContextOptions<GovernmentReportDbContext> options) : base(options)
         {
-            connStr = Conn;
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+            //connStr = Conn;
+            //this.Configuration.LazyLoadingEnabled = true;
+            //this.Configuration.ProxyCreationEnabled = false;
         }
 
         #region Outpatient Services
@@ -306,7 +308,7 @@ namespace DanpheEMR.DalLayer
             var result = new DataSet();
             var context = new ReportingDbContext(connString);
             // creates a Command 
-            var cmd = context.Database.Connection.CreateCommand();
+            var cmd = context.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcName;
 
@@ -321,25 +323,45 @@ namespace DanpheEMR.DalLayer
             try
             {
                 // executes
-                context.Database.Connection.Open();
-                var reader = cmd.ExecuteReader();
-
-                // loop through all resultsets (considering that it's possible to have more than one)
-                do
+                if (context.Database.GetDbConnection().State == ConnectionState.Closed)
                 {
-                    // loads the DataTable (schema will be fetch automatically)
-                    var tb = new DataTable();
-                    tb.Load(reader);
-                    result.Tables.Add(tb);
+                    context.Database.GetDbConnection().Open();
+                    var reader = cmd.ExecuteReader();
 
-                } while (!reader.IsClosed);
+                    // loop through all resultsets (considering that it's possible to have more than one)
+                    do
+                    {
+                        // loads the DataTable (schema will be fetch automatically)
+                        var tb = new DataTable();
+                        tb.Load(reader);
+                        result.Tables.Add(tb);
 
-                return result;
+                    } while (!reader.IsClosed);
+
+                    return result;
+                }
+                else
+                {
+                    var reader = cmd.ExecuteReader();
+
+                    // loop through all resultsets (considering that it's possible to have more than one)
+                    do
+                    {
+                        // loads the DataTable (schema will be fetch automatically)
+                        var tb = new DataTable();
+                        tb.Load(reader);
+                        result.Tables.Add(tb);
+
+                    } while (!reader.IsClosed);
+
+                    return result;
+                }
+
             }
             finally
             {
                 // closes the connection
-                context.Database.Connection.Close();
+                context.Database.GetDbConnection().Close();
             }
 
         }

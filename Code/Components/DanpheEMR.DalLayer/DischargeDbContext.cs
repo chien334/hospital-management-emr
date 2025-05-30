@@ -1,30 +1,25 @@
-﻿using Audit.EntityFramework;
-using DanpheEMR.Security;
+﻿using DanpheEMR.Security;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.MedicareModels;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.PatientModels;
 using DanpheEMR.ServerModel.CommonModels;
 using DanpheEMR.ServerModel.MasterModels;
 using DanpheEMR.ServerModel.PharmacyModels;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using DanpheEMR.ServerModel.ReportingModels;
 using DanpheEMR.ServerModel.BillingModels.DischargeStatementModels;
 
 namespace DanpheEMR.DalLayer
 {
-    public class DischargeDbContext : AuditDbContext
+    public class DischargeDbContext : DbContext
     {
 
-        public DischargeDbContext(string conn) : base(conn)
+        public DischargeDbContext(DbContextOptions<DischargeDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.AuditDisabled = true;
         }
         public DbSet<BillingTransactionModel> BillingTransactions { get; set; }
         public DbSet<ServiceDepartmentModel> ServiceDepartment { get; set; }
@@ -67,7 +62,7 @@ namespace DanpheEMR.DalLayer
         public DbSet<BillingSchemeModel> BillingSchemes { get; set; }
         public DbSet<PriceCategoryModel> PriceCategories { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BillingTransactionModel>().ToTable("BIL_TXN_BillingTransaction");
             modelBuilder.Entity<ServiceDepartmentModel>().ToTable("BIL_MST_ServiceDepartment");
@@ -76,9 +71,9 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");
             modelBuilder.Entity<BillingTransactionItemModel>()
-                  .HasRequired<BillingTransactionModel>(s => s.BillingTransaction)
-                  .WithMany(s => s.BillingTransactionItems)
-                   .HasForeignKey(s => s.BillingTransactionId);
+                .HasOne(s => s.BillingTransaction)
+                .WithMany(s => s.BillingTransactionItems)
+                .HasForeignKey(s => s.BillingTransactionId);
             modelBuilder.Entity<BillServiceItemModel>().ToTable("BIL_MST_ServiceItem");
             modelBuilder.Entity<BillItemRequisition>().ToTable("BIL_BillItemRequisition");
             modelBuilder.Entity<BillingDepositModel>().ToTable("BIL_TXN_Deposit");
@@ -112,24 +107,19 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<DepositHeadModel>().ToTable("BIL_MST_DepositHead");
             modelBuilder.Entity<BillingSchemeModel>().ToTable("BIL_CFG_Scheme");
             modelBuilder.Entity<PriceCategoryModel>().ToTable("BIL_CFG_PriceCategory");
-
             modelBuilder.Entity<PHRMStoreStockModel>()
                 .ToTable("PHRM_TXN_StoreStock")
-                .HasRequired(a => a.StockMaster)
+                .HasOne(a => a.StockMaster)
                 .WithMany(a => a.StoreStocks)
                 .HasForeignKey(a => a.StockId);
-
-            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
-
         }
 
-        public static object GetDischargeStatementInfo(int patientId, int dischargeStatementId,int patientVisitId, DischargeDbContext dischargeDbContext)
+        public static object GetDischargeStatementInfo(int patientId, int dischargeStatementId, int patientVisitId, DischargeDbContext dischargeDbContext)
         {
             List<SqlParameter> paramList = new List<SqlParameter>() {
                             new SqlParameter("@PatientId", patientId),
-                            new SqlParameter("@DischargeStatementId",dischargeStatementId), 
-                            new SqlParameter("@PatientVisitId",patientVisitId), 
+                            new SqlParameter("@DischargeStatementId", dischargeStatementId),
+                            new SqlParameter("@PatientVisitId", patientVisitId),
             };
             DataSet dischargeStatementDetail = DALFunctions.GetDatasetFromStoredProc("SP_BIL_DischargeStatement", paramList, dischargeDbContext);
 
@@ -160,13 +150,13 @@ namespace DanpheEMR.DalLayer
             return printInfoToReturn;
         }
 
-        public object GetItemsForBillingDischargeSummaryReceipt(int patientId, int patientVisitId,int? dischargeStatementId, string billStatus)
+        public object GetItemsForBillingDischargeSummaryReceipt(int patientId, int patientVisitId, int? dischargeStatementId, string billStatus)
         {
             List<SqlParameter> paramList = new List<SqlParameter>() {
                 new SqlParameter("@PatientId", patientId),
                 new SqlParameter("@PatientVisitId", patientVisitId),
                 new SqlParameter("@DischargeStatementId", dischargeStatementId),
-                new SqlParameter("@BillStatus",billStatus)
+                new SqlParameter("@BillStatus", billStatus)
             };
             DataSet estimatedDischargeSummary = DALFunctions.GetDatasetFromStoredProc("SP_BIL_GetItems_ForIPBillingDischargeSummaryReceipt", paramList, this);
             var EstimatedSummaryResult = new
@@ -176,7 +166,6 @@ namespace DanpheEMR.DalLayer
                 AdmissionInfo = BilPrint_AdmissionInfoVM.MapDataTableToSingleObject(estimatedDischargeSummary.Tables[2]),
                 DepositInfo = BilPrint_DepositListVM.MapDataTableToObjectList(estimatedDischargeSummary.Tables[3]),
                 DischargeInfo = BilPrint_DischargeStatementVM.MapDataTableToSingleObject(estimatedDischargeSummary.Tables[4]),
-
             };
             return EstimatedSummaryResult;
         }

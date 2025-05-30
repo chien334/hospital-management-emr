@@ -1,15 +1,12 @@
-﻿using Audit.EntityFramework;
-using DanpheEMR.ServerModel;
+﻿using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.MedicareModels;
 using DanpheEMR.ServerModel.PatientModels;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.DalLayer
 {
-    //public class PatientDbContext : CommonDbContext
-    [AuditDbContext(Mode = AuditOptionMode.OptIn)]
-    public class PatientDbContext : AuditDbContext
+    public class PatientDbContext : DbContext
     {
         public DbSet<PatientModel> Patients { get; set; }
         public DbSet<BillingSchemeModel> Schemes { get; set; }
@@ -39,14 +36,12 @@ namespace DanpheEMR.DalLayer
         public DbSet<MedicareMember> MedicareMembers { get; set; }
         public DbSet<MedicareMemberBalance> MedicareMemberBalances { get; set; }
         public DbSet<PatientSchemeMapModel> PatientMapPriceCategories { get; set; }
-        public PatientDbContext(string conn) : base(conn)
+        public PatientDbContext(DbContextOptions<PatientDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.DbContext.Database.CommandTimeout = 180;
+            this.Database.SetCommandTimeout(180);
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PatientFilesModel>().ToTable("PAT_PatientFiles");
 
@@ -55,124 +50,109 @@ namespace DanpheEMR.DalLayer
             // Patient address mapping
             modelBuilder.Entity<AddressModel>().ToTable("PAT_PatientAddress");
             modelBuilder.Entity<AddressModel>()
-                   .HasRequired<PatientModel>(s => s.Patient) // Address entity requires Patient
-                   .WithMany(s => s.Addresses) // Patient entity includes many Addresses entities
-                    .HasForeignKey(s => s.PatientId);
+                .HasOne(s => s.Patient)
+                .WithMany(s => s.Addresses)
+                .HasForeignKey(s => s.PatientId);
 
             // Patient and insurance mapping
             modelBuilder.Entity<InsuranceModel>().ToTable("PAT_PatientInsuranceInfo");
             modelBuilder.Entity<InsuranceModel>()
-                   .HasRequired<PatientModel>(a => a.Patient) // Insurance entity requires Patient
-                   .WithMany(a => a.Insurances) // Patient entity includes many Insurance entities
-                    .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.Insurances)
+                .HasForeignKey(s => s.PatientId);
 
             modelBuilder.Entity<KinModel>().ToTable("PAT_PatientKinOrEmergencyContacts");
             modelBuilder.Entity<KinModel>()
-                   .HasRequired<PatientModel>(a => a.Patient)
-                   .WithMany(a => a.KinEmergencyContacts)
-                    .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.KinEmergencyContacts)
+                .HasForeignKey(s => s.PatientId);
 
             // Patient and Gurantor 
             modelBuilder.Entity<GuarantorModel>().ToTable("PAT_PatientGurantorInfo");
             modelBuilder.Entity<GuarantorModel>()
-                            .HasKey(t => t.PatientId);
+                .HasKey(t => t.PatientId);
             modelBuilder.Entity<PatientModel>()
-                .HasOptional<GuarantorModel>(a => a.Guarantor);
+                .HasOne(a => a.Guarantor)
+                .WithOne()
+                .HasForeignKey<GuarantorModel>(g => g.PatientId)
+                .IsRequired(false);
 
             //Patient with Visit
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
-            modelBuilder.Entity<AdmissionModel>().ToTable("ADT_PatientAdmission");//sud: 3June'18
+            modelBuilder.Entity<AdmissionModel>().ToTable("ADT_PatientAdmission");
             // Patient and visit mappings
             modelBuilder.Entity<VisitModel>()
-                   .HasRequired<PatientModel>(a => a.Patient)
-                   .WithMany(a => a.Visits)
-                    .HasForeignKey(s => s.PatientId);
-
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.Visits)
+                .HasForeignKey(s => s.PatientId);
 
             // Patient and Allergy mapping
             modelBuilder.Entity<AllergyModel>().ToTable("CLN_Allergies");
             modelBuilder.Entity<AllergyModel>()
-                   .HasRequired<PatientModel>(a => a.Patient) // Allergy entity requires Patient
-                   .WithMany(a => a.Allergies) // Patient entity includes many Allergy entities
-                    .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.Allergies)
+                .HasForeignKey(s => s.PatientId);
 
             // Patient and problem list mappings
             modelBuilder.Entity<ActiveMedicalProblem>().ToTable("CLN_ActiveMedicals");
             modelBuilder.Entity<ActiveMedicalProblem>()
-                   .HasRequired<PatientModel>(a => a.Patient) // ProblemList entity requires Patient
-                   .WithMany(a => a.Problems) // Patient entity includes many ProblemList entities
-                    .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.Problems)
+                .HasForeignKey(s => s.PatientId);
 
             // Patient and pastMedical list mappings
             modelBuilder.Entity<PastMedicalProblem>().ToTable("CLN_PastMedicals");
             modelBuilder.Entity<PastMedicalProblem>()
-                   .HasRequired<PatientModel>(a => a.Patient) // ProblemList entity requires Patient
-                   .WithMany(a => a.PastMedicals) // Patient entity includes many ProblemList entities
-                    .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.PastMedicals)
+                .HasForeignKey(s => s.PatientId);
 
             modelBuilder.Entity<ImagingReportModel>().ToTable("RAD_PatientImagingReport");
             modelBuilder.Entity<ImagingReportModel>()
-                   .HasRequired<PatientModel>(a => a.Patient) // imagingreport requires patient
-                   .WithMany(a => a.ImagingReports) // Patient entity includes many imagingreports
-                   .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.ImagingReports)
+                .HasForeignKey(s => s.PatientId);
 
             modelBuilder.Entity<ImagingRequisitionModel>().ToTable("RAD_PatientImagingRequisition");
             modelBuilder.Entity<ImagingRequisitionModel>()
-                   .HasRequired<PatientModel>(a => a.Patient) // imagingreport requires patient
-                   .WithMany(a => a.ImagingItemRequisitions) // Patient entity includes many imagingreports
-                   .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.ImagingItemRequisitions)
+                .HasForeignKey(s => s.PatientId);
             //LAB Results
             modelBuilder.Entity<LabRequisitionModel>().ToTable("LAB_TestRequisition");
-            //modelBuilder.Entity<LabTestModel>().ToTable("LAB_LabTests");
-
 
             // Patient and vitals mapping
             modelBuilder.Entity<VitalsModel>().ToTable("CLN_PatientVitals");
             modelBuilder.Entity<VitalsModel>()
-                   .HasRequired<VisitModel>(a => a.Visit) // Allergy entity requires Patient
-                   .WithMany(a => a.Vitals) // Patient entity includes many Allergy entities
-                    .HasForeignKey(s => s.PatientVisitId);
+                .HasOne(a => a.Visit)
+                .WithMany(a => a.Vitals)
+                .HasForeignKey(s => s.PatientVisitId);
 
             modelBuilder.Entity<NotesModel>().ToTable("CLN_Notes");
-          
 
             modelBuilder.Entity<MedicationPrescriptionModel>().ToTable("CLN_MedicationPrescription");
             modelBuilder.Entity<MedicationPrescriptionModel>()
-                    .HasRequired<PatientModel>(a => a.Patient) // Allergy entity requires Patient
-                    .WithMany(a => a.MedicationPrescriptions) // Patient entity includes many Allergy entities
-                     .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.MedicationPrescriptions)
+                .HasForeignKey(s => s.PatientId);
 
             modelBuilder.Entity<HomeMedicationModel>().ToTable("CLN_HomeMedications");
             modelBuilder.Entity<HomeMedicationModel>()
-                    .HasRequired<PatientModel>(a => a.Patient)
-                    .WithMany(a => a.HomeMedication)
-                     .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.HomeMedication)
+                .HasForeignKey(s => s.PatientId);
 
             modelBuilder.Entity<SocialHistory>().ToTable("CLN_SocialHistory");
             modelBuilder.Entity<SocialHistory>()
-                    .HasRequired<PatientModel>(a => a.Patient)
-                    .WithMany(a => a.SocialHistory)
-                     .HasForeignKey(s => s.PatientId);
-
-            //modelBuilder.Entity<PatientMembershipModel>().ToTable("PAT_PatientMembership");
-            //modelBuilder.Entity<PatientMembershipModel>()
-            //       .HasRequired<PatientModel>(a => a.Patient)
-            //       .WithMany(a => a.MembershipTypeId)
-            //        .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.SocialHistory)
+                .HasForeignKey(s => s.PatientId);
 
             modelBuilder.Entity<BillingSchemeModel>().ToTable("BIL_CFG_Scheme");
-
             modelBuilder.Entity<AppointmentModel>().ToTable("PAT_Appointment");
-            modelBuilder.Entity<PatientModel>()
-               .HasOptional<CountrySubDivisionModel>(p => p.CountrySubDivision);
-            modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");//added sud: 14May
-
-            modelBuilder.Entity<CountryModel>().ToTable("MST_Country");//added: sud:3June'18
-
-            modelBuilder.Entity<PatientModel>()
-               .HasOptional<CountrySubDivisionModel>(p => p.CountrySubDivision);
-            modelBuilder.Entity<HealthCardInfoModel>().ToTable("PAT_HealthCardInfo");   //added ramavtar:21Aug'18
-
+            modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
+            modelBuilder.Entity<CountryModel>().ToTable("MST_Country");
+            modelBuilder.Entity<HealthCardInfoModel>().ToTable("PAT_HealthCardInfo");
             modelBuilder.Entity<InsuranceProviderModel>().ToTable("INS_CFG_InsuranceProviders");
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");
             modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");
@@ -187,7 +167,6 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<MedicareMember>().ToTable("INS_MedicareMember");
             modelBuilder.Entity<MedicareMemberBalance>().ToTable("INS_MedicareMemberBalance");
             modelBuilder.Entity<PatientSchemeMapModel>().ToTable("PAT_MAP_PatientSchemes");
-
         }
     }
 }

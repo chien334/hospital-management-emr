@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.EmergencyModels;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.PatientModels;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace DanpheEMR.DalLayer
@@ -47,13 +47,13 @@ namespace DanpheEMR.DalLayer
         public DbSet<EthnicGroupModel> Ethnicity { get; set; }
         public DbSet<BillingFiscalYear> BillingFiscalYears { get; set; }
 
-        public EmergencyDbContext(string conn) : base(conn)
+        public EmergencyDbContext(DbContextOptions<EmergencyDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+            //this.Configuration.LazyLoadingEnabled = true;
+            //this.Configuration.ProxyCreationEnabled = false;
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ModeOfArrival>().ToTable("ER_ModeOfArrival");
             modelBuilder.Entity<AdminParametersModel>().ToTable("CORE_CFG_Parameters");

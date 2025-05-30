@@ -1,0 +1,111 @@
+using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using DanpheEMR.Core.DynTemplates;
+using DanpheEMR.Core.DynamicTemplate;
+using DanpheEMR.Core.Parameters;
+using DanpheEMR.ServerModel;
+using Audit.EntityFramework;
+
+namespace DanpheEMR.Core
+{
+    public class CoreDbContextCore : DbContext
+    {
+        private readonly string _connectionString;
+
+        public CoreDbContextCore(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(_connectionString);
+            }
+        }
+
+        public DbSet<ParameterModel> Parameters { get; set; }
+        public DbSet<LookupsModel> LookUps { get; set; }
+        public DbSet<CountryModel> Countries { get; set; }
+        public DbSet<CountrySubDivisionModel> CountrySubDivisions { get; set; }
+        public DbSet<ICD10CodeModel> ICD10Codes { get; set; }
+        public DbSet<EmployeeModel> Employees { get; set; }
+        public DbSet<ReactionModel> Reactions { get; set; }
+        public DbSet<RadiologyImagingTypeModel> ImagingTypes { get; set; }
+        public DbSet<RadiologyImagingItemModel> ImagingItems { get; set; }
+        public DbSet<DepartmentModel> Departments { get; set; }
+        public DbSet<ServiceDepartmentModel> ServiceDepartments { get; set; }
+        public DbSet<PriceCategoryModel> PriceCategory { get; set; }
+        public DbSet<BedModel> Beds { get; set; }
+        public DbSet<BedFeature> BedFeatures { get; set; }
+        public DbSet<BedFeaturesMap> BedFeaturesMaps { get; set; }
+        public DbSet<WardModel> Wards { get; set; }
+        public DbSet<EmployeeRoleModel> EmployeeRoles { get; set; }
+        public DbSet<EmployeeTypeModel> EmployeeTypes { get; set; }
+        public DbSet<EmployeePreferences> EmployeePreferences { get; set; }
+        public DbSet<PatientModel> Patients { get; set; }
+        public DbSet<TaxModel> Taxes { get; set; }
+        public DbSet<PHRMItemMasterModel> Medicines { get; set; }
+        public DbSet<CfgParameterModel> CFGParameters { get; set; }
+        
+        // For DynamicTemplates configuration
+        public DbSet<Template> Old_Templates { get; set; }
+        public DbSet<Questionnaire> Questionnaires { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Option> Options { get; set; }
+        public DbSet<LabRunNumberSettingsModel> LabRunNumberSettings { get; set; }
+        public DbSet<AccountingCodeDetailsModel> ACCCodeDetails { get; set; }
+        public DbSet<HospitalModel> Hospitals { get; set; }
+
+        // For New DynamicTemplates Configuration
+        public DbSet<TemplateTypeModel> TemplateTypes { get; set; }
+        public DbSet<FieldMasterModel> FieldMasters { get; set; }
+        public DbSet<TemplateModel> Templates { get; set; }
+        public DbSet<TemplateFieldMappingModel> TemplateFieldMappings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ParameterModel>().ToTable("CORE_CFG_Parameters");
+            modelBuilder.Entity<LookupsModel>().ToTable("CORE_CFG_LookUps");
+
+            modelBuilder.Entity<CountryModel>().ToTable("MST_Country");
+            modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
+            modelBuilder.Entity<ICD10CodeModel>().ToTable("MST_ICD10");
+            modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");
+            modelBuilder.Entity<ReactionModel>().ToTable("MST_Reactions");
+            
+            // Radiology Master Tables
+            modelBuilder.Entity<RadiologyImagingTypeModel>().ToTable("RAD_MST_ImagingType");
+            modelBuilder.Entity<RadiologyImagingItemModel>().ToTable("RAD_MST_ImagingItem");
+            modelBuilder.Entity<ServiceDepartmentModel>().ToTable("BIL_MST_ServiceDepartment");
+            modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");
+            modelBuilder.Entity<EmployeeRoleModel>().ToTable("EMP_Role");
+            modelBuilder.Entity<EmployeeTypeModel>().ToTable("EMP_EmployeeType");
+            modelBuilder.Entity<PriceCategoryModel>().ToTable("BIL_CFG_PriceCategory");
+            modelBuilder.Entity<BedModel>().ToTable("ADT_Bed");
+            modelBuilder.Entity<BedFeature>().ToTable("ADT_MST_BedFeature");
+            modelBuilder.Entity<BedFeaturesMap>().ToTable("ADT_MAP_BedFeaturesMap");
+            modelBuilder.Entity<WardModel>().ToTable("ADT_MST_Ward");
+            modelBuilder.Entity<EmployeePreferences>().ToTable("EMP_EmployeePreferences");
+            modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
+            modelBuilder.Entity<TaxModel>().ToTable("MST_Tax");
+
+            // For DynamicTemplates configuration
+            modelBuilder.Entity<Template>().ToTable("CORE_DYNTMP_Template");
+            modelBuilder.Entity<Questionnaire>().ToTable("CORE_DYNTMP_Questionnaire");
+            modelBuilder.Entity<Question>().ToTable("CORE_DYNTMP_Question");
+            modelBuilder.Entity<Option>().ToTable("CORE_DYNTMP_Option");
+            modelBuilder.Entity<LabRunNumberSettingsModel>().ToTable("Lab_MST_RunNumberSettings");
+            modelBuilder.Entity<AccountingCodeDetailsModel>().ToTable("ACC_MST_CodeDetails");
+            modelBuilder.Entity<HospitalModel>().ToTable("ACC_MST_Hospital");
+
+            // For New DynamicTemplates configuration
+            modelBuilder.Entity<TemplateTypeModel>().ToTable("DYNTMP_MST_TemplateType");
+            modelBuilder.Entity<FieldMasterModel>().ToTable("DYNTMP_MST_FieldMaster");
+            modelBuilder.Entity<TemplateModel>().ToTable("DYNTEMP_CFG_Template");
+            modelBuilder.Entity<TemplateFieldMappingModel>().ToTable("DYNTMP_MAP_TemplateFieldMapping");
+        }
+    }
+}

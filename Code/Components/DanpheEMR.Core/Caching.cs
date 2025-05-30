@@ -20,6 +20,7 @@ using System.Linq;
 using DanpheEMR.ServerModel;
 using System.Runtime.Caching;
 using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.Core.Caching
 {
@@ -83,7 +84,9 @@ namespace DanpheEMR.Core.Caching
         public static object GetMasterData(MasterDataEnum masterName)
         {
             // double cacheExpMinutes = 1;//this should come from configuration later on.
-            CoreDbContext coreDbContext = new CoreDbContext(connString);
+            var optionsBuilder = new Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<CoreDbContext>();
+            optionsBuilder.UseSqlServer(connString);
+            CoreDbContext coreDbContext = new CoreDbContext(optionsBuilder.Options);
             object returnValue = new object();
 
             switch (masterName)

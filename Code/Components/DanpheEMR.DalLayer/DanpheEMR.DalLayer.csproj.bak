@@ -1,0 +1,79 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>DanpheEMR.DalLayer</AssemblyName>
+    <RootNamespace>DanpheEMR.DalLayer</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="AdmissionDbContext.cs" />
+    <Compile Include="BillingDbContext.cs" />
+    <Compile Include="ClaimManagementDbContext.cs" />
+    <Compile Include="DischargeDbContext.cs" />
+    <Compile Include="LISDbContext.cs" />
+    <Compile Include="MarketingReferralDbContext.cs" />
+    <Compile Include="MedicareDbContext.cs" />
+    <Compile Include="PatientConsumptionDbContext.cs" />
+    <Compile Include="QueueManagementDbContext.cs" />
+    <Compile Include="SettlementDbContext.cs" />
+    <Compile Include="SocialServiceUnitDbContext.cs" />
+    <Compile Include="DALFunctions.cs" />
+    <Compile Include="DataTableToList.cs" />
+    <Compile Include="DicomDbContext.cs" />
+    <Compile Include="EmergencyDbContext.cs" />
+    <Compile Include="GovernmentReportDbContext.cs" />
+    <Compile Include="HelpdeskDbContext.cs" />
+    <Compile Include="AccountingDbContext.cs" />
+    <Compile Include="FractionDbContext.cs" />
+    <Compile Include="IncentiveDbContext.cs" />
+    <Compile Include="InsuranceDbContext.cs" />
+    <Compile Include="InventoryDbContext.cs" />
+    <Compile Include="LabDbContext.cs" />
+    <Compile Include="MasterDbContext.cs" />
+    <Compile Include="AppointmentDbContext.cs" />
+    <Compile Include="ClinicalDbContext.cs" />
+    <Compile Include="MaternityDbContext.cs" />
+    <Compile Include="MedicalRecordsDbContext.cs" />
+    <Compile Include="NotiFicationDbContext.cs" />
+    <Compile Include="OtDbContext.cs" />
+    <Compile Include="PayrollDbContext.cs" />
+    <Compile Include="PharmacyDbContext.cs" />
+    <Compile Include="PharmacyReportingDbContext.cs" />
+    <Compile Include="OrdersDbContext.cs" />
+    <Compile Include="RadiologyDbContext.cs" />
+    <Compile Include="InventoryReportingDbContext.cs" />
+    <Compile Include="ReportingDbContext.cs" />
+    <Compile Include="SchedulingDbContext.cs" />
+    <Compile Include="SSFDbContext.cs" />
+    <Compile Include="SystemAdminDbContext.cs" />
+    <Compile Include="DoctorsDbContext.cs" />
+    <Compile Include="UtilitiesDbContext.cs" />
+    <Compile Include="VaccinationDbContext.cs" />
+    <Compile Include="VisitDbContext.cs" />
+    <Compile Include="PatientDbContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WardReportingDbContext.cs" />
+    <Compile Include="WardSupplyDbContext.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\DanpheEMR.Core\DanpheEMR.Core.csproj" />
+    <ProjectReference Include="..\DanpheEMR.ServerModel\DanpheEMR.ServerModel.csproj" />
+    <ProjectReference Include="..\DanpheEMR.Security\DanpheEMR.Security.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Audit.EntityFramework;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.AppointmentModels;
@@ -15,7 +14,7 @@ using DanpheEMR.ServerModel.BillingModels.Config;
 
 namespace DanpheEMR.DalLayer
 {
-    public class VisitDbContext : AuditDbContext
+    public class VisitDbContext : DbContext
     {
         public DbSet<VisitModel> Visits { get; set; }
         public DbSet<AppointmentModel> AppointmentModel { get; set; }
@@ -51,14 +50,11 @@ namespace DanpheEMR.DalLayer
         public DbSet<EmpCashTransactionModel> EmpCashTransactions { get; set; }
         public DbSet<EmergencyPatientModel> EmergencyPatients { get; set; }
         public DbSet<PriceCategoryModel> PriceCategories { get; set; }
-        public VisitDbContext(string conn) : base(conn)
+        public VisitDbContext(DbContextOptions<VisitDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
             modelBuilder.Entity<AppointmentModel>().ToTable("PAT_Appointment");
@@ -66,18 +62,17 @@ namespace DanpheEMR.DalLayer
 
             // Patient and visit mappings
             modelBuilder.Entity<VisitModel>()
-                   .HasRequired<PatientModel>(a => a.Patient)
-                   .WithMany(a => a.Visits)
-                    .HasForeignKey(s => s.PatientId);
+                .HasOne(a => a.Patient)
+                .WithMany(a => a.Visits)
+                .HasForeignKey(s => s.PatientId);
 
-
-            //Admission and visit
-
+            // Admission and visit
             modelBuilder.Entity<AdmissionModel>()
                 .HasKey(t => t.PatientVisitId);
             modelBuilder.Entity<VisitModel>()
-                .HasOptional<AdmissionModel>(a => a.Admission)
-                .WithRequired(a => a.Visit);
+                .HasOne(a => a.Admission)
+                .WithOne(a => a.Visit)
+                .HasForeignKey<AdmissionModel>(a => a.PatientVisitId);
 
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");
             modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");
@@ -88,21 +83,18 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");
             modelBuilder.Entity<ImagingRequisitionModel>().ToTable("RAD_PatientImagingRequisition");
             modelBuilder.Entity<BillingTransactionItemModel>()
-                  .HasRequired<BillingTransactionModel>(s => s.BillingTransaction) // Address entity requires Patient
-                  .WithMany(s => s.BillingTransactionItems) // Patient entity includes many Addresses entities
-                   .HasForeignKey(s => s.BillingTransactionId);
+                .HasOne(s => s.BillingTransaction)
+                .WithMany(s => s.BillingTransactionItems)
+                .HasForeignKey(s => s.BillingTransactionId);
 
-            modelBuilder.Entity<BillInvoiceReturnModel>().ToTable("BIL_TXN_InvoiceReturn");//added sud: 14May--needs revision
-            modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");//added sud: 14May
-
-            modelBuilder.Entity<CountryModel>().ToTable("MST_Country");//added: sud:3June'18
+            modelBuilder.Entity<BillInvoiceReturnModel>().ToTable("BIL_TXN_InvoiceReturn");
+            modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
+            modelBuilder.Entity<CountryModel>().ToTable("MST_Country");
             modelBuilder.Entity<VitalsModel>().ToTable("CLN_PatientVitals");
             modelBuilder.Entity<PatientSchemeMapModel>().ToTable("PAT_MAP_PatientSchemes");
             modelBuilder.Entity<BillingTransactionCreditBillStatusModel>().ToTable("BIL_TXN_CreditBillStatus");
             modelBuilder.Entity<Rank>().ToTable("PAT_APF_Rank");
             modelBuilder.Entity<SSFClaimResponseDetails>().ToTable("PAT_SSFClaimResponseDetails");
-
-
             modelBuilder.Entity<MedicareMember>().ToTable("INS_MedicareMember");
             modelBuilder.Entity<MedicareMemberBalance>().ToTable("INS_MedicareMemberBalance");
             modelBuilder.Entity<BillMapPriceCategoryServiceItemModel>().ToTable("BIL_MAP_PriceCategoryServiceItem");
@@ -114,7 +106,6 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<EmpCashTransactionModel>().ToTable("TXN_EmpCashTransaction");
             modelBuilder.Entity<EmergencyPatientModel>().ToTable("ER_Patient");
             modelBuilder.Entity<PriceCategoryModel>().ToTable("BIL_CFG_PriceCategory");
-
         }
         public DbSet<PatientModel> Patients { get; set; }
         public DbSet<AdmissionModel> Admissions { get; set; }

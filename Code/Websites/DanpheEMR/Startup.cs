@@ -19,6 +19,7 @@ using DanpheEMR.Services.Maternity;
 using DanpheEMR.Services.Medicare;
 using DanpheEMR.Services.Pharmacy.Mapper.PurchaseOrder;
 using DanpheEMR.Services.Pharmacy.PharmacyPO;
+using System.Text.RegularExpressions;
 using DanpheEMR.Services.Pharmacy.Rack;
 using DanpheEMR.Services.Pharmacy.SupplierLedger;
 using DanpheEMR.Services.ProcessConfirmation;
@@ -256,6 +257,10 @@ namespace DanpheEMR
                 app.UseDeveloperExceptionPage();
             }
 
+            // Initialize database with proper FK constraint settings
+            string connString = Configuration["Connectionstring"];
+            DatabaseInitializer.Initialize(connString);
+
             app.UseMiddleware<RewindMiddleWare>();
             //start--for rbac-testing--sudarshanr--2march-2017
             app.UseSession();
@@ -328,8 +333,25 @@ namespace DanpheEMR
         //use existing decrypt method from RBAC.
         private string DecryptPassword(string encryptedPwd)
         {
-            string retVal = DanpheEMR.Security.RBAC.DecryptPassword(encryptedPwd);
-            return retVal;
+            try
+            {
+                // Check if the password looks like a Base64 string
+                if (encryptedPwd.Length % 4 == 0 && Regex.IsMatch(encryptedPwd, @"^[a-zA-Z0-9\+/]*={0,3}$"))
+                {
+                    string retVal = DanpheEMR.Security.RBAC.DecryptPassword(encryptedPwd);
+                    return retVal;
+                }
+                else
+                {
+                    // If not Base64, return as is (assuming it's plain text)
+                    return encryptedPwd;
+                }
+            }
+            catch
+            {
+                // In case of any error, return the original password
+                return encryptedPwd;
+            }
         }
 
         //end: sud-9Jan'19-- for ConnectionString encryption/decryption

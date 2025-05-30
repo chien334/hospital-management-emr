@@ -1,39 +1,36 @@
-﻿
-using DanpheEMR.ServerModel;
+﻿using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.ReportingModels;
 using DanpheEMR.ServerModel.SystemAdminModels;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using System.Data.Common;
 using System.Linq;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.DalLayer
 {
     public class ReportingDbContext : DbContext
     {
-        private string connStr = null;
-        public ReportingDbContext(string Conn) : base(Conn)
+        public ReportingDbContext(DbContextOptions<ReportingDbContext> options) : base(options)
         {
-            connStr = Conn;
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
 
         #region Doctor Report
         public DataTable DoctorReport(DateTime FromDate, DateTime ToDate, string ProviderName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
             if (ProviderName != null)
             {
-                SqlParameter providerParameter = new SqlParameter("@ProviderName", ProviderName);
+                var providerParameter = new Microsoft.Data.SqlClient.SqlParameter("@ProviderName", ProviderName);
                 paramList.Add(providerParameter);
             }
-            DataTable doctorReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorReport", paramList, this);
+            DataTable doctorReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return doctorReportData;
         }
         #endregion
@@ -41,13 +38,13 @@ namespace DanpheEMR.DalLayer
         #region Doctor Revenue Report        
         public DataTable DoctorRevenue(DateTime FromDate, DateTime ToDate, string PerformerName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
             if (PerformerName != null)
             {
                 SqlParameter providerParameter = new SqlParameter("@PerformerName", PerformerName);
                 paramList.Add(providerParameter);
             }
-            DataTable doctorRevenue = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorRevenue", paramList, this);
+            DataTable doctorRevenue = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorRevenue", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return doctorRevenue;
         }
         #endregion
@@ -55,13 +52,13 @@ namespace DanpheEMR.DalLayer
         #region BilDenomination Report        
         public DataTable BilDenomination(DateTime FromDate, DateTime ToDate, int UserId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
             if (UserId != 0)
             {
                 SqlParameter providerParameter = new SqlParameter("@UserId", UserId);
                 paramList.Add(providerParameter);
             }
-            DataTable billdenomination = DALFunctions.GetDataTableFromStoredProc("SP_Report_Bill_BillDenomination", paramList, this);
+            DataTable billdenomination = DALFunctions.GetDataTableFromStoredProc("SP_Report_Bill_BillDenomination", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return billdenomination;
         }
         #endregion
@@ -69,14 +66,14 @@ namespace DanpheEMR.DalLayer
         #region BilDenomination All Report        
         public DataTable BilDenominationAllList(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
             //SqlParameter providerParameter = new SqlParameter();
             //paramList.Add(providerParameter);
-            DataTable billdenomination = DALFunctions.GetDataTableFromStoredProc("SP_Report_Bill_BillDenominationAllList", paramList, this);
+            DataTable billdenomination = DALFunctions.GetDataTableFromStoredProc("SP_Report_Bill_BillDenominationAllList", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return billdenomination;
         }
 
@@ -84,13 +81,13 @@ namespace DanpheEMR.DalLayer
         #region Doctor Summary Report        
         public DataTable DoctorSummary(DateTime FromDate, DateTime ToDate, int ProviderId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
             if (ProviderId != 0)
             {
                 SqlParameter providerParameter = new SqlParameter("@ProviderId", ProviderId);
                 paramList.Add(providerParameter);
             }
-            DataTable doctorSummary = DALFunctions.GetDataTableFromStoredProc("SP_Report_DOC_DoctorSummary", paramList, this);
+            DataTable doctorSummary = DALFunctions.GetDataTableFromStoredProc("SP_Report_DOC_DoctorSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return doctorSummary;
         }
         #endregion
@@ -98,7 +95,7 @@ namespace DanpheEMR.DalLayer
         #region Deposit Balance Report
         public DataTable DepositBalanceReport()
         {
-            DataTable depositBalanceRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Deposit_Balance", this);
+            DataTable depositBalanceRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Deposit_Balance", (Microsoft.EntityFrameworkCore.DbContext)this);
             return depositBalanceRptData;
         }
         #endregion        
@@ -106,13 +103,13 @@ namespace DanpheEMR.DalLayer
         #region Daily Sales Report
         public DynamicReport DailySalesReport(DateTime FromDate, DateTime ToDate, int? CounterId, string CreatedBy, bool? IsInsurance)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@FromDate", FromDate),
-                            new SqlParameter("@ToDate", ToDate),
-                            new SqlParameter("@CounterId", CounterId),
-                            new SqlParameter("@CreatedBy", CreatedBy == null ? string.Empty : CreatedBy),
-                             new SqlParameter("@IsInsurance", IsInsurance) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {  new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@CounterId", CounterId),
+                            new Microsoft.Data.SqlClient.SqlParameter("@CreatedBy", CreatedBy == null ? string.Empty : CreatedBy),
+                             new Microsoft.Data.SqlClient.SqlParameter("@IsInsurance", IsInsurance) };
 
-            DataSet dataSet = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_DailySales", paramList, this);
+            DataSet dataSet = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_DailySales", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (dataSet.Tables.Count > 0)
             {
@@ -130,50 +127,50 @@ namespace DanpheEMR.DalLayer
 
         public DataTable DiscountReport(DateTime FromDate, DateTime ToDate, int? CounterId, int? CreatedBy)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@FromDate", FromDate),
-                            new SqlParameter("@ToDate", ToDate),
-                            new SqlParameter("@CounterId", CounterId),
-                            new SqlParameter("@CreatedBy", CreatedBy) };
-            DataTable discountReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Discount", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {  new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@CounterId", CounterId),
+                            new Microsoft.Data.SqlClient.SqlParameter("@CreatedBy", CreatedBy) };
+            DataTable discountReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Discount", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return discountReportData;
         }
 
         public DataTable SchemeWiseDiscountReport(DateTime FromDate, DateTime ToDate, int SchemeId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@FromDate", FromDate),
-                            new SqlParameter("@ToDate", ToDate),
-                            new SqlParameter("@SchemeId", SchemeId) };
-            DataTable discountReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_SchemeWiseDiscountReport", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {  new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@SchemeId", SchemeId) };
+            DataTable discountReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_SchemeWiseDiscountReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return discountReportData;
         }
         public DataTable DepartmentWiseDiscountSchemeReport(DateTime FromDate, DateTime ToDate, object MembershipTypeId, object ServiceDepartmentId, object PaymentMode)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@FromDate", FromDate),
-                            new SqlParameter("@ToDate", ToDate),
-                            new SqlParameter("@MembershipTypeId", (MembershipTypeId != null) ? MembershipTypeId : DBNull.Value),
-                            new SqlParameter("@ServiceDepartmentId", (ServiceDepartmentId != null) ? ServiceDepartmentId : DBNull.Value),
-                            new SqlParameter("@PaymentMode", (PaymentMode != null) ? PaymentMode : DBNull.Value)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {  new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@MembershipTypeId", (MembershipTypeId != null) ? MembershipTypeId : DBNull.Value),
+                            new Microsoft.Data.SqlClient.SqlParameter("@ServiceDepartmentId", (ServiceDepartmentId != null) ? ServiceDepartmentId : DBNull.Value),
+                            new Microsoft.Data.SqlClient.SqlParameter("@PaymentMode", (PaymentMode != null) ? PaymentMode : DBNull.Value)
                             };
-            DataTable discountReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_DepartmentWiseDiscountSchemeReport", paramList, this);
+            DataTable discountReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_DepartmentWiseDiscountSchemeReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return discountReportData;
         }
 
         public DataTable ItemLevelDepartmentWiseDiscountSchemeReport(object BillingTransactionId, object MembershipTypeId, object ServiceDepartmentId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                            new SqlParameter("@BillingTransactionId", (BillingTransactionId != null) ? BillingTransactionId : DBNull.Value),
-                            new SqlParameter("@MembershipTypeId", (MembershipTypeId != null) ? MembershipTypeId : DBNull.Value),
-                            new SqlParameter("@ServiceDepartmentId", (ServiceDepartmentId != null) ? ServiceDepartmentId : DBNull.Value),
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                            new Microsoft.Data.SqlClient.SqlParameter("@BillingTransactionId", (BillingTransactionId != null) ? BillingTransactionId : DBNull.Value),
+                            new Microsoft.Data.SqlClient.SqlParameter("@MembershipTypeId", (MembershipTypeId != null) ? MembershipTypeId : DBNull.Value),
+                            new Microsoft.Data.SqlClient.SqlParameter("@ServiceDepartmentId", (ServiceDepartmentId != null) ? ServiceDepartmentId : DBNull.Value),
                             };
-            DataTable itemLevelReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_ItemLevelDepartmentWiseDiscountSchemeReport", paramList, this);
+            DataTable itemLevelReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_ItemLevelDepartmentWiseDiscountSchemeReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return itemLevelReportData;
         }
 
         #region Daily MIS Report
         public DynamicReport DailyMISReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataSet dataSet = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_DailyMISReport", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataSet dataSet = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_DailyMISReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (dataSet.Tables.Count > 1)
             {
@@ -200,16 +197,16 @@ namespace DanpheEMR.DalLayer
         }
         public DataTable DoctorPatientCount(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataTable drPatCount = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DailyMISDrPatientCount", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable drPatCount = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DailyMISDrPatientCount", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return drPatCount;
         }
         #endregion
         #region BillDocSummaryReport
         public DataTable BillDocSummary(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataTable dtBilDocSummary = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorSummary", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable dtBilDocSummary = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
 
             return dtBilDocSummary;
         }
@@ -219,13 +216,13 @@ namespace DanpheEMR.DalLayer
         #region BillDocDeptSummary
         public DataTable BillDocDeptSummary(DateTime FromDate, DateTime ToDate, int DoctorId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@DoctorId", DoctorId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@DoctorId", DoctorId)
             };
-            DataTable dtDoctorDeptSummary = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorDeptSummary", paramList, this);
+            DataTable dtDoctorDeptSummary = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorDeptSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
 
             return dtDoctorDeptSummary;
         }
@@ -233,14 +230,14 @@ namespace DanpheEMR.DalLayer
         #region BillDocDeptItemSummary
         public DataTable BillDocDeptItemSummary(DateTime FromDate, DateTime ToDate, int DoctorId, string SrvDeptName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@DoctorId", DoctorId),
-                new SqlParameter("@SrvDeptName", SrvDeptName)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@DoctorId", DoctorId),
+                new Microsoft.Data.SqlClient.SqlParameter("@SrvDeptName", SrvDeptName)
             };
-            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorDeptItemsSummary", paramList, this);
+            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorDeptItemsSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             //DynamicReport dReport = new DynamicReport();
             //if (rData.Tables.Count > 1)
             //{
@@ -259,12 +256,12 @@ namespace DanpheEMR.DalLayer
         #region Bill- Department Summary report
         public DynamicReport BillDepartmentSummary(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_DepartmentSummary", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_DepartmentSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData.Tables.Count > 1)
             {
@@ -282,8 +279,8 @@ namespace DanpheEMR.DalLayer
         #region Department Revenue Report
         public DynamicReport DepartmentRevenueReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataSet dataSet = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_DepartmentRevenue", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataSet dataSet = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_DepartmentRevenue", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (dataSet.Tables.Count > 0)
             {
@@ -300,13 +297,13 @@ namespace DanpheEMR.DalLayer
         #region BillDeptItemSummary
         public DynamicReport BillDeptItemSummary(DateTime FromDate, DateTime ToDate, string SrvDeptName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@SrvDeptName",SrvDeptName)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@SrvDeptName",SrvDeptName)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_DepartmentItemSummary", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_DepartmentItemSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData.Tables.Count > 1)
             {
@@ -324,18 +321,18 @@ namespace DanpheEMR.DalLayer
         #region Service Department Names (list of srvDeptNames from Function)
         public DataTable LoadServDeptsNameFromFN()
         {
-            DataTable servDeptsName = DALFunctions.GetDataTableFromStoredProc("SP_BILL_GetServiceDepartmentsName", this);
+            DataTable servDeptsName = DALFunctions.GetDataTableFromStoredProc("SP_BILL_GetServiceDepartmentsName", (Microsoft.EntityFrameworkCore.DbContext)this);
             return servDeptsName;
         }
         #endregion
 
         public DynamicReport CustomReport(DateTime FromDate, DateTime ToDate, string ReportName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@ReportName", ReportName) };
-            DataSet customReportData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_CustomReport", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ReportName", ReportName) };
+            DataSet customReportData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_CustomReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (customReportData.Tables.Count > 1)
             {
@@ -353,8 +350,8 @@ namespace DanpheEMR.DalLayer
         #region Doctorwise OutPatient Report
         public DataTable DoctorWisePatientReport(DateTime fromDate, DateTime toDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", fromDate), new SqlParameter("@ToDate", toDate) };
-            DataTable reportTable = DALFunctions.GetDataTableFromStoredProc("SP_Report_Appointment_DoctorWiseOutPatientReport", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate) };
+            DataTable reportTable = DALFunctions.GetDataTableFromStoredProc("SP_Report_Appointment_DoctorWiseOutPatientReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return reportTable;
         }
         #endregion
@@ -362,13 +359,13 @@ namespace DanpheEMR.DalLayer
         #region DoctorwiseIncomeSummaryOpIpReport
         public DynamicReport DoctorwiseIncomeSummaryOpIpReport(DateTime fromDate, DateTime toDate, int? PerformerId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", fromDate),
-                new SqlParameter("@ToDate", toDate),
-                new SqlParameter("@PerformerId", PerformerId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@PerformerId", PerformerId)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_DoctorWiseIncomeSummary_OPIP", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_DoctorWiseIncomeSummary_OPIP", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData.Tables.Count > 1)
             {
@@ -387,39 +384,39 @@ namespace DanpheEMR.DalLayer
         #region Total Item Bill Report
         public DataTable TotalItemsBill(DateTime FromDate, DateTime ToDate, string billingType, string ServiceDepartmentName, string ItemName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@FromDate", FromDate),
-                           new SqlParameter("@ToDate", ToDate),
-                           new SqlParameter("@billingType", billingType),
-                           new SqlParameter("@ServiceDepartmentName", ServiceDepartmentName == null ? string.Empty : ServiceDepartmentName),
-                           new SqlParameter("@ItemName", ItemName == null ? string.Empty : ItemName)};
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {  new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@billingType", billingType),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ServiceDepartmentName", ServiceDepartmentName == null ? string.Empty : ServiceDepartmentName),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ItemName", ItemName == null ? string.Empty : ItemName)};
 
-            DataTable totalItemBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_TotalItemsBill", paramList, this);
+            DataTable totalItemBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_TotalItemsBill", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return totalItemBillData;
         }
         #endregion
         #region EHS Bill Report
         public DataTable EHSBillReport(DateTime FromDate, DateTime ToDate, string ServiceDepartmentName, string ItemName, int? PerformerId, int? PrescriberId, int? UserId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@FromDate", FromDate),
-                           new SqlParameter("@ToDate", ToDate),
-                           new SqlParameter("@ServiceDepartmentName", ServiceDepartmentName == null ? string.Empty : ServiceDepartmentName),
-                           new SqlParameter("@ItemName", ItemName == null ? string.Empty : ItemName),
-                           new SqlParameter("@PerformerId", PerformerId),
-                           new SqlParameter("@PrescriberId", PrescriberId),
-                           new SqlParameter("@UserId", UserId)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {  new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ServiceDepartmentName", ServiceDepartmentName == null ? string.Empty : ServiceDepartmentName),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ItemName", ItemName == null ? string.Empty : ItemName),
+                           new Microsoft.Data.SqlClient.SqlParameter("@PerformerId", PerformerId),
+                           new Microsoft.Data.SqlClient.SqlParameter("@PrescriberId", PrescriberId),
+                           new Microsoft.Data.SqlClient.SqlParameter("@UserId", UserId)
             };
 
-            DataTable totalItemBillData = DALFunctions.GetDataTableFromStoredProc("SP_RPT_Bil_EHSBillingReport", paramList, this);
+            DataTable totalItemBillData = DALFunctions.GetDataTableFromStoredProc("SP_RPT_Bil_EHSBillingReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return totalItemBillData;
         }
         #endregion
         #region Daily Sales Book
         public DataTable SalesDaybook(DateTime FromDate, DateTime ToDate, bool IsInsurance)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate)
-                , new SqlParameter("@ToDate", ToDate) , new SqlParameter("@IsInsurance", IsInsurance)};
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate)
+                , new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) , new Microsoft.Data.SqlClient.SqlParameter("@IsInsurance", IsInsurance)};
 
-            DataTable salesDaybookData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_SalesDaybook", paramList, this);
+            DataTable salesDaybookData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_SalesDaybook", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return salesDaybookData;
         }
         #endregion
@@ -427,14 +424,14 @@ namespace DanpheEMR.DalLayer
         #region PatientCensusReport
         public DynamicReport PatientCensusReport(DateTime FromDate, DateTime ToDate, int? ProviderId, int? DepartmentId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@PerformerId",ProviderId),
-                new SqlParameter("@DepartmentId",DepartmentId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@PerformerId",ProviderId),
+                new Microsoft.Data.SqlClient.SqlParameter("@DepartmentId",DepartmentId)
             };
-            DataSet patientCensusData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_PatientCensus", paramList, this);
+            DataSet patientCensusData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_PatientCensus", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (patientCensusData.Tables.Count > 1)
             {
@@ -453,12 +450,12 @@ namespace DanpheEMR.DalLayer
         #region Department Sales Daybook
         public DataTable DepartmentSalesDaybook(DateTime FromDate, DateTime ToDate, bool IsInsurance)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@IsInsurance", IsInsurance) };
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@IsInsurance", IsInsurance) };
 
-            DataTable deptSalesDaybookData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_DepartmentSalesDaybook", paramList, this);
+            DataTable deptSalesDaybookData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_DepartmentSalesDaybook", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return deptSalesDaybookData;
         }
         #endregion
@@ -466,20 +463,20 @@ namespace DanpheEMR.DalLayer
         #region Patient Neighbourhood Card Details Report
         public DataTable PatientNeighbourhoodCardDetail(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate) };
-            DataTable patneighbourcardData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_PAT_NeighbourhoodCardDetail", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable patneighbourcardData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_PAT_NeighbourhoodCardDetail", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return patneighbourcardData;
         }
         #endregion
         #region Package Sales Detail Report
         public DataTable PackageSalesDetail(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate) };
-            DataTable patneighbourcardData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_PAT_PackageSalesDetail", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable patneighbourcardData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_PAT_PackageSalesDetail", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return patneighbourcardData;
         }
         #endregion
@@ -487,12 +484,12 @@ namespace DanpheEMR.DalLayer
         #region Dialysis Patient Details Report
         public DataTable DialysisPatientDetail(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
                 };
 
-            DataTable dialysispatientData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DialysisPatientDetail", paramList, this);
+            DataTable dialysispatientData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DialysisPatientDetail", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return dialysispatientData;
         }
         #endregion
@@ -521,7 +518,7 @@ namespace DanpheEMR.DalLayer
 
 
             // creates a Command 
-            var cmd = context.Database.Connection.CreateCommand();
+            var cmd = context.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "SP_Report_BILL_PatientBillHistory";
             cmd.Parameters.Add(new SqlParameter("@FromDate", FromDate));
@@ -533,25 +530,29 @@ namespace DanpheEMR.DalLayer
             try
             {
                 // executes
-                context.Database.Connection.Open();
-                var reader = cmd.ExecuteReader();
-
-                // loop through all resultsets (considering that it's possible to have more than one)
-                do
+                if (context.Database.GetDbConnection().State == ConnectionState.Closed)
                 {
-                    // loads the DataTable (schema will be fetch automatically)
-                    var tb = new DataTable();
-                    tb.Load(reader);
-                    result.Tables.Add(tb);
+                    context.Database.GetDbConnection().Open();
+                    var reader = cmd.ExecuteReader();
 
-                } while (!reader.IsClosed);
+                    // loop through all resultsets (considering that it's possible to have more than one)
+                    do
+                    {
+                        // loads the DataTable (schema will be fetch automatically)
+                        var tb = new DataTable();
+                        tb.Load(reader);
+                        result.Tables.Add(tb);
 
-                return result;
+                    } while (!reader.IsClosed);
+
+                    return result;
+                }
+                return null;
             }
             finally
             {
                 // closes the connection
-                context.Database.Connection.Close();
+                context.Database.GetDbConnection().Close();
             }
         }
 
@@ -588,13 +589,13 @@ namespace DanpheEMR.DalLayer
         #region Daily Appointment Report
         public DataTable DailyAppointmentReport(DateTime FromDate, DateTime ToDate, string Doctor_Name, string AppointmentType)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@Doctor_Name", Doctor_Name),
-                new SqlParameter("@AppointmentType", AppointmentType)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@Doctor_Name", Doctor_Name),
+                new Microsoft.Data.SqlClient.SqlParameter("@AppointmentType", AppointmentType)
             };
-            DataTable dailyAppointmentRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Appointment_DailyAppointmentReport", paramList, this);
+            DataTable dailyAppointmentRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Appointment_DailyAppointmentReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return dailyAppointmentRptData;
         }
         #endregion
@@ -602,14 +603,14 @@ namespace DanpheEMR.DalLayer
         #region Rankwise Daily Appointment Report
         public DataTable RankwiseDailyAppointmentReport(DateTime FromDate, DateTime ToDate, string Rank, string Membership, string AppointmentType)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@Rank", Rank),
-                new SqlParameter("@Membership", Membership),
-                new SqlParameter("@AppointmentType", AppointmentType)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@Rank", Rank),
+                new Microsoft.Data.SqlClient.SqlParameter("@Membership", Membership),
+                new Microsoft.Data.SqlClient.SqlParameter("@AppointmentType", AppointmentType)
             };
-            DataTable dailyAppointmentRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Appointment_RankwiseDailyAppointmentReport", paramList, this);
+            DataTable dailyAppointmentRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Appointment_RankwiseDailyAppointmentReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return dailyAppointmentRptData;
         }
         #endregion
@@ -617,34 +618,34 @@ namespace DanpheEMR.DalLayer
         #region PhoneBook Appointment Report
         public DataTable PhoneBookAppointmentReport(DateTime FromDate, DateTime ToDate, string Doctor_Name, string AppointmentStatus)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@Doctor_Name", Doctor_Name),
-                new SqlParameter("@AppointmentStatus", AppointmentStatus)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@Doctor_Name", Doctor_Name),
+                new Microsoft.Data.SqlClient.SqlParameter("@AppointmentStatus", AppointmentStatus)
             };
-            DataTable phonebookAppointmentRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Appointment_PhoneBookAppointmentReport", paramList, this);
+            DataTable phonebookAppointmentRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Appointment_PhoneBookAppointmentReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return phonebookAppointmentRptData;
         }
         #endregion
         #region Diagnosis Wise Patient Report 
         public DataTable DiagnosisWisePatientReport(DateTime FromDate, DateTime ToDate, string Diagnosis)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@Diagnosis", Diagnosis)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@Diagnosis", Diagnosis)
             };
-            DataTable diagnosiswisePtReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_ADT_DiagnosisWiseReport", paramList, this);
+            DataTable diagnosiswisePtReportData = DALFunctions.GetDataTableFromStoredProc("SP_Report_ADT_DiagnosisWiseReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return diagnosiswisePtReportData;
         }
         #endregion
         #region Get Billing IncomeSegregation Report
         public DataTable Get_Bill_IncomeSegregationStaticReport(DateTime FromDate, DateTime ToDate, string billingType)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate), new SqlParameter("@billingType", billingType)};
-            DataTable incomeSegregationStaticRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_IncomeSegregation", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate), new Microsoft.Data.SqlClient.SqlParameter("@billingType", billingType)};
+            DataTable incomeSegregationStaticRptData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_IncomeSegregation", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return incomeSegregationStaticRptData;
         }
         #endregion
@@ -652,11 +653,11 @@ namespace DanpheEMR.DalLayer
         #region Get Billing IncomeSegregation Report
         public DynamicReport GetSalesPurchaseTrainedCompanion(DateTime FromDate, DateTime ToDate, string Status, string ItemIdCommaSeprated)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
-            paramsList.Add(new SqlParameter("@FromDate", FromDate));
-            paramsList.Add(new SqlParameter("@ToDate", ToDate));
-            paramsList.Add(new SqlParameter("@Status", Status));
-            paramsList.Add(new SqlParameter("@ItemIdCommaSeprated", ItemIdCommaSeprated));
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@Status", Status));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ItemIdCommaSeprated", ItemIdCommaSeprated));
 
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet salesPurchase = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Pharmacy_SalesPurchaseGraph_DashboardStatistics", paramsList, reportingDbContext);
@@ -675,22 +676,22 @@ namespace DanpheEMR.DalLayer
         #region Total Admitted Patients
         public DataTable TotalAdmittedPatient(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_ADT_TotalAdmittedPatient", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_ADT_TotalAdmittedPatient", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return data;
         }
         #endregion
         #region Admission And Discharge List
         public DataTable AdmissionAndDischargeList(DateTime FromDate, DateTime ToDate, int WardId, int DepartmentId, int BedFeatureId, string AdmissionStatus, string SearchText)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@WardId", WardId),
-                new SqlParameter("@DepartmentId", DepartmentId),
-                new SqlParameter("@BedFeatureId", BedFeatureId),
-                new SqlParameter("@AdmissionStatus", AdmissionStatus),
-                new SqlParameter("@SearchText", SearchText)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@WardId", WardId),
+                new Microsoft.Data.SqlClient.SqlParameter("@DepartmentId", DepartmentId),
+                new Microsoft.Data.SqlClient.SqlParameter("@BedFeatureId", BedFeatureId),
+                new Microsoft.Data.SqlClient.SqlParameter("@AdmissionStatus", AdmissionStatus),
+                new Microsoft.Data.SqlClient.SqlParameter("@SearchText", SearchText)
             };
 
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
@@ -702,14 +703,14 @@ namespace DanpheEMR.DalLayer
         #region RankMembersipwiseAdmittedPatientReport
         public DataTable RankMembershipwiseAdmittedPatientReport(string fromDate, string toDate, string memberships, string ranks)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                           new SqlParameter("@FromDate", fromDate),
-                           new SqlParameter("@ToDate", toDate),
-                           new SqlParameter("@Memberships", memberships),
-                           new SqlParameter("@Ranks", ranks)
+                           new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@Memberships", memberships),
+                           new Microsoft.Data.SqlClient.SqlParameter("@Ranks", ranks)
             };
-            DataTable schemeDetailInvoiceReport = DALFunctions.GetDataTableFromStoredProc("RPT_SP_ADT_RankMembershipwiseAdmittedPatientReport", paramList, this);
+            DataTable schemeDetailInvoiceReport = DALFunctions.GetDataTableFromStoredProc("RPT_SP_ADT_RankMembershipwiseAdmittedPatientReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return schemeDetailInvoiceReport;
         }
         #endregion
@@ -717,8 +718,8 @@ namespace DanpheEMR.DalLayer
         #region Total Discharged Patients
         public DataTable DischargedPatient(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_ADT_DischargedPatient", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_ADT_DischargedPatient", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return data;
         }
         #endregion
@@ -726,8 +727,8 @@ namespace DanpheEMR.DalLayer
         #region Transferred Patients
         public DataTable TransferredPatient(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataTable data = DALFunctions.GetDataTableFromStoredProc("sp_Report_TransferredPatient", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable data = DALFunctions.GetDataTableFromStoredProc("sp_Report_TransferredPatient", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return data;
         }
         #endregion
@@ -735,8 +736,8 @@ namespace DanpheEMR.DalLayer
         #region Radiology Revenue Generated
         public DataTable RevenueGenerated(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> ipParam = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_Radiology_RevenueGenerated", ipParam, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> ipParam = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_Radiology_RevenueGenerated", ipParam, (Microsoft.EntityFrameworkCore.DbContext)this);
             return data;
         }
         #endregion
@@ -744,9 +745,9 @@ namespace DanpheEMR.DalLayer
         #region Category Wise Imaging Report
         public DynamicReport CategoryWiseImagingReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
-            paramsList.Add(new SqlParameter("@FromDate", FromDate));
-            paramsList.Add(new SqlParameter("@ToDate", ToDate));
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
 
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsCategoryWiseImagingReport = DALFunctions.GetDatasetFromStoredProc("SP_Report_Radiology_CategoryWiseImagingReport", paramsList, reportingDbContext);
@@ -769,9 +770,9 @@ namespace DanpheEMR.DalLayer
 
         public DataTable CategoryWiseLabReport(DateTime FromDate, DateTime ToDate, String orderStatus)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
-            { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate),new SqlParameter("@OrderStatus",orderStatus)};
-            DataTable CategoryWiseLabData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Lab_CategoryWiseLabReport", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
+            { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),new Microsoft.Data.SqlClient.SqlParameter("@OrderStatus",orderStatus)};
+            DataTable CategoryWiseLabData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Lab_CategoryWiseLabReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return CategoryWiseLabData;
         }
         //public DynamicReport CategoryWiseLabReport(DateTime FromDate, DateTime ToDate)
@@ -800,9 +801,9 @@ namespace DanpheEMR.DalLayer
 
         public DataTable DoctorWisePatientCountLabReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
-            { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataTable DoctorWiseLabData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Lab_DoctorWisePatientCountLabReport", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
+            { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable DoctorWiseLabData = DALFunctions.GetDataTableFromStoredProc("SP_Report_Lab_DoctorWisePatientCountLabReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return DoctorWiseLabData;
         }
 
@@ -810,10 +811,10 @@ namespace DanpheEMR.DalLayer
         #region Category wise total Item Count Lab Report
         public DataTable CategoryWiseLabItemCountLabReport(DateTime FromDate, DateTime ToDate, String orderStatus)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
-            { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate),
-            new SqlParameter("@OrderStatus",orderStatus)};
-            DataTable CategoryWiseLabItem = DALFunctions.GetDataTableFromStoredProc("SP_LAB_CategoryWiseLabTestTotalCount", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
+            { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+            new Microsoft.Data.SqlClient.SqlParameter("@OrderStatus",orderStatus)};
+            DataTable CategoryWiseLabItem = DALFunctions.GetDataTableFromStoredProc("SP_LAB_CategoryWiseLabTestTotalCount", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return CategoryWiseLabItem;
         }
         #endregion   
@@ -821,10 +822,10 @@ namespace DanpheEMR.DalLayer
         #region Item wise total Count Lab Report
         public DataTable ItemWiseLabItemCountLabReport(DateTime FromDate, DateTime ToDate, int? categoryId, String orderStatus)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
-            { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate), new SqlParameter("@catId", categoryId),
-            new SqlParameter("@OrderStatus",orderStatus)};
-            DataTable ItemWiseData = DALFunctions.GetDataTableFromStoredProc("SP_LAB_TestWiseTotalCount", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
+            { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate), new Microsoft.Data.SqlClient.SqlParameter("@catId", categoryId),
+            new Microsoft.Data.SqlClient.SqlParameter("@OrderStatus",orderStatus)};
+            DataTable ItemWiseData = DALFunctions.GetDataTableFromStoredProc("SP_LAB_TestWiseTotalCount", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return ItemWiseData;
         }
         #endregion
@@ -832,13 +833,13 @@ namespace DanpheEMR.DalLayer
         #region Test Status wise detail report
         public DataTable TestStatusDetailReport(DateTime FromDate, DateTime ToDate, String orderStatus)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@OrderStatus",orderStatus)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@OrderStatus",orderStatus)
             };
-            DataTable TestStatusWiseData = DALFunctions.GetDataTableFromStoredProc("SP_LAB_Statuswise_Test_Detail", paramList, this);
+            DataTable TestStatusWiseData = DALFunctions.GetDataTableFromStoredProc("SP_LAB_Statuswise_Test_Detail", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return TestStatusWiseData;
         }
 
@@ -848,10 +849,10 @@ namespace DanpheEMR.DalLayer
         #region Doctor Wise patient report
         public DynamicReport DoctorWisePatientReport(DateTime FromDate, DateTime ToDate, string PerformerName)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
-            paramsList.Add(new SqlParameter("@FromDate", FromDate));
-            paramsList.Add(new SqlParameter("@ToDate", ToDate));
-            paramsList.Add(new SqlParameter("@PerformerName", PerformerName));
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@PerformerName", PerformerName));
 
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsDoctorWisepatientRevenue = DALFunctions.GetDatasetFromStoredProc("SP_Report_Scheduling_DoctorWisePatientReport", paramsList, reportingDbContext);
@@ -867,10 +868,10 @@ namespace DanpheEMR.DalLayer
         #region Department Wise Appointment report
         public DynamicReport DepartmentWiseAppointmentReport(DateTime FromDate, DateTime ToDate, int DepartmentId)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
-            paramsList.Add(new SqlParameter("@FromDate", FromDate));
-            paramsList.Add(new SqlParameter("@ToDate", ToDate));
-            paramsList.Add(new SqlParameter("@DepartmentId", DepartmentId));
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@DepartmentId", DepartmentId));
 
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet depatwiseappointmentdata = DALFunctions.GetDatasetFromStoredProc("SP_Report_Appointment_DepartmentWiseAppointmentReport", paramsList, reportingDbContext);
@@ -887,8 +888,8 @@ namespace DanpheEMR.DalLayer
 
         public DataTable BIL_PatientCreditSummary(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate) };
-            DataTable patientCreditSummaryData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_PatientCreditSummary", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate) };
+            DataTable patientCreditSummaryData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_PatientCreditSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return patientCreditSummaryData;
         }
 
@@ -898,11 +899,11 @@ namespace DanpheEMR.DalLayer
         #region BIL Cancel Summary
         public DataTable BIL_BillCancelSummary(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate)
-               , new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate)
+               , new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            DataTable billCancelSummaryData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_BillCancelReport", paramList, this);
+            DataTable billCancelSummaryData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_BillCancelReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return billCancelSummaryData;
         }
         #endregion
@@ -910,11 +911,11 @@ namespace DanpheEMR.DalLayer
         #region Credit Settlement Report
         public DataTable BIL_CreditSettlementReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate)
-               , new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate)
+               , new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            DataTable dtCreditSettlementReport = DALFunctions.GetDataTableFromStoredProc("SP_BIL_GetSettlementSummaryReport", paramList, this);
+            DataTable dtCreditSettlementReport = DALFunctions.GetDataTableFromStoredProc("SP_BIL_GetSettlementSummaryReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return dtCreditSettlementReport;
         }
         #endregion
@@ -923,11 +924,11 @@ namespace DanpheEMR.DalLayer
 
         public DataTable BIL_ReturnReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate)
-               , new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate)
+               , new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            DataTable returnBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_Invoice_Return", paramList, this);
+            DataTable returnBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_Invoice_Return", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return returnBillData;
 
         }
@@ -935,11 +936,11 @@ namespace DanpheEMR.DalLayer
 
         public DataTable BIL_ReturnReportDetail(int BillReturnId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@BillReturnId", BillReturnId)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@BillReturnId", BillReturnId)
 
             };
-            DataTable returnBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_Invoice_Return_Detail", paramList, this);
+            DataTable returnBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BILL_Invoice_Return_Detail", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return returnBillData;
 
         }
@@ -947,16 +948,16 @@ namespace DanpheEMR.DalLayer
         #region Doctor Referral Report
         public DataTable DoctorReferral(DateTime FromDate, DateTime ToDate, string ProviderName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                 new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)
+                 new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
             if (ProviderName != null)
             {
                 SqlParameter providerParameter = new SqlParameter("@ProviderName", ProviderName);
                 paramList.Add(providerParameter);
             }
-            DataTable DoctorReferralData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorReferrals", paramList, this);
+            DataTable DoctorReferralData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DoctorReferrals", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return DoctorReferralData;
         }
         #endregion
@@ -1010,13 +1011,11 @@ namespace DanpheEMR.DalLayer
         //    }
         //}
 
-        private DataSet GetDatasetFromStoredProc2(string storedProcName, List<SqlParameter> ipParams, string connString)
+        private DataSet GetDatasetFromStoredProc2(string storedProcName, List<Microsoft.Data.SqlClient.SqlParameter> ipParams)
         {
             // creates resulting dataset
             var result = new DataSet();
-            var context = new ReportingDbContext(connString);
-            // creates a Command 
-            var cmd = context.Database.Connection.CreateCommand();
+            var cmd = this.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcName;
 
@@ -1031,25 +1030,29 @@ namespace DanpheEMR.DalLayer
             try
             {
                 // executes
-                context.Database.Connection.Open();
-                var reader = cmd.ExecuteReader();
-
-                // loop through all resultsets (considering that it's possible to have more than one)
-                do
+                if (this.Database.GetDbConnection().State == ConnectionState.Closed)
                 {
-                    // loads the DataTable (schema will be fetch automatically)
-                    var tb = new DataTable();
-                    tb.Load(reader);
-                    result.Tables.Add(tb);
+                    this.Database.GetDbConnection().Open();
+                    var reader = cmd.ExecuteReader();
 
-                } while (!reader.IsClosed);
+                    // loop through all resultsets (considering that it's possible to have more than one)
+                    do
+                    {
+                        // loads the DataTable (schema will be fetch automatically)
+                        var tb = new DataTable();
+                        tb.Load(reader);
+                        result.Tables.Add(tb);
 
-                return result;
+                    } while (!reader.IsClosed);
+
+                    return result;
+                }
+                return null;
             }
             finally
             {
                 // closes the connection
-                context.Database.Connection.Close();
+                this.Database.GetDbConnection().Close();
             }
 
         }
@@ -1057,10 +1060,10 @@ namespace DanpheEMR.DalLayer
         #region Total Revenue From Lab
         public DataTable TotalRevenueFromLab(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_TotalRevenueFromLab", paramList, this);
+            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_TotalRevenueFromLab", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return data;
         }
         #endregion
@@ -1068,10 +1071,10 @@ namespace DanpheEMR.DalLayer
         #region Item Wise From Lab
         public DataTable ItemWiseFromLab(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate), new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_ItemwiseFromLab", paramList, this);
+            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_ItemwiseFromLab", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return data;
         }
         #endregion
@@ -1079,9 +1082,9 @@ namespace DanpheEMR.DalLayer
         #region For Dashboards
         public DynamicReport BIL_Daily_IncomeSegregation(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
-            paramsList.Add(new SqlParameter("@FromDate", FromDate));
-            paramsList.Add(new SqlParameter("@ToDate", ToDate));
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
 
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsIncomeSegReport = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_IncomeSegregation", paramsList, reportingDbContext);
@@ -1098,7 +1101,7 @@ namespace DanpheEMR.DalLayer
 
         public DynamicReport BIL_Daily_RevenueTrend()
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsDailyRev = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILDSB_DailyRevenueTrend", paramsList, reportingDbContext);
 
@@ -1113,7 +1116,7 @@ namespace DanpheEMR.DalLayer
 
         public DynamicReport BIL_Monthly_BillingTrend()
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsMthBillTrend = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILDSB_MonthlyBillingTrend", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
@@ -1127,9 +1130,9 @@ namespace DanpheEMR.DalLayer
 
         public DynamicReport BIL_Daily_CounterNUsersCollection(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
-            paramsList.Add(new SqlParameter("@FromDate", FromDate));
-            paramsList.Add(new SqlParameter("@ToDate", ToDate));
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate));
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
 
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsCtrUsrs = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_CounterNUsersCollectionDaily", paramsList, reportingDbContext);
@@ -1151,7 +1154,7 @@ namespace DanpheEMR.DalLayer
 
         public DynamicReport Home_DashboardStatistics()
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsHomeDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Home_DashboardStatistics", paramsList, reportingDbContext);
 
@@ -1162,50 +1165,50 @@ namespace DanpheEMR.DalLayer
         }
         public DataTable Home_DashinvboardStatistics(int SourceStoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@SourceStoreId", SourceStoreId),
+                new Microsoft.Data.SqlClient.SqlParameter("@SourceStoreId", SourceStoreId),
             };
-            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DBS_Home_InvDashboardStats", paramList, this);
+            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DBS_Home_InvDashboardStats", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return rData;
         }
         public DataTable Home_Dashboard_DepartmentWiseConsumerItems(int SourceStoreId)
         {
 
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@SourceStoreId", SourceStoreId),
+                new Microsoft.Data.SqlClient.SqlParameter("@SourceStoreId", SourceStoreId),
             };
-            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DSB_Home_DeptWiseConsumerItems", paramList, this);
+            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DSB_Home_DeptWiseConsumerItems", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return rData;
 
         }
 
         public DataTable Home_Dashboard_SubCategoryWiseInventoryStockValue(int SourceStoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@SourceStoreId", SourceStoreId),
+                new Microsoft.Data.SqlClient.SqlParameter("@SourceStoreId", SourceStoreId),
             };
-            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DSB_Home_SubCategoryWiseInventoryStockValue", paramList, this);
+            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DSB_Home_SubCategoryWiseInventoryStockValue", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return rData;
 
         }
 
         public DataTable Home_Dashboard_MonthlyWisePurchaseOrdervsGoodsReceiptValue(int SourceStoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@SourceStoreId", SourceStoreId),
+                new Microsoft.Data.SqlClient.SqlParameter("@SourceStoreId", SourceStoreId),
             };
-            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DSB_Home_MonthlyWisePurchaseOrdervsGoodsReceiptValue", paramList, this);
+            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DSB_Home_MonthlyWisePurchaseOrdervsGoodsReceiptValue", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
 
             return rData;
 
         }
         public DynamicReport Home_PatientZoneMap()
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsHomeDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Home_PatientDistributionMap_Nepal", paramsList, reportingDbContext);
 
@@ -1220,8 +1223,8 @@ namespace DanpheEMR.DalLayer
         {
             /////This TodaysDate is Required Because We Want Data of PerDay DepartmentWise Appointment Count
             var TodaysDate = DateTime.Now.Date;
-            List<SqlParameter> paramsList = new List<SqlParameter>();
-            paramsList.Add(new SqlParameter("@TodaysDate", TodaysDate));
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
+            paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@TodaysDate", TodaysDate));
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsHomeDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Home_DeptWiseAppointmentCount", paramsList, reportingDbContext);
 
@@ -1235,7 +1238,7 @@ namespace DanpheEMR.DalLayer
 
         public DynamicReport Patient_GenderWiseCount()
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsPatCounts = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Patient_GenderWiseCount", paramsList, reportingDbContext);
 
@@ -1248,7 +1251,7 @@ namespace DanpheEMR.DalLayer
 
         public DynamicReport Patient_AgeRangeNGenderWiseCount()
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsPatCounts = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Patient_AgeRangeNGender", paramsList, reportingDbContext);
 
@@ -1260,7 +1263,7 @@ namespace DanpheEMR.DalLayer
 
         public DynamicReport Lab_DashboardStatistics()
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsLabDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Lab_DashboardStatistics", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
@@ -1278,7 +1281,7 @@ namespace DanpheEMR.DalLayer
 
         public DynamicReport Emergency_DashboardStatistics()
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>();
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dsLabDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Emergency_DashboardStatistics", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
@@ -1299,53 +1302,46 @@ namespace DanpheEMR.DalLayer
         //IRD Invoice Details 
         public List<InvoiceDetailsModel> InvoiceDetails(DateTime FromDate, DateTime ToDate)
         {
-            var Data = Database.SqlQuery<InvoiceDetailsModel>("exec SP_IRD_InvoiceDetails @FromDate,@ToDate",
-                new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)).ToList();
-            return Data.ToList<InvoiceDetailsModel>();
+            // EF Core does not support Database.SqlQuery<T>, use FromSqlRaw or ADO.NET
+            return this.Set<InvoiceDetailsModel>()
+                .FromSqlRaw("exec SP_IRD_InvoiceDetails @FromDate,@ToDate", new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate))
+                .ToList();
         }
 
         //All IRD Invoice Details 
         public List<InvoiceDetailsModel> GetAllInvoiceDetails(DateTime fromDate, DateTime toDate)
         {
-            //var Data = Database.SqlQuery<InvoiceDetailsModel>("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate",
-            //    new SqlParameter("@FromDate", fromDate), new SqlParameter("@ToDate", toDate)).ToList();
-            //return Data.ToList<InvoiceDetailsModel>();
-
-            var Data = Database.SqlQuery<InvoiceDetailsModel>("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate",
-                new SqlParameter("@FromDate", fromDate), new SqlParameter("@ToDate", toDate)).ToList();
-            return Data.ToList<InvoiceDetailsModel>();
+            return this.Set<InvoiceDetailsModel>()
+                .FromSqlRaw("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate", new SqlParameter("@FromDate", fromDate), new SqlParameter("@ToDate", toDate))
+                .ToList();
         }
 
 
         // IRD Pharmacy Invoice Details
         public List<PhrmInvoiceDetails> PhrmInvoiceDetails(DateTime FromDate, DateTime ToDate)
         {
-            var Data = Database.SqlQuery<PhrmInvoiceDetails>("exec SP_IRD_PHRM_InvoiceDetails @FromDate,@ToDate",
-                new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)).ToList();
-            return Data.ToList<PhrmInvoiceDetails>();
-
+            return this.Set<PhrmInvoiceDetails>()
+                .FromSqlRaw("exec SP_IRD_PHRM_InvoiceDetails @FromDate,@ToDate", new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate))
+                .ToList();
         }
 
 
         //IRD - SQL Audit details
         public List<SqlAuditModel> SqlAuditDetails(DateTime FromDate, DateTime ToDate, string LogType)
         {
-            var data = Database.SqlQuery<SqlAuditModel>("exec SP_Danphe_SQLAudit @FromDate,@ToDate,@LogType",
-                 new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                 new SqlParameter("@LogType", LogType)
-                 ).ToList();
-            return data.ToList<SqlAuditModel>();
+            return this.Set<SqlAuditModel>()
+                .FromSqlRaw("exec SP_Danphe_SQLAudit @FromDate,@ToDate,@LogType", new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate), new SqlParameter("@LogType", LogType))
+                .ToList();
         }
         #endregion
         #region Patient Discharge bill breakup report        
         public DataTable BillDischargeBreakup(int PatientVisitId, int PatientId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@PatientVisitId",PatientVisitId),
-                new SqlParameter("@PatientId",PatientId)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@PatientVisitId",PatientVisitId),
+                new Microsoft.Data.SqlClient.SqlParameter("@PatientId",PatientId)
             };
-            DataTable returnBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DischargeBreakup", paramList, this);
+            DataTable returnBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_BIL_DischargeBreakup", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return returnBillData;
         }
         #endregion
@@ -1360,15 +1356,15 @@ namespace DanpheEMR.DalLayer
         #region AuditTrail Details        
         public DataTable AuditTrails(DateTime FromDate, DateTime ToDate, string Table_Name, string UserName, string ActionName)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@UserName", UserName),
-                new SqlParameter("@Table_Name", Table_Name),
-                new SqlParameter("@Action", ActionName)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@UserName", UserName),
+                new Microsoft.Data.SqlClient.SqlParameter("@Table_Name", Table_Name),
+                new Microsoft.Data.SqlClient.SqlParameter("@Action", ActionName)
 
             };
-            DataTable returnAuditData = DALFunctions.GetDataTableFromStoredProc("SP_Danphe_Audit", paramList, this);
+            DataTable returnAuditData = DALFunctions.GetDataTableFromStoredProc("SP_Danphe_Audit", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return returnAuditData;
         }
         #endregion
@@ -1378,12 +1374,12 @@ namespace DanpheEMR.DalLayer
         #region BillReferralSummaryReport
         public DynamicReport Bill_ReferralSummary(DateTime FromDate, DateTime ToDate, bool? isExternal)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@isExternal", isExternal)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@isExternal", isExternal)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_ReferralSummary", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_ReferralSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData.Tables.Count > 1)
             {
@@ -1404,13 +1400,13 @@ namespace DanpheEMR.DalLayer
         #region Referral Item Summary
         public DynamicReport Bill_ReferralItemSumamry(DateTime FromDate, DateTime ToDate, int PrescriberId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@PrescriberId", PrescriberId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@PrescriberId", PrescriberId)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_ReferralItemsSummary", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_ReferralItemsSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData.Tables.Count > 1)
             {
@@ -1430,12 +1426,12 @@ namespace DanpheEMR.DalLayer
         #region IncentiveSummaryReport
         public DynamicReport INCTV_DoctorSummary(DateTime FromDate, DateTime ToDate, Boolean IsRefferalOnly)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@IsRefferalOnly", IsRefferalOnly)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@IsRefferalOnly", IsRefferalOnly)
             };
-            DataTable rptDataTable = DALFunctions.GetDataTableFromStoredProc("SP_Report_INCTV_DoctorSummary", paramList, this);
+            DataTable rptDataTable = DALFunctions.GetDataTableFromStoredProc("SP_Report_INCTV_DoctorSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rptDataTable != null)
             {
@@ -1449,14 +1445,14 @@ namespace DanpheEMR.DalLayer
         #region Incentive Item Summary Report
         public DynamicReport INCTV_SummaryItemReport(DateTime FromDate, DateTime ToDate, int employeeId, Boolean IsRefferalOnly)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@employeeId", employeeId),
-                new SqlParameter("@IsRefferalOnly", IsRefferalOnly)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@employeeId", employeeId),
+                new Microsoft.Data.SqlClient.SqlParameter("@IsRefferalOnly", IsRefferalOnly)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_INCTV_ReferralItemsSummary", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_INCTV_ReferralItemsSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData != null)
             {
@@ -1470,14 +1466,14 @@ namespace DanpheEMR.DalLayer
         #region Incentive Doc ItemGroup Summary
         public DynamicReport INCTV_Doc_ItemGroupSummary(DateTime FromDate, DateTime ToDate, int employeeId, Boolean IsRefferalOnly)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@employeeId", employeeId),
-                new SqlParameter("@IsRefferalOnly", IsRefferalOnly)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@employeeId", employeeId),
+                new Microsoft.Data.SqlClient.SqlParameter("@IsRefferalOnly", IsRefferalOnly)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_INCTV_Doc_ItemGroupSummary", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_INCTV_Doc_ItemGroupSummary", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData != null)
             {
@@ -1491,13 +1487,13 @@ namespace DanpheEMR.DalLayer
         //PatientRegistrationReport
         public DataTable PatientRegistrationReport(DateTime FromDate, DateTime ToDate, string Gender, string Country)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@Gender", Gender),
-                new SqlParameter("@Country", Country)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@Gender", Gender),
+                new Microsoft.Data.SqlClient.SqlParameter("@Country", Country)
             };
-            DataTable PatientRegRptdata = DALFunctions.GetDataTableFromStoredProc("SP_Report_Patient_RegistrationReport", paramList, this);
+            DataTable PatientRegRptdata = DALFunctions.GetDataTableFromStoredProc("SP_Report_Patient_RegistrationReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return PatientRegRptdata;
         }
 
@@ -1505,12 +1501,12 @@ namespace DanpheEMR.DalLayer
         #region 
         public DynamicReport GetHandoverCalculationDateWise(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_BIL_TXN_GetHandoverCalculationDateWise", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_BIL_TXN_GetHandoverCalculationDateWise", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData != null)
             {
@@ -1524,11 +1520,11 @@ namespace DanpheEMR.DalLayer
         #region IncentivePaymentSummaryReport
         public DynamicReport INCTV_DoctorPaymentSummary(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            DataTable rptDataTable = DALFunctions.GetDataTableFromStoredProc("SP_Report_INCTV_DoctorPayment", paramList, this);
+            DataTable rptDataTable = DALFunctions.GetDataTableFromStoredProc("SP_Report_INCTV_DoctorPayment", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rptDataTable != null)
             {
@@ -1542,12 +1538,12 @@ namespace DanpheEMR.DalLayer
         #region Bill Item Summary Report
         public DynamicReport RPT_Bil_ItemSummaryReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_ItemSummaryReport", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_ItemSummaryReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData != null)
             {
@@ -1561,21 +1557,21 @@ namespace DanpheEMR.DalLayer
 
         public DataTable PoliceCaseReport(DateTime FromDate, DateTime ToDate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
             };
 
-            DataTable policecasedata = DALFunctions.GetDataTableFromStoredProc("SP_Report_PoliceCasePatient", paramList, this);
+            DataTable policecasedata = DALFunctions.GetDataTableFromStoredProc("SP_Report_PoliceCasePatient", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return policecasedata;
         }
 
         public DataTable CovidDetailsForLab(string testName)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@TestName", testName)
+                new Microsoft.Data.SqlClient.SqlParameter("@TestName", testName)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_LAB_GetCovidTestDetails", paramsList, reportingDbContext);
@@ -1586,15 +1582,15 @@ namespace DanpheEMR.DalLayer
 
         public DataTable TotalCovidTestsDetailReport(string testName, string resultType, string CaseType, int CountrySubDivisionId, DateTime fromDate, DateTime toDate, string gender)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", fromDate),
-                new SqlParameter("@ToDate", toDate),
-                new SqlParameter("@TestName", testName),
-                new SqlParameter("@Gender", gender),
-                new SqlParameter("@ResultType", resultType),
-                new SqlParameter("@CountrySubDivisionId", CountrySubDivisionId),
-                new SqlParameter("@CaseType", CaseType),
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@TestName", testName),
+                new Microsoft.Data.SqlClient.SqlParameter("@Gender", gender),
+                new Microsoft.Data.SqlClient.SqlParameter("@ResultType", resultType),
+                new Microsoft.Data.SqlClient.SqlParameter("@CountrySubDivisionId", CountrySubDivisionId),
+                new Microsoft.Data.SqlClient.SqlParameter("@CaseType", CaseType),
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_REPORT_LAB_TotalDailyCovidTestDetails", paramsList, reportingDbContext);
@@ -1604,12 +1600,12 @@ namespace DanpheEMR.DalLayer
 
         public DataTable CovidTestsCumulativeReport(string testName, int subDivId, DateTime fromDate, DateTime toDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", fromDate),
-                new SqlParameter("@ToDate", toDate),
-                new SqlParameter("@TestName", testName),
-                new SqlParameter("@CountrySubDivisionId", subDivId),
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@TestName", testName),
+                new Microsoft.Data.SqlClient.SqlParameter("@CountrySubDivisionId", subDivId),
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_Report_Lab_CovidTestsSummary", paramsList, reportingDbContext);
@@ -1619,10 +1615,10 @@ namespace DanpheEMR.DalLayer
 
         public DataTable GetHIVTestsDetailReport(DateTime fromDate, DateTime toDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", fromDate),
-                new SqlParameter("@ToDate", toDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_Report_LAB_GetHIVTestDetails", paramsList, reportingDbContext);
@@ -1632,10 +1628,10 @@ namespace DanpheEMR.DalLayer
 
         public DataTable GetCultureTestsDetailReport(DateTime fromDate, DateTime toDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", fromDate),
-                new SqlParameter("@ToDate", toDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_Report_LAB_GetCultureReport", paramsList, reportingDbContext);
@@ -1645,13 +1641,13 @@ namespace DanpheEMR.DalLayer
 
         public DataTable GetLabTypeWiseTestCountreport(int testId, string orderStatus, int categoryId, DateTime fromDate, DateTime toDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", fromDate),
-                new SqlParameter("@ToDate", toDate),
-                new SqlParameter("@TestId", testId),
-                new SqlParameter("@CategoryId", categoryId),
-                new SqlParameter("@OrderStatus",orderStatus)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@TestId", testId),
+                new Microsoft.Data.SqlClient.SqlParameter("@CategoryId", categoryId),
+                new Microsoft.Data.SqlClient.SqlParameter("@OrderStatus",orderStatus)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_Lab_LabTypeWise_Test_Count", paramsList, reportingDbContext);
@@ -1661,11 +1657,11 @@ namespace DanpheEMR.DalLayer
 
         public DataTable GetEditedPatientDetailReport(int userId, DateTime fromDate, DateTime toDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", fromDate),
-                new SqlParameter("@ToDate", toDate),
-                new SqlParameter("@UserId", userId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@UserId", userId)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_PAT_EditedPatientDetailReport", paramsList, reportingDbContext);
@@ -1675,13 +1671,13 @@ namespace DanpheEMR.DalLayer
         #region UserWiseCashCollectionReport
         public DynamicReport UserWiseCashCollectionReport(DateTime fromDate, DateTime toDate, object UserId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", fromDate),
-                new SqlParameter("@ToDate", toDate),
-                new SqlParameter("@UserId", UserId ?? DBNull.Value)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@UserId", UserId ?? DBNull.Value)
             };
-            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_UserWiseCashCollectionReport", paramList, this);
+            DataSet rData = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_UserWiseCashCollectionReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (rData.Tables.Count > 0)
             {
@@ -1700,10 +1696,10 @@ namespace DanpheEMR.DalLayer
         #region radiology film count report.
         public DataTable GetFilmCountReport(DateTime fromdate, DateTime todate)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@fromDate",fromdate),
-                new SqlParameter("@toDate", todate)
+                new Microsoft.Data.SqlClient.SqlParameter("@fromDate",fromdate),
+                new Microsoft.Data.SqlClient.SqlParameter("@toDate", todate)
             };
             RadiologyDbContext radiologyDbContext = new RadiologyDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_Radiology_Film_Type_Count", paramList, radiologyDbContext);
@@ -1713,13 +1709,13 @@ namespace DanpheEMR.DalLayer
         #region Digital Payment Mode Report
         public DynamicReport PaymentModeWiseReport(DateTime FromDate, DateTime ToDate, string PaymentMode, string Type, int User)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@FromDate", FromDate),
-                            new SqlParameter("@ToDate", ToDate),
-                            new SqlParameter("@PaymentMode", PaymentMode),
-                            new SqlParameter("@Type", Type),
-                            new SqlParameter("@User", User)
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {  new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                            new Microsoft.Data.SqlClient.SqlParameter("@PaymentMode", PaymentMode),
+                            new Microsoft.Data.SqlClient.SqlParameter("@Type", Type),
+                            new Microsoft.Data.SqlClient.SqlParameter("@User", User)
                               };
-            DataSet dataSet = DALFunctions.GetDatasetFromStoredProc("SP_BIL_MultiplePaymentModeWiseReport", paramList, this);
+            DataSet dataSet = DALFunctions.GetDatasetFromStoredProc("SP_BIL_MultiplePaymentModeWiseReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             DynamicReport dReport = new DynamicReport();
             if (dataSet.Tables.Count > 0)
             {
@@ -1737,11 +1733,11 @@ namespace DanpheEMR.DalLayer
 
         public DataTable HospitalIncomeIncentiveReport(DateTime FromDate, DateTime ToDate, string ServiceDepartments)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@ServiceDepartments", ServiceDepartments)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ServiceDepartments", ServiceDepartments)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_INCTV_Report_Hospital_Income", paramsList, reportingDbContext);
@@ -1751,11 +1747,11 @@ namespace DanpheEMR.DalLayer
 
         public DataTable HospitalIncomeIncentiveReportServiceDepartmentWise(DateTime FromDate, DateTime ToDate, int ServiceDepartmentId)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@ServiceDepartmentId", ServiceDepartmentId)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ServiceDepartmentId", ServiceDepartmentId)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_INCTV_Report_ServiceDepartmentWise_Hospital_Income", paramsList, reportingDbContext);
@@ -1766,18 +1762,18 @@ namespace DanpheEMR.DalLayer
         #region Bill Detail Report
         public DataTable BillDetailReport(DateTime FromDate, DateTime ToDate, string billingType, int? ItemId, int? UserId, string RankName, int? MembershipTypeId, int? ServiceDepartmentId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {
-                           new SqlParameter("@FromDate", FromDate),
-                           new SqlParameter("@ToDate", ToDate),
-                           new SqlParameter("@billingType", billingType),
-                           new SqlParameter("@ItemId", ItemId),
-                           new SqlParameter("@UserId", UserId),
-                           new SqlParameter("@Rank", RankName=="null"? null: RankName),
-                           new SqlParameter("@MembershipTypeId", MembershipTypeId),
-                           new SqlParameter("@ServiceDepartmentId", ServiceDepartmentId),
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() {
+                           new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@billingType", billingType),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ItemId", ItemId),
+                           new Microsoft.Data.SqlClient.SqlParameter("@UserId", UserId),
+                           new Microsoft.Data.SqlClient.SqlParameter("@Rank", RankName=="null"? null: RankName),
+                           new Microsoft.Data.SqlClient.SqlParameter("@MembershipTypeId", MembershipTypeId),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ServiceDepartmentId", ServiceDepartmentId),
             };
 
-            DataTable totalItemBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_APF_BillDetailReport", paramList, this);
+            DataTable totalItemBillData = DALFunctions.GetDataTableFromStoredProc("SP_Report_APF_BillDetailReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return totalItemBillData;
         }
         #endregion
@@ -1785,11 +1781,11 @@ namespace DanpheEMR.DalLayer
         #region Get All Inventory Dashboard Statistics
         public DataTable InventoryDashboardStatistics(int SourceStoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@SourceStoreId", SourceStoreId)
+                new Microsoft.Data.SqlClient.SqlParameter("@SourceStoreId", SourceStoreId)
             };
-            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_InventoryDashboardStatistics", paramList, this);
+            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_InventoryDashboardStatistics", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return rData;
         }
         #endregion
@@ -1798,13 +1794,13 @@ namespace DanpheEMR.DalLayer
         public DataTable DepaartmentWiseDispatchedValue(int SourceStoreId, DateTime? FromDate, DateTime? ToDate)
         {
 
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@SourceStoreId", SourceStoreId),
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@SourceStoreId", SourceStoreId),
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
             };
-            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DepartmentWiseDispatchValue", paramList, this);
+            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_DepartmentWiseDispatchValue", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return rData;
 
         }
@@ -1813,11 +1809,11 @@ namespace DanpheEMR.DalLayer
         #region Get SubCategory Wise Inventory Stock Value
         public DataTable SubCategoryWiseInventoryStockValue(int SourceStoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@SourceStoreId", SourceStoreId)
+                new Microsoft.Data.SqlClient.SqlParameter("@SourceStoreId", SourceStoreId)
             };
-            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_SubCategoryWiseInventoryStockValue", paramList, this);
+            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_SubCategoryWiseInventoryStockValue", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return rData;
 
         }
@@ -1826,11 +1822,11 @@ namespace DanpheEMR.DalLayer
         #region Get Monthly Wise PurchaseOrder ,GoodReceipt and Dispatch
         public DataTable MonthlyWiseTransaction(int SourceStoreId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@SourceStoreId", SourceStoreId)
+                new Microsoft.Data.SqlClient.SqlParameter("@SourceStoreId", SourceStoreId)
             };
-            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_MonthlyWisePurchaseOrdervsGoodsReceiptValue", paramList, this);
+            DataTable rData = DALFunctions.GetDataTableFromStoredProc("SP_MonthlyWisePurchaseOrdervsGoodsReceiptValue", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
 
             return rData;
 
@@ -1841,15 +1837,15 @@ namespace DanpheEMR.DalLayer
         #region SchemeDetailInvoiceReport
         public DataTable SchemeDetailInvoiceReport(string fromDate, string toDate, string memberships, string ranks, string users)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                           new SqlParameter("@FromDate", fromDate),
-                           new SqlParameter("@ToDate", toDate),
-                           new SqlParameter("@Memberships", memberships),
-                           new SqlParameter("@Ranks", ranks),
-                           new SqlParameter("@Users", users)
+                           new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate),
+                           new Microsoft.Data.SqlClient.SqlParameter("@Memberships", memberships),
+                           new Microsoft.Data.SqlClient.SqlParameter("@Ranks", ranks),
+                           new Microsoft.Data.SqlClient.SqlParameter("@Users", users)
             };
-            DataTable schemeDetailInvoiceReport = DALFunctions.GetDataTableFromStoredProc("SP_Report_Bill_SchemeDetailInvoice", paramList, this);
+            DataTable schemeDetailInvoiceReport = DALFunctions.GetDataTableFromStoredProc("SP_Report_Bill_SchemeDetailInvoice", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return schemeDetailInvoiceReport;
         }
         #endregion
@@ -1857,10 +1853,10 @@ namespace DanpheEMR.DalLayer
         #region This will return datatable for Billing Dashboard Rank wise patient invoice count
         public DataTable BillingDashboardRankWisePatientInvoiceCount(string FromDate, string ToDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_BIL_Dashboard_RankWisePatientInvoiceCount", paramsList, reportingDbContext);
@@ -1872,10 +1868,10 @@ namespace DanpheEMR.DalLayer
         #region This will return datatable for Billing Dashboard Membership wise patient invoice count
         public DataTable BillingDashboardMembershipWisePatientInvoiceCount(string FromDate, string ToDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_BIL_Dashboard_MembershipWisePatientInvoiceCount", paramsList, reportingDbContext);
@@ -1887,10 +1883,10 @@ namespace DanpheEMR.DalLayer
         #region This will return datatable for Lab Dashboard Membership wise Test  count
         public DataTable LabDashboardMembershipWiseTestCount(string FromDate, string ToDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Dashboard_LAB_MembershipWiseLabTest", paramsList, reportingDbContext);
@@ -1902,10 +1898,10 @@ namespace DanpheEMR.DalLayer
         #region This will return datatable for Lab Dashboard Rank wise Test  count
         public DataTable LabDashboardRankWiseTestCount(string FromDate, string ToDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Dashboard_LABRankWiseLabTest", paramsList, reportingDbContext);
@@ -1917,10 +1913,10 @@ namespace DanpheEMR.DalLayer
         #region This will return datatable for Lab Dashboard Top 10Trending Test  count
         public DataTable LabDashboardTrendingTestCount(string FromDate, string ToDate)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Dashboard_LAB_TrendingLabTest", paramsList, reportingDbContext);
@@ -1972,9 +1968,9 @@ namespace DanpheEMR.DalLayer
         #region This will return datatable for Lab Dashboard TestReq Details
         public DynamicReport LabDashboardNormalAbnormalDetails(int labTestId)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@labTestId", labTestId)
+                new Microsoft.Data.SqlClient.SqlParameter("@labTestId", labTestId)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataSet dataTables = DALFunctions.GetDatasetFromStoredProc("SP_Dashboard_LAB_AbnormalNormalTestCount", paramsList, reportingDbContext);
@@ -1997,12 +1993,12 @@ namespace DanpheEMR.DalLayer
         #region Department Wise Rank Count
         public DataTable DepartmentWiseRankCountReport(DateTime FromDate, DateTime ToDate, string DepartmentIds, string RankNames)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@DepartmentIds", DepartmentIds),
-                new SqlParameter("@RankNames", RankNames)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@DepartmentIds", DepartmentIds),
+                new Microsoft.Data.SqlClient.SqlParameter("@RankNames", RankNames)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_RPT_DepartmentWiseRankCountReport", paramsList, reportingDbContext);
@@ -2015,12 +2011,12 @@ namespace DanpheEMR.DalLayer
         #region Rank-Membership-Wise-Discharge Patient Report
         public DataTable RankMembershipWiseDischargePatientReport(DateTime FromDate, DateTime ToDate, string Membership, string Rank)
         {
-            List<SqlParameter> paramsList = new List<SqlParameter>()
+            List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>()
             {
-                new SqlParameter("@FromDate", FromDate),
-                new SqlParameter("@ToDate", ToDate),
-                new SqlParameter("@MembershiptTypeIds", Membership),
-                new SqlParameter("@Rank", Rank)
+                new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
+                new Microsoft.Data.SqlClient.SqlParameter("@MembershiptTypeIds", Membership),
+                new Microsoft.Data.SqlClient.SqlParameter("@Rank", Rank)
             };
             ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_RPT_RankMembershipwiseDischargedPatientReport", paramsList, reportingDbContext);
@@ -2032,8 +2028,8 @@ namespace DanpheEMR.DalLayer
         #region Inpatient Outstanding Report
         public DataTable InpatientOutstandingReport(string Operator,decimal? Amount)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@Operator", Operator), new SqlParameter("@Amount", Amount) };
-            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_RPT_Admission_InPatientOutstandingReport", paramList, this);
+            List<Microsoft.Data.SqlClient.SqlParameter> paramList = new List<Microsoft.Data.SqlClient.SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@Operator", Operator), new Microsoft.Data.SqlClient.SqlParameter("@Amount", Amount) };
+            DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_RPT_Admission_InPatientOutstandingReport", paramList, (Microsoft.EntityFrameworkCore.DbContext)this);
             return data;
         }
         #endregion

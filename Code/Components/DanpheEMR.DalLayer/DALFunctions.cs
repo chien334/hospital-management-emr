@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Data.Common;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace DanpheEMR.DalLayer
@@ -13,12 +15,12 @@ namespace DanpheEMR.DalLayer
     public class DALFunctions
     {
         #region GetData From stored procedure
-        public static DataSet GetDatasetFromStoredProc(string storedProcName, List<SqlParameter> ipParams, DbContext dbContext)
+        public static DataSet GetDatasetFromStoredProc(string storedProcName, List<SqlParameter> ipParams, Microsoft.EntityFrameworkCore.DbContext dbContext)
         {
             // creates resulting dataset
             var result = new DataSet();
             // creates a Command 
-            var cmd = dbContext.Database.Connection.CreateCommand();
+            var cmd = dbContext.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcName;
 
@@ -33,7 +35,10 @@ namespace DanpheEMR.DalLayer
             try
             {
                 // executes
-                dbContext.Database.Connection.Open();
+                if (dbContext.Database.GetDbConnection().State == ConnectionState.Closed)
+                {
+                    dbContext.Database.GetDbConnection().Open();
+                }
                 var reader = cmd.ExecuteReader();
 
                 // loop through all resultsets (considering that it's possible to have more than one)
@@ -52,12 +57,12 @@ namespace DanpheEMR.DalLayer
             {
                 // closes the connection
                 cmd.Parameters.Clear();
-                dbContext.Database.Connection.Close();
+                dbContext.Database.GetDbConnection().Close();
             }
 
         }
         ///// Get DataTable From SP with Input Parameters
-        public static DataTable GetDataTableFromStoredProc(string storedProcName, List<SqlParameter> ipParams, DbContext dbContext)
+        public static DataTable GetDataTableFromStoredProc(string storedProcName, List<SqlParameter> ipParams, Microsoft.EntityFrameworkCore.DbContext dbContext)
         {
             try
             {
@@ -70,7 +75,7 @@ namespace DanpheEMR.DalLayer
             }
         }
         ///// Get DataTable From SP without Any Input Parameters
-        public static DataTable GetDataTableFromStoredProc(string storedProcName, DbContext dbContext)
+        public static DataTable GetDataTableFromStoredProc(string storedProcName, Microsoft.EntityFrameworkCore.DbContext dbContext)
         {
             try
             {
@@ -86,7 +91,7 @@ namespace DanpheEMR.DalLayer
 
         //this function shoud be replaced later with Execute Scalar of Ado.Net.
 
-        public static int ExecuteStoredProcedure(string storedProcName, List<SqlParameter> ipParams, DbContext dbContext)
+        public static int ExecuteStoredProcedure(string storedProcName, List<SqlParameter> ipParams, Microsoft.EntityFrameworkCore.DbContext dbContext)
         {
             try
             {

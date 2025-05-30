@@ -1,11 +1,10 @@
-﻿
-using DanpheEMR.ServerModel.InventoryModels.InventoryReportModel;
+﻿using DanpheEMR.ServerModel.InventoryModels.InventoryReportModel;
 using DanpheEMR.ServerModel.ReportingModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 namespace DanpheEMR.DalLayer
 {
@@ -26,7 +25,7 @@ namespace DanpheEMR.DalLayer
             if (ItemName == null || ItemName == " ")
             {
                 var Data = Database.SqlQuery<CurrentStockLevel>("exec SP_Report_Inventory_CurrentStockLevel @ItemName",
-                  new SqlParameter("@ItemName", DBNull.Value)).ToList();
+                  new Microsoft.Data.SqlClient.SqlParameter("@ItemName", DBNull.Value)).ToList();
                 return Data.ToList<CurrentStockLevel>();
 
 
@@ -34,7 +33,7 @@ namespace DanpheEMR.DalLayer
             else
             {
                 var Data = Database.SqlQuery<CurrentStockLevel>("exec SP_Report_Inventory_CurrentStockLevel @ItemName",
-                new SqlParameter("@ItemName", ItemName)).ToList();
+                new Microsoft.Data.SqlClient.SqlParameter("@ItemName", ItemName)).ToList();
                 return Data.ToList<CurrentStockLevel>();
             }
 
@@ -44,7 +43,7 @@ namespace DanpheEMR.DalLayer
         #region Current Stock Level Report with Item Id
         public DataTable CurrentStockLevelReportByItemId(string storeIds)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@StoreIds", storeIds) };
+            List<SqlParameter> paramList = new List<SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@StoreIds", storeIds) };
             foreach (SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)
@@ -59,8 +58,8 @@ namespace DanpheEMR.DalLayer
         #region Current Stock Level Item Details with item id and store id
         public DataTable CurrentStockItemDetailsByStoreId(string storeIds, int ItemId)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() { new SqlParameter("@StoreIds", storeIds),
-                                                                      new SqlParameter("@ItemId", ItemId) };
+            List<SqlParameter> paramList = new List<SqlParameter>() { new Microsoft.Data.SqlClient.SqlParameter("@StoreIds", storeIds),
+                                                                      new Microsoft.Data.SqlClient.SqlParameter("@ItemId", ItemId) };
             foreach (SqlParameter parameter in paramList)
             {
                 if (parameter.Value == null)

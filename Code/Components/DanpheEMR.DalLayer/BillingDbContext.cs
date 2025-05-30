@@ -1,5 +1,4 @@
-﻿using Audit.EntityFramework;
-using DanpheEMR.Security;
+﻿using DanpheEMR.Security;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.AdmissionModels.Config;
 using DanpheEMR.ServerModel.BillingModels;
@@ -9,13 +8,17 @@ using DanpheEMR.ServerModel.MedicareModels;
 using DanpheEMR.ServerModel.PatientModels;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 namespace DanpheEMR.DalLayer
 {
-    public class BillingDbContext : AuditDbContext
+    public class BillingDbContext : DbContext
     {
+        public BillingDbContext(DbContextOptions<BillingDbContext> options) : base(options)
+        {
+        }
+        
         public DbSet<BillingTransactionModel> BillingTransactions { get; set; }
         public DbSet<ServiceDepartmentModel> ServiceDepartment { get; set; }
 
@@ -114,22 +117,15 @@ namespace DanpheEMR.DalLayer
 
 
         public object ReportingItemsModel { get; set; }
-        public BillingDbContext(string conn) : base(conn)
-        {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.AuditDisabled = true;
-
-        }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BillingPackageServiceItemModel>()
                 .Property(p => p.DiscountPercent)
-                .HasPrecision(7, 4);
+                .HasColumnType("decimal(7,4)");
 
             modelBuilder.Entity<BillingPackageModel>()
                 .Property(p => p.DiscountPercent)
-                .HasPrecision(7, 4);
+                .HasColumnType("decimal(7,4)");
 
             modelBuilder.Entity<BillingTransactionModel>().ToTable("BIL_TXN_BillingTransaction");
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
@@ -148,9 +144,9 @@ namespace DanpheEMR.DalLayer
             //Billing mapping
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");
             modelBuilder.Entity<BillingTransactionItemModel>()
-                  .HasRequired<BillingTransactionModel>(s => s.BillingTransaction) // Address entity requires Patient
-                  .WithMany(s => s.BillingTransactionItems) // Patient entity includes many Addresses entities
-                   .HasForeignKey(s => s.BillingTransactionId);
+                .HasOne(s => s.BillingTransaction)
+                .WithMany(s => s.BillingTransactionItems)
+                .HasForeignKey(s => s.BillingTransactionId);
 
             modelBuilder.Entity<RadiologyImagingTypeModel>().ToTable("RAD_MST_ImagingType");
             modelBuilder.Entity<RadiologyImagingItemModel>().ToTable("RAD_MST_ImagingItem");
@@ -242,17 +238,21 @@ namespace DanpheEMR.DalLayer
         //Sud: 14sept'18 -- 
         public DataTable GetItemsForBillingReceipt(int patientId, int? billingTxnId, string billStatus)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@PatientId", patientId),
-                            new SqlParameter("@BillTxnId", billingTxnId.HasValue ? billingTxnId.Value : (int?)null),
-                            new SqlParameter("@BillStatus",billStatus) };
+            List<SqlParameter> paramList = new List<SqlParameter>() {
+                new SqlParameter("@PatientId", patientId),
+                new SqlParameter("@BillTxnId", billingTxnId.HasValue ? billingTxnId.Value : (int?)null),
+                new SqlParameter("@BillStatus", billStatus)
+            };
             DataTable discountReportData = DALFunctions.GetDataTableFromStoredProc("SP_BIL_GetItems_ForIPBillingReceipt", paramList, this);
             return discountReportData;
         }
         public DataTable GetIpBillingSummary(int patientId, int? patVisitId, string billStatus)
         {
-            List<SqlParameter> paramList = new List<SqlParameter>() {  new SqlParameter("@PatientId", patientId),
-                            new SqlParameter("@PatientVisitId", patVisitId.HasValue ? patVisitId.Value : (int?)null),
-                            new SqlParameter("@BillStatus",billStatus) };
+            List<SqlParameter> paramList = new List<SqlParameter>() {
+                new SqlParameter("@PatientId", patientId),
+                new SqlParameter("@PatientVisitId", patVisitId.HasValue ? patVisitId.Value : (int?)null),
+                new SqlParameter("@BillStatus", billStatus)
+            };
             DataTable discountReportData = DALFunctions.GetDataTableFromStoredProc("SP_BIL_GetIpBillingSummary", paramList, this);
             return discountReportData;
         }

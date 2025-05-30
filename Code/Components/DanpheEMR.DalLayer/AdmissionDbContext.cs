@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +19,10 @@ namespace DanpheEMR.DalLayer
 {
     public class AdmissionDbContext : DbContext
     {
+        public AdmissionDbContext(DbContextOptions<AdmissionDbContext> options) : base(options)
+        {
+        }
+        
         public DbSet<AdmissionModel> Admissions { get; set; }
         public DbSet<MunicipalityModel> Municipalities { get; set; }
         public DbSet<CountrySubDivisionModel> CountrySubDivisions { get; set; }
@@ -84,12 +88,7 @@ namespace DanpheEMR.DalLayer
 
 
 
-        public AdmissionDbContext(string conn) : base(conn)
-        {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-        }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AdmissionModel>().ToTable("ADT_PatientAdmission");
             modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
@@ -98,12 +97,31 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<PatientBedInfo>().ToTable("ADT_TXN_PatientBedInfo");
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
             modelBuilder.Entity<PatientBedInfo>()
-                        .HasRequired<AdmissionModel>(a => a.Admission)
+                        .HasOne<AdmissionModel>(a => a.Admission)
                         .WithMany(a => a.PatientBedInfos)
                         .HasForeignKey(s => s.PatientVisitId);
             modelBuilder.Entity<BedFeature>().ToTable("ADT_MST_BedFeature");
             modelBuilder.Entity<BedFeaturesMap>().ToTable("ADT_MAP_BedFeaturesMap");
             modelBuilder.Entity<WardModel>().ToTable("ADT_MST_Ward");
+
+            // Fix for foreign key constraint cycles
+            modelBuilder.Entity<BedFeaturesMap>()
+                       .HasOne<WardModel>(a => a.Ward)
+                       .WithMany()
+                       .HasForeignKey(s => s.WardId)
+                       .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<BedFeaturesMap>()
+                       .HasOne<BedFeature>(a => a.BedFeature)
+                       .WithMany()
+                       .HasForeignKey(s => s.BedFeatureId)
+                       .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<BedFeaturesMap>()
+                       .HasOne<BedModel>(a => a.Bed)
+                       .WithMany()
+                       .HasForeignKey(s => s.BedId)
+                       .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<BedModel>().ToTable("ADT_Bed");
             modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");

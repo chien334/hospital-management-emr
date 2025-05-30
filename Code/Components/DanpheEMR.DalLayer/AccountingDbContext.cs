@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.InventoryModels;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using DanpheEMR.Security;
 using DanpheEMR.ServerModel.IncentiveModels;
 using DanpheEMR.ServerModel.AccountingModels;
@@ -21,13 +21,11 @@ namespace DanpheEMR.DalLayer
 {
     public class AccountingDbContext : DbContext
     {
-        public AccountingDbContext(string conn) : base(conn)
+        public AccountingDbContext(DbContextOptions<AccountingDbContext> options) : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ChartOfAccountModel>().ToTable("ACC_MST_ChartOfAccounts");
             modelBuilder.Entity<VoucherModel>().ToTable("ACC_MST_Vouchers");
@@ -235,7 +233,8 @@ namespace DanpheEMR.DalLayer
             // creates resulting dataset
             var result = new DataSet();
             // creates a Command 
-            var cmd = dbContext.Database.Connection.CreateCommand();
+            var connection = dbContext.Database.GetDbConnection();
+            var cmd = connection.CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcName;
 
@@ -249,25 +248,19 @@ namespace DanpheEMR.DalLayer
 
             try
             {
-                var dntransact = dbContext.Database.Connection.State;
-                var retValRes = 0;
-                if (dntransact == ConnectionState.Closed)
+                if (connection.State == ConnectionState.Closed)
                 {
-                    dbContext.Database.Connection.Open();
-                    retValRes = cmd.ExecuteNonQuery();
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
                 }
                 else
                 {
-                    retValRes = cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
-                // executes
-                //dbContext.Database.Connection.Open();
-                //var retValRes = cmd.ExecuteNonQuery();                
             }
             finally
             {
-                // closes the connection
-                dbContext.Database.Connection.Close();
+                connection.Close();
             }
             return true;
 

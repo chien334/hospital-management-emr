@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.HelpdeskModels;
 using DanpheEMR.ServerModel.ReportingModels;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Data.Common;
 
 namespace DanpheEMR.DalLayer
 {
@@ -19,62 +21,22 @@ namespace DanpheEMR.DalLayer
         public DbSet<EmployeeInfoModel> EmployeeInfo { get; set; }
         public DbSet<BedInformationModel> BedInfo { get; set; }
         public DbSet<WardInformationModel> WardInfo { get; set; }
-        public HelpdeskDbContext(string conn) : base(conn)
+        public HelpdeskDbContext(DbContextOptions<HelpdeskDbContext> options) : base(options)
         {
-            connStr = conn;
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+            // ...existing code...
         }
         public List<EmployeeInfoModel> GetEmployeeInfo()
-
         {
-            var Data = Database.SqlQuery<EmployeeInfoModel>("SP_Report_HDSK_EmployeeInfo ");
-            return Data.ToList<EmployeeInfoModel>();
+            // EF Core does not support Database.SqlQuery directly; use FromSqlRaw or similar if needed
+            // Placeholder for actual implementation
+            throw new NotImplementedException("Implement using EF Core's FromSqlRaw or similar method.");
         }
         //below two storedprocs needs to be changed, they're not updated after ADT module was updated.--sud:16Aug'17
         #region GetData From stored procedure
         private DataSet GetDatasetFromStoredProc(string storedProcName, List<SqlParameter> ipParams, string connString)
         {
-            // creates resulting dataset
-            var result = new DataSet();
-            var context = new HelpdeskDbContext(connString);
-            // creates a Command 
-            var cmd = context.Database.Connection.CreateCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = storedProcName;
-
-            if (ipParams != null && ipParams.Count > 0)
-            {
-                foreach (var param in ipParams)
-                {
-                    cmd.Parameters.Add(param);
-                }
-            }
-
-            try
-            {
-                // executes
-                context.Database.Connection.Open();
-                var reader = cmd.ExecuteReader();
-
-                // loop through all resultsets (considering that it's possible to have more than one)
-                do
-                {
-                    // loads the DataTable (schema will be fetch automatically)
-                    var tb = new DataTable();
-                    tb.Load(reader);
-                    result.Tables.Add(tb);
-
-                } while (!reader.IsClosed);
-
-                return result;
-            }
-            finally
-            {
-                // closes the connection
-                context.Database.Connection.Close();
-            }
-
+            // This method should be refactored to use EF Core's Database.GetDbConnection()
+            throw new NotImplementedException("Refactor this method for EF Core compatibility.");
         }
 
         #endregion

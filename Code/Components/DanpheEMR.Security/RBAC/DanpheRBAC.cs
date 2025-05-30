@@ -380,19 +380,84 @@ namespace DanpheEMR.Security
         {
             string decryptedPwd = string.Empty;
 
-            byte[] data = Convert.FromBase64String(Password);
-
-            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            // Check if the password is a valid Base-64 string and likely encrypted
+            if (IsValidBase64String(Password) && IsLikelyEncryptedPassword(Password))
             {
-                byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Salt));
-                using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                try
                 {
-                    ICryptoTransform transform = tripdes.CreateDecryptor();
-                    byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
-                    decryptedPwd = UTF8Encoding.UTF8.GetString(results);
+                    byte[] data = Convert.FromBase64String(Password);
+
+                    using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+                    {
+                        byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Salt));
+                        using (TripleDESCryptoServiceProvider tripdes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                        {
+                            ICryptoTransform transform = tripdes.CreateDecryptor();
+                            byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
+                            decryptedPwd = UTF8Encoding.UTF8.GetString(results);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // If decryption fails, return the original password (assume it's plain text)
+                    decryptedPwd = Password;
                 }
             }
+            else
+            {
+                // If it's not a valid Base-64 string or doesn't look encrypted, return as-is (plain text)
+                decryptedPwd = Password;
+            }
+            
             return decryptedPwd;
+        }
+
+        /// <summary>
+        /// Check if a string is a valid Base-64 encoded string
+        /// </summary>
+        private static bool IsValidBase64String(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return false;
+
+            // Basic Base-64 format check
+            if (input.Length % 4 != 0)
+                return false;
+
+            try
+            {
+                Convert.FromBase64String(input);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Check if a Base-64 string is likely to be an encrypted password
+        /// Plain text passwords like "Admin@123" are unlikely to be encrypted strings
+        /// </summary>
+        private static bool IsLikelyEncryptedPassword(string input)
+        {
+            // Common plain text password patterns that should not be decrypted
+            if (input.Contains("@") || input.Contains("!") || input.Contains("#") || 
+                input.Contains("$") || input.Contains("%") || input.Contains("&"))
+            {
+                // Check if it contains common password characters but is still valid Base-64
+                // This is likely a plain text password, not encrypted
+                return false;
+            }
+
+            // If it's a short string that looks like a typical password, it's probably not encrypted
+            if (input.Length < 16 && (input.Any(char.IsLetter) && input.Any(char.IsDigit)))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

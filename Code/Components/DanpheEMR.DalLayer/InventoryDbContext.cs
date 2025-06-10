@@ -35,9 +35,14 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<DispatchItemsModel>().ToTable("INV_TXN_DispatchItems");
             modelBuilder.Entity<DispatchModel>().ToTable("INV_TXN_Dispatch");
 
-            modelBuilder.Entity<MAP_DispatchItems_FixedAssetStock>().ToTable("INV_MAP_DispatchItems_FixedAssetStock")
-                .HasKey(a => new { a.DispatchItemsId, a.FixedAssetStockId })
-                .HasRequired(a => a.Asset);
+            modelBuilder.Entity<MAP_DispatchItems_FixedAssetStock>()
+                .ToTable("INV_MAP_DispatchItems_FixedAssetStock")
+                .HasKey(a => new { a.DispatchItemsId, a.FixedAssetStockId });
+
+            modelBuilder.Entity<MAP_DispatchItems_FixedAssetStock>()
+                .HasOne(a => a.Asset)
+                .WithMany()
+                .HasForeignKey(a => a.FixedAssetStockId);
 
             modelBuilder.Entity<WriteOffItemsModel>().ToTable("INV_TXN_WriteOffItems");
             modelBuilder.Entity<CurrencyMasterModel>().ToTable("INV_MST_Currency");

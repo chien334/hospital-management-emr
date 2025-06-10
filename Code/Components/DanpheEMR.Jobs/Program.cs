@@ -20,22 +20,35 @@ namespace DanpheEMR.Jobs
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Sync to IRD in progress...");
 
-            //Console.WriteLine("local sync completed");
-            Console.WriteLine("sync to IRD in progress..");
+            try
+            {
+                Console.WriteLine("Step 1: Syncing Billing Sales to IRD...");
+                PostToIRD.SyncSalesToRemoteServer();
+                Console.WriteLine("Step 1 completed.");
 
-            #region Sync Billing -sales & Sales-return to IRD         
-            //PostToIRD remoteSync = new PostToIRD();
-            PostToIRD.SyncSalesToRemoteServer();//sync local Sales data to IRD server
-            PostToIRD.SyncSalesReturnToRemoteServer();//sync local Sales return data to IRD server
-            #endregion
+                Console.WriteLine("Step 2: Syncing Billing Sales Return to IRD...");
+                PostToIRD.SyncSalesReturnToRemoteServer();
+                Console.WriteLine("Step 2 completed.");
 
-            #region Sync PHRM -sales invoice & invoice-return to IRD         
-            PostToIRD.SynchPhrmInvoiceToRemoteServer();
-            PostToIRD.SyncPhrmInvoiceReturnToRemoteServer();
-            #endregion
-            Console.WriteLine("sync to IRD completed");
-            Console.WriteLine("sync completed");
+                Console.WriteLine("Step 3: Syncing Pharmacy Sales Invoice to IRD...");
+                PostToIRD.SynchPhrmInvoiceToRemoteServer();
+                Console.WriteLine("Step 3 completed.");
+
+                Console.WriteLine("Step 4: Syncing Pharmacy Invoice Return to IRD...");
+                PostToIRD.SyncPhrmInvoiceReturnToRemoteServer();
+                Console.WriteLine("Step 4 completed.");
+
+                Console.WriteLine("Sync to IRD completed successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred during sync: " + ex.Message);
+                Console.WriteLine("Stack Trace: " + ex.StackTrace);
+            }
+
+            Console.WriteLine("Sync process finished.");
         }
     }
 }

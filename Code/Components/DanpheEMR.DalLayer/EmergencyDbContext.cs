@@ -67,7 +67,7 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");
             // Patient and visit mappings
             modelBuilder.Entity<VisitModel>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne<PatientModel>(a => a.Patient)
                    .WithMany(a => a.Visits)
                     .HasForeignKey(s => s.PatientId);
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");

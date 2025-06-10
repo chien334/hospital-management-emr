@@ -17,13 +17,14 @@ namespace DanpheEMR.DalLayer
 {
     public class GovernmentReportDbContext : DbContext
     {
+        private DbContextOptions<ReportingDbContext> _reportOptions;
         private string connStr = null;
-
-        public GovernmentReportDbContext(DbContextOptions<GovernmentReportDbContext> options) : base(options)
+        public GovernmentReportDbContext(DbContextOptions<GovernmentReportDbContext> options , DbContextOptions<ReportingDbContext> reportOptions) : base(options)
         {
             //connStr = Conn;
             //this.Configuration.LazyLoadingEnabled = true;
             //this.Configuration.ProxyCreationEnabled = false;
+            _reportOptions = reportOptions;
         }
 
         #region Outpatient Services
@@ -35,7 +36,7 @@ namespace DanpheEMR.DalLayer
             paramsList.Add(new SqlParameter("@FromDate", FromDate));
             paramsList.Add(new SqlParameter("@ToDate", ToDate));
 
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_reportOptions);
             DataSet dsCtrUsrs = DALFunctions.GetDatasetFromStoredProc("SP_Report_Gov_Summary", paramsList, reportingDbContext);
 
             if (dsCtrUsrs != null && dsCtrUsrs.Tables.Count > 0)
@@ -306,7 +307,7 @@ namespace DanpheEMR.DalLayer
         {
             // creates resulting dataset
             var result = new DataSet();
-            var context = new ReportingDbContext(connString);
+            var context = new ReportingDbContext(_reportOptions);
             // creates a Command 
             var cmd = context.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;

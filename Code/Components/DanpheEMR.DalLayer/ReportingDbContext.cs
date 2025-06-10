@@ -17,8 +17,10 @@ namespace DanpheEMR.DalLayer
 {
     public class ReportingDbContext : DbContext
     {
+         private readonly DbContextOptions<ReportingDbContext> _options;
         public ReportingDbContext(DbContextOptions<ReportingDbContext> options) : base(options)
         {
+            _options = options;
         }
 
         #region Doctor Report
@@ -514,7 +516,7 @@ namespace DanpheEMR.DalLayer
         {
             // creates resulting dataset
             var result = new DataSet();
-            var context = new ReportingDbContext(connString);
+            var context = new ReportingDbContext(_options);
 
 
             // creates a Command 
@@ -659,7 +661,7 @@ namespace DanpheEMR.DalLayer
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@Status", Status));
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ItemIdCommaSeprated", ItemIdCommaSeprated));
 
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet salesPurchase = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Pharmacy_SalesPurchaseGraph_DashboardStatistics", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
             dReport.Schema = JsonConvert.SerializeObject(salesPurchase.Tables[0]);
@@ -694,7 +696,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@SearchText", SearchText)
             };
 
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_ADT_AdmissionAndDischargeReport", paramList, reportingDbContext);
             return data;
         }
@@ -749,7 +751,7 @@ namespace DanpheEMR.DalLayer
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate));
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
 
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsCategoryWiseImagingReport = DALFunctions.GetDatasetFromStoredProc("SP_Report_Radiology_CategoryWiseImagingReport", paramsList, reportingDbContext);
 
             DynamicReport dReport = new DynamicReport();
@@ -783,7 +785,7 @@ namespace DanpheEMR.DalLayer
         //    //cmd.Parameters.Add();
         //    //cmd.Parameters.Add(new SqlParameter("@ToDate", ToDate));
 
-        //    DataSet dsCategoryWiseLabReport = GetDatasetFromStoredProc2("SP_Report_Lab_CategoryWiseLabReport_old", paramsList, this.connStr);
+        //    DataSet dsCategoryWiseLabReport = GetDatasetFromStoredProc2("SP_Report_Lab_CategoryWiseLabReport_old", paramsList, _options);
         //    DynamicReport dReport = new DynamicReport();
         //    dReport.Schema = JsonConvert.SerializeObject(dsCategoryWiseLabReport.Tables[0]);
         //    //wee need datetime in yyyy-MM-dd format.
@@ -854,7 +856,7 @@ namespace DanpheEMR.DalLayer
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@PerformerName", PerformerName));
 
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsDoctorWisepatientRevenue = DALFunctions.GetDatasetFromStoredProc("SP_Report_Scheduling_DoctorWisePatientReport", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
             dReport.Schema = JsonConvert.SerializeObject(dsDoctorWisepatientRevenue.Tables[0]);
@@ -873,7 +875,7 @@ namespace DanpheEMR.DalLayer
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@DepartmentId", DepartmentId));
 
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet depatwiseappointmentdata = DALFunctions.GetDatasetFromStoredProc("SP_Report_Appointment_DepartmentWiseAppointmentReport", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
             dReport.Schema = JsonConvert.SerializeObject(depatwiseappointmentdata.Tables[0]);
@@ -1086,7 +1088,7 @@ namespace DanpheEMR.DalLayer
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate));
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
 
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsIncomeSegReport = DALFunctions.GetDatasetFromStoredProc("SP_Report_BIL_IncomeSegregation", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
 
@@ -1102,7 +1104,7 @@ namespace DanpheEMR.DalLayer
         public DynamicReport BIL_Daily_RevenueTrend()
         {
             List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsDailyRev = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILDSB_DailyRevenueTrend", paramsList, reportingDbContext);
 
             DynamicReport dReport = new DynamicReport();
@@ -1117,7 +1119,7 @@ namespace DanpheEMR.DalLayer
         public DynamicReport BIL_Monthly_BillingTrend()
         {
             List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsMthBillTrend = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILDSB_MonthlyBillingTrend", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
 
@@ -1134,7 +1136,7 @@ namespace DanpheEMR.DalLayer
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate));
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate));
 
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsCtrUsrs = DALFunctions.GetDatasetFromStoredProc("SP_Report_BILL_CounterNUsersCollectionDaily", paramsList, reportingDbContext);
 
             if (dsCtrUsrs != null && dsCtrUsrs.Tables.Count > 0)
@@ -1155,7 +1157,7 @@ namespace DanpheEMR.DalLayer
         public DynamicReport Home_DashboardStatistics()
         {
             List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsHomeDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Home_DashboardStatistics", paramsList, reportingDbContext);
 
             DynamicReport dReport = new DynamicReport();
@@ -1209,7 +1211,7 @@ namespace DanpheEMR.DalLayer
         public DynamicReport Home_PatientZoneMap()
         {
             List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsHomeDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Home_PatientDistributionMap_Nepal", paramsList, reportingDbContext);
 
             DynamicReport dReport = new DynamicReport();
@@ -1225,7 +1227,7 @@ namespace DanpheEMR.DalLayer
             var TodaysDate = DateTime.Now.Date;
             List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
             paramsList.Add(new Microsoft.Data.SqlClient.SqlParameter("@TodaysDate", TodaysDate));
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsHomeDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Home_DeptWiseAppointmentCount", paramsList, reportingDbContext);
 
             DynamicReport dReport = new DynamicReport();
@@ -1239,7 +1241,7 @@ namespace DanpheEMR.DalLayer
         public DynamicReport Patient_GenderWiseCount()
         {
             List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsPatCounts = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Patient_GenderWiseCount", paramsList, reportingDbContext);
 
             DynamicReport dReport = new DynamicReport();
@@ -1252,7 +1254,7 @@ namespace DanpheEMR.DalLayer
         public DynamicReport Patient_AgeRangeNGenderWiseCount()
         {
             List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsPatCounts = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Patient_AgeRangeNGender", paramsList, reportingDbContext);
 
             DynamicReport dReport = new DynamicReport();
@@ -1264,7 +1266,7 @@ namespace DanpheEMR.DalLayer
         public DynamicReport Lab_DashboardStatistics()
         {
             List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsLabDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Lab_DashboardStatistics", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
             //return an anonymous type - when mutliple table are received
@@ -1282,7 +1284,7 @@ namespace DanpheEMR.DalLayer
         public DynamicReport Emergency_DashboardStatistics()
         {
             List<Microsoft.Data.SqlClient.SqlParameter> paramsList = new List<Microsoft.Data.SqlClient.SqlParameter>();
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dsLabDsbStats = DALFunctions.GetDatasetFromStoredProc("SP_DSB_Emergency_DashboardStatistics", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
             //return an anonymous type - when mutliple table are received
@@ -1573,7 +1575,7 @@ namespace DanpheEMR.DalLayer
             {
                 new Microsoft.Data.SqlClient.SqlParameter("@TestName", testName)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_LAB_GetCovidTestDetails", paramsList, reportingDbContext);
 
             return testDetails;
@@ -1592,7 +1594,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@CountrySubDivisionId", CountrySubDivisionId),
                 new Microsoft.Data.SqlClient.SqlParameter("@CaseType", CaseType),
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_REPORT_LAB_TotalDailyCovidTestDetails", paramsList, reportingDbContext);
 
             return testDetails;
@@ -1607,7 +1609,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@TestName", testName),
                 new Microsoft.Data.SqlClient.SqlParameter("@CountrySubDivisionId", subDivId),
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_Report_Lab_CovidTestsSummary", paramsList, reportingDbContext);
 
             return testDetails;
@@ -1620,7 +1622,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_Report_LAB_GetHIVTestDetails", paramsList, reportingDbContext);
 
             return testDetails;
@@ -1633,7 +1635,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@FromDate", fromDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable testDetails = DALFunctions.GetDataTableFromStoredProc("SP_Report_LAB_GetCultureReport", paramsList, reportingDbContext);
 
             return testDetails;
@@ -1649,7 +1651,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@CategoryId", categoryId),
                 new Microsoft.Data.SqlClient.SqlParameter("@OrderStatus",orderStatus)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_Lab_LabTypeWise_Test_Count", paramsList, reportingDbContext);
 
             return data;
@@ -1663,7 +1665,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", toDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@UserId", userId)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_PAT_EditedPatientDetailReport", paramsList, reportingDbContext);
 
             return data;
@@ -1701,7 +1703,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@fromDate",fromdate),
                 new Microsoft.Data.SqlClient.SqlParameter("@toDate", todate)
             };
-            RadiologyDbContext radiologyDbContext = new RadiologyDbContext(this.connStr);
+            RadiologyDbContext radiologyDbContext = new RadiologyDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Report_Radiology_Film_Type_Count", paramList, radiologyDbContext);
             return data;
         }
@@ -1739,7 +1741,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@ServiceDepartments", ServiceDepartments)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_INCTV_Report_Hospital_Income", paramsList, reportingDbContext);
 
             return data;
@@ -1753,7 +1755,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@ServiceDepartmentId", ServiceDepartmentId)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_INCTV_Report_ServiceDepartmentWise_Hospital_Income", paramsList, reportingDbContext);
 
             return data;
@@ -1858,7 +1860,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_BIL_Dashboard_RankWisePatientInvoiceCount", paramsList, reportingDbContext);
 
             return data;
@@ -1873,7 +1875,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_BIL_Dashboard_MembershipWisePatientInvoiceCount", paramsList, reportingDbContext);
 
             return data;
@@ -1888,7 +1890,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Dashboard_LAB_MembershipWiseLabTest", paramsList, reportingDbContext);
 
             return data;
@@ -1903,7 +1905,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Dashboard_LABRankWiseLabTest", paramsList, reportingDbContext);
 
             return data;
@@ -1918,7 +1920,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@FromDate", FromDate),
                 new Microsoft.Data.SqlClient.SqlParameter("@ToDate", ToDate)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Dashboard_LAB_TrendingLabTest", paramsList, reportingDbContext);
 
             return data;
@@ -1928,7 +1930,7 @@ namespace DanpheEMR.DalLayer
         #region This will return datatable for Lab Dashboard Test Completed Today
         public DataTable LabDashboardTestDoneToday()
         {
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Dashboard_LAB_TestCompleteToday", reportingDbContext);
 
             return data;
@@ -1938,7 +1940,7 @@ namespace DanpheEMR.DalLayer
         #region This will return datatable for Lab Dashboard Dengue Details
         public DataTable LabDashboardDengueTestDetails()
         {
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_Dashboard_LAB_DangueTestDetails", reportingDbContext);
 
             return data;
@@ -1948,7 +1950,7 @@ namespace DanpheEMR.DalLayer
         #region This will return datatable for Lab Dashboard TestReq Details
         public DynamicReport LabDashboardTestReqDetails()
         {
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dataTables = DALFunctions.GetDatasetFromStoredProc("SP_Dashboard_LAB_TestReqDetails",null, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
             if (dataTables.Tables.Count > 0)
@@ -1972,7 +1974,7 @@ namespace DanpheEMR.DalLayer
             {
                 new Microsoft.Data.SqlClient.SqlParameter("@labTestId", labTestId)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataSet dataTables = DALFunctions.GetDatasetFromStoredProc("SP_Dashboard_LAB_AbnormalNormalTestCount", paramsList, reportingDbContext);
             DynamicReport dReport = new DynamicReport();
             if (dataTables.Tables.Count > 0)
@@ -2000,7 +2002,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@DepartmentIds", DepartmentIds),
                 new Microsoft.Data.SqlClient.SqlParameter("@RankNames", RankNames)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_RPT_DepartmentWiseRankCountReport", paramsList, reportingDbContext);
 
             return data;
@@ -2018,7 +2020,7 @@ namespace DanpheEMR.DalLayer
                 new Microsoft.Data.SqlClient.SqlParameter("@MembershiptTypeIds", Membership),
                 new Microsoft.Data.SqlClient.SqlParameter("@Rank", Rank)
             };
-            ReportingDbContext reportingDbContext = new ReportingDbContext(this.connStr);
+            ReportingDbContext reportingDbContext = new ReportingDbContext(_options);
             DataTable data = DALFunctions.GetDataTableFromStoredProc("SP_RPT_RankMembershipwiseDischargedPatientReport", paramsList, reportingDbContext);
 
             return data;

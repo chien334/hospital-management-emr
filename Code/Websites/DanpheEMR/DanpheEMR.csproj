@@ -234,9 +234,9 @@
 	  <Folder Include="Services\Pharmacy\DashBoard\" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Reference Include="System.Configuration" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <Content Update="Views\FractionView\InternalMain.cshtml">

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CanDeactivate, CanActivate } from '@angular/router';
+
 import { AccountingService } from './accounting.service';
 
 //06 march 2020- NageshBB/AshishBhogan created this routeguard for clear service data after leave route or enter into route
 @Injectable()
-export class ResetAccountingServiceGuard<T> implements CanDeactivate<T>, CanActivate {
+export class ResetAccountingServiceGuard<T>  {
     constructor(
         public accountingSer: AccountingService) {
     }

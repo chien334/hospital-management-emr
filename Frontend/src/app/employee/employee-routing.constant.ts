@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CanDeactivate } from '@angular/router';
+
 import { ChangePasswordComponent } from './changepassword/change-password.component';
 import { EmployeeProfileMainComponent } from './employee-profile-main.component';
 import { UserProfileComponent } from './changepassword/user-profile.component';

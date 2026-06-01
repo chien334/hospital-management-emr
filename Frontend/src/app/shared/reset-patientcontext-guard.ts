@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { CanDeactivate, CanActivate } from '@angular/router';
+
 import { BillingService } from '../billing/shared/billing.service';
 import { VisitService } from '../appointments/shared/visit.service';
 import { PatientService } from '../patients/shared/patient.service';
@@ -10,7 +10,7 @@ import { PatientService } from '../patients/shared/patient.service';
 //canDeactivate() gets called when user leaves a route, canActivate() gets called when route enters.
 
 @Injectable()
-export class ResetPatientcontextGuard<T> implements CanDeactivate<T>, CanActivate {
+export class ResetPatientcontextGuard<T>  {
     constructor(public visitService: VisitService,
         public billingService: BillingService,
         public patientService: PatientService) {

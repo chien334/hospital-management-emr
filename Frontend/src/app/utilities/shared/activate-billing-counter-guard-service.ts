@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
 import { RouteFromService } from "../../shared/routefrom.service";
 import { ActivateBillingCounterService } from "./activate-billing-counter.service";
 
 @Injectable()
-export class ActivateBillingCounterGuardService<T> implements CanDeactivate<T>, CanActivate {
+export class ActivateBillingCounterGuardService<T>  {
     constructor(
         private _activateBillingCounterService: ActivateBillingCounterService,
         private _routeBackService: RouteFromService,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanDeactivate } from '@angular/router';
+
 
 
 import { PatientDeactivateGuard } from './shared/patient-deactivate-guard';

@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from "@angular/router";
 import { ENUM_Scheme_ApiIntegrationNames } from "../../shared/shared-enums";
 import { ClaimManagementService } from "./claim-management.service";
 
 @Injectable()
-export class SsfClaimSelectionGuardService<T> implements CanActivate {
+export class SsfClaimSelectionGuardService<T>  {
 
     constructor(private claimManagementService: ClaimManagementService,
         private _router: Router) {

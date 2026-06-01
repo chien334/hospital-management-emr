@@ -1,10 +1,10 @@
-import { CanActivate, UrlTree, RouterStateSnapshot, ActivatedRouteSnapshot, Router, CanDeactivate } from "@angular/router";
+import { UrlTree, RouterStateSnapshot, ActivatedRouteSnapshot, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { SecurityService } from "../../security/shared/security.service";
 import { Injectable } from "@angular/core";
 
 @Injectable()
-export class WardSelectionGuardService<T> implements CanDeactivate<T>, CanActivate {
+export class WardSelectionGuardService<T>  {
     constructor(private _securityService: SecurityService,
         private _router: Router) {
     }

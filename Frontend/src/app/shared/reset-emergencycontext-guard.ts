@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { CanDeactivate, CanActivate } from "@angular/router";
+
 import { NavigationService } from "./navigation-service";
 import { VisitService } from "../appointments/shared/visit.service";
 import { PatientService } from "../patients/shared/patient.service";
@@ -7,7 +7,7 @@ import { SecurityService } from "../security/shared/security.service";
 
 @Injectable()
 export class ResetEmergencyContextGuard<T>
-  implements CanDeactivate<T>, CanActivate {
+   {
   constructor(
     public visitService: VisitService,
     public patientService: PatientService,

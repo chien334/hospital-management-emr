@@ -1,11 +1,11 @@
 ﻿import { Injectable } from '@angular/core';
-import { CanDeactivate } from '@angular/router';
+
 import { PatientService } from './patient.service';
 
 import { IRouteGuard } from '../../shared/route-guard.interface';
 
 @Injectable()
-export class PatientDeactivateGuard implements CanDeactivate<IRouteGuard> {
+export class PatientDeactivateGuard  {
 
     canDeactivate(target: IRouteGuard) {
         if (!target.CanRouteLeave()) {

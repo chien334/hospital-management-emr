@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { CanActivate, CanDeactivate } from "@angular/router";
+
 import { VisitService } from "../appointments/shared/visit.service";
 import { PatientService } from "../patients/shared/patient.service";
 import { SecurityService } from "../security/shared/security.service";
@@ -9,7 +9,7 @@ import { ENUM_MessageBox_Status } from "./shared-enums";
 
 @Injectable()
 export class ResetNursingContextGuard<T>
-  implements CanDeactivate<T>, CanActivate {
+   {
   constructor(
     public visitService: VisitService,
     public patientService: PatientService,

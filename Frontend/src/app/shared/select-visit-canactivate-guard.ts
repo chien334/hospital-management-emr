@@ -1,8 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+
 import { VisitService } from '../appointments/shared/visit.service';
 @Injectable()
-export class SelectVisitCanActivateGuard implements CanActivate {
+export class SelectVisitCanActivateGuard  {
     constructor(public visitService: VisitService) {
 
     }

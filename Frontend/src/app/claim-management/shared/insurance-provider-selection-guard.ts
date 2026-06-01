@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from "@angular/router";
 import { ClaimManagementService } from "./claim-management.service";
 
 @Injectable()
-export class InsuranceSelectionGuardService<T> implements CanActivate {
+export class InsuranceSelectionGuardService<T>  {
 
   constructor(private claimManagementService: ClaimManagementService,
     private _router: Router) {

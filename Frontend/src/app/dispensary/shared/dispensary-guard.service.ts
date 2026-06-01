@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, UrlTree, RouterStateSnapshot, ActivatedRouteSnapshot, Router, CanDeactivate } from "@angular/router";
+import { UrlTree, RouterStateSnapshot, ActivatedRouteSnapshot, Router } from "@angular/router";
 import { Observable } from 'rxjs';
 import { SecurityService } from '../../security/shared/security.service';
 import { DispensaryService } from './dispensary.service';
 
 @Injectable()
-export class DispensaryGuardService<T> implements CanDeactivate<T>, CanActivate {
+export class DispensaryGuardService<T>  {
   constructor(private _dispensaryService: DispensaryService,
     private _router: Router) {
   }

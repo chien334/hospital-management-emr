@@ -9,17 +9,25 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "importHelpers": false,
-    "target": "es2020",
-    "typeRoots": [ "node_modules/@types" ],
-    "lib": [ "es2018", "dom" ],
+    "target": "ES2022",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "strict": false,
     "skipLibCheck": true,
     "paths": {
-      "*": [ "./typings/*" ],
+      "*": [
+        "./typings/*"
+      ],
       "htmlDocx": [
         "./typings/modules/htmldocx/htmldocx.d.ts"
       ]
-    }
+    },
+    "useDefineForClassFields": false
   },
   // "angularCompilerOptions": {
   //   "enableIvy": true

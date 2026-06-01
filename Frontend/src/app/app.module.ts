@@ -95,7 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutingConstant, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(AppRoutingConstant, {}),
     SharedModule,
     // NotesModule,
     HttpClientModule,

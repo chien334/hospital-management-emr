@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
@@ -17,34 +17,24 @@ import { MarketingReferralTransactionComponent } from './mktreferral-transaction
 import { MarketingReferralReportMainComponent } from './reports/mktreferral-report-main.component';
 import { MarketingReferralDetailReportsComponent } from './reports/mktreferral-reports/mktreferral-reports.component';
 
-@NgModule({
-  providers: [
-    MarketingReferralService,
-    MarketingReferralBLService,
-    MarketingReferralDLService,
-    // MarketingreferralSharedModule,
-
-  ],
-  declarations: [
-    MarketingreferralMainComponent,
-    MarketingReferralDetailReportsComponent,
-    MarketingReferralTransactionComponent,
-    MarketingReferralSettingsComponent,
-    MarketingReferralAddTransactionComponent,
-    MarketingReferralReportMainComponent,
-    MarketingReferralReferringOrganizationComponent,
-    MarketingReferralReferringPartyComponent
-
-  ],
-  imports: [
-    CommonModule,
-    MarketingReferralRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-
-  ]
-})
+@NgModule({ declarations: [
+        MarketingreferralMainComponent,
+        MarketingReferralDetailReportsComponent,
+        MarketingReferralTransactionComponent,
+        MarketingReferralSettingsComponent,
+        MarketingReferralAddTransactionComponent,
+        MarketingReferralReportMainComponent,
+        MarketingReferralReferringOrganizationComponent,
+        MarketingReferralReferringPartyComponent
+    ], imports: [CommonModule,
+        MarketingReferralRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule], providers: [
+        MarketingReferralService,
+        MarketingReferralBLService,
+        MarketingReferralDLService,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class MktreferralModule { }

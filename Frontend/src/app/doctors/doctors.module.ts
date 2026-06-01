@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { HttpClientModule, HttpClientJsonpModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 //import { PatientCanDeactivateGuard } from "./shared/patient-candeactivate-guard";
 
@@ -55,61 +55,52 @@ import { OpdRecordComponent } from "./opd/opd-record/opd-record.component";
 import { OPNewPatientComponent } from "./opd/op-new-patient/op-new-patient.component";
 import { OutpatientMainComponent } from "./opd/outpatient-main.component";
 
-@NgModule({
-  providers: [
-    VisitDLService,
-    DoctorsDLService,
-    DoctorsBLService,
-    ClinicalDLService,
-    ProblemsBLService,
-    HistoryBLService,
-    IOAllergyVitalsBLService,
-    OrderService,
-    AppointmentDLService,
-    ADT_DLService,
-    PatientsBLService,
-    NursingDLService
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    RouterModule.forChild(DoctorsRoutingConstant),
-    SharedModule,
-    DanpheAutoCompleteModule,
-    DynTemplateModule,
-    ClinicalSharedModule,
-    DoctorSharedModule,
-  ],
-
-  declarations: [
-    DoctorsMainComponent,
-    DoctorDashboardComponent,
-    DoctorRevenueComponent,
-    ProblemsMainComponent,
-    VisitSummaryComponent,
-    //MedicalProblemListComponent,
-    //ActiveMedicalAddComponent,
-    //PastMedicalAddComponent,
-    // PastMedicalComponent,
-    // ClinicalHistoryComponent,
-    //FamilyHistoryListComponent,
-    //FamilyHistoryAddComponent,
-
-    //SurgicalHistoryListComponent,
-    //SurgicalHistoryAddComponent,
-    //SocialHistoryListComponent,
-    //SocialHistoryAddComponent,
-
-    IPDMainComponent,
-    ReferralSourceListComponent,
-    ReferralSourceAddComponent,
-    InPatientDischargeSummaryComponent,
-    OpdRecordComponent,
-    OPNewPatientComponent,
-    OutpatientMainComponent,
-  ],
-  bootstrap: [], //do we need anything here ? <sudarshan:2jan2017>
-})
+@NgModule({ declarations: [
+        DoctorsMainComponent,
+        DoctorDashboardComponent,
+        DoctorRevenueComponent,
+        ProblemsMainComponent,
+        VisitSummaryComponent,
+        //MedicalProblemListComponent,
+        //ActiveMedicalAddComponent,
+        //PastMedicalAddComponent,
+        // PastMedicalComponent,
+        // ClinicalHistoryComponent,
+        //FamilyHistoryListComponent,
+        //FamilyHistoryAddComponent,
+        //SurgicalHistoryListComponent,
+        //SurgicalHistoryAddComponent,
+        //SocialHistoryListComponent,
+        //SocialHistoryAddComponent,
+        IPDMainComponent,
+        ReferralSourceListComponent,
+        ReferralSourceAddComponent,
+        InPatientDischargeSummaryComponent,
+        OpdRecordComponent,
+        OPNewPatientComponent,
+        OutpatientMainComponent,
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        RouterModule.forChild(DoctorsRoutingConstant),
+        SharedModule,
+        DanpheAutoCompleteModule,
+        DynTemplateModule,
+        ClinicalSharedModule,
+        DoctorSharedModule], providers: [
+        VisitDLService,
+        DoctorsDLService,
+        DoctorsBLService,
+        ClinicalDLService,
+        ProblemsBLService,
+        HistoryBLService,
+        IOAllergyVitalsBLService,
+        OrderService,
+        AppointmentDLService,
+        ADT_DLService,
+        PatientsBLService,
+        NursingDLService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class DoctorsModule { }

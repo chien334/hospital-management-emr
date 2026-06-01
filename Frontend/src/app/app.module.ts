@@ -1,4 +1,4 @@
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
@@ -58,66 +58,59 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
-@NgModule({
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    DLService,
-    PatientsDLService,
-    NotificationBLService,
-    NotificationDLService,
-    SecurityService,
-    PatientService,
-    AppointmentService,
-    //DesignationService,
-    VisitService,
-    CallbackService,
-    RouteFromService,
-    SelectVisitCanActivateGuard,
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-    MessageboxService,
-    NavigationService,
-    BillingService, //added for Quick-Appointment. //review it and correct it later: sudarshan.
-    UnicodeService,
-    EmployeeService,
-    ActivateInventoryGuardService,
-    ActivateInventoryService,
-    ActivateInventoryEndpoint,
-    DispensaryService,
-    DispensaryEndpoint,
-    ClaimManagementDLService,
-    ClaimManagementBLService,
-    ActivateBillingCounterGuardService,
-    ActivateBillingCounterService
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutingConstant, {}),
-    SharedModule,
-    // NotesModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    CoreModule,
-    SecurityModule,
-  ],
-  declarations: [
-    AppComponent,
-    MessageBoxComponent,
-    DashboardHomeComponent,
-    UnAuthorizedAccessComponent,
-    LoaderComponent,
-    ActivateInventoryComponent,
-    DynamicReportComponent
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        MessageBoxComponent,
+        DashboardHomeComponent,
+        UnAuthorizedAccessComponent,
+        LoaderComponent,
+        ActivateInventoryComponent,
+        DynamicReportComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(AppRoutingConstant, {}),
+        SharedModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        CoreModule,
+        SecurityModule], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+        DLService,
+        PatientsDLService,
+        NotificationBLService,
+        NotificationDLService,
+        SecurityService,
+        PatientService,
+        AppointmentService,
+        //DesignationService,
+        VisitService,
+        CallbackService,
+        RouteFromService,
+        SelectVisitCanActivateGuard,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        MessageboxService,
+        NavigationService,
+        BillingService, //added for Quick-Appointment. //review it and correct it later: sudarshan.
+        UnicodeService,
+        EmployeeService,
+        ActivateInventoryGuardService,
+        ActivateInventoryService,
+        ActivateInventoryEndpoint,
+        DispensaryService,
+        DispensaryEndpoint,
+        ClaimManagementDLService,
+        ClaimManagementBLService,
+        ActivateBillingCounterGuardService,
+        ActivateBillingCounterService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

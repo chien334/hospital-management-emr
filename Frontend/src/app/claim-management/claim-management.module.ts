@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -42,56 +42,50 @@ import { SSFClaimComponent } from './ssf-claim/ssf-claim.component';
 import { SsfDlService } from './ssf-claim/ssf-dl.services';
 
 
-@NgModule({
-  providers: [
-    ClaimManagementDLService,
-    ClaimManagementBLService,
-    InsuranceSelectionGuardService,
-    BillingBLService,
-    AppointmentDLService,
-    VisitDLService,
-    ADT_DLService,
-    PharmacyService,
-    PharmacyBLService,
-    PharmacyDLService,
-    VisitBLService,
-    SsfDlService,
-    SsfClaimSelectionGuardService
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    ClaimManagementRoutingModule,
-    SharedModule,
-    NgxPaginationModule,
-    SettingsSharedModule,
-    BillingPrintSharedModule
-  ],
-  declarations: [
-    ClaimManagementMainComponent,
-    InsuranceProviderSelectionComponent,
-    InsuranceBillListComponent,
-    InsuranceBillAssignClaimCodeComponent,
-    InsuranceClaimsListComponent,
-    InsuranceClaimsPreviewComponent,
-    InsuranceClaimScrubbingComponent,
-    InsuranceClaimsListComponent,
-    PaymentProcessingComponent,
-    ReportsComponent,
-    DocumentUploadComponent,
-    NewInsurancePaymentComponent,
-    InsBillPreviewComponent,
-    ClaimFormsComponent,
-    FormSelectionComponent,
-    EchsMrpDrugCertificateComponent,
-    MedicalClaimFormComponent,
-    EchsMrpDrugCertificatePrintComponent,
-    MedicalClaimFormPrintComponent,
-    ViewPaymentComponent,
-    SSFClaimComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        ClaimManagementMainComponent,
+        InsuranceProviderSelectionComponent,
+        InsuranceBillListComponent,
+        InsuranceBillAssignClaimCodeComponent,
+        InsuranceClaimsListComponent,
+        InsuranceClaimsPreviewComponent,
+        InsuranceClaimScrubbingComponent,
+        InsuranceClaimsListComponent,
+        PaymentProcessingComponent,
+        ReportsComponent,
+        DocumentUploadComponent,
+        NewInsurancePaymentComponent,
+        InsBillPreviewComponent,
+        ClaimFormsComponent,
+        FormSelectionComponent,
+        EchsMrpDrugCertificateComponent,
+        MedicalClaimFormComponent,
+        EchsMrpDrugCertificatePrintComponent,
+        MedicalClaimFormPrintComponent,
+        ViewPaymentComponent,
+        SSFClaimComponent
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        ClaimManagementRoutingModule,
+        SharedModule,
+        NgxPaginationModule,
+        SettingsSharedModule,
+        BillingPrintSharedModule], providers: [
+        ClaimManagementDLService,
+        ClaimManagementBLService,
+        InsuranceSelectionGuardService,
+        BillingBLService,
+        AppointmentDLService,
+        VisitDLService,
+        ADT_DLService,
+        PharmacyService,
+        PharmacyBLService,
+        PharmacyDLService,
+        VisitBLService,
+        SsfDlService,
+        SsfClaimSelectionGuardService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class ClaimManagementModule { }

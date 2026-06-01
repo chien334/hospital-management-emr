@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { EmployeeRoutingModule } from "./employee-routing.constant";
 import { ChangePasswordComponent } from './changepassword/change-password.component';
@@ -15,23 +15,15 @@ import { ChangePasswordGuard } from './shared/changepassword-guard';
 import { EmployeeService } from "./shared/employee.service";
 import { SharedModule } from "../shared/shared.module";
 
-@NgModule({
-  providers: [EmployeeBLService,
-    EmployeeDLService
-    , ChangePasswordGuard
-  ],
-  imports: [EmployeeRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,    
-    SharedModule
-
-  ],
-  declarations: [ ChangePasswordComponent
-    , EmployeeProfileMainComponent
-    , UserProfileComponent
-  ],
-  bootstrap: [EmployeeProfileMainComponent]
-})
+@NgModule({ declarations: [ChangePasswordComponent,
+        EmployeeProfileMainComponent,
+        UserProfileComponent
+    ],
+    bootstrap: [EmployeeProfileMainComponent], imports: [EmployeeRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        SharedModule], providers: [EmployeeBLService,
+        EmployeeDLService,
+        ChangePasswordGuard, provideHttpClient(withInterceptorsFromDi())] })
 export class EmployeeModule { }

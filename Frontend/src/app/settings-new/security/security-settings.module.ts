@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { AgGridModule } from 'ag-grid-angular/main';
 import { SecuritySettingsMainComponent } from './security-setting.main.component';
@@ -31,32 +31,26 @@ export const securitySettingsRoutes: Routes =
   ]
 
 
-@NgModule({
-  providers: [
-
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    RouterModule.forChild(securitySettingsRoutes),
-  ],
-  declarations: [
-    SecuritySettingsMainComponent,
-    UserAddComponent,
-    UserListComponent,
-    UserRoleMapComponent,
-    RoleAddComponent,
-    RoleListComponent,
-    RolePermissionManageComponent,
-    ResetPasswordComponent,
-    SortByPipe
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        SecuritySettingsMainComponent,
+        UserAddComponent,
+        UserListComponent,
+        UserRoleMapComponent,
+        RoleAddComponent,
+        RoleListComponent,
+        RolePermissionManageComponent,
+        ResetPasswordComponent,
+        SortByPipe
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        RouterModule.forChild(securitySettingsRoutes)], providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class SecuritySettingsModule {
 
 }   

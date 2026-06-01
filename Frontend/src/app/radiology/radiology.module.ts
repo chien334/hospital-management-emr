@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RadiologyRoutingModule } from './radiology-routing.module';
 import { SelectVisitCanActivateGuard } from '../shared/select-visit-canactivate-guard';
 import { RadiologyMainComponent } from './radiology-main.component';
@@ -26,37 +26,30 @@ import { RadiologyEditDoctorsPopupComponent } from './rad-edit-doctors/rad-edit-
 import { ImagingTypeSelectorComponent } from './shared/RadiologyTypeSelector/ImagingTypeSelector.component';
 
 
-@NgModule({
-  providers: [SelectVisitCanActivateGuard,
-    ImagingBLService,
-    ImagingDLService,
-    BillingDLService,
-    PatientsDLService,
-    VisitDLService,
-    ADT_DLService,
-    ADT_BLService,
-    AppointmentDLService
-  ],
-  imports: [RadiologyRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    SettingsSharedModule,
-    BillingSharedModule
-  ],
-  declarations: [RadiologyMainComponent,
-    ImagingRequisitionListComponent,
-    ImagingReportsListComponent,
-    Rad_InpatientListComponent,
-    RadiologyWardBillingComponent,
-    RadiologyEditDoctorsComponent,
-    RadiologyEditDoctorsPopupComponent,
-    ImagingTypeSelectorComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [RadiologyMainComponent,
+        ImagingRequisitionListComponent,
+        ImagingReportsListComponent,
+        Rad_InpatientListComponent,
+        RadiologyWardBillingComponent,
+        RadiologyEditDoctorsComponent,
+        RadiologyEditDoctorsPopupComponent,
+        ImagingTypeSelectorComponent
+    ],
+    bootstrap: [], imports: [RadiologyRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        SettingsSharedModule,
+        BillingSharedModule], providers: [SelectVisitCanActivateGuard,
+        ImagingBLService,
+        ImagingDLService,
+        BillingDLService,
+        PatientsDLService,
+        VisitDLService,
+        ADT_DLService,
+        ADT_BLService,
+        AppointmentDLService, provideHttpClient(withInterceptorsFromDi())] })
 export class RadiologyModule { }
 

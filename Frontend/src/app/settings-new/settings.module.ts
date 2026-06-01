@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -24,32 +24,27 @@ import { DynamicTemplateModule } from './dynamic-templates/dynamic-template.modu
 //import { CreditOrganizationAddComponent } from '../settings/billing/creditOrganization-add.component';
 //import { CreditOrganizationListComponent } from '../settings/billing/creditOrganization-list.component';
 
-@NgModule({
-  providers: [
-    SettingsDLService,
-    SettingsBLService,
-    BillingDLService,
-    SettingsService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SettingsRoutingModule,
-    DanpheAutoCompleteModule,
-    SharedModule,
-    DynTemplateModule,
-    DynamicTemplateModule
-  ],
-  declarations: [
-    SettingsMainComponent,
-    TaxManageComponent,
-    //ListPrinterSettingsComponent
-    //CreditOrganizationAddComponent,
-    //CreditOrganizationListComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        SettingsMainComponent,
+        TaxManageComponent,
+        //ListPrinterSettingsComponent
+        //CreditOrganizationAddComponent,
+        //CreditOrganizationListComponent
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SettingsRoutingModule,
+        DanpheAutoCompleteModule,
+        SharedModule,
+        DynTemplateModule,
+        DynamicTemplateModule], providers: [
+        SettingsDLService,
+        SettingsBLService,
+        BillingDLService,
+        SettingsService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 
 export class SettingsModule { }

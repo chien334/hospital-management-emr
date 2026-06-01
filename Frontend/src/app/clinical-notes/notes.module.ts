@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -30,44 +30,37 @@ import { ClinicalPrescriptionNoteComponent } from './prescription-note/clinical-
 import { ViewClinicalPrescriptionNoteComponent } from './prescription-note/view-clinical-prescription-note.component';
 
 
-@NgModule({
-  providers: [
-
-    NoteTemplateBLService
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    //Ng2AutoCompleteModule
-    DanpheAutoCompleteModule,
-    RouterModule.forChild(NotesRoutingConstant),
-    ClinicalSharedModule
-  ],
-  declarations: [
-    NotesMainComponent,
-    NotesListComponent,
-    FreeNotesComponent,
-    HistoryAndPhsicalNoteComponent,
-    ObjectiveNotesComponent,
-    SubjectiveNoteComponent,
-    OPDGeneralNoteComponenet,
-    FreeNotesComponent,
-    FreeTextComponent,
-    EmergencyNoteComponent,
-    ProgressNoteComponent,
-    ProcedureNoteComponent,
-    AssessmentPlanComponent,
-    PrescriptionNoteComponent,
-    OPDOrthoNoteComponent,
-    ViewHistoryAndPhysicalNoteComponent,
-    ViewEmergencyNoteComponent,
-    ClinicalPrescriptionNoteComponent,
-    ViewClinicalPrescriptionNoteComponent
-  ]
-})
+@NgModule({ declarations: [
+        NotesMainComponent,
+        NotesListComponent,
+        FreeNotesComponent,
+        HistoryAndPhsicalNoteComponent,
+        ObjectiveNotesComponent,
+        SubjectiveNoteComponent,
+        OPDGeneralNoteComponenet,
+        FreeNotesComponent,
+        FreeTextComponent,
+        EmergencyNoteComponent,
+        ProgressNoteComponent,
+        ProcedureNoteComponent,
+        AssessmentPlanComponent,
+        PrescriptionNoteComponent,
+        OPDOrthoNoteComponent,
+        ViewHistoryAndPhysicalNoteComponent,
+        ViewEmergencyNoteComponent,
+        ClinicalPrescriptionNoteComponent,
+        ViewClinicalPrescriptionNoteComponent
+    ], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        //Ng2AutoCompleteModule
+        DanpheAutoCompleteModule,
+        RouterModule.forChild(NotesRoutingConstant),
+        ClinicalSharedModule], providers: [
+        NoteTemplateBLService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 
 export class NotesModule {
 

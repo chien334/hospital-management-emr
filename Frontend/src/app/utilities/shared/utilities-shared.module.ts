@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BillingSharedModule } from "../../billing/billing-shared.module";
@@ -10,30 +10,21 @@ import { UtilitiesBLService } from "./utilities.bl.service";
 import { UtilitiesDLService } from "./utilities.dl.service";
 
 
-@NgModule({
-  providers: [
-    UtilitiesBLService,
-    UtilitiesDLService,
-
-  ],
-  imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    SharedModule,
-    BillingSharedModule,
-
-  ],
-  declarations: [
-    PrintOrganizationDepositComponent,
-    ProcessConfirmationComponent
-
-  ],
-  exports: [
-    PrintOrganizationDepositComponent,
-    ProcessConfirmationComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        PrintOrganizationDepositComponent,
+        ProcessConfirmationComponent
+    ],
+    exports: [
+        PrintOrganizationDepositComponent,
+        ProcessConfirmationComponent
+    ],
+    bootstrap: [], imports: [ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        SharedModule,
+        BillingSharedModule], providers: [
+        UtilitiesBLService,
+        UtilitiesDLService,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class UtilitiesSharedModule { }

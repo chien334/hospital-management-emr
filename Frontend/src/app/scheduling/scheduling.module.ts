@@ -1,7 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 
 import { SharedModule } from '../shared/shared.module';
@@ -16,29 +16,21 @@ import { ManageSchedulingComponent } from "./manage/manage-schedules.component";
 import { ManageMainComponent } from "./manage/manage-main.component";
 import { ManageWorkingHours } from "./manage/manage-working-hours.component";
 
-@NgModule({
-    providers: [
-        SchedulingBLService,
-        SchedulingDLService,
-        { provide: LocationStrategy, useClass: HashLocationStrategy }
-    ],
-    imports: [
-        SchedulingRoutingModule,
-        CommonModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        FormsModule,
-        SharedModule
-    ],
-
-    declarations: [
+@NgModule({ declarations: [
         SchedulingMainComponent,
         ManageSchedulingComponent,
         SettingMainComponent,
         ShiftsManageComponent,
         ManageMainComponent,
         ManageWorkingHours
-    ],
-
-})
+    ], imports: [SchedulingRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule], providers: [
+        SchedulingBLService,
+        SchedulingDLService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class SchedulingModule { }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { LabsRoutingModule } from './labs-routing.module';
 
@@ -54,61 +54,56 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { LabImuUploadComponent } from './notification/imu/imu-upload.component';
 
-@NgModule({
-  providers: [
-    LabsBLService,
-    LabsDLService,
-    LabTestResultService,
-    BillingDLService,
-    PatientsDLService,
-    BillingBLService,
-    VisitDLService,
-    AppointmentDLService,
-    ADT_BLService,
-    ADT_DLService,
-    LabSelectionGuardService],
-  imports: [LabsRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    AngularMultiSelectModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    BillingSharedModule,
-    SettingsSharedModule,
-    NgxPaginationModule,
-    ScrollingModule
-  ],
-  declarations: [LabsMainComponent,
-    LabListRequisitionComponent,
-    LabTestsCollectSampleComponent,
-    LabDashboardComponent,
-    WardBillingComponent,
-    LabTestsPendingReports,
-    LabTestsFinalReports,
-    LabTestsPendingResultsComponent,
-    LabTestChangeComponent,
-    LabRequestsComponent,
-    LabRequestsListComponent,
-    LabStickerComponent,
-    LabBarCodeComponent,
-    UndoLabSampleCode,
-    ExternalLabsMainComponent,
-    InternalTestListComponent,
-    ExternalTestListComponent,
-    VendorSelectComponent,
-    LabReportDispatchComponent,
-    LabReportDispatchDetailComponent,
-    LabTestsEmptyAddReportComponent,
-    LabTypeSelectionComponent,
-    LabCategorySelectComponent,
-    LabWorkListReportComponent,
-    LabSendSmsComponent,
-    LabNotificationComponent,
-    LabImuUploadComponent
-  ],
-  bootstrap: []
-
-})
+@NgModule({ declarations: [LabsMainComponent,
+        LabListRequisitionComponent,
+        LabTestsCollectSampleComponent,
+        LabDashboardComponent,
+        WardBillingComponent,
+        LabTestsPendingReports,
+        LabTestsFinalReports,
+        LabTestsPendingResultsComponent,
+        LabTestChangeComponent,
+        LabRequestsComponent,
+        LabRequestsListComponent,
+        LabStickerComponent,
+        LabBarCodeComponent,
+        UndoLabSampleCode,
+        ExternalLabsMainComponent,
+        InternalTestListComponent,
+        ExternalTestListComponent,
+        VendorSelectComponent,
+        LabReportDispatchComponent,
+        LabReportDispatchDetailComponent,
+        LabTestsEmptyAddReportComponent,
+        LabTypeSelectionComponent,
+        LabCategorySelectComponent,
+        LabWorkListReportComponent,
+        LabSendSmsComponent,
+        LabNotificationComponent,
+        LabImuUploadComponent
+    ],
+    bootstrap: [], imports: [LabsRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        AngularMultiSelectModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        BillingSharedModule,
+        SettingsSharedModule,
+        NgxPaginationModule,
+        ScrollingModule], providers: [
+        LabsBLService,
+        LabsDLService,
+        LabTestResultService,
+        BillingDLService,
+        PatientsDLService,
+        BillingBLService,
+        VisitDLService,
+        AppointmentDLService,
+        ADT_BLService,
+        ADT_DLService,
+        LabSelectionGuardService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class LabsModule { }

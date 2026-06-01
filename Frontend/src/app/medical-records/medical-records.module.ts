@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ADT_DLService } from '../adt/shared/adt.dl.service';
@@ -41,55 +41,48 @@ import { MR_BLService } from './shared/mr.bl.service';
 import { MR_DLService } from './shared/mr.dl.service';
 
 
-@NgModule({
-  providers: [
-    MR_BLService,
-    MR_DLService,
-    ADT_DLService,
-    DLService,
-    ReportingService,
-    MedicalRecordService
-  ],
-  imports: [
-    MedecialRecordsRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule
-  ],
-  declarations: [
-    MedicalRecordsMainComponent,
-    MRInpatientListComponent,
-    AddNewMedicalRecordComponent,
-    ViewMedicalRecordComponent,
-    BirthListComponent,
-    BirthCertificateComponent,
-    DeathListComponent,
-    DeathCertificateComponent,
-    MedicalRecordReportsMainComponent,
-    DiseaseWiseReportComponent,
-    OutpatientServicesReportComponent,
-    OutpatientMorbidityReportComponent,
-    AddBirthDetailsComponent,
-    AddBirthDetailsSharedComponent,
-    AddDeathDetailsSharedComponent,
-    AddDeathDetailsComponent,
-    MROutpatientListComponent,
-    AddFinalDiagnosisComponent,
-    GovSummaryReportComponent,
-    GovLaboratoryServicesReportComponent,
-    GovInpatientOutcomeReportComponent,
-    LabKeysPipe,
-    InpatientMorbidityReportComponent,
-    HospitalMortalityComponent,
-    EmergencyPatientListComponent,
-    EmergencyAddFinalDiagnosisComponent,
-    EmergencyPatientMorbidityReportComponent,
-    EthnicGroupStatisticsReportComponent
-  ],
-  bootstrap: []
-
-})
+@NgModule({ declarations: [
+        MedicalRecordsMainComponent,
+        MRInpatientListComponent,
+        AddNewMedicalRecordComponent,
+        ViewMedicalRecordComponent,
+        BirthListComponent,
+        BirthCertificateComponent,
+        DeathListComponent,
+        DeathCertificateComponent,
+        MedicalRecordReportsMainComponent,
+        DiseaseWiseReportComponent,
+        OutpatientServicesReportComponent,
+        OutpatientMorbidityReportComponent,
+        AddBirthDetailsComponent,
+        AddBirthDetailsSharedComponent,
+        AddDeathDetailsSharedComponent,
+        AddDeathDetailsComponent,
+        MROutpatientListComponent,
+        AddFinalDiagnosisComponent,
+        GovSummaryReportComponent,
+        GovLaboratoryServicesReportComponent,
+        GovInpatientOutcomeReportComponent,
+        LabKeysPipe,
+        InpatientMorbidityReportComponent,
+        HospitalMortalityComponent,
+        EmergencyPatientListComponent,
+        EmergencyAddFinalDiagnosisComponent,
+        EmergencyPatientMorbidityReportComponent,
+        EthnicGroupStatisticsReportComponent
+    ],
+    bootstrap: [], imports: [MedecialRecordsRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        SharedModule,
+        DanpheAutoCompleteModule], providers: [
+        MR_BLService,
+        MR_DLService,
+        ADT_DLService,
+        DLService,
+        ReportingService,
+        MedicalRecordService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class MedicalRecordsModule { }

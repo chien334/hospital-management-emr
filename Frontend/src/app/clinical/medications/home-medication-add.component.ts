@@ -3,7 +3,7 @@ import { PatientService } from "../../patients/shared/patient.service";
 import { MedicationBLService } from '../shared/medication.bl.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { HomeMedication } from "../shared/home-medication.model";
-import { HttpClient,HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as moment from 'moment/moment';
 
 @Component({

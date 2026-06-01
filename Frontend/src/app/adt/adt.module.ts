@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentDLService } from '../appointments/shared/appointment.dl.service';
@@ -43,49 +43,46 @@ import { IPWristBandPrintComponent } from './ip-wrist-band/ip-wrist-band-print.c
 import { PatientBedHistory } from './patient-bed-history/patient-bed-history.component';
 import { AdmissionSelectPatientCanActivateGuard } from './shared/admission-select-patient-canactivate-guard';
 
-@NgModule({
-  providers: [
-    ADT_DLService,
-    ADT_BLService,
-    VisitBLService,
-    VisitDLService,
-    AppointmentDLService,
-    PatientsBLService,
-    PatientsDLService,
-    ImagingDLService,
-    LabsDLService,
-    BillingDLService,
-    AdmissionSelectPatientCanActivateGuard,
-    IOAllergyVitalsBLService],
-  imports: [ADTRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AgGridModule.withComponents(ADTMainComponent),
-    FormsModule, SharedModule, ADTSharedModule, DischargeSummaryModule,
-    DanpheAutoCompleteModule,
-    ClinicalSharedModule,
-    SettingsSharedModule,
-    BillingPrintSharedModule,
-    BillingSharedModule,
-    RegistrationSchemeSharedModule,
-  ],
-  declarations: [
-    ADTMainComponent,
-    AdmissionCreateComponent,
-    AdmissionSearchPatient,
-    AdmittedListComponent,
-    //TransferComponent, // moved to shared module to use in nursing modulw
-    DischargedListComponent,
-    UpgradeComponent,
-    AdtHomeComponent,
-    AdmissionPrintStickerComponent,
-    PatientBedHistory,
-    AdmissionCancelComponent,
-    IPWristBandPrintComponent,
-    ChangeDoctorComponent
-    //AdmittedPatientHistory// moved to shared module to use in nursing modulw
-  ],
-  bootstrap: []//do we need anything here ? <sudarshan:2jan2017>
-})
+@NgModule({ declarations: [
+        ADTMainComponent,
+        AdmissionCreateComponent,
+        AdmissionSearchPatient,
+        AdmittedListComponent,
+        //TransferComponent, // moved to shared module to use in nursing modulw
+        DischargedListComponent,
+        UpgradeComponent,
+        AdtHomeComponent,
+        AdmissionPrintStickerComponent,
+        PatientBedHistory,
+        AdmissionCancelComponent,
+        IPWristBandPrintComponent,
+        ChangeDoctorComponent
+        //AdmittedPatientHistory// moved to shared module to use in nursing modulw
+    ],
+    bootstrap: [] //do we need anything here ? <sudarshan:2jan2017>
+    , imports: [ADTRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        AgGridModule.withComponents(ADTMainComponent),
+        FormsModule, SharedModule, ADTSharedModule, DischargeSummaryModule,
+        DanpheAutoCompleteModule,
+        ClinicalSharedModule,
+        SettingsSharedModule,
+        BillingPrintSharedModule,
+        BillingSharedModule,
+        RegistrationSchemeSharedModule], providers: [
+        ADT_DLService,
+        ADT_BLService,
+        VisitBLService,
+        VisitDLService,
+        AppointmentDLService,
+        PatientsBLService,
+        PatientsDLService,
+        ImagingDLService,
+        LabsDLService,
+        BillingDLService,
+        AdmissionSelectPatientCanActivateGuard,
+        IOAllergyVitalsBLService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class ADTModule { }

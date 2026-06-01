@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withJsonpSupport } from '@angular/common/http';
 
 import { LabsBLService } from '../labs/shared/labs.bl.service';
 import { LabsDLService } from '../labs/shared/labs.dl.service';
@@ -28,8 +28,19 @@ import { PrintMedicationsComponent } from './order/print-order';
 import { OrdersBLService } from './shared/orders.bl.service';
 import { OrdersDLService } from './shared/orders.dl.service';
 
-@NgModule({
-    providers: [OrderService,
+@NgModule({ declarations: [OrderMainComponent,
+        OrderRequisitionsComponent,
+        MedicationPrescriptionComponent,
+        PrintMedicationsComponent
+    ],
+    bootstrap: [] //do we need anything here ? <sudarshan:2jan2017>
+    , imports: [ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        //Ng2AutoCompleteModule,
+        DanpheAutoCompleteModule,
+        OrdersRoutingModule,
+        SharedModule], providers: [OrderService,
         LabsBLService,
         LabsDLService,
         ImagingBLService,
@@ -40,22 +51,5 @@ import { OrdersDLService } from './shared/orders.dl.service';
         OrdersBLService,
         ClinicalDLService,
         OrdersBLService,
-        OrdersDLService
-    ],
-    imports: [ReactiveFormsModule,
-        FormsModule,
-        CommonModule,
-        //Ng2AutoCompleteModule,
-        DanpheAutoCompleteModule,
-        OrdersRoutingModule,
-        SharedModule,
-        HttpClientModule, HttpClientJsonpModule
-    ],
-    declarations: [OrderMainComponent,
-        OrderRequisitionsComponent,
-        MedicationPrescriptionComponent,
-        PrintMedicationsComponent
-    ],
-    bootstrap: []//do we need anything here ? <sudarshan:2jan2017>
-})
+        OrdersDLService, provideHttpClient(withInterceptorsFromDi(), withJsonpSupport())] })
 export class OrdersModule { }

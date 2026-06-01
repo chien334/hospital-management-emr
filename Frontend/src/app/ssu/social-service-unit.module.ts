@@ -1,7 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { SharedModule } from '../shared/shared.module';
 import { SocialServiceUnitRoutingModule } from './ssu-routing.module';
@@ -13,27 +13,19 @@ import { SSU_PatientComponent } from './patient/ssu-patient.component';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
 import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
 
-@NgModule({
-    providers: [
-        SSU_DLService,
-        SSU_BLService
-    ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        SocialServiceUnitRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        SharedModule,
-        DanpheAutoCompleteModule,
-        SettingsSharedModule
-    ],
-
-    declarations: [
+@NgModule({ declarations: [
         SocialServiceUnitMainComponent,
         SSU_PatientListComponent,
         SSU_PatientComponent
-    ],
-
-})
+    ], imports: [CommonModule,
+        ReactiveFormsModule,
+        SocialServiceUnitRoutingModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        SettingsSharedModule], providers: [
+        SSU_DLService,
+        SSU_BLService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class SocialServiceUnitModule { }

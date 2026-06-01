@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentDLService } from '../appointments/shared/appointment.dl.service';
@@ -27,42 +27,37 @@ import { AdmissionMasterDlService } from './shared/admission-master.dl.service';
 import { TransferComponent } from './transfer/transfer.component';
 
 
-@NgModule({
-  providers: [
-    ADT_DLService,
-    ADT_BLService,
-    VisitDLService,
-    AppointmentDLService,
-    PatientsBLService,
-    PatientsDLService,
-    ImagingDLService,
-    LabsDLService,
-    BillingDLService,
-    IOAllergyVitalsBLService,
-    AdmissionMasterBlService,
-    AdmissionMasterDlService],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule, SharedModule,
-    DischargeSummaryModule,
-    DanpheAutoCompleteModule,
-    RegistrationSchemeSharedModule,
-    BillingSharedModule
-  ],
-  declarations: [
-    AdmissionReserveComponent,
-    TransferComponent,
-    AdmittedPatientHistory,
-    AdmissionSlipComponent,
-    DischargeSlipComponent
-  ],
-  exports: [AdmissionReserveComponent,
-    TransferComponent,
-    AdmittedPatientHistory,
-    AdmissionSlipComponent,
-    DischargeSlipComponent],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        AdmissionReserveComponent,
+        TransferComponent,
+        AdmittedPatientHistory,
+        AdmissionSlipComponent,
+        DischargeSlipComponent
+    ],
+    exports: [AdmissionReserveComponent,
+        TransferComponent,
+        AdmittedPatientHistory,
+        AdmissionSlipComponent,
+        DischargeSlipComponent],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule, SharedModule,
+        DischargeSummaryModule,
+        DanpheAutoCompleteModule,
+        RegistrationSchemeSharedModule,
+        BillingSharedModule], providers: [
+        ADT_DLService,
+        ADT_BLService,
+        VisitDLService,
+        AppointmentDLService,
+        PatientsBLService,
+        PatientsDLService,
+        ImagingDLService,
+        LabsDLService,
+        BillingDLService,
+        IOAllergyVitalsBLService,
+        AdmissionMasterBlService,
+        AdmissionMasterDlService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class ADTSharedModule { }

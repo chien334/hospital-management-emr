@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -14,23 +14,17 @@ export const paymentModeRoutes =
   ] 
 
 
-@NgModule({
-  providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    RouterModule.forChild(paymentModeRoutes),
-
-  ],
-  declarations: [ 
-      PaymentModeMainComponent    
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        PaymentModeMainComponent
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        RouterModule.forChild(paymentModeRoutes)], providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 
 export class PaymentModeSettingsModule {
 

@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -19,28 +19,23 @@ export const clnSettingsRoutes =
     }
   ]
 
-@NgModule({
-  providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    RouterModule.forChild(clnSettingsRoutes),
-  ],
-  declarations: [
-    ClinicalSettingsMainComponent,
-    ReactionAddComponent,
-    ReactionListComponent,
-    ICD10GroupListComponent,
-    IntakeOutputTypeListComponent,
-    IntakeOutputAddComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        ClinicalSettingsMainComponent,
+        ReactionAddComponent,
+        ReactionListComponent,
+        ICD10GroupListComponent,
+        IntakeOutputTypeListComponent,
+        IntakeOutputAddComponent
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        RouterModule.forChild(clnSettingsRoutes)], providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class ClinicalSettingsModule {
 
 }

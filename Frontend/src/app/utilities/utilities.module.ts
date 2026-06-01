@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ADT_DLService } from "../adt/shared/adt.dl.service";
@@ -21,39 +21,31 @@ import { UtilitiesService } from "./shared/utilities.service";
 import { UtilitiesMainComponent } from "./utilities-main.component";
 import { UtilitiesRoutingModule } from "./utilities-routing.module";
 
-@NgModule({
-  providers: [
-    UtilitiesBLService,
-    UtilitiesDLService,
-    UtilitiesService,
-    SchemeRefundComponent,
-    VisitDLService,
-    AppointmentDLService,
-    ADT_DLService
-  ],
-  imports: [
-    UtilitiesRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    BillingSharedModule,
-    UtilitiesSharedModule
-
-  ],
-  declarations: [
-    UtilitiesMainComponent,
-    SchemeRefundComponent,
-    SchemeRefundListComponent,
-    ChangeSchemePriceCategoryComponent,
-    ChangeBillingCounterComponent,
-    OrganizationDepositComponent,
-    SchemeRefundPrintComponent,
-    //PrintOrganizationDepositComponent,
-
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        UtilitiesMainComponent,
+        SchemeRefundComponent,
+        SchemeRefundListComponent,
+        ChangeSchemePriceCategoryComponent,
+        ChangeBillingCounterComponent,
+        OrganizationDepositComponent,
+        SchemeRefundPrintComponent,
+        //PrintOrganizationDepositComponent,
+    ],
+    bootstrap: [], imports: [UtilitiesRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        BillingSharedModule,
+        UtilitiesSharedModule], providers: [
+        UtilitiesBLService,
+        UtilitiesDLService,
+        UtilitiesService,
+        SchemeRefundComponent,
+        VisitDLService,
+        AppointmentDLService,
+        ADT_DLService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class UtilitiesModule { }

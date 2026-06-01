@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { HelpdeskRoutingModule } from "./helpdesk-routing.module";
 import { HelpdeskMainComponent } from "./helpdesk-main.component";
@@ -16,29 +16,22 @@ import { HlpDskBedInfoComponent } from "./bedinfo/bed-info.component";
 import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
 import { SharedModule } from "../shared/shared.module";
 import { HlpDskQueueInfoComponent } from './queueinformation/queue-info.componet';
-@NgModule({
-  providers: [
-    HelpDeskBLService,
-    HelpDeskDLService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
-  ],
-  imports: [
-    HelpdeskRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    DanpheAutoCompleteModule,
-    SharedModule,
-
-  ],
-  declarations: [
-    HelpdeskMainComponent,
-    HlpDskBedInfoComponent,
-    HlpDskEmployeeInfoComponent,
-    HlpDskWardInfoComponent,
-    HlpDskQueueInfoComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        HelpdeskMainComponent,
+        HlpDskBedInfoComponent,
+        HlpDskEmployeeInfoComponent,
+        HlpDskWardInfoComponent,
+        HlpDskQueueInfoComponent
+    ],
+    bootstrap: [], imports: [HelpdeskRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        DanpheAutoCompleteModule,
+        SharedModule], providers: [
+        HelpDeskBLService,
+        HelpDeskDLService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class HelpdeskModule { }

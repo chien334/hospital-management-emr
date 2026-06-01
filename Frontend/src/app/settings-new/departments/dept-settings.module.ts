@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -33,38 +33,30 @@ export const deptSettingsRoutes: Routes =
   ]
 
 
-@NgModule({
-  providers: [
-
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    RouterModule.forChild(deptSettingsRoutes),
-
-  ],
-  declarations: [
-    DepartmentSettingsMainComponent,
-    DepartmentAddComponent,
-    DepartmentListComponent,
-    SubstoreAddComponent,
-    SubstoreListComponent,
-    WardSubstoreMapManageListComponent,
-    WardSubstoreMapManageAddComponent,
-    WardSubstoreMapManageEditComponent
-    //ServiceDepartmentAddComponent,
-    //ServiceDepartmentListComponent
-  ],
-  exports: [
-    DepartmentAddComponent
-  ],
-  bootstrap: [
-  ]
-})
+@NgModule({ declarations: [
+        DepartmentSettingsMainComponent,
+        DepartmentAddComponent,
+        DepartmentListComponent,
+        SubstoreAddComponent,
+        SubstoreListComponent,
+        WardSubstoreMapManageListComponent,
+        WardSubstoreMapManageAddComponent,
+        WardSubstoreMapManageEditComponent
+        //ServiceDepartmentAddComponent,
+        //ServiceDepartmentListComponent
+    ],
+    exports: [
+        DepartmentAddComponent
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        RouterModule.forChild(deptSettingsRoutes)], providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 
 export class DepartmentSettingsModule {
 

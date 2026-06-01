@@ -1,5 +1,5 @@
 ﻿import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatabaseAuditComponent } from "./database-audit/database-audit.component";
@@ -17,33 +17,28 @@ import { AuditTrailComponent } from './audit-trail/audit-trail.component';
 import { AuditTrailOlderComponent } from './audit-trail/main-older-audit-trail';
 import { NewSalesBookComponent } from './new-sales-book/new-sales-book.component';
 import { PHRMSalesBookComponent } from './sales-book/phrm-sales-book-report.component';
-@NgModule({
-  providers: [
-    SystemAdminBLService,
-    SystemAdminDLService,
-
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [SystemAdminRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    // Ng2AutoCompleteModule,
-    DanpheAutoCompleteModule,
-    SharedModule,
-  ],
-  declarations: [
-    SystemAdminMainComponent,
-    DatabaseBackupComponent,
-    DatabaseAuditComponent,
-    InvoiceDetailsComponent,
-    SalesBookReportComponent,
-    PHRMSalesBookComponent,
-    AuditTrailComponent,
-    AuditTrailOlderComponent,
-    NewSalesBookComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        SystemAdminMainComponent,
+        DatabaseBackupComponent,
+        DatabaseAuditComponent,
+        InvoiceDetailsComponent,
+        SalesBookReportComponent,
+        PHRMSalesBookComponent,
+        AuditTrailComponent,
+        AuditTrailOlderComponent,
+        NewSalesBookComponent
+    ],
+    bootstrap: [], imports: [SystemAdminRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        // Ng2AutoCompleteModule,
+        DanpheAutoCompleteModule,
+        SharedModule], providers: [
+        SystemAdminBLService,
+        SystemAdminDLService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class SystemAdminModule { }
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { InsuranceReportsMainComponent } from './ins-reports-main.component';
 import { INSTotalItemsBillComponent } from './total-items-bill/ins-total-items-bill.component';
 import { INSIncomeSegregationComponent } from './income-segregation/ins-income-segregation.component';
@@ -23,30 +23,22 @@ export const InsBillingReportsRoutes =
   ]
 
 
-@NgModule({
-
-  providers: [
-    GovInsuranceDLService,
-    GovInsuranceBLService,
-    ReportingService
-  ],
-
-  imports: [
-    SharedModule,
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule.forChild(InsBillingReportsRoutes),
-    FormsModule,
-    DanpheAutoCompleteModule
-  ],
-  declarations: [
-    InsuranceReportsMainComponent,
-    INSTotalItemsBillComponent,
-    INSIncomeSegregationComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        InsuranceReportsMainComponent,
+        INSTotalItemsBillComponent,
+        INSIncomeSegregationComponent
+    ],
+    bootstrap: [], imports: [SharedModule,
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule.forChild(InsBillingReportsRoutes),
+        FormsModule,
+        DanpheAutoCompleteModule], providers: [
+        GovInsuranceDLService,
+        GovInsuranceBLService,
+        ReportingService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class InsBillingReportsModule {
 
 

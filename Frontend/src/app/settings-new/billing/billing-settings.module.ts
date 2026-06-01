@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -53,46 +53,40 @@ export const billSettingsRoutes: Routes =
   ]
 
 
-@NgModule({
-  providers: [
-
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    BillingSharedModule,
-    RouterModule.forChild(billSettingsRoutes),
-  ],
-  declarations: [
-    BillingSettingsMainComponent,
-    CreditOrganizationAddComponent,
-    CreditOrganizationListComponent,
-    MembershipAddComponent,
-    MembershipListComponent,
-    BillingPackageAddComponent,
-    BillingPackageListComponent,
-    ServiceDepartmentAddComponent,
-    ServiceDepartmentListComponent,
-    ReportingItemsListComponent,
-    ReportingItemAndBillItemMapComponent,
-    ReportingItemsAddComponent,
-    BillSchemeComponent,
-    BillSchemeListComponent,
-    BillServiceItemListComponent,
-    BillServiceItemComponent,
-    BillServiceItemSchemeSettingComponent,
-    MapSchemeAndPriceCategoryComponent,
-    AddSchemePriceCategoryItemsComponent,
-    AdditionalServiceItemsComponent,
-    DepositHeadListComponent,
-    DepositHeadAddComponent,
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        BillingSettingsMainComponent,
+        CreditOrganizationAddComponent,
+        CreditOrganizationListComponent,
+        MembershipAddComponent,
+        MembershipListComponent,
+        BillingPackageAddComponent,
+        BillingPackageListComponent,
+        ServiceDepartmentAddComponent,
+        ServiceDepartmentListComponent,
+        ReportingItemsListComponent,
+        ReportingItemAndBillItemMapComponent,
+        ReportingItemsAddComponent,
+        BillSchemeComponent,
+        BillSchemeListComponent,
+        BillServiceItemListComponent,
+        BillServiceItemComponent,
+        BillServiceItemSchemeSettingComponent,
+        MapSchemeAndPriceCategoryComponent,
+        AddSchemePriceCategoryItemsComponent,
+        AdditionalServiceItemsComponent,
+        DepositHeadListComponent,
+        DepositHeadAddComponent,
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        BillingSharedModule,
+        RouterModule.forChild(billSettingsRoutes)], providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class BillingSettingsModule {
 
 }

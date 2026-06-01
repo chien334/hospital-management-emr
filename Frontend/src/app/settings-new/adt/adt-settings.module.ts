@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -37,37 +37,31 @@ export const adtSettingsRoutes: Routes =
     }
   ]
 
-@NgModule({
-  providers: [
-
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    RouterModule.forChild(adtSettingsRoutes),
-  ],
-  declarations: [
-    ADTSettingsMainComponent,
-    AutoBillingItemListComponent,
-    BedFeatureAddComponent,
-    BedFeatureListComponent,
-    BedAddComponent,
-    BedListComponent,
-    WardAddComponent,
-    WardListComponent,
-    AddAutoBillingItemsComponent,
-    WardListComponent,
-    BedFeatureSchemePriceCategoryListComponent,
-    BedFeatureSchemePriceCategoryAddComponent,
-    DepossitSettingsListComponent,
-    DepositSettingsAddComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        ADTSettingsMainComponent,
+        AutoBillingItemListComponent,
+        BedFeatureAddComponent,
+        BedFeatureListComponent,
+        BedAddComponent,
+        BedListComponent,
+        WardAddComponent,
+        WardListComponent,
+        AddAutoBillingItemsComponent,
+        WardListComponent,
+        BedFeatureSchemePriceCategoryListComponent,
+        BedFeatureSchemePriceCategoryAddComponent,
+        DepossitSettingsListComponent,
+        DepositSettingsAddComponent
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        RouterModule.forChild(adtSettingsRoutes)], providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class ADTSettingsModule {
 
 }

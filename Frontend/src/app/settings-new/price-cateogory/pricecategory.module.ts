@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { SharedModule } from '../../shared/shared.module';
 import { SettingsSharedModule } from '../settings-shared.module';
@@ -19,28 +19,20 @@ export const priceCategorySettingsRoutes =
     ]
 
 
-@NgModule({
-    providers: [
-
-        { provide: LocationStrategy, useClass: HashLocationStrategy }],
-    imports: [
-        CommonModule,
+@NgModule({ declarations: [
+        PriceCategoryListComponent,
+        AddPriceCategoryComponent
+    ],
+    bootstrap: [], imports: [CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        HttpClientModule,
         SharedModule,
         RouterModule.forChild(priceCategorySettingsRoutes),
         SettingsSharedModule,
-        DanpheAutoCompleteModule
-
-    ],
-    declarations: [
-        PriceCategoryListComponent,
-        AddPriceCategoryComponent
-
-    ],
-    bootstrap: []
-})
+        DanpheAutoCompleteModule], providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 
 export class PriceCategoryModule {
 

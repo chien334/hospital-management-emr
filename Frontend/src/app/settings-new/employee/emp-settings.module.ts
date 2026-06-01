@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
@@ -29,34 +29,27 @@ export const empSettingsRoutes: Routes =
   ]
 
 
-@NgModule({
-  providers: [
-
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    RouterModule.forChild(empSettingsRoutes),
-  ],
-  declarations: [
-    EmpSettingsMainComponent,
-    EmployeeAddComponent,
-    EmployeeListComponent,
-    EmployeeRoleAddComponent,
-    EmployeeRoleListComponent,
-    EmployeeTypeAddComponent,
-    EmployeeTypeListComponent
-  ],
-
-  exports: [
-    EmployeeRoleAddComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        EmpSettingsMainComponent,
+        EmployeeAddComponent,
+        EmployeeListComponent,
+        EmployeeRoleAddComponent,
+        EmployeeRoleListComponent,
+        EmployeeTypeAddComponent,
+        EmployeeTypeListComponent
+    ],
+    exports: [
+        EmployeeRoleAddComponent
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        RouterModule.forChild(empSettingsRoutes)], providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class EmpSettingsModule {
 
 }

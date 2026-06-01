@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { SharedModule } from "../shared/shared.module";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
@@ -22,29 +22,22 @@ import { MaternityPatientPaymentComponent } from './payments/maternity-patient-p
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
 import { MaternitySharedModule } from './shared/maternity-shared-module';
 
-@NgModule({
-  providers: [MaternityBLService, MaternityDLService, MaternityService],
-  imports: [
-    MaternityRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    AngularMultiSelectModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    MaternitySharedModule
-  ],
-  declarations: [MaternityMainComponent,
-    MaternityPatientListComponent,
-    MaternityPatientAddComponent,
-    MaternityANCComponent,
-    MaternityRegisterComponent,
-    MaternityPatientUploadFilesComponent,
-    MaternityPaymentsComponent,
-    Maternity_PatientListComponent,
-    MaternityPatientPaymentComponent,
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [MaternityMainComponent,
+        MaternityPatientListComponent,
+        MaternityPatientAddComponent,
+        MaternityANCComponent,
+        MaternityRegisterComponent,
+        MaternityPatientUploadFilesComponent,
+        MaternityPaymentsComponent,
+        Maternity_PatientListComponent,
+        MaternityPatientPaymentComponent,
+    ],
+    bootstrap: [], imports: [MaternityRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        AngularMultiSelectModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        MaternitySharedModule], providers: [MaternityBLService, MaternityDLService, MaternityService, provideHttpClient(withInterceptorsFromDi())] })
 export class MaternityModule { }

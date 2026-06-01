@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { PatientsBLService } from './shared/patients.bl.service';
 import { PatientsDLService } from './shared/patients.dl.service';
@@ -59,55 +59,43 @@ import { PatientsDashboardComponent } from '../dashboards/patients/patients-dash
 
 //import { MembershipSelectComponent } from './memberships/select-membership-scheme/membership-select.component';
 
-@NgModule({
-  providers: [PatientDeactivateGuard,
-    PatientsDLService,
-    PatientsBLService,
-    AppointmentDLService,
-    VisitDLService,
-    ImagingDLService,
-    ClinicalDLService,
-    ADT_DLService,
-    LabsDLService
-  ],
-
-  imports: [
-    RouterModule.forChild(PatientsRoutingConstant),
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    //AgGridModule.forRoot(),
-    HttpClientModule,
-    SharedModule,
-    QRCodeModule,
-    ///  Ng2AutoCompleteModule,
-    //WebcamModule,
-    //ImageCropperModule
-    DanpheAutoCompleteModule,
-    PatientSharedModule,
-    SettingsSharedModule,
-    StickerSharedModule
-  ],
-
-  declarations: [
-    PatientsMainComponent,
-    PatientBasicInfoComponent,
-    PatientRegistrationMainComponent,
-    PatientListComponent,
-    AddressComponent,
-    GuarantorComponent,
-    InsuranceInfoComponent,
-    KinEmergencyContactComponent,
-    PatientsDashboardComponent,
-    PatientHistoryComponent,
-    PatientHealthCardComponent,
-    PatientNeighbourCardComponent,
-    PatientProfilePicComponent,
-    HamsPatientHealthCardComponent,
-    PatientNeighbourCard_Backup_Component//remove this later after visitor card is implemented.
-    //MembershipSelectComponent
-  ],
-
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        PatientsMainComponent,
+        PatientBasicInfoComponent,
+        PatientRegistrationMainComponent,
+        PatientListComponent,
+        AddressComponent,
+        GuarantorComponent,
+        InsuranceInfoComponent,
+        KinEmergencyContactComponent,
+        PatientsDashboardComponent,
+        PatientHistoryComponent,
+        PatientHealthCardComponent,
+        PatientNeighbourCardComponent,
+        PatientProfilePicComponent,
+        HamsPatientHealthCardComponent,
+        PatientNeighbourCard_Backup_Component //remove this later after visitor card is implemented.
+        //MembershipSelectComponent
+    ],
+    bootstrap: [], imports: [RouterModule.forChild(PatientsRoutingConstant),
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        SharedModule,
+        QRCodeModule,
+        ///  Ng2AutoCompleteModule,
+        //WebcamModule,
+        //ImageCropperModule
+        DanpheAutoCompleteModule,
+        PatientSharedModule,
+        SettingsSharedModule,
+        StickerSharedModule], providers: [PatientDeactivateGuard,
+        PatientsDLService,
+        PatientsBLService,
+        AppointmentDLService,
+        VisitDLService,
+        ImagingDLService,
+        ClinicalDLService,
+        ADT_DLService,
+        LabsDLService, provideHttpClient(withInterceptorsFromDi())] })
 export class PatientsModule { }

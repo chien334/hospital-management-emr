@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -47,40 +47,32 @@ export const InsBillingRoutes: Routes =
 
 
 
-@NgModule({
-
-  providers: [
-    GovInsuranceDLService,
-    GovInsuranceBLService,
-    ReportingService
-  ],
-
-  imports: [
-    SharedModule,
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule.forChild(InsBillingRoutes),
-    DanpheAutoCompleteModule,
-    FormsModule,
-    BillingSharedModule,
-    PatientSharedModule
-  ],
-  declarations: [
-    INSBillingMainComponent,
-    InsurancePatientListComponent,
-    UpdateInsuranceBalanceComponent,
-    INSBillingTransactionComponent,
-    INSProvisionalBillingComponent,
-    InsuranceSettlementsComponent,
-    InsuranceBillItemRequest,
-    INSPatientRegistrationComponent,
-    //InsuranceReportsMainComponent,
-    //INSTotalItemsBillComponent,
-    //INSIncomeSegregationComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        INSBillingMainComponent,
+        InsurancePatientListComponent,
+        UpdateInsuranceBalanceComponent,
+        INSBillingTransactionComponent,
+        INSProvisionalBillingComponent,
+        InsuranceSettlementsComponent,
+        InsuranceBillItemRequest,
+        INSPatientRegistrationComponent,
+        //InsuranceReportsMainComponent,
+        //INSTotalItemsBillComponent,
+        //INSIncomeSegregationComponent
+    ],
+    bootstrap: [], imports: [SharedModule,
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule.forChild(InsBillingRoutes),
+        DanpheAutoCompleteModule,
+        FormsModule,
+        BillingSharedModule,
+        PatientSharedModule], providers: [
+        GovInsuranceDLService,
+        GovInsuranceBLService,
+        ReportingService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class InsuranceBillingModule {
 
 

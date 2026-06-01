@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DepartmentSettingsModule } from '../../../settings-new/departments/dept-settings.module';
@@ -15,33 +15,25 @@ import { MedicareRegistrationRoutingModule } from './medicare-registration.routi
 import { MedicareMemberComponent } from './member/medicare-member.component';
 
 
-@NgModule({
-    providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        MedicareBLService,
-        MedicareDLService,
-        MedicareService
+@NgModule({ declarations: [
+        MedicareRegistrationMainComponent,
+        MedicareMemberComponent,
+        MedicareDependentComponent
     ],
-
-    imports: [
-        CommonModule,
+    bootstrap: [], imports: [CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        HttpClientModule,
         SharedModule,
         DanpheAutoCompleteModule,
         EmpSettingsModule,
         DepartmentSettingsModule,
-        MedicareRegistrationRoutingModule
-    ],
-    declarations: [
-        MedicareRegistrationMainComponent,
-        MedicareMemberComponent,
-        MedicareDependentComponent
-
-    ],
-    bootstrap: []
-})
+        MedicareRegistrationRoutingModule], providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        MedicareBLService,
+        MedicareDLService,
+        MedicareService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class MedicareRegistrationModule {
 
 }

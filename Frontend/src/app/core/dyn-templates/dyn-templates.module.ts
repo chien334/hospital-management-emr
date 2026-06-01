@@ -1,7 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { DynamicTemplateEditComponent } from "./settings/dyn-template-edit.component"
 import { QuestionAddComponent } from "./settings/question-add.component";
 import { QuestionEditComponent } from "./settings/question-edit.component";
@@ -13,17 +13,7 @@ import { DynamicTemplateService } from './shared/dynamic-template-service';
 import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete/danphe-auto-complete.module';
 import { SharedModule } from '../../shared/shared.module'; 
 
-@NgModule({
-    providers: [DynamicTemplateService],
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        FormsModule,
-        //Ng2AutoCompleteModule
-        DanpheAutoCompleteModule,
-        SharedModule
-    ],
-    declarations: [
+@NgModule({ declarations: [
         QuestionEditComponent,
         QuestionAddComponent,
         DynamicTemplateEditComponent,
@@ -39,8 +29,12 @@ import { SharedModule } from '../../shared/shared.module';
         QuestionComponent,
         QuestionHrcComponent
     ],
-    bootstrap: []//do we need anything here ? <sudarshan:2jan2017>
-})
+    bootstrap: [] //do we need anything here ? <sudarshan:2jan2017>
+    , imports: [CommonModule,
+        FormsModule,
+        //Ng2AutoCompleteModule
+        DanpheAutoCompleteModule,
+        SharedModule], providers: [DynamicTemplateService, provideHttpClient(withInterceptorsFromDi())] })
 export class DynTemplateModule {
 
 }

@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ADT_BLService } from '../adt/shared/adt.bl.service';
@@ -50,61 +50,54 @@ import { RequestForQuotationListComponent } from './quotation/request-for-quotat
 import { ProcurementBLService } from './shared/procurement.bl.service';
 import { VendorListComponent } from './vendor-list/vendor-list.component';
 
-@NgModule({
-  providers: [
-    ProcurementBLService, QuotationBLService,
-    InventoryBLService,
-    InventoryDLService, InventoryService, WardSupplyBLService,
-    WardSupplyDLService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-    GoodReceiptService,
-    GoodReceiptEndPoint,
-    CompanyService,
-    CompanyEndPoint,
-    EmailService,
-    EmailEndPoint,
-    PharmacyBLService,
-    PharmacyDLService,
-    VisitDLService,
-    ADT_BLService,
-    AppointmentDLService,
-    BillingBLService, PurchaseRequestViewComponent,
-    ADT_DLService],
-
-  declarations: [ProcurementComponent,
-    PurchaseRequestListComponent,
-    PurchaseRequestViewComponent,
-    PurchaseOrderAddComponent,
-    PurchaseOrderListComponent,
-    PurchaseOrderViewComponent,
-    GoodsReceiptListComponent,
-    GoodsReceiptAddComponent,
-    GoodsReceiptViewComponent,
-    QuotationListComponent,
-    QuotationAddComponent,
-    QuotationAnalysisComponent,
-    QuotationAnalysisNpComponent,
-    RequestForQuotationListComponent,
-    RequestForQuotationAddComponent,
-    VendorListComponent,
-    PurchaseOrderNpViewComponent,
-    GoodsReceiptNpViewComponent,
-    DonationGrViewComponent,
-    GROtherChargesComponent,
-    PurchaseOrderDraftAddComponent,
-    PurchaseOrderDraftListComponent,
-    PurchaseOrderDraftViewComponent
-  ],
-
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    ProcurementRoutingModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    InventorySharedModule,
-  ]
-})
+@NgModule({ declarations: [ProcurementComponent,
+        PurchaseRequestListComponent,
+        PurchaseRequestViewComponent,
+        PurchaseOrderAddComponent,
+        PurchaseOrderListComponent,
+        PurchaseOrderViewComponent,
+        GoodsReceiptListComponent,
+        GoodsReceiptAddComponent,
+        GoodsReceiptViewComponent,
+        QuotationListComponent,
+        QuotationAddComponent,
+        QuotationAnalysisComponent,
+        QuotationAnalysisNpComponent,
+        RequestForQuotationListComponent,
+        RequestForQuotationAddComponent,
+        VendorListComponent,
+        PurchaseOrderNpViewComponent,
+        GoodsReceiptNpViewComponent,
+        DonationGrViewComponent,
+        GROtherChargesComponent,
+        PurchaseOrderDraftAddComponent,
+        PurchaseOrderDraftListComponent,
+        PurchaseOrderDraftViewComponent
+    ], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        ProcurementRoutingModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        InventorySharedModule], providers: [
+        ProcurementBLService, QuotationBLService,
+        InventoryBLService,
+        InventoryDLService, InventoryService, WardSupplyBLService,
+        WardSupplyDLService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        GoodReceiptService,
+        GoodReceiptEndPoint,
+        CompanyService,
+        CompanyEndPoint,
+        EmailService,
+        EmailEndPoint,
+        PharmacyBLService,
+        PharmacyDLService,
+        VisitDLService,
+        ADT_BLService,
+        AppointmentDLService,
+        BillingBLService, PurchaseRequestViewComponent,
+        ADT_DLService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class ProcurementModule { }

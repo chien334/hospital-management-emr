@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -60,48 +60,42 @@ import { HistoryBLService } from "./shared/history.bl.service";
 import { ProblemsBLService } from "./shared/problems.bl.service";
 //import { AllergyListComponent } from "./others/allergy-list.component";
 
-@NgModule({
-  providers: [
-    HistoryBLService,
-    ClinicalDLService,
-    MedicationBLService,
-    IOAllergyVitalsBLService,
-    OrderService,
-    //PatientsBLService,
-    EyeExaminationBLService,
-    PrescriptionSlipBLService,
-    NoteTemplateBLService,
-    ProblemsBLService
-  ],
-  imports: [
-    ClinicalRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule,
-    //Ng2AutoCompleteModule
-    DanpheAutoCompleteModule,
-    LightboxModule,
-    ClinicalSharedModule, // sud:5Apr'2020-Imported Shared module of clinical instead of importing declaring individual components.
-  ],
-  declarations: [
-    ClinicalComponent,
-    //AllergyListComponent,
-    HomeMedicationListComponent,
-    HomeMedicationAddComponent,
-    InputOutputListComponent,
-    EyeMainComponent,
-    EyeExaminationComponent,
-    EyeHistoryComponent,
-    InputOutputAddComponent,
-    PrescriptionSlipComponent,
-    PrescriptionSlipHistoryComponent,
-    ScanUploadComponent,
-    BloodSugarMonitoringComponent,
-    AddBloodSugarComponent
-  ],
-  exports: [ClinicalComponent],
-  bootstrap: [], //do we need anything here ? <sudarshan:2jan2017>
-})
+@NgModule({ declarations: [
+        ClinicalComponent,
+        //AllergyListComponent,
+        HomeMedicationListComponent,
+        HomeMedicationAddComponent,
+        InputOutputListComponent,
+        EyeMainComponent,
+        EyeExaminationComponent,
+        EyeHistoryComponent,
+        InputOutputAddComponent,
+        PrescriptionSlipComponent,
+        PrescriptionSlipHistoryComponent,
+        ScanUploadComponent,
+        BloodSugarMonitoringComponent,
+        AddBloodSugarComponent
+    ],
+    exports: [ClinicalComponent],
+    bootstrap: [], imports: [ClinicalRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        //Ng2AutoCompleteModule
+        DanpheAutoCompleteModule,
+        LightboxModule,
+        ClinicalSharedModule], providers: [
+        HistoryBLService,
+        ClinicalDLService,
+        MedicationBLService,
+        IOAllergyVitalsBLService,
+        OrderService,
+        //PatientsBLService,
+        EyeExaminationBLService,
+        PrescriptionSlipBLService,
+        NoteTemplateBLService,
+        ProblemsBLService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class ClinicalModule { }

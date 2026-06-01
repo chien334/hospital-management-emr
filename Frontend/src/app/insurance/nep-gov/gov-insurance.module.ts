@@ -1,7 +1,7 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BillingSharedModule } from '../../billing/billing-shared.module';
 import { SettingsSharedModule } from '../../settings-new/settings-shared.module';
@@ -43,62 +43,50 @@ import { GovInsFollowUpVisitComponent } from './ins-visit/follow-up/ins-followup
 import { GovInsPatientDuplicateWarningBox } from './shared/duplicate-warning/ins-patient-duplicate-warning-box.component';
 import { GovInsStickerComponent } from './shared/sticker/ins-sticker-print.component';
 
-@NgModule({
-
-  providers: [
-    GovInsuranceBlService,
-    GovInsuranceDlService,
-    GovInsuranceService,
-
-    ADT_BLService,
-    ADT_DLService,
-    PatientsBLService,
-    PatientsDLService,
-    VisitDLService,
-    VisitBLService,
-    AppointmentDLService,
-    OrdersBLService,
-
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
-
-  ],
-  imports: [
-    CommonModule,
-    GovInsuranceRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    DanpheAutoCompleteModule,
-    SharedModule,
-    SettingsSharedModule,
-    BillingSharedModule,
-    BillingPrintSharedModule
-  ],
-  declarations: [InsuranceComponent, GovINSPatientListComponent,
-    GovINSVisitListComponent, GovINSIPDBillingComponent,
-    GovINSPatientRegistrationComponent,
-    GovInsuranceVisitMainComponent,
-    GovInsuranceVisitBillingInfoComponent,
-    GovInsuranceVisitPatientInfoComponent,
-    GovInsuranceVisitInfoComponent,
-    //InsuranceBillingReceiptComponent,
-    GovINSPatientRegistrationComponent,
-    GovInsUpdateBalanceComponent,
-    GovInsPatientDuplicateWarningBox,
-    GovInsBillingRequestComponent,
-    GovInsuranceIpBillItemRequest,
-    GovInsurancePatientIpSummaryComponent,
-    GovInsuranceEditBillItemComponent,
-    GovInsuranceUpdateItemPriceComponent,
-    GovInsuranceIPBillingRequestSlipComponent,
-    GovInsStickerComponent,
-    GovInsFollowUpVisitComponent,
-    GovInsUpdateBalanceHistoryComponent
-  ],
-  exports: [
-    GovInsuranceVisitInfoComponent
-  ]
-
-
-})
+@NgModule({ declarations: [InsuranceComponent, GovINSPatientListComponent,
+        GovINSVisitListComponent, GovINSIPDBillingComponent,
+        GovINSPatientRegistrationComponent,
+        GovInsuranceVisitMainComponent,
+        GovInsuranceVisitBillingInfoComponent,
+        GovInsuranceVisitPatientInfoComponent,
+        GovInsuranceVisitInfoComponent,
+        //InsuranceBillingReceiptComponent,
+        GovINSPatientRegistrationComponent,
+        GovInsUpdateBalanceComponent,
+        GovInsPatientDuplicateWarningBox,
+        GovInsBillingRequestComponent,
+        GovInsuranceIpBillItemRequest,
+        GovInsurancePatientIpSummaryComponent,
+        GovInsuranceEditBillItemComponent,
+        GovInsuranceUpdateItemPriceComponent,
+        GovInsuranceIPBillingRequestSlipComponent,
+        GovInsStickerComponent,
+        GovInsFollowUpVisitComponent,
+        GovInsUpdateBalanceHistoryComponent
+    ],
+    exports: [
+        GovInsuranceVisitInfoComponent
+    ], imports: [CommonModule,
+        GovInsuranceRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        DanpheAutoCompleteModule,
+        SharedModule,
+        SettingsSharedModule,
+        BillingSharedModule,
+        BillingPrintSharedModule], providers: [
+        GovInsuranceBlService,
+        GovInsuranceDlService,
+        GovInsuranceService,
+        ADT_BLService,
+        ADT_DLService,
+        PatientsBLService,
+        PatientsDLService,
+        VisitDLService,
+        VisitBLService,
+        AppointmentDLService,
+        OrdersBLService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class GovInsuranceModule { }

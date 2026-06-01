@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
@@ -40,55 +40,47 @@ import { INCTV_RPT_HospitalIncomeServiceDeptWiseComponent } from './reports/hosp
 import { RPT_BIL_IncentiveReferralSummaryReportMainComponent } from './reports/ReferralSummaryReport/incentive-referral-summary-report';
 
 
-@NgModule({
-  providers: [
-    IncentiveBLService,
-    IncentiveDLService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
-  ],
-  imports: [
-    IncentiveRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    AccountingSharedModule,
-    Ng2SearchPipeModule
-  ],
-  declarations: [
-    IncentiveMainComponent,
-    SettingMainComponent,
-    ProfileManageComponent,
-    ProfileItemMapComponent,
-    IncentiveTxnItemsListComponent,
-    EditIncentiveTxnItemComponent,
-    ViewIncentiveSettingsComponent,
-    IncentiveTxnMainComponent,
-    IncentiveTxnInvoiceListComponent,
-    INCTV_LoadFractionFromBilling,
-    INCTV_BIL_IncentivePaymentInfoComponent,
-    RPT_BIL_IncentiveReportMainComponent,
-    RPT_BIL_IncentiveTransactionReportMainComponent,
-    INCTV_BIL_IncentiveItemComponent,
-    INCTV_BIL_IncentiveItemGroupComponent,
-    RPT_BIL_IncentiveReportSummaryComponent,
-    RPT_INCTV_PaymentReportSummaryComponent,
-    INCTV_RPT_IncentivePatientVsServiceComponent,
-    INCTV_BillTxnItemListComponent, //sud:10Apr'20-- for redesign of earlier incentive item component.
-    INCTV_EditFractionComponent,
-    EmployeeItemsSetupMainComponent,
-    EmployeeItemsSetupComponentOld,
-    EmployeeItemsSetupComponent,
-    INCTV_RPT_HospitalIncomeComponent,
-    INCTV_RPT_HospitalIncomeServiceDeptWiseComponent,
-    RPT_BIL_IncentiveReferralSummaryReportMainComponent
-
-  ],
-  exports:[
-    INCTV_EditFractionComponent
-  ]
-
-})
+@NgModule({ declarations: [
+        IncentiveMainComponent,
+        SettingMainComponent,
+        ProfileManageComponent,
+        ProfileItemMapComponent,
+        IncentiveTxnItemsListComponent,
+        EditIncentiveTxnItemComponent,
+        ViewIncentiveSettingsComponent,
+        IncentiveTxnMainComponent,
+        IncentiveTxnInvoiceListComponent,
+        INCTV_LoadFractionFromBilling,
+        INCTV_BIL_IncentivePaymentInfoComponent,
+        RPT_BIL_IncentiveReportMainComponent,
+        RPT_BIL_IncentiveTransactionReportMainComponent,
+        INCTV_BIL_IncentiveItemComponent,
+        INCTV_BIL_IncentiveItemGroupComponent,
+        RPT_BIL_IncentiveReportSummaryComponent,
+        RPT_INCTV_PaymentReportSummaryComponent,
+        INCTV_RPT_IncentivePatientVsServiceComponent,
+        INCTV_BillTxnItemListComponent, //sud:10Apr'20-- for redesign of earlier incentive item component.
+        INCTV_EditFractionComponent,
+        EmployeeItemsSetupMainComponent,
+        EmployeeItemsSetupComponentOld,
+        EmployeeItemsSetupComponent,
+        INCTV_RPT_HospitalIncomeComponent,
+        INCTV_RPT_HospitalIncomeServiceDeptWiseComponent,
+        RPT_BIL_IncentiveReferralSummaryReportMainComponent
+    ],
+    exports: [
+        INCTV_EditFractionComponent
+    ], imports: [IncentiveRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        AccountingSharedModule,
+        Ng2SearchPipeModule], providers: [
+        IncentiveBLService,
+        IncentiveDLService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class IncentiveModule { }

@@ -1,6 +1,6 @@
 
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -48,52 +48,45 @@ import { VisitInfoComponent } from './visit/visit-info.component';
 import { VisitMainComponent } from './visit/visit-main.component';
 import { VisitPatientInfoComponent } from './visit/visit-patient-info.component';
 
-@NgModule({
-  providers: [AppointmentDLService,
-    AppointmentBLService,
-    VisitBLService,
-    VisitDLService,
-    BillingDLService,
-    PatientsDLService,
-    ADT_DLService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [AppointmentsRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    //AgGridModule.forRoot(),
-    DanpheAutoCompleteModule,
-    SharedModule,
-    PatientSharedModule,
-    SettingsSharedModule,
-    BillingSharedModule,
-    BillingPrintSharedModule,
-    NgxPaginationModule,
-    StickerSharedModule,
-    InsuranceSharedModule,
-    RegistrationSchemeSharedModule
-  ],
-  declarations: [
-    AppointmentsMainComponent,
-    AppointmentCreateComponent,
-    AppointmentListComponent,
-    VisitListComponent,
-    TransferVisitComponent,
-    FollowUpVisitComponent,
-    PatientSearchComponent,
-    //RegistrationSchemeSelectComponent,//sud:14March'23--Move this later to shared module if required.
-    VisitMainComponent,
-    VisitPatientInfoComponent,
-    VisitInfoComponent,
-    VisitBillingInfoComponent,
-    FreeReferalVisitComponent, //sud:3Jun'19--Needed for Free referel, paid referal is handled by normal flow.
-    OnlineAppointmentMainComponent,
-    OnlineAppointmentCompletedListComponent,
-    OnlineAppointmentPendingListComponent,
-    SSFClaimComponent
-
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        AppointmentsMainComponent,
+        AppointmentCreateComponent,
+        AppointmentListComponent,
+        VisitListComponent,
+        TransferVisitComponent,
+        FollowUpVisitComponent,
+        PatientSearchComponent,
+        //RegistrationSchemeSelectComponent,//sud:14March'23--Move this later to shared module if required.
+        VisitMainComponent,
+        VisitPatientInfoComponent,
+        VisitInfoComponent,
+        VisitBillingInfoComponent,
+        FreeReferalVisitComponent, //sud:3Jun'19--Needed for Free referel, paid referal is handled by normal flow.
+        OnlineAppointmentMainComponent,
+        OnlineAppointmentCompletedListComponent,
+        OnlineAppointmentPendingListComponent,
+        SSFClaimComponent
+    ],
+    bootstrap: [], imports: [AppointmentsRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        //AgGridModule.forRoot(),
+        DanpheAutoCompleteModule,
+        SharedModule,
+        PatientSharedModule,
+        SettingsSharedModule,
+        BillingSharedModule,
+        BillingPrintSharedModule,
+        NgxPaginationModule,
+        StickerSharedModule,
+        InsuranceSharedModule,
+        RegistrationSchemeSharedModule], providers: [AppointmentDLService,
+        AppointmentBLService,
+        VisitBLService,
+        VisitDLService,
+        BillingDLService,
+        PatientsDLService,
+        ADT_DLService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppointmentsModule { }

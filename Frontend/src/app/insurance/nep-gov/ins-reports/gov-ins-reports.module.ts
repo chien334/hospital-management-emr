@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReportingService } from '../../../reporting/shared/reporting-service';
@@ -17,33 +17,25 @@ import { GOVINSTotalItemsBillComponent } from './gov-total-items-bill/gov-ins-to
 
 
 
-@NgModule({
-
-  providers: [
-    GovInsuranceDlService,
-    GovInsuranceBlService,
-    GovInsuranceService,
-    ReportingService
-  ],
-
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    GovInsuranceReportsRoutingModule,
-    FormsModule,
-    DanpheAutoCompleteModule,
-    SharedModule
-  ],
-  declarations: [
-    GovInsuranceReportsComponent,
-    GOVINSTotalItemsBillComponent,
-    GOVINSIncomeSegregationComponent,
-    GOVINSPatientWiseClaimsComponent,
-    InsPatientClaimDetailsView
-  ],
-  bootstrap: [GovInsuranceReportsComponent]
-})
+@NgModule({ declarations: [
+        GovInsuranceReportsComponent,
+        GOVINSTotalItemsBillComponent,
+        GOVINSIncomeSegregationComponent,
+        GOVINSPatientWiseClaimsComponent,
+        InsPatientClaimDetailsView
+    ],
+    bootstrap: [GovInsuranceReportsComponent], imports: [CommonModule,
+        ReactiveFormsModule,
+        GovInsuranceReportsRoutingModule,
+        FormsModule,
+        DanpheAutoCompleteModule,
+        SharedModule], providers: [
+        GovInsuranceDlService,
+        GovInsuranceBlService,
+        GovInsuranceService,
+        ReportingService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class InsuranceReportsModule {
 
 

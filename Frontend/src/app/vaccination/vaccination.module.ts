@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { SharedModule } from "../shared/shared.module";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
@@ -22,31 +22,24 @@ import { SettingsSharedModule } from '../settings-new/settings-shared.module';
 import { VaccinationFollowupAddComponent } from './follow-up/vaccination-followup-add.component';
 import { PatientVaccinationAppointmentDetailsReportComponent } from './reports/vaccination-appointment-details-report/vaccination-appointment-details-report.component';
 
-@NgModule({
-  providers: [VaccinationService, VaccinationBLService, VaccinationDLService],
-  imports: [
-    MaternityRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    AngularMultiSelectModule,
-    SharedModule,
-    DanpheAutoCompleteModule,
-    SettingsSharedModule
-  ],
-  declarations: [
-    VaccinationMainComponent,
-    VaccinationPatientListComponent,
-    VaccinationPatientRegistrationComponent,
-    PatientVaccinationDetailComponent,
-    PatientVaccinationAppointmentDetailsReportComponent,
-    VaccinationReportComponent,
-    PatientVaccinationDetailReportComponent,
-    VaccineSelectComponent,
-    VaccinationStickerComponent,
-    VaccinationFollowupAddComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        VaccinationMainComponent,
+        VaccinationPatientListComponent,
+        VaccinationPatientRegistrationComponent,
+        PatientVaccinationDetailComponent,
+        PatientVaccinationAppointmentDetailsReportComponent,
+        VaccinationReportComponent,
+        PatientVaccinationDetailReportComponent,
+        VaccineSelectComponent,
+        VaccinationStickerComponent,
+        VaccinationFollowupAddComponent
+    ],
+    bootstrap: [], imports: [MaternityRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        AngularMultiSelectModule,
+        SharedModule,
+        DanpheAutoCompleteModule,
+        SettingsSharedModule], providers: [VaccinationService, VaccinationBLService, VaccinationDLService, provideHttpClient(withInterceptorsFromDi())] })
 export class VaccinationModule { }

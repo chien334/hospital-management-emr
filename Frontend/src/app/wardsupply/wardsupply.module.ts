@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 
 import { SharedModule } from '../shared/shared.module';
@@ -59,74 +59,67 @@ import { WardSupplyInventoryReturnList } from './inventory-wardsupply/return/inv
 import { WardSupplyInventoryReturnForm } from './inventory-wardsupply/return/inventory-return-form/inventory-return-form.component';
 import { StockReconciliationComponent } from './inventory-wardsupply/stock/stock-reconciliation/stock-reconciliation.component';
 import { PHRMSubStoreRequisitionAddComponent } from './phrm-substore-requisition-add/phrm-substore-requisition-add.component';
-@NgModule({
-  providers: [
-    WardSupplyBLService,
-    WardSupplyDLService,
-    PharmacyBLService,
-    PharmacyDLService,
-    PharmacyService,
-    InventoryBLService,
-    InventoryService,
-    InventoryDLService,
-    wardsupplyService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
-  ],
-  imports: [
-    WardSupplyRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    SharedModule,
-    DanpheAutoCompleteModule
-  ],
-
-  declarations: [
-    WardSupplyMainComponent,
-    StockComponent,
-    ConsumptionComponent,
-    ConsumptionListComponent,
-    PharmacyTransferComponent,
-    WardReportComponent,
-    WardStockReportComponent,
-    WardRequisitionReportComponent,
-    WardDispatchReportComponent,
-    WardDispatchReportComponent,
-    WardConsumptionReportComponent,
-    WardInternalConsumptionReportComponent,
-    WardBreakageReportComponent,
-    WardTransferReportComponent,
-    PharmacyWardComponent,
-    InventoryWardComponent,
-    InventoryWardRequisitionItemComponent,
-    InventoryRequisitionListComponent,
-    InventoryRequisitionDetailsComponent,
-    InventoryConsumptionComponent,
-    InventoryConsumptionListComponent,
-    WardPharmacyStockComponent,
-    WardInventoryStockComponent,
-    WardInventoryReportComponent,
-    RequisitionDispatchReportComponent,
-    TransferReportComponent,
-    ConsumptionReportComponent,
-    InternalConsumptionComponent,
-    InternalConsumptionListComponent,
-    InternalConsumptionDetailsComponent,
-    InventoryWardReceiveStockComponent,
-    WardSupplyAssetMainComponent,
-    WardSupplyAssetStockComponent,
-    WardSupplyAssetRequisitionComponent,
-    WardSupplyAssetRequisitionListComponent,
-    WardSupplyAssetRequisitionDetailsComponent,
-    InventoryPatientConsumptionListComponent,
-    InventoryPatientConsumptionComponent,
-    WardSupplyAssetReqDispatchComponent,
-    WardSupplyInventoryReturnList,
-    WardSupplyInventoryReturnForm,
-    StockReconciliationComponent,
-    PHRMSubStoreRequisitionAddComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        WardSupplyMainComponent,
+        StockComponent,
+        ConsumptionComponent,
+        ConsumptionListComponent,
+        PharmacyTransferComponent,
+        WardReportComponent,
+        WardStockReportComponent,
+        WardRequisitionReportComponent,
+        WardDispatchReportComponent,
+        WardDispatchReportComponent,
+        WardConsumptionReportComponent,
+        WardInternalConsumptionReportComponent,
+        WardBreakageReportComponent,
+        WardTransferReportComponent,
+        PharmacyWardComponent,
+        InventoryWardComponent,
+        InventoryWardRequisitionItemComponent,
+        InventoryRequisitionListComponent,
+        InventoryRequisitionDetailsComponent,
+        InventoryConsumptionComponent,
+        InventoryConsumptionListComponent,
+        WardPharmacyStockComponent,
+        WardInventoryStockComponent,
+        WardInventoryReportComponent,
+        RequisitionDispatchReportComponent,
+        TransferReportComponent,
+        ConsumptionReportComponent,
+        InternalConsumptionComponent,
+        InternalConsumptionListComponent,
+        InternalConsumptionDetailsComponent,
+        InventoryWardReceiveStockComponent,
+        WardSupplyAssetMainComponent,
+        WardSupplyAssetStockComponent,
+        WardSupplyAssetRequisitionComponent,
+        WardSupplyAssetRequisitionListComponent,
+        WardSupplyAssetRequisitionDetailsComponent,
+        InventoryPatientConsumptionListComponent,
+        InventoryPatientConsumptionComponent,
+        WardSupplyAssetReqDispatchComponent,
+        WardSupplyInventoryReturnList,
+        WardSupplyInventoryReturnForm,
+        StockReconciliationComponent,
+        PHRMSubStoreRequisitionAddComponent
+    ],
+    bootstrap: [], imports: [WardSupplyRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        DanpheAutoCompleteModule], providers: [
+        WardSupplyBLService,
+        WardSupplyDLService,
+        PharmacyBLService,
+        PharmacyDLService,
+        PharmacyService,
+        InventoryBLService,
+        InventoryService,
+        InventoryDLService,
+        wardsupplyService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class WardSupplyModule { }

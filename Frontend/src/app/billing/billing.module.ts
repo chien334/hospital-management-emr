@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //commented for Quick-Appointment. //review it and correct it later: sudarshan.
@@ -78,65 +78,61 @@ import { BillingSearchPatientNewComponent } from './search-patient/billing-searc
 import { BillingInvoiceBlService } from './shared/billing-invoice.bl.service';
 import { BillingMasterBlService } from './shared/billing-master.bl.service';
 import { BillingMasterDlService } from './shared/billing-master.dl.service';
-@NgModule({
-  providers: [
-    BillingBLService, BillingDLService, LabsDLService,
-    VisitDLService, AppointmentDLService, PatientsDLService,
-    ImagingDLService, OrdersBLService, ADT_DLService, PatientsBLService,
-    BillingMasterBlService, BillingMasterDlService, BillingInvoiceBlService,
-    BillingSelectPatientCanActivateGuard],
-
-  imports: [BillingRoutingModule,
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    DanpheAutoCompleteModule,
-    FormsModule, SharedModule, QRCodeModule,
-    BillingSharedModule,
-    PatientSharedModule,
-    SettingsSharedModule,
-    BillingPrintSharedModule,
-    StickerSharedModule,
-    UtilitiesSharedModule,
-  ],
-  declarations: [
-    BillingMainComponent,
-    BillingPayProvisionalComponent,
-    BillingDepositComponent,
-    BillingSearchPatientComponent_Old,
-    BillingSearchPatientNewComponent,
-    BillingTransactionComponent,
-    OutpatientProvisionalBillingComponent,
-    BillOrderRequestComponent,
-    BillCancellationRequestComponent,
-    BillingDashboardComponent,
-    EditDoctorFeatureComponent,
-    EditDoctorComponent,
-    BillSettlementsComponent,
-    GroupDiscountComponent,
-    QrBillingComponent,
-    IpBillMainComponent,//sud:10Sept'18
-    PatientIpSummaryComponent,
-    IpBillItemRequest,
-    ChangeVisitTypeComponent,
-    SettlementsMainComponent,
-    BillingDenominationMainComponent,
-    BillingDenominationAccountsComponent,
-    BillingDenominationCounterComponent,
-    BillingDenominationReportComponent,
-    BillingDenominationSummaryReportComponent,
-    BillingDailyCollectionVsHandoverReportComponent,
-    BillOutpatientAddComponent,
-    BILL_CreditNoteComponent,
-    BillSettlementInvoiceDetail,
-    TransferHandoverReportComponent,
-    BillSettlementInvoiceDetail,
-    BillingTransactionComponent_New,
-    BillingCounterActivateComponent,
-    BIL_ProvisionalClearance_MainComponent,
-    BilProvisionalDischargeListComponent,
-    ProvisionalItemsViewDetailsComponent
-  ],
-  bootstrap: []//do we need anything here ? <sudarshan:2jan2017>
-})
+@NgModule({ declarations: [
+        BillingMainComponent,
+        BillingPayProvisionalComponent,
+        BillingDepositComponent,
+        BillingSearchPatientComponent_Old,
+        BillingSearchPatientNewComponent,
+        BillingTransactionComponent,
+        OutpatientProvisionalBillingComponent,
+        BillOrderRequestComponent,
+        BillCancellationRequestComponent,
+        BillingDashboardComponent,
+        EditDoctorFeatureComponent,
+        EditDoctorComponent,
+        BillSettlementsComponent,
+        GroupDiscountComponent,
+        QrBillingComponent,
+        IpBillMainComponent, //sud:10Sept'18
+        PatientIpSummaryComponent,
+        IpBillItemRequest,
+        ChangeVisitTypeComponent,
+        SettlementsMainComponent,
+        BillingDenominationMainComponent,
+        BillingDenominationAccountsComponent,
+        BillingDenominationCounterComponent,
+        BillingDenominationReportComponent,
+        BillingDenominationSummaryReportComponent,
+        BillingDailyCollectionVsHandoverReportComponent,
+        BillOutpatientAddComponent,
+        BILL_CreditNoteComponent,
+        BillSettlementInvoiceDetail,
+        TransferHandoverReportComponent,
+        BillSettlementInvoiceDetail,
+        BillingTransactionComponent_New,
+        BillingCounterActivateComponent,
+        BIL_ProvisionalClearance_MainComponent,
+        BilProvisionalDischargeListComponent,
+        ProvisionalItemsViewDetailsComponent
+    ],
+    bootstrap: [] //do we need anything here ? <sudarshan:2jan2017>
+    , imports: [BillingRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
+        DanpheAutoCompleteModule,
+        FormsModule, SharedModule, QRCodeModule,
+        BillingSharedModule,
+        PatientSharedModule,
+        SettingsSharedModule,
+        BillingPrintSharedModule,
+        StickerSharedModule,
+        UtilitiesSharedModule], providers: [
+        BillingBLService, BillingDLService, LabsDLService,
+        VisitDLService, AppointmentDLService, PatientsDLService,
+        ImagingDLService, OrdersBLService, ADT_DLService, PatientsBLService,
+        BillingMasterBlService, BillingMasterDlService, BillingInvoiceBlService,
+        BillingSelectPatientCanActivateGuard,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class BillingModule { }

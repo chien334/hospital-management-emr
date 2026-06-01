@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
@@ -48,59 +48,50 @@ import { TransactionsMainComponent } from './transactions/transactions-main.comp
 import { TransferToAccountingComponent } from "./transactions/transfer-to-accounting.component";
 import { VoucherEntryComponent } from './transactions/voucher-entry.component';
 import { VoucherVerificationComponent } from './voucher-verification/voucher-verification.component';
-@NgModule({
-  providers: [AccountingDLService, AccountingBLService, AccountingReportsBLService, AccountingReportsDLService, AccHospitalSelectionGuardService,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    DanpheAutoCompleteModule,
-    AccountingSharedModule,
-    AccountingRoutingModule,
-    AccountingSettingsModule,
-    DepartmentSettingsModule,
-    EmpSettingsModule,
-
-
-  ],
-  declarations: [
-    // START: mumbai-team-june2021-danphe-accounting-cache-change*
-    AccountingReportsComponent,
-    BalanceSheetReportComponent,
-    LedgerReportComponent,
-    VoucherReportComponent,
-    TrailBalanceReportComponent,
-    ProfitLossReportComponent,
-    DailyTransactionReportComponent,
-    CashFlowReportComponent,
-    BankReconciliationComponent,
-    LedgerReportResuableComponent,
-    CustomDateReusableComponent,
-    DaywiseVoucherReportComponent,
-    DaywiseVoucherDetailsComponent,
-    SystemAuditReportComponent,
-    GroupStatementReportComponent,
-    // END: mumbai-team-june2021-danphe-accounting-cache-change*
-    AccountingComponent,
-    TransactionsMainComponent,
-    VoucherEntryComponent,
-    AccountClosureComponent,
-    TransferToAccountingComponent,
-    AccountingSyncBaseComponent,
-    ManualVoucherEditComponent,
-    ActivateAccountingHospitalComponent,
-    PaymentComponent,
-    CashBankBookReportComponent,
-    DayBookReportComponent,
-    SubLedgerReportComponent,
-    VoucherVerificationComponent,
-    BankReconciliationMainComponent,
-    SuspenseAccountReconciliationComponent,
-    SubLedgerAddComponent,
-    AccountHeadDetailReportComponent
-  ],
-  bootstrap: []
-})
+@NgModule({ declarations: [
+        // START: mumbai-team-june2021-danphe-accounting-cache-change*
+        AccountingReportsComponent,
+        BalanceSheetReportComponent,
+        LedgerReportComponent,
+        VoucherReportComponent,
+        TrailBalanceReportComponent,
+        ProfitLossReportComponent,
+        DailyTransactionReportComponent,
+        CashFlowReportComponent,
+        BankReconciliationComponent,
+        LedgerReportResuableComponent,
+        CustomDateReusableComponent,
+        DaywiseVoucherReportComponent,
+        DaywiseVoucherDetailsComponent,
+        SystemAuditReportComponent,
+        GroupStatementReportComponent,
+        // END: mumbai-team-june2021-danphe-accounting-cache-change*
+        AccountingComponent,
+        TransactionsMainComponent,
+        VoucherEntryComponent,
+        AccountClosureComponent,
+        TransferToAccountingComponent,
+        AccountingSyncBaseComponent,
+        ManualVoucherEditComponent,
+        ActivateAccountingHospitalComponent,
+        PaymentComponent,
+        CashBankBookReportComponent,
+        DayBookReportComponent,
+        SubLedgerReportComponent,
+        VoucherVerificationComponent,
+        BankReconciliationMainComponent,
+        SuspenseAccountReconciliationComponent,
+        SubLedgerAddComponent,
+        AccountHeadDetailReportComponent
+    ],
+    bootstrap: [], imports: [CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        DanpheAutoCompleteModule,
+        AccountingSharedModule,
+        AccountingRoutingModule,
+        AccountingSettingsModule,
+        DepartmentSettingsModule,
+        EmpSettingsModule], providers: [AccountingDLService, AccountingBLService, AccountingReportsBLService, AccountingReportsDLService, AccHospitalSelectionGuardService,
+        { provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AccountingModule { }

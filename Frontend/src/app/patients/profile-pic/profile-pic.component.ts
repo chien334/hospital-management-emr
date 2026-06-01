@@ -1,5 +1,5 @@
 import { Component, ViewChild, Output, EventEmitter } from "@angular/core"
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 //moment ----date format----
 import * as moment from 'moment/moment';
 import { PatientFilesModel } from "../shared/patient-files.model";

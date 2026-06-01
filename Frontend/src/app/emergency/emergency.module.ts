@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
@@ -51,66 +51,59 @@ import { ERLamaComponent } from './triage/er-lama.component';
 import { ERTriageActionComponent } from './triage/er-triage-actions.component';
 import { ERTriagePatientListComponent } from './triage/er-triage-patient-list.component';
 
-@NgModule({
-  providers: [
-    EmergencyBLService,
-    EmergencyDLService,
-    ADT_BLService,
-    ADT_DLService,
-    PatientsBLService,
-    VisitBLService,
-    PharmacyBLService,
-    PharmacyDLService,
-    NursingBLService,
-    NursingDLService,
-    IOAllergyVitalsBLService,
-    VisitDLService,
-    AppointmentDLService,
-    PatientsDLService,
-    EmergencyService
-  ],
-  imports: [
-    EmergencyRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    AngularMultiSelectModule,
-    SharedModule,
-    DischargeSummaryModule,
-    DanpheAutoCompleteModule,
-    BillingSharedModule,
-    ADTSharedModule,
-    ClinicalSharedModule,
-    DoctorSharedModule,
-    PatientSharedModule,
-    RegistrationSchemeSharedModule
-  ],
-  declarations: [
-    EmergencyMainComponent,
-    EmergencyDashboardComponent,
-    ERPatientListComponent,
-    ERTriagePatientListComponent,
-    ERPatientRegistrationComponent,
-    ERTriageActionComponent,
-    ERWardBillingComponent,
-    ERLamaComponent,
-    ERFinalizedComponent,
-    ERLamaPatientListComponent,
-    ERTransferredPatientListComponent,
-    ERDischargedPatientListComponent,
-    ERDeathPatientListComponent,
-    ERAdmittedPatientListComponent,
-    ERDoctorAssignComponent,
-    BedInformationsComponent,
-    ERDischargeSummaryComponent,
-    ViewERDischargeSummaryComponent,
-    AddERDischargeSummaryComponent,
-    ERDorPatientListComponent,
-    PatientCasesSelectComponent,
-    uploadConsentAcionComponent
-  ],
-  bootstrap: []
-
-})
+@NgModule({ declarations: [
+        EmergencyMainComponent,
+        EmergencyDashboardComponent,
+        ERPatientListComponent,
+        ERTriagePatientListComponent,
+        ERPatientRegistrationComponent,
+        ERTriageActionComponent,
+        ERWardBillingComponent,
+        ERLamaComponent,
+        ERFinalizedComponent,
+        ERLamaPatientListComponent,
+        ERTransferredPatientListComponent,
+        ERDischargedPatientListComponent,
+        ERDeathPatientListComponent,
+        ERAdmittedPatientListComponent,
+        ERDoctorAssignComponent,
+        BedInformationsComponent,
+        ERDischargeSummaryComponent,
+        ViewERDischargeSummaryComponent,
+        AddERDischargeSummaryComponent,
+        ERDorPatientListComponent,
+        PatientCasesSelectComponent,
+        uploadConsentAcionComponent
+    ],
+    bootstrap: [], imports: [EmergencyRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        CommonModule,
+        AngularMultiSelectModule,
+        SharedModule,
+        DischargeSummaryModule,
+        DanpheAutoCompleteModule,
+        BillingSharedModule,
+        ADTSharedModule,
+        ClinicalSharedModule,
+        DoctorSharedModule,
+        PatientSharedModule,
+        RegistrationSchemeSharedModule], providers: [
+        EmergencyBLService,
+        EmergencyDLService,
+        ADT_BLService,
+        ADT_DLService,
+        PatientsBLService,
+        VisitBLService,
+        PharmacyBLService,
+        PharmacyDLService,
+        NursingBLService,
+        NursingDLService,
+        IOAllergyVitalsBLService,
+        VisitDLService,
+        AppointmentDLService,
+        PatientsDLService,
+        EmergencyService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class EmergencyModule { }

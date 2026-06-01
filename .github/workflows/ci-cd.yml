@@ -1,0 +1,55 @@
+name: DanpheEMR CI/CD Workflow
+
+on:
+  push:
+    branches: [ main, master, dev ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore NuGet packages
+        run: dotnet restore Code/Solutions/DanpheEMR.sln
+
+      - name: Build Solution
+        run: dotnet build Code/Solutions/DanpheEMR.sln --configuration Release --no-restore
+
+      - name: Run Backend Tests
+        run: dotnet test Code/Utilities/DanpheEMR.Tests/DanpheEMR.Tests.csproj --configuration Release --no-build
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-dotnet@v4 # Wait, setup-node is standard for Node
+        # Let's use actions/setup-node@v4 instead!
+        
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: Frontend/package-lock.json
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd Frontend
+          npm install --force
+
+      - name: Build Angular Application
+        run: |
+          cd Frontend
+          npx ng build --configuration=production

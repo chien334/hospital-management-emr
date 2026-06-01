@@ -18,25 +18,99 @@ namespace DanpheEMR.DalLayer
             // creates resulting dataset
             var result = new DataSet();
             // creates a Command 
-            var cmd = dbContext.Database.GetDbConnection().CreateCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = storedProcName;
+            var conn = dbContext.Database.GetDbConnection();
+            var cmd = conn.CreateCommand();
 
-            if (ipParams != null && ipParams.Count > 0)
+            bool isPostgres = dbContext.Database.ProviderName != null && dbContext.Database.ProviderName.Contains("Npgsql");
+            System.Data.Common.DbTransaction transaction = null;
+
+            if (isPostgres)
             {
-                foreach (var param in ipParams)
+                cmd.CommandType = CommandType.Text;
+                string funcName = storedProcName.ToLower();
+
+                var paramNames = new List<string>();
+                if (ipParams != null && ipParams.Count > 0)
                 {
-                    cmd.Parameters.Add(param);
+                    foreach (var param in ipParams)
+                    {
+                        string pName = param.ParameterName.Replace("@", "").ToLower();
+                        var npgParam = new Npgsql.NpgsqlParameter(pName, param.Value ?? DBNull.Value);
+                        cmd.Parameters.Add(npgParam);
+                        paramNames.Add("@" + pName);
+                    }
+                }
+                cmd.CommandText = $"SELECT * FROM {funcName}({string.Join(", ", paramNames)})";
+            }
+            else
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = storedProcName;
+
+                if (ipParams != null && ipParams.Count > 0)
+                {
+                    foreach (var param in ipParams)
+                    {
+                        cmd.Parameters.Add(param);
+                    }
                 }
             }
 
             try
             {
                 // executes
-                dbContext.Database.GetDbConnection().Open();
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                if (isPostgres)
+                {
+                    transaction = conn.BeginTransaction();
+                    cmd.Transaction = transaction;
+                }
+
                 var reader = cmd.ExecuteReader();
 
-                // loop through all resultsets (considering that it's possible to have more than one)
+                if (isPostgres)
+                {
+                    bool isRefCursor = false;
+                    if (reader.FieldCount > 0 && reader.GetDataTypeName(0) == "refcursor")
+                    {
+                        isRefCursor = true;
+                    }
+
+                    if (isRefCursor)
+                    {
+                        var cursorNames = new List<string>();
+                        while (reader.Read())
+                        {
+                            cursorNames.Add(reader.GetString(0));
+                        }
+                        reader.Close();
+
+                        foreach (var cursorName in cursorNames)
+                        {
+                            using (var fetchCmd = conn.CreateCommand())
+                            {
+                                fetchCmd.Transaction = transaction;
+                                fetchCmd.CommandType = CommandType.Text;
+                                fetchCmd.CommandText = $"FETCH ALL IN \"{cursorName}\"";
+                                using (var fetchReader = fetchCmd.ExecuteReader())
+                                {
+                                    var tb = new DataTable();
+                                    tb.Load(fetchReader);
+                                    result.Tables.Add(tb);
+                                }
+                            }
+                        }
+
+                        transaction.Commit();
+                        return result;
+                    }
+                }
+
+                // Default non-cursor standard execution
                 do
                 {
                     // loads the DataTable (schema will be fetch automatically)
@@ -46,13 +120,26 @@ namespace DanpheEMR.DalLayer
 
                 } while (!reader.IsClosed);
 
+                if (transaction != null)
+                {
+                    transaction.Commit();
+                }
+
                 return result;
+            }
+            catch (Exception ex)
+            {
+                if (transaction != null)
+                {
+                    try { transaction.Rollback(); } catch {}
+                }
+                throw ex;
             }
             finally
             {
                 // closes the connection
                 cmd.Parameters.Clear();
-                dbContext.Database.GetDbConnection().Close();
+                conn.Close();
             }
 
         }

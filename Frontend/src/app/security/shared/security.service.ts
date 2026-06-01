@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import * as moment from 'moment/moment';
 import { MonthModel } from "../../accounting/settings/shared/fiscalyear.model";
@@ -18,13 +18,33 @@ import { User } from "./user.model";
 @Injectable()
 export class SecurityService {
   constructor(private coreService: CoreService, public _router: Router, private nepaliCalendarService: NepaliCalendarService) { }
-  public currentModule: any = null;
-  public loggedInUser: User = new User();
+
+  private _currentModuleSignal = signal<any>(null);
+  public get currentModule(): any {
+    return this._currentModuleSignal();
+  }
+  public set currentModule(val: any) {
+    this._currentModuleSignal.set(val);
+  }
+
+  private _loggedInUserSignal = signal<User>(new User());
+  public get loggedInUser(): User {
+    return this._loggedInUserSignal();
+  }
+  public set loggedInUser(val: User) {
+    this._loggedInUserSignal.set(val);
+  }
   public GetLoggedInUser(): User {
     return this.loggedInUser;
   }
 
-  public LoggedInCounter: BillingCounter = new BillingCounter();
+  private _loggedInCounterSignal = signal<BillingCounter>(new BillingCounter());
+  public get LoggedInCounter(): BillingCounter {
+    return this._loggedInCounterSignal();
+  }
+  public set LoggedInCounter(val: BillingCounter) {
+    this._loggedInCounterSignal.set(val);
+  }
   public getLoggedInCounter(): BillingCounter {
     return this.LoggedInCounter;
   }
@@ -32,38 +52,48 @@ export class SecurityService {
     this.LoggedInCounter = counter;
   }
 
-  public PHRMLoggedInCounter: PharmacyCounter = new PharmacyCounter();
+  private _phrmLoggedInCounterSignal = signal<PharmacyCounter>(new PharmacyCounter());
+  public get PHRMLoggedInCounter(): PharmacyCounter {
+    return this._phrmLoggedInCounterSignal();
+  }
+  public set PHRMLoggedInCounter(val: PharmacyCounter) {
+    this._phrmLoggedInCounterSignal.set(val);
+  }
   public getPHRMLoggedInCounter(): PharmacyCounter {
     return this.PHRMLoggedInCounter;
   }
-
   public setPhrmLoggedInCounter(currCounter: PharmacyCounter) {
     this.PHRMLoggedInCounter = currCounter;
   }
-  public ActiveStore: PHRMStoreModel = new PHRMStoreModel();
+
+  private _activeStoreSignal = signal<PHRMStoreModel>(new PHRMStoreModel());
+  public get ActiveStore(): PHRMStoreModel {
+    return this._activeStoreSignal();
+  }
+  public set ActiveStore(val: PHRMStoreModel) {
+    this._activeStoreSignal.set(val);
+  }
   public getActiveStore(): PHRMStoreModel {
     return this.ActiveStore;
   }
   public setActiveStore(currStore: PHRMStoreModel) {
     this.ActiveStore = currStore;
   }
-  //sanjit: 14 May'20, to implement authorization in Nursing Inpatient Modue.
-  private _activeWard: any;
+
+  private _activeWardSignal = signal<Ward | null>(null);
   public getActiveWard(): Ward {
-    return this._activeWard;
+    return this._activeWardSignal()!;
   }
   public setActiveWard(currWard: Ward) {
-    this._activeWard = currWard;
+    this._activeWardSignal.set(currWard);
   }
 
-  //Anjana: 8 Feb,2021: to implement authorization in Lab for LPH changes
-  private _activeLab: LabTypesModel;
+  private _activeLabSignal = signal<LabTypesModel | null>(null);
   public getActiveLab(): LabTypesModel {
-    return this._activeLab;
+    return this._activeLabSignal()!;
   }
-
   public setActiveLab(currLab: LabTypesModel) {
-    this._activeLab = currLab;
+    this._activeLabSignal.set(currLab);
   }
 
 

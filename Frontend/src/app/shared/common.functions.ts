@@ -354,7 +354,7 @@ export class CommonFunctions {
           , base64 = function (s) { return window.btoa(decodeURIComponent(encodeURIComponent(s))) }
           , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
         if (!table.nodeType) table = document.getElementById(table)
-        var ctx = { worksheet: name || workSheetName, table: table.innerHTML, PrintDate: PrintDate, DateRange: dateRange, Heading: Heading }
+        var ctx = { worksheet: workSheetName, table: table.innerHTML, PrintDate: PrintDate, DateRange: dateRange, Heading: Heading }
         //return window.location.href = uri + base64(format(template, ctx))             
         var link = document.createElement('a');
         link.href = uri + base64(format(template, ctx));
@@ -925,7 +925,7 @@ export class CommonFunctions {
           , base64 = function (s) { return Base64.toBase64(decodeURIComponent(encodeURIComponent(s))) } //Base64 is coming from 'js-base64' package..
           , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
         if (!table.nodeType) table = document.getElementById(table)
-        var ctx = { worksheet: name || workSheetName, table: table.innerHTML, PrintDate: PrintDate, hospitalName: hospName, hospitalAddress: address, phone: phone, DateRange: dateRange, Heading: Heading }
+        var ctx = { worksheet: workSheetName, table: table.innerHTML, PrintDate: PrintDate, hospitalName: hospName, hospitalAddress: address, phone: phone, DateRange: dateRange, Heading: Heading }
         //return window.location.href = uri + base64(format(template, ctx))             
         var link = document.createElement('a');
         link.href = uri + base64(format(template, ctx));
@@ -1137,7 +1137,7 @@ export class CommonFunctions {
           , base64 = function (s) { return window.btoa(decodeURIComponent(encodeURIComponent(s))) }
           , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
         if (!table.nodeType) table = document.getElementById(table)
-        var ctx = { worksheet: name || workSheetName, table: table.innerHTML, Header: Header, footer: Footer }
+        var ctx = { worksheet: workSheetName, table: table.innerHTML, Header: Header, footer: Footer }
         //return window.location.href = uri + base64(format(template, ctx))             
         var link = document.createElement('a');
         link.href = uri + base64(format(template, ctx));

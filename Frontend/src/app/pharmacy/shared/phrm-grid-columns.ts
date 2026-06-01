@@ -963,8 +963,7 @@ export default class PHRMGridColumns {
     static InvoicePrintIdRenderer(params) {
         return 'PH' + params.data.InvoicePrintId;
     }
-    static
-        PHRMRackList = [
+    static PHRMRackList = [
             { headerName: "Rack No", field: "RackNo", width: 270 },
             { headerName: "Parent Rack No", field: "ParentRackNo", width: 100 },
             { headerName: "Description", field: "Description", width: 100 },

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 
-import { ItemSubCategoryModel } from '../shared/item-SubCategory.model';
+import { ItemSubCategoryModel } from '../shared/item-subcategory.model';
 import { InventorySettingBLService } from "../shared/inventory-settings.bl.service";
 
 import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';

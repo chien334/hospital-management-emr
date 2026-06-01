@@ -230,8 +230,8 @@
                                     <div class="col-md-8">
                                         <select class="form-control" [(ngModel)]="CurrentItem.ABCCategory"
                                                 [ngModelOptions]="{standalone: true}">
-                                            @*
-                                            <option value="null">--Choose Category--</option>*@
+                                            &#64;*
+                                            <option value="null">--Choose Category--</option>*&#64;
                                             <option *ngFor="let abc of abcCategory"
                                                     value="{{abc.value}}">
                                                 {{abc.text}}

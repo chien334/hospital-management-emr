@@ -240,9 +240,9 @@ export class AssetContractUploadComponent {
       const fileName = this.AssetContractFileDetails.ContractFileName;
 
       // Download file 
-      if (navigator.msSaveBlob) {
+      if ((navigator as any).msSaveBlob) {
         // IE 10+
-        navigator.msSaveBlob(blob, fileName);
+        (navigator as any).msSaveBlob(blob, fileName);
       } else {
         const link = document.createElement('a');
         // Browsers that support HTML5 download attribute

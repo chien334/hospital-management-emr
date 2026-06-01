@@ -8,7 +8,6 @@ import { WardSupplyBLService } from '../../../../wardsupply/shared/wardsupply.bl
 import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
 import { DLService } from '../../../../shared/dl.service';
 import { IGridFilterParameter } from '../../../../shared/danphe-grid/grid-filter-parameter.interface';
-import { unwrapResolvedMetadata } from '@angular/compiler';
 @Component({
     templateUrl: "./supplier-information-report-component.html"
 })

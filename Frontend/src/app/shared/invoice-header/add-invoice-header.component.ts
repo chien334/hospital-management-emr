@@ -18,7 +18,7 @@ import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../shared-e
 export class AddInvoiceHeaderComponent implements OnInit {
 
 
-  @ViewChild("fileInput", { static: false }) fileInput;
+  @ViewChild("fileInput") fileInput;
 
   public showAddPage: boolean = false;
   @Input('selectedInvoiceHeader')

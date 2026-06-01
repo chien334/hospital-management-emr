@@ -264,7 +264,7 @@ export class PostReportComponent {
     }
   }
   //<input type='file' binds the selected files to this fileInput
-  @ViewChild("fileInput", { static: false }) fileInput;
+  @ViewChild("fileInput") fileInput;
   //calls addReport function of imaging-requistion.component
   //orderStatus is either 'final' or 'pending' depending on submit button click or save button click.
 

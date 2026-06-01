@@ -81,7 +81,7 @@ export class NursingOutPatientComponent {
   public isAllSelected: boolean = false;
   public isChangeDoctorForm: boolean = false;
   public isNursingCheckoutForm: boolean = false;
-  @ViewChild('selectAllCheckbox', { static: false }) selectAllCheckbox: ElementRef<HTMLInputElement>;
+  @ViewChild('selectAllCheckbox') selectAllCheckbox: ElementRef<HTMLInputElement>;
   public showExchangeDoctorPopUp: boolean = false;
   public isExchangeDoctorForm: boolean = false;
   ///public selectedVisit: Visit;

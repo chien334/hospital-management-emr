@@ -52,7 +52,7 @@ export class ScanUploadComponent {
     // this.PrescriptionSlipMaster.VisitDate = new Date(this.patVisit.VisitDate);
   }
 
-  @ViewChild("fileInput", { static: false }) fileInput;
+  @ViewChild("fileInput") fileInput;
 
 
   Close() {

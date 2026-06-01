@@ -17,8 +17,8 @@ export class BillingDashboardComponent {
   rankWiseChart: any;
   membershipWiseChart: any;
 
-  @ViewChild("rankWisePatientInvoiceCountRef", { static: false }) rankWisePatientInvoiceCountRef: ElementRef;
-  @ViewChild("memberWisePatientInvoiceCountRef", { static: false }) memberWisePatientInvoiceCountRef: ElementRef;
+  @ViewChild("rankWisePatientInvoiceCountRef") rankWisePatientInvoiceCountRef: ElementRef;
+  @ViewChild("memberWisePatientInvoiceCountRef") memberWisePatientInvoiceCountRef: ElementRef;
 
   fromDate = moment(new Date()).format(ENUM_DateTimeFormat.Year_Month_Day);
   toDate = moment(new Date()).format(ENUM_DateTimeFormat.Year_Month_Day);

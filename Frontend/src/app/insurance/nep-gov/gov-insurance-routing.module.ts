@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'Patient', component: GovINSPatientListComponent, canActivate: [AuthGuardService, ActivateBillingCounterGuardService] },
       { path: 'Visit', component: GovINSVisitListComponent, canActivate: [AuthGuardService, ActivateBillingCounterGuardService] },
       { path: 'IPDBilling', component: GovINSIPDBillingComponent, canActivate: [AuthGuardService], canDeactivate: [ResetPatientcontextGuard] },
-      { path: 'Reports', loadChildren: './ins-reports/gov-ins-reports.module#InsuranceReportsModule', canActivate: [AuthGuardService] },
+      { path: 'Reports', loadChildren: () => import('./ins-reports/gov-ins-reports.module').then(m => m.InsuranceReportsModule), canActivate: [AuthGuardService] },
       { path: 'InsNewVisit', component: GovInsuranceVisitMainComponent },
       { path: 'BillingRequest', component: GovInsBillingRequestComponent, canDeactivate: [ResetPatientcontextGuard] },
       { path: "**", component: PageNotFound }

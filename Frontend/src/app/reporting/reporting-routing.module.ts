@@ -536,7 +536,7 @@ import { RPT_ReportingMainComponent } from "./reporting-main.component";
           {
             path: "InsBillingReports",
             loadChildren:
-              "../billing/ins-billing/reports/ins-billing-reports.module#InsBillingReportsModule",
+              () => import('../billing/ins-billing/reports/ins-billing-reports.module').then(m => m.InsBillingReportsModule),
           },
           {
             path: "PoliceCase",

@@ -68,7 +68,7 @@ import { ERWardBillingComponent } from './ER-ward-billing/er-wardbilling.compone
               },
               {
                 path: "Clinical",
-                loadChildren: "../clinical/clinical.module#ClinicalModule",
+                loadChildren: () => import('../clinical/clinical.module').then(m => m.ClinicalModule),
                 canActivate: [ AuthGuardService, SelectVisitCanActivateGuard],
               },
               {
@@ -83,7 +83,7 @@ import { ERWardBillingComponent } from './ER-ward-billing/er-wardbilling.compone
               },
               {
                 path: "Notes",
-                loadChildren: "../clinical-notes/notes.module#NotesModule",
+                loadChildren: () => import('../clinical-notes/notes.module').then(m => m.NotesModule),
                 canActivate: [SelectVisitCanActivateGuard],
               },
               { path: "**", component: PageNotFound },

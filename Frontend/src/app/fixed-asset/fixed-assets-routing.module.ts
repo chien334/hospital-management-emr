@@ -28,7 +28,7 @@ import { FixedAssetsReportsComponent } from './assets-reports/fixedAssets-report
           { path: 'AssetsSubstoreRequisition', component: AssetSubstoreRequisitionDispatchComponent },
           { path: 'AssetsSubstoreDirectDispatch', component: DirectDispatchComponent },
           { path: 'RequisitionDispatch', component: FixedAssetReqDispatchComponent },
-          { path: 'Reports', loadChildren: './assets-reports/fixedAssets-reports.module#FixedAssetsReportsModule', canActivate: [AuthGuardService]}
+          { path: 'Reports', loadChildren: () => import('./assets-reports/fixedAssets-reports.module').then(m => m.FixedAssetsReportsModule), canActivate: [AuthGuardService]}
         ]
       },
       { path: '**', component: PageNotFound },

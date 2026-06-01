@@ -29,7 +29,7 @@ export class MaternityPatientUploadFilesComponent {
   public selectedReport: MaternityPatientFilesModel = new MaternityPatientFilesModel();
 
 
-  @ViewChild("fileInput", { static: false }) fileInput;
+  @ViewChild("fileInput") fileInput;
 
   public loading: boolean = false;
 

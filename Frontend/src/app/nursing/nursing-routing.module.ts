@@ -89,7 +89,7 @@ import { WardSelectionGuardService } from "./shared/ward-selection-guard.service
               },
               {
                 path: "Clinical",
-                loadChildren: "../clinical/clinical.module#ClinicalModule",
+                loadChildren: () => import('../clinical/clinical.module').then(m => m.ClinicalModule),
                 canActivate: [AuthGuardService, SelectVisitCanActivateGuard],
               },
               {
@@ -120,7 +120,7 @@ import { WardSelectionGuardService } from "./shared/ward-selection-guard.service
 
               {
                 path: "Notes",
-                loadChildren: "../clinical-notes/notes.module#NotesModule",
+                loadChildren: () => import('../clinical-notes/notes.module').then(m => m.NotesModule),
                 canActivate: [SelectVisitCanActivateGuard],
               },
               { path: "**", component: PageNotFound },

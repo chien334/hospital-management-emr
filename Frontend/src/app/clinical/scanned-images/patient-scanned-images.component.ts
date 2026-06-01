@@ -15,7 +15,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class PatientScannedImages {
   public selectedImage: PatientImagesModel = new PatientImagesModel();
-  @ViewChild("fileInput", { static: false }) fileInput;
+  @ViewChild("fileInput") fileInput;
   employeeId: number;
   DepartmentId: number;
   a: number;

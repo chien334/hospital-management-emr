@@ -47,7 +47,7 @@ export class PhotoCropperComponent {
   public pathToImage: string = null;
 
   //Start: For File Selection
-  @ViewChild("fileInput", { static: false }) fileInput;
+  @ViewChild("fileInput") fileInput;
   //cropping part
   imageChangedEvent: any = '';
   croppedImage: any = '';

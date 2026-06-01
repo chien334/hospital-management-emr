@@ -41,7 +41,7 @@ import { DispensaryService } from '../../../shared/dispensary.service';
   host: { '(window:keydown)': 'hotkeys($event)' }
 })
 export class NewSalesComponent implements OnInit, OnDestroy {
-  @ViewChild('selectReferrer', { static: false }) selectReferrerComponent: SelectReferrerComponent;
+  @ViewChild('selectReferrer') selectReferrerComponent: SelectReferrerComponent;
   public currentCounterId: number = 0;
   public currentCounterName: string = "";
   public currentActiveDispensary: PHRMStoreModel;

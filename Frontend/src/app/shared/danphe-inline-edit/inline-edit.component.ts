@@ -1,13 +1,4 @@
-import {
-  Component,
-  Input, Output, EventEmitter,
-  ElementRef,
-  ViewChild,
-  ChangeDetectorRef,
-  Renderer,
-  forwardRef,
-  OnInit
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, ChangeDetectorRef, forwardRef, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
@@ -25,7 +16,7 @@ const INLINE_EDIT_CONTROL_VALUE_ACCESSOR = {
 
 export class InlineEditComponent implements ControlValueAccessor, OnInit {
 
-  @ViewChild('inlineEditControl', { static: false }) inlineEditControl: ElementRef; // input DOM element
+  @ViewChild('inlineEditControl') inlineEditControl: ElementRef; // input DOM element
 
   @Input() type: string = 'text'; // The type of input element
   public ipvalue: string = ''; // variable for input value
@@ -42,7 +33,7 @@ export class InlineEditComponent implements ControlValueAccessor, OnInit {
   @Input("isTextArea")
   isTextArea: boolean = false;
 
-  constructor(element: ElementRef, private _renderer: Renderer, public changeDetector: ChangeDetectorRef) {
+  constructor(element: ElementRef, private _renderer: Renderer2, public changeDetector: ChangeDetectorRef) {
   }
 
   // Control Value Accessors for ngModel

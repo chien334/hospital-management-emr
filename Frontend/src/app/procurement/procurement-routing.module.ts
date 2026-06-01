@@ -77,8 +77,8 @@ import { VendorListComponent } from './vendor-list/vendor-list.component';
                     },
 
                     { path: 'VendorList', component: VendorListComponent },
-                    { path: 'Reports', loadChildren: '../inventory/reports/inventory-reports.module#InventoryReportsModule' },
-                    { path: 'Settings', loadChildren: '../inventory/settings/inventory-settings.module#InventorySettingsModule' },
+                    { path: 'Reports', loadChildren: () => import('../inventory/reports/inventory-reports.module').then(m => m.InventoryReportsModule) },
+                    { path: 'Settings', loadChildren: () => import('../inventory/settings/inventory-settings.module').then(m => m.InventorySettingsModule) },
                     { path: "**", component: PageNotFound }
 
                 ]

@@ -32,7 +32,7 @@ import { PHRMGoodsReceiptItemComponent, updateCalculationsForGrItem } from "../p
   host: { '(window:keydown)': 'hotkeys($event)' }
 })
 export class PHRMGoodsReceiptComponent {
-  @ViewChild('grItemPop', { static: false })
+  @ViewChild('grItemPop')
   phrmGoodReceiptItemComponent: PHRMGoodsReceiptItemComponent;
 
   ///view model for binding

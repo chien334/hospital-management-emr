@@ -4,6 +4,7 @@ import { PatientService } from './patient.service';
 
 import { IRouteGuard } from '../../shared/route-guard.interface';
 
+@Injectable()
 export class PatientDeactivateGuard implements CanDeactivate<IRouteGuard> {
 
     canDeactivate(target: IRouteGuard) {

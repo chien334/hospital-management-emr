@@ -70,7 +70,7 @@ export class ERPatientRegistrationComponent {
   public firstAidData: any;
   public ocmcSelected: boolean = false;
   public showMunicipality: boolean = false;
-  @ViewChild('closebutton', { static: false }) closeButton;
+  @ViewChild('closebutton') closeButton;
   public RegistrationSchemeDetail: RegistrationScheme_DTO;
   public isValidSchemeSelected: boolean;
   public schemeObj_old: RegistrationScheme_DTO = new RegistrationScheme_DTO();

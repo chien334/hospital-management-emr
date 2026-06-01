@@ -18,7 +18,7 @@ export class DicomLoadStudyComponent {
   public showDicomViewerPage: boolean = false;
   public showStudyListPage: boolean = true;
   public showDicomPopUp: boolean = true;
-  @ViewChild(DICOMViewerComponent, { static: false }) viewPort: DICOMViewerComponent;
+  @ViewChild(DICOMViewerComponent) viewPort: DICOMViewerComponent;
 
   public showPatientStudy: boolean = false;
   private headers: HttpHeaders;

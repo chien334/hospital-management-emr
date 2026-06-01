@@ -15,7 +15,7 @@ import { Location } from '@angular/common';
   styles: []
 })
 export class QuotationAnalysisComponent implements OnInit {
-  @ViewChild('NepaliQuotationAnalysis', { static: false }) quotationAnalysisNpComponent: QuotationAnalysisNpComponent;
+  @ViewChild('NepaliQuotationAnalysis') quotationAnalysisNpComponent: QuotationAnalysisNpComponent;
   public ReqItemList: any = [];
   public QuotItemList: any = [];
   public VendorList: any = [];

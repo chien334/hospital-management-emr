@@ -83,7 +83,7 @@ import { BillingSelectPatientCanActivateGuard } from './shared/billing-select-pa
             ]
             , canActivate: [ResetPatientcontextGuard]
           },
-          { path: 'DuplicatePrints', loadChildren: '../billing/bill-duplicate-prints/bil-duplicate-prints.module#Bil_DuplicatePrintsModule', canActivate: [AuthGuardService, ResetPatientcontextGuard] },
+          { path: 'DuplicatePrints', loadChildren: () => import('../billing/bill-duplicate-prints/bil-duplicate-prints.module').then(m => m.Bil_DuplicatePrintsModule), canActivate: [AuthGuardService, ResetPatientcontextGuard] },
 
           //{ path: 'InpatBilling', loadChildren: '/compiled-js/app/billing/ip-billing/ip-billing.module#IpBillingModule' },
           { path: 'InpatBilling', component: IpBillMainComponent, canActivate: [AuthGuardService, ResetPatientcontextGuard] },
@@ -102,7 +102,7 @@ import { BillingSelectPatientCanActivateGuard } from './shared/billing-select-pa
             , canActivate: [AuthGuardService, ResetPatientcontextGuard, ActivateBillingCounterGuardService]
           },
 
-          { path: 'InsuranceMain', loadChildren: '../billing/ins-billing/ins-billing.module#InsuranceBillingModule', canActivate: [] },
+          { path: 'InsuranceMain', loadChildren: () => import('../billing/ins-billing/ins-billing.module').then(m => m.InsuranceBillingModule), canActivate: [] },
           { path: 'QrBilling', component: QrBillingComponent, canActivate: [AuthGuardService] },
           { path: "**", component: PageNotFound },
         ]

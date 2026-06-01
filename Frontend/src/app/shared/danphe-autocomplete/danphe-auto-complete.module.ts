@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -19,11 +19,11 @@ import { DanpheAutoComplete } from './danphe-auto-complete';
   entryComponents: [DanpheAutoCompleteComponent]
 })
 export class DanpheAutoCompleteModule {
-  static forRoot() {
+  static forRoot(): ModuleWithProviders<DanpheAutoCompleteModule> {
     return {
         ngModule: DanpheAutoCompleteModule,
-      providers: [DanpheAutoComplete]
-    }
-  }
+        providers: [DanpheAutoComplete]
+    };
+}
 }
 

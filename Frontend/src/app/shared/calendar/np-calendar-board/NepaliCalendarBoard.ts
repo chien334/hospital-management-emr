@@ -38,7 +38,7 @@ export class NepaliCalendarBoardComponent {
   public minHash: number = 0;
   public maxHash: number = 999999999;
 
-  @ViewChild('calendarBoard', { static: false }) el: ElementRef;
+  @ViewChild('calendarBoard') el: ElementRef;
 
   @Input("minimum-date")
   public minValidDate: NepaliDate;

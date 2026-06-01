@@ -49,7 +49,7 @@ export class AttendanceComponent {
   public Thursday: WeekendHolidays = new WeekendHolidays();
   public Friday: WeekendHolidays = new WeekendHolidays();
   public HolidayList: Array<HolidayModel> = new Array<HolidayModel>();
-  @ViewChild('fileImportInput', { static: false }) fileImportInput: any;
+  @ViewChild('fileImportInput') fileImportInput: any;
 
   public p: number = 1;//sud:12Apr'20-- for production build fixes.
 

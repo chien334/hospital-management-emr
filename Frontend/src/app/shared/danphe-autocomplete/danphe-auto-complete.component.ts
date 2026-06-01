@@ -131,7 +131,7 @@ export class DanpheAutoCompleteComponent implements OnInit {
     @Input("match-property-csv") propertyNamesToMatchCSV: string;
  
     @Output() valueSelected = new EventEmitter();
-    @ViewChild('autoCompleteInput', { static: false }) autoCompleteInput: ElementRef;
+    @ViewChild('autoCompleteInput') autoCompleteInput: ElementRef;
 
     el: HTMLElement;
 

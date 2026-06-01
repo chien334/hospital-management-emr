@@ -54,7 +54,7 @@ import { VoucherVerificationComponent } from './voucher-verification/voucher-ver
                         ]
                     },
 
-                    { path: 'Settings', loadChildren: './settings/accounting-settings.module#AccountingSettingsModule', canActivate: [AuthGuardService] },
+                    { path: 'Settings', loadChildren: () => import('./settings/accounting-settings.module').then(m => m.AccountingSettingsModule), canActivate: [AuthGuardService] },
 
                     // START: mumbai-team-june2021-danphe-accounting-cache-change*
                     { path: 'Reports', component: AccountingReportsComponent, canActivate: [AuthGuardService] },
@@ -82,7 +82,7 @@ import { VoucherVerificationComponent } from './voucher-verification/voucher-ver
                     //         { path: 'Dependent', component: DependentComponent, canActivate: [AuthGuardService] }
                     //     ]
                     // },
-                    { path: 'Insurance', loadChildren: '../insurance/medicare/registration/medicare-registration.module#MedicareRegistrationModule', canActivate: [AuthGuardService] },
+                    { path: 'Insurance', loadChildren: () => import('../insurance/medicare/registration/medicare-registration.module').then(m => m.MedicareRegistrationModule), canActivate: [AuthGuardService] },
                     { path: 'VoucherVerification', component: VoucherVerificationComponent, canActivate: [AuthGuardService] },
                     {
                         path: 'BankReconciliation', component: BankReconciliationMainComponent, canActivate: [AuthGuardService],

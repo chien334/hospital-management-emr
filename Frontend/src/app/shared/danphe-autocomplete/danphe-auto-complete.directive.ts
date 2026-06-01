@@ -1,18 +1,4 @@
-import {
-  Directive,
-  Input,
-  Output,
-  ComponentRef,
-  ViewContainerRef,
-  EventEmitter,
-  OnInit,
-  ComponentFactoryResolver,
-  Renderer,
-  SimpleChanges,
-  SkipSelf,
-  Host,
-  Optional
-} from "@angular/core";
+import { Directive, Input, Output, ComponentRef, ViewContainerRef, EventEmitter, OnInit, ComponentFactoryResolver, SimpleChanges, SkipSelf, Host, Optional, Renderer2 } from "@angular/core";
 import { DanpheAutoCompleteComponent } from "./danphe-auto-complete.component";
 import { ControlContainer, AbstractControl, FormGroup, FormControl, FormGroupName } from "@angular/forms";
 
@@ -66,7 +52,7 @@ export class DanpheAutoCompleteDirective implements OnInit {
   revertValue: any;
 
   constructor(public resolver: ComponentFactoryResolver,
-    public renderer: Renderer,
+    public renderer: Renderer2,
     public viewContainerRef: ViewContainerRef,
     @Optional() @Host() @SkipSelf() public parentForm: ControlContainer) {
     this.el = this.viewContainerRef.element.nativeElement;

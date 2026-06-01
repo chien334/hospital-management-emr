@@ -34,7 +34,7 @@ import { PageNotFound } from '../404-error/404-not-found.component';
 
             ]
           },
-          { path: 'Setting', loadChildren: './Setting/payroll-setting.module#PayrollSettingsModule', canActivate: [AuthGuardService] },
+          { path: 'Setting', loadChildren: () => import('./Setting/payroll-setting.module').then(m => m.PayrollSettingsModule), canActivate: [AuthGuardService] },
         ]
       },
       { path: "**", component: PageNotFound }

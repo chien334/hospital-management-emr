@@ -18,7 +18,7 @@ export class StockReconcilationComponent implements OnInit {
   showSpinner: boolean = false;
   openPopUp: boolean = false;
   disableBtn: boolean = true;
-  @ViewChild('inputFile', { static: false }) inputFile: ElementRef;
+  @ViewChild('inputFile') inputFile: ElementRef;
   isExcelFile: boolean;
   reconciledStocks: any[] = [];
   reconciledStocksWithQuantityChanges: any[] = [];

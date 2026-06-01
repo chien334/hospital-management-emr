@@ -19,7 +19,7 @@ import { Patient } from '../../../patients/shared/patient.model';
   
     @Input("patientDetail")
     public patientDetail: Patient=new Patient;
-    @ViewChild("fileInput", { static: false }) fileInput;
+    @ViewChild("fileInput") fileInput;
 
     public loading: boolean = false;
     @Output("callBackClose")

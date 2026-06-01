@@ -21,7 +21,7 @@ import { EmergencyService } from '../../emergency/shared/emergency.service';
 
 export class AddNewMedicalRecordComponent {
 
-  @ViewChild("sendToChild", { static: false })
+  @ViewChild("sendToChild")
   public birthDetailsSharedComponent: AddBirthDetailsSharedComponent;
 
   @Output("closeAddNewMrPopup") closeAddNewMrPopup: EventEmitter<object> = new EventEmitter<object>();

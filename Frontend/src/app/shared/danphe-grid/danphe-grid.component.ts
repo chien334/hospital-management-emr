@@ -164,11 +164,11 @@ export class DanpheGridComponent implements OnInit, AfterViewInit {
   @Input("customServerSearch") showCustomSearch: boolean = false;
   @Input("searchUsingHospitalNo") searchUsingHospitalNo: boolean = false;
   @Input("searchUsingIdCardNo") searchUsingIdCardNo: boolean = false;
-  @ViewChild("serverSearchInput", { static: false }) serverSearchIp: ElementRef;
+  @ViewChild("serverSearchInput") serverSearchIp: ElementRef;
   @Output("serverSearchText") ssTextEmitter = new EventEmitter<string>();
 
-  @ViewChild("searchUsingHospitalNo", { static: false }) searchPatientUsingHospitalNo: ElementRef;
-  @ViewChild("searchUsingIdCardNo", { static: false }) searchPatientUsingIdCardNo: ElementRef;
+  @ViewChild("searchUsingHospitalNo") searchPatientUsingHospitalNo: ElementRef;
+  @ViewChild("searchUsingIdCardNo") searchPatientUsingIdCardNo: ElementRef;
 
   @Input("NepaliDateInGridParams")
   public nepaliDateInGridColDetail: NepaliDateInGridParams = null;

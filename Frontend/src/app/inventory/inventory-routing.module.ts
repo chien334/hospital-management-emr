@@ -119,8 +119,8 @@ import { ReturnFromSubstoreComponent } from './internal/return-from-substore/ret
             ]
           }
           ,
-          { path: 'Reports', loadChildren: './reports/inventory-reports.module#InventoryReportsModule', canActivate: [AuthGuardService] },
-          { path: 'Settings', loadChildren: './settings/inventory-settings.module#InventorySettingsModule' },
+          { path: 'Reports', loadChildren: () => import('./reports/inventory-reports.module').then(m => m.InventoryReportsModule), canActivate: [AuthGuardService] },
+          { path: 'Settings', loadChildren: () => import('./settings/inventory-settings.module').then(m => m.InventorySettingsModule) },
           { path: "**", component: PageNotFound }
 
         ]

@@ -30,7 +30,7 @@ export class LabSendSmsComponent {
     public loadedForExport: boolean = false;
     public loading: boolean = false;
     public smsDataToSend: any;
-    @ViewChild('lab-report-main', { static: false }) htmlData: ElementRef;
+    @ViewChild('lab-report-main') htmlData: ElementRef;
     public sendPsfAndSmsOnSingleClick: boolean = true;
     public searchString: string = null;
     public page: number = 1;

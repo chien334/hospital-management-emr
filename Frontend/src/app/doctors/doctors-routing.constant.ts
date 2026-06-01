@@ -80,12 +80,12 @@ export const DoctorsRoutingConstant = [
           },
           {
             path: "Clinical",
-            loadChildren: "../clinical/clinical.module#ClinicalModule",
+            loadChildren: () => import('../clinical/clinical.module').then(m => m.ClinicalModule),
             canActivate: [AuthGuardService, SelectVisitCanActivateGuard],
           },
           {
             path: "Orders",
-            loadChildren: "../orders/orders.module#OrdersModule",
+            loadChildren: () => import('../orders/orders.module').then(m => m.OrdersModule),
             canActivate: [AuthGuardService],
           },
           {
@@ -97,7 +97,7 @@ export const DoctorsRoutingConstant = [
           //sud:5Apr'20--Notes module is brought outside as a Lazy-Loaded module
           {
             path: "NotesSummary",
-            loadChildren: "../clinical-notes/notes.module#NotesModule",
+            loadChildren: () => import('../clinical-notes/notes.module').then(m => m.NotesModule),
             canActivate: [SelectVisitCanActivateGuard],
           },
 

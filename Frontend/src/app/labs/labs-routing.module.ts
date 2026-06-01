@@ -57,7 +57,7 @@ import { LabImuUploadComponent } from './notification/imu/imu-upload.component';
             ]
             , canActivate: [AuthGuardService, ResetPatientcontextGuard, LabSelectionGuardService]
           },
-          { path: 'Settings', loadChildren: '../labs/lab-settings/lab-settings.module#LabSettingsModule', canActivate: [LabSelectionGuardService] },
+          { path: 'Settings', loadChildren: () => import('../labs/lab-settings/lab-settings.module').then(m => m.LabSettingsModule), canActivate: [LabSelectionGuardService] },
           {
             path: 'ExternalLabs', component: ExternalLabsMainComponent,
             canActivate: [LabSelectionGuardService],
@@ -70,7 +70,7 @@ import { LabImuUploadComponent } from './notification/imu/imu-upload.component';
             ]
           },
           { path: 'LabTypeSelection', component: LabTypeSelectionComponent },
-          { path: 'Lis', loadChildren: '../labs/lab-lis/lis-module#LISModule', canActivate: [AuthGuardService, LabSelectionGuardService] },
+          { path: 'Lis', loadChildren: () => import('../labs/lab-lis/lis-module').then(m => m.LISModule), canActivate: [AuthGuardService, LabSelectionGuardService] },
           { path: "**", component: PageNotFound }
 
         ]

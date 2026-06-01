@@ -61,7 +61,7 @@ export class EmployeeProfileMainComponent {
   }
 
   //use to change the profile
-  @ViewChild("fileInput", { static: false }) fileInput;
+  @ViewChild("fileInput") fileInput;
   ChangeProfileImage(userProfileInfo: EmployeeProfile): void {
     let empId = userProfileInfo.EmployeeId;
     let userId = this.securityService.GetLoggedInUser().UserId;

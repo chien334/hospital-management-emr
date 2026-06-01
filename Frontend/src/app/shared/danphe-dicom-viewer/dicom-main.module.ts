@@ -14,8 +14,9 @@ import { authInterceptorProviders } from '../token-interceptor/token-interceptor
   //* AuthInterceptor needed in order to inject LoginJwtToken in Request Header of every request created from this module since it is not using SharedModule
   providers: [DicomService,
     {
-      provide: ActivatedRoute,
-    }, authInterceptorProviders
+    provide: ActivatedRoute,
+    useValue: undefined
+}, authInterceptorProviders
   ],
   declarations: [
     DicomLoadStudyComponent

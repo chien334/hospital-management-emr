@@ -37,7 +37,7 @@ export const InsBillingRoutes =
         { path: 'InsBillingTransaction', component: INSBillingTransactionComponent },
         { path: 'InsProvisional', component: INSProvisionalBillingComponent },
         { path: 'Claims', component: InsuranceSettlementsComponent },
-        { path: 'Reports', loadChildren: '../ins-billing/reports/ins-billing-reports.module#InsBillingReportsModule' }
+        { path: 'Reports', loadChildren: () => import('../ins-billing/reports/ins-billing-reports.module').then(m => m.InsBillingReportsModule) }
       ]
       , canActivate: [AuthGuardService, ResetPatientcontextGuard, ActivateBillingCounterGuardService]
       //{ path: 'Reports/TotalItemsBill', component: INSTotalItemsBillComponent, canActivate: [AuthGuardService] },

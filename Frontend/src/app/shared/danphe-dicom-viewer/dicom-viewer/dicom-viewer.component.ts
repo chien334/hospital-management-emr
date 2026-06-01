@@ -21,7 +21,7 @@ export class DICOMViewerComponent implements OnInit {
   private DicomToolDataByDicomFileId = [];
   private headers: HttpHeaders;
   private showDicomViewerPage: boolean = false;
-  @ViewChild('panzoomDiv', { static: false }) panzoomDiv: ElementRef;
+  @ViewChild('panzoomDiv') panzoomDiv: ElementRef;
   @Input() public enableViewerTools = false; // enable viewer tools
   @Input() public maxImagesToLoad = 100; // limit for the automatic loading of study images
   @Input("showDicomViewerPage")
@@ -56,7 +56,7 @@ export class DICOMViewerComponent implements OnInit {
   public loadingImages = false;
   public get showProgress(): any { return { display: (this.loadingImages) ? 'inline-block' : 'none' } };
 
-  @ViewChild(CornerstoneDirective, { static: false }) viewPort: CornerstoneDirective; // the main cornertone view port
+  @ViewChild(CornerstoneDirective) viewPort: CornerstoneDirective; // the main cornertone view port
   @ViewChildren(ThumbnailDirective) thumbnails: Array<ThumbnailDirective>;
 
   private loadedImages = [];

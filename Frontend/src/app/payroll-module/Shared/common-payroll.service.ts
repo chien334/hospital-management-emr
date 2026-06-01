@@ -1,5 +1,7 @@
 import { AttendanceDailyTimeRecord } from "./Payroll-attendance-daily-time-record.model";
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class CommonPayrollService {
 
     /* here is logic to import csv data to database table */

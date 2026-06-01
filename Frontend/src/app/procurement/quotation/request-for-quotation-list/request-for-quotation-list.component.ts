@@ -43,7 +43,7 @@ export class RequestForQuotationListComponent implements OnInit {
   public showQuotationPrintPage: boolean = false;
   public RFQList: any;
 
-  @ViewChild("fileInput", { static: false }) fileInput;
+  @ViewChild("fileInput") fileInput;
   msgBoxServ: any;
   showNepaliReceipt: boolean;
   ReqForQuotationVendors: any;

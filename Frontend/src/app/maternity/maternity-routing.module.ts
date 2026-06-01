@@ -25,7 +25,7 @@ import { MaternityPatientPaymentComponent } from './payments/maternity-patient-p
               { path: "**", component: PageNotFound }
             ]
           },
-          { path: 'Reports', loadChildren: './reports/maternity-reports.module#MaternityReportsModule', canActivate: [AuthGuardService] },
+          { path: 'Reports', loadChildren: () => import('./reports/maternity-reports.module').then(m => m.MaternityReportsModule), canActivate: [AuthGuardService] },
           { path: "**", component: PageNotFound }
         ]
       },

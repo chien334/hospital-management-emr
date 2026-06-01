@@ -10,85 +10,85 @@ export const AppRoutingConstant = [
   { path: "Home/Index", component: DashboardHomeComponent },
   {
     path: "Doctors",
-    loadChildren: "./doctors/doctors.module#DoctorsModule",
+    loadChildren: () => import('./doctors/doctors.module').then(m => m.DoctorsModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Patient",
-    loadChildren: "./patients/patients.module#PatientsModule",
+    loadChildren: () => import('./patients/patients.module').then(m => m.PatientsModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Appointment",
-    loadChildren: "./appointments/appointments.module#AppointmentsModule",
+    loadChildren: () => import('./appointments/appointments.module').then(m => m.AppointmentsModule),
     canActivate: [AuthGuardService],
     data: { currentRoute: "Appointment" }
   },
   {
     path: "Billing",
-    loadChildren: "./billing/billing.module#BillingModule",
+    loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule),
     canActivate: [AuthGuardService],
     data: { currentRoute: "Billing" }
   },
-  { path: "Lab", loadChildren: "./labs/labs.module#LabsModule" },
+  { path: "Lab", loadChildren: () => import('./labs/labs.module').then(m => m.LabsModule) },
   {
     path: "Radiology",
-    loadChildren: "./radiology/radiology.module#RadiologyModule",
+    loadChildren: () => import('./radiology/radiology.module').then(m => m.RadiologyModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Employee",
-    loadChildren: "./employee/employee.module#EmployeeModule",
+    loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "ADTMain",
-    loadChildren: "./adt/adt.module#ADTModule",
+    loadChildren: () => import('./adt/adt.module').then(m => m.ADTModule),
     data: { currentRoute: "ADTMain" }
   },
   {
     path: "Settings",
-    loadChildren: "./settings-new/settings.module#SettingsModule",
+    loadChildren: () => import('./settings-new/settings.module').then(m => m.SettingsModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Reports",
-    loadChildren: "./reporting/reporting.module#ReportingModule",
+    loadChildren: () => import('./reporting/reporting.module').then(m => m.ReportingModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Helpdesk",
-    loadChildren: "./helpdesk/helpdesk.module#HelpdeskModule",
+    loadChildren: () => import('./helpdesk/helpdesk.module').then(m => m.HelpdeskModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Inventory",
-    loadChildren: "./inventory/inventory.module#InventoryModule",
+    loadChildren: () => import('./inventory/inventory.module').then(m => m.InventoryModule),
     canActivate: [AuthGuardService],
     data: { currentRoute: "Inventory" },
   },
   {
     path: "Accounting",
-    loadChildren: "./accounting/accounting.module#AccountingModule",
+    loadChildren: () => import('./accounting/accounting.module').then(m => m.AccountingModule),
   },
   {
     path: "SystemAdmin",
-    loadChildren: "./system-admin/system-admin.module#SystemAdminModule",
+    loadChildren: () => import('./system-admin/system-admin.module').then(m => m.SystemAdminModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Pharmacy",
-    loadChildren: "./pharmacy/pharmacy.module#PharmacyModule",
+    loadChildren: () => import('./pharmacy/pharmacy.module').then(m => m.PharmacyModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Nursing",
-    loadChildren: "./nursing/nursing.module#NursingModule",
+    loadChildren: () => import('./nursing/nursing.module').then(m => m.NursingModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Scheduling",
-    loadChildren: "./scheduling/scheduling.module#SchedulingModule",
+    loadChildren: () => import('./scheduling/scheduling.module').then(m => m.SchedulingModule),
     canActivate: [AuthGuardService],
   },
   //{
@@ -97,90 +97,90 @@ export const AppRoutingConstant = [
   //},
   {
     path: "WardSupply",
-    loadChildren: "./wardsupply/wardsupply.module#WardSupplyModule",
+    loadChildren: () => import('./wardsupply/wardsupply.module').then(m => m.WardSupplyModule),
   },
   {
     path: "Emergency",
-    loadChildren: "./emergency/emergency.module#EmergencyModule",
+    loadChildren: () => import('./emergency/emergency.module').then(m => m.EmergencyModule),
   },
   {
     path: "Incentive",
-    loadChildren: "./incentive/incentive.module#IncentiveModule",
+    loadChildren: () => import('./incentive/incentive.module').then(m => m.IncentiveModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Medical-records",
     loadChildren:
-      "./medical-records/medical-records.module#MedicalRecordsModule",
+      () => import('./medical-records/medical-records.module').then(m => m.MedicalRecordsModule),
   },
   {
     path: "PayrollMain",
-    loadChildren: "./payroll-module/payroll-main.module#PayrollMainModule",
+    loadChildren: () => import('./payroll-module/payroll-main.module').then(m => m.PayrollMainModule),
   },
   {
     path: "Verification",
-    loadChildren: "./verification/verification.module#VerificationModule",
+    loadChildren: () => import('./verification/verification.module').then(m => m.VerificationModule),
   },
   {
     path: "OperationTheatre",
-    loadChildren: "./ot-module/ot.module#OperationTheatreModule",
+    loadChildren: () => import('./ot-module/ot.module').then(m => m.OperationTheatreModule),
   },
   {
     path: "Dispensary",
-    loadChildren: "./dispensary/dispensary.module#DispensaryModule",
+    loadChildren: () => import('./dispensary/dispensary.module').then(m => m.DispensaryModule),
   },
   {
     path: "SSU",
-    loadChildren: "./ssu/social-service-unit.module#SocialServiceUnitModule",
+    loadChildren: () => import('./ssu/social-service-unit.module').then(m => m.SocialServiceUnitModule),
   },
   {
     path: 'GovInsurance',
-    loadChildren: './insurance/nep-gov/gov-insurance.module#GovInsuranceModule',
+    loadChildren: () => import('./insurance/nep-gov/gov-insurance.module').then(m => m.GovInsuranceModule),
     canActivate: [AuthGuardService]
   },
   {
     path: "FixedAssets",
-    loadChildren: "./fixed-asset/fixed-assets.module#FixedAssetsModule",
+    loadChildren: () => import('./fixed-asset/fixed-assets.module').then(m => m.FixedAssetsModule),
     data: { currentRoute: "FixedAssets" },
   },
   {
     path: "ProcurementMain",
-    loadChildren: "./procurement/procurement.module#ProcurementModule",
+    loadChildren: () => import('./procurement/procurement.module').then(m => m.ProcurementModule),
     canActivate: [AuthGuardService],
     data: { currentRoute: "ProcurementMain" },
   },
   {
     path: "CSSD",
-    loadChildren: "./cssd/cssd.module#CssdModule",
+    loadChildren: () => import('./cssd/cssd.module').then(m => m.CssdModule),
     canActivate: [AuthGuardService],
   },
   { path: "ActivateInventory", component: ActivateInventoryComponent },
   {
     path: "Maternity",
-    loadChildren: "./maternity/maternity.module#MaternityModule",
+    loadChildren: () => import('./maternity/maternity.module').then(m => m.MaternityModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "Vaccination",
-    loadChildren: "./vaccination/vaccination.module#VaccinationModule",
+    loadChildren: () => import('./vaccination/vaccination.module').then(m => m.VaccinationModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "QueueManagement",
     loadChildren:
-      "./queue-management/queue-management.module#QueueManagementModule",
+      () => import('./queue-management/queue-management.module').then(m => m.QueueManagementModule),
     canActivate: [AuthGuardService],
   },
   {
     path: "ClaimManagement",
     loadChildren:
-      "./claim-management/claim-management.module#ClaimManagementModule"
+      () => import('./claim-management/claim-management.module').then(m => m.ClaimManagementModule)
     , canActivate: [AuthGuardService]
   },
   { path: "DynamicReport", component: DynamicReportComponent },
   { path: "UnAuthorized", component: UnAuthorizedAccessComponent },
-  { path: "Utilities", loadChildren: "./utilities/utilities.module#UtilitiesModule", canActivate: [AuthGuardService], data: { currentRoute: 'Utilities' } },
-  { path: "MktReferral", loadChildren: "./mktreferral/mktreferral.module#MktreferralModule" },
+  { path: "Utilities", loadChildren: () => import('./utilities/utilities.module').then(m => m.UtilitiesModule), canActivate: [AuthGuardService], data: { currentRoute: 'Utilities' } },
+  { path: "MktReferral", loadChildren: () => import('./mktreferral/mktreferral.module').then(m => m.MktreferralModule) },
 
   { path: "**", component: PageNotFound },
 ];

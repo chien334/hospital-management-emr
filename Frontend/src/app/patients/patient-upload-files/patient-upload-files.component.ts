@@ -85,7 +85,7 @@ export class PatientUploadFilesComponent {
         }
     }
 
-    @ViewChild("fileInput", { static: false }) fileInput;
+    @ViewChild("fileInput") fileInput;
 
     constructor(public patientBLService: PatientsBLService, public changeDetector: ChangeDetectorRef,
         public msgBoxServ: MessageboxService, public coreService: CoreService) {

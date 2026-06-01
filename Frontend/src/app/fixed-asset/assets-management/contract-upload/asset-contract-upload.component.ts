@@ -13,7 +13,7 @@ import { FixedAssetBLService } from "../../shared/fixed-asset.bl.service";
 export class AssetContractUploadComponent {
 
 
-  @ViewChild("fileInput", { static: false }) fileInput;
+  @ViewChild("fileInput") fileInput;
 
 
   public selectedAsset: FixedAssetStockModel = new FixedAssetStockModel();

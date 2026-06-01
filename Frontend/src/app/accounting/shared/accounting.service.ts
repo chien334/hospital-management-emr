@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { EventEmitter, Injectable, Output, Directive } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment/moment';
 import { CoreService } from '../../core/shared/core.service';
@@ -11,6 +11,7 @@ import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { ENUM_ACC_ReportName, ENUM_ACC_ReportStaticName, ENUM_DateTimeFormat } from '../../shared/shared-enums';
 import { AccCacheDataVM } from './acc-view-models';
 
+@Directive()
 @Injectable()
 export class AccountingService {
   public CodeData: Array<CodeDetailsModel> = new Array<CodeDetailsModel>();

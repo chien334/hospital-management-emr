@@ -26,7 +26,7 @@
         <i class="fa fa-print"></i>
         Print
       </button>
-      <button class="btn green btn-success" type="button" data-toggle="modal" data-target="#confirmVendor" title="Save selected Vendor" [disabled]="loading">
+      <button class="btn green btn-success" type="button" data-bs-toggle="modal" data-bs-target="#confirmVendor" title="Save selected Vendor" [disabled]="loading">
         <i class="fa fa-save"></i>
         Select Vendor for PO
       </button>
@@ -123,15 +123,15 @@
       <!-- Modal content-->
       <div class="modal-content">
           <div class="caption lb-caption">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">X</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">X</button>
           </div>
           <div class="modal-body">
               <p *ngIf="selectedVendor.VendorId==null" style="text-align: center; color: red;">!!!Please Select Vendor for Quotation Analysis!!!</p>
               <p *ngIf="selectedVendor.VendorId!=null" style="text-align: center;">!!!<i>Are you sure you want to select Vendor:</i><b>{{selectedVendor.VendorName}}?</b><br /> on Issued Date: &nbsp;{{issuedDate}}<span *ngIf="issuedDate"> &nbsp;{{issuedDate | nepaliDate}}</span></p>
           </div>
           <div *ngIf="selectedVendor.VendorId!=null" class="modal-footer">
-              <button type="button" (click)="SaveSelectedVendor()" class="btn btn-danger" data-dismiss="modal">Yes</button>
-              <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+              <button type="button" (click)="SaveSelectedVendor()" class="btn btn-danger" data-bs-dismiss="modal">Yes</button>
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
           </div>
       </div>
   </div>

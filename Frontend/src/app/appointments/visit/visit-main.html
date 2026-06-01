@@ -51,8 +51,8 @@
         <div class="row">
           <div class="col-md-6">
             <h4 [className]="quickVisit.Patient.PatientId ? 'clp clp-hd' : 'clp clp-hd'"
-                [attr.aria-expanded]="quickVisit.Patient.PatientId ? 'false' : 'true'" data-toggle="collapse"
-                data-target="#patient"> <i class="fa fa-user" style="color:#3598dc;"></i>Patient Information
+                [attr.aria-expanded]="quickVisit.Patient.PatientId ? 'false' : 'true'" data-bs-toggle="collapse"
+                data-bs-target="#patient"> <i class="fa fa-user" style="color:#3598dc;"></i>Patient Information
             </h4>
             <div [className]="quickVisit.Patient.PatientId ? 'clp-cntnt' : 'clp-cntnt'" id="patient"
                  class="p-15 bg-white collapse clp-cntnt">

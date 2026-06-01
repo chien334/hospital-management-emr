@@ -11,7 +11,7 @@
           <button class="btn btn-danger history-del-btn" (click)="Close()">X</button>
           <div class="modelbox-body">
             <h4 [ngClass]="insPatient.PatientId ? 'clp clp-hd collapsed' : 'clp clp-hd'"
-                [attr.aria-expanded]="insPatient.PatientId ? 'false' : 'true'" data-toggle="collapse" data-target="#patInfoSection"> Patient
+                [attr.aria-expanded]="insPatient.PatientId ? 'false' : 'true'" data-bs-toggle="collapse" data-bs-target="#patInfoSection"> Patient
               Information </h4>
             <div class="row">
               <div class="col-md-12">
@@ -218,7 +218,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <h4 class="clp clp-hd" aria-expanded="true" data-toggle="collapse" data-target="#insuranceInfoSection">Insurance Information</h4>
+                <h4 class="clp clp-hd" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#insuranceInfoSection">Insurance Information</h4>
                 <div class="collapse clp-cntnt in" id="insuranceInfoSection">
                   <form [formGroup]="insPatient.GovInsPatientValidator" class="form-horizontal">
                     <div class="row">

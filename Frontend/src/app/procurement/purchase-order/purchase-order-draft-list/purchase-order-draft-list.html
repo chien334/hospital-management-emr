@@ -80,12 +80,12 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default btn btn-danger" data-dismiss="modal"
+                                            <button type="button" class="btn btn-default btn btn-danger" data-bs-dismiss="modal"
                                                     [disabled]="purchaseorderDraft.DiscardRemarks === ''"
                                                     (click)="WithdrawPODraft(purchaseorderDraft.DraftPurchaseOrderId)">
                                                 Discard Draft
                                             </button>
-                                            <button type="button" class="btn btn-default btn btn-success" data-dismiss="modal"
+                                            <button type="button" class="btn btn-default btn btn-success" data-bs-dismiss="modal"
                                                     (click)="CloseDiscardPopUP()">
                                                 Cancel
                                             </button>

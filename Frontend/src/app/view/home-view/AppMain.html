@@ -135,8 +135,8 @@
         </div>
         <!-- END LOGO -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
-           data-target=".navbar-collapse">
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-bs-toggle="collapse"
+           data-bs-target=".navbar-collapse">
           <span></span>
         </a>
         <!-- END RESPONSIVE MENU TOGGLER -->
@@ -145,7 +145,7 @@
 
           <ul class="nav navbar-nav pull-right">
             <li *ngIf="coreService.appVersionNum" style="background-color: yellow;">
-              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+              <a href="javascript:;" class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown"
                  data-close-others="true">
                 <span class="username-hide-on-mobile" style="color: black;font-weight: bold !important;">
                   {{coreService.appVersionNum}}
@@ -160,12 +160,12 @@
 
             <!-- BEGIN NOTIFICATION DROPDOWN -->
             <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte -->
-            <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
-            <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
+            <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-bs-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
+            <!-- DOC: Remove "dropdown-hoverable" and add data-bs-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
             <!-- END NOTIFICATION DROPDOWN -->
             <!-- BEGIN LANGUAGE SWITCHER DROPDOWN -->
             <li class="dropdown dropdown-language" style="margin-right: 15px;">
-              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+              <a href="javascript:;" class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown"
                  data-close-others="true" style="color: white; font-weight: bold; padding-top: 15px; display: inline-block;">
                 <i class="fa fa-globe"></i> {{ currentLanguageName }} <i class="fa fa-angle-down"></i>
               </a>
@@ -187,7 +187,7 @@
             <!-- BEGIN USER LOGIN DROPDOWN -->
             <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
             <li class="dropdown dropdown-user">
-              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+              <a href="javascript:;" class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown"
                  data-close-others="true">
                 <img alt="" class="img-circle" *ngIf="currentUsr.Profile.ImageLocation!=''"
                      src="{{employeeService.ProfilePicSrcPath}}" />
@@ -227,7 +227,7 @@
                 <i class="fa fa-info"></i>
                 {{coreService.appVersionNum}}
               </span>
-              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+              <a href="javascript:;" class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown"
                  data-close-others="true">
                 <i class="fa fa-question-circle help-about"></i>
                 <i class="fa fa-angle-down"></i>
@@ -275,7 +275,7 @@
                 <img src="/themes/theme-default/images/nav/{{route.Css}}" style="height: 25px;width: 30px;" />
                 <span class="title">{{route.DisplayName}}</span>
                 <span class="selected"></span>
-                <span data-toggle="collapse" attr.data-target="#{{route.DisplayName}}" class="collapsed ad-sign"></span>
+                <span data-bs-toggle="collapse" attr.data-bs-target="#{{route.DisplayName}}" class="collapsed ad-sign"></span>
               </a>
               <ng-container *ngIf="route.ChildRoutes !=null && route.ChildRoutesDefaultShowCount >0">
                 <ul class="sub-menu collapse" id={{route.DisplayName}}>

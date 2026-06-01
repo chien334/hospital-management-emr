@@ -342,7 +342,7 @@
             <div class="modal-content">
                 <div class="caption lb-caption">
                     <h3><span>Warning</span></h3>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">X</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">X</button>
                 </div>
                 <div class="modal-body">
                     <p>Are you sure you want to cancel this Goods Receipt?</p>
@@ -360,8 +360,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" [disabled]="goodsreceiptDetails.CancelRemarks == ''" (click)="cancelGR()">Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal" [disabled]="goodsreceiptDetails.CancelRemarks == ''" (click)="cancelGR()">Yes</button>
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">No</button>
                 </div>
             </div>
         </div>

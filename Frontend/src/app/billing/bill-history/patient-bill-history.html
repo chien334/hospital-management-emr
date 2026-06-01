@@ -62,7 +62,7 @@
                         <div class="row">
                             <!--Paid Bills-->
                             <div class="col-md-12">
-                                <h4 class="clp clp-hd  text-seconday" data-toggle="collapse" data-target="#paid"> <i
+                                <h4 class="clp clp-hd  text-seconday" data-bs-toggle="collapse" data-bs-target="#paid"> <i
                                        class="fa fa-check-circle"></i>Paid Bills <span style="margin-left:10px;"
                                           class="text-primary">({{paidPatBillHistoryDetail.length}})</span> </h4>
                                 <div id="paid" class="collapse clp-cntnt" style="max-height:300px;overflow-y:auto; padding: 0;">
@@ -92,7 +92,7 @@
                             <!--Credit/Unpaid Bills-->
                             <div class="col-md-12" style="padding-top:15px;">
                                 <div>
-                                    <h4 class="clp clp-hd text-seconday" data-toggle="collapse" data-target="#unpaid"> <i
+                                    <h4 class="clp clp-hd text-seconday" data-bs-toggle="collapse" data-bs-target="#unpaid"> <i
                                            class="fa fa-times"></i>Credit Bills <span style="margin-left:10px;"
                                               class="text-primary">({{unPaidPatBillHistoryDetail.length}})</span> </h4>
                                     <div id="unpaid" class="collapse clp-cntnt" style="max-height:300px;"
@@ -123,7 +123,7 @@
                             </div>
                             <!--Returned Bills-->
                             <div class="col-md-12" style="padding-top:15px;">
-                                <h4 class="clp clp-hd text-seconday" data-toggle="collapse" data-target="#returned"> <i class="fa fa-refresh"></i>
+                                <h4 class="clp clp-hd text-seconday" data-bs-toggle="collapse" data-bs-target="#returned"> <i class="fa fa-refresh"></i>
                                     Returned Bills <span style="margin-left:10px;"
                                           class="text-primary">({{returnedPatBillHistoryDetail.length}})</span> </h4>
                                 <div id="returned" class="collapse clp-cntnt" style="max-height:300px;overflow-y:auto; padding: 0;">
@@ -154,7 +154,7 @@
                             </div>
                             <!--Insurance Bills-->
                             <div class="col-md-12" style="padding-top:15px;">
-                                <h4 class="clp clp-hd" data-toggle="collapse" data-target="#insurance"> <i class="fa fa-file-text-o"></i>Insurance
+                                <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#insurance"> <i class="fa fa-file-text-o"></i>Insurance
                                     Bills <span style="margin-left:10px;" class="text-primary">({{insuranceBillDetail.length}})</span> </h4>
                                 <div id="insurance" class="collapse clp-cntnt" style="max-height:300px;overflow-y:auto; padding: 0;">
                                     <p *ngIf="!insuranceBillDetail.length" class="no-data-div">No records found</p>
@@ -188,7 +188,7 @@
                         <div class="row">
                             <!--Provisional Items-->
                             <div class="col-md-12">
-                                <h4 class="clp clp-hd text-seconday" data-toggle="collapse" data-target="#provItems"> <i
+                                <h4 class="clp clp-hd text-seconday" data-bs-toggle="collapse" data-bs-target="#provItems"> <i
                                        class="fa fa-align-justify"></i>Provisional Items <span
                                           class="text-primary">({{patBillHistoryDetail.ProvisionalItems.length}})</span> </h4>
                                 <div id="provItems" class="collapse clp-cntnt" style="max-height: 200px;overflow-y: scroll;">
@@ -217,7 +217,7 @@
                             </div>
                             <!--Deposits-->
                             <div class="col-md-12" style="padding-top:15px;">
-                                <h4 class="clp clp-hd text-seconday" data-toggle="collapse" data-target="#deposits">
+                                <h4 class="clp clp-hd text-seconday" data-bs-toggle="collapse" data-bs-target="#deposits">
                                     <i class="fa fa-check-square-o"></i>Deposits <span class="text-primary">
                                         (Balance:
                                         {{patBillHistory.DepositBalance}})
@@ -258,7 +258,7 @@
                             </div>
                             <!--Settlements-->
                             <div class="col-md-12" style="padding-top:15px;">
-                                <h4 class="clp clp-hd  text-seconday" data-toggle="collapse" data-target="#settlements"> <i
+                                <h4 class="clp clp-hd  text-seconday" data-bs-toggle="collapse" data-bs-target="#settlements"> <i
                                        class="fa fa-bell"></i>Settlements <span style="margin-left:10px;"
                                           class="text-primary">({{patBillHistoryDetail.Settlements.length}})</span> </h4>
                                 <div id="settlements" class="collapse clp-cntnt" style="max-height:300px;overflow-y:auto; padding: 0;">
@@ -284,7 +284,7 @@
                             </div>
                             <!--Cancelled Items-->
                             <div class="col-md-12" style="padding-top:15px;">
-                                <h4 class="clp clp-hd text-seconday" data-toggle="collapse" data-target="#CancelledItems"> <i
+                                <h4 class="clp clp-hd text-seconday" data-bs-toggle="collapse" data-bs-target="#CancelledItems"> <i
                                        class="fa fa-times-circle"></i>Cancelled Items <span style="margin-left:10px;"
                                           class="text-primary">({{patBillHistoryDetail.CancelledItems.length}})</span> </h4>
                                 <div id="CancelledItems" class="collapse clp-cntnt" style="max-height:300px;overflow-y:auto; padding: 0;">
@@ -352,7 +352,7 @@
                             <div *ngIf="patBillHistoryDetail.PaidItems.length">
                                 <div>
                                     <!--[ngClass]="showHeader ? 'clp' : 'clp clp-hd'"-->
-                                    <h5 class="clp clp-hd" data-toggle="collapse" data-target="#PaidItems" aria-expanded="true" style="padding: 0px;">
+                                    <h5 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#PaidItems" aria-expanded="true" style="padding: 0px;">
                                         <b style="text-decoration: underline">Paid Bill Items
                                             <span>({{patBillHistoryDetail.PaidItems.length}})</span></b> </h5>
                                     <div id="PaidItems" class="collapse in clp-cntnt" style="padding: 0">
@@ -429,7 +429,7 @@
                         <div *ngIf="patBillHistoryDetail.UnpaidItems">
                             <div *ngIf="patBillHistoryDetail.UnpaidItems.length">
                                 <div>
-                                    <h5 class="clp clp-hd" data-toggle="collapse" data-target="#UnpaidItems" aria-expanded="true" style="padding: 0">
+                                    <h5 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#UnpaidItems" aria-expanded="true" style="padding: 0">
                                         <b style="text-decoration: underline">Credit Bill Items
                                             <span>({{patBillHistoryDetail.UnpaidItems.length}})</span></b> </h5>
                                     <div id="UnpaidItems" class="collapse in clp-cntnt" style="padding: 0">
@@ -506,7 +506,7 @@
                         <div *ngIf="patBillHistoryDetail.ReturnedItems">
                             <div *ngIf="patBillHistoryDetail.ReturnedItems.length">
                                 <div>
-                                    <h5 class="clp clp-hd" data-toggle="collapse" data-target="#ReturnedItems" aria-expanded="true"
+                                    <h5 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#ReturnedItems" aria-expanded="true"
                                         style="padding: 0"> <b style="text-decoration: underline">Returned Bill Items
                                             <span>({{patBillHistoryDetail.ReturnedItems.length}})</span></b> </h5>
                                     <div id="ReturnedItems" class="collapse in clp-cntnt" style="padding: 0">
@@ -583,7 +583,7 @@
                         <div *ngIf="patBillHistoryDetail.ProvisionalItems">
                             <div *ngIf="patBillHistoryDetail.ProvisionalItems.length">
                                 <div>
-                                    <h5 class="clp clp-hd" data-toggle="collapse" data-target="#ProvisionalItems" aria-expanded="true"
+                                    <h5 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#ProvisionalItems" aria-expanded="true"
                                         style="padding: 0"> <b style="text-decoration: underline">Provisional Bill Items
                                             <span>({{patBillHistoryDetail.ProvisionalItems.length}})</span></b> </h5>
                                     <div id="ProvisionalItems" class="collapse in clp-cntnt" style="padding: 0">
@@ -660,7 +660,7 @@
                         <div *ngIf="patBillHistoryDetail.CancelledItems">
                             <div *ngIf="patBillHistoryDetail.CancelledItems.length">
                                 <div>
-                                    <h5 class="clp clp-hd" data-toggle="collapse" data-target="#CancelledItems" aria-expanded="true"
+                                    <h5 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#CancelledItems" aria-expanded="true"
                                         style="padding: 0"> <b style="text-decoration: underline">Cancelled Bill Items
                                             <span>({{patBillHistoryDetail.CancelledItems.length}})</span></b> </h5>
                                     <div id="CancelledItems" class="collapse in clp-cntnt" style="padding: 0">
@@ -732,7 +732,7 @@
                         <div *ngIf="patBillHistoryDetail.InsuranceItems">
                             <div *ngIf="patBillHistoryDetail.InsuranceItems.length">
                                 <div>
-                                    <h5 class="clp clp-hd" data-toggle="collapse" data-target="#InsuranceItems" aria-expanded="true"
+                                    <h5 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#InsuranceItems" aria-expanded="true"
                                         style="padding: 0"> <b style="text-decoration: underline">Insurance Bill Items
                                             <span>({{patBillHistoryDetail.ReturnedItems.length}})</span></b> </h5>
                                     <div id="InsuranceItems" class="collapse in clp-cntnt" style="padding: 0">
@@ -802,7 +802,7 @@
                         <div *ngIf="patBillHistoryDetail.Deposits">
                             <div *ngIf="patBillHistoryDetail.Deposits.length">
                                 <div>
-                                    <h5 class="clp clp-hd" data-toggle="collapse" data-target="#Deposits" aria-expanded="true" style="padding: 0"> <b
+                                    <h5 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#Deposits" aria-expanded="true" style="padding: 0"> <b
                                            style="text-decoration: underline">Deposit Bill Items
                                             <span>({{patBillHistoryDetail.Deposits.length}})</span></b> </h5>
                                     <div id="Deposits" class="collapse in clp-cntnt" style="padding: 0">
@@ -876,7 +876,7 @@
                 </div>
                 <!--Summary-->
                 <div class="col-md-12" style="margin:0px 0px 0px 0px">
-                    <h5 class="clp clp-hd" data-toggle="collapse" data-target="#Summary" aria-expanded="true" style="padding: 0">
+                    <h5 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#Summary" aria-expanded="true" style="padding: 0">
                         <b style="text-decoration: underline">Summary</b>
                     </h5>
                     <div id="Summary" class="collapse in clp-cntnt" style="padding: 0">

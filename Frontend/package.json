@@ -32,7 +32,7 @@
     "angular2-multiselect-dropdown": "2.1.2",
     "angular2-qrcode": "2.0.1",
     "angular2-qrscanner": "1.0.7",
-    "bootstrap": "4.3.1",
+    "bootstrap": "^5.3.3",
     "chart.js": "^2.8.0",
     "core-js": "2.5.4",
     "cornerstone-core": "2.2.8",

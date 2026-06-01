@@ -57,7 +57,7 @@
         <tr>
           <td style="width:60%;">
             <div *ngFor="let app of applicationList; let collapseindex=index;">
-              <button class="clp clp-hd" data-toggle="collapse" [attr.data-target]="'#' + collapseindex">
+              <button class="clp clp-hd" data-bs-toggle="collapse" [attr.data-bs-target]="'#' + collapseindex">
                 {{app.ApplicationName}}
               </button>
               <div id="{{collapseindex}}" class="collapse">

@@ -8,7 +8,7 @@ using DanpheEMR.Services.Verification;
 using DanpheEMR.ViewModel.Substore;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 

@@ -9,15 +9,15 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
-using System.Web.ModelBinding;
+/* using System.Web.ModelBinding; */
 
 namespace DanpheEMR.Services.LIS
 {

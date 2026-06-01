@@ -101,7 +101,7 @@ namespace DanpheEMR.Services.Pharmacy.Rack
                 StoreId = model.StoreId,
                 Description = model.Description,
             };
-            db.Entry(result).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(result).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             db.Entry(result).Property(rack => rack.CreatedBy).IsModified = false;
             db.Entry(result).Property(rack => rack.CreatedOn).IsModified = false;
             db.SaveChanges();

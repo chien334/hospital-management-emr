@@ -12,11 +12,11 @@ using DanpheEMR.CommonTypes;
 using DanpheEMR.ServerModel;
 using System.Data;
 
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using DanpheEMR.ServerModel.ReportingModels;
 using DanpheEMR.ServerModel.PharmacyModels;
 using System.Transactions;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DanpheEMR.Controllers

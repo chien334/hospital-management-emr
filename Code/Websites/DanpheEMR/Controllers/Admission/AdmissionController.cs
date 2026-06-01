@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DanpheEMR.Utilities;
 using DanpheEMR.CommonTypes;
@@ -23,13 +23,13 @@ using DanpheEMR.Core.Parameters;
 using System.Threading.Tasks;
 using DanpheEMR.Enums;
 using System.Transactions;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using DanpheEMR.ServerModel.InsuranceModels;
 using DanpheEMR.ViewModel.ADT;
-using System.Data.Entity.Infrastructure;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using DanpheEMR.ServerModel.PatientModels;
-using System.Web.Security;
+/* using System.Web.Security; */
 using DanpheEMR.Services.Admission;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.Services.Discharge;
@@ -1620,7 +1620,7 @@ namespace DanpheEMR.Controllers
 
         public static NewClaimCode_DTO GetLatestClaimCode(AdmissionDbContext admissionDbContext, int schemeId)
         {
-            NewClaimCode_DTO newClaimObj = admissionDbContext.Database.SqlQuery<NewClaimCode_DTO>("SP_Claim_GenerateNewClaimCode" + " " + schemeId).FirstOrDefault();
+            NewClaimCode_DTO newClaimObj = admissionDbContext.Database.SqlQueryRaw<NewClaimCode_DTO>("SP_Claim_GenerateNewClaimCode" + " " + schemeId).FirstOrDefault();
             return newClaimObj;
         }
 
@@ -2629,7 +2629,7 @@ namespace DanpheEMR.Controllers
                           join summary in _admissionDbContext.DischargeSummary on admission.PatientVisitId equals summary.PatientVisitId into dischargeSummaryTemp
                           from dischargeSummary in dischargeSummaryTemp.DefaultIfEmpty()
                               // join admDoctor in dbContext.Employees on admission.AdmittingDoctorId equals admDoctor.EmployeeId
-                          where admission.AdmissionStatus == admissionStatus && (DbFunctions.TruncateTime(admission.DischargeDate) >= FromDate && DbFunctions.TruncateTime(admission.DischargeDate) <= ToDate)
+                          where admission.AdmissionStatus == admissionStatus && (admission.DischargeDate.Value.Date >= FromDate.Date && admission.DischargeDate.Value.Date <= ToDate.Date)
 
                           let empName = _admissionDbContext.Employees.Where(doc => doc.EmployeeId == admission.AdmittingDoctorId).Select(d => d.FullName).FirstOrDefault() ?? string.Empty
                           let deptName = _admissionDbContext.Department.Where(d => d.DepartmentId == admission.Visit.DepartmentId).Select(n => n.DepartmentName).FirstOrDefault() ?? string.Empty
@@ -2700,7 +2700,7 @@ namespace DanpheEMR.Controllers
                           join summary in _admissionDbContext.DischargeSummary on admission.PatientVisitId equals summary.PatientVisitId into dischargeSummaryTemp
                           from dischargeSummary in dischargeSummaryTemp.DefaultIfEmpty()
                               //join admDoctor in dbContext.Employees on admission.AdmittingDoctorId equals admDoctor.EmployeeId
-                          where admission.AdmissionStatus == admissionStatus && (DbFunctions.TruncateTime(admission.AdmissionDate) >= FromDate && DbFunctions.TruncateTime(admission.AdmissionDate) <= ToDate)
+                          where admission.AdmissionStatus == admissionStatus && ((admission.AdmissionDate).Date >= FromDate && (admission.AdmissionDate).Date <= ToDate)
                           let empName = _admissionDbContext.Employees.Where(doc => doc.EmployeeId == admission.AdmittingDoctorId).Select(d => d.FullName).FirstOrDefault() ?? string.Empty
                           let deptName = _admissionDbContext.Department.Where(d => d.DepartmentId == admission.Visit.DepartmentId).Select(n => n.DepartmentName).FirstOrDefault() ?? string.Empty
                           select new
@@ -4642,11 +4642,11 @@ namespace DanpheEMR.Controllers
                     }
                     //previous bed's ended on is next bed's startedon
                     PatientBedInfo previousbedinfo = (from patbed in _admissionDbContext.PatientBedInfos
-                                                      where patbed.PatientVisitId == clientBedInfo.PatientVisitId && (DbFunctions.TruncateTime(patbed.EndedOn) == DbFunctions.TruncateTime(serverBedInfo.StartedOn))
+                                                      where patbed.PatientVisitId == clientBedInfo.PatientVisitId && (patbed.EndedOn.Value.Date == serverBedInfo.StartedOn.Date)
                                                       select patbed).FirstOrDefault();
 
                     PatientBedInfo nextbedinfo = (from patbedinfo in _admissionDbContext.PatientBedInfos
-                                                  where patbedinfo.PatientVisitId == clientBedInfo.PatientVisitId && (DbFunctions.TruncateTime(patbedinfo.StartedOn) == DbFunctions.TruncateTime(serverBedInfo.EndedOn))
+                                                  where patbedinfo.PatientVisitId == clientBedInfo.PatientVisitId && (patbedinfo.StartedOn.Date == serverBedInfo.EndedOn.Value.Date)
                                                   select patbedinfo).FirstOrDefault();
                     if (previousbedinfo != null)
                     {
@@ -5028,7 +5028,7 @@ namespace DanpheEMR.Controllers
                                                where (visit.PatientVisitId == admissionCancelDetail.PatientVisitId)
                                                 && ((visit.VisitType == ENUM_VisitType.outpatient || visit.VisitType == ENUM_VisitType.emergency)
                                                //&& ((visit.VisitType == "outpatient" || visit.VisitType == "emergency")
-                                               && (DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(TodayDate)))
+                                               && ((visit.VisitDate).Date == (TodayDate).Date))
                                                select visit).ToList().OrderByDescending(a => a.PatientVisitId).FirstOrDefault();
                         if (patVisit != null)
                         {

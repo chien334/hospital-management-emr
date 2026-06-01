@@ -36,7 +36,7 @@ namespace DanpheEMR.Services
 
         public DesignationModel UpdateDesignation(DesignationModel model)
         {
-            db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             db.SaveChanges();
             return model;
         }

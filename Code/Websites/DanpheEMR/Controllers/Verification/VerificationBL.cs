@@ -13,7 +13,7 @@ using DanpheEMR.ViewModel.Pharmacy;
 using Google.Apis.Drive.v3.Data;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace DanpheEMR.Controllers
@@ -1192,7 +1192,7 @@ namespace DanpheEMR.Controllers
         #region Purchase Requisition Verification
         public static List<PharmacyRequisitionVerification_DTO> GetPharmacyRequisitionsBasedOnUser(DateTime FromDate, DateTime ToDate, PharmacyDbContext pharmacyDbContext, RbacUser currentUser)
         {
-            var RequisitionList = pharmacyDbContext.StoreRequisition.Where(req => DbFunctions.TruncateTime(req.CreatedOn) >= DbFunctions.TruncateTime(FromDate) && DbFunctions.TruncateTime(req.CreatedOn) <= DbFunctions.TruncateTime(ToDate) && req.IsVerificationEnabled == true).OrderByDescending(a => a.RequisitionId).ToList();
+            var RequisitionList = pharmacyDbContext.StoreRequisition.Where(req => (req.CreatedOn).Date >= (FromDate).Date && (req.CreatedOn).Date <= (ToDate).Date && req.IsVerificationEnabled == true).OrderByDescending(a => a.RequisitionId).ToList();
 
             var FilteredRequisitionList = new List<PharmacyRequisitionVerification_DTO>();
 

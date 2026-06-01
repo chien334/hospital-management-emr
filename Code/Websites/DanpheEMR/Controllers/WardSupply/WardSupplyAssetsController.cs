@@ -794,7 +794,7 @@ namespace DanpheEMR.Controllers
                             stkObj.FixedAssetStockId = item.FixedAssetStockId.Value;
                             stkObj.SubStoreId = dispatch.SubStoreId;
                             var temp = wardSupplydbcontext.FixedAssetStock.Attach(stkObj);
-                            wardSupplydbcontext.Entry(temp).Property(x => x.SubStoreId).IsModified = true;
+                            temp.Property(x => x.SubStoreId).IsModified = true;
                             wardSupplydbcontext.SaveChanges();
                         }
 
@@ -811,11 +811,11 @@ namespace DanpheEMR.Controllers
                             requisitionItem.ModifiedBy = currentUser.EmployeeId;
                             requisitionItem.ModifiedOn = DateTime.Now;
                             var temp = wardSupplydbcontext.WARDSupplyAssetRequisitionItemsModels.Attach(requisitionItem);
-                            wardSupplydbcontext.Entry(temp).Property(x => x.ReceivedQuantity).IsModified = true;
-                            wardSupplydbcontext.Entry(temp).Property(x => x.PendingQuantity).IsModified = true;
-                            wardSupplydbcontext.Entry(temp).Property(x => x.RequisitionItemStatus).IsModified = true;
-                            wardSupplydbcontext.Entry(temp).Property(x => x.ModifiedBy).IsModified = true;
-                            wardSupplydbcontext.Entry(temp).Property(x => x.ModifiedOn).IsModified = true;
+                            temp.Property(x => x.ReceivedQuantity).IsModified = true;
+                            temp.Property(x => x.PendingQuantity).IsModified = true;
+                            temp.Property(x => x.RequisitionItemStatus).IsModified = true;
+                            temp.Property(x => x.ModifiedBy).IsModified = true;
+                            temp.Property(x => x.ModifiedOn).IsModified = true;
                             wardSupplydbcontext.SaveChanges();
                         }
 
@@ -824,7 +824,7 @@ namespace DanpheEMR.Controllers
                         requisitionModel.RequisitionStatus = (partialCount > 0) ? "partial" : "complete";
 
                         var temp1 = wardSupplydbcontext.WARDSupplyAssetRequisitionModels.Attach(requisitionModel);
-                        wardSupplydbcontext.Entry(temp1).Property(x => x.RequisitionStatus).IsModified = true;
+                        temp1.Property(x => x.RequisitionStatus).IsModified = true;
                         wardSupplydbcontext.SaveChanges();
 
                         foreach (var item in dispatchItems)

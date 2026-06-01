@@ -1,4 +1,4 @@
-﻿using DanpheEMR.CommonTypes;
+using DanpheEMR.CommonTypes;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
@@ -21,7 +21,7 @@ using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -1231,10 +1231,10 @@ namespace DanpheEMR.Controllers
 
         private static List<RequisitionModel> GetSubStoreRequisitions(DateTime FromDate, DateTime ToDate, int StoreId, RbacUser user, InventoryDbContext inventoryDbContext)
         {
-            var RequisitionList = (from requ in inventoryDbContext.Requisitions
+            var RequisitionList = (from requ in inventoryDbContext.Requisitions.AsNoTracking()
                                    join sourceStore in inventoryDbContext.StoreMasters on requ.RequestFromStoreId equals sourceStore.StoreId
                                    join targetStore in inventoryDbContext.StoreMasters on requ.RequestToStoreId equals targetStore.StoreId
-                                   where requ.RequestFromStoreId == StoreId & DbFunctions.TruncateTime(requ.RequisitionDate) >= DbFunctions.TruncateTime(FromDate) & DbFunctions.TruncateTime(requ.RequisitionDate) <= DbFunctions.TruncateTime(ToDate)
+                                   where requ.RequestFromStoreId == StoreId & (requ.RequisitionDate).Value.Date >= (FromDate).Date & (requ.RequisitionDate).Value.Date <= (ToDate).Date
                                    orderby requ.RequisitionId descending
                                    select new
                                    {
@@ -1247,7 +1247,7 @@ namespace DanpheEMR.Controllers
                                        RequestToStoreId = requ.RequestToStoreId,
                                        EnableReceiveFeature = requ.EnableReceiveFeature,
                                        VerifierIds = requ.VerifierIds
-                                   }).AsNoTracking().ToList().Select(R => new RequisitionModel
+                                   }).ToList().Select(R => new RequisitionModel
                                    {
                                        RequisitionId = R.RequisitionId,
                                        RequisitionNo = R.RequisitionNo,

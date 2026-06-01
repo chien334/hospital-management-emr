@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using DanpheEMR.Utilities;
@@ -25,7 +25,7 @@ using Org.BouncyCastle.Asn1.Ocsp;
 using DanpheEMR.ServerModel.SSFModels.ClaimResponse;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using DanpheEMR.Enums;
-using EntityState = System.Data.Entity.EntityState;
+using EntityState = Microsoft.EntityFrameworkCore.EntityState;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using DanpheEMR.ViewModel.Clinical;
 using Microsoft.AspNetCore.Http;
@@ -34,7 +34,7 @@ using DanpheEMR.ServerModel.ClinicalModels.BloodSugarMonitoring;
 using DanpheEMR.ServerModel.ClinicalModels.Diet;
 using DanpheEMR.ServerModel.ClinicalModels.ConsulationRequests;
 using DanpheEMR.ServerModel.ClinicalModels.DTOs;
-using DbFunctions = System.Data.Entity.DbFunctions;
+/* using DbFunctions = System.Data.Entity.DbFunctions; */
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DanpheEMR.Controllers.Clinical
@@ -93,7 +93,7 @@ namespace DanpheEMR.Controllers.Clinical
             }
 
             ioList = _clinicalDbContext.InputOutput
-                    .Where(p => p.PatientVisitId == patientVisitId && (DbFunctions.TruncateTime(p.CreatedOn) >= fromDate && DbFunctions.TruncateTime(p.CreatedOn) <= toDate))
+                    .Where(p => p.PatientVisitId == patientVisitId && (p.CreatedOn.Value.Date >= fromDate.Value.Date && p.CreatedOn.Value.Date <= toDate.Value.Date))
                     .ToList();
 
             List<InputOutputModel> AllIOList = _clinicalDbContext.InputOutput.Where(p => p.PatientVisitId == patientVisitId).ToList();

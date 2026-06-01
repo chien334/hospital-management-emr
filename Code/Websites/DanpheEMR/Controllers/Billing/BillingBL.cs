@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ using DanpheEMR.DalLayer;
 using DanpheEMR.Sync.IRDNepal.Models;
 using Newtonsoft.Json;
 using System.Configuration;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Transactions;
 using DanpheEMR.Enums;
 using DanpheEMR.Security;
@@ -204,18 +204,18 @@ namespace DanpheEMR.Controllers.Billing
             {
                 irdLogdata.CreatedOn = DateTime.Now;
 
-                string url_IRDNepal = ConfigurationManager.AppSettings["url_IRDNepal"];
+                string url_IRDNepal = System.Configuration.ConfigurationManager.AppSettings["url_IRDNepal"];
                 switch (irdLogdata.BillType)
                 {
                     case "billing-sales":
                         {
-                            string api_SalesIRDNepal = ConfigurationManager.AppSettings["api_SalesIRDNepal"];
+                            string api_SalesIRDNepal = System.Configuration.ConfigurationManager.AppSettings["api_SalesIRDNepal"];
                             irdLogdata.UrlInfo = url_IRDNepal + "/" + api_SalesIRDNepal;
                             break;
                         }
                     case "billing-sales-return":
                         {
-                            string api_SalesReturnIRDNepal = ConfigurationManager.AppSettings["api_SalesReturnIRDNepal"];
+                            string api_SalesReturnIRDNepal = System.Configuration.ConfigurationManager.AppSettings["api_SalesReturnIRDNepal"];
                             irdLogdata.UrlInfo = url_IRDNepal + "/" + api_SalesReturnIRDNepal;
                             break;
                         }

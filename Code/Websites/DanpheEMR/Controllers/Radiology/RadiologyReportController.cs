@@ -12,7 +12,7 @@ using Microsoft.Extensions.Options;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using DanpheEMR.Core;
 
@@ -22,10 +22,10 @@ namespace DanpheEMR.Controllers
     {
         public string labTemplateFolder = null;
 
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         //Get Current Loggedin user via session                      
         //RbacUser _currentUser = new RbacUser();
-        public RadiologyReportController(IOptions<MyConfiguration> _config, IHostingEnvironment hostingEnvironment) : base(_config)
+        public RadiologyReportController(IOptions<MyConfiguration> _config, IWebHostEnvironment hostingEnvironment) : base(_config)
         {
             this._hostingEnvironment = hostingEnvironment;
             this.labTemplateFolder = _config.Value.FileStorageRelativeLocation;

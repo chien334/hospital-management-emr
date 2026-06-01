@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +11,30 @@ namespace DanpheEMR.DalLayer
 {
     public class IncentiveDbContext : DbContext
     {
-        public IncentiveDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public IncentiveDbContext(DbContextOptions<IncentiveDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
+
+        public IncentiveDbContext(string conn)
+        {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         public DbSet<ProfileModel> Profile { get; set; }
         public DbSet<PriceCategoryModel> PriceCategories { get; set; }//this is coming from Billing's -> model
@@ -35,8 +54,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<BillServiceItemModel> ServiceItems { get; set; }
         public DbSet<ServiceDepartmentModel> ServiceDepartments { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ProfileModel>().ToTable("INCTV_MST_Profile");
             modelBuilder.Entity<PriceCategoryModel>().ToTable("BIL_CFG_PriceCategory");//pratik:18Nov'19--changed the db-table mapping. 
             //modelBuilder.Entity<EmployeeProfileMap>().ToTable("INCTV_EMP_Profile_Map");

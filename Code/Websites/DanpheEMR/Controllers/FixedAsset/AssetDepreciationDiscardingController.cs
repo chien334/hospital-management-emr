@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -221,14 +221,14 @@ namespace DanpheEMR.Controllers
                 deprnDetails.ModifiedOn = DateTime.Now;
 
                 var temp = inventoryDbContext.FixedAssetDepreciation.Attach(deprnDetails);
-                inventoryDbContext.Entry(temp).Property(x => x.AssetDeprnMethodId).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.FiscalYearId).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.DepreciationAmount).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.Rate).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.StartDate).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.EndDate).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedBy).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedOn).IsModified = true;
+                temp.Property(x => x.AssetDeprnMethodId).IsModified = true;
+                temp.Property(x => x.FiscalYearId).IsModified = true;
+                temp.Property(x => x.DepreciationAmount).IsModified = true;
+                temp.Property(x => x.Rate).IsModified = true;
+                temp.Property(x => x.StartDate).IsModified = true;
+                temp.Property(x => x.EndDate).IsModified = true;
+                temp.Property(x => x.ModifiedBy).IsModified = true;
+                temp.Property(x => x.ModifiedOn).IsModified = true;
 
                 //inventoryDbContext.Entry(temp).State = EntityState.Modified;
 
@@ -261,10 +261,10 @@ namespace DanpheEMR.Controllers
                 details.ModifiedOn = DateTime.Now;
 
                 var temp = inventoryDbContext.FixedAssetStock.Attach(details);
-                inventoryDbContext.Entry(temp).Property(x => x.ScrapAmount).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ScrapRemarks).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ScrapCancelRemarks).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.IsAssetScraped).IsModified = true;
+                temp.Property(x => x.ScrapAmount).IsModified = true;
+                temp.Property(x => x.ScrapRemarks).IsModified = true;
+                temp.Property(x => x.ScrapCancelRemarks).IsModified = true;
+                temp.Property(x => x.IsAssetScraped).IsModified = true;
 
                 //inventoryDbContext.Entry(temp).State = EntityState.Modified;
 

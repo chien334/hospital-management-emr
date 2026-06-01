@@ -5,21 +5,42 @@ using DanpheEMR.ServerModel.MedicareModels;
 using DanpheEMR.ServerModel.PatientModels;
 using DanpheEMR.ServerModel.PharmacyModels;
 using DanpheEMR.ServerModel.PharmacyModels.Patient_Consumption;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace DanpheEMR.DalLayer
 {
     public class PatientConsumptionDbContext : DbContext
     {
-        public PatientConsumptionDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public PatientConsumptionDbContext(DbContextOptions<PatientConsumptionDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public PatientConsumptionDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<PatientConsumptionModel>().ToTable("PHRM_TXN_PatientConsumption");
             modelBuilder.Entity<PatientConsumptionItemModel>().ToTable("PHRM_TXN_PatientConsumptionItem");
             modelBuilder.Entity<PatientConsumptionReturnItemModel>().ToTable("PHRM_TXN_PatientConsumptionReturnItem");
@@ -50,8 +71,8 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<MedicareMember>().ToTable("INS_MedicareMember");
             modelBuilder.Entity<MedicareMemberBalance>().ToTable("INS_MedicareMemberBalance");
 
-            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
+            // modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
+            // modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
         }
         public DbSet<PatientConsumptionModel> PatientConsumption { get; set; }
         public DbSet<PatientConsumptionItemModel> PatientConsumptionItem { get; set; }

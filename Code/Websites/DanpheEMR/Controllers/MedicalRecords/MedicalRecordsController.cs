@@ -10,8 +10,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -249,7 +249,7 @@ namespace DanpheEMR.Controllers
             var deathList = (from death in _mrDbContext.DeathDetails
                              join pat in _mrDbContext.Patient on death.PatientId equals pat.PatientId
                              where death.IsActive == true
-                             && (filterByDate ? (DbFunctions.TruncateTime(death.DeathDate) >= FromDate && DbFunctions.TruncateTime(death.DeathDate) <= ToDate) : true)
+                             && (filterByDate ? ((death.DeathDate).Date >= FromDate && (death.DeathDate).Date <= ToDate) : true)
                              //orderby death.DeathId descending
                              select new
                              {
@@ -283,7 +283,7 @@ namespace DanpheEMR.Controllers
             var birthList = (from brth in _mrDbContext.BabyBirthDetails
                              join pat in _mrDbContext.Patient on brth.PatientId equals pat.PatientId
                              where brth.IsActive == true
-                             && (filterByDate ? (DbFunctions.TruncateTime(brth.BirthDate) >= FromDate && DbFunctions.TruncateTime(brth.BirthDate) <= ToDate) : true)
+                             && (filterByDate ? ((brth.BirthDate).Date >= FromDate && (brth.BirthDate).Date <= ToDate) : true)
                              select new
                              {
                                  BabyBirthDetailsId = brth.BabyBirthDetailsId,
@@ -469,8 +469,8 @@ namespace DanpheEMR.Controllers
                                  join dpart in _mrDbContext.Department on patVisit.DepartmentId equals dpart.DepartmentId
                                  where patVisit.VisitType == "outpatient" && patVisit.IsActive == true
                                     && patVisit.BillingStatus != "returned"
-                                    && (DbFunctions.TruncateTime(patVisit.VisitDate) >= DbFunctions.TruncateTime(fromDate)
-                                    && DbFunctions.TruncateTime(patVisit.VisitDate) <= DbFunctions.TruncateTime(toDate))
+                                    && ((patVisit.VisitDate).Date >= (fromDate).Date
+                                    && (patVisit.VisitDate).Date <= (toDate).Date)
                                  select new
                                  {
                                      pat.PatientId,
@@ -685,7 +685,7 @@ namespace DanpheEMR.Controllers
         //    var birthList = (from brth in dbContext.BabyBirthDetails
         //                     join pat in dbContext.Patient on brth.PatientId equals pat.PatientId
         //                     where brth.IsActive == true
-        //                     && (filterByDate ? (DbFunctions.TruncateTime(brth.BirthDate) >= FromDate && DbFunctions.TruncateTime(brth.BirthDate) <= ToDate) : true)
+        //                     && (filterByDate ? ((brth.BirthDate).Date >= FromDate && (brth.BirthDate).Date <= ToDate) : true)
         //                     select new
         //                     {
         //                         BabyBirthDetailsId = brth.BabyBirthDetailsId,
@@ -722,7 +722,7 @@ namespace DanpheEMR.Controllers
         //    var deathList = (from death in dbContext.DeathDetails
         //                     join pat in dbContext.Patient on death.PatientId equals pat.PatientId
         //                     where death.IsActive == true
-        //                     && (filterByDate ? (DbFunctions.TruncateTime(death.DeathDate) >= FromDate && DbFunctions.TruncateTime(death.DeathDate) <= ToDate) : true)
+        //                     && (filterByDate ? ((death.DeathDate).Date >= FromDate && (death.DeathDate).Date <= ToDate) : true)
         //                     //orderby death.DeathId descending
         //                     select new
         //                     {
@@ -851,8 +851,8 @@ namespace DanpheEMR.Controllers
         //                         join dpart in _mrDbContext.Department on patVisit.DepartmentId equals dpart.DepartmentId
         //                         where patVisit.VisitType == "outpatient" && patVisit.IsActive == true
         //                            && patVisit.BillingStatus != "returned"
-        //                            && (DbFunctions.TruncateTime(patVisit.VisitDate) >= DbFunctions.TruncateTime(fromDate)
-        //                            && DbFunctions.TruncateTime(patVisit.VisitDate) <= DbFunctions.TruncateTime(toDate))
+        //                            && ((patVisit.VisitDate).Date >= (fromDate).Date
+        //                            && (patVisit.VisitDate).Date <= (toDate).Date)
         //                         select new
         //                         {
         //                             pat.PatientId,
@@ -2656,8 +2656,8 @@ namespace DanpheEMR.Controllers
                                                join dept in _mrDbContext.Department on patVisit.DepartmentId equals dept.DepartmentId
                                                where patVisit.VisitType == "emergency" && patVisit.BillingStatus != "returned"
                                                && patVisit.IsActive == true
-                                               && (DbFunctions.TruncateTime(patVisit.VisitDate) >= DbFunctions.TruncateTime(fromDate)
-                                               && DbFunctions.TruncateTime(patVisit.VisitDate) <= DbFunctions.TruncateTime(toDate))
+                                               && ((patVisit.VisitDate).Date >= (fromDate).Date
+                                               && (patVisit.VisitDate).Date <= (toDate).Date)
                                                select new
                                                {
                                                    pat.PatientId,

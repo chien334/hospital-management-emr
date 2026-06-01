@@ -14,8 +14,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -95,7 +95,7 @@ namespace DanpheEMR.Controllers.Pharmacy
         {
             var provisionalReturns = (from provRetItm in _pharmacyDbContext.ProvisionalReturnItems
                                       join pat in _pharmacyDbContext.PHRMPatient on provRetItm.PatientId equals pat.PatientId
-                                      where provRetItm.StoreId == StoreId && DbFunctions.TruncateTime(provRetItm.CreatedOn) >= DbFunctions.TruncateTime(FromDate) && DbFunctions.TruncateTime(provRetItm.CreatedOn) <= DbFunctions.TruncateTime(ToDate)
+                                      where provRetItm.StoreId == StoreId && (provRetItm.CreatedOn).Date >= (FromDate).Date && (provRetItm.CreatedOn).Date <= (ToDate).Date
                                       group new { provRetItm, pat } by new
                                       {
                                           pat.PatientCode,

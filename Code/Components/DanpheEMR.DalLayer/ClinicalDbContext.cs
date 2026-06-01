@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.ClinicalModels;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.PharmacyModels;
@@ -110,13 +110,34 @@ namespace DanpheEMR.DalLayer
         public DbSet<ConsultationRequestModel> ConsultationRequest { get; set; }
 
         public DbSet<ClinicalIntakeOutputParameterModel> ClinicalIntakeOutputParameters { get; set; }
-        public ClinicalDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public ClinicalDbContext(DbContextOptions<ClinicalDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public ClinicalDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<VitalsModel>().ToTable("CLN_PatientVitals");
             modelBuilder.Entity<AllergyModel>().ToTable("CLN_Allergies");
@@ -216,62 +237,62 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<ClinicalIntakeOutputParameterModel>().ToTable("CLN_MST_IntakeOutTakeParameter");
             //Vitals and visit mappings
             modelBuilder.Entity<VitalsModel>()
-                        .HasRequired<VisitModel>(a => a.Visit)
+                        .HasOne(a => a.Visit)
                         .WithMany(a => a.Vitals)
                         .HasForeignKey(a => a.PatientVisitId);
 
             // Patient and Allergy mapping
             modelBuilder.Entity<AllergyModel>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.Allergies)
                     .HasForeignKey(s => s.PatientId);
 
             //Vitals and inputoutput mappings
             modelBuilder.Entity<InputOutputModel>()
-                        .HasRequired<VisitModel>(a => a.Visit)
+                        .HasOne(a => a.Visit)
                         .WithMany(a => a.InputOutput)
                         .HasForeignKey(a => a.PatientVisitId);
 
             // Patient and MedicationPrescription
             modelBuilder.Entity<MedicationPrescriptionModel>()
-                .HasRequired<PatientModel>(m => m.Patient)
+                .HasOne(m => m.Patient)
                 .WithMany(p => p.MedicationPrescriptions)
                 .HasForeignKey(m => m.PatientId);
 
             // Patient and HomeMedications
             modelBuilder.Entity<HomeMedicationModel>()
-                .HasRequired<PatientModel>(h => h.Patient)
+                .HasOne(h => h.Patient)
                 .WithMany(p => p.HomeMedication)
                 .HasForeignKey(h => h.PatientId);
 
 
             // Patient and activemedical mappings
             modelBuilder.Entity<ActiveMedicalProblem>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.Problems)
                     .HasForeignKey(s => s.PatientId);
 
             // Patient and pastMedical list mappings
             modelBuilder.Entity<PastMedicalProblem>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.PastMedicals)
                     .HasForeignKey(s => s.PatientId);
 
             //Patient and FamilyHistory list mappings
             modelBuilder.Entity<FamilyHistory>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.FamilyHistory)
                     .HasForeignKey(s => s.PatientId);
 
             //Patient and SurgicalHistory list mappings=
             modelBuilder.Entity<SurgicalHistory>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.SurgicalHistory)
                     .HasForeignKey(s => s.PatientId);
 
             //Patient and SocialHistory list mappings
             modelBuilder.Entity<SocialHistory>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.SocialHistory)
                     .HasForeignKey(s => s.PatientId);
         }

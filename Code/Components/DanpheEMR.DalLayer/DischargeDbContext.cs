@@ -3,14 +3,14 @@ using DanpheEMR.Security;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.MedicareModels;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.PatientModels;
 using DanpheEMR.ServerModel.CommonModels;
 using DanpheEMR.ServerModel.MasterModels;
 using DanpheEMR.ServerModel.PharmacyModels;
-using System.Data.Entity.ModelConfiguration.Conventions;
+
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using DanpheEMR.ServerModel.ReportingModels;
 using DanpheEMR.ServerModel.BillingModels.DischargeStatementModels;
@@ -20,12 +20,30 @@ namespace DanpheEMR.DalLayer
     public class DischargeDbContext : AuditDbContext
     {
 
-        public DischargeDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public DischargeDbContext(DbContextOptions<DischargeDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
             this.AuditDisabled = true;
         }
+
+        public DischargeDbContext(string conn)
+        {
+            _connectionString = conn;
+            this.AuditDisabled = true;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<BillingTransactionModel> BillingTransactions { get; set; }
         public DbSet<ServiceDepartmentModel> ServiceDepartment { get; set; }
         public DbSet<BillItemRequisition> BillItemRequisitions { get; set; }
@@ -67,8 +85,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<BillingSchemeModel> BillingSchemes { get; set; }
         public DbSet<PriceCategoryModel> PriceCategories { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<BillingTransactionModel>().ToTable("BIL_TXN_BillingTransaction");
             modelBuilder.Entity<ServiceDepartmentModel>().ToTable("BIL_MST_ServiceDepartment");
             modelBuilder.Entity<LabRequisitionModel>().ToTable("LAB_TestRequisition");
@@ -76,7 +96,7 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");
             modelBuilder.Entity<BillingTransactionItemModel>()
-                  .HasRequired<BillingTransactionModel>(s => s.BillingTransaction)
+                  .HasOne(s => s.BillingTransaction)
                   .WithMany(s => s.BillingTransactionItems)
                    .HasForeignKey(s => s.BillingTransactionId);
             modelBuilder.Entity<BillServiceItemModel>().ToTable("BIL_MST_ServiceItem");
@@ -115,12 +135,12 @@ namespace DanpheEMR.DalLayer
 
             modelBuilder.Entity<PHRMStoreStockModel>()
                 .ToTable("PHRM_TXN_StoreStock")
-                .HasRequired(a => a.StockMaster)
+                .HasOne(a => a.StockMaster)
                 .WithMany(a => a.StoreStocks)
                 .HasForeignKey(a => a.StockId);
 
-            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
+            // modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
+            // modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
 
         }
 

@@ -1,7 +1,7 @@
-﻿
+
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using DanpheEMR.CommonTypes;
@@ -253,10 +253,10 @@ namespace DanpheEMR.Controllers
                 assetDetails.ModifiedOn = DateTime.Now;
 
                 var temp = inventoryDbContext.FixedAssetStock.Attach(assetDetails);
-                inventoryDbContext.Entry(temp).Property(x => x.FixedAssetStockId).IsModified = false;
-                inventoryDbContext.Entry(temp).Property(x => x.IsAssetDamageConfirmed).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedBy).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedOn).IsModified = true;
+                temp.Property(x => x.FixedAssetStockId).IsModified = false;
+                temp.Property(x => x.IsAssetDamageConfirmed).IsModified = true;
+                temp.Property(x => x.ModifiedBy).IsModified = true;
+                temp.Property(x => x.ModifiedOn).IsModified = true;
 
                 //inventoryDbContext.Entry(temp).State = EntityState.Modified;
 
@@ -294,36 +294,36 @@ namespace DanpheEMR.Controllers
                     fixedAssetstock.ModifiedBy = currentUser.EmployeeId;
                     fixedAssetstock.ModifiedOn = DateTime.Now;
                     var temp = inventorygDbContext.FixedAssetStock.Attach(fixedAssetstock);
-                    inventorygDbContext.Entry(temp).State = EntityState.Modified;
-                    inventorygDbContext.Entry(temp).Property(x => x.ItemId).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.ItemRate).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.DiscountAmount).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.DiscountPercent).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.VATAmount).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.VAT).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.MRP).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.CcAmount).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.CcCharge).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.OtherCharge).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.CounterId).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.CreatedOn).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.CreatedBy).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.GoodsReceiptItemId).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.TotalLife).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.YearOfUse).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.Performance).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.ManufactureDate).IsModified = false;
-                    inventorygDbContext.Entry(temp).Property(x => x.AssetsLocation).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.WarrantyExpiryDate).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.SerialNo).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.ModelNo).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.BuildingBlockNumber).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.Floors).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.RoomNumber).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.RoomPosition).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.AssetHolderId).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.StoreId).IsModified = true;
-                    inventorygDbContext.Entry(temp).Property(x => x.AssetCode).IsModified = true;
+                    temp.State = EntityState.Modified;
+                    temp.Property(x => x.ItemId).IsModified = false;
+                    temp.Property(x => x.ItemRate).IsModified = false;
+                    temp.Property(x => x.DiscountAmount).IsModified = false;
+                    temp.Property(x => x.DiscountPercent).IsModified = false;
+                    temp.Property(x => x.VATAmount).IsModified = false;
+                    temp.Property(x => x.VAT).IsModified = false;
+                    temp.Property(x => x.MRP).IsModified = false;
+                    temp.Property(x => x.CcAmount).IsModified = false;
+                    temp.Property(x => x.CcCharge).IsModified = false;
+                    temp.Property(x => x.OtherCharge).IsModified = false;
+                    temp.Property(x => x.CounterId).IsModified = false;
+                    temp.Property(x => x.CreatedOn).IsModified = false;
+                    temp.Property(x => x.CreatedBy).IsModified = false;
+                    temp.Property(x => x.GoodsReceiptItemId).IsModified = false;
+                    temp.Property(x => x.TotalLife).IsModified = false;
+                    temp.Property(x => x.YearOfUse).IsModified = false;
+                    temp.Property(x => x.Performance).IsModified = false;
+                    temp.Property(x => x.ManufactureDate).IsModified = false;
+                    temp.Property(x => x.AssetsLocation).IsModified = true;
+                    temp.Property(x => x.WarrantyExpiryDate).IsModified = true;
+                    temp.Property(x => x.SerialNo).IsModified = true;
+                    temp.Property(x => x.ModelNo).IsModified = true;
+                    temp.Property(x => x.BuildingBlockNumber).IsModified = true;
+                    temp.Property(x => x.Floors).IsModified = true;
+                    temp.Property(x => x.RoomNumber).IsModified = true;
+                    temp.Property(x => x.RoomPosition).IsModified = true;
+                    temp.Property(x => x.AssetHolderId).IsModified = true;
+                    temp.Property(x => x.StoreId).IsModified = true;
+                    temp.Property(x => x.AssetCode).IsModified = true;
                     inventorygDbContext.SaveChanges();
 
                     //adding LocationHistory in AssetsLocationHistory
@@ -340,10 +340,10 @@ namespace DanpheEMR.Controllers
                     {
                         CreatedBy = currentUser.EmployeeId,
                         StartDate = DateTime.Now,
-                        OldLocation = temp.AssetsLocation,
-                        OldStoreId = temp.StoreId,
-                        OldAssetHolderId = temp.AssetHolderId,
-                        FixedAssetStockId = temp.FixedAssetStockId
+                        OldLocation = fixedAssetstock.AssetsLocation,
+                        OldStoreId = fixedAssetstock.StoreId,
+                        OldAssetHolderId = fixedAssetstock.AssetHolderId,
+                        FixedAssetStockId = fixedAssetstock.FixedAssetStockId
                     };
                     inventorygDbContext.AssetLocationHistory.Add(newAssetLocationHistory);
                     inventorygDbContext.SaveChanges();

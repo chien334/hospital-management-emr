@@ -1,6 +1,6 @@
 ﻿using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.BillingModels;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.DalLayer
 {
@@ -21,21 +21,42 @@ namespace DanpheEMR.DalLayer
         public DbSet<BillingSchemeModel> Schemes { get; set; }
         public DbSet<MunicipalityModel> Municipalities { get; set; }
 
-        public SocialServiceUnitDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public SocialServiceUnitDbContext(DbContextOptions<SocialServiceUnitDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public SocialServiceUnitDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
             modelBuilder.Entity<AdmissionModel>().ToTable("ADT_PatientAdmission");//sud: 3June'18
             // Patient and visit mappings
             modelBuilder.Entity<VisitModel>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.Visits)
                     .HasForeignKey(s => s.PatientId);
-            modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient").HasOptional<CountrySubDivisionModel>(p => p.CountrySubDivision);
+            modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient").HasOne(p => p.CountrySubDivision);
             modelBuilder.Entity<SSU_InformationModel>().ToTable("PAT_SSU_Information");
             modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
             modelBuilder.Entity<CountryModel>().ToTable("MST_Country");

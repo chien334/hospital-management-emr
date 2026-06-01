@@ -1,4 +1,4 @@
-﻿using DanpheEMR.CommonTypes;
+using DanpheEMR.CommonTypes;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
 using DanpheEMR.Security;
@@ -10,9 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -106,7 +106,7 @@ namespace DanpheEMR.Controllers
         /// <param name="insuranceDbContext">Calling function need to pass an object of InsuranceDbContext.</param>
         public static INS_NewClaimCodeDTO GetGovInsNewClaimCode(DbContext dbContextToUse)
         {
-            INS_NewClaimCodeDTO newClaimObj = dbContextToUse.Database.SqlQuery<INS_NewClaimCodeDTO>("SP_INS_GetNewClaimCode").FirstOrDefault();
+            INS_NewClaimCodeDTO newClaimObj = dbContextToUse.Database.SqlQueryRaw<INS_NewClaimCodeDTO>("SP_INS_GetNewClaimCode").FirstOrDefault();
             return newClaimObj;
         }
         public static bool HasDuplicateVisitWithSameProvider(InsuranceDbContext insuranceDb, int patientId, int? providerId, DateTime visitDate)
@@ -119,7 +119,7 @@ namespace DanpheEMR.Controllers
 
             List<VisitModel> patientvisitList = (from visit in insuranceDb.Visit
                                                  where visit.PatientId == patientId
-                                                 && DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(visitDate)
+                                                 && (visit.VisitDate).Date == (visitDate).Date
                                                  && visit.PerformerId == providerId && visit.IsActive == true
                                                  && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
                                                  select visit).ToList();
@@ -880,18 +880,18 @@ namespace DanpheEMR.Controllers
             {
                 irdLogdata.CreatedOn = DateTime.Now;
 
-                string url_IRDNepal = ConfigurationManager.AppSettings["url_IRDNepal"];
+                string url_IRDNepal = System.Configuration.ConfigurationManager.AppSettings["url_IRDNepal"];
                 switch (irdLogdata.BillType)
                 {
                     case "billing-sales":
                         {
-                            string api_SalesIRDNepal = ConfigurationManager.AppSettings["api_SalesIRDNepal"];
+                            string api_SalesIRDNepal = System.Configuration.ConfigurationManager.AppSettings["api_SalesIRDNepal"];
                             irdLogdata.UrlInfo = url_IRDNepal + "/" + api_SalesIRDNepal;
                             break;
                         }
                     case "billing-sales-return":
                         {
-                            string api_SalesReturnIRDNepal = ConfigurationManager.AppSettings["api_SalesReturnIRDNepal"];
+                            string api_SalesReturnIRDNepal = System.Configuration.ConfigurationManager.AppSettings["api_SalesReturnIRDNepal"];
                             irdLogdata.UrlInfo = url_IRDNepal + "/" + api_SalesReturnIRDNepal;
                             break;
                         }

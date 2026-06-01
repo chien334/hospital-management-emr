@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.BillingModels;
 
 namespace DanpheEMR.DalLayer
@@ -28,14 +28,35 @@ namespace DanpheEMR.DalLayer
         public DbSet<AdmissionModel> Admissions { get; set; }
         public DbSet<BillMapPriceCategoryServiceItemModel> BillPriceCategoryServiceItems { get; set; }
 
-        public OrdersDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public OrdersDbContext(DbContextOptions<OrdersDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public OrdersDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<RadiologyImagingItemModel>().ToTable("RAD_MST_ImagingItem");
             modelBuilder.Entity<RadiologyImagingTypeModel>().ToTable("RAD_MST_ImagingType");
 

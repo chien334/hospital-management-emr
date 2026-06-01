@@ -12,7 +12,7 @@ using DanpheEMR.ServerModel.ClinicalModels;
 using DanpheEMR.Services.Accounting.DTOs;
 using DanpheEMR.Utilities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+/* using Microsoft.CodeAnalysis.CSharp.Syntax; */
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -20,8 +20,8 @@ using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860

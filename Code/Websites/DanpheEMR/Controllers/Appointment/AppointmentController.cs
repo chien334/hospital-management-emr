@@ -18,7 +18,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DanpheEMR.Utilities;
 using System.Globalization; //used for converting string to Titlecase i.e first letter capital
@@ -417,7 +417,7 @@ namespace DanpheEMR.Controllers
 
         //            // List<AppointmentModel> patAppointmentList = (from app in dbContextAppointment.Appointments
         //            //                                             where app.PatientId == patientId
-        //            //                                             && app.AppointmentDate >= DbFunctions.TruncateTime(requestDate.Date)
+        //            //                                             && app.AppointmentDate >= (requestDate.Date).Date
         //            //                                             && app.PerformerId == performerId 
         //            //                                             select app).ToList();
 
@@ -425,7 +425,7 @@ namespace DanpheEMR.Controllers
 
         //            //List<VisitModel> patientvisitList = (from visit in dbContext.Visits
         //            //                                     where visit.PatientId == patientId
-        //            //                                     && DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(requestDate.Date)
+        //            //                                     && (visit.VisitDate).Date == (requestDate.Date).Date
         //            //                                     && visit.PerformerId == performerId 
         //            //                                     select visit).ToList();
 
@@ -1003,7 +1003,7 @@ namespace DanpheEMR.Controllers
         {
             List<AppointmentModel> patAppointmentList = (from app in _appointmentDbContext.Appointments
                                                          where app.PatientId == patientId
-                                                         && app.AppointmentDate >= DbFunctions.TruncateTime(requestDate.Date)
+                                                         && app.AppointmentDate >= (requestDate.Date).Date
                                                          && app.PerformerId == performerId
                                                          select app).ToList();
 
@@ -1011,7 +1011,7 @@ namespace DanpheEMR.Controllers
 
             List<VisitModel> patientvisitList = (from visit in dbContext.Visits
                                                  where visit.PatientId == patientId
-                                                 && DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(requestDate.Date)
+                                                 && (visit.VisitDate).Date == (requestDate.Date).Date
                                                  && visit.PerformerId == performerId
                                                  select visit).ToList();
 

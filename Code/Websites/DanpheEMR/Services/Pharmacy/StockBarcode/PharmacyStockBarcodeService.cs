@@ -57,7 +57,7 @@ namespace DanpheEMR.Services
                     createdBy: createdBy,
                     createdOn: DateTime.Now
                     );
-                db.Entry(stockBarcodeEntity).State = System.Data.Entity.EntityState.Added;
+                db.Entry(stockBarcodeEntity).State = Microsoft.EntityFrameworkCore.EntityState.Added;
                 db.SaveChanges();
             }
             // return the barcode id

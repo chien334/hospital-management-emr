@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DanpheEMR.Utilities;
 using System.Globalization; //used for converting string to Titlecase i.e first letter capital

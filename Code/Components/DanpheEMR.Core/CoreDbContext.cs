@@ -1,5 +1,5 @@
 using System;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using DanpheEMR.Core.Parameters;
@@ -12,11 +12,25 @@ namespace DanpheEMR.Core
 {
     public class CoreDbContext : AuditDbContext
     {
-        public CoreDbContext(string connString)
-            : base(connString)
+        private readonly string? _connectionString;
+
+        public CoreDbContext(DbContextOptions<CoreDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+        }
+
+        public CoreDbContext(string conn)
+        {
+            _connectionString = conn;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
         }
 
         public DbSet<ParameterModel> Parameters { get; set; }
@@ -58,8 +72,10 @@ namespace DanpheEMR.Core
         public DbSet<TemplateFieldMappingModel> TemplateFieldMappings { get; set; }
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<ParameterModel>().ToTable("CORE_CFG_Parameters");
             modelBuilder.Entity<LookupsModel>().ToTable("CORE_CFG_LookUps");
 
@@ -100,7 +116,6 @@ namespace DanpheEMR.Core
             modelBuilder.Entity<FieldMasterModel>().ToTable("DYNTMP_MST_FieldMaster");
             modelBuilder.Entity<TemplateModel>().ToTable("DYNTEMP_CFG_Template");
             modelBuilder.Entity<TemplateFieldMappingModel>().ToTable("DYNTMP_MAP_TemplateFieldMapping");
-
         }
     }
 }

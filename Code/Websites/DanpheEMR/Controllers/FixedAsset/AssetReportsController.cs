@@ -6,10 +6,10 @@ using DanpheEMR.DalLayer;
 using DanpheEMR.CommonTypes;
 using System.Linq;
 using System;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.InventoryModels.InventoryReportModel;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using DanpheEMR.Utilities;
 using System.Data;
 using System.Text;
@@ -26,9 +26,9 @@ namespace DanpheEMR.Controllers
 {
     public class AssetReportsController : CommonController
     {
-        private static IHostingEnvironment _environment;
+        private static IWebHostEnvironment _environment;
         readonly DanpheHTTPResponse<object> responseData = new DanpheHTTPResponse<object>();
-        public AssetReportsController(IHostingEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
+        public AssetReportsController(IWebHostEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
         {
             _environment = env;
         }

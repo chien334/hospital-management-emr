@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using DanpheEMR.Utilities;
@@ -27,7 +27,7 @@ using System.Transactions;
 using System.Net;
 using System.IO;
 using DanpheEMR.Services;
-using System.Web;
+/* using System.Web; */
 namespace DanpheEMR.Controllers
 {
 
@@ -1465,7 +1465,7 @@ namespace DanpheEMR.Controllers
                                      where (forWorkList ? ((req.OrderStatus.ToLower() == ENUM_LabOrderStatus.Pending) || (req.OrderStatus.ToLower() == ENUM_LabOrderStatus.ResultAdded)
                                         || (req.OrderStatus.ToLower() == ENUM_LabOrderStatus.ReportGenerated)) : (req.OrderStatus.ToLower() == ENUM_LabOrderStatus.Pending))
                                      && req.SampleCode != null
-                                     && (filterByDate ? (DbFunctions.TruncateTime(req.CreatedOn) >= StartDate && DbFunctions.TruncateTime(req.CreatedOn) <= EndDate) : true)
+                                     && (filterByDate ? ((req.CreatedOn).Date >= StartDate && (req.CreatedOn).Date <= EndDate) : true)
                                      && req.BillingStatus.ToLower() != ENUM_BillingStatus.cancel // "cancel" 
                                      && req.BillingStatus.ToLower() != ENUM_BillingStatus.returned // "returned"
                                      && (BarcodeNumber == 0 ? true : (req.BarCodeNumber == BarcodeNumber))
@@ -1481,7 +1481,7 @@ namespace DanpheEMR.Controllers
                                          patient,
                                          req.SampleCode,
                                          req.SampleCodeFormatted,
-                                         DbFunctions.TruncateTime(req.SampleCreatedOn).Value,
+                                         req.SampleCreatedOn.Value.Date,
                                          req.VisitType,
                                          req.RequisitionId,
                                          req.RunNumberType,
@@ -1499,7 +1499,7 @@ namespace DanpheEMR.Controllers
                                          PatientName = grp.Key.patient.FirstName + " " + (string.IsNullOrEmpty(grp.Key.patient.MiddleName) ? "" : grp.Key.patient.MiddleName + " ") + grp.Key.patient.LastName,
 
                                          SampleCode = grp.Key.SampleCode,
-                                         SampleDate = grp.Key.Value,
+                                         SampleDate = grp.Key.Date,
                                          VisitType = grp.Key.VisitType,
                                          RunNumType = grp.Key.RunNumberType,
                                          BarCodeNumber = grp.Key.BarCodeNumber,
@@ -1553,7 +1553,7 @@ namespace DanpheEMR.Controllers
                                         && req.BillingStatus.ToLower() != ENUM_BillingStatus.returned //"returned"
                                         && (BarcodeNumber == 0 ? true : (req.BarCodeNumber == BarcodeNumber))
                                         && (SampleNumber == 0 ? true : (req.SampleCode.HasValue ? (req.SampleCode == SampleNumber) : false))
-                                        && (filterByDate ? (DbFunctions.TruncateTime(req.CreatedOn) >= StartDate && DbFunctions.TruncateTime(req.CreatedOn) <= EndDate) : true)
+                                        && (filterByDate ? ((req.CreatedOn).Date >= StartDate && (req.CreatedOn).Date <= EndDate) : true)
                                         && (PatientId == 0 ? true : (req.PatientId == PatientId))
                                         //Removed as all can add result but cannot Print Report Until Bill is Paid (incase of OP)
                                         //&& (req.BillingStatus == "paid" || (req.BillingStatus == "provisional" && req.VisitType == "inpatient"))
@@ -1567,7 +1567,7 @@ namespace DanpheEMR.Controllers
                                             patient,
                                             req.SampleCode,
                                             req.SampleCodeFormatted,
-                                            DbFunctions.TruncateTime(req.SampleCreatedOn).Value,
+                                            req.SampleCreatedOn.Value.Date,
                                             req.VisitType,
                                             req.RunNumberType,
                                             req.BarCodeNumber,
@@ -1584,7 +1584,7 @@ namespace DanpheEMR.Controllers
                                             PatientName = grp.Key.patient.FirstName + " " + (string.IsNullOrEmpty(grp.Key.patient.MiddleName) ? "" : grp.Key.patient.MiddleName + " ") + grp.Key.patient.LastName,
 
                                             SampleCode = grp.Key.SampleCode,
-                                            SampleDate = grp.Key.Value,
+                                            SampleDate = grp.Key.Date,
                                             VisitType = grp.Key.VisitType,
                                             RunNumType = grp.Key.RunNumberType,
                                             BarCodeNumber = grp.Key.BarCodeNumber,
@@ -1643,7 +1643,7 @@ namespace DanpheEMR.Controllers
                                       where req.OrderStatus.ToLower() == ENUM_LabOrderStatus.ResultAdded // "result-added"
                                       && (BarcodeNumber == 0 ? true : (req.BarCodeNumber == BarcodeNumber))
                                       && (SampleNumber == 0 ? true : (req.SampleCode.HasValue ? (req.SampleCode == SampleNumber) : false))
-                                      && (filterByDate ? (DbFunctions.TruncateTime(req.CreatedOn) >= StartDate && DbFunctions.TruncateTime(req.CreatedOn) <= EndDate) : true)
+                                      && (filterByDate ? ((req.CreatedOn).Date >= StartDate && (req.CreatedOn).Date <= EndDate) : true)
                                       && (filterByCategory ? (categoryList.Contains(test.LabTestCategoryId)) : true)
                                       && (PatientId == 0 ? true : (req.PatientId == PatientId))
                                       && req.BillingStatus.ToLower() != ENUM_BillingStatus.cancel //"cancel" 
@@ -1671,7 +1671,7 @@ namespace DanpheEMR.Controllers
                                           PatientName = grp.Key.patient.FirstName + " " + (string.IsNullOrEmpty(grp.Key.patient.MiddleName) ? "" : grp.Key.patient.MiddleName + " ") + grp.Key.patient.LastName,
 
                                           SampleCode = grp.Key.req.SampleCode,
-                                          SampleDate = DbFunctions.TruncateTime(grp.Key.req.SampleCreatedOn).Value,
+                                          SampleDate = grp.Key.req.SampleCreatedOn.Value.Date,
                                           SampleCodeFormatted = grp.Key.SampleCodeFormatted,
                                           VisitType = grp.Key.req.VisitType,
                                           RunNumType = grp.Key.RunNumberType,
@@ -1752,7 +1752,7 @@ namespace DanpheEMR.Controllers
                                         && (req.IsVerified.HasValue ? req.IsVerified == false : true)) : req.OrderStatus.ToLower() == ENUM_LabOrderStatus.ResultAdded) // "result-added"
                                         && (BarcodeNumber == 0 ? true : (req.BarCodeNumber == BarcodeNumber))
                                         && (SampleNumber == 0 ? true : (req.SampleCode.HasValue ? (req.SampleCode == SampleNumber) : false))
-                                        && (filterByDate ? (DbFunctions.TruncateTime(req.CreatedOn) >= StartDate && DbFunctions.TruncateTime(req.CreatedOn) <= EndDate) : true)
+                                        && (filterByDate ? ((req.CreatedOn).Date >= StartDate && (req.CreatedOn).Date <= EndDate) : true)
                                         && (filterByCategory ? (categoryList.Contains(test.LabTestCategoryId)) : true)
                                         && (PatientId == 0 ? true : (req.PatientId == PatientId))
                                         && req.BillingStatus.ToLower() != ENUM_BillingStatus.cancel //"cancel" 
@@ -1764,7 +1764,7 @@ namespace DanpheEMR.Controllers
                                         {
                                             patient,
                                             req.SampleCode,
-                                            DbFunctions.TruncateTime(req.SampleCreatedOn).Value,
+                                            req.SampleCreatedOn.Value.Date,
                                             req.VisitType,
                                             req.RunNumberType,
                                             req.BarCodeNumber,
@@ -1783,7 +1783,7 @@ namespace DanpheEMR.Controllers
                                             PatientName = grp.Key.patient.FirstName + " " + (string.IsNullOrEmpty(grp.Key.patient.MiddleName) ? "" : grp.Key.patient.MiddleName + " ") + grp.Key.patient.LastName,
 
                                             SampleCode = grp.Key.SampleCode,
-                                            SampleDate = grp.Key.Value,
+                                            SampleDate = grp.Key.Date,
                                             VisitType = grp.Key.VisitType,
                                             RunNumType = grp.Key.RunNumberType,
                                             BarCodeNumber = grp.Key.BarCodeNumber,
@@ -1813,7 +1813,7 @@ namespace DanpheEMR.Controllers
                                             //        && requisition.RunNumberType == grp.Key.RunNumberType
                                             //        && requisition.LabReportId == grp.Key.LabReportId
                                             //        && requisition.HasInsurance == grp.Key.HasInsurance
-                                            //        && DbFunctions.TruncateTime(requisition.SampleCreatedOn).Value == grp.Key.Value
+                                            //        && (requisition.SampleCreatedOn).Date.Value == grp.Key.Value
                                             //        && requisition.OrderStatus.ToLower() == ENUM_LabOrderStatus.ResultAdded // "result-added"
                                             //        && requisition.BillingStatus.ToLower() != ENUM_BillingStatus.cancel //"cancel" 
                                             //        && requisition.BillingStatus.ToLower() != ENUM_BillingStatus.returned //"returned"
@@ -2035,7 +2035,7 @@ namespace DanpheEMR.Controllers
                                     && (filterByCategory ? (categoryList.Contains(test.LabTestCategoryId)) : true)
                                     && (PatientId == 0 ? true : (req.PatientId == PatientId))
                                     && req.BillingStatus == ENUM_BillingStatus.provisional // "provisional"
-                                    && (filterByDate ? (DbFunctions.TruncateTime(report.CreatedOn) >= StartDate && DbFunctions.TruncateTime(report.CreatedOn) <= EndDate) : true)
+                                    && (filterByDate ? ((report.CreatedOn).Date >= StartDate && (report.CreatedOn).Date <= EndDate) : true)
                                     && (filterByLabType ? (req.LabTypeName == labType) : true)
                                     group new { req, patient, test } by new
                                     {
@@ -2045,7 +2045,7 @@ namespace DanpheEMR.Controllers
                                         req.LabReportId,
                                         employee.FullName,
                                         employee.EmployeeId,
-                                        DbFunctions.TruncateTime(req.SampleCreatedOn).Value,
+                                        req.SampleCreatedOn.Value.Date,
                                         req.VisitType,
                                         req.RunNumberType,
                                         report.IsPrinted,
@@ -2064,7 +2064,7 @@ namespace DanpheEMR.Controllers
                                         PatientName = grp.Key.patient.FirstName + " " + (string.IsNullOrEmpty(grp.Key.patient.MiddleName) ? "" : grp.Key.patient.MiddleName + " ") + grp.Key.patient.LastName,
 
                                         SampleCode = grp.Key.SampleCode,
-                                        SampleDate = grp.Key.Value,
+                                        SampleDate = grp.Key.Date,
                                         SampleCodeFormatted = grp.Key.SampleCodeFormatted,
                                         //SampleCodeFormatted = "",
                                         VisitType = grp.Key.VisitType,
@@ -2130,7 +2130,7 @@ namespace DanpheEMR.Controllers
                                           && (req.BillingStatus.ToLower() == ENUM_BillingStatus.paid // "paid" 
                                           || req.BillingStatus.ToLower() == ENUM_BillingStatus.unpaid // "unpaid"
                                           )
-                                          && (filterByDate ? (DbFunctions.TruncateTime(report.CreatedOn) >= StartDate && DbFunctions.TruncateTime(report.CreatedOn) <= EndDate) : true)
+                                          && (filterByDate ? ((report.CreatedOn).Date >= StartDate && (report.CreatedOn).Date <= EndDate) : true)
                                           && (!isForLabMaster ? (req.LabTypeName == labType) : true)
                                           group new { req, patient, test } by new
                                           {
@@ -2138,7 +2138,7 @@ namespace DanpheEMR.Controllers
                                               req.SampleCode,
                                               req.SampleCodeFormatted,
                                               req.LabReportId,
-                                              DbFunctions.TruncateTime(req.SampleCreatedOn).Value,
+                                              req.SampleCreatedOn.Value.Date,
                                               req.VisitType,
                                               req.RunNumberType,
                                               report.IsPrinted,
@@ -2159,7 +2159,7 @@ namespace DanpheEMR.Controllers
                                               PatientName = grp.Key.patient.FirstName + " " + (string.IsNullOrEmpty(grp.Key.patient.MiddleName) ? "" : grp.Key.patient.MiddleName + " ") + grp.Key.patient.LastName,
 
                                               SampleCode = grp.Key.SampleCode,
-                                              SampleDate = grp.Key.Value,
+                                              SampleDate = grp.Key.Date,
                                               SampleCodeFormatted = grp.Key.SampleCodeFormatted,
                                               //SampleCodeFormatted = "",
                                               VisitType = grp.Key.VisitType,
@@ -2620,7 +2620,7 @@ namespace DanpheEMR.Controllers
                                      && (req.BillingStatus.ToLower() != ENUM_BillingStatus.cancel)
                                      && (req.BillingStatus.ToLower() != ENUM_BillingStatus.returned)
                                      && (selCategoryList.Contains(test.LabTestCategoryId))
-                                     && (DbFunctions.TruncateTime(req.CreatedOn) >= FromDate && DbFunctions.TruncateTime(req.CreatedOn) <= ToDate)
+                                     && ((req.CreatedOn).Date >= FromDate && (req.CreatedOn).Date <= ToDate)
                                      select new
                                      {
                                          test.LabTestCategoryId,
@@ -2662,7 +2662,7 @@ namespace DanpheEMR.Controllers
                                        && (req.BillingStatus.ToLower() != ENUM_BillingStatus.returned)// "returned") 
                                        && (req.RunNumberType.ToLower() == ENUM_LabRunNumType.histo || req.RunNumberType.ToLower() == ENUM_LabRunNumType.cyto) // "histo || cyto")
                                        && (req.LabTypeName == selectedLab)
-                                       && (DbFunctions.TruncateTime(req.CreatedOn) >= FromDate && DbFunctions.TruncateTime(req.CreatedOn) <= ToDate))
+                                       && ((req.CreatedOn).Date >= FromDate && (req.CreatedOn).Date <= ToDate))
                                        select new
                                        {
                                            RequisitionId = req.RequisitionId,
@@ -2693,7 +2693,7 @@ namespace DanpheEMR.Controllers
                                   && (req.BillingStatus.ToLower() != ENUM_BillingStatus.returned) // "returned")
                                   && (req.RunNumberType.ToLower() == ENUM_LabRunNumType.normal) // "normal")
                                   && (req.LabTypeName == selectedLab)
-                                  && (DbFunctions.TruncateTime(req.CreatedOn) >= FromDate && DbFunctions.TruncateTime(req.CreatedOn) <= ToDate))
+                                  && ((req.CreatedOn).Date >= FromDate && (req.CreatedOn).Date <= ToDate))
                                   group req by new { req.Patient, req.VisitType, req.WardName, req.HasInsurance } into p
                                   select new
                                   {
@@ -3943,7 +3943,7 @@ namespace DanpheEMR.Controllers
                 var patientData = GetSmsMessageAndNumberOfPatientByReqId(_labDbContext, selectedId);
                 if (patientData != null)
                 {
-                    var payLoad = HttpUtility.UrlEncode(patientData.Message);
+                    var payLoad = WebUtility.UrlEncode(patientData.Message);
 
                     var smsParamList = _labDbContext.AdminParameters.Where(p => (p.ParameterGroupName.ToLower() == "lab") && ((p.ParameterName == "SmsParameter") || (p.ParameterName == "LabSmsProviderName"))).Select(d => new { d.ParameterValue, d.ParameterName }).ToList();
                     var providerName = smsParamList.Where(s => s.ParameterName == "LabSmsProviderName").Select(d => d.ParameterValue).FirstOrDefault() ?? "Sparrow";

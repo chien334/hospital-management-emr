@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DanpheEMR.Utilities;
 using Newtonsoft.Json;
@@ -20,7 +20,7 @@ using DanpheEMR.Services;
 using System.Threading.Tasks;
 using DanpheEMR.Enums;
 using System.Transactions;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace DanpheEMR.Controllers
@@ -348,7 +348,7 @@ namespace DanpheEMR.Controllers
                  where i.OrderStatus == reportOrderStatus && (requisition.BillingStatus.ToLower() == "paid"
                  || requisition.BillingStatus.ToLower() == "unpaid"
                  || requisition.BillingStatus.ToLower() == "provisional")
-                  && (DbFunctions.TruncateTime(requisition.CreatedOn) >= fromDate && DbFunctions.TruncateTime(requisition.CreatedOn) <= toDate)
+                  && (requisition.CreatedOn.Value.Date >= fromDate && requisition.CreatedOn.Value.Date <= toDate)
                  && imgValidTypeList.Contains(requisition.ImagingTypeId.Value)
                  join pat in _radiologyDbContext.Patients
                  on i.PatientId equals pat.PatientId
@@ -411,7 +411,7 @@ namespace DanpheEMR.Controllers
                               join serDept in _radiologyDbContext.ServiceSepartments on billItem.ServiceDepartmentId equals serDept.ServiceDepartmentId
                               where serDept.IntegrationName == "Radiology" && (EnableRadScan ? (req.OrderStatus == reqOrderStatus || req.OrderStatus == reportOrderStatus) : req.OrderStatus == reqOrderStatus)
                               && (req.BillingStatus.ToLower() == "paid" || req.BillingStatus.ToLower() == "unpaid" || req.BillingStatus.ToLower() == "provisional")
-                                  && (DbFunctions.TruncateTime(req.CreatedOn) >= fromDate && DbFunctions.TruncateTime(req.CreatedOn) <= toDate)
+                                  && (req.CreatedOn.Value.Date >= fromDate && req.CreatedOn.Value.Date <= toDate)
                                   && imgValidTypeList.Contains(req.ImagingTypeId.Value)
                                   && (req.IsReportSaved != true)
                               join mun in _radiologyDbContext.Muncipality
@@ -531,7 +531,7 @@ namespace DanpheEMR.Controllers
                                                           join patient in _radiologyDbContext.Patients on report.PatientId equals patient.PatientId
                                                           where report.OrderStatus == reportOrderStatus
                                                           && (requisition.BillingStatus.ToLower() == "paid" || requisition.BillingStatus.ToLower() == "unpaid" || requisition.BillingStatus.ToLower() == "provisional")
-                                                          && (DbFunctions.TruncateTime(report.CreatedOn) >= fromDate && DbFunctions.TruncateTime(report.CreatedOn) <= toDate)
+                                                          && (report.CreatedOn.Value.Date >= fromDate && report.CreatedOn.Value.Date <= toDate)
                                                           && imgValidTypeList.Contains(requisition.ImagingTypeId.Value)
                                                           select new ImagingReportViewModel
                                                           {
@@ -1529,7 +1529,7 @@ namespace DanpheEMR.Controllers
                          where i.OrderStatus == reportOrderStatus && (requisition.BillingStatus.ToLower() == "paid"
                          || requisition.BillingStatus.ToLower() == "unpaid"
                          || requisition.BillingStatus.ToLower() == "provisional")
-                          && (DbFunctions.TruncateTime(requisition.CreatedOn) >= fromDate && DbFunctions.TruncateTime(requisition.CreatedOn) <= toDate)
+                          && ((requisition.CreatedOn).Date >= fromDate && (requisition.CreatedOn).Date <= toDate)
                          && imgValidTypeList.Contains(requisition.ImagingTypeId.Value)
                          join pat in radioDbContext.Patients
                          on i.PatientId equals pat.PatientId
@@ -1595,7 +1595,7 @@ namespace DanpheEMR.Controllers
                                       join serDept in radioDbContext.ServiceSepartments on billItem.ServiceDepartmentId equals serDept.ServiceDepartmentId
                                       where serDept.IntegrationName == "Radiology" && (EnableRadScan ? (req.OrderStatus == reqOrderStatus || req.OrderStatus == reportOrderStatus) : req.OrderStatus == reqOrderStatus)
                                       && (req.BillingStatus.ToLower() == "paid" || req.BillingStatus.ToLower() == "unpaid" || req.BillingStatus.ToLower() == "provisional")
-                                          && (DbFunctions.TruncateTime(req.CreatedOn) >= fromDate && DbFunctions.TruncateTime(req.CreatedOn) <= toDate)
+                                          && ((req.CreatedOn.Value.Date) >= fromDate && (req.CreatedOn.Value.Date) <= toDate)
                                           && imgValidTypeList.Contains(req.ImagingTypeId.Value)
                                           && (req.IsReportSaved != true)
                                       join mun in radioDbContext.Muncipality
@@ -1730,7 +1730,7 @@ namespace DanpheEMR.Controllers
                                                                   //from repDoc in docTemp.DefaultIfEmpty()
                                                                   where report.OrderStatus == reportOrderStatus
                                                                   && (requisition.BillingStatus.ToLower() == "paid" || requisition.BillingStatus.ToLower() == "unpaid" || requisition.BillingStatus.ToLower() == "provisional")
-                                                                  && (DbFunctions.TruncateTime(report.CreatedOn) >= fromDate && DbFunctions.TruncateTime(report.CreatedOn) <= toDate)
+                                                                  && ((report.CreatedOn).Date >= fromDate && (report.CreatedOn).Date <= toDate)
                                                                   && imgValidTypeList.Contains(requisition.ImagingTypeId.Value)
                                                                   select new ImagingReportViewModel
                                                                   {

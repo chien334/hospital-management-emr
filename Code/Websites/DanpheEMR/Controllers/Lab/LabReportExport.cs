@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -1458,7 +1458,12 @@ namespace DanpheEMR.Controllers.Lab
 
 
         //create a paragraph with given text and justifiation, default justification=Left
-        private Paragraph GetNewParagraph(string text, JustificationValues justification = JustificationValues.Left, bool? isAbnormal = false)
+        private Paragraph GetNewParagraph(string text, bool? isAbnormal = false)
+        {
+            return GetNewParagraph(text, JustificationValues.Left, isAbnormal);
+        }
+
+        private Paragraph GetNewParagraph(string text, JustificationValues justification, bool? isAbnormal = false)
         {
             ParagraphProperties prgrphProps = new ParagraphProperties();
             Justification just = new Justification() { Val = justification };

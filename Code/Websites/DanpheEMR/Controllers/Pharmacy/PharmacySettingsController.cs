@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.Utilities;
 using DanpheEMR.ServerModel.PharmacyModels;
 using DanpheEMR.ServerModel.NotificationModels;
@@ -23,13 +23,13 @@ namespace DanpheEMR.Controllers.Pharmacy
 
     public class PharmacySettingsController : CommonController
     {
-        public static IHostingEnvironment _environment;
+        public static IWebHostEnvironment _environment;
         bool realTimeRemoteSyncEnabled = false;
         private readonly PharmacyDbContext _pharmacyDbContext;
         private readonly RbacDbContext _rbacDbContext;
         private readonly MasterDbContext _masterDbContext;
         private readonly NotiFicationDbContext _notificationDbContext;
-        public PharmacySettingsController(IHostingEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
+        public PharmacySettingsController(IWebHostEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
         {
             _environment = env;
             _pharmacyDbContext = new PharmacyDbContext(connString);

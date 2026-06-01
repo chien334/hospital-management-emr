@@ -6,14 +6,14 @@ using Microsoft.Extensions.Options;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Transactions;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.StaticFiles;
 using DanpheEMR.Utilities;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace DanpheEMR.Services.Maternity
@@ -126,7 +126,7 @@ namespace DanpheEMR.Services.Maternity
         {
             var allMatPat = (from matPat in maternityDbContext.MaternityPatients
                              join pat in maternityDbContext.Patients on matPat.PatientId equals pat.PatientId
-                             where matPat.IsActive && (DbFunctions.TruncateTime(matPat.CreatedOn) >= StartDate) && (DbFunctions.TruncateTime(matPat.CreatedOn) <= EndDate)
+                             where matPat.IsActive && ((matPat.CreatedOn).Date >= StartDate) && ((matPat.CreatedOn).Date <= EndDate)
                              && (showAll ? true : !matPat.IsConcluded)
                              select new
                              {

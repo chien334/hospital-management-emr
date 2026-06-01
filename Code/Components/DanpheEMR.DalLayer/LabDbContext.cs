@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,14 +51,34 @@ namespace DanpheEMR.DalLayer
         public DbSet<MunicipalityModel> Municipalities { get; set; }
         
 
-        public LabDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public LabDbContext(DbContextOptions<LabDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
 
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public LabDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<LabGovReportItemModel>().ToTable("Lab_Mst_Gov_Report_Items");
             modelBuilder.Entity<LabGovReportMappingModel>().ToTable("Lab_Gov_Report_Mapping");
             modelBuilder.Entity<AdminParametersModel>().ToTable("CORE_CFG_Parameters");
@@ -76,7 +96,7 @@ namespace DanpheEMR.DalLayer
 
             modelBuilder.Entity<LabTestComponentResult>().ToTable("LAB_TXN_TestComponentResult");
             modelBuilder.Entity<LabTestComponentResult>()
-                   .HasRequired<LabRequisitionModel>(a => a.LabRequisition)
+                   .HasOne(a => a.LabRequisition)
                    .WithMany(a => a.LabTestComponentResults)
                     .HasForeignKey(s => s.RequisitionId);
             // this is used getting data from patient table while showing the report

@@ -12,8 +12,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Linq;
 
@@ -98,7 +98,7 @@ namespace DanpheEMR.Controllers
             //if (reqType == "get-login-info")
 
             Func<object> func = () => _systemAdminDbContext.LoginInformation
-                .Where(log => DbFunctions.TruncateTime(log.CreatedOn) >= fromDate && DbFunctions.TruncateTime(log.CreatedOn) <= toDate).ToList();
+                .Where(log => (log.CreatedOn).Date >= fromDate && (log.CreatedOn).Date <= toDate).ToList();
             return InvokeHttpGetFunction(func);
         }
 
@@ -238,7 +238,7 @@ namespace DanpheEMR.Controllers
         //    SystemAdminDbContext systemAdminDbContext = new SystemAdminDbContext(this.connStringAdmin);
 
         //    var loginList = systemAdminDbContext.LoginInformation
-        //        .Where(log => DbFunctions.TruncateTime(log.CreatedOn) >= FromDate && DbFunctions.TruncateTime(log.CreatedOn) <= ToDate).ToList();
+        //        .Where(log => (log.CreatedOn).Date >= FromDate && (log.CreatedOn).Date <= ToDate).ToList();
 
         //    responseDataObj.Status = "OK";
         //    responseDataObj.Results = loginList;

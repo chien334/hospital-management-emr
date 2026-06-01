@@ -1,6 +1,6 @@
 ﻿using DanpheEMR.DalLayer;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
 using DanpheEMR.Services.Utilities.DTOs;

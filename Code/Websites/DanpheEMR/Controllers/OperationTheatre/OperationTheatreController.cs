@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +13,7 @@ using DanpheEMR.Security;
 using Org.BouncyCastle.Asn1.Ocsp;
 using DanpheEMR.Enums;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.Controllers
 {

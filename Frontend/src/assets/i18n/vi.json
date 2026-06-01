@@ -1,0 +1,13 @@
+{
+  "LOGIN": {
+    "TITLE": "Đăng Nhập Hệ Thống EMR",
+    "USERNAME": "Tên đăng nhập",
+    "PASSWORD": "Mật khẩu",
+    "BUTTON": "Đăng Nhập"
+  },
+  "NAVBAR": {
+    "PATIENTS": "Danh sách bệnh nhân",
+    "APPOINTMENTS": "Lịch hẹn",
+    "BILLING": "Thanh toán"
+  }
+}

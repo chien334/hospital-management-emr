@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +19,34 @@ namespace DanpheEMR.DalLayer
         public DbSet<BillServiceItemModel> BillItemPrice { get; set; }
         public DbSet<VisitSummaryModel> VisitSummary { get; set; }
         public DbSet<TemplateNoteModel> TemplateNotes { get; set; }
-        public DoctorsDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public DoctorsDbContext(DbContextOptions<DoctorsDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public DoctorsDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
@@ -33,7 +54,7 @@ namespace DanpheEMR.DalLayer
 
             // Patient and visit mappings
             modelBuilder.Entity<VisitModel>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.Visits)
                     .HasForeignKey(s => s.PatientId);
 
@@ -44,8 +65,8 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<AdmissionModel>()
                 .HasKey(t => t.PatientVisitId);
             modelBuilder.Entity<VisitModel>()
-                .HasOptional<AdmissionModel>(a => a.Admission)
-                .WithRequired(a => a.Visit);
+                .HasOne(a => a.Admission)
+                .WithOne(a => a.Visit);
 
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");
             modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");

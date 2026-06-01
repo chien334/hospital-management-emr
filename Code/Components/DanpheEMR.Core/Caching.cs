@@ -1,4 +1,4 @@
-﻿/*
+/*
  File: DanpheCache.cs
  created: 28Jan'17-sudarshan
  description: this class contains caching methods to be used from other classes.
@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DanpheEMR.ServerModel;
 using System.Runtime.Caching;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.Core.Caching
 {
@@ -82,8 +82,9 @@ namespace DanpheEMR.Core.Caching
 
         public static object GetMasterData(MasterDataEnum masterName)
         {
-            // double cacheExpMinutes = 1;//this should come from configuration later on.
-            CoreDbContext coreDbContext = new CoreDbContext(connString);
+            var optionsBuilder = new DbContextOptionsBuilder<CoreDbContext>();
+            optionsBuilder.UseNpgsql(connString);
+            CoreDbContext coreDbContext = new CoreDbContext(optionsBuilder.Options);
             object returnValue = new object();
 
             switch (masterName)

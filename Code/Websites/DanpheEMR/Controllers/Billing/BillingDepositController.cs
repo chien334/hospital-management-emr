@@ -1,4 +1,4 @@
-﻿using DanpheEMR.CommonTypes;
+using DanpheEMR.CommonTypes;
 using DanpheEMR.Controllers.Billing;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
@@ -15,8 +15,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Core.Common.CommandTrees;
+using Microsoft.EntityFrameworkCore;
+/* using System.Data.Entity.Core.Common.CommandTrees; */
 using System.Linq;
 
 namespace DanpheEMR.Controllers
@@ -85,7 +85,7 @@ namespace DanpheEMR.Controllers
                                            deposit.CareOf,
                                            IsDuplicatePrint = true,
                                            AdmissionCase = admPat != null ? admPat.AdmissionCase : null,
-                                           AdmissionDate = admPat != null ? DbFunctions.TruncateTime(admPat.AdmissionDate) : null,
+                                           AdmissionDate = admPat != null ? (DateTime?)admPat.AdmissionDate.Date : null,
                                        }).OrderByDescending(d => d.CreatedOn).ToList();
 
 

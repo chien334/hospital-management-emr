@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +14,34 @@ namespace DanpheEMR.DalLayer
 {
     public class MasterDbContext : DbContext
     {
-        public MasterDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public MasterDbContext(DbContextOptions<MasterDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public MasterDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<CountryModel>().ToTable("MST_Country");
             modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
@@ -125,6 +146,16 @@ namespace DanpheEMR.DalLayer
         public DbSet<BillMapPriceCategoryServiceItemModel> PriceCategoryServiceItems { get; set; }
 
 
+    }
+
+    public class MasterDbContextFactory : Microsoft.EntityFrameworkCore.Design.IDesignTimeDbContextFactory<MasterDbContext>
+    {
+        public MasterDbContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<MasterDbContext>();
+            optionsBuilder.UseNpgsql("Host=localhost;Database=danphe_emr;Username=postgres;Password=emr_password");
+            return new MasterDbContext(optionsBuilder.Options);
+        }
     }
 }
 

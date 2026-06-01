@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using DanpheEMR.Utilities;
@@ -91,7 +91,7 @@ namespace DanpheEMR.Controllers
                                   where
                                   ti.HospitalId == currentHospitalId
                                   && l.HospitalId == currentHospitalId &&
-                                  (ledgerIds.Contains(ti.LedgerId)) && (DbFunctions.TruncateTime(t.TransactionDate) >= clientData.FromDate && DbFunctions.TruncateTime(t.TransactionDate) <= clientData.ToDate)
+                                  (ledgerIds.Contains(ti.LedgerId)) && ((t.TransactionDate).Date >= clientData.FromDate && (t.TransactionDate).Date <= clientData.ToDate)
                                   && lbh.FiscalYearId == fYearId && (ti.CostCenterId == clientData.CostCenterId || clientData.CostCenterId == AllCostCenterAliasId)
                                   && t.IsVerified == true
                                   select new
@@ -124,7 +124,7 @@ namespace DanpheEMR.Controllers
                                  where
                                  ti.HospitalId == currentHospitalId
                                  && l.HospitalId == currentHospitalId &&
-                                 (ledgerIds.Contains(ti.LedgerId)) && (DbFunctions.TruncateTime(t.TransactionDate) >= DbFunctions.TruncateTime(openingBalanceFiscalYear.StartDate) && DbFunctions.TruncateTime(t.TransactionDate) <= clientData.ToDate)
+                                 (ledgerIds.Contains(ti.LedgerId)) && ((t.TransactionDate).Date >= (openingBalanceFiscalYear.StartDate).Date && (t.TransactionDate).Date <= clientData.ToDate)
                                  && (ti.CostCenterId == clientData.CostCenterId || clientData.CostCenterId == AllCostCenterAliasId)
                                  && t.IsVerified == true
                                  group new { t, ti, l } by new
@@ -136,8 +136,8 @@ namespace DanpheEMR.Controllers
                                  {
                                      FiscalYearId = fYearId,
                                      LedgerId = x.Key.LedgerId,
-                                     AmountDr = x.Where(b => b.ti.DrCr == true && DbFunctions.TruncateTime(b.t.TransactionDate) < clientData.FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum(),// + (led.Where(a=> a.LedgerId == x.Key.LedgerId && a.DrCr == true).Select(a=>a.OpeningBalance).Sum()),
-                                     AmountCr = x.Where(b => b.ti.DrCr == false && DbFunctions.TruncateTime(b.t.TransactionDate) < clientData.FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum()// + (led.Where(a => a.LedgerId == x.Key.LedgerId && a.DrCr == false).Select(a => a.OpeningBalance).Sum()),
+                                     AmountDr = x.Where(b => b.ti.DrCr == true && (b.t.TransactionDate).Date < clientData.FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum(),// + (led.Where(a=> a.LedgerId == x.Key.LedgerId && a.DrCr == true).Select(a=>a.OpeningBalance).Sum()),
+                                     AmountCr = x.Where(b => b.ti.DrCr == false && (b.t.TransactionDate).Date < clientData.FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum()// + (led.Where(a => a.LedgerId == x.Key.LedgerId && a.DrCr == false).Select(a => a.OpeningBalance).Sum()),
                                  }).ToList();
 
                 dataList1 = (
@@ -212,7 +212,7 @@ namespace DanpheEMR.Controllers
                                                                                      where
                                                                                      ledger.HospitalId == currentHospitalId &&
                                                                                      txnItm.TransactionId == txn.TransactionId && txn.IsActive == true && v.VoucherName == itm.VoucherName
-                                                                                     && (DbFunctions.TruncateTime(txn.TransactionDate) >= clientData.FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= clientData.ToDate)
+                                                                                     && ((txn.TransactionDate).Date >= clientData.FromDate && (txn.TransactionDate).Date <= clientData.ToDate)
                                                                                      && ledger.LedgerName != itm.LedgerName && txn.TransactionDate == itm.TransactionDate
                                                                                      && txn.IsVerified == true
                                                                                      select new
@@ -489,7 +489,7 @@ namespace DanpheEMR.Controllers
             int currentHospitalId = HttpContext.Session.Get<int>("AccSelectedHospitalId");
             Func<object> func = () => (from txn in _accountingDbContext.Transactions
                                        where txn.HospitalId == currentHospitalId 
-                                       && (DbFunctions.TruncateTime(txn.TransactionDate) >= FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= ToDate)
+                                       && ((txn.TransactionDate).Date >= FromDate && (txn.TransactionDate).Date <= ToDate)
                                        && txn.IsVerified == true
                                        group new { txn } by new { txn.TransactionDate, txn.VoucherNumber, txn.SectionId } into x
                                        select new
@@ -714,7 +714,7 @@ namespace DanpheEMR.Controllers
         //                              join fisc in accountingDBContext.FiscalYears on t.FiscalyearId equals fisc.FiscalYearId
         //                              where
         //                              ti.HospitalId == currentHospitalId && fisc.HospitalId == currentHospitalId &&
-        //                              (DbFunctions.TruncateTime(t.TransactionDate) == FromDate) && (t.FiscalyearId == fisc.FiscalYearId)
+        //                              ((t.TransactionDate).Date == FromDate) && (t.FiscalyearId == fisc.FiscalYearId)
         //                              group new { fisc, ti, t } by new
         //                              {
         //                                  fisc.FiscalYearId,
@@ -722,8 +722,8 @@ namespace DanpheEMR.Controllers
         //                              } into x
         //                              select new
         //                              {
-        //                                  Amountdr = x.Where(b => b.ti.DrCr == true && (DbFunctions.TruncateTime(b.t.TransactionDate) >= b.fisc.StartDate && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
-        //                                  Amountcr = x.Where(b => b.ti.DrCr == false && (DbFunctions.TruncateTime(b.t.TransactionDate) >= b.fisc.StartDate && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+        //                                  Amountdr = x.Where(b => b.ti.DrCr == true && ((b.t.TransactionDate).Date >= b.fisc.StartDate && (b.t.TransactionDate).Date < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+        //                                  Amountcr = x.Where(b => b.ti.DrCr == false && ((b.t.TransactionDate).Date >= b.fisc.StartDate && (b.t.TransactionDate).Date < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
         //                                  x.Key.FiscalYearId,
         //                              }).ToList();
 
@@ -733,7 +733,7 @@ namespace DanpheEMR.Controllers
         //                   join fiscal in accountingDBContext.FiscalYears on txn.FiscalyearId equals fiscal.FiscalYearId
         //                   where
         //                   fiscal.HospitalId == currentHospitalId &&
-        //                   txn.IsActive == true && (DbFunctions.TruncateTime(txn.TransactionDate) >= FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= ToDate)
+        //                   txn.IsActive == true && ((txn.TransactionDate).Date >= FromDate && (txn.TransactionDate).Date <= ToDate)
         //                    && txn.SectionId == sectionId
         //                   select new
         //                   {
@@ -742,7 +742,7 @@ namespace DanpheEMR.Controllers
         //                       VoucherNumber = txn.VoucherNumber,
         //                       VoucherType = voucher.VoucherName,
         //                       SectionId = txn.SectionId,
-        //                       TransactionDate = DbFunctions.TruncateTime(txn.TransactionDate),// txn.TransactionDate.ToString("dd/mm/yyyy"),                                       
+        //                       TransactionDate = (txn.TransactionDate).Date,// txn.TransactionDate.ToString("dd/mm/yyyy"),                                       
         //                       Amount = (from txnItm in accountingDBContext.TransactionItems
         //                                 where txnItm.TransactionId == txn.TransactionId
         //                                 && txnItm.DrCr == true
@@ -833,7 +833,7 @@ namespace DanpheEMR.Controllers
         //                      where
         //                      ti.HospitalId == currentHospitalId
         //                      && l.HospitalId == currentHospitalId &&
-        //                      (ti.LedgerId == ledgerId) && (DbFunctions.TruncateTime(t.TransactionDate) >= FromDate && DbFunctions.TruncateTime(t.TransactionDate) <= ToDate)
+        //                      (ti.LedgerId == ledgerId) && ((t.TransactionDate).Date >= FromDate && (t.TransactionDate).Date <= ToDate)
         //                      select new
         //                      {
         //                          t.TransactionId,
@@ -863,7 +863,7 @@ namespace DanpheEMR.Controllers
         //                     where
         //                     ti.HospitalId == currentHospitalId
         //                     && l.HospitalId == currentHospitalId &&
-        //                     (ti.LedgerId == ledgerId) && (DbFunctions.TruncateTime(t.TransactionDate) >= DbFunctions.TruncateTime(openingBalanceFiscalYear.StartDate) && DbFunctions.TruncateTime(t.TransactionDate) <= ToDate)
+        //                     (ti.LedgerId == ledgerId) && ((t.TransactionDate).Date >= (openingBalanceFiscalYear.StartDate).Date && (t.TransactionDate).Date <= ToDate)
         //                     group new { t, ti, l } by new
         //                     {
         //                         l.LedgerId,
@@ -872,8 +872,8 @@ namespace DanpheEMR.Controllers
         //                     select new
         //                     {
         //                         FiscalYearId = fYearId,
-        //                         AmountDr = x.Where(b => b.ti.DrCr == true && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate).Select(a => (double?)a.ti.Amount).DefaultIfEmpty(0).Sum() + ((LedgerData.Count == 0 && led.LedgerId > 0 && led.DrCr == true) ? led.OpeningBalance : 0),
-        //                         AmountCr = x.Where(b => b.ti.DrCr == false && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate).Select(a => (double?)a.ti.Amount).DefaultIfEmpty(0).Sum() + ((LedgerData.Count == 0 && led.LedgerId > 0 && led.DrCr == false) ? led.OpeningBalance : 0),
+        //                         AmountDr = x.Where(b => b.ti.DrCr == true && (b.t.TransactionDate).Date < FromDate).Select(a => (double?)a.ti.Amount).DefaultIfEmpty(0).Sum() + ((LedgerData.Count == 0 && led.LedgerId > 0 && led.DrCr == true) ? led.OpeningBalance : 0),
+        //                         AmountCr = x.Where(b => b.ti.DrCr == false && (b.t.TransactionDate).Date < FromDate).Select(a => (double?)a.ti.Amount).DefaultIfEmpty(0).Sum() + ((LedgerData.Count == 0 && led.LedgerId > 0 && led.DrCr == false) ? led.OpeningBalance : 0),
         //                     }).ToList();
 
         //    if (LedgerData.Count == 0 && dataList1.Count == 0)
@@ -932,7 +932,7 @@ namespace DanpheEMR.Controllers
         //                                                                         where
         //                                                                         ledger.HospitalId == currentHospitalId &&
         //                                                                         txnItm.TransactionId == txn.TransactionId && txn.IsActive == true && v.VoucherName == itm.VoucherName
-        //                                                                         && (DbFunctions.TruncateTime(txn.TransactionDate) >= FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= ToDate)
+        //                                                                         && ((txn.TransactionDate).Date >= FromDate && (txn.TransactionDate).Date <= ToDate)
         //                                                                         && ledger.LedgerName != itm.LedgerName && txn.TransactionDate == itm.TransactionDate
         //                                                                         select new
         //                                                                         {
@@ -1269,7 +1269,7 @@ namespace DanpheEMR.Controllers
         //{
         //    var result = (from txn in accountingDBContext.Transactions
         //                  where txn.HospitalId == currentHospitalId
-        //                  && (DbFunctions.TruncateTime(txn.TransactionDate) >= FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= ToDate)
+        //                  && ((txn.TransactionDate).Date >= FromDate && (txn.TransactionDate).Date <= ToDate)
         //                  group new { txn } by new { txn.TransactionDate, txn.VoucherNumber, txn.SectionId } into x
         //                  select new
         //                  {
@@ -1848,7 +1848,7 @@ namespace DanpheEMR.Controllers
         //    //                                                                       join l in accountingDBContext.Ledgers on ti.LedgerId equals l.LedgerId
         //    //                                                                       join lgroup in accountingDBContext.LedgerGroups on l.LedgerGroupId equals lgroup.LedgerGroupId
         //    //                                                                       join t in accountingDBContext.Transactions on ti.TransactionId equals t.TransactionId
-        //    //                                                                       where lgroup.COA == x2.Key.COA && lgroup.PrimaryGroup == x.Key.PrimaryGroup && lgroup.LedgerGroupName == x3.Key.LedgerGroupName //&& (DbFunctions.TruncateTime(t.TransactionDate) >= FromDate && DbFunctions.TruncateTime(t.TransactionDate) <= ToDate)
+        //    //                                                                       where lgroup.COA == x2.Key.COA && lgroup.PrimaryGroup == x.Key.PrimaryGroup && lgroup.LedgerGroupName == x3.Key.LedgerGroupName //&& ((t.TransactionDate).Date >= FromDate && (t.TransactionDate).Date <= ToDate)
         //    //                                                                       group new { lgroup, ti, t, l } by new
         //    //                                                                       {
         //    //                                                                           lgroup.PrimaryGroup,
@@ -1863,9 +1863,9 @@ namespace DanpheEMR.Controllers
         //    //                                                                           x4.Key.LedgerName,
         //    //                                                                           x4.Key.LedgerGroupName,
         //    //                                                                           x4.Key.Code,
-        //    //                                                                           OpenBal = x4.Where(b => b.lgroup.LedgerGroupName == "Cash In Hand" && (DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
-        //    //                                                                           Amountdr = x4.Where(b => b.ti.DrCr == true && (DbFunctions.TruncateTime(b.t.TransactionDate) >= FromDate && DbFunctions.TruncateTime(b.t.TransactionDate) <= ToDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
-        //    //                                                                           Amountcr = x4.Where(b => b.ti.DrCr == false && (DbFunctions.TruncateTime(b.t.TransactionDate) >= FromDate && DbFunctions.TruncateTime(b.t.TransactionDate) <= ToDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+        //    //                                                                           OpenBal = x4.Where(b => b.lgroup.LedgerGroupName == "Cash In Hand" && ((b.t.TransactionDate).Date < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+        //    //                                                                           Amountdr = x4.Where(b => b.ti.DrCr == true && ((b.t.TransactionDate).Date >= FromDate && (b.t.TransactionDate).Date <= ToDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+        //    //                                                                           Amountcr = x4.Where(b => b.ti.DrCr == false && ((b.t.TransactionDate).Date >= FromDate && (b.t.TransactionDate).Date <= ToDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
         //    //                                                                       }).ToList()
         //    //                                                    }).ToList()
         //    //                             }).ToList()
@@ -1885,7 +1885,7 @@ namespace DanpheEMR.Controllers
         //                              join fisc in accountingDBContext.FiscalYears on t.FiscalyearId equals fisc.FiscalYearId
         //                              where
         //                              ti.HospitalId == currentHospitalId && fisc.HospitalId == currentHospitalId &&
-        //                              (DbFunctions.TruncateTime(t.TransactionDate) == FromDate) && (t.FiscalyearId == fisc.FiscalYearId)
+        //                              ((t.TransactionDate).Date == FromDate) && (t.FiscalyearId == fisc.FiscalYearId)
         //                              group new { fisc, ti, t } by new
         //                              {
         //                                  fisc.FiscalYearId,
@@ -1893,8 +1893,8 @@ namespace DanpheEMR.Controllers
         //                              } into x
         //                              select new
         //                              {
-        //                                  Amountdr = x.Where(b => b.ti.DrCr == true && (DbFunctions.TruncateTime(b.t.TransactionDate) >= b.fisc.StartDate && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
-        //                                  Amountcr = x.Where(b => b.ti.DrCr == false && (DbFunctions.TruncateTime(b.t.TransactionDate) >= b.fisc.StartDate && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+        //                                  Amountdr = x.Where(b => b.ti.DrCr == true && ((b.t.TransactionDate).Date >= b.fisc.StartDate && (b.t.TransactionDate).Date < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+        //                                  Amountcr = x.Where(b => b.ti.DrCr == false && ((b.t.TransactionDate).Date >= b.fisc.StartDate && (b.t.TransactionDate).Date < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
         //                                  x.Key.FiscalYearId,
         //                              }).ToList();
 
@@ -1904,7 +1904,7 @@ namespace DanpheEMR.Controllers
         //                   join fiscal in accountingDBContext.FiscalYears on txn.FiscalyearId equals fiscal.FiscalYearId
         //                   where
         //                   fiscal.HospitalId == currentHospitalId &&
-        //                   txn.IsActive == true && (DbFunctions.TruncateTime(txn.TransactionDate) >= FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= ToDate)
+        //                   txn.IsActive == true && ((txn.TransactionDate).Date >= FromDate && (txn.TransactionDate).Date <= ToDate)
         //                   && txn.SectionId == sectionId && txn.FiscalyearId == FiscalYearId
         //                   select new
         //                   {
@@ -1915,7 +1915,7 @@ namespace DanpheEMR.Controllers
         //                       VoucherType = voucher.VoucherName,
         //                       VoucherId = txn.VoucherId,
         //                       SectionId = txn.SectionId,
-        //                       TransactionDate = DbFunctions.TruncateTime(txn.TransactionDate),// txn.TransactionDate.ToString("dd/mm/yyyy"),                                       
+        //                       TransactionDate = (txn.TransactionDate).Date,// txn.TransactionDate.ToString("dd/mm/yyyy"),                                       
         //                       Amount = (from txnItm in accountingDBContext.TransactionItems
         //                                 where txnItm.TransactionId == txn.TransactionId
         //                                 && txnItm.DrCr == true
@@ -2388,7 +2388,7 @@ namespace DanpheEMR.Controllers
         //                              where
         //                              ti.HospitalId == currentHospitalId
         //                              && l.HospitalId == currentHospitalId &&
-        //                              (ti.LedgerId == ledgerId) && (DbFunctions.TruncateTime(t.TransactionDate) >= FromDate && DbFunctions.TruncateTime(t.TransactionDate) <= ToDate)
+        //                              (ti.LedgerId == ledgerId) && ((t.TransactionDate).Date >= FromDate && (t.TransactionDate).Date <= ToDate)
         //                              select new
         //                              {
         //                                  t.TransactionId,
@@ -2417,7 +2417,7 @@ namespace DanpheEMR.Controllers
         //                     where
         //                     ti.HospitalId == currentHospitalId
         //                     && l.HospitalId == currentHospitalId &&
-        //                     (ti.LedgerId == ledgerId) && (DbFunctions.TruncateTime(t.TransactionDate) >= DbFunctions.TruncateTime(openingBalanceFiscalYear.StartDate) && DbFunctions.TruncateTime(t.TransactionDate) <= ToDate)
+        //                     (ti.LedgerId == ledgerId) && ((t.TransactionDate).Date >= (openingBalanceFiscalYear.StartDate).Date && (t.TransactionDate).Date <= ToDate)
         //                     group new { t, ti, l } by new
         //                     {
         //                         l.LedgerId,
@@ -2426,8 +2426,8 @@ namespace DanpheEMR.Controllers
         //                     select new
         //                     {
         //                         FiscalYearId = fYearId,
-        //                         AmountDr = x.Where(b => b.ti.DrCr == true && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate).Select(a => (double?)a.ti.Amount).DefaultIfEmpty(0).Sum() + ((transactionRecords.Count == 0 && led.LedgerId > 0 && led.DrCr == true) ? led.OpeningBalance : 0),
-        //                         AmountCr = x.Where(b => b.ti.DrCr == false && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate).Select(a => (double?)a.ti.Amount).DefaultIfEmpty(0).Sum() + ((transactionRecords.Count == 0 && led.LedgerId > 0 && led.DrCr == false) ? led.OpeningBalance : 0),
+        //                         AmountDr = x.Where(b => b.ti.DrCr == true && (b.t.TransactionDate).Date < FromDate).Select(a => (double?)a.ti.Amount).DefaultIfEmpty(0).Sum() + ((transactionRecords.Count == 0 && led.LedgerId > 0 && led.DrCr == true) ? led.OpeningBalance : 0),
+        //                         AmountCr = x.Where(b => b.ti.DrCr == false && (b.t.TransactionDate).Date < FromDate).Select(a => (double?)a.ti.Amount).DefaultIfEmpty(0).Sum() + ((transactionRecords.Count == 0 && led.LedgerId > 0 && led.DrCr == false) ? led.OpeningBalance : 0),
         //                     }).ToList();
 
         //    if (transactionRecords.Count == 0)// && dataList1.Count == 0)
@@ -2823,7 +2823,7 @@ namespace DanpheEMR.Controllers
                                       join fisc in _accountingDbContext.FiscalYears on t.FiscalyearId equals fisc.FiscalYearId
                                       where
                                       ti.HospitalId == currentHospitalId && fisc.HospitalId == currentHospitalId &&
-                                      (DbFunctions.TruncateTime(t.TransactionDate) == FromDate) && (t.FiscalyearId == fisc.FiscalYearId)
+                                      ((t.TransactionDate).Date == FromDate) && (t.FiscalyearId == fisc.FiscalYearId)
                                       && t.IsVerified == true
                                       group new { fisc, ti, t } by new
                                       {
@@ -2832,8 +2832,8 @@ namespace DanpheEMR.Controllers
                                       } into x
                                       select new
                                       {
-                                          Amountdr = x.Where(b => b.ti.DrCr == true && (DbFunctions.TruncateTime(b.t.TransactionDate) >= b.fisc.StartDate && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
-                                          Amountcr = x.Where(b => b.ti.DrCr == false && (DbFunctions.TruncateTime(b.t.TransactionDate) >= b.fisc.StartDate && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+                                          Amountdr = x.Where(b => b.ti.DrCr == true && ((b.t.TransactionDate).Date >= b.fisc.StartDate && (b.t.TransactionDate).Date < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+                                          Amountcr = x.Where(b => b.ti.DrCr == false && ((b.t.TransactionDate).Date >= b.fisc.StartDate && (b.t.TransactionDate).Date < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
                                           x.Key.FiscalYearId,
                                       }).ToList();
 
@@ -2843,7 +2843,7 @@ namespace DanpheEMR.Controllers
                            join fiscal in _accountingDbContext.FiscalYears on txn.FiscalyearId equals fiscal.FiscalYearId
                            where
                            fiscal.HospitalId == currentHospitalId &&
-                           txn.IsActive == true && (DbFunctions.TruncateTime(txn.TransactionDate) >= FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= ToDate)
+                           txn.IsActive == true && ((txn.TransactionDate).Date >= FromDate && (txn.TransactionDate).Date <= ToDate)
                             && txn.SectionId == sectionId && txn.IsVerified == true
                            select new
                            {
@@ -2852,7 +2852,7 @@ namespace DanpheEMR.Controllers
                                VoucherNumber = txn.VoucherNumber,
                                VoucherType = voucher.VoucherName,
                                SectionId = txn.SectionId,
-                               TransactionDate = DbFunctions.TruncateTime(txn.TransactionDate),// txn.TransactionDate.ToString("dd/mm/yyyy"),                                       
+                               TransactionDate = (txn.TransactionDate).Date,// txn.TransactionDate.ToString("dd/mm/yyyy"),                                       
                                Amount = (from txnItm in _accountingDbContext.TransactionItems
                                          where txnItm.TransactionId == txn.TransactionId
                                          && txnItm.DrCr == true
@@ -2919,7 +2919,7 @@ namespace DanpheEMR.Controllers
                               where
                               ti.HospitalId == currentHospitalId
                               && l.HospitalId == currentHospitalId &&
-                              (ti.LedgerId == ledgerId) && (DbFunctions.TruncateTime(t.TransactionDate) >= FromDate && DbFunctions.TruncateTime(t.TransactionDate) <= ToDate)
+                              (ti.LedgerId == ledgerId) && ((t.TransactionDate).Date >= FromDate && (t.TransactionDate).Date <= ToDate)
                               && t.IsVerified == true
                               select new
                               {
@@ -2950,7 +2950,7 @@ namespace DanpheEMR.Controllers
                              where
                              ti.HospitalId == currentHospitalId
                              && l.HospitalId == currentHospitalId &&
-                             (ti.LedgerId == ledgerId) && (DbFunctions.TruncateTime(t.TransactionDate) >= DbFunctions.TruncateTime(openingBalanceFiscalYear.StartDate) && DbFunctions.TruncateTime(t.TransactionDate) <= ToDate)
+                             (ti.LedgerId == ledgerId) && ((t.TransactionDate).Date >= (openingBalanceFiscalYear.StartDate).Date && (t.TransactionDate).Date <= ToDate)
                              && t.IsVerified == true
                              group new { t, ti, l } by new
                              {
@@ -2960,8 +2960,8 @@ namespace DanpheEMR.Controllers
                              select new
                              {
                                  FiscalYearId = fYearId,
-                                 AmountDr = x.Where(b => b.ti.DrCr == true && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum() + ((LedgerData.Count == 0 && led.LedgerId > 0 && led.DrCr == true) ? led.OpeningBalance : 0),
-                                 AmountCr = x.Where(b => b.ti.DrCr == false && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum() + ((LedgerData.Count == 0 && led.LedgerId > 0 && led.DrCr == false) ? led.OpeningBalance : 0),
+                                 AmountDr = x.Where(b => b.ti.DrCr == true && (b.t.TransactionDate).Date < FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum() + ((LedgerData.Count == 0 && led.LedgerId > 0 && led.DrCr == true) ? led.OpeningBalance : 0),
+                                 AmountCr = x.Where(b => b.ti.DrCr == false && (b.t.TransactionDate).Date < FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum() + ((LedgerData.Count == 0 && led.LedgerId > 0 && led.DrCr == false) ? led.OpeningBalance : 0),
                              }).ToList();
 
             if (LedgerData.Count == 0 && dataList1.Count == 0)
@@ -3020,7 +3020,7 @@ namespace DanpheEMR.Controllers
                                                                                  where
                                                                                  ledger.HospitalId == currentHospitalId &&
                                                                                  txnItm.TransactionId == txn.TransactionId && txn.IsActive == true && v.VoucherName == itm.VoucherName
-                                                                                 && (DbFunctions.TruncateTime(txn.TransactionDate) >= FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= ToDate)
+                                                                                 && ((txn.TransactionDate).Date >= FromDate && (txn.TransactionDate).Date <= ToDate)
                                                                                  && ledger.LedgerName != itm.LedgerName && txn.TransactionDate == itm.TransactionDate
                                                                                  select new
                                                                                  {
@@ -3884,7 +3884,7 @@ namespace DanpheEMR.Controllers
                                       join fisc in _accountingDbContext.FiscalYears on t.FiscalyearId equals fisc.FiscalYearId
                                       where
                                       ti.HospitalId == currentHospitalId && fisc.HospitalId == currentHospitalId &&
-                                      (DbFunctions.TruncateTime(t.TransactionDate) == FromDate) && (t.FiscalyearId == fisc.FiscalYearId)
+                                      ((t.TransactionDate).Date == FromDate) && (t.FiscalyearId == fisc.FiscalYearId)
                                       group new { fisc, ti, t } by new
                                       {
                                           fisc.FiscalYearId,
@@ -3892,8 +3892,8 @@ namespace DanpheEMR.Controllers
                                       } into x
                                       select new
                                       {
-                                          Amountdr = x.Where(b => b.ti.DrCr == true && (DbFunctions.TruncateTime(b.t.TransactionDate) >= b.fisc.StartDate && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
-                                          Amountcr = x.Where(b => b.ti.DrCr == false && (DbFunctions.TruncateTime(b.t.TransactionDate) >= b.fisc.StartDate && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+                                          Amountdr = x.Where(b => b.ti.DrCr == true && ((b.t.TransactionDate).Date >= b.fisc.StartDate && (b.t.TransactionDate).Date < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
+                                          Amountcr = x.Where(b => b.ti.DrCr == false && ((b.t.TransactionDate).Date >= b.fisc.StartDate && (b.t.TransactionDate).Date < FromDate)).Select(a => (int?)a.ti.Amount).DefaultIfEmpty(0).Sum(),
                                           x.Key.FiscalYearId,
                                       }).ToList();
 
@@ -3903,7 +3903,7 @@ namespace DanpheEMR.Controllers
                            join fiscal in _accountingDbContext.FiscalYears on txn.FiscalyearId equals fiscal.FiscalYearId
                            where
                            fiscal.HospitalId == currentHospitalId &&
-                           txn.IsActive == true && (DbFunctions.TruncateTime(txn.TransactionDate) >= FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= ToDate)
+                           txn.IsActive == true && ((txn.TransactionDate).Date >= FromDate && (txn.TransactionDate).Date <= ToDate)
                            && txn.SectionId == sectionId && txn.FiscalyearId == FiscalYearId
                            select new
                            {
@@ -3914,7 +3914,7 @@ namespace DanpheEMR.Controllers
                                VoucherType = voucher.VoucherName,
                                VoucherId = txn.VoucherId,
                                SectionId = txn.SectionId,
-                               TransactionDate = DbFunctions.TruncateTime(txn.TransactionDate),// txn.TransactionDate.ToString("dd/mm/yyyy"),                                       
+                               TransactionDate = (txn.TransactionDate).Date,// txn.TransactionDate.ToString("dd/mm/yyyy"),                                       
                                Amount = (from txnItm in _accountingDbContext.TransactionItems
                                          where txnItm.TransactionId == txn.TransactionId
                                          && txnItm.DrCr == true
@@ -4396,7 +4396,7 @@ namespace DanpheEMR.Controllers
                                       where
                                       ti.HospitalId == currentHospitalId
                                       && l.HospitalId == currentHospitalId &&
-                                      (ti.LedgerId == ledgerId) && (DbFunctions.TruncateTime(t.TransactionDate) >= FromDate && DbFunctions.TruncateTime(t.TransactionDate) <= ToDate)
+                                      (ti.LedgerId == ledgerId) && ((t.TransactionDate).Date >= FromDate && (t.TransactionDate).Date <= ToDate)
                                       select new
                                       {
                                           t.TransactionId,
@@ -4425,7 +4425,7 @@ namespace DanpheEMR.Controllers
                              where
                              ti.HospitalId == currentHospitalId
                              && l.HospitalId == currentHospitalId &&
-                             (ti.LedgerId == ledgerId) && (DbFunctions.TruncateTime(t.TransactionDate) >= DbFunctions.TruncateTime(openingBalanceFiscalYear.StartDate) && DbFunctions.TruncateTime(t.TransactionDate) <= ToDate)
+                             (ti.LedgerId == ledgerId) && ((t.TransactionDate).Date >= (openingBalanceFiscalYear.StartDate).Date && (t.TransactionDate).Date <= ToDate)
                              group new { t, ti, l } by new
                              {
                                  l.LedgerId,
@@ -4434,8 +4434,8 @@ namespace DanpheEMR.Controllers
                              select new
                              {
                                  FiscalYearId = fYearId,
-                                 AmountDr = x.Where(b => b.ti.DrCr == true && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum() + ((transactionRecords.Count == 0 && led.LedgerId > 0 && led.DrCr == true) ? led.OpeningBalance : 0),
-                                 AmountCr = x.Where(b => b.ti.DrCr == false && DbFunctions.TruncateTime(b.t.TransactionDate) < FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum() + ((transactionRecords.Count == 0 && led.LedgerId > 0 && led.DrCr == false) ? led.OpeningBalance : 0),
+                                 AmountDr = x.Where(b => b.ti.DrCr == true && (b.t.TransactionDate).Date < FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum() + ((transactionRecords.Count == 0 && led.LedgerId > 0 && led.DrCr == true) ? led.OpeningBalance : 0),
+                                 AmountCr = x.Where(b => b.ti.DrCr == false && (b.t.TransactionDate).Date < FromDate).Select(a => a.ti.Amount).DefaultIfEmpty(0).Sum() + ((transactionRecords.Count == 0 && led.LedgerId > 0 && led.DrCr == false) ? led.OpeningBalance : 0),
                              }).ToList();
 
             if (transactionRecords.Count == 0)// && dataList1.Count == 0)
@@ -4519,7 +4519,7 @@ namespace DanpheEMR.Controllers
                            join fiscal in _accountingDbContext.FiscalYears on txn.FiscalyearId equals fiscal.FiscalYearId
                            where
                            fiscal.HospitalId == currentHospitalId &&
-                           txn.IsActive == true && (DbFunctions.TruncateTime(txn.TransactionDate) >= FromDate && DbFunctions.TruncateTime(txn.TransactionDate) <= ToDate)
+                           txn.IsActive == true && ((txn.TransactionDate).Date >= FromDate && (txn.TransactionDate).Date <= ToDate)
                             && txn.SectionId == sectionId && txn.IsVerified == false //&& txn.Status == Enums.ENUM_ACC_VoucherStatus.Draft
                            select new
                            {
@@ -4528,7 +4528,7 @@ namespace DanpheEMR.Controllers
                                VoucherNumber = txn.VoucherNumber,
                                VoucherType = voucher.VoucherName,
                                SectionId = txn.SectionId,
-                               TransactionDate = DbFunctions.TruncateTime(txn.TransactionDate),                                     
+                               TransactionDate = (txn.TransactionDate).Date,                                     
                                Amount = (from txnItm in _accountingDbContext.TransactionItems
                                          where txnItm.TransactionId == txn.TransactionId
                                          && txnItm.DrCr == true

@@ -1,11 +1,11 @@
-﻿//using DanpheEMR.CommonTypes;
+//using DanpheEMR.CommonTypes;
 using DanpheEMR.DalLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using DanpheEMR.Security;
 using DanpheEMR.Core.Caching;
@@ -14,7 +14,7 @@ using System.Data;
 using System.Reflection;
 using System.ComponentModel;
 using System.Dynamic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using DanpheEMR.ServerModel.IncentiveModels;
@@ -779,7 +779,7 @@ namespace DanpheEMR.AccTransfer
                 {
                     try
                     {
-                        accountingDBContext.Configuration.AutoDetectChangesEnabled = false;
+                        accountingDBContext.ChangeTracker.AutoDetectChangesEnabled = false;
                         Transaction = txndata;
                         List<string> updateReferenceIds = new List<string>();
                         Hashtable allReferenceIdWithTypeList = new Hashtable();
@@ -6422,7 +6422,7 @@ namespace DanpheEMR.AccTransfer
                 //                             TotalAmount = x.Select(a => (decimal)a.invReturnItm.TotalAmount).Sum(),
                 //                             VATAmount = x.Select(c => (((decimal)c.invReturnItm.SubTotal - (((decimal)c.invReturnItm.SubTotal * (Convert.ToDecimal((decimal)c.invReturnItm.DiscountPercentage))) / 100)) * Convert.ToDecimal((decimal)c.invReturnItm.VATPercentage)) / 100).Sum(),
                 //                             DiscountAmount = x.Select(b => (decimal)b.invReturnItm.SubTotal * (Convert.ToDecimal((decimal)b.invReturnItm.DiscountPercentage / 100))).Sum(),
-                //                             Remarks = "Transaction of " + x.Key.PaymentMode + " Invoice return Items on date: ", // + DbFunctions.TruncateTime(x.Key.CreatedOn),
+                //                             Remarks = "Transaction of " + x.Key.PaymentMode + " Invoice return Items on date: ", // + (x.Key.CreatedOn).Date,
                 //                             ReferenceIds = x.Select(a => a.invo.InvoiceId).Distinct().ToList(),
                 //                             GrAmount = (from gr in grvatdisamount
                 //                                         join itm in x.Select(a => a.invo.InvoiceId).Distinct().ToList() on gr.InvoiceId equals itm

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +23,30 @@ namespace DanpheEMR.DalLayer
         public DbSet<EmployeeModel> Employee { get; set; }
         public DbSet<BillMapPriceCategoryServiceItemModel> BillPriceCategoryServiceItems { get; set; }
 
-        public FractionDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public FractionDbContext(DbContextOptions<FractionDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
+
+        public FractionDbContext(string conn)
+        {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         public DataTable GetFractionApplicable()
         {
@@ -45,8 +64,10 @@ namespace DanpheEMR.DalLayer
             DataTable result = DALFunctions.GetDataTableFromStoredProc("SP_FRC_GetTotalFractionbyDoctor", paramList,  this);
             return result;
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<DesignationModel>().ToTable("FRC_Designation");
             modelBuilder.Entity<FractionPercentModel>().ToTable("FRC_PercentSetting");
             modelBuilder.Entity<BillServiceItemModel>().ToTable("BIL_MST_ServiceItem");

@@ -1,5 +1,5 @@
 using System;
-using System.Security.RightsManagement;
+/* using System.Security.RightsManagement; */
 
 namespace DanpheEMR.ViewModel.Substore
 {

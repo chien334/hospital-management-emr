@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,8 +19,8 @@ namespace DanpheEMR.Controllers
 {
     public class AssetMaintenanceController : CommonController
     {
-        private static IHostingEnvironment _environment;
-        public AssetMaintenanceController(IHostingEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
+        private static IWebHostEnvironment _environment;
+        public AssetMaintenanceController(IWebHostEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
         {
             _environment = env;
         }
@@ -298,11 +298,11 @@ namespace DanpheEMR.Controllers
                 }
 
                 var temp = inventoryDbContext.FixedAssetStock.Attach(assetDetails);
-                inventoryDbContext.Entry(temp).Property(x => x.FixedAssetStockId).IsModified = false;
-                inventoryDbContext.Entry(temp).Property(x => x.IsMaintenanceRequired).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedBy).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedOn).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.Performance).IsModified = true;
+                temp.Property(x => x.FixedAssetStockId).IsModified = false;
+                temp.Property(x => x.IsMaintenanceRequired).IsModified = true;
+                temp.Property(x => x.ModifiedBy).IsModified = true;
+                temp.Property(x => x.ModifiedOn).IsModified = true;
+                temp.Property(x => x.Performance).IsModified = true;
 
                 //inventoryDbContext.Entry(temp).State = EntityState.Modified;
 
@@ -337,13 +337,13 @@ namespace DanpheEMR.Controllers
                 assetDetails.ModifiedOn = DateTime.Now;
 
                 var temp = inventoryDbContext.FixedAssetFaultHistory.Attach(assetDetails);
-                inventoryDbContext.Entry(temp).Property(x => x.FixedAssetStockId).IsModified = false;
+                temp.Property(x => x.FixedAssetStockId).IsModified = false;
 
-                inventoryDbContext.Entry(temp).Property(x => x.IsFaultResolved).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.FaultResolvedDate).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.FaultResolvedRemarks).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedBy).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedOn).IsModified = true;
+                temp.Property(x => x.IsFaultResolved).IsModified = true;
+                temp.Property(x => x.FaultResolvedDate).IsModified = true;
+                temp.Property(x => x.FaultResolvedRemarks).IsModified = true;
+                temp.Property(x => x.ModifiedBy).IsModified = true;
+                temp.Property(x => x.ModifiedOn).IsModified = true;
 
                 //inventoryDbContext.Entry(temp).State = EntityState.Modified;
 
@@ -382,13 +382,13 @@ namespace DanpheEMR.Controllers
                 assetDetails.ModifiedOn = DateTime.Now;
 
                 var temp = inventoryDbContext.FixedAssetStock.Attach(assetDetails);
-                inventoryDbContext.Entry(temp).Property(x => x.FixedAssetStockId).IsModified = false;
+                temp.Property(x => x.FixedAssetStockId).IsModified = false;
 
-                inventoryDbContext.Entry(temp).Property(x => x.IsUnderMaintenance).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.IsMaintenanceRequired).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.Performance).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedBy).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedOn).IsModified = true;
+                temp.Property(x => x.IsUnderMaintenance).IsModified = true;
+                temp.Property(x => x.IsMaintenanceRequired).IsModified = true;
+                temp.Property(x => x.Performance).IsModified = true;
+                temp.Property(x => x.ModifiedBy).IsModified = true;
+                temp.Property(x => x.ModifiedOn).IsModified = true;
 
                 //inventoryDbContext.Entry(temp).State = EntityState.Modified;
 
@@ -423,12 +423,12 @@ namespace DanpheEMR.Controllers
                 serviceDetails.ModifiedOn = DateTime.Now;
 
                 var temp = inventoryDbContext.FixedAssetService.Attach(serviceDetails);
-                inventoryDbContext.Entry(temp).Property(x => x.ServiceDate).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ServiceRemarks).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ServiceCompleteDate).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ServiceCompleteRemarks).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedBy).IsModified = true;
-                inventoryDbContext.Entry(temp).Property(x => x.ModifiedOn).IsModified = true;
+                temp.Property(x => x.ServiceDate).IsModified = true;
+                temp.Property(x => x.ServiceRemarks).IsModified = true;
+                temp.Property(x => x.ServiceCompleteDate).IsModified = true;
+                temp.Property(x => x.ServiceCompleteRemarks).IsModified = true;
+                temp.Property(x => x.ModifiedBy).IsModified = true;
+                temp.Property(x => x.ModifiedOn).IsModified = true;
 
                 //inventoryDbContext.Entry(temp).State = EntityState.Modified;
 
@@ -708,9 +708,9 @@ namespace DanpheEMR.Controllers
                 faulthistory.ModifiedBy = currentUser.EmployeeId;
                 faulthistory.ModifiedOn = DateTime.Now;
                 var temp = inventoryDbContext.FixedAssetFaultHistory.Attach(faulthistory);
-                inventoryDbContext.Entry(temp).State = EntityState.Modified;
-                inventoryDbContext.Entry(temp).Property(x => x.FixedAssetStockId).IsModified = false;
-                inventoryDbContext.Entry(temp).Property(x => x.CreatedBy).IsModified = false;
+                temp.State = EntityState.Modified;
+                temp.Property(x => x.FixedAssetStockId).IsModified = false;
+                temp.Property(x => x.CreatedBy).IsModified = false;
                 inventoryDbContext.SaveChanges();
 
                 responseData.Status = "OK";
@@ -841,28 +841,28 @@ namespace DanpheEMR.Controllers
                         fixedAssetstock.IsMaintenanceRequired = true;
                         fixedAssetstock.IsActive = true;
                         var temp = inventoryDbContext.FixedAssetStock.Attach(fixedAssetstock);
-                        inventoryDbContext.Entry(temp).State = EntityState.Modified;
-                        inventoryDbContext.Entry(temp).Property(x => x.ItemId).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.CreatedOn).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.CreatedBy).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.GoodsReceiptItemId).IsModified = false;
+                        temp.State = EntityState.Modified;
+                        temp.Property(x => x.ItemId).IsModified = false;
+                        temp.Property(x => x.CreatedOn).IsModified = false;
+                        temp.Property(x => x.CreatedBy).IsModified = false;
+                        temp.Property(x => x.GoodsReceiptItemId).IsModified = false;
 
-                        inventoryDbContext.Entry(temp).Property(x => x.AssetsLocation).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.WarrantyExpiryDate).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.ModelNo).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.SerialNo).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.BuildingBlockNumber).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.Floors).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.RoomNumber).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.RoomPosition).IsModified = false;
-                        inventoryDbContext.Entry(temp).Property(x => x.StoreId).IsModified = false;
+                        temp.Property(x => x.AssetsLocation).IsModified = false;
+                        temp.Property(x => x.WarrantyExpiryDate).IsModified = false;
+                        temp.Property(x => x.ModelNo).IsModified = false;
+                        temp.Property(x => x.SerialNo).IsModified = false;
+                        temp.Property(x => x.BuildingBlockNumber).IsModified = false;
+                        temp.Property(x => x.Floors).IsModified = false;
+                        temp.Property(x => x.RoomNumber).IsModified = false;
+                        temp.Property(x => x.RoomPosition).IsModified = false;
+                        temp.Property(x => x.StoreId).IsModified = false;
 
-                        inventoryDbContext.Entry(temp).Property(x => x.ManufactureDate).IsModified = true;
-                        inventoryDbContext.Entry(temp).Property(x => x.TotalLife).IsModified = true;
-                        inventoryDbContext.Entry(temp).Property(x => x.Performance).IsModified = true;
-                        inventoryDbContext.Entry(temp).Property(x => x.YearOfUse).IsModified = true;
-                        inventoryDbContext.Entry(temp).Property(x => x.IsActive).IsModified = true;
-                        inventoryDbContext.Entry(temp).Property(x => x.IsMaintenanceRequired).IsModified = true;
+                        temp.Property(x => x.ManufactureDate).IsModified = true;
+                        temp.Property(x => x.TotalLife).IsModified = true;
+                        temp.Property(x => x.Performance).IsModified = true;
+                        temp.Property(x => x.YearOfUse).IsModified = true;
+                        temp.Property(x => x.IsActive).IsModified = true;
+                        temp.Property(x => x.IsMaintenanceRequired).IsModified = true;
                         inventoryDbContext.SaveChanges();
 
                         inventoryDbContext.SaveChanges();

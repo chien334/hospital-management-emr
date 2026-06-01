@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +13,34 @@ namespace DanpheEMR.DalLayer
         public DbSet<AppointmentModel> Appointments { get; set; }
         public DbSet<VisitModel> Visit { get; set; }
         public DbSet<EmployeeModel> Employees { get; set; }
-        public AppointmentDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public AppointmentDbContext(DbContextOptions<AppointmentDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public AppointmentDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<AppointmentModel>().ToTable("PAT_Appointment");
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");

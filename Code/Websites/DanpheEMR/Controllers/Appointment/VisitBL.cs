@@ -1,4 +1,4 @@
-﻿
+
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
 using DanpheEMR.ServerModel;
@@ -8,8 +8,8 @@ using DanpheEMR.Sync.IRDNepal.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using DanpheEMR.Core;
 using DanpheEMR.ServerModel.PatientModels;
@@ -232,7 +232,7 @@ namespace DanpheEMR.Controllers
 
             List<VisitModel> patientvisitList = (from visit in visitDb.Visits
                                                  where visit.PatientId == patientId
-                                                 && DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(visitDate)
+                                                 && (visit.VisitDate).Date == (visitDate).Date
                                                  && visit.PerformerId == providerId && visit.IsActive == true
                                                  && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
                                                  select visit).ToList();
@@ -848,7 +848,7 @@ namespace DanpheEMR.Controllers
 
         public static NewClaimCode_DTO GetLatestClaimCode(VisitDbContext visitDbContext,int schemeId)
         {
-            NewClaimCode_DTO newClaimObj = visitDbContext.Database.SqlQuery<NewClaimCode_DTO>("SP_Claim_GenerateNewClaimCode" + " " + schemeId).FirstOrDefault();
+            NewClaimCode_DTO newClaimObj = visitDbContext.Database.SqlQueryRaw<NewClaimCode_DTO>("SP_Claim_GenerateNewClaimCode" + " " + schemeId).FirstOrDefault();
             return newClaimObj;
         }
 

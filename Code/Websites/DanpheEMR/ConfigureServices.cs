@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -25,36 +25,50 @@ namespace DanpheEMR
             // Add Swagger
             services.AddSwaggerGen(config =>
             {
-                config.SwaggerDoc("v1", new Info
+                config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Title = "DanpheEMR APIs",
                     Version = "v1",
-                    Contact = new Contact()
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact()
                     {
                         Name = "DanpheEMR",
                         Email = "info.danphe-emr.com",
-                        Url = new Uri("https://danphehealth.com/").ToString()
+                        Url = new Uri("https://danphehealth.com/")
                     },
                     Description = "We are testing Swagger in DanpheEMR",
-                    TermsOfService = "This section includes Terms and Services"
+                    TermsOfService = new Uri("https://danphehealth.com/")
                 });
-                config.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                config.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
                 {
-                    In = "header",
+                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
                     Description = "Please enter your JWT token here starting with Bearer followed by single white space",
                     Name = "Authorization",
-                    Type = "apiKey"
+                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey
                 });
 
-                config.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
-                { "Bearer", Enumerable.Empty<string>() },
+                config.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+                {
+                    {
+                        new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                        {
+                            Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                            {
+                                Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
                 });
 
                 //DanpheEmrAPI.xml file is created by the Project>build event
                 //and it is read by swagger to show in the api documentation.
                 //We can show: <summary>, <remarks>, <response>
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "DanpheEmrAPI.xml");
-                config.IncludeXmlComments(filePath);
+                if (File.Exists(filePath))
+                {
+                    config.IncludeXmlComments(filePath);
+                }
 
             });
 

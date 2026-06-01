@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using DanpheEMR.Core;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
@@ -23,9 +23,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -2989,18 +2989,18 @@ namespace DanpheEMR.Controllers
             {
                 irdLogdata.CreatedOn = DateTime.Now;
 
-                string url_IRDNepal = ConfigurationManager.AppSettings["url_IRDNepal"];
+                string url_IRDNepal = System.Configuration.ConfigurationManager.AppSettings["url_IRDNepal"];
                 switch (irdLogdata.BillType)
                 {
                     case "phrm-invoice":
                         {
-                            string api_SalesIRDNepal = ConfigurationManager.AppSettings["api_SalesIRDNepal"];
+                            string api_SalesIRDNepal = System.Configuration.ConfigurationManager.AppSettings["api_SalesIRDNepal"];
                             irdLogdata.UrlInfo = url_IRDNepal + "/" + api_SalesIRDNepal;
                             break;
                         }
                     case "phrm-invoice-return":
                         {
-                            string api_SalesIRDNepal = ConfigurationManager.AppSettings["api_SalesReturnIRDNepal"];
+                            string api_SalesIRDNepal = System.Configuration.ConfigurationManager.AppSettings["api_SalesReturnIRDNepal"];
                             irdLogdata.UrlInfo = url_IRDNepal + "/" + api_SalesIRDNepal;
                             break;
                         }

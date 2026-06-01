@@ -1,4 +1,4 @@
-﻿using DanpheEMR.DalLayer;
+using DanpheEMR.DalLayer;
 using DanpheEMR.ServerModel;
 using System;
 using System.Collections.Generic;
@@ -6,8 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using DanpheEMR.Security;
 using DanpheEMR.Enums;
-using System.Data.SqlClient;
-using System.Data.Entity.Infrastructure;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.MasterModels;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.PatientModels;
@@ -685,7 +686,7 @@ namespace DanpheEMR.Controllers.Billing
                     if (billItemRequisition != null)
                     {
                         billItemRequisition.BillStatus = "paid";
-                        dbContext.Entry(billItemRequisition).State = System.Data.Entity.EntityState.Modified;
+                        dbContext.Entry(billItemRequisition).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     }
                 }
                 dbContext.SaveChanges();

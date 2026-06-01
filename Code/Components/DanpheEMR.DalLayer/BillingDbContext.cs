@@ -9,8 +9,8 @@ using DanpheEMR.ServerModel.MedicareModels;
 using DanpheEMR.ServerModel.PatientModels;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 namespace DanpheEMR.DalLayer
 {
@@ -114,15 +114,34 @@ namespace DanpheEMR.DalLayer
 
 
         public object ReportingItemsModel { get; set; }
-        public BillingDbContext(string conn) : base(conn)
-        {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.AuditDisabled = true;
+        
+        private readonly string? _connectionString;
 
-        }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public BillingDbContext(DbContextOptions<BillingDbContext> options)
+            : base(options)
         {
+            this.AuditDisabled = true;
+        }
+
+        public BillingDbContext(string conn)
+        {
+            _connectionString = conn;
+            this.AuditDisabled = true;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<BillingPackageServiceItemModel>()
                 .Property(p => p.DiscountPercent)
                 .HasPrecision(7, 4);
@@ -148,7 +167,7 @@ namespace DanpheEMR.DalLayer
             //Billing mapping
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");
             modelBuilder.Entity<BillingTransactionItemModel>()
-                  .HasRequired<BillingTransactionModel>(s => s.BillingTransaction) // Address entity requires Patient
+                  .HasOne(s => s.BillingTransaction) // Address entity requires Patient
                   .WithMany(s => s.BillingTransactionItems) // Patient entity includes many Addresses entities
                    .HasForeignKey(s => s.BillingTransactionId);
 
@@ -165,7 +184,7 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<BillingFiscalYear>().ToTable("BIL_CFG_FiscalYears");
             //end: ashim-5May for fiscalYear
             //modelBuilder.Entity<BillItemRequisition>()
-            //                 .HasRequired<EmployeeModel>(s => s.Employee) // Address entity requires Patient
+            //                 .HasOne(s => s.Employee) // Address entity requires Patient
             //                 .WithMany(s => ) // Patient entity includes many Addresses entities
             //                  .HasForeignKey(s => s.BillingTransactionId);
 

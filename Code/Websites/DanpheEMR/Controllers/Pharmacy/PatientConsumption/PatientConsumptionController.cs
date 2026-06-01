@@ -1,7 +1,8 @@
-﻿using DanpheEMR.Core.Configuration;
+using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
 using DanpheEMR.Security;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.MasterModels;
 using DanpheEMR.ServerModel.MedicareModels;

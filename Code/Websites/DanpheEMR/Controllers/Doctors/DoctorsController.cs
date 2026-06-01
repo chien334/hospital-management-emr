@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using DbFunctions = System.Data.Entity.DbFunctions;
+/* using DbFunctions = System.Data.Entity.DbFunctions; */
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 //this is the cotroller
 namespace DanpheEMR.Controllers
@@ -312,7 +312,7 @@ namespace DanpheEMR.Controllers
         //        //show only today's visits for the provider.. and if the visittype is inpatient then  the addmission status shouled be admitted ..Dharam 9th Sept 2017..
         //        var visitList = (from visit in dbContext.Visits.Include("Admission").Include("Patient")
         //                         where visit.VisitStatus == status
-        //                         && (DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(today) || visit.Admission.AdmissionStatus == "admitted")
+        //                         && ((visit.VisitDate).Date == (today).Date || visit.Admission.AdmissionStatus == "admitted")
         //                         && visit.PerformerId == providerId && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
         //                         select visit).ToList()
         //                       .OrderBy(v => v.VisitDate).ThenBy(v => v.VisitTime).ToList();
@@ -325,8 +325,8 @@ namespace DanpheEMR.Controllers
         //        //var departmentId = dbContext.Employees.Where(a => a.EmployeeId == providerId).Select(a => a).FirstOrDefault();
         //        //show only today's visits for the provider.. and if the visittype is inpatient then  the addmission status shouled be admitted ..Dharam 9th Sept 2017..
         //        var visitList = (from visit in dbContext.Visits.Include("Admission").Include("Patient")
-        //                         where DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(toDate) && // visit.VisitStatus == status &&
-        //                       (DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(toDate) || visit.Admission.AdmissionStatus == "admitted")
+        //                         where (visit.VisitDate).Date == (toDate).Date && // visit.VisitStatus == status &&
+        //                       ((visit.VisitDate).Date == (toDate).Date || visit.Admission.AdmissionStatus == "admitted")
         //                          && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
         //                         select visit).ToList()
         //                        .OrderBy(v => v.VisitDate).ThenBy(v => v.VisitTime).ToList().GroupBy(a => a.PerformerName)
@@ -693,7 +693,7 @@ namespace DanpheEMR.Controllers
                 //show only today's visits for the provider.. and if the visittype is inpatient then  the addmission status shouled be admitted ..Dharam 9th Sept 2017..
                 var visitList = (from visit in _doctorDbContext.Visits.Include("Admission").Include("Patient")
                                  where visit.VisitStatus == status
-                                 && (DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(today) || visit.Admission.AdmissionStatus == "admitted")
+                                 && ((visit.VisitDate).Date == (today).Date || visit.Admission.AdmissionStatus == "admitted")
                                  && visit.PerformerId == providerId && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
                                  select visit).ToList()
                                .OrderBy(v => v.VisitDate).ThenBy(v => v.VisitTime).ToList();
@@ -705,8 +705,8 @@ namespace DanpheEMR.Controllers
                                                         //var departmentId = dbContext.Employees.Where(a => a.EmployeeId == providerId).Select(a => a).FirstOrDefault();
                                                         //show only today's visits for the provider.. and if the visittype is inpatient then  the addmission status shouled be admitted ..Dharam 9th Sept 2017..
                 var visitList = (from visit in _doctorDbContext.Visits.Include("Admission").Include("Patient")
-                                 where DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(toDate) && // visit.VisitStatus == status &&
-                               (DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(toDate) || visit.Admission.AdmissionStatus == "admitted")
+                                 where (visit.VisitDate).Date == (toDate).Date && // visit.VisitStatus == status &&
+                               ((visit.VisitDate).Date == (toDate).Date || visit.Admission.AdmissionStatus == "admitted")
                                   && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
                                  select visit).ToList()
                                 .OrderBy(v => v.VisitDate).ThenBy(v => v.VisitTime).ToList().GroupBy(a => a.PerformerName)

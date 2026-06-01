@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +11,30 @@ namespace DanpheEMR.DalLayer
 {
     public class SchedulingDbContext : DbContext
     {
-        public SchedulingDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public SchedulingDbContext(DbContextOptions<SchedulingDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
+
+        public SchedulingDbContext(string conn)
+        {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<EmployeeModel> Employee { get; set; }
         public DbSet<EmpDayWiseAvailability> DayWiseAvailability { get; set; }
         public DbSet<EmployeeShifts> EmpShifts { get; set; }
@@ -24,8 +43,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<EmployeeShiftMap> EmpShiftMAP { get; set; }
         public DbSet<EmployeeRoleModel> EmpRole { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");
             modelBuilder.Entity<EmpDayWiseAvailability>().ToTable("SCH_EmpDayWiseAvailability");
             modelBuilder.Entity<EmployeeShifts>().ToTable("SCH_EmployeeShifts");

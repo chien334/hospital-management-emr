@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DanpheEMR.Utilities;
 using DanpheEMR.CommonTypes;
@@ -120,7 +120,7 @@ namespace DanpheEMR.Controllers
                                                  join pat in billingDbContext.Patient on txn.PatientId equals pat.PatientId
                                                  join fis in billingDbContext.BillingFiscalYears on txn.FiscalYearId equals fis.FiscalYearId
                                                  where txn.IsInsuranceBilling == true && txn.IsInsuranceClaimed == false && txn.ReturnStatus == false
-                                                 && (DbFunctions.TruncateTime(txn.CreatedOn) >= fromDate.Date && DbFunctions.TruncateTime(txn.CreatedOn) <= toDate.Date)
+                                                 && ((txn.CreatedOn).Date >= fromDate.Date && (txn.CreatedOn).Date <= toDate.Date)
 
                                                  select new
                                                  {

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.InventoryModels;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using DanpheEMR.Security;
 using DanpheEMR.ServerModel.IncentiveModels;
 using DanpheEMR.ServerModel.AccountingModels;
@@ -21,14 +21,35 @@ namespace DanpheEMR.DalLayer
 {
     public class AccountingDbContext : DbContext
     {
-        public AccountingDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public AccountingDbContext(DbContextOptions<AccountingDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public AccountingDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ChartOfAccountModel>().ToTable("ACC_MST_ChartOfAccounts");
             modelBuilder.Entity<VoucherModel>().ToTable("ACC_MST_Vouchers");
             modelBuilder.Entity<VoucherHeadModel>().ToTable("ACC_MST_VoucherHead");
@@ -235,7 +256,7 @@ namespace DanpheEMR.DalLayer
             // creates resulting dataset
             var result = new DataSet();
             // creates a Command 
-            var cmd = dbContext.Database.Connection.CreateCommand();
+            var cmd = dbContext.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcName;
 
@@ -249,11 +270,11 @@ namespace DanpheEMR.DalLayer
 
             try
             {
-                var dntransact = dbContext.Database.Connection.State;
+                var dntransact = dbContext.Database.GetDbConnection().State;
                 var retValRes = 0;
                 if (dntransact == ConnectionState.Closed)
                 {
-                    dbContext.Database.Connection.Open();
+                    dbContext.Database.GetDbConnection().Open();
                     retValRes = cmd.ExecuteNonQuery();
                 }
                 else
@@ -261,13 +282,13 @@ namespace DanpheEMR.DalLayer
                     retValRes = cmd.ExecuteNonQuery();
                 }
                 // executes
-                //dbContext.Database.Connection.Open();
+                //dbContext.Database.GetDbConnection().Open();
                 //var retValRes = cmd.ExecuteNonQuery();                
             }
             finally
             {
                 // closes the connection
-                dbContext.Database.Connection.Close();
+                dbContext.Database.GetDbConnection().Close();
             }
             return true;
 

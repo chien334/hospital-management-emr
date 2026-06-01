@@ -9,7 +9,7 @@ using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel.ReportingModels;
 using DanpheEMR.CommonTypes;
 using DanpheEMR.Utilities;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using DanpheEMR.ServerModel.LabModels;
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860

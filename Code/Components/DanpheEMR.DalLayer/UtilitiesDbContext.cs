@@ -4,7 +4,7 @@ using DanpheEMR.ServerModel.PharmacyModels;
 using DanpheEMR.ServerModel;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +16,30 @@ namespace DanpheEMR.DalLayer
 {
     public class UtilitiesDbContext : DbContext
     {
-        public UtilitiesDbContext(string connString) : base(connString)
+        
+        private readonly string? _connectionString;
+
+        public UtilitiesDbContext(DbContextOptions<UtilitiesDbContext> options)
+            : base(options)
         {
+
         }
+
+        public UtilitiesDbContext(string connString)
+        {
+            _connectionString = connString;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         public DbSet<SchemeRefundModel> SchemeRefunds { get; set; }
         public DbSet<BillingFiscalYear> FiscicalYear { get; set; }
@@ -39,8 +60,10 @@ namespace DanpheEMR.DalLayer
 
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<SchemeRefundModel>().ToTable("BIL_TXN_SchemeRefund");
             modelBuilder.Entity<BillingFiscalYear>().ToTable("BIL_CFG_FiscalYears");
             modelBuilder.Entity<VisitSchemeChangeHistoryModel>().ToTable("VIS_LOG_VisitSchemeChangeHistory");

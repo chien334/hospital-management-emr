@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -51,7 +51,7 @@ namespace DanpheEMR.Services.Inventory.InventoryDonation
                                        join vendors in db.Vendors on donations.VendorId equals vendors.VendorId
                                        join store in db.StoreMasters on donations.StoreId equals store.StoreId
                                        join emp in db.Employees on donations.CreatedBy equals emp.EmployeeId
-                                       where store.StoreId == StoreId && donations.IsActive && DbFunctions.TruncateTime(donations.CreatedOn) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(donations.CreatedOn) <= DbFunctions.TruncateTime(toDate)
+                                       where store.StoreId == StoreId && donations.IsActive && (donations.CreatedOn).Date >= (fromDate).Date && (donations.CreatedOn).Date <= (toDate).Date
                                        select new DonationVM
                                        {
                                            DonationId = donations.DonationId,

@@ -22,9 +22,9 @@ namespace DanpheEMR.Controllers.Lab
     {
         public string labTemplateFolder = null;
         private readonly bool _highlightAbnormalLabResult = false;
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly string connString;
-        public LabReportExportController(IOptions<MyConfiguration> _config, IHostingEnvironment hostingEnvironment)
+        public LabReportExportController(IOptions<MyConfiguration> _config, IWebHostEnvironment hostingEnvironment)
         {
             this._hostingEnvironment = hostingEnvironment;
             this._highlightAbnormalLabResult = _config.Value.highlightAbnormalLabResult;

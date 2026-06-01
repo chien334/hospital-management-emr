@@ -3,15 +3,36 @@ using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.BillingModels.POS;
 using DanpheEMR.ServerModel.ClaimManagementModels;
 using DanpheEMR.ServerModel.PharmacyModels;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.DalLayer
 {
     public class ClaimManagementDbContext : DbContext
     {
-        public ClaimManagementDbContext(string connString) : base(connString)
+        
+        private readonly string? _connectionString;
+
+        public ClaimManagementDbContext(DbContextOptions<ClaimManagementDbContext> options)
+            : base(options)
         {
+
         }
+
+        public ClaimManagementDbContext(string connString)
+        {
+            _connectionString = connString;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         public DbSet<CreditOrganizationModel> CreditOrganization { get; set; }
         public DbSet<BillingTransactionCreditBillStatusModel> BillingCreditBillStatus { get; set; }
@@ -27,8 +48,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<BillingTransactionCreditBillItemStatusModel> BillingCreditBillItemStatus { get; set; }
         public DbSet<PHRMTransactionCreditBillItemStatusModel> PharmacyCreditBillItemStatus { get; set; }
         public DbSet<BillingSchemeModel> Schemes { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<CreditOrganizationModel>().ToTable("BIL_MST_Credit_Organization");
             modelBuilder.Entity<BillingTransactionCreditBillStatusModel>().ToTable("BIL_TXN_CreditBillStatus");
             modelBuilder.Entity<PHRMTransactionCreditBillStatus>().ToTable("PHRM_TXN_CreditBillStatus");

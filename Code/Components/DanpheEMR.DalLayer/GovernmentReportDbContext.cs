@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel.ReportingModels;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.DalLayer
 {
@@ -17,12 +17,29 @@ namespace DanpheEMR.DalLayer
     {
         private string connStr = null;
 
-        public GovernmentReportDbContext(string Conn) : base(Conn)
+        
+        private readonly string? _connectionString;
+
+        public GovernmentReportDbContext(DbContextOptions<GovernmentReportDbContext> options)
+            : base(options)
         {
-            connStr = Conn;
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
+
+        public GovernmentReportDbContext(string Conn)
+        {
+            _connectionString = Conn;
+            connStr = Conn;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         #region Outpatient Services
        
@@ -306,7 +323,7 @@ namespace DanpheEMR.DalLayer
             var result = new DataSet();
             var context = new ReportingDbContext(connString);
             // creates a Command 
-            var cmd = context.Database.Connection.CreateCommand();
+            var cmd = context.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcName;
 
@@ -321,7 +338,7 @@ namespace DanpheEMR.DalLayer
             try
             {
                 // executes
-                context.Database.Connection.Open();
+                context.Database.GetDbConnection().Open();
                 var reader = cmd.ExecuteReader();
 
                 // loop through all resultsets (considering that it's possible to have more than one)
@@ -339,7 +356,7 @@ namespace DanpheEMR.DalLayer
             finally
             {
                 // closes the connection
-                context.Database.Connection.Close();
+                context.Database.GetDbConnection().Close();
             }
 
         }

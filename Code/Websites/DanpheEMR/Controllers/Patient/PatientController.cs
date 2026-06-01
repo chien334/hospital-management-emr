@@ -16,9 +16,9 @@ using RefactorThis.GraphDiff;//for entity-update.
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;

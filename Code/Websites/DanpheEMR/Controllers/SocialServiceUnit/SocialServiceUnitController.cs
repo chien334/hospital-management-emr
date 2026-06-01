@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DanpheEMR.Utilities;
 using DanpheEMR.CommonTypes;
@@ -22,8 +22,8 @@ using DanpheEMR.Core;
 using DanpheEMR.Core.Parameters;
 using System.Threading.Tasks;
 using DanpheEMR.Enums;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Data.SqlClient;
 
 namespace DanpheEMR.Controllers
 {

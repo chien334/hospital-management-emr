@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using DanpheEMR.Utilities;
@@ -18,7 +18,7 @@ using DanpheEMR.CommonTypes;
 using RefactorThis.GraphDiff;//for entity-update.
 using DanpheEMR.Security;
 using System.Data;
-using System.Data.Entity.Core.Objects;
+/* using System.Data.Entity.Core.Objects; */
 using System.Collections;
 using DanpheEMR.AccTransfer;
 using DanpheEMR.Core.Caching;

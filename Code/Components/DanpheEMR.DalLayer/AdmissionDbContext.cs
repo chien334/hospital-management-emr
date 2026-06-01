@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,13 +84,34 @@ namespace DanpheEMR.DalLayer
 
 
 
-        public AdmissionDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public AdmissionDbContext(DbContextOptions<AdmissionDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public AdmissionDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<AdmissionModel>().ToTable("ADT_PatientAdmission");
             modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
             modelBuilder.Entity<MunicipalityModel>().ToTable("MST_Municipality");
@@ -98,7 +119,7 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<PatientBedInfo>().ToTable("ADT_TXN_PatientBedInfo");
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
             modelBuilder.Entity<PatientBedInfo>()
-                        .HasRequired<AdmissionModel>(a => a.Admission)
+                        .HasOne(a => a.Admission)
                         .WithMany(a => a.PatientBedInfos)
                         .HasForeignKey(s => s.PatientVisitId);
             modelBuilder.Entity<BedFeature>().ToTable("ADT_MST_BedFeature");
@@ -108,12 +129,12 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<BedModel>().ToTable("ADT_Bed");
             modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");
             //modelBuilder.Entity<BedFeaturesMap>()
-            //           .HasRequired<BedFeature>(a => a.BedFeature)
+            //           .HasOne(a => a.BedFeature)
             //           .WithMany(a => a.Beds)
             //           .HasForeignKey(s => s.WardId);
 
             //modelBuilder.Entity<BedModel>()
-            //           .HasRequired<BedTypeModel>(a => a.BedType)
+            //           .HasOne(a => a.BedType)
             //           .WithMany(a => a.Beds)
             //           .HasForeignKey(s => s.BedTypeId);
 

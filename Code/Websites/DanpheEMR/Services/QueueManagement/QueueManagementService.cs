@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
@@ -34,7 +34,7 @@ namespace DanpheEMR.Services.QueueManagement
                                join department in queueManagementDbContext.Department on visit.DepartmentId equals department.DepartmentId
                                join patient in queueManagementDbContext.Patients on visit.PatientId equals patient.PatientId
                                where ((visit.VisitStatus == "initiated")
-                                  && visit.VisitDate == DbFunctions.TruncateTime(System.DateTime.Now) && visit.VisitType != ENUM_VisitType.inpatient) && visit.BillingStatus != ENUM_BillingStatus.returned
+                                  && visit.VisitDate == (System.DateTime.Now).Date && visit.VisitType != ENUM_VisitType.inpatient) && visit.BillingStatus != ENUM_BillingStatus.returned
                               && (department.DepartmentId == deptId || deptId == 0)
                               && (visit.PerformerId == doctorId || doctorId == 0)
                                where visit.Ins_HasInsurance == null

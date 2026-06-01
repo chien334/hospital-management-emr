@@ -3,7 +3,7 @@ using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.BillingModels;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,15 +28,35 @@ namespace DanpheEMR.DalLayer
         public DbSet<VisitModel> Visits { get; set; }
         public DbSet<RbacUser> RbacUsers { get; set; }
 
-        public VaccinationDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public VaccinationDbContext(DbContextOptions<VaccinationDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
 
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public VaccinationDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
             modelBuilder.Entity<AdminParametersModel>().ToTable("CORE_CFG_Parameters");
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");

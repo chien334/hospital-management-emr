@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-using System.Data.SqlClient;
+
 
 
 namespace DanpheEMR.Security
@@ -25,7 +25,7 @@ namespace DanpheEMR.Security
 
             RbacDbContext dbContext = new RbacDbContext(connStr);
 
-            List<DanpheRoute> allUserRoutes = RBAC.GetRoutesForUser(11);
+            List<DanpheRoute> allUserRoutes = RBAC.GetRoutesForUser(11, true);
 
             //below works fine..
             //List<RbacUser> allUsers = dbContext.Users.ToList();

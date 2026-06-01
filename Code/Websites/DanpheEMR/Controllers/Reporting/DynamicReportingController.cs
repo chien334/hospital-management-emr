@@ -1,7 +1,7 @@
 ﻿using DanpheEMR.CommonTypes;
 using DanpheEMR.DalLayer;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System;
 using DanpheEMR.Core.Configuration;
 using Microsoft.Extensions.Options;
@@ -9,7 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Web.UI;
+/* using System.Web.UI; */
 
 namespace DanpheEMR.Controllers.Reporting
 {

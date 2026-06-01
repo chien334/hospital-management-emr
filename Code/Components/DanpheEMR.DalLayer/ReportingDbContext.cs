@@ -7,8 +7,8 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 
@@ -17,12 +17,29 @@ namespace DanpheEMR.DalLayer
     public class ReportingDbContext : DbContext
     {
         private string connStr = null;
-        public ReportingDbContext(string Conn) : base(Conn)
+        
+        private readonly string? _connectionString;
+
+        public ReportingDbContext(DbContextOptions<ReportingDbContext> options)
+            : base(options)
         {
-            connStr = Conn;
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
+
+        public ReportingDbContext(string Conn)
+        {
+            _connectionString = Conn;
+            connStr = Conn;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         #region Doctor Report
         public DataTable DoctorReport(DateTime FromDate, DateTime ToDate, string ProviderName)
@@ -521,7 +538,7 @@ namespace DanpheEMR.DalLayer
 
 
             // creates a Command 
-            var cmd = context.Database.Connection.CreateCommand();
+            var cmd = context.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "SP_Report_BILL_PatientBillHistory";
             cmd.Parameters.Add(new SqlParameter("@FromDate", FromDate));
@@ -533,7 +550,7 @@ namespace DanpheEMR.DalLayer
             try
             {
                 // executes
-                context.Database.Connection.Open();
+                context.Database.GetDbConnection().Open();
                 var reader = cmd.ExecuteReader();
 
                 // loop through all resultsets (considering that it's possible to have more than one)
@@ -551,7 +568,7 @@ namespace DanpheEMR.DalLayer
             finally
             {
                 // closes the connection
-                context.Database.Connection.Close();
+                context.Database.GetDbConnection().Close();
             }
         }
 
@@ -969,7 +986,7 @@ namespace DanpheEMR.DalLayer
 
 
         //    // creates a Command 
-        //    var cmd = context.Database.Connection.CreateCommand();
+        //    var cmd = context.Database.GetDbConnection().CreateCommand();
         //    cmd.CommandType = CommandType.StoredProcedure;
         //    cmd.CommandText = "sp_Report_TestWiseRevenue";
 
@@ -988,7 +1005,7 @@ namespace DanpheEMR.DalLayer
         //    try
         //    {
         //        // executes
-        //        context.Database.Connection.Open();
+        //        context.Database.GetDbConnection().Open();
         //        var reader = cmd.ExecuteReader();
 
         //        // loop through all resultsets (considering that it's possible to have more than one)
@@ -1006,7 +1023,7 @@ namespace DanpheEMR.DalLayer
         //    finally
         //    {
         //        // closes the connection
-        //        context.Database.Connection.Close();
+        //        context.Database.GetDbConnection().Close();
         //    }
         //}
 
@@ -1016,7 +1033,7 @@ namespace DanpheEMR.DalLayer
             var result = new DataSet();
             var context = new ReportingDbContext(connString);
             // creates a Command 
-            var cmd = context.Database.Connection.CreateCommand();
+            var cmd = context.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcName;
 
@@ -1031,7 +1048,7 @@ namespace DanpheEMR.DalLayer
             try
             {
                 // executes
-                context.Database.Connection.Open();
+                context.Database.GetDbConnection().Open();
                 var reader = cmd.ExecuteReader();
 
                 // loop through all resultsets (considering that it's possible to have more than one)
@@ -1049,7 +1066,7 @@ namespace DanpheEMR.DalLayer
             finally
             {
                 // closes the connection
-                context.Database.Connection.Close();
+                context.Database.GetDbConnection().Close();
             }
 
         }
@@ -1299,7 +1316,7 @@ namespace DanpheEMR.DalLayer
         //IRD Invoice Details 
         public List<InvoiceDetailsModel> InvoiceDetails(DateTime FromDate, DateTime ToDate)
         {
-            var Data = Database.SqlQuery<InvoiceDetailsModel>("exec SP_IRD_InvoiceDetails @FromDate,@ToDate",
+            var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("exec SP_IRD_InvoiceDetails @FromDate,@ToDate",
                 new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)).ToList();
             return Data.ToList<InvoiceDetailsModel>();
         }
@@ -1307,11 +1324,11 @@ namespace DanpheEMR.DalLayer
         //All IRD Invoice Details 
         public List<InvoiceDetailsModel> GetAllInvoiceDetails(DateTime fromDate, DateTime toDate)
         {
-            //var Data = Database.SqlQuery<InvoiceDetailsModel>("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate",
+            //var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate",
             //    new SqlParameter("@FromDate", fromDate), new SqlParameter("@ToDate", toDate)).ToList();
             //return Data.ToList<InvoiceDetailsModel>();
 
-            var Data = Database.SqlQuery<InvoiceDetailsModel>("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate",
+            var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate",
                 new SqlParameter("@FromDate", fromDate), new SqlParameter("@ToDate", toDate)).ToList();
             return Data.ToList<InvoiceDetailsModel>();
         }
@@ -1320,7 +1337,7 @@ namespace DanpheEMR.DalLayer
         // IRD Pharmacy Invoice Details
         public List<PhrmInvoiceDetails> PhrmInvoiceDetails(DateTime FromDate, DateTime ToDate)
         {
-            var Data = Database.SqlQuery<PhrmInvoiceDetails>("exec SP_IRD_PHRM_InvoiceDetails @FromDate,@ToDate",
+            var Data = Database.SqlQueryRaw<PhrmInvoiceDetails>("exec SP_IRD_PHRM_InvoiceDetails @FromDate,@ToDate",
                 new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)).ToList();
             return Data.ToList<PhrmInvoiceDetails>();
 
@@ -1330,7 +1347,7 @@ namespace DanpheEMR.DalLayer
         //IRD - SQL Audit details
         public List<SqlAuditModel> SqlAuditDetails(DateTime FromDate, DateTime ToDate, string LogType)
         {
-            var data = Database.SqlQuery<SqlAuditModel>("exec SP_Danphe_SQLAudit @FromDate,@ToDate,@LogType",
+            var data = Database.SqlQueryRaw<SqlAuditModel>("exec SP_Danphe_SQLAudit @FromDate,@ToDate,@LogType",
                  new SqlParameter("@FromDate", FromDate),
                  new SqlParameter("@ToDate", ToDate),
                  new SqlParameter("@LogType", LogType)
@@ -1352,7 +1369,7 @@ namespace DanpheEMR.DalLayer
         #region AuditTrailList Details        
         public List<AuditTrailModel> AuditTrailList()
         {
-            var data = Database.SqlQuery<AuditTrailModel>("exec SP_Danphe_Audit_List ").ToList();
+            var data = Database.SqlQueryRaw<AuditTrailModel>("exec SP_Danphe_Audit_List ").ToList();
 
             return data.ToList<AuditTrailModel>();
         }

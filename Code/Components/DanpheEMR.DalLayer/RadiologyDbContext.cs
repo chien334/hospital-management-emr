@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 namespace DanpheEMR.DalLayer
 {
     public class RadiologyDbContext : DbContext
@@ -26,14 +26,35 @@ namespace DanpheEMR.DalLayer
         public DbSet<MunicipalityModel> Muncipality { get; set; }
 
         //public DbSet<FilmTypeModel> FilmType { get; set; }
-        public RadiologyDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public RadiologyDbContext(DbContextOptions<RadiologyDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public RadiologyDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<MunicipalityModel>().ToTable("MST_Municipality");
             modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
             modelBuilder.Entity<RadiologyImagingItemModel>().ToTable("RAD_MST_ImagingItem");
@@ -45,13 +66,13 @@ namespace DanpheEMR.DalLayer
 
             //One to Many relationship between Request and PatientVisit
             modelBuilder.Entity<ImagingRequisitionModel>()
-                        .HasRequired<VisitModel>(i => i.Visit)
+                        .HasOne(i => i.Visit)
                         .WithMany(v => v.ImagingRequisitions)
                         .HasForeignKey(i => i.PatientVisitId);
 
             //One to Many Relationship between Report and PatientVisit
             modelBuilder.Entity<ImagingReportModel>()
-                        .HasRequired<VisitModel>(i => i.Visit)
+                        .HasOne(i => i.Visit)
                         .WithMany(v => v.ImagingReports)
                         .HasForeignKey(i => i.PatientVisitId);
 
@@ -65,8 +86,8 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<ImagingReportModel>()
                 .HasKey(t => t.ImagingRequisitionId);
             modelBuilder.Entity<ImagingRequisitionModel>()
-                .HasOptional<ImagingReportModel>(a => a.ImagingReport)
-                .WithRequired(a => a.ImagingRequisition);
+                .HasOne(a => a.ImagingReport)
+                .WithOne(a => a.ImagingRequisition);
 
             // Patient mapping
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");

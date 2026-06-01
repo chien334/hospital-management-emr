@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DanpheEMR.Utilities;
 using Newtonsoft.Json;
@@ -13,10 +13,10 @@ using DanpheEMR.CommonTypes;
 using DanpheEMR.Security;
 using DanpheEMR.Core;
 using DanpheEMR.Controllers.Billing;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using DanpheEMR.Enums;
-using System.Data.Entity.Infrastructure;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Threading.Tasks;
 using Org.BouncyCastle.Asn1.Ocsp;
 using DanpheEMR.ServerModel.BillingModels;
@@ -32,7 +32,7 @@ using DanpheEMR.Services.Appointment.DTO;
 using DanpheEMR.ServerModel.InsuranceModels;
 using DanpheEMR.Services.Visits.DTO;
 using DanpheEMR.ServerModel.PatientModels;
-using System.Data.Entity.Migrations;
+/* using System.Data.Entity.Migrations; */
 using DocumentFormat.OpenXml.Bibliography;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 //test for checkin
@@ -146,8 +146,8 @@ namespace DanpheEMR.Controllers
             //{
             Func<object> func = () => (from visit in _visitDbContext.Visits
                                        where visit.PatientId == patientId
-                                     //DbFunctions.TruncateTime(defaultLastDateToShow)
-                                     && DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(DateTime.Now)
+                                     //(defaultLastDateToShow).Date
+                                     && (visit.VisitDate).Date == (DateTime.Now).Date
                                        && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
                                        select visit).ToList();
             return InvokeHttpGetFunction<object>(func);
@@ -806,7 +806,7 @@ namespace DanpheEMR.Controllers
             }
             catch (Exception ex)
             {
-                if (ex is System.Data.Entity.Infrastructure.DbUpdateException dbUpdateEx)
+                if (ex is Microsoft.EntityFrameworkCore.DbUpdateException dbUpdateEx)
                 {
                     if (dbUpdateEx.InnerException?.InnerException is SqlException sqlException)
                     {
@@ -1377,9 +1377,9 @@ namespace DanpheEMR.Controllers
         private object CheckExistingAppointmentOnDate(DateTime requestDate, int departmentId, int patientId, int inputProviderId)
         {
             var isDeparmentLevelVisit = _coreDbContext.Parameters.Where(a => a.ParameterGroupName.ToLower() == "visit" && a.ParameterName == "EnableDepartmentLevelAppointment").Select(a => a.ParameterValue).FirstOrDefault();
-            var visitItem = _visitDbContext.Visits.Where(v => (DbFunctions.TruncateTime(v.VisitDate) == DbFunctions.TruncateTime(requestDate.Date)) && (v.DepartmentId == departmentId) && (v.PatientId == patientId && v.BillingStatus.ToLower() != ENUM_BillingStatus.returned && v.BillingStatus.ToLower() != ENUM_BillingStatus.cancel)).AsEnumerable();
+            var visitItem = _visitDbContext.Visits.Where(v => ((v.VisitDate).Date == (requestDate.Date).Date) && (v.DepartmentId == departmentId) && (v.PatientId == patientId && v.BillingStatus.ToLower() != ENUM_BillingStatus.returned && v.BillingStatus.ToLower() != ENUM_BillingStatus.cancel)).AsEnumerable();
             if (isDeparmentLevelVisit == "false")
-                visitItem = _visitDbContext.Visits.Where(v => (DbFunctions.TruncateTime(v.VisitDate) == DbFunctions.TruncateTime(requestDate.Date)) && (v.PerformerId == inputProviderId) && (v.PatientId == patientId && v.BillingStatus.ToLower() != ENUM_BillingStatus.returned && v.BillingStatus.ToLower() != ENUM_BillingStatus.cancel)).AsEnumerable();
+                visitItem = _visitDbContext.Visits.Where(v => ((v.VisitDate).Date == (requestDate.Date).Date) && (v.PerformerId == inputProviderId) && (v.PatientId == patientId && v.BillingStatus.ToLower() != ENUM_BillingStatus.returned && v.BillingStatus.ToLower() != ENUM_BillingStatus.cancel)).AsEnumerable();
             if (visitItem.Any())
             {
                 return true;
@@ -1399,7 +1399,7 @@ namespace DanpheEMR.Controllers
                                 join doc in _visitDbContext.Employees
                                                      on v.PerformerId equals doc.EmployeeId
                                 where v.PatientId == patientId && v.BillingStatus != ENUM_BillingStatus.returned // "returned"
-                                && DbFunctions.TruncateTime(v.VisitDate) >= DbFunctions.TruncateTime(maxLastVisitDate)
+                                && (v.VisitDate).Date >= (maxLastVisitDate).Date
                                 group new { v, doc } by new { v.PerformerId, doc.FirstName, doc.MiddleName, doc.LastName, doc.Salutation, v.ReferredById } into patVis
                                 select new
                                 {
@@ -1844,7 +1844,7 @@ namespace DanpheEMR.Controllers
                                join department in _visitDbContext.Departments on visit.DepartmentId equals department.DepartmentId
                                join patient in _visitDbContext.Patients on visit.PatientId equals patient.PatientId
                                where ((visit.VisitStatus == status)
-                                  && visit.VisitDate > DbFunctions.TruncateTime(defaultLastDateToShow) && visit.VisitType != ENUM_VisitType.inpatient) && visit.BillingStatus != ENUM_BillingStatus.returned
+                                  && visit.VisitDate > (defaultLastDateToShow).Date && visit.VisitType != ENUM_VisitType.inpatient) && visit.BillingStatus != ENUM_BillingStatus.returned
                                   && (visit.Patient.FirstName + " " + (string.IsNullOrEmpty(visit.Patient.MiddleName) ? "" : visit.Patient.MiddleName + " ")
                              + visit.Patient.LastName + visit.Patient.PatientCode + visit.Patient.PhoneNumber).Contains(search)
                                where visit.Ins_HasInsurance == null

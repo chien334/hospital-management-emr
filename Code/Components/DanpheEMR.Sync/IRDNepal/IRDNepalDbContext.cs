@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +11,27 @@ namespace DanpheEMR.Sync.IRDNepal
 {
     class IRDNepalDbContext : DbContext
     {
-        public IRDNepalDbContext(string conn) : base(conn)
+        private readonly string? _connectionString;
+
+        public IRDNepalDbContext(DbContextOptions<IRDNepalDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
 
+        public IRDNepalDbContext(string conn)
+        {
+            _connectionString = conn;
+        }
 
-        //public DbSet<IRD_Common_InvoiceModel> IrdCommonInvoiceSets { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<BillingTransactionModel> BillingTransactions { get; set; }
         public DbSet<BillInvoiceReturnModel> BillInvoiceReturns { get; set; }
         public DbSet<PatientModel> Patients { get; set; }
@@ -27,9 +40,11 @@ namespace DanpheEMR.Sync.IRDNepal
         public DbSet<IRDLogModel> IRDLog { get; set; }
         public DbSet<PHRMInvoiceTransactionModel> PhrmInvoiceSale { get; set; }
         public DbSet<PHRMInvoiceReturnItemsModel> PhrmInvoiceReturnItems { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<IRD_Common_InvoiceModel>().ToTable("IRD_Sync_Invoices_Common");
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<BillingTransactionModel>().ToTable("BIL_TXN_BillingTransaction");
             modelBuilder.Entity<BillInvoiceReturnModel>().ToTable("BIL_TXN_InvoiceReturn");
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
@@ -39,6 +54,5 @@ namespace DanpheEMR.Sync.IRDNepal
             modelBuilder.Entity<PHRMInvoiceTransactionModel>().ToTable("PHRM_TXN_Invoice");
             modelBuilder.Entity<PHRMInvoiceReturnItemsModel>().ToTable("PHRM_TXN_InvoiceReturnItems");
         }
-
     }
 }

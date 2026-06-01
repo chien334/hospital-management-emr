@@ -16,9 +16,9 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -1051,7 +1051,7 @@ namespace DanpheEMR.Controllers
         //        //    var lastUsedClaimcode = insuranceDbContext.Visit.AsQueryable()
         //        //                                .Where(t => t.Ins_HasInsurance == true && t.PatientId == patientId
         //        //                                && t.ClaimCode != null
-        //        //                                && DbFunctions.TruncateTime(t.VisitDate) > lastValidDate
+        //        //                                && (t.VisitDate).Date > lastValidDate
         //        //                                && (t.BillingStatus != ENUM_BillingStatus.returned && t.BillingStatus != ENUM_BillingStatus.cancel))
         //        //                                  .OrderByDescending(v => v.PatientVisitId)
         //        //                                .Select(i => i.ClaimCode).FirstOrDefault();
@@ -1686,7 +1686,7 @@ namespace DanpheEMR.Controllers
         //             //today's all visit or all visits with IsVisitContinued status as false
         //             var visitList = (from visit in insuranceDbContext.Visit
         //                              where visit.PatientId == patientId && visit.Ins_HasInsurance == true
-        //                              && DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(DateTime.Now)
+        //                              && (visit.VisitDate).Date == (DateTime.Now).Date
         //                              && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
         //                              select visit).ToList();
         //             responseData.Results = visitList;
@@ -1705,7 +1705,7 @@ namespace DanpheEMR.Controllers
         //                                join department in insuranceDbContext.Departments on visit.DepartmentId equals department.DepartmentId
         //                                join patient in insuranceDbContext.Patients on visit.PatientId equals patient.PatientId
         //                                where ((visit.VisitStatus == status) && ((visit.Ins_HasInsurance.HasValue ? visit.Ins_HasInsurance : false) == true)
-        //                                   && visit.VisitDate > DbFunctions.TruncateTime(defaultLastDateToShow) && visit.VisitType != ENUM_VisitType.inpatient) && visit.BillingStatus != ENUM_BillingStatus.returned
+        //                                   && visit.VisitDate > (defaultLastDateToShow).Date && visit.VisitType != ENUM_VisitType.inpatient) && visit.BillingStatus != ENUM_BillingStatus.returned
         //                                   && (visit.Patient.FirstName + " " + (string.IsNullOrEmpty(visit.Patient.MiddleName) ? "" : visit.Patient.MiddleName + " ")
         //                              + visit.Patient.LastName + visit.Patient.PatientCode + visit.Patient.PhoneNumber).Contains(search)
         //                                select new ListVisitsVM
@@ -4559,7 +4559,7 @@ namespace DanpheEMR.Controllers
 
             List<VisitModel> patientvisitList = (from visit in insurancevisitDb.Visit
                                                  where visit.PatientId == patientId
-                                                 && DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(visitDate)
+                                                 && (visit.VisitDate).Date == (visitDate).Date
                                                  && visit.PerformerId == providerId && visit.IsActive == true
                                                  && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
                                                  select visit).ToList();
@@ -5363,7 +5363,7 @@ namespace DanpheEMR.Controllers
             //today's all visit or all visits with IsVisitContinued status as false
             var visitList = (from visit in _govInsuranceDbContext.Visit
                              where visit.PatientId == patientId && visit.Ins_HasInsurance == true
-                             && DbFunctions.TruncateTime(visit.VisitDate) == DbFunctions.TruncateTime(DateTime.Now)
+                             && (visit.VisitDate).Date == (DateTime.Now).Date
                              && visit.BillingStatus != ENUM_BillingStatus.returned // "returned"
                              select visit).ToList();
             return visitList;
@@ -6129,7 +6129,7 @@ namespace DanpheEMR.Controllers
             var lastUsedClaimcode = _govInsuranceDbContext.Visit.AsQueryable()
                                         .Where(t => t.Ins_HasInsurance == true && t.PatientId == patientId
                                         && t.ClaimCode != null
-                                        && DbFunctions.TruncateTime(t.VisitDate) > lastValidDate
+                                        && (t.VisitDate).Date > lastValidDate
                                         && (t.BillingStatus != ENUM_BillingStatus.returned && t.BillingStatus != ENUM_BillingStatus.cancel))
                                           .OrderByDescending(v => v.PatientVisitId)
                                         .Select(i => i.ClaimCode).FirstOrDefault();

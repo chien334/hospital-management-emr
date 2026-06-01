@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Transactions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.StaticFiles;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using DanpheEMR.DalLayer;
 

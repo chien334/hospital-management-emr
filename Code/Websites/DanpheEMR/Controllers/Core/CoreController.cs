@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EntityState = System.Data.Entity.EntityState;
+using EntityState = Microsoft.EntityFrameworkCore.EntityState;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 //this is the cotroller

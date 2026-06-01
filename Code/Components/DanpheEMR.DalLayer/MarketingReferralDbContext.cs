@@ -1,14 +1,35 @@
 ﻿using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.MarketingReferralModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.DalLayer
 {
     public class MarketingReferralDbContext : DbContext
     {
-        public MarketingReferralDbContext(string connString) : base(connString)
+        
+        private readonly string? _connectionString;
+
+        public MarketingReferralDbContext(DbContextOptions<MarketingReferralDbContext> options)
+            : base(options)
         {
+
         }
+
+        public MarketingReferralDbContext(string connString)
+        {
+            _connectionString = connString;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<BillingTransactionItemModel> BillingTransactionItem { get; set; }
         public DbSet<ReferralSchemeModel> ReferralScheme { get; set; }
         public DbSet<ReferringPartyModel> ReferringParty { get; set; }
@@ -16,8 +37,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<ReferringOrganizationModel> ReferringOrganization { get; set; }
         public DbSet<ReferralComissionModel> ReferralComission { get; set; }
         public DbSet<BillingFiscalYear> BillingFiscalYears { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");
             modelBuilder.Entity<ReferralSchemeModel>().ToTable("MKT_MST_ReferralScheme");
             modelBuilder.Entity<ReferringPartyModel>().ToTable("MKT_CFG_ReferringParty");

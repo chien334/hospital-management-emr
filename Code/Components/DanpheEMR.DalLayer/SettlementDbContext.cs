@@ -3,19 +3,36 @@ using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.MasterModels;
 using DanpheEMR.ServerModel.PharmacyModels;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.DalLayer
 {
     public class SettlementDbContext : AuditDbContext
     {
-        public SettlementDbContext(string conn) : base(conn)
-        {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.AuditDisabled = true;
+        
+        private readonly string? _connectionString;
 
+        public SettlementDbContext(DbContextOptions<SettlementDbContext> options)
+            : base(options)
+        {
+            this.AuditDisabled = true;
         }
+
+        public SettlementDbContext(string conn)
+        {
+            _connectionString = conn;
+            this.AuditDisabled = true;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<BillingTransactionModel> BillingTransactions { get; set; }
         public DbSet<BillingTransactionItemModel> BillingTransactionItems { get; set; }
         public DbSet<BillingDepositModel> BillingDeposits { get; set; }
@@ -36,8 +53,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<PHRMInvoiceReturnModel> PHRMInvoiceReturnModels { get; set; }
         public DbSet<DepositHeadModel> DepositHeadModels { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<BillingTransactionModel>().ToTable("BIL_TXN_BillingTransaction");
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");
             modelBuilder.Entity<BillingDepositModel>().ToTable("BIL_TXN_Deposit");

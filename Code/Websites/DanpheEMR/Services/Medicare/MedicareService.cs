@@ -16,8 +16,8 @@ using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using Syncfusion.XlsIO.Implementation.Security;
 using System;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
+using Microsoft.EntityFrameworkCore;
+/* using System.Data.Entity.Migrations; */
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -250,7 +250,7 @@ namespace DanpheEMR.Services.Medicare
                 UpdateMedicareMemberBalance(medicareDbContext, medicareMember.MedicareMemberId, medicareMemberDto.MedicareTypeId, currentUser);
             }
 
-            medicareDbContext.Entry(medicareMember).State = System.Data.Entity.EntityState.Modified;
+            medicareDbContext.Entry(medicareMember).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             medicareDbContext.SaveChanges();
             return medicareMember;
 
@@ -266,7 +266,7 @@ namespace DanpheEMR.Services.Medicare
             medicareMemberBalance.ModifiedBy = currentUser.EmployeeId;
             medicareMemberBalance.ModifiedOn = DateTime.Now;
 
-            medicareDbContext.Entry(medicareMemberBalance).State = System.Data.Entity.EntityState.Modified;
+            medicareDbContext.Entry(medicareMemberBalance).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             medicareDbContext.SaveChanges();
         }
 

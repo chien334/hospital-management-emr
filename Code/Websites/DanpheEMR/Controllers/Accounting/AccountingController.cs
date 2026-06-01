@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using DanpheEMR.Utilities;
@@ -18,7 +18,7 @@ using DanpheEMR.CommonTypes;
 using RefactorThis.GraphDiff;//for entity-update.
 using DanpheEMR.Security;
 using System.Data;
-using System.Data.Entity.Core.Objects;
+/* using System.Data.Entity.Core.Objects; */
 using System.Collections;
 using DanpheEMR.AccTransfer;
 using DanpheEMR.Core.Caching;
@@ -2737,7 +2737,7 @@ namespace DanpheEMR.Controllers
         //        reverseTransactionData.CreatedOn = DateTime.Now;
         //        reverseTransactionData.CreatedBy = currentUser.EmployeeId;
         //        //get all transaction with matching sectionId and date
-        //        List<TransactionModel> txnList = accountingDBContext.Transactions.Where(a => DbFunctions.TruncateTime(a.TransactionDate) == reverseTransactionData.TransactionDate && a.SectionId == reverseTransactionData.Section
+        //        List<TransactionModel> txnList = accountingDBContext.Transactions.Where(a => (a.TransactionDate).Date == reverseTransactionData.TransactionDate && a.SectionId == reverseTransactionData.Section
         //                                                                             && a.IsReverseTxnAllow != false && a.HospitalId == currentHospitalId).Select(a => a).ToList();
 
         //        if (txnList.Count > 0)
@@ -5353,7 +5353,7 @@ namespace DanpheEMR.Controllers
                 reverseTransactionData.CreatedBy = currentUser.EmployeeId;
                 reverseTransactionData.HospitalId = currentHospitalId;
                 //get all transaction with matching sectionId and date
-                List<TransactionModel> txnList = _accountingDbContext.Transactions.Where(a => DbFunctions.TruncateTime(a.TransactionDate) == reverseTransactionData.TransactionDate && a.SectionId == reverseTransactionData.Section
+                List<TransactionModel> txnList = _accountingDbContext.Transactions.Where(a => (a.TransactionDate).Date == reverseTransactionData.TransactionDate && a.SectionId == reverseTransactionData.Section
                                                                                      && a.IsReverseTxnAllow != false && a.HospitalId == currentHospitalId).Select(a => a).ToList();
 
                 if (txnList.Count > 0)

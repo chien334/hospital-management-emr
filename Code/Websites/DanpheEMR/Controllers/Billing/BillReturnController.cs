@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.ServerModel;
 using DanpheEMR.DalLayer;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DanpheEMR.Utilities;
 using DanpheEMR.CommonTypes;
@@ -17,7 +17,7 @@ using DanpheEMR.Controllers.Billing;
 using System.Threading.Tasks;
 using DanpheEMR.Enums;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using DanpheEMR.ServerModel.BillingModels;
 using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.MedicareModels;
@@ -756,7 +756,7 @@ namespace DanpheEMR.Controllers
                                 billingTXN.DepositReturnAmount = 0;
                                 billingTXN.InvoiceNo = BillingBL.GetInvoiceNumber(connString);
                                 billingTXN.InvoiceCode = billingTXN.IsInsuranceBilling == true ? "INS" : BillingBL.InvoiceCode;
-                                _billingDbContext.Entry(billingTXN).State = System.Data.Entity.EntityState.Detached;
+                                _billingDbContext.Entry(billingTXN).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
                                 _billingDbContext.BillingTransactions.Add(billingTXN);
                                 _billingDbContext.SaveChanges();
 

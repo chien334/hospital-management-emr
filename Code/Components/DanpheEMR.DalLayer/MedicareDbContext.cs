@@ -1,17 +1,36 @@
 ﻿using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.AccountingModels;
 using DanpheEMR.ServerModel.MedicareModels;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.DalLayer
 {
     public class MedicareDbContext: DbContext
     {
-        public MedicareDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public MedicareDbContext(DbContextOptions<MedicareDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
+
+        public MedicareDbContext(string conn)
+        {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<MedicareMember> MedicareMembers { get; set; }
         public DbSet<MedicareTypes> MedicareTypes { get; set; }
         public DbSet<MedicareInstitutes> MedicareInstitutes { get; set; }
@@ -26,8 +45,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<FiscalYearModel> FiscalYears { get; set; }
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<MedicareMember>().ToTable("INS_MedicareMember");
             modelBuilder.Entity<MedicareTypes>().ToTable("INS_MST_MedicareType");
             modelBuilder.Entity<MedicareInstitutes>().ToTable("INS_MST_MedicareInstitute");

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,21 +25,41 @@ namespace DanpheEMR.DalLayer
         public DbSet<BillingTransactionItemModel> BillingTransactionItems { get; set; }
         public DbSet<LISSyncedComponentDetail> LISSyncedComponentDetails { get; set; }
 
-        public LISDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public LISDbContext(DbContextOptions<LISDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
 
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public LISDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<AdminParametersModel>().ToTable("CORE_CFG_Parameters");
             modelBuilder.Entity<LISComponentMapModel>().ToTable("LAB_LIS_ComponentMap");
             modelBuilder.Entity<LabRequisitionModel>().ToTable("LAB_TestRequisition");
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");
             modelBuilder.Entity<LabTestModel>().ToTable("LAB_LabTests"); modelBuilder.Entity<LabTestComponentResult>().ToTable("LAB_TXN_TestComponentResult");
             modelBuilder.Entity<LabTestComponentResult>()
-                   .HasRequired<LabRequisitionModel>(a => a.LabRequisition)
+                   .HasOne(a => a.LabRequisition)
                    .WithMany(a => a.LabTestComponentResults)
                     .HasForeignKey(s => s.RequisitionId);
             // this is used getting data from patient table while showing the report

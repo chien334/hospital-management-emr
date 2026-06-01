@@ -1,4 +1,4 @@
-﻿using DanpheEMR.Controllers;
+using DanpheEMR.Controllers;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Security;
@@ -9,9 +9,9 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -261,7 +261,7 @@ namespace DanpheEMR.Services.Vaccination
         //sud:2-Oct'21--Revised implementation after adding vaccination patient in Visit Table
         public List<VaccPatientWithVisitInfoVM> GetAllVaccinationPatient()
         {
-            List<VaccPatientWithVisitInfoVM> allVaccPatList = vaccinationDbContext.Database.SqlQuery<VaccPatientWithVisitInfoVM>("SP_VACC_GetAllVaccinationPatInfo").ToList();
+            List<VaccPatientWithVisitInfoVM> allVaccPatList = vaccinationDbContext.Database.SqlQueryRaw<VaccPatientWithVisitInfoVM>("SP_VACC_GetAllVaccinationPatInfo").ToList();
             return allVaccPatList;
         }
 
@@ -558,7 +558,7 @@ namespace DanpheEMR.Services.Vaccination
                         where pat.IsVaccinationPatient == true
                         join patVac in vaccinationDbContext.PatientVaccineDetail.AsNoTracking() on pat.PatientId equals patVac.PatientId
                         join vac in vaccinationDbContext.VaccineMaster.AsNoTracking() on patVac.VaccineId equals vac.VaccineId
-                        where ((DbFunctions.TruncateTime(patVac.VaccineDate) >= fromDate) && (DbFunctions.TruncateTime(patVac.VaccineDate) <= toDate)
+                        where (((patVac.VaccineDate).Date >= fromDate) && ((patVac.VaccineDate).Date <= toDate)
                         && (applyGenderFilter ? gender.ToLower() == pat.Gender.ToLower() : true)
                         && vaccineList.Contains(patVac.VaccineId)
                         )

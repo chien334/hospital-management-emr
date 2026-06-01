@@ -1,4 +1,4 @@
-﻿using Audit.SqlServer.Providers;
+using Audit.SqlServer.Providers;
 using DanpheEMR.CommonTypes;
 using DanpheEMR.Controllers.Settings.DTO;
 using DanpheEMR.Core.Caching;
@@ -41,7 +41,7 @@ using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -52,9 +52,9 @@ namespace DanpheEMR
     {
 
         public IConfigurationRoot Configuration { get; }
-        public IHostingEnvironment CurrentEnvironment { get; set; }
+        public IWebHostEnvironment CurrentEnvironment { get; set; }
 
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -105,7 +105,7 @@ namespace DanpheEMR
                 //keep short timeout like max 2-3 hours, 
                 //we've to redirect to login once the session expires.
                 options.IdleTimeout = TimeSpan.FromHours(2);
-                options.CookieHttpOnly = true;
+                options.Cookie.HttpOnly = true;
 
             });
             //end--for rbac-testing--sudarshanr
@@ -114,8 +114,13 @@ namespace DanpheEMR
             //instead add them in that extension method(used just below this comment)
             services.AddDanpheServices(Configuration);
 
-            services.AddAutoMapper(typeof(MappingProfile));
-            services.AddAutoMapper(typeof(PurchaseOrderMappingProfile));
+            var mapperConfig = new AutoMapper.MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+                mc.AddProfile(new PurchaseOrderMappingProfile());
+            });
+            AutoMapper.IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             // Add framework services.
             services.AddOptions();
@@ -157,8 +162,8 @@ namespace DanpheEMR
             //end: sud-9Jan'19 for pwd encryption testing
 
 
-            services.AddMvc()
-                        .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()); // added for disabling serialising json with  camel case
+            services.AddMvc(options => options.EnableEndpointRouting = false)
+                        .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null); // added for disabling serialising json with camel case
 
             //services.AddMvc().AddApplicationPart(typeof(LoginViewModel).Assembly);
             //start: using service configuration for caching class.--sudarshan 1march'17
@@ -205,49 +210,12 @@ namespace DanpheEMR
             services.AddSingleton<FileUploader>(new FileUploader(storagePath));
 
 
-            services.Configure((RazorViewEngineOptions options) =>
-                {
-                    var previous = options.CompilationCallback;
-                    options.CompilationCallback = (context) =>
-                    {
-                        previous?.Invoke(context);
-
-                        context.Compilation = context.Compilation.
-                                    AddReferences(MetadataReference.CreateFromFile(typeof(
-                                     MasterDbContext).Assembly.Location));
-
-                        context.Compilation = context.Compilation.
-                                   AddReferences(MetadataReference.CreateFromFile(typeof(
-                                   CountryModel).Assembly.Location));
-                        context.Compilation = context.Compilation.
-                                   AddReferences(MetadataReference.CreateFromFile(typeof(
-                                   CountrySubDivisionModel).Assembly.Location));
-
-                        context.Compilation = context.Compilation.
-                                   AddReferences(MetadataReference.CreateFromFile(typeof(
-                                   ICD10CodeModel).Assembly.Location));
-                        context.Compilation = context.Compilation.
-                                   AddReferences(MetadataReference.CreateFromFile(typeof(
-                                   EmployeeModel).Assembly.Location));
-                        context.Compilation = context.Compilation.
-                                  AddReferences(MetadataReference.CreateFromFile(typeof(
-                                  ServiceDepartmentModel).Assembly.Location));
-                        context.Compilation = context.Compilation.
-                                AddReferences(MetadataReference.CreateFromFile(typeof(LoginViewModel).Assembly.Location));
-                        context.Compilation = context.Compilation.
-                               AddReferences(MetadataReference.CreateFromFile(typeof(DanpheRoute).Assembly.Location));
-                        context.Compilation = context.Compilation.
-                             AddReferences(MetadataReference.CreateFromFile(typeof(DanpheCache).Assembly.Location));
-
-                    };
-                }); ;
+            // Razor dynamic compilation is obsolete in .NET 8 Web API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
             app.UseDeveloperExceptionPage();
             app.UseMiddleware<RewindMiddleWare>();
             //start--for rbac-testing--sudarshanr--2march-2017
@@ -286,14 +254,16 @@ namespace DanpheEMR
 
             if (bool.Parse(isDevEnv))//env.IsDevelopment build it only if it's development.
             {
-                var provider = new PhysicalFileProvider(
-                              Path.Combine(env.ContentRootPath, "wwwroot\\DanpheApp\\node_modules")
-                          );
-                var options = new FileServerOptions();
-                options.RequestPath = "/node_modules";
-                options.StaticFileOptions.FileProvider = provider;
-                options.EnableDirectoryBrowsing = true;
-                app.UseFileServer(options);
+                var nodeModulesPath = Path.Combine(env.ContentRootPath, "wwwroot\\DanpheApp\\node_modules");
+                if (Directory.Exists(nodeModulesPath))
+                {
+                    var provider = new PhysicalFileProvider(nodeModulesPath);
+                    var options = new FileServerOptions();
+                    options.RequestPath = "/node_modules";
+                    options.StaticFileOptions.FileProvider = provider;
+                    options.EnableDirectoryBrowsing = true;
+                    app.UseFileServer(options);
+                }
 
                 //Use Swagger
                 app.UseSwagger();

@@ -1,6 +1,7 @@
-﻿using DanpheEMR.Core.Configuration;
+using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Security;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.PharmacyModels;
 using DanpheEMR.Utilities;
 using DanpheEMR.ViewModel.Dispensary;

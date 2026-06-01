@@ -4,8 +4,8 @@ using DanpheEMR.ServerModel.ReportingModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 namespace DanpheEMR.DalLayer
 {
@@ -13,19 +13,36 @@ namespace DanpheEMR.DalLayer
     {
         private string connStr = null;
 
-        public InventoryReportingDbContext(string Conn) : base(Conn)
+        
+        private readonly string? _connectionString;
+
+        public InventoryReportingDbContext(DbContextOptions<InventoryReportingDbContext> options)
+            : base(options)
         {
-            connStr = Conn;
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
+
+        public InventoryReportingDbContext(string Conn)
+        {
+            _connectionString = Conn;
+            connStr = Conn;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         #region Current Stock Level Report
         public List<CurrentStockLevel> CurrentStockLevelReport(string ItemName)
         {
             if (ItemName == null || ItemName == " ")
             {
-                var Data = Database.SqlQuery<CurrentStockLevel>("exec SP_Report_Inventory_CurrentStockLevel @ItemName",
+                var Data = Database.SqlQueryRaw<CurrentStockLevel>("exec SP_Report_Inventory_CurrentStockLevel @ItemName",
                   new SqlParameter("@ItemName", DBNull.Value)).ToList();
                 return Data.ToList<CurrentStockLevel>();
 
@@ -33,7 +50,7 @@ namespace DanpheEMR.DalLayer
             }
             else
             {
-                var Data = Database.SqlQuery<CurrentStockLevel>("exec SP_Report_Inventory_CurrentStockLevel @ItemName",
+                var Data = Database.SqlQueryRaw<CurrentStockLevel>("exec SP_Report_Inventory_CurrentStockLevel @ItemName",
                 new SqlParameter("@ItemName", ItemName)).ToList();
                 return Data.ToList<CurrentStockLevel>();
             }
@@ -76,7 +93,7 @@ namespace DanpheEMR.DalLayer
         #region Write Off Report
         public List<CurrentWriteOff> CurrentWriteOffReport(int ItemId)
         {
-            var Data = Database.SqlQuery<CurrentWriteOff>("exec SP_Report_Inventory_WriteOffReport @ItemId",
+            var Data = Database.SqlQueryRaw<CurrentWriteOff>("exec SP_Report_Inventory_WriteOffReport @ItemId",
                 new SqlParameter("@ItemId", ItemId)).ToList();
             return Data.ToList<CurrentWriteOff>();
         }
@@ -85,7 +102,7 @@ namespace DanpheEMR.DalLayer
         #region Return To Vendor Report
         public List<ReturnToVendor> ReturnToVendorReport(int VendorId)
         {
-            var Data = Database.SqlQuery<ReturnToVendor>("exec SP_Report_Inventory_ReturnToVendorReport @VendorId",
+            var Data = Database.SqlQueryRaw<ReturnToVendor>("exec SP_Report_Inventory_ReturnToVendorReport @VendorId",
                 new SqlParameter("@VendorId", VendorId)).ToList();
             return Data.ToList<ReturnToVendor>();
         }
@@ -96,7 +113,7 @@ namespace DanpheEMR.DalLayer
         {
             if (StoreId == 0)
             {
-                var Data = Database.SqlQuery<DailyItemDispatchModel>("exec SP_Report_Inventory_DailyItemsDispatchReport @FromDate,@ToDate",
+                var Data = Database.SqlQueryRaw<DailyItemDispatchModel>("exec SP_Report_Inventory_DailyItemsDispatchReport @FromDate,@ToDate",
                 new SqlParameter("@FromDate", FromDate),
                 new SqlParameter("@ToDate", ToDate)
                 ).ToList();
@@ -104,7 +121,7 @@ namespace DanpheEMR.DalLayer
             }
             else
             {
-                var Data = Database.SqlQuery<DailyItemDispatchModel>("exec SP_Report_Inventory_DailyItemsDispatchReport @FromDate,@ToDate,@StoreId",
+                var Data = Database.SqlQueryRaw<DailyItemDispatchModel>("exec SP_Report_Inventory_DailyItemsDispatchReport @FromDate,@ToDate,@StoreId",
                 new SqlParameter("@FromDate", FromDate),
                 new SqlParameter("@ToDate", ToDate),
                 new SqlParameter("@StoreId", StoreId)
@@ -133,7 +150,7 @@ namespace DanpheEMR.DalLayer
         {
             //if (OrderNumber == 0)
             //{
-            var Data = Database.SqlQuery<PurchaseOrderModel>("exec SP_Report_Inventory_PurchaseOrderSummeryReport @FromDate,@ToDate,@StoreId",
+            var Data = Database.SqlQueryRaw<PurchaseOrderModel>("exec SP_Report_Inventory_PurchaseOrderSummeryReport @FromDate,@ToDate,@StoreId",
         new SqlParameter("@FromDate", FromDate),
         new SqlParameter("@ToDate", ToDate),
         new SqlParameter("@StoreId", (StoreId != null ? StoreId : DBNull.Value))
@@ -142,7 +159,7 @@ namespace DanpheEMR.DalLayer
             //}
             //else
             //{
-            //    var Data = Database.SqlQuery<PurchaseOrderModel>("exec SP_Report_Inventory_PurchaseOrderSummeryReport @FromDate,@ToDate,@OrderNumber",
+            //    var Data = Database.SqlQueryRaw<PurchaseOrderModel>("exec SP_Report_Inventory_PurchaseOrderSummeryReport @FromDate,@ToDate,@OrderNumber",
             //    new SqlParameter("@FromDate", FromDate),
             //    new SqlParameter("@ToDate", ToDate),
             //    new SqlParameter("@OrderNumber", OrderNumber)
@@ -158,7 +175,7 @@ namespace DanpheEMR.DalLayer
         {
             if (isGR == true)
             {
-                var Data = Database.SqlQuery<GoodsReceiptModel>("exec SP_Report_Inventory_CancelGoodsReceiptReport @FromDate, @ToDate",
+                var Data = Database.SqlQueryRaw<GoodsReceiptModel>("exec SP_Report_Inventory_CancelGoodsReceiptReport @FromDate, @ToDate",
                     new SqlParameter("@FromDate", FromDate),
                     new SqlParameter("@ToDate", ToDate)
                     ).ToList();
@@ -166,7 +183,7 @@ namespace DanpheEMR.DalLayer
             }
             else
             {
-                var Data = Database.SqlQuery<GoodsReceiptModel>("exec SP_Report_Inventory_CancelPurchaseOrderReport @FromDate, @ToDate",
+                var Data = Database.SqlQueryRaw<GoodsReceiptModel>("exec SP_Report_Inventory_CancelPurchaseOrderReport @FromDate, @ToDate",
                     new SqlParameter("@FromDate", FromDate),
                     new SqlParameter("@ToDate", ToDate)
                     ).ToList();
@@ -177,7 +194,7 @@ namespace DanpheEMR.DalLayer
         #region GoodReceipt Evaluation
         public List<GoodsReceiptEvaluationModel> GoodReceiptEvaluationReport(DateTime? FromDate, DateTime? ToDate, string TransactionType, int? GoodReceiptNo)
         {
-            var Data = Database.SqlQuery<GoodsReceiptEvaluationModel>("exec SP_Report_Inventory_GoodReceiptEvaluation @GoodReceiptNo, @FromDate, @ToDate, @TransactionType",
+            var Data = Database.SqlQueryRaw<GoodsReceiptEvaluationModel>("exec SP_Report_Inventory_GoodReceiptEvaluation @GoodReceiptNo, @FromDate, @ToDate, @TransactionType",
                 new SqlParameter("@GoodReceiptNo", (object)GoodReceiptNo ?? DBNull.Value),
                 new SqlParameter("@FromDate", (object)FromDate ?? DBNull.Value),
                 new SqlParameter("@ToDate", (object)ToDate ?? DBNull.Value),
@@ -231,7 +248,7 @@ namespace DanpheEMR.DalLayer
         public List<FixedAssetsModel> FixedAssetsReport(DateTime FromDate, DateTime ToDate)
         {
 
-            var Data = Database.SqlQuery<FixedAssetsModel>("exec SP_Report_Inventory_FixedAssets @FromDate,@ToDate",
+            var Data = Database.SqlQueryRaw<FixedAssetsModel>("exec SP_Report_Inventory_FixedAssets @FromDate,@ToDate",
             new SqlParameter("@FromDate", FromDate),
             new SqlParameter("@ToDate", ToDate)
             ).ToList();
@@ -244,7 +261,7 @@ namespace DanpheEMR.DalLayer
         #region Fixed Assets  Movement report
         public List<FixedAssetsMovementModel> FixedAssetsMovementReport(DateTime FromDate, DateTime ToDate, object EmployeeId, object DepartmentId, object ItemId, object ReferenceNumber)
         {
-            var Data = Database.SqlQuery<FixedAssetsMovementModel>("exec SP_Report_Inventory_FixedAssetsMovement @FromDate,@ToDate,@EmployeeId,@DepartmentId,@ItemId,@ReferenceNumber",
+            var Data = Database.SqlQueryRaw<FixedAssetsMovementModel>("exec SP_Report_Inventory_FixedAssetsMovement @FromDate,@ToDate,@EmployeeId,@DepartmentId,@ItemId,@ReferenceNumber",
             new SqlParameter("@FromDate", FromDate),
             new SqlParameter("@ToDate", ToDate),
             new SqlParameter("@EmployeeId", (EmployeeId != null ? EmployeeId : DBNull.Value)),
@@ -262,7 +279,7 @@ namespace DanpheEMR.DalLayer
         public List<DetailStockLedgerModel> DepartmentDetailStockLedgerReport(DateTime FromDate, DateTime ToDate, int? ItemId, int selectedStoreId)
         {
             //var uptoDateTimeStr = UpToDate.ToString("yyyy-MM-dd");
-            var Data = Database.SqlQuery<DetailStockLedgerModel>("exec SP_Report_Inventory_DetailedStockLedger @FromDate,@ToDate,@ItemId,@StoreId",
+            var Data = Database.SqlQueryRaw<DetailStockLedgerModel>("exec SP_Report_Inventory_DetailedStockLedger @FromDate,@ToDate,@ItemId,@StoreId",
             new SqlParameter("@FromDate", FromDate),
             new SqlParameter("@ToDate", ToDate),
             new SqlParameter("@ItemId", (Object)ItemId ?? DBNull.Value),
@@ -329,7 +346,7 @@ namespace DanpheEMR.DalLayer
         }
         public List<IssuedItemViewModel> IssuedItemListReport(DateTime FromDate, DateTime ToDate, int FiscalYearId, int? ItemId, int? SubStoreId, int? MainStoreId, int? EmployeeId, int? SubCategoryId)
         {
-            var Data = Database.SqlQuery<IssuedItemViewModel>("exec SP_Inventory_IssuedItemListReport @FromDate,@ToDate,@FiscalYearId,@ItemId,@SubStoreId,@MainStoreId,@EmployeeId,@SubCategoryId",
+            var Data = Database.SqlQueryRaw<IssuedItemViewModel>("exec SP_Inventory_IssuedItemListReport @FromDate,@ToDate,@FiscalYearId,@ItemId,@SubStoreId,@MainStoreId,@EmployeeId,@SubCategoryId",
             new SqlParameter("@FromDate", FromDate),
             new SqlParameter("@ToDate", ToDate),
             new SqlParameter("@FiscalYearId", FiscalYearId),
@@ -377,7 +394,7 @@ namespace DanpheEMR.DalLayer
 
         public List<ApprovedMaterialStockRegisterModel> ApprovedMaterialStockRegisterReport(DateTime FromDate, DateTime ToDate)
         {
-            var Data = Database.SqlQuery<ApprovedMaterialStockRegisterModel>("exec SP_Report_Inventory_FixedAssets @FromDate,@ToDate",
+            var Data = Database.SqlQueryRaw<ApprovedMaterialStockRegisterModel>("exec SP_Report_Inventory_FixedAssets @FromDate,@ToDate",
             new SqlParameter("@FromDate", FromDate),
             new SqlParameter("@ToDate", ToDate)
             ).ToList();
@@ -451,13 +468,13 @@ namespace DanpheEMR.DalLayer
         {
             SubstoreReportViewModel SubstoreStockReport = new SubstoreReportViewModel();
 
-            SubstoreStockReport.InventoryTotal = Database.SqlQuery<SubstoreGetAllModel>("exec SP_Report_Inventory_SubstoreGetAll @StoreId,@ItemId",
+            SubstoreStockReport.InventoryTotal = Database.SqlQueryRaw<SubstoreGetAllModel>("exec SP_Report_Inventory_SubstoreGetAll @StoreId,@ItemId",
                new SqlParameter("@StoreId", StoreId),
                 new SqlParameter("@ItemId", ItemId)).FirstOrDefault();
-            SubstoreStockReport.InventoryItemTotal = Database.SqlQuery<SubstoreGetAllBasedOnItemIdModel>("exec SP_Report_Inventory_SubstoreGetAllBasedOnItemId @StoreId,@ItemId",
+            SubstoreStockReport.InventoryItemTotal = Database.SqlQueryRaw<SubstoreGetAllBasedOnItemIdModel>("exec SP_Report_Inventory_SubstoreGetAllBasedOnItemId @StoreId,@ItemId",
                new SqlParameter("@StoreId", StoreId),
                 new SqlParameter("@ItemId", ItemId)).ToList();
-            SubstoreStockReport.InventoryStoreTotal = Database.SqlQuery<SubstoreGetAllBasedOnStoreIdModel>("exec SP_Report_Inventory_SubstoreGetAllBasedOnStoreId @StoreId,@ItemId",
+            SubstoreStockReport.InventoryStoreTotal = Database.SqlQueryRaw<SubstoreGetAllBasedOnStoreIdModel>("exec SP_Report_Inventory_SubstoreGetAllBasedOnStoreId @StoreId,@ItemId",
                new SqlParameter("@StoreId", StoreId),
                 new SqlParameter("@ItemId", ItemId)).ToList();
             return SubstoreStockReport;
@@ -487,7 +504,7 @@ namespace DanpheEMR.DalLayer
         #region inventory purchase return to supplier report 
         public List<ReturnToVendorItems> ReturnToSupplierReport(DateTime FromDate, DateTime ToDate, object VendorId, object ItemId, object batchNumber, object goodReceiptNumber, object creditNoteNumber)
         {
-            var Data = Database.SqlQuery<ReturnToVendorItems>("exec SP_Report_Inventory_ReturnToSupplierReport @FromDate,@ToDate,@VendorId,@ItemId,@batchNumber,@goodReceiptNumber,@creditNoteNumber",
+            var Data = Database.SqlQueryRaw<ReturnToVendorItems>("exec SP_Report_Inventory_ReturnToSupplierReport @FromDate,@ToDate,@VendorId,@ItemId,@batchNumber,@goodReceiptNumber,@creditNoteNumber",
             new SqlParameter("@FromDate", FromDate),
             new SqlParameter("@ToDate", ToDate),
             new SqlParameter("@VendorId", (VendorId != null ? VendorId : DBNull.Value)),
@@ -503,7 +520,7 @@ namespace DanpheEMR.DalLayer
         #region Supplier Wise Stock
         public List<SupplierWiseStockModel> SupplierWiseStockReport(DateTime FromDate, DateTime ToDate, object VendorId, object StoreId, object ItemId)
         {
-            var Data = Database.SqlQuery<SupplierWiseStockModel>("exec SP_Report_Inventory_SupplierWiseStock @FromDate,@ToDate,@VendorId,@StoreId,@ItemId",
+            var Data = Database.SqlQueryRaw<SupplierWiseStockModel>("exec SP_Report_Inventory_SupplierWiseStock @FromDate,@ToDate,@VendorId,@StoreId,@ItemId",
             new SqlParameter("@FromDate", FromDate),
             new SqlParameter("@ToDate", ToDate),
             new SqlParameter("@VendorId", (VendorId != null ? VendorId : DBNull.Value)),

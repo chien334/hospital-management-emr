@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using DanpheEMR.Security;
 using Audit.EntityFramework;
 using DanpheEMR.ServerModel.BillingModels;
@@ -12,12 +12,30 @@ namespace DanpheEMR.DalLayer
 {
     public class InsuranceDbContext : AuditDbContext
     {
-        public InsuranceDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public InsuranceDbContext(DbContextOptions<InsuranceDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
             this.AuditDisabled = true;
         }
+
+        public InsuranceDbContext(string conn)
+        {
+            _connectionString = conn;
+            this.AuditDisabled = true;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         public DbSet<PatientModel> Patients { get; set; }
         public DbSet<InsuranceModel> Insurances { get; set; }
@@ -59,8 +77,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<RadiologyImagingTypeModel> RadiologyImagingTypes { get; set; } //Krishna: 2nd'Jan 22
         public DbSet<RadiologyImagingItemModel> RadiologyImagingItems { get; set; } //Krishna: 2nd'Jan 22
         public DbSet<BillMapPriceCategoryServiceItemModel> BillPriceCategoryServiceItems { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
             modelBuilder.Entity<BillingSchemeModel>().ToTable("BIL_CFG_Scheme");
@@ -68,7 +88,7 @@ namespace DanpheEMR.DalLayer
             // Patient and insurance mapping
             modelBuilder.Entity<InsuranceModel>().ToTable("PAT_PatientInsuranceInfo");
             modelBuilder.Entity<InsuranceModel>()
-                   .HasRequired<PatientModel>(a => a.Patient) // Insurance entity requires Patient
+                   .HasOne(a => a.Patient) // Insurance entity requires Patient
                    .WithMany(a => a.Insurances) // Patient entity includes many Insurance entities
                     .HasForeignKey(s => s.PatientId);
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
@@ -86,7 +106,7 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<BillSettlementModel>().ToTable("BIL_TXN_Settlements");
             // Patient and visit mappings
             modelBuilder.Entity<VisitModel>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.Visits)
                     .HasForeignKey(s => s.PatientId);
 
@@ -94,13 +114,13 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<AdmissionModel>()
                 .HasKey(t => t.PatientVisitId);
             modelBuilder.Entity<VisitModel>()
-                .HasOptional<AdmissionModel>(a => a.Admission)
-                .WithRequired(a => a.Visit);
+                .HasOne(a => a.Admission)
+                .WithOne(a => a.Visit);
 
             //Billing mapping
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");
             modelBuilder.Entity<BillingTransactionItemModel>()
-                  .HasRequired<BillingTransactionModel>(s => s.BillingTransaction) // Address entity requires Patient
+                  .HasOne(s => s.BillingTransaction) // Address entity requires Patient
                   .WithMany(s => s.BillingTransactionItems) // Patient entity includes many Addresses entities
                    .HasForeignKey(s => s.BillingTransactionId);
             modelBuilder.Entity<BillingTransactionModel>().ToTable("BIL_TXN_BillingTransaction");

@@ -12,9 +12,9 @@ using DanpheEMR.ServerModel.VerificationModels.Pharmacy;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+
+using Microsoft.Data.SqlClient;
 
 namespace DanpheEMR.DalLayer
 {
@@ -22,12 +22,30 @@ namespace DanpheEMR.DalLayer
     public class PharmacyDbContext : AuditDbContext
     {
 
-        public PharmacyDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public PharmacyDbContext(DbContextOptions<PharmacyDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
-            this.Database.CommandTimeout = 180;
+            this.Database.SetCommandTimeout(180);
         }
+
+        public PharmacyDbContext(string conn)
+        {
+            _connectionString = conn;
+            this.Database.SetCommandTimeout(180);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<PHRMRackModel> PHRMRack { get; set; }
         public DbSet<PHRM_MAP_ItemToRack> PHRMRackItem { get; set; }
 
@@ -120,8 +138,10 @@ namespace DanpheEMR.DalLayer
         public DbSet<PHRMTransactionProvisionalReturnItemsModel> ProvisionalReturnItems { get; set; }
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<PHRMSettlementModel>().ToTable("PHRM_TXN_Settlement");
             modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");
@@ -218,22 +238,22 @@ namespace DanpheEMR.DalLayer
             //Store Stock to Master Stock Relationship
             modelBuilder.Entity<PHRMStoreStockModel>()
                 .ToTable("PHRM_TXN_StoreStock")
-                .HasRequired(a => a.StockMaster)
+                .HasOne(a => a.StockMaster)
                 .WithMany(a => a.StoreStocks)
                 .HasForeignKey(a => a.StockId);
 
             // Stock Barcodes
             modelBuilder.Entity<PHRMStockBarcode>().ToTable("PHRM_MST_StockBarcode");
             modelBuilder.Entity<PHRMStockMaster>()
-                .HasOptional(a => a.StockBarcode);
+                .HasOne(a => a.StockBarcode);
 
             //sud/sanjit:4Sept'21--We're converting All Decimal Type properties of all models in this DBContext to Decimal(16,4)---
             //By default decimal take: Decimal(18,2), which was rounding off the input value (after 2digits)
             //and giving wrong calculation of SubTotal value (GrItemPrice*ReceivedQuantity)
             //Issue Came when ReceivedQty was in large number. eg: 10,000 or more----
             //making 4digits after decimal (from default 2) reduces the error margin by 100--times.. :)---
-            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
+            // modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
+            // modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
 
 
 

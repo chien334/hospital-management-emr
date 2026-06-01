@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -22,9 +22,9 @@ namespace DanpheEMR.Controllers
 
     public class EmployeeSettingsController : CommonController
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly MasterDbContext _masterDbContext;
-        public EmployeeSettingsController(IHostingEnvironment hostingEnvironment, IOptions<MyConfiguration> _config) : base(_config)
+        public EmployeeSettingsController(IWebHostEnvironment hostingEnvironment, IOptions<MyConfiguration> _config) : base(_config)
         {
             this._hostingEnvironment = hostingEnvironment;
             _masterDbContext = new MasterDbContext(connString);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,8 +10,8 @@ using DanpheEMR.DalLayer;
 using DanpheEMR.Utilities;
 using DanpheEMR.CommonTypes;
 using System.IO;
-using System.Data.Entity.Validation;
-using System.Data.SqlClient;
+/* using System.Data.Entity.Validation; (Not supported in EF Core) */
+using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -21,7 +21,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using DanpheEMR.Security;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.Controllers
 {
@@ -238,7 +238,7 @@ namespace DanpheEMR.Controllers
 
             try
             {
-                string basepath = ConfigurationManager.AppSettings["DestinationPathAPI"];
+                string basepath = System.Configuration.ConfigurationManager.AppSettings["DestinationPathAPI"];
 
                 string ipDataString = this.ReadPostData();
                 JObject obj = JObject.Parse(ipDataString);
@@ -430,30 +430,21 @@ namespace DanpheEMR.Controllers
                 dcmdbContext.DicomFiles.Add(fileInfo);
                 dcmdbContext.SaveChanges();
             }
-            catch (DbEntityValidationException e)
+            catch (Exception e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-
+                Console.WriteLine(e.InnerException != null ? e.InnerException.Message : e.Message);
             }
 
         }
 
-        public static object DeserializeFromStream(MemoryStream stream)
-        {
-            IFormatter formatter = new BinaryFormatter();
-            stream.Seek(0, SeekOrigin.Begin);
-            object o = formatter.Deserialize(stream);
-            return o;
-        }
+        // BinaryFormatter is obsolete and unsafe in .NET 8.0, so this dead method is commented out.
+        // public static object DeserializeFromStream(MemoryStream stream)
+        // {
+        //     IFormatter formatter = new BinaryFormatter();
+        //     stream.Seek(0, SeekOrigin.Begin);
+        //     object o = formatter.Deserialize(stream);
+        //     return o;
+        // }
 
         private Boolean InsertData(SqlCommand cmd)
         {

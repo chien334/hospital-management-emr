@@ -4,7 +4,7 @@ using DanpheEMR.DalLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Threading.Tasks;
 using System;

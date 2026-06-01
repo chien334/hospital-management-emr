@@ -1,4 +1,4 @@
-﻿using DanpheEMR.DalLayer;
+using DanpheEMR.DalLayer;
 using DanpheEMR.Security;
 using DanpheEMR.ServerModel;
 using System;
@@ -178,7 +178,7 @@ namespace DanpheEMR.Controllers
                     stkObj.FixedAssetStockId = item.FixedAssetStockId.Value;
                     stkObj.SubStoreId = dispatch.SubStoreId;
                     var temp = wardSupplyDb.FixedAssetStock.Attach(stkObj);
-                    wardSupplyDb.Entry(temp).Property(x => x.SubStoreId).IsModified = true;
+                    temp.Property(x => x.SubStoreId).IsModified = true;
                     wardSupplyDb.SaveChanges();
                 }                
             }

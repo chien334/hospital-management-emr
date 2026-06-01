@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.ServerModel.EmergencyModels;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.PatientModels;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace DanpheEMR.DalLayer
@@ -47,14 +47,35 @@ namespace DanpheEMR.DalLayer
         public DbSet<EthnicGroupModel> Ethnicity { get; set; }
         public DbSet<BillingFiscalYear> BillingFiscalYears { get; set; }
 
-        public EmergencyDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public EmergencyDbContext(DbContextOptions<EmergencyDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public EmergencyDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ModeOfArrival>().ToTable("ER_ModeOfArrival");
             modelBuilder.Entity<AdminParametersModel>().ToTable("CORE_CFG_Parameters");
             modelBuilder.Entity<EmergencyPatientModel>().ToTable("ER_Patient");
@@ -67,7 +88,7 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");
             // Patient and visit mappings
             modelBuilder.Entity<VisitModel>()
-                   .HasRequired<PatientModel>(a => a.Patient)
+                   .HasOne(a => a.Patient)
                    .WithMany(a => a.Visits)
                     .HasForeignKey(s => s.PatientId);
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");

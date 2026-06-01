@@ -59,7 +59,7 @@ namespace DanpheEMR.Services
 
         public FractionPercentVM UpdateFractionPercent(FractionPercentModel model)
         {
-            db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             db.SaveChanges();
             return GetFractionPercent(model.PercentSettingId);
         }

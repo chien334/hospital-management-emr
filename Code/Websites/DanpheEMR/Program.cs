@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,18 +13,15 @@ namespace DanpheEMR
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
+            CreateWebHostBuilder(args).Build().Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseStartup<Startup>()
-                //.UseSetting("detailedErrors", "true") //<--- use during publish only..... for developement comment it
-               
-                .Build();
-
-            host.Run();
-           
-        }
+                .UseStartup<Startup>();
     }
     
 }

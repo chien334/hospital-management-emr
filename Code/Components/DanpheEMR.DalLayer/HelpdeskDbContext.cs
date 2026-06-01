@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.HelpdeskModels;
 using DanpheEMR.ServerModel.ReportingModels;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using Newtonsoft.Json;
 
@@ -19,16 +19,33 @@ namespace DanpheEMR.DalLayer
         public DbSet<EmployeeInfoModel> EmployeeInfo { get; set; }
         public DbSet<BedInformationModel> BedInfo { get; set; }
         public DbSet<WardInformationModel> WardInfo { get; set; }
-        public HelpdeskDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public HelpdeskDbContext(DbContextOptions<HelpdeskDbContext> options)
+            : base(options)
         {
-            connStr = conn;
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
+
+        public HelpdeskDbContext(string conn)
+        {
+            _connectionString = conn;
+            connStr = conn;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public List<EmployeeInfoModel> GetEmployeeInfo()
 
         {
-            var Data = Database.SqlQuery<EmployeeInfoModel>("SP_Report_HDSK_EmployeeInfo ");
+            var Data = Database.SqlQueryRaw<EmployeeInfoModel>("SP_Report_HDSK_EmployeeInfo ");
             return Data.ToList<EmployeeInfoModel>();
         }
         //below two storedprocs needs to be changed, they're not updated after ADT module was updated.--sud:16Aug'17
@@ -39,7 +56,7 @@ namespace DanpheEMR.DalLayer
             var result = new DataSet();
             var context = new HelpdeskDbContext(connString);
             // creates a Command 
-            var cmd = context.Database.Connection.CreateCommand();
+            var cmd = context.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcName;
 
@@ -54,7 +71,7 @@ namespace DanpheEMR.DalLayer
             try
             {
                 // executes
-                context.Database.Connection.Open();
+                context.Database.GetDbConnection().Open();
                 var reader = cmd.ExecuteReader();
 
                 // loop through all resultsets (considering that it's possible to have more than one)
@@ -72,7 +89,7 @@ namespace DanpheEMR.DalLayer
             finally
             {
                 // closes the connection
-                context.Database.Connection.Close();
+                context.Database.GetDbConnection().Close();
             }
 
         }
@@ -97,7 +114,7 @@ namespace DanpheEMR.DalLayer
         }
         public List<WardInformationModel> GetWardInformation()
         {
-            var Data = Database.SqlQuery<WardInformationModel>("SP_ADT_GetBedOccupanciesOfAllWards");
+            var Data = Database.SqlQueryRaw<WardInformationModel>("SP_ADT_GetBedOccupanciesOfAllWards");
             return Data.ToList<WardInformationModel>();
         }
 

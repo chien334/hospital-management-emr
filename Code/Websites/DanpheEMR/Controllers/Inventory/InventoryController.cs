@@ -1,4 +1,4 @@
-﻿using DanpheEMR.CommonTypes;
+using DanpheEMR.CommonTypes;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
@@ -24,8 +24,8 @@ using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -389,7 +389,7 @@ namespace DanpheEMR.Controllers
                           from prLJ in prJ.DefaultIfEmpty()
                           join verif in _inventoryDbContext.Verifications on po.VerificationId equals verif.VerificationId into verifJ
                           from verifLJ in verifJ.DefaultIfEmpty()
-                          where (DbFunctions.TruncateTime(po.PoDate) >= fromDate && DbFunctions.TruncateTime(po.PoDate) <= toDate)
+                          where (po.PoDate.Value.Date >= fromDate.Date && po.PoDate.Value.Date <= toDate.Date)
                           && po.StoreId == storeId
                           orderby po.PoDate descending
                           select new
@@ -816,7 +816,7 @@ namespace DanpheEMR.Controllers
                                          join vend in _inventoryDbContext.Vendors on gorecipt.VendorId equals vend.VendorId
                                          join fisc in _inventoryDbContext.FiscalYears on gorecipt.FiscalYearId equals fisc.FiscalYearId into gs
                                          from fisc in gs.DefaultIfEmpty()
-                                         where (DbFunctions.TruncateTime(gorecipt.GoodsArrivalDate) >= fromDate && DbFunctions.TruncateTime(gorecipt.GoodsArrivalDate) <= toDate)
+                                         where (gorecipt.GoodsArrivalDate.Value.Date >= fromDate && gorecipt.GoodsArrivalDate.Value.Date <= toDate)
                                          && activeGRStatus.Contains(gorecipt.GRStatus)
                                          && gorecipt.StoreId == storeId
                                          select new
@@ -862,7 +862,7 @@ namespace DanpheEMR.Controllers
                                     from POLJ in POG.DefaultIfEmpty()
                                     join VRF in _inventoryDbContext.Verifications on GR.VerificationId equals VRF.VerificationId into VRFG
                                     from VRFLj in VRFG.DefaultIfEmpty()
-                                    where (DbFunctions.TruncateTime(GR.GoodsArrivalDate) >= fromDate && DbFunctions.TruncateTime(GR.GoodsArrivalDate) <= toDate) && GR.StoreId == storeId
+                                    where (GR.GoodsArrivalDate.Value.Date >= fromDate && GR.GoodsArrivalDate.Value.Date <= toDate) && GR.StoreId == storeId
                                     orderby GR.GoodsReceiptID descending
                                     select new
                                     {
@@ -1916,7 +1916,7 @@ namespace DanpheEMR.Controllers
         private object GetPurchaseOrderRequisitionList(DateTime fromDate, DateTime toDate, int storeId)
         {
             //var realToDate = toDate.AddDays(1);
-            var purchaseRequests = _inventoryDbContext.PurchaseRequest.Where(PR => DbFunctions.TruncateTime(PR.CreatedOn) >= fromDate && DbFunctions.TruncateTime(PR.CreatedOn) <= toDate && PR.StoreId == storeId).OrderByDescending(a => a.PurchaseRequestId).ToList();
+            var purchaseRequests = _inventoryDbContext.PurchaseRequest.Where(PR => (PR.CreatedOn).Date >= fromDate && (PR.CreatedOn).Date <= toDate && PR.StoreId == storeId).OrderByDescending(a => a.PurchaseRequestId).ToList();
             purchaseRequests.ForEach(
                 PR =>
                 {
@@ -2330,10 +2330,10 @@ namespace DanpheEMR.Controllers
             try
             {
                 //string[] requisitionStatus = Status.Split(',');
-                var RequisitionList = (from requ in inventoryDbContext.Requisitions
+                var RequisitionList = (from requ in inventoryDbContext.Requisitions.AsNoTracking()
                                            //join stat in requisitionStatus on requ.RequisitionStatus equals stat
                                        join store in inventoryDbContext.StoreMasters on requ.RequestFromStoreId equals store.StoreId
-                                       where (DbFunctions.TruncateTime(requ.RequisitionDate) >= fromDate && DbFunctions.TruncateTime(requ.RequisitionDate) <= toDate) &&
+                                       where ((requ.RequisitionDate.Value).Date >= fromDate && (requ.RequisitionDate.Value).Date <= toDate) &&
                                        requ.RequestToStoreId == storeId
                                        orderby requ.RequisitionId descending
                                        select new
@@ -2345,7 +2345,7 @@ namespace DanpheEMR.Controllers
                                            StoreName = store.Name,
                                            MaxVerificationLevel = store.MaxVerificationLevel,
                                            VerificationId = requ.VerificationId,
-                                       }).AsNoTracking().ToList().Select(R => new RequisitionModel
+                                       }).ToList().Select(R => new RequisitionModel
                                        {
                                            RequisitionId = R.RequisitionId,
                                            RequisitionNo = R.RequisitionNo,
@@ -2386,10 +2386,10 @@ namespace DanpheEMR.Controllers
 
             try
             {
-                var RequisitionList = (from requ in inventoryDbContext.Requisitions.Where(R => R.RequestToStoreId == storeId)
+                var RequisitionList = (from requ in inventoryDbContext.Requisitions.AsNoTracking().Where(R => R.RequestToStoreId == storeId)
                                            //join stat in requisitionStatus on requ.RequisitionStatus equals stat
                                        join store in inventoryDbContext.StoreMasters on requ.RequestFromStoreId equals store.StoreId
-                                       where (DbFunctions.TruncateTime(requ.RequisitionDate) >= fromDate && DbFunctions.TruncateTime(requ.RequisitionDate) <= toDate)
+                                       where ((requ.RequisitionDate.Value).Date >= fromDate && (requ.RequisitionDate.Value).Date <= toDate)
                                       & requ.RequisitionStatus != "withdrawn" && requ.RequisitionStatus != "pending"
                                        orderby requ.RequisitionId descending
                                        select new
@@ -2403,7 +2403,7 @@ namespace DanpheEMR.Controllers
                                            MaxVerificationLevel = store.MaxVerificationLevel,
                                            VerificationId = requ.VerificationId,
                                            VerifierIds = requ.VerifierIds
-                                       }).AsNoTracking().ToList().Select(R => new RequisitionModel
+                                       }).ToList().Select(R => new RequisitionModel
                                        {
                                            RequisitionId = R.RequisitionId,
                                            RequisitionNo = R.RequisitionNo,
@@ -4103,7 +4103,7 @@ namespace DanpheEMR.Controllers
                                   join sourcestore in inventoryDbContext.StoreMasters on Ret.SourceStoreId equals sourcestore.StoreId
                                   join item in inventoryDbContext.Items on items.ItemId equals item.ItemId
                                   join emp in inventoryDbContext.Employees on Ret.CreatedBy equals emp.EmployeeId
-                                  where Ret.TargetStoreId == targetstoreid && DbFunctions.TruncateTime(Ret.ReturnDate) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(Ret.ReturnDate) <= DbFunctions.TruncateTime(toDate)//&& (Ret.SourceStoreId == sourcesubstoreid || sourcesubstoreid == null)
+                                  where Ret.TargetStoreId == targetstoreid && (Ret.ReturnDate).Date >= (fromDate).Date && (Ret.ReturnDate).Date <= (toDate).Date//&& (Ret.SourceStoreId == sourcesubstoreid || sourcesubstoreid == null)
                                   select new
                                   {
                                       ReturnId = Ret.ReturnId,

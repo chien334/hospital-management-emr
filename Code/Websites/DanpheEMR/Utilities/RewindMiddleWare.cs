@@ -1,6 +1,5 @@
-﻿
+
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using System.Threading.Tasks;
 
 namespace DanpheEMR.CommonTypes
@@ -16,7 +15,7 @@ namespace DanpheEMR.CommonTypes
 
         public Task Invoke(HttpContext httpContext)
         {
-            httpContext.Request.EnableRewind();
+            httpContext.Request.EnableBuffering();
             return _next(httpContext);
         }
     }

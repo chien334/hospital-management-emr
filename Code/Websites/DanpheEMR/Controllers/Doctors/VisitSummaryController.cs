@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EntityState = System.Data.Entity.EntityState;
+using EntityState = Microsoft.EntityFrameworkCore.EntityState;
 
 namespace DanpheEMR.Controllers.Doctors
 {

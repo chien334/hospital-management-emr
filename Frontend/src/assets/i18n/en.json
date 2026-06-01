@@ -1,0 +1,13 @@
+{
+  "LOGIN": {
+    "TITLE": "EMR System Login",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "BUTTON": "Login"
+  },
+  "NAVBAR": {
+    "PATIENTS": "Patients List",
+    "APPOINTMENTS": "Appointments",
+    "BILLING": "Billing"
+  }
+}

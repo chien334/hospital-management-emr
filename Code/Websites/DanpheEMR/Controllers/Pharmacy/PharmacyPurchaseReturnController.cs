@@ -1,4 +1,4 @@
-﻿using DanpheEMR.Core.Configuration;
+using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
 using DanpheEMR.Security;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 
@@ -18,9 +18,9 @@ namespace DanpheEMR.Controllers.PharmacyPurchaseReturn
 {
     public class PharmacyPurchaseReturnController : CommonController
     {
-        public static IHostingEnvironment _environment;
+        public static IWebHostEnvironment _environment;
         private readonly PharmacyDbContext _pharmacyDbContext;
-        public PharmacyPurchaseReturnController(IHostingEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
+        public PharmacyPurchaseReturnController(IWebHostEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
         {
             _environment = env;
             _pharmacyDbContext = new PharmacyDbContext(connString);
@@ -131,7 +131,7 @@ namespace DanpheEMR.Controllers.PharmacyPurchaseReturn
             var returnToSupplier = (from GR in _pharmacyDbContext.PHRMGoodsReceipt
                                     join S in _pharmacyDbContext.PHRMSupplier on GR.SupplierId equals S.SupplierId
                                     where (GR.SupplierId == supplierId || supplierId == null) && (GR.GoodReceiptPrintId == grNo || grNo == null)
-                                    && (GR.InvoiceNo == invoiceNo || invoiceNo == "null") && (DbFunctions.TruncateTime(GR.CreatedOn) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(GR.CreatedOn) <= DbFunctions.TruncateTime(toDate))
+                                    && (GR.InvoiceNo == invoiceNo || invoiceNo == "null") && ((GR.CreatedOn).Date >= (fromDate).Date && (GR.CreatedOn).Date <= (toDate).Date)
                                     group new { GR, S } by new { GR.GoodReceiptId, GR.GoodReceiptDate, GR.GoodReceiptPrintId, GR.SubTotal, GR.VATAmount, GR.DiscountAmount, GR.TotalAmount, GR.InvoiceNo, S.SupplierName } into GRGrouped
                                     select new
                                     {
@@ -205,7 +205,7 @@ namespace DanpheEMR.Controllers.PharmacyPurchaseReturn
                                             join retSuppItm in _pharmacyDbContext.PHRMReturnToSupplierItem on retSupp.ReturnToSupplierId equals retSuppItm.ReturnToSupplierId
                                             join rbac in _pharmacyDbContext.Users on retSupp.CreatedBy equals rbac.EmployeeId
                                             join gr in _pharmacyDbContext.PHRMGoodsReceipt on retSupp.GoodReceiptId equals gr.GoodReceiptId
-                                            where (retSuppItm.Quantity != 0 && (DbFunctions.TruncateTime(retSuppItm.CreatedOn) >= fromDate && DbFunctions.TruncateTime(retSuppItm.CreatedOn) <= toDate))
+                                            where (retSuppItm.Quantity != 0 && (retSuppItm.CreatedOn.Value.Date >= fromDate.Date && retSuppItm.CreatedOn.Value.Date <= toDate.Date))
 
                                             group new { supp, retSuppItm, retSupp, rbac, gr } by new
                                             {

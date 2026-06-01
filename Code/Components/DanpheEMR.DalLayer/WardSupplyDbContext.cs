@@ -1,22 +1,43 @@
-﻿using DanpheEMR.ServerModel;
+using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.InventoryModels;
 using DanpheEMR.ServerModel.PharmacyModels;
 using DanpheEMR.ServerModel.WardSupplyModels;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace DanpheEMR.DalLayer
 {
     public class WardSupplyDbContext : DbContext
     {
-        public WardSupplyDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public WardSupplyDbContext(DbContextOptions<WardSupplyDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public WardSupplyDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<WardModel>().ToTable("ADT_MST_Ward");
             modelBuilder.Entity<PHRMStoreModel>().ToTable("PHRM_MST_Store");
             modelBuilder.Entity<WARDStockModel>().ToTable("WARD_Stock");
@@ -72,30 +93,31 @@ namespace DanpheEMR.DalLayer
             //Store Stock to Master Stock Relationship
             modelBuilder.Entity<StoreStockModel>()
                 .ToTable("INV_TXN_StoreStock")
-                .HasRequired(a => a.StockMaster)
+                .HasOne(a => a.StockMaster)
                 .WithMany(a => a.StoreStocks)
                 .HasForeignKey(a => a.StockId);
 
             modelBuilder.Entity<StoreStockModel>()
                 .HasMany(s => s.StockTransactions)
-                .WithRequired(s => s.StoreStock)
+                .WithOne(s => s.StoreStock)
                 .HasForeignKey(s => s.StoreStockId);
 
             //sud/sanjit:25Sept'21--We're converting All Decimal Type properties of all models in this DBContext to Decimal(16,4)---
-            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
+            // modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
+            // modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
 
 
             modelBuilder.Entity<WARDInventoryReturnItemsModel>().ToTable("WARD_TXN_ReturnItems");
             modelBuilder.Entity<WARDInventoryReturnModel>().ToTable("WARD_TXN_Return")
                 .HasMany(a => a.ReturnItemsList)
-                .WithRequired(a => a.WardReturn)
+                .WithOne(a => a.WardReturn)
                 .HasForeignKey(a => a.ReturnId);
 
 
             modelBuilder.Entity<MAP_ReturnItems_FixedAssetStock>().ToTable("WARD_TXN_ReturnItems_FixedAssetStock")
-                .HasKey(a => new { a.ReturnItemId, a.FixedAssetStockId })
-                .HasRequired(a => a.Asset);
+                .HasKey(a => new { a.ReturnItemId, a.FixedAssetStockId });
+            modelBuilder.Entity<MAP_ReturnItems_FixedAssetStock>()
+                .HasOne(a => a.Asset);
 
             modelBuilder.Entity<ItemSubCategoryMasterModel>().ToTable("INV_MST_ItemSubCategory");
             modelBuilder.Entity<PHRMStoreRequisitionModel>().ToTable("PHRM_StoreRequisition");

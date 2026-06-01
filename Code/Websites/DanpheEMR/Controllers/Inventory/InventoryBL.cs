@@ -11,7 +11,7 @@ using DanpheEMR.ViewModel.Procurement;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Reflection;
 

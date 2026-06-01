@@ -24,8 +24,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -40,11 +40,11 @@ namespace DanpheEMR.Controllers
 
     public class PharmacyController : CommonController
     {
-        public static IHostingEnvironment _environment;
+        public static IWebHostEnvironment _environment;
         bool realTimeRemoteSyncEnabled = false;
         private readonly PharmacyDbContext _pharmacyDbContext;
         private readonly BillingDbContext _billingDbContext;
-        public PharmacyController(IHostingEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
+        public PharmacyController(IWebHostEnvironment env, IOptions<MyConfiguration> _config) : base(_config)
         {
 
             realTimeRemoteSyncEnabled = _config.Value.RealTimeRemoteSyncEnabled;
@@ -801,7 +801,7 @@ namespace DanpheEMR.Controllers
 
                     goodReceiptList = (from s in phrmdbcontext.PHRMSupplier.Where(a => a.IsActive == true)
                                        join gr in phrmdbcontext.PHRMGoodsReceipt
-                                       .Where(a => a.IsCancel != true && DbFunctions.TruncateTime(a.GoodReceiptDate) >= DbFunctions.TruncateTime(FromDate) && DbFunctions.TruncateTime(a.GoodReceiptDate) <= DbFunctions.TruncateTime(ToDate)) on s.SupplierId equals gr.SupplierId
+                                       .Where(a => a.IsCancel != true && (a.GoodReceiptDate).Date >= (FromDate).Date && (a.GoodReceiptDate).Date <= (ToDate).Date) on s.SupplierId equals gr.SupplierId
                                        into leftJ
                                        from lj in leftJ.DefaultIfEmpty()
                                        group new { s, lj } by new { s.SupplierId, s.SupplierName } into g
@@ -820,7 +820,7 @@ namespace DanpheEMR.Controllers
 
                     List<PHRMSupplierGoodReceiptVM> goodReceiptReturn = new List<PHRMSupplierGoodReceiptVM>();
                     goodReceiptReturn = (from s in phrmdbcontext.PHRMSupplier.Where(a => a.IsActive == true)
-                                         join grret in phrmdbcontext.PHRMReturnToSupplier.Where(a => DbFunctions.TruncateTime(a.ReturnDate) >= DbFunctions.TruncateTime(FromDate) && DbFunctions.TruncateTime(a.ReturnDate) <= DbFunctions.TruncateTime(ToDate)) on s.SupplierId equals grret.SupplierId into leftJ
+                                         join grret in phrmdbcontext.PHRMReturnToSupplier.Where(a => (a.ReturnDate).Date >= (FromDate).Date && (a.ReturnDate).Date <= (ToDate).Date) on s.SupplierId equals grret.SupplierId into leftJ
                                          from lj in leftJ.DefaultIfEmpty()
                                          group new { s, lj } by new { s.SupplierId, s.SupplierName } into g
                                          select new PHRMSupplierGoodReceiptVM
@@ -879,7 +879,7 @@ namespace DanpheEMR.Controllers
 
                     List<PHRMGoodReceiptVM> goodReciptList = new List<PHRMGoodReceiptVM>();
 
-                    goodReciptList = phrmdbcontext.PHRMGoodsReceipt.Where(a => a.IsCancel != true && a.SupplierId == providerId && DbFunctions.TruncateTime(a.GoodReceiptDate) >= DbFunctions.TruncateTime(FromDate) && DbFunctions.TruncateTime(a.GoodReceiptDate) <= DbFunctions.TruncateTime(ToDate))
+                    goodReciptList = phrmdbcontext.PHRMGoodsReceipt.Where(a => a.IsCancel != true && a.SupplierId == providerId && (a.GoodReceiptDate).Date >= (FromDate).Date && (a.GoodReceiptDate).Date <= (ToDate).Date)
                                                             .Select(a =>
                                                             new PHRMGoodReceiptVM
                                                             {
@@ -901,7 +901,7 @@ namespace DanpheEMR.Controllers
                     Nullable<int> CreditPeriod = null;
                     List<PHRMGoodReceiptVM> goodReceiptReturn = new List<PHRMGoodReceiptVM>();
 
-                    goodReceiptReturn = phrmdbcontext.PHRMReturnToSupplier.Where(a => a.SupplierId == providerId && DbFunctions.TruncateTime(a.ReturnDate) >= DbFunctions.TruncateTime(FromDate) && DbFunctions.TruncateTime(a.ReturnDate) <= DbFunctions.TruncateTime(ToDate))
+                    goodReceiptReturn = phrmdbcontext.PHRMReturnToSupplier.Where(a => a.SupplierId == providerId && (a.ReturnDate).Date >= (FromDate).Date && (a.ReturnDate).Date <= (ToDate).Date)
                                                                              .Select(a => new PHRMGoodReceiptVM
                                                                              {
                                                                                  SupplierId = a.SupplierId,
@@ -2424,7 +2424,7 @@ namespace DanpheEMR.Controllers
                                                     join pat in phrmdbcontext.PHRMPatient on bill.PatientId equals pat.PatientId
                                                     join subdiv in phrmdbcontext.CountrySubDivision on pat.CountrySubDivisionId equals subdiv.CountrySubDivisionId
                                                     join billingUser in phrmdbcontext.Users on bill.CreatedBy equals billingUser.EmployeeId
-                                                    where (bill.BilItemStatus == "provisional" || bill.BilItemStatus == "wardconsumption") && bill.Quantity != 0 && ((DbFunctions.TruncateTime(bill.CreatedOn) >= FromDate && DbFunctions.TruncateTime(bill.CreatedOn) <= ToDate))
+                                                    where (bill.BilItemStatus == "provisional" || bill.BilItemStatus == "wardconsumption") && bill.Quantity != 0 && (((bill.CreatedOn).Date >= FromDate && (bill.CreatedOn).Date <= ToDate))
                                                     //couldn't use Patient.ShortName directly since it's not mapped to DB and hence couldn't be used inside LINQ.
                                                     group bill by new { pat.PatientId, pat.PatientCode, pat.FirstName, pat.LastName, pat.MiddleName, pat.DateOfBirth, pat.Gender, bill.InvoiceId, pat.PhoneNumber, bill.CreatedBy, billingUser.UserName, pat.Address, subdiv.CountrySubDivisionName, pat.PANNumber } into p
                                                     select new

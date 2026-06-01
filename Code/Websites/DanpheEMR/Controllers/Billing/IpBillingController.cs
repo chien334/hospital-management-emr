@@ -13,8 +13,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -920,7 +920,7 @@ namespace DanpheEMR.Controllers
                     var allBedInfoOfPatient = _billingDbContext.PatientBedInfos.AsNoTracking().Where(b => b.IsActive && (b.PatientVisitId == patientVisitId))
                                                 .Select(d => new
                                                 {
-                                                    StartedOn = DbFunctions.TruncateTime(d.StartedOn),
+                                                    StartedOn = (d.StartedOn).Date,
                                                     StartedOnDateTime = d.StartedOn,
                                                     d.EndedOn,
                                                     d.BedFeatureId,
@@ -1567,7 +1567,7 @@ namespace DanpheEMR.Controllers
             var pharmacyBillItems = (from invitm in _pharmacyDbContext.PHRMInvoiceTransactionItems
                                      .Where(invitm => invitm.PatientId == patientId && invitm.BilItemStatus == ENUM_PHRM_InvoiceItemBillStatus.Unpaid)
                                      join mstitm in _pharmacyDbContext.PHRMItemMaster on invitm.ItemId equals mstitm.ItemId
-                                     group invitm by new { CreatedOn = DbFunctions.TruncateTime(invitm.CreatedOn), invitm.ItemId, invitm.ItemName, mstitm.ItemCode, invitm.BatchNo, invitm.ExpiryDate, invitm.SalePrice } into I
+                                     group invitm by new { CreatedOn = (invitm.CreatedOn).Date, invitm.ItemId, invitm.ItemName, mstitm.ItemCode, invitm.BatchNo, invitm.ExpiryDate, invitm.SalePrice } into I
                                      select new
                                      {
                                          PatientId = patientId,

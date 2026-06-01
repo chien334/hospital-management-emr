@@ -6,8 +6,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,12 +50,29 @@ namespace DanpheEMR.DalLayer
         public DbSet<EmergencyFinalDiagnosisModel> EmergencyFinalDiagnosis { get; set; }
 
 
-        public MedicalRecordsDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public MedicalRecordsDbContext(DbContextOptions<MedicalRecordsDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+        }
+
+        public MedicalRecordsDbContext(string conn)
+        {
+            _connectionString = conn;
             this.connStr = conn;
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         #region Outpatient Morbidity Report
         public OutpatientMorbidityReportViewModel OutPatientMorbidityReport(DateTime FromDate, DateTime ToDate)
@@ -90,8 +107,10 @@ namespace DanpheEMR.DalLayer
         #endregion Outpatient Morbidity Report
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<DischargeTypeModel>().ToTable("ADT_DischargeType");
             modelBuilder.Entity<DeathTypeModel>().ToTable("ADT_MST_DeathType");
             modelBuilder.Entity<DeliveryTypeModel>().ToTable("ADT_MST_DeliveryType");

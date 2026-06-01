@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +15,34 @@ namespace DanpheEMR.DalLayer
         public DbSet<NotificationViewModel> Notifications { get; set; }
         public DbSet<VisitModel> PatientVisits { get; set; }
 
-        public NotiFicationDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public NotiFicationDbContext(DbContextOptions<NotiFicationDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
 
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        public NotiFicationDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<NotificationViewModel>().ToTable("CORE_Notification");
             modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
         }

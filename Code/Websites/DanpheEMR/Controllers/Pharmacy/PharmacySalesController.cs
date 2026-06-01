@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.Enums;
 using DanpheEMR.ServerModel;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
 using DanpheEMR.ViewModel.Dispensary;
@@ -1421,7 +1421,7 @@ namespace DanpheEMR.Controllers.Pharmacy
                                             join billingUser in _pharmacyDbContext.Users on bill.CreatedBy equals billingUser.EmployeeId
                                             where (bill.BilItemStatus == "provisional" || bill.BilItemStatus == "wardconsumption")
                                             && bill.Quantity != 0
-                                            && ((DbFunctions.TruncateTime(bill.CreatedOn) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(bill.CreatedOn) <= DbFunctions.TruncateTime(toDate)))
+                                            && (((bill.CreatedOn).Date >= (fromDate).Date && (bill.CreatedOn).Date <= (toDate).Date))
 
                                             group bill by new { pat.PatientId, pat.PatientCode, pat.ShortName, pat.DateOfBirth, pat.Gender, bill.InvoiceId, pat.PhoneNumber, bill.CreatedBy, billingUser.UserName, pat.Address, subdiv.CountrySubDivisionName, pat.PANNumber, bill.PatientVisitId } into p
                                             select new

@@ -1,5 +1,5 @@
 ﻿using DanpheEMR.ServerModel;
-using Microsoft.Isam.Esent.Interop;
+/* using Microsoft.Isam.Esent.Interop; */
 using System;
 
 namespace DanpheEMR.ViewModel.Clinical

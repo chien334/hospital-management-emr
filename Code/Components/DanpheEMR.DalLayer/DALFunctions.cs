@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace DanpheEMR.DalLayer
@@ -18,7 +18,7 @@ namespace DanpheEMR.DalLayer
             // creates resulting dataset
             var result = new DataSet();
             // creates a Command 
-            var cmd = dbContext.Database.Connection.CreateCommand();
+            var cmd = dbContext.Database.GetDbConnection().CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcName;
 
@@ -33,7 +33,7 @@ namespace DanpheEMR.DalLayer
             try
             {
                 // executes
-                dbContext.Database.Connection.Open();
+                dbContext.Database.GetDbConnection().Open();
                 var reader = cmd.ExecuteReader();
 
                 // loop through all resultsets (considering that it's possible to have more than one)
@@ -52,7 +52,7 @@ namespace DanpheEMR.DalLayer
             {
                 // closes the connection
                 cmd.Parameters.Clear();
-                dbContext.Database.Connection.Close();
+                dbContext.Database.GetDbConnection().Close();
             }
 
         }

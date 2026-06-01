@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using DanpheEMR.ServerModel.IncentiveModels;
 using DanpheEMR.ServerModel;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using DanpheEMR.Security;
 using DanpheEMR.Enums;

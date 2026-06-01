@@ -7,7 +7,7 @@ using DanpheEMR.DalLayer;
 using Microsoft.Extensions.Options;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.Utilities;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 

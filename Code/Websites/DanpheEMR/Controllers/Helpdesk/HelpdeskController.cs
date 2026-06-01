@@ -11,7 +11,7 @@ using DanpheEMR.ServerModel.ReportingModels;
 using DanpheEMR.ServerModel.HelpdeskModels;
 using System.Data;
 using DanpheEMR.ViewModel.ADT;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 
 //sud:30May'2021-for Gitlab webhook testing -- we can remove this line.

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace DanpheEMR.Controllers.Pharmacy
@@ -65,7 +65,7 @@ namespace DanpheEMR.Controllers.Pharmacy
                                            CurrentVerificationLevelCount = po.VerificationId != null ? _pharmacyDbContext.VerificationModels.Where(V => V.VerificationId == po.VerificationId)
                                                                                                     .Select(V => V.CurrentVerificationLevelCount).FirstOrDefault() : 0,
                                            VerifierIds = po.VerifierIds
-                                       }).Where(a => DbFunctions.TruncateTime(a.PODate) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(a.PODate) <= DbFunctions.TruncateTime(toDate)).OrderByDescending(a => a.PurchaseOrderId).ToList();
+                                       }).Where(a => a.PODate.Value.Date >= fromDate.Date && a.PODate.Value.Date <= toDate.Date).OrderByDescending(a => a.PurchaseOrderId).ToList();
             return InvokeHttpGetFunction(func);
         }
 
@@ -248,7 +248,7 @@ namespace DanpheEMR.Controllers.Pharmacy
 
             goodReceiptList = (from s in _pharmacyDbContext.PHRMSupplier.Where(a => a.IsActive == true)
                                join gr in _pharmacyDbContext.PHRMGoodsReceipt
-                               .Where(a => a.IsCancel != true && DbFunctions.TruncateTime(a.GoodReceiptDate) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(a.GoodReceiptDate) <= DbFunctions.TruncateTime(toDate)) on s.SupplierId equals gr.SupplierId
+                               .Where(a => a.IsCancel != true && (a.GoodReceiptDate).Date >= (fromDate).Date && (a.GoodReceiptDate).Date <= (toDate).Date) on s.SupplierId equals gr.SupplierId
                                into leftJ
                                from lj in leftJ.DefaultIfEmpty()
                                group new { s, lj } by new { s.SupplierId, s.SupplierName } into g
@@ -267,7 +267,7 @@ namespace DanpheEMR.Controllers.Pharmacy
 
             List<PHRMSupplierGoodReceiptVM> goodReceiptReturn = new List<PHRMSupplierGoodReceiptVM>();
             goodReceiptReturn = (from s in _pharmacyDbContext.PHRMSupplier.Where(a => a.IsActive == true)
-                                 join grret in _pharmacyDbContext.PHRMReturnToSupplier.Where(a => DbFunctions.TruncateTime(a.ReturnDate) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(a.ReturnDate) <= DbFunctions.TruncateTime(toDate)) on s.SupplierId equals grret.SupplierId into leftJ
+                                 join grret in _pharmacyDbContext.PHRMReturnToSupplier.Where(a => (a.ReturnDate).Date >= (fromDate).Date && (a.ReturnDate).Date <= (toDate).Date) on s.SupplierId equals grret.SupplierId into leftJ
                                  from lj in leftJ.DefaultIfEmpty()
                                  group new { s, lj } by new { s.SupplierId, s.SupplierName } into g
                                  select new PHRMSupplierGoodReceiptVM
@@ -308,7 +308,7 @@ namespace DanpheEMR.Controllers.Pharmacy
 
             List<PHRMGoodReceiptVM> goodReciptList = new List<PHRMGoodReceiptVM>();
 
-            goodReciptList = _pharmacyDbContext.PHRMGoodsReceipt.Where(a => a.IsCancel != true && a.SupplierId == supplierId && DbFunctions.TruncateTime(a.GoodReceiptDate) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(a.GoodReceiptDate) <= DbFunctions.TruncateTime(toDate))
+            goodReciptList = _pharmacyDbContext.PHRMGoodsReceipt.Where(a => a.IsCancel != true && a.SupplierId == supplierId && (a.GoodReceiptDate).Date >= (fromDate).Date && (a.GoodReceiptDate).Date <= (toDate).Date)
                                                     .Select(a =>
                                                     new PHRMGoodReceiptVM
                                                     {
@@ -330,7 +330,7 @@ namespace DanpheEMR.Controllers.Pharmacy
             int? CreditPeriod = null;
             List<PHRMGoodReceiptVM> goodReceiptReturn = new List<PHRMGoodReceiptVM>();
 
-            goodReceiptReturn = _pharmacyDbContext.PHRMReturnToSupplier.Where(a => a.SupplierId == supplierId && DbFunctions.TruncateTime(a.ReturnDate) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(a.ReturnDate) <= DbFunctions.TruncateTime(toDate))
+            goodReceiptReturn = _pharmacyDbContext.PHRMReturnToSupplier.Where(a => a.SupplierId == supplierId && (a.ReturnDate).Date >= (fromDate).Date && (a.ReturnDate).Date <= (toDate).Date)
                                                                      .Select(a => new PHRMGoodReceiptVM
                                                                      {
                                                                          SupplierId = a.SupplierId,

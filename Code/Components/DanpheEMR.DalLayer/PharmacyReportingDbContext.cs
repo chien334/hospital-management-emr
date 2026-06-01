@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using DanpheEMR.ServerModel;
 using System.Text;
@@ -16,12 +16,29 @@ namespace DanpheEMR.DalLayer
     public class PharmacyReportingDbContext : DbContext
     {
         private string connStr = null;
-        public PharmacyReportingDbContext(string Conn) : base(Conn)
+        
+        private readonly string? _connectionString;
+
+        public PharmacyReportingDbContext(DbContextOptions<PharmacyReportingDbContext> options)
+            : base(options)
         {
-            connStr = Conn;
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
         }
+
+        public PharmacyReportingDbContext(string Conn)
+        {
+            _connectionString = Conn;
+            connStr = Conn;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
 
         #region Purchase Order Report
         public DataTable PHRMPurchaseOrderReport(DateTime FromDate, DateTime ToDate, string Status)
@@ -337,7 +354,7 @@ namespace DanpheEMR.DalLayer
         #region
         public List<PHRMItemWiseStockReportModel> PHRMItemWiseStockReport()
         {
-            var data = Database.SqlQuery<PHRMItemWiseStockReportModel>("exec SP_PHRMReport_ItemWiseStockReport").ToList();
+            var data = Database.SqlQueryRaw<PHRMItemWiseStockReportModel>("exec SP_PHRMReport_ItemWiseStockReport").ToList();
 
             return data.ToList<PHRMItemWiseStockReportModel>();
         }

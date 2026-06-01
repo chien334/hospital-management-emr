@@ -13,7 +13,7 @@ using DanpheEMR.Security;
 using System.Data;
 using DanpheEMR.ServerModel;
 using DanpheEMR.Enums;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.BillingReports;
 

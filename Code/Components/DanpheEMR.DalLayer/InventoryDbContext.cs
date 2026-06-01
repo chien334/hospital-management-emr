@@ -1,27 +1,48 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.InventoryModels;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using DanpheEMR.Security;
-using System.Data.Entity.ModelConfiguration.Conventions;
+
 using DanpheEMR.ServerModel.WardSupplyModels;
 
 namespace DanpheEMR.DalLayer
 {
     public class InventoryDbContext : DbContext
     {
-        public InventoryDbContext(string conn) : base(conn)
+        
+        private readonly string? _connectionString;
+
+        public InventoryDbContext(DbContextOptions<InventoryDbContext> options)
+            : base(options)
         {
-            this.Configuration.LazyLoadingEnabled = true;
-            this.Configuration.ProxyCreationEnabled = false;
+
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public InventoryDbContext(string conn)
         {
+            _connectionString = conn;
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<PurchaseOrderModel>().ToTable("INV_TXN_PurchaseOrder");
             modelBuilder.Entity<ItemMasterModel>().ToTable("INV_MST_Item");
@@ -39,8 +60,9 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<DispatchModel>().ToTable("INV_TXN_Dispatch");
 
             modelBuilder.Entity<MAP_DispatchItems_FixedAssetStock>().ToTable("INV_MAP_DispatchItems_FixedAssetStock")
-                .HasKey(a => new { a.DispatchItemsId, a.FixedAssetStockId })
-                .HasRequired(a => a.Asset);
+                .HasKey(a => new { a.DispatchItemsId, a.FixedAssetStockId });
+            modelBuilder.Entity<MAP_DispatchItems_FixedAssetStock>()
+                .HasOne(a => a.Asset);
 
             modelBuilder.Entity<WriteOffItemsModel>().ToTable("INV_TXN_WriteOffItems");
             modelBuilder.Entity<CurrencyMasterModel>().ToTable("INV_MST_Currency");
@@ -95,24 +117,24 @@ namespace DanpheEMR.DalLayer
             //Store Stock to Master Stock Relationship
             modelBuilder.Entity<StoreStockModel>()
                 .ToTable("INV_TXN_StoreStock")
-                .HasRequired(a => a.StockMaster)
+                .HasOne(a => a.StockMaster)
                 .WithMany(a => a.StoreStocks)
                 .HasForeignKey(a => a.StockId);
 
             modelBuilder.Entity<StoreStockModel>()
                 .HasMany(s => s.StockTransactions)
-                .WithRequired(s => s.StoreStock)
+                .WithOne(s => s.StoreStock)
                 .HasForeignKey(s => s.StoreStockId);
 
             modelBuilder.Entity<StockTransactionModel>().ToTable("INV_TXN_StockTransaction")
-                .HasRequired(s => s.StoreStock)
+                .HasOne(s => s.StoreStock)
                 .WithMany(s => s.StockTransactions)
                 .HasForeignKey(s => s.StoreStockId);
 
 
             //sud/sanjit:25Sept'21--We're converting All Decimal Type properties of all models in this DBContext to Decimal(16,4)---
-            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
+            // modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
+            // modelBuilder.Conventions.Add(new DecimalPropertyConvention(16, 4));
 
             modelBuilder.Entity<DonationModel>().ToTable("INV_TXN_Donation");
             modelBuilder.Entity<DonationItemModel>().ToTable("INV_TXN_DonationItems");

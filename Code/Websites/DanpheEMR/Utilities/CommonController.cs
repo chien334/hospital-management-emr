@@ -1,4 +1,4 @@
-﻿using DanpheEMR.CommonTypes;
+using DanpheEMR.CommonTypes;
 using DanpheEMR.Controllers;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
@@ -176,7 +176,7 @@ public class CommonController : Controller
 
     }
 
-    protected ActionResult InvokeHttpPostFunctionSingleTransactionScope<T>(Func<T> functionName, System.Data.Entity.DbContextTransaction transactionScope)
+    protected ActionResult InvokeHttpPostFunctionSingleTransactionScope<T>(Func<T> functionName, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction transactionScope)
     {
         DanpheHTTPResponse<T> responseData = new DanpheHTTPResponse<T>();
         try
@@ -234,7 +234,7 @@ public class CommonController : Controller
 
     }
 
-    protected ActionResult InvokeHttpPutFunctionSingleTransactionScope<T>(Func<T> functionName, System.Data.Entity.DbContextTransaction transactionScope)
+    protected ActionResult InvokeHttpPutFunctionSingleTransactionScope<T>(Func<T> functionName, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction transactionScope)
     {
         DanpheHTTPResponse<T> responseData = new DanpheHTTPResponse<T>();
         try

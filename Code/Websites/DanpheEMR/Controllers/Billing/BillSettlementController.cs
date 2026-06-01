@@ -1,4 +1,4 @@
-﻿using DanpheEMR.Controllers.Billing;
+using DanpheEMR.Controllers.Billing;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
@@ -13,8 +13,9 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DanpheEMR.Controllers
 {

@@ -21,15 +21,15 @@ using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
-using DbFunctions = System.Data.Entity.DbFunctions;
-using DbUpdateException = System.Data.Entity.Infrastructure.DbUpdateException;
-using EntityState = System.Data.Entity.EntityState;
+/* using DbFunctions = System.Data.Entity.DbFunctions; */
+using DbUpdateException = Microsoft.EntityFrameworkCore.DbUpdateException;
+using EntityState = Microsoft.EntityFrameworkCore.EntityState;
 
 namespace DanpheEMR.Controllers
 {
@@ -3238,7 +3238,7 @@ namespace DanpheEMR.Controllers
         //            //                      && itm.ReturnStatus != true
 
         //            //                      //sud:13Mar'20-- search between given dates as well.
-        //            //                      && (DbFunctions.TruncateTime(itm.CreatedOn) >= startDate && DbFunctions.TruncateTime(itm.CreatedOn) <= endDate)
+        //            //                      && ((itm.CreatedOn).Date >= startDate && (itm.CreatedOn).Date <= endDate)
 
         //            //                       &&
 
@@ -3334,7 +3334,7 @@ namespace DanpheEMR.Controllers
 
         //            //                           where itm.BillStatus != ENUM_BillingStatus.cancel // "cancel" 
         //            //                           && itm.ReturnStatus != true
-        //            //                              && (DbFunctions.TruncateTime(itm.CreatedOn) >= startDate.Date && DbFunctions.TruncateTime(itm.CreatedOn) <= endDate.Date)
+        //            //                              && ((itm.CreatedOn).Date >= startDate.Date && (itm.CreatedOn).Date <= endDate.Date)
         //            //                           select new
         //            //                           {
         //            //                               Date = itm.CreatedOn,
@@ -6458,7 +6458,7 @@ namespace DanpheEMR.Controllers
                                   && itm.BillStatus != ENUM_BillingStatus.adtCancel
 
                                   //sud:13Mar'20-- search between given dates as well.
-                                  && (DbFunctions.TruncateTime(itm.CreatedOn) >= startDate && DbFunctions.TruncateTime(itm.CreatedOn) <= endDate)
+                                  && ((itm.CreatedOn).Date >= startDate && (itm.CreatedOn).Date <= endDate)
 
                                    &&
 

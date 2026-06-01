@@ -1,8 +1,8 @@
 import {
-    FormGroup,
-    FormBuilder,
+    UntypedFormGroup,
+    UntypedFormBuilder,
     Validators,
-    FormControl
+    UntypedFormControl
 } from "@angular/forms";
 import { ENUM_HandOver_Status } from "../../shared/shared-enums";
 import { DenominationModel } from "./denomination.model";
@@ -26,11 +26,11 @@ export class HandOverTransactionModel {
     public CreatedOn: string = null;
     public IsActive: boolean = true;
 
-    public HandoverTransactionValidator: FormGroup = null;
+    public HandoverTransactionValidator: UntypedFormGroup = null;
     public HandoverStatus: string = ENUM_HandOver_Status.Pending;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.HandoverTransactionValidator = _formBuilder.group({
             'BankName': ['', Validators.compose([Validators.required])],
             //'VoucherNumber': ['', Validators.compose([Validators.required])],
@@ -38,7 +38,7 @@ export class HandOverTransactionModel {
         });
     }
 
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 1)
                 return { 'invalidNumber': true };

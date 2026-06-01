@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment';
@@ -18,11 +18,11 @@ export class ledgerGroupModel {
     public ModifiedBy: number = null;
     public ModifiedOn: string = null;
     public Name: string = "";
-    public LedgerGroupValidator: FormGroup = null;
+    public LedgerGroupValidator: UntypedFormGroup = null;
     public COAId: number = 0;
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.LedgerGroupValidator = _formBuilder.group({
             'LedgerGroupName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
             'PrimaryGroup': ['', Validators.compose([Validators.required])],

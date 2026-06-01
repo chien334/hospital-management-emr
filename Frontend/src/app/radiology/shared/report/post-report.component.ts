@@ -1,5 +1,5 @@
 import { Component, Directive, ViewChild, ChangeDetectorRef, Renderer2 } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms'
+import { NgForm, UntypedFormGroup, FormControl, Validators, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms'
 import { Input, Output, EventEmitter, OnInit } from "@angular/core"
 import { Patient } from '../../../patients/shared/patient.model';
 import { ImagingItemReport } from '../../shared/imaging-item-report.model';
@@ -61,7 +61,7 @@ export class PostReportComponent {
 
   public dicomImageDatas: Array<DicomMappingModel> = new Array<DicomMappingModel>();
 
-  public ReportValidator: FormGroup = null;
+  public ReportValidator: UntypedFormGroup = null;
   public defaultSigEmpIdList: Array<number>;
   public hospitalCode: string = null;
   public imageUploadFolderPath: string = null;//sud:18Aug'19--for radiology image upload.
@@ -160,7 +160,7 @@ export class PostReportComponent {
   //using validation logic here instead of model. because we're not initializing new ImnagingItemReport() but
   //direclty getting the report model from server side which don't have validation.
   public setValidator() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ReportValidator = _formBuilder.group({
       'Signatories': ['', Validators.compose([])],
     });

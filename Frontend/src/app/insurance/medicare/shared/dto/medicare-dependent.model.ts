@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class MedicareDependentModel {
     public FullName: string = '';
@@ -32,10 +32,10 @@ export class MedicareDependentModel {
     public DateOfBirth: Date;
 
     // MedicareDependentValidator: FormGroup = null;
-    MedicareDependentValidator: FormGroup = null;
+    MedicareDependentValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.MedicareDependentValidator = _formBuilder.group({
             'PatientId': ['', Validators.compose([Validators.required])],
             'FullName': ['', Validators.compose([Validators.required])],

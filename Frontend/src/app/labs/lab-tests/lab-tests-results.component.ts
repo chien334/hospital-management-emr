@@ -25,7 +25,7 @@
  */
 
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import * as jsPDF from 'jspdf';
 import * as _ from 'lodash';
@@ -102,12 +102,12 @@ export class LabTestsResults {
   public allowOpWithProvToPrintReport: boolean = false;
   public resEditParam: boolean = false;
   public showReUploadPopup: boolean = false;
-  TeleMedicineUploadForm: FormGroup = new FormGroup(
+  TeleMedicineUploadForm: UntypedFormGroup = new UntypedFormGroup(
     {
-      phoneNumber: new FormControl("", Validators.minLength(10)),
-      firstName: new FormControl("", Validators.required),
-      lastName: new FormControl("", Validators.required),
-      email: new FormControl("")
+      phoneNumber: new UntypedFormControl("", Validators.minLength(10)),
+      firstName: new UntypedFormControl("", Validators.required),
+      lastName: new UntypedFormControl("", Validators.required),
+      email: new UntypedFormControl("")
     }
   )
   public Login = new LoginToTelemed();

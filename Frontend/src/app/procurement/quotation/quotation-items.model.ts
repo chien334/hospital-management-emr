@@ -1,4 +1,4 @@
-import { FormGroup, Validators, FormBuilder, } from '@angular/forms'
+import { UntypedFormGroup, Validators, UntypedFormBuilder, } from '@angular/forms'
 import { ItemMaster } from '../../inventory/shared/item-master.model';
 import { VendorMaster } from '../../inventory/shared/vendor-master.model';
 
@@ -19,11 +19,11 @@ export class QuotationItemsModel {
   public item: ItemMaster = null;
   public vendorItm: VendorMaster = null;
   public SelectedItem: QuotationItemsModel = null;
-  public QuotationItemsValidator: FormGroup = null;
+  public QuotationItemsValidator: UntypedFormGroup = null;
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.QuotationItemsValidator = _formBuilder.group({
       'ItemId': ['', Validators.compose([Validators.required])],
       'Price': ['', Validators.compose([Validators.required])],

@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class PrinterSettingsModel {
 
@@ -22,11 +22,11 @@ export class PrinterSettingsModel {
   public ModifiedOn: string = null;
   public IsActive: boolean = true;
 
-  public PrinterSettingsValidator: FormGroup = null;
+  public PrinterSettingsValidator: UntypedFormGroup = null;
 
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PrinterSettingsValidator = _formBuilder.group({
       'GroupName': ['', Validators.compose([Validators.required])],
       'PrinterDisplayName': ['', Validators.compose([Validators.required])],

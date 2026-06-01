@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import { PHRMEmployeeCashTransaction } from '../../../../pharmacy/shared/pharmacy-employee-cash-transaction';
@@ -24,13 +24,13 @@ export class PHRMDepositModel {
     public CreatedBy: number = 0;
     public CreatedOn: string = "";
     public DepositBalance: number = 0;
-    public DepositValidator: FormGroup = null;
+    public DepositValidator: UntypedFormGroup = null;
     //used only in client side
     public PatientName: string = null;
     public PatientCode: string = null;
     public PHRMEmployeeCashTransactions: Array<PHRMEmployeeCashTransaction> = new Array<PHRMEmployeeCashTransaction>();
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.DepositValidator = _formBuilder.group({
             //'Remark': ['', Validators.compose([Validators.required])],
             'PaymentDetails': ['', Validators.compose([])],

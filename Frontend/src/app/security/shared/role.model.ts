@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 
@@ -26,11 +26,11 @@ export class Role {
 
   public IsSelected: boolean = false;
 
-  public RoleValidator: FormGroup = null;
+  public RoleValidator: UntypedFormGroup = null;
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.RoleValidator = _formBuilder.group({
       'RoleName': ['', Validators.compose([Validators.required])]
     });

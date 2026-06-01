@@ -11,7 +11,7 @@ import { LISMappingComponent } from "./lis-mapping/lis-mapping.component";
                 path: '',
                 component: LISMainComponent,
                 children: [
-                    { path: '', redirectTo: 'LISMachineResult', pathMatch: 'LISMachineResult' },
+                    { path: '', redirectTo: 'LISMachineResult', pathMatch: 'full' },
                     { path: 'LISComponentMapping', component: LISMappingComponent },
                     { path: 'LISMachineResult', component: LISMachineResultComponent }
                 ]

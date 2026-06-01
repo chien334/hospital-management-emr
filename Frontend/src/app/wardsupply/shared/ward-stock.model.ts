@@ -1,4 +1,4 @@
-import { NgForm, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { NgForm, UntypedFormGroup, UntypedFormControl, Validators, UntypedFormBuilder } from '@angular/forms'
 
 export class WardStockModel {
     public StockId: number = 0;
@@ -23,13 +23,13 @@ export class WardStockModel {
     public StockType: string = "";
     public DepartmentId: number = 0;
     public DepartmentName: string = "";
-    public StockManageValidator: FormGroup = null;
+    public StockManageValidator: UntypedFormGroup = null;
     public NewAvailableQuantity: number = null; //For stock manage purpose: Rohit
     public CostPrice: number = 0;
     public GenericName: string = "";
     //Constructor of class
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.StockManageValidator = _formBuilder.group({
             'DispachedQuantity': ['', Validators.compose([this.positiveNumberValdiator])],
             //'Price': ['', Validators.compose([this.positiveNumberValdiator])]
@@ -53,7 +53,7 @@ export class WardStockModel {
             return !(this.StockManageValidator.hasError(validator, fieldName));
     }
 
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'invalidNumber': true };

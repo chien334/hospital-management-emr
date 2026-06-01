@@ -1,6 +1,6 @@
 import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { SupplierLedgerService } from '../supplier-ledger.service';
 })
 export class SupplierLedgerViewComponent implements OnInit {
   subscription = new Subscription();
-  supplierLedgerForm = new FormGroup({ PaidAmount: new FormControl('0',[Validators.required])});
+  supplierLedgerForm = new UntypedFormGroup({ PaidAmount: new UntypedFormControl('0',[Validators.required])});
   supplierLedgerViewGridColumns: Array<any> = null;
   supplierDetailsData: Array<any> = new Array<any>();
   showPopUp: boolean = true;
@@ -133,7 +133,7 @@ export class SupplierLedgerViewComponent implements OnInit {
     this.showPaymentDetails = false;
   }
   get PaidAmount() {
-    return this.supplierLedgerForm.get("PaidAmount") as FormControl;
+    return this.supplierLedgerForm.get("PaidAmount") as UntypedFormControl;
   }
 }
 

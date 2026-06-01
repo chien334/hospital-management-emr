@@ -1,5 +1,5 @@
 import {
-  FormBuilder, FormControl, FormGroup, Validators
+  UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
 import { PatientCareTaker_DTO } from '../../appointments/shared/dto/patient-caretaker.dto';
@@ -27,7 +27,7 @@ export class AdmissionModel {
   public ModifiedOn: string = null;
   public ModifiedBy: number = null;
   public PatientBedInfos: Array<PatientBedInfo> = new Array<PatientBedInfo>();
-  public AdmissionValidator: FormGroup = null;
+  public AdmissionValidator: UntypedFormGroup = null;
 
   public CareOfPersonName: string = null;
   public CareOfPersonPhoneNo: string = null;
@@ -67,7 +67,7 @@ export class AdmissionModel {
 
   constructor() {
     this.CreatedOn = moment().format("YYYY-MM-DD HH:mm:ss");
-    const _formBuilder = new FormBuilder();
+    const _formBuilder = new UntypedFormBuilder();
     this.AdmissionValidator = _formBuilder.group({
       'AdmittingDoctorId': ['', Validators.compose([Validators.required])],
       'AdmissionDate': ['', Validators.compose([Validators.required, this.dateValidator])],
@@ -85,7 +85,7 @@ export class AdmissionModel {
   }
   //Modified: Ashim 14thSep : 
   //Validation: Can select admission date of upto 1 year before or after from today's date.
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
 
     //dateTime limit is 1 day
     //Ex:it's 16Aug 7:30 PM now

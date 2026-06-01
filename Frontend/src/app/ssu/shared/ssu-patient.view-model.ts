@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms'
 
 import * as moment from 'moment/moment';
@@ -47,13 +47,13 @@ export class SsuPatientVM {
   public SSU_IsActive: boolean = false;
   public SSU_Information: SSU_InformationModel = new SSU_InformationModel();
 
-  public SsuPatientValidator: FormGroup = null;
+  public SsuPatientValidator: UntypedFormGroup = null;
 
   public MunicipalityId: number = 0;
   public MunicipalityName: string = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.SsuPatientValidator = _formBuilder.group({
       'FirstName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       'LastName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
@@ -106,7 +106,7 @@ export class SsuPatientVM {
 
 
 
-  dateValidators(control: FormControl): { [key: string]: boolean } {
+  dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
     //if positive then selected date is of future else it of the past

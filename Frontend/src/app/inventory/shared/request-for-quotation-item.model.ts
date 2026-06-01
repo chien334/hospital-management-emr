@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 import { CommonValidators } from "./../../shared/common-validator";
@@ -26,12 +26,12 @@ export class RequestForQuotationItemsModel{
     public ItemStatus: string = null;
     public SelectedItem: ItemMaster = null;
     public Item: ItemMaster = null;
-    public ReqForQuotationItemValidator: FormGroup = null;
+    public ReqForQuotationItemValidator: UntypedFormGroup = null;
 
 
  constructor() {
 
-     var _formBuilder = new FormBuilder();
+     var _formBuilder = new UntypedFormBuilder();
      this.ReqForQuotationItemValidator = _formBuilder.group({
          'ItemId': ['', Validators.compose([Validators.required])],
          'Quantity': ['', Validators.compose([Validators.required, CommonValidators.positivenum])],

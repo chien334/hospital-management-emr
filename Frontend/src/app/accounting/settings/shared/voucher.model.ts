@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment';
@@ -15,12 +15,12 @@ export class VoucherModel {
     public IsActive: boolean = true;
     public VoucherCode: string = null;
 
-    public VoucherValidator: FormGroup = null;
+    public VoucherValidator: UntypedFormGroup = null;
     public ShowChequeNumber: boolean = false;
     public ShowPayeeName: boolean = false;
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.VoucherValidator = _formBuilder.group({
             'VoucherName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
             'VoucherCode': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],

@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms"
 
 //swapnil-2-april-2021
 export class WardSupplyAssetReturnItemsModel {
@@ -36,7 +36,7 @@ export class WardSupplyAssetReturnItemsModel {
   public IsFixedAsset: boolean = false;
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ReturnItemValidator = _formBuilder.group({
       'ItemId': ['', Validators.compose([Validators.required])],
       // 'Quantity': ['', Validators.compose([this.positiveNumberValidator])],
@@ -62,7 +62,7 @@ export class WardSupplyAssetReturnItemsModel {
       return !(this.ReturnItemValidator.hasError(validator, fieldName));
   }
 
-  positiveNumberValidator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0)
         return { 'invalidNumber': true };
@@ -72,7 +72,7 @@ export class WardSupplyAssetReturnItemsModel {
   
 }
 function stockAvailabilityValidator(AvailableQuantity: string, ReturnQuantity: string) {
-  return (formGroup: FormGroup) => {
+  return (formGroup: UntypedFormGroup) => {
     const availQty = formGroup.controls[AvailableQuantity];
     const returningQty = formGroup.controls[ReturnQuantity];
 

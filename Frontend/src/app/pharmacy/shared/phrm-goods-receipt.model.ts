@@ -1,7 +1,7 @@
 import {
-      FormBuilder,
-      FormControl,
-      FormGroup,
+      UntypedFormBuilder,
+      UntypedFormControl,
+      UntypedFormGroup,
       Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -39,7 +39,7 @@ export class PHRMGoodsReceiptModel {
 
       public UserName: any; //for UI view of username who created gr 
       public Time: any;      //for UI view of time of created gr
-      public GoodReceiptValidator: FormGroup = null;
+      public GoodReceiptValidator: UntypedFormGroup = null;
       public GoodReceiptItem: Array<PHRMGoodsReceiptItemsModel> = new Array<PHRMGoodsReceiptItemsModel>();
       IsPacking: boolean;
       IsItemDiscountApplicable: boolean;
@@ -48,7 +48,7 @@ export class PHRMGoodsReceiptModel {
       public PurchaseOrderNo: number = 0;
       public VATPercentage: number = 0;
       constructor() {
-            var _formBuilder = new FormBuilder();
+            var _formBuilder = new UntypedFormBuilder();
             this.GoodReceiptValidator = _formBuilder.group({
                   'SubTotal': [],
                   'DiscountPercentage': [0, [Validators.required, Validators.min(0), Validators.max(100)]],
@@ -80,7 +80,7 @@ export class PHRMGoodsReceiptModel {
                   return !(this.GoodReceiptValidator.hasError(validator, fieldName));
       }
 
-      dateValidator(control: FormControl): { [key: string]: boolean } {
+      dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
 
             //get current date, month and time
             var currDate = moment().format('YYYY-MM-DD');

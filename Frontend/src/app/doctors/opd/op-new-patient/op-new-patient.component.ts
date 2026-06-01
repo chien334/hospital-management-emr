@@ -6,10 +6,10 @@ import { CoreService } from '../../../core/shared/core.service';
 import * as moment from 'moment/moment';
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms';
 
 import { PatientService } from "../../../patients/shared/patient.service";
@@ -50,7 +50,7 @@ export class OPNewPatientComponent implements OnDestroy {
   public toDate: string = null;
   public todaysVisitList: Array<any> = new Array<any>();
   public today: string = null;
-  public DateValidator: FormGroup = null;
+  public DateValidator: UntypedFormGroup = null;
   public DoctorOPNewPatientGridColumns: Array<any> = null;
   public OPFollowUpPatientGridColumns: Array<any> = null;
   public OPFavoritePatientGridColumns: Array<any> = null;
@@ -94,7 +94,7 @@ export class OPNewPatientComponent implements OnDestroy {
     this._patientservice = _patientService;
     this._visitService = _visitServ;
     this._callbackService = _callbackService;
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     // this.DoctorOPNewPatientGridColumns = GridColumnSettings.DoctorOPNewPatientList;
     this.DoctorOPNewPatientGridColumns = GridColumnSettings.DoctorAppointmentList;
     this.OPFollowUpPatientGridColumns = GridColumnSettings.OPFollowUpPatientList;
@@ -291,7 +291,7 @@ export class OPNewPatientComponent implements OnDestroy {
   //   }
   // }
 
-  dateValidators(control: FormControl): { [key: string]: boolean } {
+  dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD 23:59');
 

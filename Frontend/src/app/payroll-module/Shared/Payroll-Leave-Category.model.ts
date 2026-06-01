@@ -1,9 +1,9 @@
 import
 {NgForm,
-FormGroup,
+UntypedFormGroup,
 FormControl,
 Validators,
-FormBuilder,
+UntypedFormBuilder,
 ReactiveFormsModule
 } from '@angular/forms'
 
@@ -17,10 +17,10 @@ export class LeaveCategories{
     public IsActive :boolean = false;
     public CategoryCode: string ="";
         
-    public LeaveCategoryValidator: FormGroup = null;
+    public LeaveCategoryValidator: UntypedFormGroup = null;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.LeaveCategoryValidator = _formBuilder.group({
             'LeaveCategoryName': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
             'CategoryCode': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],

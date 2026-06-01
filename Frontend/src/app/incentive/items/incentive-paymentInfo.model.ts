@@ -1,4 +1,4 @@
-import {FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import {UntypedFormGroup, UntypedFormControl, Validators, UntypedFormBuilder } from '@angular/forms';
 import * as moment from 'moment/moment';
 
 export class INCTV_TXN_PaymentInfoModel {
@@ -14,21 +14,21 @@ export class INCTV_TXN_PaymentInfoModel {
   
   public IsActive: boolean = true;
   public IsSelected: boolean = false;//only for client side.
-  public PaymentInfoValidator: FormGroup = null;
+  public PaymentInfoValidator: UntypedFormGroup = null;
 
   public FromDate: string = '';
   public ToDate: string = '';
   public EmployeeId: number = 0;
   
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     //this.PaymentInfoValidator = _formBuilder.group({
     //  'fromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],
     //  'toDate': ['', Validators.compose([Validators.required, this.dateValidator])]
     //});
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     var currDate = moment().format('YYYY-MM-DD HH:mm');
     if (control.value) { // gets empty string for invalid date such as 30th Feb or 31st Nov)
       if ((moment(control.value).diff(currDate) > 0)
@@ -39,7 +39,7 @@ export class INCTV_TXN_PaymentInfoModel {
       return { 'wrongDate': true };
   }
 
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
     if (control.value) {

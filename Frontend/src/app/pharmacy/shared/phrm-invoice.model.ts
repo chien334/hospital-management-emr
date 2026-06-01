@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import { PHRMEmployeeCashTransaction } from './pharmacy-employee-cash-transaction';
@@ -53,7 +53,7 @@ export class PHRMInvoiceModel {
     public PatientName: string = "";
     public payment: any;
 
-    public InvoiceValidator: FormGroup = null;
+    public InvoiceValidator: UntypedFormGroup = null;
     public ClaimCode: number = 0;
     // public ProviderName: string;
     public PrescriberName: string; // Krishna, 17th,jun'22, changed ProviderName to PrescriberName
@@ -93,7 +93,7 @@ export class PHRMInvoiceModel {
 
     //Constructor of class
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.InvoiceValidator = _formBuilder.group({
             'Prescriber': ['', Validators.compose([Validators.required])],
             'VisitType': ['', Validators.compose([Validators.required])],

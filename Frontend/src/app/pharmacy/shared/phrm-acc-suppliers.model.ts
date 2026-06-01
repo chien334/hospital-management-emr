@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -37,11 +37,11 @@ export class PHRMACCSuppliersModel {
   public VATAmount: number = 0;
   public SupplierName: string = null;
 
-  public GoodReceiptValidator: FormGroup = null;
+  public GoodReceiptValidator: UntypedFormGroup = null;
   public GoodReceiptItem: Array<PHRMGoodsReceiptItemsModel> = new Array<PHRMGoodsReceiptItemsModel>();
   ContactNo: string = null;
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.GoodReceiptValidator = _formBuilder.group({
 
       /// 'GoodReceiptDate': ['', Validators.compose([Validators.required, this.dateValidator])],
@@ -68,7 +68,7 @@ export class PHRMACCSuppliersModel {
       return !(this.GoodReceiptValidator.hasError(validator, fieldName));
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');

@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
 
@@ -24,10 +24,10 @@ export class ImagingItem {
   public IsPreference: boolean = false;
   public TemplateId: number = null;
   public IsValidForReporting: boolean = true;
-  public ImagingItemValidator: FormGroup = null;
+  public ImagingItemValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ImagingItemValidator = _formBuilder.group({
       ImagingTypeId: ["", Validators.compose([Validators.required])],
       ImagingItemName: ["", Validators.compose([Validators.required])],

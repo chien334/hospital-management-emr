@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { NumberSequence } from "ag-grid-community";
 import * as moment from "moment";
 
@@ -20,10 +20,10 @@ export class FixedAssetDepreciationModel {
   public FiscalYearName: string;
   public Method: string;
 
-  public DepreciationValidators: FormGroup = null;
+  public DepreciationValidators: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DepreciationValidators = _formBuilder.group({
       'AssetDeprnMethodId': ['', Validators.compose([Validators.required])],
       'FiscalYearId': ['', Validators.compose([Validators.required])],

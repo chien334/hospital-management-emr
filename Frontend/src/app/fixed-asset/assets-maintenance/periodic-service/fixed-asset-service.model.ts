@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
 
 export class AssetServiceModel {
@@ -19,10 +19,10 @@ export class AssetServiceModel {
   public CreatedByName: string;
 
 
-  public AssetServiceValidators: FormGroup = null;
+  public AssetServiceValidators: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.AssetServiceValidators = _formBuilder.group({
       'ServiceDate': ['', Validators.compose([Validators.required])],
       'ServiceRemarks': ['', Validators.compose([Validators.required])],

@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 import { ItemMaster } from './item-master.model';
@@ -27,11 +27,11 @@ export class QuotationModel{
     public item:ItemMaster = null;
     public SelectedItem: any = null;
     public quotationItems: Array<QuotationItemsModel> = new Array<QuotationItemsModel>();
-public QuotationValidator: FormGroup = null;
+public QuotationValidator: UntypedFormGroup = null;
 
 constructor() {
 
-  var _formBuilder = new FormBuilder();
+  var _formBuilder = new UntypedFormBuilder();
   this.QuotationValidator = _formBuilder.group({
       'VendorId': ['', Validators.compose([Validators.required])],
 

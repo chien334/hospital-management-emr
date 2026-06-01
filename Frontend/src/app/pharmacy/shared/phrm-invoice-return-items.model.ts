@@ -1,8 +1,8 @@
 ﻿
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 export class PHRMInvoiceReturnItemsModel {
@@ -43,7 +43,7 @@ export class PHRMInvoiceReturnItemsModel {
 
   public GRItemId: number = null;//only for refer update GRItem after sale return
   public ExpiryDate: string = null;
-  public InvoiceItemsReturnValidator: FormGroup = null;
+  public InvoiceItemsReturnValidator: UntypedFormGroup = null;
   // Added for manual return field
   public drugReturnItemObj: { ItemId: number, ItemName: string, GenericName: string };
   public availableBatches: { BatchNo: string; ExpiryDate: Date; SalePrice: number; }[] = [];
@@ -57,7 +57,7 @@ export class PHRMInvoiceReturnItemsModel {
   PriceCategoryId: number = 0;
   //Constructor of class
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.InvoiceItemsReturnValidator = _formBuilder.group({
       'Quantity': ['', Validators.compose([this.positiveNumberValdiator])],
       'ReturnedQty': ['', Validators.compose([this.positiveNumberValdiator])]
@@ -78,7 +78,7 @@ export class PHRMInvoiceReturnItemsModel {
       return !(this.InvoiceItemsReturnValidator.hasError(validator, fieldName));
   }
 
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0)
         return { 'invalidNumber': true };

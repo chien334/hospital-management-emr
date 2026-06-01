@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms'
 import * as moment from 'moment/moment';
 
@@ -22,11 +22,11 @@ export class PatientImagesModel {
     public FileBinaryData: string = "";
     public FileName: string = "";
     public FileExtention: string = "";
-    public PatientImageValidator: FormGroup = null;
+    public PatientImageValidator: UntypedFormGroup = null;
     public IsActive: boolean = true;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PatientImageValidator = _formBuilder.group({
             'FileType': ['', Validators.required,],
         });

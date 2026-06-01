@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 
@@ -12,13 +12,13 @@ export class SectionModel {
   public SectionId: number = null;
   public SectionName: string = null;
   public SectionCode: string = null;
-  public SectionValidator: FormGroup = null;
+  public SectionValidator: UntypedFormGroup = null;
   public IsDefault: boolean = false;
   public IsActive: boolean = true;
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.SectionValidator = _formBuilder.group({
       // 'SectionCode': ['', Validators.compose([ Validators.required])],
       'SectionName': ['', Validators.compose([Validators.required])],

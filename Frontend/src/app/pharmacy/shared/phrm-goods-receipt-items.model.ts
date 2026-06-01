@@ -1,7 +1,7 @@
 import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormControl,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -51,7 +51,7 @@ export class PHRMGoodsReceiptItemsModel {
     public curtQuantity: number = 0;
     public QtyDiffCount: number = 0;
     public StkManageInOut: string = "";
-    public GoodReceiptItemValidator: FormGroup = null;
+    public GoodReceiptItemValidator: UntypedFormGroup = null;
     public SelectedItem: any;
     public CounterId: number = 0;
     public GrTotalDisAmt: number = 0;
@@ -86,7 +86,7 @@ export class PHRMGoodsReceiptItemsModel {
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.GoodReceiptItemValidator = _formBuilder.group({
             'ItemName': ['', [Validators.required, this.registeredItemValidator]],
             //'PackingQuantity': ['', Validators.compose([Validators.required])],
@@ -124,7 +124,7 @@ export class PHRMGoodsReceiptItemsModel {
         else
             return !(this.GoodReceiptItemValidator.hasError(validator, fieldName));
     }
-    positiveValueRequired(control: FormControl): { [key: string]: boolean } {
+    positiveValueRequired(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value) {
             if (control.value <= 0) {
                 return { 'wrongValue': true };
@@ -134,7 +134,7 @@ export class PHRMGoodsReceiptItemsModel {
             return { 'wrongValue': true };
         }
     }
-    positiveOrZeroValueRequired(control: FormControl): { [key: string]: boolean } {
+    positiveOrZeroValueRequired(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value) {
             if (control.value <= 0) {
                 return { 'wrongValue': true };
@@ -144,14 +144,14 @@ export class PHRMGoodsReceiptItemsModel {
             return null;
         }
     }
-    wholeNumberRequired(control: FormControl): { [key: string]: boolean } {
+    wholeNumberRequired(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value) {
             if (control.value % 1 != 0) return { 'wrongDecimalValue': true };
         }
         else
             return null;
     }
-    dateValidator(control: FormControl): { [key: string]: boolean } {
+    dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
         //get current date, month and time
         var currDate = moment().format('YYYY-MM-DD');
         //if positive then selected date is of future else it of the past || selected year can't be of future
@@ -164,7 +164,7 @@ export class PHRMGoodsReceiptItemsModel {
             return { 'wrongDate': true };
     }
 
-    pastDateValidator(control: FormControl): { [key: string]: boolean } {
+    pastDateValidator(control: UntypedFormControl): { [key: string]: boolean } {
 
         //get current date, month and time
         var currDate = moment().format('YYYY-MM-DD');
@@ -186,7 +186,7 @@ export class PHRMGoodsReceiptItemsModel {
             return true;
         } else { return false; }
     }
-    positiveNum(control: FormControl): { [key: string]: boolean } {
+    positiveNum(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value) {
             if (control.value <= 0) {
                 return { 'wrongValue': true };
@@ -196,7 +196,7 @@ export class PHRMGoodsReceiptItemsModel {
             return null;
         }
     }
-    registeredItemValidator(control: FormControl): { [key: string]: boolean } {
+    registeredItemValidator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value && typeof (control.value) == "object" && control.value.ItemName != null)
             return;
         else

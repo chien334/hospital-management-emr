@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms'
 
 import * as moment from 'moment/moment';
@@ -27,11 +27,11 @@ export class VaccinationPatient {
     public CountrySubDivisionName: string = null;
     public MunicipalityId: number = 0;
 
-    public PatientValidator: FormGroup = null;
+    public PatientValidator: UntypedFormGroup = null;
 
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PatientValidator = _formBuilder.group({
             'Age': ['', Validators.compose([Validators.required])],
             'DateOfBirth': ['', Validators.compose([Validators.required, this.dateValidators]),],
@@ -70,7 +70,7 @@ export class VaccinationPatient {
     }
 
 
-    dateValidators(control: FormControl): { [key: string]: boolean } {
+    dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
         //get current date, month and time
         var currDate = moment().format('YYYY-MM-DD');
 

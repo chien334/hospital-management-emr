@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms'
 
 export class KinEmergencyContact {
@@ -15,7 +15,7 @@ export class KinEmergencyContact {
     public KinPhoneNumber: string = null;
     public KinComment: string = null;
     public RelationShip: string = null;
-    public KinValidator: FormGroup = null;
+    public KinValidator: UntypedFormGroup = null;
    
 
 
@@ -50,7 +50,7 @@ export class KinEmergencyContact {
     constructor() {
         this.PatientId = 0;
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
 
          
          this.KinValidator = _formBuilder.group({

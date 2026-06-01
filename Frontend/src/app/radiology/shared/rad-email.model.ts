@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 export class RadEmailModel {
@@ -24,10 +24,10 @@ export class RadEmailModel {
   //sud: below is for preview section, we'll have to filter from it and assign to above array for sending email.
   public ImageAttachments_Preview: Array<ImageAttachmentModel> = new Array<ImageAttachmentModel>();
 
-  public RadEmailValidator: FormGroup = null;
+  public RadEmailValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.RadEmailValidator = _formBuilder.group({
       'EmailAddress': ['', Validators.compose([Validators.required])],
       'Subject': ['', Validators.compose([Validators.required])]

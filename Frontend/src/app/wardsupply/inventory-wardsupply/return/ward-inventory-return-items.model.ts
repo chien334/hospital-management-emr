@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { MAP_Return_FixedAsset } from "./ward-inventory-return.model";
 
 export class WardInventoryReturnItemsModel {
@@ -38,7 +38,7 @@ export class WardInventoryReturnItemsModel {
     ExpiryDate: string = null;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ReturnItemValidator = _formBuilder.group({
             'ItemId': ['', Validators.compose([Validators.required])],
             // 'Quantity': ['', Validators.compose([this.positiveNumberValidator])],
@@ -64,7 +64,7 @@ export class WardInventoryReturnItemsModel {
             return !(this.ReturnItemValidator.hasError(validator, fieldName));
     }
 
-    positiveNumberValidator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValidator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value <= 0)
                 return { 'invalidNumber': true };
@@ -75,7 +75,7 @@ export class WardInventoryReturnItemsModel {
 
 }
 function stockAvailabilityValidator(AvailableQuantity: string, ReturnQuantity: string) {
-    return (formGroup: FormGroup) => {
+    return (formGroup: UntypedFormGroup) => {
         const availQty = formGroup.controls[AvailableQuantity];
         const returningQty = formGroup.controls[ReturnQuantity];
         if (availQty.value < returningQty.value || returningQty.value < 0) {

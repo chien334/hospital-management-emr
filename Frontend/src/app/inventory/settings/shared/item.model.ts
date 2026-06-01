@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -56,7 +56,7 @@ export class ItemModel {
   public PackagingType: Array<PackagingTypeModel> = new Array<PackagingTypeModel>();
   public UnitOfMeasurement: Array<UnitOfMeasurementModel> = new Array<UnitOfMeasurementModel>();
 
-  public ItemValidator: FormGroup = null;
+  public ItemValidator: UntypedFormGroup = null;
   public IsPatConsumptionApplicable: boolean = false;
   public MaintenanceOwnerRoleId: number = null;
   public RegisterPageNumber: number = null;
@@ -64,7 +64,7 @@ export class ItemModel {
   public StoreId: number = null;
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ItemValidator = _formBuilder.group({
 
       'ItemName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],

@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 
 export class InvoiceHeaderModel {
 
@@ -21,10 +21,10 @@ export class InvoiceHeaderModel {
   public FileBinaryData: string = "";
 
 
-  public HeaderValidators: FormGroup = null;
+  public HeaderValidators: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.HeaderValidators = _formBuilder.group({
       'HospitalName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
       'Address': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],

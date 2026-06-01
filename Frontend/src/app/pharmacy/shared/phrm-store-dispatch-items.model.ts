@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from "@angular/forms";
 import * as moment from "moment";
@@ -48,9 +48,9 @@ export class PHRMStoreDispatchItems {
   public CreatedByName: string = null;
   public DispatchedByName: string = null;
 
-  public DispatchItemValidator: FormGroup = null;
+  public DispatchItemValidator: UntypedFormGroup = null;
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DispatchItemValidator = _formBuilder.group({
       'DispensaryId': ['', Validators.required],
       'DispatchedQuantity': ['', Validators.compose([Validators.required])],

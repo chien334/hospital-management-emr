@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 export class PHRMSupplierModel {
@@ -16,7 +16,7 @@ export class PHRMSupplierModel {
     public CreatedBy: number = 0;
     public CreatedOn: string = '';
     public IsActive: boolean = true;
-    public SupplierValidator: FormGroup = null;
+    public SupplierValidator: UntypedFormGroup = null;
     public CreditPeriod: number = 0;
     public IsLedgerRequired: boolean = false;
     public DDA: string = '';
@@ -31,7 +31,7 @@ export class PHRMSupplierModel {
 
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.SupplierValidator = _formBuilder.group({
             'SupplierName': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
             'ContactNo': ['', Validators.compose([Validators.required, Validators.pattern('^[+0-9-]{1,10}$')])],

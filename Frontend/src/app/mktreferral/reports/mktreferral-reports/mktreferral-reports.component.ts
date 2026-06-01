@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
 import { DanpheHTTPResponse } from "../../../shared/common-models";
 import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
@@ -25,8 +25,8 @@ export class MarketingReferralDetailReportsComponent implements OnInit {
   public toDate: string = "";
   public NepaliDateInGridSettings: NepaliDateInGridParams = new NepaliDateInGridParams();
   loading: boolean;
-  public mktReferralDetailReportValidator: FormGroup = null;
-  referringPartyFormControl: FormControl;
+  public mktReferralDetailReportValidator: UntypedFormGroup = null;
+  referringPartyFormControl: UntypedFormControl;
   RefPartyObj: any
   public referringPartyList: ReferralParty_DTO[] = [];
   showSummary: boolean;
@@ -38,13 +38,13 @@ export class MarketingReferralDetailReportsComponent implements OnInit {
 
 
     public mktReferral: MarketingReferralService) {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.mktReferralDetailReportValidator = _formBuilder.group({
       'fromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],
       'toDate': ['', Validators.compose([Validators.required, this.dateValidator])],
       'ReferringPartyId': []
     });
-    this.referringPartyFormControl = this.mktReferralDetailReportValidator.get('ReferringPartyId') as FormControl; // Assign the FormControl
+    this.referringPartyFormControl = this.mktReferralDetailReportValidator.get('ReferringPartyId') as UntypedFormControl; // Assign the FormControl
     this.marketingReferralreportListGridColumns = this.mktReferral.settingsGridCols.marketingReferralreportListGridCols;
     this.NepaliDateInGridSettings.NepaliDateColumnList.push(new NepaliDateInGridColumnDetail('InvoiceDate', false));
     this.NepaliDateInGridSettings.NepaliDateColumnList.push(new NepaliDateInGridColumnDetail('EnteredOn', false));
@@ -62,7 +62,7 @@ export class MarketingReferralDetailReportsComponent implements OnInit {
   onReferringPartySelect(selectedReferringParty: ReferralParty_DTO) {
     this.referringPartyFormControl.setValue(selectedReferringParty); // Set the selected value to the FormControl
   }
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format(ENUM_DateTimeFormat.Year_Month_Day);
     if (control.value) {
@@ -85,7 +85,7 @@ export class MarketingReferralDetailReportsComponent implements OnInit {
       this.GetMarketingReferralDetailReport(this.fromDate, this.toDate, ReferringPartyId);
     }
   }
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     let currDate = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
     if (control.value) { // gets empty string for invalid date such as 30th Feb or 31st Nov)
       if ((moment(control.value).diff(currDate) > 0)

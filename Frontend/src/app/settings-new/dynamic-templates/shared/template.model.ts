@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class Template {
     public TemplateId: number;
@@ -13,10 +13,10 @@ export class Template {
     public ModifiedBy: number;
     public ModifiedOn: string = "";
     public IsActive: boolean;
-    public DynamicTemplateValidator: FormGroup = null;
+    public DynamicTemplateValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.DynamicTemplateValidator = _formBuilder.group({
             'TemplateTypeId': ['', Validators.compose([Validators.required])],
             'TemplateCode': ['', Validators.compose([Validators.required])],

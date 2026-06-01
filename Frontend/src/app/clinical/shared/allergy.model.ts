@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 export class Allergy {
@@ -21,10 +21,10 @@ export class Allergy {
     public ModifiedBy: number = null;
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
-    public AllergyValidator: FormGroup = null;
+    public AllergyValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.AllergyValidator = _formBuilder.group({
           'AllergyType': ['', Validators.compose([Validators.required])],
             'Reaction': ['', Validators.compose([Validators.required])],

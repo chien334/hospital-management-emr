@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 
@@ -32,11 +32,11 @@ public ReqForQuotationItems:Array<RequestForQuotationItemsModel> = new Array<Req
 
 public ReqForQuotation: Array<QuotationItemsModel> = new Array<QuotationItemsModel>();
 
- public ReqForQuotationValidator: FormGroup = null;
+ public ReqForQuotationValidator: UntypedFormGroup = null;
 
  constructor() {
 
-   var _formBuilder = new FormBuilder();
+   var _formBuilder = new UntypedFormBuilder();
    this.ReqForQuotationValidator = _formBuilder.group({
      'Subject': ['', Validators.compose([Validators.required])],
      'Description': ['', Validators.compose([Validators.required])],

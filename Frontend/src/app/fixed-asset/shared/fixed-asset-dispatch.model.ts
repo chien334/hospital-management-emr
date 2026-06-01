@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from "moment";
@@ -28,10 +28,10 @@ export class FixedAssetDispatch {
     new Array<FixedAssetDispatchItems>();
 
 
-  public RequisitionValidator: FormGroup = null;
+  public RequisitionValidator: UntypedFormGroup = null;
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.RequisitionValidator = _formBuilder.group({
       'SubStoreId': ['', Validators.compose([Validators.required])],
 

@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { FLOAT } from "html2canvas/dist/types/css/property-descriptors/float";
 import * as moment from "moment";
 
@@ -61,9 +61,9 @@ export class FixedAssetStockModel {
     public ServiceDate: string;
     public ServiceCompleteDate: string;
 
-    public FAStockValidators: FormGroup = null;
-    public FAEditAssetValidators: FormGroup = null;
-    public FAEditAssetMainteanceValidators: FormGroup = null;
+    public FAStockValidators: UntypedFormGroup = null;
+    public FAEditAssetValidators: UntypedFormGroup = null;
+    public FAEditAssetMainteanceValidators: UntypedFormGroup = null;
 
     //for Donations purpose tilganga hospital in INV_TXN_FixedAssetStock table 
     public DonationId: any;
@@ -77,7 +77,7 @@ export class FixedAssetStockModel {
     public IsColdStorageApplicable: boolean;
   IsCurrentUserMaintenanceOwner: boolean;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.FAStockValidators = _formBuilder.group({
             'DamagedRemarks': ['', Validators.compose([Validators.required, Validators.maxLength(500)])],
             'ScrapAmount': ['', Validators.compose([Validators.required])],

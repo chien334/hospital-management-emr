@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { CoreService } from '../../core/shared/core.service';
@@ -21,11 +21,11 @@ import { InventoryService } from '../shared/inventory.service';
 export class DirectDispatchComponent implements OnDestroy {
   dispatchDate: string = moment().format('YYYY-MM-DD');
   currentDate: string = moment().format('YYYY-MM-DD');
-  dispatchForm: FormGroup = new FormGroup({
+  dispatchForm: UntypedFormGroup = new UntypedFormGroup({
     // dispatchDate: new FormControl(this.dispatchDate),
-    targetStore: new FormControl('', Validators.required),
-    remarks: new FormControl('', Validators.required),
-    receivedBy: new FormControl(''),
+    targetStore: new UntypedFormControl('', Validators.required),
+    remarks: new UntypedFormControl('', Validators.required),
+    receivedBy: new UntypedFormControl(''),
   });
   dispatch: Dispatch = new Dispatch();
   stockList: any[] = [];
@@ -138,7 +138,7 @@ export class DirectDispatchComponent implements OnDestroy {
       newRow.ItemCategory = ENUM_GRItemCategory.Consumables;
       this.filteredItemList = this.GetItemListByItemCategory(newRow.ItemCategory);
       newRow.DispatchedQuantity = 1;
-      newRow.DispatchItemValidator.addControl('Item', new FormControl('', Validators.required));
+      newRow.DispatchItemValidator.addControl('Item', new UntypedFormControl('', Validators.required));
       if (index == null) {
         index = this.dispatch.DispatchItems.length;
       }

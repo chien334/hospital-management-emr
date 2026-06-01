@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class ExternalReferralModel {
 
@@ -21,11 +21,11 @@ export class ExternalReferralModel {
   public CreatedOn: string = null;
   public ModifiedOn: string = null;
 
-  public ExternalRefValidator: FormGroup = null;
+  public ExternalRefValidator: UntypedFormGroup = null;
 
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ExternalRefValidator = _formBuilder.group({
       'ReferrerName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
       //'ContactNumber': ['', Validators.compose([Validators.required, Validators.pattern('^[0-9]{1,10}$'), Validators.maxLength(15)])],

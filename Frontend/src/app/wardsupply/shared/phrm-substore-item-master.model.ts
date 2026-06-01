@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 export class PHRMSubStoreItemMasterModel {
     public ItemId: number = 0;
@@ -28,7 +28,7 @@ export class PHRMSubStoreItemMasterModel {
     public VED: string;
     public SalesCategoryId: number = null;
     public CCCharge: number = 0;
-    public ItemValidator: FormGroup = null;
+    public ItemValidator: UntypedFormGroup = null;
     public IsNarcotic: boolean = false;
     public IsInsuranceApplicable: boolean = false;
     public GovtInsurancePrice: number;

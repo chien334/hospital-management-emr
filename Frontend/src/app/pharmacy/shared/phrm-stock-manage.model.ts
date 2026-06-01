@@ -1,10 +1,10 @@
 
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms'
 import * as moment from 'moment/moment';
 
@@ -28,10 +28,10 @@ export class PHRMStockManageModel {
   public InOut: string = null;
   public ExpiryDate: string = null;
   public GoodsReceiptItemId: number = 0;
-  public StockManageValidator: FormGroup = null;
+  public StockManageValidator: UntypedFormGroup = null;
   //Constructor of class
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.StockManageValidator = _formBuilder.group({
       'UpdatedQty': ['', Validators.compose([this.positiveNumberValdiator,this.wholeNumberRequired])],
       //'Price': ['', Validators.compose([this.positiveNumberValdiator])]
@@ -54,14 +54,14 @@ export class PHRMStockManageModel {
       return !(this.StockManageValidator.hasError(validator, fieldName));
   }
 
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value < 0)
         return { 'invalidNumber': true };
     }
 
   }
-  wholeNumberRequired(control: FormControl): { [key: string]: boolean } {
+  wholeNumberRequired(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value) {
         if (control.value % 1 != 0) return { 'wrongDecimalValue': true };
     }

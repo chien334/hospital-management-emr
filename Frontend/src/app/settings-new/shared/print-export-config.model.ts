@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class PrintExportConfigurationModel {
 
@@ -20,11 +20,11 @@ export class PrintExportConfigurationModel {
   public ModifiedBy: number = null;
   public CreatedOn: string = null;
   public ModifiedOn: string = null;
-  public ConfigurationValidator: FormGroup = null;
+  public ConfigurationValidator: UntypedFormGroup = null;
 
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ConfigurationValidator = _formBuilder.group({
        'SettingName': ['', Validators.compose([Validators.required])],
        'PageHeaderText': ['', Validators.compose([Validators.required])],

@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -20,10 +20,10 @@ export class SurgicalHistory {
     public ModifiedBy: number = null;
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
-    public SurgicalHistoryValidator: FormGroup = null;
+    public SurgicalHistoryValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.SurgicalHistoryValidator = _formBuilder.group({
             'ICD10Code': ['', Validators.compose([Validators.required])],
             'SurgeryDate': ['', Validators.compose([Validators.required, this.dateValidator])],
@@ -32,7 +32,7 @@ export class SurgicalHistory {
         });
     }
 
-    dateValidator(control: FormControl): { [key: string]: boolean } {
+    dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
 
         var currDate = moment().format('YYYY-MM-DD HH:mm');
         if (control.value) { // gets empty string for invalid date such as 30th Feb or 31st Nov)

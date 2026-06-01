@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
 
 export class RegistrationDetails {
@@ -23,9 +23,9 @@ export class RegistrationDetails {
 
   public ChildDetails: Array<ChildDetailsVM> = [];
 
-  public MaternityRegisterDetailsValidator: FormGroup = null;
+  public MaternityRegisterDetailsValidator: UntypedFormGroup = null;
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.MaternityRegisterDetailsValidator = _formBuilder.group({
       'PlaceOfDelivery': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       'TypeOfDelivery': ['', Validators.compose([Validators.required])],
@@ -73,7 +73,7 @@ export class RegistrationDetails {
 
 
 
-  dateValidators(control: FormControl): { [key: string]: boolean } {
+  dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
     //if positive then selected date is of future else it of the past
@@ -104,10 +104,10 @@ export class ChildDetailsVM {
   public OutcomeOfMother: string = null;
   public WeightInGram: string = null;
 
-  public ChildDetailsValidator: FormGroup = null;
+  public ChildDetailsValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ChildDetailsValidator = _formBuilder.group({
       'Gender': ['', Validators.compose([Validators.required])],
       'WeightInGram': ['', Validators.compose([Validators.required])],

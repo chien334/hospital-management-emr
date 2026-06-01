@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CanDeactivate } from '@angular/router';
 
 
@@ -20,7 +20,7 @@ import { PatientsDashboardComponent } from '../dashboards/patients/patients-dash
 
 
 
-export const PatientsRoutingConstant = [
+export const PatientsRoutingConstant: Routes = [
     {
         path: '',
         component: PatientsMainComponent, canActivate: [AuthGuardService], canDeactivate: [ResetPatientcontextGuard],

@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 export class InputOutput {
@@ -23,10 +23,10 @@ export class InputOutput {
     public Remarks: string = null;
     public Contents: string = null;
 
-    public InputOutputValidator: FormGroup = null;
+    public InputOutputValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.InputOutputValidator = _formBuilder.group({
             // 'IntakeType': ['', Validators.compose([Validators.required])],
             // 'OutputType': ['', Validators.compose([Validators.required])],

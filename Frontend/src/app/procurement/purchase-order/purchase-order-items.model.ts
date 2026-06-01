@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ItemMaster } from '../../inventory/shared/item-master.model';
 import { CommonValidators } from "./../../shared/common-validator";
 import { PurchaseOrder } from "./purchase-order.model";
@@ -37,7 +37,7 @@ export class PurchaseOrderItems {
   public Code: string = null;
   public UOMName: string = null;
 
-  public PurchaseOrderItemValidator: FormGroup = null;
+  public PurchaseOrderItemValidator: UntypedFormGroup = null;
   public IsActive: boolean = true;
   public CancelledBy: number;
   public CancelledOn: string;
@@ -65,7 +65,7 @@ export class PurchaseOrderItems {
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PurchaseOrderItemValidator = _formBuilder.group({
       'ItemId': ['', [Validators.required, this.registeredItemValidator]],
       'Quantity': ['', [Validators.required, CommonValidators.positivenum]],
@@ -99,13 +99,13 @@ export class PurchaseOrderItems {
       return !(this.PurchaseOrderItemValidator.hasError(validator, fieldName));
   }
 
-  registeredItemValidator(control: FormControl): { [key: string]: boolean } {
+  registeredItemValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value && typeof (control.value) == "object" && control.value.ItemId > 0)
       return;
     else
       return { 'notRegisteredItem': true };
   }
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value < 0)
         return { 'positivenum': true };

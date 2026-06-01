@@ -1,10 +1,10 @@
 import { StockModel } from "./stock.model"
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 import { Requisition } from "./requisition.model";
@@ -31,7 +31,7 @@ export class RequisitionItems {
   public IsActive: boolean = true;
   public ReceivedBy: string = "";
   public DispatchRemarks: string = "";
-  public RequisitionItemValidator: FormGroup = null;
+  public RequisitionItemValidator: UntypedFormGroup = null;
   public RequisitionNo: number = 0;
   public IssueNo: number = null;
   public DispatchNo: number = null;
@@ -87,7 +87,7 @@ export class RequisitionItems {
   CostPrice: number = 0;
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.RequisitionItemValidator = _formBuilder.group({
       'ItemId': ['', Validators.compose([Validators.required])],
       'Quantity': ['', Validators.compose([this.positiveNumberValidator])],
@@ -110,7 +110,7 @@ export class RequisitionItems {
       return !(this.RequisitionItemValidator.hasError(validator, fieldName));
   }
 
-  positiveNumberValidator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0)
         return { 'invalidNumber': true };

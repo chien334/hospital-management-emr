@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 import { ItemMaster } from '../../inventory/shared/item-master.model';
@@ -35,7 +35,7 @@ export class ReturnToVendorItem {
     public BatchNo: string = null;
     public AvailableQuantity: number = null;
     public batchNoList: Array<{ BatchNo: string, AvailableQuantity: number, GoodsReceiptId: number }> = new Array<{ BatchNo: string, AvailableQuantity: number, GoodsReceiptId: number }>();
-    public ReturnItemValidator: FormGroup = null;
+    public ReturnItemValidator: UntypedFormGroup = null;
     CreatedByName: string;
     ReturnItemRate: number = 0;
     DiscountAmount: number = 0;
@@ -47,7 +47,7 @@ export class ReturnToVendorItem {
     ReturnCostPrice: number = 0;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ReturnItemValidator = _formBuilder.group({
             'ItemId': ['', Validators.compose([Validators.required])],
             'Quantity': ['', [Validators.required, this.positiveNumberValdiator]],
@@ -78,7 +78,7 @@ export class ReturnToVendorItem {
             return !(this.ReturnItemValidator.hasError(validator, fieldName));
     }
 
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'positivenum': true };

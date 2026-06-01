@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -25,13 +25,13 @@ export class PHRMWriteOffModel {
     public DiscountAmount: number = 0;
     public VATAmount: number = 0;
 
-    public WriteOffValidator: FormGroup = null;
+    public WriteOffValidator: UntypedFormGroup = null;
 
     public phrmWriteOffItem: Array<PHRMWriteOffItemModel> = new Array<PHRMWriteOffItemModel>();
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.WriteOffValidator = _formBuilder.group({
             // 'WriteOffDate': ['', Validators.compose([Validators.required])],
             'WriteOffRemark': ['', Validators.compose([Validators.required])]
@@ -53,7 +53,7 @@ export class PHRMWriteOffModel {
             return this.WriteOffValidator.controls[fieldName].dirty;
     }
 
-    dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+    dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
 
         //get current date, month and time
         var currDate = moment().format('YYYY-MM-DD');

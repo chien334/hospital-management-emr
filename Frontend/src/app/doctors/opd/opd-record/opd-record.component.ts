@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { ADT_DLService } from '../../../adt/shared/adt.dl.service';
@@ -37,7 +37,7 @@ export class OpdRecordComponent implements OnDestroy {
   public toDate: string = null;
   public todaysVisitList: Array<any> = new Array<any>();
   public today: string = null;
-  public DateValidator: FormGroup = null;
+  public DateValidator: UntypedFormGroup = null;
   public DoctorOPNewPatientGridColumns: Array<any> = null;
   public OPFollowUpPatientGridColumns: Array<any> = null;
   public OPFavoritePatientGridColumns: Array<any> = null;
@@ -80,7 +80,7 @@ export class OpdRecordComponent implements OnDestroy {
     this._patientservice = _patientService;
     this._visitService = _visitServ;
     this._callbackService = _callbackService;
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DoctorOPNewPatientGridColumns = GridColumnSettings.DoctorOPNewPatientList;
     this.OPFollowUpPatientGridColumns = GridColumnSettings.OPFollowUpPatientList;
     this.OPFavoritePatientGridColumns = GridColumnSettings.OPFavoritePatientList;
@@ -285,7 +285,7 @@ export class OpdRecordComponent implements OnDestroy {
     }
   }
 
-  dateValidators(control: FormControl): { [key: string]: boolean } {
+  dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD 23:59');
 

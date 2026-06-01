@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { PHRMGenericModel } from './phrm-generic.model';
 import { PHRMItemMasterModel } from "./phrm-item-master.model";
 import { PHRMItemTypeModel } from "./phrm-item-type.model";
@@ -41,7 +41,7 @@ export class PHRMPurchaseOrderItems {
 
     public Item: PHRMItemMasterModel = null;
     public ItemType: PHRMItemTypeModel = null;
-    public PurchaseOrderItemValidator: FormGroup = null;
+    public PurchaseOrderItemValidator: UntypedFormGroup = null;
     DiscountAmount: number = 0;
     CCChargeAmount: number = 0;
     PendingFreeQuantity: number = 0;
@@ -49,7 +49,7 @@ export class PHRMPurchaseOrderItems {
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PurchaseOrderItemValidator = _formBuilder.group({
             'ItemId': ['', Validators.compose([Validators.required, this.positiveNumberValdiator])],
             //'GenericId': ['', Validators.compose([Validators.required])],
@@ -77,7 +77,7 @@ export class PHRMPurchaseOrderItems {
         else
             return !(this.PurchaseOrderItemValidator.hasError(validator, fieldName));
     }
-    wholeNumberRequired(control: FormControl): { [key: string]: boolean } {
+    wholeNumberRequired(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value) {
             if (control.value % 1 != 0 && control.value <= 0) return { 'wrongDecimalValue': true };
         }
@@ -85,19 +85,19 @@ export class PHRMPurchaseOrderItems {
             return { 'wrongDecimalValue': true };
     }
 
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value <= 0)
                 return { 'invalidNumber': true };
         }
     }
-    NonNegativeNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    NonNegativeNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'negativeNumber': true };
         }
     }
-    registeredItemValidator(control: FormControl): { [key: string]: boolean } {
+    registeredItemValidator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value && typeof (control.value) == "object" && control.value.ItemId > 0)
             return;
         else

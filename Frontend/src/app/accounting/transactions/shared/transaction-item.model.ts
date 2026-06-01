@@ -1,7 +1,7 @@
 ﻿import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormControl,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment';
@@ -23,7 +23,7 @@ export class TransactionItem {
     public IsActive: boolean = true;
     public ChartOfAccountName: string = "";
     public LedgerGroupName: string = "";
-    public TransactionItemValidator: FormGroup = null;
+    public TransactionItemValidator: UntypedFormGroup = null;
     //used only in client side
     public LedgerList: any = [];
     public LedgerName: string = "";
@@ -47,7 +47,7 @@ export class TransactionItem {
 
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute)
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.TransactionItemValidator = _formBuilder.group({
             'LedgerId': [{}, Validators.compose([Validators.required])],
             'DrCr': ['', Validators.compose([Validators.required])],
@@ -56,7 +56,7 @@ export class TransactionItem {
             'SubLedgerId': [{}, Validators.compose([Validators.required])],
         });
     }
-    public numberValidator(control: FormControl): { [key: string]: boolean } {
+    public numberValidator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value) {
             if (Number(control.value) < 0)
                 return { 'invalidNumber': true };

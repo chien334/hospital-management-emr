@@ -1,5 +1,5 @@
 import {
-  FormBuilder, FormControl, FormGroup, Validators
+  UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators
 } from '@angular/forms';
 import { ServiceItemDetails_DTO } from './dto/service-item-details.dto';
 export class BillingPackageItem {
@@ -22,7 +22,7 @@ export class BillingPackageItem {
   public Tax: number = 0;
   public Total: number = 0;
   public FilteredItemList: Array<ServiceItemDetails_DTO> = new Array<ServiceItemDetails_DTO>();
-  public BillingPackageItemValidator: FormGroup = null;
+  public BillingPackageItemValidator: UntypedFormGroup = null;
   public LabTypeName: string = "op-lab";
   public PerformerId: number = null;
   public IsItemLevelDiscount: boolean = false;
@@ -33,7 +33,7 @@ export class BillingPackageItem {
   public IsValidSelItemName: boolean = true; //yub--27th Sept 2018
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.BillingPackageItemValidator = _formBuilder.group({
       // 'ServiceDeptId': ['', Validators.compose([Validators.required])],
       'ServiceItemId': ['', Validators.compose([Validators.required])],
@@ -41,7 +41,7 @@ export class BillingPackageItem {
       'DiscountPercent': [0, Validators.compose([this.discountPercentValidator])]
     });
   }
-  quantityValidator(control: FormControl): { [key: string]: boolean } {
+  quantityValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value < 1 || !control.value) {
       return { 'minValue': true };
     }
@@ -69,7 +69,7 @@ export class BillingPackageItem {
       return !(this.BillingPackageItemValidator.hasError(validator, fieldName));
   }
 
-  discountPercentValidator(control: FormControl): { [key: string]: boolean } {
+  discountPercentValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value < 0) {
       return { 'minValue': true };
     }

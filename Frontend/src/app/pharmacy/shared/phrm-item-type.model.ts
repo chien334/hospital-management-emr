@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import { PHRMItemMasterModel } from "./phrm-item-master.model";
@@ -16,14 +16,14 @@ export class PHRMItemTypeModel {
     public Items: Array<PHRMItemMasterModel> = new Array<PHRMItemMasterModel>();
     //This is only for local use
     public ItemList: Array<PHRMItemMasterModel> = new Array<PHRMItemMasterModel>();
-    public ItemTypeValidator: FormGroup = null;
+    public ItemTypeValidator: UntypedFormGroup = null;
     public ItemId: number = null;
     public GenericId: number = null;
 
     CompanyId: number = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ItemTypeValidator = _formBuilder.group({
             'ItemTypeName': ['', Validators.required],
             'CategoryId': ['', Validators.required]

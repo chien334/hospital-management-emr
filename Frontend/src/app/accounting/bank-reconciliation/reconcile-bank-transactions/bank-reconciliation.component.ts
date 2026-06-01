@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { CoreService } from '../../../core/shared/core.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { ENUM_ACC_VoucherCode, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
@@ -65,7 +65,7 @@ export class BankReconciliationComponent implements OnInit {
 
   constructor(public accReportBLService: AccountingReportsBLService, public coreService: CoreService,
     public msgBoxServ: MessageboxService, public accBLService: AccountingBLService,
-    public changeDetector: ChangeDetectorRef, private formBuilder: FormBuilder,
+    public changeDetector: ChangeDetectorRef, private formBuilder: UntypedFormBuilder,
     public accountingService: AccountingService,) {
     this.calType = "en,np";
     this.GetLedgers();

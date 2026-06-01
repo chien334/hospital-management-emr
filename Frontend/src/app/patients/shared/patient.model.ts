@@ -1,5 +1,5 @@
 import {
-  FormBuilder, FormControl, FormGroup, Validators
+  UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators
 } from '@angular/forms';
 
 import * as moment from 'moment/moment';
@@ -132,7 +132,7 @@ export class Patient {
   //public MembershipDiscountPercent: number = 0;//sud:20Mar'23--Not required in New structure.
 
   public PANNumber: string = "";
-  public PatientValidator: FormGroup = null;
+  public PatientValidator: UntypedFormGroup = null;
 
   public UploadedFiles: Array<PatientFilesModel> = null;//sud:3July'18
 
@@ -201,7 +201,7 @@ export class Patient {
 
     this.CreatedOn = moment().format("YYYY-MM-DD HH:mm:ss");
 
-    const _formBuilder = new FormBuilder();
+    const _formBuilder = new UntypedFormBuilder();
     this.PatientValidator = _formBuilder.group({
       'FirstName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       'LastName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
@@ -276,7 +276,7 @@ export class Patient {
   //    //    return { 'wrongDate': true };
   //}
 
-  dateValidators(control: FormControl): { [key: string]: boolean } {
+  dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
@@ -373,7 +373,7 @@ export class Patient {
     }
   }
 
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0)
         return { 'invalidNumber': true };

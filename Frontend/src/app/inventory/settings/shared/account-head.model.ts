@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -16,10 +16,10 @@ export class AccountHeadModel {
     public CreatedOn: string = null;
     public IsActive: boolean = true;
 
-    public AccountHeadValidator: FormGroup = null;
+    public AccountHeadValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.AccountHeadValidator = _formBuilder.group({
             'AccountHeadName': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
         });

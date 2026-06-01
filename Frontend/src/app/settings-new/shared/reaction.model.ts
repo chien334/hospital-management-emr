@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -20,11 +20,11 @@ export class Reaction {
     public ModifiedBy: number = null;
     public ModifiedOn: string = null;
 
-    public ReactionValidator: FormGroup = null;
+    public ReactionValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ReactionValidator = _formBuilder.group({
             'ReactionName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])]
         });

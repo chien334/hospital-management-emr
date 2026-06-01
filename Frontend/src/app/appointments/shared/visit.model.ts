@@ -1,5 +1,5 @@
 import {
-  FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
+  UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators
 } from '@angular/forms';
 import * as moment from "moment/moment";
 import { Patient } from '../../patients/shared/patient.model';
@@ -44,7 +44,7 @@ export class Visit {
   public ModifiedOn: string = null;
   public Remarks: string = null;
   public QueueNo: number = 0;
-  public VisitValidator: FormGroup = null;
+  public VisitValidator: UntypedFormGroup = null;
   //used only in client side
   public IsValidSelProvider: boolean = true;
   public IsValidSelDepartment: boolean = true;
@@ -110,7 +110,7 @@ export class Visit {
 
     this.CreatedOn = moment().format("YYYY-MM-DD HH:mm:ss");
 
-    const _formBuilder = new FormBuilder();
+    const _formBuilder = new UntypedFormBuilder();
     this.VisitValidator = _formBuilder.group({
       //'ProviderName': ['', Validators.compose([ Validators.required]),],
       'VisitDate': ['', Validators.compose([Validators.required, this.DateValidator])],
@@ -127,7 +127,7 @@ export class Visit {
     //   this.VisitTime = moment().add(5, 'minutes').format('HH:mm');
     // },1000)
   }
-  public DateValidator(control: FormControl): { [key: string]: boolean } {
+  public DateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       let _date = control.value;
       var _currDate = moment().format('YYYY-MM-DD');
@@ -167,7 +167,7 @@ export class Visit {
   }
   //Hom: April 19 2019
   public DateTimeValueValidator(targetKey: string, toMatchKey: string): ValidatorFn {
-    return (group: FormGroup): { [key: string]: any } => {
+    return (group: UntypedFormGroup): { [key: string]: any } => {
       const target = group.controls[targetKey];
       const toMatch = group.controls[toMatchKey];
       let _date = target.value;

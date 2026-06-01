@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { CoreService } from "../../../core/shared/core.service";
 import { GoodsReceiptItems } from '../../../inventory/shared/goods-receipt-item.model';
@@ -27,7 +27,7 @@ export class GoodsReceiptVerifyComponent implements OnInit, OnDestroy {
   public headerDetail: { header1, header2, header3, header4, hospitalName; address; email; PANno; tel; DDA };
   public nextVerifiersPermission: string = "";
   public CopyOfReceivedItemsQuantity: Array<{ ReceivedItemId; ReceivedQuantity; RejectedQuantity; }> = [];
-  verificationForm = new FormGroup({ VerificationRemarks: new FormControl('', Validators.required) });
+  verificationForm = new UntypedFormGroup({ VerificationRemarks: new UntypedFormControl('', Validators.required) });
   showFreeQty: boolean = false;
   showCCCharge: boolean = false;
   showDiscount: boolean = false;

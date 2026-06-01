@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from "@angular/forms";
 import * as moment from "moment";
@@ -29,7 +29,7 @@ export class DispatchItems {
   public isActive: boolean = true;
   public MatIssueTo: string = null;
   public MatIssueDate: Date = null;
-  public DispatchItemValidator: FormGroup = null;
+  public DispatchItemValidator: UntypedFormGroup = null;
   StandardRate: number;
   selectedItem: any = null;
   ItemCode: string;
@@ -48,7 +48,7 @@ export class DispatchItems {
   public CreatedByName: string = null;
   public DispatchedByName: string = null;
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DispatchItemValidator = _formBuilder.group({
       'DispatchedQuantity': [0, Validators.compose([Validators.required])],
       'AvailableQty': [{ value: 0, disabled: true }, Validators.compose([Validators.required])],
@@ -77,7 +77,7 @@ export class DispatchItems {
 
 // Custom Validators
 function stockAvailabilityValidator(availableQty: string, dispatchQty: string) {
-  return (formGroup: FormGroup) => {
+  return (formGroup: UntypedFormGroup) => {
     const availQty = formGroup.controls[availableQty];
     const dispatchingQty = formGroup.controls[dispatchQty];
 

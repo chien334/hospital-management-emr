@@ -1,8 +1,8 @@
 import { LabReportTemplateModel } from './lab-report-template.model';
 //import { LabTestGroup } from './lab-testgroup.model';
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -41,7 +41,7 @@ export class LabTest {
     public DisplaySequence: number = 1000;
     public RunNumberType: string = 'normal';
 
-    public LabTestValidator: FormGroup = null;
+    public LabTestValidator: UntypedFormGroup = null;
 
     //ashim: 06Sep2018
     public ReportingName: string = null;
@@ -61,7 +61,7 @@ export class LabTest {
     public IsLISApplicable: boolean = false;
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.LabTestValidator = _formBuilder.group({
             'LabTestName': ['', Validators.compose([Validators.required])]
         });

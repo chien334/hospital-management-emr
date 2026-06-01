@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -20,7 +20,7 @@ export class Requisition {
   public ModifiedBy: number = null;
   public ModifiedOn: Date = null;
   public CancelRemarks: string = null;
-  public RequisitionValidator: FormGroup = null;
+  public RequisitionValidator: UntypedFormGroup = null;
   public MSSNO: string = null;
   public MINNo: string = null;
   public StoreName: string = ""; //for displaying and data manipulation purpose : sanjit 31Mar'2020
@@ -47,7 +47,7 @@ export class Requisition {
   VerifierIds: string = null;
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.RequisitionValidator = _formBuilder.group({
       'RequestFromStoreId': ['', Validators.compose([Validators.required])],
       'RequestToStoreId': ['', Validators.compose([Validators.required])]

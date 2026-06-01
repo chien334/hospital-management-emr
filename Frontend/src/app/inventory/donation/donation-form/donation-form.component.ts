@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ENUM_GRItemCategory } from '../../../shared/shared-enums';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { DonationItemsModel, DonationModel } from '../donation.model';
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./donation-form.component.css']
 })
 export class DonationFormComponent implements OnInit {
-  donationForm: FormGroup;
+  donationForm: UntypedFormGroup;
   @Input('loadmodel') model: DonationModel;
   @Output() submitEvent = new EventEmitter<DonationModel>();
   showDonationForm: boolean = false;
@@ -37,7 +37,7 @@ export class DonationFormComponent implements OnInit {
   duplicateItem: boolean = false;
 
 
-  constructor(private fb: FormBuilder, private ref: ChangeDetectorRef, public _donationService: DonationService, public inventoryService: InventoryService, private _activeInventoryService: ActivateInventoryService,
+  constructor(private fb: UntypedFormBuilder, private ref: ChangeDetectorRef, public _donationService: DonationService, public inventoryService: InventoryService, private _activeInventoryService: ActivateInventoryService,
     public msgBox: MessageboxService, public router: Router) {
     this.LoadItemCategory();
   }
@@ -139,7 +139,7 @@ export class DonationFormComponent implements OnInit {
     // }
   }
 
-  createDonationItemsForm(donationItem = new DonationItemsModel()): FormGroup {
+  createDonationItemsForm(donationItem = new DonationItemsModel()): UntypedFormGroup {
     var donationItemFormGroup = this.fb.group({
       StockId: [donationItem.StockId],
       ItemId: [donationItem.ItemId, [Validators.required]],
@@ -165,7 +165,7 @@ export class DonationFormComponent implements OnInit {
     return donationItemFormGroup;
 
   }
-  private setDonationItemTotalAmount(donationItemFormGroup: FormGroup, newQty: any): void {
+  private setDonationItemTotalAmount(donationItemFormGroup: UntypedFormGroup, newQty: any): void {
     return donationItemFormGroup.get("TotalAmount").setValue(newQty * donationItemFormGroup.get("CostPrice").value);
   }
 
@@ -307,7 +307,7 @@ export class DonationFormComponent implements OnInit {
   CancelDonation() {
     let isConfirm = window.confirm("Are you sure to cancel donation");
     if (isConfirm) {
-      this.donationForm.setControl('DonationItems', new FormArray([]));
+      this.donationForm.setControl('DonationItems', new UntypedFormArray([]));
       this.donationForm.reset();
       this.addDonationItem();
       if (this.editMode) {
@@ -329,13 +329,13 @@ export class DonationFormComponent implements OnInit {
 
 
   get DonationItems() {
-    return this.donationForm.get("DonationItems") as FormArray;
+    return this.donationForm.get("DonationItems") as UntypedFormArray;
   }
   get VendorId() {
-    return this.donationForm.get("VendorId") as FormControl;
+    return this.donationForm.get("VendorId") as UntypedFormControl;
   }
   get TotalAmount() {
-    return this.donationForm.get("TotalAmount") as FormControl;
+    return this.donationForm.get("TotalAmount") as UntypedFormControl;
   }
 
 

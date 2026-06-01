@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 import { ItemMaster } from '../../inventory/shared/item-master.model';
@@ -27,9 +27,9 @@ export class WardInventoryConsumptionModel {
   public ConsumeQuantity: number = 1;
   public SelectedItem: ItemMaster = null;
 
-  public ConsumptionValidator: FormGroup = null;
+  public ConsumptionValidator: UntypedFormGroup = null;
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ConsumptionValidator = _formBuilder.group({
       'ConsumeQuantity': ['', Validators.compose([Validators.required, Validators.min(1)])],
       'ItemName': ['', Validators.compose([Validators.required])]

@@ -1,10 +1,10 @@
 import { StockModel } from "./stock.model"
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 import { ItemModel } from "../settings/shared/item.model";
@@ -27,7 +27,7 @@ export class PurchaseRequestItemModel {
   public ModifiedOn: string = null;
   public IsActive: boolean = true;
   public IsEdited: boolean = true;
-  public PurchaseRequestItemValidator: FormGroup = null;
+  public PurchaseRequestItemValidator: UntypedFormGroup = null;
 
   ////to make the instance ItemMaster with new row
   public SelectedItem: ItemModel = null;
@@ -49,7 +49,7 @@ export class PurchaseRequestItemModel {
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PurchaseRequestItemValidator = _formBuilder.group({
       'ItemId': ['', Validators.compose([Validators.required, this.registeredItemValidator])],
       'Quantity': ['', Validators.compose([Validators.required, this.invalidValue])],
@@ -73,13 +73,13 @@ export class PurchaseRequestItemModel {
       return !(this.PurchaseRequestItemValidator.hasError(validator, fieldName));
   }
 
-  registeredItemValidator(control: FormControl): { [key: string]: boolean } {
+  registeredItemValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value && typeof (control.value) == "object" && control.value.ItemId > 0)
       return;
     else
       return { 'notRegisteredItem': true };
   }
-  invalidValue(control: FormControl): { [key: string]: boolean } {
+  invalidValue(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value <= 0)
       return { 'invalidValue': true };
   }

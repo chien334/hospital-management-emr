@@ -1,10 +1,10 @@
 
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms'
 import * as moment from 'moment/moment';
 import { PHRMItemMasterModel } from "./phrm-item-master.model";
@@ -43,7 +43,7 @@ export class PHRMPrescriptionItem {
   ////to make the instance ItemMaster with new row
   public SelectedItem: PHRMItemMasterModel = null;
 
-  public PHRMPrescriptionItemsValidator: FormGroup = null;
+  public PHRMPrescriptionItemsValidator: UntypedFormGroup = null;
 
   public IsSelected: boolean = false;
   public OrderStatus: string = null;
@@ -63,7 +63,7 @@ export class PHRMPrescriptionItem {
 
   constructor() {
     this.ItemListByItemType = [];
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PHRMPrescriptionItemsValidator = _formBuilder.group({
       'ItemId': ['', Validators.required],
       //'ItemTypeName': ['', Validators.required],
@@ -96,7 +96,7 @@ export class PHRMPrescriptionItem {
       return !(this.PHRMPrescriptionItemsValidator.hasError(validator, fieldname));
     }
   }
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');

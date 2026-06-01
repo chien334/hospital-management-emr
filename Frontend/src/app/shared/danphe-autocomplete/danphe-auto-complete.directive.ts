@@ -1,6 +1,6 @@
 import { Directive, Input, Output, ComponentRef, ViewContainerRef, EventEmitter, OnInit, ComponentFactoryResolver, SimpleChanges, SkipSelf, Host, Optional, Renderer2 } from "@angular/core";
 import { DanpheAutoCompleteComponent } from "./danphe-auto-complete.component";
-import { ControlContainer, AbstractControl, FormGroup, FormControl, FormGroupName } from "@angular/forms";
+import { ControlContainer, AbstractControl, UntypedFormGroup, UntypedFormControl, FormGroupName } from "@angular/forms";
 
 /**
  * display auto-complete section with input and dropdown list when it is clicked
@@ -37,7 +37,7 @@ export class DanpheAutoCompleteDirective implements OnInit {
   @Input('formControlName') formControlName: string;
   //if [formControl] is used on the anchor where our directive is sitting
   //a form is not necessary to use a formControl we should also support this
-  @Input('formControl') extFormControl: FormControl;
+  @Input('formControl') extFormControl: UntypedFormControl;
 
   @Output() ngModelChange = new EventEmitter();
   @Output() valueChanged = new EventEmitter();
@@ -71,7 +71,7 @@ export class DanpheAutoCompleteDirective implements OnInit {
     //else check if we are supplied with a [FormControl] regardless if it is inside a [form] tag
     if (this.parentForm && this.formControlName) {
       if (this.parentForm['form']) {
-        this.formControl = (<FormGroup>this.parentForm['form']).get(this.formControlName);
+        this.formControl = (<UntypedFormGroup>this.parentForm['form']).get(this.formControlName);
       } else if (this.parentForm instanceof FormGroupName) {
         this.formControl = (<FormGroupName>this.parentForm).control.controls[this.formControlName];
       }

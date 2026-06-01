@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
   } from '@angular/forms';
   export class LabEmailModel {
@@ -26,9 +26,9 @@ import {
     //sud: below is for preview section, we'll have to filter from it and assign to above array for sending email.
     public ImageAttachments_Preview: Array<AttachmentModel> = new Array<AttachmentModel>();
   
-    public LabEmailValidator: FormGroup = null;
+    public LabEmailValidator: UntypedFormGroup = null;
     constructor() {
-      var _formBuilder = new FormBuilder();
+      var _formBuilder = new UntypedFormBuilder();
       this.LabEmailValidator = _formBuilder.group({
         'EmailAddress': ['', Validators.compose([Validators.required])],
         'Subject': ['', Validators.compose([Validators.required])],

@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -17,7 +17,7 @@ export class InventoryFiscalYearModel {
     public IsActive: boolean = null;
     public NpFiscalYearName: string = null;
 
-    public FiscalYearValidator: FormGroup = null;
+    public FiscalYearValidator: UntypedFormGroup = null;
     public ClosedBy: number = null;
     public ClosedOn: string = null;
     public IsClosed: boolean = true;
@@ -27,7 +27,7 @@ export class InventoryFiscalYearModel {
     public Remark:string = "";
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.FiscalYearValidator = _formBuilder.group({
             'FiscalYearName': ['', Validators.compose([Validators.required])],
             'NpFiscalYearName': ['', Validators.compose([Validators.required])],

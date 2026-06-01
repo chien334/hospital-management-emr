@@ -7,8 +7,8 @@ import { AdmittingDocInfoVM } from '../shared/admission.view.model';
 import { ADT_BLService } from '../shared/adt.bl.service';
 
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 @Component({
@@ -23,7 +23,7 @@ export class ChangeDoctorComponent implements OnInit {
     public doctorList: any = [];
     public filteredDocList: Array<{ DepartmentId: number, DepartmentName: string, PerformerId: number, PerformerName: string }>;
     public selectedDoctor = { DepartmentId: 0, DepartmentName: "", PerformerId: 0, PerformerName: "" };
-    public AdmittingDocValidator: FormGroup = null;
+    public AdmittingDocValidator: UntypedFormGroup = null;
     public departmentId: number;
     constructor(
         public admissionBLService: ADT_BLService,
@@ -138,7 +138,7 @@ export class ChangeDoctorComponent implements OnInit {
             });
     }
     public SetValidators() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.AdmittingDocValidator = _formBuilder.group({
             'Doctor': ['', Validators.compose([Validators.required])]
         });

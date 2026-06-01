@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -20,11 +20,11 @@ export class Permission {
     public ModifiedOn: string = null;
     public IsSelected: boolean = false;
 
-    public PermissionValidator: FormGroup = null;
+    public PermissionValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PermissionValidator = _formBuilder.group({
             'PermissionName': ['', Validators.compose([Validators.required])]
         });

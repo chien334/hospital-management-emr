@@ -1,8 +1,8 @@
 ﻿import {NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder } from '@angular/forms'
+    UntypedFormBuilder } from '@angular/forms'
 import * as moment from 'moment/moment';
 
 export class InsuranceInfo {
@@ -38,7 +38,7 @@ export class InsuranceInfo {
 
     //---------------------------------------------
 
-    public InsuranceValidator: FormGroup = null;
+    public InsuranceValidator: UntypedFormGroup = null;
 
 
     //it is only used to show InsuranceProviderName during edit patient
@@ -71,9 +71,9 @@ export class InsuranceInfo {
 
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
 
-        function dateValidators(control: FormControl): { [key: string]: boolean } {
+        function dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
 
             var currDate = moment().format('YYYY-MM-DD');
 

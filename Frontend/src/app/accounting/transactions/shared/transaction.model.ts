@@ -1,7 +1,7 @@
 import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormControl,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -28,7 +28,7 @@ export class TransactionModel {
     public TransactionItems: Array<TransactionItem> = new Array<TransactionItem>();
     //public TransactionLinks: Array<TransactionLink> = new Array<TransactionLink>();
     public BillSyncs: Array<BillingAccountingSyncModel> = new Array<BillingAccountingSyncModel>();
-    public TransactionValidator: FormGroup = null;
+    public TransactionValidator: UntypedFormGroup = null;
     public BillingAccountingSyncIds: string = "";
     //only used in client side
     public RefTxnVoucherNumber: number = 0;
@@ -46,7 +46,7 @@ export class TransactionModel {
     constructor() {
         this.TransactionDate = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.TransactionValidator = _formBuilder.group({
             'VoucherId': ['', Validators.compose([])],
             'PayeeName': ['', Validators.required],
@@ -75,7 +75,7 @@ export class TransactionModel {
             return !(this.TransactionValidator.hasError(validator, fieldName));
     }
 
-    dateValidators(control: FormControl): { [key: string]: boolean } {
+    dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
 
         //get current date, month and time
         var currDate = moment().format('YYYY-MM-DD');

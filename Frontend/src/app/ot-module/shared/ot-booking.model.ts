@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { Employee } from "../../employee/shared/employee.model";
 import { OperationTheatreTeam } from "./ot-team.model";
 import * as moment from 'moment/moment';
@@ -34,10 +34,10 @@ export class OperationTheatreBookingModel {
 
   public OtTeam: Array<OperationTheatreTeam> = new Array<OperationTheatreTeam>();
 
-  public OperationTheatreValidator: FormGroup = null;
+  public OperationTheatreValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.OperationTheatreValidator = _formBuilder.group({
       'SurgeryType': ['', Validators.compose([Validators.required])],
       'BookedForDate': ['', Validators.compose([Validators.required, this.dateValidator])],
@@ -85,7 +85,7 @@ export class OperationTheatreBookingModel {
     }
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
@@ -102,7 +102,7 @@ export class OperationTheatreBookingModel {
 
   }
 
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');

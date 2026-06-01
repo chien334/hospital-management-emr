@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class MinimumDepositSettingsModel {
     public AdtDepositSettingId: number = 0;
@@ -12,9 +12,9 @@ export class MinimumDepositSettingsModel {
     public IsOnlyMinimumDeposit: boolean = false;
     public IsActive: boolean = false;
 
-    MinimumDepositSettingsValidator: FormGroup = null;
+    MinimumDepositSettingsValidator: UntypedFormGroup = null;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.MinimumDepositSettingsValidator = _formBuilder.group(
             {
                 'BedFeatureName': ['', Validators.required],

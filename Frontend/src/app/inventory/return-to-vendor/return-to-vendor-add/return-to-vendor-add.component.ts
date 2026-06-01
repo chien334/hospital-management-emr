@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { BillingFiscalYear } from '../../../billing/shared/billing-fiscalyear.model';
@@ -44,7 +44,7 @@ export class ReturnToVendorAddComponent implements OnInit {
   public SubTotal: number;
   public VAT: number;
   public TotalAmount: number;
-  public ReturnValidator: FormGroup = null;
+  public ReturnValidator: UntypedFormGroup = null;
   public CreditNoteNo: number;
   public Vendors: Array<any> = new Array<any>();
 
@@ -66,7 +66,7 @@ export class ReturnToVendorAddComponent implements OnInit {
     private _activateInventoryService: ActivateInventoryService,
     public coreService: CoreService) {
     this.LoadNewRequest();
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ReturnValidator = _formBuilder.group({
       'CreditNoteNo': ['', Validators.compose([Validators.required])],
       'GrNo': ['', Validators.compose([Validators.required])],

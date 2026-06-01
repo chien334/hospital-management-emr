@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
 import * as moment from "moment/moment";
@@ -21,10 +21,10 @@ export class RPT_ADT_DischargedPatientModel {
   public fromDate: string = "";
   public toDate: string = "";
 
-  public DischargePatientValidator: FormGroup = null;
+  public DischargePatientValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DischargePatientValidator = _formBuilder.group({
       //'FromDate': ['', Validators.compose([Validators.required])],
       fromDate: [
@@ -38,7 +38,7 @@ export class RPT_ADT_DischargedPatientModel {
     });
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     var currDate = moment().format("YYYY-MM-DD HH:mm");
     if (control.value) {
       // gets empty string for invalid date such as 30th Feb or 31st Nov)
@@ -51,7 +51,7 @@ export class RPT_ADT_DischargedPatientModel {
     } else return { wrongDate: true };
   }
 
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format("YYYY-MM-DD");
     if (control.value) {

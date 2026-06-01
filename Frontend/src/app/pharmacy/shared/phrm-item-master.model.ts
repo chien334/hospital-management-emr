@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { PHRM_MAP_MstItemsPriceCategory } from './phrm-items-price-category-map';
 
 export class PHRMItemMasterModel {
@@ -30,8 +30,8 @@ export class PHRMItemMasterModel {
     public VED: string;
     public SalesCategoryId: number = null;
     public CCCharge: number = 0;
-    public ItemValidator: FormGroup = null;
-    public RackValidator: FormGroup = null;
+    public ItemValidator: UntypedFormGroup = null;
+    public RackValidator: UntypedFormGroup = null;
     public IsNarcotic: boolean = false;
     public IsInsuranceApplicable: boolean = false;
     public GovtInsurancePrice: number;
@@ -42,7 +42,7 @@ export class PHRMItemMasterModel {
     public PurchaseDiscount: number = 0;
     public PHRM_MAP_MstItemsPriceCategories: Array<PHRM_MAP_MstItemsPriceCategory> = new Array<PHRM_MAP_MstItemsPriceCategory>();
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ItemValidator = _formBuilder.group({
             'ItemName': ['', Validators.required],
             'CompanyId': ['', Validators.required],
@@ -78,7 +78,7 @@ export class PHRMItemMasterModel {
         else
             return !(this.ItemValidator.hasError(validator, fieldName));
     }
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'positivenum': true };

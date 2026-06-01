@@ -1,5 +1,5 @@
 import {
-  FormBuilder, FormControl, FormGroup, Validators
+  UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators
 } from "@angular/forms";
 import * as moment from "moment/moment";
 import { BillServiceItem_DTO } from "../../billing/shared/dto/bill-service-item.dto";
@@ -50,7 +50,7 @@ export class Employee {
   public SignatoryImageBase64: string = null;
   public SignatoryImageName: string = null;
 
-  public EmployeeValidator: FormGroup = null;
+  public EmployeeValidator: UntypedFormGroup = null;
   public IsExternal: boolean = false;
 
   public Show: boolean = false;
@@ -73,7 +73,7 @@ export class Employee {
 
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.EmployeeValidator = _formBuilder.group({
       FirstName: [
         "",
@@ -105,7 +105,7 @@ export class Employee {
       LongSignature: ["", Validators.compose([Validators.maxLength(500)])],
     });
   }
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format("YYYY-MM-DD");
     if (control.value) {

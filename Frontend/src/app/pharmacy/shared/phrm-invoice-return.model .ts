@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -40,7 +40,7 @@ export class PHRMInvoiceReturnModel {
     //only for show in list
     public PatientName: string = "";
 
-    public InvoiceReturnValidator: FormGroup = null;
+    public InvoiceReturnValidator: UntypedFormGroup = null;
     public ClaimCode: number;
     // added for Manual Return
     IsManualReturn: boolean;
@@ -61,7 +61,7 @@ export class PHRMInvoiceReturnModel {
     VisitType: string = '';
     //Constructor of class
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.InvoiceReturnValidator = _formBuilder.group({
             'Remark': ['', Validators.compose([Validators.required])]
         });

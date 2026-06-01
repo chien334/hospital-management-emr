@@ -1,4 +1,4 @@
-import { FormGroup, FormArray, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { UntypedFormGroup, FormArray, UntypedFormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { ENUM_ValidatorTypes } from './shared-enums';
 
 
@@ -13,7 +13,7 @@ export class CommonValidators {
   }
 
   //whether or not to allow number more than 1. needed in some cases like billing-transaction. Sud:18Feb'20
-  multipleQtyValidator(control: FormControl): { [key: string]: boolean } {
+  multipleQtyValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value > 1)
         return { 'invalidQty': true };
@@ -22,7 +22,7 @@ export class CommonValidators {
 
   //dynamically compose a validator for given formGroup(modelValidatorName).
   //validator types can be added as required. Sud:18Feb'20
-  public static ComposeValidators(modelValidatorName: FormGroup, formControlName: string, validatorTypes: Array<ENUM_ValidatorTypes>) {
+  public static ComposeValidators(modelValidatorName: UntypedFormGroup, formControlName: string, validatorTypes: Array<ENUM_ValidatorTypes>) {
     let validator = null;
     let validatorArr: Array<ValidatorFn> = [];
 
@@ -51,7 +51,7 @@ export class CommonValidators {
 
   //this is to enable or disable certain control inside a formgroup (we've called the FormGroup as Vaidators in all modules, so naming convition is kept as it is.)
   //Sud:18Feb'20
-  public static EnableOrDisableFormControl(modelValidatorName: FormGroup, formControlName: string, isDisabled: boolean) {
+  public static EnableOrDisableFormControl(modelValidatorName: UntypedFormGroup, formControlName: string, isDisabled: boolean) {
     let currCtrol = modelValidatorName.controls[formControlName];
     if (currCtrol) {
       if (isDisabled) {

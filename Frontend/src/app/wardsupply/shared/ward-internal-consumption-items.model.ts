@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     Validators,
-    FormControl,
-    FormBuilder,
+    UntypedFormControl,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import { PHRMItemMasterModel } from '../../pharmacy/shared/phrm-item-master.model';
@@ -35,9 +35,9 @@ export class WardInternalConsumptionItems {
     public StockId: number = null;
     public SubStoreId: number = null;
 
-    public InternalConsumptionItemsValidator: FormGroup = null;
+    public InternalConsumptionItemsValidator: UntypedFormGroup = null;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.InternalConsumptionItemsValidator = _formBuilder.group({
             'ItemName': ['', Validators.compose([Validators.required])],
             'Quantity': ['', Validators.compose([Validators.required, this.wholeNumberRequired, this.positiveNumberValdiator])],
@@ -60,7 +60,7 @@ export class WardInternalConsumptionItems {
             return !(this.InternalConsumptionItemsValidator.hasError(validator, fieldName));
     }
 
-    wholeNumberRequired(control: FormControl): { [key: string]: boolean } {
+    wholeNumberRequired(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value) {
             if (control.value % 1 != 0 && control.value <= 0) return { 'wrongDecimalValue': true };
         }
@@ -68,7 +68,7 @@ export class WardInternalConsumptionItems {
             return { 'wrongDecimalValue': true };
     }
 
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'invalidNumber': true };

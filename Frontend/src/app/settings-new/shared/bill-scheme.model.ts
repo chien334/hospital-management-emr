@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { BillingSubSchemeModel } from "../../billing/shared/bill-sub-scheme.model";
 
 export class BillingSchemeModel {
@@ -71,12 +71,12 @@ export class BillingSchemeModel {
   public IsActive: boolean = true;
   public IsSystemDefault: boolean = false;
   public RegStickerGroupCode: string = null;
-  public SchemeValidator: FormGroup = null;
+  public SchemeValidator: UntypedFormGroup = null;
   public AllowProvisionalBilling: boolean = false;
   public BillingSubSchemes: Array<BillingSubSchemeModel> = new Array<BillingSubSchemeModel>();
 
   constructor() {
-    const _formBuilder = new FormBuilder();
+    const _formBuilder = new UntypedFormBuilder();
     this.SchemeValidator = _formBuilder.group({
       SchemeName: ["", Validators.compose([Validators.required])],
       SchemeCode: ["", Validators.compose([Validators.required])],

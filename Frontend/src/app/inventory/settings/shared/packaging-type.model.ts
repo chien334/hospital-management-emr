@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 
@@ -11,11 +11,11 @@ export class PackagingTypeModel {
     public CreatedBy: number = 0;
     public CreatedOn: string = "";
     public IsActive: boolean = true;
-    public PackagingTypeValidator: FormGroup = null;
+    public PackagingTypeValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PackagingTypeValidator = _formBuilder.group({
             'PackagingTypeName': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
         });

@@ -10,7 +10,7 @@ import { BillingService } from '../shared/billing.service';
 
 import { CallbackService } from '../../shared/callback.service';
 
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { CoreService } from "../../core/shared/core.service";
 import { DanpheHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
@@ -42,7 +42,7 @@ export class BillingDepositComponent {
 
   @Input()
   public showReceiptInput: boolean = false;
-  public Amount: FormGroup = null;
+  public Amount: UntypedFormGroup = null;
 
 
   public currBillingContext: PatientBillingContextVM = null;
@@ -83,7 +83,7 @@ export class BillingDepositComponent {
     public securityService: SecurityService,
     public callbackService: CallbackService,
     public coreService: CoreService,
-    public formBuilder: FormBuilder, public messageBoxService: MessageboxService,
+    public formBuilder: UntypedFormBuilder, public messageBoxService: MessageboxService,
     public billingMasterBlService: BillingMasterBlService) {
 
     if (this.securityService.getLoggedInCounter().CounterId < 1) {

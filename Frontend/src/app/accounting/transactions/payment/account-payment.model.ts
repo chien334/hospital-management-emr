@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 export class Payment {
   public LedgerId: number = 0;
   public LedgerName: string = '';
@@ -20,10 +20,10 @@ export class Payment {
   public Remarks: string = '';
   public SectionId: number = 0;
   public InvoiceNo: Number = 0;
-  public PaymentValidator: FormGroup = null;
+  public PaymentValidator: UntypedFormGroup = null;
   public SubLedgerId: number = 0;
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PaymentValidator = _formBuilder.group({
       'VoucherAmount': ['', Validators.required],
       'Narration': ['', Validators.required],

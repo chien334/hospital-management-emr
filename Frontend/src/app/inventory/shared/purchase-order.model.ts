@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -41,7 +41,7 @@ export class PurchaseOrder {
   public IsCancel: boolean = false;
 
   public PurchaseOrderItems: Array<PurchaseOrderItems> = new Array<PurchaseOrderItems>();
-  public PurchaseOrderValidator: FormGroup = null;
+  public PurchaseOrderValidator: UntypedFormGroup = null;
 
   //sanjit: added for verification purpose
   public IsVerificationEnabled: boolean = false;
@@ -59,7 +59,7 @@ export class PurchaseOrder {
   public OrderFromStoreName: string = '';
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PurchaseOrderValidator = _formBuilder.group({
       'VendorId': ['', Validators.compose([Validators.required])],
 

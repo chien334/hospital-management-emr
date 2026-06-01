@@ -1,4 +1,4 @@
-import {FormBuilder,FormControl,FormGroup,Validators} from "@angular/forms"
+import {UntypedFormBuilder,UntypedFormControl,FormGroup,Validators} from "@angular/forms"
 import { ItemMaster } from "../../inventory/shared/item-master.model";
 
 
@@ -44,7 +44,7 @@ export class WardSupplyAssetRequisitionItemsModel {
 
 constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.RequisitionItemValidator = _formBuilder.group({
       'ItemId': ['', Validators.compose([Validators.required])],
       'Quantity': ['', Validators.compose([this.positiveNumberValidator])],
@@ -67,7 +67,7 @@ constructor() {
       return !(this.RequisitionItemValidator.hasError(validator, fieldName));
   }
 
-  positiveNumberValidator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0)
         return { 'invalidNumber': true };

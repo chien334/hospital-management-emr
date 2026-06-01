@@ -1,4 +1,4 @@
-﻿import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+﻿import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { IRack } from './Irack';
 
 export class PhrmRackModel implements IRack {
@@ -11,11 +11,11 @@ export class PhrmRackModel implements IRack {
     public Description: string = null;
     public CreatedBy: number = 0;
     public CreatedOn: string = '';
-    public RackValidator: FormGroup = null;
+    public RackValidator: UntypedFormGroup = null;
 
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.RackValidator = _formBuilder.group({
             'RackNo': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
             'StoreId': ['', Validators.compose([Validators.required])]

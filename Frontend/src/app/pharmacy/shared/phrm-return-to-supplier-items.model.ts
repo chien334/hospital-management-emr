@@ -1,4 +1,4 @@
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms'
+import { UntypedFormGroup, Validators, UntypedFormBuilder, UntypedFormControl } from '@angular/forms'
 import { PHRMGoodsReceiptItemsModel } from "./phrm-goods-receipt-items.model";
 export class PHRMReturnToSupplierItemModel {
 
@@ -23,7 +23,7 @@ export class PHRMReturnToSupplierItemModel {
     public CreatedBy: number = 0;
     public CreatedOn: string = null;
     public GoodReceiptItemId: number = 0;
-    public ReturnToSupplierItemValidator: FormGroup = null;
+    public ReturnToSupplierItemValidator: UntypedFormGroup = null;
     ////get and display
     public SelectedItem: null;
     public ItemName: string = "";
@@ -48,7 +48,7 @@ export class PHRMReturnToSupplierItemModel {
     public CCAmount: number = 0;
     public StockId: number = null;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ReturnToSupplierItemValidator = _formBuilder.group({
             'ItemId': ['', Validators.compose([Validators.required])],
             // 'TotalAvailableQuantity': ['', Validators.compose([Validators.required])],
@@ -76,13 +76,13 @@ export class PHRMReturnToSupplierItemModel {
         else
             return !(this.ReturnToSupplierItemValidator.hasError(validator, fieldName));
     }
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'invalidNumber': true };
         }
     }
-    positiveNumValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value <= 0)
                 return { 'positivenum': true };

@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 
@@ -25,10 +25,10 @@ export class QuotationUpLoadFileModel {
       public url:string = null;
      //  public Quantity:number =0;
       public SelectedItem: any = null;
-  public QuotationFileValidator: FormGroup = null;
+  public QuotationFileValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
 
     this.QuotationFileValidator = _formBuilder.group({
         'Vendorname': ['', Validators.required,],

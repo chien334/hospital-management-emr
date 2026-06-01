@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -32,11 +32,11 @@ export class LabReportTemplateModel {
 
 
 
-    public ReportTemplateValidator: FormGroup = null;
+    public ReportTemplateValidator: UntypedFormGroup = null;
 
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ReportTemplateValidator = _formBuilder.group({
             'ReportTemplateShortName': ['', Validators.compose([Validators.required])],
             'ReportTemplateName': ['', Validators.compose([Validators.required])]

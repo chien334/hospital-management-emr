@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -14,7 +14,7 @@ export class TransactionItemDetailModel {
   //  public PatientId: number = null;
     public Amount: number = 0;
     public Description: string = null;
-    public TransactionDetailValidator: FormGroup = null;
+    public TransactionDetailValidator: UntypedFormGroup = null;
     public fromDate: string = "";
     public toDate: string = "";
    // public VendorId: number = null;
@@ -22,7 +22,7 @@ export class TransactionItemDetailModel {
     public ReferenceId: number = null;
     public ReferenceType: string = "";
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.TransactionDetailValidator = _formBuilder.group({
             'fromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],
             'toDate': ['', Validators.compose([Validators.required, this.dateValidators])],
@@ -45,7 +45,7 @@ export class TransactionItemDetailModel {
         else
             return !(this.TransactionDetailValidator.hasError(validator, fieldName));
     }
-    public dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+    public dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
         //get current date, month and time
         var currDate = moment().format('YYYY-MM-DD');
         if (control.value) {
@@ -58,7 +58,7 @@ export class TransactionItemDetailModel {
             return { 'wrongDate': true };
     }
 
-    public dateValidators(control: FormControl): { [key: string]: boolean } {
+    public dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
 
         //get current date, month and time
         var currDate = moment().format('YYYY-MM-DD');

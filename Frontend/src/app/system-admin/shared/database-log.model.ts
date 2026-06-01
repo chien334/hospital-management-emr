@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms'
 import * as moment from 'moment/moment';
 
@@ -23,7 +23,7 @@ export class DatabaseLogModel {
         public CreatedOn: string = null;
         public IsActive: boolean = null;
 
-        public DBLogValidator: FormGroup = null;
+        public DBLogValidator: UntypedFormGroup = null;
 
         public IsDirty(fieldname): boolean {
             if (fieldname == undefined) {
@@ -51,7 +51,7 @@ export class DatabaseLogModel {
         }
 
         constructor() {
-            var _formBuilder = new FormBuilder();
+            var _formBuilder = new UntypedFormBuilder();
             this.DBLogValidator = _formBuilder.group({
                 'Remarks': ['', Validators.compose([Validators.required, Validators.maxLength(300)])],              
             });

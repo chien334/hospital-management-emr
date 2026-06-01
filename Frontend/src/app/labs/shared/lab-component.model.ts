@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from "@angular/forms";
 import * as moment from "moment";
@@ -47,7 +47,7 @@ export class LabTestComponent {
 
   public CultureAddedGroup: Array<any> = new Array<any>();
 
-  public ComponentValidator: FormGroup = null;
+  public ComponentValidator: UntypedFormGroup = null;
 
   //For CLientSide Only
   public ValueHtml: any;
@@ -106,7 +106,7 @@ export class LabTestComponent {
     }
   }
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ComponentValidator = _formBuilder.group({
       ComponentName: ["", Validators.required],
       Value: ["", Validators.compose([])],

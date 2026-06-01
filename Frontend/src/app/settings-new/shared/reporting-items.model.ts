@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
   } from '@angular/forms';
   
@@ -17,12 +17,12 @@ import {
     public ModifiedBy: number = null;
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
-    public ReportingItemsValidator: FormGroup = null;
+    public ReportingItemsValidator: UntypedFormGroup = null;
     public ReportName: string = "";
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ReportingItemsValidator = _formBuilder.group({
           'ReportingItemName': ['', Validators.required],
         });

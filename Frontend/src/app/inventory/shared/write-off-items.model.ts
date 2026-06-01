@@ -1,10 +1,10 @@
 ﻿
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -34,13 +34,13 @@ export class WriteOffItems {
     public AvailableQty: number = 0;
     public SubTotal: number = 0;
     public BatchNoList: Array<{ BatchNo: string, AvailableQuantity: number }> = new Array<{ BatchNo: string, AvailableQuantity: number }>();
-    public WriteOffItemValidator: FormGroup = null;
+    public WriteOffItemValidator: UntypedFormGroup = null;
     public Code:string=null;
     public StoreId: number;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.WriteOffItemValidator = _formBuilder.group({
             'ItemId': ['', Validators.compose([Validators.required])],
             'WriteOffDate': ['', Validators.compose([Validators.required])],

@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from "@angular/forms";
 import * as moment from "moment";
@@ -33,9 +33,9 @@ export class StockTransferModel {
   public FromRack: string;
   public RackNo: string;
 
-  public StockTransferValidator: FormGroup = null;
+  public StockTransferValidator: UntypedFormGroup = null;
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.StockTransferValidator = _formBuilder.group({
       //'TargetStoreId': ['', Validators.required],
       'TransferredQuantity': ['', Validators.compose([Validators.required])],

@@ -6,10 +6,10 @@ import {
 } from "@angular/core";
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule,
 } from "@angular/forms";
 import { ReportingService } from "../../shared/reporting-service";
@@ -86,9 +86,9 @@ export class ReportDateInLabModel {
   public fromDate: string = "";
   public toDate: string = "";
   public reportType: string = "";
-  public ReportDateValidator: FormGroup = null;
+  public ReportDateValidator: UntypedFormGroup = null;
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ReportDateValidator = _formBuilder.group({
       fromDate: [
         "",
@@ -101,7 +101,7 @@ export class ReportDateInLabModel {
     });
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     var currDate = moment().format("YYYY-MM-DD HH:mm");
     if (control.value) {
       // gets empty string for invalid date such as 30th Feb or 31st Nov)
@@ -114,7 +114,7 @@ export class ReportDateInLabModel {
     } else return { wrongDate: true };
   }
 
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format("YYYY-MM-DD");
     if (control.value) {

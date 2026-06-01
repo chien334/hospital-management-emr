@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 import { PatientScheme } from '../../billing/shared/patient-map-scheme';
@@ -71,7 +71,7 @@ export class EmergencyPatientModel {
   public ERDischargeSummaryId: number = null;
   public DefaultDepartmentName: string = null;
 
-  public ERPatientValidator: FormGroup = null;
+  public ERPatientValidator: UntypedFormGroup = null;
 
   public Sex: string = "";   // ag7_mig_fix: property doest not exist used in er-lama.html
 
@@ -91,7 +91,7 @@ export class EmergencyPatientModel {
   public PriceCategoryName: string = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ERPatientValidator = _formBuilder.group({
       'FirstName': ['', Validators.compose([Validators.required, Validators.maxLength(40)])],
       'LastName': ['', Validators.compose([Validators.required, Validators.maxLength(40)])],

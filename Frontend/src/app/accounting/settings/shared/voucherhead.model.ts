@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -18,10 +18,10 @@ export class VoucherHeadModel {
     public ModifiedOn: string = null;
     public IsActive: boolean = true;
     public IsDefault : boolean = false;
-    public VoucherHeadValidator: FormGroup = null;
+    public VoucherHeadValidator: UntypedFormGroup = null;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.VoucherHeadValidator = _formBuilder.group({
             'VoucherHeadName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
         });

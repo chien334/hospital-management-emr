@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
 import { PatientLatestVisitContext_DTO } from "../../appointments/shared/dto/patient-lastvisit-context.dto";
 import { Patient_DTO } from '../../claim-management/shared/DTOs/patient.dto';
@@ -34,14 +34,14 @@ export class ChangeSchemePriceCategoryComponent implements OnInit {
     public selectedPriceCategory: PriceCategory_DTO = new PriceCategory_DTO();
     public tempPriceCategory: PatientLatestVisitContext_DTO = new PatientLatestVisitContext_DTO();
     public loading: boolean = false;
-    public changeVisitSchemeValidator: FormGroup = null;
+    public changeVisitSchemeValidator: UntypedFormGroup = null;
     public showValidationMessage: boolean = false;
     public visitTypeInpatient = ENUM_VisitType.inpatient;
     public searchedPatientList: Array<PatientLatestVisitContext_DTO> = new Array<PatientLatestVisitContext_DTO>();
     public confirmationTitle: string = "Confirm !";
     public confirmationMessage: string = "Are you sure you want to Save ?";
     constructor(
-        public formBuilder: FormBuilder,
+        public formBuilder: UntypedFormBuilder,
         public utilitiesBlService: UtilitiesBLService,
         public msgBoxServ: MessageboxService,
 

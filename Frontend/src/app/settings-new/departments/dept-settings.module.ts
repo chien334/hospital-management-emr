@@ -2,7 +2,7 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DepartmentAddComponent } from './dept-master/department-add.component';
 import { DepartmentListComponent } from './dept-master/department-list.component';
 import { DepartmentSettingsMainComponent } from './dept-settings-main.component';
@@ -18,7 +18,7 @@ import { WardSubstoreMapManageListComponent } from './ward-substore-map-manage/w
 import { WardSubstoreMapManageAddComponent } from './ward-substore-map-manage/ward-substore-map-manage.component';
 
 
-export const deptSettingsRoutes =
+export const deptSettingsRoutes: Routes =
   [
     {
       path: '', component: DepartmentSettingsMainComponent,

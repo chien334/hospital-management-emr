@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 
@@ -11,10 +11,10 @@ export class PHRMCategoryModel {
     public CreatedBy: number = 0;
     public CreatedOn: string = '';
     public IsActive: boolean = true;
-    public CategoryValidator: FormGroup = null;
+    public CategoryValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.CategoryValidator = _formBuilder.group({
             'CategoryName': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
         });

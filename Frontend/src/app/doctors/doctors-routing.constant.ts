@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { DoctorsMainComponent } from "../doctors/doctors-main.component";
 import { PatientOverviewMainComponent } from "../doctors/patient/patient-overview-main.component";
 import { PatientOverviewComponent } from "../doctors/patient/patient-overview.component";
@@ -30,7 +30,7 @@ import { InPatientDischargeSummaryComponent } from "./patient/in-patient-dischar
 import { OpdRecordComponent } from "./opd/opd-record/opd-record.component";
 import { OPNewPatientComponent } from "./opd/op-new-patient/op-new-patient.component";
 import { OutpatientMainComponent } from "./opd/outpatient-main.component";
-export const DoctorsRoutingConstant = [
+export const DoctorsRoutingConstant: Routes = [
   {
     path: "",
     component: DoctorsMainComponent,

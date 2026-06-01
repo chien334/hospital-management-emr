@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import { Patient } from '../../patients/shared/patient.model'
@@ -33,11 +33,11 @@ export class WardConsumptionModel {
     public SelectedItem: any;
     public selectedPatient: Patient = new Patient();
 
-    public ConsumptionValidator: FormGroup = null;
+    public ConsumptionValidator: UntypedFormGroup = null;
     public TotalAmount: any;
     public User: any;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ConsumptionValidator = _formBuilder.group({
             'Quantity': ['', Validators.compose([Validators.required])]
         });

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BillingDeposit } from '../../../billing/shared/billing-deposit.model';
 import { EmployeeCashTransaction } from '../../../billing/shared/billing-transaction.model';
@@ -43,7 +43,7 @@ export class OrganizationDepositComponent implements OnInit {
   PaymentPages: any[];
   public Amount: number = 0;
   public TempEmployeeCashTransaction: Array<EmployeeCashTransaction> = new Array<EmployeeCashTransaction>();
-  public OrganizationDepositValidator: FormGroup = null;
+  public OrganizationDepositValidator: UntypedFormGroup = null;
   public patBillHistory = {
     IsLoaded: false,
     PatientId: null,
@@ -65,7 +65,7 @@ export class OrganizationDepositComponent implements OnInit {
     public msgBoxServ: MessageboxService,
     public router: Router,
     public coreService: CoreService,
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public securityService: SecurityService,
 
 

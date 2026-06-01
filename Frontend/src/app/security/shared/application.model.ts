@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 import { Permission } from './permission.model';
@@ -23,11 +23,11 @@ export class Application {
     public Permissions: Array<Permission>;
     public IsApplicationNameSelected: boolean=false;
 
-    public PermissionValidator: FormGroup = null;
+    public PermissionValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PermissionValidator = _formBuilder.group({
             'PermissionName': ['', Validators.compose([Validators.required])]
         });

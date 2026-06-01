@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 
@@ -22,11 +22,11 @@ export class PHRMGenericModel {
     //public FrequencyDescription: string = null;
     //public Duration: string = null;
 
-    public GenericValidator: FormGroup = null;
+    public GenericValidator: UntypedFormGroup = null;
 
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.GenericValidator = _formBuilder.group({
             'GenericName': ['', Validators.compose([Validators.required])],
             'CategoryId': ['', Validators.compose([Validators.required])]

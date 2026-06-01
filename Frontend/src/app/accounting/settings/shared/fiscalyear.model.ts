@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment';
@@ -19,7 +19,7 @@ export class FiscalYearModel {
     public CreatedOn: string = null;
     public IsActive: boolean = true;
 
-    public FiscalYearValidator: FormGroup = null;
+    public FiscalYearValidator: UntypedFormGroup = null;
     public ClosedBy: number = 0;
     public ClosedOn: string = null;
     public IsClosed: boolean = true;
@@ -37,7 +37,7 @@ export class FiscalYearModel {
     public NepaliMonthList: Array<MonthModel> = new Array<MonthModel>();
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.FiscalYearValidator = _formBuilder.group({
             'FiscalYearName': ['', Validators.compose([Validators.required])],
             'NpFiscalYearName': ['', Validators.compose([Validators.required])],

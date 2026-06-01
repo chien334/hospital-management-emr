@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StoreVerificationMapModel } from '../../settings-new/shared/store-role-map.model';
 
 
@@ -27,7 +27,7 @@ export class PHRMStoreModel extends StoreBillHeader {
   public Category: string;
   public SubCategory: string;
   public StoreVerificationMapList: Array<StoreVerificationMapModel> = new Array<StoreVerificationMapModel>();
-  public StoreValidator: FormGroup = null;
+  public StoreValidator: UntypedFormGroup = null;
   public UseSeparateInvoiceHeader: boolean = false;
   public PrintInvoiceHeaderInDotMatrix: boolean = false;
   AvailablePaymentModes: PaymentModeSettings[] = [];
@@ -43,7 +43,7 @@ export class PHRMStoreModel extends StoreBillHeader {
   INV_ReceiptNoCode: string;
   constructor() {
     super();
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.StoreValidator = _formBuilder.group({
       'Name': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
       'Email': ['', Validators.pattern('^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$')],

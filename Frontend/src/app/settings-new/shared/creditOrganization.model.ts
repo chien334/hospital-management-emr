@@ -1,5 +1,5 @@
 import {
-  FormBuilder, FormGroup, Validators
+  UntypedFormBuilder, UntypedFormGroup, Validators
 } from '@angular/forms';
 import * as moment from 'moment';
 export class CreditOrganization {
@@ -16,13 +16,13 @@ export class CreditOrganization {
   public IsClaimCodeAutoGenerate: boolean = false;
   public DisplayName: string = "";
   public CreditOrganizationCode: string = "";
-  public CreditOrganizationValidator: FormGroup = null;
+  public CreditOrganizationValidator: UntypedFormGroup = null;
 
 
   constructor() {
     this.CreatedOn = moment().format("YYYY-MM-DD HH:mm:ss");
 
-    const _formBuilder = new FormBuilder();
+    const _formBuilder = new UntypedFormBuilder();
     this.CreditOrganizationValidator = _formBuilder.group({
       'OrganizationName': ['', Validators.compose([Validators.required])],
       'CreditOrganizationCode': ['', Validators.compose([Validators.required])],

@@ -1,8 +1,8 @@
 import {
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
 } from '@angular/forms';
 import * as moment from 'moment/moment';
 
@@ -20,11 +20,11 @@ export class RPT_APPT_RankwiseDailyAppointmentReportModel {
     public Ins_HasInsurance: boolean;
     public IsInsurancePatient: string = '';
 
-    public DailyAppointmentValidator: FormGroup = null;
+    public DailyAppointmentValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        const _formBuilder = new FormBuilder();
+        const _formBuilder = new UntypedFormBuilder();
         this.DailyAppointmentValidator = _formBuilder.group({
             //'FromDate': ['', Validators.compose([Validators.required])],
             'fromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],
@@ -33,7 +33,7 @@ export class RPT_APPT_RankwiseDailyAppointmentReportModel {
         });
     }
 
-    dateValidator(control: FormControl): { [key: string]: boolean } {
+    dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
         const currDate = moment().format('YYYY-MM-DD HH:mm');
         if (control.value) { // gets empty string for invalid date such as 30th Feb or 31st Nov)
             if ((moment(control.value).diff(currDate) > 0)
@@ -44,7 +44,7 @@ export class RPT_APPT_RankwiseDailyAppointmentReportModel {
             return { 'wrongDate': true };
     }
 
-    dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+    dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
 
         //get current date, month and time
         const currDate = moment().format('YYYY-MM-DD');

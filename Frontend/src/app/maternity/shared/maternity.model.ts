@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import * as moment from "moment";
 
 export class MaternityPatientListModel {
@@ -55,9 +55,9 @@ export class MaternityPatientVM {
   public IsActive: boolean = true;
   public IsConcluded: boolean = false;
 
-  public MaternityPatientValidator: FormGroup = null;
+  public MaternityPatientValidator: UntypedFormGroup = null;
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.MaternityPatientValidator = _formBuilder.group({
       'HusbandName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       'Height': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
@@ -108,7 +108,7 @@ export class MaternityPatientVM {
 
 
 
-  dateValidators(control: FormControl): { [key: string]: boolean } {
+  dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
     //if positive then selected date is of future else it of the past

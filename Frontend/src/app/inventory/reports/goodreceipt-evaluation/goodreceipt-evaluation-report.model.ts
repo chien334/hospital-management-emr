@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -13,18 +13,18 @@ export class GoodReceiptEvaluationReport {
   public ToDate: string = null;
   public TransactionType: string = "";
   public GoodReceiptNo: number = null;
-  public GoodReceiptEvaluationValidator: FormGroup = null;
+  public GoodReceiptEvaluationValidator: UntypedFormGroup = null;
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.GoodReceiptEvaluationValidator = _formBuilder.group({
       'FromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],
       'ToDate': ['', Validators.compose([Validators.required, this.dateValidator])],
     });
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     var currDate = moment().format('YYYY-MM-DD HH:mm');
     if (control.value) {
       if ((moment(control.value).diff(currDate) > 0)
@@ -35,7 +35,7 @@ export class GoodReceiptEvaluationReport {
     }
   }
 
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
     var currDate = moment().format('YYYY-MM-DD');
     if (control.value) {
       if ((moment(control.value).diff(currDate) > 0)

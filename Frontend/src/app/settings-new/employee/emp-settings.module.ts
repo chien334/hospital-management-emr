@@ -15,7 +15,7 @@ import { EmployeeTypeAddComponent } from './emp-types/employee-type-add.componen
 import { EmployeeTypeListComponent } from './emp-types/employee-type-list.component';
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
 
-export const empSettingsRoutes =
+export const empSettingsRoutes: Routes =
   [
     {
       path: '', component: EmpSettingsMainComponent,

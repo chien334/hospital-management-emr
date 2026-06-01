@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PharmacyBLService } from '../../../../../pharmacy/shared/pharmacy.bl.service';
 import { PharmacyService } from '../../../../../pharmacy/shared/pharmacy.service';
@@ -28,7 +28,7 @@ export class TransferCreateComponent implements OnInit {
   currentDispensary: PHRMStoreModel;
   itemList: any[];
   currentDate = new Date();
-  storeForm = new FormGroup({ targetStore: new FormControl('', Validators.required), Remarks: new FormControl() });
+  storeForm = new UntypedFormGroup({ targetStore: new UntypedFormControl('', Validators.required), Remarks: new UntypedFormControl() });
 
   constructor(private _dispensaryTransferService: TransferService, private _dispensaryService: DispensaryService,
     public changeDetectorRef: ChangeDetectorRef, public pharmacyBLService: PharmacyBLService,

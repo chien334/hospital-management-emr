@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 
 export class HolidayModel {
      public HolidayId:number=0;
@@ -13,9 +13,9 @@ export class HolidayModel {
      public  ModifiedBy :number=0;
      public ModifiedOn :string="";
 
-     public holidayValidator: FormGroup = null;
+     public holidayValidator: UntypedFormGroup = null;
      constructor() {
-          var _formBuilder = new FormBuilder();
+          var _formBuilder = new UntypedFormBuilder();
           this.holidayValidator = _formBuilder.group({
               'holidayTitle': ['', Validators.required],
               'holidayDate': ['', Validators.required],

@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 
@@ -21,10 +21,10 @@ export class PastMedical {
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
     public Note: string = null;
-    public PastMedicalValidator: FormGroup = null;
+    public PastMedicalValidator: UntypedFormGroup = null;
     public PrincipleProblem: boolean = false;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PastMedicalValidator = _formBuilder.group({
             //we dont want this Required Validation on OnSet date and ResolvedSet date ...as mentioned by santosh sir in doc_santosh list and bug no 5 and 6
             'ICD10Code': ['',  Validators.compose([Validators.required])],
@@ -35,7 +35,7 @@ export class PastMedical {
         });
     }
 
-    dateValidator(control: FormControl): { [key: string]: boolean } {
+    dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
         var currDate = moment().format('YYYY-MM-DD HH:mm');
         if (control.value != null) // if the date is not empty then perform this operation
         {

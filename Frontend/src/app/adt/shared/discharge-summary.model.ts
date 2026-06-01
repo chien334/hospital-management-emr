@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { DischargeSummaryConsultant } from './discharge-summary-consultant.model';
@@ -36,7 +36,7 @@ export class DischargeSummary {
   public CreatedOn: string = null;
   public ModifiedOn: string = null;
   public IsSubmitted: boolean = false;
-  public DischargeSummaryValidator: FormGroup = null;
+  public DischargeSummaryValidator: UntypedFormGroup = null;
   public LabTests: string = null;
   public DischargeSummaryMedications: Array<DischargeSummaryMedication> = new Array<DischargeSummaryMedication>();
   // public DischargeSummaryConsultants: Array<DischargeSummaryConsultant> = new Array<DischargeSummaryConsultant>();
@@ -94,7 +94,7 @@ export class DischargeSummary {
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DischargeSummaryValidator = _formBuilder.group({
       'DischargeTypeId': ['', Validators.compose([Validators.required])],
       // 'ConsultantId': ['', Validators.compose([Validators.required])],

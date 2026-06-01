@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from "@angular/forms";
 import { BillItemPriceVM } from "./billing-view-models";
 
 
@@ -16,7 +16,7 @@ export class TxnBillItem {
   public ItemName: string = null;
   public ServiceDepartmentName: string = null;
 
-  public BillingItemValidator: FormGroup = null;
+  public BillingItemValidator: UntypedFormGroup = null;
   public filteredItem: Array<BillItemPriceVM> = new Array<BillItemPriceVM>();
   //Below variable only for check duplicate item or not
   public IsDuplicateItem: boolean = false; //yub--27th Sept 2018
@@ -24,7 +24,7 @@ export class TxnBillItem {
   public IsValidSelItemName: boolean = true; //yub--27th Sept 2018
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.BillingItemValidator = _formBuilder.group({
       'ServiceDepartmentId': ['', Validators.compose([Validators.required])],
       'ItemId': ['', Validators.compose([Validators.required])]

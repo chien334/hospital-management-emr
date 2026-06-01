@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import * as moment from 'moment';
 import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
 import { DLService } from '../../../shared/dl.service';
@@ -24,7 +24,7 @@ export class ItemWisePurchaseReportComponent implements OnInit {
   public itemId: number = null;
   public NepaliDateInGridSettings: NepaliDateInGridParams = new NepaliDateInGridParams();
   public storeId: number = null;
-  public purchaseForm = new FormGroup({ InvoiceNo: new FormControl(''), GRNo: new FormControl('') });
+  public purchaseForm = new UntypedFormGroup({ InvoiceNo: new UntypedFormControl(''), GRNo: new UntypedFormControl('') });
   invoiceNo: number = null;
   goodReceiptNo: number = null;
   grandTotal: any = { totalPurchaseQty: 0, totPurchaseVal_VatExcluded: 0, totVatAmount: 0, totPurchaseValue: 0 };

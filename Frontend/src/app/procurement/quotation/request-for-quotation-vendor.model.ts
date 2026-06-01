@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class RequestForQuotationVendorModel {
     public ReqForQuotationVendorId: number = null;
@@ -7,12 +7,12 @@ export class RequestForQuotationVendorModel {
     public VendorName: string = "";
     public CreatedBy: number = null;
     public CreatedOn: string = "";
-    public ReqForQuotationVendorValidator: FormGroup = null;
+    public ReqForQuotationVendorValidator: UntypedFormGroup = null;
 
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ReqForQuotationVendorValidator = _formBuilder.group({
             'VendorId': ['', Validators.compose([Validators.required])]
         });

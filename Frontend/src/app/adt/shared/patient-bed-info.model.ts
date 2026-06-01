@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -25,7 +25,7 @@ export class PatientBedInfo {
   public CreatedOn: string = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
   public IsActive: boolean = true;
   public ReservedBedId: number = 0;
-  public PatientBedInfoValidator: FormGroup = null;
+  public PatientBedInfoValidator: UntypedFormGroup = null;
 
   public RequestingDeptId: number = 0;//sud:19Jun'18
   public IsValidReqDepartment: boolean = true; //yub:25th Oct' 18
@@ -38,7 +38,7 @@ export class PatientBedInfo {
 
   constructor() {
     this.StartedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PatientBedInfoValidator = _formBuilder.group({
       'RequestingDeptId': [0, Validators.compose([Validators.required])],
       'BedFeatureId': [0, Validators.compose([Validators.required])],

@@ -1,8 +1,8 @@
 import {
-    FormGroup,
-    FormBuilder,
+    UntypedFormGroup,
+    UntypedFormBuilder,
     Validators,
-    FormControl
+    UntypedFormControl
 } from "@angular/forms";
 import { DenominationModel } from "./denomination.model";
 
@@ -18,11 +18,11 @@ export class HandOverModel {
     public CreatedBy: number = null;
     public CreatedOn: Date = null;
     public denomination: Array<DenominationModel> = new Array<DenominationModel>();
-    public HandoverValidator: FormGroup = null;
+    public HandoverValidator: UntypedFormGroup = null;
     public IsValidSelAssignedToUser: boolean = true;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.HandoverValidator = _formBuilder.group({
             'HandoverType': ['', Validators.compose([Validators.required])],
             'PreviousAmount': ['', Validators.compose([this.positiveNumberValdiator])],
@@ -30,7 +30,7 @@ export class HandOverModel {
         });
     }
 
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'invalidNumber': true };

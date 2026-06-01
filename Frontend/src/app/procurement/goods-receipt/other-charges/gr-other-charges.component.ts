@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormArray, UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { CoreService } from "../../../core/shared/core.service";
 import { InventoryReportsBLService } from "../../../inventory/reports/shared/inventory-reports.bl.service";
 import { OtherChargesMasterModel } from "../../../inventory/settings/othercharges/other-charges.model";
@@ -40,13 +40,13 @@ export class GROtherChargesComponent implements OnInit {
   @Input('vendor-list') public vendorList: any[];
   selectedVendor: any = "";
   otherChargesDetails: OtherChargesMasterModel[] = [];
-  otherChargesForm: FormGroup;
+  otherChargesForm: UntypedFormGroup;
   model: GoodsReceiptOtherChargeModel;
   showForm: boolean = false;
   showVendorSelection: boolean = false;
   addOtherChargeInGRTotalAmount: boolean = false;
   defaultCharges: OtherChargesMasterModel[] = [];
-  constructor(public msgBoxServ: MessageboxService, public fb: FormBuilder, private coreService: CoreService,
+  constructor(public msgBoxServ: MessageboxService, public fb: UntypedFormBuilder, private coreService: CoreService,
     public _goodsReceiptService: GoodReceiptService
   ) {
     this.checkOtherChargeFormCustomization();

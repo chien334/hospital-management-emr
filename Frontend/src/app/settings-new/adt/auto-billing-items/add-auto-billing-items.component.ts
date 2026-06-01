@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AdtAutoBillingItem_DTO } from '../../../adt/shared/DTOs/adt-auto-billingItems.dto';
 import { Bed } from '../../../adt/shared/bed.model';
 import { BedFeature } from '../../../adt/shared/bedfeature.model';
@@ -18,7 +18,7 @@ import { SettingsBLService } from '../../shared/settings.bl.service';
 export class AddAutoBillingItemsComponent implements OnInit {
   public AutoBillingItems: AdtAutoBillingItem_DTO = new AdtAutoBillingItem_DTO();
   public autoBillingItems: AdtAutoBillingItem_DTO = new AdtAutoBillingItem_DTO();
-  public AutoBillingItemsValidator: FormGroup = null;
+  public AutoBillingItemsValidator: UntypedFormGroup = null;
   public BedFeatureList: Array<BedFeature> = [];
   public selectedBedFeature: BedFeature = new BedFeature();
   public BedFeatures: BedFeature = new BedFeature();
@@ -85,7 +85,7 @@ export class AddAutoBillingItemsComponent implements OnInit {
     this.GetServiceItems();
     this.BedFeatureObj = this.BedFeatureList.find(x => x.BedFeatureId == this.selectedBedFeatureId);
     this.isSubmitted = false;
-    var _formbuilder = new FormBuilder();
+    var _formbuilder = new UntypedFormBuilder();
     this.AutoBillingItemsValidator = _formbuilder.group({
       'BedFeatureName': ['', Validators.required],
       'SchemeName': ['', Validators.required],

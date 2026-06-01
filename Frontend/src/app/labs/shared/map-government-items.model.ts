@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl } from "@angular/forms";
 
 export class MappedGovernmentItems {
   public ReportMapId: number = 0;
@@ -11,10 +11,10 @@ export class MappedGovernmentItems {
   public PositiveIndicator: string = null;
   public ComponentId:number = 0;
 
-  public GovItemValidator: FormGroup = null;
+  public GovItemValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.GovItemValidator = _formBuilder.group({
       ReportItemId: [
         "",
@@ -49,7 +49,7 @@ export class MappedGovernmentItems {
     }
   }
 
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0) return { invalidNumber: true };
     }

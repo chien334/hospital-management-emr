@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 
@@ -35,10 +35,10 @@ export class EditDoctorFeatureViewModel {
   public DoctorMandatory: boolean = false;
   public RequisitionId: number = null;
 
-  public EditDoctorValidator: FormGroup = null;
+  public EditDoctorValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.EditDoctorValidator = _formBuilder.group({
       'FromDate': ["", Validators.compose([Validators.required, this.dateValidatorsForPast])],
       'ToDate': ["", Validators.compose([Validators.required, this.dateValidatorsForPast])]//there will be no validation for providerid at the begining. it is conditional validation.
@@ -58,7 +58,7 @@ export class EditDoctorFeatureViewModel {
       return !(this.EditDoctorValidator.hasError(validator, fieldName));
   }
   //the date should be in past and we are allowing till 200yrs in past
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');

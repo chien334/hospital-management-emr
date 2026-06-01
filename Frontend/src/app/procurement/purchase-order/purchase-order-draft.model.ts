@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { PurchaseOrderDraftItem } from "./purchase-order-draft-item.model";
 
 export class PurchaseOrderDraft {
@@ -40,9 +40,9 @@ export class PurchaseOrderDraft {
     VendorAddress: string = "";
     IsModificationAllowed: boolean = false;
     PurchaseOrderDraftItems: Array<PurchaseOrderDraftItem> = new Array<PurchaseOrderDraftItem>();
-    public PurchaseOrderDraftValidator: FormGroup = null;
+    public PurchaseOrderDraftValidator: UntypedFormGroup = null;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PurchaseOrderDraftValidator = _formBuilder.group({
             'VendorId': ['', [Validators.required, this.registeredVendorValidator]],
         });
@@ -60,7 +60,7 @@ export class PurchaseOrderDraft {
         else
             return !(this.PurchaseOrderDraftValidator.hasError(validator, fieldName));
     }
-    registeredVendorValidator(control: FormControl): { [key: string]: boolean } {
+    registeredVendorValidator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value && typeof (control.value) == "object" && control.value.VendorId > 0)
             return;
         else

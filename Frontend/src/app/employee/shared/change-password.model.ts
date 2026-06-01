@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -17,11 +17,11 @@ export class ChangePasswordModel {
     public NewPassword: string = null;
     public ConfirmPassword: string = null;
    
-    public ChangePasswordValidator: FormGroup = null;
+    public ChangePasswordValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ChangePasswordValidator = _formBuilder.group({
            'Password': ['', Validators.compose([Validators.required,Validators.maxLength(20)])],
            'NewPassword': ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(20)])],

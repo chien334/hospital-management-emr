@@ -17,7 +17,7 @@ import { RadDefSignatoriesComponent } from './def-signatories/rad-def-signatorie
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
 
 
-export const radSettingsRoutes =
+export const radSettingsRoutes: Routes =
   [
     {
       path: '', component: RadiologySettingsMainComponent,

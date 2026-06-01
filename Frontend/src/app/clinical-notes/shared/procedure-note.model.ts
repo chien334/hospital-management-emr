@@ -1,6 +1,6 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
     FormBuilder,
@@ -25,7 +25,7 @@ export class ProcedureNotesModel {
     public ModifiedBy: number = null;
     public ModifiedOn: string = null;
     public IsActive: boolean = true;
-    public ProcedureNoteValidator: FormGroup = null;
+    public ProcedureNoteValidator: UntypedFormGroup = null;
 
 
 

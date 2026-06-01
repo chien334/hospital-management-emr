@@ -1,7 +1,7 @@
 import {
-    FormGroup,
+    UntypedFormGroup,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
 } from '@angular/forms';
 
 export class QuotationUpLoadFileModel {
@@ -21,10 +21,10 @@ export class QuotationUpLoadFileModel {
     public UpLoadedBy: number = null;
     public url: string = null;
     public SelectedItem: any = null;
-    public QuotationFileValidator: FormGroup = null;
+    public QuotationFileValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
 
         this.QuotationFileValidator = _formBuilder.group({
             'Vendorname': ['', Validators.required,],

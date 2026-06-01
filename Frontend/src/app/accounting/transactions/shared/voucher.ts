@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -19,10 +19,10 @@ export class Voucher {
     public ShowChequeNumber: boolean = false;
     public VoucherCode: string = null;
     public ISCopyDescription:boolean=false;
-    public ValidatorVoucher: FormGroup = null;
+    public ValidatorVoucher: UntypedFormGroup = null;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ValidatorVoucher = _formBuilder.group({
             // 'VoucherName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
             'VoucherCode': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],

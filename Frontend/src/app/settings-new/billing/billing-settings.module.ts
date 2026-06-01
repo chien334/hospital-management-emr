@@ -2,7 +2,7 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { BillingSharedModule } from '../../billing/billing-shared.module';
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
 import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
@@ -30,7 +30,7 @@ import { BillServiceItemSchemeSettingComponent } from './service-item-scheme/bil
 import { BillServiceItemListComponent } from './service-items/bill-service-item-list.component';
 import { BillServiceItemComponent } from './service-items/bill-service-item.component';
 
-export const billSettingsRoutes =
+export const billSettingsRoutes: Routes =
   [
     {
       path: '', component: BillingSettingsMainComponent,

@@ -1,10 +1,10 @@
-import { FormGroup, FormControl, Validators, FormBuilder, } from '@angular/forms'
+import { UntypedFormGroup, UntypedFormControl, Validators, UntypedFormBuilder, } from '@angular/forms'
 import { GoodsReceiptItems } from "./goods-receipt-item.model"
 import { ENUM_GRItemCategory } from "../../shared/shared-enums";
 import * as moment from 'moment/moment';
 import { GROtherChargesItemModel } from './goods-receipt-other-charges.model';
 export class GoodsReceipt {
-  public GoodsReceiptValidator: FormGroup = null;
+  public GoodsReceiptValidator: UntypedFormGroup = null;
   public VendorName: string = "";
   public VendorNo: string = "";
   public VendorPanNumber: string = "";
@@ -91,7 +91,7 @@ export class GoodsReceipt {
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.GoodsReceiptValidator = _formBuilder.group({
       //sanjit: 2Apr'20: GoodsReceiptDate somehow throws validation error when use with danphe-date-picker, so it is commented. 
       'GoodsReceiptDate': [this.GoodsReceiptDate, Validators.compose([Validators.required])],
@@ -117,7 +117,7 @@ export class GoodsReceipt {
       return !(this.GoodsReceiptValidator.hasError(validator, fieldName));
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
     //if positive then selected date is of future else it of the past || selected year can't be of future

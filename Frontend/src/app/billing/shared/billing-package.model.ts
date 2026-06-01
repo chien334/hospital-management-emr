@@ -1,4 +1,4 @@
-﻿import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+﻿import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BillingPackageItem } from './billing-package-item.model';
 
 export class BillingPackage {
@@ -19,12 +19,12 @@ export class BillingPackage {
   public SchemeId: number = 0;
   public PriceCategoryId: number = 0;
   public IsEditable: boolean = false;
-  public BillingPackageValidator: FormGroup = null;
+  public BillingPackageValidator: UntypedFormGroup = null;
 
   public PackageServiceItems: Array<BillingPackageItem> = new Array<BillingPackageItem>();
 
   constructor() {
-    const _formBuilder = new FormBuilder();
+    const _formBuilder = new UntypedFormBuilder();
     this.BillingPackageValidator = _formBuilder.group({
       'BillingPackageName': ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
       'Description': [''],

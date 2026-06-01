@@ -15,7 +15,7 @@ import { CountrySubdivisionListComponent } from './subdivisions/country-subdivis
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
 import { MunicipalityListComponent } from './municipalities/municipality-list.component';
 import { MunicipalityAddComponent } from './municipalities/municipality-add.component';
-export const geoLocSettingsRoutes =
+export const geoLocSettingsRoutes: Routes =
   [
     {
       path: '', component: GeolocationSettingsMainComponent,

@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms'
 
 import * as moment from 'moment/moment';
@@ -19,12 +19,12 @@ export class InsuranceProviderModel {
     public ModifiedBy: number = 0;
     public IsActive: Boolean = false;
 
-    public InsuranceProviderValidator: FormGroup = null;
+    public InsuranceProviderValidator: UntypedFormGroup = null;
 
     //creating constructor
     constructor() {
         //creating object for FormBuilder
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
 
         this.InsuranceProviderValidator = _formBuilder.group({
             //VAlidation message dine 

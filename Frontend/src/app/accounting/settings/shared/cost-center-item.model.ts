@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -15,11 +15,11 @@ export class CostCenterItemModel {
     public CreatedOn: string = "";
     public IsActive: boolean = true;
     
-    public CostCenterItemValidator:FormGroup= null;
+    public CostCenterItemValidator:UntypedFormGroup= null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.CostCenterItemValidator = _formBuilder.group({
             'CostCenterItemName': ['', Validators.compose([Validators.required])],
         });

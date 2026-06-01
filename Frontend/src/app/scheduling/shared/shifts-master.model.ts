@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 export class ShiftsMasterModel {
@@ -24,10 +24,10 @@ export class ShiftsMasterModel {
     public IsEditable: boolean = true;
     public IsSelected: boolean = false;
 
-    public ShiftValidator: FormGroup = null;
+    public ShiftValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ShiftValidator = _formBuilder.group({
             'ShiftName': ['', Validators.compose([Validators.required])],
             'StartTime': ['', Validators.required],

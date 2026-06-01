@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 import { PurchaseRequestItemModel } from './purchase-request-item.model';
@@ -27,7 +27,7 @@ export class PurchaseRequestModel {
   public CreatedOn: string = moment().format("YYYY-MM-DD");
   public ModifiedBy: number = null;
   public ModifiedOn: string = null;
-  public PurchaseRequestValidator: FormGroup = null;
+  public PurchaseRequestValidator: UntypedFormGroup = null;
   public PurchaseRequestItems: Array<PurchaseRequestItemModel> = new Array<PurchaseRequestItemModel>();
 
 
@@ -52,7 +52,7 @@ export class PurchaseRequestModel {
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PurchaseRequestValidator = _formBuilder.group({});
   }
 

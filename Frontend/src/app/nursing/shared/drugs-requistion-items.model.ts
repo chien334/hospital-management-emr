@@ -1,10 +1,10 @@
 ﻿
 import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms'
 import * as moment from 'moment/moment';
 
@@ -26,7 +26,7 @@ export class DrugsRequistionItemModel {
     public GRItems: Array<PHRMGoodsReceiptItemsModel> = new Array<PHRMGoodsReceiptItemsModel>();
     public SelectedGRItems: Array<PHRMGoodsReceiptItemsModel> = new Array<PHRMGoodsReceiptItemsModel>();
 
-    public DrugsRequestValidator: FormGroup = null;
+    public DrugsRequestValidator: UntypedFormGroup = null;
     public enableItmSearch: boolean = true;
 
     //public InvoiceItemId: number = 0;
@@ -59,7 +59,7 @@ export class DrugsRequistionItemModel {
 
     //Constructor of class
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.DrugsRequestValidator = _formBuilder.group({
 
             'Quantity': ['', Validators.compose([this.positiveNumberValdiator])],
@@ -81,19 +81,19 @@ export class DrugsRequistionItemModel {
             return !(this.DrugsRequestValidator.hasError(validator, fieldName));
     }
     public DrugsRequestValidatortest() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         _formBuilder.group({
             'Quantity': ['', Validators.compose([this.positiveNumberValdiatortest])] 
         });
     }
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value <= 0)
                 return { 'invalidNumber': true };
         }
 
     }
-    positiveNumberValdiatortest(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiatortest(control: UntypedFormControl): { [key: string]: boolean } {
         
                 return { 'invalidNumber': true };
     }

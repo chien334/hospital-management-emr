@@ -2,8 +2,8 @@
 //import { Ward } './ward.model';
 //import { BedType } './bedtype.model';
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 import * as moment from 'moment';
@@ -31,13 +31,13 @@ export class Bed {
   public ReservedForDate: string = null;
 
 
-  public BedMainValidator: FormGroup = null;
+  public BedMainValidator: UntypedFormGroup = null;
   //public Ward: Ward = new Ward();
   //public BedType: BedType = new BedType();
 
   constructor() {
     this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-    var _formbuilder = new FormBuilder();
+    var _formbuilder = new UntypedFormBuilder();
     this.BedMainValidator = _formbuilder.group({
       'WardId': ['', Validators.compose([Validators.required])],
       'BedNumber': ['', Validators.compose([Validators.required])]

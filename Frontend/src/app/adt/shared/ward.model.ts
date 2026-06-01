@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -19,14 +19,14 @@ export class Ward {
   public CreatedOn: string = null;
   public ModifiedOn: string = null;
 
-  public WardValidator: FormGroup = null;
+  public WardValidator: UntypedFormGroup = null;
   public TotalBeds: number = 0;
   public VacantBeds: number = 0;
   public OccupiedBeds: number = 0;
 
   constructor() {
     this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-    var _formbuilder = new FormBuilder();
+    var _formbuilder = new UntypedFormBuilder();
     this.WardValidator = _formbuilder.group({
       'WardName': ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
       'WardCode': ['', Validators.compose([Validators.required, Validators.maxLength(20)])],

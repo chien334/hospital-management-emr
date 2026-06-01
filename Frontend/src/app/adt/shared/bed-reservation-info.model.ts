@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -37,10 +37,10 @@ export class BedReservationInfo{
   public AutoCancelledOn: string = null;
   public IsAutoCancelled: boolean = null;
 
-  public BedReservationInfoValidator: FormGroup = null;
+  public BedReservationInfoValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.BedReservationInfoValidator = _formBuilder.group({
       'RequestingDepartmentId': ['', Validators.compose([Validators.required])],
       'AdmittingDoctorId': ['', Validators.compose([Validators.required])],
@@ -52,7 +52,7 @@ export class BedReservationInfo{
     });
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     //user can add admission entry  upto 15Aug 12:00AM 
     var limitDate = moment().format('YYYY-MM-DD HH:mm');
     if (control.value) {

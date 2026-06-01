@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 
@@ -21,10 +21,10 @@ export class RadiologyReportTemplate {
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
 
-    public RadiologyReportTemplateValidator: FormGroup = null;
+    public RadiologyReportTemplateValidator: UntypedFormGroup = null;
 
      constructor() {
-         var _formBuilder = new FormBuilder();
+         var _formBuilder = new UntypedFormBuilder();
          this.RadiologyReportTemplateValidator = _formBuilder.group({
              'ModuleName': ['', Validators.compose([Validators.required])],
              'TemplateCode': ['', Validators.compose([Validators.required])],

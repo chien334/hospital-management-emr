@@ -18,7 +18,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { SortByPipe } from './role-perm-map/sort-pipe';
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
 
-export const securitySettingsRoutes =
+export const securitySettingsRoutes: Routes =
   [
     {
       path: '', component: SecuritySettingsMainComponent,

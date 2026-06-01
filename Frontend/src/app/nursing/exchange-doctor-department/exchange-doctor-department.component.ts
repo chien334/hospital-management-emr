@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ADT_DLService } from '../../adt/shared/adt.dl.service';
@@ -50,7 +50,7 @@ export class ExchangeDoctorDepartmentComponent implements OnInit {
   public SelectedDiagnosisSubscription = new Subscription();
   public EnableDepartmentLevelAppointment: boolean;
   public ShowDocMandatory: boolean = false;
-  public ExchangedValidator: FormGroup = null;
+  public ExchangedValidator: UntypedFormGroup = null;
 
   constructor(
     private _admissionDLService: ADT_DLService,
@@ -75,7 +75,7 @@ export class ExchangeDoctorDepartmentComponent implements OnInit {
       this.EnableDepartmentLevelAppointment = true;
       this.ShowDocMandatory = true;
     }
-    let _formBuilder = new FormBuilder();
+    let _formBuilder = new UntypedFormBuilder();
 
     this.ExchangedValidator = _formBuilder.group({
       'ExchangedDepartment': [, Validators.required],

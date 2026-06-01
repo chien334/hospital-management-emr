@@ -1,5 +1,5 @@
 
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class MaternitypatientPaymentModel{
         public PatientPaymentId : number = 0;
@@ -18,9 +18,9 @@ export class MaternitypatientPaymentModel{
 		public EmployeeName : string = "";
 		public PaymentMode : string  = "cash";
 
-		public MaternityPaymentDetailsValidator: FormGroup = null;
+		public MaternityPaymentDetailsValidator: UntypedFormGroup = null;
         constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.MaternityPaymentDetailsValidator = _formBuilder.group({
         'Remarks': ['', Validators.compose([Validators.required])],
 		'Amount': ['', Validators.compose([Validators.required])],

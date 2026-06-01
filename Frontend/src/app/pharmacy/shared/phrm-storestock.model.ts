@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms'
 import * as moment from 'moment/moment';
 
@@ -36,10 +36,10 @@ export class PHRMStoreStockModel {
   public UpdatedQty: number = 0;
   public DispensaryId: number = 0;
   public IsActive: boolean = null;
-  public StoreManageValidator: FormGroup = null;
+  public StoreManageValidator: UntypedFormGroup = null;
   //Constructor of class
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.StoreManageValidator = _formBuilder.group({
       'UpdatedQty': ['', Validators.compose([this.positiveNumberValdiator, this.wholeNumberRequired])],
       //'Price': ['', Validators.compose([this.positiveNumberValdiator])]
@@ -62,7 +62,7 @@ export class PHRMStoreStockModel {
       return !(this.StoreManageValidator.hasError(validator, fieldName));
   }
 
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value) {
       if (control.value < 0)
         return { 'invalidNumber': true };
@@ -72,7 +72,7 @@ export class PHRMStoreStockModel {
     }
 
   }
-  wholeNumberRequired(control: FormControl): { [key: string]: boolean } {
+  wholeNumberRequired(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value) {
       if (control.value % 1 != 0) return { 'wrongDecimalValue': true };
     }

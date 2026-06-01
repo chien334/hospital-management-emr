@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -24,7 +24,7 @@ export class PHRMWriteOffItemModel {
     public ExpiryDate: string = null;
     public FreeQuantity: number = 0;
     public SalePrice: number = 0;
-    public WriteOffItemValidator: FormGroup = null;
+    public WriteOffItemValidator: UntypedFormGroup = null;
 
     ////Flag to Check Proper Item Selected From ItemList or NOT
     public checkSelectedItem: boolean = false;
@@ -44,7 +44,7 @@ export class PHRMWriteOffItemModel {
     public VATAmount: number = null; // only for use in client side
     public SelectedGRItems: Array<PHRMGoodsReceiptItemsModel> = new Array<PHRMGoodsReceiptItemsModel>();
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.WriteOffItemValidator = _formBuilder.group({
             'ItemId': ['', Validators.compose([Validators.required])],
             'WriteOffQuantity': ['', Validators.compose([this.positiveNumberValdiator])]
@@ -67,7 +67,7 @@ export class PHRMWriteOffItemModel {
             return !(this.WriteOffItemValidator.hasError(validator, fieldName));
     }
 
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value <= 0)
                 return { 'invalidNumber': true };

@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -16,12 +16,12 @@ export class ItemModel {
     public IsActive: boolean = true;
     public AvailableQuantity: number = null;
     public Description: string = null;
-    public ItemValidator: FormGroup = null;
+    public ItemValidator: UntypedFormGroup = null;
     public LedgerName: string = null;
     public checkSelectedItem: boolean = false;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ItemValidator = _formBuilder.group({
             //'ItemPrice': ['', Validators.compose([Validators.maxLength(200)])],
             'ItemName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],

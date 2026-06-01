@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { CoreService } from '../../../../core/shared/core.service';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { OtherChargesMasterModel } from '../other-charges.model';
@@ -12,14 +12,14 @@ import { OtherChargesService } from '../other-charges.service';
 })
 export class OtherChargesEditComponent implements OnInit {
 
-  otherChargesForm: FormGroup;
+  otherChargesForm: UntypedFormGroup;
   @Input() otherCharges: OtherChargesMasterModel;
   @Input("showEditPage") showEditPage: boolean = false;
   @Input('ChargeId') ChargeId: number = null;
   @Output("update-event") UpdateEvent = new EventEmitter();
   @Output("close-edit-page") callBackClose = new EventEmitter();
   showEditMode: boolean = false;
-  constructor(private fb: FormBuilder, private _otherChargesService: OtherChargesService, private _msgBox: MessageboxService, private coreService: CoreService) { }
+  constructor(private fb: UntypedFormBuilder, private _otherChargesService: OtherChargesService, private _msgBox: MessageboxService, private coreService: CoreService) { }
 
   ngOnInit() {
     if (this.ChargeId != null && this.showEditPage) {
@@ -54,7 +54,7 @@ export class OtherChargesEditComponent implements OnInit {
     this.showEditMode = false;
   }
   get ChargeName() {
-    return this.otherChargesForm.get("ChargeName") as FormControl;
+    return this.otherChargesForm.get("ChargeName") as UntypedFormControl;
   }
 
   GetChargeDetailById() {

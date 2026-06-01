@@ -1,7 +1,7 @@
 import {
-  FormGroup,
+  UntypedFormGroup,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
 } from '@angular/forms';
 import * as moment from 'moment';
 
@@ -43,10 +43,10 @@ export class DeathDetails {
 
 
 
-  public DeathDetailsValidator: FormGroup = null;
+  public DeathDetailsValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DeathDetailsValidator = _formBuilder.group({
       // 'CertificateNumber': ['', Validators.compose([Validators.required])],
       'DeathDate': [this.DeathDate, Validators.compose([Validators.required])],

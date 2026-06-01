@@ -1,10 +1,10 @@
 ﻿
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -24,11 +24,11 @@ export class Country {
     public ModifiedBy: number = null;    
     public ModifiedOn: string = null;
 
-    public CountryValidator: FormGroup = null;
+    public CountryValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.CountryValidator = _formBuilder.group({
             'CountryName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
             'ISDCode': ['', Validators.compose([Validators.required])],

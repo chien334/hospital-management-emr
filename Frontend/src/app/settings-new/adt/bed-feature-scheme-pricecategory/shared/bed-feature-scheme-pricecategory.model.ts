@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class BedFeatureSchemePriceCategoryModel {
     BedFeatureSchemePriceCategoryMapId: number = 0;
@@ -9,9 +9,9 @@ export class BedFeatureSchemePriceCategoryModel {
     PriceCategoryId: number = 0;
     PriceCategoryName: string = '';
     IsActive: boolean = false;
-    BedFeatureSchemePriceCategoryValidator: FormGroup = null;
+    BedFeatureSchemePriceCategoryValidator: UntypedFormGroup = null;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.BedFeatureSchemePriceCategoryValidator = _formBuilder.group({
             'BedFeatureId': ['', Validators.compose([Validators.required])],
             'SchemeId': ['', Validators.compose([Validators.required])],

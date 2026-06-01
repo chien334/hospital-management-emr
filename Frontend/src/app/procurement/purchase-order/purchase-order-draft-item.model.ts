@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { ItemMaster } from "../../inventory/shared/item-master.model";
 
 export class PurchaseOrderDraftItem {
@@ -26,10 +26,10 @@ export class PurchaseOrderDraftItem {
     isItemDuplicate: boolean = false;
     ItemName: string = "";
     IsDiscarded: boolean = false;
-    public PurchaseOrderDraftItemValidator: FormGroup = null;
+    public PurchaseOrderDraftItemValidator: UntypedFormGroup = null;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PurchaseOrderDraftItemValidator = _formBuilder.group({
             'ItemId': ['', [Validators.required, this.registeredItemValidator]],
             'Quantity': ['', [Validators.required, this.positiveNumberItemValdiator]],
@@ -50,19 +50,19 @@ export class PurchaseOrderDraftItem {
         else
             return !(this.PurchaseOrderDraftItemValidator.hasError(validator, fieldName));
     }
-    registeredItemValidator(control: FormControl): { [key: string]: boolean } {
+    registeredItemValidator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value && typeof (control.value) == "object" && control.value.ItemId > 0)
             return;
         else
             return { 'notRegisteredItem': true };
     }
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'positivenum': true };
         }
     }
-    positiveNumberItemValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberItemValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value <= 0)
                 return { 'positivenum': true };

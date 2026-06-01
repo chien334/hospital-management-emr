@@ -1,7 +1,7 @@
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -24,10 +24,10 @@ export class RPT_BIL_DiscountReportModel {
   public VisitType: string = "";
   public ReferenceReceipt: string = "";
   public SubTotal: number = 0;
-  public DiscountValidator: FormGroup = null;
+  public DiscountValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DiscountValidator = _formBuilder.group({
       //'FromDate': ['', Validators.compose([Validators.required])],
       'fromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],
@@ -35,7 +35,7 @@ export class RPT_BIL_DiscountReportModel {
     });
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     var currDate = moment().format('YYYY-MM-DD HH:mm');
     if (control.value) { // gets empty string for invalid date such as 30th Feb or 31st Nov)
       if ((moment(control.value).diff(currDate) > 0)
@@ -46,7 +46,7 @@ export class RPT_BIL_DiscountReportModel {
       return { 'wrongDate': true };
   }
 
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');

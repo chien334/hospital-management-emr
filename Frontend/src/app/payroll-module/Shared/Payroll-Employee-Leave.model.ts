@@ -1,4 +1,4 @@
-import { FormBuilder, Validators, FormControl } from "@angular/forms";
+import { UntypedFormBuilder, Validators, FormControl } from "@angular/forms";
 import * as moment from 'moment/moment';
 
 export class EmployeeLeaveModel{
@@ -17,7 +17,7 @@ export class EmployeeLeaveModel{
     public CancelledOn: string = "";
     public CancelledBy: number =0;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.EmployeeLeaveValidator = _formBuilder.group({
             'LeaveRuleId': ['', Validators.compose([])],
             'Description': ['', Validators.compose([Validators.maxLength(100)])],

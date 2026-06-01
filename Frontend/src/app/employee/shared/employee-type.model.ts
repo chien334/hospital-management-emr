@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 export class EmployeeType {
@@ -16,12 +16,12 @@ export class EmployeeType {
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
     public IsActive: boolean = true;
-    public EmployeeTypeValidator: FormGroup = null;
+    public EmployeeTypeValidator: UntypedFormGroup = null;
 
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.EmployeeTypeValidator = _formBuilder.group({
             'EmployeeTypeName': ['', Validators.compose([Validators.required])],
         });

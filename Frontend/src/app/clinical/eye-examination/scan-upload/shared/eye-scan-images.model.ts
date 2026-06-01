@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms'
 import * as moment from 'moment/moment';
 
@@ -20,12 +20,12 @@ export class EyeScanModel {
   public FileBinaryData: string = "";
   public FileName: string = "";
   public FileExtention: string = "";
-  public EyeScanValidator: FormGroup = null;
+  public EyeScanValidator: UntypedFormGroup = null;
   public IsActive: boolean = true;
   public FileBase64String: string = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
 
     this.EyeScanValidator = _formBuilder.group({
       'Title': ['', Validators.required,],

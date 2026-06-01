@@ -12,10 +12,10 @@ import { PatientBedInfoVM } from '../shared/admission.view.model';
 import * as moment from 'moment/moment';
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 
@@ -34,7 +34,7 @@ export class AdmittedPatientHistory {
   @Input()
   public ipVisitid: number;
 
-  public AdmissionDateValidator: FormGroup = null;
+  public AdmissionDateValidator: UntypedFormGroup = null;
   constructor(public admissionBLService: ADT_BLService,
     public msgBoxServ: MessageboxService) {
     this.SetValidators();
@@ -106,7 +106,7 @@ export class AdmittedPatientHistory {
   }
 
   public SetValidators() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.AdmissionDateValidator = _formBuilder.group({
       'StartedOn': ['', Validators.compose([Validators.required])],
       'EndedOn': ['', Validators.compose([])]

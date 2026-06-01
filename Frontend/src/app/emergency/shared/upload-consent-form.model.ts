@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormControl, UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import * as moment from "moment";
 
 export class UploadCosentFormModel {
@@ -13,10 +13,10 @@ export class UploadCosentFormModel {
   public CreatedBy: number = 0;
   public ModifiedOn: string = null;
   public ModifiedBy: number = 0;
-  public FileUploadValidator:FormGroup=null;
+  public FileUploadValidator:UntypedFormGroup=null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
 
     this.FileUploadValidator = _formBuilder.group({
         'FileType': ['', Validators.required,],

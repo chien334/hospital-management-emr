@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { UntypedFormGroup, UntypedFormControl, Validators, UntypedFormBuilder } from '@angular/forms'
 import * as moment from 'moment/moment';
 import { CommonValidators } from "../../shared/common-validator";
 import { GoodsReceiptOtherChargeModel, GROtherChargesItemModel } from './goods-receipt-other-charges.model';
@@ -32,7 +32,7 @@ export class GoodsReceiptItems {
   public OtherCharge: number = 0;
   public CounterId: number = 0;
   public SelectedItem: any = "";
-  public GoodsReceiptItemValidator: FormGroup = null;
+  public GoodsReceiptItemValidator: UntypedFormGroup = null;
   public Quantity: number = 0;
   public ModifiedBy: number = null;
   public ModifiedOn: Date = null;
@@ -62,7 +62,7 @@ export class GoodsReceiptItems {
   public CostPrice: number = 0;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.GoodsReceiptItemValidator = _formBuilder.group({
       'ReceivedQuantity': ['', Validators.compose([Validators.required, this.positiveNumber])],
       'ItemId': ['', Validators.compose([Validators.required])],
@@ -91,7 +91,7 @@ export class GoodsReceiptItems {
       return !(this.GoodsReceiptItemValidator.hasError(validator, fieldName));
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
     //if positive then selected date is of future else it of the past || selected year can't be of future
@@ -103,14 +103,14 @@ export class GoodsReceiptItems {
     //else
     //    return { 'wrongDate': true };
   }
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value < 0)
         return { 'positivenum': true };
     }
   }
   //This is for ItemRate and Quantity (must be greater than 0)
-  positiveNumber(control: FormControl): { [key: string]: boolean } {
+  positiveNumber(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0)
         return { 'positivenumber': true };

@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -17,10 +17,10 @@ export class ItemCategoryModel {
     public CreatedOn: string = null;
     public IsActive: boolean = true;
    
-    public ItemCategoryValidator: FormGroup = null;
+    public ItemCategoryValidator: UntypedFormGroup = null;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ItemCategoryValidator = _formBuilder.group({
             'ItemCategoryName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
         });

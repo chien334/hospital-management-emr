@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 
 export class PriceCategory {
@@ -28,11 +28,11 @@ export class PriceCategory {
   public Copayment_CreditPercent: number = null;
   //End: Sud:22Mar'23--Below Fields should be removed as per NewBillingStructure
 
-  public PriceValidator: FormGroup;
+  public PriceValidator: UntypedFormGroup;
 
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PriceValidator = _formBuilder.group({
       'PriceCategoryName': ['', Validators.compose([Validators.required])],
 

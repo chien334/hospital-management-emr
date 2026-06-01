@@ -33,44 +33,43 @@ import { EmployeeLeaveComponent } from './Leave/employee-leave-details/emp-leave
 
 
 @NgModule({
-  imports: [
-    PayrollRoutingModule,
-    CommonModule,
-    FormsModule,
-    SharedModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatInputModule,
-    MatRadioModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    DanpheAutoCompleteModule,
-    NgxPaginationModule,
-    MatTooltipModule
-  ],
-  declarations: [
-    PayrollMainComponent,
-    AttendanceComponent,
-    LeaveComponent,
-    PayrollComponent,
-    EditAttendance,
-    LeaveRuleListComponent,
-    HolidayComponent,
-    LeaveRequestComponent,
-    GrdFilterPipe,
-    AddNewLeaveRequestComponent,
-    EmployeeLeaveComponent
-  ],
-  providers: [SchedulingBLService,
-    SchedulingDLService,
-    PayrollBLService,
-    PayrollDLService,
-    CommonPayrollService],
-  bootstrap: [PayrollMainComponent],
-  entryComponents: [EditAttendance]
+    imports: [
+        PayrollRoutingModule,
+        CommonModule,
+        FormsModule,
+        SharedModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatInputModule,
+        MatRadioModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        DanpheAutoCompleteModule,
+        NgxPaginationModule,
+        MatTooltipModule
+    ],
+    declarations: [
+        PayrollMainComponent,
+        AttendanceComponent,
+        LeaveComponent,
+        PayrollComponent,
+        EditAttendance,
+        LeaveRuleListComponent,
+        HolidayComponent,
+        LeaveRequestComponent,
+        GrdFilterPipe,
+        AddNewLeaveRequestComponent,
+        EmployeeLeaveComponent
+    ],
+    providers: [SchedulingBLService,
+        SchedulingDLService,
+        PayrollBLService,
+        PayrollDLService,
+        CommonPayrollService],
+    bootstrap: [PayrollMainComponent]
 })
 export class PayrollMainModule {
 

@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { PharmacyWardRequisitionVerifier_DTO } from '../phrm-substore-requisition-add/shared/phrm-ward-requisition-verifier.dto';
 import { PHRMSubStoreRequisitionItems } from './phrm-substore-requisition-items.model';
 
@@ -11,7 +11,7 @@ export class PHRMSubStoreRequisition {
     public CreatedBy: number = 0;
     public CreatedOn: string = "";
     public Remarks: string = "";
-    public RequisitionValidator: FormGroup = null;
+    public RequisitionValidator: UntypedFormGroup = null;
     public RequisitionItems: Array<PHRMSubStoreRequisitionItems> = new Array<PHRMSubStoreRequisitionItems>();
     public canDispatchItem: boolean = false;
     public CanApproveTransfer: boolean;
@@ -19,7 +19,7 @@ export class PHRMSubStoreRequisition {
     public VerifierList: PharmacyWardRequisitionVerifier_DTO[] = [];
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.RequisitionValidator = _formBuilder.group({
         });
     }

@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class PatientScheme {
   public PatientSchemeId: number = 0;
@@ -19,11 +19,11 @@ export class PatientScheme {
   public OtherInfo: string = null;
   public IsActive: boolean = true;
   public GeneralCreditLimit: number = 0;
-  public PatientSchemeValidator: FormGroup;
+  public PatientSchemeValidator: UntypedFormGroup;
   public SubSchemeId: number = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PatientSchemeValidator = _formBuilder.group({
       'PolicyNo': ['', Validators.compose([Validators.required])]
     });

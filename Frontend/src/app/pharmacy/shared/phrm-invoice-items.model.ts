@@ -1,5 +1,5 @@
 
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { PHRMGenericModel } from './phrm-generic.model';
 import { PHRMGoodsReceiptItemsModel } from "./phrm-goods-receipt-items.model";
 import { PHRMItemMasterModel } from "./phrm-item-master.model";
@@ -53,7 +53,7 @@ export class PHRMInvoiceItemsModel {
   public SelectedGRItems: Array<PHRMGoodsReceiptItemsModel> = new Array<PHRMGoodsReceiptItemsModel>();
   public selectedGeneneric: PHRMGenericModel;
   public CompanyName: string = "";
-  public InvoiceItemsValidator: FormGroup = null;
+  public InvoiceItemsValidator: UntypedFormGroup = null;
   public enableItmSearch: boolean = true;
   public Dosage: string = null;
   public Frequency: number = 0;
@@ -93,7 +93,7 @@ export class PHRMInvoiceItemsModel {
 
   //Constructor of class
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.InvoiceItemsValidator = _formBuilder.group({
       'ItemName': ['', Validators.compose([this.ItemNameValidator()])],
       'Quantity': ['', Validators.compose([this.integerValidator, this.wholeNumberValidator])],
@@ -120,18 +120,18 @@ export class PHRMInvoiceItemsModel {
       return !(this.InvoiceItemsValidator.hasError(validator, fieldName));
   }
   public InvoiceItemsValidatortest() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     _formBuilder.group({
       'Quantity': ['', Validators.compose([this.positiveNumberValdiatortest])]
     });
   }
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0)
         return { 'invalidNumber': true };
     }
   }
-  wholeNumberValidator(control: FormControl): { [key: string]: boolean } {
+  wholeNumberValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value) {
       if (control.value % 1 != 0)
         return { 'wrongDecimalValue': true };
@@ -139,7 +139,7 @@ export class PHRMInvoiceItemsModel {
     else
       return { 'wrongDecimalValue': true };
   }
-  integerValidator(control: FormControl): { [key: string]: boolean } {
+  integerValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0)
         return { 'invalidNumber': true };

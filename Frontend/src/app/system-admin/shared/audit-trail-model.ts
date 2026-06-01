@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -29,10 +29,10 @@ export class AuditTrailModel {
   // not mapped
   public TableDisplayName: string = '';
 
-  public AuditTrailValidator: FormGroup = null;
+  public AuditTrailValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.AuditTrailValidator = _formBuilder.group({
       'FromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],
       'ToDate': ['', Validators.compose([Validators.required, this.dateValidators])],
@@ -41,7 +41,7 @@ export class AuditTrailModel {
 
   }
 
-  public dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  public dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
     if (control.value) {
@@ -55,7 +55,7 @@ export class AuditTrailModel {
   }
 
 
-  public dateValidators(control: FormControl): { [key: string]: boolean } {
+  public dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');

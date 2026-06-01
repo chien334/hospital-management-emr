@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MessageboxService } from '../../../../../shared/messagebox/messagebox.service';
 import { SterilizationService } from '../../sterilization.service';
 
@@ -13,16 +13,16 @@ export class DisinfectItemComponent implements OnInit {
   @Input() showPopUp: boolean = false;
   @Input() selectedItemName: string = "";
   @Input() selectedItemCssdTxnId: number = null;
-  storeForm: FormGroup;
+  storeForm: UntypedFormGroup;
   disinfectionDate: string;
   @Output("call-back-close") callBackClose: EventEmitter<any> = new EventEmitter();
   constructor(public msgBox: MessageboxService, public sterilizationService: SterilizationService) { }
 
   ngOnInit() {
-    this.storeForm = new FormGroup({
-      DisinfectedDate: new FormControl(''),
-      DisinfectionMethod: new FormControl('', Validators.required),
-      DisinfectionRemarks: new FormControl('')
+    this.storeForm = new UntypedFormGroup({
+      DisinfectedDate: new UntypedFormControl(''),
+      DisinfectionMethod: new UntypedFormControl('', Validators.required),
+      DisinfectionRemarks: new UntypedFormControl('')
     });
   }
   ngOnDestroy() {

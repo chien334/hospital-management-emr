@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import * as moment from "moment";
 
 export class FixedAssetInsuranceModel {
@@ -16,10 +16,10 @@ export class FixedAssetInsuranceModel {
   public ModefiedBy: number;
   public ModefiedOn: string;
 
-  public InsuranceValidators: FormGroup = null;
+  public InsuranceValidators: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.InsuranceValidators = _formBuilder.group({
       'PolicyNumber': ['', Validators.compose([Validators.required])],
       'Insurer': ['', Validators.compose([Validators.required])],

@@ -4,7 +4,7 @@ import {
     FormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -18,7 +18,7 @@ export class DenominationModel {
     // public DenominationValidator: FormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
     //     this.DenominationValidator = _formBuilder.group({
     //         'Quantity': ['', Validators.compose([this.positiveNumberValdiator])],
     //     });

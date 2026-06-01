@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 
@@ -15,10 +15,10 @@ export class PHRMPackingTypeModel {
     public ModifiedOn: string = null;
     public IsActive: boolean = true;
 
-    public PackingTypeValidator: FormGroup = null;
+    public PackingTypeValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PackingTypeValidator = _formBuilder.group({
             'PackingName': ['', Validators.required]
         });

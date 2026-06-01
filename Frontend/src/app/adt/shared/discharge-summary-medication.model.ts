@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -14,13 +14,13 @@ export class DischargeSummaryMedication {
     public Medicine: string = null;
     public FrequencyId: number = 0;
     public Notes: string = null;
-    public DischargeSummaryMedicationValidator: FormGroup = null;
+    public DischargeSummaryMedicationValidator: UntypedFormGroup = null;
     public IsActive: boolean = null;
     public Type: string = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.DischargeSummaryMedicationValidator = _formBuilder.group({
             // 'FrequencyId': ['', Validators.compose([Validators.required])],
             // 'Medicine': ['', Validators.compose([Validators.maxLength(100), Validators.required ])],

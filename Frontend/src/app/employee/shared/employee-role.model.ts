@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 export class EmployeeRole {
@@ -16,12 +16,12 @@ export class EmployeeRole {
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
     public IsActive: boolean = true;
-    public EmployeeRoleValidator: FormGroup = null;
+    public EmployeeRoleValidator: UntypedFormGroup = null;
 
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.EmployeeRoleValidator = _formBuilder.group({
             'EmployeeRoleName': ['', Validators.compose([Validators.required])],
         });

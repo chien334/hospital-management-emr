@@ -1,4 +1,4 @@
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 import * as moment from "moment";
 
 export class PHRMPatientConsumptionItem {
@@ -42,14 +42,14 @@ export class PHRMPatientConsumptionItem {
     public UserName: string = '';
     public IsFinalize: boolean = false;
     public ConsumptionReturnItemIds: Array<number> = new Array<number>();
-    public PatientConsumptionValidator: FormGroup = null;
+    public PatientConsumptionValidator: UntypedFormGroup = null;
     public AvailableQuantity: number = 0;
     public FinalizedQty: number = 0;
     ReturningStoreId: number = 0;
     IsInvalidQuantity: boolean = false;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PatientConsumptionValidator = _formBuilder.group({
             'GenericName': ['', Validators.compose([Validators.required])],
             'ItemName': ['', Validators.compose([Validators.required, this.ItemNameValidator()])],
@@ -77,7 +77,7 @@ export class PHRMPatientConsumptionItem {
         else
             return !(this.PatientConsumptionValidator.hasError(validator, fieldName));
     }
-    wholeNumberValidator(control: FormControl): { [key: string]: boolean } {
+    wholeNumberValidator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control.value) {
             if (control.value % 1 != 0)
                 return { 'wrongDecimalValue': true };
@@ -85,7 +85,7 @@ export class PHRMPatientConsumptionItem {
         else
             return { 'wrongDecimalValue': true };
     }
-    integerValidator(control: FormControl): { [key: string]: boolean } {
+    integerValidator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value <= 0)
                 return { 'invalidNumber': true };

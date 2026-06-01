@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -20,10 +20,10 @@ export class TermsConditionsMasterModel {
     public IsActive: boolean = true;
     public TermsApplicationEnumId: ENUM_TermsApplication = ENUM_TermsApplication.Inventory;
     
-    public TermsValidators: FormGroup = null;
+    public TermsValidators: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.TermsValidators = _formBuilder.group({
             // 'Text': ['', Validators.compose([Validators.required, Validators.maxLength(100000000000)])],
         });

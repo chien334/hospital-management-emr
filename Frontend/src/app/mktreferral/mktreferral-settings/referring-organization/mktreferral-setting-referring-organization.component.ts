@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { DanpheHTTPResponse } from "../../../shared/common-models";
 import { NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
 import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
@@ -19,10 +19,10 @@ export class MarketingReferralReferringOrganizationComponent implements OnInit {
     public mktreferralReferringOrganizationListGridColumns: Array<any> = null;
     public NepaliDateInGridSettings: NepaliDateInGridParams = new NepaliDateInGridParams();
     public loading: boolean;
-    public referringPartyFormControl: FormControl;
+    public referringPartyFormControl: UntypedFormControl;
     public referringOrganizationList: ReferringOrganization_DTO[] = [];
     public referringOrganizationObj: ReferringOrganization_DTO = new ReferringOrganization_DTO();
-    public ReferringOrganizationValidator: FormGroup = null;
+    public ReferringOrganizationValidator: UntypedFormGroup = null;
     public ShowAddEditPage: boolean = false;
     public ComponentMode: string = "add";
     public selectedItem: ReferringOrganization_DTO;
@@ -31,7 +31,7 @@ export class MarketingReferralReferringOrganizationComponent implements OnInit {
         public changeDetector: ChangeDetectorRef,
         public mktReferralBLService: MarketingReferralBLService,
         public mktReferral: MarketingReferralService) {
-        var _formbuilder = new FormBuilder();
+        var _formbuilder = new UntypedFormBuilder();
         this.ReferringOrganizationValidator = _formbuilder.group({
             'ReferringOrganizationName': ['', Validators.required],
             'Address': ['', Validators.required],

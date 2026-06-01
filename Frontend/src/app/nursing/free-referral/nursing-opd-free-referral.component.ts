@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ADT_DLService } from '../../adt/shared/adt.dl.service';
@@ -54,7 +54,7 @@ export class NursingOpdFreeReferralComponent implements OnInit {
   public selectedDiagnosisSubscription = new Subscription();
   public enableDepartmentLevelAppointment: boolean;
   public showDocMandatory: boolean = false; //this is used to show either doctor is mandatory or not// it is used only in case of EHS price selection --Yubraj 23rd 2019
-  public freeReferValidator: FormGroup = null;
+  public freeReferValidator: UntypedFormGroup = null;
   public fromDate: string = '';
   public toDate: string = '';
   public opdList: Array<Visit> = new Array<Visit>();
@@ -87,7 +87,7 @@ export class NursingOpdFreeReferralComponent implements OnInit {
       this.enableDepartmentLevelAppointment = true;
       this.showDocMandatory = true;
     }
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
 
     this.freeReferValidator = _formBuilder.group({
       'ReferredDepartment': [, Validators.required],

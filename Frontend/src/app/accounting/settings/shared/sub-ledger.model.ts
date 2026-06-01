@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
 import { ENUM_DateFormats } from "../../../shared/shared-enums";
 
@@ -36,11 +36,11 @@ export class SubLedgerModel {
   public Dr: boolean = true;
   public Cr: boolean = false;
   public HospitalId: number = 0;
-  public subLedgerValidator: FormGroup = null;
+  public subLedgerValidator: UntypedFormGroup = null;
   public IsDefault: boolean = false;
   constructor() {
     this.CreatedOn = moment().format(ENUM_DateFormats.Year_Month_Day);
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.subLedgerValidator = _formBuilder.group({
       'LedgerName': ['', Validators.compose([Validators.required])],
       'SubLedgerName': ['', Validators.compose([Validators.required])],

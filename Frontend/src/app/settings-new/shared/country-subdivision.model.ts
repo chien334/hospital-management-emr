@@ -1,7 +1,7 @@
 ﻿
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 
@@ -21,11 +21,11 @@ export class CountrySubdivision {
     public ModifiedBy: number = null;
     public ModifiedOn: string = null;
 
-    public SubdivisionValidator: FormGroup = null;
+    public SubdivisionValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.SubdivisionValidator = _formBuilder.group({
             'CountryId': ['', Validators.compose([Validators.required])],
             'CountrySubDivisionName': ['', Validators.compose([Validators.required])]
@@ -73,11 +73,11 @@ export class Municipality {
     public ModifiedOn: string = null;
 
 
-    public MunicipalityValidator: FormGroup = null;
+    public MunicipalityValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.MunicipalityValidator = _formBuilder.group({
             'CountryId': ['', Validators.compose([Validators.required])],
             'SubDivisionId': ['', Validators.compose([Validators.required])],

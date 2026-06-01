@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 
 export class DischargeSummaryConsultant {
     public consultantId: number = 0;
@@ -6,7 +6,7 @@ export class DischargeSummaryConsultant {
     public DischargeSummaryId: number = 0;
     public PatientVisitId: number = 0;
     public PatientId: number = 0;
-    public DischargeSummaryConsultantValidator: FormGroup = null;
+    public DischargeSummaryConsultantValidator: UntypedFormGroup = null;
     public IsActive: boolean = null;
     public Type: string = null;
     public consultantName: string = null;
@@ -14,7 +14,7 @@ export class DischargeSummaryConsultant {
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.DischargeSummaryConsultantValidator = _formBuilder.group({
             // 'FrequencyId': ['', Validators.compose([Validators.required])],
             // 'Medicine': ['', Validators.compose([Validators.maxLength(100), Validators.required ])],

@@ -1,7 +1,7 @@
 
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 export class PHRMPatient {
@@ -30,7 +30,7 @@ export class PHRMPatient {
     public CountrySubDivisionName: string = "";
     //only for read purpose
     public ShortName: string = "";
-    public PHRMPatientValidator: FormGroup = null;
+    public PHRMPatientValidator: UntypedFormGroup = null;
     public PANNumber: string = "";
     //insurance details
     public NSHINumber: string;
@@ -53,7 +53,7 @@ export class PHRMPatient {
     SchemeName: string = '';
     //Constructor of class
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PHRMPatientValidator = _formBuilder.group({
             'FirstName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
             'LastName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],

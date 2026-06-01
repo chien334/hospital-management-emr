@@ -1,10 +1,10 @@
 
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -42,7 +42,7 @@ export class GoodsReceiptItems {
   public OtherCharge: number = 0;
   public CounterId: number = 0;
   public SelectedItem: any = "";
-  public GoodsReceiptItemValidator: FormGroup = null;
+  public GoodsReceiptItemValidator: UntypedFormGroup = null;
   public Quantity: number = 0;
   public ModifiedBy: number = null;
   public ModifiedOn: Date = null;
@@ -67,7 +67,7 @@ export class GoodsReceiptItems {
   public grItemCharges: GRItemChargesViewModel[] = [];
   public GRItemCharges: GRItemChargesDTO[] = [];
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.GoodsReceiptItemValidator = _formBuilder.group({
       'ReceivedQuantity': ['', Validators.compose([Validators.required, CommonValidators.positivenum])],
       'ItemId': ['', Validators.compose([Validators.required])],
@@ -93,7 +93,7 @@ export class GoodsReceiptItems {
       return !(this.GoodsReceiptItemValidator.hasError(validator, fieldName));
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
     //if positive then selected date is of future else it of the past || selected year can't be of future

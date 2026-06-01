@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CoreService } from '../../../core/shared/core.service';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
@@ -31,7 +31,7 @@ export class PHRMGoodReceiptViewComponent implements OnInit {
       printDetaiils: any;
       showPrint: boolean;
       cancelRemarks: string;
-      cancelForm = new FormGroup({ CancelRemarks: new FormControl('', Validators.required) });
+      cancelForm = new UntypedFormGroup({ CancelRemarks: new UntypedFormControl('', Validators.required) });
       showConfirmationPopUp: boolean = false;
 
       public GeneralFieldLabel = new GeneralFieldLabels();

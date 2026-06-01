@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 export class CreditOrganization {
@@ -13,12 +13,12 @@ export class CreditOrganization {
     public ModifiedBy: number = null;
     public IsDefault: boolean = false;
 
-    public CreditOrganizationValidator: FormGroup = null;
+    public CreditOrganizationValidator: UntypedFormGroup = null;
 
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.CreditOrganizationValidator = _formBuilder.group({
             'OrganizationName': ['', Validators.compose([Validators.required])],
         });

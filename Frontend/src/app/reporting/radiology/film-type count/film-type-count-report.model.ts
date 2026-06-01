@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -21,11 +21,11 @@ export class RPT_RAD_Film_Type_CountModel {
     public fromDate: string = "";
     public toDate: string = "";
 
-    public filmTypeCountValidator: FormGroup = null;
+    public filmTypeCountValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.filmTypeCountValidator = _formBuilder.group({
             //'FromDate': ['', Validators.compose([Validators.required])],
             'fromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],
@@ -35,7 +35,7 @@ export class RPT_RAD_Film_Type_CountModel {
     }
 
 
-    dateValidator(control: FormControl): { [key: string]: boolean } {
+    dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
         var currDate = moment().format('YYYY-MM-DD HH:mm');
         if (control.value) { // gets empty string for invalid date such as 30th Feb or 31st Nov)
             if ((moment(control.value).diff(currDate) > 0)
@@ -46,7 +46,7 @@ export class RPT_RAD_Film_Type_CountModel {
             return { 'wrongDate': true };
     }
 
-    dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+    dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
 
         //get current date, month and time
         var currDate = moment().format('YYYY-MM-DD');

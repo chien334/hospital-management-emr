@@ -1,4 +1,4 @@
-﻿import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+﻿import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
 import { ENUM_DateTimeFormat } from "../../../shared/shared-enums";
 
@@ -13,10 +13,10 @@ export class ChartofAccountModel {
     public ModifiedBy: number = 0;
     public ModifiedOn: string = null;
     public IsActive: boolean = true;
-    public COAValidator: FormGroup = null;
+    public COAValidator: UntypedFormGroup = null;
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.COAValidator = _formBuilder.group({
             'COAName': ['', Validators.compose([Validators.required])],
             'primaryGroup': ['', Validators.compose([Validators.required])],

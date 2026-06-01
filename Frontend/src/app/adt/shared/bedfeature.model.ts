@@ -1,5 +1,5 @@
 ﻿import {
-    FormBuilder, FormGroup, Validators
+    UntypedFormBuilder, UntypedFormGroup, Validators
 } from '@angular/forms';
 import * as moment from 'moment';
 import { ENUM_DateTimeFormat } from '../../shared/shared-enums';
@@ -16,14 +16,14 @@ export class BedFeature {
 
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
-    public BedFeatureValidator: FormGroup = null;
+    public BedFeatureValidator: UntypedFormGroup = null;
 
     public IsSelected: boolean = false;
     public TaxApplicable: boolean = false //added for adding in Bill Item price table: yubraj 11th Oct 2018
 
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formbuilder = new FormBuilder();
+        var _formbuilder = new UntypedFormBuilder();
         this.BedFeatureValidator = _formbuilder.group({
             'BedFeatureCode': ['', Validators.compose([Validators.required, Validators.maxLength(10)])],
             'BedFeatureName': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],

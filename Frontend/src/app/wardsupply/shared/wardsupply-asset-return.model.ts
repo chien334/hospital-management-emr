@@ -1,4 +1,4 @@
-import {FormGroup,FormBuilder,Validators} from '@angular/forms'
+import {UntypedFormGroup,UntypedFormBuilder,Validators} from '@angular/forms'
 import { WardSupplyAssetReturnItemsModel } from './wardsupply-asset-returnItems.model';
   //swapnil-2-april-2021 
 export class WardSupplyAssetReturnModel {
@@ -19,13 +19,13 @@ export class WardSupplyAssetReturnModel {
     public IsCancel = 0;
     public CancelRemarks = '';
     public RequisitionNo = '';
-    public ReturnValidator: FormGroup = null;
+    public ReturnValidator: UntypedFormGroup = null;
     public ReturnItemsList: Array<WardSupplyAssetReturnItemsModel> = new Array<WardSupplyAssetReturnItemsModel>();
     public VerificationId = 0;
     public EmpFullName:string='';
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ReturnValidator = _formBuilder.group({
           // 'StoreId': ['', Validators.compose([Validators.required])],
           // 'BarCodeNumber': ['', Validators.compose([Validators.required])]

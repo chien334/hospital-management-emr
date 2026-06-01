@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment/moment';
 import { ItemMaster } from '../../inventory/shared/item-master.model';
 import { VendorMaster } from '../../inventory/shared/vendor-master.model';
@@ -40,7 +40,7 @@ export class PurchaseOrder {
   public CurrencyId: number = null;
 
   public PurchaseOrderItems: Array<PurchaseOrderItems> = new Array<PurchaseOrderItems>();
-  public PurchaseOrderValidator: FormGroup = null;
+  public PurchaseOrderValidator: UntypedFormGroup = null;
 
   //sanjit: added for verification purpose
   public IsVerificationEnabled: boolean = false;
@@ -78,7 +78,7 @@ export class PurchaseOrder {
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.PurchaseOrderValidator = _formBuilder.group({
       'VendorId': ['', [Validators.required, this.registeredVendorValidator]],
       'CurrencyCode': ['', Validators.required],
@@ -137,7 +137,7 @@ export class PurchaseOrder {
   }
 
 
-  registeredVendorValidator(control: FormControl): { [key: string]: boolean } {
+  registeredVendorValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value && typeof (control.value) == "object" && control.value.VendorId > 0)
       return;
     else

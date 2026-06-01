@@ -1,5 +1,5 @@
 import {
-  FormBuilder, FormControl, FormGroup, Validators
+  UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators
 } from '@angular/forms';
 
 export class BillServiceItemModel {
@@ -27,7 +27,7 @@ export class BillServiceItemModel {
   public ModifiedOn: string = null;
   public IsActive: boolean = true;
   public ItemId: number = 0;
-  public BillingItemValidator: FormGroup = null;
+  public BillingItemValidator: UntypedFormGroup = null;
   public ServiceDepartmentName: string = null;
   public ServiceCategoryName: string = null;
   public DiscountApplicable: boolean = true;
@@ -35,7 +35,7 @@ export class BillServiceItemModel {
 
   constructor() {
 
-    const _formBuilder = new FormBuilder();
+    const _formBuilder = new UntypedFormBuilder();
     this.BillingItemValidator = _formBuilder.group({
       'ServiceDepartmentId': ['', Validators.compose([Validators.required])],
       'ServiceCategoryId': ['', Validators.compose([Validators.required])],
@@ -86,7 +86,7 @@ export class BillServiceItemModel {
     }
   }
 
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value < 0)
         return { 'invalidNumber': true };

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
@@ -26,7 +26,7 @@ import { ReportingService } from '../../reporting/shared/reporting-service';
 import { ResetPatientcontextGuard } from '../../shared/reset-patientcontext-guard';
 import { ActivateBillingCounterGuardService } from '../../utilities/shared/activate-billing-counter-guard-service';
 
-export const InsBillingRoutes =
+export const InsBillingRoutes: Routes =
   [
     {
       path: '',

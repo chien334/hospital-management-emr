@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -18,10 +18,10 @@ export class FamilyHistory {
     public ModifiedBy: number = null;
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
-    public FamilyHistoryValidator: FormGroup = null;
+    public FamilyHistoryValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.FamilyHistoryValidator = _formBuilder.group({
             'ICD10Code': ['', Validators.compose([Validators.required])],
             'Relationship': ['', Validators.compose([Validators.required, Validators.maxLength(20)])],

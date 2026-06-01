@@ -1,14 +1,14 @@
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
 } from '@angular/forms'
 import { GoodsReceiptItems } from "./goods-receipt-item.model"
 import { ENUM_GRItemCategory } from "../../shared/shared-enums";
 import * as moment from 'moment/moment';
 export class GoodsReceipt {
-  public GoodsReceiptValidator: FormGroup = null;
+  public GoodsReceiptValidator: UntypedFormGroup = null;
   public VendorName: string = "";
   public VendorNo: string = "";
   public ContactAddress: string = "";
@@ -40,7 +40,7 @@ export class GoodsReceipt {
   IsQuantityAvailableToDispatchFromGR: boolean;
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.GoodsReceiptValidator = _formBuilder.group({
       //sanjit: 2Apr'20: GoodsReceiptDate somehow throws validation error when use with danphe-date-picker, so it is commented. 
       // 'GoodsReceiptDate': ['', Validators.compose([Validators.required])],
@@ -67,7 +67,7 @@ export class GoodsReceipt {
       return !(this.GoodsReceiptValidator.hasError(validator, fieldName));
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import { CoreService } from "../../core/shared/core.service";
 
 @Injectable()
@@ -11,8 +11,8 @@ export class BillingInvoiceBlService {
 
   }
 
-  CreateFormGroupForInvoiceItems(): FormGroup {
-    const formBuilder = new FormBuilder();
+  CreateFormGroupForInvoiceItems(): UntypedFormGroup {
+    const formBuilder = new UntypedFormBuilder();
     return formBuilder.group({
       'ItemCode': ['', Validators.compose([Validators.required])],
       'ServiceItemId': ['', Validators.compose([Validators.required])],
@@ -36,7 +36,7 @@ export class BillingInvoiceBlService {
       'IntegrationItemId': [0, Validators.compose([])],
     });
   }
-  discountPercentValidator(control: FormControl): { [key: string]: boolean } {
+  discountPercentValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value) {
       if (control.value < 0 || control.value > 100)
         return { 'invalidPercent': true };
@@ -44,7 +44,7 @@ export class BillingInvoiceBlService {
 
   }
 
-  discountAmountValidator(control: FormControl): { [key: string]: boolean } {
+  discountAmountValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control && control.value < 0)
       return { 'invalidNumber': true };
     else

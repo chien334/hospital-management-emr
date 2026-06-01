@@ -1,7 +1,7 @@
 ﻿import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormControl,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -21,18 +21,18 @@ export class ActiveMedical {
     public ModifiedBy: number = null;
     public CreatedOn: string = null;
     public ModifiedOn: string = null;
-    public ActiveMedicalValidator: FormGroup = null;
+    public ActiveMedicalValidator: UntypedFormGroup = null;
     public PrincipleProblem: boolean = false;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ActiveMedicalValidator = _formBuilder.group({
             'ICD10Code': ['', Validators.compose([Validators.required])],
             'OnSetDate': ['', Validators.compose([Validators.required, this.dateValidator])],
             'Note': ['', Validators.compose([Validators.maxLength(200)])],
         });
     }
-    dateValidator(control: FormControl): { [key: string]: boolean } {
+    dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
         var currDate = moment().format('YYYY-MM-DD HH:mm');
         if (control.value) { // gets empty string for invalid date such as 30th Feb or 31st Nov)
             if ((moment(control.value).diff(currDate) > 0)

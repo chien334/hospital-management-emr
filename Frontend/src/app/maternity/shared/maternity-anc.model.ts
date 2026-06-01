@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormControl, UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import * as moment from "moment";
 
 export class MaternityANCModel {
@@ -17,10 +17,10 @@ export class MaternityANCModel {
   public ModifiedBy: number = 0;
   public Weight: number = 0;
 
-  public ANCValidator: FormGroup = null;
+  public ANCValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ANCValidator = _formBuilder.group({
       'PregnancyPeriodInWeeks': ['', Validators.compose([Validators.required])],
       'VisitNumber': ['', Validators.compose([Validators.required])],

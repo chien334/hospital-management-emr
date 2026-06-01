@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 
@@ -11,10 +11,10 @@ export class PHRMUnitOfMeasurementModel {
     public CreatedBy: number = 0;
     public CreatedOn: string = '';
     public IsActive: boolean = true;
-    public UnitOfMeasurementValidator: FormGroup = null;
+    public UnitOfMeasurementValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.UnitOfMeasurementValidator = _formBuilder.group({
             'UOMName': ['', Validators.required]
         });

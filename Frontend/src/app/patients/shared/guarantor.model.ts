@@ -1,7 +1,7 @@
 ﻿import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormControl,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -22,7 +22,7 @@ export class Guarantor {
     public GuarantorCountrySubDivisionId: number = null;
     public GuarantorCity: string = null;
     public GuarantorZIPCode: string = null;
-    public GuarantorValidator: FormGroup = null;
+    public GuarantorValidator: UntypedFormGroup = null;
 
 
     public IsDirty(fieldname): boolean {
@@ -56,9 +56,9 @@ export class Guarantor {
         this.PatientId = 0;
         this.PatientGurantorInfo = 0;
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
 
-        function dateValidators(control: FormControl): { [key: string]: boolean } {
+        function dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
 
             var currDate = moment().format('YYYY-MM-DD');
 

@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -18,11 +18,11 @@ export class RPT_BIL_DepositBalanceModel {
    // public fromDate: string = "";
     //public toDate: string = "";
 
-    public DepositBalanceValidator: FormGroup = null;
+    public DepositBalanceValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.DepositBalanceValidator = _formBuilder.group({
             //'FromDate': ['', Validators.compose([Validators.required])],
            // 'fromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],

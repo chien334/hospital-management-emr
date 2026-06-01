@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { CoreService } from "../../../core/shared/core.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
 import { DanpheHTTPResponse } from "../../../shared/common-models";
@@ -24,7 +24,7 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
     public referringOrganizationList: ReferringOrganization_DTO[] = [];
     public referringOrganizationObj: ReferringOrganization_DTO = new ReferringOrganization_DTO();
     public referringPartyObj: ReferralParty_DTO = new ReferralParty_DTO();
-    public ReferringPartyGroupValidator: FormGroup = null;
+    public ReferringPartyGroupValidator: UntypedFormGroup = null;
     public ShowAddEditPage: boolean = false;
     public referringPartyList: ReferralParty_DTO[] = [];
 
@@ -42,7 +42,7 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
         public mktReferralBLService: MarketingReferralBLService,
         public mktReferral: MarketingReferralService) {
         this.GeneralFieldLabel = coreservice.GetFieldLabelParameter();
-        var _formbuilder = new FormBuilder();
+        var _formbuilder = new UntypedFormBuilder();
         this.ReferringPartyGroupValidator = _formbuilder.group({
             'ReferringPartyName': ['', Validators.required],
             'ReferringPartyGroupName': ['', Validators.required],

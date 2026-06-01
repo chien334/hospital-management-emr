@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms';
 
@@ -21,11 +21,11 @@ export class SubjectiveNotesModel {
     public ModifiedBy: number = null;
     public ModifiedOn: string = null;
     public IsActive: boolean = true;
-    public SubjectiveNoteValidator: FormGroup = null;
+    public SubjectiveNoteValidator: UntypedFormGroup = null;
 
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.SubjectiveNoteValidator = _formBuilder.group({
             //'ChiefComplaint': ['', Validators.compose([Validators.maxLength(2000)])],
             //'HistoryOfPresentingIllness': ['', Validators.compose([Validators.maxLength(2000)])],

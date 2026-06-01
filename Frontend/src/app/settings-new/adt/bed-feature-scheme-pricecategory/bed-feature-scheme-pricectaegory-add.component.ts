@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { UntypedFormGroup } from "@angular/forms";
 import { AdtBedFeatureSchemePriceCategoryMap_DTO } from "../../../adt/shared/DTOs/adt-bedfeature-scheme-pricecategory-map.dto";
 import { BedFeature } from "../../../adt/shared/bedfeature.model";
 import { DanpheHTTPResponse } from "../../../shared/common-models";
@@ -20,7 +20,7 @@ export class BedFeatureSchemePriceCategoryAddComponent {
     @Input('bed-feature-list') bedFeatureList: Array<BedFeature> = new Array<BedFeature>();
 
     selectedBedFeature: BedFeature = new BedFeature();
-    BedFeatureValidator: FormGroup = null;
+    BedFeatureValidator: UntypedFormGroup = null;
     BedFeatureSchemePriceCategory: BedFeatureSchemePriceCategoryModel = new BedFeatureSchemePriceCategoryModel();
     BedFeatureSchemePriceCategoryMaps: BedFeatureSchemePriceCategoryModel[] = [];
     BedFeatureSchemePriceCategoryList: AdtBedFeatureSchemePriceCategoryMap_DTO[] = [];

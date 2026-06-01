@@ -1,7 +1,7 @@
 import {
-  FormGroup,
+  UntypedFormGroup,
   Validators,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms'
 import * as moment from 'moment';
 import { single } from 'rxjs/operators';
@@ -41,7 +41,7 @@ export class BabyBirthDetails {
   public BirthConditionType: string;
   public IsLiveBirthCase: boolean = true;
 
-  public BabyBirthDetailsValidator: FormGroup = null;
+  public BabyBirthDetailsValidator: UntypedFormGroup = null;
   public NumberOfBabies: number = null;
 
   public IssuedSignatory: number;
@@ -53,7 +53,7 @@ export class BabyBirthDetails {
 
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.BabyBirthDetailsValidator = _formBuilder.group({
       'Sex': ['', Validators.compose([Validators.required])],
       'BirthDate': ['', Validators.compose([Validators.required])],

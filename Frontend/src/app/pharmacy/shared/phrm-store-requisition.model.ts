@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { PHRMStoreRequisitionItems } from "./phrm-store-requisition-items.model";
 
 export class PHRMStoreRequisition {
@@ -10,13 +10,13 @@ export class PHRMStoreRequisition {
     public CreatedBy: number = 0;
     public CreatedOn: string = "";
     public Remarks: string = "";
-    public RequisitionValidator: FormGroup = null;
+    public RequisitionValidator: UntypedFormGroup = null;
     public RequisitionItems: Array<PHRMStoreRequisitionItems> = new Array<PHRMStoreRequisitionItems>();
     public canDispatchItem: boolean = false;
     public CanApproveTransfer: boolean = false;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.RequisitionValidator = _formBuilder.group({
         });
     }

@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class MedicareMemberModel {
     public MedicareMemberId: number = 0;
@@ -28,11 +28,11 @@ export class MedicareMemberModel {
     public IsIpLimitExceeded: boolean = false;
     public IsOpLimitExceeded: boolean = false;
     public IsActive: boolean = true;
-    MedicareMemberValidator: FormGroup = null;
+    MedicareMemberValidator: UntypedFormGroup = null;
 
 
     constructor() {
-        let _formBuilder = new FormBuilder();
+        let _formBuilder = new UntypedFormBuilder();
         this.MedicareMemberValidator = _formBuilder.group({
             'DesignationId': ['', Validators.compose([Validators.required])],
             'Age': ['', Validators.compose([Validators.required])],

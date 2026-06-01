@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import { UntypedFormControl, Validators } from "@angular/forms";
 import * as moment from "moment/moment";
 import { VisitBLService } from "../../appointments/shared/visit.bl.service";
 import { VisitService } from "../../appointments/shared/visit.service";
@@ -234,7 +234,7 @@ export class TransferComponent {
   }
 
 
-  public noWhitespaceValidator(control: FormControl) {
+  public noWhitespaceValidator(control: UntypedFormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };

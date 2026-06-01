@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -25,10 +25,10 @@ export class LeaveRuleList {
     public Description: string = "";
     public CategoryCode: string = "";
     public SelectedItem: any = null;
-    public LeaveRuleValidator: FormGroup = null;
+    public LeaveRuleValidator: UntypedFormGroup = null;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.LeaveRuleValidator = _formBuilder.group({
             'LeaveCategoryId': ['', Validators.compose([Validators.required])],
             'Days': ['', Validators.compose([Validators.required])],

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
-import { FormGroup, Validators } from "@angular/forms";
+import { UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import * as _ from "lodash";
 import * as moment from "moment";
@@ -112,7 +112,7 @@ export class BillingTransactionComponent_New {
   public InvoiceItemsDto = new Array<InvoiceItem_DTO>();
   public showPastBillHistory: boolean = true;
   public PastTestList: any = []; //! Krishna, 19thMarch'23, Need to give it a type
-  public InvoiceItemFormGroup: FormGroup;
+  public InvoiceItemFormGroup: UntypedFormGroup;
   public selectedInvoiceItem: InvoiceItem_DTO = new InvoiceItem_DTO();
   public selectedInvoiceItemCode: ServiceItemDetails_DTO = new ServiceItemDetails_DTO();
   public doctorsList: Array<any> = [];//! Krishna, 19thMarch'23, Need to give it a type

@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 export class ProfileItemMapModel {
 
@@ -26,11 +26,11 @@ export class ProfileItemMapModel {
 
   IsPercentageValid: boolean = true;//pratik:30Jan'20 -- for individual validation of AssignedTo and Referral Percent. Only to be used in Client side.
 
-  ProfileItemMapValidator: FormGroup = null;
+  ProfileItemMapValidator: UntypedFormGroup = null;
   IsActive: boolean = true;
 
   constructor() {
-    const _fb = new FormBuilder();
+    const _fb = new UntypedFormBuilder();
     this.ProfileItemMapValidator = _fb.group({
       'BillItemPriceId': ['', Validators.required],
       'ProfileId': ['', Validators.required],

@@ -1,10 +1,10 @@
 
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -47,13 +47,13 @@ export class Appointment {
   //public CountryId: number = null;
   //public CountrySubDivisionId: number = null;
   //public DateOfBirth: string = null;
-  public AppointmentValidator: FormGroup = null;
+  public AppointmentValidator: UntypedFormGroup = null;
   public IsValidSelDepartment: boolean = true; //Yubraj :  23rd August '19
   public IsValidSelProvider: boolean = true;
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.AppointmentValidator = _formBuilder.group({
       'FirstName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       'MiddleName': ['', Validators.compose([])],
@@ -81,7 +81,7 @@ export class Appointment {
   //        return { 'valid': false };
   //}
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
@@ -98,7 +98,7 @@ export class Appointment {
 
   }
   //the date should be in past and we are allowing till 200yrs in past
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
 
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');

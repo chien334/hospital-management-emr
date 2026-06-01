@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 
 export class AdditionalServiceItemModel {
 
@@ -16,10 +16,10 @@ export class AdditionalServiceItemModel {
     public IsOpServiceItem: boolean = false;
     public IsIpServiceItem: boolean = false;
     public IsActive: boolean = true;
-    public AdditionalServiceItemValidator: FormGroup = null;
+    public AdditionalServiceItemValidator: UntypedFormGroup = null;
 
     constructor() {
-        const _formBuilder = new FormBuilder();
+        const _formBuilder = new UntypedFormBuilder();
         this.AdditionalServiceItemValidator = _formBuilder.group({
             GroupName: ['', Validators.required],
             PriceCategoryId: ['', Validators.required],

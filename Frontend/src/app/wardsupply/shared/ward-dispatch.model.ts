@@ -1,5 +1,5 @@
 import { WardDispatchItemsModel } from './ward-dispatch-items.model'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 export class WardispatchModel {
     public DispatchId: number = 0;
@@ -13,11 +13,11 @@ export class WardispatchModel {
 
   public WardDispatchedItemsList: Array<WardDispatchItemsModel> = new Array<WardDispatchItemsModel>();
 
-  public DispatchValidator: FormGroup = null;
+  public DispatchValidator: UntypedFormGroup = null;
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DispatchValidator = _formBuilder.group({
       'ReceivedBy': ['', Validators.compose([Validators.required])]
     });

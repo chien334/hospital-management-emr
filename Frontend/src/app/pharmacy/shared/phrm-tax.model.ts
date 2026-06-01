@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 export class PHRMTAXModel {
@@ -11,10 +11,10 @@ export class PHRMTAXModel {
     public CreatedBy: number = 0;
     public CreatedOn: string = '';
 
-    public TAXValidator: FormGroup = null;
+    public TAXValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.TAXValidator = _formBuilder.group({
             'TAXName': ['', Validators.required],
             'TAXPercentage': ['', Validators.compose([Validators.required, Validators.pattern('^(0|[1-9]{1}[0-9]{0,1})(\.[0-9]{1,2})?$')])],

@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -45,7 +45,7 @@ export class LabComponentModel {
 
     public LookUp: CoreCFGLookUp = null;
 
-    public LabComponentJsonValidator: FormGroup = null;
+    public LabComponentJsonValidator: UntypedFormGroup = null;
 
     public SetRangeValue(ipComponent: LabComponentModel, fieldName: string) {
         var minField: string;
@@ -122,7 +122,7 @@ export class LabComponentModel {
 
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.LabComponentJsonValidator = _formBuilder.group({
             'Component': ['', Validators.compose([Validators.required])]
         });

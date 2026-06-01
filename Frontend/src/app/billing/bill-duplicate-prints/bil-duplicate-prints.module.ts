@@ -2,7 +2,7 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { PageNotFound } from '../../404-error/404-not-found.component';
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
 import { SharedModule } from '../../shared/shared.module';
@@ -19,7 +19,7 @@ import { BIL_DuplicatePrint_SettlementListComponent } from './settlement/duplica
 
 //declare all required routes of this module
 //note: This can also be imported from different file, but since we have only 5-6 pages, we're declaring the routes here only.
-export const dupPrintRoutes =
+export const dupPrintRoutes: Routes =
   [{
     path: '', component: BIL_DuplicatePrint_MainComponent,
     children: [

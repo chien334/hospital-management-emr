@@ -2,7 +2,7 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 
@@ -21,7 +21,7 @@ import { DepossitSettingsListComponent } from './deposit-settings/deposit-settin
 import { WardAddComponent } from './wards/ward-add.component';
 import { WardListComponent } from './wards/ward-list.component';
 
-export const adtSettingsRoutes =
+export const adtSettingsRoutes: Routes =
   [
     {
       path: '', component: ADTSettingsMainComponent,

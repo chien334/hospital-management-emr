@@ -1,4 +1,4 @@
-import { FormGroup, Validators, FormBuilder, } from '@angular/forms'
+import { UntypedFormGroup, Validators, UntypedFormBuilder, } from '@angular/forms'
 import { RequestForQuotationItemsModel } from "./request-for-quotation-item.model";
 import { QuotationItemsModel } from './quotation-items.model';
 import { ItemMaster } from '../../inventory/shared/item-master.model';
@@ -23,13 +23,13 @@ export class RequestForQuotationModel {
   public ReqForQuotationItems: Array<RequestForQuotationItemsModel> = new Array<RequestForQuotationItemsModel>();
   public ReqForQuotationVendors: Array<RequestForQuotationVendorModel> = new Array<RequestForQuotationVendorModel>();
   public ReqForQuotation: Array<QuotationItemsModel> = new Array<QuotationItemsModel>();
-  public ReqForQuotationValidator: FormGroup = null;
+  public ReqForQuotationValidator: UntypedFormGroup = null;
   public StoreId: number;
   public RFQGroupId: number;
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ReqForQuotationValidator = _formBuilder.group({
       'Subject': ['', Validators.compose([Validators.required])],
       'Description': ['', Validators.compose([Validators.required])],

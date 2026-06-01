@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -24,7 +24,7 @@ export class PHRMReturnToSupplierModel {
     public CreateOn: string = "";
     public Remarks: string = "";
     public ReturnStatus: number;
-    public ReturnToSupplierValidator: FormGroup = null;
+    public ReturnToSupplierValidator: UntypedFormGroup = null;
     public Adjustment: number = 0;
     public returnToSupplierItems: Array<PHRMReturnToSupplierItemModel> = new Array<PHRMReturnToSupplierItemModel>();
     public DiscountAmount: number = 0;
@@ -36,7 +36,7 @@ export class PHRMReturnToSupplierModel {
     public CCAmount: number = 0;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ReturnToSupplierValidator = _formBuilder.group({
             'CreditNoteId': ['', Validators.compose([Validators.required])],
             'ReturnStatus': ['', Validators.compose([Validators.required])]

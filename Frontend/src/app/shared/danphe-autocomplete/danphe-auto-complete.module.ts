@@ -7,16 +7,15 @@ import { DanpheAutoCompleteDirective } from './danphe-auto-complete.directive';
 import { DanpheAutoComplete } from './danphe-auto-complete';
 
 @NgModule({
-  imports: [CommonModule, FormsModule],
-  declarations: [
-   DanpheAutoCompleteComponent, 
-    DanpheAutoCompleteDirective
-  ],
-  exports:  [
-    DanpheAutoCompleteComponent,
-     DanpheAutoCompleteDirective
+    imports: [CommonModule, FormsModule],
+    declarations: [
+        DanpheAutoCompleteComponent,
+        DanpheAutoCompleteDirective
     ],
-  entryComponents: [DanpheAutoCompleteComponent]
+    exports: [
+        DanpheAutoCompleteComponent,
+        DanpheAutoCompleteDirective
+    ]
 })
 export class DanpheAutoCompleteModule {
   static forRoot(): ModuleWithProviders<DanpheAutoCompleteModule> {

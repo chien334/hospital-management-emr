@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup
+    UntypedFormBuilder,
+    UntypedFormGroup
 } from '@angular/forms';
 import * as moment from 'moment';
 import { ENUM_DateTimeFormat } from '../../../shared/shared-enums';
@@ -19,10 +19,10 @@ export class VoucherLedgerGroupMapModel {
     public isMapped: boolean = false;
     public actionName: string = null;
     public VoucherCode: string = null;
-    public VoucherLedgerGroupMapValidator: FormGroup = null;
+    public VoucherLedgerGroupMapValidator: UntypedFormGroup = null;
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.VoucherLedgerGroupMapValidator = _formBuilder.group({
             ///// 'VoucherName': ['', Validators.compose([Validators.required])],
         });

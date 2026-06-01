@@ -1,6 +1,6 @@
 ﻿import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 export class CurrencyModel {
@@ -11,10 +11,10 @@ export class CurrencyModel {
     public CreatedBy: number = 0;
     public CreatedOn: string = "";
     public IsActive: boolean = true;
-    public CurrencyValidator: FormGroup = null;
+    public CurrencyValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.CurrencyValidator = _formBuilder.group({
             'CurrencyCode': ['', Validators.compose([Validators.required, Validators.maxLength(10)])]
         });

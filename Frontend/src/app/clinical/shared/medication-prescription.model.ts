@@ -1,9 +1,9 @@
 ﻿import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import * as moment from 'moment/moment';
@@ -23,7 +23,7 @@ export class MedicationPrescription {
     public Dose: string = null;
     public Refill: number = null;
     public TypeofMedication: string = null;
-    public MedicationValidator: FormGroup = null;
+    public MedicationValidator: UntypedFormGroup = null;
     public CreatedBy: number = null;
     public ModifiedBy: number = null;
     public CreatedOn: string = null;
@@ -33,7 +33,7 @@ export class MedicationPrescription {
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.MedicationValidator = _formBuilder.group({
             'MedicationId': ['', Validators.compose([Validators.required])],
             'Frequency': ['', Validators.compose([Validators.required])],

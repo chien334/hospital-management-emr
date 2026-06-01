@@ -1,5 +1,5 @@
 import {
-    FormBuilder, FormControl, FormGroup, Validators
+    UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators
 } from '@angular/forms';
 import * as moment from 'moment';
 import { PharmacyPOVerifier } from './pharmacy-po-verifier.model';
@@ -31,7 +31,7 @@ export class PHRMPurchaseOrder {
     public TermsId: number = null;
     public SupplierName: string = null;
     public PHRMPurchaseOrderItems: Array<PHRMPurchaseOrderItems> = new Array<PHRMPurchaseOrderItems>();
-    public PurchaseOrderValidator: FormGroup = null;
+    public PurchaseOrderValidator: UntypedFormGroup = null;
     public Item: PHRMItemMasterModel = null;
     public Supplier: PHRMSupplierModel = null;
     public UOMName: string;//for UI view of unit of measurement of Item
@@ -50,7 +50,7 @@ export class PHRMPurchaseOrder {
     public VerifierIds: string = null;
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PurchaseOrderValidator = _formBuilder.group({
             'SupplierId': ['', Validators.compose([Validators.required])],
             'DeliveryDays': ['', Validators.compose([Validators.required, this.positiveNumberValdiator])],
@@ -73,7 +73,7 @@ export class PHRMPurchaseOrder {
         else
             return !(this.PurchaseOrderValidator.hasError(validator, fieldName));
     }
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'invalidNumber': true };

@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 
@@ -28,10 +28,10 @@ export class Membership {
 
 
 
-  public MembershipValidator: FormGroup = null;
+  public MembershipValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.MembershipValidator = _formBuilder.group({
       'MembershipTypeName': ['', Validators.compose([Validators.required])],
       //'Description': ['', Validators.compose([Validators.pattern])],

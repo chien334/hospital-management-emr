@@ -1,7 +1,7 @@
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 
@@ -40,10 +40,10 @@ export class BillingOpPatientVM {
   public WardNumber: number = null;
   public EthnicGroup: string = "";
 
-  public OutPatientValidator: FormGroup = null;
+  public OutPatientValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.OutPatientValidator = _formBuilder.group({
       'FirstName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       'LastName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
@@ -99,7 +99,7 @@ export class BillingOpPatientVM {
 
 
 
-  dateValidators(control: FormControl): { [key: string]: boolean } {
+  dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
     //get current date, month and time
     var currDate = moment().format('YYYY-MM-DD');
     //if positive then selected date is of future else it of the past

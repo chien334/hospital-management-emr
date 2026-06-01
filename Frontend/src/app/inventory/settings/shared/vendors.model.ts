@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CurrencyMasterModel } from '../../shared/currency-master.model';
 
 export class VendorsModel {
@@ -14,7 +14,7 @@ export class VendorsModel {
   public CreatedOn: string = "";
   public IsActive: boolean = true;
   public DefaultCurrencyId: number = 1;
-  public VendorsValidator: FormGroup = null;
+  public VendorsValidator: UntypedFormGroup = null;
   public GovtRegDate: string = "";
   public Tds: number = 0;
   public PanNo: string = "";
@@ -35,7 +35,7 @@ export class VendorsModel {
   public BankDetails: string = "";// Rajib 12/02/2020 Tilaganga Hospital
   public CompanyName: string = "";
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.VendorsValidator = _formBuilder.group({
       'ContactAddress': ['', Validators.compose([Validators.required, Validators.maxLength(400)])],
       'VendorName': ['', Validators.compose([Validators.required, Validators.maxLength(200)])],

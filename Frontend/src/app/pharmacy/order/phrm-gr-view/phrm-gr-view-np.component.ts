@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { CoreService } from '../../../core/shared/core.service';
@@ -28,7 +28,7 @@ export class PhrmGRViewNpComponent implements OnInit, OnDestroy {
       public showPrint: boolean;
       public showConfirmationPopUp: boolean = false;
       public printDetaiils: any;
-      public cancelForm = new FormGroup({ CancelRemarks: new FormControl('', Validators.required) });
+      public cancelForm = new UntypedFormGroup({ CancelRemarks: new UntypedFormControl('', Validators.required) });
       cancelRemarks: string = "";
       public headerDetail: { header1, header2, header3, header4, hospitalName, address, email, PANno, tel, DDA };
 

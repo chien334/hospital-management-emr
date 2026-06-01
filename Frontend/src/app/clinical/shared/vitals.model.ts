@@ -2,10 +2,10 @@
 //importing form and its related components, these are used for forms validation.
 import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 
@@ -38,15 +38,15 @@ export class Vitals {
     public ModifiedOn: string = null;
     public VitalsTakenOn: string = null;
 
-    public VitalsValidator: FormGroup = null;
+    public VitalsValidator: UntypedFormGroup = null;
 
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
 
         this.VitalsValidator = _formBuilder.group({
-            'systolic': new FormControl(''),
-            'diastolic': new FormControl(''),
+            'systolic': new UntypedFormControl(''),
+            'diastolic': new UntypedFormControl(''),
         });
 
     }

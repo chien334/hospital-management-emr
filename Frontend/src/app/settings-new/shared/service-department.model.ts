@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 
@@ -23,13 +23,13 @@ export class ServiceDepartment {
   public ModifiedOn: string = null;
   public IntegrationName: string = null;
   public IsActive: boolean = true;
-  public ServiceDepartmentValidator: FormGroup = null;
+  public ServiceDepartmentValidator: UntypedFormGroup = null;
 
   //only for reading purpose
   public DepartmentName: string = null;
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ServiceDepartmentValidator = _formBuilder.group({
       'DepartmentId': ['', Validators.compose([Validators.required])],
       'ServiceDepartmentName': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],

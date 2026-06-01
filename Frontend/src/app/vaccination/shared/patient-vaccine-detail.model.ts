@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms'
 
 import * as moment from 'moment/moment';
@@ -16,11 +16,11 @@ export class PatientVaccineDetailModel {
     VaccineDate: string = "";
     Remarks: string;
 
-    public PatVaccineDetailValidator: FormGroup = null;
+    public PatVaccineDetailValidator: UntypedFormGroup = null;
 
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PatVaccineDetailValidator = _formBuilder.group({
             'VaccineId': ['', Validators.compose([Validators.required, Validators.min(1)])],
             'DoseNumber': ['', Validators.compose([Validators.required, Validators.min(1)])]

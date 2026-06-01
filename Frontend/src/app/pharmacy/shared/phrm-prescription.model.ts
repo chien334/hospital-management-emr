@@ -1,10 +1,10 @@
 ﻿
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms'
 import * as moment from 'moment/moment';
 import { PHRMPrescriptionItem } from "./phrm-prescription-item.model";
@@ -22,14 +22,14 @@ export class PHRMPrescription {
     public IsInPatient: boolean = true;
     public PrescriptionStatus: string = null;
     public PHRMPrescriptionItems: Array<PHRMPrescriptionItem> = new Array<PHRMPrescriptionItem>();
-    public PHRMPrescriptionValidator: FormGroup = null;
+    public PHRMPrescriptionValidator: UntypedFormGroup = null;
     //only for show into grid list
     public PatientName: string = null;
     public CreatedByName: string = null;
     public PatientCode: string = null;
     //Constructor of class
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.PHRMPrescriptionValidator = _formBuilder.group({
             'PrescriberId': ['', Validators.compose([]),],
             'PrescriberName': ['', Validators.compose([]),],

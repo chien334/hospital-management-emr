@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms'
 
@@ -34,12 +34,12 @@ export class User {
   //Ajay 07 Aug 19 -- landing page after login user
   public LandingPageRouteId: number = null;  
 
-  public UserProfileValidator: FormGroup = null;
+  public UserProfileValidator: UntypedFormGroup = null;
 
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.UserProfileValidator = _formBuilder.group({
       'EmployeeId': ['', Validators.compose([Validators.required])],
       'UserName': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],

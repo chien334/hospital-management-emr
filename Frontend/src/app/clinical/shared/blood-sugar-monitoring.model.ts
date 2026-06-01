@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators
 } from '@angular/forms';
 import { PatientInfoDTO } from './patient-info.dto';
@@ -20,10 +20,10 @@ export class BloodSugarMonitoring {
     public ModifiedBy: number = null;
 
     public PatientInfo: PatientInfoDTO = new PatientInfoDTO();
-    public BloodSugarValidator: FormGroup = null;
+    public BloodSugarValidator: UntypedFormGroup = null;
 
     constructor() {
-        const _formBuilder = new FormBuilder();
+        const _formBuilder = new UntypedFormBuilder();
         this.BloodSugarValidator = _formBuilder.group({
             'RbsValue': ['', Validators.compose([Validators.required])],
             'Insulin': ['', Validators.compose([Validators.required])],

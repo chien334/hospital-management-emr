@@ -1,4 +1,4 @@
-import {FormGroup,FormBuilder,Validators} from '@angular/forms'
+import {UntypedFormGroup,UntypedFormBuilder,Validators} from '@angular/forms'
 import { WardSupplyAssetRequisitionItemsModel } from './wardsupply-asset-requisitionItems.model';
 
 export class WardSupplyAssetRequisitionModel {
@@ -16,13 +16,13 @@ export class WardSupplyAssetRequisitionModel {
     public CancelRemarks = '';
     public RequisitionNo = '';
     public Remarks = '';
-    public RequisitionValidator: FormGroup = null;
+    public RequisitionValidator: UntypedFormGroup = null;
     public RequisitionItemsList: Array<WardSupplyAssetRequisitionItemsModel> = new Array<WardSupplyAssetRequisitionItemsModel>();
     public VerificationId = 0;
     public EmpFullName:string='';
     constructor() {
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.RequisitionValidator = _formBuilder.group({
           'StoreId': ['', Validators.compose([Validators.required])]
         });

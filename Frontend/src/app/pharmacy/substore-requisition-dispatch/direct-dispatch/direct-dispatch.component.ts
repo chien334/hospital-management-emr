@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { CoreService } from '../../../core/shared/core.service';
@@ -31,7 +31,7 @@ export class DirectDispatchComponent implements OnInit {
   public loading: boolean = false;
   isSelectedDispensaryInsurance: boolean;
   itemList: any[];
-  directDispatchForm = new FormGroup({ targetStore: new FormControl('', Validators.required), Remarks: new FormControl('', Validators.required), ReceivedBy: new FormControl('') });
+  directDispatchForm = new UntypedFormGroup({ targetStore: new UntypedFormControl('', Validators.required), Remarks: new UntypedFormControl('', Validators.required), ReceivedBy: new UntypedFormControl('') });
   public genericList: Array<any>;
   FilteredItemList: any[];
   showGenericName: boolean = false;

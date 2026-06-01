@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { CoreService } from '../../../../../core/shared/core.service';
@@ -50,8 +50,8 @@ export class ManualSalesReturnComponent implements OnInit {
     this.salesReturn.CounterId = this.currentCounter.CounterId;
     this.salesReturn.StoreId = this.currentActiveDispensary.StoreId;
     this.salesReturn.PaymentMode = this.isCurrentDispensaryInsurance ? 'credit' : 'cash';
-    this.salesReturn.InvoiceReturnValidator.addControl('Patient', new FormControl('', [Validators.required, this.registeredPatientValdiator]));
-    this.salesReturn.InvoiceReturnValidator.addControl('ReferenceInvoiceNo', new FormControl('', Validators.required));
+    this.salesReturn.InvoiceReturnValidator.addControl('Patient', new UntypedFormControl('', [Validators.required, this.registeredPatientValdiator]));
+    this.salesReturn.InvoiceReturnValidator.addControl('ReferenceInvoiceNo', new UntypedFormControl('', Validators.required));
     this.salesReturn.InvoiceReturnValidator.get('Remark').setValidators([Validators.required, Validators.minLength(5), this.noTextRemarksValidator]);
     this.addRow();
     this.GeneralFieldLabel = coreService.GetFieldLabelParameter();
@@ -97,9 +97,9 @@ export class ManualSalesReturnComponent implements OnInit {
     newRow.DiscountAmount = 0;
     newRow.Price = 0;
     newRow.InvoiceItemsReturnValidator.removeControl('Quantity');
-    newRow.InvoiceItemsReturnValidator.addControl('DrugName', new FormControl('', [Validators.required, this.registeredDrugValidator]));
-    newRow.InvoiceItemsReturnValidator.addControl('BatchNo', new FormControl('', [Validators.required,]));
-    newRow.InvoiceItemsReturnValidator.addControl('SalePrice', new FormControl('', [Validators.required, Validators.min(0.1)]));
+    newRow.InvoiceItemsReturnValidator.addControl('DrugName', new UntypedFormControl('', [Validators.required, this.registeredDrugValidator]));
+    newRow.InvoiceItemsReturnValidator.addControl('BatchNo', new UntypedFormControl('', [Validators.required,]));
+    newRow.InvoiceItemsReturnValidator.addControl('SalePrice', new UntypedFormControl('', [Validators.required, Validators.min(0.1)]));
     newRow.InvoiceItemsReturnValidator.get('ReturnedQty').setValidators([Validators.required, Validators.min(1)]);
     this.salesReturn.InvoiceReturnItems.push(newRow);
   }
@@ -338,20 +338,20 @@ export class ManualSalesReturnComponent implements OnInit {
   }
 
   // Custom Validators
-  registeredPatientValdiator(control: FormControl): { [key: string]: boolean; } {
+  registeredPatientValdiator(control: UntypedFormControl): { [key: string]: boolean; } {
     if (typeof (control.value) == "object" && (control.value.PatientId > 0 || control.value.PatientId == -1))
       return;
     else {
       return { 'notRegisteredPatient': true };
     }
   }
-  registeredDrugValidator(control: FormControl): { [key: string]: boolean; } {
+  registeredDrugValidator(control: UntypedFormControl): { [key: string]: boolean; } {
     if (typeof (control.value) == "object" && control.value.ItemId > 0)
       return;
     else
       return { 'notRegisteredDrug': true };
   }
-  noTextRemarksValidator(control: FormControl): { [key: string]: boolean; } {
+  noTextRemarksValidator(control: UntypedFormControl): { [key: string]: boolean; } {
     if (control.value.trim() != "")
       return;
     else

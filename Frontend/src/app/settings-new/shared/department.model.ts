@@ -1,5 +1,5 @@
 import {
-  FormBuilder, FormGroup, Validators
+  UntypedFormBuilder, UntypedFormGroup, Validators
 } from '@angular/forms';
 import { BillServiceItem_DTO } from '../../billing/shared/dto/bill-service-item.dto';
 
@@ -12,7 +12,7 @@ export class Department {
   public DepartmentHead: number = 0;
   public IsActive: boolean = true;
   public IsAppointmentApplicable: boolean = false;
-  public DepartmentValidator: FormGroup = null;
+  public DepartmentValidator: UntypedFormGroup = null;
   public CreatedBy: number = null;
   public ModifiedBy: number = null;
   public CreatedOn: string = null;
@@ -29,7 +29,7 @@ export class Department {
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.DepartmentValidator = _formBuilder.group({
       'DepartmentCode': ['', Validators.compose([Validators.required, Validators.maxLength(10)])],
       'DepartmentName': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],

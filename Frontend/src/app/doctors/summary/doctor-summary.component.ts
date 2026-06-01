@@ -3,10 +3,10 @@ import { DLService } from "../../shared/dl.service"
 import * as moment from 'moment/moment';
 import {
     NgForm,
-    FormGroup,
-    FormControl,
+    UntypedFormGroup,
+    UntypedFormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { SecurityService } from "../../security/shared/security.service";
@@ -24,7 +24,7 @@ export class DoctorRevenueComponent {
     public docSummaryDetail: any = [];
     //overall summary
     public docSummary: DoctorSummary = new DoctorSummary();
-    public DateValidator: FormGroup = null;
+    public DateValidator: UntypedFormGroup = null;
     public dateRange: string = null;
     public currentUser: number = null;
     public docSummaryGridColumns: Array<any> = null;
@@ -34,7 +34,7 @@ export class DoctorRevenueComponent {
         public securityService: SecurityService ) {
 
         this.currentUser = this.securityService.GetLoggedInUser().EmployeeId;
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.DateValidator = _formBuilder.group({
             'fromDate': [this.fromDate, Validators.compose([Validators.required, this.dateValidators])],
             'toDate': [this.toDate, Validators.compose([Validators.required, this.dateValidators])],
@@ -99,7 +99,7 @@ export class DoctorRevenueComponent {
         this.msgBoxServ.showMessage("error", ["Cannot load summary. Check log for error."]);
         console.log(err.ErrorMessage);
     }
-    dateValidators(control: FormControl): { [key: string]: boolean } {
+    dateValidators(control: UntypedFormControl): { [key: string]: boolean } {
         //get current date, month and time
         var currDate = moment().format('YYYY-MM-DD 23:59');
 

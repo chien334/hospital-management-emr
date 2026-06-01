@@ -1,10 +1,10 @@
 ﻿
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     FormControl,
     Validators,
-    FormBuilder
+    UntypedFormBuilder
 } from '@angular/forms'
 
 export class Address {
@@ -17,7 +17,7 @@ export class Address {
     public CountrySubDivisionId: number = null;
     public City: string = null;
     public ZipCode: string = null;
-    public AddressValidator: FormGroup = null;
+    public AddressValidator: UntypedFormGroup = null;
 
     //this is used to show ...text in client
     public CountryName: string = null;
@@ -60,7 +60,7 @@ export class Address {
         }
 
 
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.AddressValidator = _formBuilder.group({
             //setting default value of addresstype from the constuctor
             'AddressType': [defAddressType, Validators.required,],

@@ -1,6 +1,6 @@
 import {
-    FormBuilder,
-    FormGroup,
+    UntypedFormBuilder,
+    UntypedFormGroup,
     Validators,
 } from '@angular/forms';
 import * as moment from 'moment';
@@ -16,13 +16,13 @@ export class CostCenterModel {
     public IsActive: boolean = true;
     public CreatedOn: string = "";
     public CostCenterCode: number = 0;
-    public CostCenterValidator: FormGroup = null;
+    public CostCenterValidator: UntypedFormGroup = null;
     public HierarchyLevel: number = 0;
     public IsDefault: boolean = false;
 
     constructor() {
         this.CreatedOn = moment().format(ENUM_DateTimeFormat.Year_Month_Day_Hour_Minute);
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.CostCenterValidator = _formBuilder.group({
             'CostCenterName': ['', Validators.compose([Validators.required])],
         });

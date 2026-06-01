@@ -1,4 +1,4 @@
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 
 export class CompanyModel {
 
@@ -13,11 +13,11 @@ export class CompanyModel {
     public CreatedDate: string = null;
     public IsActive: boolean = true;
 
-    public CompanyValidator: FormGroup = null;
+    public CompanyValidator: UntypedFormGroup = null;
 
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.CompanyValidator = _formBuilder.group({
           'CompanyName': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],
           'ContactNo': ['', Validators.compose([Validators.pattern('^[0-9]{1,10}$')])],

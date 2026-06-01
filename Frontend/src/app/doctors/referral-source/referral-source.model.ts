@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -26,10 +26,10 @@ export class ReferralSource {
   public ModifiedBy: number = null;
   public CreatedOn: string = null;
   public ModifiedOn: string = null;
-  public ReferralSourceValidator: FormGroup = null;
+  public ReferralSourceValidator: UntypedFormGroup = null;
 
   constructor() {
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.ReferralSourceValidator = _formBuilder.group({
       //'Note': ['', Validators.compose([Validators.required,Validators.maxLength(200)])],
       //'Occupation': ['', Validators.compose([Validators.required, Validators.maxLength(50)])],

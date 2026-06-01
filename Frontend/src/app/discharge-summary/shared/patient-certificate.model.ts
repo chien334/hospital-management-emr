@@ -1,6 +1,6 @@
 import {
   NgForm,
-  FormGroup,
+  UntypedFormGroup,
   FormControl,
   Validators,
   FormBuilder,
@@ -27,7 +27,7 @@ export class PatientCertificate {
   public FatherName: string = null;
   public MotherName: string = null;
 
-  public PatientCertificateValidator: FormGroup = null;
+  public PatientCertificateValidator: UntypedFormGroup = null;
   constructor() {
 
     // var _formBuilder = new FormBuilder();

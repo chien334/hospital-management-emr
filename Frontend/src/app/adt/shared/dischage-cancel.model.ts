@@ -1,6 +1,6 @@
 import {
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators
 } from '@angular/forms';
 import * as moment from 'moment';
@@ -14,12 +14,12 @@ export class DischargeCancel {
   public DischargedBy: number = null;
   public DischargeCancelBy: number = null;
   public BillingTransactionId: number = null;
-  public DischargeCancelValidator: FormGroup = null;
+  public DischargeCancelValidator: UntypedFormGroup = null;
   public CounterId: number = 0;
   public NewBedId: number = null;
   constructor() {
     this.CreatedOn = moment().format("YYYY-MM-DD");
-    const formBuilder = new FormBuilder();
+    const formBuilder = new UntypedFormBuilder();
     this.DischargeCancelValidator = formBuilder.group({
       'DischargeCancelNote': ['', Validators.compose([Validators.required, Validators.maxLength(300)])],
 

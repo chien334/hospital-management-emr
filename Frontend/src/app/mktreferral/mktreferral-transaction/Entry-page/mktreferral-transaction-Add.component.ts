@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import * as _ from 'lodash';
 import { CoreService } from "../../../core/shared/core.service";
 import { DanpheHTTPResponse } from "../../../shared/common-models";
@@ -27,7 +27,7 @@ export class MarketingReferralAddTransactionComponent {
     public referralSchemeList: ReferralScheme_DTO[] = [];
     public referringPartyList = new Array<ReferralParty_DTO>();
     public Amount: number;
-    public ReferralEntryValidator: FormGroup = null;
+    public ReferralEntryValidator: UntypedFormGroup = null;
 
     public selectedReferralScheme: ReferralScheme_DTO = new ReferralScheme_DTO();
     public selectedReferringPartyObj: ReferralParty_DTO = new ReferralParty_DTO();
@@ -49,7 +49,7 @@ export class MarketingReferralAddTransactionComponent {
         public coreService: CoreService,
 
     ) {
-        var _formbuilder = new FormBuilder();
+        var _formbuilder = new UntypedFormBuilder();
         this.ReferralEntryValidator = _formbuilder.group({
             'ReferralSchemeId': ['', Validators.required],
             'ReferringPartyId': ['', Validators.required],

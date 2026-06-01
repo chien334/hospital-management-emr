@@ -1,9 +1,9 @@
 import {
   NgForm,
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
-  FormBuilder,
+  UntypedFormBuilder,
   ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
@@ -12,18 +12,18 @@ export class CancelledPOandGRReport {
   public FromDate: string = null;
   public ToDate: string = null;
   public isGR: string = 'true';
-  public CancelledPOGRValidator: FormGroup = null;
+  public CancelledPOGRValidator: UntypedFormGroup = null;
 
   constructor() {
 
-    var _formBuilder = new FormBuilder();
+    var _formBuilder = new UntypedFormBuilder();
     this.CancelledPOGRValidator = _formBuilder.group({
       'FromDate': ['', Validators.compose([Validators.required, this.dateValidatorsForPast])],
       'ToDate': ['', Validators.compose([Validators.required, this.dateValidator])],
     });
   }
 
-  dateValidator(control: FormControl): { [key: string]: boolean } {
+  dateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     var currDate = moment().format('YYYY-MM-DD HH:mm');
     if (control.value) {
       if ((moment(control.value).diff(currDate) > 0)
@@ -34,7 +34,7 @@ export class CancelledPOandGRReport {
     }
   }
 
-  dateValidatorsForPast(control: FormControl): { [key: string]: boolean } {
+  dateValidatorsForPast(control: UntypedFormControl): { [key: string]: boolean } {
     var currDate = moment().format('YYYY-MM-DD');
     if (control.value) {
       if ((moment(control.value).diff(currDate) > 0)

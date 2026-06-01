@@ -1,16 +1,16 @@
 import {
-    FormGroup,
+    UntypedFormGroup,
     Validators,
-    FormBuilder,
+    UntypedFormBuilder,
   } from '@angular/forms';
   
   export class FilmTypeValidatorModel {
     public FilmType: string = '';
-    public FilmTypeValidator: FormGroup = null;
+    public FilmTypeValidator: UntypedFormGroup = null;
   
     constructor() {
   
-      var _formBuilder = new FormBuilder();
+      var _formBuilder = new UntypedFormBuilder();
       this.FilmTypeValidator = _formBuilder.group({
         'FilmType': ['', Validators.compose([Validators.required])],
       });

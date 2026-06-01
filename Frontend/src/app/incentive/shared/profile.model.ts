@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from '@angular/forms';
 
 export class ProfileModel {
   ProfileId: number = 0;
@@ -14,10 +14,10 @@ export class ProfileModel {
   PriceCategoryName: string = null;
   AttachedProfileId: number = null;
 
-  ProfileValidator: FormGroup = null;
+  ProfileValidator: UntypedFormGroup = null;
 
   constructor() {
-    const _fb = new FormBuilder();
+    const _fb = new UntypedFormBuilder();
     this.ProfileValidator = _fb.group({
       'ProfileName': ['', Validators.required], 
       //'PriceCategoryId': [null, Validators.required],

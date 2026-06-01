@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { CoreService } from '../../../core/shared/core.service';
 import { PatientService } from '../../../patients/shared/patient.service';
 import { PatientsBLService } from '../../../patients/shared/patients.bl.service';
@@ -70,8 +70,8 @@ export class PhrmOutpatientAddComponent {
   }
 
   private ModifyValidatorsInPatientModel() {
-    this.newPatient.PHRMPatientValidator.addControl("CountryId", new FormControl("", Validators.required));
-    this.newPatient.PHRMPatientValidator.addControl("CountrySubDivisionId", new FormControl("", Validators.required));
+    this.newPatient.PHRMPatientValidator.addControl("CountryId", new UntypedFormControl("", Validators.required));
+    this.newPatient.PHRMPatientValidator.addControl("CountrySubDivisionId", new UntypedFormControl("", Validators.required));
     this.newPatient.PHRMPatientValidator.markAsPristine();
     this.newPatient.PHRMPatientValidator.markAsUntouched();
   }

@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 export class GoodsReceiptOtherChargeModel {
     public TotalOtherCharge: number = 0;
     public OtherChargesItem: GROtherChargesItemModel[] = [];
@@ -16,10 +16,10 @@ export class GROtherChargesItemModel {
     public VendorName: string = null;
     IsCancel: boolean = false;
     canUserDelete: boolean = true; //by default user must be able to delete an item.
-    public ItemOtherChargeValidator: FormGroup = null;
+    public ItemOtherChargeValidator: UntypedFormGroup = null;
 
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.ItemOtherChargeValidator = _formBuilder.group({
             'ChargeId': ['', [Validators.required]],
             'Amount': ['', Validators.compose([this.positiveNumberValdiator])],
@@ -46,7 +46,7 @@ export class GROtherChargesItemModel {
         else
             return !(this.ItemOtherChargeValidator.hasError(validator, fieldName));
     }
-    positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+    positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
         if (control) {
             if (control.value < 0)
                 return { 'invalidNumber': true };

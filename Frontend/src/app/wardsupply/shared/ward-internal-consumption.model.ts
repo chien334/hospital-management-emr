@@ -1,9 +1,9 @@
 import {
     NgForm,
-    FormGroup,
+    UntypedFormGroup,
     Validators,
     FormControl,
-    FormBuilder,
+    UntypedFormBuilder,
     ReactiveFormsModule
 } from '@angular/forms'
 import { WardInternalConsumptionItems } from './ward-internal-consumption-items.model';
@@ -22,9 +22,9 @@ export class WardInternalConsumption {
     public ConsumedBy: string = '';
     public WardInternalConsumptionItemsList: Array<WardInternalConsumptionItems>=[];
 
-    public InternalConsumptionValidator: FormGroup = null;
+    public InternalConsumptionValidator: UntypedFormGroup = null;
     constructor() {
-        var _formBuilder = new FormBuilder();
+        var _formBuilder = new UntypedFormBuilder();
         this.InternalConsumptionValidator = _formBuilder.group({
             'DepartmentId': ['', Validators.compose([Validators.required])],
             'Remark': ['', Validators.compose([Validators.required])],

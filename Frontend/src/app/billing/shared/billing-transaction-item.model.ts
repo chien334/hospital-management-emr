@@ -1,5 +1,5 @@
 import {
-  FormBuilder, FormControl, FormGroup, Validators
+  UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators
 } from '@angular/forms';
 import * as moment from 'moment';
 import { Patient } from '../../patients/shared/patient.model';
@@ -62,7 +62,7 @@ export class BillingTransactionItem {
   public Patient: Patient = new Patient();
   public ServiceDepartment = null;///service deparatment comes as a part of .Include() in billing controller.
 
-  public BillingTransactionItemValidator: FormGroup = null;
+  public BillingTransactionItemValidator: UntypedFormGroup = null;
   // public RequestedBy: number = null;
   // public RequestedByName: string = "";
   public PrescriberId: number = null; // Krishna,14thjun'22, RequestedBy is changed to PrescriberId.
@@ -171,7 +171,7 @@ export class BillingTransactionItem {
 
     this.CreatedOn = moment().format("YYYY-MM-DD HH:mm:ss");
 
-    const _formBuilder = new FormBuilder();
+    const _formBuilder = new UntypedFormBuilder();
     this.BillingTransactionItemValidator = _formBuilder.group({
       'ItemName': ['', Validators.compose([Validators.required])],
       'ServiceDepartmentId': ['', Validators.compose([Validators.required])],
@@ -278,7 +278,7 @@ export class BillingTransactionItem {
     return retObject;
   }
 
-  positiveNumberValdiator(control: FormControl): { [key: string]: boolean } {
+  positiveNumberValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value <= 0)
         return { 'invalidNumber': true };
@@ -286,14 +286,14 @@ export class BillingTransactionItem {
 
   }
 
-  discountAmountValdiator(control: FormControl): { [key: string]: boolean } {
+  discountAmountValdiator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control && control.value < 0)
       return { 'invalidNumber': true };
     else
       return;
   }
 
-  multipleQtyValidator(control: FormControl): { [key: string]: boolean } {
+  multipleQtyValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       if (control.value > 1)
         return { 'invalidQty': true };
@@ -302,7 +302,7 @@ export class BillingTransactionItem {
   }
 
 
-  discountPercentValidator(control: FormControl): { [key: string]: boolean } {
+  discountPercentValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control.value) {
       if (control.value < 0 || control.value > 100)
         return { 'invalidPercent': true };

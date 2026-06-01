@@ -11,6 +11,8 @@ import { PurchaseOrderItems } from "./purchase-order-items.model";
 
 import { ItemMaster } from "../shared/item-master.model"
 import { VendorMaster } from "../shared/vendor-master.model"
+import { Directive } from "@angular/core";
+@Directive()
 export class PurchaseOrder {
   public PurchaseOrderId: number = 0;
   public RequisitionId: number = null;

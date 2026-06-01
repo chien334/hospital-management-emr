@@ -10,7 +10,9 @@ import * as moment from 'moment/moment';
 import { ItemMaster } from "./item-master.model";
 import { PurchaseOrder } from "./purchase-order.model";
 import { CommonValidators } from "./../../shared/common-validator";
+import { Directive } from "@angular/core";
 
+@Directive()
 export class PurchaseOrderItems {
     public PurchaseOrderItemId: number = 0;
     public ItemId: number = 0;

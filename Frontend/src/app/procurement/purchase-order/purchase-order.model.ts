@@ -4,7 +4,9 @@ import { ItemMaster } from '../../inventory/shared/item-master.model';
 import { VendorMaster } from '../../inventory/shared/vendor-master.model';
 import { ENUM_GRItemCategory } from "../../shared/shared-enums";
 import { PurchaseOrderItems } from "./purchase-order-items.model";
+import { Directive } from "@angular/core";
 
+@Directive()
 export class PurchaseOrder {
   public PurchaseOrderId: number = 0;
   public PurchaseOrderNo: number = 0;

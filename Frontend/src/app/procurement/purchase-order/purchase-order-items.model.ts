@@ -2,7 +2,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ItemMaster } from '../../inventory/shared/item-master.model';
 import { CommonValidators } from "./../../shared/common-validator";
 import { PurchaseOrder } from "./purchase-order.model";
+import { Directive } from "@angular/core";
 
+@Directive()
 export class PurchaseOrderItems {
   public PurchaseOrderItemId: number = 0;
   public ItemId: number = 0;

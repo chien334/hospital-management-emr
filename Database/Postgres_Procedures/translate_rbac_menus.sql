@@ -109,3 +109,120 @@ UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách tiêu hao' WHERE "R
 UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách tiêu hao trả lại' WHERE "RouteId" = 670;
 UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách tiêu hao đã quyết toán' WHERE "RouteId" = 671;
 
+-- 6. Core EMR Modules Submenus Translation
+-- Appointment Submenus (ParentRouteId = 30)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Đăng ký khám' WHERE "RouteId" = 31;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách lịch hẹn' WHERE "RouteId" = 32;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Đặt lịch hẹn' WHERE "RouteId" = 33;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách lượt khám' WHERE "RouteId" = 34;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Đăng ký khám mới' WHERE "RouteId" = 35;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'In nhãn dán' WHERE "RouteId" = 36;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Đặt hẹn trực tuyến' WHERE "RouteId" = 620;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Yêu cầu thanh toán SSF' WHERE "RouteId" = 647;
+
+-- Billing Submenus (ParentRouteId = 37)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tìm kiếm bệnh nhân' WHERE "RouteId" = 39;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Giao dịch thanh toán' WHERE "RouteId" = 40;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thanh toán tạm tính' WHERE "RouteId" = 41;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Quyết toán tạm tính' WHERE "RouteId" = 42;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Biên lai thanh toán' WHERE "RouteId" = 43;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Chỉ định dịch vụ' WHERE "RouteId" = 44;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Đặt cọc thanh toán' WHERE "RouteId" = 45;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hủy hóa đơn' WHERE "RouteId" = 46;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Trả lại hóa đơn' WHERE "RouteId" = 47;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Kích hoạt quầy' WHERE "RouteId" = 48;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'In bản sao' WHERE "RouteId" = 49;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Sửa bác sĩ chỉ định' WHERE "RouteId" = 50;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Quyết toán' WHERE "RouteId" = 175;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thanh toán nội trú' WHERE "RouteId" = 256;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bàn giao ca' WHERE "RouteId" = 275;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tạm tính bảo hiểm' WHERE "RouteId" = 277;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bảo hiểm' WHERE "RouteId" = 279;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Quét thẻ y tế' WHERE "RouteId" = 341;
+
+-- Laboratory Submenus (ParentRouteId = 51)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Chỉ định lấy mẫu' WHERE "RouteId" = 53;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Lấy mẫu xét nghiệm' WHERE "RouteId" = 54;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Nhập kết quả' WHERE "RouteId" = 55;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Báo cáo chưa hoàn thành' WHERE "RouteId" = 56;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Xem báo cáo kết quả' WHERE "RouteId" = 57;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Nhập nhanh kết quả' WHERE "RouteId" = 58;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách mẫu bệnh án' WHERE "RouteId" = 59;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Báo cáo cuối cùng' WHERE "RouteId" = 142;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thanh toán buồng bệnh' WHERE "RouteId" = 222;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tìm kiếm tổng thể / Mã vạch' WHERE "RouteId" = 223;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Xét nghiệm bên ngoài' WHERE "RouteId" = 267;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Trả kết quả xét nghiệm' WHERE "RouteId" = 288;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thông báo' WHERE "RouteId" = 543;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hệ thống LIS' WHERE "RouteId" = 582;
+
+-- Radiology Submenus (ParentRouteId = 62)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách yêu cầu' WHERE "RouteId" = 63;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách báo cáo' WHERE "RouteId" = 64;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Xem kết quả CĐHA' WHERE "RouteId" = 66;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thanh toán buồng bệnh' WHERE "RouteId" = 250;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Sửa bác sĩ' WHERE "RouteId" = 424;
+
+-- ADT / Admission Submenus (ParentRouteId = 67)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Nhập viện mới' WHERE "RouteId" = 68;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tìm kiếm bệnh nhân' WHERE "RouteId" = 69;
+
+-- Helpdesk Submenus (ParentRouteId = 106)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thông tin nhân viên' WHERE "RouteId" = 107;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thông tin buồng giường' WHERE "RouteId" = 108;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thông tin khoa/phòng' WHERE "RouteId" = 109;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thông tin hàng đợi' WHERE "RouteId" = 603;
+
+-- Inventory Submenus (ParentRouteId = 110)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Yêu cầu nội bộ' WHERE "RouteId" = 112;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tồn kho' WHERE "RouteId" = 165;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Trả hàng nhà cung cấp' WHERE "RouteId" = 468;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tài trợ/Hiến tặng' WHERE "RouteId" = 623;
+
+-- Procurement Submenus (ParentRouteId = 118)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tạo đơn đặt hàng' WHERE "RouteId" = 120;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh mục nhận hàng' WHERE "RouteId" = 121;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thông báo hàng về' WHERE "RouteId" = 162;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Chi tiết nhận hàng' WHERE "RouteId" = 163;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Chi tiết đơn đặt hàng' WHERE "RouteId" = 164;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Báo giá' WHERE "RouteId" = 467;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách nhà cung cấp' WHERE "RouteId" = 469;
+
+-- Nursing Submenus (ParentRouteId = 147)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Yêu cầu điều dưỡng' WHERE "RouteId" = 148;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách yêu cầu' WHERE "RouteId" = 149;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bệnh nhân ngoại trú' WHERE "RouteId" = 150;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bệnh nhân nội trú' WHERE "RouteId" = 151;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Khoa thận' WHERE "RouteId" = 240;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách lĩnh đồ' WHERE "RouteId" = 247;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tổng quan bệnh nhân' WHERE "RouteId" = 411;
+
+-- Pharmacy Submenus (ParentRouteId = 152)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Đơn thuốc' WHERE "RouteId" = 153;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Báo cáo' WHERE "RouteId" = 158;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Cài đặt' WHERE "RouteId" = 159;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Lĩnh thuốc/Vật tư' WHERE "RouteId" = 224;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Yêu cầu kho phụ' WHERE "RouteId" = 234;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Kho thuốc' WHERE "RouteId" = 246;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Nhà cung cấp' WHERE "RouteId" = 274;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Sổ cái nhà cung cấp' WHERE "RouteId" = 561;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Yêu cầu/Cấp phát kho phụ' WHERE "RouteId" = 684;
+
+-- Emergency Submenus (ParentRouteId = 235)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bệnh nhân mới' WHERE "RouteId" = 252;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bệnh nhân đã phân loại' WHERE "RouteId" = 253;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bệnh nhân đã xử trí xong' WHERE "RouteId" = 254;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thông tin buồng giường' WHERE "RouteId" = 255;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tổng quan bệnh nhân' WHERE "RouteId" = 481;
+
+-- Medical Records Submenus (ParentRouteId = 354)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hồ sơ nội trú' WHERE "RouteId" = 355;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách sinh' WHERE "RouteId" = 357;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách tử vong' WHERE "RouteId" = 358;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hồ sơ ngoại trú' WHERE "RouteId" = 565;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hồ sơ cấp cứu' WHERE "RouteId" = 645;
+
+-- Verification Submenus (ParentRouteId = 400)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Nhà thuốc' WHERE "RouteId" = 689;
+
+

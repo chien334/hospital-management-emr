@@ -10,31 +10,31 @@
     <div id="printpage" class="row printStyle print-border">
       <div style="text-align:center;">
         <a style="float:right;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
-        <print-header [unit-name]="'Pharmacy Unit'"></print-header>
+        <print-header [unit-name]="'DISPENSARY.PRESCRIPTION.PHARMACY_UNIT' | translate"></print-header>
         <div class="clear"></div>
         <div class="left" style="text-align:left;">
-          <p>Hospital Code:<b> {{currentPrescription.PatientCode}}</b></p>
-          <p>Patient Name:<b> {{currentPrescription.PatientName}}</b></p>
+          <p>{{ 'DISPENSARY.PRESCRIPTION.HOSPITAL_CODE' | translate }}<b> {{currentPrescription.PatientCode}}</b></p>
+          <p>{{ 'DISPENSARY.PRESCRIPTION.PATIENT_NAME' | translate }}<b> {{currentPrescription.PatientName}}</b></p>
         </div>
 
         <div class="right" style="text-align:right;">
-          <p>Requested By:<b> {{currentPrescription.PrescriberName}}</b></p>
-          <p>Date: <b>{{currentPrescription.CreatedOn | date}}</b></p>
+          <p>{{ 'DISPENSARY.PRESCRIPTION.REQUESTED_BY' | translate }}<b> {{currentPrescription.PrescriberName}}</b></p>
+          <p>{{ 'DISPENSARY.PRESCRIPTION.DATE' | translate }} <b>{{currentPrescription.CreatedOn | date}}</b></p>
         </div>
       </div>
       <div class="clear"></div>
-      <p class="text-center btm-pad border-up-down"><b> PRESCRIPTION DETAILS</b></p>
+      <p class="text-center btm-pad border-up-down"><b> {{ 'DISPENSARY.PRESCRIPTION.PRESCRIPTION_DETAILS' | translate }}</b></p>
       <div class="clear"></div>
       <div class="clear footer"></div>
       <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered" style="background-color:initial;margin-top:10px">
           <thead>
             <tr style="font-weight: bold;text-align:center">
-              <td>S.N</td>
-              <td>Item Name</td>
-              <td>Frequency</td>
-              <td>Days</td>
-              <td>Availability</td>
+              <td>{{ 'DISPENSARY.PRESCRIPTION.SN' | translate }}</td>
+              <td>{{ 'DISPENSARY.PRESCRIPTION.ITEM_NAME' | translate }}</td>
+              <td>{{ 'DISPENSARY.PRESCRIPTION.FREQUENCY' | translate }}</td>
+              <td>{{ 'DISPENSARY.PRESCRIPTION.DAYS' | translate }}</td>
+              <td>{{ 'DISPENSARY.PRESCRIPTION.AVAILABILITY' | translate }}</td>
             </tr>
           </thead>
           <tbody>
@@ -43,7 +43,7 @@
               <td><b>{{row.ItemName}}</b></td>
               <td>{{row.Frequency}}</td>
               <td>{{row.HowManyDays}}</td>
-              <td><span style="color:blue" *ngIf="row.IsAvailable">YES</span><span style="color:red" *ngIf="!row.IsAvailable">NO</span></td>
+              <td><span style="color:blue" *ngIf="row.IsAvailable">{{ 'DISPENSARY.PRESCRIPTION.YES' | translate }}</span><span style="color:red" *ngIf="!row.IsAvailable">{{ 'DISPENSARY.PRESCRIPTION.NO' | translate }}</span></td>
             </tr>
           </tbody>
         </table>
@@ -54,12 +54,12 @@
     <div class="row center-style">
       <div class="col-md-12 col-xs-12 ">
         <a (click)="print()" class="btn btn-warning">
-          Print
+          {{ 'DISPENSARY.PRESCRIPTION.PRINT' | translate }}
           <i class="glyphicon glyphicon-print"></i>
         </a><span> </span><span> </span>
         &nbsp;
         <a *ngIf="!blockDispatch" (click)="Dispatch()" class="btn btn-success">
-          Dispatch
+          {{ 'DISPENSARY.PRESCRIPTION.DISPATCH' | translate }}
           <i class="glyphicon glyphicon-share-alt"></i>
         </a>
       </div>

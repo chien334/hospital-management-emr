@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-md-4" *ngIf="!PatientId">
           <div class="row d-flex">
-            <label for="id_input_search_patient" class="col-md-4">Search Patient: <sup class="color-red">*</sup></label>
+            <label for="id_input_search_patient" class="col-md-4">{{ 'DISPENSARY.SALE.SEARCH_PATIENT' | translate }} <sup class="color-red">*</sup></label>
             <div class="col-md-8">
               <div class="danphe-auto-complete-wrapper" style="position: relative;">
                 <input type="text" id="id_input_search_patient" danphe-auto-complete
@@ -24,7 +24,7 @@
                        onClick="this.select();"
                        match-formatted="true" [grid-sort]="'ShortName'"
                        [ngModelOptions]="{standalone: true}"
-                       placeholder="Search Patient (Minimum 5 Character)"
+                       [placeholder]="'DISPENSARY.SALE.SEARCH_PATIENT' | translate"
                        style="width: 100%"
                        (keyup.enter)="coreService.FocusInputById('id_input_selectReferral')">
               </div>
@@ -33,15 +33,15 @@
         </div>
         <div class="col-md-4">
           <div class="row d-flex">
-            <label for="id_input_selectReferral" class="col-md-3">Prescriber:<sup *ngIf="IsPrescriberMandatory"
-                   class="color-red">*</sup></label>
+            <label for="id_input_selectReferral" class="col-md-3">{{ 'DISPENSARY.SALE.DOCTOR' | translate }}<sup *ngIf="IsPrescriberMandatory"
+                    class="color-red">*</sup></label>
             <div class="col-md-9">
               <div class="d-flex justify-space-between align-items-center">
                 <div class="danphe-auto-complete-wrapper" style="position: relative; width: 100%;">
                   <input *ngIf="ReferrerList" type="text"
                          id="id_input_selectReferral" danphe-auto-complete
                          [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedPrescriber" [source]="ReferrerList"
-                         [list-formatter]="AssignedToDocListFormatter" placeholder="Enter Name"
+                         [list-formatter]="AssignedToDocListFormatter" [placeholder]="'DISPENSARY.SALE.SELECT_DOCTOR' | translate"
                          display-property-name="FullName" value-property-name="'PrescriberId'" match-formatted="true"
                          onClick="this.select();" max-num-list="10" min-chars="1" style="width: 100%"
                          (valueChanged)="OnPrescriberChanged()" (keyup.enter)="coreService.FocusInputById('item-box')" />
@@ -56,13 +56,13 @@
         </div>
         <div class="col-md-4" *ngIf="PatientId">
           <div class="row">
-            <label for="id_input_selectReferral" class="col-md-4">Store:</label>
+            <label for="id_input_selectReferral" class="col-md-4">{{ 'DISPENSARY.STOCK.STORE_NAME' | translate }}:</label>
             <div class="col-md-8">
               <div class="danphe-auto-complete-wrapper" style="position: relative;">
                 <input *ngIf="WardSubStoreMapList" type="text"
                        id="id_input_selectReferral" danphe-auto-complete
                        [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedStore" [source]="WardSubStoreMapList"
-                       [list-formatter]="StoreListFormatter" placeholder="Select Store"
+                       [list-formatter]="StoreListFormatter" [placeholder]="'DISPENSARY.STOCK.STORE_NAME' | translate"
                        display-property-name="StoreName" value-property-name="'StoreId'" match-formatted="true"
                        onClick="this.select();" max-num-list="10" min-chars="1" style="width: 100%"
                        (valueChanged)="OnStoreChanged()" />
@@ -81,23 +81,23 @@
     <div class="row" style=" padding: 10px;">
       <div class="col-sm-2">
         <div>
-          <label>Hospital No:<span [innerHTML]="currentPatient.PatientCode"></span></label>
+          <label>{{ 'DISPENSARY.SALE.HOSPITAL_NO' | translate }} <span [innerHTML]="currentPatient.PatientCode"></span></label>
         </div>
       </div>
       <div class="col-sm-3">
-        <label>Patient Name:<span [innerHTML]="currentPatient.ShortName"></span></label>
+        <label>{{ 'DISPENSARY.SALE.PATIENT_NAME' | translate }}: <span [innerHTML]="currentPatient.ShortName"></span></label>
       </div>
 
       <div class="col-sm-2">
-        <label>Age/Sex:<span *ngIf="currentPatient.Age" [innerHTML]="currentPatient.Age"></span><span
+        <label>{{ 'DISPENSARY.SALE.AGE_SEX' | translate }} <span *ngIf="currentPatient.Age" [innerHTML]="currentPatient.Age"></span><span
                 *ngIf="currentPatient.Gender">/</span> <span
                 [innerHTML]="currentPatient.Gender"></span></label>
       </div>
       <div class="col-sm-3">
-        <label>Contact No:<span [innerHTML]="currentPatient.PhoneNumber"></span></label>
+        <label>{{ 'DISPENSARY.SALE.CONTACT_NO' | translate }} <span [innerHTML]="currentPatient.PhoneNumber"></span></label>
       </div>
       <div class="col-sm-2">
-        <label>Visit Type:<span [innerHTML]="currentPatient.VisitType"></span></label>
+        <label>{{ 'DISPENSARY.SALE.VISIT_TYPE' | translate }} <span [innerHTML]="currentPatient.VisitType"></span></label>
       </div>
       <div class="col-sm-10" *ngIf="SchemePriceCategoryObj && SchemePriceCategoryObj.SchemeId && SchemePriceCategoryObj.PriceCategoryId">
         <scheme-pricecategory-select (on-change)="OnSchemePriceCategoryChanged($event)"
@@ -116,15 +116,15 @@
       <table class="table table-striped table-hover inv_table table-bordered">
         <thead>
           <tr>
-            <th>GenericName</th>
-            <th><b>Drug/Medicine Name</b></th>
-            <th><b>Expiry</b></th>
-            <th><b>Batch</b></th>
-            <th><b>AvlQty</b></th>
-            <th><b>C. Qty</b></th>
-            <th><b>SalePrice</b></th>
-            <th><b>SubTotal</b></th>
-            <th><b>Disc %</b></th>
+            <th>{{ 'PATIENT_CONSUMPTION.GENERIC_NAME' | translate }}</th>
+            <th><b>{{ 'PATIENT_CONSUMPTION.DRUG_MEDICINE_NAME' | translate }}</b></th>
+            <th><b>{{ 'PATIENT_CONSUMPTION.EXPIRY' | translate }}</b></th>
+            <th><b>{{ 'PATIENT_CONSUMPTION.BATCH' | translate }}</b></th>
+            <th><b>{{ 'PATIENT_CONSUMPTION.AVL_QTY' | translate }}</b></th>
+            <th><b>{{ 'PATIENT_CONSUMPTION.C_QTY' | translate }}</b></th>
+            <th><b>{{ 'PATIENT_CONSUMPTION.SALE_PRICE' | translate }}</b></th>
+            <th><b>{{ 'PATIENT_CONSUMPTION.SUBTOTAL' | translate }}</b></th>
+            <th><b>{{ 'PATIENT_CONSUMPTION.DISC_PERCENT' | translate }}</b></th>
             <th></th>
           </tr>
         </thead>
@@ -132,7 +132,7 @@
           <tr>
             <td>
               <form [formGroup]="patientConsumptionItem.PatientConsumptionValidator">
-                <input type="text" id="genric-box" danphe-auto-complete class="form-control" placeholder="Generic Name"
+                <input type="text" id="genric-box" danphe-auto-complete class="form-control" [placeholder]="'PATIENT_CONSUMPTION.GENERIC_PLACEHOLDER' | translate"
                        display-property-name="GenericName" value-property-name=null
                        [(ngModel)]="patientConsumptionGenericName" [source]="FilteredGenericList"
                        onClick="this.select();" match-formatted="true"
@@ -141,9 +141,7 @@
                        [list-formatter]="phrmItemGenericFormatter" formControlName="GenericName"
                        min-chars="1" style="width: 200px" />
                 <span class="color-red font-sm" *ngIf="patientConsumptionItem.IsDirty('GenericName')"
-                      [hidden]="patientConsumptionItem.IsValidCheck('GenericName','required')">Generic
-                  Name is
-                  required</span>
+                      [hidden]="patientConsumptionItem.IsValidCheck('GenericName','required')">{{ 'PATIENT_CONSUMPTION.GENERIC_REQUIRED' | translate }}</span>
               </form>
             </td>
             <td>
@@ -151,7 +149,7 @@
                 <input danphe-auto-complete class="form-control" [(ngModel)]="SelectedItem"
                        formControlName="ItemName"
                        [source]="FilteredItems" [list-formatter]="phrmItemListFormatter"
-                       placeholder="--Select Medicine--" display-property-name="ItemName" value-property-name=null
+                       [placeholder]="'PATIENT_CONSUMPTION.MEDICINE_PLACEHOLDER' | translate" display-property-name="ItemName" value-property-name=null
                        onClick="this.select();"
                        (valueChanged)="onChangeItem()" max-num-list="100"
                        [min-chars]="1" style="width:200px;" id="item-box" [grid-sort]="'ItemName'"
@@ -159,11 +157,9 @@
                        (keyup.enter)="SelectedItem? coreService.FocusInputById('Quantity'): coreService.FocusInputById('remarks')"
                        autocomplete="off" />
                 <span class="color-red font-sm" *ngIf="patientConsumptionItem.IsDirty('ItemName')"
-                      [hidden]="patientConsumptionItem.IsValidCheck('ItemName','required')">Item is
-                  required <br></span>
+                      [hidden]="patientConsumptionItem.IsValidCheck('ItemName','required')">{{ 'PATIENT_CONSUMPTION.ITEM_REQUIRED' | translate }} <br></span>
                 <span class="color-red font-sm" *ngIf=" patientConsumptionItem.IsDirty('ItemName')"
-                      [hidden]=" patientConsumptionItem.IsValidCheck('ItemName','invalidItem')">Invalid
-                  Item</span>
+                      [hidden]=" patientConsumptionItem.IsValidCheck('ItemName','invalidItem')">{{ 'PATIENT_CONSUMPTION.INVALID_ITEM' | translate }}</span>
               </form>
             </td>
             <td>
@@ -180,7 +176,7 @@
                 <input type="number" class="form-control"
                        [(ngModel)]="patientConsumptionItem.Quantity"
                        (ngModelChange)="OnQuantityChange()"
-                       placeholder="Consume Qty"
+                       [placeholder]="'PATIENT_CONSUMPTION.CONSUME_QTY_PLACEHOLDER' | translate"
                        formControlName="Quantity" id="Quantity"
                        (keyup.enter)="coreService.FocusInputById('btn-add')"
                        onClick="this.select();"
@@ -188,10 +184,9 @@
                        style="width: 70px" />
                 <span class="color-red font-sm" *ngIf="patientConsumptionItem.IsDirty('Quantity')"
                       [hidden]="patientConsumptionItem.IsValidCheck('Quantity','invalidNumber')">
-                  Not Valid quantity<br></span>
+                  {{ 'PATIENT_CONSUMPTION.NOT_VALID_QTY' | translate }}<br></span>
                 <span class="color-red font-sm" *ngIf="patientConsumptionItem.IsDirty('Quantity')"
-                      [hidden]="patientConsumptionItem.IsValidCheck('Quantity','wrongDecimalValue')">Required
-                  Whole Number</span>
+                      [hidden]="patientConsumptionItem.IsValidCheck('Quantity','wrongDecimalValue')">{{ 'PATIENT_CONSUMPTION.REQUIRED_WHOLE_NUMBER' | translate }}</span>
               </form>
             </td>
             <td>
@@ -217,15 +212,15 @@
             <tr>
               <th></th>
               <th>#</th>
-              <th><b>GenericName</b></th>
-              <th><b>Drug/Medicine Name</b></th>
-              <th><b>Expiry</b></th>
-              <th><b>Batch</b></th>
-              <th><b>Consumption Qty.</b></th>
-              <th><b>S.Price</b></th>
-              <th><b>SubTotal</b></th>
-              <th><b>Dis Amt</b></th>
-              <th><b>Total</b></th>
+              <th><b>{{ 'PATIENT_CONSUMPTION.GENERIC_NAME' | translate }}</b></th>
+              <th><b>{{ 'PATIENT_CONSUMPTION.DRUG_MEDICINE_NAME' | translate }}</b></th>
+              <th><b>{{ 'PATIENT_CONSUMPTION.EXPIRY' | translate }}</b></th>
+              <th><b>{{ 'PATIENT_CONSUMPTION.BATCH' | translate }}</b></th>
+              <th><b>{{ 'PATIENT_CONSUMPTION.C_QTY' | translate }}</b></th>
+              <th><b>{{ 'PATIENT_CONSUMPTION.SALE_PRICE' | translate }}</b></th>
+              <th><b>{{ 'PATIENT_CONSUMPTION.SUBTOTAL' | translate }}</b></th>
+              <th><b>{{ 'PATIENT_CONSUMPTION.DIS_AMT' | translate }}</b></th>
+              <th><b>{{ 'PATIENT_CONSUMPTION.TOTAL' | translate }}</b></th>
             </tr>
           </thead>
           <tbody>
@@ -264,7 +259,7 @@
     <div class="col-md-3">
       <div class="colrow">
         <div class="col">
-          <label>SubTotal Amount : </label>
+          <label>{{ 'PATIENT_CONSUMPTION.SUBTOTAL_AMOUNT' | translate }} </label>
         </div>
         <div class="col">
           <input type="number" [(ngModel)]="patientConsumption.SubTotal" disabled class="form-control">
@@ -272,7 +267,7 @@
       </div>
       <div class="colrow">
         <div class="col">
-          <label>Discount Amount : </label>
+          <label>{{ 'PATIENT_CONSUMPTION.DISCOUNT_AMOUNT' | translate }} </label>
         </div>
         <div class="col">
           <input type="number" [(ngModel)]="patientConsumption.DiscountAmount" disabled class="form-control">
@@ -280,7 +275,7 @@
       </div>
       <div class="colrow">
         <div class="col">
-          <label>Total Amount : </label>
+          <label>{{ 'PATIENT_CONSUMPTION.TOTAL_AMOUNT' | translate }} </label>
         </div>
         <div class="col">
           <input type="number" [(ngModel)]="patientConsumption.TotalAmount" disabled class="form-control">
@@ -288,18 +283,18 @@
       </div>
       <div class="colrow">
         <div class="col">
-          <label style="color: #2d68ea; font-weight: bold;">In Words : <span>{{patientConsumption.TotalAmount
+          <label style="color: #2d68ea; font-weight: bold;">{{ 'PATIENT_CONSUMPTION.IN_WORDS' | translate }} <span>{{patientConsumption.TotalAmount
               |NumberInWords}}</span></label>
         </div>
 
       </div>
       <div class="colrow">
         <div class="col">
-          <label>Remarks : </label>
+          <label>{{ 'PATIENT_CONSUMPTION.REMARKS_LABEL' | translate }} </label>
         </div>
         <div class="col">
           <textarea maxlength="100" rows="5"
-                    placeholder="Remarks" [(ngModel)]="patientConsumptionItem.Remarks"
+                    [placeholder]="'PATIENT_CONSUMPTION.REMARKS_PLACEHOLDER' | translate" [(ngModel)]="patientConsumptionItem.Remarks"
                     [ngModelOptions]="{standalone: true}" id="remarks"
                     (keyup.enter)="coreService.FocusInputById('btn-save')"
                     class="form-control">
@@ -317,11 +312,10 @@
                  id="btn-save"
                  class="btn green btn-success"
                  [disabled]="loading"
-                 value="Save Consumption">
+                 [value]="'PATIENT_CONSUMPTION.SAVE_CONSUMPTION' | translate">
         </div>
         <div class="col text-right">
-          <button type="button" class="btn btn-danger hidden-print" value="" id="btn_discard" (click)="DiscardConsumption()">Discard
-            Changes</button>
+          <button type="button" class="btn btn-danger hidden-print" value="" id="btn_discard" (click)="DiscardConsumption()">{{ 'PATIENT_CONSUMPTION.DISCARD_CHANGES' | translate }}</button>
         </div>
       </div>
     </div>
@@ -331,26 +325,26 @@
   <div class="row">
     <div class="col-md-3">
       <div class="invoice-history" [hidden]="IsCurrentDispensaryInsurace == true">
-        <div class="history-title"> <b>Invoice History</b> </div>
+        <div class="history-title"> <b>{{ 'DISPENSARY.SALE.INVOICE_HISTORY' | translate }}</b> </div>
         <table>
           <tr>
-            <td>Deposit Balance <b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.DEPOSIT_BALANCE' | translate }} <b class="colon">:</b></td>
             <td>{{patSummary.DepositBalance}}</td>
           </tr>
           <tr>
-            <td>Credit <b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.CREDIT' | translate }} <b class="colon">:</b></td>
             <td style="text-decoration:underline;">{{patSummary.CreditAmount}}</td>
           </tr>
           <tr>
-            <td>Provisional Amount <b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.PROVISIONAL_AMT' | translate }} <b class="colon">:</b></td>
             <td style="text-decoration:underline;">{{patSummary.ProvisionalAmt}}</td>
           </tr>
           <tr>
-            <td>Total Due<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.TOTAL_DUE' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.TotalDue}}</td>
           </tr>
           <tr>
-            <td>Balance Amount <b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.BALANCE_AMT' | translate }} <b class="colon">:</b></td>
             <td style="font-weight: bold;color: red;font-size: 17px;"> {{patSummary.BalanceAmount}} </td>
           </tr>
         </table>
@@ -358,26 +352,26 @@
     </div>
     <div class="col-md-2">
       <div class="invoice-history" [hidden]="IsCurrentDispensaryInsurace == true">
-        <div class="history-title"> <b>Credit Limits and Balances</b> </div>
+        <div class="history-title"> <b>{{ 'DISPENSARY.SALE.CREDIT_LIMITS' | translate }}</b> </div>
         <table>
           <tr>
-            <td>General Credit Limit<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.GENERAL_LIMIT' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.GeneralCreditLimit}}</td>
           </tr>
           <tr>
-            <td>IP Credit Limit<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.IP_LIMIT' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.IpCreditLimit}}</td>
           </tr>
           <tr>
-            <td>OP Credit Limit<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.OP_LIMIT' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.OpCreditLimit}}</td>
           </tr>
           <tr>
-            <td>IP Balance<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.IP_BALANCE' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.IpBalance}}</td>
           </tr>
           <tr>
-            <td>OP Balance<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.OP_BALANCE' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.OpBalance}}</td>
           </tr>
 
@@ -415,14 +409,14 @@
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption no-margin">
             <h3>
-              <span>Add Medical Certificate Number</span>
+              <span>{{ 'DISPENSARY.SALE.ADD_NMC_TITLE' | translate }}</span>
             </h3>
             <a class="btn btn-danger" (click)="CloseAddNMCPopup()" title="Cancel"><i class="fa fa-times"></i></a>
           </div>
           <form class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-5">Doctor Name<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'DISPENSARY.SALE.DOCTOR_NAME' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   {{SelectedPrescriber.FullName}}
                 </div>
@@ -438,7 +432,7 @@
             <div class="form-actions no-gutters">
               <div class="col-md-12" style="text-align:right">
                 <button style="margin-right: 10px;" type="button" class="btn green btn-success"
-                        (click)="SaveNMCNo()">Save</button>
+                        (click)="SaveNMCNo()">{{ 'COMMON.SAVE' | translate }}</button>
               </div>
             </div>
 

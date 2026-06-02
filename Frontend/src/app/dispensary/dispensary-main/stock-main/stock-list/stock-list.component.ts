@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { CoreService } from "../../../../core/shared/core.service";
 import { IMRPUpdatedStock } from '../../../../pharmacy/setting/mrp/phrm-update-mrp.component';
@@ -46,7 +47,8 @@ export class StockListComponent implements OnInit {
     public securityService: SecurityService,
     public msgBoxServ: MessageboxService,
     public coreService: CoreService,
-    public dispensaryService: DispensaryService) {
+    public dispensaryService: DispensaryService,
+    public translate: TranslateService) {
     this.isSelectedDispensaryInsurance = this._dispensaryService.isInsuranceDispensarySelected;
     this.currentActiveDispensary = this._dispensaryService.activeDispensary;
     this.selectedStoreId = this.currentActiveDispensary.StoreId;

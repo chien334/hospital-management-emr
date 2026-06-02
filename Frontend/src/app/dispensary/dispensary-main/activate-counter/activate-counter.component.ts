@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { PharmacyBLService } from '../../../pharmacy/shared/pharmacy.bl.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { CallbackService } from '../../../shared/callback.service';
@@ -19,7 +20,7 @@ export class ActivateCounterComponent implements OnInit {
   public currentCounterName: string = null;
 
 
-  constructor(public router: Router, public securityService: SecurityService, public callbackservice: CallbackService, public msgBox: MessageboxService, public pharmacyBLService: PharmacyBLService) {
+  constructor(public router: Router, public securityService: SecurityService, public callbackservice: CallbackService, public msgBox: MessageboxService, public pharmacyBLService: PharmacyBLService, public translate: TranslateService) {
     this.currentCounterId = this.securityService.getPHRMLoggedInCounter().CounterId;
     this.currentCounterName = this.securityService.getPHRMLoggedInCounter().CounterName;
     if (this.currentCounterId) {

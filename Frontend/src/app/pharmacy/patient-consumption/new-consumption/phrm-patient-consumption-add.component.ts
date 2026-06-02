@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Router } from "@angular/router";
+import { TranslateService } from '@ngx-translate/core';
 import * as moment from "moment";
 import { Observable, Subscription } from "rxjs-compat";
 import { CoreService } from "../../../core/shared/core.service";
@@ -81,7 +82,9 @@ export class PHRMPatientConsumptionAddComponent {
         public messageboxService: MessageboxService,
         public router: Router,
         public routeFromService: RouteFromService,
-        public pharmacyBLService: PharmacyBLService, public coreService: CoreService,) {
+        public pharmacyBLService: PharmacyBLService,
+        public coreService: CoreService,
+        public translate: TranslateService) {
         this.currentActiveDispensary = this.dispensaryService.activeDispensary;
         this.GetReferrals();
         this.GetPatientSearchMinCharacterCountParameter();
@@ -89,6 +92,8 @@ export class PHRMPatientConsumptionAddComponent {
 
     }
     ngOnInit(): void {
+        this.confirmationTitle = this.translate.instant('DISPENSARY.SALE.CONFIRM');
+        this.confirmationMessage = this.translate.instant('DISPENSARY.SALE.CONFIRMATION_MESSAGE');
         if (this.PatientId) {
             this.GetPatientDetails(this.PatientId);
             setTimeout(() => {
@@ -136,7 +141,7 @@ export class PHRMPatientConsumptionAddComponent {
             .subscribe((res: DanpheHTTPResponse) => {
                 if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
                     if (res.Results.VisitType === null) {
-                        this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ['Patient visit details not found. Please check-in this patient from Appointment.']);
+                        this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.PATIENT_VISIT_NOT_FOUND')]);
                         return;
                     }
                     this.currentPatient.PatientVisitId = res.Results.PatientVisitId;
@@ -173,11 +178,11 @@ export class PHRMPatientConsumptionAddComponent {
     Add() {
         var CheckIsValid: boolean = true;
         if (this.patientConsumptionItems.length < 0) {
-            this.messageboxService.showMessage(ENUM_MessageBox_Status.Error, ['Add Items']);
+            this.messageboxService.showMessage(ENUM_MessageBox_Status.Error, [this.translate.instant('PATIENT_CONSUMPTION.ADD_ITEMS')]);
             return;
         }
         if (this.patientConsumptionItem.Quantity > this.patientConsumptionItem.AvailableQuantity) {
-            this.messageboxService.showMessage(ENUM_MessageBox_Status.Error, ['Consumption Quantity Should not be greater than Available Quantity']);
+            this.messageboxService.showMessage(ENUM_MessageBox_Status.Error, [this.translate.instant('PATIENT_CONSUMPTION.QTY_GREATER_THAN_AVL')]);
             return;
         }
 
@@ -190,7 +195,7 @@ export class PHRMPatientConsumptionAddComponent {
         }
         if (CheckIsValid) {
             if (this.patientConsumptionItems.some(i => i.ItemId === this.patientConsumptionItem.ItemId && i.BatchNo === this.patientConsumptionItem.BatchNo)) {
-                return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ['Duplicate item cannot be added ']);
+                return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.DUPLICATE_ITEM')]);
             }
             let item = Object.assign({}, this.patientConsumptionItem);
             this.patientConsumptionItems.push(item);
@@ -252,7 +257,7 @@ export class PHRMPatientConsumptionAddComponent {
                         this.LoadItemTypeList(this.StoreId, this.SchemePriceCategory.PriceCategoryId)
                     }
                     else {
-                        this.messageboxService.showMessage(ENUM_MessageBox_Status.Failed, ['Default store not found for this Ward']);
+                        this.messageboxService.showMessage(ENUM_MessageBox_Status.Failed, [this.translate.instant('PATIENT_CONSUMPTION.DEFAULT_STORE_NOT_FOUND')]);
                     }
                 }
             })
@@ -352,20 +357,20 @@ export class PHRMPatientConsumptionAddComponent {
     }
     SaveConsumption() {
         if (this.currentPatient.PatientId <= 0) {
-            return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ['Patient visit details not found.Please check-in this patient from Appointment.']);
+            return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.PATIENT_VISIT_NOT_FOUND')]);
         }
 
         if (this.patientConsumptionItems.length === 0) {
-            return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ['Add Items']);
+            return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.ADD_ITEMS')]);
         }
 
         if (this.patientConsumptionItems.some(itm => itm.IsNarcotic)) {
             if (!this.patientConsumption.PrescriberId) {
-                return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ['Prescriber is mandatory for narcotic sales']);
+                return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.PRESCRIBER_MANDATORY')]);
             }
             if (this.patientConsumption.MedCertificationNo === null) {
                 this.ShowNMCNoAddButton = true;
-                return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ['NMC number is mandatory for Narcotic Sales']);
+                return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.NMC_MANDATORY')]);
             }
         }
         this.MapPatientConsumptionData();
@@ -377,11 +382,11 @@ export class PHRMPatientConsumptionAddComponent {
                 if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
                     this.PatientConsumptionId = res.Results;
                     this.showPrintPage = true;
-                    this.messageboxService.showMessage(ENUM_MessageBox_Status.Success, ['Consumption is added Successfully']);
+                    this.messageboxService.showMessage(ENUM_MessageBox_Status.Success, [this.translate.instant('PATIENT_CONSUMPTION.CONSUMPTION_SUCCESS')]);
                     this.ResetFields();
                 }
                 else {
-                    this.messageboxService.showMessage(ENUM_MessageBox_Status.Error, ['Sorry, Consumption is not added']);
+                    this.messageboxService.showMessage(ENUM_MessageBox_Status.Error, [this.translate.instant('PATIENT_CONSUMPTION.CONSUMPTION_FAILED')]);
                 }
             });
     }
@@ -550,7 +555,7 @@ export class PHRMPatientConsumptionAddComponent {
 
     OpenAddNMCPopup() {
         if (!this.SelectedPrescriber || !this.SelectedPrescriber.EmployeeId) {
-            return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ['Please select prescriber first.']);
+            return this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.SELECT_PRESCRIBER_FIRST')]);
         }
         this.NMCNoAddPopup = true;
     }
@@ -559,7 +564,7 @@ export class PHRMPatientConsumptionAddComponent {
     }
     SaveNMCNo() {
         if (this.MedicalCertificateNo == null) {
-            this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ['Please provide NMC No.']);
+            this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.PROVIDE_NMC')]);
             return;
         }
         this.pharmacyBLService.UpdateNMCNo(this.SelectedPrescriber.EmployeeId, this.MedicalCertificateNo).subscribe((res: DanpheHTTPResponse) => {

@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { Observable, Subscription } from 'rxjs';
 import { BillingFiscalYear } from '../../../../billing/shared/billing-fiscalyear.model';
@@ -148,7 +149,8 @@ export class NewSalesComponent implements OnInit, OnDestroy {
     public callBackService: CallbackService,
     public coreService: CoreService,
     public renderer2: Renderer2,
-    public coreBlService: CoreBLService
+    public coreBlService: CoreBLService,
+    public translate: TranslateService
   ) {
     this.GeneralFieldLabel = coreService.GetFieldLabelParameter();
 
@@ -197,6 +199,9 @@ export class NewSalesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isReferrerLoaded = true;
+    this.confirmationTitle = this.translate.instant('DISPENSARY.SALE.CONFIRM');
+    this.confirmationMessage = this.translate.instant('DISPENSARY.SALE.CONFIRMATION_MESSAGE');
+    this.confirmationMessageForProvisional = this.translate.instant('DISPENSARY.SALE.CONFIRMATION_MESSAGE_PROVISIONAL');
 
     if (this.IsCurrentDispensaryInsurace == false && !this.isReturn) {
       this.SetAnonymous();

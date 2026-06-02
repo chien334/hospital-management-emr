@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Patient } from '../../../../patients/shared/patient.model';
 import { PatientService } from '../../../../patients/shared/patient.service';
 import { PharmacyBLService } from '../../../../pharmacy/shared/pharmacy.bl.service';
@@ -34,7 +35,8 @@ export class PrescriptionListComponent implements OnInit {
     public router: Router,
     public pharmacyBLService: PharmacyBLService,
     public msgBoxServ: MessageboxService,
-    public changeDetector: ChangeDetectorRef
+    public changeDetector: ChangeDetectorRef,
+    public translate: TranslateService
   ) {
     this.LoadPrescriptions();
     this.prescriptionGridColumns = DispensaryGridColumns.PHRMPrescriptionList;

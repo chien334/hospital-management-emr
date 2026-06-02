@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-3">
         <button type="button" class="btn green btn-success" (click)="AddNewConsumptionItem()">
-            New&nbsp;Consumption&nbsp;
+            {{ 'PATIENT_CONSUMPTION.NEW_CONSUMPTION' | translate }}&nbsp;
             <span class="glyphicon glyphicon-plus"> </span>
         </button>
     </div>
@@ -13,7 +13,7 @@
                         <div class="caption lb-caption">
                             <h3>
                                 <i class="fa fa-shopping-cart"></i>
-                                <span class="caption-subject">New Consumption Entry</span>
+                                <span class="caption-subject">{{ 'PATIENT_CONSUMPTION.NEW_CONSUMPTION_ENTRY' | translate }}</span>
                             </h3>
                             <a class="btn btn-danger" (click)="ClosePatientConsumptionEntryPage()" title="Cancel"><i class="fa fa-times"></i></a>
                         </div>
@@ -43,7 +43,7 @@
                         <div class="caption lb-caption">
                             <h3>
                                 <i class="fa fa-shopping-cart"></i>
-                                <span class="caption-subject">Consumptions</span>
+                                <span class="caption-subject">{{ 'PATIENT_CONSUMPTION.CONSUMPTIONS' | translate }}</span>
                             </h3>
                             <a class="btn btn-danger" (click)="ClosePatientConsumptionList()" title="Cancel"><i class="fa fa-times"></i></a>
                         </div>

@@ -4,20 +4,20 @@
       <div class="col-md-4">
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-4 pt5 tooltip" title="ALT + F">Search Patient:<sup *ngIf="currSale.PaymentMode == 'credit'"
+            <label class="control-label col-md-4 pt5 tooltip" title="ALT + F">{{ 'DISPENSARY.SALE.SEARCH_PATIENT' | translate }}<sup *ngIf="currSale.PaymentMode == 'credit'"
                    class="color-red">*</sup></label>
             <div class="col-md-8">
               <div class="autocomplete-item">
                 <input *ngIf="IsCurrentDispensaryInsurace; else normalPatientSearch" id="patient-search" autocomplete="off" danphe-auto-complete
                        class="form-control" [(ngModel)]="searchPatient" [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
-                       [list-formatter]="insurancePatientListFormatter" placeholder="Search Patient (Minimum 5 Character)"
+                       [list-formatter]="insurancePatientListFormatter" [placeholder]="'DISPENSARY.SALE.SEARCH_PATIENT' | translate"
                        display-property-name="ShortName" (valueChanged)="onClickPatient($event)" value-property-name=null onClick="this.select();"
                        max-num-list="20" min-chars="{{PatientSearchMinCharacterCount}}" match-formatted="true"
                        (keyup.enter)="onPressedEnterKeyInPatientField()" [grid-sort]="'ShortName'" />
                 <ng-template #normalPatientSearch>
                   <input autocomplete="off" danphe-auto-complete class="form-control" id="patient-search" [(ngModel)]="searchPatient"
                          [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'" [list-formatter]="patientListFormatter"
-                         placeholder="Search Patient (Minimum 5 Character)" display-property-name="ShortName" (valueChanged)="onClickPatient($event)"
+                         [placeholder]="'DISPENSARY.SALE.SEARCH_PATIENT' | translate" display-property-name="ShortName" (valueChanged)="onClickPatient($event)"
                          value-property-name=null onClick="this.select();" max-num-list="20" min-chars="{{PatientSearchMinCharacterCount}}"
                          match-formatted="true" [grid-sort]="'ShortName'" (keyup.enter)="onPressedEnterKeyInPatientField()" />
                 </ng-template>
@@ -29,7 +29,7 @@
 
       <div class="col-md-4 mrg">
         <div class="row no-gutters">
-          <label class="control-label col-md-3 pt5">Doctor<sup>*</sup>:</label>
+          <label class="control-label col-md-3 pt5">{{ 'DISPENSARY.SALE.DOCTOR' | translate }}<sup>*</sup>:</label>
           <div class="col-md-9">
             <select-referrer #selectReferrer *ngIf="isReferrerLoaded" [selected-ref-id]="selectedRefId" (on-referrer-change)="onClickProvider($event)"
                              [allow-external]="true" [default-external]="false"
@@ -42,24 +42,23 @@
               {{GeneralFieldLabel.NMCNo}}.</button>
             <div class="row">
               <div class="col-md-12"> <span class="color-red font-sm" *ngIf="currSale.IsDirty('Prescriber')"
-                      [hidden]="currSale.IsValidCheck('Prescriber','required')">Select Doctor</span> </div>
+                      [hidden]="currSale.IsValidCheck('Prescriber','required')">{{ 'DISPENSARY.SALE.SELECT_DOCTOR' | translate }}</span> </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-3 no-padding">
-        <a *ngIf="!IsCurrentDispensaryInsurace" title="ALT+N" (click)="ShowOpPatAddPopUp()" class="patient-link"><b>Register New Outdoor
-            Patient | </b></a> <a title="ALT+L" (click)="ShowStockDetails()" class="patient-link"><b>Stock Details</b></a>
+        <a *ngIf="!IsCurrentDispensaryInsurace" title="ALT+N" (click)="ShowOpPatAddPopUp()" class="patient-link"><b>{{ 'DISPENSARY.SALE.REGISTER_NEW_OUTDOOR' | translate }} | </b></a> <a title="ALT+L" (click)="ShowStockDetails()" class="patient-link"><b>{{ 'DISPENSARY.SALE.STOCK_DETAILS' | translate }}</b></a>
       </div>
       <div class="col-md-1">
-        <div class="shortcut-key shortkey-right " title="Shortcut Keys">
+        <div class="shortcut-key shortkey-right " [title]="'DISPENSARY.SALE.SHORTCUT_KEYS' | translate">
           <a href="#"><img src="../../../themes/theme-default/images/arrows.svg" alt=""></a>
           <div class="keydropdown">
             <ul>
-              <li><kbd>ALT</kbd> + <kbd>A</kbd> = <samp>Anonymous Patient</samp> </li>
-              <li><kbd>ALT</kbd> + <kbd>P</kbd> = <samp>Print Receipt</samp> </li>
-              <li><kbd>ALT</kbd> + <kbd>N</kbd> = <samp>Register New Outdoor Patient</samp> </li>
-              <li><kbd>ALT</kbd> + <kbd>L</kbd> = <samp>Show Stock Details</samp> </li>
+              <li><kbd>ALT</kbd> + <kbd>A</kbd> = <samp>{{ 'DISPENSARY.SALE.ANONYMOUS_PATIENT' | translate }}</samp> </li>
+              <li><kbd>ALT</kbd> + <kbd>P</kbd> = <samp>{{ 'DISPENSARY.SALE.PRINT_RECEIPT' | translate }}</samp> </li>
+              <li><kbd>ALT</kbd> + <kbd>N</kbd> = <samp>{{ 'DISPENSARY.SALE.REGISTER_NEW_OUTDOOR' | translate }}</samp> </li>
+              <li><kbd>ALT</kbd> + <kbd>L</kbd> = <samp>{{ 'DISPENSARY.SALE.STOCK_DETAILS' | translate }}</samp> </li>
             </ul>
           </div>
         </div>
@@ -70,33 +69,33 @@
     <div class="patient_info">
       <div class="row">
         <div class="col-sm-3 col-md-2">
-          <label>Hospital No:<span
+          <label>{{ 'DISPENSARY.SALE.HOSPITAL_NO' | translate }}<span
                   [innerHTML]="currentPatient.PatientCode ? currentPatient.PatientCode : newOutPatient.PatientCode ? newOutPatient.PatientCode : ''"></span></label>
         </div>
         <div class="col-sm-4 col-md-3">
-          <label>Name:<span
+          <label>{{ 'DISPENSARY.SALE.NAME' | translate }}<span
                   [innerHTML]="currentPatient.ShortName? currentPatient.ShortName : newOutPatient.ShortName? newOutPatient.ShortName : ''"></span></label>
         </div>
 
         <div class="col-sm-3 col-md-2">
-          <label>Age/Sex:<span
+          <label>{{ 'DISPENSARY.SALE.AGE_SEX' | translate }}<span
                   [innerHTML]="currentPatient.Age? currentPatient.Age: newOutPatient.Age? newOutPatient.Age : ''"></span></label>/<label><span
                   [innerHTML]="currentPatient.Gender? currentPatient.Gender: newOutPatient.Gender? newOutPatient.Gender : ''"></span></label>
         </div>
 
         <div class="col-sm-4 col-md-3">
-          <label>Address:<span
+          <label>{{ 'DISPENSARY.SALE.ADDRESS' | translate }}<span
                   [innerHTML]="currentPatient.Address?currentPatient.Address: newOutPatient.Address? newOutPatient.Address : ''"></span></label>
         </div>
 
         <div class="col-sm-3 col-md-2">
-          <label>Contact No:<span
+          <label>{{ 'DISPENSARY.SALE.CONTACT_NO' | translate }}<span
                   [innerHTML]="currentPatient.PhoneNumber? currentPatient.PhoneNumber: newOutPatient.PhoneNumber? newOutPatient.PhoneNumber : ''"></span></label>
         </div>
       </div>
       <div class="row sale-price-category" style="margin-top: 10px;">
         <div class="col-sm-2">
-          <label>Visit Type:<span [innerHTML]="currentPatient.VisitType"></span></label>
+          <label>{{ 'DISPENSARY.SALE.VISIT_TYPE' | translate }}<span [innerHTML]="currentPatient.VisitType"></span></label>
         </div>
         <div class="col-sm-10"
              *ngIf="(SchemePriceCategoryFromVisit && SchemePriceCategoryFromVisit.SchemeId && SchemePriceCategoryFromVisit.PriceCategoryId) || DisplaySchemePriceCategorySelection">
@@ -115,15 +114,15 @@
         <table class="table table-striped table-hover inv_table table-bordered table-form">
           <thead>
             <tr>
-              <th>GenericName</th>
-              <th><b>Drug/Medicine Name</b></th>
-              <th><b>Expiry</b></th>
-              <th><b>Batch</b></th>
-              <th><b>AvlQty</b></th>
-              <th><b>Qty</b></th>
-              <th><b>SalePrice</b></th>
-              <th><b>SubTotal</b></th>
-              <th *ngIf="IsitemlevlDis && IsCurrentDispensaryInsurace == false"><b>Dis%</b></th>
+              <th>{{ 'DISPENSARY.SALE.GENERIC_NAME' | translate }}</th>
+              <th><b>{{ 'DISPENSARY.SALE.DRUG_MEDICINE_NAME' | translate }}</b></th>
+              <th><b>{{ 'DISPENSARY.SALE.EXPIRY' | translate }}</b></th>
+              <th><b>{{ 'DISPENSARY.SALE.BATCH' | translate }}</b></th>
+              <th><b>{{ 'DISPENSARY.SALE.AVL_QTY' | translate }}</b></th>
+              <th><b>{{ 'DISPENSARY.SALE.QTY' | translate }}</b></th>
+              <th><b>{{ 'DISPENSARY.SALE.SALE_PRICE' | translate }}</b></th>
+              <th><b>{{ 'DISPENSARY.SALE.SUB_TOTAL' | translate }}</b></th>
+              <th *ngIf="IsitemlevlDis && IsCurrentDispensaryInsurace == false"><b>{{ 'DISPENSARY.SALE.DIS_PERCENT' | translate }}</b></th>
               <th></th>
             </tr>
           </thead>
@@ -131,7 +130,7 @@
             <tr>
               <td>
                 <input danphe-auto-complete class=" form-control" id="generic" [(ngModel)]="invoiceItem.selectedGeneneric"
-                       [source]="FilteredGenericList" [list-formatter]="phrmGenericListFormatter" placeholder="--Select Generic Name--"
+                       [source]="FilteredGenericList" [list-formatter]="phrmGenericListFormatter" [placeholder]="'DISPENSARY.SALE.SELECT_GENERIC_PLACEHOLDER' | translate"
                        display-property-name="GenericName" value-property-name=null onClick="this.select();"
                        (valueChanged)="AssignSelectedGenName(invoiceItem)" min-chars="1" [grid-sort]="'GenericName'" match-formatted="true"
                        (keyup.enter)="coreService.FocusInputById('item-box')">
@@ -141,14 +140,14 @@
                 <form [formGroup]="invoiceItem.InvoiceItemsValidator" *ngIf="invoiceItem.enableItmSearch">
                   <input *ngIf="IsCurrentDispensaryInsurace; else normalItemSearch" danphe-auto-complete class="form-control"
                          [(ngModel)]="invoiceItem.selectedItem" formControlName="ItemName" [source]="ItemListWithCategoryFiltered"
-                         [list-formatter]="insuranceItemListFormatter" placeholder="--Select Medicine--" display-property-name="ItemName"
+                         [list-formatter]="insuranceItemListFormatter" [placeholder]="'DISPENSARY.SALE.SELECT_MEDICINE_PLACEHOLDER' | translate" display-property-name="ItemName"
                          value-property-name=null onClick="this.select();" (valueChanged)="onItemSelect($event)" max-num-list="100"
                          [min-chars]="invoiceItem.ItemFieldMinChars" style="width:250px;" id="item-box" [grid-sort]="'ItemName'"
                          match-formatted="true" (keyup.enter)="coreService.FocusInputById('qty')" autocomplete="off"
                          [ngClass]="{'border-red': invoiceItem.IsDirty('ItemName')}" />
                   <ng-template #normalItemSearch>
                     <input danphe-auto-complete class="form-control" [(ngModel)]="invoiceItem.selectedItem" formControlName="ItemName"
-                           [source]="ItemListWithCategoryFiltered" [list-formatter]="phrmItemListFormatter" placeholder="--Select Medicine--"
+                           [source]="ItemListWithCategoryFiltered" [list-formatter]="phrmItemListFormatter" [placeholder]="'DISPENSARY.SALE.SELECT_MEDICINE_PLACEHOLDER' | translate"
                            display-property-name="ItemName" value-property-name=null onClick="this.select();" (valueChanged)="onItemSelect($event)"
                            max-num-list="100" [min-chars]="invoiceItem.ItemFieldMinChars" style="width:250px;" id="item-box" [grid-sort]="'ItemName'"
                            match-formatted="true"
@@ -156,7 +155,7 @@
                            autocomplete="off" [ngClass]="{'border-red': invoiceItem.IsDirty('ItemName')}" />
                   </ng-template>
                   <!-- <span class="error-msg" *ngIf=" invoiceItem.IsDirty('ItemName')"
-                        [hidden]=" !invalid || invoiceItem.IsValidCheck('ItemName','invalidItem')">Invalid Item</span> -->
+                         [hidden]=" !invalid || invoiceItem.IsValidCheck('ItemName','invalidItem')">Invalid Item</span> -->
                 </form>
               </td>
 
@@ -224,9 +223,9 @@
                *ngIf="(invoiceItem.IsDirty('Quantity')) || (invoiceItem.IsDirty('ItemName'))">
             <span
                   [hidden]="(invoiceItem.TotalQty>=invoiceItem.Quantity) || (invoiceItem.IsValidCheck('Quantity','invalidNumber')) || (invoiceItem.IsValidCheck('Quantity','wrongDecimalValue'))">
-              Invalid Quantity</span>
+              {{ 'DISPENSARY.SALE.INVALID_QTY' | translate }}</span>
             <span [hidden]=" !invalid || invoiceItem.IsValidCheck('ItemName','invalidItem')">
-              Invalid Item</span>
+              {{ 'DISPENSARY.SALE.INVALID_ITEM' | translate }}</span>
           </div>
         </form>
         <div class="table-wrap">
@@ -235,16 +234,16 @@
               <tr>
                 <th></th>
                 <th>#</th>
-                <th>GenericName</th>
-                <th>ItemName</th>
-                <th>Expiry</th>
-                <th>Batch</th>
-                <th>Qty</th>
-                <th>SalePrice</th>
-                <th>SubTotal</th>
-                <th>Discount Amt.</th>
-                <th>VAT Amt.</th>
-                <th>Total</th>
+                <th>{{ 'DISPENSARY.SALE.GENERIC_NAME' | translate }}</th>
+                <th>{{ 'DISPENSARY.SALE.DRUG_MEDICINE_NAME' | translate }}</th>
+                <th>{{ 'DISPENSARY.SALE.EXPIRY' | translate }}</th>
+                <th>{{ 'DISPENSARY.SALE.BATCH' | translate }}</th>
+                <th>{{ 'DISPENSARY.SALE.QTY' | translate }}</th>
+                <th>{{ 'DISPENSARY.SALE.SALE_PRICE' | translate }}</th>
+                <th>{{ 'DISPENSARY.SALE.SUB_TOTAL' | translate }}</th>
+                <th>{{ 'DISPENSARY.SALE.DISCOUNT_AMT' | translate }}</th>
+                <th>{{ 'DISPENSARY.SALE.VAT_AMT' | translate }}</th>
+                <th>{{ 'DISPENSARY.SALE.TOTAL' | translate }}</th>
               </tr>
             </thead>
             <tbody>
@@ -282,7 +281,7 @@
                                                                                                                           </div>
                                                                                                                         </tr> -->
           <tr>
-            <td>Sub Total:</td>
+            <td>{{ 'DISPENSARY.SALE.SUB_TOTAL' | translate }}:</td>
             <td>
               <div class="form-group">
                 <input onwheel="this.blur()" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.SubTotal" disabled
@@ -291,7 +290,7 @@
             </td>
           </tr>
           <tr *ngIf="isMainDiscountAvailable">
-            <td>Discount Percentage:</td>
+            <td>{{ 'DISPENSARY.SALE.DIS_PERCENT' | translate }}:</td>
             <td>
               <div class="form-group">
                 <form [formGroup]="currSale.InvoiceValidator">
@@ -307,7 +306,7 @@
             </td>
           </tr>
           <tr *ngIf="isMainDiscountAvailable">
-            <td>Discount Amount: </td>
+            <td>{{ 'DISPENSARY.SALE.DISCOUNT_AMT' | translate }}: </td>
             <td>
               <div class="form-group">
                 <input onwheel="this.blur()" onClick="this.select();" class="form-control" [ngModelOptions]="{standalone: true}"
@@ -319,7 +318,7 @@
             </td>
           </tr>
           <tr *ngIf="isMainVATApplicable == true">
-            <td>VAT Amount: </td>
+            <td>{{ 'DISPENSARY.SALE.VAT_AMT' | translate }}: </td>
             <td>
               <div class="form-group">
                 <input onwheel="this.blur()" class="form-control" [ngModelOptions]="{standalone: true}" disabled [(ngModel)]="currSale.VATAmount"
@@ -328,7 +327,7 @@
             </td>
           </tr>
           <tr>
-            <td>Total Amount:</td>
+            <td>{{ 'DISPENSARY.SALE.TOTAL' | translate }}:</td>
             <td>
               <div class="form-group">
                 <input onwheel="this.blur()" [(ngModel)]="currSale.TotalAmount" [ngModelOptions]="{standalone: true}" disabled class="form-control"
@@ -337,13 +336,13 @@
             </td>
           </tr>
           <tr class="dot">
-            <td colspan="2" class="text-capitalize">In Words : <b>{{currSale.PaidAmount | number: "1.2-4" | NumberInWords}}
-              </b>Only. <br />
+            <td colspan="2" class="text-capitalize">{{ 'DISPENSARY.SALE.IN_WORDS' | translate }} <b>{{currSale.PaidAmount | number: "1.2-4" | NumberInWords}}
+              </b>{{ 'DISPENSARY.SALE.ONLY' | translate }} <br />
               <br />
             </td>
           </tr>
           <tr *ngIf="currSale.IsCoPayment">
-            <td>Payment Mode: </td>
+            <td>{{ 'DISPENSARY.SALE.PAYMENT_MODE' | translate }} </td>
             <td>
               <div class="form-group">
                 <input type="text" class="form-control" [(ngModel)]="currSale.CoPaymentMode" disabled>
@@ -390,7 +389,7 @@
           </tr>
           <tr *ngIf="currSale.CoPaymentMode!=='credit'"
               [hidden]="(IsCurrentDispensaryInsurace == true && currSale.PaymentMode == 'credit')||(currSale.PaymentMode == 'credit')">
-            <td>Tender:</td>
+            <td>{{ 'DISPENSARY.SALE.TENDER' | translate }}</td>
             <td>
               <div class="form-group">
                 <input #tender onwheel="this.blur()" onClick="this.select();" class="form-control" [ngModelOptions]="{standalone: true}"
@@ -401,11 +400,11 @@
           </tr>
           <tr *ngIf="currSale.CoPaymentMode!=='credit'"
               [hidden]="(IsCurrentDispensaryInsurace == true && currSale.PaymentMode == 'credit'||(currSale.PaymentMode == 'credit'))">
-            <td>Change:</td>
+            <td>{{ 'DISPENSARY.SALE.CHANGE' | translate }}</td>
             <td>{{coreService.currencyUnit}} {{currSale.Change}}</td>
           </tr>
           <tr>
-            <td>Remarks:<sup *ngIf="currSale.PaymentMode == 'credit' || isRemarksMandatory" class="color-red">*</sup></td>
+            <td>{{ 'DISPENSARY.SALE.REMARKS' | translate }}<sup *ngIf="currSale.PaymentMode == 'credit' || isRemarksMandatory" class="color-red">*</sup></td>
             <td>
               <div class="form-group">
                 <input [(ngModel)]="currSale.Remark" [ngModelOptions]="{standalone: true}" class="form-control" name="Remarks" id="remarks"
@@ -414,7 +413,7 @@
             </td>
           </tr>
           <tr [hidden]="IsCurrentDispensaryInsurace == true">
-            <td>Paid Amount: <i class="glyphicon glyphicon-hand-right blink" style="color:red;font-size:10px;"></i></td>
+            <td>{{ 'DISPENSARY.SALE.PAID_AMOUNT' | translate }} <i class="glyphicon glyphicon-hand-right blink" style="color:red;font-size:10px;"></i></td>
             <td>
               <div class="form-group">
                 <input [(ngModel)]="currSale.PaidAmount" [ngModelOptions]="{standalone: true}" class="form-control blink" name="PaidAmount"
@@ -426,13 +425,13 @@
         <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
           <input DanpheConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()"
                  (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" title="ALT + P" [disabled]="loading"
-                 value="Print Invoice">
+                 [value]="'DISPENSARY.SALE.PRINT_INVOICE' | translate">
           <span></span>&nbsp;&nbsp;&nbsp;
           <input *ngIf="SchemePriceCategory.AllowProvisionalBilling && currentPatient.PatientId >0" DanpheConfirmationDialog type="submit"
                  [title]="confirmationTitle" [message]="confirmationMessageForProvisional" (confirm)="handleProvisionalSaleConfirm()"
-                 (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" [disabled]="loading" value="Provisional Slip">
+                 (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" [disabled]="loading" [value]="'DISPENSARY.SALE.PROVISIONAL_SLIP' | translate">
           <button class="btn btn-danger" [disabled]="loading" (click)="Cancel()">
-            Discard
+            {{ 'DISPENSARY.SALE.DISCARD' | translate }}
           </button>
         </div>
       </div>
@@ -441,26 +440,26 @@
   <div class="row">
     <div class="col-md-2">
       <div class="invoice-history" [hidden]="IsCurrentDispensaryInsurace == true">
-        <div class="history-title"> <b>Invoice History</b> </div>
+        <div class="history-title"> <b>{{ 'DISPENSARY.SALE.INVOICE_HISTORY' | translate }}</b> </div>
         <table>
           <tr>
-            <td>Deposit Balance <b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.DEPOSIT_BALANCE' | translate }} <b class="colon">:</b></td>
             <td>{{patSummary.DepositBalance}}</td>
           </tr>
           <tr>
-            <td>Credit <b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.CREDIT' | translate }} <b class="colon">:</b></td>
             <td style="text-decoration:underline;">{{patSummary.CreditAmount}}</td>
           </tr>
           <tr>
-            <td>Provisional Amount <b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.PROVISIONAL_AMT' | translate }} <b class="colon">:</b></td>
             <td style="text-decoration:underline;">{{patSummary.ProvisionalAmt}}</td>
           </tr>
           <tr>
-            <td>Total Due<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.TOTAL_DUE' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.TotalDue}}</td>
           </tr>
           <tr>
-            <td>Balance Amount <b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.BALANCE_AMT' | translate }} <b class="colon">:</b></td>
             <td style="font-weight: bold;color: red;font-size: 17px;"> {{patSummary.BalanceAmount}} </td>
           </tr>
         </table>
@@ -468,26 +467,26 @@
     </div>
     <div class="col-md-2">
       <div class="invoice-history" [hidden]="IsCurrentDispensaryInsurace == true">
-        <div class="history-title"> <b>Credit Limits and Balances</b> </div>
+        <div class="history-title"> <b>{{ 'DISPENSARY.SALE.CREDIT_LIMITS' | translate }}</b> </div>
         <table>
           <tr>
-            <td>General Credit Limit<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.GENERAL_LIMIT' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.GeneralCreditLimit}}</td>
           </tr>
           <tr>
-            <td>IP Credit Limit<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.IP_LIMIT' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.IpCreditLimit}}</td>
           </tr>
           <tr>
-            <td>OP Credit Limit<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.OP_LIMIT' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.OpCreditLimit}}</td>
           </tr>
           <tr>
-            <td>IP Balance<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.IP_BALANCE' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.IpBalance}}</td>
           </tr>
           <tr>
-            <td>OP Balance<b class="colon">:</b></td>
+            <td>{{ 'DISPENSARY.SALE.OP_BALANCE' | translate }}<b class="colon">:</b></td>
             <td>{{patSummary.OpBalance}}</td>
           </tr>
 

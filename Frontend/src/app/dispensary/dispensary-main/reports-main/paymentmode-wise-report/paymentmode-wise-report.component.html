@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="caption custom-caption">
         <i class="glyphicon glyphicon-asterisk"></i>
-        <span class="caption-subject">PaymentMode Wise Report</span>
+        <span class="caption-subject">{{ 'DISPENSARY.REPORTS.PAYMENTMODE_WISE' | translate }}</span>
       </div>
       <div class="row">
         <div class="col-md-6">
@@ -13,8 +13,8 @@
         <div class="col-md-2 col-xs-12">
           <div class="form-group">
             <button class="btn green btn-success" type="button" (click)="Load()" [disabled]="loading">
-              <span *ngIf="!loading"><i class="fa fa-search"></i>&nbsp;Show Report</span>
-              <span *ngIf="loading">Loading...</span>
+              <span *ngIf="!loading"><i class="fa fa-search"></i>&nbsp;{{ 'DISPENSARY.REPORTS.SHOW_REPORT' | translate }}</span>
+              <span *ngIf="loading">{{ 'DISPENSARY.REPORTS.LOADING' | translate }}</span>
             </button>
           </div>
         </div>
@@ -24,10 +24,10 @@
       <div class="row">
         <div class="col-md-4 col-xs-12">
           <div class="form-group">
-            <label class="control-label col-md-4">PaymentMode<b style="float:right;">:</b></label>
+            <label class="control-label col-md-4">{{ 'DISPENSARY.REPORTS.PAYMENT_METHOD' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-6">
               <select id="id_phrm_mutiple_payment_mode" [(ngModel)]="PaymentMode" class="form-control" [ngModelOptions]="{standalone: true}" (change)="PaymentModeChange($event)">
-                <option value="All" selected>All</option>
+                <option value="All" selected>{{ 'DISPENSARY.STOCK.ALL' | translate }}</option>
                 <option *ngFor="let modes of PaymentModes" value="{{modes.PaymentSubCategoryName}}">
                   {{modes.PaymentSubCategoryName}}
                 </option>
@@ -37,10 +37,10 @@
         </div>
         <div class="col-md-4 col-xs-12">
           <div class="form-group">
-            <label class="control-label col-md-3">Type<b style="float:right;">:</b></label>
+            <label class="control-label col-md-3">{{ 'DISPENSARY.REPORTS.TYPE' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-6">
               <select id="id_phrm_multiple_payment_type" [(ngModel)]="Type" class="form-control" [ngModelOptions]="{standalone: true}" (change)="TypeChanged($event)">
-                <option value="All" selected>All</option>
+                <option value="All" selected>{{ 'DISPENSARY.STOCK.ALL' | translate }}</option>
                 <option *ngFor="let type of Types" value="{{type.TypeName}}">
                   {{type.TypeName}}
                 </option>
@@ -50,10 +50,9 @@
         </div>
         <div class="col-md-4 col-xs-12">
           <div class="form-group">
-            <label class="control-label col-md-2">User<b style="float:right;">:</b></label>
+            <label class="control-label col-md-2">{{ 'DISPENSARY.REPORTS.USER' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-7">
-
-              <input danphe-auto-complete class="form-control" [(ngModel)]="selUser" [source]="userList" [list-formatter]="UserListFormatter" placeholder="Enter User Name" display-property-name="EmployeeName" value-property-name="EmployeeId" onclick="this.select();" [ngModelOptions]="{standalone: true}" (focusout)="userChanged()" />
+              <input danphe-auto-complete class="form-control" [(ngModel)]="selUser" [source]="userList" [list-formatter]="UserListFormatter" [placeholder]="'DISPENSARY.REPORTS.USER' | translate" display-property-name="EmployeeName" value-property-name="EmployeeId" onclick="this.select();" [ngModelOptions]="{standalone: true}" (focusout)="userChanged()" />
             </div>
           </div>
         </div>
@@ -72,34 +71,34 @@
         <div id="id_phrm_multiple_payment_report_summary">
           <div style="padding-top:7px;">
             <h4 style="font-weight:bold">
-              Summary
+              {{ 'DISPENSARY.REPORTS.SUMMARY' | translate }}
             </h4>
             <div>
               <table class="tbl-summ" border="1" style="width:100%; float: left;">
                 <tr>
                   <th>
-                    PaymentModes
+                    {{ 'DISPENSARY.REPORTS.PAYMENT_METHOD' | translate }}
                   </th>
                   <th>
-                    Cash Sales
+                    {{ 'DISPENSARY.REPORTS.CASH_SALES' | translate }}
                   </th>
                   <th>
-                    Return Cash Sales
+                    {{ 'DISPENSARY.REPORTS.RETURN_CASH_SALES' | translate }}
                   </th>
                   <th>
-                    Deposit Received
+                    {{ 'DISPENSARY.REPORTS.DEPOSIT_RECEIVED' | translate }}
                   </th>
                   <th>
-                    Deposit Refund
+                    {{ 'DISPENSARY.REPORTS.DEPOSIT_REFUND' | translate }}
                   </th>
                   <th>
-                    Collection From Receivable
+                    {{ 'DISPENSARY.REPORTS.COLLECTION_FROM_RECEIVABLES' | translate }}
                   </th>
                   <th>
-                    Settlement Discount
+                    {{ 'DISPENSARY.REPORTS.SETTLEMENT_DISCOUNT' | translate }}
                   </th>
                   <th>
-                    Cash Collection
+                    {{ 'DISPENSARY.REPORTS.CASH_COLLECTION' | translate }}
                   </th>
                 </tr>
                 <tr *ngFor="let summ of summaryData">
@@ -130,7 +129,7 @@
                   </td>
                 </tr>
                 <tr style="position: sticky; z-index: 3; bottom: -1px; background-color: #f1f1f1 !important;">
-                  <td style="font-weight:bold;text-align:right;">Grand Total</td>
+                  <td style="font-weight:bold;text-align:right;">{{ 'DISPENSARY.REPORTS.GRAND_TOTAL' | translate }}</td>
                   <td style="font-weight:bold;text-align:right;">{{ totalSummaryView.CashSalesAmount | ParseAmount}}</td>
                   <td style="font-weight:bold;text-align:right;">{{ totalSummaryView.CashSalesReturnAmount | ParseAmount }}</td>
                   <td style="font-weight:bold;text-align:right;">{{ totalSummaryView.DepositReceived | ParseAmount}}</td>
@@ -146,7 +145,7 @@
         <div class="row col-md-10" style="text-align:center">
           <button class="blue btn" type="button" (click)="Print('id_phrm_multiple_payment_report_summary')">
             <i class="fa fa-print"></i>
-            Print </button>
+            {{ 'COMMON.PRINT' | translate }} </button>
         </div>
       </div>
     </div>

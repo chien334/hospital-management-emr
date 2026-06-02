@@ -4,10 +4,10 @@
             <div class="col-md-12">
                 <div class="caption custom-caption" style="float: left;">
                     <i class="glyphicon glyphicon-asterisk"></i>
-                    <span class="caption-subject">Narcotics Daily Sales Summary Report</span>
+                    <span class="caption-subject">{{ 'DISPENSARY.REPORTS.NARCOTICS_DAILY_SALES' | translate }}</span>
                 </div>
                 <div style="float: right; font-size: 11px;">
-                    *Note: Return Sales are not included in this report.
+                    {{ 'DISPENSARY.REPORTS.NARCOTICS_NOTE' | translate }}
                 </div>
             </div>
         </div>
@@ -18,11 +18,11 @@
             </div>
             <div class="col-md-4 col-xs-12">
                 <div class="form-group row">
-                    <label class="control-label col-md-5">Select Dispensary<b style="float:right;">:</b></label>
+                    <label class="control-label col-md-5">{{ 'DISPENSARY.REPORTS.SELECT_DISPENSARY' | translate }}<b style="float:right;">:</b></label>
                     <div class="col-md-7">
                         <input danphe-auto-complete [(ngModel)]="selectedDispensary" class="form-control"
                             [list-formatter]="DispensaryListFormatter" [source]="dispensaryList"
-                            placeholder="Enter Dispensary Name" display-property-name="Name" value-property-name=null
+                            [placeholder]="'DISPENSARY.REPORTS.SELECT_DISPENSARY' | translate" display-property-name="Name" value-property-name=null
                             onclick="this.select();" id="dispensary" (valueChanged)="OnDispensaryChange()"
                             max-num-list="10" [ngModelOptions]="{standalone: true}" />
                     </div>
@@ -32,13 +32,13 @@
         <div class="col-md-12 mt10">
             <div class="row">
                 <div class="col-md-5 col-xs-12">
-                    <div class="row"><label class="control-label col-md-4">Select Item<b class="color-red"> *</b><b
+                    <div class="row"><label class="control-label col-md-4">{{ 'DISPENSARY.REPORTS.SELECT_ITEM' | translate }}<b class="color-red"> *</b><b
                                 style="float:right;">:</b></label>
                         <div class="col-md-8">
                             <div class="form-group">
                                 <input danphe-auto-complete class="form-control" [(ngModel)]="selectedItem"
                                     [source]="itemList" [list-formatter]="myItemListFormatter"
-                                    placeholder="--Select Item--" display-property-name="ItemName"
+                                    [placeholder]="'DISPENSARY.REPORTS.SELECT_ITEM_PLACEHOLDER' | translate" display-property-name="ItemName"
                                     value-property-name=null onClick="this.select();"
                                     (valueChanged)="onChangeItem($event)" max-num-list="10"
                                     (focusout)="CheckProperSelectedItem()" min-chars="0" style="width:100%;" />
@@ -49,8 +49,8 @@
                 <div class="col-md-3 col-xs-12">
                     <div class="form-group">
                         <button class="btn blue" type="button" (click)="GetReportData()" [disabled]="loading">
-                            <span *ngIf="!loading">Show Report</span>
-                            <span *ngIf="loading">Loading...</span>
+                            <span *ngIf="!loading">{{ 'DISPENSARY.REPORTS.SHOW_REPORT' | translate }}</span>
+                            <span *ngIf="loading">{{ 'DISPENSARY.REPORTS.LOADING' | translate }}</span>
                          </button>
                     </div>
                 </div>

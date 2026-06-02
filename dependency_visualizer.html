@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanpheEMR Dependency Visualizer</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vis.js Standalone CDN -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(18, 24, 43, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-primary: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --shadow-premium: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Glassmorphic Header */
+        header {
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 24px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-premium {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Main Workspace Layout */
+        .workspace {
+            flex: 1;
+            display: flex;
+            position: relative;
+            height: calc(100vh - 73px);
+        }
+
+        /* Left Control Panel */
+        .panel-control {
+            width: 320px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 5;
+            overflow-y: auto;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #3b82f6;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-search {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .input-search:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        .select-filter {
+            width: 100%;
+            background: #13192b;
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .select-filter:focus {
+            border-color: var(--accent-primary);
+        }
+
+        .legend-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+        }
+
+        .legend-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Center Canvas */
+        .canvas-container {
+            flex: 1;
+            position: relative;
+            background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+        }
+
+        #network-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Right Details panel (Float Glass Card) */
+        .panel-details {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 380px;
+            max-height: calc(100% - 48px);
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: var(--shadow-premium);
+            padding: 28px;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+            transform: translateX(420px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .panel-details.active {
+            transform: translateX(0);
+        }
+
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .details-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .details-type {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .btn-close-details {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.2s ease;
+        }
+
+        .btn-close-details:hover {
+            color: var(--text-primary);
+        }
+
+        .details-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+
+        .details-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent-primary);
+            margin-bottom: 8px;
+        }
+
+        .details-value {
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .details-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .details-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Tooltip style */
+        .vis-tooltip {
+            background-color: #1e293b !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #f8fafc !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 13px !important;
+            border-radius: 6px !important;
+            padding: 8px 12px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sleek Glassmorphic Header -->
+    <header>
+        <div class="logo-area">
+            <i class="fa-solid fa-network-wired logo-icon"></i>
+            <span class="logo-text">DanpheEMR <span style="font-weight: 300; font-size: 16px; color: var(--text-secondary);">Dependency Graph UI</span></span>
+            <span class="badge-premium">Active</span>
+        </div>
+        <div class="nav-links">
+            <a href="MAINTENANCE_GUIDE.md" target="_blank" class="nav-link"><i class="fa-regular fa-file-lines"></i> Open Maintenance Guide</a>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="workspace">
+        <!-- Left Panel Filters -->
+        <div class="panel-control">
+            <div>
+                <h3 class="panel-title"><i class="fa-solid fa-magnifying-glass"></i> Search Component</h3>
+                <input type="text" id="search-input" class="input-search" placeholder="Type module, class, database table...">
+            </div>
+
+            <div>
+                <h3 class="panel-title"><i class="fa-solid fa-filter"></i> Filter Module</h3>
+                <select id="module-filter" class="select-filter">
+                    <option value="all">All Modules</option>
+                    <option value="billing">Billing Module (Thanh toán)</option>
+                    <option value="adt">Admission Module (ADT)</option>
+                    <option value="pharmacy">Pharmacy Module (Nhà thuốc)</option>
+                    <option value="security">Security & Auth Module (Bảo mật)</option>
+                    <option value="system">System / Core Layer (Hệ thống)</option>
+                </select>
+            </div>
+
+            <div>
+                <h3 class="panel-title"><i class="fa-solid fa-tags"></i> Layer Legends</h3>
+                <ul class="legend-list">
+                    <li class="legend-item" onclick="focusGroup('database')">
+                        <div class="legend-color" style="background-color: #3b82f6;"></div>
+                        <span>PostgreSQL Database</span>
+                    </li>
+                    <li class="legend-item" onclick="focusGroup('dal')">
+                        <div class="legend-color" style="background-color: #ec4899;"></div>
+                        <span>EF Core DbContext & DAL</span>
+                    </li>
+                    <li class="legend-item" onclick="focusGroup('models')">
+                        <div class="legend-color" style="background-color: #d946ef;"></div>
+                        <span>Server Models / Entities</span>
+                    </li>
+                    <li class="legend-item" onclick="focusGroup('controllers')">
+                        <div class="legend-color" style="background-color: #10b981;"></div>
+                        <span>C# Controllers & API</span>
+                    </li>
+                    <li class="legend-item" onclick="focusGroup('frontend')">
+                        <div class="legend-color" style="background-color: #f59e0b;"></div>
+                        <span>Angular Services & Views</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Center Interactive Network Graph -->
+        <div class="canvas-container">
+            <div id="network-canvas"></div>
+        </div>
+
+        <!-- Right Side Panel Details (Floating Glassmorphism Card) -->
+        <div class="panel-details" id="details-card">
+            <div class="details-header">
+                <div>
+                    <h2 class="details-title" id="node-title">PatientModel</h2>
+                    <span class="details-type" id="node-type" style="background-color: rgba(217, 70, 239, 0.15); color: #d946ef; border: 1px solid rgba(217, 70, 239, 0.3);">Model</span>
+                </div>
+                <button class="btn-close-details" onclick="closeDetails()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="details-section">
+                <h4 class="details-label">Description</h4>
+                <p class="details-value" id="node-description">Contains complete patient demographic and medical record information. Linked to Ward beds, billing records, and scanned images.</p>
+            </div>
+
+            <div class="details-section">
+                <h4 class="details-label">Casing & Postgres Column Annotations</h4>
+                <p class="details-value" id="node-annotations" style="font-family: monospace; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 6px;">[Column("PatientID")]</p>
+            </div>
+
+            <div class="details-section">
+                <h4 class="details-label">Dependent Files / Imports</h4>
+                <div class="details-tag-list" id="node-dependencies">
+                    <span class="details-tag">BillingController.cs</span>
+                    <span class="details-tag">AdmissionDbContext.cs</span>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <h4 class="details-label">Associated PL/pgSQL Stored Procedure</h4>
+                <p class="details-value" id="node-proc" style="font-style: italic; color: #60a5fa;">sp_appt_patientlistfornewvisit</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Node metadata database
+        const metadata = {
+            'postgres': {
+                description: 'PostgreSQL relational database storing EMR configuration, transactional tables, and relational indexing. Accessible case-sensitively in double-quotes.',
+                annotations: 'Host=localhost;Database=danphe_emr;Port=5432',
+                deps: ['MasterDbContext.cs', 'CoreDbContext.cs', 'BillingDbContext.cs'],
+                proc: 'hosts 10+ core PL/pgSQL database routines'
+            },
+            'sp_adt_getalladmittedpatients': {
+                description: 'PL/pgSQL function compiling inpatient admissions status, joined to Wards, Beds, and Patient models using dynamic cursors.',
+                annotations: 'sp_adt_getalladmittedpatients(status text, visit_id int)',
+                deps: ['AdmissionDbContext.cs', 'AdmissionController.cs'],
+                proc: 'PostgreSQL Active Function'
+            },
+            'sp_bil_getbilltxnitemsbetndaterange_fordepartment': {
+                description: 'PL/pgSQL function querying billing department transactions by date range with ReturnStatus exclusions. Maps MSSQL ItemId to IntegrationItemId.',
+                annotations: 'sp_bil_getbilltxnitemsbetndaterange_fordepartment(from text, to text, search text)',
+                deps: ['BillingController.cs', 'BillingDbContext.cs'],
+                proc: 'PostgreSQL Active Function'
+            },
+            'sp_phrm_getdispensaryavailablestock': {
+                description: 'Highly critical pharmacy procedure translated to PL/pgSQL which checks pricing category codes, stock counts, VAT settings, and narcotics validation.',
+                annotations: 'sp_phrm_getdispensaryavailablestock(dispensary_id int, price_cat_id int)',
+                deps: ['DispensaryController.cs', 'DispensaryService.cs'],
+                proc: 'PostgreSQL Active Function'
+            },
+            'sp_bedinformation': {
+                description: 'Retrieves multi-dataset cursor outputs (ref1: capacity summary, ref2: active bed list) for helpdesk bed status dashboards.',
+                annotations: 'sp_bedinformation() returns refcursor set',
+                deps: ['HelpdeskDbContext.cs', 'HelpdeskController.cs'],
+                proc: 'PostgreSQL Active Function'
+            },
+            'MasterDbContext': {
+                description: 'EF Core database context representing foundational reference configurations, including BedModel mappings to case-sensitive ADT_Bed table.',
+                annotations: 'modelBuilder.Entity<BedModel>().ToTable("ADT_Bed");',
+                deps: ['BedModel.cs', 'MasterDbContext.cs'],
+                proc: 'Master DbContext Layer'
+            },
+            'CoreDbContext': {
+                description: 'Core DBContext representing primary settings and lookups. Models case-sensitive table mappings for LookupId and LookupName.',
+                annotations: 'modelBuilder.Entity<LookupsModel>().Property(x => x.LookupId).HasColumnName("LookUpId");',
+                deps: ['CoreDbContext.cs', 'LookupsModel.cs'],
+                proc: 'Core Context Mapping'
+            },
+            'BedModel': {
+                description: 'Model representation of inpatient bed allocations. Case-sensitive mapping annotation preserves WardID and BedID columns in PostgreSQL.',
+                annotations: '[Column("BedID")] public int BedId { get; set; }',
+                deps: ['MasterDbContext.cs', 'ADT_Bed table'],
+                proc: 'ServerModel (Admission)'
+            },
+            'PatientModel': {
+                description: 'Demographics and primary patient metadata. Enforces strict annotations above collection relations to suppress EF shadow-property generation.',
+                annotations: '[ForeignKey("PatientId")] public List<AdmissionModel> Admissions { get; set; }',
+                deps: ['PatientModel.cs', 'AdmissionDbContext.cs'],
+                proc: 'ServerModel (Patient)'
+            },
+            'BillingController': {
+                description: 'Web API Controller hosting transactional billing routes. Configured with NewtonSoft FormatResponse serializer mapping.',
+                annotations: '[Route("api/Billing")] returns FormatResponse(responseData)',
+                deps: ['BillingController.cs', 'CommonController.cs'],
+                proc: 'Controller Endpoint'
+            },
+            'SecurityController': {
+                description: 'Web API Controller managing security, login tokens, and routes. Maps dynamic Vietnamese sidebar translations recursively based on Accept-Language headers.',
+                annotations: 'route.DisplayName = route.DisplayName_vi (Accept-Language: vi)',
+                deps: ['SecurityController.cs', 'TokenInterceptor.service.ts'],
+                proc: 'Security Controller Endpoint'
+            },
+            'TokenInterceptor': {
+                description: 'Angular HttpInterceptor pulling the active user language from Local Storage and appending it as Accept-Language header into outgoing calls.',
+                annotations: "setHeaders: { 'Accept-Language': selectedLanguage }",
+                deps: ['token-interceptor.service.ts', 'AppMain.html'],
+                proc: 'Frontend Security Service'
+            },
+            'ag_Grid': {
+                description: 'ag-Grid angular grid library providing interactive tabular grids. Fully restored with inline-flex overrides in grid-style-new.css to ignore block select wrappers.',
+                annotations: '.ag-theme-fresh .ag-paging-panel { display: flex !important; }',
+                deps: ['grid-style-new.css', 'DanpheStyle.css', 'grid-style.css'],
+                proc: 'ag-Grid component layer'
+            },
+            'AppMain_View': {
+                description: 'Angular central home shell template. Restored sidebar caret, username panel, and dynamic Vietnamese spaces menus linking collapse tags via RouteId.',
+                annotations: "[attr.data-bs-target]='#menu_' + route.RouteId",
+                deps: ['AppMain.html', 'security.service.ts'],
+                proc: 'Frontend Core View'
+            }
+        };
+
+        // Vis.js Graph Configuration
+        const nodes = new vis.DataSet([
+            { id: 1, label: 'PostgreSQL Database', group: 'database', shape: 'database', title: 'PostgreSQL Database Server' },
+            
+            // Procs
+            { id: 2, label: 'sp_adt_getalladmittedpatients', group: 'database', shape: 'ellipse', title: 'PL/pgSQL Admissions Function' },
+            { id: 3, label: 'sp_bil_getbilltxnitemsbetndaterange...', group: 'database', shape: 'ellipse', title: 'PL/pgSQL Billing Items Function' },
+            { id: 4, label: 'sp_phrm_getdispensaryavailablestock', group: 'database', shape: 'ellipse', title: 'PL/pgSQL Pharmacy Stock Function' },
+            { id: 5, label: 'sp_bedinformation', group: 'database', shape: 'ellipse', title: 'PL/pgSQL Bed Info Function' },
+            
+            // Dal Contexts
+            { id: 6, label: 'MasterDbContext', group: 'dal', shape: 'box', title: 'Master Database Context' },
+            { id: 7, label: 'CoreDbContext', group: 'dal', shape: 'box', title: 'Core Database Context' },
+            
+            // Models
+            { id: 8, label: 'BedModel', group: 'models', shape: 'hexagon', title: 'Bed Server Model' },
+            { id: 9, label: 'PatientModel', group: 'models', shape: 'hexagon', title: 'Patient Server Model' },
+            
+            // Controllers
+            { id: 10, label: 'BillingController', group: 'controllers', shape: 'box', title: 'C# Billing API Endpoint' },
+            { id: 11, label: 'SecurityController', group: 'controllers', shape: 'box', title: 'C# Security / Routing Endpoint' },
+            
+            // Frontend
+            { id: 12, label: 'TokenInterceptor', group: 'frontend', shape: 'triangleDown', title: 'Angular i18n Interceptor' },
+            { id: 13, label: 'ag-Grid Styling', group: 'frontend', shape: 'diamond', title: 'ag-Grid UI Layer' },
+            { id: 14, label: 'AppMain View', group: 'frontend', shape: 'box', title: 'Main Angular Shell View' }
+        ]);
+
+        const edges = new vis.DataSet([
+            // Database connects to DbContexts
+            { from: 1, to: 6, arrows: 'to;from', color: { color: '#3b82f6' } },
+            { from: 1, to: 7, arrows: 'to;from', color: { color: '#3b82f6' } },
+            
+            // Procs bind to Database
+            { from: 2, to: 1, arrows: 'to', color: { color: '#60a5fa', opacity: 0.7 } },
+            { from: 3, to: 1, arrows: 'to', color: { color: '#60a5fa', opacity: 0.7 } },
+            { from: 4, to: 1, arrows: 'to', color: { color: '#60a5fa', opacity: 0.7 } },
+            { from: 5, to: 1, arrows: 'to', color: { color: '#60a5fa', opacity: 0.7 } },
+
+            // DbContexts map to Models
+            { from: 6, to: 8, arrows: 'to', label: 'maps', color: { color: '#ec4899' } },
+            { from: 7, to: 9, arrows: 'to', label: 'maps', color: { color: '#ec4899' } },
+            
+            // Models relate to Controllers
+            { from: 8, to: 10, arrows: 'to', color: { color: '#d946ef', opacity: 0.6 } },
+            { from: 9, to: 11, arrows: 'to', color: { color: '#d946ef', opacity: 0.6 } },
+            
+            // Controllers feed Frontend
+            { from: 10, to: 13, arrows: 'to', label: 'returns JSON', color: { color: '#10b981' } },
+            { from: 11, to: 14, arrows: 'to', label: 'feeds menu', color: { color: '#10b981' } },
+            
+            // Interceptor handles language headers for security APIs
+            { from: 12, to: 11, arrows: 'to', label: 'injects headers', color: { color: '#f59e0b' } },
+            
+            // ag-Grid integrates with layout view
+            { from: 13, to: 14, arrows: 'to;from', color: { color: '#f59e0b', opacity: 0.8 } }
+        ]);
+
+        // Init Vis.js Network
+        const container = document.getElementById('network-canvas');
+        const data = { nodes: nodes, edges: edges };
+        const options = {
+            nodes: {
+                font: {
+                    color: '#f8fafc',
+                    size: 13,
+                    face: 'Outfit'
+                },
+                borderWidth: 2,
+                shadow: true
+            },
+            edges: {
+                font: {
+                    color: '#94a3b8',
+                    size: 11,
+                    face: 'Outfit',
+                    strokeWidth: 0
+                },
+                width: 1.5,
+                smooth: {
+                    type: 'cubicBezier',
+                    forceDirection: 'none',
+                    roundness: 0.4
+                }
+            },
+            groups: {
+                database: { color: { background: 'rgba(59, 130, 246, 0.2)', border: '#3b82f6' } },
+                dal: { color: { background: 'rgba(236, 72, 153, 0.2)', border: '#ec4899' } },
+                models: { color: { background: 'rgba(217, 70, 239, 0.2)', border: '#d946ef' } },
+                controllers: { color: { background: 'rgba(16, 185, 129, 0.2)', border: '#10b981' } },
+                frontend: { color: { background: 'rgba(245, 158, 11, 0.2)', border: '#f59e0b' } }
+            },
+            physics: {
+                barnesHut: {
+                    gravitationalConstant: -3000,
+                    centralGravity: 0.3,
+                    springLength: 150,
+                    springConstant: 0.05
+                },
+                stabilization: { iterations: 150 }
+            },
+            interaction: {
+                hover: true,
+                tooltipDelay: 200
+            }
+        };
+
+        const network = new vis.Network(container, data, options);
+
+        // Click Handler for Nodes
+        network.on("click", function (params) {
+            if (params.nodes.length > 0) {
+                const nodeId = params.nodes[0];
+                const selectedNode = nodes.get(nodeId);
+                const meta = metadata[selectedNode.label] || metadata[selectedNode.label.split(' ')[0]];
+                
+                if (meta) {
+                    showDetails(selectedNode.label, selectedNode.group, meta);
+                } else {
+                    showGenericDetails(selectedNode.label, selectedNode.group);
+                }
+            } else {
+                closeDetails();
+            }
+        });
+
+        // Search Filter Handler
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            const searchVal = e.target.value.toLowerCase();
+            if (searchVal) {
+                const matchedNodes = nodes.get({
+                    filter: function (node) {
+                        return node.label.toLowerCase().includes(searchVal) || (node.title && node.title.toLowerCase().includes(searchVal));
+                    }
+                });
+                if (matchedNodes.length > 0) {
+                    network.focus(matchedNodes[0].id, { scale: 1.2, animation: true });
+                    // Trigger click details
+                    const meta = metadata[matchedNodes[0].label] || metadata[matchedNodes[0].label.split(' ')[0]];
+                    if (meta) showDetails(matchedNodes[0].label, matchedNodes[0].group, meta);
+                }
+            }
+        });
+
+        // Group Filter Handler
+        document.getElementById('module-filter').addEventListener('change', function(e) {
+            const filterVal = e.target.value;
+            // Filter connections or focus logic
+            if (filterVal === 'billing') {
+                network.focus(10, { scale: 1.1, animation: true });
+            } else if (filterVal === 'adt') {
+                network.focus(8, { scale: 1.1, animation: true });
+            } else if (filterVal === 'pharmacy') {
+                network.focus(4, { scale: 1.1, animation: true });
+            } else if (filterVal === 'security') {
+                network.focus(11, { scale: 1.1, animation: true });
+            } else {
+                network.fit({ animation: true });
+            }
+        });
+
+        // Detail Actions
+        function showDetails(title, group, meta) {
+            document.getElementById('node-title').innerText = title;
+            
+            const typeLabel = document.getElementById('node-type');
+            typeLabel.innerText = group;
+            if (group === 'database') {
+                typeLabel.style.backgroundColor = 'rgba(59, 130, 246, 0.15)';
+                typeLabel.style.color = '#60a5fa';
+                typeLabel.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+            } else if (group === 'dal') {
+                typeLabel.style.backgroundColor = 'rgba(236, 72, 153, 0.15)';
+                typeLabel.style.color = '#f472b6';
+                typeLabel.style.borderColor = 'rgba(236, 72, 153, 0.3)';
+            } else if (group === 'models') {
+                typeLabel.style.backgroundColor = 'rgba(217, 70, 239, 0.15)';
+                typeLabel.style.color = '#e879f9';
+                typeLabel.style.borderColor = 'rgba(217, 70, 239, 0.3)';
+            } else if (group === 'controllers') {
+                typeLabel.style.backgroundColor = 'rgba(16, 185, 129, 0.15)';
+                typeLabel.style.color = '#34d399';
+                typeLabel.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+            } else {
+                typeLabel.style.backgroundColor = 'rgba(245, 158, 11, 0.15)';
+                typeLabel.style.color = '#fbbf24';
+                typeLabel.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+            }
+
+            document.getElementById('node-description').innerText = meta.description;
+            document.getElementById('node-annotations').innerText = meta.annotations;
+            document.getElementById('node-proc').innerText = meta.proc;
+
+            const depContainer = document.getElementById('node-dependencies');
+            depContainer.innerHTML = '';
+            meta.deps.forEach(dep => {
+                const span = document.createElement('span');
+                span.className = 'details-tag';
+                span.innerText = dep;
+                depContainer.appendChild(span);
+            });
+
+            document.getElementById('details-card').classList.add('active');
+        }
+
+        function showGenericDetails(title, group) {
+            document.getElementById('node-title').innerText = title;
+            document.getElementById('node-type').innerText = group;
+            document.getElementById('node-description').innerText = 'EMR Layer mapping node representing system architecture.';
+            document.getElementById('node-annotations').innerText = 'Standard system mapping';
+            document.getElementById('node-proc').innerText = 'None';
+            document.getElementById('node-dependencies').innerHTML = '<span class="details-tag">Core Modules</span>';
+            document.getElementById('details-card').classList.add('active');
+        }
+
+        function focusGroup(group) {
+            const groupNodes = nodes.get({
+                filter: function (node) { return node.group === group; }
+            });
+            if (groupNodes.length > 0) {
+                network.focus(groupNodes[0].id, { scale: 1.1, animation: true });
+            }
+        }
+
+        function closeDetails() {
+            document.getElementById('details-card').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

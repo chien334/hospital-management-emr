@@ -33,6 +33,9 @@
   "DISPENSARY": {
     "SELECT_YOUR_DISPENSARY": "Select your Dispensary",
     "DISPENSARY_LABEL": "dispensary",
+    "CURRENTLY_IN": "You are currently in {{name}} dispensary. To change, you can always click here.",
+    "ACTIVE_DISPENSARY": "Active Dispensary :",
+    "MORE": "More...",
     "NOTICE_MESSAGE": "Notice-Message",
     "ALLOWED_TO_SEE": "You are only allowed to see {{name}}.",
     "FAILED_LOAD_LIST": "Failed to load dispensary list.",

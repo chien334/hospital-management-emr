@@ -33,6 +33,9 @@
   "DISPENSARY": {
     "SELECT_YOUR_DISPENSARY": "Lựa chọn Quầy thuốc của bạn",
     "DISPENSARY_LABEL": "quầy thuốc",
+    "CURRENTLY_IN": "Bạn hiện đang ở quầy thuốc {{name}}. Để thay đổi, bạn luôn có thể nhấp vào đây.",
+    "ACTIVE_DISPENSARY": "Quầy hoạt động :",
+    "MORE": "Thêm...",
     "NOTICE_MESSAGE": "Thông báo",
     "ALLOWED_TO_SEE": "Bạn chỉ được phép xem {{name}}.",
     "FAILED_LOAD_LIST": "Tải danh sách quầy thuốc thất bại.",

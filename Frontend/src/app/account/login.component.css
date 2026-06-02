@@ -1,0 +1,415 @@
+/* Fullscreen container that isolates the login view */
+.login-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(circle at 50% 50%, #1a2639 0%, #0d131f 100%);
+  color: #ffffff;
+}
+
+/* Futuristic background glowing node blobs */
+.bg-circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  filter: blur(80px);
+  opacity: 0.18;
+}
+
+.circle-1 {
+  width: 400px;
+  height: 400px;
+  background: #3A7BD5;
+  top: -10%;
+  left: 10%;
+  animation: float-1 12s ease-in-out infinite alternate;
+}
+
+.circle-2 {
+  width: 500px;
+  height: 500px;
+  background: #3a6073;
+  bottom: -15%;
+  right: 15%;
+  animation: float-2 15s ease-in-out infinite alternate;
+}
+
+.circle-3 {
+  width: 300px;
+  height: 300px;
+  background: #e31d2d;
+  top: 40%;
+  left: 45%;
+  animation: float-3 10s ease-in-out infinite alternate;
+}
+
+@keyframes float-1 {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(40px) scale(1.1); }
+}
+
+@keyframes float-2 {
+  0% { transform: translateY(0) scale(1.1); }
+  100% { transform: translateY(-50px) scale(0.9); }
+}
+
+@keyframes float-3 {
+  0% { transform: translateX(0) scale(0.9); }
+  100% { transform: translateX(30px) scale(1.1); }
+}
+
+/* Pill-shaped Language Bar on the top right */
+.language-bar {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-btn:hover {
+  color: #ffffff;
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, #3A7BD5 0%, #3a6073 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(58, 123, 213, 0.3);
+}
+
+/* Glassmorphic login card container */
+.login-card-container {
+  width: 100%;
+  max-width: 440px;
+  padding: 20px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.login-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 40px 35px 35px 35px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Logo and header area inside card */
+.logo-area {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.hospital-logo {
+  width: 130px;
+  height: auto;
+  margin-bottom: 15px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.15));
+}
+
+.app-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0 0 6px 0;
+  background: linear-gradient(90deg, #ffffff 0%, #b2cbe0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-subtitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+/* Form Styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.error-banner {
+  background: rgba(227, 29, 45, 0.12);
+  border: 1px solid rgba(227, 29, 45, 0.3);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ff4d4d;
+  font-size: 13px;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.6);
+  padding-left: 2px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 15px;
+  pointer-events: none;
+  transition: color 0.3s;
+}
+
+.input-wrapper input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 14px 16px 14px 44px;
+  color: #ffffff;
+  font-size: 14.5px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-wrapper input:focus {
+  border-color: #3A7BD5;
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.18);
+}
+
+.input-wrapper input:focus + .input-icon {
+  color: #3A7BD5;
+}
+
+/* Input placeholder color compatibility */
+.input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Password Toggle Eye Button */
+.toggle-password-btn {
+  position: absolute;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.toggle-password-btn:hover {
+  color: #ffffff;
+}
+
+/* Remember Me Checkbox */
+.form-options {
+  display: flex;
+  align-items: center;
+  margin-top: -2px;
+  padding-left: 2px;
+}
+
+.remember-me-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+}
+
+.remember-me-label input {
+  display: none;
+}
+
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.remember-me-label input:checked + .custom-checkbox {
+  background: #3A7BD5;
+  border-color: #3A7BD5;
+}
+
+.remember-me-label input:checked + .custom-checkbox::after {
+  content: '\f00c';
+  font-family: 'fontAwesome';
+  font-size: 10px;
+  color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkbox-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 0.3s;
+}
+
+.remember-me-label:hover .checkbox-text {
+  color: #ffffff;
+}
+
+.remember-me-label:hover .custom-checkbox {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Premium Primary Submit Button with Lift/Glow effects */
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(90deg, #3A7BD5 0%, #3a6073 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(58, 123, 213, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(58, 123, 213, 0.45);
+  background: linear-gradient(90deg, #448cf0 0%, #466e85 100%);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(58, 123, 213, 0.2);
+}
+
+.submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.loader-state {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.loader-state i {
+  font-size: 16px;
+}
+
+/* Beautiful Animated Self-Drawing Heartbeat SVG Line at Bottom */
+.heartbeat-footer {
+  width: 100%;
+  max-width: 250px;
+  margin-top: 30px;
+  opacity: 0.35;
+  display: flex;
+  justify-content: center;
+}
+
+.heartbeat-footer svg {
+  width: 100%;
+  height: auto;
+}
+
+.heartbeat-line {
+  fill: none;
+  stroke: #e31d2d;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawLine 5s linear infinite;
+}
+
+@keyframes drawLine {
+  0% { stroke-dashoffset: 600; }
+  50% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -600; }
+}

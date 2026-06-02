@@ -1,7 +1,7 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BillingSharedModule } from '../../billing/billing-shared.module';
 import { SettingsSharedModule } from '../../settings-new/settings-shared.module';
@@ -86,7 +86,5 @@ import { GovInsStickerComponent } from './shared/sticker/ins-sticker-print.compo
         VisitBLService,
         AppointmentDLService,
         OrdersBLService,
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+        { provide: LocationStrategy, useClass: HashLocationStrategy }] })
 export class GovInsuranceModule { }

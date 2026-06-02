@@ -236,11 +236,6 @@ export class SecurityService {
   }
   public validRouteList: Array<DanpheRoute> = new Array<DanpheRoute>();
   public GetAllValidRoutes(): Array<DanpheRoute> {
-    this.validRouteList.forEach((r) => {
-      let re = /\ /gi;
-      let result = r.DisplayName.replace(re, "");
-      r.DisplayName = result;
-    });
     return this.validRouteList;
   }
   public UserPermissions: Array<Permission> = new Array<Permission>();

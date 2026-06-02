@@ -130,6 +130,9 @@ export class Visit {
   public DateValidator(control: UntypedFormControl): { [key: string]: boolean } {
     if (control) {
       let _date = control.value;
+      if (!_date || !_date.toString().trim()) {
+        return null;
+      }
       var _currDate = moment().format('YYYY-MM-DD');
       //if positive then selected time is of future else it of the past
       if (moment(_date).diff(_currDate) < 0)
@@ -172,6 +175,9 @@ export class Visit {
       const toMatch = group.controls[toMatchKey];
       let _date = target.value;
       let _time = toMatch.value;
+      if (!_date || !_time || !_date.toString().trim() || !_time.toString().trim()) {
+        return null;
+      }
       let _dateTime = moment(_date + " " + _time);
       var _currDate = moment().format('YYYY-MM-DD HH:mm');
       if (moment(_dateTime).diff(_currDate) < 0)

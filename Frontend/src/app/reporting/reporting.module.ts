@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AgGridModule } from "ag-grid-angular/main";
+import { AgGridModule } from "ag-grid-angular";
 import { DanpheAutoCompleteModule } from "../shared/danphe-autocomplete/danphe-auto-complete.module";
 import { DLService } from "../shared/dl.service";
 import { SharedModule } from "../shared/shared.module";
@@ -215,7 +215,7 @@ import { RPT_RAD_TotalRevenueFromRadiologyComponent } from "./radiology/revenue/
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        AgGridModule.withComponents(RPT_ReportingMainComponent),
+        AgGridModule,
         SharedModule,
         DanpheAutoCompleteModule], providers: [
         DLService,
@@ -225,7 +225,5 @@ import { RPT_RAD_TotalRevenueFromRadiologyComponent } from "./radiology/revenue/
         AppointmentDLService,
         ADT_DLService,
         VisitService,
-        VisitBLService,
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+        VisitBLService] })
 export class ReportingModule { }

@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ADT_BLService } from '../adt/shared/adt.bl.service';
@@ -97,7 +97,6 @@ import { VendorListComponent } from './vendor-list/vendor-list.component';
         ADT_BLService,
         AppointmentDLService,
         BillingBLService, PurchaseRequestViewComponent,
-        ADT_DLService,
-        provideHttpClient(withInterceptorsFromDi())
+        ADT_DLService
     ] })
 export class ProcurementModule { }

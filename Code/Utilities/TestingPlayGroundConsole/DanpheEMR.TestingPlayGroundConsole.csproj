@@ -2,8 +2,10 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
+    <NoWarn>$(NoWarn);CA2200;SYSLIB0021;NU1701;NU1903;CS1998;CS8618;CS8600;CS8602;CS8603;CS8604;CS8625;CS8601;CS8629;CS8605;CS8619;CS8620</NoWarn>
+
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <AssemblyName>DanpheEMR.TestingPlayGroundConsole</AssemblyName>
     <RootNamespace>DanpheEMR.TestingPlayGroundConsole</RootNamespace>
   </PropertyGroup>

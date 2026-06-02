@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 
 import { EmployeeRoutingModule } from "./employee-routing.constant";
 import { ChangePasswordComponent } from './changepassword/change-password.component';
@@ -25,5 +25,5 @@ import { SharedModule } from "../shared/shared.module";
         CommonModule,
         SharedModule], providers: [EmployeeBLService,
         EmployeeDLService,
-        ChangePasswordGuard, provideHttpClient(withInterceptorsFromDi())] })
+        ChangePasswordGuard] })
 export class EmployeeModule { }

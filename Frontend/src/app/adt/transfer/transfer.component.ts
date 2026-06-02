@@ -23,6 +23,7 @@ import {
 } from "../../shared/shared-enums";
 import { AdtAutoBillingItem_DTO } from "../shared/DTOs/adt-auto-billingItems.dto";
 import { AdtBedFeatureSchemePriceCategoryMap_DTO } from "../shared/DTOs/adt-bedfeature-scheme-pricecategory-map.dto";
+import { SchemePriceCategoryCustomType } from "../../billing/shared/custom-data-types/billing-custom-data-types";
 import { AdmissionMasterBlService } from "../shared/admission-master.bl.service";
 import { ADT_BLService } from "../shared/adt.bl.service";
 import { Bed } from "../shared/bed.model";

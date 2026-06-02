@@ -18,3 +18,9 @@ HAMS_Requirements/
 /Database/DanpheEMR_CompleteDB_4th_August_2019.bak
 /Code/Websites/DanpheEMR/DanpheEmrAPI.xml
 .codegraph/
+Frontend/.angular/cache/**
+*.bak
+scratch/
+.DS_Store
+**/.DS_Store
+**/node_modules/

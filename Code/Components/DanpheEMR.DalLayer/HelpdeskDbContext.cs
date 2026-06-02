@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -100,7 +100,7 @@ namespace DanpheEMR.DalLayer
         {
             List<SqlParameter> paramsList = new List<SqlParameter>();
 
-            DataSet data = GetDatasetFromStoredProc("sp_BedInformation", paramsList, this.connStr);
+            DataSet data = DALFunctions.GetDatasetFromStoredProc("sp_BedInformation", paramsList, this);
             DynamicReport dReport = new DynamicReport();
             //return an anonymous type - when mutliple table are received
             var bedinfo = new

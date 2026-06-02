@@ -1,4 +1,4 @@
-﻿using DanpheEMR.Security;
+using DanpheEMR.Security;
 using DanpheEMR.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -134,6 +134,7 @@ namespace DanpheEMR.Controllers
             try
             {
                 var req = context.HttpContext.Request;
+                Console.WriteLine($"[DanpheDataFilter] Path: {req.Path.Value}, Method: {req.Method}");
                 try
                 {
                     //this check only for dicom file posting
@@ -146,6 +147,7 @@ namespace DanpheEMR.Controllers
                         var flag = RBAC.IsValidUser(currUser.UserName, currUser.Password);
                         if (flag == false)
                         {
+                            Console.WriteLine("[DanpheDataFilter] DICOM unauthorized access");
                             context.Result = new JsonResult(new DanpheHTTPResponse<object> { Status = "Failed", ErrorMessage = "Unauthorized Access", Results = "" });
                         }
                     }
@@ -157,16 +159,31 @@ namespace DanpheEMR.Controllers
                         string tokenFromHeader = context.HttpContext.Request.Headers["Authorization"];
                         if(tokenFromHeader != null)
                         {
+                            Console.WriteLine($"[DanpheDataFilter] Authorization header present");
                             var tokenWithoutBearer = tokenFromHeader.Split(' ')[1];
                             var handler = new JwtSecurityTokenHandler();
                             var jwtSecurityToken = handler.ReadJwtToken(tokenWithoutBearer);
                             var userClaim = jwtSecurityToken.Claims.Where(claim => claim.Type == ENUM_ClaimTypes.currentUser).FirstOrDefault()?.Value; // Here currentUser is the claimType while generating the token., Krishna, 13thJan'23
                             var loggedInUserDetail = DanpheJSONConvert.DeserializeObject<RbacUser>(userClaim);
                             currentUser = loggedInUserDetail;
+                            Console.WriteLine($"[DanpheDataFilter] Decoded user: {currentUser?.UserName}, EmployeeId: {currentUser?.EmployeeId}");
+                            
+                            // Synchronize authenticated user to Session so all controllers can retrieve currentUser
+                            context.HttpContext.Session.Set<RbacUser>("currentuser", currentUser);
+                            context.HttpContext.Session.Set<RbacUser>(ENUM_SessionVariables.CurrentUser, currentUser);
+                            
+                            // Populate user-roles to Session to prevent any NullReferenceExceptions
+                            List<RbacRole> validUsrRoles = RBAC.GetUserAllRoles(currentUser.UserId);
+                            context.HttpContext.Session.Set<List<RbacRole>>("user-roles", validUsrRoles);
+                        }
+                        else
+                        {
+                            Console.WriteLine("[DanpheDataFilter] Authorization header is missing");
                         }
 
                         if (currentUser == null)
                         {
+                            Console.WriteLine("[DanpheDataFilter] currentUser is null, returning Failed JsonResult");
                             //Return unauthorized response to browser
                             context.Result = new JsonResult(new DanpheHTTPResponse<object> { Status = "Failed", ErrorMessage = "Unauthorized Access", Results = "" });
                         }
@@ -175,6 +192,7 @@ namespace DanpheEMR.Controllers
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine($"[DanpheDataFilter] Exception inside try block: {ex.Message}");
                     //Return unauthorized response to browser
                     context.Result = new JsonResult(new DanpheHTTPResponse<object> { Status = "Failed", ErrorMessage = "Unauthorized Access", Results = "" });
                 }

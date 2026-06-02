@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
@@ -47,8 +47,7 @@ export const empSettingsRoutes: Routes =
         SharedModule,
         DanpheAutoCompleteModule,
         RouterModule.forChild(empSettingsRoutes)], providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        provideHttpClient(withInterceptorsFromDi())
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })
 export class EmpSettingsModule {
 

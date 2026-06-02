@@ -7,7 +7,7 @@ import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { HistoryBLService } from '../shared/history.bl.service';
 import { DoctorsBLService } from '../../doctors/shared/doctors.bl.service';
 import * as moment from 'moment/moment';
-import { Lightbox } from "angular2-lightbox";
+import { Lightbox } from "ngx-lightbox";
 import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({

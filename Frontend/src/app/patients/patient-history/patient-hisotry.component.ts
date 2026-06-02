@@ -1,5 +1,5 @@
 ﻿import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { Lightbox } from 'angular2-lightbox';
+import { Lightbox } from 'ngx-lightbox';
 import * as moment from 'moment/moment';
 import { CoreService } from "../../core/shared/core.service";
 import { CommonFunctions } from '../../shared/common.functions';

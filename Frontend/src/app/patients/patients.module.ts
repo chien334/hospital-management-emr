@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 
 import { PatientsBLService } from './shared/patients.bl.service';
 import { PatientsDLService } from './shared/patients.dl.service';
@@ -27,7 +27,7 @@ import { PatientNeighbourCardComponent } from './neighbour-card/patient-neighbou
 import { SharedModule } from "../shared/shared.module";
 
 // import { PatientsDashboardComponent } from "../dashboards/patients/patientsdashboard.component";
-import { QRCodeModule } from 'angular2-qrcode';
+import { QRCodeModule } from '../shared/danphe-qrcode/qr-code.module';
 
 
 import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
@@ -97,5 +97,5 @@ import { PatientsDashboardComponent } from '../dashboards/patients/patients-dash
         ImagingDLService,
         ClinicalDLService,
         ADT_DLService,
-        LabsDLService, provideHttpClient(withInterceptorsFromDi())] })
+        LabsDLService] })
 export class PatientsModule { }

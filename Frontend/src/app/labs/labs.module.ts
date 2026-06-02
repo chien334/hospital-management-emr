@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 
 import { LabsRoutingModule } from './labs-routing.module';
 
@@ -103,7 +103,6 @@ import { LabImuUploadComponent } from './notification/imu/imu-upload.component';
         AppointmentDLService,
         ADT_BLService,
         ADT_DLService,
-        LabSelectionGuardService,
-        provideHttpClient(withInterceptorsFromDi())
+        LabSelectionGuardService
     ] })
 export class LabsModule { }

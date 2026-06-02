@@ -9,7 +9,7 @@ import {
   Output,
   ViewChild
 } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource } from "@angular/material/table";
 import { Router } from '@angular/router';
 import { GridOptions } from "ag-grid-community";
 import { Base64 } from 'js-base64';
@@ -44,7 +44,7 @@ export class DanpheGridComponent implements OnInit, AfterViewInit {
 
   public gridApi;
   public gridColumnApi;
-  public gridOptions: GridOptions;
+  public gridOptions: any;
   public showGrid: boolean;
 
   public filterData: any;
@@ -735,9 +735,11 @@ export class DanpheGridComponent implements OnInit, AfterViewInit {
     this.calculateRowCount();
   }
 
-  public onReady() {
-    // this.gridApi = this.gridOptions.api;
-    // this.gridColumnApi = this.gridOptions.columnApi;
+  public onReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.api;
+    this.gridOptions.api = params.api;
+    this.gridOptions.columnApi = params.api;
 
     // this.gridOptions.api.expandAll();
     // console.log('onReady');

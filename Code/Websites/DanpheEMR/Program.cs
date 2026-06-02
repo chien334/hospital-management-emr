@@ -13,6 +13,7 @@ namespace DanpheEMR
     {
         public static void Main(string[] args)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             CreateWebHostBuilder(args).Build().Run();
         }
 

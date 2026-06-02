@@ -58,7 +58,7 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<PHRMStoreModel>().ToTable("PHRM_MST_Store");
             modelBuilder.Entity<BedFeature>().ToTable("ADT_MST_BedFeature");
             modelBuilder.Entity<BedFeaturesMap>().ToTable("ADT_MAP_BedFeaturesMap");
-            modelBuilder.Entity<BedModel>().ToTable("ADT_MAP_WardBedType");
+            modelBuilder.Entity<BedModel>().ToTable("ADT_Bed");
             modelBuilder.Entity<WardModel>().ToTable("ADT_MST_Ward");
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
 

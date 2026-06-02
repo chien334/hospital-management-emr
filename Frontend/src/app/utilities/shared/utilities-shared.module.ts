@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BillingSharedModule } from "../../billing/billing-shared.module";
@@ -24,7 +24,5 @@ import { UtilitiesDLService } from "./utilities.dl.service";
         SharedModule,
         BillingSharedModule], providers: [
         UtilitiesBLService,
-        UtilitiesDLService,
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+        UtilitiesDLService] })
 export class UtilitiesSharedModule { }

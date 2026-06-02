@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //commented for Quick-Appointment. //review it and correct it later: sudarshan.
@@ -22,7 +22,7 @@ import { EditDoctorComponent } from './shared/edit-doctor/edit-doctor.component'
 import { BillSettlementsComponent } from '../billing/bill-settlements/bill-settlements.component';
 import { GroupDiscountComponent } from '../billing/ip-billing/group-discount/group-discount.component';
 //import { UpdateItemPriceComponent } from './ip-billing/update-item-price/update-item-price.component';
-import { QRCodeModule } from 'angular2-qrcode';
+import { QRCodeModule } from '../shared/danphe-qrcode/qr-code.module';
 import { LabsDLService } from '../labs/shared/labs.dl.service';
 import { PatientsDLService } from '../patients/shared/patients.dl.service';
 import { SharedModule } from '../shared/shared.module';
@@ -132,7 +132,6 @@ import { BillingMasterDlService } from './shared/billing-master.dl.service';
         VisitDLService, AppointmentDLService, PatientsDLService,
         ImagingDLService, OrdersBLService, ADT_DLService, PatientsBLService,
         BillingMasterBlService, BillingMasterDlService, BillingInvoiceBlService,
-        BillingSelectPatientCanActivateGuard,
-        provideHttpClient(withInterceptorsFromDi())
+        BillingSelectPatientCanActivateGuard
     ] })
 export class BillingModule { }

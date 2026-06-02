@@ -1,7 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { SharedModule } from '../shared/shared.module';
 import { SocialServiceUnitRoutingModule } from './ssu-routing.module';
@@ -25,7 +25,6 @@ import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
         DanpheAutoCompleteModule,
         SettingsSharedModule], providers: [
         SSU_DLService,
-        SSU_BLService,
-        provideHttpClient(withInterceptorsFromDi())
+        SSU_BLService
     ] })
 export class SocialServiceUnitModule { }

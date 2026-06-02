@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
@@ -12,7 +12,7 @@ import { PatientStickerComponent } from './patient-sticker/patient-sticker.compo
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
-        SettingsSharedModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        SettingsSharedModule], providers: [] })
 export class StickerSharedModule{
 
 }

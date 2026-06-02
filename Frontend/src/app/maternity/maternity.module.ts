@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { SharedModule } from "../shared/shared.module";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
@@ -30,8 +30,7 @@ import { MaternitySharedModule } from './shared/maternity-shared-module';
         MaternityPatientUploadFilesComponent,
         MaternityPaymentsComponent,
         Maternity_PatientListComponent,
-        MaternityPatientPaymentComponent,
-    ],
+        MaternityPatientPaymentComponent],
     bootstrap: [], imports: [MaternityRoutingModule,
         ReactiveFormsModule,
         FormsModule,
@@ -39,5 +38,5 @@ import { MaternitySharedModule } from './shared/maternity-shared-module';
         AngularMultiSelectModule,
         SharedModule,
         DanpheAutoCompleteModule,
-        MaternitySharedModule], providers: [MaternityBLService, MaternityDLService, MaternityService, provideHttpClient(withInterceptorsFromDi())] })
+        MaternitySharedModule], providers: [MaternityBLService, MaternityDLService, MaternityService] })
 export class MaternityModule { }

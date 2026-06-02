@@ -17,6 +17,7 @@ import { NewClaimCode_DTO } from "../dto/new-claim-code.dto";
 import { PatientMemberInfo_DTO } from "../dto/patient-member-info.dto";
 import { MedicareMemberVsMedicareBalanceVM } from "../medicare-model";
 import { VisitBLService } from "../visit.bl.service";
+import { SchemePriceCategoryCustomType } from "../../../billing/shared/custom-data-types/billing-custom-data-types";
 
 @Component({
   selector: "registration-scheme-select",

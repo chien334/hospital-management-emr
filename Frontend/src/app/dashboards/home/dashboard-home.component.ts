@@ -33,7 +33,7 @@ export class DashboardHomeComponent {
     this.dlService.Read("/Reporting/HomeDashboardStats")
       .map(res => res)
       .subscribe(res => {
-        if (res.Status == "OK" && res.Results.JsonData) {
+        if (res.Status == "OK" && res.Results && res.Results.JsonData) {
           let parsedData = JSON.parse(res.Results.JsonData);
           if (parsedData && parsedData.length > 0) {
             this.dsbStats = parsedData[0];
@@ -58,11 +58,13 @@ export class DashboardHomeComponent {
         //console.log(res);
         //console.log("---end: PatientZoneMap-----");
 
-        let dataToParse: Array<any> = JSON.parse(res.Results.JsonData);
-        let mapAreas = dataToParse.map(d => {
-          return { id: d.MapAreaCode, value: d.PatientCount };
-        });
-        this.danpheCharts.Home_Map_PatientDistributionByZone("dvZoneWisePatientMap", mapAreas);
+        if (res.Status == "OK" && res.Results && res.Results.JsonData) {
+          let dataToParse: Array<any> = JSON.parse(res.Results.JsonData);
+          let mapAreas = dataToParse.map(d => {
+            return { id: d.MapAreaCode, value: d.PatientCount };
+          });
+          this.danpheCharts.Home_Map_PatientDistributionByZone("dvZoneWisePatientMap", mapAreas);
+        }
 
         //this.danpheCharts.Billing_Mix_MonthlyBilling("dvMonthlyBilling", dataToParse);
         //"[{"MapAreaCode":"NP-BA","PatientCount":5},{"MapAreaCode":"NP-BH","PatientCount":2},{"MapAreaCode":"NP-DH","PatientCount":0},{"MapAreaCode":"NP-GA","PatientCount":2},{"MapAreaCode":"NP-JA","PatientCount":2018},{"MapAreaCode":"NP-KA","PatientCount":0},{"MapAreaCode":"NP-KO","PatientCount":802},{"MapAreaCode":"NP-LU","PatientCount":0},{"MapAreaCode":"NP-MA","PatientCount":401},{"MapAreaCode":"NP-ME","PatientCount":1},{"MapAreaCode":"NP-NA","PatientCount":2},{"MapAreaCode":"NP-RA","PatientCount":0},{"MapAreaCode":"NP-SA","PatientCount":0},{"MapAreaCode":"NP-SE","PatientCount":400}]"
@@ -80,7 +82,7 @@ export class DashboardHomeComponent {
       .map(res => res)
       .subscribe(res => {
         //sud:25sept'19--below line was giving issue because it doesn't get JsonData everytime.
-        if (res.Results && res.Results.JsonData) {
+        if (res.Status == "OK" && res.Results && res.Results.JsonData) {
           let dataToParse: Array<any> = JSON.parse(res.Results.JsonData);
           let formattedData = dataToParse.map(d => {
             return { department: d.DepartmentName, apptCount: d.AppointmentCount };

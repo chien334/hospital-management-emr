@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -65,128 +65,7 @@ namespace DanpheEMR.Controllers
         //IncludeHeaders = true, IncludeResponseHeaders = true, IncludeResponseBody = true, IncludeRequestBody = true, IncludeModelState = true)]
         public IActionResult Login(string returnUrl = null)
         {
-            DateTime centuryBegin = new DateTime(2001, 1, 1);
-            DateTime currentDate = DateTime.Now;
-            //Generate unique tick to make it a selector
-            long ticksElapsed = currentDate.Ticks - centuryBegin.Ticks;
-
-            //Generate unique string associated with selector --called Validator
-            Guid gd = Guid.NewGuid();
-            string GuidString = Convert.ToBase64String(gd.ToByteArray());
-            GuidString = GuidString.Replace("=", "");
-            GuidString = GuidString.Replace("+", "");
-
-            //tick is also used as a salt
-            GuidString = GuidString + ticksElapsed.ToString();
-
-            //generate Hash of the Validator, that can be used as a token
-            string msgDigest = ComputeSha256Hash(GuidString);
-
-
-            CoreDbContext coreDbContext = new CoreDbContext(connString);
-
-            ParameterModel licenseParam = coreDbContext.Parameters.Where(p => p.ParameterGroupName == "TenantMgnt" && p.ParameterName == "SoftwareLicense")
-                        .FirstOrDefault();
-
-            string paramValue = licenseParam != null ? licenseParam.ParameterValue : null;
-
-            if (paramValue != null)
-            {
-                // var paramValueJson = Newtonsoft.Json.Linq.JObject.Parse(paramValue);
-                //format of parameter:softwarelicense is as below
-                var definition = new { StartDate = "", EndDate = "", ExpiryNoticeDays = "", LicenseType = "" };
-                var license = JsonConvert.DeserializeAnonymousType(paramValue, definition);
-
-                DateTime startDate = Convert.ToDateTime(RBAC.DecryptPassword(license.StartDate));
-                DateTime endDate = Convert.ToDateTime(RBAC.DecryptPassword(license.EndDate));
-                int expiryNoticeDays = Convert.ToInt32(RBAC.DecryptPassword(license.ExpiryNoticeDays));
-
-                double remainingDays = (endDate - DateTime.Now).TotalDays;
-
-                if (remainingDays < 0)
-                {
-                    TempData["LicenseMessage"] = "License expired on: " + endDate.ToString("yyyy-MMM-dd");
-
-                    return RedirectToAction("LicenseExpired", "Account");
-                }
-
-                if (expiryNoticeDays > remainingDays)
-                {
-                    ViewData["ExpiryNotice"] = "Notice ! Your Software License is expiring in " + Convert.ToInt32(remainingDays) + " days.";
-
-                    //display remaining days through viewdata.
-                }
-            }
-            else
-            {
-                TempData["LicenseMessage"] = "License Information not found..";
-
-                return RedirectToAction("LicenseExpired", "Account");
-            }
-
-
-            //start: sud:16Jul'19-- If One user is already logged in - (check from session) - Load home index page directly. 
-            RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
-            if (currentUser != null && currentUser.UserId != 0)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            //end: sud:16Jul'19-- If One user is already logged in - (check from session) - Load home index page directly.
-
-
-            if (!string.IsNullOrEmpty(Request.Cookies["uRef"]))
-            {
-                SystemAdminDbContext adminDbContext = new SystemAdminDbContext(connStringAdmin);
-
-                var selector = Convert.ToInt64(Request.Cookies["uRef"]);
-                var validatorWithSalt = Request.Cookies["uData"] + Request.Cookies["uRef"];
-                var hashedValidator = ComputeSha256Hash(validatorWithSalt);
-
-                //To make sure that only one UserId will be selected at a time
-                var userIdList = (from sysAuthInfo in adminDbContext.CookieInformation
-                                  where sysAuthInfo.Selector == selector
-                                  && sysAuthInfo.HashedToken == hashedValidator
-                                  select sysAuthInfo.UserId).ToList();
-
-
-                if (userIdList.Count == 1)
-                {
-                    RbacUser validUser = RBAC.GetUser(userIdList[0]);
-                    LoginViewModel model = new LoginViewModel();
-                    model.UserName = validUser.UserName;
-
-                    //seting session for current valid user
-                    if (validUser != null)
-                    {
-                        //Check user status is Active or not, If user is InActive then return to login page
-                        if (validUser.IsActive == false)
-                        {
-                            RemoveRememberMeCookie();
-                            RemoveSessionValues();
-                            ViewData["status"] = "user-inactive";
-                            return View(model);
-                        }
-
-                        validUser.Password = "";
-
-                        UpdateRememberMeCookie(selector);
-                        SetSessionVariable(validUser);
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                else
-                {
-                    RemoveRememberMeCookie();
-                    RemoveSessionValues();
-                    return View();
-                }
-            }
-
-
-
-
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            return Redirect("/");
         }
         // POST: /Account/Login
         [HttpPost]
@@ -311,7 +190,7 @@ namespace DanpheEMR.Controllers
 
 
 
-            return View("Login", newLogin);
+            return Redirect("/");
         }
 
         //Action for return to PageNotFound page
@@ -579,15 +458,30 @@ namespace DanpheEMR.Controllers
                     var auditScope = this.GetCurrentAuditScope();
                     if (auditScope != null)
                     {
-                        // password = ""
-                        ((DanpheEMR.Security.LoginViewModel)((Audit.WebApi.AuditEventWebApi)auditScope.Event).Action.ActionParameters["model"]).Password = "";
-                        // formvariable = null
-                        ((Audit.WebApi.AuditEventWebApi)auditScope.Event).Action.FormVariables = null;
-                        // request body URL, replace password with *****
-                        var url = ((Audit.WebApi.AuditEventWebApi)auditScope.Event).Action.RequestBody.Value;
-                        Regex yourRegex = new Regex(@"password=([^\&]+)");
-                        string replacedURL = yourRegex.Replace(url.ToString(), "password=*****");
-                        ((Audit.WebApi.AuditEventWebApi)auditScope.Event).Action.RequestBody.Value = replacedURL;
+                        try
+                        {
+                            var action = ((Audit.WebApi.AuditEventWebApi)auditScope.Event).Action;
+                            if (action.ActionParameters.ContainsKey("loginDto"))
+                            {
+                                var dto = action.ActionParameters["loginDto"] as DanpheEMR.Security.LoginDto;
+                                if (dto != null)
+                                {
+                                    dto.Password = "";
+                                }
+                            }
+                            action.FormVariables = null;
+                            if (action.RequestBody != null && action.RequestBody.Value != null)
+                            {
+                                var url = action.RequestBody.Value;
+                                Regex yourRegex = new Regex(@"password=([^\&]+)");
+                                string replacedURL = yourRegex.Replace(url.ToString(), "password=*****");
+                                action.RequestBody.Value = replacedURL;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            // Suppress audit logging modifications
+                        }
                     }
                 var result = new
                 {

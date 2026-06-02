@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -85,6 +85,7 @@ namespace DanpheEMR.ServerModel
         public List<InsuranceModel> Insurances { get; set; }
         public List<KinModel> KinEmergencyContacts { get; set; }
         public List<VisitModel> Visits { get; set; }
+        [ForeignKey("PatientId")]
         public List<AdmissionModel> Admissions { get; set; }
 
         public virtual GuarantorModel Guarantor { get; set; }
@@ -106,6 +107,7 @@ namespace DanpheEMR.ServerModel
         public List<LabRequisitionModel> LabRequisitions { get; set; }
         [NotMapped]
         public List<VitalsModel> Vitals { get; set; }
+        [ForeignKey("PatientId")]
         public List<NotesModel> Notes { get; set; }
         //For patient Membership
         //public int? MembershipTypeId { get; set; }//sud:20Mar'23--Not required in New Structure.
@@ -122,6 +124,7 @@ namespace DanpheEMR.ServerModel
         public bool? HasFile { get; set; }
 
         public virtual CountrySubDivisionModel CountrySubDivision { get; set; }
+        [ForeignKey("PatientId")]
         public List<PatientFilesModel> UploadedFiles { get; set; }
 
         [NotMapped]

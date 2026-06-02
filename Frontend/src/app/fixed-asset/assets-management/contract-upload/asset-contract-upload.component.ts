@@ -3,7 +3,7 @@ import * as moment from "moment";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { FixedAssetContractModel } from "./fixed-asset-contract.model";
 import { FixedAssetStockModel } from "../../shared/fixed-asset-stock.model";
-import { Lightbox } from "angular2-lightbox";
+import { Lightbox } from "ngx-lightbox";
 import { FixedAssetBLService } from "../../shared/fixed-asset.bl.service";
 @Component({
   selector: 'asset-contract-upload',

@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core'
-import { MatDialogRef } from '@angular/material';
+
 import { DailyMuster } from '../Shared/daily-muster.model';
 import * as moment from 'moment';
 import * as _ from 'lodash';
@@ -8,7 +8,7 @@ import { SchedulingBLService } from '../../scheduling/shared/scheduling.bl.servi
 import { Employee } from '../../employee/shared/employee.model';
 import { AttendanceDailyTimeRecord } from '../Shared/Payroll-attendance-daily-time-record.model';
 import { PayrollBLService } from '../Shared/payroll.bl.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EditAttendance } from './edit-attendance/edit-attendance';
 import { CommonPayrollService } from '../Shared/common-payroll.service';
 import { CoreService } from '../../core/shared/core.service';

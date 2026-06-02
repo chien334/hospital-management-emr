@@ -126,11 +126,16 @@ namespace DanpheEMR.Security
             List<DanpheRoute> allRoutes = new List<DanpheRoute>();
 
             List<RbacPermission> userAllPerms = GetUserAllPermissions(userId);
-            allRoutes = (from route in RBAC.GetAllRoutes()
-                         join perm in userAllPerms
-                         on route.PermissionId equals perm.PermissionId
-                         where route.IsActive == true
-                         select route).Distinct().OrderBy(r => r.DisplaySeq).ToList();
+            if (userAllPerms != null && userAllPerms.Count > 0)
+            {
+                allRoutes = RBAC.GetAllRoutes()
+                    .Where(route => route.IsActive == true && 
+                                    route.PermissionId.HasValue && 
+                                    userAllPerms.Any(perm => perm.PermissionId == route.PermissionId.Value))
+                    .Distinct()
+                    .OrderBy(r => r.DisplaySeq)
+                    .ToList();
+            }
 
             if (getHiearrchy)
             {

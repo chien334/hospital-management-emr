@@ -1,4 +1,4 @@
-﻿using DanpheEMR.DalLayer;
+using DanpheEMR.DalLayer;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using System;
@@ -14,7 +14,6 @@ using DanpheEMR.ServerModel.MarketingReferralModel;
 using DanpheEMR.Services.BillSettings.DTOs;
 using DocumentFormat.OpenXml.Wordprocessing;
 using DanpheEMR.Controllers.Billing;
-using iTextSharp.text.pdf;
 
 namespace DanpheEMR.Services.MarketingReferral
 {

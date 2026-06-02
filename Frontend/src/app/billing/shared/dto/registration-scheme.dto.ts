@@ -1,5 +1,6 @@
 import { SsfPatient_DTO } from "../../../insurance/ssf/shared/service/ssf.service";
 import { ENUM_BillPaymentMode } from "../../../shared/shared-enums";
+import { ISchemeCreditLimit } from "../interfaces/credit-limit.interface";
 import { BillingSubScheme_DTO } from "./bill-subscheme.dto";
 import { PatientScheme_DTO } from "./patient-scheme.dto";
 

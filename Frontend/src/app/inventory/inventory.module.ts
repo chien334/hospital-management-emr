@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { InventoryComponent } from "./inventory.component";
 import { InternalMainComponent } from "./internal/internal-main.component";
@@ -118,5 +118,5 @@ import { ReturnFromSubstoreDetailComponent } from './internal/return-from-substo
         AppointmentDLService,
         BillingBLService,
         ADT_DLService,
-        DonationService, provideHttpClient(withInterceptorsFromDi()),] })
+        DonationService] })
 export class InventoryModule { }

@@ -17,6 +17,8 @@ export class AuthTokenInterceptor implements HttpInterceptor {
     if (token != null) {
       authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
     }
+    const selectedLang = localStorage.getItem('selected_language') || 'vi';
+    authReq = authReq.clone({ headers: authReq.headers.set('Accept-Language', selectedLang) });
     return next.handle(authReq);
   }
 }

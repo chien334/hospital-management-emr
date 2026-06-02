@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi, withJsonpSupport } from '@angular/common/http';
 
 import { LabsBLService } from '../labs/shared/labs.bl.service';
 import { LabsDLService } from '../labs/shared/labs.dl.service';
@@ -51,5 +50,5 @@ import { OrdersDLService } from './shared/orders.dl.service';
         OrdersBLService,
         ClinicalDLService,
         OrdersBLService,
-        OrdersDLService, provideHttpClient(withInterceptorsFromDi(), withJsonpSupport())] })
+        OrdersDLService] })
 export class OrdersModule { }

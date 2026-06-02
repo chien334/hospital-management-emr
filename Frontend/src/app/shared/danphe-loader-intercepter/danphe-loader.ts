@@ -4,7 +4,7 @@ import { LoadingScreenService } from './danphe-loading-screen.services';
 @Component({
     selector: "danphe-loader",
     templateUrl:'./danphe-loader.html' ,
-    styleUrls: ['../../../../../themes/theme-default/loading.component.css']
+    styleUrls: ['../../../themes/theme-default/loading.component.css']
 })
 
 export class LoaderComponent {

@@ -1,4 +1,4 @@
-﻿using DanpheEMR.Core.Configuration;
+using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
 using DanpheEMR.Security;
@@ -123,6 +123,10 @@ namespace DanpheEMR.Controllers
         {
             // if (reqType == "GetData-For-NotificationDropDown")
             RbacUser currentUser = HttpContext.Session.Get<RbacUser>(ENUM_SessionVariables.CurrentUser);
+            if (currentUser == null)
+            {
+                return Unauthorized("User is not logged in.");
+            }
             int EmployeeId = currentUser.EmployeeId;
             Func<object> func = () => GettingUserNotifications(EmployeeId);
             return InvokeHttpGetFunction(func);

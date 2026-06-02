@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 import { ReportingService } from '../../reporting/shared/reporting-service';
@@ -24,8 +24,7 @@ import { MaternitySharedModule } from '../shared/maternity-shared-module';
         SharedModule,
         MaternityReportsRoutingModule,
         MaternitySharedModule], providers: [
-        ReportingService,
-        provideHttpClient(withInterceptorsFromDi())
+        ReportingService
     ] })
 export class MaternityReportsModule {
 

@@ -1,6 +1,6 @@
 
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentDLService } from '../appointments/shared/appointment.dl.service';
@@ -20,8 +20,7 @@ import { DeathCertificateComponent } from "./shared/generate-certificate/generat
 @NgModule({ declarations: [
         DischargeSummaryComponent,
         DeathCertificateComponent,
-        BirthCertificateGenerateComponent,
-    ],
+        BirthCertificateGenerateComponent],
     exports: [],
     bootstrap: [], imports: [CommonModule,
         ReactiveFormsModule,
@@ -36,7 +35,6 @@ import { DeathCertificateComponent } from "./shared/generate-certificate/generat
         PatientsDLService,
         ImagingDLService,
         LabsDLService,
-        BillingDLService,
-        provideHttpClient(withInterceptorsFromDi())
+        BillingDLService
     ] })
 export class DischargeSummaryModule { }

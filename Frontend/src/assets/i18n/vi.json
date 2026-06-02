@@ -8,6 +8,24 @@
   "NAVBAR": {
     "PATIENTS": "Danh sách bệnh nhân",
     "APPOINTMENTS": "Lịch hẹn",
-    "BILLING": "Thanh toán"
+    "BILLING": "Thanh toán",
+    "PROFILE": "Hồ sơ của tôi",
+    "LOGOUT": "Đăng xuất",
+    "DATE": "Ngày :",
+    "DOWNLOAD_MANUAL": "Tải hướng dẫn sử dụng",
+    "CHANGE_DATE_PREF": "Thay đổi tùy chọn ngày",
+    "CURRENT_SELECTION": "Lựa chọn hiện tại :",
+    "ENGLISH_AD": "Tiếng Anh (AD)",
+    "NEPALI_BS": "Tiếng Nepal (BS)",
+    "SAVE": "Lưu",
+    "LOADING": "Đang tải.. Vui lòng đợi..."
+  },
+  "DISPENSARY": {
+    "SELECT_YOUR_DISPENSARY": "Lựa chọn Quầy thuốc của bạn",
+    "DISPENSARY_LABEL": "quầy thuốc",
+    "NOTICE_MESSAGE": "Thông báo",
+    "ALLOWED_TO_SEE": "Bạn chỉ được phép xem {{name}}.",
+    "FAILED_LOAD_LIST": "Tải danh sách quầy thuốc thất bại.",
+    "FAILED_LOAD_DISPENSARY": "Tải thông tin quầy thuốc thất bại."
   }
 }

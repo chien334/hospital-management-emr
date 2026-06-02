@@ -22,6 +22,9 @@ export class AuthGuardService  {
         this._router.navigate(['/UnAuthorized']);// We are navigating unauthorized user.
         return false;
       }
+    } else {
+      this._router.navigate(['/login']);
+      return false;
     }
 
   }

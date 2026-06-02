@@ -1,4 +1,4 @@
-import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi, withJsonpSupport } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
@@ -36,6 +36,7 @@ import { DLService } from "./shared/dl.service";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UnAuthorizedAccessComponent } from "./account/unauthorizes-access.component";
+import { LoginComponent } from "./account/login.component";
 import { ClaimManagementBLService } from "./claim-management/shared/claim-management.bl.service";
 import { ClaimManagementDLService } from "./claim-management/shared/claim-management.dl.service";
 import { NotificationBLService } from "./core/notifications/notification.bl.service";
@@ -63,6 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         MessageBoxComponent,
         DashboardHomeComponent,
         UnAuthorizedAccessComponent,
+        LoginComponent,
         LoaderComponent,
         ActivateInventoryComponent,
         DynamicReportComponent
@@ -111,6 +113,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         ClaimManagementBLService,
         ActivateBillingCounterGuardService,
         ActivateBillingCounterService,
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi(), withJsonpSupport())
     ] })
 export class AppModule { }

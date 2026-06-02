@@ -1,4 +1,4 @@
-﻿using DanpheEMR.CommonTypes;
+using DanpheEMR.CommonTypes;
 using DanpheEMR.Core;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.Core.Parameters;
@@ -60,6 +60,10 @@ namespace DanpheEMR.Controllers
         {
             // if (reqType == "get-emp-datepreference")
             RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
+            if (currentUser == null)
+            {
+                return Unauthorized("User is not logged in.");
+            }
             Func<object> func = () => EmployeeDatePreference(currentUser);
             return InvokeHttpGetFunction(func);
         }
@@ -68,11 +72,23 @@ namespace DanpheEMR.Controllers
         [Route("EmployeeDatePreference")]
         public IActionResult EmployeeDatePreference()
         {
-            // if (reqType == "post-emp-datepreference")
-            string ipDataStr = this.ReadPostData();
-            RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
-            Func<object> func = () => PostEmployeeDatePreference(ipDataStr, currentUser);
-            return InvokeHttpGetFunction(func);
+            try
+            {
+                // if (reqType == "post-emp-datepreference")
+                string ipDataStr = this.ReadPostData();
+                RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
+                if (currentUser == null)
+                {
+                    return Unauthorized("User is not logged in.");
+                }
+                Func<object> func = () => PostEmployeeDatePreference(ipDataStr, currentUser);
+                return InvokeHttpGetFunction(func);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[CoreController] Exception in EmployeeDatePreference POST: {ex.ToString()}");
+                return StatusCode(500, ex.Message);
+            }
         }
         private object Lookups(string inputValue)
         {
@@ -132,11 +148,6 @@ namespace DanpheEMR.Controllers
                 existData.PreferenceValue = ipDataStr;
                 existData.ModifiedBy = currentUser.EmployeeId;
                 existData.ModifiedOn = DateTime.Now;
-                _admissionDbContext.EmployeePreferences.Attach(existData);
-                _admissionDbContext.Entry(existData).State = EntityState.Modified;
-                _admissionDbContext.Entry(existData).Property(x => x.CreatedOn).IsModified = true;
-                _admissionDbContext.Entry(existData).Property(x => x.CreatedBy).IsModified = true;
-                _admissionDbContext.Entry(existData).Property(x => x.PreferenceValue).IsModified = true;
                 _admissionDbContext.SaveChanges();
                 return existData;
             }

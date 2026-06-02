@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
-import { AgGridModule } from 'ag-grid-angular/main';
 import { RadiologySettingsMainComponent } from './radiology-settings.main.component';
 import { ImagingTypeAddComponent } from './imaging-types/imaging-type-add.component';
 import { ImagingTypeListComponent } from './imaging-types/imaging-type-list.component';
@@ -26,8 +25,7 @@ export const radSettingsRoutes: Routes =
         { path: 'ManageImagingType', component: ImagingTypeListComponent, canActivate: [AuthGuardService] },
         { path: 'ManageImagingItem', component: ImagingItemListComponent, canActivate: [AuthGuardService] },
         { path: 'ManageRadiologyTemplate', component: RadiologyReportTemplateComponent, canActivate: [AuthGuardService] },
-        { path: 'DefaultSignatories', component: RadDefSignatoriesComponent, canActivate: [AuthGuardService] },
-      ]
+        { path: 'DefaultSignatories', component: RadDefSignatoriesComponent, canActivate: [AuthGuardService] }]
     }
   ]
 
@@ -47,8 +45,7 @@ export const radSettingsRoutes: Routes =
         SharedModule,
         DanpheAutoCompleteModule,
         RouterModule.forChild(radSettingsRoutes)], providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        provideHttpClient(withInterceptorsFromDi())
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })
 
 export class RadiologySettingsModule {

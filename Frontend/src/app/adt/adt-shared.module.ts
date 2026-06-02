@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentDLService } from '../appointments/shared/appointment.dl.service';
@@ -57,7 +57,6 @@ import { TransferComponent } from './transfer/transfer.component';
         BillingDLService,
         IOAllergyVitalsBLService,
         AdmissionMasterBlService,
-        AdmissionMasterDlService,
-        provideHttpClient(withInterceptorsFromDi())
+        AdmissionMasterDlService
     ] })
 export class ADTSharedModule { }

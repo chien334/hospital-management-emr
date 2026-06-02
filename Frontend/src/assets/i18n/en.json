@@ -8,6 +8,24 @@
   "NAVBAR": {
     "PATIENTS": "Patients List",
     "APPOINTMENTS": "Appointments",
-    "BILLING": "Billing"
+    "BILLING": "Billing",
+    "PROFILE": "My Profile",
+    "LOGOUT": "Log Out",
+    "DATE": "Date :",
+    "DOWNLOAD_MANUAL": "Download user manual",
+    "CHANGE_DATE_PREF": "Change Date Preference",
+    "CURRENT_SELECTION": "Current Selection :",
+    "ENGLISH_AD": "English (AD)",
+    "NEPALI_BS": "Nepali (BS)",
+    "SAVE": "Save",
+    "LOADING": "Loading.. Please wait..."
+  },
+  "DISPENSARY": {
+    "SELECT_YOUR_DISPENSARY": "Select your Dispensary",
+    "DISPENSARY_LABEL": "dispensary",
+    "NOTICE_MESSAGE": "Notice-Message",
+    "ALLOWED_TO_SEE": "You are only allowed to see {{name}}.",
+    "FAILED_LOAD_LIST": "Failed to load dispensary list.",
+    "FAILED_LOAD_DISPENSARY": "Failed to load dispensary."
   }
 }

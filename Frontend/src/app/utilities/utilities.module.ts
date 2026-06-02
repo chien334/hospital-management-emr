@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ADT_DLService } from "../adt/shared/adt.dl.service";
@@ -28,8 +28,8 @@ import { UtilitiesRoutingModule } from "./utilities-routing.module";
         ChangeSchemePriceCategoryComponent,
         ChangeBillingCounterComponent,
         OrganizationDepositComponent,
-        SchemeRefundPrintComponent,
-        //PrintOrganizationDepositComponent,
+        SchemeRefundPrintComponent
+        //PrintOrganizationDepositComponent
     ],
     bootstrap: [], imports: [UtilitiesRoutingModule,
         ReactiveFormsModule,
@@ -45,7 +45,6 @@ import { UtilitiesRoutingModule } from "./utilities-routing.module";
         SchemeRefundComponent,
         VisitDLService,
         AppointmentDLService,
-        ADT_DLService,
-        provideHttpClient(withInterceptorsFromDi())
+        ADT_DLService
     ] })
 export class UtilitiesModule { }

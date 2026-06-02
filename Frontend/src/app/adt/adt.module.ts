@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppointmentDLService } from '../appointments/shared/appointment.dl.service';
@@ -30,7 +30,7 @@ import { DischargedListComponent } from './discharge/discharge-list.component';
 import { AdmissionPrintStickerComponent } from './sticker/admission-print-sticker.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
 //import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
-import { AgGridModule } from 'ag-grid-angular/main';
+import { AgGridModule } from 'ag-grid-angular';
 import { RegistrationSchemeSharedModule } from '../appointments/shared/registration-scheme/registration-scheme-shared.module';
 import { BillingSharedModule } from '../billing/billing-shared.module';
 import { BillingPrintSharedModule } from '../billing/print-pages/billing-print-shared.module';
@@ -63,7 +63,7 @@ import { AdmissionSelectPatientCanActivateGuard } from './shared/admission-selec
     , imports: [ADTRoutingModule,
         CommonModule,
         ReactiveFormsModule,
-        AgGridModule.withComponents(ADTMainComponent),
+        AgGridModule,
         FormsModule, SharedModule, ADTSharedModule, DischargeSummaryModule,
         DanpheAutoCompleteModule,
         ClinicalSharedModule,
@@ -82,7 +82,6 @@ import { AdmissionSelectPatientCanActivateGuard } from './shared/admission-selec
         LabsDLService,
         BillingDLService,
         AdmissionSelectPatientCanActivateGuard,
-        IOAllergyVitalsBLService,
-        provideHttpClient(withInterceptorsFromDi())
+        IOAllergyVitalsBLService
     ] })
 export class ADTModule { }

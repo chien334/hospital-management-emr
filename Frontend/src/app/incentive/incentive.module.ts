@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
@@ -34,7 +34,7 @@ import { INCTV_EditFractionComponent } from './shared/edit-fraction/inctv-edit-f
 import { EmployeeItemsSetupMainComponent } from './setting/employee-item-setup/employee-items-setup-main.component';
 import { EmployeeItemsSetupComponentOld } from './setting/employee-item-setup/employee-items-setup.component - Old';
 import { EmployeeItemsSetupComponent } from './setting/employee-item-setup/employee-items-setup/employee-items-setup.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { IncentiveSearchPipe } from './shared/incentive-search.pipe';
 import { INCTV_RPT_HospitalIncomeComponent } from './reports/hospitalIncomeReport/hospital-income.component';
 import { INCTV_RPT_HospitalIncomeServiceDeptWiseComponent } from './reports/hospitalIncomeReport/hospital-income-service-department-wise.component';
 import { RPT_BIL_IncentiveReferralSummaryReportMainComponent } from './reports/ReferralSummaryReport/incentive-referral-summary-report';
@@ -64,6 +64,7 @@ import { RPT_BIL_IncentiveReferralSummaryReportMainComponent } from './reports/R
         EmployeeItemsSetupMainComponent,
         EmployeeItemsSetupComponentOld,
         EmployeeItemsSetupComponent,
+        IncentiveSearchPipe,
         INCTV_RPT_HospitalIncomeComponent,
         INCTV_RPT_HospitalIncomeServiceDeptWiseComponent,
         RPT_BIL_IncentiveReferralSummaryReportMainComponent
@@ -76,11 +77,9 @@ import { RPT_BIL_IncentiveReferralSummaryReportMainComponent } from './reports/R
         FormsModule,
         SharedModule,
         DanpheAutoCompleteModule,
-        AccountingSharedModule,
-        Ng2SearchPipeModule], providers: [
+        AccountingSharedModule], providers: [
         IncentiveBLService,
         IncentiveDLService,
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        provideHttpClient(withInterceptorsFromDi())
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })
 export class IncentiveModule { }

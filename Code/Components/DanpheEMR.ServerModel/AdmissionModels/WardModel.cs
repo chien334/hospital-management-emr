@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,6 +11,7 @@ namespace DanpheEMR.ServerModel
     public class WardModel
     {
         [Key]
+        [Column("WardID")]
         public int WardId { get; set; }
         public int StoreId { get; set; }
         public string WardCode { get; set; }

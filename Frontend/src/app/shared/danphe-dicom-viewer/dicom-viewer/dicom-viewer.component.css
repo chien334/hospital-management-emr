@@ -1,7 +1,7 @@
 /*Add Bootstrap src for buttons.*/
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-@import '../../../../../../themes/theme-default/loading.component.css';
+@import '../../../../themes/theme-default/loading.component.css';
  .btn-default {
   color: #ffffff;
   /* background-color: #424242;

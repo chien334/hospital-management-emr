@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
@@ -103,7 +103,6 @@ import { ERTriagePatientListComponent } from './triage/er-triage-patient-list.co
         VisitDLService,
         AppointmentDLService,
         PatientsDLService,
-        EmergencyService,
-        provideHttpClient(withInterceptorsFromDi())
+        EmergencyService
     ] })
 export class EmergencyModule { }

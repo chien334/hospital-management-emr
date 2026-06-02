@@ -1,4 +1,4 @@
-﻿using DanpheEMR.Core;
+using DanpheEMR.Core;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Security;
@@ -1014,13 +1014,13 @@ namespace DanpheEMR.Controllers
             try
             {
                 //Create font for Page Heading - Now we are using table name as page heading
-                iTextSharp.text.Font fntTableFontHeading = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 8, iTextSharp.text.Font.BOLD, BaseColor.BLUE);
+                iTextSharp.text.Font fntTableFontHeading = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 8, iTextSharp.text.Font.BOLD, new BaseColor(0, 0, 255));
                 //Create font for table header
-                iTextSharp.text.Font fntTableFontHdr = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 6, iTextSharp.text.Font.BOLD, BaseColor.WHITE);
+                iTextSharp.text.Font fntTableFontHdr = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 6, iTextSharp.text.Font.BOLD, new BaseColor(255, 255, 255));
                 //create font for data
-                iTextSharp.text.Font fntTableFont = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 4, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+                iTextSharp.text.Font fntTableFont = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 4, iTextSharp.text.Font.NORMAL, new BaseColor(0, 0, 0));
                 //border color for table- light gray
-                var borderColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
+                var borderColor = new BaseColor(211, 211, 211);
 
                 string directoryPath = exportedFilePath + "\\PDF\\";
 
@@ -1074,7 +1074,7 @@ namespace DanpheEMR.Controllers
                         foreach (DataColumn column in dt.Columns)
                         {
                             PdfPCell headerCell = new PdfPCell(new Phrase(column.ColumnName, fntTableFontHdr));
-                            headerCell.BackgroundColor = iTextSharp.text.BaseColor.GRAY;
+                            headerCell.BackgroundColor = new BaseColor(128, 128, 128);
                             headerCell.HorizontalAlignment = Element.ALIGN_CENTER;
                             headerCell.BorderColor = borderColor;
                             headerCell.BorderWidth =

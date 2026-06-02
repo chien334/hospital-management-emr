@@ -9,6 +9,7 @@ import { Patient } from '../../../../patients/shared/patient.model';
 import { PatientService } from '../../../../patients/shared/patient.service';
 import { PharmacyProvisionalReceipt_DTO } from '../../../../pharmacy/receipt/pharmacy-provisional-invoice-print/pharmacy-provisional-receipt.dto';
 import { PharmacySchemePriceCategory_DTO } from '../../../../pharmacy/shared/dtos/pharmacy-scheme-pricecategory.dto';
+import { PharmacySchemePriceCategoryCustomType } from '../../../../pharmacy/shared/custom-data-types/pharmacy-custom-datatypes';
 import { PHRMEmployeeCashTransaction } from '../../../../pharmacy/shared/pharmacy-employee-cash-transaction';
 import { PharmacyBLService } from '../../../../pharmacy/shared/pharmacy.bl.service';
 import { PharmacyService } from '../../../../pharmacy/shared/pharmacy.service';

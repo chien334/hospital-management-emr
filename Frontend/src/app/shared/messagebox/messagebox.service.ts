@@ -12,11 +12,12 @@ s.no.     user/date             changes          description/remarks
 ------------------------------------------------------------*/
 import { Injectable } from '@angular/core';
 import { MessageboxModel } from './messagebox.model';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class MessageboxService {
 
-
+  constructor(private router: Router) {}
 
   globalMsgbox: Array<MessageboxModel> = new Array<MessageboxModel>();
   public defaultDisplayTime: number = 7000;//7000milliseconds=7seconds
@@ -37,10 +38,11 @@ export class MessageboxService {
     if ((status == "error" || status == "failed") && messageArray && messageArray.length > 0) {
       messageArray.forEach(msg => {
         console.log(msg);
-        //wherever it get err mgs it redirect it to /Account/Login 
+        //wherever it get err mgs it redirect it to /login natively
         if (msg.includes("Unauthorized")) {
-          window.location.href = "/Account/Login";
-
+          if (!this.router.url.includes('/login')) {
+            this.router.navigate(['/login']);
+          }
         }
       });
       if (errorLog) {

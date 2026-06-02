@@ -1,5 +1,5 @@
 ﻿import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatabaseAuditComponent } from "./database-audit/database-audit.component";
@@ -37,8 +37,7 @@ import { PHRMSalesBookComponent } from './sales-book/phrm-sales-book-report.comp
         SharedModule], providers: [
         SystemAdminBLService,
         SystemAdminDLService,
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        provideHttpClient(withInterceptorsFromDi())
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })
 export class SystemAdminModule { }
 

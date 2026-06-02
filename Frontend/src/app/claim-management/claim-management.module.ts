@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -85,7 +85,6 @@ import { SsfDlService } from './ssf-claim/ssf-dl.services';
         PharmacyDLService,
         VisitBLService,
         SsfDlService,
-        SsfClaimSelectionGuardService,
-        provideHttpClient(withInterceptorsFromDi())
+        SsfClaimSelectionGuardService
     ] })
 export class ClaimManagementModule { }

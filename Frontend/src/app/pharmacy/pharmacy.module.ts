@@ -1,6 +1,6 @@
 
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -311,8 +311,7 @@ import { WardRequisitionItems } from './ward-requisition/phrm-ward-requisition.c
         WardSupplyDLService,
         PharmacyPOService, PharmacyPOEndpoint, SupplierLedgerService,
         DispensaryRequisitionService, DispensaryRequisitionEndpoint, TransferService, TransferEndpointService,
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        provideHttpClient(withInterceptorsFromDi())
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })
 export class PharmacyModule { }
 

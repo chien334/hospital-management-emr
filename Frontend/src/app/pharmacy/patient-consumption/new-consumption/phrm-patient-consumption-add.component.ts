@@ -22,6 +22,7 @@ import { PHRMStoreModel } from "../../shared/phrm-store.model";
 import { PHRMPatientConsumptionItem } from "../shared/phrm-patient-consumption-item.model";
 import { PHRMPatientConsumption } from "../shared/phrm-patient-consumption.model";
 import { WardSubStoreMap_DTO } from "../shared/ward-substores-map.dto";
+import { PharmacySchemePriceCategoryCustomType } from "../../shared/custom-data-types/pharmacy-custom-datatypes";
 @Component({
     selector: 'phrm-patient-consumption-add',
     templateUrl: "./phrm-patient-consumption-add.html",

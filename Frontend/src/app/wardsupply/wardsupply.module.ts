@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 
 import { SharedModule } from '../shared/shared.module';
@@ -119,7 +119,6 @@ import { PHRMSubStoreRequisitionAddComponent } from './phrm-substore-requisition
         InventoryService,
         InventoryDLService,
         wardsupplyService,
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        provideHttpClient(withInterceptorsFromDi())
+        { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })
 export class WardSupplyModule { }

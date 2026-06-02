@@ -1,4 +1,5 @@
 import { ENUM_BillPaymentMode } from "../../../shared/shared-enums";
+import { ISchemeCreditLimit } from "../interfaces/credit-limit.interface";
 import { ServiceItemDetails_DTO } from "./service-item-details.dto";
 
 export class SchemePriceCategory_DTO {

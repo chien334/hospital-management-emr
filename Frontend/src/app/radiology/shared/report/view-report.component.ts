@@ -2,7 +2,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output, Renderer2, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Lightbox } from 'angular2-lightbox';
+import { Lightbox } from 'ngx-lightbox';
 import * as moment from 'moment/moment';
 import { CoreService } from '../../../../../src/app/core/shared/core.service';
 import { Patient } from '../../../patients/shared/patient.model';

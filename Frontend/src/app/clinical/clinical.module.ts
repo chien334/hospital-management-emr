@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -44,7 +44,7 @@ import { EyeExaminationBLService } from "./shared/eye-examination.bl.service";
 //import { ObjectiveNotesComponent } from './notes/objective-note.component';
 //import { SubjectiveNoteComponent } from './notes/subjective-note.component';
 //import { OPDGeneralNoteComponenet } from './notes/opd-general-note.component';
-import { LightboxModule } from "angular2-lightbox";
+import { LightboxModule } from "ngx-lightbox";
 import { EyeHistoryComponent } from "./eye-examination/eye-history/eye-history.component";
 import { EyeMainComponent } from "./eye-examination/eye-main/eye-main.component";
 import { PrescriptionSlipHistoryComponent } from "./eye-examination/prescription-slip-history/presription-slip-history.component";
@@ -95,7 +95,6 @@ import { ProblemsBLService } from "./shared/problems.bl.service";
         EyeExaminationBLService,
         PrescriptionSlipBLService,
         NoteTemplateBLService,
-        ProblemsBLService,
-        provideHttpClient(withInterceptorsFromDi())
+        ProblemsBLService
     ] })
 export class ClinicalModule { }

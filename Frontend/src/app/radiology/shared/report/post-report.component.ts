@@ -5,7 +5,7 @@ import { Patient } from '../../../patients/shared/patient.model';
 import { ImagingItemReport } from '../../shared/imaging-item-report.model';
 
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { Lightbox } from "angular2-lightbox";
+import { Lightbox } from "ngx-lightbox";
 import { ImagingBLService } from "../imaging.bl.service";
 import { RadiologyService } from "../radiology-service";
 import { ReportingDoctor } from "../reporting-doctor.model";

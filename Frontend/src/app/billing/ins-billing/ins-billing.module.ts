@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -70,8 +70,7 @@ export const InsBillingRoutes: Routes =
         PatientSharedModule], providers: [
         GovInsuranceDLService,
         GovInsuranceBLService,
-        ReportingService,
-        provideHttpClient(withInterceptorsFromDi())
+        ReportingService
     ] })
 export class InsuranceBillingModule {
 

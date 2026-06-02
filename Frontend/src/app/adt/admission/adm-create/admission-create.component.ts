@@ -46,6 +46,7 @@ import { AdtBedFeatureSchemePriceCategoryMap_DTO } from "../../shared/DTOs/adt-b
 import { AdtDepositSetting_DTO } from "../../shared/DTOs/adt-deposit-settings.dto";
 import { AdmissionMasterBlService } from "../../shared/admission-master.bl.service";
 import { BedReservationInfo } from "../../shared/bed-reservation-info.model";
+import { SchemePriceCategoryCustomType } from "../../../billing/shared/custom-data-types/billing-custom-data-types";
 
 
 @Component({

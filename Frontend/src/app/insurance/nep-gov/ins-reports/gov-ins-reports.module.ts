@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReportingService } from '../../../reporting/shared/reporting-service';
@@ -33,8 +33,7 @@ import { GOVINSTotalItemsBillComponent } from './gov-total-items-bill/gov-ins-to
         GovInsuranceDlService,
         GovInsuranceBlService,
         GovInsuranceService,
-        ReportingService,
-        provideHttpClient(withInterceptorsFromDi())
+        ReportingService
     ] })
 export class InsuranceReportsModule {
 

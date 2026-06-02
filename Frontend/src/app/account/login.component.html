@@ -1,0 +1,117 @@
+<div class="login-wrapper">
+  <!-- Interactive background nodes -->
+  <div class="bg-circles">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+  </div>
+
+  <!-- Top Right Language Bar -->
+  <div class="language-bar">
+    <button class="lang-btn" (click)="switchLanguage('vi')" [class.active]="translate.currentLang === 'vi'">
+      Tiếng Việt
+    </button>
+    <button class="lang-btn" (click)="switchLanguage('en')" [class.active]="translate.currentLang === 'en'">
+      English
+    </button>
+  </div>
+
+  <!-- Centered Login Card -->
+  <div class="login-card-container">
+    <div class="login-card">
+      <div class="logo-area">
+        <!-- Hospital logo with premium filter brightness/glow -->
+        <img src="../../../themes/theme-default/images/hospitals-logo/hospital-logo-landingpage.png" alt="DanpheEMR Logo" class="hospital-logo" />
+        <h2 class="app-title">Danphe EMR</h2>
+        <p class="app-subtitle">
+          {{ translate.currentLang === 'en' ? 'Electronic Medical Record System' : 'Hệ thống Hồ sơ Bệnh án Điện tử' }}
+        </p>
+      </div>
+
+      <form (submit)="onSubmit()" class="login-form">
+        <!-- Error Banners -->
+        <div class="error-banner" *ngIf="errorMessage">
+          <i class="fa fa-exclamation-triangle"></i>
+          <span>{{ errorMessage }}</span>
+        </div>
+
+        <!-- Username field -->
+        <div class="form-group">
+          <label for="username">
+            {{ translate.currentLang === 'en' ? 'Username' : 'Tên đăng nhập' }}
+          </label>
+          <div class="input-wrapper">
+            <i class="fa fa-user input-icon"></i>
+            <input 
+              id="username" 
+              name="username" 
+              type="text" 
+              [(ngModel)]="username" 
+              [placeholder]="translate.currentLang === 'en' ? 'Enter username...' : 'Nhập tên đăng nhập...'"
+              required 
+              [disabled]="loading"
+              autocomplete="username"
+            />
+          </div>
+        </div>
+
+        <!-- Password field -->
+        <div class="form-group">
+          <label for="password">
+            {{ translate.currentLang === 'en' ? 'Password' : 'Mật khẩu' }}
+          </label>
+          <div class="input-wrapper">
+            <i class="fa fa-lock input-icon"></i>
+            <input 
+              id="password" 
+              name="password" 
+              [type]="showPassword ? 'text' : 'password'" 
+              [(ngModel)]="password" 
+              [placeholder]="translate.currentLang === 'en' ? 'Enter password...' : 'Nhập mật khẩu...'"
+              required 
+              [disabled]="loading"
+              autocomplete="current-password"
+            />
+            <button 
+              type="button" 
+              class="toggle-password-btn" 
+              (click)="togglePasswordVisibility()" 
+              [disabled]="loading"
+              [title]="translate.currentLang === 'en' ? 'Toggle password visibility' : 'Hiển thị/Ẩn mật khẩu'"
+            >
+              <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember Me & Submit -->
+        <div class="form-options">
+          <label class="remember-me-label">
+            <input type="checkbox" name="rememberMe" [(ngModel)]="rememberMe" [disabled]="loading" />
+            <span class="custom-checkbox"></span>
+            <span class="checkbox-text">
+              {{ translate.currentLang === 'en' ? 'Remember Me' : 'Duy trì đăng nhập' }}
+            </span>
+          </label>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="loading">
+          <span *ngIf="!loading">
+            {{ translate.currentLang === 'en' ? 'Login' : 'Đăng nhập' }}
+          </span>
+          <span *ngIf="loading" class="loader-state">
+            <i class="fa fa-spinner fa-spin"></i>
+            {{ translate.currentLang === 'en' ? 'Authenticating...' : 'Đang xác thực...' }}
+          </span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Heartbeat animated graphic footer -->
+    <div class="heartbeat-footer">
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 195.34 61.66">
+        <polyline class="heartbeat-line" points="0 38.95 68.38 38.95 73.68 26.45 78.68 38.95 87.48 38.95 91.37 46.73 100.36 2.94 108.16 58.94 112.86 38.95 123.96 38.95 131.96 34.95 139.95 38.95 195.34 38.95" />
+      </svg>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from "@angular/core";
-import { Lightbox } from "angular2-lightbox";
+import { Lightbox } from "ngx-lightbox";
 import * as _ from 'lodash';
 import * as moment from "moment";
 import { CoreService } from "../../core/shared/core.service";

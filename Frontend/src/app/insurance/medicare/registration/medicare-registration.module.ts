@@ -1,5 +1,5 @@
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DepartmentSettingsModule } from '../../../settings-new/departments/dept-settings.module';
@@ -31,8 +31,7 @@ import { MedicareMemberComponent } from './member/medicare-member.component';
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         MedicareBLService,
         MedicareDLService,
-        MedicareService,
-        provideHttpClient(withInterceptorsFromDi())
+        MedicareService
     ] })
 export class MedicareRegistrationModule {
 

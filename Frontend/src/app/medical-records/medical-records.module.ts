@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ADT_DLService } from '../adt/shared/adt.dl.service';
@@ -82,7 +82,6 @@ import { MR_DLService } from './shared/mr.dl.service';
         ADT_DLService,
         DLService,
         ReportingService,
-        MedicalRecordService,
-        provideHttpClient(withInterceptorsFromDi())
+        MedicalRecordService
     ] })
 export class MedicalRecordsModule { }

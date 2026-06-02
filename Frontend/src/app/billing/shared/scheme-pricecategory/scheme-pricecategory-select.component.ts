@@ -5,6 +5,7 @@ import { PriceCategory } from "../../../settings-new/shared/price.category.model
 import { ENUM_ModuleName, ENUM_ServiceBillingContext } from "../../../shared/shared-enums";
 import { BillingService } from "../billing.service";
 import { SchemePriceCategory_DTO } from "../dto/scheme-pricecategory.dto";
+import { SchemePriceCategoryCustomType } from "../custom-data-types/billing-custom-data-types";
 
 
 @Component({

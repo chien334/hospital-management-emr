@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +14,7 @@ namespace DanpheEMR.Security
         public int RouteId { get; set; }
         public string UrlFullPath { get; set; }
         public string DisplayName { get; set; }
+        public string? DisplayName_vi { get; set; }
         public int? PermissionId { get; set; }
         public int? ParentRouteId { get; set; }
         public bool? DefaultShow { get; set; }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { InsuranceReportsMainComponent } from './ins-reports-main.component';
 import { INSTotalItemsBillComponent } from './total-items-bill/ins-total-items-bill.component';
 import { INSIncomeSegregationComponent } from './income-segregation/ins-income-segregation.component';
@@ -36,8 +36,7 @@ export const InsBillingReportsRoutes =
         DanpheAutoCompleteModule], providers: [
         GovInsuranceDLService,
         GovInsuranceBLService,
-        ReportingService,
-        provideHttpClient(withInterceptorsFromDi())
+        ReportingService
     ] })
 export class InsBillingReportsModule {
 

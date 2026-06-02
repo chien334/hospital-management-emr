@@ -101,6 +101,12 @@ public class CommonController : Controller
         return obj.EMPI;
     }
 
+    protected ActionResult FormatResponse<T>(DanpheHTTPResponse<T> responseData)
+    {
+        string jsonStr = DanpheJSONConvert.SerializeObject(responseData, true);
+        return Content(jsonStr, "application/json");
+    }
+
     protected ActionResult InvokeHttpGetFunction<T>(Func<T> functionName, string customErrorMsg = null)
     {
         DanpheHTTPResponse<T> responseData = new DanpheHTTPResponse<T>();
@@ -112,10 +118,11 @@ public class CommonController : Controller
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"[InvokeHttpGetFunction] Exception: {ex.ToString()}");
             responseData.Status = ENUM_Danphe_HTTP_ResponseStatus.Failed;
             responseData.ErrorMessage = ex.Message;
         }
-        return Ok(DanpheJSONConvert.DeserializeObject(DanpheJSONConvert.SerializeObject(responseData, true)));
+        return FormatResponse(responseData);
     }
 
     protected async Task<ActionResult> InvokeHttpGetFunctionAsync<T>(Func<Task<T>> function, string customErrorMsg = null)
@@ -129,11 +136,11 @@ public class CommonController : Controller
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"[InvokeHttpGetFunctionAsync] Exception: {ex.ToString()}");
             responseData.Status = ENUM_Danphe_HTTP_ResponseStatus.Failed;
             responseData.ErrorMessage = ex.Message;
         }
-        return Ok(responseData);
-
+        return FormatResponse(responseData);
     }
 
     protected ActionResult InvokeHttpPostFunction<T>(Func<T> functionName)
@@ -147,11 +154,11 @@ public class CommonController : Controller
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"[InvokeHttpPostFunction] Exception: {ex.ToString()}");
             responseData.Status = ENUM_Danphe_HTTP_ResponseStatus.Failed;
             responseData.ErrorMessage = ex.Message;
         }
-        //we needed to serialize the final output else it's giving error (eg: in Settlement>Post)
-        return Ok(DanpheJSONConvert.SerializeObject(responseData, true));
+        return FormatResponse(responseData);
     }
 
     protected async Task<ActionResult> InvokeHttpPostFunctionAsync<T>(Func<T> functionName, string customErrorMsg = null)
@@ -170,10 +177,8 @@ public class CommonController : Controller
                 responseData.Status = ENUM_Danphe_HTTP_ResponseStatus.Failed;
                 responseData.ErrorMessage = ex.Message;
             }
-            //we needed to serialize the final output else it's giving error (eg: in Settlement>Post)
-            return Ok(DanpheJSONConvert.SerializeObject(responseData, true));
+            return FormatResponse(responseData);
         });
-
     }
 
     protected ActionResult InvokeHttpPostFunctionSingleTransactionScope<T>(Func<T> functionName, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction transactionScope)
@@ -192,9 +197,9 @@ public class CommonController : Controller
             responseData.Status = ENUM_Danphe_HTTP_ResponseStatus.Failed;
             responseData.ErrorMessage = ex.Message;
         }
-        //we needed to serialize the final output else it's giving error (eg: in Settlement>Post)
-        return Ok(DanpheJSONConvert.SerializeObject(responseData, true));
+        return FormatResponse(responseData);
     }
+
     protected ActionResult InvokeHttpPutFunction<T>(Func<T> functionName)
     {
         DanpheHTTPResponse<T> responseData = new DanpheHTTPResponse<T>();
@@ -209,9 +214,8 @@ public class CommonController : Controller
             responseData.Status = ENUM_Danphe_HTTP_ResponseStatus.Failed;
             responseData.ErrorMessage = ex.Message;
         }
-        return Ok(DanpheJSONConvert.DeserializeObject(DanpheJSONConvert.SerializeObject(responseData, true)));
+        return FormatResponse(responseData);
     }
-
 
     protected async Task<ActionResult> InvokeHttpPutFunctionAsync<T>(Func<T> functionName, string customErrorMsg = null)
     {
@@ -229,9 +233,8 @@ public class CommonController : Controller
                 responseData.Status = ENUM_Danphe_HTTP_ResponseStatus.Failed;
                 responseData.ErrorMessage = ex.Message;
             }
-            return Ok(responseData);
+            return FormatResponse(responseData);
         });
-
     }
 
     protected ActionResult InvokeHttpPutFunctionSingleTransactionScope<T>(Func<T> functionName, Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction transactionScope)
@@ -250,8 +253,6 @@ public class CommonController : Controller
             responseData.Status = ENUM_Danphe_HTTP_ResponseStatus.Failed;
             responseData.ErrorMessage = ex.Message;
         }
-        return Ok(responseData);
+        return FormatResponse(responseData);
     }
-
-
 }

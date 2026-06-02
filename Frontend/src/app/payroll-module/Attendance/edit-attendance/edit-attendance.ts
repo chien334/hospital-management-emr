@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { DailyMuster } from '../../Shared/daily-muster.model';
 import { PayrollBLService } from '../../Shared/payroll.bl.service';
 import { Router } from '@angular/router';

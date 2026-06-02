@@ -63,117 +63,149 @@ export class AppComponent {
 
     translate.addLangs(['vi', 'en']);
     translate.setDefaultLang('vi');
-    const savedLang = localStorage.getItem('selected_language');
-    translate.use(savedLang || 'vi');
+    let savedLang = localStorage.getItem('selected_language');
+    if (!savedLang) {
+      savedLang = 'vi';
+      localStorage.setItem('selected_language', 'vi');
+    }
+    translate.use(savedLang);
 
     this.SetLoginTokenToLocalStorage(); //* using this method to set loginToken to localStorage.
 
     this.PatService = _serv;
 
-    //START:data loads from api into cache memory.
-    DanpheCache.GetData(MasterType.Country, null);
-    DanpheCache.GetData(MasterType.SubDivision, null);
-    DanpheCache.GetData(MasterType.BillingCounter, null);
-    DanpheCache.GetData(MasterType.PhrmCounter, null);
-    DanpheCache.GetData(MasterType.Employee, null);
-    //END:data loads from api into cache memory.
+    const token = localStorage.getItem('jwt_token') || localStorage.getItem(ENUM_LocalStorageKeys.LoginTokenName);
 
-    this.GetAllValidRouteList();
-    this.http = _http;
-    //we're initializing parameters in the First component that will be loaded into the application.
-    //i.e: bootstrap component.
-    this.coreService.InitializeParameters().subscribe(res => {
-      this.CallBackLoadParameters(res);
-    });
+    if (token) {
+      //START:data loads from api into cache memory.
+      DanpheCache.GetData(MasterType.Country, null);
+      DanpheCache.GetData(MasterType.SubDivision, null);
+      DanpheCache.GetData(MasterType.BillingCounter, null);
+      DanpheCache.GetData(MasterType.PhrmCounter, null);
+      DanpheCache.GetData(MasterType.Employee, null);
+      //END:data loads from api into cache memory.
 
-    //load all master entries at the beginning only.
-    this.coreService.GetMasterEntities().subscribe(res => {
-      this.coreService.SetMasterEntities(res);
-    });
+      this.GetAllValidRouteList();
+      this.http = _http;
+      //we're initializing parameters in the First component that will be loaded into the application.
+      //i.e: bootstrap component.
+      this.coreService.InitializeParameters().subscribe(res => {
+        this.CallBackLoadParameters(res);
+      });
 
-    //load all the application lookups.
-    this.coreService.GetAllLookups().subscribe(res => {
-      this.coreService.SetAllLookUps(res);
-    });
+      //load all master entries at the beginning only.
+      this.coreService.GetMasterEntities().subscribe(res => {
+        this.coreService.SetMasterEntities(res);
+      });
 
-
-    //Get Valid Navigation Routes list
-    this.SetValidNavigationRoute();
-
-    //get valid user permission list
-    this.SetValidUserPermissions();
-
-    //load appsettings --sud:25Dec'18
-    this.coreService.InitializeAppSettings().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status == "OK") {
-        this.coreService.AppSettings = res.Results;
-        this.coreService.SetAppVersionNum();
-      }
-    });
-
-    //set counterInformation at the time of loading
-    this.GetActiveCounter();
-
-    //set counterInformation of pharmacy at the time of loading
-    this.GetActivePharmacyCounter();
-
-    //sud-nagesh:21Jun'20-- to get and set current hospital information for accounting.
-    this.LoadAccountingHospitalInfo();
-
-    //to show-hide loading image when route changes from one to another.
-    //we've to subscribe to the router event to do that.
-    router.events.subscribe((event: RouterEvent) => {
-      this.navigationInterceptor(event);
-    });
-
-    this.coreService.GetLabTypes().subscribe(res => {
-      this.coreService.SetLabTypes(res);
-      if (res.Status == "OK") {
-        this.GetActiveLab();
-      }
-    });
+      //load all the application lookups.
+      this.coreService.GetAllLookups().subscribe(res => {
+        this.coreService.SetAllLookUps(res);
+      });
 
 
+      //Get Valid Navigation Routes list
+      this.SetValidNavigationRoute();
 
-    this.GetMunicipalities();
-    this.GetGovLabItems();
-    //add windows listener for logout-event.. this will be triggered from Logout button on top.
-    //If logout-event is fired from any other tab (of the curent session), it'll logout from this tab as well.
-    window.addEventListener('storage', (event) => {
-      if (event.key == 'logout-event') {
-        window.location.href = '/Account/Logout';
-      }
-    });
+      //get valid user permission list
+      this.SetValidUserPermissions();
 
-    // get default caleder perference at user level
-    this.coreService.getCalenderDatePreference().subscribe(res => {
-      this.coreService.SetCalenderDatePreference(res);
-      if (this.coreService.DatePreference != "") {
-        if (this.coreService.DatePreference == 'np') {
-          this.DatePreferenceData('np');
+      //load appsettings --sud:25Dec'18
+      this.coreService.InitializeAppSettings().subscribe((res: DanpheHTTPResponse) => {
+        if (res.Status == "OK") {
+          this.coreService.AppSettings = res.Results;
+          this.coreService.SetAppVersionNum();
         }
-        else {
-          this.DatePreferenceData('en');
+      });
+
+      //set counterInformation at the time of loading
+      this.GetActiveCounter();
+
+      //set counterInformation of pharmacy at the time of loading
+      this.GetActivePharmacyCounter();
+
+      //sud-nagesh:21Jun'20-- to get and set current hospital information for accounting.
+      this.LoadAccountingHospitalInfo();
+
+      //to show-hide loading image when route changes from one to another.
+      //we've to subscribe to the router event to do that.
+      this.router.events.subscribe((event: RouterEvent) => {
+        this.navigationInterceptor(event);
+      });
+
+      this.coreService.GetLabTypes().subscribe(res => {
+        this.coreService.SetLabTypes(res);
+        if (res.Status == "OK") {
+          this.GetActiveLab();
         }
-      }
-    });
-    //set qz-tray config setting and all
-    this.coreService.SetQZTrayObject();
+      });
 
-    //sud:21May'21--Get/Set of AllPrinterSettings
-    //need to first call the server api to get the data and then set values using below function.
-    this.coreService.GetPrinterSettings().subscribe(res => {
-      this.coreService.SetPrinterSettings(res);
-    });
 
-    //sud:10-Oct'21--To load all memberships into core service variables..
-    this.LoadAllMembershipTypes();
-    this.GetPrintExportConfiguration();
-    this.GetPaymentModeSettings();
-    this.GetPaymentModes();
-    this.GetPaymentPages();
-    this.GetMembershipTypeVsPriceCategoryMapping();
-    this.GetSchemeList();
+
+      this.GetMunicipalities();
+      this.GetGovLabItems();
+      //add windows listener for logout-event.. this will be triggered from Logout button on top.
+      //If logout-event is fired from any other tab (of the curent session), it'll logout from this tab as well.
+      window.addEventListener('storage', (event) => {
+        if (event.key == 'logout-event') {
+          localStorage.removeItem('jwt_token');
+          localStorage.removeItem(ENUM_LocalStorageKeys.LoginTokenName);
+          this.router.navigate(['/login']);
+        }
+      });
+
+      // get default caleder perference at user level
+      this.coreService.getCalenderDatePreference().subscribe(res => {
+        this.coreService.SetCalenderDatePreference(res);
+        if (this.coreService.DatePreference != "") {
+          if (this.coreService.DatePreference == 'np') {
+            this.DatePreferenceData('np');
+          }
+          else {
+            this.DatePreferenceData('en');
+          }
+        }
+      });
+      //set qz-tray config setting and all
+      this.coreService.SetQZTrayObject();
+
+      //sud:21May'21--Get/Set of AllPrinterSettings
+      //need to first call the server api to get the data and then set values using below function.
+      this.coreService.GetPrinterSettings().subscribe(res => {
+        this.coreService.SetPrinterSettings(res);
+      });
+
+      //sud:10-Oct'21--To load all memberships into core service variables..
+      this.LoadAllMembershipTypes();
+      this.GetPrintExportConfiguration();
+      this.GetPaymentModeSettings();
+      this.GetPaymentModes();
+      this.GetPaymentPages();
+      this.GetMembershipTypeVsPriceCategoryMapping();
+      this.GetSchemeList();
+    } else {
+      this.http = _http;
+
+      // Setup router interception even when unauthenticated (so the loading spinner still works if we browse routes)
+      this.router.events.subscribe((event: RouterEvent) => {
+        this.navigationInterceptor(event);
+      });
+
+      // Add windows listener even when unauthenticated
+      window.addEventListener('storage', (event) => {
+        if (event.key == 'logout-event') {
+          localStorage.removeItem('jwt_token');
+          localStorage.removeItem(ENUM_LocalStorageKeys.LoginTokenName);
+          this.router.navigate(['/login']);
+        }
+      });
+
+      setTimeout(() => {
+        if (!this.router.url.includes('/login')) {
+          this.router.navigate(['/login']);
+        }
+      }, 50);
+    }
   }
 
 
@@ -185,8 +217,11 @@ export class AppComponent {
   }
 
   SetLoginTokenToLocalStorage(): void {
-    localStorage.setItem(ENUM_LocalStorageKeys.LoginTokenName, this.elementRef.nativeElement.getAttribute('loginToken')); //* this 'loginToken' is coming from Index.cshtml, Krishna,13than'23
-    this.elementRef.nativeElement.setAttribute('loginToken', ''); //! We need to clear the elementRef variable otherwise it will display our token into SourceCode, Krishna,13than'23
+    const token = this.elementRef.nativeElement.getAttribute('loginToken');
+    if (token) {
+      localStorage.setItem(ENUM_LocalStorageKeys.LoginTokenName, token); //* this 'loginToken' is coming from Index.cshtml, Krishna,13than'23
+      this.elementRef.nativeElement.setAttribute('loginToken', ''); //! We need to clear the elementRef variable otherwise it will display our token into SourceCode, Krishna,13than'23
+    }
   }
 
   //this function takes parameter value from database for shwo or hide every http request loading screen
@@ -329,6 +364,8 @@ export class AppComponent {
           this.validRoutes = this.securityService.GetAllValidRoutes();
           //  this.securityService.validRouteList[0].ChildRoutes.filter(s => s.DefaultShow == true).length
 
+        } else {
+          this.logError("GetAllValidRouteList Failed: " + res.ErrorMessage);
         }
       },
         err => {
@@ -359,6 +396,8 @@ export class AppComponent {
           //Ajay 07Aug19 -- after response success get logged user info and redirect to its landing page
           this.GetLoggedInUserId();
           this.currUser = this.currentUsr;
+        } else {
+          this.logError("SetValidNavigationRoute Failed: " + res.ErrorMessage);
         }
       },
         err => {
@@ -384,7 +423,7 @@ export class AppComponent {
         }
         else {
           //alert('failed to get user permissions.. please check log for details.');
-          window.location.href = '/Account/Logout';
+          this.router.navigate(['/login']);
           this.logError(res.ErrorMessage);
         }
       },
@@ -417,10 +456,8 @@ export class AppComponent {
       this.CheckForEnglishCalendarParameterAndSetDefaultPreference();
     }
     else {
-
-      window.location.href = '/Account/Logout';
-      alert(res.ErrorMessage);
-      //console.log(res.ErrorMessage);
+      this.router.navigate(['/login']);
+      console.error('Initialization parameter load failed: ', res.ErrorMessage);
     }
   }
 
@@ -459,20 +496,27 @@ export class AppComponent {
   }
 
   LogoutFromAplication() {
-
-    //* remove loginJwtToken from localStorage
+    // Clear both tokens from localStorage
+    localStorage.removeItem('jwt_token');
     localStorage.removeItem(ENUM_LocalStorageKeys.LoginTokenName);
 
-    //Ajay 07 Aug 2019
-    //removing landing page from session
+    // Ajay 07 Aug 2019
+    // removing landing page from session
     sessionStorage.removeItem("isLandingVisited");
     localStorage.removeItem('isLandingVisitedNewTab');
     localStorage.removeItem('selectedLabCategory');
-    //when logged out from one tab, add a key : logout-event to local storage, which will be continuously listened by other windows.
+    
+    // When logged out from one tab, add a key : logout-event to local storage, which will be continuously listened by other windows.
     localStorage.setItem('logout-event', 'logout' + Math.random());
-    //after setting localstorage, redirect to Logout page.
-    window.location.href = '/Account/Logout';
+    
+    // Issue a background request to clear the server session
+    this.http.get('/Account/Logout').subscribe(
+      () => {},
+      err => console.error('Logout background call error', err)
+    );
 
+    // Native router navigation to /login
+    this.router.navigate(['/login']);
   }
 
   // START: VIKAS : default caledar date preference for user

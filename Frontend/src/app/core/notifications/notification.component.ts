@@ -1,13 +1,10 @@
-﻿import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { NotificationViewModel } from './notification.model'
 import { NotificationBLService } from "./notification.bl.service"
-import 'rxjs/Rx';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/map';
+import { Observable, Subscription, timer } from 'rxjs';
 import { RouteFromService } from "../../shared/routefrom.service";
 import * as moment from 'moment/moment';
 import { PatientService } from "../../patients/shared/patient.service";
@@ -111,7 +108,9 @@ export class NotificationComponent {
 
     ngOnDestroy() {
         // unsubscribe here
-        this.sub.unsubscribe();
+        if (this.sub) {
+            this.sub.unsubscribe();
+        }
     }
 
     NotificationOnClick(currtNotification: NotificationViewModel) {
@@ -243,7 +242,7 @@ export class NotificationComponent {
 
     public GetNotificationSettings() {
 
-        this.timer = Observable.timer(0, this.notificationReloadFrequencyInMs);//Reload after mentioned time interval
+        this.timer = timer(0, this.notificationReloadFrequencyInMs);//Reload after mentioned time interval
 
         this.sub = this.timer.subscribe(t => this.tickerFunc(t));
 
@@ -255,7 +254,7 @@ export class NotificationComponent {
         //     //we are using Timer function of Observable to Call the HTTP with angular timer
         //     //first Zero(0) means when component is loaded the timer is also start that time
         //     //seceond (60000) means after each 1 min timer will subscribe and It Perfrom HttpClient operation
-        //     this.timer = Observable.timer(0, (this.NotificationSettings.TimeToReloadInSeconds * 1000));
+        //     this.timer = timer(0, (this.NotificationSettings.TimeToReloadInSeconds * 1000));
 
         //     // subscribing to a observable returns a subscription object
         //     if (this.NotificationSettings.IsNotificationDisplayEnabled) {

@@ -1,6 +1,6 @@
 
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -88,5 +88,5 @@ import { VisitPatientInfoComponent } from './visit/visit-patient-info.component'
         BillingDLService,
         PatientsDLService,
         ADT_DLService,
-        { provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
+        { provide: LocationStrategy, useClass: HashLocationStrategy }] })
 export class AppointmentsModule { }

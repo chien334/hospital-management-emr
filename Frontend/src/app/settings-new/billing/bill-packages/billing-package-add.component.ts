@@ -21,6 +21,7 @@ import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_ServiceBillingCo
 import { Department } from "../../shared/department.model";
 import { BillingPackageForGrid_DTO } from "../shared/dto/bill-package-for-grid.dto";
 import { BillingPackageServiceItem_DTO } from "../shared/dto/billing-package-service-item.dto";
+import { SchemePriceCategoryCustomType } from "../../../billing/shared/custom-data-types/billing-custom-data-types";
 @Component({
   selector: "billingPackage-add",
   templateUrl: "./billing-package-add.html",

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { SharedModule } from '../shared/shared.module';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -58,8 +58,7 @@ import { ViewClinicalPrescriptionNoteComponent } from './prescription-note/view-
         DanpheAutoCompleteModule,
         RouterModule.forChild(NotesRoutingConstant),
         ClinicalSharedModule], providers: [
-        NoteTemplateBLService,
-        provideHttpClient(withInterceptorsFromDi())
+        NoteTemplateBLService
     ] })
 
 export class NotesModule {

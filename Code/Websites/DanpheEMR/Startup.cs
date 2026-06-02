@@ -68,22 +68,46 @@ namespace DanpheEMR
             if ((!string.IsNullOrEmpty(Configuration["IsAuditEnable"])) && Convert.ToBoolean(Configuration["IsAuditEnable"]) == true)
             {
                 string adminConstr = Configuration["ConnectionStringAdmin"];
-                SqlConnectionStringBuilder conBuilderObj = new SqlConnectionStringBuilder(adminConstr);
-                string encPwd = conBuilderObj.Password;
-                if (!string.IsNullOrEmpty(encPwd))  //check is it encrypted or not
+                bool isPg = adminConstr.Contains("Host=", StringComparison.OrdinalIgnoreCase) || adminConstr.Contains("Port=", StringComparison.OrdinalIgnoreCase);
+
+                if (isPg)
                 {
-                    string decPwd = DecryptPassword(encPwd);
-                    conBuilderObj.Password = decPwd;
+                    var conBuilderObj = new Npgsql.NpgsqlConnectionStringBuilder(adminConstr);
+                    string encPwd = conBuilderObj.Password;
+                    if (!string.IsNullOrEmpty(encPwd))
+                    {
+                        string decPwd = DecryptPassword(encPwd);
+                        conBuilderObj.Password = decPwd;
+                    }
+                    Audit.Core.Configuration.DataProvider = new Audit.PostgreSql.Providers.PostgreSqlDataProvider()
+                    {
+                        ConnectionString = conBuilderObj.ConnectionString,
+                        Schema = "public",
+                        TableName = "DanpheAudit",
+                        IdColumnName = "AuditId",
+                        DataColumnName = "Data",
+                        LastUpdatedDateColumnName = "LastUpdatedDate"
+                    };
                 }
-                Audit.Core.Configuration.DataProvider = new SqlDataProvider()
+                else
                 {
-                    ConnectionString = conBuilderObj.ConnectionString,
-                    Schema = "dbo",
-                    TableName = "DanpheAudit",
-                    IdColumnName = "AuditId",
-                    JsonColumnName = "Data",
-                    LastUpdatedDateColumnName = "LastUpdatedDate"
-                };
+                    SqlConnectionStringBuilder conBuilderObj = new SqlConnectionStringBuilder(adminConstr);
+                    string encPwd = conBuilderObj.Password;
+                    if (!string.IsNullOrEmpty(encPwd))
+                    {
+                        string decPwd = DecryptPassword(encPwd);
+                        conBuilderObj.Password = decPwd;
+                    }
+                    Audit.Core.Configuration.DataProvider = new SqlDataProvider()
+                    {
+                        ConnectionString = conBuilderObj.ConnectionString,
+                        Schema = "dbo",
+                        TableName = "DanpheAudit",
+                        IdColumnName = "AuditId",
+                        JsonColumnName = "Data",
+                        LastUpdatedDateColumnName = "LastUpdatedDate"
+                    };
+                }
             }
 
 
@@ -132,31 +156,57 @@ namespace DanpheEMR
 
             //start: sud-9Jan'19 for pwd encryption testing
 
-            //For DanpheEMR Database connectionstring..
-            //reads connectionstring
             string connStr = Configuration["Connectionstring"];
-            //this inbuilt class maps connString to separate properties                                                  
-            SqlConnectionStringBuilder connStringBuilder = new SqlConnectionStringBuilder(connStr);
-            string encPassword = connStringBuilder.Password;
-            //if password is present, it must be in encrypted form., only then go for decryption, else keep it as it is.
-            if (!string.IsNullOrEmpty(encPassword))
+            bool isPgConn = connStr.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connStr.Contains("Port=", StringComparison.OrdinalIgnoreCase);
+
+            if (isPgConn)
             {
-                //decrypt the password and re-assign the values to actual Connstring
-                string decrypted = DecryptPassword(encPassword);//this calls our internal function of RBAC
-                connStringBuilder.Password = decrypted;
-                Configuration["Connectionstring"] = connStringBuilder.ToString();
+                var connStringBuilder = new Npgsql.NpgsqlConnectionStringBuilder(connStr);
+                string encPassword = connStringBuilder.Password;
+                if (!string.IsNullOrEmpty(encPassword))
+                {
+                    string decrypted = DecryptPassword(encPassword);
+                    connStringBuilder.Password = decrypted;
+                    Configuration["Connectionstring"] = connStringBuilder.ToString();
+                }
+            }
+            else
+            {
+                SqlConnectionStringBuilder connStringBuilder = new SqlConnectionStringBuilder(connStr);
+                string encPassword = connStringBuilder.Password;
+                if (!string.IsNullOrEmpty(encPassword))
+                {
+                    string decrypted = DecryptPassword(encPassword);
+                    connStringBuilder.Password = decrypted;
+                    Configuration["Connectionstring"] = connStringBuilder.ToString();
+                }
             }
 
             //For DanpheAdmin Database connectionstring.
             string connStrAdmin = Configuration["ConnectionStringAdmin"];
-            SqlConnectionStringBuilder connStringBuilder2 = new SqlConnectionStringBuilder(connStrAdmin);
-            string encPwd_Admin = connStringBuilder2.Password;
-            //if password is present, only then go for decryption, else keep it as it is.
-            if (!string.IsNullOrEmpty(encPwd_Admin))
+            bool isPgConnAdmin = connStrAdmin.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connStrAdmin.Contains("Port=", StringComparison.OrdinalIgnoreCase);
+
+            if (isPgConnAdmin)
             {
-                string decPwd_Admin = DecryptPassword(encPwd_Admin);//this calls our internal function of RBAC
-                connStringBuilder2.Password = decPwd_Admin;
-                Configuration["ConnectionStringAdmin"] = connStringBuilder2.ToString();
+                var connStringBuilder2 = new Npgsql.NpgsqlConnectionStringBuilder(connStrAdmin);
+                string encPwd_Admin = connStringBuilder2.Password;
+                if (!string.IsNullOrEmpty(encPwd_Admin))
+                {
+                    string decPwd_Admin = DecryptPassword(encPwd_Admin);
+                    connStringBuilder2.Password = decPwd_Admin;
+                    Configuration["ConnectionStringAdmin"] = connStringBuilder2.ToString();
+                }
+            }
+            else
+            {
+                SqlConnectionStringBuilder connStringBuilder2 = new SqlConnectionStringBuilder(connStrAdmin);
+                string encPwd_Admin = connStringBuilder2.Password;
+                if (!string.IsNullOrEmpty(encPwd_Admin))
+                {
+                    string decPwd_Admin = DecryptPassword(encPwd_Admin);
+                    connStringBuilder2.Password = decPwd_Admin;
+                    Configuration["ConnectionStringAdmin"] = connStringBuilder2.ToString();
+                }
             }
 
             //end: sud-9Jan'19 for pwd encryption testing
@@ -209,6 +259,14 @@ namespace DanpheEMR
             string storagePath = CurrentEnvironment.WebRootPath + "\\" + Configuration["FileStorageRelativeLocation"];
             services.AddSingleton<FileUploader>(new FileUploader(storagePath));
 
+            services.Configure<Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+            services.Configure<Microsoft.AspNetCore.Builder.IISServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
 
             // Razor dynamic compilation is obsolete in .NET 8 Web API
         }
@@ -228,43 +286,14 @@ namespace DanpheEMR
                 routes =>
                 {
                     routes.MapRoute("DefaultRoute", "{controller}/{action}");
-                    routes.MapRoute(name: "Default", template: "{controller}/{action}", defaults: new { controller = "Account", action = "Login" });
+                    routes.MapRoute(name: "Default", template: "{controller=Home}/{action=Index}/{id?}");
                 }
                 );
-            app.UseFileServer();
-
-            // set a home page
-            DefaultFilesOptions defaultoptions = new DefaultFilesOptions();
-            defaultoptions.DefaultFileNames.Clear();
-            defaultoptions.DefaultFileNames.Add("UI/Main.html");
-            app.UseDefaultFiles(defaultoptions);
-            //app.UseMiddleware<>
-            app.UseStaticFiles();
-            // this will serve up node_modules
-            // this code is bad here i am saying add the mode_modules
-            // with wwwroot. This i did because when a page runs 
-            // inside wwwroot he has no way to access folders outside
-            // the wwwroot. Putting this complete folder inside
-            // wwwroot would be a kill. So later 
-            // we need to write a grunt task which will copy the necessaayr files
-            // to wwwroot. The task woul sit here
 
             string isDevEnv = Configuration["environment:isdevelopment"];
 
-
             if (bool.Parse(isDevEnv))//env.IsDevelopment build it only if it's development.
             {
-                var nodeModulesPath = Path.Combine(env.ContentRootPath, "wwwroot\\DanpheApp\\node_modules");
-                if (Directory.Exists(nodeModulesPath))
-                {
-                    var provider = new PhysicalFileProvider(nodeModulesPath);
-                    var options = new FileServerOptions();
-                    options.RequestPath = "/node_modules";
-                    options.StaticFileOptions.FileProvider = provider;
-                    options.EnableDirectoryBrowsing = true;
-                    app.UseFileServer(options);
-                }
-
                 //Use Swagger
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
@@ -280,8 +309,15 @@ namespace DanpheEMR
         //use existing decrypt method from RBAC.
         private string DecryptPassword(string encryptedPwd)
         {
-            string retVal = DanpheEMR.Security.RBAC.DecryptPassword(encryptedPwd);
-            return retVal;
+            try
+            {
+                string retVal = DanpheEMR.Security.RBAC.DecryptPassword(encryptedPwd);
+                return retVal;
+            }
+            catch (Exception)
+            {
+                return encryptedPwd;
+            }
         }
 
         //end: sud-9Jan'19-- for ConnectionString encryption/decryption

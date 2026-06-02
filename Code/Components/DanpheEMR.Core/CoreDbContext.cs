@@ -78,6 +78,8 @@ namespace DanpheEMR.Core
 
             modelBuilder.Entity<ParameterModel>().ToTable("CORE_CFG_Parameters");
             modelBuilder.Entity<LookupsModel>().ToTable("CORE_CFG_LookUps");
+            modelBuilder.Entity<LookupsModel>().Property(x => x.LookupId).HasColumnName("LookUpId");
+            modelBuilder.Entity<LookupsModel>().Property(x => x.LookupName).HasColumnName("LookUpName");
 
             modelBuilder.Entity<CountryModel>().ToTable("MST_Country");
             modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
@@ -92,7 +94,7 @@ namespace DanpheEMR.Core
             modelBuilder.Entity<DepartmentModel>().ToTable("MST_Department");
             modelBuilder.Entity<BedFeature>().ToTable("ADT_MST_BedFeature");
             modelBuilder.Entity<BedFeaturesMap>().ToTable("ADT_MAP_BedFeaturesMap");
-            modelBuilder.Entity<BedModel>().ToTable("ADT_MAP_WardBedType");
+            modelBuilder.Entity<BedModel>().ToTable("ADT_Bed");
             modelBuilder.Entity<WardModel>().ToTable("ADT_MST_Ward");
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
 

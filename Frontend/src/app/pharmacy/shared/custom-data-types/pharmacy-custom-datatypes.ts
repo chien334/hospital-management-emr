@@ -1,1 +1,1 @@
-type PharmacySchemePriceCategoryCustomType = { SchemeId: number, PriceCategoryId: number }
+export type PharmacySchemePriceCategoryCustomType = { SchemeId: number, PriceCategoryId: number }

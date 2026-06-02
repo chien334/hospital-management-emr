@@ -1,6 +1,7 @@
 
 import { PageNotFound } from './404-error/404-not-found.component';
 import { UnAuthorizedAccessComponent } from './account/unauthorizes-access.component';
+import { LoginComponent } from './account/login.component';
 import { DashboardHomeComponent } from './dashboards/home/dashboard-home.component';
 import { DynamicReportComponent } from './dynamic-report/dynamic-report.component';
 import { AuthGuardService } from './security/shared/auth-guard.service';
@@ -181,6 +182,7 @@ export const AppRoutingConstant = [
   { path: "UnAuthorized", component: UnAuthorizedAccessComponent },
   { path: "Utilities", loadChildren: () => import('./utilities/utilities.module').then(m => m.UtilitiesModule), canActivate: [AuthGuardService], data: { currentRoute: 'Utilities' } },
   { path: "MktReferral", loadChildren: () => import('./mktreferral/mktreferral.module').then(m => m.MktreferralModule) },
+  { path: "login", component: LoginComponent },
 
   { path: "**", component: PageNotFound },
 ];

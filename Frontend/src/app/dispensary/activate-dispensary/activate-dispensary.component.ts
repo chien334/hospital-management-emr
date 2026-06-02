@@ -4,6 +4,7 @@ import { PHRMStoreModel } from '../../pharmacy/shared/phrm-store.model';
 import { SecurityService } from '../../security/shared/security.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { DispensaryService } from '../shared/dispensary.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-activate-dispensary',
@@ -16,7 +17,13 @@ export class ActivateDispensaryComponent implements OnInit {
   currentDispensaryName: any;
   selectedDispensary: any = null;
 
-  constructor(public dispensaryService: DispensaryService, public msgBox: MessageboxService, private _router: Router, public securityService: SecurityService) {
+  constructor(
+    public dispensaryService: DispensaryService, 
+    public msgBox: MessageboxService, 
+    private _router: Router, 
+    public securityService: SecurityService,
+    private translate: TranslateService
+  ) {
 
     this.dispensaryService.GetAllDispensaryList()
       .subscribe(res => {
@@ -25,7 +32,9 @@ export class ActivateDispensaryComponent implements OnInit {
           this.dispensaryList = dispensaryList.filter(a => a.IsActive == true);
 
           if (this.dispensaryList.length == 1) {
-            this.msgBox.showMessage("Notice-Message", [`You are only allowed to see ${this.dispensaryList[0].Name}.`]);
+            const noticeTitle = this.translate.instant("DISPENSARY.NOTICE_MESSAGE");
+            const noticeBody = this.translate.instant("DISPENSARY.ALLOWED_TO_SEE", { name: this.dispensaryList[0].Name });
+            this.msgBox.showMessage(noticeTitle, [noticeBody]);
             this.setGlobalDispensary(this.dispensaryList[0].StoreId);
           }
           if (this.dispensaryList.length > 1) {
@@ -33,10 +42,12 @@ export class ActivateDispensaryComponent implements OnInit {
           }
         }
         else {
-          this.msgBox.showMessage("Failed", ["Failed to load dispensary list."]);
+          const failMsg = this.translate.instant("DISPENSARY.FAILED_LOAD_LIST");
+          this.msgBox.showMessage("Failed", [failMsg]);
         }
       }, () => {
-        this.msgBox.showMessage("Failed", ["Failed to load dispensary list."]);
+        const failMsg = this.translate.instant("DISPENSARY.FAILED_LOAD_LIST");
+        this.msgBox.showMessage("Failed", [failMsg]);
       });
 
   }
@@ -74,7 +85,8 @@ export class ActivateDispensaryComponent implements OnInit {
         }
       }
       else {
-        this.msgBox.showMessage("Failed", ["Failed to load dispensary"]);
+        const failLoadMsg = this.translate.instant("DISPENSARY.FAILED_LOAD_DISPENSARY");
+        this.msgBox.showMessage("Failed", [failLoadMsg]);
       }
     })
   }

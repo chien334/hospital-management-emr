@@ -13,7 +13,7 @@ import { AccountingService } from '../shared/accounting.service';
     selector: 'accounting-hospital-activate',
     templateUrl: './accounting-hospital-activate.html',
     styles: [`.display-blk{display: block;} .col-4{flex-basis: 31%;box-shadow: 0px 1px 4px -1px rgba(19, 19, 19, 0.62); padding: 5px 15px; margin-bottom: 15px;}
-    padding:{0px 0px 15px;} .margin-15-bt{margin-bottom: 15px;} .justify-sp-around{-webkit-justify-content: space-around;
+    .padding-15-bt{padding: 0px 0px 15px;} .margin-15-bt{margin-bottom: 15px;} .justify-sp-around{-webkit-justify-content: space-around;
     justify-content: space-around;}`]
 })
 export class ActivateAccountingHospitalComponent {

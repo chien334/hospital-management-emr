@@ -261,7 +261,7 @@
                             </tr>
                           </thead>
                           <tbody style="background-color: #dde3e9;">
-                            <tr *ngFor="let profile of profileList | filter:searchText; let i=index;">
+                            <tr *ngFor="let profile of profileList | incentiveSearch:searchText; let i=index;">
                               <td>
                                 <input type="radio" id='prof' name="optradio" (change)="radioChanged($event, profile)" value="{{profile.ProfileName}}"
                                        [(ngModel)]="selectedRadioButton">

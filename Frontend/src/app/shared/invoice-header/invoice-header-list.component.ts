@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Lightbox } from "angular2-lightbox";
+import { Lightbox } from "ngx-lightbox";
 import { CoreService } from '../../core/shared/core.service';
 import { GeneralFieldLabels } from '../DTOs/general-field-label.dto';
 import GridColumnSettings from '../danphe-grid/grid-column-settings.constant';

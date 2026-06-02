@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { SharedModule } from "../shared/shared.module";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
@@ -24,5 +24,5 @@ import { QueueManagementBLService } from './shared/Qmgnt.bl.service';
         AngularMultiSelectModule,
         SharedModule,
         DanpheAutoCompleteModule,
-        SettingsSharedModule], providers: [QueueManagementService, QueueManagementDLService, QueueManagementBLService, provideHttpClient(withInterceptorsFromDi())] })
+        SettingsSharedModule], providers: [QueueManagementService, QueueManagementDLService, QueueManagementBLService] })
 export class QueueManagementModule { }

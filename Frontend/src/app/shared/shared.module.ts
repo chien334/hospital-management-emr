@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
+import { NgModule, NgZone } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //custom pipes
@@ -14,16 +14,17 @@ import { NumberInWordsPipe } from "./pipes/number-inwords.pipe";
 import { ParseAmount } from "./pipes/parse-amount.pipe";
 //import { Ng2TabModule } from 'ng2-tab';
 
-import { AgGridModule } from "ag-grid-angular/main";
+import { AgGridModule } from "ag-grid-angular";
 import { DanpheGridComponent } from "./danphe-grid/danphe-grid.component";
 
 import { ResetPatientcontextGuard } from "../shared/reset-patientcontext-guard";
 import { NepaliCalendarModule } from "./calendar/np/nepali-calendar.module";
+import { AmChartsService } from "@amcharts/amcharts3-angular";
 
-import { AmChartsModule } from "@amcharts/amcharts3-angular";
+
 import { DanpheChartsService } from "../dashboards/shared/danphe-charts.service";
 
-import { QRCodeModule } from "angular2-qrcode";
+import { QRCodeModule } from "./danphe-qrcode/qr-code.module";
 import { PrintStickerComponent } from "../appointments/opd-sticker/opd-sticker-print.component";
 import { NotificationComponent } from "../core/notifications/notification.component";
 import { CustomerHeaderComponent } from "../shared/customer-header/customer-header.component";
@@ -49,7 +50,7 @@ import { CustomDateComponent } from "./custom-date/custom-date.component";
 import { CKEditorModule } from "ng2-ckeditor";
 import { DanpheCkEditorComponent } from "../shared/danphe-ckeditor/danphe-ckeditor.component";
 
-import { LightboxModule } from "angular2-lightbox";
+import { LightboxModule } from "ngx-lightbox";
 import { DoctorsBLService } from "../doctors/shared/doctors.bl.service";
 import { DoctorsDLService } from "../doctors/shared/doctors.dl.service";
 import { RadiologyService } from "../radiology/shared/radiology-service";
@@ -64,9 +65,8 @@ import { ResetDoctorcontextGuard } from "../shared/reset-doctorcontext-guard";
 import { QrReaderComponent } from "./qr-code/qr-reader.component";
 import { QrService } from "./qr-code/qr-service";
 
-import { NgQrScannerModule } from "angular2-qrscanner";
 //added: sud-4july-for photo-cropping.
-import { ImageCropperModule } from "ngx-image-cropper";
+import { ImageCropperComponent } from "ngx-image-cropper";
 import { WebcamModule } from "ngx-webcam";
 import { SignatoriesComponent } from "../labs/shared/signatories/signatories.component";
 import { PhotoCropperComponent } from "./photo-cropper/photo-cropper.component";
@@ -90,6 +90,7 @@ import { PostReportComponent } from "../radiology/shared/report/post-report.comp
 
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { TranslateModule } from "@ngx-translate/core";
 import { DrugsRequestComponent } from "../nursing/drugs-request/drugs-request.component";
 import { DicomMainModule } from "./danphe-dicom-viewer/dicom-main.module";
 import { DicomService } from "./danphe-dicom-viewer/shared/dicom.service";
@@ -202,29 +203,33 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         },
         LabService,
         InventoryFieldCustomizationService,
-        authInterceptorProviders
+        authInterceptorProviders,
+        {
+            provide: AmChartsService,
+            useFactory: (zone: NgZone) => new AmChartsService(zone),
+            deps: [NgZone]
+        }
     ],
     imports: [
         ReactiveFormsModule,
         FormsModule,
         CommonModule,
         RouterModule,
-        AgGridModule.withComponents(DanpheGridComponent),
+        AgGridModule,
         NepaliCalendarModule,
-        AmChartsModule,
         DanpheAutoCompleteModule,
         LightboxModule,
         QRCodeModule,
         AngularMultiSelectModule,
         CKEditorModule,
-        NgQrScannerModule,
-        ImageCropperModule,
+        ImageCropperComponent,
         WebcamModule,
         DicomMainModule,
         MatTooltipModule,
         DicomMainModule,
         MatTooltipModule,
         SettingsSharedModule,
+        TranslateModule,
         //PdfViewerModule,
     ],
     declarations: [
@@ -331,6 +336,7 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         HasValuePipe,
         NepaliDatePipe,
         BooleanParameterPipe,
+        TranslateModule,
         //LoadingComponent,
         NumberInWordsPipe,
         // Ng2TabModule,
@@ -355,7 +361,7 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         QRCodeModule,
         LabTestsResults,
         QrReaderComponent,
-        ImageCropperModule,
+        ImageCropperComponent,
         WebcamModule,
         PhotoCropperComponent,
         SignatoriesComponent,

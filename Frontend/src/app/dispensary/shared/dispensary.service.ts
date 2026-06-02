@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { DispensaryEndpoint } from './dispensary.endpoint';
 import { PHRMStoreModel, StoreBillHeader } from '../../pharmacy/shared/phrm-store.model';
@@ -33,64 +34,72 @@ export class DispensaryService {
 
   GetAllDispensaryList() {
     if (this.dispensaryList != null && this.dispensaryList.length > 0)
-      return Observable.of({ Status: "OK", Results: this.dispensaryList });
+      return of({ Status: "OK", Results: this.dispensaryList });
     else
       return this.dispensaryEndpoint.GetAllDispensaryList()
-        .map(res => res)
-        .do(res => {
-          if (res.Status == "OK")
-            this.dispensaryList = res.Results
-          return res;
-        });
+        .pipe(
+          map(res => res),
+          tap(res => {
+            if (res.Status == "OK")
+              this.dispensaryList = res.Results
+            return res;
+          })
+        );
   }
   GetAllPharmacyStores() {
-    return this.dispensaryEndpoint.GetAllPharmacyStores().map(res => res);
+    return this.dispensaryEndpoint.GetAllPharmacyStores().pipe(map(res => res));
   }
   AddDispensary(dispensary: PHRMStoreModel) {
     var temp = _.omit(dispensary, ['StoreValidator']);
     temp = JSON.stringify(temp);
     return this.dispensaryEndpoint.AddDispensary(temp)
-      .map(res => { return res })
-      .do(res => {
-        if (res.Status == "OK")
-          this.dispensaryList.push(res.Results)
-        return res;
-      });
+      .pipe(
+        map(res => { return res }),
+        tap(res => {
+          if (res.Status == "OK")
+            this.dispensaryList.push(res.Results)
+          return res;
+        })
+      );
   }
   UpdateDispensary(dispensary: PHRMStoreModel) {
     var temp = _.omit(dispensary, ['StoreValidator']);
     temp = JSON.stringify(temp);
     return this.dispensaryEndpoint.UpdateDispensary(temp)
-      .map(res => { return res })
-      .do(res => {
-        if (res.Status == "OK") {
-          this.callBackAfterUpdateFunc(res.Results as PHRMStoreModel);
-        }
-        return res;
-      });
+      .pipe(
+        map(res => { return res }),
+        tap(res => {
+          if (res.Status == "OK") {
+            this.callBackAfterUpdateFunc(res.Results as PHRMStoreModel);
+          }
+          return res;
+        })
+      );
   }
   ActivateDeactivateDispensary(dispensaryId: number) {
     return this.dispensaryEndpoint.ActivateDeactivateDispensary(dispensaryId)
-      .map(res => { return res })
-      .do(res => {
-        if (res.Status == "OK") {
-          var savedDisp = this.dispensaryList.find(d => d.StoreId == dispensaryId)
-          savedDisp.IsActive = !savedDisp.IsActive
-        }
-        return res;
-      });
+      .pipe(
+        map(res => { return res }),
+        tap(res => {
+          if (res.Status == "OK") {
+            var savedDisp = this.dispensaryList.find(d => d.StoreId == dispensaryId)
+            savedDisp.IsActive = !savedDisp.IsActive
+          }
+          return res;
+        })
+      );
   }
   getActiveDispensary() {
     return this.dispensaryEndpoint.getActiveDispensary()
-      .map(res => { return res });
+      .pipe(map(res => { return res }));
   }
   DeactivateDispensary() {
     return this.dispensaryEndpoint.DeactivateDispensary()
-      .map(res => { return res });
+      .pipe(map(res => { return res }));
   }
   ActivateDispensary(dispensaryId: number, dispensaryName: string) {
     return this.dispensaryEndpoint.ActivateDispensary(dispensaryId, dispensaryName)
-      .map(res => { return res });
+      .pipe(map(res => { return res }));
   }
   /**
    * @param dispensaryId: the id of the dispensary 

@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+
 
 //import { PatientCanDeactivateGuard } from "./shared/patient-candeactivate-guard";
 
@@ -78,8 +78,7 @@ import { OutpatientMainComponent } from "./opd/outpatient-main.component";
         InPatientDischargeSummaryComponent,
         OpdRecordComponent,
         OPNewPatientComponent,
-        OutpatientMainComponent,
-    ],
+        OutpatientMainComponent],
     bootstrap: [], imports: [CommonModule,
         ReactiveFormsModule,
         FormsModule,
@@ -100,7 +99,6 @@ import { OutpatientMainComponent } from "./opd/outpatient-main.component";
         AppointmentDLService,
         ADT_DLService,
         PatientsBLService,
-        NursingDLService,
-        provideHttpClient(withInterceptorsFromDi())
+        NursingDLService
     ] })
 export class DoctorsModule { }

@@ -1,7 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { DynamicTemplateEditComponent } from "./settings/dyn-template-edit.component"
 import { QuestionAddComponent } from "./settings/question-add.component";
 import { QuestionEditComponent } from "./settings/question-edit.component";
@@ -34,7 +34,7 @@ import { SharedModule } from '../../shared/shared.module';
         FormsModule,
         //Ng2AutoCompleteModule
         DanpheAutoCompleteModule,
-        SharedModule], providers: [DynamicTemplateService, provideHttpClient(withInterceptorsFromDi())] })
+        SharedModule], providers: [DynamicTemplateService] })
 export class DynTemplateModule {
 
 }

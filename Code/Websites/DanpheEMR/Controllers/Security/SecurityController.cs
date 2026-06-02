@@ -1,4 +1,4 @@
-﻿using DanpheEMR.Core.Configuration;
+using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Security;
 using DanpheEMR.ServerModel;
@@ -706,6 +706,24 @@ namespace DanpheEMR.Controllers
             };
             return results;
         }
+        private void LocalizeRoutes(List<DanpheRoute> routes, string lang)
+        {
+            if (routes == null) return;
+            if (lang != null && lang.ToLower().StartsWith("vi"))
+            {
+                foreach (var r in routes)
+                {
+                    if (!string.IsNullOrEmpty(r.DisplayName_vi))
+                    {
+                        r.DisplayName = r.DisplayName_vi;
+                    }
+                    if (r.ChildRoutes != null && r.ChildRoutes.Count > 0)
+                    {
+                        LocalizeRoutes(r.ChildRoutes, lang);
+                    }
+                }
+            }
+        }
         private object NavigationRouteList(RbacUser currentUser)
         {
             if (currentUser != null)
@@ -714,6 +732,8 @@ namespace DanpheEMR.Controllers
                 List<DanpheRoute> routeList = new List<DanpheRoute>();
                 //we need to get routes with defaultshow=false and no need of hierarchy.
                 routeList = RBAC.GetRoutesForUser(currentUser.UserId, getHiearrchy: false);
+                string lang = Request.Headers["Accept-Language"].ToString();
+                LocalizeRoutes(routeList, lang);
                 //set session of Valid routeList for loggedin user
                 HttpContext.Session.Set<List<DanpheRoute>>("validRouteList", routeList);
                 return routeList;
@@ -733,6 +753,8 @@ namespace DanpheEMR.Controllers
                 routeList = RBAC.GetRoutesForUser(currentUser.UserId, getHiearrchy: true);
 
                 var filteredRoutes = routeList.Where(r => r.DefaultShow != false && r.IsActive == true).ToList();
+                string lang = Request.Headers["Accept-Language"].ToString();
+                LocalizeRoutes(filteredRoutes, lang);
                 filteredRoutes.ForEach(r =>
                 {
                     if (r.ChildRoutes != null)

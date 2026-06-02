@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { RadiologyRoutingModule } from './radiology-routing.module';
 import { SelectVisitCanActivateGuard } from '../shared/select-visit-canactivate-guard';
 import { RadiologyMainComponent } from './radiology-main.component';
@@ -50,6 +50,6 @@ import { ImagingTypeSelectorComponent } from './shared/RadiologyTypeSelector/Ima
         VisitDLService,
         ADT_DLService,
         ADT_BLService,
-        AppointmentDLService, provideHttpClient(withInterceptorsFromDi())] })
+        AppointmentDLService] })
 export class RadiologyModule { }
 

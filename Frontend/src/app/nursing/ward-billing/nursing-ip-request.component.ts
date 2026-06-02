@@ -27,6 +27,7 @@ import { DLService } from "../../shared/dl.service";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { ENUM_BillingStatus, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_ServiceBillingContext, ENUM_VisitType } from "../../shared/shared-enums";
 import { NursingBLService } from "../shared/nursing.bl.service";
+import { SchemePriceCategoryCustomType } from "../../billing/shared/custom-data-types/billing-custom-data-types";
 
 @Component({
   selector: "nursing-ip-request",

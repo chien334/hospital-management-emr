@@ -3,6 +3,7 @@ import { CoreService } from "../../../core/shared/core.service";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { BillingMasterBlService } from "../billing-master.bl.service";
 import { Currency_DTO } from "../dto/other-currency.dto";
+import { OtherCurrencyDetail } from "../custom-data-types/billing-custom-data-types";
 
 @Component({
   selector: 'other-currency-calculation',

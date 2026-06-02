@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 import { SharedModule } from "../shared/shared.module";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
 import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
@@ -41,5 +41,5 @@ import { PatientVaccinationAppointmentDetailsReportComponent } from './reports/v
         AngularMultiSelectModule,
         SharedModule,
         DanpheAutoCompleteModule,
-        SettingsSharedModule], providers: [VaccinationService, VaccinationBLService, VaccinationDLService, provideHttpClient(withInterceptorsFromDi())] })
+        SettingsSharedModule], providers: [VaccinationService, VaccinationBLService, VaccinationDLService] })
 export class VaccinationModule { }

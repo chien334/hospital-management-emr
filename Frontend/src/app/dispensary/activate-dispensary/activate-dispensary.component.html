@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="caption lb-caption">
         <i class="glyphicon glyphicon-asterisk"></i>
-        <span class="caption-subject">Select your Dispensary</span>
+        <span class="caption-subject">{{ 'DISPENSARY.SELECT_YOUR_DISPENSARY' | translate }}</span>
       </div>
     </div>
     <div class="col-md-12" *ngIf="dispensaryList != undefined">
@@ -16,7 +16,7 @@
               </span>
               <span class="report-name">
                 <i>{{dispensary.Name}}</i>
-                <i>dispensary</i>
+                <i>{{ 'DISPENSARY.DISPENSARY_LABEL' | translate }}</i>
               </span>
             </div>
           </a>

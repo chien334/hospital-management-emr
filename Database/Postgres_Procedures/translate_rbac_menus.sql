@@ -225,4 +225,30 @@ UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hồ sơ cấp cứu' WHERE "R
 -- Verification Submenus (ParentRouteId = 400)
 UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Nhà thuốc' WHERE "RouteId" = 689;
 
+-- 7. Doctor Module Submenus Translation
+-- Under Doctor (ParentRouteId = 1)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Ngoại trú' WHERE "RouteId" = 2;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tổng quan bệnh nhân' WHERE "RouteId" = 3;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Khoa nội trú' WHERE "RouteId" = 342;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hồ sơ bệnh nhân' WHERE "RouteId" = 639;
+
+-- Under Out Patient (ParentRouteId = 2)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bệnh nhân mới' WHERE "RouteId" = 493;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hồ sơ khám ngoại trú' WHERE "RouteId" = 494;
+
+-- Under Patient Overview (ParentRouteId = 3)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tổng quan bệnh nhân' WHERE "RouteId" = 4;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Lâm sàng' WHERE "RouteId" = 6;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bệnh án / Vấn đề' WHERE "RouteId" = 12;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Chỉ định dịch vụ' WHERE "RouteId" = 19;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Lịch sử lượt khám' WHERE "RouteId" = 132;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tóm tắt khám ngoại trú' WHERE "RouteId" = 203;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Thuốc hiện tại' WHERE "RouteId" = 212;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Báo cáo xét nghiệm' WHERE "RouteId" = 213;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Báo cáo chẩn đoán hình ảnh' WHERE "RouteId" = 214;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tài liệu lâm sàng' WHERE "RouteId" = 215;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Ghi chú bác sĩ' WHERE "RouteId" = 216;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Ảnh quét y khoa' WHERE "RouteId" = 283;
+
+
 

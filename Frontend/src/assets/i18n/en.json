@@ -1,9 +1,19 @@
 {
   "LOGIN": {
     "TITLE": "EMR System Login",
+    "SUBTITLE": "Electronic Medical Record System",
     "USERNAME": "Username",
     "PASSWORD": "Password",
-    "BUTTON": "Login"
+    "USERNAME_PLACEHOLDER": "Enter username...",
+    "PASSWORD_PLACEHOLDER": "Enter password...",
+    "REMEMBER_ME": "Remember Me",
+    "BUTTON": "Login",
+    "BUTTON_AUTHENTICATING": "Authenticating...",
+    "ERROR_REQUIRED": "Please enter both username and password.",
+    "ERROR_INVALID": "Invalid username or password.",
+    "ERROR_GENERIC": "An error occurred during login. Please try again.",
+    "HIDE_PASSWORD": "Hide password",
+    "SHOW_PASSWORD": "Show password"
   },
   "NAVBAR": {
     "PATIENTS": "Patients List",
@@ -27,5 +37,66 @@
     "ALLOWED_TO_SEE": "You are only allowed to see {{name}}.",
     "FAILED_LOAD_LIST": "Failed to load dispensary list.",
     "FAILED_LOAD_DISPENSARY": "Failed to load dispensary."
+  },
+  "COMMON": {
+    "ADD": "Add New",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "SEARCH": "Search...",
+    "STATUS": "Status",
+    "ACTION": "Action",
+    "OK": "OK",
+    "CLOSE": "Close",
+    "PRINT": "Print",
+    "EXPORT": "Export",
+    "SUBMIT": "Submit",
+    "YES": "Yes",
+    "NO": "No",
+    "LOADING": "Loading data, please wait..."
+  },
+  "PATIENT": {
+    "HEADER": "Patient Management",
+    "HOSPITAL_NO": "Hospital No",
+    "FULL_NAME": "Full Name",
+    "GENDER": "Gender",
+    "AGE": "Age",
+    "PHONE": "Phone Number",
+    "ADDRESS": "Address",
+    "BIRTH_DATE": "Date of Birth",
+    "REGISTER_NEW": "Register New Patient",
+    "SEARCH_PLACEHOLDER": "Search patient by name, phone or hospital number...",
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "OTHER": "Other"
+  },
+  "BILLING": {
+    "HEADER": "Billing & Invoices",
+    "INVOICE_NO": "Invoice No",
+    "TOTAL_AMOUNT": "Total Amount",
+    "PAID_AMOUNT": "Paid Amount",
+    "DISCOUNT": "Discount",
+    "TAX": "Tax",
+    "PAYMENT_MODE": "Payment Mode",
+    "CASH": "Cash",
+    "CREDIT": "Credit",
+    "PENDING_BILL": "Pending Bills",
+    "CREATE_INVOICE": "Create Invoice",
+    "RECEIPT": "Receipt"
+  },
+  "INVENTORY": {
+    "HEADER": "Inventory & Stock Management",
+    "ITEM_NAME": "Item Name",
+    "QUANTITY": "Quantity",
+    "BATCH_NO": "Batch No",
+    "EXPIRY_DATE": "Expiry Date",
+    "AVAILABLE_STOCK": "Available Stock",
+    "REORDER_LEVEL": "Reorder Level",
+    "VENDOR": "Vendor",
+    "GOODS_RECEIPT": "Goods Receipt",
+    "PURCHASE_ORDER": "Purchase Order",
+    "STORE": "Store"
   }
+}
 }

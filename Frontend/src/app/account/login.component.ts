@@ -58,9 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (!this.username.trim() || !this.password.trim()) {
-      this.errorMessage = this.translate.currentLang === 'en' 
-        ? 'Please enter both username and password.' 
-        : 'Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.';
+      this.errorMessage = this.translate.instant('LOGIN.ERROR_REQUIRED');
       return;
     }
 
@@ -87,21 +85,15 @@ export class LoginComponent implements OnInit, OnDestroy {
           // Clean bootstrap reload to ensure all application state/routes load correctly
           window.location.href = '/';
         } else {
-          this.errorMessage = this.translate.currentLang === 'en'
-            ? 'Invalid username or password.'
-            : 'Tên đăng nhập hoặc mật khẩu không chính xác.';
+          this.errorMessage = this.translate.instant('LOGIN.ERROR_INVALID');
         }
       },
       err => {
         this.loading = false;
         if (err.status === 401 || err.status === 403) {
-          this.errorMessage = this.translate.currentLang === 'en'
-            ? 'Invalid username or password.'
-            : 'Tên đăng nhập hoặc mật khẩu không chính xác.';
+          this.errorMessage = this.translate.instant('LOGIN.ERROR_INVALID');
         } else {
-          this.errorMessage = this.translate.currentLang === 'en'
-            ? 'An error occurred during login. Please try again.'
-            : 'Đã xảy ra lỗi trong quá trình đăng nhập. Vui lòng thử lại.';
+          this.errorMessage = this.translate.instant('LOGIN.ERROR_GENERIC');
         }
         console.error('Login error details:', err);
       }

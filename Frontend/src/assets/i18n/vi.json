@@ -1,9 +1,19 @@
 {
   "LOGIN": {
     "TITLE": "Đăng Nhập Hệ Thống EMR",
+    "SUBTITLE": "Hệ thống Hồ sơ Bệnh án Điện tử",
     "USERNAME": "Tên đăng nhập",
     "PASSWORD": "Mật khẩu",
-    "BUTTON": "Đăng Nhập"
+    "USERNAME_PLACEHOLDER": "Nhập tên đăng nhập...",
+    "PASSWORD_PLACEHOLDER": "Nhập mật khẩu...",
+    "REMEMBER_ME": "Duy trì đăng nhập",
+    "BUTTON": "Đăng nhập",
+    "BUTTON_AUTHENTICATING": "Đang xác thực...",
+    "ERROR_REQUIRED": "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.",
+    "ERROR_INVALID": "Tên đăng nhập hoặc mật khẩu không chính xác.",
+    "ERROR_GENERIC": "Đã xảy ra lỗi trong quá trình đăng nhập. Vui lòng thử lại.",
+    "HIDE_PASSWORD": "Ẩn mật khẩu",
+    "SHOW_PASSWORD": "Hiển thị mật khẩu"
   },
   "NAVBAR": {
     "PATIENTS": "Danh sách bệnh nhân",
@@ -27,5 +37,66 @@
     "ALLOWED_TO_SEE": "Bạn chỉ được phép xem {{name}}.",
     "FAILED_LOAD_LIST": "Tải danh sách quầy thuốc thất bại.",
     "FAILED_LOAD_DISPENSARY": "Tải thông tin quầy thuốc thất bại."
+  },
+  "COMMON": {
+    "ADD": "Thêm mới",
+    "EDIT": "Sửa",
+    "DELETE": "Xóa",
+    "SAVE": "Lưu",
+    "CANCEL": "Hủy",
+    "SEARCH": "Tìm kiếm...",
+    "STATUS": "Trạng thái",
+    "ACTION": "Thao tác",
+    "OK": "Đồng ý",
+    "CLOSE": "Đóng",
+    "PRINT": "In",
+    "EXPORT": "Xuất Excel",
+    "SUBMIT": "Gửi đi",
+    "YES": "Có",
+    "NO": "Không",
+    "LOADING": "Đang tải dữ liệu, vui lòng đợi..."
+  },
+  "PATIENT": {
+    "HEADER": "Quản lý Bệnh nhân",
+    "HOSPITAL_NO": "Mã bệnh nhân (Hosp No)",
+    "FULL_NAME": "Họ và Tên",
+    "GENDER": "Giới tính",
+    "AGE": "Tuổi",
+    "PHONE": "Số điện thoại",
+    "ADDRESS": "Địa chỉ",
+    "BIRTH_DATE": "Ngày sinh",
+    "REGISTER_NEW": "Đăng ký Bệnh nhân mới",
+    "SEARCH_PLACEHOLDER": "Tìm kiếm bệnh nhân theo tên, sđt hoặc mã...",
+    "MALE": "Nam",
+    "FEMALE": "Nữ",
+    "OTHER": "Khác"
+  },
+  "BILLING": {
+    "HEADER": "Thanh toán & Hóa đơn",
+    "INVOICE_NO": "Số hóa đơn",
+    "TOTAL_AMOUNT": "Tổng số tiền",
+    "PAID_AMOUNT": "Số tiền đã thanh toán",
+    "DISCOUNT": "Miễn giảm",
+    "TAX": "Thuế",
+    "PAYMENT_MODE": "Hình thức thanh toán",
+    "CASH": "Tiền mặt",
+    "CREDIT": "Ghi nợ",
+    "PENDING_BILL": "Hóa đơn chưa thanh toán",
+    "CREATE_INVOICE": "Tạo hóa đơn",
+    "RECEIPT": "Biên lai"
+  },
+  "INVENTORY": {
+    "HEADER": "Quản lý Kho & Vật tư",
+    "ITEM_NAME": "Tên mặt hàng",
+    "QUANTITY": "Số lượng",
+    "BATCH_NO": "Số lô",
+    "EXPIRY_DATE": "Hạn sử dụng",
+    "AVAILABLE_STOCK": "Tồn kho khả dụng",
+    "REORDER_LEVEL": "Định mức đặt hàng",
+    "VENDOR": "Nhà cung cấp",
+    "GOODS_RECEIPT": "Phiếu nhập kho (GR)",
+    "PURCHASE_ORDER": "Đơn đặt hàng (PO)",
+    "STORE": "Kho"
   }
+}
 }

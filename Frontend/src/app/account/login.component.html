@@ -24,7 +24,7 @@
         <img src="../../../themes/theme-default/images/hospitals-logo/hospital-logo-landingpage.png" alt="DanpheEMR Logo" class="hospital-logo" />
         <h2 class="app-title">Danphe EMR</h2>
         <p class="app-subtitle">
-          {{ translate.currentLang === 'en' ? 'Electronic Medical Record System' : 'Hệ thống Hồ sơ Bệnh án Điện tử' }}
+          {{ 'LOGIN.SUBTITLE' | translate }}
         </p>
       </div>
 
@@ -38,7 +38,7 @@
         <!-- Username field -->
         <div class="form-group">
           <label for="username">
-            {{ translate.currentLang === 'en' ? 'Username' : 'Tên đăng nhập' }}
+            {{ 'LOGIN.USERNAME' | translate }}
           </label>
           <div class="input-wrapper">
             <i class="fa fa-user input-icon"></i>
@@ -47,7 +47,7 @@
               name="username" 
               type="text" 
               [(ngModel)]="username" 
-              [placeholder]="translate.currentLang === 'en' ? 'Enter username...' : 'Nhập tên đăng nhập...'"
+              [placeholder]="'LOGIN.USERNAME_PLACEHOLDER' | translate"
               required 
               [disabled]="loading"
               autocomplete="username"
@@ -58,7 +58,7 @@
         <!-- Password field -->
         <div class="form-group">
           <label for="password">
-            {{ translate.currentLang === 'en' ? 'Password' : 'Mật khẩu' }}
+            {{ 'LOGIN.PASSWORD' | translate }}
           </label>
           <div class="input-wrapper">
             <i class="fa fa-lock input-icon"></i>
@@ -67,7 +67,7 @@
               name="password" 
               [type]="showPassword ? 'text' : 'password'" 
               [(ngModel)]="password" 
-              [placeholder]="translate.currentLang === 'en' ? 'Enter password...' : 'Nhập mật khẩu...'"
+              [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
               required 
               [disabled]="loading"
               autocomplete="current-password"
@@ -77,7 +77,7 @@
               class="toggle-password-btn" 
               (click)="togglePasswordVisibility()" 
               [disabled]="loading"
-              [title]="translate.currentLang === 'en' ? 'Toggle password visibility' : 'Hiển thị/Ẩn mật khẩu'"
+              [title]="(showPassword ? 'LOGIN.HIDE_PASSWORD' : 'LOGIN.SHOW_PASSWORD') | translate"
             >
               <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
             </button>
@@ -90,18 +90,18 @@
             <input type="checkbox" name="rememberMe" [(ngModel)]="rememberMe" [disabled]="loading" />
             <span class="custom-checkbox"></span>
             <span class="checkbox-text">
-              {{ translate.currentLang === 'en' ? 'Remember Me' : 'Duy trì đăng nhập' }}
+              {{ 'LOGIN.REMEMBER_ME' | translate }}
             </span>
           </label>
         </div>
 
         <button type="submit" class="submit-btn" [disabled]="loading">
           <span *ngIf="!loading">
-            {{ translate.currentLang === 'en' ? 'Login' : 'Đăng nhập' }}
+            {{ 'LOGIN.BUTTON' | translate }}
           </span>
           <span *ngIf="loading" class="loader-state">
             <i class="fa fa-spinner fa-spin"></i>
-            {{ translate.currentLang === 'en' ? 'Authenticating...' : 'Đang xác thực...' }}
+            {{ 'LOGIN.BUTTON_AUTHENTICATING' | translate }}
           </span>
         </button>
       </form>

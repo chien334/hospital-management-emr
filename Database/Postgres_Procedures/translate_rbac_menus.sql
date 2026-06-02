@@ -68,3 +68,44 @@ UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Người dùng' WHERE "Display
 UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Vai trò' WHERE "DisplayName" = 'Manage Role';
 UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Quyền hạn' WHERE "DisplayName" = 'Manage User';
 UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Nhân viên' WHERE "DisplayName" = 'Manage Employee';
+
+-- 5. Dispensary Submenus Translation (First-level and Second-level)
+-- First-level submenus under Dispensary (ParentRouteId = 498)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Đơn thuốc' WHERE "RouteId" = 155;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bán lẻ' WHERE "RouteId" = 156;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tồn kho' WHERE "RouteId" = 157;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Quầy' WHERE "RouteId" = 209;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'In sao lưu' WHERE "RouteId" = 372;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tiêu hao bệnh nhân' WHERE "RouteId" = 669;
+
+-- Second-level submenus under Sale (ParentRouteId = 156)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Bán lẻ mới' WHERE "RouteId" = 312;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách hóa đơn' WHERE "RouteId" = 313;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Khách trả lại' WHERE "RouteId" = 314;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách trả lại' WHERE "RouteId" = 315;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hóa đơn tạm tính' WHERE "RouteId" = 316;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Quyết toán' WHERE "RouteId" = 317;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Trả lại tạm tính' WHERE "RouteId" = 374;
+
+-- Second-level submenus under Stock (ParentRouteId = 157)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Chi tiết tồn kho' WHERE "RouteId" = 322;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Hàng hỏng/vỡ' WHERE "RouteId" = 324;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Chuyển kho' WHERE "RouteId" = 506;
+
+-- Second-level submenus under Duplicate Prints (ParentRouteId = 372)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Trả lại hóa đơn' WHERE "RouteId" = 373;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Quyết toán' WHERE "RouteId" = 382;
+
+-- Second-level submenus under Reports (ParentRouteId = 499)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Doanh thu người dùng' WHERE "RouteId" = 541;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Doanh số thuốc gây nghiện hàng ngày' WHERE "RouteId" = 542;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Tổng hợp thu tiền mặt' WHERE "RouteId" = 545;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Báo cáo doanh số hàng ngày' WHERE "RouteId" = 547;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Báo cáo tổng hợp quyết toán' WHERE "RouteId" = 614;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Báo cáo theo hình thức thanh toán' WHERE "RouteId" = 637;
+
+-- Second-level submenus under Patient Consumption (ParentRouteId = 669)
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách tiêu hao' WHERE "RouteId" = 666;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách tiêu hao trả lại' WHERE "RouteId" = 670;
+UPDATE "RBAC_RouteConfig" SET "DisplayName_vi" = 'Danh sách tiêu hao đã quyết toán' WHERE "RouteId" = 671;
+

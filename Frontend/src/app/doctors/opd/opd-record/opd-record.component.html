@@ -2,25 +2,14 @@
   <div class="row clearfix">
     <div class="col-md-4 col-sm-6">
       <div class="left">
-        <a class="label label-primary btn btn-primary" data-bs-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false" aria-controls="Collapse1" style="margin-right: 15px;"> <i class="fa fa-star"></i> My
-          Favorites</a>
+        <a class="label label-primary btn btn-primary" data-bs-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false" aria-controls="Collapse1" style="margin-right: 15px;"> <i class="fa fa-star"></i> {{ 'OPD.MY_FAVORITES' | translate }}</a>
       </div>
 
       <div class="middle">
         <a class="label label-primary btn btn-primary" data-bs-toggle="collapse" href="#Collapse2" role="button" aria-expanded="false" aria-controls="Collapse2"><i class="fa fa-file-text" style="margin-right: 5px;"></i>
-          Follow Up List</a>
+          {{ 'OPD.FOLLOW_UP_LIST' | translate }}</a>
       </div>
     </div>
-    <!-- <div class="col-md-8 col-sm-6">
-      <div class="right">
-        <label for="#departmentlist" class=" label label-default"><i class="fa fa-filter"></i> Department Filter
-          :</label>
-        <select style="height: 25px; margin-left: 1px;" [(ngModel)]="SelectedDepartmentId" (change)="FilterList(SelectedDepartmentId)" id="departmentlist" [attr.disabled]="true">
-          <option value="0" selected>ALL</option>
-          <option *ngFor="let dept of DepartmentList" value="{{dept.DepartmentId}}">{{dept.DepartmentName}}</option>
-        </select>
-      </div>
-    </div> -->
   </div>
 </div>
 
@@ -49,25 +38,12 @@
       <div class="tab-pane active" id="visitType">
 
         <div class="panel panel-default no-border panel_title">
-          <!-- <h4><b> DEPARTMENT : {{DepartMentName}}</b> </h4> -->
-
         </div>
 
         <danphe-cust-date (onDateChange)="onDateChange($event)" [rangeType]="dateRange"></danphe-cust-date>
         <danphe-grid [grid-colDefaults]="DoctorOPNewPatientGridColumns" [grid-data]="FilteredOPDPatientGridData" (grid-actions)="DocAppointmentGridActions($event)"> </danphe-grid>
 
       </div>
-
-      <!-- <div class="tab-pane" id="mySummary">
-            <doctor-summary></doctor-summary>
-        </div>
-        <div class="tab-pane" id="allvisitlist" style="display:none;">
-            <danphe-cust-date (onDateChange)="onDateChangeDept($event)" [rangeType]="dateRange"></danphe-cust-date>
-            <br />
-            <danphe-grid *ngIf="DeptVisitList.length" [grid-colDefaults]="docDeptAppointmentGridColumns" [grid-data]="DeptVisitList" (grid-actions)="DocDeptAppointmentGridActions($event)">
-            </danphe-grid>
-            <h5 *ngIf="!DeptVisitList.length">no records found</h5>
-        </div> -->
     </div>
   </div>
 </div>
@@ -84,26 +60,26 @@
           <div class="col-md-6 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
             <div class="col-md-12">
               <div class="caption" style="color:blue;">
-                <h3>Re-assign this patient</h3>
+                <h3>{{ 'OPD.RE_ASSIGN_PATIENT' | translate }}</h3>
               </div>
               <a style="float:right;  margin-top:-32px;" class="btn btn-danger" (click)="ClosePopUp()" title="Cancel">X</a>
             </div>
             <div class="col-md-12">
-              <label class="control-label col-md-3"> <b>Patient Name</b><b style="float:right;">:</b> </label>
+              <label class="control-label col-md-3"> <b>{{ 'PATIENT.FULL_NAME' | translate }}</b><b style="float:right;">:</b> </label>
               <label class="control-label col-md-3">{{currSelectedPatient.PatientName}}</label>
-              <label class="control-label col-md-3"><b>Age/Sex</b><b style="float:right;">:</b></label>
+              <label class="control-label col-md-3"><b>{{ 'DISPENSARY.SALE.AGE_SEX' | translate }}</b><b style="float:right;">:</b></label>
               <label class="control-label col-md-3">{{currSelectedPatient.AgeSex}}</label>
               <hr>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <label class="control-label col-md-5"> <b>Current Doctor</b><b style="float:right;">:</b> </label>
+                <label class="control-label col-md-5"> <b>{{ 'OPD.CURRENT_DOCTOR' | translate }}</b><b style="float:right;">:</b> </label>
                 <div class="col-md-7">
                   <input class="form-control" type="text" [(ngModel)]="currSelectedPatient.ProviderName" [ngModelOptions]="{standalone: true}" disabled />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5"> <b>New Assignee</b><b class="color-red">*</b><b style="float:right;">:</b> </label>
+                <label class="control-label col-md-5"> <b>{{ 'OPD.NEW_ASSIGNEE' | translate }}</b><b class="color-red">*</b><b style="float:right;">:</b> </label>
                 <div class="col-md-7">
                   <select class="form-control" [(ngModel)]="newAssignee" [ngModelOptions]="{standalone: true}">
                     <option *ngFor="let doc of deptProviderList" value="{{doc.EmployeeId}}"> {{doc.ProviderName}}
@@ -112,13 +88,13 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5"> <b>Remark</b><b class="color-red">*</b><b style="float:right;">:</b> </label>
+                <label class="control-label col-md-5"> <b>{{ 'COMMON.REMARKS' | translate }}</b><b class="color-red">*</b><b style="float:right;">:</b> </label>
                 <div class="col-md-7">
                   <input class="form-control" maxlength="100" type="text" [(ngModel)]="currSelectedPatient.Remark" [ngModelOptions]="{standalone: true}" placeholder="remark" />
                 </div>
               </div>
               <div class="form-actions">
-                <input type="button" class="btn btn-primary" (click)="AssignToOther()" value="Submit" />
+                <input type="button" class="btn btn-primary" (click)="AssignToOther()" value="{{ 'COMMON.SUBMIT' | translate }}" />
               </div>
             </div>
           </div>

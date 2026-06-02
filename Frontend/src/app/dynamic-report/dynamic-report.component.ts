@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { MessageboxService } from '../shared/messagebox/messagebox.service';
 import { DLService } from '../shared/dl.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dynamic-report',
@@ -15,13 +16,17 @@ export class DynamicReportComponent implements OnInit {
   public loading: boolean = false;
   public ReportColumns: Array<any> = new Array<any>();
 
-  constructor(public dlService: DLService, public messageBoxService: MessageboxService) { }
+  constructor(
+    public dlService: DLService,
+    public messageBoxService: MessageboxService,
+    private translateService: TranslateService
+  ) { }
 
   ngOnInit() {
   }
   LoadReport() {
     if (this.Query == "" || this.Query == null) {
-      this.messageBoxService.showMessage('Notice', ['Query missing! Please provide sql query.'])
+      this.messageBoxService.showMessage(this.translateService.instant('COMMON.NOTICE'), [this.translateService.instant('DYNAMIC_REPORT.QUERY_MISSING')])
       return;
     }
     if (this.ValidateQuery(this.Query)) {
@@ -49,21 +54,21 @@ export class DynamicReportComponent implements OnInit {
           this.ReportData = res.Results;
         }
         else {
-          this.messageBoxService.showMessage('Failed', [res.ErrorMessage]);
+          this.messageBoxService.showMessage(this.translateService.instant('COMMON.FAILED'), [res.ErrorMessage]);
           this.ReportData = [];
         }
       },
         err => {
-          this.messageBoxService.showMessage('Error', ['Something is wrong with the query! see console log for details']);
+          this.messageBoxService.showMessage(this.translateService.instant('COMMON.ERROR'), [this.translateService.instant('DYNAMIC_REPORT.QUERY_ERROR')]);
           this.ReportData = [];
           console.log(err.error.message);
         });
+      }
+      else {
+        this.messageBoxService.showMessage(this.translateService.instant('COMMON.NOTICE'), [this.translateService.instant('DYNAMIC_REPORT.READ_ONLY_NOTICE')]);
+      }
+  
     }
-    else {
-      this.messageBoxService.showMessage('Notice', ['Using this feature you can only read data']);
-    }
-
-  }
   ValidateQuery(query: string) {
     var keyWords = ["create", "drop", "update", "insert", "alter", "delete", "attach", "detach", "grant", "truncate", "revoke"];
     var queryString = query.toLowerCase();

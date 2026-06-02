@@ -398,5 +398,57 @@
     "ADMISSION_SUCCESS": "Đã nhập viện bệnh nhân thành công!",
     "DISCHARGE_SUCCESS": "Đã cho bệnh nhân xuất viện thành công!",
     "TRANSFER_SUCCESS": "Đã chuyển khoa/buồng giường thành công!"
+  },
+  "DYNAMIC_REPORT": {
+    "TITLE": "Báo cáo Động",
+    "WRITE_QUERY_HERE": "Nhập truy vấn SQL tại đây",
+    "LOAD_REPORT": "Tải báo cáo",
+    "QUERY_MISSING": "Thiếu truy vấn! Vui lòng cung cấp câu lệnh SQL truy vấn.",
+    "QUERY_ERROR": "Đã xảy ra lỗi với câu lệnh truy vấn! Vui lòng kiểm tra tab console log để biết thêm chi tiết.",
+    "READ_ONLY_NOTICE": "Tính năng này chỉ cho phép đọc dữ liệu (SELECT)"
+  },
+  "OT": {
+    "NEW_OT_BOOKING": "Đặt lịch phòng mổ mới"
+  },
+  "OPD": {
+    "MY_FAVORITES": "Yêu thích của tôi",
+    "FOLLOW_UP_LIST": "Danh sách tái khám",
+    "SHOW_DOCTOR_WISE_PATIENTS": "Hiển thị danh sách bệnh nhân theo từng bác sĩ",
+    "RE_ASSIGN_PATIENT": "Chỉ định lại bác sĩ cho bệnh nhân",
+    "CURRENT_DOCTOR": "Bác sĩ hiện tại",
+    "NEW_ASSIGNEE": "Bác sĩ chỉ định mới"
+  },
+  "GRID_HEADERS": {
+    "HOSPITAL_NUMBER": "Mã bệnh nhân",
+    "HOSPITAL_NO_": "Mã bệnh nhân",
+    "OPD_NO_": "Mã số khám bệnh",
+    "PATIENT_NAME": "Tên bệnh nhân",
+    "NAME": "Tên bệnh nhân",
+    "AGE_SEX": "Tuổi/Giới tính",
+    "DATE_TIME": "Ngày/Giờ",
+    "VISIT_DATE": "Ngày khám",
+    "DATE": "Ngày",
+    "TIME": "Giờ",
+    "ADMITTED_ON": "Nhập viện lúc",
+    "WARD_BED_NO": "Khoa/Số giường",
+    "WARD_BED": "Khoa/Số giường",
+    "DIAGNOSIS": "Chẩn đoán",
+    "SURGERY_TYPE": "Loại phẫu thuật",
+    "PROCEDURE": "Thủ thuật",
+    "SURGEON": "Bác sĩ phẫu thuật",
+    "ANESTHETIC_DOCTOR": "Bác sĩ gây mê",
+    "ANESTHESIA": "Phương pháp gây mê",
+    "ANESTHESIA_ASSISTANT": "Trợ lý gây mê",
+    "SCRUB_NURSE": "Điều dưỡng dụng cụ",
+    "OT_ASSISTANT": "Trợ lý phòng mổ",
+    "REMARKS": "Ghi chú",
+    "ACTIONS": "Thao tác",
+    "ACTION": "Thao tác",
+    "VISITTYPE": "Loại khám",
+    "PERFORMER_NAME": "Bác sĩ thực hiện",
+    "PERFROMER_NAME": "Bác sĩ thực hiện",
+    "PROVIDER_NAME": "Bác sĩ điều trị",
+    "PHONE": "Số điện thoại",
+    "CONTACTS": "Số điện thoại"
   }
 }

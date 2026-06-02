@@ -398,5 +398,57 @@
     "ADMISSION_SUCCESS": "Patient admitted successfully!",
     "DISCHARGE_SUCCESS": "Patient discharged successfully!",
     "TRANSFER_SUCCESS": "Patient transferred successfully!"
+  },
+  "DYNAMIC_REPORT": {
+    "TITLE": "Dynamic Report",
+    "WRITE_QUERY_HERE": "Write SQL Query Here",
+    "LOAD_REPORT": "Load Report",
+    "QUERY_MISSING": "Query missing! Please provide sql query.",
+    "QUERY_ERROR": "Something is wrong with the query! see console log for details",
+    "READ_ONLY_NOTICE": "Using this feature you can only read data"
+  },
+  "OT": {
+    "NEW_OT_BOOKING": "New OT Booking"
+  },
+  "OPD": {
+    "MY_FAVORITES": "My Favorites",
+    "FOLLOW_UP_LIST": "Follow Up List",
+    "SHOW_DOCTOR_WISE_PATIENTS": "Show Doctor Wise Patient List",
+    "RE_ASSIGN_PATIENT": "Re-assign this patient",
+    "CURRENT_DOCTOR": "Current Doctor",
+    "NEW_ASSIGNEE": "New Assignee"
+  },
+  "GRID_HEADERS": {
+    "HOSPITAL_NUMBER": "Hospital Number",
+    "HOSPITAL_NO_": "Hospital No.",
+    "OPD_NO_": "OPD No.",
+    "PATIENT_NAME": "Patient Name",
+    "NAME": "Name",
+    "AGE_SEX": "Age/Sex",
+    "DATE_TIME": "Date/Time",
+    "VISIT_DATE": "Visit Date",
+    "DATE": "Date",
+    "TIME": "Time",
+    "ADMITTED_ON": "Admitted On",
+    "WARD_BED_NO": "Ward/Bed No",
+    "WARD_BED": "Ward/Bed",
+    "DIAGNOSIS": "Diagnosis",
+    "SURGERY_TYPE": "Surgery Type",
+    "PROCEDURE": "Procedure",
+    "SURGEON": "Surgeon",
+    "ANESTHETIC_DOCTOR": "Anesthetic Doctor",
+    "ANESTHESIA": "Anesthesia",
+    "ANESTHESIA_ASSISTANT": "Anesthesia Assistant",
+    "SCRUB_NURSE": "Scrub Nurse",
+    "OT_ASSISTANT": "OT Assistant",
+    "REMARKS": "Remarks",
+    "ACTIONS": "Actions",
+    "ACTION": "Action",
+    "VISITTYPE": "VisitType",
+    "PERFORMER_NAME": "Performer Name",
+    "PERFROMER_NAME": "Performer Name",
+    "PROVIDER_NAME": "Provider Name",
+    "PHONE": "Phone",
+    "CONTACTS": "Contacts"
   }
 }

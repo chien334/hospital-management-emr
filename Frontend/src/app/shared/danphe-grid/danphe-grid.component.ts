@@ -30,6 +30,7 @@ import { SearchService } from "../search.service";
 import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "./NepaliColGridSettingsModel";
 import { GridEmitModel } from "./grid-emit.model";
 import { IGridFilterParameter } from "./grid-filter-parameter.interface";
+import { TranslateService } from '@ngx-translate/core';
 
 
 // import { DateRangeOptions } from "../common-models";
@@ -96,8 +97,30 @@ export class DanpheGridComponent implements OnInit, AfterViewInit {
     //this.PrintRowData = val;
   }
 
+  private columnDefsVal: any[];
+
   @Input("grid-colDefaults")
-  public columnDefs: any[];
+  public set columnDefs(val: any[]) {
+    this.columnDefsVal = val;
+    this.localizeColumns();
+  }
+  public get columnDefs() {
+    return this.columnDefsVal;
+  }
+
+  private localizeColumns() {
+    if (this.columnDefsVal && this.columnDefsVal.length > 0) {
+      this.columnDefsVal.forEach(col => {
+        if (col.headerName) {
+          const key = 'GRID_HEADERS.' + col.headerName.trim().toUpperCase().replace(/[^A-Z0-9_]/gi, '_');
+          const translatedHeader = this.translateService.instant(key);
+          if (translatedHeader && translatedHeader !== key) {
+            col.headerName = translatedHeader;
+          }
+        }
+      });
+    }
+  }
 
   @Input("grid-column-filter")
   public gridColumnFilter: any[];
@@ -209,8 +232,11 @@ export class DanpheGridComponent implements OnInit, AfterViewInit {
     public changeDetector: ChangeDetectorRef,
     public coreservice: CoreService,
     public router: Router,
-    public securityService: SecurityService, public coreService: CoreService,
-    public msgBoxServ: MessageboxService, public nepaliCalendarService: NepaliCalendarService
+    public securityService: SecurityService,
+    public coreService: CoreService,
+    public msgBoxServ: MessageboxService,
+    public nepaliCalendarService: NepaliCalendarService,
+    public translateService: TranslateService
   ) {
 
     // we pass an empty gridOptions in, so we can grab the api out

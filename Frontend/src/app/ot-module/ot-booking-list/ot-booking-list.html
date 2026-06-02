@@ -13,8 +13,7 @@
     </div>
 </div> -->
 <div class="wrapper">
-    <button class="btn btn-link" (click)="AddNewOtBooking()"> <span class="glyphicon glyphicon-plus"></span> New
-        OT Booking</button>
+    <button class="btn btn-link" (click)="AddNewOtBooking()"> <span class="glyphicon glyphicon-plus"></span> {{ 'OT.NEW_OT_BOOKING' | translate }}</button>
     <div>
         <danphe-grid [grid-colDefaults]="OTBookingList" [grid-data]="otData"
             (grid-actions)="OTBookingListGidActions($event)">

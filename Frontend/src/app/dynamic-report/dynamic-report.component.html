@@ -1,13 +1,13 @@
 <div class="wrapper">
   <div class="row">
     <div class="form-body body-color">
-      <div class="caption custom-caption" style="margin-bottom:10px ;"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Dynamic Report</span> </div>
+      <div class="caption custom-caption" style="margin-bottom:10px ;"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'DYNAMIC_REPORT.TITLE' | translate }}</span> </div>
       <div class="col-md-12">
-        <a class="btn btn-success" href="#queryContainer" data-bs-toggle="collapse">Write SQL Query Here</a>
+        <a class="btn btn-success" href="#queryContainer" data-bs-toggle="collapse">{{ 'DYNAMIC_REPORT.WRITE_QUERY_HERE' | translate }}</a>
         <div id="queryContainer" class="collapse demo-container">
           <textarea rows="10" class="form-control" type="text" [(ngModel)]="Query"></textarea>
           <div class="text-right btn-container">
-            <button class="btn btn-primary" type="button" (click)="LoadReport()">Load Report</button>
+            <button class="btn btn-primary" type="button" (click)="LoadReport()">{{ 'DYNAMIC_REPORT.LOAD_REPORT' | translate }}</button>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@
 <div>
   <div class="caption custom-caption top-report-section">
     <h3><i class="fa fa-book"></i>
-      <span class="caption-subject">Ledger Report</span>
+      <span class="caption-subject">{{ 'ACCOUNTING.LEDGER_REPORT' | translate }}</span>
     </h3>
     <!-- <label *ngIf="showTxnItemLevel!='true'" class="mt-checkbox mt-checkbox-outline"
       style="font-weight:bold;color:green;margin: 5px;">
@@ -28,7 +28,7 @@
            style="font-weight:bold;color:green;margin: 5px;">
       <input name="showParticular" type="checkbox" value="Show Particular" [(ngModel)]="showParticularColumn"
              (click)="showParticularCol()">
-      <span></span> Show-Particular
+      <span></span> {{ 'ACCOUNTING.SHOW_PARTICULAR' | translate }}
 
     </label>
 
@@ -39,7 +39,7 @@
       <div class="col-md-5 col-xs-12">
         <div class="form-group">
 
-          <label class="control-label" style="margin-left: 5px;">Select Fiscal Year<b class="color-red"> *</b><b
+          <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.SELECT_FISCAL_YEAR' | translate }}<b class="color-red"> *</b><b
                style="float:right;">:</b></label>
           <div>
             <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true"
@@ -50,22 +50,22 @@
         </div>
       </div>
       <div class="col-md-2 col-xs-12" style="padding: 5px 5px !important;margin-top:8px">
-        <label class="control-label no-padding">Cost Center :</label><br>
+        <label class="control-label no-padding">{{ 'ACCOUNTING.COST_CENTER' | translate }} :</label><br>
         <div>
           <div>
             <select [(ngModel)]="selectedCostCenter" class="form-control" id="id_select_costCenterId_ledgerReport">
-              <option value="-2" selected="selected">All</option>
+              <option value="-2" selected="selected">{{ 'ACCOUNTING.ALL' | translate }}</option>
               <option *ngFor="let costCenter of costCenters" value="{{costCenter.CostCenterId}}">{{ costCenter.CostCenterName }}</option>
             </select>
           </div>
         </div>
       </div>
       <div class="col-md-2 col-xs-12" style="padding: 5px 5px !important;margin-top:8px">
-        <label class="control-label no-padding">Select Group :</label><br>
+        <label class="control-label no-padding">{{ 'ACCOUNTING.SELECT_GROUP' | translate }} :</label><br>
         <div>
           <div class="div-relative">
             <input danphe-auto-complete class="col-md-11 form-control" [(ngModel)]="selectedLedgerGroup" [source]="ledgergroupList"
-                   placeholder="select ledger group" display-property-name="LedgerGroupName"
+                   [placeholder]="'ACCOUNTING.SELECT_LEDGER_GROUP' | translate" display-property-name="LedgerGroupName"
                    value-property-name="LedgerGroupName" (focusout)="AssignSelectedLedgerGroup()"
                    [list-formatter]="LedgerGroupListFormatter" max-num-list="20" onclick="this.select()"
                    style="background-color: azure;" [ngModelOptions]="{standalone: true}" />
@@ -73,14 +73,14 @@
         </div>
       </div>
       <div class="col-md-2 col-xs-12" style="padding: 5px 5px !important;">
-        <label class="control-label"> <b>Select Ledger</b> <b class="color-red"> *</b></label>
+        <label class="control-label"> <b>{{ 'ACCOUNTING.SELECT_LEDGER' | translate }}</b> <b class="color-red"> *</b></label>
         <div style="margin-top: 5px;">
           <!-- <span *ngIf="selLedger" style="float: left !important; margin-top: 5px;
               margin-right: 5px;">{{selLedger.Code}}</span> -->
           <div>
             <danphe-multiselect
                                 [ddl-data]="filteredLedgerList"
-                                [placeholder-text]="'Ledger Name'"
+                                [placeholder-text]="'ACCOUNTING.LEDGER_NAME' | translate"
                                 [value-property-name]="'LedgerId'"
                                 (selected-items-list)="OnLedgerSelected($event)"
                                 [display-property-name]="'LedgerName'"
@@ -98,7 +98,7 @@
           <br>
           <button class="btn green btn-success" type="button" (click)="GetTxnList()" [disabled]="clicked">
             <i class="fa fa-refresh"></i>
-            Load
+            {{ 'ACCOUNTING.LOAD' | translate }}
           </button>
         </div>
       </div>
@@ -106,17 +106,17 @@
     <div>
       <input class="hidden-print" type="radio" id="radio_summary" [(ngModel)]="viewMode" value="summary" name="report_veiw_mode"
              style="margin-right: 10px;" (change)="HandleValueChange()"><label class="hidden-print" for="radio_summary"
-             style="margin-right: 30px;">Summary View</label>
+             style="margin-right: 30px;">{{ 'ACCOUNTING.SUMMARY_VIEW' | translate }}</label>
       <input class="hidden-print" type="radio" id="radio_detail" [(ngModel)]="viewMode" value="detail" name="report_veiw_mode"
-             style="margin-right: 10px;"><label class="hidden-print" for="radio_detail">Detail View</label>
+             style="margin-right: 10px;"><label class="hidden-print" for="radio_detail">{{ 'ACCOUNTING.DETAIL_VIEW' | translate }}</label>
       <input class="hidden-print" type="checkbox" id="Hide_zero_txn" [(ngModel)]="HideZeroTxn" name="Hide_zero_txn"
              style="margin-left: 30px;" (change)="HandleHideZeroTxn()"><label class="hidden-print" for="Hide_zero_txn"
-             style="margin-left: 10px;">Hide Zero Transaction</label>
+             style="margin-left: 10px;">{{ 'ACCOUNTING.HIDE_ZERO_TRANSACTION' | translate }}</label>
     </div>
 
     <div class="row" id="printpage" *ngIf="ledgerResultRawData" style="padding: 10px; border: 1px solid #b9b9b9 !important;">
       <div style="width: 50%; margin: auto;">
-        <customer-header id="headerForPrint" [header-title]="'Ledger Report'">
+        <customer-header id="headerForPrint" [header-title]="'ACCOUNTING.LEDGER_REPORT' | translate">
         </customer-header>
       </div>
       <div id="print_ledger_list">
@@ -124,10 +124,10 @@
           <table style="width:100% !important;" class="hidden-print">
             <tr>
               <td style="text-align: left;">
-                Printed On: &nbsp; {{todayDate}}  {{todayDate | nepaliDate:'format':'YYYY-MM-DD'}} 
+                {{ 'ACCOUNTING.PRINTED_ON' | translate }}: &nbsp; {{todayDate}}  {{todayDate | nepaliDate:'format':'YYYY-MM-DD'}} 
               </td>
               <td style="text-align: right;">
-                For the period (AD): &nbsp; {{ fromDate }} To {{ toDate }}
+                {{ 'ACCOUNTING.FOR_THE_PERIOD_AD' | translate }}: &nbsp; {{ fromDate }} To {{ toDate }}
                 (BS): &nbsp;
                 {{ fromDate | nepaliDate:'format':'YYYY-MM-DD' }} To
                 {{ toDate | nepaliDate:'format':'YYYY-MM-DD'}}
@@ -146,19 +146,19 @@
           <div id="exportTable">
             <table *ngIf="viewMode == 'summary'" class="table_data" style="width: 100%; border:1px" border="1">
               <tr style="background-color:#599be0;">
-                <th>Ledger Name</th>
-                <th colspan="2">Opening Balance</th>
-                <th colspan="2">Current Total</th>
-                <th colspan="2">Closing Balance</th>
+                <th>{{ 'ACCOUNTING.LEDGER_NAME' | translate }}</th>
+                <th colspan="2">{{ 'ACCOUNTING.OPENING_BALANCE' | translate }}</th>
+                <th colspan="2">{{ 'ACCOUNTING.CURRENT_TOTAL' | translate }}</th>
+                <th colspan="2">{{ 'ACCOUNTING.CLOSING_BALANCE' | translate }}</th>
               </tr>
               <tr>
                 <td></td>
-                <td>Dr</td>
-                <td>Cr</td>
-                <td>Dr</td>
-                <td>Cr</td>
-                <td>Dr</td>
-                <td>Cr</td>
+                <td>{{ 'ACCOUNTING.DR' | translate }}</td>
+                <td>{{ 'ACCOUNTING.CR' | translate }}</td>
+                <td>{{ 'ACCOUNTING.DR' | translate }}</td>
+                <td>{{ 'ACCOUNTING.CR' | translate }}</td>
+                <td>{{ 'ACCOUNTING.DR' | translate }}</td>
+                <td>{{ 'ACCOUNTING.CR' | translate }}</td>
               </tr>
               <tr (click)="OpenDetailPopUP(r)" *ngFor="let r of ledgerDataList">
                 <td style="color: #337ab7;">{{r.LedgerName}}</td>
@@ -181,36 +181,36 @@
                 </div> -->
                 <table *ngIf="viewMode == 'detail'" class="table_data" style="width:100%;" border="1">
                   <tr>
-                    Ledger: {{row.LedgerName}} <span>({{row.Code}})</span>
+                    {{ 'ACCOUNTING.LEDGER' | translate }}: {{row.LedgerName}} <span>({{row.Code}})</span>
                   </tr>
                   <tr style="background-color: #599be0; color:white;">
                     <th>
-                      Date
+                      {{ 'ACCOUNTING.DATE' | translate }}
                       <danphe-date-change class="ADBS_btn" [dataArr]="row.ledgerResult" [datecolumn]="'TransactionDate'">
                       </danphe-date-change>
                     </th>
-                    <th>Voucher No.</th>
-                    <th>Voucher Type</th>
+                    <th>{{ 'ACCOUNTING.VOUCHER_NO' | translate }}</th>
+                    <th>{{ 'ACCOUNTING.VOUCHER_TYPE_LABEL' | translate }}</th>
                     <span *ngIf="showParticularColumn ==true">
                       <th style="color:#0619f5; border: none;" *ngIf="IsDetailsView!=true">
                         <!-- <a (click)="DisplayParticular()">
                             as per
                             details
                           </a> -->
-                        as per details
+                        {{ 'ACCOUNTING.AS_PER_DETAILS' | translate }}
                       </th>
                       <th style="color:#0619f5;border: none;" *ngIf="IsDetailsView">
                         <!-- <a (click)="DisplayParticular()">
                             Particular(s)
                           </a> -->
-                        Particular(s)
+                        {{ 'ACCOUNTING.PARTICULARS_BRACKETS' | translate }}
                       </th>
                     </span>
-                    <th style="width: 200px;">Description</th>
-                    <th>Debit</th>
-                    <th>Credit</th>
-                    <th>Balance</th>
-                    <th class="hidden-print" *ngIf="actionView">Action</th>
+                    <th style="width: 200px;">{{ 'ACCOUNTING.DESCRIPTION' | translate }}</th>
+                    <th>{{ 'ACCOUNTING.DEBIT' | translate }}</th>
+                    <th>{{ 'ACCOUNTING.CREDIT' | translate }}</th>
+                    <th>{{ 'ACCOUNTING.BALANCE' | translate }}</th>
+                    <th class="hidden-print" *ngIf="actionView">{{ 'ACCOUNTING.ACTION' | translate }}</th>
                   </tr>
                   <tr>
                     <th></th>
@@ -219,18 +219,18 @@
                     <span *ngIf="showParticularColumn ==true">
                       <th style="display:block; border-bottom: none;"></th>
                     </span>
-                    <th>Opening Balance</th>
+                    <th>{{ 'ACCOUNTING.OPENING_BALANCE' | translate }}</th>
                     <td><b>{{row.ledgerResult.OpeningBalanceDrAmount | Currency:'4'}}</b></td>
                     <td><b>{{row.ledgerResult.OpeningBalanceCrAmount | Currency:'4'}}</b></td>
 
                     <td>
                       <b *ngIf="row.ledgerResult.OpeningBalanceDrAmount > 0">
                         {{row.ledgerResult.OpeningBalanceDrAmount | Currency:'4'}}
-                        &nbsp; <span> Dr</span>
+                        &nbsp; <span> {{ 'ACCOUNTING.DR' | translate }}</span>
                       </b>
                       <b *ngIf="row.ledgerResult.OpeningBalanceCrAmount > 0">
                         {{row.ledgerResult.OpeningBalanceCrAmount | Currency:'4'}}
-                        &nbsp;<span> Cr</span>
+                        &nbsp;<span> {{ 'ACCOUNTING.CR' | translate }}</span>
                       </b>
                     </td>
 
@@ -261,10 +261,10 @@
                                   <span>{{det.Name}}</span>
                                   <span>
                                     <span *ngIf="det.DrCr">
-                                      Dr: {{det.Amount | Currency:'4'}}
+                                      {{ 'ACCOUNTING.DR' | translate }}: {{det.Amount | Currency:'4'}}
                                     </span>
                                     <span *ngIf="!det.DrCr">
-                                      Cr: {{det.Amount | Currency:'4'}}
+                                      {{ 'ACCOUNTING.CR' | translate }}: {{det.Amount | Currency:'4'}}
                                     </span>
                                   </span>
                                 </span>
@@ -272,10 +272,10 @@
                               <td style="width:60%; border:none;">
                                 <div *ngIf="txn.Details?.length == 0">
                                   <div *ngIf="txn.DrCr">
-                                    Dr: {{txn.LedAmount | Currency:'4'}}
+                                    {{ 'ACCOUNTING.DR' | translate }}: {{txn.LedAmount | Currency:'4'}}
                                   </div>
                                   <div *ngIf="!txn.DrCr">
-                                    Cr: {{txn.LedAmount | Currency:'4'}}
+                                    {{ 'ACCOUNTING.CR' | translate }}: {{txn.LedAmount | Currency:'4'}}
                                   </div>
                                 </div>
                               </td>
@@ -300,8 +300,8 @@
                       <td>
                         <p *ngIf="txnItm.Balance > 0">
                           {{txnItm.Balance | Currency:'4'}}
-                          <span *ngIf="txnItm.BalanceType==true" style="font-weight: bold;">Dr</span>
-                          <span *ngIf="txnItm.BalanceType==false" style="font-weight: bold;">Cr</span>
+                          <span *ngIf="txnItm.BalanceType==true" style="font-weight: bold;">{{ 'ACCOUNTING.DR' | translate }}</span>
+                          <span *ngIf="txnItm.BalanceType==false" style="font-weight: bold;">{{ 'ACCOUNTING.CR' | translate }}</span>
                         </p>
                         <p *ngIf="txnItm.Balance == 0">
                           {{txnItm.Balance | Currency:'4'}}
@@ -313,7 +313,7 @@
                       <td class="hidden-print ADBS_btn">
                         <div *ngIf="actionView && IsOpeningBalance!=true"
                              (click)="ViewTransactionDetails(txnItm.VoucherNumber)">
-                          <a class="hidden-print">View Detail</a>
+                          <a class="hidden-print">{{ 'ACCOUNTING.VIEW_DETAIL' | translate }}</a>
                         </div>
 
                       </td>
@@ -337,10 +337,10 @@
                       <th style="display: block; border-bottom: none;"></th>
                     </span>
                     <th>
-                      Current Total
+                      {{ 'ACCOUNTING.CURRENT_TOTAL' | translate }}
                     </th>
-                    <td><b>{{row.ledgerResult.DrTotalAmount | Currency:'4'}} &nbsp; Dr</b></td>
-                    <td><b>{{row.ledgerResult.CrTotalAmount | Currency:'4' }} &nbsp; Cr</b></td>
+                    <td><b>{{row.ledgerResult.DrTotalAmount | Currency:'4'}} &nbsp; {{ 'ACCOUNTING.DR' | translate }}</b></td>
+                    <td><b>{{row.ledgerResult.CrTotalAmount | Currency:'4' }} &nbsp; {{ 'ACCOUNTING.CR' | translate }}</b></td>
                     <td></td>
 
                     <td class="hidden-print" *ngIf="actionView"></td>
@@ -352,17 +352,17 @@
                     <span *ngIf="showParticularColumn ==true">
                       <th style="display: block; border-bottom: none;"></th>
                     </span>
-                    <th>Closing Balance</th>
-                    <td><b>{{row.ledgerResult.DrNetAmount | Currency:'4' }} &nbsp; Dr</b></td>
-                    <td><b>{{row.ledgerResult.CrNetAmount | Currency:'4' }}&nbsp; Cr</b></td>
+                    <th>{{ 'ACCOUNTING.CLOSING_BALANCE' | translate }}</th>
+                    <td><b>{{row.ledgerResult.DrNetAmount | Currency:'4' }} &nbsp; {{ 'ACCOUNTING.DR' | translate }}</b></td>
+                    <td><b>{{row.ledgerResult.CrNetAmount | Currency:'4' }}&nbsp; {{ 'ACCOUNTING.CR' | translate }}</b></td>
                     <td></td>
 
                     <td class="hidden-print" *ngIf="actionView"></td>
                   </tr>
                   <tr>
-                    <td colspan="8"><b>In Words :</b> {{row.ledgerResult.DrNetAmount | Currency:'4' | NumberInWords | CapitalFirstLetter}}
+                    <td colspan="8"><b>{{ 'ACCOUNTING.IN_WORDS_COLON' | translate }}</b> {{row.ledgerResult.DrNetAmount | Currency:'4' | NumberInWords | CapitalFirstLetter}}
                       {{row.ledgerResult.CrNetAmount | Currency:'4' | NumberInWords | CapitalFirstLetter}}<span
-                            *ngIf="row.ledgerResult.DrNetAmount !=0 || row.ledgerResult.CrNetAmount !=0">Only</span></td>
+                            *ngIf="row.ledgerResult.DrNetAmount !=0 || row.ledgerResult.CrNetAmount !=0">{{ 'ACCOUNTING.ONLY' | translate }}</span></td>
                   </tr>
                 </table>
                 <br>
@@ -380,22 +380,22 @@
           </div><br /> -->
           <br />
 
-          <!-- sud:14June'20--Below section (prepared-checked-approved) is hidden after Charak-Request since it's not required in the report.
+           <!-- sud:14June'20--Below section (prepared-checked-approved) is hidden after Charak-Request since it's not required in the report.
           if it's actually needed for some other hospital, then make it parameterized. -->
           <div class="col-md-12" style="padding-top:50px;display: none;">
             <table style="width:100%;border:0;text-align:center;">
               <tr>
                 <td>
                   <input type="text" class="signature" style="border: 0;border-bottom: 1px solid #000;" /><br />
-                  <b> Prepared By</b>
+                  <b> {{ 'ACCOUNTING.PREPARED_BY' | translate }}</b>
                 </td>
                 <td>
                   <input type="text" class="signature" style="border: 0;border-bottom: 1px solid #000;" /><br />
-                  <b> Checked By</b>
+                  <b> {{ 'ACCOUNTING.CHECKED_BY' | translate }}</b>
                 </td>
                 <td>
                   <input type="text" class="signature" style="border: 0;border-bottom: 1px solid #000;" /><br>
-                  <b> Approved By</b>
+                  <b> {{ 'ACCOUNTING.APPROVED_BY' | translate }}</b>
                 </td>
               </tr>
 
@@ -408,11 +408,11 @@
         <div class="form-actions">
           <button class="btn green btn-success hidden-print" (click)="Print('print_ledger_list')" value="Print"
                   title="print page">
-            Print<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i>
+            {{ 'ACCOUNTING.PRINT' | translate }}<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i>
           </button>
           <button *ngIf="showExportbtn" class="btn green btn-success hidden-print" (click)="ExportToExcel('exportTable')"
                   value="" title="export to excel">
-            Export<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
+            {{ 'ACCOUNTING.EXPORT' | translate }}<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
           </button>
         </div>
       </div>

@@ -10,7 +10,7 @@
 <div>
     <div class="caption custom-caption top-report-section">
         <h3><i class="fa fa-book"></i>
-        <span class="caption-subject">System Audit Report</span></h3>
+        <span class="caption-subject">{{ 'ACCOUNTING.SYSTEM_AUDIT_REPORT' | translate }}</span></h3>
     </div>
     <div class="col-md-12 col-xs-12 col-sm-12">
      
@@ -18,7 +18,7 @@
            
             <div class="col-md-7 col-xs-12"style="margin-right: -45px;" >
                 <div class="form-group">
-                    <label class="control-label" style="margin-left: 5px;">Select Fiscal year<b class="color-red">  
+                    <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.SELECT_FISCAL_YEAR' | translate }}<b class="color-red">  
                         *</b><b style="float:right;">:</b></label>
                     <div>                      
                         <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true" (fiscalYearDate)="selectDate($event)"> </fiscal-year-calendar>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="col-md-2 col-xs-12" style="margin-right: -15px; margin-top: 10px;">
-                <label class="control-label no-padding">Select Module<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                <label class="control-label no-padding">{{ 'ACCOUNTING.SELECT_MODULE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                 <div>
                     <select [(ngModel)]="sectionId" id="sectionid" [ngModelOptions]="{standalone: true}" style="width:150px;height:30px;" (ngModelChange)="GetChangedSection()">
                         <option *ngFor="let s of sectionList" value="{{s.SectionId}}">{{s.SectionName}}</option>
@@ -34,12 +34,12 @@
                 </div>
             </div>
             <div class="col-md-2 col-sm-3 col-xs-6" style="    margin-top: 9px !important;" >
-                <label class="control-label no-padding">Audit Report Type<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                <label class="control-label no-padding">{{ 'ACCOUNTING.AUDIT_REPORT_TYPE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                 <div>
                     <select [(ngModel)]="voucherType" [ngModelOptions]="{standalone: true}" style="width:150px;height:30px;" (ngModelChange)="GetChangedReportType()">
-                       <option value="VoucherReversal"> Voucher Reversal </option> 
-                       <option value="EditVoucher"> Edit Voucher </option> 
-                       <option value="BackDateEntry"> Back Date Entry </option> 
+                       <option value="VoucherReversal"> {{ 'ACCOUNTING.VOUCHER_REVERSAL' | translate }} </option> 
+                       <option value="EditVoucher"> {{ 'ACCOUNTING.EDIT_VOUCHER' | translate }} </option> 
+                       <option value="BackDateEntry"> {{ 'ACCOUNTING.BACK_DATE_ENTRY' | translate }} </option> 
                     </select>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="form-group mt5">
                     <br>
                     <button class="btn blue" type="button" [disabled]="btndisabled" (click)="Load('')">
-                        <i class="fa fa-refresh"></i> Load
+                        <i class="fa fa-refresh"></i> {{ 'ACCOUNTING.LOAD' | translate }}
                     </button>
                 </div>
             </div>
@@ -73,7 +73,7 @@
           <div class="col-md-8 col-md-offset-2">
             <div class="modelbox-div">
               <div class="caption custom-caption">
-                <h3><span>Reverse Transaction Details</span></h3>      
+                <h3><span>{{ 'ACCOUNTING.REVERSE_TRANSACTION_DETAILS' | translate }}</span></h3>      
                    <a class="btn btn-danger" (click)="Close()" title="Close">X</a> 
               </div>      
               <div class="modelbox-body">
@@ -86,19 +86,19 @@
                                 <ng-container>                                                                               
                                     <tr>
                                         <th>
-                                            Section Name 
+                                            {{ 'ACCOUNTING.SECTION_NAME' | translate }} 
                                         </th>
                                         <td>
                                             {{reverseTxnDetailObj[0].SectionName}}                                         
                                         </td>   
                                         <th>
-                                            Fiscal Year 
+                                            {{ 'ACCOUNTING.FISCAL_YEAR' | translate }} 
                                         </th>
                                         <td>
                                             {{reverseTxnDetailObj[0].FiscalYearName}}
                                          </td>  
                                          <th>
-                                             Transaction Date
+                                             {{ 'ACCOUNTING.TRANSACTION_DATE' | translate }}
                                          </th>
                                          <td>
                                             {{reverseTxnDetailObj[0].TransactionDate}}
@@ -106,13 +106,13 @@
                                     </tr>       
                                     <tr>
                                         <th>
-                                            Reversed Date
+                                            {{ 'ACCOUNTING.REVERSED_DATE' | translate }}
                                         </th>
                                         <td>
                                             {{reverseTxnDetailObj[0].ReversedOn}}
                                         </td>
                                         <th>
-                                            Reversed By 
+                                            {{ 'ACCOUNTING.REVERSED_BY' | translate }} 
                                         </th>
                                         <td colspan="4">
                                             {{reverseTxnDetailObj[0].ReversedByName}}
@@ -120,7 +120,7 @@
                                     </tr>       
                                     <tr>
                                         <th>
-                                           Remark
+                                           {{ 'ACCOUNTING.REMARK' | translate }}
                                         </th>
                                         <td colspan="5">
                                             {{reverseTxnDetailObj[0].Reason}}
@@ -142,11 +142,11 @@
                                 <thead>                                  
                                     <tr>
                             <!-- rtxn.VoucherNumber,vcr.VoucherName,rtxn.CreatedOn,emp1.FullName as CreatedByName, IsRecreated= 0 -->
-                                        <th style="text-align: center;"><b>Voucher Number</b></th>                                        
-                                        <th style="text-align: center;"><b>Voucher</b></th>                                        
-                                        <th style="text-align: center;"><b>Created Date</b></th>
-                                        <th style="text-align: center;"><b>Created By</b></th>                                        
-                                        <th style="text-align: center;"><b>Is Recreated</b></th>                                        
+                                        <th style="text-align: center;"><b>{{ 'ACCOUNTING.VOUCHER_NUMBER_LABEL' | translate }}</b></th>                                        
+                                        <th style="text-align: center;"><b>{{ 'ACCOUNTING.VOUCHER' | translate }}</b></th>                                        
+                                        <th style="text-align: center;"><b>{{ 'ACCOUNTING.CREATED_DATE' | translate }}</b></th>
+                                        <th style="text-align: center;"><b>{{ 'ACCOUNTING.CREATED_BY' | translate }}</b></th>                                        
+                                        <th style="text-align: center;"><b>{{ 'ACCOUNTING.IS_RECREATED' | translate }}</b></th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -166,10 +166,10 @@
                                              </td>  
                                              <td>
                                                 <span *ngIf="row.IsRecreated">
-                                                  <b>Yes</b>
+                                                  <b>{{ 'ACCOUNTING.YES' | translate }}</b>
                                                 </span>
                                                 <span *ngIf="!row.IsRecreated">
-                                                    <b>No</b>
+                                                    <b>{{ 'ACCOUNTING.NO' | translate }}</b>
                                                   </span>                                              
                                              </td>                                                                                    
                                         </tr>                                       

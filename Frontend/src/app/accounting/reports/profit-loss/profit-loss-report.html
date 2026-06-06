@@ -16,15 +16,15 @@
 <div>
     <div class="caption custom-caption top-report-section">
         <h3><i class="fa fa-book"></i>
-            <span class="caption-subject">Profit Loss Report</span>
+            <span class="caption-subject">{{ 'ACCOUNTING.PROFIT_AND_LOSS_REPORT' | translate }}</span>
         </h3>
         <label class="mt-checkbox mt-checkbox-outline" style="font-weight:bold;color:green;margin: 5px;">
             <input name="isledgerlevel" type="checkbox" value="Ledger Level" [(ngModel)]="IsLedgerLevel">
-            <span></span> Ledger Level
+            <span></span> {{ 'ACCOUNTING.LEDGER_LEVEL' | translate }}
         </label>
         <label *ngIf="IsLedgerLevel== true" class="mt-checkbox mt-checkbox-outline" style="font-weight:bold;color:green;margin: 5px;">
             <input name="iszeroledgerlevel" type="checkbox" value="Zero amount Ledger" [(ngModel)]="IsZeroAmountRecords">
-            <span></span> Zero Amt record(s)
+            <span></span> {{ 'ACCOUNTING.SHOW_ZERO_BALANCE' | translate }}
         </label>
     </div>
     <div class="col-md-12 col-xs-12 col-sm-12">
@@ -35,7 +35,7 @@
 
             <div class="col-md-7 col-xs-12" style="margin-right: -45px;">
                 <div class="form-group">
-                    <label class="control-label noPadding mb10 mt10"> Select Date<b class="color-red">
+                    <label class="control-label noPadding mb10 mt10"> {{ 'ACCOUNTING.SELECT_DATE' | translate }}<b class="color-red">
                             *</b><b style="float:right;">:</b></label>
 
                     <div>
@@ -49,12 +49,12 @@
                 <div class="form-group">
                     <br>
                     <button class="btn green btn-success" type="button" [disabled]="btndisabled" (click)="loadData()"
-                            title="Load records of selected date"> <i class="fa fa-refresh"></i> Load </button>
+                            title="Load records of selected date"> <i class="fa fa-refresh"></i> {{ 'ACCOUNTING.LOAD' | translate }} </button>
                 </div>
             </div>
         </div>
         <div class="row">
-            <customer-header style="display:none;padding:0px" id="headerForPrint" [header-title]="'Profit and Loss Report'"></customer-header>
+            <customer-header style="display:none;padding:0px" id="headerForPrint" [header-title]="'ACCOUNTING.PROFIT_AND_LOSS_REPORT' | translate"></customer-header>
         </div>
     </div>
 </div>
@@ -66,8 +66,8 @@
             <table border="1" style="background-color:initial;margin-top:10px" cellpadding="10">
                 <thead>
                     <tr style="background-color: #599be0;color: white;">
-                        <th colspan="3" style="text-align:center;font-size:16px" width="70%"><b>Particulars</b></th>
-                        <th style="text-align:center;font-size:16px" width="10%"><b>Amount</b></th>
+                        <th colspan="3" style="text-align:center;font-size:16px" width="70%"><b>{{ 'ACCOUNTING.PARTICULARS' | translate }}</b></th>
+                        <th style="text-align:center;font-size:16px" width="10%"><b>{{ 'ACCOUNTING.AMOUNT' | translate }}</b></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -142,14 +142,14 @@
 <br /><br />
 <div class="col-md-12" style="padding-bottom: 18px;" *ngIf="showReportData">
     <div class="form-actions">
-        <button class="btn green btn-success hidden-print" (click)="Print('printpage')" value="Print" title="print page">Print<i
+        <button class="btn green btn-success hidden-print" (click)="Print('printpage')" value="Print" title="print page">{{ 'ACCOUNTING.PRINT' | translate }}<i
                class="glyphicon glyphicon-print" style="margin-left:10px;"></i></button>
         <button *ngIf="showExportbtn" class="btn green btn-success hidden-print" (click)="ExportToExcel('printpage')" value=""
-                title="export to excel">Export<i class="fa fa-file-excel-o" style="margin-left:10px;"></i></button>
+                title="export to excel">{{ 'ACCOUNTING.EXPORT' | translate }}<i class="fa fa-file-excel-o" style="margin-left:10px;"></i></button>
     </div>
 </div>
 <div *ngIf="!showReportData">
-    <h4>No Data Found for selected date period</h4>
+    <h4>{{ 'ACCOUNTING.NO_DATA_FOUND_FOR_PERIOD' | translate }}</h4>
 </div>
 <ledger-report-reusable *ngIf="showLedgerDetail" [showLedgerDetail]="showLedgerDetail" [FiscalYearId]="fiscalYearId" [fromDate]="fromDate"
                         [toDate]="toDate" [ledgerId]="ledgerId" [ledgerCode]="ledgerCode" [ledgerName]="ledgerName"

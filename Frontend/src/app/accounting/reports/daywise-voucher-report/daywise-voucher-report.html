@@ -10,26 +10,26 @@
 <div>
     <div class="caption lb-caption top-report-section">
         <h3><i class="fa fa-book"></i>
-        <span class="caption-subject">Daywise Voucher Report</span></h3>
+        <span class="caption-subject">{{ 'ACCOUNTING.DAYWISE_VOUCHER_REPORT' | translate }}</span></h3>
     </div>
     <div class="col-md-12 col-xs-12 col-sm-12">       
         <div class="row">
             <div class="col-md-2 col-xs-12 noPadding"  style="margin-right: 45px;">
                 <div class="form-group">
-                    <label class="control-label">Voucher Type<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                    <label class="control-label">{{ 'ACCOUNTING.VOUCHER_TYPE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div>
     
                         <select [(ngModel)]="selVoucher.VoucherId" id="voucher" (ngModelChange)="AssignVoucher()" style="width:200px;height:30px;">
-                            <option  value={{-1}} selected>— All —</option>
+                            <option  value={{-1}} selected>{{ 'ACCOUNTING.ALL_DASH' | translate }}</option>
                             <option *ngFor="let v of voucherList" value="{{v.VoucherId}}">{{v.VoucherName}}</option>
                         </select>
-                        <div class="color-red font-sm" *ngIf="!selVoucher.VoucherId"> please select voucher.</div>
+                        <div class="color-red font-sm" *ngIf="!selVoucher.VoucherId"> {{ 'ACCOUNTING.PLEASE_SELECT_VOUCHER' | translate }}</div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-xs-12 noPadding">
                 <div class="form-group">
-                    <label class="control-label" style="margin-left: 5px;">From Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                    <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.FROM_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div>
                         <danphe-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
                         </danphe-date-picker>
@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-3 col-xs-12 noPadding" >
                 <div class="form-group">
-                    <label class="control-label" style="margin-left: 5px;">To Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                    <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.TO_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div>
                         <danphe-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
                         </danphe-date-picker>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="col-md-2 col-xs-12 noPadding" >
-                <label class="control-label no-padding">Select Module<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                <label class="control-label no-padding">{{ 'ACCOUNTING.SELECT_MODULE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                 <div>
                     <select [(ngModel)]="sectionId" id="sectionid" [ngModelOptions]="{standalone: true}" style="width:150px;height:30px;" (ngModelChange)="GetChangedSection()">
                         <option *ngFor="let s of sectionList" value="{{s.SectionId}}">{{s.SectionName}}</option>
@@ -58,7 +58,7 @@
                     <br>
                     <button class="btn blue" type="button" (click)="GetTxnList()">
                         <i class="fa fa-search"></i>
-                        Show Details
+                        {{ 'ACCOUNTING.SHOW_DETAILS' | translate }}
                     </button>
                 </div>
             </div>

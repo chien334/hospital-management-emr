@@ -70,15 +70,15 @@
 <div>
     <div class="caption custom-caption top-report-section">
         <h3><i class="fa fa-book"></i>
-            <span class="caption-subject">Trial Balance Report</span></h3>
+            <span class="caption-subject">{{ 'ACCOUNTING.TRAIL_BALANCE_REPORT' | translate }}</span></h3>
 
         <label class="mt-checkbox mt-checkbox-outline" style="font-weight:bold;color:green;margin: 5px;">
             <input name="isledgerlevel" type="checkbox" value="Detail View" [(ngModel)]="IsDetailsView">
-            <span></span> Detail View
+            <span></span> {{ 'ACCOUNTING.DETAIL_VIEW' | translate }}
         </label>
         <label *ngIf="IsDetailsView == true" class="mt-checkbox mt-checkbox-outline" style="font-weight:bold;color:green;margin: 5px;">
             <input name="iszeroledgerlevel" type="checkbox" value="Zero amount Ledger" [(ngModel)]="IsZeroAmountRecords">
-            <span></span> Zero Amt record(s)
+            <span></span> {{ 'ACCOUNTING.SHOW_ZERO_BALANCE' | translate }}
         </label>
     </div>
     <div>
@@ -87,7 +87,7 @@
           
             <div class="col-md-7 col-xs-12"style="margin-right: -45px;">
                 <div class="form-group">
-                <label class="control-label" style="margin-left: 5px;"> Select Fiscal year<sup> *</sup><b>:</b> </label>
+                <label class="control-label" style="margin-left: 5px;"> {{ 'ACCOUNTING.SELECT_FISCAL_YEAR' | translate }}<sup> *</sup><b>:</b> </label>
             
             <div >               
                 <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true" (fiscalYearDate)="selectDate($event)"> </fiscal-year-calendar>    
@@ -99,14 +99,14 @@
                     <br>
                 <button class="btn blue primary-btn" type="button" (click)="GetTrialBalanceRpt()" [disabled]="btndisabled"
                 title="Load records of selected date"> <i class="fa fa-refresh"></i>
-                 Load 
+                 {{ 'ACCOUNTING.LOAD' | translate }} 
             </button>
             </div>    
         </div>
         </div>
         <div>            
             <customer-header style="display:none;padding:0px" id="headerForPrint"
-                [header-title]="'Trial Balance Report'">
+                [header-title]="'ACCOUNTING.TRAIL_BALANCE_REPORT' | translate">
             </customer-header>
         </div>
         <div class="row">
@@ -117,16 +117,16 @@
                         <thead>
                            
                             <tr>
-                                <th style="text-align: center;width: 40%;"><b>Particulars</b></th>
+                                <th style="text-align: center;width: 40%;"><b>{{ 'ACCOUNTING.PARTICULARS' | translate }}</b></th>
                                 <!-- <th><b>Debit</b></th>
                                 <th><b>Credit</b></th> -->
-                                <th style="text-align: right;"><b>Opening</b></th>
+                                <th style="text-align: right;"><b>{{ 'ACCOUNTING.OPENING' | translate }}</b></th>
                                 <th><b></b></th>
-                                <th style="text-align: right;"><b>Debit</b></th>
-                                <th style="text-align: right;"><b>Credit</b></th>
+                                <th style="text-align: right;"><b>{{ 'ACCOUNTING.DEBIT' | translate }}</b></th>
+                                <th style="text-align: right;"><b>{{ 'ACCOUNTING.CREDIT' | translate }}</b></th>
                                 <!-- <th><b>Debit</b></th>
                                 <th><b>Credit</b></th> -->
-                                <th style="text-align: right;"><b>Closing</b></th>
+                                <th style="text-align: right;"><b>{{ 'ACCOUNTING.CLOSING' | translate }}</b></th>
                                 <th><b></b></th>
                             </tr>
                         </thead>
@@ -241,20 +241,20 @@
                                             style="color:green;">({{row.Code}}) &nbsp;{{row.Particulars}}</a>
 
                                         <span *ngFor="let det of row.Details"
-                                            style="font-size:12px;color:green;padding-left:20px;">
-                                            <!-- <span *ngIf="det.Dr > 0 || det.Cr > 0"
-                                                style="text-align:left;"> -->
-                                                <span style="text-align:left;">
-                                                <br />{{det.Name}}</span>
-                                            <!-- <span *ngIf="det.Dr > 0"> -->
-                                                <span>  
-                                                Dr {{det.Dr | Currency:'4'}}
-                                            </span>
-                                            <!-- <span *ngIf="det.Cr > 0"> -->
-                                                <span>  
-                                                Cr {{det.Cr | Currency:'4'}}
-                                            </span>
-                                        </span>
+                                             style="font-size:12px;color:green;padding-left:20px;">
+                                             <!-- <span *ngIf="det.Dr > 0 || det.Cr > 0"
+                                                 style="text-align:left;"> -->
+                                                 <span style="text-align:left;">
+                                                 <br />{{det.Name}}</span>
+                                             <!-- <span *ngIf="det.Dr > 0"> -->
+                                                 <span>  
+                                                 {{ 'ACCOUNTING.DR' | translate }} {{det.Dr | Currency:'4'}}
+                                             </span>
+                                             <!-- <span *ngIf="det.Cr > 0"> -->
+                                                 <span>  
+                                                 {{ 'ACCOUNTING.CR' | translate }} {{det.Cr | Currency:'4'}}
+                                             </span>
+                                         </span>
                                     </td>
                                     
                                     <td *ngIf="row.level=='Ledger' && (IsDetailsView==true || row.ShowLedger==true)&& 
@@ -312,34 +312,34 @@
 
                         </tbody>
                         <tfoot>
-                            <tr>
-                                <td class="trialbal-footer"><b>Grand Total</b></td>
-                                <td class="trialbal-footer" style="font-weight:bold; text-align:right;" *ngFor="let r of TotalDrCr">
-                                    <span *ngIf="r != 'Dr' && r!='Cr'">
-                                        {{r | Currency:'4'}}
-                                    </span>
-                                    <span *ngIf="r == 'Dr' || r =='Cr'">
-                                        {{r}}
-                                    </span>
+                             <tr>
+                                 <td class="trialbal-footer"><b>{{ 'ACCOUNTING.GRAND_TOTAL' | translate }}</b></td>
+                                 <td class="trialbal-footer" style="font-weight:bold; text-align:right;" *ngFor="let r of TotalDrCr">
+                                     <span *ngIf="r != 'Dr' && r!='Cr'">
+                                         {{r | Currency:'4'}}
+                                     </span>
+                                     <span *ngIf="r == 'Dr' || r =='Cr'">
+                                         {{r}}
+                                     </span>
 
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                                 </td>
+                             </tr>
+                         </tfoot>
+                     </table>
+                 </div>
 
-                <div style="padding-bottom: 18px; margin-top: 15px;">
-                    <div class="form-actions">
-                        <button class="btn btn-primary hidden-print" (click)="Print('print_trialbal')" value="Print"
-                            title="print page">Print<i class="glyphicon glyphicon-print"
-                                style="margin-left:10px;"></i></button>
-                        <button *ngIf="showExportbtn" class="btn btn-primary hidden-print"
-                            (click)="ExportToExcel('print_trialbal')" value="" title="export to excel">Export<i
-                                class="fa fa-file-excel-o" style="margin-left:10px;"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                 <div style="padding-bottom: 18px; margin-top: 15px;">
+                     <div class="form-actions">
+                         <button class="btn btn-primary hidden-print" (click)="Print('print_trialbal')" value="Print"
+                             title="print page">{{ 'ACCOUNTING.PRINT' | translate }}<i class="glyphicon glyphicon-print"
+                                 style="margin-left:10px;"></i></button>
+                         <button *ngIf="showExportbtn" class="btn btn-primary hidden-print"
+                             (click)="ExportToExcel('print_trialbal')" value="" title="export to excel">{{ 'ACCOUNTING.EXPORT' | translate }}<i
+                                 class="fa fa-file-excel-o" style="margin-left:10px;"></i></button>
+                     </div>
+                 </div>
+             </div>
+         </div>
     
 </div>
 <ledger-report-reusable *ngIf="showLedgerDetail" [showLedgerDetail]="showLedgerDetail" [FiscalYearId]="fiscalYearId" [fromDate]="fromDate"

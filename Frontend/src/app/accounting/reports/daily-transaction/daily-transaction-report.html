@@ -1,4 +1,4 @@
-﻿<style>
+<style>
   .noPadding {
         padding-left: 2px !important;
         padding-right: 2px !important;
@@ -24,14 +24,14 @@
 <div>
   <div class="caption custom-caption top-report-section">
     <h3><i class="fa fa-book"></i> 
-      <span class="caption-subject">Daily Transaction Report</span>
+      <span class="caption-subject">{{ 'ACCOUNTING.DAILY_TRANSACTION_REPORT' | translate }}</span>
     </h3>
   </div>
   <div class="col-md-12 col-xs-12 col-sm-12">
   <div class="row"style="background: #bcbcbc; padding-top: 0px;">
     <div class="col-md-7 col-xs-12"style="margin-right: -45px;">
       <div class="form-group">
-        <label class="control-label" style="margin-left: 5px;"> Select Fiscal year<b class="color-red">
+        <label class="control-label" style="margin-left: 5px;"> {{ 'ACCOUNTING.SELECT_FISCAL_YEAR' | translate }}<b class="color-red">
           *</b><b style="float:right;">:</b></label>
           <div>
         <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true" 
@@ -53,7 +53,7 @@
               <div class="form-group">
         <br>
         <button class="btn blue" type="button" [disabled]="btndisabled" (click)="loadData() " >
-           <i class="fa fa-refresh"></i> Load
+           <i class="fa fa-refresh"></i> {{ 'ACCOUNTING.LOAD' | translate }}
         </button>
       </div>
     </div>
@@ -68,11 +68,11 @@
   <div class="col-md-12 col-xs-12 col-sm-12">
     <table>
       <tr>
-        <th>Voucher Number</th>
-        <th>Transaction Date</th>
-        <th>Ledger Name</th>
-        <th>Dr Amount</th>
-        <th>Cr Amount</th>
+        <th>{{ 'ACCOUNTING.VOUCHER_NUMBER_LABEL' | translate }}</th>
+        <th>{{ 'ACCOUNTING.TRANSACTION_DATE' | translate }}</th>
+        <th>{{ 'ACCOUNTING.LEDGER_NAME' | translate }}</th>
+        <th>{{ 'ACCOUNTING.DR_AMOUNT' | translate }}</th>
+        <th>{{ 'ACCOUNTING.CR_AMOUNT' | translate }}</th>
       </tr>
       <tr *ngFor="let row of dailyTxnList">
         <td>{{row.VoucherNumber}}</td>
@@ -92,30 +92,30 @@
       <div class="modelbox-div" style="float:inherit;margin-left:150px;">
         <div class="col-md-12">
           <div class="caption" style="color:blue;">
-            <h3>Transaction Details</h3>
+            <h3>{{ 'ACCOUNTING.TRANSACTION_DETAILS' | translate }}</h3>
           </div>
-          <a style="float:right;  margin-top:-32px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+          <a style="float:right;  margin-top:-32px;" class="btn btn-danger" (click)="Close()" [title]="'ACCOUNTING.CANCEL' | translate">X</a>
           <hr />
         </div>
         <!-- <customer-header style="display:none;padding:0px" id="headerForPrint" [header-title]="'Transaction Details'"></customer-header>
          -->
          <customer-header style="display:none;padding:0px" id="headerForPrint"
-        [header-title]="'Transaction Details'">
+        [header-title]="'ACCOUNTING.TRANSACTION_DETAILS' | translate">
     </customer-header>
-        <div class="col-md-12" id="printpage"> <span>Voucher No: <b>{{selectedTxn.VoucherNumber}}</b></span><br />
-          <span>Date: <b>{{selectedTxn.TransactionDate  | DanpheDateTime:'format':'YYYY-MM-DD'}}</b></span>
+        <div class="col-md-12" id="printpage"> <span>{{ 'ACCOUNTING.VOUCHER_NO_COLON' | translate }} <b>{{selectedTxn.VoucherNumber}}</b></span><br />
+          <span>{{ 'ACCOUNTING.DATE_COLON' | translate }} <b>{{selectedTxn.TransactionDate  | DanpheDateTime:'format':'YYYY-MM-DD'}}</b></span>
           <div class="table-responsive" *ngIf="selectedTxn.SectionId=='1'">
             <table class="table table-striped table-hover" style="background-color:initial;margin-top:10px">
               <thead>
                 <tr>
-                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('ReturnToVendor')">Vendor Name</th>
-                  <th *ngIf="selectedTxn.TransactionType[0].includes('WriteOff') || selectedTxn.TransactionType[0].includes('ReturnToVendor') || selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods')">Item Name</th>
-                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt')">Bill No</th>
-                  <th *ngIf="selectedTxn.TransactionType[0].includes('WriteOff')|| selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods') || selectedTxn.TransactionType[0].includes('ReturnToVendor')">Batch No</th>
-                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt')">Payment Mode</th>
-                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('ReturnToVendor') || selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods')" >Tax Amount</th>
-                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods')">Discount Amount</th>
-                  <th>Total Amount</th>
+                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('ReturnToVendor')">{{ 'ACCOUNTING.VENDOR_NAME' | translate }}</th>
+                  <th *ngIf="selectedTxn.TransactionType[0].includes('WriteOff') || selectedTxn.TransactionType[0].includes('ReturnToVendor') || selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods')">{{ 'ACCOUNTING.ITEM_NAME' | translate }}</th>
+                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt')">{{ 'ACCOUNTING.BILL_NO' | translate }}</th>
+                  <th *ngIf="selectedTxn.TransactionType[0].includes('WriteOff')|| selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods') || selectedTxn.TransactionType[0].includes('ReturnToVendor')">{{ 'ACCOUNTING.BATCH_NO' | translate }}</th>
+                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt')">{{ 'ACCOUNTING.PAYMENT_MODE' | translate }}</th>
+                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('ReturnToVendor') || selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods')" >{{ 'ACCOUNTING.TAX_AMOUNT' | translate }}</th>
+                  <th *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods')">{{ 'ACCOUNTING.DISCOUNT_AMOUNT' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.TOTAL_AMOUNT' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -133,7 +133,7 @@
                   <td *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('ReturnToVendor') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods')"></td>
                   <td *ngIf="selectedTxn.TransactionType[0].includes('WriteOff') || selectedTxn.TransactionType[0].includes('ReturnToVendor') || selectedTxn.TransactionType[0].includes('GoodReceipt')"></td>
                   <td *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') "></td>
-                  <td><b>Total</b></td>
+                  <td><b>{{ 'ACCOUNTING.TOTAL' | translate }}</b></td>
                   <td *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('ReturnToVendor') || selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods')"><b>{{selectedTxn.taxTotal | Currency:'4'}}</b></td>
                   <td *ngIf="selectedTxn.TransactionType[0].includes('GoodReceipt') || selectedTxn.TransactionType[0].includes('DispatchToDept') || selectedTxn.TransactionType[0].includes('INVStockManageOut') || selectedTxn.TransactionType[0].includes('INVDeptConsumedGoods')"><b>{{selectedTxn.discountAmount | Currency:'4'}}</b></td>
                   <td><b>{{selectedTxn.amountTotal | Currency:'4'}}</b></td>
@@ -175,14 +175,14 @@
             <table class="table table-striped table-hover table-bordered" style="background-color:initial;margin-top:10px" border="1">
               <thead>
                 <tr *ngIf="isBilling==true || isReturnBilling==true">
-                  <th>Department Name</th>
-                  <th>Patient Name</th>
-                  <th>Invoice Num.</th>
-                  <th>Item Name</th>
-                  <th>Tax Amount</th>
-                  <th>Sales Amount</th>
-                  <th>Discount Amount</th>
-                  <th>Total Amount</th>
+                  <th>{{ 'ACCOUNTING.DEPARTMENT_NAME' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.PATIENT_NAME' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.INVOICE_NUM' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.ITEM_NAME' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.TAX_AMOUNT' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.SALES_AMOUNT' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.DISCOUNT_AMOUNT' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.TOTAL_AMOUNT' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -214,7 +214,7 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td><b>Total</b></td>
+                  <td><b>{{ 'ACCOUNTING.TOTAL' | translate }}</b></td>
                   <td><b>{{selectedTxn.taxTotal | Currency:'4'}}</b></td>
                   <td><b>{{selectedTxn.salesTotal | Currency:'4'}}</b></td>
                   <td><b>{{selectedTxn.discountAmount  | Currency:'4'}}</b></td>
@@ -222,10 +222,10 @@
                 </tr>
                 <tr *ngIf="isDeposit==true"> 
                   <!-- <th>Transaction Type</th> -->
-                  <th colspan="2">Patient Name</th>
-                  <th>Invoice Num.</th>
-                  <th colspan="2">Payment Mode</th>
-                  <th colspan="2">Amount</th>
+                  <th colspan="2">{{ 'ACCOUNTING.PATIENT_NAME' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.INVOICE_NUM' | translate }}</th>
+                  <th colspan="2">{{ 'ACCOUNTING.PAYMENT_MODE' | translate }}</th>
+                  <th colspan="2">{{ 'ACCOUNTING.AMOUNT' | translate }}</th>
                 </tr>
                 <tr *ngFor="let row of txnDepositData"> 
                   <!-- <td>{{row.TransactionType}}</td> -->
@@ -238,7 +238,7 @@
                   <td></td>
                   <td td colspan="2"></td>
                   <td></td>
-                  <td td colspan="2"><b>Total</b></td>
+                  <td td colspan="2"><b>{{ 'ACCOUNTING.TOTAL' | translate }}</b></td>
                   <td td colspan="2"><b>{{selectedTxn.depositTotal | Currency:'4'}}</b></td>
                 </tr>
               </tbody>
@@ -248,15 +248,15 @@
             <table class="table table-striped table-hover" style="background-color:initial;margin-top:10px">
               <thead>
                 <tr>
-                  <th *ngIf="selectedTxn.TransactionType =='PHRMCashGoodReceipt1' || selectedTxn.TransactionType =='PHRMCashGoodReceipt2' || selectedTxn.TransactionType  =='PHRMCashReturnToSupplier'">Supplier Name</th>
-                  <th *ngIf="selectedTxn.TransactionType =='PHRMCashInvoice1' || selectedTxn.TransactionType =='PHRMCashInvoice2' || selectedTxn.TransactionType =='PHRMCashInvoiceReturn' || selectedTxn.TransactionType =='PHRMDispatchToDept'">Patient Name</th>
+                  <th *ngIf="selectedTxn.TransactionType =='PHRMCashGoodReceipt1' || selectedTxn.TransactionType =='PHRMCashGoodReceipt2' || selectedTxn.TransactionType  =='PHRMCashReturnToSupplier'">{{ 'ACCOUNTING.SUPPLIER_NAME' | translate }}</th>
+                  <th *ngIf="selectedTxn.TransactionType =='PHRMCashInvoice1' || selectedTxn.TransactionType =='PHRMCashInvoice2' || selectedTxn.TransactionType =='PHRMCashInvoiceReturn' || selectedTxn.TransactionType =='PHRMDispatchToDept'">{{ 'ACCOUNTING.PATIENT_NAME' | translate }}</th>
                   <!-- <th *ngIf="selectedTxn.TransactionType !='PHRMCashReturnToSupplier'">Invoice No</th>  -->
-                  <th *ngIf="selectedTxn.TransactionType =='PHRMCashInvoice1' || selectedTxn.TransactionType =='PHRMCashInvoice2' || selectedTxn.TransactionType =='PHRMCashInvoiceReturn' || selectedTxn.TransactionType =='PHRMCashGoodReceipt1' || selectedTxn.TransactionType =='PHRMCashGoodReceipt2'">Invoice No</th>
-                  <th>Item Name</th>
-                  <th>Item Amount</th>
-                  <th>Tax Amount</th>
-                  <th>Discount Amount</th>
-                  <th>Total Amount</th>
+                  <th *ngIf="selectedTxn.TransactionType =='PHRMCashInvoice1' || selectedTxn.TransactionType =='PHRMCashInvoice2' || selectedTxn.TransactionType =='PHRMCashInvoiceReturn' || selectedTxn.TransactionType =='PHRMCashGoodReceipt1' || selectedTxn.TransactionType =='PHRMCashGoodReceipt2'">{{ 'ACCOUNTING.INVOICE_NO' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.ITEM_NAME' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.ITEM_AMOUNT' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.TAX_AMOUNT' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.DISCOUNT_AMOUNT' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.TOTAL_AMOUNT' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -277,7 +277,7 @@
                   <td></td>
                   <td *ngIf=" selectedTxn.TransactionType =='PHRMCashInvoice1' || selectedTxn.TransactionType =='PHRMCashInvoice2' || selectedTxn.TransactionType =='PHRMCashInvoiceReturn' || selectedTxn.TransactionType =='PHRMCashGoodReceipt1' || selectedTxn.TransactionType =='PHRMCashGoodReceipt2' || selectedTxn.TransactionType =='PHRMDispatchToDept'"></td>
                   <td *ngIf="selectedTxn.TransactionType =='PHRMCashInvoice1' || selectedTxn.TransactionType =='PHRMCashInvoice2' || selectedTxn.TransactionType =='PHRMCashInvoiceReturn' || selectedTxn.TransactionType =='PHRMCashGoodReceipt1' || selectedTxn.TransactionType =='PHRMCashGoodReceipt2'"></td>
-                  <td><b>Total</b></td>
+                  <td><b>{{ 'ACCOUNTING.TOTAL' | translate }}</b></td>
                   <td><b>{{selectedTxn.taxTotal | Currency:'4'}}</b></td>
                   <td><b>{{selectedTxn.discountAmount | Currency:'4'}}</b></td>
                   <td><b>{{selectedTxn.amountTotal | Currency:'4'}}</b></td>
@@ -289,12 +289,12 @@
             <table class="table table-striped table-hover table-bordered" style="background-color:initial;margin-top:10px" border="1">
               <thead>
                 <tr>
-                  <th>Transaction Type</th>
-                  <th>Employee Name</th>
+                  <th>{{ 'ACCOUNTING.TRANSACTION_TYPE' | translate }}</th>
+                  <th>{{ 'ACCOUNTING.EMPLOYEE_NAME' | translate }}</th>
                   <th> <table style="width: 100%;">
                       <tr>
-                        <th><b>ItemName</b> </th>
-                        <th><b> Amount</b> </th>
+                        <th><b>{{ 'ACCOUNTING.ITEM_NAME' | translate }}</b> </th>
+                        <th><b> {{ 'ACCOUNTING.AMOUNT' | translate }}</b> </th>
                       </tr>
                     </table>
                   </th>
@@ -317,8 +317,8 @@
         </div>
         <div class="col-md-12" style="padding-bottom: 18px;" *ngIf="showDetailsPopUp">
           <div class="form-actions">
-            <button class="btn btn-primary hidden-print" (click)="Print()" value="Print" title="print page">Print<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i></button>
-            <button *ngIf="showExportbtn" class="btn btn-primary hidden-print" (click)="ExportToExcel('printpage')" value="" title="export to excel">Export<i class="fa fa-file-excel-o" style="margin-left:10px;"></i></button>
+            <button class="btn btn-primary hidden-print" (click)="Print()" value="Print" title="print page">{{ 'ACCOUNTING.PRINT' | translate }}<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i></button>
+            <button *ngIf="showExportbtn" class="btn btn-primary hidden-print" (click)="ExportToExcel('printpage')" value="" title="export to excel">{{ 'ACCOUNTING.EXPORT' | translate }}<i class="fa fa-file-excel-o" style="margin-left:10px;"></i></button>
           </div>
         </div>
       </div>

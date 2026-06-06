@@ -1,4 +1,4 @@
-﻿<style>
+<style>
     .noPadding {
         padding-left: 2px !important;
         padding-right: 2px !important;
@@ -29,19 +29,19 @@
 <div>
     <div class="caption custom-caption top-report-section">
         <h3> <i class="fa fa-book"></i>
-            <span class="caption-subject" style="margin-right: 10px;">Cash Flow Report</span>
+            <span class="caption-subject" style="margin-right: 10px;">{{ 'ACCOUNTING.CASH_FLOW_REPORT' | translate }}</span>
         </h3>
 
         <label class="mt-checkbox mt-checkbox-outline" style="font-weight:bold;color:green;margin: 5px;">
             <input name="isledgerlevel" type="checkbox" value="Ledger Level" [(ngModel)]="IsLedgerLevel">
-            <span></span> Ledger Level
+            <span></span> {{ 'ACCOUNTING.LEDGER_LEVEL' | translate }}
         </label>
     </div>
     <div class="col-md-12 col-xs-12 col-sm-12">
         <div class="row" style="background: #bcbcbc; padding-top: 0px;">
             <div class="col-md-7 col-xs-12" style="margin-right: -45px;">
                 <div class="form-group">
-                    <label class="control-label mt10">Select Fiscal Year<b class="color-red">
+                    <label class="control-label mt10">{{ 'ACCOUNTING.SELECT_FISCAL_YEAR' | translate }}<b class="color-red">
                             *</b><b style="float:right;">:</b></label>
 
                     <div>
@@ -64,7 +64,7 @@
                 <div class="form-group">
                     <button class="btn green btn-success" type="button" (click)="LoadData()" [disabled]="btndisabled">
                         <i class="fa fa-refresh"></i>
-                        Load
+                        {{ 'ACCOUNTING.LOAD' | translate }}
                     </button>
                 </div>
             </div>
@@ -72,7 +72,7 @@
     </div>
     <div>
         <customer-header style="display:none;padding:0px" id="headerForPrint"
-                         [header-title]="'Cash Flow Report'">
+                         [header-title]="'ACCOUNTING.CASH_FLOW_REPORT' | translate">
         </customer-header>
     </div>
     <div class="row">
@@ -82,7 +82,7 @@
                     <table class="table table-bordered table-hover" style="background-color:initial;margin-top:10px">
                         <thead>
                             <tr style="background-color: #599be0;color: white;">
-                                <th colspan="4" style="text-align:center;font-size:16px"><b>INFLOW</b></th>
+                                <th colspan="4" style="text-align:center;font-size:16px"><b>{{ 'ACCOUNTING.INFLOW' | translate }}</b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,14 +102,14 @@
                         </tbody>
                     </table>
                 </div>
-                <h4 *ngIf="!InflowData.length">No Inflow Record Found!</h4>
+                <h4 *ngIf="!InflowData.length">{{ 'ACCOUNTING.NO_INFLOW_RECORD_FOUND' | translate }}</h4>
             </div>
             <div class="col-md-10">
                 <div class="table-responsive" *ngIf="OutflowData.length>0">
                     <table class="table table-bordered table-hover" style="background-color:initial;margin-top:10px">
                         <thead>
                             <tr style="background-color: #599be0;color: white;">
-                                <th colspan="4" style="text-align:center;font-size:16px"><b>OUTFLOW</b></th>
+                                <th colspan="4" style="text-align:center;font-size:16px"><b>{{ 'ACCOUNTING.OUTFLOW' | translate }}</b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,7 +129,7 @@
                         </tbody>
                     </table>
                 </div>
-                <h4 *ngIf="OutflowData.length == 0">No Revenue Record Found!</h4>
+                <h4 *ngIf="OutflowData.length == 0">{{ 'ACCOUNTING.NO_REVENUE_RECORD_FOUND' | translate }}</h4>
             </div>
             <div class="col-md-10">
                 <div class="table-responsive">
@@ -142,16 +142,16 @@
                         </tbody>
                     </table>
                 </div>
-                <h4 *ngIf="cashflowData.length == 0">No Revenue Record Found!</h4>
+                <h4 *ngIf="cashflowData.length == 0">{{ 'ACCOUNTING.NO_REVENUE_RECORD_FOUND' | translate }}</h4>
             </div>
 
         </div>
         <div class="col-md-12" style="padding-bottom: 18px;" *ngIf="showResult">
             <div class="form-actions">
-                <button class="btn green btn-success hidden-print" (click)="Print('printpage')" value="Print" title="print page">Print<i
+                <button class="btn green btn-success hidden-print" (click)="Print('printpage')" value="Print" title="print page">{{ 'ACCOUNTING.PRINT' | translate }}<i
                        class="glyphicon glyphicon-print" style="margin-left:10px;"></i></button>
                 <button *ngIf="showExportbtn" class="btn green btn-succcess hidden-print" (click)="ExportToExcel('printpage')" value=""
-                        title="export to excel">Export<i class="fa fa-file-excel-o" style="margin-left:10px;"></i></button>
+                        title="export to excel">{{ 'ACCOUNTING.EXPORT' | translate }}<i class="fa fa-file-excel-o" style="margin-left:10px;"></i></button>
             </div>
         </div>
     </div>

@@ -75,7 +75,7 @@
 <div>
     <div class="caption custom-caption top-report-section">
         <h3><i class="fa fa-book"></i>
-            <span class="caption-subject">Group Statement Report</span>
+            <span class="caption-subject">{{ 'ACCOUNTING.GROUP_STATEMENT_REPORT' | translate }}</span>
         </h3>
     </div>
     <div class="col-md-12 col-xs-12 col-sm-12">
@@ -83,20 +83,20 @@
 
             <div class="col-md-7 col-xs-12" style="margin-right: -45px;">
                 <div class="form-group">
-                    <label class="control-label" style="margin-left: 5px;">Select Fiscal Year<b class="color-red">
+                    <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.SELECT_FISCAL_YEAR' | translate }}<b class="color-red">
                             *</b><b style="float:right;">:</b></label>
                     <div>
                         <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true"
-                                              (fiscalYearDate)="selectDate($event)"> </fiscal-year-calendar>
+                                               (fiscalYearDate)="selectDate($event)"> </fiscal-year-calendar>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-xs-12" style="margin-right: -15px; padding: 5px 5px !important;margin-top:8px">
-                <label class="control-label no-padding">Select Group<b class="color-red"> *</b><b
+                <label class="control-label no-padding">{{ 'ACCOUNTING.SELECT_GROUP' | translate }}<b class="color-red"> *</b><b
                        style="float:right;">:</b></label><br>
                 <div>
                     <input danphe-auto-complete class="form-control" [(ngModel)]="selectedLedgerGroup"
-                           [source]="ledgergroupList" placeholder="select ledger group"
+                           [source]="ledgergroupList" [placeholder]="'ACCOUNTING.SELECT_LEDGER_GROUP' | translate"
                            display-property-name="LedgerGroupName" value-property-name="LedgerGroupName"
                            (valueChanged)="AssignSelectedLedgerGroup()" [list-formatter]="LedgerGroupListFormatter"
                            max-num-list="20" onclick="this.select()" style="background-color: azure;"
@@ -108,14 +108,14 @@
                     <br>
                     <button class="btn green btn-success" type="button" (click)="GetGroupStatementRpt()" [disabled]="btndisabled">
                         <i class="fa fa-refresh"></i>
-                        Load
+                        {{ 'ACCOUNTING.LOAD' | translate }}
                     </button>
                 </div>
             </div>
         </div>
         <div>
             <customer-header style="display:none;padding:0px" id="headerForPrint"
-                             [header-title]="'Group Statement Report'">
+                             [header-title]="'ACCOUNTING.GROUP_STATEMENT_REPORT' | translate">
             </customer-header>
         </div>
         <div class="row">
@@ -125,12 +125,12 @@
                            border="1" id="exportTable_groupstatement">
                         <thead>
                             <tr>
-                                <th style="text-align: center;width: 40%;"><b>Particulars</b></th>
-                                <th style="text-align: right;"><b>Opening</b></th>
+                                <th style="text-align: center;width: 40%;"><b>{{ 'ACCOUNTING.PARTICULARS' | translate }}</b></th>
+                                <th style="text-align: right;"><b>{{ 'ACCOUNTING.OPENING' | translate }}</b></th>
                                 <th><b></b></th>
-                                <th style="text-align: right;"><b>Debit</b></th>
-                                <th style="text-align: right;"><b>Credit</b></th>
-                                <th style="text-align: right;"><b>Closing</b></th>
+                                <th style="text-align: right;"><b>{{ 'ACCOUNTING.DEBIT' | translate }}</b></th>
+                                <th style="text-align: right;"><b>{{ 'ACCOUNTING.CREDIT' | translate }}</b></th>
+                                <th style="text-align: right;"><b>{{ 'ACCOUNTING.CLOSING' | translate }}</b></th>
                                 <th><b></b></th>
                             </tr>
                         </thead>
@@ -170,7 +170,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td class="trialbal-footer"><b>Grand Total</b></td>
+                                <td class="trialbal-footer"><b>{{ 'ACCOUNTING.GRAND_TOTAL' | translate }}</b></td>
 
                                 <td class="trialbal-footer" style="font-weight:bold; text-align:right;">
                                     {{reportDataGrandTotal.OpeningTotal | Currency:'4'}}
@@ -199,11 +199,11 @@
                 <div style="padding-bottom: 18px; margin-top: 15px;">
                     <div class="form-actions">
                         <button class="btn green btn-success hidden-print" (click)="Print('print_groupstatement')" value="Print"
-                                title="print page">Print<i class="glyphicon glyphicon-print"
+                                title="print page">{{ 'ACCOUNTING.PRINT' | translate }}<i class="glyphicon glyphicon-print"
                                style="margin-left:10px;"></i></button>
                         <button *ngIf="showExportbtn" class="btn green btn-success hidden-print"
                                 (click)="ExportToExcel('print_groupstatement')" value=""
-                                title="export to excel">Export<i class="fa fa-file-excel-o"
+                                title="export to excel">{{ 'ACCOUNTING.EXPORT' | translate }}<i class="fa fa-file-excel-o"
                                style="margin-left:10px;"></i></button>
                     </div>
                 </div>

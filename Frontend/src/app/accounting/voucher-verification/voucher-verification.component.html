@@ -9,14 +9,14 @@
 <div>
     <div class="caption custom-caption top-report-section">
         <h3><i class="fa fa-book"></i>
-            <span class="caption-subject">Voucher Verification</span>
+            <span class="caption-subject">{{ 'ACCOUNTING.VOUCHER_VERIFICATION' | translate }}</span>
         </h3>
     </div>
     <div class="col-md-12 col-xs-12 col-sm-12">
         <div class="row" style="background: #bcbcbc; padding-top: 15px;">
             <div class="col-md-7 col-xs-12" style="margin-right: -45px;">
                 <div class="form-group">
-                    <label class="control-label" style="margin-left: 5px;">Select Fiscal Year<b class="color-red"> *</b><b
+                    <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.SELECT_FISCAL_YEAR' | translate }}<b class="color-red"> *</b><b
                            style="float:right;">:</b></label>
                     <div>
                         <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true" (fiscalYearDate)="selectDate($event)">
@@ -26,20 +26,20 @@
             </div>
             <div class="col-md-2 col-xs-12" style="margin-right: 10px; margin-top: 6px;">
                 <div class="form-group">
-                    <label class="control-label">Voucher Type<b class="color-red"> *</b><b style="float:right;">:</b></label>
+                    <label class="control-label">{{ 'ACCOUNTING.VOUCHER_TYPE' | translate }}<b class="color-red"> *</b><b style="float:right;">:</b></label>
                     <div>
                         <select [(ngModel)]="selVoucher.VoucherId" class="form-control" id="select_voucherverification_voucherId"
                                 (ngModelChange)="AssignVoucher()"
                                 style="height:30px;">
-                            <option value={{-1}} selected>— All —</option>
+                            <option value={{-1}} selected>— {{ 'ACCOUNTING.ALL' | translate }} —</option>
                             <option *ngFor="let v of voucherList" value={{v.VoucherId}}>{{v.VoucherName}}</option>
                         </select>
-                        <div class="color-red font-sm" *ngIf="!selVoucher.VoucherId"> please select voucher.</div>
+                        <div class="color-red font-sm" *ngIf="!selVoucher.VoucherId"> {{ 'ACCOUNTING.PLEASE_SELECT_VOUCHER_ERR' | translate }}</div>
                     </div>
                 </div>
             </div>
             <div class="col-md-2 col-xs-12" style="margin-right: -15px;margin-top:6px">
-                <label class="control-label no-padding">Select Module<b class="color-red"> *</b><b style="float:right;">:</b></label>
+                <label class="control-label no-padding">{{ 'ACCOUNTING.SELECT_MODULE' | translate }}<b class="color-red"> *</b><b style="float:right;">:</b></label>
                 <div>
                     <select [(ngModel)]="sectionId" id="select_voucherverification_sectionid" class="form-control"
                             [ngModelOptions]="{standalone: true}"
@@ -54,7 +54,7 @@
                     <br>
                     <button class="btn blue" type="button" [disabled]="btndisabled" (click)="GetTxnList()">
                         <i class="fa fa-refresh"></i>
-                        Load
+                        {{ 'ACCOUNTING.LOAD' | translate }}
                     </button>
                 </div>
             </div>

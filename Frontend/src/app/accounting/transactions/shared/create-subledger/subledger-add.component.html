@@ -5,14 +5,14 @@
                 <div class="modelbox-div clearfix">
                     <div class="caption lb-caption">
                         <h3>
-                            <span>Create SubLedger</span>
+                            <span>{{ 'ACCOUNTING.CREATE_SUB_LEDGER' | translate }}</span>
                         </h3>
-                        <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                        <a class="btn btn-danger" (click)="Close()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
                     </div>
                     <form class="form-horizontal hm-form">
                         <div class="form-body">
                             <div class="form-group">
-                                <label class="control-label col-md-5">Ledger<sup>*</sup><b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'ACCOUNTING.LEDGER' | translate }}<sup>*</sup><b>:</b></label>
                                 <div class="col-md-7">
                                     <!-- <input class="form-control" maxlength="30" type="text"
                                            id="LedgerName" [(ngModel)]="LedgerForSubLedger.LedgerName"
@@ -22,26 +22,26 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">SubLedgerName<sup>*</sup><b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'ACCOUNTING.SUB_LEDGER_NAME' | translate }}<sup>*</sup><b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" maxlength="30" type="text"
                                            id="SubLedgerName" [(ngModel)]="SelectedSubledger.SubLedgerName"
                                            [ngModelOptions]="{standalone: true}"
-                                           placeholder="SubLedgerName" />
+                                           placeholder="{{ 'ACCOUNTING.SUB_LEDGER_NAME' | translate }}" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Opening Balance<b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'ACCOUNTING.OPENING_BALANCE' | translate }}<b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" maxlength="30" type="number"
                                            id="VoucherCode" [(ngModel)]="SelectedSubledger.OpeningBalance"
                                            (wheel)="coreService.PreventNumberChangeOnScroll($event)"
                                            [ngModelOptions]="{standalone: true}"
-                                           placeholder="Opening Balance" />
+                                           placeholder="{{ 'ACCOUNTING.OPENING_BALANCE' | translate }}" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Opening Balance Type<b>:</b> </label>
+                                <label class="control-label col-md-5">{{ 'ACCOUNTING.OPENING_BALANCE_TYPE' | translate }}<b>:</b> </label>
                                 <div class="col-md-7">
                                     <div class="input-group">
                                         <div class="icheck-inline">
@@ -50,7 +50,7 @@
                                                        [(ngModel)]="Dr" [ngModelOptions]="{standalone: true}"
                                                        (click)="ChangeOpeningBalType($event)"
                                                        type="checkbox" />
-                                                Dr
+                                                {{ 'ACCOUNTING.DR' | translate }}
                                                 <span></span>
                                             </label>
                                             <label class="mt-checkbox mt-checkbox-outline not-mapped not-mapped-outline">
@@ -58,7 +58,7 @@
                                                        [(ngModel)]="Cr" [ngModelOptions]="{standalone: true}"
                                                        (click)="ChangeOpeningBalType($event)"
                                                        type="checkbox" />
-                                                Cr
+                                                {{ 'ACCOUNTING.CR' | translate }}
                                                 <span></span>
                                             </label>
                                         </div>
@@ -67,16 +67,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-5">Description<sup>*</sup><b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'ACCOUNTING.DESCRIPTION' | translate }}<sup>*</sup><b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" maxlength="50" type="text"
                                            id="Description" [(ngModel)]="SelectedSubledger.Description"
                                            [ngModelOptions]="{standalone: true}"
-                                           placeholder="Description" />
+                                           placeholder="{{ 'ACCOUNTING.DESCRIPTION' | translate }}" />
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <input type="button" class="btn green btn-success margin-7-hr" (click)="AddSubLedger()" value="Add SubLedger" />
+                                <input type="button" class="btn green btn-success margin-7-hr" (click)="AddSubLedger()" value="{{ 'ACCOUNTING.ADD_SUB_LEDGER' | translate }}" />
                             </div>
                         </div>
                     </form>

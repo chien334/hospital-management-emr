@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-md-5" style="border: 1px solid grey; margin-left: 10px; padding: 10px;">
         <div style="background: #eeeae3; padding: 5px;">
-            <label style="color: red; font-size: large;"> <b> Fiscal year details </b></label>
+            <label style="color: red; font-size: large;"> <b> {{ 'ACCOUNTING.FISCAL_YEAR_DETAILS' | translate }} </b></label>
         </div>
         <div class="row">
             <br>
             <div class="col-md-4">
-                <label> <b> Fiscal Year Name : </b> </label>
+                <label> <b> {{ 'ACCOUNTING.FISCAL_YEAR_NAME' | translate }} : </b> </label>
             </div>
             <div class="col-md-4">
                 <select [(ngModel)]="fiscalYearId" (ngModelChange)="onFiscalYearChange()">
@@ -18,7 +18,7 @@
         <div class="row">
             <br>
             <div class="col-md-4">
-                <label><b> Starting Date : </b> </label>
+                <label><b> {{ 'ACCOUNTING.STARTING_DATE' | translate }} : </b> </label>
             </div>
             <div class="col-md-4">
                 <b> AD </b> {{activeFiscalYear.StartDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
@@ -29,7 +29,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <label> <b> End Date : </b></label>
+                <label> <b> {{ 'ACCOUNTING.END_DATE' | translate }} : </b></label>
             </div>
             <div class="col-md-4">
                 <b> AD </b> {{ activeFiscalYear.EndDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
@@ -40,11 +40,11 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <label> <b> Account Closed Status : </b></label>
+                <label> <b> {{ 'ACCOUNTING.ACCOUNT_CLOSED_STATUS' | translate }} : </b></label>
             </div>
             <div class="col-md-4">
-                <label *ngIf="activeFiscalYear.IsClosed == true "> Closed </label>
-                <label *ngIf="activeFiscalYear.IsClosed !== true "> Not Closed </label>
+                <label *ngIf="activeFiscalYear.IsClosed == true "> {{ 'ACCOUNTING.CLOSED' | translate }} </label>
+                <label *ngIf="activeFiscalYear.IsClosed !== true "> {{ 'ACCOUNTING.NOT_CLOSED' | translate }} </label>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
             <div class="col-md-12" [rbac-permission]="{'name':'accounting-closure-btn','actionOnInvalid':'hidden'}">
                 <br>
                 <input type="button" class="btn btn-primary" [disabled]="disablebtn" (click)="openPopup()"
-                       value="Close Account" style="float: right;" />
+                       value="{{ 'ACCOUNTING.CLOSE_ACCOUNT' | translate }}" style="float: right;" />
             </div>
         </div>
     </div>
@@ -69,21 +69,19 @@
             <div class="col-md-4" style="margin-left: 35%;margin-top: 15%;">
                 <div class="modelbox-div">
                     <div style="text-align: center;">
-                        <b style="color: red;"> Are you sure to close account for fiscal year
-                            {{ activeFiscalYear.FiscalYearName }} ? </b>
+                        <b style="color: red;"> {{ 'ACCOUNTING.CLOSE_ACCOUNT_CONFIRMATION' | translate: {fiscalYearName: activeFiscalYear.FiscalYearName} }} </b>
 
                     </div>
                     <div>
                         <br>
-                        <label> <b style="color: red;"> Note : </b> Account closing will forward ledger closing balance
-                            as opening balance for next fiscal year </label>
+                        <label> {{ 'ACCOUNTING.CLOSE_ACCOUNT_NOTE' | translate }} </label>
                     </div>
                     <div class="row" style="text-align: center;">
                         <div>
                             <br>
                             <input type="button" [disabled]="disablebtn" class="btn btn-primary"
-                                   (click)="postAccountClosure()" value="Yes" />
-                            <input type="button" class="btn btn-primary" (click)="close()" value="No" />
+                                   (click)="postAccountClosure()" value="{{ 'YES' | translate }}" />
+                            <input type="button" class="btn btn-primary" (click)="close()" value="{{ 'NO' | translate }}" />
                         </div>
                     </div>
                 </div>

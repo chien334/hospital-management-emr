@@ -31,3 +31,22 @@ Use codegraph for **structural** questions — what calls what, what would break
 ### If `.codegraph/` doesn't exist
 
 The MCP server returns "not initialized." Ask the user: *"I notice this project doesn't have CodeGraph initialized. Want me to run `codegraph init -i` to build the index?"*
+
+## RTK - Rust Token Killer
+
+Always prefix shell commands with `rtk` (or its absolute path `/Users/macbbook/.local/bin/rtk` if not in PATH) to minimize token consumption.
+
+Examples:
+- `rtk git status`
+- `rtk cargo test`
+- `rtk ls src/`
+- `rtk grep "pattern" src/`
+- `rtk find "*.rs" .`
+- `rtk docker ps`
+- `rtk gh pr list`
+
+If `rtk` command is not found in the current session's PATH:
+Use `/Users/macbbook/.local/bin/rtk` directly:
+- `/Users/macbbook/.local/bin/rtk git status`
+- `/Users/macbbook/.local/bin/rtk ls`
+

@@ -11,7 +11,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12 modelbox-div">
                     <div class="row">
                         <div id="printpageTransactionView">
-                            <a class="btn btn-danger hidden-print rt_close_btn" (click)="Close()" title="Cancel">X</a>
+                            <a class="btn btn-danger hidden-print rt_close_btn" (click)="Close()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
                             <new-voucher-entry (callback-function)="Close($event)"></new-voucher-entry>
                         </div>
                     </div>

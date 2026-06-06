@@ -31,7 +31,7 @@
             <div class="row">
               <div id="additionalTransactionView">
                 <a class="btn btn-danger hidden-print rt_close_btn" style="float:right; border-radius:40%" (click)="CloseAdditionalTxnPopUp()"
-                   title="Cancel">X</a>
+                   title="{{ 'COMMON.CANCEL' | translate }}">X</a>
                 <!-- <customer-header [header-title]="selLedger.LedgerName + ' Ledger'+ '(' + selLedger.Code +')'"></customer-header> -->
                 <div class="row">
                   <div class="col-md-12 col-xs-12">
@@ -43,7 +43,7 @@
                           <table style="width:100% !important;">
                             <tr>
 
-                              <td style="width: 10%;"><b>Bank Name :</b> </td>
+                              <td style="width: 10%;"><b>{{ 'ACCOUNTING.BANK_NAME' | translate }} :</b> </td>
                               <td style="width: 50%;"> {{selLedger.LedgerName}} </td>
 
                             </tr>
@@ -54,19 +54,19 @@
                         <div class="col-md-12" style="overflow-y:auto">
                           <table class="additionalTxn table  table-bordered" border="1" id="additionalTransactionView">
                             <tr>
-                              <th>DrCr</th>
-                              <th>Bank Reconciliation Category</th>
-                              <th>Amount</th>
-                              <th>Description</th>
-                              <th>Action</th>
+                              <th>{{ 'ACCOUNTING.DR_CR' | translate }}</th>
+                              <th>{{ 'ACCOUNTING.BANK_RECONCILIATION_CATEGORY' | translate }}</th>
+                              <th>{{ 'ACCOUNTING.AMOUNT' | translate }}</th>
+                              <th>{{ 'ACCOUNTING.DESCRIPTION' | translate }}</th>
+                              <th>{{ 'ACCOUNTING.ACTION' | translate }}</th>
                             </tr>
                             <tr>
                               <td>
                                 <select name="additional_txn_DrCr" id="additional_txn_DrCr" class="form-control"
                                         [(ngModel)]="bankReconciliationAdditionalTxn.DrCr"
                                         (keydown.enter)="FocusOnInputField('additional_txn_BankReconciliationCategory')">
-                                  <option [ngValue]=true>Dr</option>
-                                  <option [ngValue]=false>Cr</option>
+                                  <option [ngValue]=true>{{ 'ACCOUNTING.DR' | translate }}</option>
+                                  <option [ngValue]=false>{{ 'ACCOUNTING.CR' | translate }}</option>
                                 </select>
                               </td>
                               <td>
@@ -93,21 +93,21 @@
                           </table>
                           <div style="float: right; margin: 15px  15px;">
                             <button class="btn green btn-success btn-sm" id="btn_BankReconcilliation_SaveAdditionalTxn" (click)="SaveAdditionalTxn()">
-                              OK
+                              {{ 'OK' | translate }}
                             </button>
 
                             <button class="btn orange btn-success btn-sm" id="btn_BankReconcilliation_DiscardAdditionTxn"
                                     (click)="DiscardAdditionalTxn()">
-                              Discard
+                              {{ 'DISCARD' | translate }}
                             </button>
                           </div>
                           <table class="additionalTxn table  table-bordered">
                             <tr>
-                              <th>Bank Reconciliation Category</th>
-                              <th>Debit Amount</th>
-                              <th>Credit Amount</th>
-                              <th>Description</th>
-                              <th>Action</th>
+                              <th>{{ 'ACCOUNTING.BANK_RECONCILIATION_CATEGORY' | translate }}</th>
+                              <th>{{ 'ACCOUNTING.DEBIT_AMOUNT' | translate }}</th>
+                              <th>{{ 'ACCOUNTING.CREDIT_AMOUNT' | translate }}</th>
+                              <th>{{ 'ACCOUNTING.DESCRIPTION' | translate }}</th>
+                              <th>{{ 'ACCOUNTING.ACTION' | translate }}</th>
                             </tr>
                             <tr *ngFor="let txn of extraTransactions;let i = index;">
                               <td>{{ txn.CategoryName }}</td>
@@ -146,11 +146,11 @@
       <div class="col-md-3 col-xs-12 noPadding">
         <div class="form-group">
 
-          <label class="control-label"> <b>Bank Name</b> <b class="color-red"> *</b></label>
+          <label class="control-label"> <b>{{ 'ACCOUNTING.BANK_NAME' | translate }}</b> <b class="color-red"> *</b></label>
           <div style="margin-top: 5px;">
             <!-- <span *ngIf="selLedger" style="float: left !important; margin-top: 5px;
             margin-right: 5px;">{{selLedger.Code}}</span> -->
-            <input danphe-auto-complete class="form-control" [(ngModel)]="selLedger" [source]="ledgerList" placeholder="Ledger Name"
+            <input danphe-auto-complete class="form-control" [(ngModel)]="selLedger" [source]="ledgerList" placeholder="{{ 'ACCOUNTING.LEDGER_NAME' | translate }}"
                    display-property-name="LedgerName" value-property-name="LedgerName" [list-formatter]="LedgerListFormatter"
                    max-num-list="15" [grid-sort]="'LedgerName'" onClick="this.select();"
                    style="height: 30px; width: 90% !important;" />
@@ -159,7 +159,7 @@
       </div>
       <div class="col-md-6 col-xs-12 noPadding">
         <div class="form-group">
-          <label class="control-label" style="margin-left: 5px;">Select Fiscal Year<b class="color-red"> *</b><b
+          <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.SELECT_FISCAL_YEAR' | translate }}<b class="color-red"> *</b><b
                style="float:right;">:</b></label>
           <div>
             <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true"
@@ -171,37 +171,37 @@
         <div class="form-group">
           <br>
           <label class="control-label" style="margin-right: 15px;">
-            Status :
+            {{ 'ACCOUNTING.STATUS' | translate }} :
           </label>
           <input type="checkbox" id="reconsile_status_open" [(ngModel)]="reconcile_Status_Open" name="reconcile_status_open" checked>
-          <label for="reconsile_status_open" style="margin:0px 15px 0px 5px">Open</label>
-          <input type="checkbox" id="reconsile_status_close" [(ngModel)]="reconcile_Status_Close" name="reconsile_status_close">
-          <label for="reconsile_status_close" style="margin-left: 5px;">Close</label>
+          <label for="reconsile_status_open" style="margin:0px 15px 0px 5px">{{ 'ACCOUNTING.OPEN' | translate }}</label>
+          <input type="checkbox" id="reconsile_status_close" [(ngModel)]="reconcile_Status_Close" name="reconcile_status_close">
+          <label for="reconsile_status_close" style="margin-left: 5px;">{{ 'CLOSE' | translate }}</label>
         </div>
       </div>
     </div>
     <div class="row" style="margin-bottom: 10px;">
       <div class="col-md-1">
-        <label>Mode:</label>
+        <label>{{ 'ACCOUNTING.MODE' | translate }}:</label>
       </div>
       <div class="col-md-2">
         <input danphe-auto-complete class="form-control" [(ngModel)]="selectedVoucher" [source]="voucherTypeList"
-               placeholder="Select Mode / VoucherType"
+               placeholder="{{ 'ACCOUNTING.SELECT_MODE_VOUCHER_TYPE' | translate }}"
                display-property-name="VoucherName" value-property-name="VoucherName" [list-formatter]="VoucherListFormatter"
                max-num-list="15" [grid-sort]="'VoucherName'" onClick="this.select();" />
       </div>
       <div class="col-md-3">
-        <label>Bank-Opening Balance:</label>
+        <label>{{ 'ACCOUNTING.BANK_OPENING_BALANCE' | translate }}:</label>
         <input type="number" [(ngModel)]="bank_Opening_Balance" onclick="this.select()" class="form-control" style="float: right;width: 50%;">
       </div>
       <div class="col-md-3">
-        <label>Bank-Closing Balance:</label>
+        <label>{{ 'ACCOUNTING.BANK_CLOSING_BALANCE' | translate }}:</label>
         <input type="number" [(ngModel)]="bank_Closing_Balance" onclick="this.select()" class="form-control" style="float: right; width: 50%;">
       </div>
       <div class="col-md-1">
         <button class="btn green btn-success btn-sm" (click)="GetTxnList()">
           <i class="fa fa-search"></i>
-          Show Details
+          {{ 'ACCOUNTING.SHOW_DETAILS' | translate }}
         </button>
       </div>
     </div>
@@ -212,16 +212,16 @@
       </div> -->
       <div class="col-md-12 col-xs-12" style="padding: 0;">
         <div style="float: right; margin-bottom: 10px;">
-          <button class="btn green btn-success btn-sm hidden-print" (click)="ShowAdditionalTransactions()"> Additional Transactions </button>
-          <button class="btn green btn-success btn-sm hidden-print" (click)="PrintTxnTable('exportTable')" value="Print" title="print page">
-            Print<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i>
+          <button class="btn green btn-success btn-sm hidden-print" (click)="ShowAdditionalTransactions()"> {{ 'ACCOUNTING.ADDITIONAL_TRANSACTIONS' | translate }} </button>
+          <button class="btn green btn-success btn-sm hidden-print" (click)="PrintTxnTable('exportTable')" value="Print" title="{{ 'ACCOUNTING.PRINT_PAGE_TOOLTIP' | translate }}">
+            {{ 'PRINT' | translate }}<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i>
           </button>
           <button class="btn green btn-success btn-sm hidden-print" (click)="ExportToExcel('exportTable')" value=""
-                  title="export to excel">
-            Export<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
+                  title="{{ 'ACCOUNTING.EXPORT_TO_EXCEL_TOOLTIP' | translate }}">
+            {{ 'ACCOUNTING.EXPORT' | translate }}<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
           </button>
-          <button class="btn green btn-success btn-sm hidden-print" id="btn_BankReconcilliation_Preview" (click)="ViewDetails()"> Preview </button>
-          <button class="btn green btn-success btn-sm hidden-print" (click)="Save()"> Reconcile </button>
+          <button class="btn green btn-success btn-sm hidden-print" id="btn_BankReconcilliation_Preview" (click)="ViewDetails()"> {{ 'ACCOUNTING.PREVIEW' | translate }} </button>
+          <button class="btn green btn-success btn-sm hidden-print" (click)="Save()"> {{ 'ACCOUNTING.RECONCILE' | translate }} </button>
         </div>
         <!-- <div class="col-md-12" style="padding: 5px; text-align: right;">
             <div class="form-actions">
@@ -242,13 +242,13 @@
           </div> -->
         <table style="width:100% !important;">
           <tr>
-            <td style="width: 10%;"><b>Bank Name :</b> </td>
+            <td style="width: 10%;"><b>{{ 'ACCOUNTING.BANK_NAME' | translate }} :</b> </td>
             <td style="width: 25%;"> {{selLedger.LedgerName}} </td>
 
-            <td style="width: 10%;"><b>Address :</b> </td>
+            <td style="width: 10%;"><b>{{ 'ACCOUNTING.ADDRESS' | translate }} :</b> </td>
             <td style="width: 25%;"> {{selLedger.Address}} </td>
 
-            <td style="width: 10%;"><b>Contact :</b> </td>
+            <td style="width: 10%;"><b>{{ 'ACCOUNTING.CONTACT' | translate }} :</b> </td>
             <td style="width: 25%;"> {{selLedger.MobileNo}} </td>
 
           </tr>
@@ -259,22 +259,22 @@
           <table style="width: 100% !important;">
             <tr>
               <th></th>
-              <th>S.N.</th>
-              <th>Voucher No.</th>
-              <th>Txn Date <danphe-date-change class="ADBS_btn" [dataArr]="ledgerResult" [datecolumn]="'TransactionDate'">
+              <th>{{ 'ACCOUNTING.SN' | translate }}</th>
+              <th>{{ 'ACCOUNTING.VOUCHER_NO' | translate }}</th>
+              <th>{{ 'ACCOUNTING.TXN_DATE' | translate }} <danphe-date-change class="ADBS_btn" [dataArr]="ledgerResult" [datecolumn]="'TransactionDate'">
                 </danphe-date-change>
               </th>
-              <th>Main-Ledger</th>
-              <th>Sub-Ledger</th>
-              <th>Mode</th>
-              <th>Cheque No.</th>
-              <th>Cheque Date <danphe-date-change class="ADBS_btn" [dataArr]="ledgerResult" [datecolumn]="'ChequeDate'">
+              <th>{{ 'ACCOUNTING.LEDGER_MAIN' | translate }}</th>
+              <th>{{ 'ACCOUNTING.SUB_LEDGER' | translate }}</th>
+              <th>{{ 'ACCOUNTING.MODE' | translate }}</th>
+              <th>{{ 'ACCOUNTING.CHEQUE_NO' | translate }}</th>
+              <th>{{ 'ACCOUNTING.CHEQUE_DATE' | translate }} <danphe-date-change class="ADBS_btn" [dataArr]="ledgerResult" [datecolumn]="'ChequeDate'">
                 </danphe-date-change></th>
-              <th>Debit</th>
-              <th>Credit</th>
-              <th>Bank Date </th>
-              <th>Bank Ref No.</th>
-              <th>Status</th>
+              <th>{{ 'ACCOUNTING.DEBIT' | translate }}</th>
+              <th>{{ 'ACCOUNTING.CREDIT' | translate }}</th>
+              <th>{{ 'ACCOUNTING.BANK_DATE' | translate }} </th>
+              <th>{{ 'ACCOUNTING.BANK_REF_NO' | translate }}</th>
+              <th>{{ 'ACCOUNTING.STATUS' | translate }}</th>
               <!-- <th>Category</th>
                 <th>Balance as per book</th>
                 <th>Balance as per bank</th>
@@ -314,7 +314,7 @@
 
               </td>
               <td>
-                <input type="text" [(ngModel)]="txnItm.BankRefNumber" (ngModelChange)="HandleBankRefNumber(i)" placeholder="Bank Ref No."
+                <input type="text" [(ngModel)]="txnItm.BankRefNumber" (ngModelChange)="HandleBankRefNumber(i)" placeholder="{{ 'ACCOUNTING.BANK_REF_NO' | translate }}"
                        id="Bank_Ref_No_{{i}}"
                        (keyup.enter)="ProcessEnterKeySequence(i)" [disabled]="txnItm.Status == enum_Reconcile_Status.Close"
                        (focusout)="ProcessEnterKeySequence(i)">
@@ -377,15 +377,15 @@
             <tr>
               <td>
                 <input type="text" class="signature" style="border: 0;border-bottom: 1px solid #000;" /><br />
-                <b> Prepared By</b>
+                <b> {{ 'ACCOUNTING.PREPARED_BY' | translate }}</b>
               </td>
               <td>
                 <input type="text" class="signature" style="border: 0;border-bottom: 1px solid #000;" /><br />
-                <b> Checked By</b>
+                <b> {{ 'ACCOUNTING.CHECKED_BY' | translate }}</b>
               </td>
               <td>
                 <input type="text" class="signature" style="border: 0;border-bottom: 1px solid #000;" /><br>
-                <b> Approved By</b>
+                <b> {{ 'ACCOUNTING.APPROVED_BY' | translate }}</b>
               </td>
             </tr>
 
@@ -405,15 +405,15 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix" style="margin-top: 25%;">
           <div class="caption lb-caption" style="text-align: center;">
-            <h3> <span> <b> Are you sure ?</b> </span> </h3>
+            <h3> <span> <b> {{ 'ACCOUNTING.ARE_YOU_SURE' | translate }}</b> </span> </h3>
           </div>
           <div>
-            <label style="margin-left: 10px;"> <b>Remark :</b> <b style="color: red;">*</b> </label> <br>
+            <label style="margin-left: 10px;"> <b>{{ 'ACCOUNTING.REMARK' | translate }} :</b> <b style="color: red;">*</b> </label> <br>
             <textarea name="remark" [(ngModel)]="remark" style="width: 95%;  margin: 10px;"> </textarea>
           </div>
           <div style="text-align: center;">
-            <button class="btn green btn-success btn-sm" (click)="saveReconcilation()"> Yes </button>
-            <button class="btn green btn-success btn-sm" (click)="closesavePopup()"> No </button>
+            <button class="btn green btn-success btn-sm" (click)="saveReconcilation()"> {{ 'YES' | translate }} </button>
+            <button class="btn green btn-success btn-sm" (click)="closesavePopup()"> {{ 'NO' | translate }} </button>
             <br /> <br />
           </div>
         </div>
@@ -433,7 +433,7 @@
         <div class="col-md-10 col-sm-12 col-xs-12 modelbox-div">
           <div class="row">
             <div id="printpageTransactionView">
-              <a class="btn btn-danger hidden-print rt_close_btn" (click)="ClosetxnDetails()" title="Cancel">X</a>
+              <a class="btn btn-danger hidden-print rt_close_btn" (click)="ClosetxnDetails()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
               <!-- <customer-header id="headerForPrint" [header-title]="txnItems.VoucherType + '('+txnItems.FiscalYear+')'">
               </customer-header> -->
               <div class="row">
@@ -445,13 +445,13 @@
                       <div class="col-md-12 patient-hdr-label">
                         <table style="width:100% !important;" id="excelTransactionView">
                           <tr>
-                            <td style="width: 10%;"><b>Bank Name :</b> </td>
+                            <td style="width: 10%;"><b>{{ 'ACCOUNTING.BANK_NAME' | translate }} :</b> </td>
                             <td style="width: 25%;"> {{selLedger.LedgerName}} </td>
 
-                            <td style="width: 10%;"><b>Address :</b> </td>
+                            <td style="width: 10%;"><b>{{ 'ACCOUNTING.ADDRESS' | translate }} :</b> </td>
                             <td style="width: 25%;"> {{selLedger.Address}} </td>
 
-                            <td style="width: 10%;"><b>Contact :</b> </td>
+                            <td style="width: 10%;"><b>{{ 'ACCOUNTING.CONTACT' | translate }} :</b> </td>
                             <td style="width: 25%;"> {{selLedger.MobileNo}} </td>
 
                           </tr>
@@ -460,12 +460,12 @@
                         <table style="width:100%;" align="center">
                           <tr>
                             <td style="width: 35%;">
-                              <b>Voucher No:</b>&nbsp;{{txnItems.VoucherNumber}}
+                              <b>{{ 'ACCOUNTING.VOUCHER_NO' | translate }}:</b>&nbsp;{{txnItems.VoucherNumber}}
                             </td>
                             <td style="text-align:center;">
                             </td>
                             <td style="width: 35%;">
-                              <b>Book Date:</b>
+                              <b>{{ 'ACCOUNTING.BOOK_DATE' | translate }}:</b>
                               <span> &nbsp; {{selectedTxn.TransactionDate | nepaliDate:'format':'YYYY-MM-DD hh:mm'}}
                                 <b>BS</b>
                                 <br />
@@ -477,7 +477,7 @@
                               </span>
                             </td>
                             <td style="width: 35%;">
-                              <b>Bank Date:</b>
+                              <b>{{ 'ACCOUNTING.BANK_DATE' | translate }}:</b>
                               <span> &nbsp;{{selectedTxn.BankTransactionDate | nepaliDate:'format':'YYYY-MM-DD hh:mm'}}
                                  <br />
                                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -494,19 +494,19 @@
                         <table class="table_data" style="width:100%;" border="1">
                           <tr>
                             <th *ngIf="showVoucherHeadCol">
-                              Account Head
+                              {{ 'ACCOUNTING.ACCOUNT_HEAD' | translate }}
                             </th>
                             <th>
-                              Particulars
+                              {{ 'ACCOUNTING.PARTICULARS' | translate }}
                             </th>
                             <th>
-                              Description
+                              {{ 'ACCOUNTING.DESCRIPTION' | translate }}
                             </th>
                             <th>
-                              Debit
+                              {{ 'ACCOUNTING.DEBIT' | translate }}
                             </th>
                             <th>
-                              Credit
+                              {{ 'ACCOUNTING.CREDIT' | translate }}
                             </th>
                           </tr>
                           <tr *ngFor="let itm of txnItems.TransactionItems">
@@ -541,10 +541,10 @@
                           </tr>
                           <tr>
                             <th *ngIf="showVoucherHeadCol" colspan="3">
-                              <b style="float:right;"> Total &nbsp;&nbsp; </b>
+                              <b style="float:right;"> {{ 'ACCOUNTING.TOTAL' | translate }} &nbsp;&nbsp; </b>
                             </th>
                             <th *ngIf="!showVoucherHeadCol" colspan="2">
-                              <b style="float:right;"> Total &nbsp;&nbsp; </b>
+                              <b style="float:right;"> {{ 'ACCOUNTING.TOTAL' | translate }} &nbsp;&nbsp; </b>
                             </th>
                             <th>
                               {{drTotal | Currency:'4'}}
@@ -556,16 +556,17 @@
                         </table>
                       </div>
                       <div class="col-md-12">
-                        <b> Balance as per Book :</b> &nbsp;
+                        <div class="col-md-12">
+                        <b> {{ 'ACCOUNTING.BALANCE_AS_PER_BOOK' | translate }} :</b> &nbsp;
                         {{selectedTxn.Balance | Currency:'4' }}
                       </div>
                       <div class="col-md-12">
-                        <b>Balance as per Bank :</b> &nbsp;
+                        <b>{{ 'ACCOUNTING.BALANCE_AS_PER_BANK' | translate }} :</b> &nbsp;
                         {{selectedTxn.BankBalance | Currency:'4'}}
                       </div>
 
                       <div class="col-md-12">
-                        <b>Difference :</b> &nbsp;
+                        <b>{{ 'ACCOUNTING.DIFFERENCE' | translate }} :</b> &nbsp;
                         {{selectedTxn.Difference}}
                       </div>
                       <hr />
@@ -580,22 +581,19 @@
                             <td>
                               <br />
                               <b style="border-top:1px solid black; padding:0px 10px;">
-                                Prepared
-                                By
+                                {{ 'ACCOUNTING.PREPARED_BY' | translate }}
                               </b>
                             </td>
                             <td>
                               <br />
                               <b style="border-top:1px solid black; padding:0px 10px;">
-                                Checked
-                                By
+                                {{ 'ACCOUNTING.CHECKED_BY' | translate }}
                               </b>
                             </td>
                             <td>
                               <br />
                               <b style="border-top:1px solid black; padding:0px 10px;">
-                                Approved
-                                By
+                                {{ 'ACCOUNTING.APPROVED_BY' | translate }}
                               </b>
                             </td>
                           </tr>
@@ -607,8 +605,8 @@
                     <div class="col-md-12" style="padding-bottom: 15px;">
                       <div class="form-actions" style="text-align: right;">
                         <button id="printbtn" class="btn green btn-success btn-sm hidden-print" (click)="PrintTxnTable('printpageView')"
-                                value="Print" title="print page">
-                          Print<i class="glyphicon glyphicon-print" style="margin-left:10px; "></i>
+                                value="Print" title="{{ 'ACCOUNTING.PRINT_PAGE_TOOLTIP' | translate }}">
+                          {{ 'PRINT' | translate }}<i class="glyphicon glyphicon-print" style="margin-left:10px; "></i>
                         </button>
                       </div>
                     </div>
@@ -637,16 +635,16 @@
       <div class="col-md-6 col-md-offset-3">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption no-margin">
-            <h3> <span>Bank Reconciliation History</span> </h3>
-            <a class="btn btn-danger" (click)="ClosetxnDetails()" title="Cancel">X</a>
+            <h3> <span>{{ 'ACCOUNTING.BANK_RECONCILIATION_HISTORY' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="ClosetxnDetails()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
           </div>
           <form class="form-horizontal">
             <div class="form-body">
               <h5 style="text-transform:capitalize;">
                 <div>
-                  <span style="display:inline-block;">Bank Name: <b> {{selLedger.LedgerName}} </b></span> &nbsp;&nbsp;&nbsp;
+                  <span style="display:inline-block;">{{ 'ACCOUNTING.BANK_NAME' | translate }}: <b> {{selLedger.LedgerName}} </b></span> &nbsp;&nbsp;&nbsp;
 
-                  <span style="float:right;">Voucher No:&nbsp;
+                  <span style="float:right;">{{ 'ACCOUNTING.VOUCHER_NO' | translate }}:&nbsp;
                     <b> {{voucherNo}} </b></span>
                 </div>
               </h5>
@@ -654,13 +652,13 @@
                 <table class="table  table-bordered table-hover" style="background-color:initial;margin-top:20px">
 
                   <tr>
-                    <th><b>Sr. No</b></th>
-                    <th><b>Voucher Date</b></th>
-                    <th><b>Category</b></th>
-                    <th><b> Balance as per bank</b></th>
-                    <th><b>Difference</b></th>
-                    <th><b>CreatedBy</b></th>
-                    <th><b>Remark</b></th>
+                    <th><b>{{ 'ACCOUNTING.SN' | translate }}</b></th>
+                    <th><b>{{ 'ACCOUNTING.VOUCHER_DATE' | translate }}</b></th>
+                    <th><b>{{ 'ACCOUNTING.CATEGORY' | translate }}</b></th>
+                    <th><b> {{ 'ACCOUNTING.BALANCE_AS_PER_BANK' | translate }}</b></th>
+                    <th><b>{{ 'ACCOUNTING.DIFFERENCE' | translate }}</b></th>
+                    <th><b>{{ 'ACCOUNTING.CREATED_BY' | translate }}</b></th>
+                    <th><b>{{ 'ACCOUNTING.REMARK' | translate }}</b></th>
                   </tr>
 
                   <tbody>
@@ -697,7 +695,7 @@
         <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 modelbox-div">
           <div class="row">
             <div id="printpageTransactionView">
-              <a class="btn btn-danger hidden-print rt_close_btn" (click)="ClosetxnDetails()" title="Cancel">X</a>
+              <a class="btn btn-danger hidden-print rt_close_btn" (click)="ClosetxnDetails()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
               <!-- <customer-header [header-title]="selLedger.LedgerName + ' Ledger'+ '(' + selLedger.Code +')'"></customer-header> -->
               <div class="row">
                 <div class="col-md-12 col-xs-12">
@@ -709,7 +707,7 @@
                         <table style="width:100% !important;">
                           <tr>
 
-                            <td style="width: 10%;"><b>Bank Name :</b> </td>
+                            <td style="width: 10%;"><b>{{ 'ACCOUNTING.BANK_NAME' | translate }} :</b> </td>
                             <td style="width: 50%;"> {{selLedger.LedgerName}} </td>
 
                           </tr>
@@ -718,32 +716,32 @@
                       </div>
                       <br /> <br />
                       <div class="col-md-6">
-                        <span>Before Reconciliation</span>
+                        <span>{{ 'ACCOUNTING.BEFORE_RECONCILIATION' | translate }}</span>
                         <hr>
                         <div class="col-md-6">
-                          Balance As Per Book
+                          {{ 'ACCOUNTING.BALANCE_AS_PER_BOOK' | translate }}
                         </div>
                         <div class="col-md-6">
                           <label>{{ openingBalance.ReconcileOpening }}</label>
                         </div>
                         <div class="col-md-6">
-                          Balance As Per Bank
+                          {{ 'ACCOUNTING.BALANCE_AS_PER_BANK' | translate }}
                         </div>
                         <div class="col-md-6">
                           <label>{{ bank_Opening_Balance }}</label>
                         </div>
                       </div>
                       <div class="col-md-6">
-                        <span>After Reconciliation</span>
+                        <span>{{ 'ACCOUNTING.AFTER_RECONCILIATION' | translate }}</span>
                         <hr>
                         <div class="col-md-6">
-                          Balance As Per Book
+                          {{ 'ACCOUNTING.BALANCE_AS_PER_BOOK' | translate }}
                         </div>
                         <div class="col-md-6">
                           <label>{{ openingBalance.ReconcileOpening + txn_Sum }}</label>
                         </div>
                         <div class="col-md-6">
-                          Balance As Per Bank
+                          {{ 'ACCOUNTING.BALANCE_AS_PER_BANK' | translate }}
                         </div>
                         <div class="col-md-6">
                           <label>{{ bank_Closing_Balance}}</label>
@@ -753,28 +751,28 @@
                       <div class="col-md-12" style="overflow-y:auto">
                         <table class="table_data" style="width:100%;" border="1" id="excelTransactionView">
                           <tr>
-                            <th>S.N.</th>
+                            <th>{{ 'ACCOUNTING.SN' | translate }}</th>
                             <th>
-                              Voucher No.
+                              {{ 'ACCOUNTING.VOUCHER_NO' | translate }}
                             </th>
                             <th>
-                              Txn Date
+                              {{ 'ACCOUNTING.TXN_DATE' | translate }}
                             </th>
-                            <th>Main-Ledger</th>
-                            <th>Sub-Ledger</th>
-                            <th>Mode</th>
+                            <th>{{ 'ACCOUNTING.LEDGER_MAIN' | translate }}</th>
+                            <th>{{ 'ACCOUNTING.SUB_LEDGER' | translate }}</th>
+                            <th>{{ 'ACCOUNTING.MODE' | translate }}</th>
                             <th>
-                              Cheque No.
+                              {{ 'ACCOUNTING.CHEQUE_NO' | translate }}
                             </th>
-                            <th>Cheque Date</th>
-                            <th>Debit</th>
-                            <th>Credit</th>
-                            <th>Bank Date</th>
+                            <th>{{ 'ACCOUNTING.CHEQUE_DATE' | translate }}</th>
+                            <th>{{ 'ACCOUNTING.DEBIT' | translate }}</th>
+                            <th>{{ 'ACCOUNTING.CREDIT' | translate }}</th>
+                            <th>{{ 'ACCOUNTING.BANK_DATE' | translate }}</th>
                             <th>
-                              Bank Ref No.
+                              {{ 'ACCOUNTING.BANK_REF_NO' | translate }}
                             </th>
                             <th>
-                              Status
+                              {{ 'ACCOUNTING.STATUS' | translate }}
                             </th>
                             <!-- <th>
                                   Difference
@@ -823,12 +821,12 @@
                   </div>
                   <div class="form-actions">
                     <button class="btn green btn-success btn-sm hidden-print" (click)="PrintTxnTable('print_Rec_View')" value="Print"
-                            title="print page">
-                      Print<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i>
+                            title="{{ 'ACCOUNTING.PRINT_PAGE_TOOLTIP' | translate }}">
+                      {{ 'PRINT' | translate }}<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i>
                     </button>
                     <button class="btn green btn-success btn-sm hidden-print" (click)="ExportToExcel('excelTransactionView')" value=""
-                            title="export to excel">
-                      Export<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
+                            title="{{ 'ACCOUNTING.EXPORT_TO_EXCEL_TOOLTIP' | translate }}">
+                      {{ 'ACCOUNTING.EXPORT' | translate }}<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
                     </button>
                   </div>
                 </div>

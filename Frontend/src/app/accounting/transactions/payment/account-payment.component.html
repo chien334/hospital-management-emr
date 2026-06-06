@@ -38,14 +38,14 @@
     <table class="table billing-table" style="background-color:initial;margin-bottom:0px;">
       <thead>
         <tr>
-          <th><b class="align">Module<sup> *</sup></b></th>
-          <th *ngIf="InvSectionFlag&&!OtherSectionFlag"><b class="align">Vendor<sup> *</sup></b></th>
-          <th *ngIf="PhrmSectionFlag&&!OtherSectionFlag"><b class="align">Supplier<sup> *</sup></b></th>
+          <th><b class="align">{{ 'ACCOUNTING.SELECT_MODULE' | translate }}<sup> *</sup></b></th>
+          <th *ngIf="InvSectionFlag&&!OtherSectionFlag"><b class="align">{{ 'ACCOUNTING.INVENTORY_VENDOR' | translate }}<sup> *</sup></b></th>
+          <th *ngIf="PhrmSectionFlag&&!OtherSectionFlag"><b class="align">{{ 'ACCOUNTING.PHARMACY_SUPPLIER' | translate }}<sup> *</sup></b></th>
           <th></th>
-          <th *ngIf="InvSectionFlag&&!OtherSectionFlag"><b class="align">GR No</b></th>
-          <th *ngIf="PhrmSectionFlag&&!OtherSectionFlag"><b class="align">Invoice No</b></th>
+          <th *ngIf="InvSectionFlag&&!OtherSectionFlag"><b class="align">{{ 'ACCOUNTING.GR_NO' | translate }}</b></th>
+          <th *ngIf="PhrmSectionFlag&&!OtherSectionFlag"><b class="align">{{ 'ACCOUNTING.INVOICE_NO' | translate }}</b></th>
           <th></th>
-          <th *ngIf="!OtherSectionFlag"><b class="align">GR Date</b>(Search by date?) <input name="salutation" type="checkbox"
+          <th *ngIf="!OtherSectionFlag"><b class="align">{{ 'ACCOUNTING.GR_DATE' | translate }}</b>({{ 'ACCOUNTING.SEARCH_BY_DATE_QUESTION' | translate }}) <input name="salutation" type="checkbox"
                    [(ngModel)]="IsDateSelected" (ngModelChange)="onSearchByDate()">
           </th>
           <th>
@@ -81,29 +81,27 @@
             <form class="bill-itemname" *ngIf="InvSectionFlag">
               <input id="srch_itemName" class="form-control cstm-form-control" danphe-auto-complete title=""
                      autocomplete="off" [(ngModel)]="SelectedVendor" [list-formatter]="vendorOrSupplierListFormatter"
-                     [source]="VendorList" placeholder="Enter Vendor Name" display-property-name="VendorName"
+                     [source]="VendorList" placeholder="{{ 'ACCOUNTING.ENTER_VENDOR_NAME' | translate }}" display-property-name="VendorName"
                      value-property-name=null match-formatted="true" [ngModelOptions]="{standalone: true}"
                      onClick="this.select();" (ngModelChange)="clearGrList($event)" />
               <p *ngIf="SelectedVendor && SelectedVendor.LedgerId && !SubLedgerAndCostCenterSetting.EnableSubLedger">
-                <strong><em>Ledger: {{SelectedVendor.LedgerName}}</em></strong>
+                <strong><em>{{ 'ACCOUNTING.LEDGER' | translate }}: {{SelectedVendor.LedgerName}}</em></strong>
               </p>
               <p *ngIf="SelectedVendor && SelectedVendor.SubLedgerId && SubLedgerAndCostCenterSetting.EnableSubLedger">
-                <strong><em>SubLedger: {{SelectedVendor.SubLedgerName}}</em></strong>
+                <strong><em>{{ 'ACCOUNTING.SUB_LEDGER' | translate }}: {{SelectedVendor.SubLedgerName}}</em></strong>
               </p>
               <p *ngIf="SelectedVendor&&!SelectedVendor.IsMapped && !SubLedgerAndCostCenterSetting.EnableSubLedger">
-                <i class="fa fa-plus-circle" (click)="CreateNewLedger()" matTooltip="Click to Create New Ledger"
+                <i class="fa fa-plus-circle" (click)="CreateNewLedger()" matTooltip="{{ 'ACCOUNTING.CLICK_TO_CREATE_NEW_LEDGER' | translate }}"
                    style="color: blue;cursor: pointer;">
                   <strong
-                          style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">Create
-                    ledger for selected vendor</strong>
+                          style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">{{ 'ACCOUNTING.CREATE_LEDGER_FOR_SELECTED_VENDOR' | translate }}</strong>
                 </i>
               </p>
               <p *ngIf="SelectedVendor&&!SelectedVendor.IsMapped && SubLedgerAndCostCenterSetting.EnableSubLedger">
-                <i class="fa fa-plus-circle" (click)="CreateNewSubLedger()" matTooltip="Click to Create New SubLedger"
+                <i class="fa fa-plus-circle" (click)="CreateNewSubLedger()" matTooltip="{{ 'ACCOUNTING.CLICK_TO_CREATE_NEW_SUBLEDGER' | translate }}"
                    style="color: blue;cursor: pointer;">
                   <strong
-                          style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">Create
-                    sub-ledger for selected vendor</strong>
+                          style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">{{ 'ACCOUNTING.CREATE_SUBLEDGER_FOR_SELECTED_VENDOR' | translate }}</strong>
                 </i>
               </p>
             </form>
@@ -111,29 +109,27 @@
               <div class="autocomplete-item">
                 <input id="srch_itemName" class="form-control cstm-form-control" danphe-auto-complete title=""
                        autocomplete="off" [(ngModel)]="SelectedSupplier" [list-formatter]="vendorOrSupplierListFormatter"
-                       [source]="SupplierList" placeholder="Enter Supplier Name" display-property-name="SupplierName"
+                       [source]="SupplierList" placeholder="{{ 'ACCOUNTING.ENTER_SUPPLIER_NAME' | translate }}" display-property-name="SupplierName"
                        value-property-name=null match-formatted="true" [ngModelOptions]="{standalone: true}"
                        onClick="this.select();" (ngModelChange)="clearGrList($event)" />
                 <p *ngIf="SelectedSupplier && SelectedSupplier.LedgerId && !SubLedgerAndCostCenterSetting.EnableSubLedger">
-                  <strong><em>Ledger: {{SelectedSupplier.LedgerName}}</em></strong>
+                  <strong><em>{{ 'ACCOUNTING.LEDGER' | translate }}: {{SelectedSupplier.LedgerName}}</em></strong>
                 </p>
                 <p *ngIf="SelectedSupplier && SelectedSupplier.SubLedgerId && SubLedgerAndCostCenterSetting.EnableSubLedger">
-                  <strong><em>SubLedger: {{SelectedSupplier.SubLedgerName}}</em></strong>
+                  <strong><em>{{ 'ACCOUNTING.SUB_LEDGER' | translate }}: {{SelectedSupplier.SubLedgerName}}</em></strong>
                 </p>
                 <p *ngIf="SelectedSupplier&&!SelectedSupplier.IsMapped && !SubLedgerAndCostCenterSetting.EnableSubLedger">
-                  <i class="fa fa-plus-circle" (click)="CreateNewLedger()" matTooltip="Click to Create New Ledger"
+                  <i class="fa fa-plus-circle" (click)="CreateNewLedger()" matTooltip="{{ 'ACCOUNTING.CLICK_TO_CREATE_NEW_LEDGER' | translate }}"
                      style="color: blue;cursor: pointer;">
                     <strong
-                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">Create
-                      ledger for selected supplier</strong>
+                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">{{ 'ACCOUNTING.CREATE_LEDGER_FOR_SELECTED_SUPPLIER' | translate }}</strong>
                   </i>
                 </p>
                 <p *ngIf="SelectedSupplier&&!SelectedSupplier.IsMapped && SubLedgerAndCostCenterSetting.EnableSubLedger">
-                  <i class="fa fa-plus-circle" (click)="CreateNewSubLedger()" matTooltip="Click to Create New SubLedger"
+                  <i class="fa fa-plus-circle" (click)="CreateNewSubLedger()" matTooltip="{{ 'ACCOUNTING.CLICK_TO_CREATE_NEW_SUBLEDGER' | translate }}"
                      style="color: blue;cursor: pointer;">
                     <strong
-                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">Create
-                      sub-ledger for selected supplier</strong>
+                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">{{ 'ACCOUNTING.CREATE_SUBLEDGER_FOR_SELECTED_SUPPLIER' | translate }}</strong>
                   </i>
                 </p>
               </div>
@@ -144,9 +140,9 @@
             <form class="bill-itemname">
               <div class="autocomplete-item">
                 <input id="srch_itemName" class="form-control cstm-form-control" [(ngModel)]="GRNumber"
-                       [ngModelOptions]="{standalone: true}" *ngIf="InvSectionFlag" placeholder="Enter GR Number" />
+                       [ngModelOptions]="{standalone: true}" *ngIf="InvSectionFlag" placeholder="{{ 'ACCOUNTING.ENTER_GR_NUMBER' | translate }}" />
                 <input id="srch_itemName" class="form-control cstm-form-control" [(ngModel)]="InvoiceNumber"
-                       [ngModelOptions]="{standalone: true}" *ngIf="PhrmSectionFlag" placeholder="Enter Invoice Number" />
+                       [ngModelOptions]="{standalone: true}" *ngIf="PhrmSectionFlag" placeholder="{{ 'ACCOUNTING.ENTER_INVOICE_NUMBER' | translate }}" />
               </div>
             </form>
           </td>
@@ -159,7 +155,7 @@
             </form>
           </td>
           <td *ngIf='!OtherSectionFlag'>
-            <button class="btn green btn-success margin-7-hr" title="Click To load Item" (click)="load()">load
+            <button class="btn green btn-success margin-7-hr" title="{{ 'ACCOUNTING.CLICK_TO_LOAD_ITEM' | translate }}" (click)="load()">{{ 'COMMON.LOAD' | translate }}
             </button>
           </td>
         </tr>
@@ -182,91 +178,87 @@
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
             <h3>
-              <span *ngIf="InvSectionFlag && SelectedVendor && !SubLedgerAndCostCenterSetting.EnableSubLedger">Payment for:
+              <span *ngIf="InvSectionFlag && SelectedVendor && !SubLedgerAndCostCenterSetting.EnableSubLedger">{{ 'ACCOUNTING.PAYMENT_FOR' | translate }}:
                 <b>{{SelectedVendor.VendorName}}
-                  <i class="fa fa-plus-circle" (click)="CreateNewLedger()" matTooltip="Click to Create New Ledger"
+                  <i class="fa fa-plus-circle" (click)="CreateNewLedger()" matTooltip="{{ 'ACCOUNTING.CLICK_TO_CREATE_NEW_LEDGER' | translate }}"
                      style="color: blue;cursor: pointer;" *ngIf="!Payment.LedgerId">
                     <strong
-                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">Create
-                      ledger for selected vendor</strong>
+                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">{{ 'ACCOUNTING.CREATE_LEDGER_FOR_SELECTED_VENDOR' | translate }}</strong>
                   </i></b>
-                <span *ngIf="Payment.LedgerId">|| Ledger: </span> <b><em
+                <span *ngIf="Payment.LedgerId">|| {{ 'ACCOUNTING.LEDGER' | translate }}: </span> <b><em
                       *ngIf="Payment.LedgerId">{{SelectedVendor.LedgerName}}</em></b></span>
 
-              <span *ngIf="InvSectionFlag && SelectedVendor && SubLedgerAndCostCenterSetting.EnableSubLedger">Payment for:
+              <span *ngIf="InvSectionFlag && SelectedVendor && SubLedgerAndCostCenterSetting.EnableSubLedger">{{ 'ACCOUNTING.PAYMENT_FOR' | translate }}:
                 <b>{{SelectedVendor.VendorName}}
-                  <i class="fa fa-plus-circle" (click)="CreateNewSubLedger()" matTooltip="Click to Create New SubLedger"
+                  <i class="fa fa-plus-circle" (click)="CreateNewSubLedger()" matTooltip="{{ 'ACCOUNTING.CLICK_TO_CREATE_NEW_SUBLEDGER' | translate }}"
                      style="color: blue;cursor: pointer;" *ngIf="!Payment.SubLedgerId">
                     <strong
-                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">Create
-                      sub-ledger for selected vendor</strong>
+                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">{{ 'ACCOUNTING.CREATE_SUBLEDGER_FOR_SELECTED_VENDOR' | translate }}</strong>
                   </i></b>
-                <span *ngIf="Payment.SubLedgerId">|| SubLedger:</span><b><em
+                <span *ngIf="Payment.SubLedgerId">|| {{ 'ACCOUNTING.SUB_LEDGER' | translate }}:</span><b><em
                       *ngIf="Payment.SubLedgerId">{{SelectedVendor.SubLedgerName}}</em></b></span>
 
-              <span *ngIf="PhrmSectionFlag && SelectedSupplier && !SubLedgerAndCostCenterSetting.EnableSubLedger">Payment for:
+              <span *ngIf="PhrmSectionFlag && SelectedSupplier && !SubLedgerAndCostCenterSetting.EnableSubLedger">{{ 'ACCOUNTING.PAYMENT_FOR' | translate }}:
                 <b>{{SelectedSupplier.SupplierName}}
-                  <i class="fa fa-plus-circle" (click)="CreateNewLedger()" matTooltip="Click to Create New Ledger"
+                  <i class="fa fa-plus-circle" (click)="CreateNewLedger()" matTooltip="{{ 'ACCOUNTING.CLICK_TO_CREATE_NEW_LEDGER' | translate }}"
                      style="color: blue;cursor: pointer;" *ngIf="!Payment.LedgerId">
                     <strong
-                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">Create
-                      ledger for selected supplier</strong>
+                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">{{ 'ACCOUNTING.CREATE_LEDGER_FOR_SELECTED_SUPPLIER' | translate }}</strong>
 
                   </i></b>
-                <span *ngIf="Payment.LedgerId">|| Ledger: </span><b><em *ngIf="Payment.LedgerId">{{SelectedSupplier.LedgerName}}</em></b></span>
+                <span *ngIf="Payment.LedgerId">|| {{ 'ACCOUNTING.LEDGER' | translate }}: </span><b><em *ngIf="Payment.LedgerId">{{SelectedSupplier.LedgerName}}</em></b></span>
 
-              <span *ngIf="PhrmSectionFlag && SelectedSupplier && SubLedgerAndCostCenterSetting.EnableSubLedger">Payment for:
+              <span *ngIf="PhrmSectionFlag && SelectedSupplier && SubLedgerAndCostCenterSetting.EnableSubLedger">{{ 'ACCOUNTING.PAYMENT_FOR' | translate }}:
                 <b>{{SelectedSupplier.SupplierName}}
-                  <i class="fa fa-plus-circle" (click)="CreateNewSubLedger()" matTooltip="Click to Create New Ledger"
+                  <i class="fa fa-plus-circle" (click)="CreateNewSubLedger()" matTooltip="{{ 'ACCOUNTING.CLICK_TO_CREATE_NEW_SUBLEDGER' | translate }}"
                      style="color: blue;cursor: pointer;" *ngIf="!Payment.SubLedgerId">
                     <strong
-                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">Create
-                      sub-ledger for selected supplier</strong>
+                            style="color: orange;font-family: 'Quicksand', 'Open Sans', sans-serif;font-weight: 600;margin-left: 6px;">{{ 'ACCOUNTING.CREATE_SUBLEDGER_FOR_SELECTED_SUPPLIER' | translate }}</strong>
                   </i></b>
-                <span *ngIf="Payment.SubLedgerId">|| SubLedger: </span>|| SubLedger: <b><em
+                <span *ngIf="Payment.SubLedgerId">|| {{ 'ACCOUNTING.SUB_LEDGER' | translate }}: </span> <b><em
                       *ngIf="Payment.SubLedgerId">{{SelectedSupplier.SubLedgerName}}</em></b></span>
             </h3>
-            <a class="btn btn-danger" (click)="close()" title="Cancel">X</a>
+            <a class="btn btn-danger" (click)="close()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
           </div>
           <form [formGroup]="Payment.PaymentValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="row">
                 <div class="col-md-6 col-xs-6">
                   <div class="form-group">
-                    <label class="control-label col-md-5">Total Amount<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.TOTAL_AMOUNT' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <label class="form-control no-border">{{Payment.TotalAmount}}</label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Paid Amount<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.PAID_AMOUNT' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <label class="form-control no-border">{{Payment.PaidAmount}}</label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Due Amount<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.DUE_AMOUNT' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <label class="form-control no-border">{{Payment.DueAmount}}</label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Voucher Amount<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.VOUCHER_AMOUNT' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                       <input class="form-control" [(ngModel)]="Payment.VoucherAmount" formControlName="VoucherAmount"
-                             id="VoucherAmount" placeholder="Voucher Amount" type="number"
+                             id="VoucherAmount" placeholder="{{ 'ACCOUNTING.VOUCHER_AMOUNT' | translate }}" type="number"
                              (keyup.enter)="FocusElementById('PaymentMode')" (focusout)="amountCalculations()" />
                       <span class="error-msg" *ngIf="Payment.IsDirty('VoucherAmount')"
-                            [hidden]="Payment.IsValidCheck('VoucherAmount','required')"> Voucher Amount is required</span>
+                            [hidden]="Payment.IsValidCheck('VoucherAmount','required')"> {{ 'ACCOUNTING.VOUCHER_AMOUNT_REQUIRED_ERR' | translate }}</span>
                       <span *ngIf="Payment.VoucherAmount" style="color:green;">
-                        ( In Words: {{Payment.VoucherAmount | NumberInWords | CapitalFirstLetter}} )
+                        ( {{ 'ACCOUNTING.IN_WORDS' | translate }}: {{Payment.VoucherAmount | NumberInWords | CapitalFirstLetter}} )
                       </span>
                       <span class="error-msg" *ngIf="Payment.VoucherAmount"
-                            [hidden]="Payment.VoucherAmount <= Payment.DueAmount">Voucher Amount should be less than or equal to Due Amount</span>
+                            [hidden]="Payment.VoucherAmount <= Payment.DueAmount">{{ 'ACCOUNTING.VOUCHER_AMOUNT_LESS_THAN_DUE_ERR' | translate }}</span>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Remaining Amount<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.REMAINING_AMOUNT' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <label class="form-control no-border">{{Payment.RemainingAmount}}</label>
                     </div>
@@ -278,15 +270,15 @@
                 </div>
                 <div class="col-md-6 col-xs-6">
                   <div class="form-group">
-                    <label class="control-label col-md-5" *ngIf="InvSectionFlag">GR No<b>:</b></label>
-                    <label class="control-label col-md-5" *ngIf="PhrmSectionFlag">Invoice No<b>:</b></label>
+                    <label class="control-label col-md-5" *ngIf="InvSectionFlag">{{ 'ACCOUNTING.GR_NO' | translate }}<b>:</b></label>
+                    <label class="control-label col-md-5" *ngIf="PhrmSectionFlag">{{ 'ACCOUNTING.INVOICE_NO' | translate }}<b>:</b></label>
                     <div class="col-md-7 div-relative">
                       <label class="form-control no-border" *ngIf="InvSectionFlag">{{Payment.GrNo}}</label>
                       <label class="form-control no-border" *ngIf="PhrmSectionFlag">{{Payment.InvoiceNo}}</label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">GR Date<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.GR_DATE' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <label class="form-control no-border"><b>(AD)</b>{{Payment.GrDate |
                         DanpheDateTime:'format':'YYYY-MM-DD'}}&nbsp; {{Payment.GrDate |
@@ -294,23 +286,23 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Payment Mode <sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.CHOOSE_PAYMENT_MODE' | translate }} <sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                       <select [(ngModel)]="Payment.PaymentMode" class="form-control" formControlName="PaymentMode"
                               (change)="paymentModeChange()" id="PaymentMode">
-                        <option value="NA">Choose Payment mode</option>
-                        <option value="Cash">Cash</option>
-                        <option value="Bank">Bank</option>
+                        <option value="NA">{{ 'ACCOUNTING.CHOOSE_PAYMENT_MODE_OPTION' | translate }}</option>
+                        <option value="Cash">{{ 'ACCOUNTING.CASH' | translate }}</option>
+                        <option value="Bank">{{ 'ACCOUNTING.BANK' | translate }}</option>
                       </select>
                       <span class="error-msg" *ngIf="Payment.IsDirty('PaymentMode')"
-                            [hidden]="Payment.IsValidCheck('PaymentMode','required')"> Payment mode is required</span>
+                            [hidden]="Payment.IsValidCheck('PaymentMode','required')"> {{ 'ACCOUNTING.PAYMENT_MODE_REQUIRED_ERR' | translate }}</span>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Payment From(Ledger)<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.PAYMENT_FROM' | translate }}({{ 'ACCOUNTING.LEDGER' | translate }})<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                       <div>
-                        <input class="form-control" danphe-auto-complete [source]="FilteredLedgerList" placeholder="Ledger Name"
+                        <input class="form-control" danphe-auto-complete [source]="FilteredLedgerList" placeholder="{{ 'ACCOUNTING.LEDGER_NAME' | translate }}"
                                display-property-name="LedgerName" formControlName="PaymentFrom"
                                value-property-name="LedgerName" [list-formatter]="LedgerListFormatter"
                                [(ngModel)]="SelectedLedger" (ngModelChange)="AssignSelectedLedger($event)"
@@ -318,14 +310,14 @@
                                (SubLedgerAndCostCenterSetting.EnableSubLedger? FocusElementById('SubLedgerName') : FocusElementById('PayeeName')) : FocusElementById('Narration')"
                                [grid-sort]="'LedgerName'" onClick="this.select();" id="PaymentFrom" />
                         <span class="color-red font-sm" *ngIf="Payment.IsDirty('PaymentFrom')"
-                              [hidden]="Payment.IsValidCheck('PaymentFrom','required')">Payment from is required.</span>
+                               [hidden]="Payment.IsValidCheck('PaymentFrom','required')">{{ 'ACCOUNTING.PAYMENT_FROM_REQUIRED_ERR' | translate }}</span>
                       </div>
                     </div>
                   </div>
                   <div class="form-group" *ngIf="this.SubLedgerAndCostCenterSetting.EnableSubLedger">
-                    <label class="control-label col-md-5">SubLedger<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.SUB_LEDGER' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
-                      <input class="form-control" danphe-auto-complete [source]="SubLedgerList" placeholder="SubLedger Name"
+                      <input class="form-control" danphe-auto-complete [source]="SubLedgerList" placeholder="{{ 'ACCOUNTING.SUB_LEDGER_NAME' | translate }}"
                              display-property-name="SubLedgerName" [ngModelOptions]="{standalone: true}"
                              value-property-name="SubLedgerName" [list-formatter]="SubLedgerListFormatter"
                              [(ngModel)]="SelectedSubLedger" (ngModelChange)="AssignSelectedSubLedger($event)"
@@ -334,30 +326,30 @@
                     </div>
                   </div>
                   <div class="form-group" *ngIf="ShowPayeeAndCheque">
-                    <label class="control-label col-md-5">Payee Name<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.PAYEE_NAME' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                       <input class="form-control" [(ngModel)]="Payment.PayeeName" id="PayeeName"
-                             placeholder="Payee Name" [ngModelOptions]="{standalone: true}"
+                             placeholder="{{ 'ACCOUNTING.PAYEE_NAME' | translate }}" [ngModelOptions]="{standalone: true}"
                              (keyup.enter)="FocusElementById('ChequeNo')" />
                     </div>
                   </div>
                   <div class="form-group" *ngIf="ShowPayeeAndCheque">
-                    <label class="control-label col-md-5">Cheque No<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.CHEQUE_NO' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
-                      <input type="number" [(ngModel)]="Payment.ChequeNo" min="0" placeholder="Cheque no"
+                      <input type="number" [(ngModel)]="Payment.ChequeNo" min="0" placeholder="{{ 'ACCOUNTING.CHEQUE_NO' | translate }}"
                              [ngModelOptions]="{standalone: true}" class="form-control" id="ChequeNo"
                              (keyup.enter)="FocusElementById('Narration')" />
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Narration<sup class="color-red">*</sup><b> :</b></label>
+                    <label class="control-label col-md-5">{{ 'ACCOUNTING.NARRATION' | translate }}<sup class="color-red">*</sup><b> :</b></label>
                     <div class="col-md-7">
                       <textarea class="form-control" id="Narration" maxlength="400" rows="5"
-                                [(ngModel)]="Payment.Narration" formControlName="Narration" placeholder="Narration"
+                                [(ngModel)]="Payment.Narration" formControlName="Narration" placeholder="{{ 'ACCOUNTING.NARRATION' | translate }}"
                                 (keydown.enter)="FocusElementById('MakePayment')">
                       </textarea>
                       <span class="error-msg" *ngIf="Payment.IsDirty('Narration')"
-                            [hidden]="Payment.IsValidCheck('Narration','required')"> Narration is required</span>
+                            [hidden]="Payment.IsValidCheck('Narration','required')"> {{ 'ACCOUNTING.NARRATION_REQUIRED_ERR' | translate }}</span>
                     </div>
                   </div>
                 </div>
@@ -365,13 +357,13 @@
               <div class="col-md-12 col-xs-12">
                 <div class="form-actions" style="float: right;">
                   <input type="button" class="btn green btn-success margin-7-hr" (click)="Loading=true;makePayment()"
-                         value="{{Loading == true ? 'Making Payment..': 'Make Payment'}}" [disabled]="Loading"
+                         [value]="(Loading ? 'ACCOUNTING.MAKING_PAYMENT' : 'ACCOUNTING.MAKE_PAYMENT') | translate" [disabled]="Loading"
                          id="MakePayment" />
                   <!-- <input type="button" class="btn green btn-success margin-7-hr" (click)="Loading=true;makePayment()"
                     value="{{Loading == true ? 'Making Payment..': 'Make Payment'}}" [disabled]="!Payment.LedgerId"  *ngIf="!Payment.LedgerId"
                     id="MakePayment" /> -->
                   <input type="button" class="btn btn-danger margin-7-hr" (click)="Loading=true;cancel()"
-                         [disabled]="Loading" value="Cancel" />
+                         [disabled]="Loading" [value]="'COMMON.CANCEL' | translate" />
                 </div>
               </div>
             </div>

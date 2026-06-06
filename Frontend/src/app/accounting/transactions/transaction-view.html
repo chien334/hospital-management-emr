@@ -12,7 +12,7 @@
         <div class="col-md-10 col-sm-12 col-xs-12 modelbox-div" style="padding:25px !important;">
           <div>
             <div id="printpageTransactionView">
-              <a class="btn btn-danger hidden-print rt_close_btn" (click)="Close()" title="Cancel">X</a>
+              <a class="btn btn-danger hidden-print rt_close_btn" (click)="Close()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
               <customer-header [header-title]="transaction.VoucherType + '('+transaction.FiscalYear+')'">
               </customer-header>
               <div class="row">
@@ -22,10 +22,10 @@
                     <div class="row">
                       <div class="col-md-10" style="font-size: 14px;">
                         <span *ngIf="transaction && transaction.PayeeName">
-                          <b>Payee Name:</b>&nbsp;{{transaction.PayeeName}}
+                          <b>{{ 'ACCOUNTING.PAYEE_NAME' | translate }}:</b>&nbsp;{{transaction.PayeeName}}
                         </span>&nbsp;&nbsp;&nbsp;&nbsp;
                         <span *ngIf="transaction && transaction.ChequeNumber">
-                          <b>Cheque Number:</b>&nbsp;{{transaction.ChequeNumber}}
+                          <b>{{ 'ACCOUNTING.CHEQUE_NO' | translate }}:</b>&nbsp;{{transaction.ChequeNumber}}
                         </span>
                       </div>
                     </div>
@@ -36,7 +36,7 @@
                         <table style="width:100%;" align="center">
                           <tr>
                             <td>
-                              <b>Voucher No:</b>&nbsp;{{transaction.VoucherNumber}}
+                              <b>{{ 'ACCOUNTING.VOUCHER_NO' | translate }}:</b>&nbsp;{{transaction.VoucherNumber}}
                             </td>
                             <td style="text-align:center;">
                               <!--<b>Voucher Head:</b>&nbsp;{{transaction.VoucherHead}}-->
@@ -46,7 +46,7 @@
 
 
                             <td style="text-align:center;float:right;padding-right:10px;">
-                              <b>Transaction Date:</b>
+                              <b>{{ 'ACCOUNTING.TRANSACTION_DATE' | translate }}:</b>
                               <span style="float:right">
                                 &nbsp;
                                 {{transaction.TransactionDate | nepaliDate:'format':'YYYY-MM-DD hh:mm'}} 
@@ -65,25 +65,25 @@
                           <tr>
                             <th *ngIf="showVoucherHeadCol">
                               <!-- Main Ledger  -->
-                              Account Head
+                              {{ 'ACCOUNTING.ACCOUNT_HEAD' | translate }}
                             </th>
                             <th>
-                              Code
+                              {{ 'ACCOUNTING.CODE' | translate }}
                             </th>
                             <th>
-                              Main Ledger
+                              {{ 'ACCOUNTING.LEDGER_MAIN' | translate }}
                             </th>
                             <th *ngIf="subLedgerAndCostCenterSetting.EnableSubLedger">
-                              Sub Ledger
+                              {{ 'ACCOUNTING.SUB_LEDGER' | translate }}
                             </th>
                             <th>
-                              Description
+                              {{ 'ACCOUNTING.DESCRIPTION' | translate }}
                             </th>
                             <th>
-                              Debit Amount
+                              {{ 'ACCOUNTING.DEBIT_AMOUNT' | translate }}
                             </th>
                             <th>
-                              Credit Amount
+                              {{ 'ACCOUNTING.CREDIT_AMOUNT' | translate }}
                             </th>
                           </tr>
                           <tr *ngFor="let txnItm of transaction.TransactionItems">
@@ -141,10 +141,10 @@
                           </tr>
                           <tr>
                             <th *ngIf="subLedgerAndCostCenterSetting.EnableSubLedger" colspan="4">
-                              <b style="float:right;"> Total &nbsp;&nbsp; </b>
+                              <b style="float:right;"> {{ 'ACCOUNTING.TOTAL' | translate }} &nbsp;&nbsp; </b>
                             </th>
                             <th *ngIf="!subLedgerAndCostCenterSetting.EnableSubLedger" colspan="3">
-                              <b style="float:right;"> Total &nbsp;&nbsp; </b>
+                              <b style="float:right;"> {{ 'ACCOUNTING.TOTAL' | translate }} &nbsp;&nbsp; </b>
                             </th>
                             <th>
                               {{drTotal | Currency:'4'}}
@@ -156,12 +156,12 @@
                         </table>
                       </div>
                       <div class="col-md-12">
-                        <b> In Words :</b>&nbsp;
+                        <b> {{ 'ACCOUNTING.IN_WORDS' | translate }} :</b>&nbsp;
                         {{crTotal | Currency:'4' | NumberInWords | CapitalFirstLetter}} <span
-                              *ngIf="crTotal !=0">Only</span>
+                              *ngIf="crTotal !=0">{{ 'ACCOUNTING.ONLY' | translate }}</span>
                       </div>
                       <div class="col-md-12">
-                        <b>Narration:</b>&nbsp;{{transaction.Remarks}}
+                        <b>{{ 'ACCOUNTING.NARRATION' | translate }}:</b>&nbsp;{{transaction.Remarks}}
                       </div>
                       <div class="col-md-12" style="padding-top:50px;">
                         <table style="width:100%;border:0;text-align:center;">
@@ -177,8 +177,7 @@
                               <br />
                               <br />
                               <b style="border-top:1px solid black; padding:0px 10px;">
-                                Prepared
-                                By
+                                {{ 'ACCOUNTING.PREPARED_BY' | translate }}
                               </b>
                               <br />
                               {{transaction.Preparedby}}
@@ -186,22 +185,20 @@
                             <td>
                               <br />
                               <b style="border-top:1px solid black; padding:0px 10px;">
-                                Checked
-                                By
+                                {{ 'ACCOUNTING.CHECKED_BY' | translate }}
                               </b>
                             </td>
                             <td>
                               <br />
                               <b style="border-top:1px solid black; padding:0px 10px;">
-                                Approved
-                                By
+                                {{ 'ACCOUNTING.APPROVED_BY' | translate }}
                               </b>
                             </td>
                             <td *ngIf="transaction.VerifiedBy">
                               <br />
                               <br />
                               <b style="border-top:1px solid black; padding:0px 10px;">
-                                Confirmed By
+                                {{ 'ACCOUNTING.CONFIRMED_BY' | translate }}
                               </b>
                               <br />
                               {{transaction.VerifiedBy}}
@@ -209,8 +206,7 @@
                             <td *ngIf="IsShowReceivedBy">
                               <br />
                               <b style="border-top:1px solid black; padding:0px 10px;">
-                                Received
-                                By
+                                {{ 'ACCOUNTING.RECEIVED_BY' | translate }}
                               </b>
                             </td>
                           </tr>
@@ -225,38 +221,38 @@
                         <button
                                 [rbac-permission]="{'name':'accounting-copy-voucher-button-permission','actionOnInvalid':'hidden'}"
                                 class="btn creamyblue btn-success hidden-print" (click)="copyVoucher()" value=""
-                                title="copy voucher" style="margin-left: 12px;">
-                          Copy Voucher
+                                title="{{ 'ACCOUNTING.COPY_VOUCHER' | translate }}" style="margin-left: 12px;">
+                          {{ 'ACCOUNTING.COPY_VOUCHER' | translate }}
                         </button>
                         <button id="printbtn" class="btn green btn-success hidden-print" (click)="Print()" value="Print"
-                                title="print page">
-                          Print<i class="glyphicon glyphicon-print" style="margin-left:10px; "></i>
+                                title="{{ 'ACCOUNTING.PRINT_PAGE_TOOLTIP' | translate }}">
+                          {{ 'COMMON.PRINT' | translate }}<i class="glyphicon glyphicon-print" style="margin-left:10px; "></i>
                         </button>
                         <button *ngIf="showExportbtn" class="btn btn-primary hidden-print"
-                                (click)="ExportToExcel('excelTransactionView')" value="" title="export to excel">
-                          Export<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
+                                (click)="ExportToExcel('excelTransactionView')" value="" title="{{ 'ACCOUNTING.EXPORT_TO_EXCEL_TOOLTIP' | translate }}">
+                          {{ 'ACCOUNTING.EXPORT' | translate }}<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
                         </button>
                         <!-- edit btn show only for edit manual Voucher  -->
                         <button
                                 [rbac-permission]="{'name':'accounting-edit-voucher-button-permission','actionOnInvalid':'hidden'}"
                                 *ngIf="Iseditable &&  (!transaction.IsVerified || AllowVoucherEditAfterVerification)"
                                 class="btn creamyblue btn-success hidden-print" (click)="EditVoucher()"
-                                value="" title="edit manual voucher" style="margin-left: 12px;">
-                          Edit Voucher<i class="fa fa-pencil" style="margin-left:10px;"></i>
+                                value="" title="{{ 'ACCOUNTING.EDIT_VOUCHER' | translate }}" style="margin-left: 12px;">
+                          {{ 'ACCOUNTING.EDIT_VOUCHER' | translate }}<i class="fa fa-pencil" style="margin-left:10px;"></i>
                         </button>
 
                         <button *ngIf="transaction.IsAllowReverseVoucher && !transaction.IsVoucherReversed"
                                 [rbac-permission]="{'name':'allow-reverse-voucher','actionOnInvalid':'hidden'}"
                                 class="btn creamyblue btn-success hidden-print" (click)="reversevoucher()" value=""
-                                title="edit manual voucher" style="margin-left: 12px;">
-                          Reverse Voucher
+                                title="{{ 'ACCOUNTING.REVERSE_VOUCHER' | translate }}" style="margin-left: 12px;">
+                          {{ 'ACCOUNTING.REVERSE_VOUCHER' | translate }}
                         </button>
 
                         <button *ngIf="showVoucherVerifyButton"
                                 [rbac-permission]="{'name': 'accounting-verify-voucher-button-permission','actionOnInvalid':'hidden'}"
                                 class="btn creamyblue btn-success hidden-print" (click)="verifyVoucher()" value=""
-                                title="verify voucher" style="margin-left: 12px;">
-                          Verify Voucher
+                                title="{{ 'ACCOUNTING.VERIFY_VOUCHER' | translate }}" style="margin-left: 12px;">
+                          {{ 'ACCOUNTING.VERIFY_VOUCHER' | translate }}
                         </button>
                       </div>
                     </div>
@@ -288,24 +284,23 @@
                 <hr style="border:1px solid black;margin-top: 0px;margin-bottom: 5px;" />
                 <div class="col-md-10" *ngIf="showPayeeAndCheque">
                   <div class="row">
-                    <span class="col-md-10" style="font-size: 14px;"><b>Payee
-                        Name:</b>&nbsp;{{transaction.PayeeName}}<b>&nbsp;&nbsp;&nbsp;&nbsp;Cheque Number:</b>&nbsp;{{transaction.ChequeNumber}}</span>
+                    <span class="col-md-10" style="font-size: 14px;"><b>{{ 'ACCOUNTING.PAYEE_NAME' | translate }}:</b>&nbsp;{{transaction.PayeeName}}<b>&nbsp;&nbsp;&nbsp;&nbsp;{{ 'ACCOUNTING.CHEQUE_NO' | translate }}:</b>&nbsp;{{transaction.ChequeNumber}}</span>
                   </div>
                 </div>
                 <a style="float:right;  margin-top:-50px;margin-right:30px" class="btn btn-danger hidden-print"
-                   (click)="Close()" title="Cancel">X</a>
+                   (click)="Close()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
                 <div class="col-md-12" id="excelTransactionView">
                   <div class="col-md-12 patient-hdr-label">
                     <table style="width:100%;" align="center">
                       <tr>
                         <td>
-                          <b>Voucher No:</b>&nbsp;{{transaction.VoucherNumber}}
+                          <b>{{ 'ACCOUNTING.VOUCHER_NO' | translate }}:</b>&nbsp;{{transaction.VoucherNumber}}
                         </td>
                         <td style="text-align:center;">
                           <!--<b>Voucher Head:</b>&nbsp;{{transaction.VoucherHead}}-->
                         </td>
                         <td style="text-align:center;float:right;padding-right:10px;">
-                          <b>Transaction Date:</b>
+                          <b>{{ 'ACCOUNTING.TRANSACTION_DATE' | translate }}:</b>
                           <span style="float:right">
                             &nbsp;
                             {{transaction.TransactionDate | nepaliDate:'format':'YYYY-MM-DD'}}
@@ -324,19 +319,19 @@
                     <table class="table_data" style="width:100%;" border="1">
                       <tr>
                         <th>
-                          Main Ledger
+                          {{ 'ACCOUNTING.LEDGER_MAIN' | translate }}
                         </th>
                         <th>
-                          Sub Ledger
+                          {{ 'ACCOUNTING.SUB_LEDGER' | translate }}
                         </th>
                         <th>
-                          Description
+                          {{ 'ACCOUNTING.DESCRIPTION' | translate }}
                         </th>
                         <th>
-                          Debit
+                          {{ 'ACCOUNTING.DEBIT' | translate }}
                         </th>
                         <th>
-                          Credit
+                          {{ 'ACCOUNTING.CREDIT' | translate }}
                         </th>
                       </tr>
                       <tr *ngFor="let txnItm of transaction.TransactionItems">
@@ -444,7 +439,7 @@
                       </tr>
                       <tr>
                         <th colspan="3">
-                          <b style="float:right;">Total &nbsp;&nbsp; </b>
+                          <b style="float:right;">{{ 'ACCOUNTING.TOTAL' | translate }} &nbsp;&nbsp; </b>
                         </th>
                         <th>
                           {{totaldr | Currency:'4'}}
@@ -458,7 +453,7 @@
                       </tr>
                       <tr>
                         <td colspan="3">
-                          <span style="float:right;">Sales SubTotal &nbsp;&nbsp; </span>
+                          <span style="float:right;">{{ 'ACCOUNTING.SALES_SUBTOTAL' | translate }} &nbsp;&nbsp; </span>
                         </td>
                         <td colspan="2">
                           {{drTotal | Currency:'4'}}
@@ -467,7 +462,7 @@
                       <tr>
                         <td colspan="3">
                           <span style="float:right;">
-                            Less Trade Discount Total &nbsp;&nbsp;
+                            {{ 'ACCOUNTING.LESS_TRADE_DISCOUNT_TOTAL' | translate }} &nbsp;&nbsp;
                           </span>
                         </td>
                         <td colspan="2">
@@ -476,7 +471,7 @@
                       </tr>
                       <tr>
                         <td colspan="3">
-                          <span style="float:right;"> Return Sales &nbsp;&nbsp; </span>
+                          <span style="float:right;"> {{ 'ACCOUNTING.RETURN_SALES' | translate }} &nbsp;&nbsp; </span>
                         </td>
                         <td colspan="2">
                           {{returnAmount | Currency:'4'}}
@@ -484,7 +479,7 @@
                       </tr>
                       <tr>
                         <td colspan="3">
-                          <span style="float:right;"> Return Discount &nbsp;&nbsp; </span>
+                          <span style="float:right;"> {{ 'ACCOUNTING.RETURN_DISCOUNT' | translate }} &nbsp;&nbsp; </span>
                         </td>
                         <td colspan="2">
                           {{returnDiscount | Currency:'4'}}
@@ -492,7 +487,7 @@
                       </tr>
                       <tr>
                         <td colspan="3">
-                          <b style="float:right;"> Net Sales &nbsp;&nbsp; </b>
+                          <b style="float:right;"> {{ 'ACCOUNTING.NET_SALES' | translate }} &nbsp;&nbsp; </b>
                         </td>
                         <td colspan="2">
                           <b>{{salesTotalAmount | Currency:'4'}}</b>
@@ -500,7 +495,7 @@
                       </tr>
                       <tr>
                         <td colspan="3">
-                          <span style="float:right;">Less Receivables &nbsp;&nbsp; </span>
+                          <span style="float:right;">{{ 'ACCOUNTING.LESS_RECEIVABLES' | translate }} &nbsp;&nbsp; </span>
                         </td>
                         <td colspan="2">
                           {{receivableAmount | Currency:'4'}}
@@ -509,7 +504,7 @@
                       <tr>
                         <td colspan="3">
                           <span style="float:right;">
-                            Collection From receivables &nbsp;&nbsp;
+                            {{ 'ACCOUNTING.COLLECTION_FROM_RECEIVABLES' | translate }} &nbsp;&nbsp;
                           </span>
                         </td>
                         <td colspan="2">
@@ -518,7 +513,7 @@
                       </tr>
                       <tr>
                         <td colspan="3">
-                          <span style="float:right;">Add Advance Received &nbsp;&nbsp; </span>
+                          <span style="float:right;">{{ 'ACCOUNTING.ADD_ADVANCE_RECEIVED' | translate }} &nbsp;&nbsp; </span>
                         </td>
                         <td colspan="2">
                           {{depositcr | Currency:'4'}}
@@ -526,7 +521,7 @@
                       </tr>
                       <tr>
                         <td colspan="3">
-                          <span style="float:right;">Less Advance Settled &nbsp;&nbsp; </span>
+                          <span style="float:right;">{{ 'ACCOUNTING.LESS_ADVANCE_SETTLED' | translate }} &nbsp;&nbsp; </span>
                         </td>
                         <td colspan="2">
                           {{depositdr | Currency:'4'}}
@@ -534,7 +529,7 @@
                       </tr>
                       <tr>
                         <th colspan="3">
-                          <b style="float:right;">Cash Collection Total &nbsp;&nbsp; </b>
+                          <b style="float:right;">{{ 'ACCOUNTING.CASH_COLLECTION_TOTAL' | translate }} &nbsp;&nbsp; </b>
                         </th>
                         <th colspan="2">
                           {{totalAmount | Currency:'4'}}
@@ -572,12 +567,12 @@
                     </table>
                   </div>
                   <div>
-                    <b> In Words :</b>&nbsp;
+                    <b> {{ 'ACCOUNTING.IN_WORDS' | translate }} :</b>&nbsp;
                     {{totalAmount | Currency:'4' | NumberInWords | CapitalFirstLetter}} <span
-                          *ngIf="totalAmount !=0">Only</span>
+                          *ngIf="totalAmount !=0">{{ 'ACCOUNTING.ONLY' | translate }}</span>
                   </div>
                   <div>
-                    <b>Narration:</b>&nbsp;{{transaction.Remarks}}
+                    <b>{{ 'ACCOUNTING.NARRATION' | translate }}:</b>&nbsp;{{transaction.Remarks}}
                   </div>
                   <div class="col-md-12" style="padding-top:50px;">
                     <table style="width:100%;border:0;text-align:center;">
@@ -593,8 +588,7 @@
                           <br />
                           <br />
                           <b style="border-top:1px solid black; padding:0px 10px;">
-                            Prepared
-                            By
+                            {{ 'ACCOUNTING.PREPARED_BY' | translate }}
                           </b>
                           <br />
                           {{transaction.Preparedby}}
@@ -602,22 +596,20 @@
                         <td>
                           <br />
                           <b style="border-top:1px solid black; padding:0px 10px;">
-                            Checked
-                            By
+                            {{ 'ACCOUNTING.CHECKED_BY' | translate }}
                           </b>
                         </td>
                         <td>
                           <br />
                           <b style="border-top:1px solid black; padding:0px 10px;">
-                            Approved
-                            By
+                            {{ 'ACCOUNTING.APPROVED_BY' | translate }}
                           </b>
                         </td>
                         <td *ngIf="transaction.VerifiedBy">
                           <br />
                           <br />
                           <b style="border-top:1px solid black; padding:0px 10px;">
-                            Confirmed By
+                            {{ 'ACCOUNTING.CONFIRMED_BY' | translate }}
                           </b>
                           <br />
                           {{transaction.VerifiedBy}}
@@ -625,8 +617,7 @@
                         <td *ngIf="IsShowReceivedBy">
                           <br />
                           <b style="border-top:1px solid black; padding:0px 10px;">
-                            Received
-                            By
+                            {{ 'ACCOUNTING.RECEIVED_BY' | translate }}
                           </b>
                         </td>
                       </tr>
@@ -638,24 +629,24 @@
                 <div class="col-md-12" style="padding-bottom: 15px;">
                   <div class="form-actions">
                     <button id="printbtn" class="btn green btn-success hidden-print" (click)="Print()" value="Print"
-                            title="print page">
-                      Print<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i>
+                            title="{{ 'ACCOUNTING.PRINT_PAGE_TOOLTIP' | translate }}">
+                      {{ 'COMMON.PRINT' | translate }}<i class="glyphicon glyphicon-print" style="margin-left:10px;"></i>
                     </button>
                     <button class="btn btn-success hidden-print" (click)="ExportToExcel('excelTransactionView')"
-                            value="" title="export to excel">
-                      Export<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
+                            value="" title="{{ 'ACCOUNTING.EXPORT_TO_EXCEL_TOOLTIP' | translate }}">
+                      {{ 'ACCOUNTING.EXPORT' | translate }}<i class="fa fa-file-excel-o" style="margin-left:10px;"></i>
                     </button>
                     <button *ngIf="transaction.IsAllowReverseVoucher"
                             [rbac-permission]="{'name':'allow-reverse-voucher','actionOnInvalid':'hidden'}"
                             class="btn creamyblue btn-success hidden-print" (click)="reversevoucher()" value=""
-                            title="edit manual voucher" style="margin-left: 12px;">
-                      Reverse Voucher
+                            title="{{ 'ACCOUNTING.REVERSE_VOUCHER' | translate }}" style="margin-left: 12px;">
+                      {{ 'ACCOUNTING.REVERSE_VOUCHER' | translate }}
                     </button>
                     <button *ngIf="showVoucherVerifyButton"
                             [rbac-permission]="{'name': 'accounting-verify-voucher-button-permission','actionOnInvalid':'hidden'}"
                             class="btn creamyblue btn-success hidden-print" (click)="verifyVoucher()" value=""
-                            title="verify voucher" style="margin-left: 12px;">
-                      Verify Voucher
+                            title="{{ 'ACCOUNTING.VERIFY_VOUCHER' | translate }}" style="margin-left: 12px;">
+                      {{ 'ACCOUNTING.VERIFY_VOUCHER' | translate }}
                     </button>
                   </div>
                 </div>
@@ -686,11 +677,10 @@
               <hr style="border:1px solid black;margin-top: 0px;margin-bottom: 5px;" />
               <div class="col-md-10" *ngIf="showPayeeAndCheque">
                 <div class="row">
-                  <span class="col-md-10" style="font-size: 14px;"><b>Payee Name:</b>&nbsp;{{transaction.PayeeName}}<b>&nbsp;&nbsp;&nbsp;&nbsp;Cheque
-                      Number:</b>&nbsp;{{transaction.ChequeNumber}}</span>
+                  <span class="col-md-10" style="font-size: 14px;"><b>{{ 'ACCOUNTING.PAYEE_NAME' | translate }}:</b>&nbsp;{{transaction.PayeeName}}<b>&nbsp;&nbsp;&nbsp;&nbsp;{{ 'ACCOUNTING.CHEQUE_NO' | translate }}:</b>&nbsp;{{transaction.ChequeNumber}}</span>
                 </div>
               </div>
-              <a class="btn btn-danger hidden-print rt_close_btn" (click)="Closereverse()" title="Cancel">X</a>
+              <a class="btn btn-danger hidden-print rt_close_btn" (click)="Closereverse()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
 
               <div class="row">
                 <div class="col-md-12 col-xs-12">
@@ -701,12 +691,12 @@
                         <table style="width:100%;" align="center">
                           <tr>
                             <td>
-                              <b>Voucher No:</b>&nbsp;{{TempVoucherNumber}}
+                              <b>{{ 'ACCOUNTING.VOUCHER_NO' | translate }}:</b>&nbsp;{{TempVoucherNumber}}
                             </td>
                             <td style="text-align:center;">
                             </td>
                             <td style="text-align:center;float:right;padding-right:10px;">
-                              <b>Transaction Date:</b>
+                              <b>{{ 'ACCOUNTING.TRANSACTION_DATE' | translate }}:</b>
                               <span style="float:right">
                                 &nbsp;
                                 {{txnDetails.TransactionDate | nepaliDate:'format':'YYYY-MM-DD hh:mm'}} 
@@ -725,25 +715,25 @@
                           <tr>
                             <th *ngIf="showVoucherHeadCol">
                               <!-- Main Ledger  -->
-                              Account Head
+                              {{ 'ACCOUNTING.ACCOUNT_HEAD' | translate }}
                             </th>
                             <th>
-                              Code
+                              {{ 'ACCOUNTING.CODE' | translate }}
                             </th>
                             <th>
-                              Main Ledger
+                              {{ 'ACCOUNTING.LEDGER_MAIN' | translate }}
                             </th>
                             <th *ngIf="subLedgerAndCostCenterSetting.EnableSubLedger">
-                              Sub Ledger
+                              {{ 'ACCOUNTING.SUB_LEDGER' | translate }}
                             </th>
                             <th>
-                              Description
+                              {{ 'ACCOUNTING.DESCRIPTION' | translate }}
                             </th>
                             <th>
-                              Debit Amount
+                              {{ 'ACCOUNTING.DEBIT_AMOUNT' | translate }}
                             </th>
                             <th>
-                              Credit Amount
+                              {{ 'ACCOUNTING.CREDIT_AMOUNT' | translate }}
                             </th>
                           </tr>
                           <tr *ngFor="let txnItm of txnDetails.TransactionItems">
@@ -798,10 +788,10 @@
                           </tr>
                           <tr>
                             <th *ngIf="showVoucherHeadCol" colspan="5">
-                              <b style="float:right;"> Total &nbsp;&nbsp; </b>
+                              <b style="float:right;"> {{ 'ACCOUNTING.TOTAL' | translate }} &nbsp;&nbsp; </b>
                             </th>
                             <th *ngIf="!showVoucherHeadCol" colspan="4">
-                              <b style="float:right;"> Total &nbsp;&nbsp; </b>
+                              <b style="float:right;"> {{ 'ACCOUNTING.TOTAL' | translate }} &nbsp;&nbsp; </b>
                             </th>
                             <th>
                               {{drTotal | Currency:'4'}}
@@ -813,9 +803,9 @@
                         </table>
                       </div>
                       <div class="col-md-12">
-                        <b> In Words :</b>&nbsp;
+                        <b> {{ 'ACCOUNTING.IN_WORDS' | translate }} :</b>&nbsp;
                         {{crTotal | Currency:'4' | NumberInWords | CapitalFirstLetter}} <span
-                              *ngIf="crTotal !=0">Only</span>
+                              *ngIf="crTotal !=0">{{ 'ACCOUNTING.ONLY' | translate }}</span>
                       </div>
                       <div class="col-md-12">
                         <b>Narration:</b>&nbsp;{{txnDetails.Remarks}}
@@ -826,8 +816,8 @@
                     <div class="col-md-12" style="padding-bottom: 15px;">
                       <div class="form-actions" style="text-align: right;">
                         <button class="btn creamyblue btn-success hidden-print" (click)="SaveReverseVoucher()" value=""
-                                title="edit manual voucher" style="margin-left: 12px;">
-                          Save
+                                title="{{ 'COMMON.SAVE' | translate }}" style="margin-left: 12px;">
+                          {{ 'COMMON.SAVE' | translate }}
                         </button>
                       </div>
                     </div>

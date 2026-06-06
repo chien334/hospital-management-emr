@@ -4,21 +4,21 @@
       <div class="modelbox-div">
         <div class="modelbox-body">
           <div class="caption custom-caption">
-            <h3> <span>Confirm {{ProcessDisplayName}} </span></h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span>{{ 'UTILITIES.CONFIRM' | translate }} {{ProcessDisplayName}} </span></h3>
+            <a class="btn btn-danger" (click)="Close()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
           </div>
           <div class="row">
             <div class="form-body">
               <div class="form-group">
-                <label for="id_text_username"><strong>Username: </strong></label>
+                <label for="id_text_username"><strong>{{ 'UTILITIES.USERNAME' | translate }}: </strong></label>
                 <input type="text" class="form-control" name="username" id="id_text_username" [(ngModel)]="ProcessToConfirmUserCredentials.Username"
-                       placeholder="Enter Username">
-                <label for="id_password_user"><strong>Password: </strong></label>
+                       placeholder="{{ 'UTILITIES.ENTER_USERNAME_PLACEHOLDER' | translate }}">
+                <label for="id_password_user"><strong>{{ 'UTILITIES.PASSWORD' | translate }}: </strong></label>
                 <input type="password" class="form-control" name="password" id="id_password_user"
                        [(ngModel)]="ProcessToConfirmUserCredentials.Password"
-                       placeholder="Enter Password">
+                       placeholder="{{ 'UTILITIES.ENTER_PASSWORD_PLACEHOLDER' | translate }}">
               </div>
-              <input type="submit" class="btn green btn-success" value="Confirm" (click)="ConfirmProcess()" style="float: right;">
+              <input type="submit" class="btn green btn-success" value="{{ 'UTILITIES.CONFIRM' | translate }}" (click)="ConfirmProcess()" style="float: right;">
             </div>
           </div>
         </div>

@@ -55,7 +55,7 @@
 <div class="row" style="padding: 4px;">
     <div class="col-md-3">
         <label class="control-label" style="padding-top: 7px;">
-            Select Year
+            {{ 'PAYROLL.SELECT_YEAR' | translate }}
             <b style="float:right;">:</b>
         </label>&nbsp;
         <select [(ngModel)]="PayrollDetail.Year" (ngModelChange)="OnSelectYearLoadMonth()"
@@ -67,7 +67,7 @@
     </div>
     <div class="col-md-3">
         <label class="control-label" style="padding-top: 7px;">
-            Select Month
+            {{ 'PAYROLL.SELECT_MONTH' | translate }}
             <b style="float:right;">:</b>
         </label>&nbsp;
         <select style="width: 150px; height: 30px;" [(ngModel)]="PayrollDetail.mm"
@@ -81,31 +81,31 @@
         <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
             <input (change)="LoadEmployeeList('all')" name="name" style="width:15px;height:15px" type="radio"
                 class="ng-untouched ng-pristine ng-valid">
-            <span></span>ALL Employee
+            <span></span>{{ 'PAYROLL.ALL_EMPLOYEE' | translate }}
         </label>
     </div>
     <div class="col-md-2" [rbac-permission]="{'name':'payroll-attendance-biometric-sync-btn','action':'hidden'}">
-        <button class="btn btn-primary" (click)="GetFileToImportData()" title="Click to select the file...">
-            <i class="fa fa-refresh"></i> Sync Biometric Attendance
+        <button class="btn btn-primary" (click)="GetFileToImportData()" title="{{ 'PAYROLL.CLICK_TO_SELECT_FILE' | translate }}">
+            <i class="fa fa-refresh"></i> {{ 'PAYROLL.SYNC_BIOMETRIC_ATTENDANCE' | translate }}
         </button>
     </div>
     <div class="col-md-2" [rbac-permission]="{'name':'payroll-attendance-edit-btn','action':'hidden'}">
         <button class="btn btn-primary" (click)="EditAttendance()">
-            <i class="fa fa-edit"></i> Edit Attendance
+            <i class="fa fa-edit"></i> {{ 'PAYROLL.EDIT_ATTENDANCE' | translate }}
         </button>
     </div>
 </div>
 <div class="row" style=" padding: 5px;">
 
     <div class="col-md-4">
-        <input [(ngModel)]="searchText" style="width:360px;" class="searchtbx" type="text" placeholder="search"
-            onfocus="this.placeholder = ''" onfocusout="this.placeholder = 'search'">
+        <input [(ngModel)]="searchText" style="width:360px;" class="searchtbx" type="text" placeholder="{{ 'PAYROLL.SEARCH' | translate }}"
+            onfocus="this.placeholder = ''" onfocusout="this.placeholder = ('PAYROLL.SEARCH' | translate)">
     </div>
     <div class="col-md-8">
-        <button class="btn" style="background-color: #4dd84d"></button> : &nbsp;<b>Present( P )</b> &nbsp;
-        <button class="btn" style="background-color: #ef8a8a"></button> : &nbsp;<b>Absent( A )</b> &nbsp;
-        <button class="btn" style="background-color: #D3D3D3"></button> : &nbsp;<b>Weekly OFF( WF )</b> &nbsp;
-        <button class="btn" style="background-color: #ffa500"></button> : &nbsp;<b>Government Holiday( GH )</b> &nbsp;
+        <button class="btn" style="background-color: #4dd84d"></button> : &nbsp;<b>{{ 'PAYROLL.PRESENT_P' | translate }}</b> &nbsp;
+        <button class="btn" style="background-color: #ef8a8a"></button> : &nbsp;<b>{{ 'PAYROLL.ABSENT_A' | translate }}</b> &nbsp;
+        <button class="btn" style="background-color: #D3D3D3"></button> : &nbsp;<b>{{ 'PAYROLL.WEEKLY_OFF_WF' | translate }}</b> &nbsp;
+        <button class="btn" style="background-color: #ffa500"></button> : &nbsp;<b>{{ 'PAYROLL.GOVERNMENT_HOLIDAY_GH' | translate }}</b> &nbsp;
     </div>
 </div>
 <div class="row">
@@ -115,8 +115,8 @@
                 style="background-color:initial;margin-top:10px; ">
                 <thead>
                     <tr style=" background-color: #3598dc; color:#ffff">
-                        <th class="th-sm" style="padding-bottom: 13px ;"><b>No.</b></th>
-                        <th class="th-sm" style="padding-bottom: 13px;"><b>EmployeeName</b></th>
+                        <th class="th-sm" style="padding-bottom: 13px ;"><b>{{ 'PAYROLL.NO' | translate }}</b></th>
+                        <th class="th-sm" style="padding-bottom: 13px;"><b>{{ 'PAYROLL.EMPLOYEE_NAME' | translate }}</b></th>
                         <th *ngFor="let data of dates" style="width: 100px;"  matTooltip="{{data.HolidayTitle}}"
                             [ngStyle]="{'background-color': data.color}" class="th-sm">
                             <b><span>{{data.date |  date: 'd'}}</span> </b><br /> <span
@@ -152,11 +152,11 @@
         float: none;">
             <div style="padding:10px">
                 <i style="margin-top: 14px;
-                margin-right: 1px;" class="btn btn-danger pull-right" (click)="Close()" title="Cancel">X</i>
+                margin-right: 1px;" class="btn btn-danger pull-right" (click)="Close()" title="{{ 'COMMON.CANCEL' | translate }}">X</i>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Choose CSV File
+                    {{ 'PAYROLL.CHOOSE_CSV_FILE' | translate }}
                 </div>
                 <div class="panel-body">
                     <input type="file" #fileImportInput name="File Upload" id="txtFileUpload"

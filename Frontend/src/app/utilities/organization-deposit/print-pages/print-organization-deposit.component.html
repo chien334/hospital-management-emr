@@ -15,8 +15,8 @@
             <div class="text-center">
               <p class="no-margin" style="text-align:center;text-decoration:underline;margin-top:15px">
                 <span>
-                  <b *ngIf="organizationDeposit.TransactionType === 'Deposit'">Deposit Add Receipt </b>
-                  <b *ngIf="organizationDeposit.TransactionType === 'ReturnDeposit'">Deposit Refund Receipt </b>
+                  <b *ngIf="organizationDeposit.TransactionType === 'Deposit'">{{ 'UTILITIES.DEPOSIT_ADD_RECEIPT' | translate }} </b>
+                  <b *ngIf="organizationDeposit.TransactionType === 'ReturnDeposit'">{{ 'UTILITIES.DEPOSIT_REFUND_RECEIPT' | translate }} </b>
                 </span>
               </p>
             </div>
@@ -24,22 +24,22 @@
             <div class="height: fit-content; width: 100%;" style="text-align:left; margin-left:20px;">
               <div>
                 <p>
-                  Organization: &nbsp;{{organizationDeposit.CreditOrganizationName}}
+                  {{ 'UTILITIES.ORGANIZATION' | translate }}: &nbsp;{{organizationDeposit.CreditOrganizationName}}
                 </p>
               </div>
               <div>
                 <p>
-                  Representative: &nbsp; {{organizationDeposit.CareOf}}
+                  {{ 'UTILITIES.REPRESENTATIVE' | translate }}: &nbsp; {{organizationDeposit.CareOf}}
                 </p>
               </div>
               <div>
                 <p *ngIf="organizationDeposit.TransactionType=='Deposit'">
-                  Deposit Amount: Rs. {{organizationDeposit.InAmount}}
+                  {{ 'UTILITIES.DEPOSIT_AMOUNT' | translate }}: Rs. {{organizationDeposit.InAmount}}
                 </p>
               </div>
               <div>
                 <p *ngIf="organizationDeposit.TransactionType=='ReturnDeposit'">
-                  Return Amount: Rs. {{organizationDeposit.OutAmount}}
+                  {{ 'UTILITIES.RETURN_AMOUNT' | translate }}: Rs. {{organizationDeposit.OutAmount}}
                 </p>
               </div>
             </div>
@@ -47,40 +47,40 @@
 
             <div class="height: fit-content; width: 100%;" style="text-align:left; margin-left:20px;">
               <p *ngIf="organizationDeposit.TransactionType=='Deposit'">
-                Deposit of <b>{{organizationDeposit.InAmount}}</b>
-                received from <b>{{organizationDeposit.CreditOrganizationName}}</b>
+                {{ 'UTILITIES.DEPOSIT_OF' | translate }} <b>{{organizationDeposit.InAmount}}</b>
+                {{ 'UTILITIES.RECEIVED_FROM' | translate }} <b>{{organizationDeposit.CreditOrganizationName}}</b>
                 <br>
-                In Words: {{ organizationDeposit.InAmount | NumberInWords}} only /-
+                {{ 'UTILITIES.IN_WORDS' | translate }}: {{ organizationDeposit.InAmount | NumberInWords}} {{ 'UTILITIES.ONLY' | translate }} /-
               </p>
               <p *ngIf="organizationDeposit.TransactionType=='ReturnDeposit'">
-                Deposit of <b>{{organizationDeposit.OutAmount }}</b>
-                returned to <b>{{organizationDeposit.CreditOrganizationName}}</b>
+                {{ 'UTILITIES.DEPOSIT_OF' | translate }} <b>{{organizationDeposit.OutAmount }}</b>
+                {{ 'UTILITIES.RETURNED_TO' | translate }} <b>{{organizationDeposit.CreditOrganizationName}}</b>
                 <br>
-                In Words: {{organizationDeposit.OutAmount | NumberInWords}} only /-
+                {{ 'UTILITIES.IN_WORDS' | translate }}: {{organizationDeposit.OutAmount | NumberInWords}} {{ 'UTILITIES.ONLY' | translate }} /-
               </p>
             </div>
             <div class="clear"></div>
             <div class="height: fit-content; width: 100%;" style="text-align:left; margin-left:20px;">
               <p>
-                Deposit Balance: &nbsp;<b>{{organizationDeposit.DepositBalance}}</b>
+                {{ 'UTILITIES.DEPOSIT_BALANCE' | translate }}: &nbsp;<b>{{organizationDeposit.DepositBalance}}</b>
               </p>
               <p>
-                Remarks:&nbsp; {{organizationDeposit.Remarks}}
+                {{ 'GRID_HEADERS.REMARKS' | translate }}:&nbsp; {{organizationDeposit.Remarks}}
               </p>
               <p>
-                Payment Mode: &nbsp;{{organizationDeposit.PaymentMode}}
+                {{ 'GRID_HEADERS.PAYMENT_MODE' | translate }}: &nbsp;{{organizationDeposit.PaymentMode}}
               </p>
               <p *ngIf="organizationDeposit.PaymentDetails !== null">
-                Payment Details: &nbsp;{{organizationDeposit.PaymentDetails}}
+                {{ 'UTILITIES.PAYMENT_DETAILS' | translate }}: &nbsp;{{organizationDeposit.PaymentDetails}}
               </p>
             </div>
             <hr style="border-top: dotted 1px;" />
             <div class="height: fit-content; width: 100%;" style="text-align:left; margin-left:20px;">
               <p *ngIf="organizationDeposit.TransactionType=='Deposit'">
-                Deposited By: {{CurrentUser.UserName}} on {{DateTimeNow}}
+                {{ 'UTILITIES.DEPOSITED_BY' | translate }}: {{CurrentUser.UserName}} {{ 'UTILITIES.ON' | translate }} {{DateTimeNow}}
               </p>
               <p *ngIf="organizationDeposit.TransactionType=='ReturnDeposit'">
-                Returned By: {{CurrentUser.UserName}} on {{DateTimeNow}}
+                {{ 'UTILITIES.RETURNED_BY' | translate }}: {{CurrentUser.UserName}} {{ 'UTILITIES.ON' | translate }} {{DateTimeNow}}
               </p>
             </div>
 
@@ -89,7 +89,7 @@
         <div class="height: fit-content; width: 100%;">
           <p style="text-align:center; background-color:white">
             <button class="btn blue" (click)="Print()">
-              Print Receipt
+              {{ 'UTILITIES.PRINT_RECEIPT' | translate }}
               <i class="glyphicon glyphicon-print"></i>
             </button>
           </p>

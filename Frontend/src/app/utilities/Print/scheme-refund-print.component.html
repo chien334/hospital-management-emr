@@ -146,7 +146,7 @@
         <td colspan="6" width="50%">
           <h3 class="c_name" style="text-align: center;"><strong>{{headerDetail.CustomerName}}</strong></h3>
           <p class="c_paragraphs" style="text-align: center;">{{headerDetail.Address}}</p>
-          <p class="c_paragraphs" style="text-align: center;">Ph No: {{headerDetail.Tel}}</p>
+          <p class="c_paragraphs" style="text-align: center;">{{ 'UTILITIES.PH_NO' | translate }}: {{headerDetail.Tel}}</p>
         </td>
         <td colspan="3" width="25%" style="text-align: right; vertical-align: top;">
           <p class="c_paragraphs" style="text-align: right; margin-top: 10px; margin: 0;"><strong>{{headerDetail.CustomerRegLabel}}</strong> </p>
@@ -156,7 +156,7 @@
     <table style="width: 800px; margin: 0 auto;" cellspacing="0" cellpadding="0">
       <tr>
         <td colspan="12" style="text-align: center;">
-          <p><strong>Scheme Refund Receipt</strong></p>
+          <p><strong>{{ 'UTILITIES.SCHEME_REFUND_RECEIPT' | translate }}</strong></p>
         </td>
       </tr>
       <tr style="border: 1px solid #ccc;">
@@ -164,37 +164,37 @@
           <table style="width: 100%; margin-bottom: 0;">
             <tr>
               <td colspan="6" style="text-align: left;">
-                <p class="c_paragraphs"><strong>Receipt No:</strong> {{schemePrintDetails.FiscalYear}} {{'SCR'}}-{{schemePrintDetails.ReceiptNo}}</p>
+                <p class="c_paragraphs"><strong>{{ 'UTILITIES.RECEIPT_NO' | translate }}:</strong> {{schemePrintDetails.FiscalYear}} {{'SCR'}}-{{schemePrintDetails.ReceiptNo}}</p>
               </td>
               <td colspan="6" style="text-align: right;">
-                <p class="c_paragraphs"><strong>Date:</strong> {{schemePrintDetails.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}} {{localDate}}
+                <p class="c_paragraphs"><strong>{{ 'COMMON.DATE' | translate }}:</strong> {{schemePrintDetails.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}} {{localDate}}
                 </p>
               </td>
             </tr>
             <tr>
               <td colspan="6" style="text-align: left;">
-                <p class="c_paragraphs"><strong>Hospital No : </strong> {{schemePrintDetails.HospitalNo}}</p>
+                <p class="c_paragraphs"><strong>{{ 'UTILITIES.HOSPITAL_NO' | translate }} : </strong> {{schemePrintDetails.HospitalNo}}</p>
               </td>
               <td colspan="6" style="text-align: right;">
-                <p class="c_paragraphs"><strong>Address : </strong>{{schemePrintDetails.Address}}</p>
+                <p class="c_paragraphs"><strong>{{ 'COMMON.ADDRESS' | translate }} : </strong>{{schemePrintDetails.Address}}</p>
               </td>
             </tr>
             <tr>
               <td colspan="6" style="text-align: left;">
-                <p class="c_paragraphs"><strong>Patient's Name: </strong> {{schemePrintDetails.PatientName}}</p>
+                <p class="c_paragraphs"><strong>{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}: </strong> {{schemePrintDetails.PatientName}}</p>
               </td>
               <td colspan="6" style="text-align: right;">
-                <p class="c_paragraphs"><strong>Payment Mode: </strong> {{schemePrintDetails.Paymentmode}} </p>
+                <p class="c_paragraphs"><strong>{{ 'GRID_HEADERS.PAYMENT_MODE' | translate }}: </strong> {{schemePrintDetails.Paymentmode}} </p>
               </td>
             </tr>
             <tr>
               <td colspan="6" style="text-align: left;">
-                <p class="c_paragraphs"><strong>Contact No: </strong>{{schemePrintDetails.Contact}}</p>
+                <p class="c_paragraphs"><strong>{{ 'UTILITIES.CONTACT_NO' | translate }}: </strong>{{schemePrintDetails.Contact}}</p>
               </td>
             </tr>
             <tr>
               <td colspan="12" style="text-align: center;">
-                <p class="c_paragraphs"><strong>refund Under {{schemePrintDetails.SchemeName}} </strong></p>
+                <p class="c_paragraphs"><strong>{{ 'UTILITIES.REFUND_UNDER' | translate: { schemeName: schemePrintDetails.SchemeName } }}</strong></p>
               </td>
             </tr>
           </table>
@@ -203,27 +203,26 @@
 
       <tr>
         <td colspan="12" style="text-align: center; padding: 0 10px 0 10px;">
-          <p class="c_paragraphs">Amount <strong> {{coreService.currencyUnit}} {{schemePrintDetails.Amount}}</strong> </p>
-          <p><strong>Under {{schemePrintDetails.SchemeName}} &nbsp; {{coreService.currencyUnit}} {{schemePrintDetails.Amount}} is refunder to
-              {{schemePrintDetails.PatientName}}</strong>
+          <p class="c_paragraphs">{{ 'GRID_HEADERS.AMOUNT' | translate }} <strong> {{coreService.currencyUnit}} {{schemePrintDetails.Amount}}</strong> </p>
+          <p><strong>{{ 'UTILITIES.REFUND_UNDER_CONFIRMATION' | translate: { schemeName: schemePrintDetails.SchemeName, currency: coreService.currencyUnit, amount: schemePrintDetails.Amount, patientName: schemePrintDetails.PatientName } }}</strong>
           </p>
         </td>
       </tr>
       <tr>
         <td colspan="12" style="text-align: center; padding: 0 10px 10px 10px;">
-          <p class="c_paragraphs">In Words : <strong>{{schemePrintDetails.Amount | NumberInWords}} </strong>Only</p>
+          <p class="c_paragraphs">{{ 'UTILITIES.IN_WORDS' | translate }} : <strong>{{schemePrintDetails.Amount | NumberInWords}} </strong>{{ 'UTILITIES.ONLY' | translate }}</p>
         </td>
       </tr>
 
       <tr>
         <td colspan="12" style="padding: 0 10px 10px 10px; vertical-align: top;">
-          <p class="c_paragraphs"><strong>Remarks: </strong> {{schemePrintDetails.Remarks}} </p>
+          <p class="c_paragraphs"><strong>{{ 'GRID_HEADERS.REMARKS' | translate }}: </strong> {{schemePrintDetails.Remarks}} </p>
         </td>
       </tr>
       <tr style="border-top: 1px solid #ccc;">
         <td colspan="12" style="padding: 10px; text-align: left;">
-          <p class="c_paragraphs"><span>Refunded By</span> {{CurrentUser.UserName}}
-            on {{DateTimeNow | DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
+          <p class="c_paragraphs"><span>{{ 'UTILITIES.REFUNDED_BY' | translate }}</span> {{CurrentUser.UserName}}
+            {{ 'UTILITIES.ON' | translate }} {{DateTimeNow | DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
         </td>
       </tr>
     </table>
@@ -231,7 +230,7 @@
 </section>
 
 <p style="text-align:center;" class="m1">
-  <button class="btn green btn-success" id="btn_PrintReceipt" (click)="print()">Print Receipt
+  <button class="btn green btn-success" id="btn_PrintReceipt" (click)="print()">{{ 'UTILITIES.PRINT_RECEIPT' | translate }}
     <i class="glyphicon glyphicon-print"></i>
   </button>
 </p>

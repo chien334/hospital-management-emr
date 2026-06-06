@@ -1,6 +1,5 @@
 <div class="margin-20-tp">
-  <a class="btn green btn-success" style="margin-left:2px ;" feature="button" (click)="ShowAddNewPage()"><i class="fa fa-plus"></i> New Scheme Refund
-    Entry</a>
+  <a class="btn green btn-success" style="margin-left:2px ;" feature="button" (click)="ShowAddNewPage()"><i class="fa fa-plus"></i> {{ 'UTILITIES.NEW_SCHEME_REFUND_ENTRY' | translate }}</a>
 
   <div style="margin-left:2px ;">
     <danphe-grid [grid-colDefaults]="schemeRefundGridColumns" [grid-data]="SchemeRefundList"

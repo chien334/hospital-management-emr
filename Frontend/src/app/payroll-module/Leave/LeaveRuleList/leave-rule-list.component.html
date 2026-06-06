@@ -14,12 +14,12 @@
 <div class="row">
     <div class="col-md-1">
         <button (click)="AddRules()" class="btn btn-primary">
-            <span class="fa fa-plus"></span> New Rule
+            <span class="fa fa-plus"></span> {{ 'PAYROLL.NEW_RULE' | translate }}
         </button>
     </div>
     <div class="col-md-3">
         <label class="control-label" style="padding-top: 7px;">
-            Select Year
+            {{ 'PAYROLL.SELECT_YEAR' | translate }}
             <b style="float:right;">:</b>
         </label>&nbsp;
         <select [(ngModel)]="yyyy" (ngModelChange)="LoadLeaveRuleList()" style="width: 150px; height: 30px;">
@@ -45,17 +45,20 @@
             <div class="col-md-8 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
                 <div style="padding:10px">
                     <i style="margin-top:13px; " class="btn btn-danger pull-right" (click)="Close()"
-                        title="Cancel">X</i>
+                        title="{{ 'COMMON.CANCEL' | translate }}">X</i>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <span>{{ !leaveRuleModel.LeaveRuleId ? 'Add New Leave Rules' : 'Update ' + leaveRuleModel.LeaveCategoryName}}</span>
+                        <span>
+                            <span *ngIf="!leaveRuleModel.LeaveRuleId">{{ 'PAYROLL.ADD_NEW_LEAVE_RULES' | translate }}</span>
+                            <span *ngIf="leaveRuleModel.LeaveRuleId">{{ 'PAYROLL.UPDATE_LEAVE_RULE' | translate }} {{leaveRuleModel.LeaveCategoryName}}</span>
+                        </span>
                     </div>
                     <div class="panel-body">
                         <div class="col-md-12">
                             <form [formGroup]="leaveRuleModel.LeaveRuleValidator" class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="control-label col-md-5">Select Year:<b class="color-red">*</b><b
+                                    <label class="control-label col-md-5">{{ 'PAYROLL.SELECT_YEAR' | translate }}<b class="color-red">*</b><b
                                             style="float:right;">:</b></label>
                                     <div class="col-md-7">                                      
                                         <select class="form-control" [(ngModel)]="leaveRuleModel.Year"
@@ -68,62 +71,62 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-5">Leave Category Name:<b
-                                            class="color-red">*</b><b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-5">{{ 'PAYROLL.LEAVE_CATEGORY_NAME' | translate }}<b
+                                             class="color-red">*</b><b style="float:right;">:</b></label>
                                     <div class="col-md-7" *ngIf="!update">                                       
                                         <input danphe-auto-complete class="form-control col-md-11"
                                             [(ngModel)]="leaveRuleModel.LeaveCategoryName" [source]="leaveCategoryList"
                                             [list-formatter]="myLeaveCategoryFormatter"
-                                            placeholder="Leave Category Name" display-property-name="LeaveCategoryName"
+                                            placeholder="{{ 'PAYROLL.LEAVE_CATEGORY_NAME' | translate }}" display-property-name="LeaveCategoryName"
                                             value-property-name=LeaveCategoryName max-num-list="10" name=" LeaveCategoryName"
                                             formControlName="LeaveCategoryId"
                                             (valueChanged)="SelectLeaveCategoryFromSearchBox(leaveRuleModel.LeaveCategoryName)"
                                             onclick="this.select();" />
                                         <div class="color-red font-sm" *ngIf="!Update"
                                             [hidden]="leaveRuleModel.IsValidCheck('LeaveCategoryId','required') || !(leaveRuleModel.IsDirty('LeaveCategoryId'))">
-                                            Leave Category Name is required</div>
+                                            {{ 'PAYROLL.LEAVE_CATEGORY_NAME_REQUIRED' | translate }}</div>
                                     </div>
                                     <div class="col-md-7" *ngIf="update">                                       
                                         <input danphe-auto-complete class="form-control col-md-11"
                                             [(ngModel)]="leaveRuleModel.LeaveCategoryName" [source]="leaveCategoryList"
                                             [list-formatter]="myLeaveCategoryFormatter"
-                                            placeholder="Leave Category Name" display-property-name="LeaveCategoryName"
+                                            placeholder="{{ 'PAYROLL.LEAVE_CATEGORY_NAME' | translate }}" display-property-name="LeaveCategoryName"
                                             value-property-name=LeaveCategoryName max-num-list="10" name=" LeaveCategoryName"
                                             formControlName="LeaveCategoryId"
                                             (valueChanged)="SelectLeaveCategoryFromSearchBox(leaveRuleModel.LeaveCategoryName)"
                                             onclick="this.select();" disabled />
                                         <div class="color-red font-sm" *ngIf="!Update"
                                             [hidden]="leaveRuleModel.IsValidCheck('LeaveCategoryId','required') || !(leaveRuleModel.IsDirty('LeaveCategoryId'))">
-                                            Leave Category Name is required</div>
+                                            {{ 'PAYROLL.LEAVE_CATEGORY_NAME_REQUIRED' | translate }}</div>
                                     </div>
                                 </div>
                                 <!--*ngIf="!leaveRuleModel.LeaveRuleId "-->
                                 <div class="form-group">
-                                    <label class="control-label col-md-5" style="margin-top: 13px;">Days:<b 
-                                            class="color-red">*</b><b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-5" style="margin-top: 13px;">{{ 'PAYROLL.DAYS' | translate }}<b 
+                                             class="color-red">*</b><b style="float:right;">:</b></label>
                                     <div class="col-md-7" style="margin-top: 13px;">
                                         <input class="form-control" [(ngModel)]="leaveRuleModel.Days"
                                             formControlName="Days" type="number" id="CompanyName" value=""
-                                            placeholder="Days" /><br />
+                                            placeholder="{{ 'PAYROLL.DAYS' | translate }}" /><br />
                                         <div class="color-red font-sm" *ngIf="!Update"
                                             [hidden]="leaveRuleModel.IsValidCheck('Days','required') || !(leaveRuleModel.IsDirty('Days'))">
-                                            Days is required</div>
+                                            {{ 'PAYROLL.DAYS_REQUIRED' | translate }}</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-5">Pay Percent:<b class="color-red">*</b><b 
-                                            style="float:right;">:</b></label>
+                                    <label class="control-label col-md-5">{{ 'PAYROLL.PAY_PERCENT' | translate }}<b class="color-red">*</b><b 
+                                             style="float:right;">:</b></label>
                                     <div class="col-md-7">
                                         <input class="form-control" [(ngModel)]="leaveRuleModel.PayPercent"
                                             formControlName="PayPercent" type="number" id="CompanyName" value=""
-                                            placeholder="Pay Percent" /><br />
+                                            placeholder="{{ 'PAYROLL.PAY_PERCENT' | translate }}" /><br />
                                         <div class="color-red font-sm" *ngIf="!Update"
                                             [hidden]="leaveRuleModel.IsValidCheck('PayPercent','required') || !(leaveRuleModel.IsDirty('PayPercent'))">
-                                            Pay Percent is required</div>
+                                            {{ 'PAYROLL.PAY_PERCENT_REQUIRED' | translate }}</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-5">Is Active:<b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }}<b style="float:right;">:</b></label>
                                     <div class="col-md-7">
                                         <label class="mt-checkbox mt-checkbox-outline">
                                             <input [ngModelOptions]="{standalone: true}" name="IsActive" type="checkbox"
@@ -134,8 +137,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-5">Is Approved:<b
-                                            style="float:right;">:</b></label>
+                                    <label class="control-label col-md-5">{{ 'PAYROLL.IS_APPROVED' | translate }}<b
+                                             style="float:right;">:</b></label>
                                     <div class="col-md-7">
                                         <label class="mt-checkbox mt-checkbox-outline">
                                             <input [ngModelOptions]="{standalone: true}" name="IsApproved"
@@ -148,9 +151,9 @@
                                 <div class="form-actions">
                                     <input type="button" style="margin-top: 22px;" class="btn btn-primary"
                                         *ngIf="!leaveRuleModel.LeaveRuleId " (click)="PostLeaveRules()"
-                                        value="Add Company" />
+                                        value="{{ 'PAYROLL.ADD_COMPANY' | translate }}" />
                                     <input type="button" style="margin-top: 22px;" class="btn btn-primary"
-                                        *ngIf="leaveRuleModel.LeaveRuleId " (click)="PutLeaveRules()" value="Update" />
+                                        *ngIf="leaveRuleModel.LeaveRuleId " (click)="PutLeaveRules()" value="{{ 'COMMON.UPDATE' | translate }}" />
                                 </div>
                             </form>
                         </div>

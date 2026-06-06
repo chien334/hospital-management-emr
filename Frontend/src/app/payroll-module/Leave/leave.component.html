@@ -1,9 +1,9 @@
 <div class="row">
     <ul class="nav nav-tabs" >
-        <li><a routerLink="Holiday" [routerLinkActive]="'a-tab-active'">Holiday</a></li>
-        <li><a routerLink="LeaveRuleList" [routerLinkActive]="'a-tab-active'">Leave Rule List</a></li>
-        <li><a routerLink="LeaveRequest" [routerLinkActive]="'a-tab-active'">Leave Request</a></li>
-        <li><a routerLink="EmployeeLeaves" [routerLinkActive]="'a-tab-active'">Employee Leave Details</a></li> 
+        <li><a routerLink="Holiday" [routerLinkActive]="'a-tab-active'">{{ 'PAYROLL.HOLIDAY' | translate }}</a></li>
+        <li><a routerLink="LeaveRuleList" [routerLinkActive]="'a-tab-active'">{{ 'PAYROLL.LEAVE_RULE_LIST' | translate }}</a></li>
+        <li><a routerLink="LeaveRequest" [routerLinkActive]="'a-tab-active'">{{ 'PAYROLL.LEAVE_REQUEST' | translate }}</a></li>
+        <li><a routerLink="EmployeeLeaves" [routerLinkActive]="'a-tab-active'">{{ 'PAYROLL.EMPLOYEE_LEAVE_DETAILS' | translate }}</a></li> 
     </ul>
 </div>
 <router-outlet>

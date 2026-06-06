@@ -1,7 +1,7 @@
 
 <div>
     <label class="control-label" style="padding-top: 7px;">
-    Select Year
+    {{ 'PAYROLL.SELECT_YEAR' | translate }}
     <b style="float:right;">:</b>
 </label>&nbsp;
 <!-- <select [(ngModel)]="yyyy" (ngModelChange)="LoadLeaveList()" style="width: 150px; height: 30px;">
@@ -31,7 +31,7 @@
                 <div class="col-md-8 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
                     <div style="padding:10px">
                         <i style="margin-top:13px; " class="btn btn-danger pull-right" (click)="Close()"
-                            title="Cancel">X</i>
+                            title="{{ 'COMMON.CANCEL' | translate }}">X</i>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading" style="height:100px;">
@@ -39,26 +39,26 @@
                            <div class="col-md-12" style="padding:0px;padding-top: 4px;">
 
                                 <div class="left" style="width:69%">
-                                    <div class="no-margin" style="text-align: left;display: inline-block;float:left; font-weight: bold;">Employee Name:&nbsp;</div>
+                                    <div class="no-margin" style="text-align: left;display: inline-block;float:left; font-weight: bold;">{{ 'PAYROLL.EMPLOYEE_NAME' | translate }}:&nbsp;</div>
                                     <div style="display: inline-block;width: 69%;text-align: left; font-style: italic;">
                                         {{employeeDetails.EmployeeName}} 
                                     </div>
 
                                 </div>
                                 <div class="right" style="width:31%">
-                                        <div class="no-margin" style="text-align: left;display: inline-block;float:left; font-weight: bold;">Gender:&nbsp;</div>
+                                        <div class="no-margin" style="text-align: left;display: inline-block;float:left; font-weight: bold;">{{ 'PATIENT.GENDER' | translate }}:&nbsp;</div>
                                         <div style="display: inline-block;width: 31%;text-align: left; font-style: italic;">
                                             {{employeeDetails.Gender}} 
                                         </div>
                                 </div>
                                 <div class="left" style="width:69%">
-                                    <div class="no-margin" style="text-align: left;display: inline-block;float:left; font-weight: bold;">Email:&nbsp;</div>
+                                    <div class="no-margin" style="text-align: left;display: inline-block;float:left; font-weight: bold;">{{ 'GRID_HEADERS.EMAIL' | translate }}:&nbsp;</div>
                                     <div style="display: inline-block;width: 69%;text-align: left; font-style: italic;">
                                         {{employeeDetails.Email}}
                                     </div>
                                 </div>   
                                 <div class="right" style="width:31%">
-                                        <div class="no-margin" style="text-align: left;display: inline-block;float:left; font-weight: bold;">Contact:&nbsp;</div>
+                                        <div class="no-margin" style="text-align: left;display: inline-block;float:left; font-weight: bold;">{{ 'PAYROLL.CONTACT' | translate }}:&nbsp;</div>
                                         <div style="display: inline-block;width: 31%;text-align: left; font-style: italic;">
                                             {{employeeDetails.ContactNumber}} 
                                         </div>
@@ -70,16 +70,16 @@
                         </div>
 
                         <div class="panel-body">
-                         <span style="align-content: center; font-weight: bold;margin-left: 15px;">Total {{employeesyearWiseDetails.TotalLeave}} leaves taken in {{selectedYear}}</span>  <br/> <br/>
+                          <span style="align-content: center; font-weight: bold;margin-left: 15px;">{{ 'PAYROLL.TOTAL' | translate }} {{employeesyearWiseDetails.TotalLeave}} {{ 'PAYROLL.LEAVES_TAKEN_IN' | translate }} {{selectedYear}}</span>  <br/> <br/>
                            <div class="col-md-6">
                                 <!-- "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec" -->
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#january">January</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#january">{{ 'PAYROLL.JANUARY' | translate }}</h4>
                                         <div id="january" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Jan')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}} &nbsp;&nbsp;</td>
@@ -87,16 +87,16 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#february">Fabruary</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#february">{{ 'PAYROLL.FEBRUARY' | translate }}</h4>
                                         <div id="february" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Feb')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -104,16 +104,16 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#march">March</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#march">{{ 'PAYROLL.MARCH' | translate }}</h4>
                                         <div id="march" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Mar')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -121,16 +121,16 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#april">April</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#april">{{ 'PAYROLL.APRIL' | translate }}</h4>
                                         <div id="april" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Apr')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -138,16 +138,16 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#may">May</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#may">{{ 'PAYROLL.MAY' | translate }}</h4>
                                         <div id="may" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='May')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -155,16 +155,16 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#june">June</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#june">{{ 'PAYROLL.JUNE' | translate }}</h4>
                                         <div id="june" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Jun')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -172,19 +172,19 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                              </div>
-                              <div class="col-md-6">
+                               </div>
+                               <div class="col-md-6">
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#jully">July</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#jully">{{ 'PAYROLL.JULY' | translate }}</h4>
                                         <div id="jully" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Jul')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -192,16 +192,16 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#auguest">August</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#auguest">{{ 'PAYROLL.AUGUST' | translate }}</h4>
                                         <div id="auguest" class="collapse clp-cntnt">
                                               <div>
                                                     <table>
-                                                        <th>Date</th>                       
+                                                        <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                         <th></th>                          
-                                                        <th>Leave Type</th>
+                                                        <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                         <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Aug')">       
                                                                                                                 
                                                             <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -212,13 +212,13 @@
                                               </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#september">September</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#september">{{ 'PAYROLL.SEPTEMBER' | translate }}</h4>
                                         <div id="september" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Sep')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -226,16 +226,16 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#octomber">Octomber</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#octomber">{{ 'PAYROLL.OCTOBER' | translate }}</h4>
                                         <div id="octomber" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Oct')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -243,16 +243,16 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#november">November</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#november">{{ 'PAYROLL.NOVEMBER' | translate }}</h4>
                                         <div id="november" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Nov')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -260,16 +260,16 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
-                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#december">December</h4>
+                                        <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#december">{{ 'PAYROLL.DECEMBER' | translate }}</h4>
                                         <div id="december" class="collapse clp-cntnt">
                                             <div>
                                                 <table>
-                                                    <th>Date</th>                       
+                                                    <th>{{ 'GRID_HEADERS.DATE' | translate }}</th>                       
                                                     <th></th>                          
-                                                    <th>Leave Type</th>
+                                                    <th>{{ 'PAYROLL.LEAVE_TYPE' | translate }}</th>
                                                     <tr *ngFor="let mnth of employeesyearWiseDetails.Category"  [hidden]="!((mnth.Date | date:'MMM')=='Dec')">       
                                                                                                             
                                                         <td title="{{mnth.Description}}">{{mnth.Date | date:'MMM d, y'}}&nbsp;&nbsp;</td>
@@ -277,7 +277,7 @@
                                                         <td title="{{mnth.Description}}">{{mnth.Category}}</td>                                
                                                     </tr>  
                                                 </table>    
-                                          </div>
+                                           </div>
                                         </div>
     
                               </div>

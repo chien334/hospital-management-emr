@@ -21,15 +21,15 @@
     }
 </style>
 <div mat-dialog-content>
-    <h4><b>Now: {{Status}}</b></h4><br />
+    <h4><b>{{ 'PAYROLL.NOW' | translate }}: {{Status}}</b></h4><br />
     <mat-radio-group aria-label="Select an option" [(ngModel)]="Attendance.AttStatus" >
-        <mat-radio-button  value="A">Absent</mat-radio-button><br />
-        <mat-radio-button  value="P">Present</mat-radio-button><br />
-        <mat-radio-button  value="HL">Half Day Leave</mat-radio-button><br />
-        <mat-radio-button  value="OFF">Off</mat-radio-button><br />
+        <mat-radio-button  value="A">{{ 'PAYROLL.ABSENT' | translate }}</mat-radio-button><br />
+        <mat-radio-button  value="P">{{ 'PAYROLL.PRESENT' | translate }}</mat-radio-button><br />
+        <mat-radio-button  value="HL">{{ 'PAYROLL.HALF_DAY_LEAVE' | translate }}</mat-radio-button><br />
+        <mat-radio-button  value="OFF">{{ 'PAYROLL.OFF' | translate }}</mat-radio-button><br />
     </mat-radio-group>
 </div>
 <div mat-dialog-actions>
-    <button class="blue btn-dialog" (click)="Save()">Save</button>&nbsp;
-    <button class="red btn-dialog" (click)="Close()" >Close</button>
+    <button class="blue btn-dialog" (click)="Save()">{{ 'COMMON.SAVE' | translate }}</button>&nbsp;
+    <button class="red btn-dialog" (click)="Close()" >{{ 'COMMON.CLOSE' | translate }}</button>
 </div>

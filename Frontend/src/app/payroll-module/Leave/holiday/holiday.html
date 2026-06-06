@@ -1,6 +1,6 @@
 
 <button class="btn btn-primary" (click)="showAddHolidayPage()">
-    <i class="fa fa-plus-square" style="font-size:16px; margin-right:4px;"></i>New Holiday
+    <i class="fa fa-plus-square" style="font-size:16px; margin-right:4px;"></i>{{ 'PAYROLL.NEW_HOLIDAY' | translate }}
 </button>
 <danphe-grid 
         [grid-colDefaults]="payrollHolidayGridColoumns" 
@@ -20,40 +20,43 @@
                         <div class="col-md-6 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
                             <div style="padding:10px">
                                 <i style="margin-top:13px; " class="btn btn-danger pull-right" (click)="Close()"
-                                    title="Cancel">X</i>
+                                    title="{{ 'COMMON.CANCEL' | translate }}">X</i>
                             </div>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <span>{{ !holidayDetails.HolidayId ? 'Add holiday' : 'Update ' + holidayDetails.Title + ' Details'}}  </span>
+                                    <span>
+                                        <span *ngIf="!holidayDetails.HolidayId">{{ 'PAYROLL.ADD_HOLIDAY' | translate }}</span>
+                                        <span *ngIf="holidayDetails.HolidayId">{{ 'PAYROLL.UPDATE_HOLIDAY_DETAILS' | translate }} {{holidayDetails.Title}}</span>
+                                    </span>
                                 </div>
                                 <div class="panel-body">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="control-label col-md-5">Holiday Name<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                                            <label class="control-label col-md-5">{{ 'PAYROLL.HOLIDAY_NAME' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                                             <div class="col-md-7">                                      
                                                 <input class="form-control" maxlength="30"
                                                        [(ngModel)]="holidayDetails.Title"
                                                        formControlName="holidayTitle"
-                                                       type="text" id="Title" value="" placeholder="Holiday Name" />
-                                                <span style="color:red" *ngIf="holidayDetails.IsDirty('holidayTitle')" [hidden]="holidayDetails.IsValidCheck('holidayTitle','required')"> Holiday Name is required.</span>
+                                                       type="text" id="Title" value="" placeholder="{{ 'PAYROLL.HOLIDAY_NAME' | translate }}" />
+                                                <span style="color:red" *ngIf="holidayDetails.IsDirty('holidayTitle')" [hidden]="holidayDetails.IsValidCheck('holidayTitle','required')"> {{ 'PAYROLL.HOLIDAY_NAME_REQUIRED' | translate }}</span>
                                             </div>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="control-label col-md-5">Holiday Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                                            <label class="control-label col-md-5">{{ 'PAYROLL.HOLIDAY_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                                             <div class="col-md-7">           
                                                 <input [(ngModel)]="holidayDetails.Date"  formControlName="holidayDate" class="form-control" name="holidayDate" type="date" />
-                                                <span class="color-red font-sm" [hidden]="holidayDetails.IsValidCheck('holidayDate','required') || !(holidayDetails.IsDirty('holidayDate'))">Holiday date is required</span>
+                                                <span class="color-red font-sm" [hidden]="holidayDetails.IsValidCheck('holidayDate','required') || !(holidayDetails.IsDirty('holidayDate'))">{{ 'PAYROLL.HOLIDAY_DATE_REQUIRED' | translate }}</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-5">Description<b style="float:right;">:</b></label>
+                                            <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b style="float:right;">:</b></label>
                                             <div class="col-md-7">
                                                 <textarea class="form-control" [(ngModel)]="holidayDetails.Description" [ngModelOptions]="{standalone: true}"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-5">Is Active<b style="float:right;">:</b></label>
+                                            <label class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }}<b style="float:right;">:</b></label>
                                             <div class="col-md-7">
                                                 <label class="mt-checkbox mt-checkbox-outline">
                                                     <input name="IsActive" type="checkbox" value="IsActive" [(ngModel)]="holidayDetails.IsActive" [ngModelOptions]="{standalone: true}">
@@ -62,8 +65,8 @@
                                             </div>
                                         </div>
                                         <div class="form-actions">
-                                            <input type="button" class="btn btn-primary" style="float: right;margin-right: 10px;" *ngIf="!holidayDetails.HolidayId " (click)="AddNewHoliday()" value="Save" />
-                                            <input type="button" class="btn btn-primary" style="float: right;margin-right: 10px;" *ngIf="holidayDetails.HolidayId " (click)="UpdateHoliday()" value="Update" />
+                                            <input type="button" class="btn btn-primary" style="float: right;margin-right: 10px;" *ngIf="!holidayDetails.HolidayId " (click)="AddNewHoliday()" value="{{ 'COMMON.SAVE' | translate }}" />
+                                            <input type="button" class="btn btn-primary" style="float: right;margin-right: 10px;" *ngIf="holidayDetails.HolidayId " (click)="UpdateHoliday()" value="{{ 'COMMON.UPDATE' | translate }}" />
                                         </div>
                                     </div>
                                 </div>

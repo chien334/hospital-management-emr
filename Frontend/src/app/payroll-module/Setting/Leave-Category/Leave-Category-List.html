@@ -1,7 +1,7 @@
 
 <div>
     <a class="btn blue bordered" style="background-color:#337ab7;" name="name" (click)="AddLeaveCategory()">
-        <span class="glyphicon glyphicon-plus"></span>  Create Leave Category
+        <span class="glyphicon glyphicon-plus"></span>  {{ 'PAYROLL.CREATE_LEAVE_CATEGORY' | translate }}
     </a>
       <Add-Leave-Category [showAddPage]="showAddPage"
       [selectedLeave]="selectedLeave"

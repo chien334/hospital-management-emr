@@ -16,7 +16,7 @@
         <div class="modelbox-div ref_modal_div clearfix">
           <div class="caption custom-caption no-margin">
             <h3>
-              Scheme Refund Entry
+              {{ 'UTILITIES.SCHEME_REFUND_ENTRY' | translate }}
 
             </h3>
             <a class="close-btn btn-danger" (click)="Close()">X</a>
@@ -29,7 +29,7 @@
                   <div class="row">
                     <div class="col-md-5">
                       <label class="control-label">
-                        Select Patient
+                        {{ 'UTILITIES.SELECT_PATIENT' | translate }}
                         <b class="color-red"> *</b>
                       </label>
                       <label style="float:right;">
@@ -43,7 +43,7 @@
                              [list-formatter]="PatientListFormatter"
                              (keyup.enter)="GoToNextInput('inpatientnumber')"
                              [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
-                             placeholder="search by HospitalNo/Patient Name"
+                             placeholder="{{ 'UTILITIES.SEARCH_PATIENT_PLACEHOLDER' | translate }}"
                              display-property-name="ShortName" value-property-name=null
                              onClick="this.select();" max-num-list="10" [min-chars]="3"
                              match-formatted="true" (focusout)="AssignSelectedPatient()"
@@ -57,28 +57,28 @@
                                 margin-bottom: 15px;
                                 border: 1px solid #ccc;">
                   <div class="col-md-6">
-                    <label class="control-label lbl-text">Hospital Number:
+                    <label class="control-label lbl-text">{{ 'UTILITIES.HOSPITAL_NUMBER' | translate }}:
                     </label>
                     <label>
                       {{selectedPatient.PatientCode}}
                     </label>
                   </div>
-                  <div class="col-md-6"><label class="control-label lbl-text">Name:</label>
+                  <div class="col-md-6"><label class="control-label lbl-text">{{ 'COMMON.NAME' | translate }}:</label>
                     <label>
                       {{selectedPatient?.ShortName}}
                     </label>
                   </div>
-                  <div class="col-md-6"><label class="control-label lbl-text">Age/Sex:</label>
+                  <div class="col-md-6"><label class="control-label lbl-text">{{ 'UTILITIES.AGE_SEX' | translate }}:</label>
                     <label>
                       {{selectedPatient.Age}} / {{selectedPatient.Gender}}
                     </label>
                   </div>
-                  <div class="col-md-6"><label class="control-label lbl-text">Contact Number:</label>
+                  <div class="col-md-6"><label class="control-label lbl-text">{{ 'UTILITIES.CONTACT_NUMBER' | translate }}:</label>
                     <label>
                       {{selectedPatient.PhoneNumber}}
                     </label>
                   </div>
-                  <div class="col-md-6"><label class="control-label lbl-text">Address:</label>
+                  <div class="col-md-6"><label class="control-label lbl-text">{{ 'COMMON.ADDRESS' | translate }}:</label>
                     <label>
                       {{selectedPatient.CountryName}}<span *ngIf="selectedPatient.CountrySubDivisionName">,</span>
                       {{selectedPatient.CountrySubDivisionName}}<span *ngIf="selectedPatient.Address">,</span>
@@ -90,7 +90,7 @@
                   <div class="row">
                     <div class="col-md-5">
                       <label class="control-label">
-                        Enter Inpatient No (If Applicable)
+                        {{ 'UTILITIES.ENTER_INPATIENT_NO' | translate }}
                       </label>
                       <label style="float:right;">
                         <b>:</b>
@@ -108,7 +108,7 @@
                   <div class="row">
                     <div class="col-md-5">
                       <label class="control-label">
-                        Select Refund Scheme
+                        {{ 'UTILITIES.SELECT_REFUND_SCHEME' | translate }}
                         <b class="color-red"> *</b>
                       </label>
                       <label style="float:right;">
@@ -120,7 +120,7 @@
                              [(ngModel)]="selectedSchme"
                              [list-formatter]="'SchemeName'" [source]="billingSchmes"
                              (keyup.enter)="GoToNextInput('refundamount')"
-                             placeholder="-----Select Scheme------" (focusout)="AssignSelectedSchme()"
+                             placeholder="{{ 'UTILITIES.SELECT_SCHEME_PLACEHOLDER' | translate }}" (focusout)="AssignSelectedSchme()"
                              display-property-name="SchemeName" value-property-name=null
                              onclick="this.select()" max-num-list="10" />
                     </div>
@@ -130,7 +130,7 @@
                   <div class=" form-group col-md-12">
                     <div class="col-md-5">
                       <label class="control-label">
-                        Amount
+                        {{ 'GRID_HEADERS.AMOUNT' | translate }}
                         <b class="color-red"> *</b>
                       </label>
                       <label style="float:right;">
@@ -149,7 +149,7 @@
                   <div class=" form-group col-md-12">
                     <div class="col-md-3">
                       <label class="control-label">
-                        In Words:
+                        {{ 'UTILITIES.IN_WORDS' | translate }}:
                       </label>
                     </div>
                     <div class="col-md-9">
@@ -161,7 +161,7 @@
                   <div class=" form-group col-md-12">
                     <div class="col-md-5">
                       <label class="control-label">
-                        Remarks
+                        {{ 'GRID_HEADERS.REMARKS' | translate }}
                       </label>
                       <label style="float:right;">
                         <b>:</b>
@@ -183,7 +183,7 @@
                               [disabled]="loading"
                               (click)="GotoProcessConfirmation()">
                         <i class="fa fa-save"></i>
-                        Save
+                        {{ 'COMMON.SAVE' | translate }}
                       </button>
                     </div>
                   </div>
@@ -194,7 +194,7 @@
             <div *ngIf="showIsPatientSelected">
               <label style="margin-left:20px ;font-weight: 600;">
                 <b>
-                  Previous Scheme Refunds
+                  {{ 'UTILITIES.PREVIOUS_SCHEME_REFUNDS' | translate }}
                 </b>
               </label>
               <table class="table_data"
@@ -203,12 +203,12 @@
 
 
                 <tr style="text-align: center;">
-                  <th style="width:4%; text-align: center;"> S.N.</th>
-                  <th style="width:10%; text-align: center;"> Refund Date</th>
-                  <th style="width:34%;text-align: center;"> Scheme</th>
-                  <th style="width:8%;text-align: center;"> Amount</th>
-                  <th style="width:10%;text-align: center;"> User</th>
-                  <th style="width:34;text-align: center;"> Remarks</th>
+                  <th style="width:4%; text-align: center;"> {{ 'GRID_HEADERS.SN' | translate }}</th>
+                  <th style="width:10%; text-align: center;"> {{ 'UTILITIES.REFUND_DATE' | translate }}</th>
+                  <th style="width:34%;text-align: center;"> {{ 'UTILITIES.SCHEME' | translate }}</th>
+                  <th style="width:8%;text-align: center;"> {{ 'GRID_HEADERS.AMOUNT' | translate }}</th>
+                  <th style="width:10%; text-align: center;"> {{ 'GRID_HEADERS.USER' | translate }}</th>
+                  <th style="width:34;text-align: center;"> {{ 'GRID_HEADERS.REMARKS' | translate }}</th>
                 </tr>
                 <tbody class="previous_scheme_data">
                   <tr *ngFor=" let sch of PreviousSchemeRefundDetail; let i=index;">

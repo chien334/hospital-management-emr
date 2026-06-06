@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-2">
     <a class="btn blue bordered" style="background-color:#337ab7;" name="name" (click)="CreateRequest()">
-      <span class="glyphicon glyphicon-plus"></span> New Request
+      <span class="glyphicon glyphicon-plus"></span> {{ 'PAYROLL.NEW_REQUEST' | translate }}
     </a>
     <add-new-leave [showAddRequestPage]="showAddRequestPage" [selectedEmployeeId]="selectedEmployeeId"></add-new-leave>
   </div>
@@ -33,22 +33,22 @@
           <label class="mt-checkbox mt-checkbox-outline">
             <input name="status" type="radio" value="pending" [(ngModel)]="selLeaveRequests.LeaveStatus"
               (ngModelChange)="OnSelectStatus('pending')" [ngModelOptions]="{standalone: true}">
-            <span></span><b>Pending</b>
+            <span></span><b>{{ 'PAYROLL.PENDING' | translate }}</b>
           </label>
           <label class="mt-checkbox mt-checkbox-outline">
             <input name="status" type="radio" value="approved" [(ngModel)]="selLeaveRequests.LeaveStatus"
               (ngModelChange)="OnSelectStatus('approved')" [ngModelOptions]="{standalone: true}">
-            <span></span><b>Approved</b>
+            <span></span><b>{{ 'PAYROLL.APPROVED' | translate }}</b>
           </label>
           <label class="mt-checkbox mt-checkbox-outline">
             <input name="status" type="radio" value="cancelled" [(ngModel)]="selLeaveRequests.LeaveStatus"
               (ngModelChange)="OnSelectStatus('cancelled')" [ngModelOptions]="{standalone: true}">
-            <span></span><b>Cancelled</b>
+            <span></span><b>{{ 'PAYROLL.CANCELLED' | translate }}</b>
           </label>
           <label class="mt-checkbox mt-checkbox-outline">
             <input name="status" type="radio" value="all" [(ngModel)]="selLeaveRequests.LeaveStatus"
               (ngModelChange)="OnSelectStatus('all')" checked [ngModelOptions]="{standalone: true}">
-            <span></span><b>All</b>
+            <span></span><b>{{ 'PAYROLL.ALL' | translate }}</b>
           </label>
         </div>
       </div>

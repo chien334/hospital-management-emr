@@ -7,11 +7,11 @@
                         <div class="col-md-12">
                             <div class="caption" style="color:blue;">
                                 <h3>
-                                    <span>Leave Details</span>
+                                    <span>{{ 'PAYROLL.LEAVE_DETAILS' | translate }}</span>
                                 </h3>
 
                             </div>
-                            <a style="float:right;  margin-top:-32px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                            <a style="float:right;  margin-top:-32px;" class="btn btn-danger" (click)="Close()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
                         </div> 
                         <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -20,16 +20,16 @@
                                       <tr style="background-color:#96efd6">
                                         <th></th>
                                         <th>
-                                          Date
+                                          {{ 'GRID_HEADERS.DATE' | translate }}
                                         </th>
                                         <th>
-                                          Leave Category
+                                          {{ 'PAYROLL.LEAVE_CATEGORY' | translate }}
                                         </th>
                                         <th>
-                                          Description
+                                          {{ 'GRID_HEADERS.DESCRIPTION' | translate }}
                                         </th>
                                         <th>
-                                          RequestedTo
+                                          {{ 'PAYROLL.REQUESTED_TO' | translate }}
                                         </th>
                                         <th></th>
                                         <th></th>
@@ -42,7 +42,7 @@
                                               </td>
                                                <td>  
                                                   <form [formGroup]="itm.EmployeeLeaveValidator">
-                                                    <input date-directive type="date" placeholder="date" [(ngModel)]="itm.Date" formControlName="Date"/>
+                                                    <input date-directive type="date" placeholder="{{ 'GRID_HEADERS.DATE' | translate }}" [(ngModel)]="itm.Date" formControlName="Date"/>
                                                   </form>
                                               </td>
                                               <td>
@@ -50,7 +50,7 @@
                                                   <input danphe-auto-complete
                                                          [(ngModel)]="selLeave[i]"
                                                          [source]="leaveList"
-                                                         placeholder="Leave"
+                                                         placeholder="{{ 'PAYROLL.LEAVE' | translate }}"
                                                          formControlName="LeaveRuleId"
                                                          display-property-name="LeaveCategoryName"
                                                          value-property-name="LeaveRuleId"
@@ -59,7 +59,7 @@
                                                          max-num-list="15"
                                                          onclick="this.select()"
                                                          style="background-color: azure; width:250px;height: 30px;" />
-                                                         <div class="color-red font-sm" *ngIf="itm.IsDirty('LeaveRuleId')" [hidden]="itm.IsValidCheck('LeaveRuleId','required')"> Please select Ledger.</div>
+                                                         <div class="color-red font-sm" *ngIf="itm.IsDirty('LeaveRuleId')" [hidden]="itm.IsValidCheck('LeaveRuleId','required')"> {{ 'PAYROLL.PLEASE_SELECT_LEDGER' | translate }}</div>
                                                         </form>
                                               </td>
                                               <td>
@@ -72,7 +72,7 @@
                                                       <input danphe-auto-complete
                                                              [(ngModel)]="RequestedEmployee[i]"
                                                              [source]="RequestedEmployeeList"
-                                                             placeholder="Select Employee"
+                                                             placeholder="{{ 'PAYROLL.SELECT_EMPLOYEE' | translate }}"
                                                              formControlName="EmployeeId"
                                                              display-property-name="EmployeeName"
                                                              value-property-name="FirstName"
@@ -95,7 +95,7 @@
                                     <div class="col-md-5"></div>
                                     <div class="col-md-2">
                                   <button (click)="PostLeaveRequest()" class="btn btn-primary">
-                                    <span></span>Save Request
+                                    <span></span>{{ 'PAYROLL.SAVE_REQUEST' | translate }}
                                 </button>
                                     </div>
                                 <div class="col-md-5"></div>

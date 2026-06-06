@@ -10,12 +10,12 @@
                         <div class="col-md-12">
                             <div class="caption" style="color:blue;">
                                 <h3>
-                                    <span *ngIf="!update">Create Leave Category</span>
-                                    <span *ngIf="update">Update Leave Category</span>
+                                    <span *ngIf="!update">{{ 'PAYROLL.CREATE_LEAVE_CATEGORY' | translate }}</span>
+                                    <span *ngIf="update">{{ 'PAYROLL.UPDATE_LEAVE_CATEGORY' | translate }}</span>
                                 </h3>
 
                             </div>
-                            <a style="float:right;  margin-top:-32px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                            <a style="float:right;  margin-top:-32px;" class="btn btn-danger" (click)="Close()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
 
                             <hr />
                         </div>
@@ -24,43 +24,43 @@
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-5">Leave Category<b class="color-red">*</b><b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-5">{{ 'PAYROLL.LEAVE_CATEGORY' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                                     <div class="col-md-7">
                                         <input class="form-control" maxlength="30" type="text"
                                                [(ngModel)]="CurrentLeave.LeaveCategoryName"
                                                formControlName="LeaveCategoryName"
                                                id="LeaveCategoryName"
-                                               placeholder="LeaveCategoryName" />
+                                               placeholder="{{ 'PAYROLL.LEAVE_CATEGORY' | translate }}" />
 
-                                        <span class="color-red font-sm" [hidden]="CurrentLeave.IsValidCheck('LeaveCategoryName','required') || !(CurrentLeave.IsDirty('LeaveCategoryName'))">LeaveCategoryName is required</span>
-                                        <span class="color-red font-sm" *ngIf="CurrentLeave.IsDirty('LeaveCategoryName')" [hidden]="CurrentLeave.IsValidCheck('LeaveCategoryName','maxlength')"> Length is not proper</span>
+                                        <span class="color-red font-sm" [hidden]="CurrentLeave.IsValidCheck('LeaveCategoryName','required') || !(CurrentLeave.IsDirty('LeaveCategoryName'))">{{ 'PAYROLL.LEAVE_CATEGORY_NAME_REQUIRED' | translate }}</span>
+                                        <span class="color-red font-sm" *ngIf="CurrentLeave.IsDirty('LeaveCategoryName')" [hidden]="CurrentLeave.IsValidCheck('LeaveCategoryName','maxlength')">{{ 'PAYROLL.LENGTH_IS_NOT_PROPER' | translate }}</span>
 
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-5">Leave Category Code<b class="color-red">*</b><b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-5">{{ 'PAYROLL.LEAVE_CATEGORY_CODE' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                                     <div class="col-md-7">
                                         <input class="form-control" maxlength="30" type="text"
                                                [(ngModel)]="CurrentLeave.CategoryCode"
                                                formControlName="CategoryCode"
                                                id="CategoryCode"
-                                               placeholder="CategoryCode" />
-                                        <span class="color-red font-sm" [hidden]="CurrentLeave.IsValidCheck('CategoryCode','required') || !(CurrentLeave.IsDirty('CategoryCode'))">Voucher Code is required</span>
-                                        <span class="color-red font-sm" *ngIf="CurrentLeave.IsDirty('CategoryCode')" [hidden]="CurrentLeave.IsValidCheck('CategoryCode','maxlength')"> Length is not proper</span>
+                                               placeholder="{{ 'PAYROLL.LEAVE_CATEGORY_CODE' | translate }}" />
+                                        <span class="color-red font-sm" [hidden]="CurrentLeave.IsValidCheck('CategoryCode','required') || !(CurrentLeave.IsDirty('CategoryCode'))">{{ 'PAYROLL.VOUCHER_CODE_REQUIRED' | translate }}</span>
+                                        <span class="color-red font-sm" *ngIf="CurrentLeave.IsDirty('CategoryCode')" [hidden]="CurrentLeave.IsValidCheck('CategoryCode','maxlength')">{{ 'PAYROLL.LENGTH_IS_NOT_PROPER' | translate }}</span>
                                      </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-5">Description<b class="color-red">*</b><b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                                     <div class="col-md-7">
                                         <input class="form-control" maxlength="100" type="text"
                                                [(ngModel)]="CurrentLeave.Description"
                                                formControlName="Description"
                                                id="Description"
-                                               placeholder="Description" />
+                                               placeholder="{{ 'GRID_HEADERS.DESCRIPTION' | translate }}" />
 
-                                        <span class="color-red font-sm" [hidden]="CurrentLeave.IsValidCheck('Description','required') || !(CurrentLeave.IsDirty('Description'))">Voucher Description is required</span>
-                                        <span class="color-red font-sm" *ngIf="CurrentLeave.IsDirty('Description')" [hidden]="CurrentLeave.IsValidCheck('Description','maxlength')"> Length is not proper</span>
+                                        <span class="color-red font-sm" [hidden]="CurrentLeave.IsValidCheck('Description','required') || !(CurrentLeave.IsDirty('Description'))">{{ 'PAYROLL.VOUCHER_DESCRIPTION_REQUIRED' | translate }}</span>
+                                        <span class="color-red font-sm" *ngIf="CurrentLeave.IsDirty('Description')" [hidden]="CurrentLeave.IsValidCheck('Description','maxlength')">{{ 'PAYROLL.LENGTH_IS_NOT_PROPER' | translate }}</span>
 
                                     </div>
                                 </div>
@@ -68,10 +68,10 @@
 
 
                                 <div class="form-actions" *ngIf="!update">
-                                    <input type="button" class="btn btn-primary" (click)="AddLeaveCategory()" value="Add Leave Category" />
+                                    <input type="button" class="btn btn-primary" (click)="AddLeaveCategory()" value="{{ 'PAYROLL.ADD_LEAVE_CATEGORY' | translate }}" />
                                  </div>
                                  <div class="form-actions" *ngIf="update">
-                                    <input type="button" class="btn btn-primary" (click)="UpdateLeaveCategory()" value="Update Leave Category" />
+                                    <input type="button" class="btn btn-primary" (click)="UpdateLeaveCategory()" value="{{ 'PAYROLL.UPDATE_LEAVE_CATEGORY' | translate }}" />
                                  </div>
                             </div>
                         </div>

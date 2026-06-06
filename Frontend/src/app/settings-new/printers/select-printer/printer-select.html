@@ -2,21 +2,21 @@
   <div class="padding-15-bt padding-15-tp padding-7-hr" *ngIf="!showPrinterChange ">
     <div>
       <label>
-        Selected Printer: <b *ngIf="selPrinterObj">{{selPrinterObj.PrinterDisplayName}}</b>
+        {{ 'PRINTERS.SELECTED_PRINTER' | translate }}: <b *ngIf="selPrinterObj">{{selPrinterObj.PrinterDisplayName}}</b>
       </label>
-      <a (click)="ShowPrinterChange()">Change ?</a>
+      <a (click)="ShowPrinterChange()">{{ 'PRINTERS.CHANGE_QUESTION' | translate }}</a>
     </div>
   </div>
 
   <div class="padding-15-bt padding-15-tp" *ngIf="showPrinterChange">
-    <label><b>Select Printer</b></label>
+    <label><b>{{ 'PRINTERS.SELECT_PRINTER' | translate }}</b></label>
     <select class="margin-7-hr" [(ngModel)]="printerSettId" id="ddlSelectPrinter">
       <option *ngFor="let itm of printersArrByGroupName" [value]="itm.PrinterSettingId"
         title="{{itm.PrintingType+'-'+itm.PrinterName+'-'+itm.ModelName}}">
         {{itm.PrinterDisplayName}}
       </option>
     </select>
-    <button class="btn green btn-success" (click)="SaveSelectedPrinter()">OK</button>
+    <button class="btn green btn-success" (click)="SaveSelectedPrinter()">{{ 'COMMON.OK' | translate }}</button>
   </div>
 
 </div>

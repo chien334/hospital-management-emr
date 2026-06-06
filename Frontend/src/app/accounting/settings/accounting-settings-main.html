@@ -1,4 +1,4 @@
-﻿<style>
+<style>
     .nav-padding {
         padding-left: 5px !important;
         padding-right: 10px !important;
@@ -19,7 +19,7 @@
         <!--Start: Secondary Menu Items-->
         <li *ngIf="secondaryNavItems && secondaryNavItems.length>0" class="dropdown" style="display:inline-block;"> <a
                 class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                More... <span class="caret"></span> </a>
+                {{ 'COMMON.MORE' | translate }} <span class="caret"></span> </a>
             <ul class="dropdown-menu">
                 <li class="hr-ddlCstm" *ngFor="let route of secondaryNavItems">
                     <a routerLink="{{route.RouterLink}}" [routerLinkActive]="'a-tab-active'"

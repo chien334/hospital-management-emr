@@ -12,6 +12,7 @@ import { PrinterSelectComponent } from './printers/select-printer/printer-select
 import { SettingsService } from './shared/settings-service';
 import { SettingsBLService } from './shared/settings.bl.service';
 import { SettingsDLService } from './shared/settings.dl.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SettingsDLService } from './shared/settings.dl.service';
     CommonModule,
     RouterModule,
     DanpheAutoCompleteModule,
+    TranslateModule,
   ],
 
   declarations: [
@@ -47,6 +49,7 @@ import { SettingsDLService } from './shared/settings.dl.service';
     PrinterSelectComponent,
     AddPrinterSettingsComponent,
     DanpheAutoCompleteModule,
+    TranslateModule,
 
     //ListPrinterSettingsComponent
 

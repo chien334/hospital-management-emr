@@ -127,8 +127,8 @@
             </div>
             <div class="pull-right">
                 <div class="tooltip">
-                    <a class="btn-back" (click)="BackToHome()"><i class="fa fa-home"></i>Home</a>
-                    <p class="tooltiptext ttptextdown"> Go to Patients List </p>
+                    <a class="btn-back" (click)="BackToHome()"><i class="fa fa-home"></i>{{'PATIENT_OVERVIEW.BACK_TO_HOME' | translate}}</a>
+                    <p class="tooltiptext ttptextdown"> {{'PATIENT_OVERVIEW.GO_TO_PATIENT_LIST' | translate}} </p>
                 </div>
 
             </div>
@@ -189,24 +189,24 @@
                                 {{PatService.globalPatient.DateOfBirth | DanpheDateTime:'age' }} / {{PatService.globalPatient.Gender}}
                             </h4>
                             <span class="text-small" style="display: inline-block;font-size: 12px;width: 100%;">
-                                Hospital No: {{PatService.globalPatient.PatientCode}}
+                                {{'PATIENT_OVERVIEW.HOSPITAL_NO' | translate}}: {{PatService.globalPatient.PatientCode}}
                             </span>
 
                             <span *ngIf="visitService.globalVisit && visitService.globalVisit.VisitType && visitService.globalVisit.VisitType.toLowerCase() != 'outpatient'"
                                   style="display: inline-block;
-                font-size: 12px;
-                margin: 3px auto;
-                width: 100%;
-                line-height: initial;">
+                 font-size: 12px;
+                 margin: 3px auto;
+                 width: 100%;
+                 line-height: initial;">
                                 <i class="fa fa-h-square"></i>
-                                Ward/Bed: {{PatService.globalPatient.WardName}} /
+                                {{'PATIENT_OVERVIEW.WARD_BED' | translate}}: {{PatService.globalPatient.WardName}} /
                                 {{PatService.globalPatient.BedNo}}
                             </span>
                             <span class="hd-parag-st" style="display: inline-block;
               font-size: 12px;
               margin: 0px auto;
               width: 100%;">
-                                <i class="fa fa-user-md"></i>Attending: {{
+                                <i class="fa fa-user-md"></i>{{'PATIENT_OVERVIEW.ATTENDING' | translate}}: {{
                                 visitService.globalVisit.PerformerName }}</span>
 
                         </div>
@@ -220,13 +220,13 @@
                     <ul class="menu-content out page-sidebar-menu doctor-sidebar-list" *ngIf="validRoutes != undefined">
                         <li *ngFor="let route of validRoutes">
                             <a routerLink="{{route.RouterLink}}" [routerLinkActive]="'cstm-sidenav-active'"><i
-                                   class="fa fa-bars"></i>{{route.DisplayName}}<i class="fa fa-angle-right"></i></a>
+                                   class="fa fa-bars"></i>{{route.DisplayName | translate}}<i class="fa fa-angle-right"></i></a>
                         </li>
 
                         <li *ngIf="!isVisitConcluded && currentModuleName == 'doctor'">
-                            <a (click)="ConcludeVisit()"><i class="fa fa-bars"></i>Conclude Visit<i class="fa fa-angle-right"></i></a>
+                            <a (click)="ConcludeVisit()"><i class="fa fa-bars"></i>{{'PATIENT_OVERVIEW.CONCLUDE_VISIT' | translate}}<i class="fa fa-angle-right"></i></a>
                         </li>
-                        <li *ngIf="isVisitConcluded"><a>This visit is concluded</a></li>
+                        <li *ngIf="isVisitConcluded"><a>{{'PATIENT_OVERVIEW.CONCLUDED_VISIT' | translate}}</a></li>
                     </ul>
 
                     <!-- END SIDEBAR MENU -->

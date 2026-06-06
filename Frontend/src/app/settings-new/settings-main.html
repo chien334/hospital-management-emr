@@ -25,7 +25,7 @@ li.bil-hr-bar:hover ul.dropdown-menu li a {
   <ul class="page-breadcrumb" *ngIf="validRoutes != undefined">
     
     <!--Start: Primary Menu Items -->
-    <li *ngFor="let route of primaryNavItems"> <a routerLink="{{route.RouterLink}}" [routerLinkActive]="'link3-active'" *ngIf="route.IsSecondaryNavInDropdown!=1"> {{route.DisplayName}} <i class="{{route.Css}}"></i> </a> </li>
+    <li *ngFor="let route of primaryNavItems"> <a routerLink="{{route.RouterLink}}" [routerLinkActive]="'link3-active'" *ngIf="route.IsSecondaryNavInDropdown!=1"> {{ 'SETTINGS.' + route.DisplayName | translate }} <i class="{{route.Css}}"></i> </a> </li>
     <!--End: Primary Menu Items -->
     
     
@@ -33,9 +33,9 @@ li.bil-hr-bar:hover ul.dropdown-menu li a {
       <a routerLink="EditCoreCFG" [routerLinkActive]="'link3-active'">Core CFG Parameters<i></i></a>
     </li> --> 
     <!--Start: Secondary Menu Items-->
-    <li *ngIf="secondaryNavItems && secondaryNavItems.length>0" class="dropdown bil-hr-bar" style="display:inline-block;"> <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> More... <span class="caret"></span> </a>
+    <li *ngIf="secondaryNavItems && secondaryNavItems.length>0" class="dropdown bil-hr-bar" style="display:inline-block;"> <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> {{ 'SETTINGS.More...' | translate }} <span class="caret"></span> </a>
       <ul class="dropdown-menu bil-hr-dropdown">
-        <li class="hr-ddlCstm" *ngFor="let route of secondaryNavItems"> <a routerLink="{{route.RouterLink}}" [routerLinkActive]="'link3-active'"> {{route.DisplayName}} <i class="{{route.Css}}"></i> </a> </li>
+        <li class="hr-ddlCstm" *ngFor="let route of secondaryNavItems"> <a routerLink="{{route.RouterLink}}" [routerLinkActive]="'link3-active'"> {{ 'SETTINGS.' + route.DisplayName | translate }} <i class="{{route.Css}}"></i> </a> </li>
       </ul>
     </li>
     <!--End: Secondary Menu Items--> 

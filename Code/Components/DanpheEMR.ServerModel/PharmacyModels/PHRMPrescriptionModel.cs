@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,6 +20,7 @@ namespace DanpheEMR.ServerModel
         public string PrescriberName { get; set; }
         public bool? IsInPatient { get; set; }
         public string PrescriptionStatus { get; set; }
+        [ForeignKey("PrescriptionId")]
         public virtual List<PHRMPrescriptionItemModel> PHRMPrescriptionItems { get; set; }
         [NotMapped]
         public string PatientName { get; set; }

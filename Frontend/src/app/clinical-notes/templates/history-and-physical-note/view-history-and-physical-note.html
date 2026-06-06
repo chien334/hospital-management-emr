@@ -27,46 +27,46 @@
   <div class="col-md-12">
     <!-- <div class="col-md-6"> -->
     <!--<p style="font-weight:600; font-size:medium">Clinical Subjective Notes</p>-->
-    <h4 *ngIf="subjectiveNote"><strong>Subjective Notes</strong></h4>
+    <h4 *ngIf="subjectiveNote"><strong>{{ 'CLINICAL.SUBJECTIVE_NOTES' | translate }}</strong></h4>
     <div *ngIf="subjectiveNote" class="marginSubjectiveNote">
-      <div><b>Chief Complaint :</b>
+      <div><b>{{ 'CLINICAL.CHIEF_COMPLAINT' | translate }} :</b>
         <ul *ngFor="let complain of subjectiveNote.ChiefComplaint ">
           <li>
             {{complain.ChiefComplaint}}
           </li>
         </ul>
       </div>
-      <p> <b>History Of Presenting Illness:</b> {{subjectiveNote.HistoryOfPresentingIllness}}</p>
-      <p><b>Review Of Systems :</b> {{subjectiveNote.ReviewOfSystems}}</p>
+      <p> <b>{{ 'CLINICAL.HISTORY_OF_PRESENTING_ILLNESS' | translate }}:</b> {{subjectiveNote.HistoryOfPresentingIllness}}</p>
+      <p><b>{{ 'CLINICAL.REVIEW_OF_SYSTEM' | translate }} :</b> {{subjectiveNote.ReviewOfSystems}}</p>
     </div>
   </div>
   <div class="col-md-12" *ngIf="objectiveNote && objectiveNote.length>0">
     <!--<p style="font-weight:600; font-size:large">Objective Notes</p>-->
-    <h4><strong>Objective Notes</strong></h4>
+    <h4><strong>{{ 'CLINICAL.OBJECTIVE_NOTES' | translate }}</strong></h4>
     <div *ngIf="objectiveNote">
-      <p><b>HEENT:</b> {{objectiveNote.HEENT}}</p>
-      <p><b>Chest :</b> {{objectiveNote.Chest}}</p>
-      <p><b>CVS :</b> {{objectiveNote.CVS}}</p>
-      <p><b>Abdomen :</b> {{objectiveNote.Abdomen}}</p>
-      <p><b>Extremity :</b> {{objectiveNote.Extremity}}</p>
-      <p><b>Skin :</b> {{objectiveNote.Skin}}</p>
-      <p><b>Neurological :</b> {{objectiveNote.Neurological}}</p>
+      <p><b>{{ 'CLINICAL.HEENT' | translate }}:</b> {{objectiveNote.HEENT}}</p>
+      <p><b>{{ 'CLINICAL.CHEST' | translate }} :</b> {{objectiveNote.Chest}}</p>
+      <p><b>{{ 'CLINICAL.CVS' | translate }} :</b> {{objectiveNote.CVS}}</p>
+      <p><b>{{ 'CLINICAL.ABDOMEN' | translate }} :</b> {{objectiveNote.Abdomen}}</p>
+      <p><b>{{ 'CLINICAL.EXTREMITY' | translate }} :</b> {{objectiveNote.Extremity}}</p>
+      <p><b>{{ 'CLINICAL.SKIN' | translate }} :</b> {{objectiveNote.Skin}}</p>
+      <p><b>{{ 'CLINICAL.NEUROLOGICAL' | translate }} :</b> {{objectiveNote.Neurological}}</p>
     </div>
   </div>
   <!-- </div> -->
   <div class="col-md-12">
     <div class="prob-entry hm-form">
       <div class="text-head-wrapper clearfix">
-        <h4><strong>Assessment and Orders</strong></h4>
+        <h4><strong>{{ 'CLINICAL.ASSESSMENT_AND_ORDERS' | translate }}</strong></h4>
       </div>
 
       <div *ngIf="diagnosisOrderList">
-        <p *ngIf="!diagnosisOrderList.length">No Assessment Plan and Orders yet</p>
+        <p *ngIf="!diagnosisOrderList.length">{{ 'CLINICAL.NO_ASSESSMENT_AND_ORDERS' | translate }}</p>
         <table *ngIf="diagnosisOrderList.length" class="table table-bordered allIcdOrdersTable" style="width: 100%;">
           <thead>
             <tr>
-              <th>Assessment Name</th>
-              <th>Orders</th>
+              <th>{{ 'CLINICAL.ASSESSMENT_NAME' | translate }}</th>
+              <th>{{ 'CLINICAL.ORDERS_LABEL' | translate }}</th>
             </tr>
           </thead>
 
@@ -75,17 +75,17 @@
               ({{assessment.ICD[0].ICD10Code}}) {{assessment.ICD[0].ICD10Description}}
             </td>
             <td>
-              <p *ngIf="assessment.AllIcdLabOrders.length>0" style="font-weight:700!important;">Lab: </p>
+              <p *ngIf="assessment.AllIcdLabOrders.length>0" style="font-weight:700!important;">{{ 'CLINICAL.LAB' | translate }}: </p>
               <label *ngFor="let lo of assessment.AllIcdLabOrders">
                 {{lo.ItemName}}
               </label>
 
-              <p *ngIf="assessment.AllIcdImagingOrders.length>0" style="font-weight:700!important;">Imaging: </p>
+              <p *ngIf="assessment.AllIcdImagingOrders.length>0" style="font-weight:700!important;">{{ 'CLINICAL.IMAGING' | translate }}: </p>
               <label *ngFor="let io of assessment.AllIcdImagingOrders">
                 {{io.ItemName}}
               </label>
 
-              <p *ngIf="assessment.AllIcdPrescriptionOrders.length>0" style="font-weight:700!important;">Medication: </p>
+              <p *ngIf="assessment.AllIcdPrescriptionOrders.length>0" style="font-weight:700!important;">{{ 'CLINICAL.MEDICATION' | translate }}: </p>
               <label *ngFor="let mo of assessment.AllIcdPrescriptionOrders">
                 {{mo.ItemName}}
               </label>
@@ -99,8 +99,8 @@
   </div>
 
   <div class="col-md-12" style="margin-left:15px;" *ngIf="hpNote?.FollowUp || hpNote?.Remarks">
-    <h4><strong>Instructions:</strong></h4>
-    <p *ngIf="hpNote?.FollowUp">Follow Up<b>:</b>{{hpNote?.FollowUp}} {{hpNote?.FollowUpUnit}}</p>
-    <p *ngIf="hpNote?.Remarks">Remarks<b>:</b>{{hpNote?.Remarks}}</p>
+    <h4><strong>{{ 'CLINICAL.INSTRUCTIONS' | translate }}:</strong></h4>
+    <p *ngIf="hpNote?.FollowUp">{{ 'CLINICAL.FOLLOW_UP' | translate }}<b>:</b>{{hpNote?.FollowUp}} {{ (hpNote?.FollowUpUnit ? 'CLINICAL.' + hpNote.FollowUpUnit : '') | translate }}</p>
+    <p *ngIf="hpNote?.Remarks">{{ 'CLINICAL.REMARKS' | translate }}<b>:</b>{{hpNote?.Remarks}}</p>
   </div>
 </div>

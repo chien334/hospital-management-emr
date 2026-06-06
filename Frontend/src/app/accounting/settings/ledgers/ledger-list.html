@@ -1,6 +1,6 @@
 <div>
   <a class="btn blue bordered" style="background-color:#337ab7;" name="name" (click)="AddLedger()">
-    <span class="glyphicon glyphicon-plus"></span>Create Ledger
+    <span class="glyphicon glyphicon-plus"></span>{{ 'ACCOUNTING.CREATE_LEDGER' | translate }}
   </a>
   <ledger-add *ngIf="showAddPage"
               (callback-add)="CallBackAdd($event)"></ledger-add>

@@ -1,5 +1,5 @@
-﻿<div>
-    <input type="button" class="btn btn-primary" (click)="AddVoucher()" value="Create Voucher" />
+<div>
+    <input type="button" class="btn btn-primary" (click)="AddVoucher()" [value]="'ACCOUNTING.CREATE_VOUCHER' | translate" />
     <voucher-add [showAddPage]="showAddPage"
                  [selectedVoucher]="selectedVoucher"
                  (callback-add)="CallBackAdd($event)"></voucher-add>

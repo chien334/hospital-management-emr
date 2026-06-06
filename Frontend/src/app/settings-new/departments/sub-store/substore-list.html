@@ -7,7 +7,7 @@
     <span class="caption-subject font-blue bold uppercase">Manage Department</span>
 </div>
 <br />-->
-<a feature="button" class="btn blue bordered" (click)="AddStore()"><i class="fa fa-plus"></i>Add Substore</a>
+<a feature="button" class="btn blue bordered" (click)="AddStore()"><i class="fa fa-plus"></i>{{ 'SETTINGS.ADD_SUBSTORE' | translate }}</a>
 <substore-add *ngIf="showAddPage" [selectedStore]="selectedStore" [rbac-roles-list]="rbacRoleList"
                 (callback-add)="CallBackAdd($event)"></substore-add>
 

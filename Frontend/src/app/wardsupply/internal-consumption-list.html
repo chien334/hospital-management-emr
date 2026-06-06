@@ -18,7 +18,7 @@
   <div class="row">
     <div class="col-md-4">
       <a class="btn blue bordered intcon no-margin" name="name" value="" (click)="OpenInternalConsumptionAddPage()">
-        <span class="glyphicon glyphicon-plus"></span> Internal Consumption</a>
+        <span class="glyphicon glyphicon-plus"></span> {{ 'WARD_SUPPLY.INTERNAL_CONSUMPTION' | translate }}</a>
     </div>
     <div class="col-lg-12 col-sm-12">
       <danphe-grid [grid-colDefaults]="consumptioninternalColumns" [grid-data]="consumptionLists" (grid-actions)="ConsumptionListGridAction($event)"> </danphe-grid>
@@ -42,9 +42,9 @@
           <div class="caption lb-caption">
             <h3>
               <i class="fa fa-shopping-cart"></i>
-              <span class="caption-subject">New Internal Consumption</span>
+              <span class="caption-subject">{{ 'WARD_SUPPLY.NEW_INTERNAL_CONSUMPTION' | translate }}</span>
             </h3>
-            <a class="btn btn-danger" (click)="OnConsumptionAddPageClose()" title="Cancel"><i class="fa fa-times"></i></a>
+            <a class="btn btn-danger" (click)="OnConsumptionAddPageClose()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
           </div>
           <pharmacy-internal-consumption (callback-popup-close)="ShowConsumptionReceipt($event)"></pharmacy-internal-consumption>
         </div>

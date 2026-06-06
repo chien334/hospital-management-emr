@@ -27,13 +27,13 @@
   <div style="margin-bottom: 10px;">
     <div class="col-lg-8 col-sm-8">
       <div class="caption lb-caption">
-        <span class="caption-subject" style="color:rgb(97, 97, 209);">Review Insurance Bills</span>
+        <span class="caption-subject" style="color:rgb(97, 97, 209);">{{ 'CLAIMMANAGEMENT.REVIEW_INSURANCE_BILLS' | translate }}</span>
       </div>
     </div>
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-8 col-xs-12">
-          <label style="vertical-align: top;margin-top: 10px; margin-right: 10px;">Invoice Date: </label>
+          <label style="vertical-align: top;margin-top: 10px; margin-right: 10px;">{{ 'CLAIMMANAGEMENT.INVOICE_DATE' | translate }}: </label>
           <div style="display: inline-block;">
             <from-to-date-select (on-change)="OnFromToDateChange($event)"
                                  [date-settings-name]="'common-range-with-today'">
@@ -42,7 +42,7 @@
         </div>
         <div class="col-md-4 col-xs-12">
           <button [disabled]="loading" class="btn green btn-success pull-right"
-                  (click)="GetBillReviewList();">Load
+                  (click)="GetBillReviewList();">{{ 'CLAIMMANAGEMENT.LOAD' | translate }}
             <i class="fa fa-refresh"></i></button>
         </div>
       </div>
@@ -55,16 +55,16 @@
         <div class="col-md-4">
           <input class="custom-table-search form-control" style="width:332px;background-position: 310px;" [(ngModel)]="searchString"
                  onclick="this.select();"
-                 placeholder="Hospital No/Patient Name/Claim Code/Invoice No">
+                 [placeholder]="'CLAIMMANAGEMENT.SEARCH_PLACEHOLDER' | translate">
         </div>
         <div class="col-md-8" *ngIf="billReviewListAll && billReviewListAll.length >0">
           <div class="col-md-3">
             <input id="checkbox_billReview_showNonClaimableInvoices" [(ngModel)]="showNonClaimableInvoice"
                    (change)="HandleShowNonClaimableInvoiceCheckbox($event)" type="checkbox" style="margin-right:10px;">
-            <label for="checkbox_billReview_showNonClaimableInvoices">NonClaimable Invoices</label>
+            <label for="checkbox_billReview_showNonClaimableInvoices">{{ 'CLAIMMANAGEMENT.NON_CLAIMABLE_INVOICES' | translate }}</label>
           </div>
           <div class="col-md-2">
-            <button class="btn orange btn-success form-control" (click)="OpenSetClaimCodePopUp()"><b>Set Claim Code</b></button>
+            <button class="btn orange btn-success form-control" (click)="OpenSetClaimCodePopUp()"><b>{{ 'CLAIMMANAGEMENT.SET_CLAIM_CODE' | translate }}</b></button>
           </div>
           <div class="col-md-2">
             <input DanpheConfirmationDialog
@@ -74,7 +74,7 @@
                    [message]="confirmationMessageForSetNonClaimable"
                    (confirm)="HandleConfirmForSetNonClaimable()"
                    (cancel)="HandleCancelForSetNonClaimable()" style="font-weight: bold;margin-right: 10px;" class="btn green btn-success"
-                   value="Set NonClaimable" [disabled]="loading" />
+                   [value]="'CLAIMMANAGEMENT.SET_NON_CLAIMABLE' | translate" [disabled]="loading" />
           </div>
           <div class="col-md-2">
             <input DanpheConfirmationDialog
@@ -86,7 +86,7 @@
                    (cancel)="HandleCancelForSetClaimable()"
                    style="font-weight: bold;margin-right: 10px;"
                    class="btn green btn-success"
-                   value="Set Claimable" [disabled]="loading" />
+                   [value]="'CLAIMMANAGEMENT.SET_CLAIMABLE' | translate" [disabled]="loading" />
           </div>
           <div class="col-md-3">
             <input DanpheConfirmationDialog
@@ -98,7 +98,7 @@
                    (cancel)="HandleCancelForSendForClaimScrubbing()"
                    style="font-weight: bold;margin-right: 10px;"
                    class="btn green btn-success"
-                   value="Send For Claim Scrubbing" [disabled]="loading" />
+                   [value]="'CLAIMMANAGEMENT.SEND_FOR_CLAIM_SCRUBBING' | translate" [disabled]="loading" />
           </div>
         </div>
       </div>
@@ -110,19 +110,19 @@
             <th scope="col" style="width: 50px;">
               <input type="checkbox" id="checkbox_billReview_selectAllInvoices" [(ngModel)]="selectAll" (change)="HandleSelectAllCheckBox($event)">
             </th>
-            <th scope="col" class="wd-130">Claim Code </th>
-            <th scope="col" class="wd-270">Hospital No. </th>
-            <th scope="col" class="wd-80"> PatientName </th>
-            <th scope="col" class="wd-80"> Age/Sex </th>
-            <th scope="col" class="wd-80"> Member No. </th>
-            <th scope="col" class="wd-80"> Invoice No. </th>
-            <th scope="col" class="wd-80"> Invoice Date </th>
-            <th scope="col" class="wd-80"> Scheme </th>
-            <th scope="col" class="wd-80"> Total Amount </th>
-            <th scope="col" class="wd-80"> Claim Status </th>
-            <th scope="col" class="wd-80"> Visit Type </th>
-            <th scope="col" class="wd-80"> Admission Date </th>
-            <th scope="col" class="wd-80"> Discharged Date </th>
+            <th scope="col" class="wd-130">{{ 'CLAIMMANAGEMENT.CLAIM_CODE' | translate }} </th>
+            <th scope="col" class="wd-270">{{ 'CLAIMMANAGEMENT.HOSPITAL_NO' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.PATIENT_NAME' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.AGE_SEX' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.MEMBER_NO' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.INVOICE_NO' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.INVOICE_DATE' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.SCHEME' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.TOTAL_AMOUNT' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.CLAIM_STATUS' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.VISIT_TYPE' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.ADMISSION_DATE' | translate }} </th>
+            <th scope="col" class="wd-80">{{ 'CLAIMMANAGEMENT.DISCHARGED_DATE' | translate }} </th>
           </tr>
         </thead>
         <tbody>
@@ -172,16 +172,16 @@
               </h4>
             </div>
             <div class="col-md-12">
-              <h4 class="margin-0-vr">Set Claim Code</h4>
+              <h4 class="margin-0-vr">{{ 'CLAIMMANAGEMENT.SET_CLAIM_CODE' | translate }}</h4>
             </div>
             <div class="col-md-12" style="padding:15px;background-color: #c6bbc2;margin-top: 15px;">
               <div class="col-md-6">
                 <div class="row">
-                  <div class="col-md-4">Patient Name<span style="float:right">:</span></div>
+                  <div class="col-md-4">{{ 'CLAIMMANAGEMENT.PATIENT_NAME' | translate }}<span style="float:right">:</span></div>
                   <div class="col-md-8" *ngFor="let pat of billListForClaimCodeAssignment.slice(0,1)">{{ pat.PatientName }}</div>
                 </div>
                 <div class="row" style="margin-top: 10px;">
-                  <div class="col-md-4">Enter Claim Code<span style="float:right">:</span></div>
+                  <div class="col-md-4">{{ 'CLAIMMANAGEMENT.ENTER_CLAIM_CODE' | translate }}<span style="float:right">:</span></div>
                   <div class="col-md-8">
                     <input class="form-control" type="number" onwheel="this.blur();" onclick="this.select()" (ngModelChange)="ClaimCodeChange()"
                            [(ngModel)]="newClaimCode">
@@ -190,7 +190,7 @@
               </div>
               <div class="col-md-6">
                 <div class="row">
-                  <div class="col-md-4">Hospital No. <span style="float:right">:</span></div>
+                  <div class="col-md-4">{{ 'CLAIMMANAGEMENT.HOSPITAL_NO' | translate }}<span style="float:right">:</span></div>
                   <div class="col-md-8" *ngFor="let pat of billListForClaimCodeAssignment.slice(0,1)">{{ pat.HospitalNo }}</div>
                 </div>
                 <div class="row" style="margin-top: 10px;">
@@ -204,10 +204,10 @@
               <table class="table table-responsive dispatch-report-table">
                 <thead class="table-header-bg">
                   <tr>
-                    <th scope="col" class="wd-80"> Invoice No. </th>
-                    <th scope="col" class="wd-80"> Invoice Date </th>
-                    <th scope="col" class="wd-80"> Total Amount </th>
-                    <th scope="col" class="wd-130">Claim Code </th>
+                    <th scope="col" class="wd-80"> {{ 'CLAIMMANAGEMENT.INVOICE_NO' | translate }} </th>
+                    <th scope="col" class="wd-80"> {{ 'CLAIMMANAGEMENT.INVOICE_DATE' | translate }} </th>
+                    <th scope="col" class="wd-80"> {{ 'CLAIMMANAGEMENT.TOTAL_AMOUNT' | translate }} </th>
+                    <th scope="col" class="wd-130">{{ 'CLAIMMANAGEMENT.CLAIM_CODE' | translate }} </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -224,9 +224,9 @@
             </div>
             <div class="col-md-12" style="margin-top: 15px;">
               <div class="all-buttons text-right">
-                <button type="button" class="btn orange btn-success" (click)="CloseSetClaimCodePopUp()"> Discard
+                <button type="button" class="btn orange btn-success" (click)="CloseSetClaimCodePopUp()"> {{ 'CLAIMMANAGEMENT.DISCARD' | translate }}
                 </button>
-                <button type="button" class="btn green btn-success" *ngIf="isClaimCodeValid" (click)="UpdateClaimCode()"> Save Claim Code
+                <button type="button" class="btn green btn-success" *ngIf="isClaimCodeValid" (click)="UpdateClaimCode()"> {{ 'CLAIMMANAGEMENT.SAVE_CLAIM_CODE' | translate }}
                 </button>
               </div>
             </div>

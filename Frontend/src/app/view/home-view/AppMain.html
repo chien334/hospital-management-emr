@@ -284,7 +284,7 @@
                         *ngIf="(childroute != null && childroute.DisplayName.length >0) && childroute.DefaultShow != false">
                       <a routerLink="{{childroute.UrlFullPath}}" class="nav-link"
                          [routerLinkActive]="'left-nav-active'">
-                        <span class="title">{{childroute.DisplayName}}</span>
+                        <span class="title">{{ childroute.DisplayName | translate }}</span>
                         <span class="badge badge-success"></span>
                       </a>
                     </li>

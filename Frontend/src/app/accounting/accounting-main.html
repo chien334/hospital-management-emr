@@ -35,7 +35,7 @@
 
     <!--Start: Secondary Menu Items-->
     <li *ngIf="secondaryNavItems && secondaryNavItems.length>0" class="dropdown bil-hr-bar"
-      style="display:inline-block;"> <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> More...
+      style="display:inline-block;"> <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> {{ 'ACCOUNTING.MORE' | translate }}
         <span class="caret"></span> </a>
       <ul class="dropdown-menu bil-hr-dropdown">
         <li class="hr-ddlCstm" *ngFor="let route of secondaryNavItems"> <a routerLink="{{route.RouterLink}}"
@@ -47,12 +47,12 @@
   </ul>
   <ul class="page-breadcrumb" style="float:right;" *ngIf="validRoutes != undefined">
     <li *ngIf="securityService.AccHospitalInfo">
-      <button (click)="RefreshAccCacheData()" title="Refresh Data" class="btn green btn-success margin-rt-15">
+      <button (click)="RefreshAccCacheData()" [title]="'ACCOUNTING.REFRESH_DATA' | translate" class="btn green btn-success margin-rt-15">
         <i class="fa fa-refresh" *ngIf="securityService.AccHospitalInfo.TotalHospitalPermissionCount > 0"></i>
       </button>
       <button (click)="OpenHospitalChangeWindow()" class="btn green btn-success margin-rt-15"
         [disabled]="securityService.AccHospitalInfo.TotalHospitalPermissionCount <=1">
-        Active: {{securityService.AccHospitalInfo.HospitalShortName}}
+        {{ 'ACCOUNTING.ACTIVE' | translate }}{{securityService.AccHospitalInfo.HospitalShortName}}
         <i class="fa fa-pencil" *ngIf="securityService.AccHospitalInfo.TotalHospitalPermissionCount > 1"></i>
       </button>
 
@@ -60,12 +60,12 @@
     <li style="font-weight: bold;"> <span style="color:black !important;"
         *ngIf="securityService.AccHospitalInfo && securityService.AccHospitalInfo.CurrFiscalYear !=null">
         <span> <span style="font-size:14px;text-align:center;">
-            Fiscal Year: {{securityService.AccHospitalInfo.CurrFiscalYear.FiscalYearName}} </span> <br />
+            {{ 'ACCOUNTING.FISCAL_YEAR' | translate }}{{securityService.AccHospitalInfo.CurrFiscalYear.FiscalYearName}} </span> <br />
           <span style="font-size:11px;text-align:center;">
-            Start Date: <date-lbl [value]="securityService.AccHospitalInfo.CurrFiscalYear.StartDate"></date-lbl> </span>
+            {{ 'ACCOUNTING.START_DATE' | translate }}<date-lbl [value]="securityService.AccHospitalInfo.CurrFiscalYear.StartDate"></date-lbl> </span>
 
           <span style="font-size:11px;text-align:center;">
-            End Date:<date-lbl [value]="securityService.AccHospitalInfo.CurrFiscalYear.EndDate"></date-lbl>
+            {{ 'ACCOUNTING.END_DATE' | translate }}<date-lbl [value]="securityService.AccHospitalInfo.CurrFiscalYear.EndDate"></date-lbl>
           </span>
         </span>
 
@@ -74,7 +74,7 @@
   </ul>
 </div>
 <div *ngIf="loading">  <!-- //mumbai-team-june2021-danphe-accounting-cache-change -->
-  Loading...
+  {{ 'ACCOUNTING.LOADING' | translate }}
 </div>
 <div class="wrapper" *ngIf="!loading">
   <router-outlet></router-outlet>

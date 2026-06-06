@@ -23,41 +23,41 @@
                         </div>
                         <hr style="margin: 20px 0px 10px 0px !important;">
                         <div style="text-align: center; margin: 5px 0px 0px 0px;">
-                            <label><b>Consultation Form</b></label>
+                            <label><b>{{ 'NURSING.CONSULTATION_FORM' | translate }}</b></label>
                         </div>
                         <hr style="margin: 0px 0px 15px 0px;">
                         <div style="display: flex; width: 100%; margin: 15px 0px 0px 0px !important">
                             <div style="width: 70%; padding-left: 30px !important">
-                                <label><b>Patient Name:&nbsp;</b></label>{{ patientService.globalPatient.ShortName }}
+                                <label><b>{{ 'NURSING.PATIENT_NAME' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.ShortName }}
                             </div>
                             <div style="width: 30%;">
-                                <label><b>Hospital Number:&nbsp;</b></label>{{ patientService.globalPatient.PatientCode }}
+                                <label><b>{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.PatientCode }}
                             </div>
                         </div>
                         <div style="display: flex; width: 100%; margin: 0px !important">
                             <div style="width: 70%; padding-left: 30px !important">
-                                <label><b>Age/Sex:&nbsp;</b></label>{{ patientService.globalPatient.Age }}/{{ patientService.globalPatient.Gender }}
+                                <label><b>{{ 'NURSING.AGE_SEX' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.Age }}/{{ patientService.globalPatient.Gender }}
                             </div>
                             <div style="width: 30%;">
-                                <label><b>IP Number:&nbsp;</b></label>{{ patientService.globalPatient.VisitCode }}
+                                <label><b>{{ 'NURSING.IP_NUMBER' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.VisitCode }}
                             </div>
                         </div>
                         <div style="display: flex; width: 100%; margin: 0px !important">
                             <div style="width: 70%; padding-left: 30px !important">
-                                <label><b>Ward/Bed:&nbsp;</b></label>{{ patientService.globalPatient.WardName }}/{{ patientService.globalPatient.BedNo
+                                <label><b>{{ 'NURSING.WARD_BED' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.WardName }}/{{ patientService.globalPatient.BedNo
                                 }}
                             </div>
                             <div style="width: 30%;">
-                                <label><b>To Doctor:&nbsp;</b></label>{{ SelectedConsultationRequest.ConsultingDoctorName }}
+                                <label><b>{{ 'NURSING.TO_DOCTOR' | translate }}:&nbsp;</b></label>{{ SelectedConsultationRequest.ConsultingDoctorName }}
                             </div>
                         </div>
                         <div style="display: flex; width: 100%; margin: 0px !important">
                             <div style="width: 70%; padding-left: 30px !important">
-                                <label><b>Date of Request :&nbsp;</b></label>{{ ConsultationRequest.RequestedOn | DanpheDateTime:'format':'YYYY-MM-DD
+                                <label><b>{{ 'NURSING.DATE_OF_REQUEST' | translate }}:&nbsp;</b></label>{{ ConsultationRequest.RequestedOn | DanpheDateTime:'format':'YYYY-MM-DD
                                 HH:mm A'}}
                             </div>
                             <div style="width: 30%;">
-                                <label><b>Department:&nbsp;</b></label>{{ SelectedConsultationRequest.ConsultingDepartmentName }}
+                                <label><b>{{ 'NURSING.DEPARTMENT' | translate }}:&nbsp;</b></label>{{ SelectedConsultationRequest.ConsultingDepartmentName }}
                             </div>
                         </div>
 
@@ -67,21 +67,21 @@
               margin: 15px 15px 15px 15px !important;
               padding-bottom: 10px;">
                             <div class="col-md-12">
-                                <span style="text-decoration: underline"><b>Purpose of Consultation:</b></span>
+                                <span style="text-decoration: underline"><b>{{ 'NURSING.PURPOSE_OF_CONSULTATION' | translate }}:</b></span>
                             </div>
                             <p style="height: fit-content; margin: 15px 15px 0px 15px;">{{ SelectedConsultationRequest.PurposeOfConsultation }}</p>
                             <div style="display: flex; text-align: left; margin-top: 15px;">
                                 <div style="width: 70%;"></div>
-                                <label style="width: 30%;"><b>Requesting Doctor:&nbsp;{{ SelectedConsultationRequest.RequestingConsultantName
+                                <label style="width: 30%;"><b>{{ 'NURSING.REQUESTING_DOCTOR' | translate }}:&nbsp;{{ SelectedConsultationRequest.RequestingConsultantName
                                         }}</b></label>
                             </div>
                             <div style="display: flex; text-align: left;">
                                 <div style="width: 70%;"></div>
-                                <label style="width: 30%;"><b>Department:&nbsp;{{ SelectedConsultationRequest.RequestingDepartmentName }}</b></label>
+                                <label style="width: 30%;"><b>{{ 'NURSING.DEPARTMENT' | translate }}:&nbsp;{{ SelectedConsultationRequest.RequestingDepartmentName }}</b></label>
                             </div>
                             <div style="display: flex; margin-top: 20px; text-align: left;">
                                 <div style="width: 70%;"></div>
-                                <label style="width: 30%;"><b>Signature:</b>&nbsp;</label>
+                                <label style="width: 30%;"><b>{{ 'NURSING.SIGNATURE' | translate }}:</b>&nbsp;</label>
                             </div>
                         </div>
 
@@ -90,22 +90,22 @@
                              style="margin: 15px 15px 15px 15px !important; padding-bottom: 10px;">
                             <div class="col-md-12">
                                 <span style="text-decoration: underline"><b>
-                                        Consultant's Reports (Including evidence/Physical examination/ and review of Medical Record):</b></span>
+                                         {{ 'NURSING.CONSULTANTS_REPORTS' | translate }}:</b></span>
                             </div>
                             <p style="height: fit-content; margin: 15px 15px 0px 15px !important;">{{ SelectedConsultationRequest.ConsultantResponse
                                 }}</p>
                             <div style="display: flex; width: 100%; text-align: left; margin-top: 15px;">
                                 <div style="width: 70%;"></div>
-                                <label style="width: 30%;"><b>Consulting Doctor:&nbsp;{{ SelectedConsultationRequest.ConsultingDoctorName
+                                <label style="width: 30%;"><b>{{ 'NURSING.CONSULTING_DOCTOR' | translate }}:&nbsp;{{ SelectedConsultationRequest.ConsultingDoctorName
                                         }}</b></label>
                             </div>
                             <div style="display: flex; width: 100%; text-align: left;">
                                 <div style="width: 70%;"></div>
-                                <label style="width: 30%;"><b>Department:&nbsp;{{ SelectedConsultationRequest.ConsultingDepartmentName }}</b></label>
+                                <label style="width: 30%;"><b>{{ 'NURSING.DEPARTMENT' | translate }}:&nbsp;{{ SelectedConsultationRequest.ConsultingDepartmentName }}</b></label>
                             </div>
                             <div style="display: flex; width: 100%; margin-top: 20px; text-align: left;">
                                 <div style="width: 70%;"></div>
-                                <label style="width: 30%;"><b>Signature:</b>&nbsp;</label>
+                                <label style="width: 30%;"><b>{{ 'NURSING.SIGNATURE' | translate }}:</b>&nbsp;</label>
                             </div>
                         </div>
 
@@ -122,7 +122,7 @@
                                            id="add"
                                            class="btn green btn-success margin-7-hr"
                                            (click)="PrintConsultationForm()"
-                                           value="Print" />
+                                           [value]="'COMMON.PRINT' | translate" />
                                 </div>
                                 <!-- <select-printer [group-name]="'bill-receipt'" [storage-key]="'bil-invoice-default'"
                                 (on-printer-change)="OnPrinterChanged($event)">

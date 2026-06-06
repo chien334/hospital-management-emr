@@ -91,7 +91,7 @@
     <div class="col-md-12">
       <div class="caption lb-caption">
         <i class="glyphicon glyphicon-asterisk"></i>
-        <span class="caption-subject">Select your Ward</span>
+        <span class="caption-subject">{{ 'NURSING.SELECT_YOUR_WARD' | translate }}</span>
       </div>
     </div>
     <div class="col-md-12" *ngIf="wardList != undefined">
@@ -105,22 +105,22 @@
               </span>
               <span class="report-name col-md-6">
                 <i>{{ward.WardName}}</i>
-                <i>ward</i>
+                <i>{{ 'NURSING.WARD' | translate }}</i>
               </span>
               <span class="report-name col-md-6">
                 <i>{{ward.OccupiedBeds}}</i>
-                <i>Patients</i>
+                <i>{{ 'NURSING.PATIENTS' | translate }}</i>
               </span>
             </div>
             <div class="progress">
               <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="ward.OccupiedBeds" aria-valuemin="0"
                 [attr.aria-valuemax]="ward.TotalBeds" [ngStyle]="{'width.%': ward.OccupiedBeds*100/ward.TotalBeds}">
-                <span title="{{ward.OccupiedBeds}} Beds Occupied">{{ward.OccupiedBeds}} Beds Occupied</span>
+                <span [title]="'NURSING.BEDS_OCCUPIED' | translate : { count: ward.OccupiedBeds }">{{ 'NURSING.BEDS_OCCUPIED' | translate : { count: ward.OccupiedBeds } }}</span>
               </div>
               <div class="progress-bar progress-bar-success" role="progressbar" [attr.aria-valuenow]="ward.VacantBeds"
                 aria-valuemin="0" [attr.aria-valuemax]="ward.TotalBeds"
                 [ngStyle]="{'width.%': ward.VacantBeds*100/ward.TotalBeds}">
-                <span title="{{ward.VacantBeds}} Beds Vacant">{{ward.VacantBeds}} Beds Vacant</span>
+                <span [title]="'NURSING.BEDS_VACANT' | translate : { count: ward.VacantBeds }">{{ 'NURSING.BEDS_VACANT' | translate : { count: ward.VacantBeds } }}</span>
               </div>
             </div>
           </a>

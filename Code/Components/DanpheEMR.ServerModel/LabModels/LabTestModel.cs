@@ -1,4 +1,4 @@
-﻿
+
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.LabModels;
 using System;
@@ -24,6 +24,7 @@ namespace DanpheEMR.ServerModel
         public string LabTestSpecimenSource { get; set; }
 
         public string LOINC { get; set; }
+        [Column("ReportTemplateID")]
         public int ReportTemplateId { get; set; }
         public bool IsValidForReporting { get; set; }
         public string Description { get; set; }
@@ -38,6 +39,7 @@ namespace DanpheEMR.ServerModel
         public string NegativeResultText { get; set; }
         public int LabTestCategoryId { get; set; }
         public bool SmsApplicable { get; set; }
+        [ForeignKey("ReportTemplateId")]
         public virtual LabReportTemplateModel LabReportTemplate { get; set; }
 
 

@@ -31,8 +31,8 @@
                 <table class="table table-striped table-hover" style="background-color:initial;margin-top:3px">
                     <thead>
                         <tr class="table-tr-style">
-                            <th><b>Drug/Medicine Name</b></th>
-                            <th><b>Qty</b></th>
+                            <th><b>{{ 'DISPENSARY.SALE.DRUG_MEDICINE_NAME' | translate }}</b></th>
+                            <th><b>{{ 'NURSING.QTY' | translate }}</b></th>
                             <th></th>
 
                         </tr>
@@ -45,7 +45,7 @@
                                        [(ngModel)]="row.selectedItem"
                                        [source]="ItemListForSale"
                                        [list-formatter]="myItemListFormatter"
-                                       placeholder="--Select Medicine--"
+                                       placeholder="{{ 'DISPENSARY.SALE.SELECT_MEDICINE_PLACEHOLDER' | translate }}"
                                        display-property-name="ItemName"
                                        value-property-name=null
                                        onClick="this.select();"
@@ -68,7 +68,7 @@
                                            formControlName="Quantity" style="width:80px ; "
                                            min="0" class="form-control" type="number" onwheel="this.blur()" value="" id="{{ 'qty-box'+i }}" (keyup.enter)="AddRowRequestOnClick(i)" onClick="this.select();">
                                     <!--  <span class="error-msg" *ngIf="row.TotalQty<row.Quantity">Less Quantity available than you entered</span>-->
-                                    <span class="color-red font-sm" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','invalidNumber')">Not Valid quantity</span>
+                                    <span class="color-red font-sm" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','invalidNumber')">{{ 'DISPENSARY.SALE.NOT_VALID_QTY' | translate }}</span>
 
                                 </form>
                             </td>
@@ -85,9 +85,9 @@
                    
                 </table>
              <div style="float:right;">
-                    <input type="button" class="btn btn-success" value="Request" (click)="drugsRequest()" />
+                    <input type="button" class="btn btn-success" value="{{ 'NURSING.REQUEST' | translate }}" (click)="drugsRequest()" />
                     <span></span>
-                    <input *ngIf="moduleName != 'emergency'" type="button" class="btn btn-danger" (click)="Close()" value="Cancel">
+                    <input *ngIf="moduleName != 'emergency'" type="button" class="btn btn-danger" (click)="Close()" value="{{ 'COMMON.CANCEL' | translate }}">
                     <span></span>
              </div>
 

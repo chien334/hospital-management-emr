@@ -6,6 +6,7 @@ import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { DoctorsBLService } from "../shared/doctors.bl.service";
 import { Patient } from "../../patients/shared/patient.model";
 import { ADT_BLService } from "../../adt/shared/adt.bl.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   templateUrl: "./in-patient-discharge-summary.html"
@@ -26,7 +27,8 @@ export class InPatientDischargeSummaryComponent {
       public visitservice: VisitService,
       public msgBoxServ: MessageboxService,
       public doctorsBLService: DoctorsBLService,
-      public adtBlService: ADT_BLService) {
+      public adtBlService: ADT_BLService,
+      public translate: TranslateService) {
     this.currentPatient = new Patient();
     this.patientVisitId = this.visitservice.globalVisit.PatientVisitId;
     this.patientId = this.visitservice.globalVisit.PatientId;
@@ -48,7 +50,7 @@ export class InPatientDischargeSummaryComponent {
 
             this.showDischargeSummaryAdd = false;
             this.showDischargeSummaryView = true;
-            this.msgBoxServ.showMessage("Warning", ["Discharge note is already Finalized !! You can only view it !"]);
+            this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.WARNING"), [this.translate.instant("PATIENT_OVERVIEW.DISCHARGE_FINALIZED_WARNING")]);
           }
         }
       }

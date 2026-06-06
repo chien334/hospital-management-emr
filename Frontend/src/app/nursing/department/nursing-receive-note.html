@@ -7,26 +7,26 @@
     <div class="col-md-4">
       <h5>
         <strong>
-          Admitted On: <date-lbl [value]="currentPatInfo.AdmittedDate" [show-time]="true"></date-lbl>
+          {{ 'NURSING.ADMITTED_ON' | translate }}: <date-lbl [value]="currentPatInfo.AdmittedDate" [show-time]="true"></date-lbl>
         </strong></h5>
     </div>
     <div class="col-md-4">
-      <h5><strong> Admitted Doc: {{currentPatInfo.AdmittingDoctorName}}</strong> </h5>
+      <h5><strong> {{ 'NURSING.ADMITTED_DOC' | translate }}: {{currentPatInfo.AdmittingDoctorName}}</strong> </h5>
     </div>
   </div>
   <div class="col-md-12"
     style="margin-bottom:10px !important; padding: 0px !important; font-weight:700; font-size:small;">
     <p *ngIf="previousWardBedInfo" class="col-md-6">
-      Transfered from : {{previousWardBedInfo?.WardName}} /
+      {{ 'NURSING.TRANSFERRED_FROM' | translate }} : {{previousWardBedInfo?.WardName}} /
       {{previousWardBedInfo?.BedCode}} - {{previousWardBedInfo?.BedFeature}}
     </p>
     <div *ngIf="currentWardBedInfo" class="col-md-6">
       <p *ngIf="currentWardBedInfo.Action == 'admission'">
-        Admitted By/On : {{currentWardBedInfo.CreatedBy }} / <date-lbl [value]="currentWardBedInfo.CreatedOn"
+        {{ 'NURSING.ADMITTED_BY_ON' | translate }} : {{currentWardBedInfo.CreatedBy }} / <date-lbl [value]="currentWardBedInfo.CreatedOn"
           [show-time]="true"></date-lbl>
       </p>
       <p *ngIf="currentWardBedInfo.Action == 'transfer'">
-        Transfered By/On : {{currentWardBedInfo.CreatedBy }} / <date-lbl [value]="currentWardBedInfo.StartDate"
+        {{ 'NURSING.TRANSFERRED_BY_ON' | translate }} : {{currentWardBedInfo.CreatedBy }} / <date-lbl [value]="currentWardBedInfo.StartDate"
           [show-time]="true"></date-lbl>
       </p>
     </div>
@@ -42,7 +42,7 @@
       <div class=" col-md-4">
         <div>
           <label class="control-label col-md-4" style="font-weight:700; font-size:small; padding:0px !important;">
-            Received On <b class="color-red">*</b>
+            {{ 'NURSING.RECEIVED_ON' | translate }} <b class="color-red">*</b>
             <b>:</b>
           </label>
           <div class="col-md-8">
@@ -56,17 +56,17 @@
         <div>
           <label class="control-label col-md-12">
             <label style="font-weight: 800;font-size: large;padding: 0px !important;">
-              Receive Note *
+              {{ 'NURSING.RECEIVE_NOTE' | translate }} *
             </label>
             <label style="color:green;margin-left: 10px;">
-              [mandatory]
+              {{ 'NURSING.MANDATORY' | translate }}
             </label>
 
           </label>
           <!--<textarea class="col-md-12"
-              rows="8"
-              name="receiveNote"
-              [(ngModel)]="note.FreeTextNote.FreeText">
+               rows="8"
+               name="receiveNote"
+               [(ngModel)]="note.FreeTextNote.FreeText">
           </textarea>-->
           <danphe-ckeditor [readonly]="false" (get-html-content)="onChangeEditorData($event)" [panel-height]="'270px'">
           </danphe-ckeditor>
@@ -77,10 +77,9 @@
 
     <div class="panel-footer text-right" style="margin-top:30px !important;">
       <button class="btn primary-btn" (click)="SubmitReceiveNote()" [disabled]="!note.ReceivedOn">
-        Receive and
-        Continue
+        {{ 'NURSING.RECEIVE_AND_CONTINUE' | translate }}
       </button>
-      <button class="btn danger-btn" (click)="Discard()">Discard</button>
+      <button class="btn danger-btn" (click)="Discard()">{{ 'COMMON.DISCARD' | translate }}</button>
     </div>
   </div>
 </div>

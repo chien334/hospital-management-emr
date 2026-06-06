@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,6 +21,7 @@ namespace DanpheEMR.ServerModel.PharmacyModels
         public DateTime? ModifiedOn { get; set; }
         public int? ModifiedBy { get; set; }
         public bool IsActive { get; set; }
+        [ForeignKey("ItemId")]
         public virtual PHRMItemMasterModel Items { get; set; }
         [JsonIgnore]
         public virtual PHRMGenericModel generic { get; set; }

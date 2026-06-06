@@ -4,7 +4,7 @@
 <div *ngIf="showGrid" class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
     <a class="btn blue bordered " name="name" (click)="AddRole()">
-      <i class="fa fa-plus"></i>&nbsp;Add Role
+      <i class="fa fa-plus"></i>&nbsp;{{ 'SECURITY.ADD_ROLE' | translate }}
     </a>
 
     <role-add *ngIf="showAddPage"
@@ -21,7 +21,7 @@
 
 <div *ngIf="showManagePermission" class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <input type="button" class="btn btn-primary" (click)="HidePermissionManage()" value="Back" />
+    <input type="button" class="btn btn-primary" (click)="HidePermissionManage()" [value]="'COMMON.BACK' | translate" />
     <permission-manage *ngIf="showManagePermission" [selectedRole]="selectedItem"
                        [application-perm-list]="applicationList"
                        (callback-manageRole)="HidePermissionManage($event)"></permission-manage>

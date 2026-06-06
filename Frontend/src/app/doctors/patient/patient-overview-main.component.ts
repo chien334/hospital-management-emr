@@ -13,6 +13,7 @@ import { VisitService } from "../../appointments/shared/visit.service";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { DoctorsBLService } from "../shared/doctors.bl.service";
 import { CoreService } from "../../core/shared/core.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   templateUrl: "./patient-overview-main.html",
@@ -30,7 +31,8 @@ export class PatientOverviewMainComponent {
     public router: Router,
     private doctorBLService: DoctorsBLService,
     private route: ActivatedRoute,
-    private coreService: CoreService
+    private coreService: CoreService,
+    public translate: TranslateService
   ) {
     this.currentModuleName = this.securityService.currentModule;
     //get the chld routes of Doctors/PatientOverviewMain from valid routes available for this user.
@@ -72,19 +74,22 @@ export class PatientOverviewMainComponent {
 
   ConcludeVisit() {
     var txt;
-    var r = confirm("Are you sure you want to conclude this visit ?");
+    var confirmMsg = this.translate.instant("PATIENT_OVERVIEW.CONFIRM_CONCLUDE");
+    var r = confirm(confirmMsg);
     if (r == true) {
       this.doctorBLService
         .ConcludeVisit(this.visitService.globalVisit.PatientVisitId)
         .subscribe((res) => {
           if (res.Status == "OK") {
+            var successMsg = this.translate.instant("PATIENT_OVERVIEW.CONCLUDE_SUCCESS");
             this.msgBoxSrv.showMessage("success", [
-              "Current visit is concluded.",
+              successMsg,
             ]);
             this.router.navigate(["/Doctors/OutPatientDoctor"]);
           } else {
+            var failedMsg = this.translate.instant("PATIENT_OVERVIEW.CONCLUDE_FAILED");
             this.msgBoxSrv.showMessage("error", [
-              "something wrong please try again.",
+              failedMsg,
             ]);
           }
         });

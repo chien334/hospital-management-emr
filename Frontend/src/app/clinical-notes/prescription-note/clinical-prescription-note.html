@@ -1,64 +1,64 @@
 <div class="row">
   <div class="col-md-12">
     <div class="row">
-      <h2 class="text-center">Prescription Note</h2>
+      <h2 class="text-center">{{ 'CLINICAL.PRESCRIPTION_NOTE' | translate }}</h2>
     </div>
   </div>
   <div class="col-md-6">
     <div class="row">
       <div class="col-md-12 form-group">
-        <h3>Clinical Information</h3>
+        <h3>{{ 'CLINICAL.CLINICAL_INFO' | translate }}</h3>
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">Chief Complaint</div>
+      <div class="col-md-4">{{ 'CLINICAL.CHIEF_COMPLAINT' | translate }}</div>
       <div class="col-md-8"><input type="text" [(ngModel)]="prescriptionNotes.ChiefComplaint" class="form-control" /></div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">History of Presenting Illness</div>
+      <div class="col-md-4">{{ 'CLINICAL.HISTORY_OF_PRESENTING_ILLNESS' | translate }}</div>
       <div class="col-md-8"><input type="text" [(ngModel)]="prescriptionNotes.HistoryOfPresentingIllness" class="form-control" /></div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">Review of System</div>
+      <div class="col-md-4">{{ 'CLINICAL.REVIEW_OF_SYSTEM' | translate }}</div>
       <div class="col-md-8"><input type="text" [(ngModel)]="prescriptionNotes.ReviewOfSystems" class="form-control" /></div>
     </div>
 
     <div class="row form-group">
       <div class="col-md-12">
-        <h3>Rx Medication</h3>
+        <h3>{{ 'CLINICAL.RX_MEDICATION' | translate }}</h3>
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">Old Medication to be stopped</div>
+      <div class="col-md-4">{{ 'CLINICAL.OLD_MED_STOP' | translate }}</div>
       <div class="col-md-8"><input type="text" [(ngModel)]="prescriptionNotes.OldMedicationStopped" class="form-control" /></div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">New Medication to be started</div>
+      <div class="col-md-4">{{ 'CLINICAL.NEW_MED_START' | translate }}</div>
       <div class="col-md-8"><input type="text" [(ngModel)]="prescriptionNotes.NewMedicationStarted" class="form-control" /></div>
     </div>
 
     <div class="row form-group">
       <div class="col-md-12">
-        <h3>Instruction</h3>
+        <h3>{{ 'CLINICAL.INSTRUCTIONS' | translate }}</h3>
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">Follow Up in</div>
+      <div class="col-md-4">{{ 'CLINICAL.FOLLOW_UP_IN' | translate }}</div>
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-4"><input type="text" [(ngModel)]="prescriptionNotes.FollowUpTime" class="form-control" /></div>
           <div class="col-md-4">
             <select [(ngModel)]="prescriptionNotes.FollowUpUnit">
-              <option value="days">Days</option>
-              <option value="weeks">Weeks</option>
-              <option value="months">Months</option>
+              <option value="days">{{ 'CLINICAL.DAYS' | translate }}</option>
+              <option value="weeks">{{ 'CLINICAL.WEEKS' | translate }}</option>
+              <option value="months">{{ 'CLINICAL.MONTHS' | translate }}</option>
             </select>
           </div>
         </div>
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">Remarks</div>
+      <div class="col-md-4">{{ 'COMMON.REMARKS' | translate }}</div>
       <div class="col-md-8"><input type="text" [(ngModel)]="prescriptionNotes.Remarks" class="form-control" /></div>
     </div>
 
@@ -67,15 +67,15 @@
   <div class="col-md-6">
     <div class="row">
       <div class="col-md-12 form-group">
-        <h3 style="visibility: hidden;">Other Informations</h3>
+        <h3 style="visibility: hidden;">{{ 'CLINICAL.OTHER' | translate }}</h3>
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">Clinical Notes</div>
+      <div class="col-md-4">{{ 'CLINICAL.CLINICAL_NOTES' | translate }}</div>
       <div class="col-md-8"><input type="text" [(ngModel)]="prescriptionNotes.PrescriptionNoteText" class="form-control" /></div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">Diagnosis({{IcdVersionDisplayName}} code)</div>
+      <div class="col-md-4">{{ 'CLINICAL.DIAGNOSIS_ICD_CODE' | translate: { IcdVersionDisplayName: IcdVersionDisplayName } }}</div>
       <div class="col-md-8">
         <input danphe-auto-complete [(ngModel)]="diagnosis" class="form-control cstm-field-ip" [source]="ICD10List"
                [list-formatter]="ICDListFormatter" min-chars="0" onclick="this.select();" display-property-name="ICD10Description" max-num-list="8"
@@ -92,7 +92,7 @@
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-md-4">ICD Remarks</div>
+      <div class="col-md-4">{{ 'CLINICAL.ICD_REMARKS' | translate }}</div>
       <div class="col-md-8">
         <input type="text" [(ngModel)]="prescriptionNotes.ICDRemarks" class="form-control" />
       </div>

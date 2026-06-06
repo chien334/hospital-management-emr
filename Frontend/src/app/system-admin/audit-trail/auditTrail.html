@@ -5,7 +5,7 @@
       <div class="col-md-12">
         <div class="caption custom-caption">
           <i class="glyphicon glyphicon-asterisk"></i>
-          <span class="caption-subject" style="text-transform: uppercase;">Audit Trail Details</span>
+          <span class="caption-subject" style="text-transform: uppercase;">{{ 'SYSTEM_ADMIN.AUDIT_TRAIL_DETAILS' | translate }}</span>
         </div>
         <!--<div class="col-md-5 col-xs-12" style="margin-bottom:5px">
           <div class="form-group">
@@ -55,7 +55,7 @@
         <div class="col-md-12" style="padding:5px">
           <div class="col-md-4 col-xs-12">
             <div class="form-group">
-              <label class="control-label col-md-3" style="padding:0px;">User Name<b style="float:right;">:</b></label>
+              <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.USER_NAME' | translate }}<b style="float:right;">:</b></label>
               <div class="col-md-9" style="padding-right: 30px;">
                 <!-- <input danphe-auto-complete class="form-control " [(ngModel)]="auditUserName" [source]="userNameList"
                 [list-formatter]="userNameFormatter" placeholder="--select UserName--" display-property-name="UserName"
@@ -63,7 +63,7 @@
                 match-formatted="true" [grid-sort]="'UserName'" [ngModelOptions]="{standalone: true}"
                 (valueChanged)="onChangeUserName($event)" style="width:250px " /> -->
 
-                <danphe-multiselect [ddl-data]="userNameList" placeholder-text="Select User(s)"
+                <danphe-multiselect [ddl-data]="userNameList" [placeholder-text]="'SYSTEM_ADMIN.SELECT_USERS_PLACEHOLDER' | translate"
                   value-property-name="UserNameValue" (selected-items-list)="onChangeUserName($event)"
                   display-property-name="UserName" [single-selection]="false">
                 </danphe-multiselect>
@@ -72,7 +72,7 @@
           </div>
           <div class="col-md-4 col-xs-12">
             <div class="form-group">
-              <label class="control-label col-md-3" style="padding:0px;">Table Name<b style="float:right;">:</b></label>
+              <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.TABLE_NAME' | translate }}<b style="float:right;">:</b></label>
               <div class="col-md-9" style="padding-right: 30px;">
                 <!-- <input danphe-auto-complete class="form-control " [(ngModel)]="auditTableName"
                 [source]="tableNameMappingList" [list-formatter]="tableNameFormatter" placeholder="--select TableName--"
@@ -80,7 +80,7 @@
                 onClick="this.select();" (valueChanged)="onChangeTableName($event)"
                 [ngModelOptions]="{standalone: true}" style="width:250px" /> -->
 
-                <danphe-multiselect [ddl-data]="tableNameMappingList" placeholder-text="Select Table(s)"
+                <danphe-multiselect [ddl-data]="tableNameMappingList" [placeholder-text]="'SYSTEM_ADMIN.SELECT_TABLES_PLACEHOLDER' | translate"
                   value-property-name="Table_Name" (selected-items-list)="onChangeTableName($event)"
                   display-property-name="TableDisplayName" [single-selection]="false">
                 </danphe-multiselect>
@@ -89,11 +89,11 @@
           </div>
           <div class="col-md-4 col-xs-12">
             <div class="form-group">
-              <label class="control-label col-md-4" style="padding:0px;">Select Action<b
+              <label class="control-label col-md-4" style="padding:0px;">{{ 'SYSTEM_ADMIN.SELECT_ACTION' | translate }}<b
                   style="float:right;">:</b></label>
               <div class="col-md-8">
                 <select class="form-control" [(ngModel)]="ActionName" [ngModelOptions]="{standalone: true}">
-                  <option value="">Select Action</option>
+                  <option value="">{{ 'SYSTEM_ADMIN.SELECT_ACTION' | translate }}</option>
                   <option *ngFor="let actName of actionList" value="{{actName}}">{{actName}} </option>
                 </select>
               </div>
@@ -120,7 +120,7 @@
 <div class="row">
   <div class="caption custom-caption">
     <i class="glyphicon glyphicon-asterisk"></i>
-    <span class="caption-subject"style="text-transform: uppercase;">Login Informations</span>
+    <span class="caption-subject"style="text-transform: uppercase;">{{ 'SYSTEM_ADMIN.LOGIN_INFORMATIONS' | translate }}</span>
   </div>
   <div class="col-lg-12 col-sm-12">
     <danphe-grid [grid-colDefaults]="loginInfoGridColumns" [grid-data]="loginList" [rangeType]="dateRange"

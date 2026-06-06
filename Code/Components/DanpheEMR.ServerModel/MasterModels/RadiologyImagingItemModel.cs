@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DanpheEMR.ServerModel
 {
@@ -22,6 +23,7 @@ namespace DanpheEMR.ServerModel
         public bool IsValidForReporting { get; set; }
         public int? TemplateId { get; set; }
 
+        [ForeignKey("ImagingTypeId")]
         public virtual RadiologyImagingTypeModel ImagingTypes { get; set; }
 
     }

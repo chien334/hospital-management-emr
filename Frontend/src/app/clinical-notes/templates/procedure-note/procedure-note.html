@@ -9,16 +9,16 @@
 <div class="row hm-f-note">
   <div class="col-md-12">
     <div class="form-group">
-      <h3 class="text-head" style="text-align:center">Lines&Invasive Procedure Note</h3>
+      <h3 class="text-head" style="text-align:center">{{ 'CLINICAL.LINES_INVASIVE_PROCEDURE_NOTE' | translate }}</h3>
       <table class="table table-bordered">
         <thead>
           <tr>
             <!--<th></th>-->
-            <th><b>Date</b></th>
+            <th><b>{{ 'CLINICAL.DATE' | translate }}</b></th>
             <!--<th></th>-->
-            <th><b>Lines/Prose</b></th>
-            <th><b>Site</b></th>
-            <th><b>Remarks</b></th>
+            <th><b>{{ 'CLINICAL.LINES_PROSE' | translate }}</b></th>
+            <th><b>{{ 'CLINICAL.SITE_LABEL' | translate }}</b></th>
+            <th><b>{{ 'CLINICAL.REMARKS' | translate }}</b></th>
           </tr>
         </thead>
         <tbody *ngFor="let selectedItem of SelecetdItemList">
@@ -32,10 +32,10 @@
             </td>-->
             <td><input style="width:100%" type="text" (focusout)="Focusit()" [(ngModel)]="procedureNote.LinesProse" /></td>
             <td><input style="width:100%" type="text" (focusout)="Focusit()" [(ngModel)]="procedureNote.Site" /></td>
-            <td><input style="width:100%" type="text" (focusout)="Focusit()" [(ngModel)]="procedureNote.Remarks" placeholder="Remarks......." /></td>
+            <td><input style="width:100%" type="text" (focusout)="Focusit()" [(ngModel)]="procedureNote.Remarks" placeholder="{{ 'CLINICAL.REMARKS' | translate }}..." /></td>
           </tr>
           <tr rowspan="6">
-            <td colspan="6"><textarea style="height: 100px;width:100%" (focusout)="Focusit()" [(ngModel)]="procedureNote.FreeText" placeholder="Free Text"></textarea></td>
+            <td colspan="6"><textarea style="height: 100px;width:100%" (focusout)="Focusit()" [(ngModel)]="procedureNote.FreeText" placeholder="{{ 'CLINICAL.FREE_TEXT_PLACEHOLDER' | translate }}"></textarea></td>
           </tr>
         </tbody>
       </table>

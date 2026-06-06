@@ -1,5 +1,5 @@
 <div *ngIf="!showGridList">
-    <button (click)="Back()" class="btn blue">Back To Transferred Patient List</button>
+    <button (click)="Back()" class="btn blue">{{ 'EMERGENCY.BACK_TO_TRANSFERRED_PATIENT_LIST' | translate }}</button>
 </div>
 
 <div *ngIf="showOrderPopUp" (click)="ParentOfPopUpClicked($event)" class="triaged-patient-orders cstm-popup-holder" style="padding: 55px;">

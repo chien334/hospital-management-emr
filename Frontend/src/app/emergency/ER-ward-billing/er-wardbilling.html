@@ -9,7 +9,7 @@
       <div class="col-md-12">
         <div>
           <a class="btn blue bordered btn-sm cstm-pat-registration-hdr">
-            <span style="display: inline-block; margin-left: 5px;">All Orders of {{SelectedPatient.FullName}}</span>
+            <span style="display: inline-block; margin-left: 5px;">{{ 'EMERGENCY.ALL_ORDERS_OF' | translate:{name: SelectedPatient.FullName} }}</span>
           </a>
         </div>
       </div>
@@ -18,8 +18,8 @@
         <div>
           <div class="col-md-12">
             <ul class="nav nav-tabs">
-              <li class="active"><a data-bs-toggle="tab" href="#allorders">Lab/Imaging Orders</a></li>
-              <li><a data-bs-toggle="tab" href="#drugorders" (click)="ShowPharmacyOrder()">Pharmacy Orders</a></li>
+              <li class="active"><a data-bs-toggle="tab" href="#allorders">{{ 'EMERGENCY.LAB_IMAGING_ORDERS' | translate }}</a></li>
+              <li><a data-bs-toggle="tab" href="#drugorders" (click)="ShowPharmacyOrder()">{{ 'EMERGENCY.PHARMACY_ORDERS' | translate }}</a></li>
             </ul>
           </div>
 
@@ -34,11 +34,11 @@
                   <table class="table table-bordered" style="color: #000;">
                     <tbody>
                       <tr>
-                        <td><strong>Hospital Number</strong> &nbsp;{{SelectedPatient.PatientCode}}</td>
-                        <td><strong>Age/Sex</strong>&nbsp;{{SelectedPatient.Age}}/{{SelectedPatient.Gender}}</td>
-                        <td><strong>Visit Date/Time</strong>&nbsp;{{SelectedPatient.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
+                        <td><strong>{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}</strong> &nbsp;{{SelectedPatient.PatientCode}}</td>
+                        <td><strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</strong>&nbsp;{{SelectedPatient.Age}}/{{SelectedPatient.Gender}}</td>
+                        <td><strong>{{ 'GRID_HEADERS.DATE_TIME' | translate }}</strong>&nbsp;{{SelectedPatient.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
                         </td>
-                        <td *ngIf="SelectedPatient && SelectedPatient.Case"><strong>Case</strong>&nbsp;{{SelectedPatient.Case}}</td>
+                        <td *ngIf="SelectedPatient && SelectedPatient.Case"><strong>{{ 'EMERGENCY.CASE' | translate }}</strong>&nbsp;{{SelectedPatient.Case}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -82,20 +82,20 @@
             <div id="drugorders" class="tab-pane fade">
               <div class="col-md-12">
                 <button *ngIf="!ShowAddNewDrug" (click)="showAddNewDrug=true;showDrugRequest=true;"
-                        class="btn btn-primary btn-sm margin-7-lft margin-15-bt"> Add New Medicine</button>
+                        class="btn btn-primary btn-sm margin-7-lft margin-15-bt"> {{ 'EMERGENCY.ADD_NEW_MEDICINE' | translate }}</button>
                 <button *ngIf="ShowAddNewDrug" (click)="showAddNewDrug=false;showDrugRequest=false;"
-                        class="btn btn-cancel btn-sm margin-7-lft margin-15-bt"> Show Medicine List</button>
+                        class="btn btn-cancel btn-sm margin-7-lft margin-15-bt"> {{ 'EMERGENCY.SHOW_MEDICINE_LIST' | translate }}</button>
               </div>
               <div class="col-md-12">
                 <div class="table-responsive">
                   <table class="table table-bordered" style="color: #000;">
                     <tbody>
                       <tr>
-                        <td><strong>Hospital Number</strong> &nbsp;{{SelectedPatient.PatientCode}}</td>
-                        <td><strong>Age/Sex</strong>&nbsp;{{SelectedPatient.Age}}/{{SelectedPatient.Gender}}</td>
-                        <td><strong>Visit Date/Time</strong>&nbsp;{{SelectedPatient.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
+                        <td><strong>{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}</strong> &nbsp;{{SelectedPatient.PatientCode}}</td>
+                        <td><strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</strong>&nbsp;{{SelectedPatient.Age}}/{{SelectedPatient.Gender}}</td>
+                        <td><strong>{{ 'GRID_HEADERS.DATE_TIME' | translate }}</strong>&nbsp;{{SelectedPatient.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
                         </td>
-                        <td *ngIf="SelectedPatient && SelectedPatient.Case"><strong>Case</strong>&nbsp;{{SelectedPatient.Case}}</td>
+                        <td *ngIf="SelectedPatient && SelectedPatient.Case"><strong>{{ 'EMERGENCY.CASE' | translate }}</strong>&nbsp;{{SelectedPatient.Case}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -105,10 +105,10 @@
                     <table class="table table-striped table-hover" style="width: 100%;margin-top: 15px;">
                       <thead>
                         <tr style="background-color:lightgray">
-                          <th style="width: 120px;">Requested On</th>
-                          <th style="width: 380px;">Item Name</th>
-                          <th style="width: 180px;">Status</th>
-                          <th style="padding-right: 5px !important;">Qty.</th>
+                          <th style="width: 120px;">{{ 'EMERGENCY.REQUESTED_ON' | translate }}</th>
+                          <th style="width: 380px;">{{ 'EMERGENCY.ITEM_NAME' | translate }}</th>
+                          <th style="width: 180px;">{{ 'COMMON.STATUS' | translate }}</th>
+                          <th style="padding-right: 5px !important;">{{ 'EMERGENCY.QTY' | translate }}</th>
                         </tr>
                       </thead>
 
@@ -153,12 +153,12 @@
       <div class="modelbox-div">
         <div class="modelbox-header">
           <h4 class="margin-0-vr text-danger text-center">
-            <strong>Write Cancel Remarks</strong>
+            <strong>{{ 'EMERGENCY.WRITE_CANCEL_REMARKS' | translate }}</strong>
           </h4>
         </div>
         <div class="modelbox-body">
           <div>
-            Cancel Remarks:&nbsp;
+            {{ 'EMERGENCY.CANCEL_REMARKS' | translate }}:&nbsp;
             <textarea [(ngModel)]="CancelRemarks" class="form-control" name="cancelremarks"></textarea>
           </div>
         </div>
@@ -166,7 +166,7 @@
           <div class="all-buttons text-right">
             <button type="button" class="btn btn-primary btn-sm margin-7-hr"
                     (click)="CancelRequest(SelectedBillForCancel, SelIndexForCancel)">
-              Proceed
+              {{ 'PATIENT_OVERVIEW.PROCEED' | translate }}
             </button>
           </div>
         </div>

@@ -1,7 +1,7 @@
 <div class="row">
    <div class="col-md-12">
       <a class="btn green btn-success" style="background-color:#337ab7;" name="name" (click)="AddSubLedgerPopup()">
-         <span class="glyphicon glyphicon-plus"></span>Create Sub Ledger
+         <span class="glyphicon glyphicon-plus"></span>{{ 'ACCOUNTING.CREATE_SUB_LEDGER' | translate }}
       </a>
    </div>
 </div>
@@ -18,69 +18,59 @@
             <div class="modelbox-div clearfix">
                <div class="caption lb-caption">
                   <h3>
-                     <span>Update SubLedger</span>
+                     <span>{{ 'ACCOUNTING.UPDATE_SUB_LEDGER' | translate }}</span>
                   </h3>
-                  <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                  <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                </div>
                <div class="form-horizontal hm-form">
                   <div class="form-body">
                      <div class="form-group">
-                        <label class="control-label col-md-5">Ledger<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-5">{{ 'ACCOUNTING.LEDGER' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-7">
-                           <select disabled class="form-control" maxlength="30" type="text" [(ngModel)]="subLedger.LedgerId"
-                                   id="LedgerId" placeholder="select Ledger">
-                              <option *ngFor="let ledger of ledgerList" value={{ledger.LedgerId}}>
-                                 {{ledger.LedgerName}}
-                              </option>
-                           </select>
+                           <input danphe-auto-complete class="form-control" [(ngModel)]="selectedLedger"
+                                  [source]="ledgerListAutoComplete" display-property-name="LedgerName" value-property-name=null
+                                  [list-formatter]="LedgerListFormatter" max-num-list="15" (focusout)="AssignSelectedLedger()"
+                                  [placeholder]="'ACCOUNTING.SELECT_LEDGER' | translate" onclick="this.select()" id="Ledger" style="width: 100%;"
+                                  formControlName="Ledger" />
                         </div>
                      </div>
                      <div class="form-group">
-                        <label class="control-label col-md-5">SubLedger Name<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-5">{{ 'ACCOUNTING.SUB_LEDGER_NAME' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-7">
-                           <input class="form-control" maxlength="30" type="text" [(ngModel)]="subLedger.SubLedgerName"
-                                  id="subLedgerName" placeholder="SubLedgername" />
+                           <input class="form-control" type="text" maxlength="50" [(ngModel)]="subLedger.SubLedgerName"
+                                  [placeholder]="'ACCOUNTING.SUB_LEDGER_NAME' | translate" formControlName="SubLedgerName" />
                         </div>
                      </div>
                      <div class="form-group">
-                        <label class="control-label col-md-5">Opening Balance<b>:</b></label>
+                        <label class="control-label col-md-5">{{ 'ACCOUNTING.OPENING_BALANCE' | translate }}<b>:</b></label>
                         <div class="col-md-7">
-                           <input class="form-control" value="0" onclick="this.select();" type="number" [(ngModel)]="subLedger.OpeningBalance"
-                                  id="OpeningBalance" placeholder="OpeningBalance" />
+                           <input class="form-control" type="number" [(ngModel)]="subLedger.OpeningBalance"
+                                  [placeholder]="'ACCOUNTING.OPENING_BALANCE' | translate" [ngModelOptions]="{standalone: true}" />
                         </div>
                      </div>
                      <div class="form-group">
-                        <label class="control-label col-md-5">Opening BalanceType<b>:</b></label>
+                        <label class="control-label col-md-5">{{ 'ACCOUNTING.OPENING_BALANCE_TYPE' | translate }}<b>:</b></label>
                         <div class="col-md-7">
-                           <div class="col-md-6">
-                              <div class="icheck-inline">
-                                 <label class="mt-checkbox mt-checkbox-outline">
-                                    Dr
-                                    <input id="Dr" name="Dr" type="checkbox" (click)="DrCrChange($event)"
-                                           [(ngModel)]="subLedger.Dr" />
-                                    <span></span> </label>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="icheck-inline">
-                                 <label class="mt-checkbox mt-checkbox-outline">
-                                    Cr
-                                    <input id="Cr" name="Cr" type="checkbox" (click)="DrCrChange($event)"
-                                           [(ngModel)]="subLedger.Cr" />
-                                    <span></span> </label>
-                              </div>
-                           </div>
+                           <label class="mt-checkbox mt-checkbox-outline">
+                              <input id="Dr" name="Dr" type="checkbox" (click)="ChangeOpeningBalType($event)"
+                                     [(ngModel)]="subLedger.Dr" [ngModelOptions]="{standalone: true}" />
+                              <span></span>{{ 'ACCOUNTING.DR' | translate }}</label>
+                           <label class="mt-checkbox mt-checkbox-outline">
+                              <input id="Cr" name="Cr" type="checkbox" (click)="ChangeOpeningBalType($event)"
+                                     [(ngModel)]="subLedger.Cr" [ngModelOptions]="{standalone: true}" />
+                              <span></span>{{ 'ACCOUNTING.CR' | translate }}</label>
                         </div>
                      </div>
                      <div class="form-group">
-                        <label class="control-label col-md-5">Description<b>:</b></label>
+                        <label class="control-label col-md-5">{{ 'ACCOUNTING.DESCRIPTION_LABEL' | translate }}<b>:</b></label>
                         <div class="col-md-7">
-                           <input class="form-control" maxlength="200" type="text" [(ngModel)]="subLedger.Description"
-                                  id="Description" placeholder="Description" />
+                           <input class="form-control" type="text" [(ngModel)]="subLedger.Description"
+                                  [placeholder]="'ACCOUNTING.DESCRIPTION_LABEL' | translate" [ngModelOptions]="{standalone: true}" />
                         </div>
                      </div>
                      <div class="form-actions">
-                        <input type="button" class="btn btn-primary" (click)="UpdateSubLedger()" value="Update SubLedger" />
+                        <input type="button" class="btn green btn-success margin-7-hr" (click)="UpdateSubLedger()"
+                               [value]="'ACCOUNTING.UPDATE_SUB_LEDGER' | translate" />
                      </div>
                   </div>
                </div>
@@ -97,20 +87,20 @@
             <div class="modelbox-div clearfix">
                <div class="caption lb-caption">
                   <h3>
-                     <span> Add SubLedger</span>
+                     <span>{{ 'ACCOUNTING.ADD_SUB_LEDGER' | translate }}</span>
                   </h3>
-                  <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                  <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                </div>
                <div class="row">
                   <div class="col-md-5">
                      <div class="form-group">
-                        <label class="control-label col-md-5">Ledger Group<sup></sup><b>:</b></label>
+                        <label class="control-label col-md-5">{{ 'ACCOUNTING.LEDGER_GROUP_NAME' | translate }}<sup></sup><b>:</b></label>
                         <div class="col-md-7">
                            <input
                                   class="form-control"
                                   [(ngModel)]="selectedLedgerGroup"
                                   [source]="ledgerGroup"
-                                  placeholder="Select LedgerGroup Name"
+                                  [placeholder]="'ACCOUNTING.SELECT_LEDGER_GROUP_NAME' | translate"
                                   display-property-name="LedgerGroupName"
                                   value-property-name="null"
                                   (focusout)="FilterLedgerList()"
@@ -128,22 +118,13 @@
                   </div>
                   <div class="col-md-5">
                      <div class="form-group">
-                        <label class="control-label col-md-5">Ledger<sup>*</sup><b>:</b></label>
-                        <div class="col-md-7">
-                           <input
-                                  class="form-control"
-                                  [(ngModel)]="selectedLedger"
-                                  [source]="ledgerList"
-                                  placeholder="Ledger Name"
-                                  display-property-name="LedgerName"
-                                  value-property-name="null"
-                                  (focusout)="AssignSelectedLedger()"
-                                  [list-formatter]="'LedgerName'"
-                                  max-num-list="15"
-                                  onclick="this.select()"
-                                  id="Ledger_"
-                                  style="width: 100%;"
-                                  danphe-auto-complete />
+                        <label class="control-label col-md-4">{{ 'ACCOUNTING.LEDGER' | translate }}<b>:</b></label>
+                        <div class="col-md-8">
+                           <input danphe-auto-complete class="col-md-11" [(ngModel)]="selectedLedger"
+                                  [source]="ledgerListAutoComplete" display-property-name="LedgerName" value-property-name=null
+                                  [list-formatter]="LedgerListFormatter" max-num-list="15" (focusout)="AssignSelectedLedger()"
+                                  [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" onclick="this.select()" id="Ledger"
+                                  style="width:300px; background-color: azure;height:35px;" />
                         </div>
                      </div>
                   </div>
@@ -154,80 +135,80 @@
                      <thead>
                         <tr>
                            <th></th>
-                           <th> SubLedgerName </th>
-                           <th> Opening Balance </th>
-                           <th> Opening Balance Type </th>
-                           <th> Desciption </th>
+                           <th>{{ 'ACCOUNTING.SUB_LEDGER_NAME' | translate }}</th>
+                           <th>{{ 'ACCOUNTING.OPENING_BALANCE' | translate }}</th>
+                           <th>{{ 'ACCOUNTING.OPENING_BALANCE_TYPE' | translate }}</th>
+                           <th>{{ 'ACCOUNTING.DESCRIPTION_LABEL' | translate }}</th>
                            <th></th>
                            <th></th>
                         </tr>
                      </thead>
                      <tbody>
-                        <tr *ngFor="let itm of newSubLedgerList; let i = index">
+                        <tr *ngFor="let row of newSubLedgerList; let i = index">
                            <td><b>{{i+1}}</b></td>
                            <td>
-                              <form [formGroup]="itm.subLedgerValidator">
+                              <form [formGroup]="row.subLedgerValidator">
                                  <div>
-                                    <input [(ngModel)]="itm.SubLedgerName" class="form-control"
-                                           id="SubLedgerName{{i}}" (focusout)="CheckDuplicateSubLedgerName(i)"
-                                           placeholder="SubLedger Name" (keyup.enter)="FocuseToNextInput('OpeningBalnce',i)"
-                                           formControlName="SubLedgerName" />
-                                    <span class="color-red font-sm"
-                                          [hidden]="itm.IsValidCheck('SubLedgerName','required') || !(itm.IsDirty('SubLedgerName'))">SubLedger
-                                       Name is required</span>
+                                    <input class="form-control" type="text" [(ngModel)]="row.SubLedgerName"
+                                           [placeholder]="'ACCOUNTING.SUB_LEDGER_NAME' | translate" formControlName="SubLedgerName"
+                                           style="width:250px" />
+                                    <div class="color-red font-sm" *ngIf="row.IsDirty('SubLedgerName')"
+                                         [hidden]="row.IsValidCheck('SubLedgerName','required')">{{ 'ACCOUNTING.SUB_LEDGER_NAME_REQUIRED' | translate }}</div>
                                  </div>
                               </form>
                            </td>
-                           <td><input class="form-control" maxlength="200" type="number" title="OpeningBalance"
-                                     id="OpeningBalnce{{i}}"
-                                     [(ngModel)]="itm.OpeningBalance" [ngModelOptions]="{standalone: true}" id="OpeningBalance"
-                                     (keyup.enter)="CreateNewRow(i)"
-                                     placeholder="Opening Balance" />
+                           <td>
+                              <label class="control-label col-md-5" [title]="'ACCOUNTING.OPENING_BALANCE' | translate">
+                                 <input class="form-control" type="number" [(ngModel)]="row.OpeningBalance"
+                                        [ngModelOptions]="{standalone: true}" [placeholder]="'ACCOUNTING.OPENING_BALANCE' | translate"
+                                        style="width: 130px;" />
+                              </label>
                            </td>
                            <td>
                               <div class="form-group">
                                  <div class="col-md-7">
-                                    <div class="col-md-6">
-                                       <div class="icheck-inline">
-                                          <label class="mt-checkbox mt-checkbox-outline">
-                                             Dr
-                                             <input id="Dr{{i}}" name="Dr" type="checkbox" (click)="DrCrChangeNewSubLedger($event,i)"
-                                                    [(ngModel)]="itm.Dr" [ngModelOptions]="{standalone: true}" />
-                                             <span></span> </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="icheck-inline">
-                                          <label class="mt-checkbox mt-checkbox-outline">
-                                             Cr
-                                             <input id="Cr{{i}}" name="Cr" type="checkbox" (click)="DrCrChangeNewSubLedger($event,i)"
-                                                    [(ngModel)]="itm.Cr" [ngModelOptions]="{standalone: true}" />
-                                             <span></span> </label>
-                                       </div>
-                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="icheck-inline">
+                                           <label class="mt-checkbox mt-checkbox-outline">
+                                              {{ 'ACCOUNTING.DR' | translate }}
+                                              <input id="Dr{{i}}" name="Dr" type="checkbox" (click)="DrCrChangeNewSubLedger($event,i)"
+                                                     [(ngModel)]="row.Dr" [ngModelOptions]="{standalone: true}" />
+                                              <span></span> </label>
+                                        </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                        <div class="icheck-inline">
+                                           <label class="mt-checkbox mt-checkbox-outline">
+                                              {{ 'ACCOUNTING.CR' | translate }}
+                                              <input id="Cr{{i}}" name="Cr" type="checkbox" (click)="DrCrChangeNewSubLedger($event,i)"
+                                                     [(ngModel)]="row.Cr" [ngModelOptions]="{standalone: true}" />
+                                              <span></span> </label>
+                                        </div>
+                                     </div>
                                  </div>
                               </div>
                            </td>
                            <td>
                               <div class="form-group no-margin">
-                                 <input class="form-control" maxlength="200" type="text" title="Description"
-                                        [(ngModel)]="itm.Description" [ngModelOptions]="{standalone: true}" id="Description{{i}}"
-                                        placeholder="Description" />
+                                 <label class="control-label col-md-5" [title]="'ACCOUNTING.DESCRIPTION_LABEL' | translate">
+                                    <input class="form-control" type="text" [(ngModel)]="row.Description"
+                                           [ngModelOptions]="{standalone: true}" [placeholder]="'ACCOUNTING.DESCRIPTION_LABEL' | translate"
+                                           style="width: 250px;" />
+                                 </label>
                               </div>
                            </td>
-                           <td><a (click)="AddNewSubLedger()" title="Click to add Ledger."><i
+                           <td><a (click)="AddRow()" [title]="'ACCOUNTING.CLICK_TO_ADD_LEDGER' | translate"><i
                                     class="fa fa-plus btn btn-success"></i></a></td>
-                           <td><a (click)="DeleteSubLedgerRow(i)" title="Alt+X,Alt+Delete,Click to remove this item"><i
-                                    class="btn btn-danger fa fa-times"></i></a></td>
+                           <td><a (click)="DeleteRow(i)" [title]="'ACCOUNTING.REMOVE_ITEM_TOOLTIP' | translate"><i
+                                    class="fa fa-times btn btn-danger"></i></a></td>
                         </tr>
                      </tbody>
                   </table>
                </div>
                <div class="row" style="margin-bottom: 10px;">
                   <div class="col-md-2" style="float:right">
-                     <button class="btn green btn-success" (click)="SaveSubLedger()">
-                        Save SubLedger
-                     </button>
+                     <input type="button" class="btn green btn-success margin-7-hr" (click)="SaveSubLedger()"
+                            [value]="'ACCOUNTING.SAVE_SUB_LEDGER' | translate" />
                   </div>
                </div>
             </div>

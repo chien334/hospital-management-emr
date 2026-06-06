@@ -8,7 +8,7 @@
 <div *ngIf="showGrid" class="row">
     <div class="col-md-12 col-xs-12 col-sm-12">
       <a class="btn blue bordered " name="name" (click)="AddUser()">
-        <span class="fa fa-plus"></span>&nbsp;Add User
+        <span class="fa fa-plus"></span>&nbsp;{{ 'SECURITY.ADD_USER' | translate }}
       </a>
         
         <danphe-grid [grid-colDefaults]="userGridColumns" [grid-data]="userList" (grid-actions)="UserGridActions($event)"
@@ -24,7 +24,7 @@
 
 <div *ngIf="showManageRole" class="row">
     <div class="col-md-12 col-xs-12 col-sm-12">
-        <input type="button" class="btn btn-primary" (click)="HideRoleManage()" value="Back" />
+        <input type="button" class="btn btn-primary" (click)="HideRoleManage()" [value]="'COMMON.BACK' | translate" />
         <user-role-map *ngIf="showManageRole"
                      [selectedUser]="selectedItem"
                      (callback-manageRole)="HideRoleManage($event)"></user-role-map>

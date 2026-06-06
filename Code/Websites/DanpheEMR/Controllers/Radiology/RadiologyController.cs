@@ -649,23 +649,13 @@ namespace DanpheEMR.Controllers
 
         private object ImagingResultVisit(int patientVisitId)
         {
-            var imgReportList = _radiologyDbContext.ImagingReports
+            var tempImg = _radiologyDbContext.ImagingReports
                                         .Where(i => i.PatientVisitId == patientVisitId && i.OrderStatus == "final")
+                                        .ToList()
                                         .GroupBy(a => a.ImagingItemId)
-                                        .Select(b => new {
-                                            latestUniqueImagings = b.OrderByDescending(i => i.CreatedOn).FirstOrDefault()
-                                        })
-                                        .Select(c => new
-                                        {
-                                            c.latestUniqueImagings
-                                        })
+                                        .Select(b => b.OrderByDescending(i => i.CreatedOn).FirstOrDefault())
+                                        .Where(r => r != null)
                                         .ToList();
-
-            List<ImagingReportModel> tempImg = new List<ImagingReportModel>();
-            imgReportList.ForEach(a =>
-            {
-                tempImg.Add(a.latestUniqueImagings);
-            });
             return tempImg;
         }
 

@@ -8,35 +8,35 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="modelbox-div clearfix">
                     <div class="caption custom-caption no-margin">
-                        <h3><span>Add New Request</span></h3>
+                        <h3><span>{{ 'NURSING.ADD_NEW_REQUEST' | translate }}</span></h3>
                         <a
                            class="btn btn-danger"
                            (click)="CloseAddNewRequestPopup()"
-                           title="Cancel">X</a>
+                           title="{{ 'COMMON.CANCEL' | translate }}">X</a>
                     </div>
 
                     <div class="row" style="margin: 15px 0px 0px 0px !important">
                         <div class="col-md-6" style="padding-left: 45px !important">
-                            <label><b>Patient Name:&nbsp;</b></label>{{ patientService.globalPatient.ShortName }}
+                            <label><b>{{ 'PATIENT.FULL_NAME' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.ShortName }}
                         </div>
                         <div class="col-md-6" style="padding-left: 45px !important">
-                            <label><b>Hospital Number:&nbsp;</b></label>{{ patientService.globalPatient.PatientCode }}
-                        </div>
-                    </div>
-                    <div class="row" style="margin: 0px !important">
-                        <div class="col-md-6" style="padding-left: 45px !important">
-                            <label><b>Age/Sex:&nbsp;</b></label>{{ patientService.globalPatient.Age }}/{{ patientService.globalPatient.Gender }}
-                        </div>
-                        <div class="col-md-6" style="padding-left: 45px !important">
-                            <label><b>IP Number:&nbsp;</b></label>{{ patientService.globalPatient.PatientCode }}
+                            <label><b>{{ 'PATIENT.HOSPITAL_NO' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.PatientCode }}
                         </div>
                     </div>
                     <div class="row" style="margin: 0px !important">
                         <div class="col-md-6" style="padding-left: 45px !important">
-                            <label><b>Ward/Bed:&nbsp;</b></label>{{ patientService.globalPatient.WardName }}/{{patientService.globalPatient.BedNo}}
+                            <label><b>{{ 'GRID_HEADERS.AGE_SEX' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.Age }}/{{ patientService.globalPatient.Gender }}
                         </div>
                         <div class="col-md-6" style="padding-left: 45px !important">
-                            <label><b>Date of Request:&nbsp;</b></label>{{ConsultationRequest.RequestedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm
+                            <label><b>{{ 'NURSING.IP_NUMBER' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.PatientCode }}
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 0px !important">
+                        <div class="col-md-6" style="padding-left: 45px !important">
+                            <label><b>{{ 'NURSING.WARD_BED' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.WardName }}/{{patientService.globalPatient.BedNo}}
+                        </div>
+                        <div class="col-md-6" style="padding-left: 45px !important">
+                            <label><b>{{ 'NURSING.DATE_OF_REQUEST' | translate }}:&nbsp;</b></label>{{ConsultationRequest.RequestedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm
                             A'}}
                         </div>
                     </div>
@@ -48,11 +48,11 @@
               border: 2px solid black;">
 
                         <div class="col-md-12">
-                            <span style="text-decoration: underline"><b>Request To:</b></span>
+                            <span style="text-decoration: underline"><b>{{ 'NURSING.REQUEST_TO' | translate }}:</b></span>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-4">
-                                <label class="control-label"><b>Department</b><sup>*</sup><b>:</b></label>
+                                <label class="control-label"><b>{{ 'NURSING.DEPARTMENT' | translate }}</b><sup>*</sup><b>:</b></label>
                             </div>
                             <div class="col-md-6">
                                 <input
@@ -63,7 +63,7 @@
                                        [list-formatter]="DepartmentListFormatter"
                                        [source]="DepartmentList"
                                        [(ngModel)]="SelectedRequestToDepartment"
-                                       placeholder="Department Name"
+                                       placeholder="{{ 'NURSING.DEPARTMENT_NAME' | translate }}"
                                        [min-chars]="1"
                                        value-property-name="DepartmentId"
                                        onclick="this.select();"
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-4">
-                                <label class="control-label"><b>Consultant Name</b><sup>*</sup><b>:</b></label>
+                                <label class="control-label"><b>{{ 'NURSING.CONSULTANT_NAME' | translate }}</b><sup>*</sup><b>:</b></label>
                             </div>
                             <div class="col-md-6">
                                 <input
@@ -86,7 +86,7 @@
                                        [list-formatter]="DoctorListFormatter"
                                        [source]="FilteredConsultingDoctorList"
                                        [(ngModel)]="SelectedRequestToDoctor"
-                                       placeholder="Consultant Name"
+                                       placeholder="{{ 'NURSING.CONSULTANT_NAME' | translate }}"
                                        [min-chars]="1"
                                        value-property-name="EmployeeId"
                                        onclick="this.select();"

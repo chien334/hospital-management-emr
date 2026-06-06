@@ -4,8 +4,8 @@
       <div class="col-md-6 col-md-offset-3">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Upload Contract</span></h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span>{{ 'FIXED_ASSETS.UPLOAD_CONTRACT' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <!--Put the class name hm-form in every form-->
           <form class="hm-form">
@@ -20,15 +20,15 @@
                         <div class="col-md-7">
                           <table class="table" style="width:auto;">
                             <tr>
-                              <td>Item Code:</td>
+                              <td>{{ 'FIXED_ASSETS.ITEM_CODE' | translate }}:</td>
                               <td>{{selectedAsset?.ItemCode}}</td>
                             </tr>
                             <tr>
-                              <td>Asset Name:</td>
+                              <td>{{ 'FIXED_ASSETS.ASSET_NAME' | translate }}:</td>
                               <td>{{selectedAsset?.ItemName}}</td>
                             </tr>
                             <tr>
-                              <td>Bar Code:</td>
+                              <td>{{ 'FIXED_ASSETS.BAR_CODE' | translate }}:</td>
                               <td>{{selectedAsset?.BarCodeNumber}}</td>
                               
                               <td ></td>
@@ -40,29 +40,29 @@
                           </danphe-bar-code>
                         </div>                        
                         <div class="col-md-12">
-                          <label style="color: purple; font-size:large; margin-right:88px;"><strong>Contract already Uploaded !!</strong></label>                      
+                          <label style="color: purple; font-size:large; margin-right:88px;"><strong>{{ 'FIXED_ASSETS.CONTRACT_ALREADY_UPLOADED' | translate }}</strong></label>                      
                         <!-- <button class="btn btn-primary" (click)="ViewContractFile()"> View Contract</button> <br> -->
-                        <button class="btn btn-primary" (click)="DownloadContractFile()"> Download Contract File</button> <br>
+                        <button class="btn btn-primary" (click)="DownloadContractFile()"> {{ 'FIXED_ASSETS.DOWNLOAD_CONTRACT_FILE' | translate }}</button> <br>
                         </div>
                         <div class="col-md-12" style="margin-top:30px; margin-bottom: 30px;">                            
-                        <span style="font-size:large; font-weight:700;" class="col-md-5 row clearfix">Want to Re-Upload Contract ?</span><input style="margin:opx!important;" type="checkbox" class="col-md-1 formcontrol" [(ngModel)]="reUploadContractFlag" [ngModelOptions]="{standalone: true}"/>
+                        <span style="font-size:large; font-weight:700;" class="col-md-5 row clearfix">{{ 'FIXED_ASSETS.WANT_TO_RE_UPLOAD_CONTRACT' | translate }}</span><input style="margin:opx!important;" type="checkbox" class="col-md-1 formcontrol" [(ngModel)]="reUploadContractFlag" [ngModelOptions]="{standalone: true}"/>
                         </div>
                     </div>                    
                     </div>
                     <div *ngIf="!editMode">
-                      <p style="color: orangered;">No Contract for this Asset Till Date !!</p>
+                      <p style="color: orangered;">{{ 'FIXED_ASSETS.NO_CONTRACT_FOR_ASSET' | translate }}</p>
                   </div>
                     <div class="form-group" *ngIf=" !editMode || (editMode && reUploadContractFlag)">
                       <div class="row">
                         <label class="control-label col-md-5">
-                          Choose Contract File<sup>*</sup><b>:</b>
+                          {{ 'FIXED_ASSETS.CHOOSE_CONTRACT_FILE' | translate }}<sup>*</sup><b>:</b>
                         </label>
                         <div class="col-md-6">
                           <input class="form-control" #fileInput type="file"
                                  accept=".*txt,.*doc,.*docx,.*pdf,"
                                  (change)="OnFileSelected(fileInput.files)"
                                  value="" multiple />
-                          <span Class="color-red font-sm" [hidden]="isFileValid">Valid file is required!</span>
+                          <span Class="color-red font-sm" [hidden]="isFileValid">{{ 'FIXED_ASSETS.VALID_FILE_REQUIRED' | translate }}</span>
 
                         </div>
                       </div>
@@ -83,7 +83,7 @@
               <input *ngIf ="editMode" type="button" class="btn btn-primary" (click)="SubmitHeader()" value="Update Contract" [disabled]="loading"/> -->
               <button type="button" class="btn btn-primary" 
               (click)="SubmitHeader()" [disabled]="loading" 
-              *ngIf=" !editMode || (editMode && reUploadContractFlag)">{{editMode?"Update Contract":"Submit Contract"}} 
+              *ngIf=" !editMode || (editMode && reUploadContractFlag)">{{ (editMode ? 'FIXED_ASSETS.UPDATE_CONTRACT' : 'FIXED_ASSETS.SUBMIT_CONTRACT') | translate }} 
               </button>
             </div>
           </form>

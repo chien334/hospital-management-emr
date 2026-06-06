@@ -12,10 +12,10 @@
     <div class="col-md-8">
         <div class="caption">
             <i class="glyphicon glyphicon-asterisk font-red-sunglo"></i>
-            <span class="caption-subject font-blue bold uppercase">Select Roles for <b>{{selectedUser.UserName}}</b></span>
+            <span class="caption-subject font-blue bold uppercase">{{ 'SECURITY.SELECT_ROLES_FOR' | translate }} <b>{{selectedUser.UserName}}</b></span>
         </div>
        
-        <input type="button" class="btn btn-primary" (click)="Submit()" value="Submit" />
+        <input type="button" class="btn btn-primary" (click)="Submit()" [value]="'COMMON.SUBMIT' | translate" />
         <div style="height:20%">
             <table>
                 <tr>
@@ -25,7 +25,7 @@
                                [(ngModel)]="selectedItem"
                                [source]="roleList"
                                [list-formatter]="myListFormatter"
-                               placeholder="Role Name"
+                               [placeholder]="'SECURITY.ROLE_NAME_PLACEHOLDER' | translate"
                                display-prorolty-name="RoleName"
                                value-prorolty-name=null
                                min-chars="2"
@@ -59,7 +59,7 @@
         <table style="width:100%;" border="1">
             <thead *ngIf="selectedUserRoleList.length !=0">
                 <tr>
-                    <th class="BillCreditHdr" style="color:red;text-align: center;"> Selected Roles</th>
+                    <th class="BillCreditHdr" style="color:red;text-align: center;"> {{ 'SECURITY.SELECTED_ROLES' | translate }}</th>
                 </tr>
             </thead>
             <tr *ngFor="let rol of selectedUserRoleList;let i=index;">

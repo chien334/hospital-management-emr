@@ -94,12 +94,12 @@
   }
 </style>
 <button class="btn btn-primary btn-sm" (click)="BackToViewNotes()" style="margin: 0 0 20px 0 !important"> <i
-     class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;View Notes </button>
+     class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;{{ 'CLINICAL.VIEW_NOTES' | translate }} </button>
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
       <div class="row">
-        <label class="control-label col-md-5">Primary Doctor<b style="float:right;">:</b></label>
+        <label class="control-label col-md-5">{{ 'CLINICAL.PRIMARY_DOCTOR' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-7">
           <input [(ngModel)]=" patVisit.PerformerName" disabled class="form-control" type="text" />
         </div>
@@ -107,7 +107,7 @@
     </div>
     <div class="form-group">
       <div class="row">
-        <label class="control-label col-md-5">Note Type<b style="float:right;">:</b></label>
+        <label class="control-label col-md-5">{{ 'CLINICAL.NOTE_TYPE' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-7">
           <!--
                 <select class="form-control"
@@ -119,13 +119,13 @@
           -->
           <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)" [(ngModel)]="selectedNoteType" [source]="noteTypeList"
                  display-property-name="NoteType" value-property-name="NoteType" ngModelOptions="{standalone:true}"
-                 [list-formatter]="NoteTypeFormatter" placeholder="Select Note Type" style="width:100%;height:32px;" />
+                  [list-formatter]="NoteTypeFormatter" placeholder="{{ 'CLINICAL.SELECT_NOTE_TYPE' | translate }}" style="width:100%;height:32px;" />
         </div>
       </div>
     </div>
     <div class="form-group">
       <div class="row">
-        <label class="control-label col-md-5"> Date/Time<b class="color-red">*</b><b style="float:right;">:</b> </label>
+        <label class="control-label col-md-5"> {{ 'NURSING.DATE_TIME' | translate }}<b class="color-red">*</b><b style="float:right;">:</b> </label>
         <div class="col-md-7">
           <input class="form-control" type="date" maxlength="11" [(ngModel)]="notes.Date" [ngModelOptions]="{standalone: true}" />
         </div>
@@ -135,10 +135,10 @@
   <div class="col-md-6">
     <div class="form-group">
       <div class="row">
-        <label class="control-label col-md-5">Secondary Doctor<b style="float:right;">:</b></label>
+        <label class="control-label col-md-5">{{ 'CLINICAL.SECONDARY_DOCTOR' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-7">
           <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)" [(ngModel)]="selectedSecondaryDoctor"
-                 [source]="DoctorList" placeholder="Doctor Name" ngModelOptions="{standalone:true}" display-property-name="PerformerName"
+                 [source]="DoctorList" placeholder="{{ 'EMERGENCY.DOCTOR_NAME' | translate }}" ngModelOptions="{standalone:true}" display-property-name="PerformerName"
                  value-property-name="PerformerName" [list-formatter]="DocListFormatter" max-num-list="15" style="width:100%;height:32px;" />
           <!--
                 (focusout)="providersChanged()"
@@ -148,7 +148,7 @@
     </div>
     <div class="form-group">
       <div class="row">
-        <label class="control-label col-md-5">Written By<b style="float:right;">:</b></label>
+        <label class="control-label col-md-5">{{ 'CLINICAL.WRITTEN_BY' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-7">
           <input disabled class="form-control" value="{{loggedInUser.Employee.FirstName }} {{loggedInUser.Employee.LastName}}" type="text" />
           <!-- [(ngModel)]="loggedInUser.UserName"-->
@@ -157,9 +157,9 @@
     </div>
     <div class="form-group">
       <div class="row">
-        <label class="control-label col-md-5">Template<b style="float:right;">:</b></label>
+        <label class="control-label col-md-5">{{ 'CLINICAL.TEMPLATE' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-7">
-          <input danphe-auto-complete [disabled]="editMode" [(ngModel)]="selTemplateList" [source]="templateList" placeholder="Select Template"
+          <input danphe-auto-complete [disabled]="editMode" [(ngModel)]="selTemplateList" [source]="templateList" placeholder="{{ 'CLINICAL.SELECT_TEMPLATE' | translate }}"
                  [ngModelOptions]="{standalone:true}" display-property-name="TemplateName" value-property-name="TemplateName"
                  (valueChanged)="AssignSelectedTemplate($event)" [list-formatter]="TemplateListFormatter" max-num-list="9"
                  style="width:100%;height:32px;" />
@@ -210,13 +210,13 @@
         <button class="btn blue"> Start (Sign) </button>
       </li> -->
       <li>
-        <button class="btn btn-success" (click)="SubmitTemplate(1)"> Submit </button>
+        <button class="btn btn-success" (click)="SubmitTemplate(1)"> {{ 'COMMON.SUBMIT' | translate }} </button>
       </li>
       <li>
-        <button class="btn btn-primary" (click)="SubmitTemplate(0)"> Save </button>
+        <button class="btn btn-primary" (click)="SubmitTemplate(0)"> {{ 'COMMON.SAVE' | translate }} </button>
       </li>
       <li>
-        <button class="btn blue"> <i class="glyphicon glyphicon-print"></i> Print </button>
+        <button class="btn blue"> <i class="glyphicon glyphicon-print"></i> {{ 'COMMON.PRINT' | translate }} </button>
       </li>
     </ul>
   </div>
@@ -225,10 +225,10 @@
   <div class="col-md-12">
     <ul class="tem-action">
       <li>
-        <button class="btn btn-success" (click)="UpdateTemplate(1)"> Submit </button>
+        <button class="btn btn-success" (click)="UpdateTemplate(1)"> {{ 'COMMON.SUBMIT' | translate }} </button>
       </li>
       <li>
-        <button class="btn btn-primary" (click)="UpdateTemplate(0)"> Save </button>
+        <button class="btn btn-primary" (click)="UpdateTemplate(0)"> {{ 'COMMON.SAVE' | translate }} </button>
       </li>
     </ul>
   </div>

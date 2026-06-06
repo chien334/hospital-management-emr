@@ -18,7 +18,7 @@
                 <!-- END SIDEBAR USERPIC -->
 
                 <div class="margin-15-vr">
-                  <a (click)="toggleBtn()"> Change Profile Pic </a>
+                  <a (click)="toggleBtn()"> {{ 'EMPLOYEE.CHANGE_PROFILE_PIC' | translate }} </a>
                 </div>
                 <!-- CHANGE AVATAR TAB -->
                 <div *ngIf="showPicChange">
@@ -28,8 +28,8 @@
                     </span>
                   </div>
                   <div class="margin-top-10">
-                    <button style="cursor:pointer" class="btn btn-primary btn-sm margin-7-hr" (click)="ChangeProfileImage(userProfileInfo)"> Save </button>
-                    <button class="btn btn-cancel btn-sm margin-7-hr" (click)="toggleBtn()"> Cancel </button>
+                    <button style="cursor:pointer" class="btn btn-primary btn-sm margin-7-hr" (click)="ChangeProfileImage(userProfileInfo)"> {{ 'COMMON.SAVE' | translate }} </button>
+                    <button class="btn btn-cancel btn-sm margin-7-hr" (click)="toggleBtn()"> {{ 'COMMON.CANCEL' | translate }} </button>
                   </div>
                 </div>
                 <!-- END CHANGE AVATAR TAB -->
@@ -55,12 +55,12 @@
 
             <li>
                 <a routerLink="UserProfile" [routerLinkActive]="'link3-active'">
-                    <i class="icon-user" ></i> User Profile
+                    <i class="icon-user" ></i> {{ 'EMPLOYEE.USER_PROFILE_TAB' | translate }}
                 </a>
             </li>
             <li>
                 <a routerLink="ChangePassword" [routerLinkActive]="'link3-active'">
-                    <i class="icon-user"></i> Change Password
+                    <i class="icon-user"></i> {{ 'EMPLOYEE.CHANGE_PASSWORD' | translate }}
                 </a>
             </li>
 

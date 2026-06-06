@@ -3,7 +3,7 @@
     <span class="caption-subject font-blue bold uppercase">Manage Department</span>
 </div>
 <br />-->
-<a feature="button" class="btn blue bordered" (click)="AddDepartment()"><i class="fa fa-plus"></i>Add Department</a>
+<a feature="button" class="btn blue bordered" (click)="AddDepartment()"><i class="fa fa-plus"></i>{{ 'SETTINGS.ADD_DEPARTMENT' | translate }}</a>
 <department-add *ngIf="showAddPage" [selected-department]="selectedDepartment"
                 (callback-add)="CallBackAdd($event)"></department-add>
 

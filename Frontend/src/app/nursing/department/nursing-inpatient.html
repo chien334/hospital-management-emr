@@ -23,14 +23,13 @@
     <div class="col-md-6 col-xs-4">
       <ul class="nav nav-tabs">
         <li role="presentation" class="" id="fav">
-          <a class="btn btn-default" role="button" (click)="showFavorites()"><i class="fa fa-star"></i>My Patients</a>
+          <a class="btn btn-default" role="button" (click)="showFavorites()"><i class="fa fa-star"></i>{{ 'NURSING.MY_PATIENTS' | translate }}</a>
         </li>
-        <li role="presentation" class="" id="all"><a class="btn btn-default" (click)="showAllPatients()"> All
-            Patients</a></li>
+        <li role="presentation" class="" id="all"><a class="btn btn-default" (click)="showAllPatients()"> {{ 'NURSING.ALL_PATIENTS' | translate }}</a></li>
         <li role="presentation" class="" id="consumption-list"><a class="btn btn-default" (click)="ShowPatientConsumptionList()">
-            Consumptions</a></li>
+            {{ 'NURSING.CONSUMPTIONS' | translate }}</a></li>
         <li role="presentation" class="" id="diet">
-          <a class="btn btn-default" (click)="ShowDietSheet()">Diet Sheet</a>
+          <a class="btn btn-default" (click)="ShowDietSheet()">{{ 'NURSING.DIET_SHEET' | translate }}</a>
         </li>
       </ul>
     </div>
@@ -63,13 +62,12 @@
       position: relative;
     "></i>
       <h6>
-        You are currently in {{securityService.getActiveWard().WardName}} ward. To
-        change, you can always click here.
+        {{ 'NURSING.WARD_INFO_POPUP' | translate : { wardName: securityService.getActiveWard().WardName } }}
       </h6>
     </div>
     <span style="padding: 10px;" class="right">
       <label class="label label-primary">
-        Active Ward : <b>{{securityService.getActiveWard().WardName}}</b>
+        {{ 'NURSING.ACTIVE_WARD' | translate }} : <b>{{securityService.getActiveWard().WardName}}</b>
       </label>
       <i (mouseenter)="ShowInfo()" (click)="UnsetGlobalWard()" style="
       cursor: pointer;
@@ -132,8 +130,7 @@
         <div class="modelbox-header">
           <h3 class="margin-0-vr text-warning text-center">
             <strong *ngIf="globalPatient && globalPatient.ShortName">
-              Ward Request of
-              {{globalPatient.ShortName}}
+              {{ 'NURSING.WARD_REQUEST_OF' | translate : { name: globalPatient.ShortName } }}
             </strong>
           </h3>
         </div>
@@ -158,7 +155,7 @@
       <div class="modelbox-div">
         <div class="modelbox-header">
           <h4 class="margin-0-vr text-warning text-center">
-            <strong *ngIf="globalPatient && globalPatient.ShortName">Vitals of {{globalPatient.ShortName}}</strong>
+            <strong *ngIf="globalPatient && globalPatient.ShortName">{{ 'NURSING.VITALS_OF' | translate : { name: globalPatient.ShortName } }}</strong>
           </h4>
         </div>
         <div class="modelbox-body">
@@ -183,8 +180,7 @@
         <div class="modelbox-header">
           <h3 class="margin-0-vr text-warning text-center">
             <strong *ngIf="globalPatient && globalPatient.ShortName">
-              Receive Notes of
-              {{globalPatient.ShortName}}
+              {{ 'NURSING.RECEIVE_NOTES_OF' | translate : { name: globalPatient.ShortName } }}
             </strong>
           </h3>
         </div>
@@ -212,7 +208,7 @@
           <div class="caption lb-caption">
             <h3>
               <i class="fa fa-shopping-cart"></i>
-              <span class="caption-subject">New Consumption Entry</span>
+              <span class="caption-subject">{{ 'PATIENT_CONSUMPTION.NEW_CONSUMPTION_ENTRY' | translate }}</span>
             </h3>
             <a class="btn btn-danger" (click)="ClosePatientConsumptionEntryPage()" title="Cancel"><i class="fa fa-times"></i></a>
           </div>
@@ -237,7 +233,7 @@
           <div class="caption lb-caption">
             <h3>
               <i class="fa fa-shopping-cart"></i>
-              <span class="caption-subject">Consumptions</span>
+              <span class="caption-subject">{{ 'NURSING.CONSUMPTIONS' | translate }}</span>
             </h3>
             <a class="btn btn-danger" (click)="ClosePatientConsumptionList()" title="Cancel"><i class="fa fa-times"></i></a>
           </div>

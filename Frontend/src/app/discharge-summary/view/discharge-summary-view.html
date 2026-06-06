@@ -1,10 +1,8 @@
 <div class="clearfix">
-    <button (click)="Print()" id="id_btn_print_Dischargesumary" class="btn  btn-small btn-primary" style="float: right;margin-bottom: 15px;">Print
-        This
-        Page</button>
+    <button (click)="Print()" id="id_btn_print_Dischargesumary" class="btn  btn-small btn-primary" style="float: right;margin-bottom: 15px;">{{ 'PATIENT_OVERVIEW.PRINT_THIS_PAGE' | translate }}</button>
     <button *ngIf="(this.hasEditDischargeSunnaryPermission && this.IsFinalSubmited)||(!this.IsFinalSubmited)" (click)="AllowEditFromView()"
             id="id_btn_edit_Dischargesumary"
-            class="btn  btn-small btn-primary" style="float: right;margin-bottom: 15px; margin-right: 25px;">Edit</button>
+            class="btn  btn-small btn-primary" style="float: right;margin-bottom: 15px; margin-right: 25px;">{{ 'PATIENT_OVERVIEW.EDIT' | translate }}</button>
 </div>
 <div id="id_discharge_summary_printpage">
     <div>

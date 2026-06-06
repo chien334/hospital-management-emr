@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectorRef } from "@angular/core";
+import { Component, ChangeDetectorRef } from "@angular/core";
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { Visit } from "../../appointments/shared/visit.model";
 
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     templateUrl: "./patient-visit-history.html"
@@ -21,7 +22,8 @@ export class PatientVisitHistoryComponent {
         public visitDLService: VisitDLService,
         public router: Router,
         public msgBoxServ: MessageboxService,
-        public changeDetector: ChangeDetectorRef) {
+        public changeDetector: ChangeDetectorRef,
+        public translate: TranslateService) {
         this.LoadPatientVisitList();
     }
     //commented the call of this function from the constructor since we're not using the create visit page
@@ -34,7 +36,7 @@ export class PatientVisitHistoryComponent {
                 if (res.Status == "OK")
                     this.visits = this.GetFormattedVisits(res.Results);
                 else
-                    this.msgBoxServ.showMessage("failed", [res.ErrorMessage]);
+                    this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.FAILED"), [res.ErrorMessage]);
             });
     }
 

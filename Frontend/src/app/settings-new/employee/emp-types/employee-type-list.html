@@ -5,7 +5,7 @@
 </div>
 <br />-->
 
-<a feature="button" class="btn blue bordered" (click)="AddEmployeeType()"><i class="fa fa-plus"></i>Add Type</a>
+<a feature="button" class="btn blue bordered" (click)="AddEmployeeType()"><i class="fa fa-plus"></i>{{ 'EMPLOYEE.ADD_TYPE' | translate }}</a>
 <employee-type-add [showAddPage]="showAddPage"
                    [selectedItem]="selectedItem"
                    (callback-add)="CallBackAdd($event)"></employee-type-add>

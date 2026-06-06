@@ -2,7 +2,7 @@
     <div class="col-md-12">
       <div class="caption lb-caption">
         <h3><i class="glyphicon glyphicon-asterisk"></i>
-          <span class="caption-subject">Add Requisition</span></h3>
+          <span class="caption-subject">{{ 'WARD_SUPPLY.ADD_REQUISITION' | translate }}</span></h3>
       </div>
     </div>
   </div>
@@ -10,7 +10,7 @@
     <div class="col-md-4 hidden">
       <div class="form-group">
         <div class="row">
-          <label class="control-label col-md-3"><b>Store : </b></label>
+          <label class="control-label col-md-3"><b>{{ 'WARD_SUPPLY.STORE' | translate }} : </b></label>
           <div class="col-md-9">
             <input class="form-control" type="number" value="" [(ngModel)]="requisition.StoreId"
               formControlName="StoreId" />
@@ -21,11 +21,11 @@
     <div class="col-md-5">
       <div class="form-group">
         <div class="row">
-          <label class="control-label col-md-4"><b>Requisition Date<b style="float:right">:</b> </b></label>
+          <label class="control-label col-md-4"><b>{{ 'WARD_SUPPLY.REQUISITION_DATE' | translate }}<b style="float:right">:</b> </b></label>
           <div class="col-md-8">
             <danphe-date-picker [(ngModel)]="requisition.RequisitionDate" [ngModelOptions]="{standalone:true}"
               ngDefaultControl [CalendarTypes]="'np,en'"> </danphe-date-picker>
-              <div class="error-message" *ngIf="IsReqDateValid == false"> Invalid Fiscal Year Date. </div>
+              <div class="error-message" *ngIf="IsReqDateValid == false"> {{ 'WARD_SUPPLY.INVALID_FISCAL_YEAR_DATE' | translate }} </div>
           </div>
         </div>
       </div>
@@ -33,10 +33,10 @@
     <div class="col-md-5">
       <div class="form-group">
         <div class="row">
-          <label class="control-label col-md-4"><b>Select Inventory<b style="float:right">:</b> <sup style="color: red;">*</sup></b></label>
+          <label class="control-label col-md-4"><b>{{ 'WARD_SUPPLY.SELECT_INVENTORY' | translate }}<b style="float:right">:</b> <sup style="color: red;">*</sup></b></label>
           <div class="col-md-7">
             <select [(ngModel)]="selectedInventory" (keyup.enter)="SetFocusById('itemName0')"  id="selectInventory" (change)="OnInventoryChange()" style="width:60%!important;" [ngModelOptions]="{standalone: true}">       
-                <option [ngValue]="0" selected>--select--</option>
+                <option [ngValue]="0" selected>--{{ 'COMMON.SELECT' | translate }}--</option>
               <option *ngFor="let inv of inventoryList" value="{{inv.StoreId}}"> {{inv.Name}} </option>
             </select>
           </div>
@@ -50,11 +50,11 @@
         <thead>
           <tr>
             <th></th>
-            <th sortable-header col="itemnames"><b>ItemName</b></th>
-            <th sortable-header col="unitname"><b>Unit</b></th>
-            <th sortable-header col="code"><b>Code</b></th>
-            <th sortable-header col="Quantity"><b>Quantity</b></th>
-            <th sortable-header c style="width:200px"><b>Remark</b></th>
+            <th sortable-header col="itemnames"><b>{{ 'WARD_SUPPLY.ITEM_NAME' | translate }}</b></th>
+            <th sortable-header col="unitname"><b>{{ 'WARD_SUPPLY.UNIT' | translate }}</b></th>
+            <th sortable-header col="code"><b>{{ 'GRID_HEADERS.CODE' | translate }}</b></th>
+            <th sortable-header col="Quantity"><b>{{ 'WARD_SUPPLY.QUANTITY' | translate }}</b></th>
+            <th sortable-header c style="width:200px"><b>{{ 'WARD_SUPPLY.REMARK' | translate }}</b></th>
             <th></th>
           </tr>
         </thead>
@@ -69,13 +69,13 @@
               <form [formGroup]="row.RequisitionItemValidator">
                 <input danphe-auto-complete class="form-control" id="itemName{{i}}" *ngIf="row.IsEditApplicable == true"
                   [(ngModel)]="row.SelectedItem" [source]="ItemList" [list-formatter]="myListFormatter"
-                  placeholder="Item Name" display-property-name="ItemName" value-property-name=null
+                  [placeholder]="'WARD_SUPPLY.ITEM_NAME' | translate" display-property-name="ItemName" value-property-name=null
                   onclick="this.select();" (valueChanged)="SelectItemFromSearchBox(row.SelectedItem,i)" min-chars="1" max-num-list="20"
                   formControlName="ItemId" (keyup.enter)="OnPressedEnterKeyInItemField(i)" (keyup.esc)="DeleteAction(i)" />
                 <input class="form-control" *ngIf="row.IsEditApplicable == false" disabled [ngModel]="row.ItemName"
                   formControlName="ItemId" />
                 <div style="color:red" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')">
-                  Item is required</div>
+                  {{ 'WARD_SUPPLY.ITEM_IS_REQUIRED' | translate }}</div>
               </form>
             </td>
             <td style="width:100px">
@@ -98,7 +98,7 @@
                   class="form-control" id="qtyip{{i}}" (keyup.enter)="OnPressedEnterKeyInQuantityField(i)">
                 <div style="color:red" *ngIf="row.IsDirty('Quantity')"
                   [hidden]="row.IsValidCheck('Quantity','invalidNumber')">
-                  Quantity is required
+                  {{ 'WARD_SUPPLY.QUANTITY_IS_REQUIRED' | translate }}
                 </div>
               </form>
             </td>
@@ -116,16 +116,16 @@
       </table>
     </div>
     <div class="col-md-12">
-      <span class="col-md-2 control-label">Remarks<span class="right">:</span></span>
+      <span class="col-md-2 control-label">{{ 'COMMON.REMARKS' | translate }}<span class="right">:</span></span>
       <textarea name="Remarks" id="remarks" (keyup.enter)="SetFocusById('save')" [(ngModel)]="requisition.Remarks" cols="70" rows="3"></textarea>
     </div>
     <div class="col-sm-offset-5 col-sm-5" style="width:30%">
       <!-- <input type="button" id="save" [disabled]="disableButton" class="btn btn-success" value="Request" (click)="AddRequisition()" /> -->
       <button id="save" type="button" class="btn green btn-success margin-7-hr"
                 [disabled]="disableButton" (click)="AddRequisition()">
-                Request
+                {{ 'WARD_SUPPLY.REQUEST' | translate }}
               </button>
       <span></span>&nbsp;
-      <input type="button" class="btn btn-danger" (click)="Cancel()" value="Discard Changes">
+      <input type="button" class="btn btn-danger" (click)="Cancel()" [value]="'WARD_SUPPLY.DISCARD_CHANGES' | translate">
       <span></span> </div>
   </div>

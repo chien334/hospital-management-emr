@@ -25,30 +25,30 @@
 </style>
 <div class="row">
   <div style="margin-left: 15px;" *ngIf="securityService.HasPermission('show-wardsupply-manage-button') && showManageButton && loadingStock">
-    <button type="button" class="btn btn-success" (click)="StockReconciliationPopupOpen()"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;Manage Stock</button>
+    <button type="button" class="btn btn-success" (click)="StockReconciliationPopupOpen()"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;{{ 'WARD_SUPPLY.MANAGE_STOCK' | translate }}</button>
   </div>
   <div class="col-md-12" style="display: flex;justify-content: flex-start;">
     <div class="col-md-4">
       <label for="selectedInventory" style="width: 12pc;">
-        <i class="fa fa-filter"></i> Filter by Store <span class="right">:</span>
+        <i class="fa fa-filter"></i> {{ 'WARD_SUPPLY.FILTER_BY_STORE' | translate }} <span class="right">:</span>
       </label>
       <select [(ngModel)]="selectedInventoryId" id="selectedInventory" (change)="filterStockByInventory()" style="margin-left: 1rem">
-        <option [ngValue]="null">ALL</option>
+        <option [ngValue]="null">{{ 'WARD_SUPPLY.ALL' | translate }}</option>
         <option *ngFor="let inventory of inventoryList" [value]="inventory.StoreId">{{inventory.Name}}</option>
       </select>
     </div>
     <div class="col-md-4">
       <label for="selectedCategory" style="width: 12pc;">
-        <i class="fa fa-filter"></i> Filter by SubCategory <span class="right">:</span>
+        <i class="fa fa-filter"></i> {{ 'WARD_SUPPLY.FILTER_BY_SUBCATEGORY' | translate }} <span class="right">:</span>
       </label>
       <select [(ngModel)]="selectedSubCategoryId" id="selectedCategoryName" (change)="filterStockBySubCategory()" style="margin-left: 1rem">
-        <option [ngValue]="null">ALL</option>
+        <option [ngValue]="null">{{ 'WARD_SUPPLY.ALL' | translate }}</option>
         <option *ngFor="let subcategory of SubCategoryList" [value]="subcategory.SubCategoryId">{{subcategory.SubCategoryName}}</option>
       </select>
     </div>
     <div>
-      <div class="box-text-alignment"><span class="box red margin"></span><span>Zero Quantity</span> </div>
-      <div class="box-text-alignment"><span class="box threshold margin"></span><span>Below MinStockQuantity </span></div>
+      <div class="box-text-alignment"><span class="box red margin"></span><span>{{ 'WARD_SUPPLY.ZERO_QUANTITY' | translate }}</span> </div>
+      <div class="box-text-alignment"><span class="box threshold margin"></span><span>{{ 'WARD_SUPPLY.BELOW_MIN_STOCK_QUANTITY' | translate }}</span></div>
     </div>
   </div>
   <div class="col-lg-12 col-sm-12">
@@ -75,7 +75,7 @@
               <tbody>
                 <tr>
                   <td style="font-weight:bold;">
-                    Item Name
+                    {{ 'WARD_SUPPLY.ITEM_NAME' | translate }}
                   </td>
                   <td>
                     {{selectedStock.ItemName}}
@@ -84,7 +84,7 @@
 
                 <tr>
                   <td style="font-weight:bold;">
-                    Available Quantity
+                    {{ 'WARD_SUPPLY.AVAILABLE_QUANTITY' | translate }}
                   </td>
                   <td>
                     {{selectedStock.Quantity}}
@@ -98,7 +98,7 @@
           <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom:5px !important;">
             <div class="form-group">
               <label class="control-label col-md-4">
-                Back To Inventory:
+                {{ 'WARD_SUPPLY.BACK_TO_INVENTORY_COLON' | translate }}
                 <b style="float:right;">:</b>
               </label>
               <div class="col-md-2">
@@ -109,7 +109,7 @@
           <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom:5px !important;" *ngIf="!transferBackToInventory">
             <div class="form-group">
               <label class="control-label col-md-4">
-                Destination Department
+                {{ 'WARD_SUPPLY.DESTINATION_DEPARTMENT' | translate }}
                 <b style="float:right;">:</b>
               </label>
               <div class="col-md-8">
@@ -122,14 +122,14 @@
           <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom:5px !important;">
             <div class="form-group">
               <label class="control-label col-md-4">
-                Transfer Quantity
+                {{ 'WARD_SUPPLY.TRANSFER_QUANTITY' | translate }}
                 <b class="color-red"> *</b><b style="float:right;">:</b>
               </label>
               <div class="col-md-8">
                 <form [formGroup]="selectedStock.StockManageValidator">
                   <input [(ngModel)]="selectedStock.DispachedQuantity" formControlName="DispachedQuantity" class="form-control" name="DispachedQuantity" type="number" />
-                  <div style="color:red" *ngIf="selectedStock.IsDirty('DispachedQuantity')" [hidden]="selectedStock.IsValid('DispachedQuantity','invalidNumber')">quantity is required</div>
-                  <div style="color:red" *ngIf="selectedStock.Quantity < selectedStock.DispachedQuantity">cant out more quantity than current qty</div>
+                  <div style="color:red" *ngIf="selectedStock.IsDirty('DispachedQuantity')" [hidden]="selectedStock.IsValid('DispachedQuantity','invalidNumber')">{{ 'WARD_SUPPLY.QUANTITY_REQUIRED' | translate }}</div>
+                  <div style="color:red" *ngIf="selectedStock.Quantity < selectedStock.DispachedQuantity">{{ 'WARD_SUPPLY.CANT_OUT_MORE_QUANTITY_ALERT' | translate }}</div>
 
                 </form>
               </div>
@@ -138,13 +138,13 @@
           <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom:5px !important;">
             <div class="form-group">
               <label class="control-label col-md-4">
-                Remarks
+                {{ 'COMMON.REMARKS' | translate }}
                 <b class="color-red"> *</b><b style="float:right;">:</b>
               </label>
               <div class="col-md-8">
                 <form [formGroup]="selectedStock.StockManageValidator">
                   <textarea [(ngModel)]="selectedStock.Remarks" formControlName="Remark" class="form-control" name="Remark" type="text"></textarea>
-                  <div style="color:red" *ngIf="selectedStock.IsDirty('Remark')" [hidden]="selectedStock.IsValid('Remark','required')">remark is required</div>
+                  <div style="color:red" *ngIf="selectedStock.IsDirty('Remark')" [hidden]="selectedStock.IsValid('Remark','required')">{{ 'WARD_SUPPLY.REMARKS_REQUIRED' | translate }}</div>
                 </form>
               </div>
             </div>
@@ -154,10 +154,10 @@
               <div class="control-label col-md-4">
               </div>
               <div class="" style="margin:10px 5px; float:right;">
-                <input type="button" class="btn btn-danger" value="Cancel" (click)="Close()" [disabled]="loading" />
+                <input type="button" class="btn btn-danger" [value]="'COMMON.CANCEL' | translate" (click)="Close()" [disabled]="loading" />
               </div>
               <div class="" style="margin-top:10px; float:right;">
-                <input type="button" class="btn btn-success" value="Transfer Stock" (click)="WardStockTransfer()" [disabled]="loading" />
+                <input type="button" class="btn btn-success" [value]="'WARD_SUPPLY.TRANSFER_STOCK' | translate" (click)="WardStockTransfer()" [disabled]="loading" />
               </div>
             </div>
           </div>
@@ -174,7 +174,7 @@
   <div class="portlet-body form" style="background-color:white">
     <div class="danphe-loading-image" style="display: block;padding-left: 49%;padding-top: 15%;" id='danpheLoading'>
       <img style="margin-top: 60px;width: 120px; height: 120px;" src="../../../../../themes/theme-default/images/loading-child.gif" alt="" />
-      <p style="font-size: 24px;color: #fff;"><b>Processing...Please Wait</b></p>
+      <p style="font-size: 24px;color: #fff;"><b>{{ 'WARD_SUPPLY.PROCESSING_PLEASE_WAIT' | translate }}</b></p>
     </div>
   </div>
 </div>

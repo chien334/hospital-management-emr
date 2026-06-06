@@ -3,7 +3,7 @@
     <div class="row" style="background: #bcbcbc; padding-top: 0px;">
       <div class="col-md-3 col-xs-12">
         <div class="form-group">
-          <label class="control-label" style="margin-left: 5px;"> Select Module<b class="color-red">
+          <label class="control-label" style="margin-left: 5px;"> {{ 'ACCOUNTING.SELECT_MODULE' | translate }}<b class="color-red">
               *</b><b style="float:right;">:</b></label>
           <div>
             <select [(ngModel)]="sectionId" id="sectionid" [ngModelOptions]="{standalone: true}"
@@ -17,7 +17,7 @@
         <div class="form-group">
           <br>
           <button class="btn blue" type="button" [disabled]="btndisabled" (click)="loadData() ">
-            <i class="fa fa-refresh"></i> Show
+            <i class="fa fa-refresh"></i> {{ 'ACCOUNTING.SHOW' | translate }}
           </button>
         </div>
       </div>

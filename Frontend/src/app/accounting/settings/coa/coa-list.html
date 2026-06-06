@@ -1,6 +1,6 @@
 <div>
   <a class="btn blue bordered" style="background-color:#337ab7;" name="name" (click)="AddCOAPopup()">
-    <span class="glyphicon glyphicon-plus"></span>Create COA
+    <span class="glyphicon glyphicon-plus"></span>{{ 'ACCOUNTING.CREATE_COA' | translate }}
   </a>
 </div>
 <div class="row">
@@ -16,39 +16,37 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="modelbox-div clearfix">
-          <div class="caption lb-caption">
+           <div class="caption lb-caption">
             <h3>
-              <span *ngIf="!update"> Add chart of account</span>
-              <span *ngIf="update">Update chart of account</span>
+              <span *ngIf="!update"> {{ 'ACCOUNTING.ADD_CHART_OF_ACCOUNT' | translate }}</span>
+              <span *ngIf="update">{{ 'ACCOUNTING.UPDATE_CHART_OF_ACCOUNT' | translate }}</span>
 
             </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
 
           <form [formGroup]="coaObj.COAValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-5">Primary Group<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'ACCOUNTING.PRIMARY_GROUP' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <select class="form-control" maxlength="30" type="text" [(ngModel)]="coaObj.PrimaryGroupId"
-                    id="PrimaryGroup" (change)="PrimaryGroupChanged()" placeholder="PrimaryGroup"
+                    id="PrimaryGroup" (change)="PrimaryGroupChanged()" [placeholder]="'ACCOUNTING.PRIMARY_GROUP' | translate"
                     formControlName="primaryGroup">
                     <option *ngFor="let pg of primaryGroupList" value={{pg.PrimaryGroupId}}>
                       {{pg.PrimaryGroupName}}</option>
                   </select>
                   <span class="color-red font-sm"
-                    [hidden]="coaObj.IsValidCheck('primaryGroup','required') || !(coaObj.IsDirty('primaryGroup'))">COA
-                    name is required</span>
+                    [hidden]="coaObj.IsValidCheck('primaryGroup','required') || !(coaObj.IsDirty('primaryGroup'))">{{ 'ACCOUNTING.PRIMARY_GROUP_REQUIRED_ERR' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">COA Name<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'ACCOUNTING.COA_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" maxlength="30" type="text" [(ngModel)]="coaObj.ChartOfAccountName"
-                    formControlName="COAName" id="COAName" placeholder="COAName" />
+                    formControlName="COAName" id="COAName" [placeholder]="'ACCOUNTING.COA_NAME' | translate" />
                   <span class="color-red font-sm"
-                    [hidden]="coaObj.IsValidCheck('COAName','required') || !(coaObj.IsDirty('COAName'))">COA
-                    name is required</span>
+                    [hidden]="coaObj.IsValidCheck('COAName','required') || !(coaObj.IsDirty('COAName'))">{{ 'ACCOUNTING.COA_NAME_REQUIRED' | translate }}</span>
 
                 </div>
               </div>
@@ -61,16 +59,16 @@
               </div> -->
              
               <div class="form-group">
-                <label class="control-label col-md-5">Description<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'ACCOUNTING.DESCRIPTION' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" maxlength="200" type="text" [(ngModel)]="coaObj.Description"
-                    [ngModelOptions]="{standalone: true}" id="Description" placeholder="Description" />
+                    [ngModelOptions]="{standalone: true}" id="Description" [placeholder]="'ACCOUNTING.DESCRIPTION' | translate" />
 
                 </div>
               </div>
               <div class="form-actions">
-                <input type="button" class="btn btn-primary" *ngIf="!update" (click)="saveCOA()" value="Add COA" />
-                <input type="button" class="btn btn-primary" *ngIf="update" (click)="UpdateCOA()" value="Update COA" />
+                <input type="button" class="btn btn-primary" *ngIf="!update" (click)="saveCOA()" [value]="'ACCOUNTING.ADD_COA' | translate" />
+                <input type="button" class="btn btn-primary" *ngIf="update" (click)="UpdateCOA()" [value]="'ACCOUNTING.UPDATE_COA' | translate" />
 
               </div>
 

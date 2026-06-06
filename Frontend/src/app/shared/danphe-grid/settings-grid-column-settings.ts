@@ -340,7 +340,7 @@ export class SettingsGridColumnSettings {
   ]
   public DeptList = [
     { headerName: "Code", field: "DepartmentCode", width: 100 },
-    { headerName: "Name", field: "DepartmentName", width: 150 },
+    { headerName: "Department Name", field: "DepartmentName", width: 150 },
     { headerName: "Parent Department", field: "ParentDepartmentName", width: 120 },
     { headerName: "Description", field: "Description", width: 150 },
     { headerName: "Is Active", field: "IsActive", width: 100 },
@@ -358,7 +358,7 @@ export class SettingsGridColumnSettings {
   ]
   public StoreList = [
     // { headerName: "Id", field: "StoreId", width: 50 },//show S.No. taking from client side if possible.
-    { headerName: "Name", field: "Name", width: 160 },
+    { headerName: "Store Name", field: "Name", width: 160 },
     { headerName: "Code", field: "Code", width: 80 },
     { headerName: "Parent SubStore", field: "ParentName", width: 120 },
     { headerName: "Email", field: "Email", width: 100 },

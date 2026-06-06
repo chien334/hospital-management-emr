@@ -17,7 +17,7 @@
     <div>
       <div class="caption custom-caption">
         <i class="glyphicon glyphicon-asterisk"></i>
-        <span class="caption-subject" style="text-transform: uppercase;">New Sales Book Details</span>
+        <span class="caption-subject" style="text-transform: uppercase;">{{ 'SYSTEM_ADMIN.NEW_SALES_BOOK_DETAILS' | translate }}</span>
       </div>
       <div class="col-md-6">
         <from-to-date-select (on-change)="OnFromToDateChange($event)" [date-settings-name]="'billing-reports'">
@@ -26,7 +26,7 @@
       <div class="col-md-2 col-xs-12">
         <div class="form-group">
           <button class="btn blue" type="button" (click)="GetInvoiceDetails()">
-            <i class="fa fa-search"></i> Show Report
+            <i class="fa fa-search"></i> {{ 'SYSTEM_ADMIN.SHOW_REPORT' | translate }}
           </button>
         </div>
       </div>
@@ -38,37 +38,37 @@
         <table *ngIf="displayReport"
           style="width:100%;box-shadow: 10px 10px 5px #888888; background-color: white; border-top: 2px solid #000;">
           <tr>
-            <td style="font-weight: bold;text-align: center;">Sales Book</td>
+            <td style="font-weight: bold;text-align: center;">{{ 'SYSTEM_ADMIN.SALES_BOOK' | translate }}</td>
           </tr>
           <tr style="border-bottom: 1px solid #000;">
             <td>
               <div style="display: flex; justify-content: space-between;">
-                <span><b>Taxpayer's Name : {{headerDetail.CustomerName}}</b> <br /></span>
-                <span style="padding-right: 10px;"><b>Taxpayer's No. : {{ headerDetail.CustomerRegNo}}</b><br /></span>
+                <span><b>{{ 'SYSTEM_ADMIN.TAXPAYERS_NAME' | translate }} {{headerDetail.CustomerName}}</b> <br /></span>
+                <span style="padding-right: 10px;"><b>{{ 'SYSTEM_ADMIN.TAXPAYERS_NO' | translate }} {{ headerDetail.CustomerRegNo}}</b><br /></span>
               </div>
-              <b>Tax Period : </b> {{displayStartDate}} / {{displayEndDate}}<br />
+              <b>{{ 'SYSTEM_ADMIN.TAX_PERIOD' | translate }} </b> {{displayStartDate}} / {{displayEndDate}}<br />
             </td>
           </tr>
           <tr style="border-bottom: 1px solid #000;">
             <td style="padding-top:15px;">
               <table class="Selected" style="width:100%;" style="border-top: 1px solid black;">
                 <tr>
-                  <td class="Selected" align="center" width="100px"><b>Date</b></td>
-                  <td class="Selected" align="center"><b>Bill No.</b></td>
-                  <td class="Selected" align="left"><b>Buyer's<br />Name</b></td>
-                  <td class="Selected" align="left"><b>Buyer's {{GeneralFieldLabel.PANNo}}</b></td>
-                  <td class="Selected" align="left"><b>Name of Items</b></td>
-                  <td class="Selected" align="center"><b>Quantity of<br />Items|UOM</b></td>
-                  <td class="Selected" align="center" style="text-align: right;"><b>Total Sales<br />Amount</b></td>
-                  <td class="Selected" align="right" style="text-align: right;"><b>Non VAT Sales</b></td>
+                  <td class="Selected" align="center" width="100px"><b>{{ 'SYSTEM_ADMIN.DATE' | translate }}</b></td>
+                  <td class="Selected" align="center"><b>{{ 'SYSTEM_ADMIN.BILL_NO' | translate }}</b></td>
+                  <td class="Selected" align="left"><b [innerHTML]="'SYSTEM_ADMIN.BUYERS_NAME_SPLIT' | translate"></b></td>
+                  <td class="Selected" align="left"><b>{{ 'SYSTEM_ADMIN.BUYERS' | translate }} {{GeneralFieldLabel.PANNo}}</b></td>
+                  <td class="Selected" align="left"><b>{{ 'SYSTEM_ADMIN.NAME_OF_ITEMS' | translate }}</b></td>
+                  <td class="Selected" align="center"><b [innerHTML]="'SYSTEM_ADMIN.QUANTITY_OF_ITEMS_UOM' | translate"></b></td>
+                  <td class="Selected" align="center" style="text-align: right;"><b [innerHTML]="'SYSTEM_ADMIN.TOTAL_SALES_AMOUNT' | translate"></b></td>
+                  <td class="Selected" align="right" style="text-align: right;"><b>{{ 'SYSTEM_ADMIN.NON_VAT_SALES' | translate }}</b></td>
                   <!-- <td class="Selected" rowspan="2" align="center"><b>Taxable Sales</b></td>
                   <td class="Selected" rowspan="2" align="center"><b>Discount</b></td> -->
-                  <td class="Selected" align="right"><b>Taxable<br />Sales</b></td>
-                  <td class="Selected" align="right"><b>VAT<br />Amount</b></td>
-                  <td class="Selected" align="right"><b>Export<br />Zero Rated</b></td>
-                  <td class="Selected" align="left"><b>Country<br />of Export</b></td>
-                  <td class="Selected" align="left"><b>Export<br />Document No.</b></td>
-                  <td class="Selected" align="center"><b>Export<br />Document Date</b></td>
+                  <td class="Selected" align="right"><b [innerHTML]="'SYSTEM_ADMIN.TAXABLE_SALES_SPLIT' | translate"></b></td>
+                  <td class="Selected" align="right"><b [innerHTML]="'SYSTEM_ADMIN.VAT_AMOUNT_SPLIT' | translate"></b></td>
+                  <td class="Selected" align="right"><b [innerHTML]="'SYSTEM_ADMIN.EXPORT_ZERO_RATED' | translate"></b></td>
+                  <td class="Selected" align="left"><b [innerHTML]="'SYSTEM_ADMIN.COUNTRY_OF_EXPORT' | translate"></b></td>
+                  <td class="Selected" align="left"><b [innerHTML]="'SYSTEM_ADMIN.EXPORT_DOCUMENT_NO' | translate"></b></td>
+                  <td class="Selected" align="center"><b [innerHTML]="'SYSTEM_ADMIN.EXPORT_DOCUMENT_DATE' | translate"></b></td>
                 </tr>
                 <!-- <tr>
                   <td class="Selected" width="100px"><b>Date (AD)</b></td>
@@ -113,7 +113,7 @@
                   <td class="Selected"></td>
                 </tr>
                 <tr>
-                  <td class="Selected" colspan="5" style="text-align: right;"><b>Grand Total : </b></td>
+                  <td class="Selected" colspan="5" style="text-align: right;"><b>{{ 'SYSTEM_ADMIN.GRAND_TOTAL_COLON' | translate }}</b></td>
                   <td></td>
                   <td class="Selected" width="80px"><b>{{sumTotalAmount}}</b></td>
                   <td class="Selected" width="80px"><b>{{sumNONTaxableSales}}</b></td>
@@ -128,7 +128,7 @@
         </table>
       </div>
       <p style="text-align:center;" *ngIf="displayReport">
-        <button class="btn blue" (click)="PrintReport()"> Print <i class="glyphicon glyphicon-print"></i> </button>
+        <button class="btn blue" (click)="PrintReport()"> {{ 'COMMON.PRINT' | translate }} <i class="glyphicon glyphicon-print"></i> </button>
       </p>
     </div>
   </div>

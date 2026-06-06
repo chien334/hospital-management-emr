@@ -87,9 +87,8 @@
 </style>
 <div class="sub-navtab">
   <ul class="nav nav-tabs">
-    <li><a [ngClass]="{'a-tab-active':currentTab=='today'}" (click)="ToggleCurrentTab('today');">Today</a></li>
-    <li><a [ngClass]="{'a-tab-active':currentTab=='pastDays'}" (click)="ToggleCurrentTab('pastDays'); showAll();">Past
-        Days</a></li>
+    <li><a [ngClass]="{'a-tab-active':currentTab=='today'}" (click)="ToggleCurrentTab('today');">{{ 'NURSING.TODAY' | translate }}</a></li>
+    <li><a [ngClass]="{'a-tab-active':currentTab=='pastDays'}" (click)="ToggleCurrentTab('pastDays'); showAll();">{{ 'NURSING.PAST_DAYS' | translate }}</a></li>
   </ul>
 </div>
 <div class="form-body">
@@ -144,19 +143,19 @@
                 <input class="custom-table-search form-control" style="width:300px; margin: 0;"
                        [(ngModel)]="searchString"
                        (ngModelChange)="filterRows()"
-                       placeholder="Hospital No/Patient Name/DepartmentName">
+                       [placeholder]="'NURSING.SEARCH_PLACEHOLDER' | translate">
               </div>
               <div class="col-md-6">
                 <div style="display:flex; justify-content: flex-end; gap: 0 15px; align-items: center;">
                   <label style="width: 70px; display: inline-block;"
-                         for="department">Department:</label>
+                         for="department">{{ 'NURSING.DEPARTMENT' | translate }}:</label>
                   <input class="form-control" danphe-auto-complete
                          [(ngModel)]="selectedDepartment"
                          (ngModelChange)="selectedDepartment"
                          [list-formatter]="myDepartmentListFormatter"
                          [source]="departmentList"
                          [ngModelOptions]="{standalone: true}"
-                         placeholder="Department Name"
+                         [placeholder]="'NURSING.DEPARTMENT_NAME' | translate"
                          display-property-name="DepartmentName"
                          value-property-name="'DepartmentId'"
                          onClick="this.select()"
@@ -170,11 +169,11 @@
 
               <div class="col-md-6" *ngIf="opdListZero && opdListZero.length >0">
                 <div class="button-row" style="display: flex; flex-wrap: nowrap; gap: 5px;">
-                  <button class="btn green btn-success form-control small-width" (click)="NursingTriage()">Triage</button>
-                  <button class="btn green btn-success form-control small-width" (click)="NursingCheckin()">Check In</button>
-                  <button class="btn green btn-success form-control small-width" (click)="ChangeDoctor()">Refer</button>
-                  <button class="btn green btn-success form-control small-width" (click)="ExchangeDoctorDepartment()">Exchange Doc/Dept</button>
-                  <button class="btn green btn-success form-control small-width" (click)="NursingCheckOut()">Conclude</button>
+                  <button class="btn green btn-success form-control small-width" (click)="NursingTriage()">{{ 'NURSING.TRIAGE' | translate }}</button>
+                  <button class="btn green btn-success form-control small-width" (click)="NursingCheckin()">{{ 'NURSING.CHECK_IN' | translate }}</button>
+                  <button class="btn green btn-success form-control small-width" (click)="ChangeDoctor()">{{ 'NURSING.REFER' | translate }}</button>
+                  <button class="btn green btn-success form-control small-width" (click)="ExchangeDoctorDepartment()">{{ 'NURSING.EXCHANGE_DOC_DEPT' | translate }}</button>
+                  <button class="btn green btn-success form-control small-width" (click)="NursingCheckOut()">{{ 'NURSING.CONCLUDE' | translate }}</button>
                   <!-- <button class="btn green btn-success form-control small-width">Vitals</button>
                     <button class="btn green btn-success form-control dynamic-width">Chief Complaint/Diagnosis</button>
                     <button class="btn green btn-success form-control dynamic-width">Patient Overview</button>
@@ -191,16 +190,16 @@
                         <!-- <input type="checkbox" id="checkbox_outPatient_selectAllPatients" (change)="SelectFilteredList(row)"
                                [(ngModel)]="row.IsSelected"> -->
                       </th>
-                      <th scope="col" class="wd-130">SN</th>
-                      <th scope="col" class="wd-130">Time</th>
-                      <th scope="col" class="wd-130">Hospital No.</th>
-                      <th scope="col" class="wd-150">PatientName</th>
-                      <th scope="col" class="wd-50">Age/Sex</th>
-                      <th scope="col" class="wd-150">Phone</th>
-                      <th scope="col" class="wd-80">Department</th>
-                      <th scope="col" class="wd-80">Doctor</th>
-                      <th scope="col" class="wd-80">Scheme</th>
-                      <th scope="col" class="wd-80">Visit Status</th>
+                      <th scope="col" class="wd-130">{{ 'COMMON.SN' | translate }}</th>
+                      <th scope="col" class="wd-130">{{ 'COMMON.TIME' | translate }}</th>
+                      <th scope="col" class="wd-130">{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}</th>
+                      <th scope="col" class="wd-150">{{ 'NURSING.PATIENT_NAME' | translate }}</th>
+                      <th scope="col" class="wd-50">{{ 'EMERGENCY.AGE_SEX' | translate }}</th>
+                      <th scope="col" class="wd-150">{{ 'COMMON.PHONE' | translate }}</th>
+                      <th scope="col" class="wd-80">{{ 'NURSING.DEPARTMENT' | translate }}</th>
+                      <th scope="col" class="wd-80">{{ 'COMMON.DOCTOR' | translate }}</th>
+                      <th scope="col" class="wd-80">{{ 'COMMON.SCHEME' | translate }}</th>
+                      <th scope="col" class="wd-80">{{ 'NURSING.VISIT_STATUS' | translate }}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -233,13 +232,13 @@
         <div class="row">
           <div class="col-md-5">
             <div class="active col-md-3" (click)="showAll()">
-              <label><input type="radio" name="optradio" checked style="margin-right:5px;" />ALL</label>
+              <label><input type="radio" name="optradio" checked style="margin-right:5px;" />{{ 'NURSING.ALL' | translate }}</label>
             </div>
             <div class=" col-md-4" (click)="showTriaged()">
-              <label><input type="radio" name="optradio" style="margin-right:5px;" />Triage Done</label>
+              <label><input type="radio" name="optradio" style="margin-right:5px;" />{{ 'NURSING.TRIAGE_DONE' | translate }}</label>
             </div>
             <div class=" col-md-5" (click)="showNotTriaged()">
-              <label><input type="radio" name="optradio" style="margin-right:5px;" />Triage Pending</label>
+              <label><input type="radio" name="optradio" style="margin-right:5px;" />{{ 'NURSING.TRIAGE_PENDING' | translate }}</label>
             </div>
           </div>
           <div class="col-md-7">
@@ -284,8 +283,7 @@
         <div class="modelbox-header">
           <h3 class="margin-0-vr text-warning text-center">
             <strong *ngIf="globalPatient && globalPatient.ShortName">
-              OPD Triage of
-              {{globalPatient.ShortName}}
+              {{ 'NURSING.OPD_TRIAGE_OF' | translate : { name: globalPatient.ShortName } }}
             </strong>
           </h3>
         </div>

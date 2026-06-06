@@ -1,5 +1,5 @@
-﻿<div>
-    <input type="button" class="btn btn-primary" (click)="AddVoucherHead()" value="Create Voucher Head" />
+<div>
+    <input type="button" class="btn btn-primary" (click)="AddVoucherHead()" [value]="'ACCOUNTING.CREATE_VOUCHER_HEAD' | translate" />
     <voucher-head-add [showAddPage]="showAddPage"
                  [selectedVoucherHead]="selectedVoucherHead"
                  (callback-add)="CallBackAdd($event)"></voucher-head-add>

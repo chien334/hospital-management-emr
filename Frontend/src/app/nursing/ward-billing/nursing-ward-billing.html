@@ -22,11 +22,10 @@
 
   <div *ngIf="!isPopUp" class="caption" style="color: #2c8e1a; width: 100%; display: table;">
     <h4 style="display: inline-block;text-align: left;margin: 0;line-height: 32px;">
-      <b>Orders List for {{currentPatient.ShortName}}</b>
+      <b>{{ 'NURSING.ORDERS_LIST_FOR' | translate }} {{currentPatient.ShortName}}</b>
     </h4>
     <a class="btn blue" style="display: inline-block; text-align: right; float: right;" (click)="AddNewIpRequest()">
-      New
-      Ward Request
+      {{ 'NURSING.NEW_WARD_REQUEST' | translate }}
     </a>
     <!--<a class="btn blue" style="display: inline-block; float: right; margin-right: 5px;" (click)="showsummary()">Summary Details</a>-->
   </div>
@@ -36,21 +35,21 @@
       <thead *ngIf="currPatVisitContext">
         <tr style="background: #006687; color: #fff;">
           <ng-container *ngIf="!isPopUp">
-            <td colspan="2">Ward: {{currPatVisitContext.Current_WardBed}}</td>
+            <td colspan="2">{{ 'NURSING.WARD' | translate }}: {{currPatVisitContext.Current_WardBed}}</td>
             <td colspan="2">
-              Bed:
+              {{ 'NURSING.BED' | translate }}:
               {{currPatVisitContext.BedFeatureName}}/{{currPatVisitContext.BedCode}}
             </td>
             <td colspan="3">
-              Admitting Docor: {{currPatVisitContext.PerformerName}}
+              {{ 'NURSING.ADMITTING_DOCTOR' | translate }}: {{currPatVisitContext.PerformerName}}
             </td>
             <td colspan="2" *ngIf="currPatVisitContext.AdmissionDate">
-              Admitted On: <date-lbl [value]="currPatVisitContext.AdmissionDate" [show-time]="true"></date-lbl>
+              {{ 'GRID_HEADERS.ADMITTED_ON' | translate }}: <date-lbl [value]="currPatVisitContext.AdmissionDate" [show-time]="true"></date-lbl>
             </td>
           </ng-container>
           <ng-container *ngIf="isPopUp">
             <td style="text-align: center;">
-              Orders of {{currentPatient.ShortName}}
+              {{ 'NURSING.ORDERS_OF' | translate }} {{currentPatient.ShortName}}
             </td>
           </ng-container>
         </tr>
@@ -76,19 +75,19 @@
       <div class="modelbox-div">
         <div class="modelbox-header">
           <h4 class="margin-0-vr text-danger text-center">
-            <strong>Write Cancel Remarks</strong>
+            <strong>{{ 'EMERGENCY.WRITE_CANCEL_REMARKS' | translate }}</strong>
           </h4>
         </div>
         <div class="modelbox-body">
           <div>
-            Cancel Remarks:&nbsp;
+            {{ 'EMERGENCY.CANCEL_REMARKS' | translate }}:&nbsp;
             <textarea [(ngModel)]="cancelRemarks" class="form-control" name="cancelremarks"></textarea>
           </div>
         </div>
         <div class="modelbox-footer">
           <div class="all-buttons text-right">
             <button type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="cancelRequest(selectedBillForCancel, selIndexForCancel)">
-              Proceed
+              {{ 'COMMON.PROCEED' | translate }}
             </button>
           </div>
         </div>
@@ -107,7 +106,7 @@
   <div class="portlet-body form">
     <div class="col-md-10 col-md-offset-1">
       <div class="modelbox-div row">
-        <div class="modelbox-header">Add Ward Request</div>
+        <div class="modelbox-header">{{ 'NURSING.ADD_WARD_REQUEST' | translate }}</div>
         <div class="modelbox-body">
           <nursing-ip-request *ngIf="!isPopUp" [counterId]="nursingCounterId"
                               [past-tests]="provisionalItemsDetails" [visitType]="currPatVisitContext.VisitType"

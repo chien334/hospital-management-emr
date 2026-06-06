@@ -19,23 +19,23 @@
 
 <div *ngIf="note">
   <div class="col-md-12">
-    <p style="font-weight:700!important;">Emergency Details</p>
+    <p style="font-weight:700!important;">{{ 'CLINICAL.EMERGENCY_DETAILS' | translate }}</p>
     <div class="col-md-6">
-      <p>BroughtIn<b>:</b>{{emergencyNote.BroughtIn}}</p>
-      <p>Brought By<b>:</b>{{emergencyNote.BroughtBy}}</p>
-      <p>Phone Number<b>:</b>{{emergencyNote.PhoneNumber}}</p>
-      <p>Triage Time<b>:</b>{{emergencyNote.TriageTime}}</p>
-      <p>Er-Course Description<b>:</b>{{emergencyNote.ErCourseDescription}}</p>
+      <p>{{ 'CLINICAL.BROUGHT_IN' | translate }}<b>:</b>{{ (emergencyNote.BroughtIn ? 'CLINICAL.' + emergencyNote.BroughtIn : '') | translate }}</p>
+      <p>{{ 'CLINICAL.BROUGHT_BY' | translate }}<b>:</b>{{emergencyNote.BroughtBy}}</p>
+      <p>{{ 'CLINICAL.PHONE_NUMBER' | translate }}<b>:</b>{{emergencyNote.PhoneNumber}}</p>
+      <p>{{ 'CLINICAL.TRIAGE_TIME' | translate }}<b>:</b>{{emergencyNote.TriageTime}}</p>
+      <p>{{ 'CLINICAL.ER_COURSE_DESCRIPTION' | translate }}<b>:</b>{{emergencyNote.ErCourseDescription}}</p>
     </div>
     <div class="col-md-6">
       <p>
-        Mode of Arrival<b>:</b>{{emergencyNote.ModeOfArrival | titlecase}}
-        <label *ngIf="emergencyNote.ModeOfArrival=='referal'&& emergencyNote.ReferralDoctorOrHospital"> Referral Doctor or Hospital : {{emergencyNote.ReferralDoctorOrHospital}}</label>
+        {{ 'CLINICAL.MODE_OF_ARRIVAL' | translate }}<b>:</b>{{ (emergencyNote.ModeOfArrival ? 'CLINICAL.' + emergencyNote.ModeOfArrival : '') | translate }}
+        <label *ngIf="emergencyNote.ModeOfArrival=='referal'&& emergencyNote.ReferralDoctorOrHospital"> {{ 'CLINICAL.REFERRAL_DOCTOR_HOSPITAL' | translate }} : {{emergencyNote.ReferralDoctorOrHospital}}</label>
       </p>
-      <p>Relationship<b>:</b>{{emergencyNote.Relationship}}</p>
-      <p *ngIf="emergencyNote.Trauma">Trauma<b>:</b>Yes</p>
-      <p *ngIf="!emergencyNote.Trauma">Trauma<b>:</b>No</p>
-      <p>Triaged By<b>:</b>{{emergencyNote.TriagedBy}}</p>
+      <p>{{ 'CLINICAL.RELATIONSHIP' | translate }}<b>:</b>{{emergencyNote.Relationship}}</p>
+      <p *ngIf="emergencyNote.Trauma">{{ 'CLINICAL.TRAUMA' | translate }}<b>:</b>{{ 'COMMON.YES' | translate }}</p>
+      <p *ngIf="!emergencyNote.Trauma">{{ 'CLINICAL.TRAUMA' | translate }}<b>:</b>{{ 'COMMON.NO' | translate }}</p>
+      <p>{{ 'CLINICAL.TRIAGED_BY' | translate }}<b>:</b>{{ (emergencyNote.TriagedBy ? 'CLINICAL.' + emergencyNote.TriagedBy : '') | translate }}</p>
     </div>
 
   </div>
@@ -43,40 +43,40 @@
   <div class="col-md-12">
     <div class="col-md-6">
       <!--<p style="font-weight:600; font-size:medium">Clinical Subjective Notes</p>-->
-      <h4><strong>Subjective Notes</strong></h4>
+      <h4><strong>{{ 'CLINICAL.SUBJECTIVE_NOTES' | translate }}</strong></h4>
       <div *ngIf="subjectiveNote">
-        <p>Chief Complaint<b>:</b> {{subjectiveNote.ChiefComplaint}}</p>
-        <p>History Of Presenting Illness<b>:</b> {{subjectiveNote.HistoryOfPresentingIllness}}</p>
-        <p>Review Of Systems<b>:</b> {{subjectiveNote.ReviewOfSystems}}</p>
+        <p>{{ 'CLINICAL.CHIEF_COMPLAINT' | translate }}<b>:</b> {{subjectiveNote.ChiefComplaint}}</p>
+        <p>{{ 'CLINICAL.HISTORY_OF_PRESENTING_ILLNESS' | translate }}<b>:</b> {{subjectiveNote.HistoryOfPresentingIllness}}</p>
+        <p>{{ 'CLINICAL.REVIEW_OF_SYSTEM' | translate }}<b>:</b> {{subjectiveNote.ReviewOfSystems}}</p>
       </div>
     </div>
     <div class="col-md-6">
       <!--<p style="font-weight:600; font-size:large">Objective Notes</p>-->
-      <h4><strong>Objective Notes</strong></h4>
+      <h4><strong>{{ 'CLINICAL.OBJECTIVE_NOTES' | translate }}</strong></h4>
       <div *ngIf="objectiveNote">
-        <p>HEENT<b>:</b> {{objectiveNote.HEENT}}</p>
-        <p>Chest <b>:</b> {{objectiveNote.Chest}}</p>
-        <p>CVS <b>:</b> {{objectiveNote.CVS}}</p>
-        <p>Abdomen <b>:</b> {{objectiveNote.Abdomen}}</p>
-        <p>Extremity <b>:</b> {{objectiveNote.Extremity}}</p>
-        <p>Skin <b>:</b> {{objectiveNote.Skin}}</p>
-        <p>Neurological <b>:</b> {{objectiveNote.Neurological}}</p>
+        <p>{{ 'CLINICAL.HEENT' | translate }}<b>:</b> {{objectiveNote.HEENT}}</p>
+        <p>{{ 'CLINICAL.CHEST' | translate }} <b>:</b> {{objectiveNote.Chest}}</p>
+        <p>{{ 'CLINICAL.CVS' | translate }} <b>:</b> {{objectiveNote.CVS}}</p>
+        <p>{{ 'CLINICAL.ABDOMEN' | translate }} <b>:</b> {{objectiveNote.Abdomen}}</p>
+        <p>{{ 'CLINICAL.EXTREMITY' | translate }} <b>:</b> {{objectiveNote.Extremity}}</p>
+        <p>{{ 'CLINICAL.SKIN' | translate }} <b>:</b> {{objectiveNote.Skin}}</p>
+        <p>{{ 'CLINICAL.NEUROLOGICAL' | translate }} <b>:</b> {{objectiveNote.Neurological}}</p>
       </div>
     </div>
   </div>
   <div class="col-md-12">
     <div class="prob-entry hm-form">
       <div class="text-head-wrapper clearfix">
-        <h4><strong>Assessment and Orders</strong></h4>
+        <h4><strong>{{ 'CLINICAL.ASSESSMENT_AND_ORDERS' | translate }}</strong></h4>
       </div>
 
       <div *ngIf="diagnosisOrderList">
-        <p *ngIf="!diagnosisOrderList.length">No Assessment Plan and Orders yet</p>
+        <p *ngIf="!diagnosisOrderList.length">{{ 'CLINICAL.NO_ASSESSMENT_AND_ORDERS' | translate }}</p>
         <table *ngIf="diagnosisOrderList.length" class="table table-bordered allIcdOrdersTable" style="width: 100%;">
           <thead>
             <tr>
-              <th>Assessment Name</th>
-              <th>Orders</th>
+              <th>{{ 'CLINICAL.ASSESSMENT_NAME' | translate }}</th>
+              <th>{{ 'CLINICAL.ORDERS_LABEL' | translate }}</th>
             </tr>
           </thead>
 
@@ -85,17 +85,17 @@
               ({{assessment.ICD[0].ICD10Code}}) {{assessment.ICD[0].ICD10Description}}
             </td>
             <td>
-              <p *ngIf="assessment.AllIcdLabOrders.length>0" style="font-weight:700!important;">Lab: </p>
+              <p *ngIf="assessment.AllIcdLabOrders.length>0" style="font-weight:700!important;">{{ 'CLINICAL.LAB' | translate }}: </p>
               <label *ngFor="let lo of assessment.AllIcdLabOrders">
                 {{lo.ItemName}}
               </label>
 
-              <p *ngIf="assessment.AllIcdImagingOrders.length>0" style="font-weight:700!important;">Imaging: </p>
+              <p *ngIf="assessment.AllIcdImagingOrders.length>0" style="font-weight:700!important;">{{ 'CLINICAL.IMAGING' | translate }}: </p>
               <label *ngFor="let io of assessment.AllIcdImagingOrders">
                 {{io.ItemName}}
               </label>
 
-              <p *ngIf="assessment.AllIcdPrescriptionOrders.length>0" style="font-weight:700!important;">Medication: </p>
+              <p *ngIf="assessment.AllIcdPrescriptionOrders.length>0" style="font-weight:700!important;">{{ 'CLINICAL.MEDICATION' | translate }}: </p>
               <label *ngFor="let mo of assessment.AllIcdPrescriptionOrders">
                 {{mo.ItemName}}
               </label>
@@ -109,16 +109,16 @@
 
   <div class="col-md-12">
     <!--Disposition details-->
-    <p class="col-md-6"> <strong>Disposition</strong><b>:</b>{{emergencyNote.Disposition | titlecase}} </p>
+    <p class="col-md-6"> <strong>{{ 'CLINICAL.DISPOSITION' | translate }}</strong><b>:</b>{{ (emergencyNote.Disposition ? 'CLINICAL.' + emergencyNote.Disposition : '') | translate }} </p>
     <p *ngIf="emergencyNote.Disposition=='admitted'&& emergencyNote.DispositionDepartmentId"
-       class="col-md-6"> Disposition Department <b>:</b> {{note.DispositionDepartment}}</p>
+       class="col-md-6"> {{ 'CLINICAL.DISPOSITION_DEPARTMENT' | translate }} <b>:</b> {{note.DispositionDepartment}}</p>
   </div>
 
   <div class="col-md-12" style="margin-left:15px;">    
     <!--Instructions-->
-    <h4><strong>Instructions:</strong></h4>
-    <p>Follow Up<b>:</b>{{erNote?.FollowUp}} {{erNote?.FollowUpUnit}}</p>
-    <p>Remarks<b>:</b>{{erNote?.Remarks}}</p>
+    <h4><strong>{{ 'CLINICAL.INSTRUCTIONS' | translate }}:</strong></h4>
+    <p>{{ 'CLINICAL.FOLLOW_UP' | translate }}<b>:</b>{{erNote?.FollowUp}} {{ (erNote?.FollowUpUnit ? 'CLINICAL.' + erNote.FollowUpUnit : '') | translate }}</p>
+    <p>{{ 'CLINICAL.REMARKS' | translate }}<b>:</b>{{erNote?.Remarks}}</p>
   </div>
 </div>
 

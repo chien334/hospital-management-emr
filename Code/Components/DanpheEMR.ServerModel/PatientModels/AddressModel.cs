@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +14,7 @@ namespace DanpheEMR.ServerModel
     {
         [Key]
         public int PatientAddressId { get; set; }
+        [Column("PatientID")]
         public int PatientId { get; set; }
         public string AddressType { get; set; }
         public string Street1 { get; set; }

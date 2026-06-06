@@ -48,7 +48,7 @@
             <div class="col-md-12">
                 <div class="modelbox-div clearfix">
                     <div class="caption custom-caption">
-                        <h3> <span>Fault History | <strong> {{selectedAsset.ItemName | CapitalFirstLetter}} |
+                        <h3> <span>{{ 'FIXED_ASSETS.FAULT_HISTORY' | translate }} | <strong> {{selectedAsset.ItemName | CapitalFirstLetter}} |
                                     {{selectedAsset.BarCodeNumber}}</strong></span></h3>
                         <a class="btn btn-danger" (click)="Close()"><i class="fa fa-close"></i></a>
                     </div>
@@ -56,41 +56,39 @@
 
                         <div class="selectedAssetForEdit" style="padding: 0 10px;">
                             <div class="add-btn-wrap">
-                                <a class="btn btn-primary" (click)="Add()">Add New Fault<i class="fa fa-plus"></i></a>
+                                <a class="btn btn-primary" (click)="Add()">{{ 'FIXED_ASSETS.ADD_NEW_FAULT' | translate }}<i class="fa fa-plus"></i></a>
                                 <a class="btn" *ngIf="!(selectedAsset.IsAssetDamaged)"
                                     (click)="NotifyDamage(selectedAsset)"
-                                    style="background-color: #696969!important;  color: White!important;"> Notify Damage
+                                    style="background-color: #696969!important;  color: White!important;"> {{ 'FIXED_ASSETS.NOTIFY_DAMAGE' | translate }}
                                 </a>
 
                                 <a class="btn"
                                     *ngIf="!(selectedAsset.IsUnderMaintenance) && !(selectedAsset.IsAssetDamaged)"
                                     style="background-color: #FF8C00 !important; color: black!important;"
-                                    (click)="MarkAsUnderRepair()">Mark as Under Repair</a>
+                                    (click)="MarkAsUnderRepair()">{{ 'FIXED_ASSETS.MARK_AS_UNDER_REPAIR' | translate }}</a>
                                 <a class="btn"
                                     *ngIf="(selectedAsset.IsUnderMaintenance) && !(selectedAsset.IsAssetDamaged)"
                                     style="background-color: #42ba96 !important; color: black!important;"
-                                    (click)="MarkAsRepaired()">Mark as Repaired</a>
+                                    (click)="MarkAsRepaired()">{{ 'FIXED_ASSETS.MARK_AS_REPAIRED' | translate }}</a>
 
                                 <p *ngIf="(selectedAsset.IsAssetDamaged) && (selectedAsset.IsAssetDamageConfirmed)"
                                     style="background-color: greenyellow; color: red; width:750px!important; font-size:medium; margin-top:10px;">
-                                    Damage of this asset has been
-                                    confirmed ! No longer be used, ready to Scrap! </p>
+                                    {{ 'FIXED_ASSETS.DAMAGE_CONFIRMED_MSG' | translate }} </p>
                                 <p *ngIf="(selectedAsset.IsAssetDamaged) && !(selectedAsset.IsAssetDamageConfirmed)"
                                     style="background-color: greenyellow; color: red; width:510px!important; font-size:medium; margin-top:10px;">
-                                    This asset has been marked as
-                                    Damaged, but not confirmed yet! </p>
+                                    {{ 'FIXED_ASSETS.DAMAGE_NOT_CONFIRMED_MSG' | translate }} </p>
 
                             </div>
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr class="tbl-td-padding">
-                                        <th>S.No</th>
-                                        <th>Fault Recored Date</th>
-                                        <th>Fault Description</th>
-                                        <th>Reported By</th>
-                                        <th>Fault Resolved Date</th>
-                                        <th>Fault Resolved Remarks</th>
-                                        <th>Action</th>
+                                        <th>{{ 'COMMON.SN' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.FAULT_RECORDED_DATE' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.FAULT_DESCRIPTION' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.REPORTED_BY' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.FAULT_RESOLVED_DATE' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.FAULT_RESOLVED_REMARKS' | translate }}</th>
+                                        <th>{{ 'COMMON.ACTION' | translate }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -103,9 +101,9 @@
                                         <td><b>{{row.FaultResolvedRemarks}}</b></td>
                                         <td>
                                             <button type="button" class="btn btn-primary" (click)="Edit(i) "><i
-                                                    class="fa fa-edit"></i> Edit</button>
+                                                    class="fa fa-edit"></i> {{ 'COMMON.EDIT' | translate }}</button>
                                             <a *ngIf="!row.IsFaultResolved && !(selectedAsset.IsAssetDamaged)"
-                                                (click)="ResolveFault(i)" class="btn btn-primary"> Mark as Resolved </a>
+                                                (click)="ResolveFault(i)" class="btn btn-primary"> {{ 'FIXED_ASSETS.MARK_AS_RESOLVED' | translate }} </a>
 
                                         </td>
                                     </tr>
@@ -115,10 +113,10 @@
 
                         <form action="" *ngIf="showAddFaultDescription||faultedit">
                             <p class="text-center" style="font-weight: 700!important; font-size: large!important;">
-                                <strong>{{faultedit?"Edit":"Add"}} Fault Form</strong>
+                                <strong>{{ (faultedit ? 'FIXED_ASSETS.EDIT_FAULT_FORM' : 'FIXED_ASSETS.ADD_FAULT_FORM') | translate }}</strong>
                             </p>
                             <div class="form-group">
-                                <label class="control-label">Fault Date<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.FAULT_DATE' | translate }}<sup>*</sup><b>:</b></label>
                                 <danphe-date-picker [ngModelOptions]="{standalone: true}" ngDefaultControl
                                     [CalendarTypes]="'np,en'" [(ngModel)]="assetFaultUpdate.FaultDate"
                                     style="width:100px;"></danphe-date-picker>
@@ -126,13 +124,13 @@
 
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Fault Description<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.FAULT_DESCRIPTION' | translate }}<sup>*</sup><b>:</b></label>
                                 <textarea class="form-control" [(ngModel)]="assetFaultUpdate.FaultDescription"
                                     [ngModelOptions]="{standalone: true}" id="free-text" rows="8"
-                                    placeholder="Enter Fault Description.."></textarea>
+                                    [placeholder]="'FIXED_ASSETS.ENTER_FAULT_DESCRIPTION_PLACEHOLDER' | translate"></textarea>
                             </div>
                             <div class="form-group" *ngIf="alsoEditResolvedInfo">
-                                <label class="control-label">Fault Resolved Date<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.FAULT_RESOLVED_DATE' | translate }}<sup>*</sup><b>:</b></label>
                                 <danphe-date-picker [ngModelOptions]="{standalone: true}" ngDefaultControl
                                     [CalendarTypes]="'np,en'" [(ngModel)]="assetFaultUpdate.FaultResolvedDate"
                                     style="width:100px;"></danphe-date-picker>
@@ -140,26 +138,26 @@
 
                             </div>
                             <div class="form-group" *ngIf="alsoEditResolvedInfo">
-                                <label class="control-label">Fault Resolved Description<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.FAULT_RESOLVED_DESCRIPTION' | translate }}<sup>*</sup><b>:</b></label>
                                 <textarea class="form-control" [(ngModel)]="assetFaultUpdate.FaultResolvedRemarks"
                                     [ngModelOptions]="{standalone: true}" id="free-text" rows="8"
-                                    placeholder="Enter Fault Description.."></textarea>
+                                    [placeholder]="'FIXED_ASSETS.ENTER_FAULT_RESOLVED_DESCRIPTION_PLACEHOLDER' | translate"></textarea>
                             </div>
 
                             <button type="submit" *ngIf="showAddFaultDescription" class="btn btn-primary"
-                                (click)="Confirm()">Submit</button>
+                                (click)="Confirm()">{{ 'COMMON.SUBMIT' | translate }}</button>
                             <button *ngIf="faultedit" type="submit" class="btn btn-primary"
-                                (click)="Update()">Update</button>
+                                (click)="Update()">{{ 'FIXED_ASSETS.UPDATE' | translate }}</button>
                             <a class="btn btn-danger" (click)="showAddFaultDescription=false; faultedit=false;"><i
                                     class="fa fa-close"></i></a>
 
                         </form>
                         <form action="" *ngIf="showResolvedDescription">
                             <p class="text-center" style="font-weight: 700!important; font-size: large!important;">
-                                <strong>{{faultedit?"Edit":"Add"}} Fault Form</strong>
+                                <strong>{{ (faultedit ? 'FIXED_ASSETS.EDIT_FAULT_FORM' : 'FIXED_ASSETS.ADD_FAULT_FORM') | translate }}</strong>
                             </p>
                             <div class="form-group">
-                                <label class="control-label">Fault Resolved Date<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.FAULT_RESOLVED_DATE' | translate }}<sup>*</sup><b>:</b></label>
                                 <danphe-date-picker [ngModelOptions]="{standalone: true}" ngDefaultControl
                                     [CalendarTypes]="'np,en'" [(ngModel)]="assetFaultUpdate.FaultResolvedDate"
                                     style="width:100px;"></danphe-date-picker>
@@ -167,13 +165,13 @@
 
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Fault Resolved Description<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.FAULT_RESOLVED_DESCRIPTION' | translate }}<sup>*</sup><b>:</b></label>
                                 <textarea class="form-control" [(ngModel)]="assetFaultUpdate.FaultResolvedRemarks"
                                     [ngModelOptions]="{standalone: true}" id="free-text" rows="8"
-                                    placeholder="Enter Fault Description.."></textarea>
+                                    [placeholder]="'FIXED_ASSETS.ENTER_FAULT_RESOLVED_DESCRIPTION_PLACEHOLDER' | translate"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary"
-                                (click)="SubmitResolvedDetails()">Submit</button>
+                                (click)="SubmitResolvedDetails()">{{ 'COMMON.SUBMIT' | translate }}</button>
                             <a class="btn btn-danger" (click)="showResolvedDescription =false;"><i
                                     class="fa fa-close"></i></a>
 

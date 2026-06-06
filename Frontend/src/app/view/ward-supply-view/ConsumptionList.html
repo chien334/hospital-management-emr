@@ -179,16 +179,16 @@ transform: translateY(15px);
 	<div class="m1 row clearfix">	  
     <div class="col-md-4 col-md-offset-4"><nav aria-label="Change Route">
       <ul class="pagination no-margin" style="display:flex;justify-content:center">
-        <li class="page-item active"><a class="page-link">Sale To Patient</a></li>
-        <li class="page-item"><a class="page-link" (click)='ShowInternalConsumption()'>Consumption</a></li>
+        <li class="page-item active"><a class="page-link">{{ 'WARD_SUPPLY.SALE_TO_PATIENT' | translate }}</a></li>
+        <li class="page-item"><a class="page-link" (click)='ShowInternalConsumption()'>{{ 'WARD_SUPPLY.CONSUMPTION' | translate }}</a></li>
       </ul>
     </nav></div>
   </div>   
   <div class="ward-failure" *ngIf="!isSaleApplicable">
     <div id="background"></div>
     <div class="top">
-      <h1>Error...</h1>
-      <h3>Ward Not Found</h3>
+      <h1>{{ 'COMMON.ERROR' | translate }}...</h1>
+      <h3>{{ 'WARD_SUPPLY.WARD_NOT_FOUND' | translate }}</h3>
     </div>
     <div class="container">
       <div class="ghost-copy">
@@ -207,17 +207,17 @@ transform: translateY(15px);
       <div class="shadow"></div>
     </div>
     <div class="bottom">
-      <p>Boo, looks like a ghost stole this page!</p>
+      <p>{{ 'WARD_SUPPLY.GHOST_PAGE_MESSAGE' | translate }}</p>
     </div>
   </div>
   <div *ngIf="isSaleApplicable">
     <div class="row">
-      <div class="col-md-8"> <a class="btn blue bordered" name="name" value="" (click)="AddNewConsumption()"><span class="glyphicon glyphicon-plus"> </span> New Consumption</a> </div>
+      <div class="col-md-8"> <a class="btn blue bordered" name="name" value="" (click)="AddNewConsumption()"><span class="glyphicon glyphicon-plus"> </span> {{ 'WARD_SUPPLY.NEW_CONSUMPTION' | translate }}</a> </div>
       <div class="col-md-4">
         <div class="right">
-          <label class="control-label ">Select Ward:</label>
+          <label class="control-label ">{{ 'WARD_SUPPLY.SELECT_WARD' | translate }}:</label>
           <select [(ngModel)]="WardId" id="wardId" style="width:250px;height:30px;margin-bottom:7px;" (change)="onChange()">
-            <option selected="selected" value="0">All</option>
+            <option selected="selected" value="0">{{ 'WARD_SUPPLY.ALL' | translate }}</option>
             <option *ngFor="let v of wardList" value="{{v.WardId}}">{{v.WardName}}</option>
           </select>
         </div>

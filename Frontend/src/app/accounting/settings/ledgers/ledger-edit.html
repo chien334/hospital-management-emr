@@ -4,8 +4,8 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
-            <h3> <span *ngIf="update==false">Create Ledger</span> <span *ngIf="update==true">Update Ledger</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
+            <h3> <span *ngIf="update==false">{{ 'ACCOUNTING.CREATE_LEDGER' | translate }}</span> <span *ngIf="update==true">{{ 'ACCOUNTING.UPDATE_LEDGER' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
           <form [formGroup]="CurrentLedger.LedgerValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="row">
@@ -14,51 +14,51 @@
                      [(ngModel)]="typeledger" ng-checked="ledgerType='ledger'"
                      [ngModelOptions]="{standalone: true}"
                      (change)="ToggleLedgerType('ledger')">
-                  New Ledger
+                  {{ 'ACCOUNTING.NEW_LEDGER' | translate }}
                   <input class="zoomcheckbox" name="ledgerTypes" width="100" type="checkbox"
                      [(ngModel)]="typesupplier" value="pharmacysupplier" ng-checked="ledgerType='pharmacysupplier'"
                      [ngModelOptions]="{standalone: true}"
                      (change)="ToggleLedgerType('pharmacysupplier')">
-                  New Ledger from Pharmacy Supplier 
+                  {{ 'ACCOUNTING.NEW_LEDGER_PHARMACY_SUPPLIER' | translate }} 
                   <!--<input class="zoomcheckbox" name="ledgerTypes" width="100" type="checkbox"
                      [(ngModel)]="typevendor" value="inventoryvendor" ng-checked="ledgerType='inventoryvendor'"
                      [ngModelOptions]="{standalone: true}"
                      (change)="ToggleLedgerType('inventoryvendor')">New Ledger from Inventory Vendor--> 
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Primary Group<sup>*</sup><b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.PRIMARY_GROUP' | translate }}<sup>*</sup><b>:</b></label>
                   <div class="col-md-8">
                     <select class="form-control" maxlength="30"
                             [(ngModel)]="CurrentLedger.PrimaryGroup"
                             formControlName="PrimaryGroup"
                             id="primarygroup"
                             (change)="PrimaryGroupChanged()"
-                            placeholder="primary group">
+                            [placeholder]="'ACCOUNTING.PRIMARY_GROUP' | translate">
                       <option *ngFor="let pg of primaryGroupList" [disabled]="(!typeledger)" value={{pg}}> {{pg}} </option>
                     </select>
-                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('PrimaryGroup','required') || !(CurrentLedger.IsDirty('PrimaryGroup'))">primary group is required</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('PrimaryGroup')" [hidden]="CurrentLedger.IsValidCheck('PrimaryGroup','maxlength')"> Length is not proper</span> </div>
+                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('PrimaryGroup','required') || !(CurrentLedger.IsDirty('PrimaryGroup'))">{{ 'ACCOUNTING.PRIMARY_GROUP_REQUIRED_ERR' | translate }}</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('PrimaryGroup')" [hidden]="CurrentLedger.IsValidCheck('PrimaryGroup','maxlength')"> {{ 'ACCOUNTING.LENGTH_NOT_PROPER' | translate }}</span> </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Chart of Account<sup>*</sup><b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.CHART_OF_ACCOUNT' | translate }}<sup>*</sup><b>:</b></label>
                   <div class="col-md-8">
                     <select class="form-control" maxlength="30"
                             [(ngModel)]="CurrentLedger.COA"
                             formControlName="COA"
                             id="COA"
                             (change)="COAChanged()"
-                            placeholder="COA">
+                            [placeholder]="'ACCOUNTING.CHART_OF_ACCOUNT' | translate">
                       <option *ngFor="let c of coaList" [disabled]="(!typeledger)" value={{c}}>{{c}}</option>
                     </select>
-                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('COA','required') || !(CurrentLedger.IsDirty('COA'))">COA is required</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('COA')" [hidden]="CurrentLedger.IsValidCheck('COA','maxlength')"> Length is not proper</span> </div>
+                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('COA','required') || !(CurrentLedger.IsDirty('COA'))">{{ 'ACCOUNTING.COA_REQUIRED_ERR' | translate }}</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('COA')" [hidden]="CurrentLedger.IsValidCheck('COA','maxlength')"> {{ 'ACCOUNTING.LENGTH_NOT_PROPER' | translate }}</span> </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Ledger Group <sup>*</sup><b>:</b> </label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.LEDGER_GROUP_NAME' | translate }} <sup>*</sup><b>:</b> </label>
                   <div class="col-md-8" *ngIf="typeledger">
                     <div class="div-relative">
                       <input danphe-auto-complete class="col-md-11"
                            [(ngModel)]="CurrentLedger.LedgerGroupName"
                            [source]="ledgergroupList"
-                           placeholder="Ledger GroupName"
+                           [placeholder]="'ACCOUNTING.LEDGER_GROUP_NAME' | translate"
                            display-property-name="LedgerGroupName"
                            value-property-name="LedgerGroupName"
                            (valueChanged)="AssignSelectedLedgerGroup()"
@@ -69,8 +69,8 @@
                            formControlName="LedgerGroupName" />
                       <!-- <a class="fa fa-question" (click)="AddLedgerGroupPopUp()" title="Unable to find Ledger Group ? Click to add."></a> -->
                     </div>
-                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('LedgerGroupName','required') || !(CurrentLedger.IsDirty('LedgerGroupName'))">Leadger Group Name is required</span><br />
-                    <span class="color-red" *ngIf="CurrentLedger.checkSelectedLedger==true">Please select Proper Ledger group</span> </div>
+                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('LedgerGroupName','required') || !(CurrentLedger.IsDirty('LedgerGroupName'))">{{ 'ACCOUNTING.LEDGER_GROUP_NAME_REQUIRED_ERR' | translate }}</span><br />
+                    <span class="color-red" *ngIf="CurrentLedger.checkSelectedLedger==true">{{ 'ACCOUNTING.SELECT_PROPER_LEDGER_GROUP' | translate }}</span> </div>
                   <!-- <div class="col-md-5" *ngIf="update || !typeledger">
                     <input danphe-auto-complete
                            [(ngModel)]="CurrentLedger.LedgerGroupName"
@@ -90,12 +90,12 @@
                 </div>
                 <div class="form-group col-md-6" > 
                   <!--As per enhancement-->
-                  <label class="control-label col-md-4">Ledger Name<sup>*</sup><b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.LEDGER_NAME_HEADER' | translate }}<sup>*</sup><b>:</b></label>
                   <div class="col-md-6" *ngIf="typeledger">
                     <input danphe-auto-complete
                            [(ngModel)]="CurrentLedger.LedgerName"
                            [source]="ledgerList"
-                           placeholder="Ledger Name"
+                           [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate"
                            display-property-name="LedgerName"
                            value-property-name="LedgerName"
                            (valueChanged)="CheckDuplicateLedger()"
@@ -104,19 +104,19 @@
                            onclick="this.select()"
                            style="width:100%;background-color: azure;"
                            formControlName="LedgerName" />
-                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('LedgerName','required') || !(CurrentLedger.IsDirty('LedgerName'))">Ledger Name is required</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('LedgerName')" [hidden]="CurrentLedger.IsValidCheck('LedgerName','maxlength')"> Length is not proper</span> </div>
+                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('LedgerName','required') || !(CurrentLedger.IsDirty('LedgerName'))">{{ 'ACCOUNTING.LEDGER_NAME_REQUIRED' | translate }}</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('LedgerName')" [hidden]="CurrentLedger.IsValidCheck('LedgerName','maxlength')"> {{ 'ACCOUNTING.LENGTH_NOT_PROPER' | translate }}</span> </div>
                   <div class="col-md-2">
                     <input class="form-control" maxlength="200" type="text" title="ledgerCode"
                            [(ngModel)]="ledgerCode"
                            [ngModelOptions]="{standalone: true}"
                            id="ledgercode" disabled
-                           placeholder="ledgercode" />
+                           [placeholder]="'ACCOUNTING.LEDGER_CODE' | translate" />
                   </div>
                   <div class="col-md-5" *ngIf="!typeledger">
                     <input danphe-auto-complete
                            [(ngModel)]="CurrentLedger.LedgerName"
                            [source]="phrmSupplierList"
-                           placeholder="Ledger Name"
+                           [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate"
                            display-property-name="SupplierName"
                            value-property-name="SupplierName"
                            (valueChanged)="CheckDuplicateSupplierLedger()"
@@ -125,7 +125,7 @@
                            onclick="this.select()"
                            style="width:100%;background-color: azure;"
                            formControlName="LedgerName" />
-                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('LedgerName','required') || !(CurrentLedger.IsDirty('LedgerName'))">Ledger Name is required</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('LedgerName')" [hidden]="CurrentLedger.IsValidCheck('LedgerName','maxlength')"> Length is not proper</span> </div>
+                    <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('LedgerName','required') || !(CurrentLedger.IsDirty('LedgerName'))">{{ 'ACCOUNTING.LEDGER_NAME_REQUIRED' | translate }}</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('LedgerName')" [hidden]="CurrentLedger.IsValidCheck('LedgerName','maxlength')"> {{ 'ACCOUNTING.LENGTH_NOT_PROPER' | translate }}</span> </div>
                 </div>
               
                 
@@ -165,24 +165,24 @@
                                   </div>
                               </div>-->
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Description<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.DESCRIPTION' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" maxlength="200" type="text" title="CurrentLedger.Description"
                            [(ngModel)]="CurrentLedger.Description"
                            [ngModelOptions]="{standalone: true}"
                            id="Description"
-                           placeholder="Description" />
+                           [placeholder]="'ACCOUNTING.DESCRIPTION' | translate" />
                   </div>
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Legal LedgerName<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.LEGAL_LEDGER_NAME' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" maxlength="200" type="text" title="newLedger.LegalLedgerName"
                                            [(ngModel)]="CurrentLedger.LegalLedgerName"
                                            [ngModelOptions]="{standalone: true}"
                                            id="LegalLedgerName"
-                                           placeholder="Legal LedgerName" />
+                                           [placeholder]="'ACCOUNTING.LEGAL_LEDGER_NAME' | translate" />
                   </div>
                 </div>
                 <!-- START: Vikas: 2 Apr 2020 -->
@@ -197,70 +197,70 @@
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Mobile Number<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.MOBILE_NUMBER' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" maxlength="200" type="number" title="CurrentLedger.MobileNo"
                              [(ngModel)]="CurrentLedger.MobileNo"
                              [ngModelOptions]="{standalone: true}"
                              id="MobileNo"
-                             placeholder="Mobile Number" />
+                             [placeholder]="'ACCOUNTING.MOBILE_NUMBER' | translate" />
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4"> Address <b>:</b></label>
+                  <label class="control-label col-md-4"> {{ 'ACCOUNTING.ADDRESS' | translate }} <b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" maxlength="200" type="text" title="CurrentLedger.Address"
                              [(ngModel)]="CurrentLedger.Address"
                              [ngModelOptions]="{standalone: true}"
                              id="Address"
-                             placeholder="Address" />
+                             [placeholder]="'ACCOUNTING.ADDRESS' | translate" />
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4"> Credit Period <b>:</b></label>
+                  <label class="control-label col-md-4"> {{ 'ACCOUNTING.CREDIT_PERIOD' | translate }} <b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" maxlength="200" type="text" title="CurrentLedger.CreditPeriod"
                              [(ngModel)]="CurrentLedger.CreditPeriod"
                              [ngModelOptions]="{standalone: true}"
                              id="CreditPeriod"
-                             placeholder="Credit Period" />
+                             [placeholder]="'ACCOUNTING.CREDIT_PERIOD' | translate" />
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4"> TDS Percent <b>:</b></label>
+                  <label class="control-label col-md-4"> {{ 'ACCOUNTING.TDS_PERCENT' | translate }} <b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" maxlength="200" type="number" title="CurrentLedger.TDSPercent"
                              [(ngModel)]="CurrentLedger.TDSPercent"
                              [ngModelOptions]="{standalone: true}"
                              id="TDSPercent"
-                             placeholder="TDS Percent" />
+                             [placeholder]="'ACCOUNTING.TDS_PERCENT' | translate" />
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Opening Balance<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.OPENING_BALANCE' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" maxlength="200" type="number" title="CurrentLedger.OpeningBalance"
                            [(ngModel)]="CurrentLedger.OpeningBalance"
                            [ngModelOptions]="{standalone: true}"
                            id="OpeningBalance"
-                           placeholder="Opening Balance" />
+                           [placeholder]="'ACCOUNTING.OPENING_BALANCE' | translate" />
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Landline No<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.LANDLINE_NO' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" maxlength="200" type="number" title="CurrentLedger.LandlineNo"
                              [(ngModel)]="CurrentLedger.LandlineNo"
                              [ngModelOptions]="{standalone: true}"
                              id="LandlineNo"
-                             placeholder="Landline No" />
+                             [placeholder]="'ACCOUNTING.LANDLINE_NO' | translate" />
                   </div>
                 </div>
                 
                 <!-- END: Vikas: 2 Apr 2020 -->
                
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Opening Balance Type<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.OPENING_BALANCE_TYPE' | translate }}<b>:</b></label>
                   <div class="col-md-7">
                     <div class="row">
                       <div class="col-md-6">
@@ -293,14 +293,14 @@
                       </div>
                     </div>
                     <span class="color-red font-sm" [hidden]="(CurrentLedger.IsValidCheck('Dr','required') || !(CurrentLedger.IsDirty('Dr')))
-                                              ||(CurrentLedger.IsValidCheck('Cr','required') || !(CurrentLedger.IsDirty('Cr')))">Opening Balance Type is required</span> 
+                                              ||(CurrentLedger.IsValidCheck('Cr','required') || !(CurrentLedger.IsDirty('Cr')))">{{ 'ACCOUNTING.OPENING_BALANCE_TYPE_REQUIRED' | translate }}</span> 
                                             </div>
                             <div class="col-md-12">
-                             <b>Opening Balance In Words:</b> &nbsp; <span *ngIf="CurrentLedger.OpeningBalance">{{ CurrentLedger.OpeningBalance | NumberInWords }}</span>
+                             <b>{{ 'ACCOUNTING.OPENING_BALANCE_IN_WORDS' | translate }}</b> &nbsp; <span *ngIf="CurrentLedger.OpeningBalance">{{ CurrentLedger.OpeningBalance | NumberInWords }}</span>
                                    </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Is Active <b>:</b> </label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.IS_ACTIVE' | translate }} <b>:</b> </label>
                   <div class="col-md-8">
                     <div class="input-group">
                       <div class="icheck-inline">
@@ -315,7 +315,7 @@
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Is Cost Center Applicable <b>:</b> </label>
+                  <label class="control-label col-md-4">{{ 'ACCOUNTING.IS_COST_CENTER_APPLICABLE' | translate }} <b>:</b> </label>
                   <div class="col-md-8">
                     <div class="input-group">
                       <div class="icheck-inline">
@@ -332,8 +332,8 @@
                 
               </div>
 				<div class="form-actions col-md-12">
-                  <input type="button" class="btn primary-btn" (click)="loading=true;AddLedger();" [disabled]="loading" value="Add Ledger" *ngIf="update==false" />
-                  <input type="button" class="btn primary-btn" (click)="loading=true;UpdateLedger();" [disabled]="loading" value="Update Ledger" *ngIf="update==true" />
+                  <input type="button" class="btn primary-btn" (click)="loading=true;AddLedger();" [disabled]="loading" [value]="'ACCOUNTING.ADD_LEDGER' | translate" *ngIf="update==false" />
+                  <input type="button" class="btn primary-btn" (click)="loading=true;UpdateLedger();" [disabled]="loading" [value]="'ACCOUNTING.UPDATE_LEDGER' | translate" *ngIf="update==true" />
                 </div>
             </div>
           </form>

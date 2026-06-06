@@ -1,16 +1,16 @@
 <div class="row" style="padding: 0 15px;">
   <div class="col-md-12" style="">
     <div style="background: #f0f0f0; padding: 5px 15px; border-radius: 5px !important; margin-bottom: 15px;">
-      <label style="color: black; font-size: 16px; margin: 0;"> <b> Diagnosis</b></label>
+      <label style="color: black; font-size: 16px; margin: 0;"> <b> {{ 'NURSING.DIAGNOSIS' | translate }}</b></label>
     </div>
 
     <div class="form-group row">
       <label class="control-label col-md-5">
-        Select Disease Category:
+        {{ 'NURSING.DISEASE_CATEGORY' | translate }}:
       </label>
       <div class="col-md-7">
         <select [ngModel]="SelectedReportingGroupId" (ngModelChange)="OnReportingGroupChange($event)" style="width: 100%;">
-          <option [value]="0">All</option>
+          <option [value]="0">{{ 'NURSING.ALL' | translate }}</option>
           <option *ngFor="let dep of ICD10ReportingGroupList; let i = index;" [value]="dep.ReportingGroupId">
             {{dep.ReportingGroupName}} </option>
         </select>
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group row">
       <label class="control-label col-md-5">
-        Select Diagnosis:
+        {{ 'NURSING.SELECT_DIAGNOSIS' | translate }}:
       </label>
       <div class="col-md-7">
         <input danphe-auto-complete autocomplete="off" class="form-control" [(ngModel)]="diagnosis" [source]="icd10List"

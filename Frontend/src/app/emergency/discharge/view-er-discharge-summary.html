@@ -1,4 +1,4 @@
-﻿<style>
+<style>
     th,
     td {
         border: 1px solid black;
@@ -41,28 +41,28 @@
                     </tr>
                     <tr>
                         <th colspan="2" style="text-align: center;background: #ececec;">
-                            <p style="font-weight: 700;">Discharge Summary</p>
+                            <p style="font-weight: 700;">{{ 'EMERGENCY.DISCHARGE_SUMMARY' | translate }}</p>
                         </th>
                     </tr>
                     <tr>
-                        <td colspan="1"><strong>Name: {{ERpatientSummary.EmergencyPatient.FullName}}</strong></td>
-                        <td colspan="1"><strong>Hospital Number: {{ERpatientSummary.EmergencyPatient.PatientCode}}</strong></td>
+                        <td colspan="1"><strong>{{ 'COMMON.NAME' | translate }}: {{ERpatientSummary.EmergencyPatient.FullName}}</strong></td>
+                        <td colspan="1"><strong>{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}: {{ERpatientSummary.EmergencyPatient.PatientCode}}</strong></td>
                     </tr>
                     <tr class="equal-width">
-                        <td colspan="1"><strong>Age: {{ERpatientSummary.EmergencyPatient.Age}}</strong></td>
-                        <td colspan="1"><strong>Sex: {{ERpatientSummary.EmergencyPatient.Gender}}</strong></td>
+                        <td colspan="1"><strong>{{ 'EMERGENCY.AGE' | translate }}: {{ERpatientSummary.EmergencyPatient.Age}}</strong></td>
+                        <td colspan="1"><strong>{{ 'EMERGENCY.GENDER' | translate }}: {{ERpatientSummary.EmergencyPatient.Gender}}</strong></td>
                     </tr>
                     <tr class="equal-width">
-                        <td colspan="1"><strong>Address: {{ERpatientSummary.EmergencyPatient.Address}}</strong></td>
-                        <td colspan="1"><strong>Care Persion Name: {{ERpatientSummary.EmergencyPatient.CareOfPerson}}</strong></td>
+                        <td colspan="1"><strong>{{ 'EMERGENCY.ADDRESS' | translate }}: {{ERpatientSummary.EmergencyPatient.Address}}</strong></td>
+                        <td colspan="1"><strong>{{ 'EMERGENCY.CARE_OF_PERSON' | translate }}: {{ERpatientSummary.EmergencyPatient.CareOfPerson}}</strong></td>
                     </tr>
                     <tr class="equal-width">
-                        <td colspan="1"><strong>Brought by: {{ERpatientSummary.EmergencyPatient.BroughtBy}}</strong></td>
-                        <td colspan="1"><strong>Relation With Patient: {{ERpatientSummary.EmergencyPatient.RelationWithPatient}}</strong></td>
+                        <td colspan="1"><strong>{{ 'EMERGENCY.BROUGHT_BY' | translate }}: {{ERpatientSummary.EmergencyPatient.BroughtBy}}</strong></td>
+                        <td colspan="1"><strong>{{ 'EMERGENCY.RELATION_WITH_PATIENT' | translate }}: {{ERpatientSummary.EmergencyPatient.RelationWithPatient}}</strong></td>
                     </tr>
                     <tr>
-                        <td colspan="1"><strong>Mobile No.: {{ERpatientSummary.EmergencyPatient.ContactNo}}</strong></td>
-                        <td colspan="1"><strong>Visit Code: {{ERpatientSummary.VisitCode}}</strong></td>
+                        <td colspan="1"><strong>{{ 'EMERGENCY.CONTACT_NUMBER' | translate }}: {{ERpatientSummary.EmergencyPatient.ContactNo}}</strong></td>
+                        <td colspan="1"><strong>{{ 'EMERGENCY.VISIT_CODE' | translate }}: {{ERpatientSummary.VisitCode}}</strong></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,7 +70,7 @@
                         <td colspan="2">
                             <!--*ngIf="ERpatientSummary.Vitals"-->
 
-                            <p style="text-align: center; width: 100%;margin: 0px 0px 5px 0px;"><span style="font-weight: 700;text-decoration: underline;">Vitals on Arrival</span></p>
+                            <p style="text-align: center; width: 100%;margin: 0px 0px 5px 0px;"><span style="font-weight: 700;text-decoration: underline;">{{ 'EMERGENCY.VITALS_ON_ARRIVAL' | translate }}</span></p>
 
                             <table style="width: 100%; border-collapse: collapse; border: 1px solid;margin-bottom: 10px;">
                                 <tr>
@@ -89,14 +89,14 @@
                                 <tr>
                                     <!--Chief Complaint-->
                                     <td>
-                                        <p class="discharg-hd">Chief Complaints:</p>
+                                        <p class="discharg-hd">{{ 'EMERGENCY.CHIEF_COMPLAINTS' | translate }}:</p>
                                         <p style="white-space:pre-line;margin: 0;">{{DischargeSummary.ChiefComplaints}}</p>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                        <p class="discharg-hd">O/E:</p>
+                                        <p class="discharg-hd">{{ 'EMERGENCY.OE' | translate }}:</p>
                                         <p style="white-space:pre-line;margin: 0;">{{DischargeSummary.OnExamination}}</p>
                                     </td>
                                 </tr>
@@ -106,11 +106,10 @@
                             <table class="no-border" style="width: 100%; border-collapse: collapse;">
                                 <tr *ngIf="LabOrdersList.length || RadOrderList.length || OthersList.length">
                                     <td>
-                                        <p class="discharg-hd">Investigations:</p>
+                                        <p class="discharg-hd">{{ 'EMERGENCY.INVESTIGATIONS' | translate }}:</p>
                                         <div class="p-relative" style="margin-left:5px !important;">
 
-                                            <strong style="display: block;" *ngIf="labResultList"> Lab
-                                                Tests</strong>
+                                            <strong style="display: block;" *ngIf="labResultList"> {{ 'EMERGENCY.LAB' | translate }}</strong>
                                             <div class="lab-test-list" *ngIf="labResultList">
 
                                                 <div *ngIf="labWithResult">
@@ -130,8 +129,7 @@
                                                     </ol>
                                                 </div>
                                                 <div *ngIf="pendingLabTest">
-                                                    <strong style="display: block;"> Pending Lab
-                                                        Tests</strong>
+                                                    <strong style="display: block;"> {{ 'EMERGENCY.PENDING_LAB_TESTS' | translate }}</strong>
                                                     <ol>
                                                         <ng-container *ngFor="let ptst of pendingLabTest;">
                                                             <li>
@@ -145,11 +143,11 @@
 
                                         </div>
                                         <div style="padding-left: 8px;margin-top: 5px;" *ngIf="RadOrderList.length">
-                                            <strong>Imaging:</strong> &nbsp;
+                                            <strong>{{ 'EMERGENCY.IMAGING' | translate }}</strong> &nbsp;
                                             <span *ngFor="let radorder of RadOrderList; let i= index;">{{radorder.InvestigationName}}&nbsp;<span *ngIf="i+1 != RadOrderList.length">,</span></span>
                                         </div>
                                         <div style="padding-left: 8px;margin-top: 5px;" *ngIf="OthersList.length">
-                                            <strong>Others:</strong> &nbsp;
+                                            <strong>{{ 'EMERGENCY.OTHERS' | translate }}:</strong> &nbsp;
                                             <span style="margin-bottom: 10px;" *ngFor="let other of OthersList; let j = index;">
                                                 {{other.InvestigationName}}&nbsp;<span *ngIf="j+1 != OthersList.length">,</span>
                                             </span>
@@ -158,13 +156,13 @@
                                 </tr>
                                 <tr *ngIf="DischargeSummary.TreatmentInER">
                                     <td>
-                                        <p class="discharg-hd">Treatment in ER:</p>
+                                        <p class="discharg-hd">{{ 'EMERGENCY.TREATMENT_IN_ER' | translate }}:</p>
                                         <p style="white-space:pre-line;margin: 0;">{{DischargeSummary.TreatmentInER}}</p>
                                     </td>
                                 </tr>
                                 <tr *ngIf="allAdvice.length">
                                     <td>
-                                        <p class="discharg-hd">Advice on discharge:</p>
+                                        <p class="discharg-hd">{{ 'EMERGENCY.ADVICE_ON_DISCHARGE' | translate }}:</p>
                                         <div style="margin-bottom: 4px;" *ngFor="let adv of allAdvice; let j = index;">
                                             <p style="margin: 0;"><span>{{j+1}}</span> &nbsp; {{adv.value}}</p>
                                         </div>
@@ -175,7 +173,7 @@
                     </tr>
                     <tr class="equal-width">
                         <td colspan="1">
-                            <p style="margin: 0;font-weight:700;float: left;">Provisional Diagnosis:&nbsp;</p>
+                            <p style="margin: 0;font-weight:700;float: left;">{{ 'EMERGENCY.PROVISIONAL_DIAGNOSIS' | translate }}:&nbsp;</p>
                             <p *ngIf="!DischargeSummary.ProvisionalDiagnosis" style="white-space:pre-line;margin: 0;"></p>
                             <p *ngIf="DischargeSummary.ProvisionalDiagnosis" style="white-space:pre-line;margin: 0;">{{DischargeSummary.ProvisionalDiagnosis}}</p>
                         </td>
@@ -183,18 +181,18 @@
                     </tr>
                     <tr class="equal-width">
                         <td colspan="1">
-                            Discharge Type:
-                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='lama'">LAMA</span>
-                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='admitted'">Admitted</span>
-                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='transferred'">Transferred</span>
-                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='discharged'">Discharged</span>
-                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='death'">Death</span>
+                            {{ 'EMERGENCY.DISCHARGE_TYPE' | translate }}:
+                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='lama'">{{ 'EMERGENCY.LAMA' | translate }}</span>
+                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='admitted'">{{ 'EMERGENCY.ADMIT' | translate }}</span>
+                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='transferred'">{{ 'EMERGENCY.TRANSFER' | translate }}</span>
+                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='discharged'">{{ 'EMERGENCY.DISCHARGE' | translate }}</span>
+                            <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='death'">{{ 'EMERGENCY.DEATH' | translate }}</span>
                         </td>
-                        <td colspan="1">Time: {{DischargeSummary.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
+                        <td colspan="1">{{ 'COMMON.TIME' | translate }}: {{DischargeSummary.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
                     </tr>
                     <tr class="equal-width">
-                        <td colspan="1">Doctor Name:&nbsp; {{DischargeSummary.DoctorName}}</td>
-                        <td colspan="1">DMO:&nbsp; {{DischargeSummary.MedicalOfficer}}</td>
+                        <td colspan="1">{{ 'EMERGENCY.DOCTOR_NAME' | translate }}:&nbsp; {{DischargeSummary.DoctorName}}</td>
+                        <td colspan="1">{{ 'EMERGENCY.DMO' | translate }}:&nbsp; {{DischargeSummary.MedicalOfficer}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -202,8 +200,8 @@
         </div>
     </div>
     <div class="col-md-12" style="margin-top: 15px;text-align: center;">
-        <button style="width: auto;display: inline-block;margin-right: 15px;" class="btn btn-blue blue" (click)="EditDischargeSummary()">Edit Discharge Summary</button>
+        <button style="width: auto;display: inline-block;margin-right: 15px;" class="btn btn-blue blue" (click)="EditDischargeSummary()">{{ 'EMERGENCY.EDIT_DISCHARGE_SUMMARY' | translate }}</button>
 
-        <button style="width: auto;display: inline-block;margin-left: 15px;background: #47afaf;color: #fff;" class="btn btn-blue" (click)="PrintDischargeSummary()">Print Discharge Summary</button>
+        <button style="width: auto;display: inline-block;margin-left: 15px;background: #47afaf;color: #fff;" class="btn btn-blue" (click)="PrintDischargeSummary()">{{ 'EMERGENCY.PRINT_DISCHARGE_SUMMARY' | translate }}</button>
     </div>
 </div>

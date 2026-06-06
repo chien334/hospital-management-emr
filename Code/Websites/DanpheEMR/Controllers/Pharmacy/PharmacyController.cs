@@ -1,4 +1,4 @@
-﻿using DanpheEMR.CommonTypes;
+using DanpheEMR.CommonTypes;
 using DanpheEMR.Core;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.Core.Parameters;
@@ -2985,7 +2985,7 @@ namespace DanpheEMR.Controllers
                                                                           where (requisition.RequisitionStatus == "partial" ||
                                                                           requisition.RequisitionStatus == "active") && requisition.RequisitionId == requisitionId
                                                                           select requisition)
-                                                                .Include(rItems => rItems.RequisitionItems.Select(i => i.Item))
+                                                                .Include(rItems => rItems.RequisitionItems).ThenInclude(i => i.Item)
                                                                 .ToList();
 
 

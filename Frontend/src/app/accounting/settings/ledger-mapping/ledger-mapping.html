@@ -4,7 +4,7 @@
       <li
           [rbac-permission]="{'name':'accounting-create-billing-item-ledger-button-permission','actionOnInvalid':'hidden'}">
         <a [ngClass]="{'a-tab-active':ledgerType=='billingincomeledger'}"
-           (click)="ToggleLedgerType('billingincomeledger')">Billing Ledgers</a>
+           (click)="ToggleLedgerType('billingincomeledger')">{{ 'ACCOUNTING.BILLING_LEDGERS' | translate }}</a>
       </li>
       <!-- <li
           [rbac-permission]="{'name':'accounting-create-billing-item-ledger-button-permission','actionOnInvalid':'hidden'}">
@@ -14,41 +14,39 @@
       <li
           [rbac-permission]="{'name':'accounting-create-phrm-supplier-ledger-button-permission','actionOnInvalid':'hidden'}">
         <a [ngClass]="{'a-tab-active':ledgerType=='pharmacysupplier'}"
-           (click)="ToggleLedgerType('pharmacysupplier')">Pharmacy Supplier</a>
+           (click)="ToggleLedgerType('pharmacysupplier')">{{ 'ACCOUNTING.PHARMACY_SUPPLIER' | translate }}</a>
       </li>
       <li
           [rbac-permission]="{'name':'accounting-create-consultant-credit-ledger-button-permission','actionOnInvalid':'hidden'}">
-        <a [ngClass]="{'a-tab-active':ledgerType=='consultant'}" (click)="ToggleLedgerType('consultant')">Consultant
-          (Credit A/C)</a>
+        <a [ngClass]="{'a-tab-active':ledgerType=='consultant'}" (click)="ToggleLedgerType('consultant')">{{ 'ACCOUNTING.CONSULTANT_CREDIT_AC' | translate }}</a>
       </li>
       <li
           [rbac-permission]="{'name':'accounting-create-credit-organization-ledger-button-permission','actionOnInvalid':'hidden'}">
         <a [ngClass]="{'a-tab-active':ledgerType=='creditorganization'}"
-           (click)="ToggleLedgerType('creditorganization')"> Credit Organizations</a>
+           (click)="ToggleLedgerType('creditorganization')"> {{ 'ACCOUNTING.CREDIT_ORGANISATIONS' | translate }}</a>
       </li>
       <li
           [rbac-permission]="{'name':'accounting-create-inventory-vendor-ledger-button-permission','actionOnInvalid':'hidden'}">
         <a [ngClass]="{'a-tab-active':ledgerType=='inventoryvendor'}"
-           (click)="ToggleLedgerType('inventoryvendor')">Inventory Vendor</a>
+           (click)="ToggleLedgerType('inventoryvendor')">{{ 'ACCOUNTING.INVENTORY_VENDOR' | translate }}</a>
       </li>
       <li
           [rbac-permission]="{'name':'accounting-create-inventory-subcategory-ledger-button-permission','actionOnInvalid':'hidden'}">
         <a [ngClass]="{'a-tab-active':ledgerType=='inventorysubcategory'}"
-           (click)="ToggleLedgerType('inventorysubcategory')">Inventory SubStore</a>
+           (click)="ToggleLedgerType('inventorysubcategory')">{{ 'ACCOUNTING.INVENTORY_SUBSTORE' | translate }}</a>
       </li>
       <li>
-        <a [ngClass]="{'a-tab-active':ledgerType=='paymentmodes'}" (click)="ToggleLedgerType('paymentmodes')">Payment
-          Modes</a>
+        <a [ngClass]="{'a-tab-active':ledgerType=='paymentmodes'}" (click)="ToggleLedgerType('paymentmodes')">{{ 'ACCOUNTING.PAYMENT_MODES' | translate }}</a>
       </li>
       <li class="dropdown" style="display:inline-block;"> <a
            class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          More... <span class="caret"></span> </a>
+          {{ 'ACCOUNTING.MORE' | translate }} <span class="caret"></span> </a>
         <ul class="dropdown-menu">
           <li class="hr-ddlCstm">
-            <a (click)="ToggleLedgerType('bankreconciliationcategory')">Bank Reconciliation Category</a>
+            <a (click)="ToggleLedgerType('bankreconciliationcategory')">{{ 'ACCOUNTING.BANK_RECONCILIATION_CATEGORY' | translate }}</a>
           </li>
           <li class="hr-ddlCstm">
-            <a (click)="ToggleLedgerType('medicaretypes')">Medicare Types</a>
+            <a (click)="ToggleLedgerType('medicaretypes')">{{ 'ACCOUNTING.MEDICARE_TYPES' | translate }}</a>
           </li>
         </ul>
       </li>

@@ -24,16 +24,16 @@
         <div [ngClass]="'topsec-' + hospitalCode" class="stkrtopsection">
           <div>
             <div> 
-              <span> Date: {{EchsStickerDetails.VisitDate}}&nbsp;{{localDateTime}} - {{EchsStickerDetails.VisitTime}} </span>
+              <span> {{ 'STICKERS.DATE' | translate }}: {{EchsStickerDetails.VisitDate}}&nbsp;{{localDateTime}} - {{EchsStickerDetails.VisitTime}} </span>
               <div>
                 <span style="display:inline-block;">
-                  Hosp. No. : <strong> {{EchsStickerDetails.PatientCode}} </strong>
+                  {{ 'STICKERS.HOSPITAL_NO' | translate }} : <strong> {{EchsStickerDetails.PatientCode}} </strong>
                 </span>
-                <span style="float:right;padding-right: 5px;" *ngIf="EchsStickerDetails.IpNumber"> IpNumber : {{EchsStickerDetails.IpNumber}} </span>
+                <span style="float:right;padding-right: 5px;" *ngIf="EchsStickerDetails.IpNumber"> {{ 'STICKERS.IP_NUMBER' | translate }} : {{EchsStickerDetails.IpNumber}} </span>
               </div>
 
               <div>
-                <div style="display:inline-block;vertical-align: top;"> Name&nbsp;:&nbsp; </div>
+                <div style="display:inline-block;vertical-align: top;"> {{ 'STICKERS.NAME' | translate }}&nbsp;:&nbsp; </div>
                 <div style="display:inline-block;font-weight:bold;text-transform:uppercase">
                   <div style="display:inline-block;"> {{ EchsStickerDetails.Rank ? EchsStickerDetails.Rank.substring(0,3) + "." : "" }} {{EchsStickerDetails.PatientName}} &nbsp;&nbsp;&nbsp; </div>
                   <div style="display:inline-block;font-style:italic;"> {{ageSex}} </div>
@@ -43,10 +43,10 @@
               
               <div>
                 <div *ngIf="EchsStickerDetails.CountryName === CountryNepal" style="width: 80%">
-                  Address: <span *ngIf = "showMunicipality && EchsStickerDetails.MunicipalityName">{{EchsStickerDetails.MunicipalityName}}<span *ngIf="EchsStickerDetails.WardNumber">-{{EchsStickerDetails.WardNumber}}</span>, </span>{{EchsStickerDetails.CountrySubDivisionName}}
+                  {{ 'STICKERS.ADDRESS' | translate }}: <span *ngIf = "showMunicipality && EchsStickerDetails.MunicipalityName">{{EchsStickerDetails.MunicipalityName}}<span *ngIf="EchsStickerDetails.WardNumber">-{{EchsStickerDetails.WardNumber}}</span>, </span>{{EchsStickerDetails.CountrySubDivisionName}}
                 </div>
                 <div style="width: 80%" *ngIf="EchsStickerDetails.CountryName !== CountryNepal">
-                  Address: <span *ngIf="EchsStickerDetails.Address">{{EchsStickerDetails.Address}}, </span>{{EchsStickerDetails.CountrySubDivisionName}}, {{EchsStickerDetails.CountryName}}
+                  {{ 'STICKERS.ADDRESS' | translate }}: <span *ngIf="EchsStickerDetails.Address">{{EchsStickerDetails.Address}}, </span>{{EchsStickerDetails.CountrySubDivisionName}}, {{EchsStickerDetails.CountryName}}
                 </div>
 
                 <!-- <div *ngIf="showDateOfBirth">
@@ -55,31 +55,31 @@
               </div>
               
               <div>
-                <div style="text-transform:capitalize "> Department : <b>{{EchsStickerDetails.DepartmentName}}</b>
-                  <span style="float:right;padding-right: 5px;" *ngIf="EchsStickerDetails.RoomNo">Room No : {{EchsStickerDetails.RoomNo}}
+                <div style="text-transform:capitalize "> {{ 'STICKERS.DEPARTMENT' | translate }} : <b>{{EchsStickerDetails.DepartmentName}}</b>
+                  <span style="float:right;padding-right: 5px;" *ngIf="EchsStickerDetails.RoomNo">{{ 'STICKERS.ROOM_NO' | translate }} : {{EchsStickerDetails.RoomNo}}
                   </span>
                 </div>
               </div>
 
               <div>
                 <b style="text-transform:uppercase">
-                  Doc: {{EchsStickerDetails.DoctorName}}
+                  {{ 'STICKERS.DOC' | translate }}: {{EchsStickerDetails.DoctorName}}
                 </b>
               </div>
 
               <div>
-                <span style="display:inline-block;" *ngIf="EchsStickerDetails.Scheme"> Scheme : {{EchsStickerDetails.Scheme}} </span>
+                <span style="display:inline-block;" *ngIf="EchsStickerDetails.Scheme"> {{ 'COMMON.SCHEME' | translate }} : {{EchsStickerDetails.Scheme}} </span>
 
                 <span style="float:right;padding-right: 5px;"  *ngIf="EchsStickerDetails.Rank">
-                  Rank : {{EchsStickerDetails.Rank}}
+                  {{ 'STICKERS.RANK' | translate }} : {{EchsStickerDetails.Rank}}
                 </span>
               </div>
 
               <div>
-                <span style="display:inline-block;"> ECHS No. : {{EchsStickerDetails.PolicyNo}} </span>
+                <span style="display:inline-block;"> {{ 'STICKERS.ECHS_NO' | translate }} : {{EchsStickerDetails.PolicyNo}} </span>
 
                 <span style="float:right;padding-right: 5px;"  *ngIf="EchsStickerDetails.Rank">
-                  Claim Code : {{SelectedVisitDetails.ClaimCode}}
+                  {{ 'STICKERS.CLAIM_CODE' | translate }} : {{SelectedVisitDetails.ClaimCode}}
                 </span>
               </div>
 
@@ -92,10 +92,10 @@
                 <span style="text-transform:uppercase;font-weight:bold;"> {{EchsStickerDetails.AppointmentType}} </span>
               </div>
               <div>
-                <span> User&nbsp;: {{EchsStickerDetails.User}} </span>
+                <span> {{ 'STICKERS.USER' | translate }}&nbsp;: {{EchsStickerDetails.User}} </span>
               </div>
               <div *ngIf="EnableShowTicketPrice && EchsStickerDetails.OpdTicketCharge>0" style="font-weight: bold;">
-                <span> Ticket Charge: {{coreService.currencyUnit}} {{EchsStickerDetails.OpdTicketCharge}}</span>
+                <span> {{ 'STICKERS.TICKET_CHARGE' | translate }}: {{coreService.currencyUnit}} {{EchsStickerDetails.OpdTicketCharge}}</span>
               </div>
             </div>
 
@@ -109,7 +109,7 @@
 
       <div style="text-align:center;z-index: 4;position: relative;margin-bottom: 25px; margin-top: 15px;">
         <button class="btn green btn-success" value="" (click)="print()" id="btnPrintOpdSticker" [disabled]="coreService.loading">
-          <span>Print</span>&nbsp;&nbsp;
+          <span>{{ 'COMMON.PRINT' | translate }}</span>&nbsp;&nbsp;
           &nbsp;&nbsp; <i class="glyphicon glyphicon-print"></i>
         </button>
       </div>

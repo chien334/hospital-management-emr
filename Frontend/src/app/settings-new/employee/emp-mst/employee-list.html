@@ -4,7 +4,7 @@
 </div>
 <br />-->
 
-<a feature="button" class="btn blue bordered" (click)="AddEmployee()"><i class="fa fa-plus"></i>Add Employee</a>
+<a feature="button" class="btn blue bordered" (click)="AddEmployee()"><i class="fa fa-plus"></i>{{ 'EMPLOYEE.ADD_EMPLOYEE' | translate }}</a>
 <employee-add *ngIf="showAddPage"
               [selected-employee]="selectedEmployee"
               (callback-add)="CallBackAdd($event)"></employee-add>

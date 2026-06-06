@@ -6,7 +6,7 @@
           {{currentPatInfo.Gender}})</strong></h5>
     </div>
     <div class="col-md-4">
-      <h5 *ngIf="currentPatInfo && currentPatInfo.PerformerName"><strong> Doctor Name: {{currentPatInfo.PerformerName}}</strong> </h5>
+      <h5 *ngIf="currentPatInfo && currentPatInfo.PerformerName"><strong> {{ 'NURSING.ASSIGNED_DOCTOR' | translate }}: {{currentPatInfo.PerformerName}}</strong> </h5>
     </div>
   </div>
   <div class="col-md-12" style="padding:0px!important;">
@@ -18,18 +18,18 @@
       <!--End: Vitals and add vital selector -->
 
       <div class=" col-md-4">
-        <h3 style="margin-bottom: 0;">Chief Complaint:</h3>
+        <h3 style="margin-bottom: 0;">{{ 'NURSING.CHIEF_COMPLAINT' | translate }}:</h3>
         <div *ngFor="let complaint of chiefComplaints; let i=index;" class="single-complaint flex-container">
           <textarea style="flex-basis: 80%;" class="flex-container" [(ngModel)]="complaint.Value"></textarea>
           <button *ngIf="chiefComplaints.length > 1" style="height: 29px;" (click)="removeComplaint(i)" class="btn btn-danger"><i
                class="fa fa-close"></i></button>
         </div>
         <div>
-          <button (click)="AddNewComplaintRow()" class="btn blue">Add New Complaint</button>
+          <button (click)="AddNewComplaintRow()" class="btn blue">{{ 'NURSING.ADD_NEW_COMPLAINT' | translate }}</button>
         </div>
 
         <div class="margin-top-30">
-          <h4 style="margin-bottom: 0;">Comments:</h4>
+          <h4 style="margin-bottom: 0;">{{ 'NURSING.COMMENTS' | translate }}:</h4>
           <div class="flex-container">
             <textarea style="flex-basis: 75%;" [(ngModel)]="comments.Value"></textarea>
           </div>
@@ -46,12 +46,12 @@
 
     <div class="panel-footer text-right" style="margin-top:30px !important;">
       <button [disabled]="loading" class="btn primary-btn" *ngIf="!isEdit" (click)="loading=true;triage()">
-        Add Triage
+        {{ 'NURSING.ADD_TRIAGE' | translate }}
       </button>
       <button [disabled]="loading" class="btn primary-btn" *ngIf="isEdit" (click)="loading=true;triage()">
-        Update Triage
+        {{ 'NURSING.UPDATE_TRIAGE' | translate }}
       </button>
-      <button class="btn danger-btn" (click)="discard()">Discard</button>
+      <button class="btn danger-btn" (click)="discard()">{{ 'COMMON.DISCARD' | translate }}</button>
     </div>
   </div>
 </div>

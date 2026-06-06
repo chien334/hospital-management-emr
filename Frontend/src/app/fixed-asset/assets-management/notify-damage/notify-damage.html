@@ -4,8 +4,8 @@
       <div class="col-md-6 col-md-offset-3">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>{{MarkDamage?"Record Asset Damage":"Undo Asset Damage"}}</span></h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span>{{ (MarkDamage ? 'FIXED_ASSETS.RECORD_ASSET_DAMAGE' : 'FIXED_ASSETS.UNDO_ASSET_DAMAGE') | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <form class="form-horizontal hm-form" [formGroup]="selectedAsset.FAStockValidators">
             <div class="form-body row  clearfix">
@@ -13,32 +13,32 @@
                 <div class="row clearfix">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label class="control-label col-md-5">Item Code<b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'FIXED_ASSETS.ITEM_CODE' | translate }}<b>:</b></label>
                       <div class="col-md-7">
                         <label>{{selectedAsset?.ItemCode}}</label>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-5">Asset Name<b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'FIXED_ASSETS.ASSET_NAME' | translate }}<b>:</b></label>
                       <div class="col-md-7">
                         <label>{{selectedAsset?.ItemName}}</label>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-5">Bar Code<b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'FIXED_ASSETS.BAR_CODE' | translate }}<b>:</b></label>
                       <div class="col-md-7">
                         <label>{{selectedAsset?.BarCodeNumber}}</label>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-5">Remarks <sup><strong>*</strong></sup><b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'FIXED_ASSETS.REMARKS' | translate }} <sup><strong>*</strong></sup><b>:</b></label>
                       <div class="col-md-7">
                         <textarea class="form-control" type="text"
                                   [(ngModel)]="selectedAsset.DamagedRemarks"
                                   formControlName="DamagedRemarks"
-                                  placeholder="Enter Remarks.." rows="4">
+                                  [placeholder]="'FIXED_ASSETS.ENTER_REMARKS_PLACEHOLDER' | translate" rows="4">
                         </textarea>
-                        <span Class="color-red font-sm" [hidden]="selectedAsset.IsValidCheck('DamagedRemarks','required') || !(selectedAsset.IsDirty('DamagedRemarks'))">Remarks is Required</span>
+                        <span Class="color-red font-sm" [hidden]="selectedAsset.IsValidCheck('DamagedRemarks','required') || !(selectedAsset.IsDirty('DamagedRemarks'))">{{ 'FIXED_ASSETS.REMARKS_REQUIRED' | translate }}</span>
 
                         <!--selectedAsset.IsValidCheck('DamagedRemarks','required') ||-->
                       </div>
@@ -53,7 +53,7 @@
             </div>
             <div class="panel-footer text-right col-mg-12">
               <button class="btn primary-btn" (click)="UpdateAssetDamageStatus()" [disabled]="loading?true:null">
-                {{MarkDamage?"Mark Asset as Damaged":"Undo Damage"}}
+                {{ (MarkDamage ? 'FIXED_ASSETS.MARK_ASSET_AS_DAMAGED' : 'FIXED_ASSETS.UNDO_DAMAGE') | translate }}
               </button>
             </div>
           </form>

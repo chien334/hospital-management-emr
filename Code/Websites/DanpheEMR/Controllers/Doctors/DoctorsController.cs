@@ -1,4 +1,4 @@
-﻿using DanpheEMR.CommonTypes;
+using DanpheEMR.CommonTypes;
 using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
@@ -579,7 +579,7 @@ namespace DanpheEMR.Controllers
 
             patientModel = (from pat in _patientDbContext.Patients
                             where pat.PatientId == patientId
-                            select pat).Include(a => a.Visits.Select(v => v.Vitals))
+                            select pat).Include(a => a.Visits).ThenInclude(v => v.Vitals)
                              .Include(a => a.Problems)
                              .Include(a => a.Allergies)
                              .Include(a => a.Addresses)

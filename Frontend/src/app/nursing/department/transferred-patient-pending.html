@@ -5,7 +5,7 @@
         <div class="left">
           <a class="label label-default btn btn-default" data-bs-toggle="collapse" href="#toBeReceivedPatGrid"
             role="button" aria-expanded="false" aria-controls="toBeReceivedPatGrid"><i class="fa fa-hourglass"></i>
-            Pending Transfer List</a>
+            {{ 'NURSING.PENDING_TRANSFER_LIST' | translate }}</a>
         </div>
       </div>
     </div>
@@ -26,13 +26,13 @@
       <div class="modelbox-div">
         <div class="modelbox-header">
           <h4 class="margin-0-vr text-warning text-center">
-            <strong>Transferred Patient Undo Window</strong>
+            <strong>{{ 'NURSING.UNDO_TRANSFER_WINDOW' | translate }}</strong>
           </h4>
         </div>
         <div class="modelbox-body">
           <div class="row">
             <!-- Body Content-->
-            <p style="margin-bottom: 10px;">Remarks <span style="color:green;"> [ required ]</span></p>
+            <p style="margin-bottom: 10px;">{{ 'COMMON.REMARKS' | translate }} <span style="color:green;"> {{ 'COMMON.REQUIRED_BRACKET' | translate }}</span></p>
             <textarea style="width: 100%;" [(ngModel)]="remarks"></textarea>
           </div>
         </div>
@@ -40,10 +40,10 @@
           <div class="all-buttons text-right">
             <button [disabled]="!remarks || !remarks.trim().length > 0" type="button"
               class="btn btn-primary btn-sm margin-7-hr" (click)="UndoTransfer();showUndoPopUp=false">
-              Proceed Transfer Undo
+              {{ 'NURSING.PROCEED_TRANSFER_UNDO' | translate }}
             </button>
             <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="ClosePopUp()">
-              Cancel
+              {{ 'COMMON.CANCEL' | translate }}
             </button>
           </div>
         </div>

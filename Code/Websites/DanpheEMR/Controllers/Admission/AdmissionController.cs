@@ -3154,70 +3154,117 @@ namespace DanpheEMR.Controllers
 
         private object GetDischargeSummary(int patientVisitId)
         {
-            IQueryable<DischargeSummaryConsultantViewModel> consultantDetails =
-                        from dsc in _admissionDbContext.DischargeSummaryConsultant
-                        join emp in _admissionDbContext.Employees on dsc.ConsultantId equals emp.EmployeeId
-                        select new DischargeSummaryConsultantViewModel
-                        {
-                            dischargeSummaryId = dsc.DischargeSummaryId,
-                            consultantId = emp.EmployeeId,
-                            consultantName = emp.FullName,
-                            consultantNMC = emp.MedCertificationNo,
-                            consultantLongSignature = emp.LongSignature,
-                            consultantSignImgPath = string.IsNullOrEmpty(emp.SignatoryImageName) ? null : "\\fileuploads\\EmployeeSignatures\\" + emp.SignatoryImageName,
-                            consultantDepartmentName = emp.Department.DepartmentName
-                        };
-
-            var summary = (from dis in _admissionDbContext.DischargeSummary
-                           join visit in _admissionDbContext.Visits on dis.PatientVisitId equals visit.PatientVisitId
-                           join consultant in consultantDetails on dis.DischargeSummaryId equals consultant.dischargeSummaryId into consultantsGrouped
-                           join incharge in _admissionDbContext.Employees on dis.DoctorInchargeId equals incharge.EmployeeId into inchargeDrTemp
-                           from inchargeLJ in inchargeDrTemp.DefaultIfEmpty()
+            var summaryData = (from dis in _admissionDbContext.DischargeSummary
+                               join visit in _admissionDbContext.Visits on dis.PatientVisitId equals visit.PatientVisitId
+                               join incharge in _admissionDbContext.Employees on dis.DoctorInchargeId equals incharge.EmployeeId into inchargeDrTemp
+                               from inchargeLJ in inchargeDrTemp.DefaultIfEmpty()
                                //Ashim: 15Dec2017 : ResidenceDr is not mandatory
-                           join residence in _admissionDbContext.Employees on dis.ResidenceDrId equals residence.EmployeeId into residenceDrTemp
-                           from residenceDr in residenceDrTemp.DefaultIfEmpty()
+                               join residence in _admissionDbContext.Employees on dis.ResidenceDrId equals residence.EmployeeId into residenceDrTemp
+                               from residenceDr in residenceDrTemp.DefaultIfEmpty()
                                //since anaesthist is a non-mandatory field, there might be null value sometimes.
                                // below logic is equivalent to a Left join, so it takes the anesthiest Only if it's present.
-                           join anaesthetists in _admissionDbContext.Employees on dis.AnaesthetistsId equals anaesthetists.EmployeeId into anaesthistTemp
-                           from anesthist in anaesthistTemp.DefaultIfEmpty()
-                           join disType in _admissionDbContext.DischargeType on dis.DischargeTypeId equals disType.DischargeTypeId
-                           join depart in _admissionDbContext.Department on visit.DepartmentId equals depart.DepartmentId
-                           join pat in _admissionDbContext.Patients on visit.PatientId equals pat.PatientId
-                           join med in _admissionDbContext.DischargeSummaryMedications on dis.DischargeSummaryId equals med.DischargeSummaryId into medList
-                           where dis.PatientVisitId == patientVisitId
-                           //&& medList.Any(a => a.IsActive == true)
-                           select new
-                           {
-                               DischargeSummary = dis,
-                               Medications = medList.Where(a => a.IsActive == true).OrderBy(a => a.OldNewMedicineType),
-                               VisitCode = visit.VisitCode,
-                               BabyBirthDetails = _admissionDbContext.BabyBirthDetails.Where(a => a.DischargeSummaryId == dis.DischargeSummaryId).Select(a => a).ToList(),
-                               DischargeType = disType.DischargeTypeName,
-                               Certificate = _admissionDbContext.PatientCertificate.Where(a => a.DischargeSummaryId == dis.DischargeSummaryId).Select(a => a).ToList(),
-                               DrInchargeNMC = (string.IsNullOrEmpty(inchargeLJ.MedCertificationNo) ? "" : inchargeLJ.MedCertificationNo),
-                               DrInchargeLongSignature = (string.IsNullOrEmpty(inchargeLJ.LongSignature) ? null : inchargeLJ.LongSignature),
-                               DrInchargeSignImgPath = inchargeLJ != null ? string.IsNullOrEmpty(inchargeLJ.SignatoryImageName) ? null : "\\fileuploads\\EmployeeSignatures\\" + inchargeLJ.SignatoryImageName : "",
-                               ResidenceDrNMC = residenceDr.MedCertificationNo,
-                               ResidenceDrLongSignature = residenceDr.LongSignature,
-                               ResidenceDrSignImgPath = string.IsNullOrEmpty(residenceDr.SignatoryImageName) ? null : "\\fileuploads\\EmployeeSignatures\\" + residenceDr.SignatoryImageName,
-                               Consultants = consultantsGrouped,
-                               AnaesthetistNMC = anesthist.MedCertificationNo,
-                               AnaesthetistLongSignature = anesthist.LongSignature,
-                               AnaesthetistSignImgPath = string.IsNullOrEmpty(anesthist.SignatoryImageName) ? null : "\\fileuploads\\EmployeeSignatures\\" + anesthist.SignatoryImageName,
-                               DoctorInchargeName = dis.DoctorInchargeId != null ? (string.IsNullOrEmpty(inchargeLJ.Salutation) ? "" : inchargeLJ.Salutation) + (string.IsNullOrEmpty(inchargeLJ.FirstName) ? "" : inchargeLJ.FirstName) + " " + (string.IsNullOrEmpty(inchargeLJ.MiddleName) ? "" : inchargeLJ.MiddleName + " ") + (string.IsNullOrEmpty(inchargeLJ.LastName) ? "" : inchargeLJ.LastName + " ") : null,
-                               Anaesthetists = anesthist != null ? anesthist.Salutation + ". " + anesthist.FirstName + " " + (string.IsNullOrEmpty(anesthist.MiddleName) ? "" : anesthist.MiddleName + " ") + anesthist.LastName : "",
-                               ResidenceDrName = residenceDr != null ? residenceDr.Salutation + ". " + residenceDr.FirstName + " " + (string.IsNullOrEmpty(residenceDr.MiddleName) ? "" : residenceDr.MiddleName + " ") + residenceDr.LastName : "",
-                               DischargeConditionType = _admissionDbContext.DischargeConditionTypes.Where(a => a.DischargeConditionId == dis.DischargeConditionId).Select(a => a.Condition).FirstOrDefault(),
-                               BabyBirthCondition = _admissionDbContext.BabyBirthConditions.Where(A => A.BabyBirthConditionId == dis.BabyBirthConditionId).Select(a => a.BirthConditionType).FirstOrDefault(),
-                               DeathType = _admissionDbContext.DeathTypes.Where(a => a.DeathTypeId == dis.DeathTypeId).Select(a => a.DeathType).FirstOrDefault(),
-                               DeliveryType = _admissionDbContext.DeliveryTypes.Where(A => A.DeliveryTypeId == dis.DeliveryTypeId).Select(a => a.DeliveryTypeName).FirstOrDefault(),
-                               CreatedBy = _admissionDbContext.Employees.Where(a => a.EmployeeId == dis.CreatedBy).Select(a => a.FullName).FirstOrDefault(),
-                               depart.DepartmentName,
-                               pat.Address,
-                               BabyWeight = dis.BabyWeight,
-                               ClinicalFindings = dis.ClinicalFindings,
-                               CheckedBy = _admissionDbContext.Employees.Where(a => a.EmployeeId == dis.CheckedBy).Select(a => a.FullName).FirstOrDefault()
-                           }).FirstOrDefault();
+                               join anaesthetists in _admissionDbContext.Employees on dis.AnaesthetistsId equals anaesthetists.EmployeeId into anaesthistTemp
+                               from anesthist in anaesthistTemp.DefaultIfEmpty()
+                               join disType in _admissionDbContext.DischargeType on dis.DischargeTypeId equals disType.DischargeTypeId
+                               join depart in _admissionDbContext.Department on visit.DepartmentId equals depart.DepartmentId
+                               join pat in _admissionDbContext.Patients on visit.PatientId equals pat.PatientId
+                               where dis.PatientVisitId == patientVisitId
+                               select new
+                               {
+                                   DischargeSummary = dis,
+                                   VisitCode = visit.VisitCode,
+                                   DischargeType = disType.DischargeTypeName,
+                                   DrInchargeNMC = (string.IsNullOrEmpty(inchargeLJ.MedCertificationNo) ? "" : inchargeLJ.MedCertificationNo),
+                                   DrInchargeLongSignature = (string.IsNullOrEmpty(inchargeLJ.LongSignature) ? null : inchargeLJ.LongSignature),
+                                   DrInchargeSignImgPath = inchargeLJ != null ? string.IsNullOrEmpty(inchargeLJ.SignatoryImageName) ? null : "\\fileuploads\\EmployeeSignatures\\" + inchargeLJ.SignatoryImageName : "",
+                                   ResidenceDrNMC = residenceDr.MedCertificationNo,
+                                   ResidenceDrLongSignature = residenceDr.LongSignature,
+                                   ResidenceDrSignImgPath = string.IsNullOrEmpty(residenceDr.SignatoryImageName) ? null : "\\fileuploads\\EmployeeSignatures\\" + residenceDr.SignatoryImageName,
+                                   AnaesthetistNMC = anesthist.MedCertificationNo,
+                                   AnaesthetistLongSignature = anesthist.LongSignature,
+                                   AnaesthetistSignImgPath = string.IsNullOrEmpty(anesthist.SignatoryImageName) ? null : "\\fileuploads\\EmployeeSignatures\\" + anesthist.SignatoryImageName,
+                                   DoctorInchargeName = dis.DoctorInchargeId != null ? (string.IsNullOrEmpty(inchargeLJ.Salutation) ? "" : inchargeLJ.Salutation) + (string.IsNullOrEmpty(inchargeLJ.FirstName) ? "" : inchargeLJ.FirstName) + " " + (string.IsNullOrEmpty(inchargeLJ.MiddleName) ? "" : inchargeLJ.MiddleName + " ") + (string.IsNullOrEmpty(inchargeLJ.LastName) ? "" : inchargeLJ.LastName + " ") : null,
+                                   Anaesthetists = anesthist != null ? anesthist.Salutation + ". " + anesthist.FirstName + " " + (string.IsNullOrEmpty(anesthist.MiddleName) ? "" : anesthist.MiddleName + " ") + anesthist.LastName : "",
+                                   ResidenceDrName = residenceDr != null ? residenceDr.Salutation + ". " + residenceDr.FirstName + " " + (string.IsNullOrEmpty(residenceDr.MiddleName) ? "" : residenceDr.MiddleName + " ") + residenceDr.LastName : "",
+                                   DischargeConditionType = _admissionDbContext.DischargeConditionTypes.Where(a => a.DischargeConditionId == dis.DischargeConditionId).Select(a => a.Condition).FirstOrDefault(),
+                                   BabyBirthCondition = _admissionDbContext.BabyBirthConditions.Where(A => A.BabyBirthConditionId == dis.BabyBirthConditionId).Select(a => a.BirthConditionType).FirstOrDefault(),
+                                   DeathType = _admissionDbContext.DeathTypes.Where(a => a.DeathTypeId == dis.DeathTypeId).Select(a => a.DeathType).FirstOrDefault(),
+                                   DeliveryType = _admissionDbContext.DeliveryTypes.Where(A => A.DeliveryTypeId == dis.DeliveryTypeId).Select(a => a.DeliveryTypeName).FirstOrDefault(),
+                                   CreatedBy = _admissionDbContext.Employees.Where(a => a.EmployeeId == dis.CreatedBy).Select(a => a.FullName).FirstOrDefault(),
+                                   depart.DepartmentName,
+                                   pat.Address,
+                                   BabyWeight = dis.BabyWeight,
+                                   ClinicalFindings = dis.ClinicalFindings,
+                                   CheckedBy = _admissionDbContext.Employees.Where(a => a.EmployeeId == dis.CheckedBy).Select(a => a.FullName).FirstOrDefault()
+                               }).FirstOrDefault();
+
+            if (summaryData == null)
+            {
+                return null;
+            }
+
+            int dischargeSummaryId = summaryData.DischargeSummary.DischargeSummaryId;
+
+            var medications = _admissionDbContext.DischargeSummaryMedications
+                                                 .Where(a => a.DischargeSummaryId == dischargeSummaryId && a.IsActive == true)
+                                                 .OrderBy(a => a.OldNewMedicineType)
+                                                 .ToList();
+
+            var babyBirthDetails = _admissionDbContext.BabyBirthDetails
+                                                     .Where(a => a.DischargeSummaryId == dischargeSummaryId)
+                                                     .ToList();
+
+            var certificate = _admissionDbContext.PatientCertificate
+                                                 .Where(a => a.DischargeSummaryId == dischargeSummaryId)
+                                                 .ToList();
+
+            var consultants = (from dsc in _admissionDbContext.DischargeSummaryConsultant
+                               join emp in _admissionDbContext.Employees on dsc.ConsultantId equals emp.EmployeeId
+                               where dsc.DischargeSummaryId == dischargeSummaryId
+                               select new DischargeSummaryConsultantViewModel
+                               {
+                                   dischargeSummaryId = dsc.DischargeSummaryId,
+                                   consultantId = emp.EmployeeId,
+                                   consultantName = emp.FullName,
+                                   consultantNMC = emp.MedCertificationNo,
+                                   consultantLongSignature = emp.LongSignature,
+                                   consultantSignImgPath = string.IsNullOrEmpty(emp.SignatoryImageName) ? null : "\\fileuploads\\EmployeeSignatures\\" + emp.SignatoryImageName,
+                                   consultantDepartmentName = emp.Department.DepartmentName
+                               }).ToList();
+
+            var summary = new
+            {
+                DischargeSummary = summaryData.DischargeSummary,
+                Medications = medications,
+                VisitCode = summaryData.VisitCode,
+                BabyBirthDetails = babyBirthDetails,
+                DischargeType = summaryData.DischargeType,
+                Certificate = certificate,
+                DrInchargeNMC = summaryData.DrInchargeNMC,
+                DrInchargeLongSignature = summaryData.DrInchargeLongSignature,
+                DrInchargeSignImgPath = summaryData.DrInchargeSignImgPath,
+                ResidenceDrNMC = summaryData.ResidenceDrNMC,
+                ResidenceDrLongSignature = summaryData.ResidenceDrLongSignature,
+                ResidenceDrSignImgPath = summaryData.ResidenceDrSignImgPath,
+                Consultants = consultants,
+                AnaesthetistNMC = summaryData.AnaesthetistNMC,
+                AnaesthetistLongSignature = summaryData.AnaesthetistLongSignature,
+                AnaesthetistSignImgPath = summaryData.AnaesthetistSignImgPath,
+                DoctorInchargeName = summaryData.DoctorInchargeName,
+                Anaesthetists = summaryData.Anaesthetists,
+                ResidenceDrName = summaryData.ResidenceDrName,
+                DischargeConditionType = summaryData.DischargeConditionType,
+                BabyBirthCondition = summaryData.BabyBirthCondition,
+                DeathType = summaryData.DeathType,
+                DeliveryType = summaryData.DeliveryType,
+                CreatedBy = summaryData.CreatedBy,
+                DepartmentName = summaryData.DepartmentName,
+                Address = summaryData.Address,
+                BabyWeight = summaryData.BabyWeight,
+                ClinicalFindings = summaryData.ClinicalFindings,
+                CheckedBy = summaryData.CheckedBy
+            };
+
             return summary;
         }
 

@@ -63,12 +63,12 @@
       <div class="col-md-6 col-sm-6">
         <div class="left">
           <button [ngClass]="showDischargedList?selectedClassObj.sel:selectedClassObj.dis"
-                  (click)="DischargeListTabClicked()"> Discharged Patients </button>
+                  (click)="DischargeListTabClicked()"> {{ 'NURSING.DISCHARGED_PATIENTS' | translate }} </button>
         </div>
         <div class="middle">
           <button style="margin-left:10px!important;"
                   [ngClass]="showAdmittedList?selectedClassObj.sel:selectedClassObj.dis"
-                  (click)="AdmittedListTabClicked()"> Admitted Patients </button>
+                  (click)="AdmittedListTabClicked()"> {{ 'NURSING.ADMITTED_PATIENTS' | translate }} </button>
         </div>
       </div>
     </div>
@@ -121,14 +121,14 @@
   <!--End : body of collapse Tabs-->
 
   <div *ngIf="showDischargeSummaryAdd">
-    <button class="btn btn-primary btn-sm" (click)="HideDischargeSummary()"> <i class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;Back </button>
+    <button class="btn btn-primary btn-sm" (click)="HideDischargeSummary()"> <i class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;{{ 'COMMON.BACK' | translate }} </button>
     <discharge-summary-add [selectedDischarge]="selectedDischarge"
                            [fromClinical]="false"
                            [showDischargeSummary]="showDischargeSummaryAdd"
                            (CallBackFromAdd)='CallBackFromAddEdit($event)'></discharge-summary-add>
   </div>
   <div *ngIf="showSummaryView">
-    <button class="btn btn-primary btn-sm" (click)="HideDischargeSummary()"> <i class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;Back </button>
+    <button class="btn btn-primary btn-sm" (click)="HideDischargeSummary()"> <i class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;{{ 'COMMON.BACK' | translate }} </button>
     <discharge-summary-view (EditRecordEvent)='CallbackFromViewPage($event)' [selectedADT]="selectedDischarge"
                             [showSummaryView]="showSummaryView"></discharge-summary-view>
   </div>
@@ -186,26 +186,26 @@
           <table class="table table-striped text-center">
             <tr>
               <td><b>{{selectedDischarge.Name}}</b></td>
-              <td> Inpatient: <b>{{selectedDischarge.VisitCode}}</b></td>
+              <td> {{ 'NURSING.INPATIENT' | translate }}: <b>{{selectedDischarge.VisitCode}}</b></td>
             </tr>
             <tr>
-              <td>Hospital No: {{selectedDischarge.PatientCode}}</td>
-              <td> Age/Sex :{{selectedDischarge.DateOfBirth | DanpheDateTime:'age'}} / {{selectedDischarge.Gender}} </td>
+              <td>{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}: {{selectedDischarge.PatientCode}}</td>
+              <td> {{ 'NURSING.AGE_SEX' | translate }}: {{selectedDischarge.DateOfBirth | DanpheDateTime:'age'}} / {{selectedDischarge.Gender}} </td>
             </tr>
           </table>
-          <div class="text-center"> <strong style="text-align:center;color:red">Are you Sure Want to Cancel Discharge???</strong><br />
+          <div class="text-center"> <strong style="text-align:center;color:red">{{ 'NURSING.ARE_YOU_SURE_CANCEL_DISCHARGE' | translate }}</strong><br />
           </div>
           <a style="float:right;margin-top: -150px;margin-right: -40px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
           <hr />
           <div> </div>
           <table class="table">
             <tr>
-              <td>Admission Date:</td>
+              <td>{{ 'NURSING.ADMISSION_DATE' | translate }}:</td>
               <td> {{selectedDischarge.AdmittedDate | DanpheDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.AdmittedDate |
                 nepaliDate:'format':'YYYY-MM-DD'}} </td>
             </tr>
             <tr>
-              <td> Discharge Date :</td>
+              <td> {{ 'NURSING.DISCHARGE_DATE' | translate }}:</td>
               <td><span> {{selectedDischarge.DischargedDate | DanpheDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.DischargedDate |
                   nepaliDate:'format':'YYYY-MM-DD'}} </span></td>
             </tr>
@@ -216,16 +216,16 @@
           </table>
           <form [formGroup]="selectedDischargeCancel.DischargeCancelValidator">
             <div class="form-group">
-              <label class="control-label col-md-4"><b>Cancel Discharge Note</b><b class="color-red">*</b><b style="float:right;">:</b></label>
+              <label class="control-label col-md-4"><b>{{ 'NURSING.CANCEL_DISCHARGE_NOTE' | translate }}</b><b class="color-red">*</b><b style="float:right;">:</b></label>
               <div class="col-md-7">
                 <input class="form-control" maxlength="300" type="text"
                        [(ngModel)]="selectedDischargeCancel.DischargeCancelNote"
                        id="DischargeCancelNote"
                        formControlName="DischargeCancelNote"
-                       placeholder="Discharge Cancel Description" />
+                       placeholder="{{ 'NURSING.DISCHARGE_CANCEL_DESCRIPTION' | translate }}" />
                 <!-- <span class="color-red font-sm" [hidden]="selectedDischargeCancel.IsValidCheck('DischargeCancelNote','required') || !(selectedDischargeCancel.IsDirty('DischargeCancelNote'))">Cancel Reason is required</span> -->
                 <span class="color-red font-sm" *ngIf="selectedDischargeCancel.IsDirty('DischargeCancelNote')"
-                      [hidden]="selectedDischargeCancel.IsValidCheck('DischargeCancelNote','maxlength')"> Length is not proper</span>
+                      [hidden]="selectedDischargeCancel.IsValidCheck('DischargeCancelNote','maxlength')"> {{ 'NURSING.LENGTH_IS_NOT_PROPER' | translate }}</span>
               </div>
             </div>
           </form>

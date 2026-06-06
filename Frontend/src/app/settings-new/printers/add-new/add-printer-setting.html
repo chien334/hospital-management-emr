@@ -6,8 +6,8 @@
           <div class="caption custom-caption no-margin">
             <h3>
               <span>
-                <ng-container *ngIf="isAddNewPrinterSetting">Add Printer Setting</ng-container>
-                <ng-container *ngIf="!isAddNewPrinterSetting">Edit Printer Setting</ng-container>
+                <ng-container *ngIf="isAddNewPrinterSetting">{{ 'PRINTERS.ADD_PRINTER_SETTING' | translate }}</ng-container>
+                <ng-container *ngIf="!isAddNewPrinterSetting">{{ 'PRINTERS.EDIT_PRINTER_SETTING' | translate }}</ng-container>
               </span>
             </h3>
             <a class="btn btn-danger" (click)="close()">X</a>
@@ -15,53 +15,53 @@
           <form [formGroup]="PrinterSettings.PrinterSettingsValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label for="printingType" class="control-label col-md-5">Printing Type<b>:</b></label>
+                <label for="printingType" class="control-label col-md-5">{{ 'PRINTERS.PRINTING_TYPE' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <select [(ngModel)]="PrinterSettings.PrintingType" class="form-control" name="PrintingType"
                     id="printingType" (change)="coreService.FocusInputById('printerDisplayName')"
                     [ngModelOptions]="{standalone: true}">
-                    <option value="browser">Browser</option>
-                    <option value="dotmatrix">Dotmatrix</option>
-                    <option value="server">Server</option>
+                    <option value="browser">{{ 'PRINTERS.BROWSER' | translate }}</option>
+                    <option value="dotmatrix">{{ 'PRINTERS.DOTMATRIX' | translate }}</option>
+                    <option value="server">{{ 'PRINTERS.SERVER' | translate }}</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                <label for="groupName" class="control-label col-md-5">Group Name <sup>*</sup><b>:</b></label>
+                <label for="groupName" class="control-label col-md-5">{{ 'PRINTERS.GROUP_NAME' | translate }} <sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <select id="groupName" class="form-control" formControlName="GroupName"
                     [(ngModel)]="PrinterSettings.GroupName" (change)="coreService.FocusInputById('printerDisplayName')">
-                    <option value="bill-receipt">Bill Receipt</option>
-                    <option value="reg-sticker">Registration Sticker</option>
-                    <option value="lab-sticker">Lab Sticker</option>
-                    <option value="phrm-receipt">Pharmacy Receipt</option>
+                    <option value="bill-receipt">{{ 'PRINTERS.BILL_RECEIPT' | translate }}</option>
+                    <option value="reg-sticker">{{ 'PRINTERS.REGISTRATION_STICKER' | translate }}</option>
+                    <option value="lab-sticker">{{ 'PRINTERS.LAB_STICKER' | translate }}</option>
+                    <option value="phrm-receipt">{{ 'PRINTERS.PHARMACY_RECEIPT' | translate }}</option>
                   </select>
                   <span class="color-red font-sm margin-15-lft"
                     [hidden]="!(PrinterSettings.IsDirty('GroupName') && !PrinterSettings.IsValidCheck('GroupName','required'))">
-                    GroupName is required!!</span>
+                    {{ 'PRINTERS.GROUP_NAME_REQUIRED' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
                 <label for="printerDisplayName" class="control-label col-md-5">
-                  Printer Display Name<sup>*</sup><b>:</b></label>
+                  {{ 'PRINTERS.PRINTER_DISPLAY_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input id="printerDisplayName" class="form-control" type="tel" placeholder=""
                     formControlName="PrinterDisplayName" [(ngModel)]="PrinterSettings.PrinterDisplayName"
                     (keyup.enter)="coreService.FocusInputById('PrinterName')">
                   <span class="color-red font-sm margin-15-lft"
                     [hidden]="!(PrinterSettings.IsDirty('PrinterDisplayName') && !PrinterSettings.IsValidCheck('PrinterDisplayName','required'))">
-                    Printer Display Name is required!!</span>
+                    {{ 'PRINTERS.PRINTER_DISPLAY_NAME_REQUIRED' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label for="PrinterName" class="control-label col-md-5">Printer Name<sup *ngIf="PrinterSettings.PrintingType=='dotmatrix'">*</sup><b>:</b></label>
+                <label for="PrinterName" class="control-label col-md-5">{{ 'PRINTERS.PRINTER_NAME' | translate }}<sup *ngIf="PrinterSettings.PrintingType=='dotmatrix'">*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input id="PrinterName" class="form-control" type="text" placeholder="" [ngModelOptions]="{standalone: true}"
                   onClick="this.select();" [(ngModel)]="PrinterSettings.PrinterName" (keyup.enter)="coreService.FocusInputById('ModelName')">                 
                 </div>
               </div>
               <div class="form-group">
-                <label for="ModelName" class="control-label col-md-5">Model Name<sup
+                <label for="ModelName" class="control-label col-md-5">{{ 'PRINTERS.MODEL_NAME' | translate }}<sup
                     *ngIf="PrinterSettings.PrintingType=='dotmatrix'">*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="text" onClick="this.select();" placeholder=""
@@ -70,7 +70,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="Width_Lines" class="control-label col-md-5">Width_Lines<sup
+                <label for="Width_Lines" class="control-label col-md-5">{{ 'PRINTERS.WIDTH_LINES' | translate }}<sup
                   *ngIf="PrinterSettings.PrintingType=='dotmatrix'">*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="number" onClick="this.select();" placeholder=""
@@ -79,7 +79,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="Height_Lines" class="control-label col-md-5">Height_Lines<sup
+                <label for="Height_Lines" class="control-label col-md-5">{{ 'PRINTERS.HEIGHT_LINES' | translate }}<sup
                   *ngIf="PrinterSettings.PrintingType=='dotmatrix'">*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="number" onClick="this.select();" id="Height_Lines"
@@ -88,7 +88,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="HeaderGap_Lines" class="control-label col-md-5">HeaderGap_Lines<b>:</b></label>
+                <label for="HeaderGap_Lines" class="control-label col-md-5">{{ 'PRINTERS.HEADER_GAP_LINES' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="number" onClick="this.select();" id="HeaderGap_Lines"
                     [(ngModel)]="PrinterSettings.HeaderGap_Lines" [ngModelOptions]="{standalone: true}"
@@ -96,7 +96,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="FooterGap_Lines" class="control-label col-md-5">FooterGap_Lines<b>:</b></label>
+                <label for="FooterGap_Lines" class="control-label col-md-5">{{ 'PRINTERS.FOOTER_GAP_LINES' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="number" onClick="this.select();" id="FooterGap_Lines"
                     [(ngModel)]="PrinterSettings.FooterGap_Lines" [ngModelOptions]="{standalone: true}"
@@ -104,7 +104,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="mh" class="control-label col-md-5">mh<sup
+                <label for="mh" class="control-label col-md-5">{{ 'PRINTERS.MH' | translate }}<sup
                   *ngIf="PrinterSettings.PrintingType=='dotmatrix'">*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="number" onClick="this.select();" id="mh"
@@ -113,7 +113,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="ml" class="control-label col-md-5">ml<sup
+                <label for="ml" class="control-label col-md-5">{{ 'PRINTERS.ML' | translate }}<sup
                   *ngIf="PrinterSettings.PrintingType=='dotmatrix'">*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="number" onClick="this.select();" id="ml"
@@ -123,7 +123,7 @@
               </div>
               <div class="form-group">
                 <label for="ServerFolderPath" class="control-label col-md-5">
-                  ServerFolderPath <sup
+                  {{ 'PRINTERS.SERVER_FOLDER_PATH' | translate }} <sup
                   *ngIf="PrinterSettings.PrintingType=='server'">*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="text" onClick="this.select();" placeholder=""
@@ -132,7 +132,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="Remarks" class="control-label col-md-5">Remarks<b>:</b></label>
+                <label for="Remarks" class="control-label col-md-5">{{ 'COMMON.REMARKS' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="text" onClick="this.select();" placeholder=""
                     [(ngModel)]="PrinterSettings.Remarks" [ngModelOptions]="{standalone: true}" id="Remarks"
@@ -140,7 +140,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="isActive" class="control-label col-md-5">Is Active</label>
+                <label for="isActive" class="control-label col-md-5">{{ 'PRINTERS.IS_ACTIVE' | translate }}</label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -148,7 +148,7 @@
                         <input id="isActive" type="checkbox" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="PrinterSettings.IsActive" name="chkIsActive" />
                         <span></span>
-                        True
+                        {{ 'PRINTERS.TRUE' | translate }}
                       </label>
                     </div>
                   </div>
@@ -160,9 +160,9 @@
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
               <button id="add" *ngIf="isAddNewPrinterSetting" class="btn green btn-success margin-7-hr"
-                (click)="AddPrinterSetting()">Add</button>
+                (click)="AddPrinterSetting()">{{ 'COMMON.ADD' | translate }}</button>
               <button id="add" *ngIf="!isAddNewPrinterSetting" class="btn green btn-success margin-7-hr"
-                (click)="UpdatePrinterSetting()">Update</button>
+                (click)="UpdatePrinterSetting()">{{ 'PRINTERS.UPDATE' | translate }}</button>
             </div>
           </div>
         </div>

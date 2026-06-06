@@ -1,16 +1,16 @@
 <div class="wrapper">
   <div class="form-body">
-    <div class="caption lb-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Stock Report</span> </div>
+    <div class="caption lb-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'WARD_SUPPLY.STOCK_REPORT' | translate }}</span> </div>
     <div class="row">
       <div class="col-md-5 col-xs-12">
-        <div class="row"><label class="control-label col-md-3">Select Item<sup>*</sup><b style="float:right;">:</b></label>
+        <div class="row"><label class="control-label col-md-3">{{ 'WARD_SUPPLY.SELECT_ITEM' | translate }}<sup>*</sup><b style="float:right;">:</b></label>
         <div class="col-md-9">
           <div class="form-group">
             <input danphe-auto-complete class="form-control"
                    [(ngModel)]="selectedItem"
                    [source]="itemList"
                    [list-formatter]="myItemListFormatter"
-                   placeholder="--Select Item--"
+                   [placeholder]="'WARD_SUPPLY.SELECT_ITEM' | translate"
                    display-property-name="ItemName"
                    value-property-name=null
                    onClick="this.select();"
@@ -26,7 +26,7 @@
 		<div class="col-md-2 col-xs-12">
           <div class="col-md-2 col-xs-12">
             <div class="form-group">
-              <button class="btn blue" type="button" (click)="GetReportData()"> <i class="fa fa-search"></i> Show Report </button>
+              <button class="btn blue" type="button" (click)="GetReportData()"> <i class="fa fa-search"></i> {{ 'WARD_SUPPLY.SHOW_REPORT' | translate }} </button>
             </div>
           </div>
         </div>

@@ -22,26 +22,26 @@
                             <label class="mt-checkbox mt-checkbox-outline">
                                 <input name="showBillingsLedger" type="radio" [(ngModel)]="mappingState" value="all" checked="checked"
                                        (change)="ToggleBillingLedger()">
-                                <span> </span> <b> All &nbsp; ({{totalLedgerCount}}) </b> </label>
+                                <span> </span> <b> {{ 'ACCOUNTING.ALL' | translate }} &nbsp; ({{totalLedgerCount}}) </b> </label>
                         </div>
                         <div class="col-md-5">
                             <label class="mt-checkbox mt-checkbox-outline mapped mapped-outline" style="color: green;">
                                 <input name="showBillingsLedger" type="radio" [(ngModel)]="mappingState" value="mapped"
                                        (change)="ToggleBillingLedger()">
-                                <span> </span> <b>Ledger with A/c Head &nbsp; ({{mappedLedgerCount}}) </b> </label>
+                                <span> </span> <b>{{ 'ACCOUNTING.LEDGER_WITH_AC_HEAD' | translate }} &nbsp; ({{mappedLedgerCount}}) </b> </label>
                             <label class="mt-checkbox mt-checkbox-outline not-mapped not-mapped-outline"
                                    style="color: red; margin-left: 0px !important;">
                                 <input name="showBillingsLedger" type="radio" [(ngModel)]="mappingState" value="notMapped"
                                        (change)="ToggleBillingLedger()">
-                                <span> </span> <b>Ledger without A/c Head ({{notmappedLedgerCount}})</b> </label>
+                                <span> </span> <b>{{ 'ACCOUNTING.LEDGER_WITHOUT_AC_HEAD' | translate }} ({{notmappedLedgerCount}})</b> </label>
                         </div>
                         <div class="col-md-5">
                             <input type="radio" id="id_radio_billingType_outPatient" [(ngModel)]="billingType" aria-selected="true"
                                    name="radioBtn_BillingType" value="outpatient" (change)="filterBillintType()">
-                            <label for="id_radio_billingType_outPatient" style="margin-left: 10px;">OutPatient</label>
+                            <label for="id_radio_billingType_outPatient" style="margin-left: 10px;">{{ 'ACCOUNTING.OUT_PATIENT' | translate }}</label>
                             <input type="radio" id="id_radio_billingType_inPatient" [(ngModel)]="billingType" name="radioBtn_BillingType"
                                    value="inpatient" style="margin-left: 20px;" (change)="filterBillintType()">
-                            <label for="id_radio_billingType_inPatient" style="margin-left: 10px;">InPatient</label>
+                            <label for="id_radio_billingType_inPatient" style="margin-left: 10px;">{{ 'ACCOUNTING.IN_PATIENT' | translate }}</label>
                         </div>
                     </div>
                 </div>
@@ -59,41 +59,41 @@
             <div class="col-md-5 page-bar" *ngIf="showMapForm">
                 <div class="row" style="margin:10px;">
                     <div class="col-md-11">
-                        <h4> <span><b>Ledger Mapping of Billing Service Item</b></span></h4>
+                        <h4> <span><b>{{ 'ACCOUNTING.LEDGER_MAPPING_BILLING_ITEM' | translate }}</b></span></h4>
                     </div>
                     <div class="col-md-1">
                         <div class="button-container">
-                            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <span>
-                            Service Department : <b>{{newLedgerMapping.ServiceDepartmentName}}</b>
+                            {{ 'ACCOUNTING.SERVICE_DEPARTMENT_LABEL' | translate }} <b>{{newLedgerMapping.ServiceDepartmentName}}</b>
                         </span>
                     </div>
                     <div class="col-md-12">
                         <span>
-                            Item Code : <b>{{newLedgerMapping.ItemCode}}</b>
+                            {{ 'ACCOUNTING.ITEM_CODE_LABEL' | translate }} <b>{{newLedgerMapping.ItemCode}}</b>
                         </span>
                     </div>
                     <div class="col-md-12">
                         <span>
-                            Item Name: <b>{{newLedgerMapping.ItemName}}</b>
+                            {{ 'ACCOUNTING.ITEM_NAME_LABEL' | translate }} <b>{{newLedgerMapping.ItemName}}</b>
                         </span>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <h5><span><b>Ledger Mapping</b></span></h5>
+                        <h5><span><b>{{ 'ACCOUNTING.LEDGER_MAPPING_SUBHEADER' | translate }}</b></span></h5>
                     </div>
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
                                 <span>
-                                    <i></i>&nbsp; Primary Group :
+                                    <i></i>&nbsp; {{ 'ACCOUNTING.PRIMARY_GROUP' | translate }} :
                                 </span>
                             </div>
                             <div class="col-md-6">
@@ -103,7 +103,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <span>
-                                    <i></i>&nbsp; COA :
+                                    <i></i>&nbsp; {{ 'ACCOUNTING.COA' | translate }} :
                                 </span>
                             </div>
                             <div class="col-md-6">
@@ -113,7 +113,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <span>
-                                    <i></i>&nbsp; Ledger Group : <b></b>
+                                    <i></i>&nbsp; {{ 'ACCOUNTING.LEDGER_GROUP_NAME' | translate }} : <b></b>
                                 </span>
                             </div>
                             <div class="col-md-6">
@@ -124,11 +124,11 @@
 
                     <div class="col-md-12 mt10">
                         <div class="row">
-                            <label class="control-label col-md-5">Select Main Ledger<sup>*</sup><b>:</b> </label>
+                            <label class="control-label col-md-5">{{ 'ACCOUNTING.SELECT_MAIN_LEDGER' | translate }}<sup>*</sup><b>:</b> </label>
                             <div class="col-md-7">
                                 <div class="div-relative">
                                     <input danphe-auto-complete class="form-control" [(ngModel)]="selectedLedger"
-                                           [source]="ledgerListAutoComplete" placeholder="Ledger Name" display-property-name="LedgerName"
+                                           [source]="ledgerListAutoComplete" [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" display-property-name="LedgerName"
                                            value-property-name=LedgerId (ngModelChange)="AssignSelectedLedger($event)"
                                            [list-formatter]="LedgerListFormatter" max-num-list="50"
                                            onclick="this.select()" id="LedgerId" style="width: 100%;" />
@@ -138,17 +138,17 @@
                         </div>
                         <div class="row">
                             <span style="font-size: 12px;">
-                                <i></i>&nbsp; Ledger Code: <b>{{newLedgerMapping.LedgerCode}}</b>
+                                <i></i>&nbsp; {{ 'ACCOUNTING.LEDGER_CODE_LABEL' | translate }} <b>{{newLedgerMapping.LedgerCode}}</b>
                             </span>
                         </div>
                         <div class="row" style="margin-top: 15px;" *ngIf="subLedgerAndCostCenterSetting.EnableSubLedger">
-                            <label class="control-label col-md-5">Select Sub Ledger<sup>*</sup><b>:</b> </label>
+                            <label class="control-label col-md-5">{{ 'ACCOUNTING.SELECT_SUB_LEDGER' | translate }}<sup>*</sup><b>:</b> </label>
                             <div class="col-md-7">
                                 <div class="div-relative">
                                     <input danphe-auto-complete class="form-control"
                                            [(ngModel)]="selectedSubLedger"
                                            [source]="subLedgerListForBillingItems"
-                                           placeholder="SubLedger Name" display-property-name="SubLedgerName" value-property-name=null
+                                           [placeholder]="'ACCOUNTING.SUB_LEDGER_NAME_HEADER' | translate" display-property-name="SubLedgerName" value-property-name=null
                                            [grid-sort]="'SubLedgerName'"
                                            (ngModelChange)="AssignSelectedSubLedger($event)"
                                            [list-formatter]="SubLedgerListFormatter" max-num-list="50" onclick="this.select()"
@@ -158,7 +158,7 @@
                         </div>
                         <div class="row" *ngIf="subLedgerAndCostCenterSetting.EnableSubLedger">
                             <span style="font-size: 12px;">
-                                <i></i>&nbsp; Sub-Ledger Code: <b>{{subLedgerCode}}</b>
+                                <i></i>&nbsp; {{ 'ACCOUNTING.SUB_LEDGER_CODE_LABEL' | translate }} <b>{{subLedgerCode}}</b>
                             </span>
                         </div>
                     </div>
@@ -166,12 +166,12 @@
                 <div *ngIf="!selectedData.IsMapped" class="text-right"
                      style="margin-right:15px ; margin-bottom:10px;">
                     <input id="savebtn" type="button" class="btn green btn-success margin-7-hr"
-                           (click)="SaveLedgerMapping()" value="Save LedgerMapping" />
+                           (click)="SaveLedgerMapping()" [value]="'ACCOUNTING.SAVE_LEDGER_MAPPING' | translate" />
                 </div>
                 <div *ngIf="selectedData.IsMapped" class="text-right"
                      style="margin-right:15px ; margin-bottom:10px;">
                     <input id="savebtn" type="button" class="btn green btn-success margin-7-hr"
-                           (click)="UpdateLedgerMapping()" value="Update LedgerMapping" />
+                           (click)="UpdateLedgerMapping()" [value]="'ACCOUNTING.UPDATE_LEDGER_MAPPING' | translate" />
                 </div>
             </div>
         </div>

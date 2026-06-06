@@ -4,8 +4,8 @@
       <div class="col-md-6 col-md-offset-3">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>{{UnScrapAsset?"Cancel Asset Scraping":"Scraping Asset"}}</span></h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span>{{ (UnScrapAsset ? 'FIXED_ASSETS.CANCEL_ASSET_SCRAPING' : 'FIXED_ASSETS.SCRAPING_ASSET') | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <form class="form-horizontal hm-form" [formGroup]="selectedAsset.FAStockValidators">
             <div class="form-body row  clearfix">
@@ -13,44 +13,44 @@
                 <div class="row clearfix">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label class="control-label col-md-5">Item Code<b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'FIXED_ASSETS.ITEM_CODE' | translate }}<b>:</b></label>
                       <div class="col-md-7">
                         <label>{{selectedAsset?.ItemCode}}</label>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-5">Asset Name<b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'FIXED_ASSETS.ASSET_NAME' | translate }}<b>:</b></label>
                       <div class="col-md-7">
                         <label>{{selectedAsset?.ItemName}}</label>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-5">Bar Code<b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'FIXED_ASSETS.BAR_CODE' | translate }}<b>:</b></label>
                       <div class="col-md-7">
                         <label>{{selectedAsset?.BarCodeNumber}}</label>
                       </div>
                     </div>
                     <div class="form-group" [hidden]="UnScrapAsset">
-                      <label class="control-label col-md-5">Scrap Amount <sup><strong>*</strong></sup><b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'FIXED_ASSETS.SCRAP_AMOUNT' | translate }} <sup><strong>*</strong></sup><b>:</b></label>
                       <div class="col-md-7">
                         <input class="form-control" type="number"
                                   [(ngModel)]="selectedAsset.ScrapAmount"
                                   formControlName="ScrapAmount"
-                                  placeholder="Enter Scraped Amount.." rows="4"/>                        
-                        <span Class="color-red font-sm" [hidden]="selectedAsset.IsValidCheck('ScrapAmount','required') || !(selectedAsset.IsDirty('ScrapAmount'))">Scrap Amount is Required</span>
+                                  [placeholder]="'FIXED_ASSETS.ENTER_SCRAP_AMOUNT_PLACEHOLDER' | translate" rows="4"/>                        
+                        <span Class="color-red font-sm" [hidden]="selectedAsset.IsValidCheck('ScrapAmount','required') || !(selectedAsset.IsDirty('ScrapAmount'))">{{ 'FIXED_ASSETS.SCRAP_AMOUNT_REQUIRED' | translate }}</span>
 
                         <!--selectedAsset.IsValidCheck('DamagedRemarks','required') ||-->
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-5">Remarks <sup><strong>*</strong></sup><b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'FIXED_ASSETS.REMARKS' | translate }} <sup><strong>*</strong></sup><b>:</b></label>
                       <div class="col-md-7">
                         <textarea class="form-control" type="text"
                                   [(ngModel)]="selectedAsset.ScrapRemarks"
                                   formControlName="ScrapRemarks"
-                                  placeholder="Enter Remarks.." rows="4">
+                                  [placeholder]="'FIXED_ASSETS.ENTER_REMARKS_PLACEHOLDER' | translate" rows="4">
                         </textarea>
-                        <span Class="color-red font-sm" [hidden]="selectedAsset.IsValidCheck('ScrapRemarks','required') || !(selectedAsset.IsDirty('ScrapRemarks'))">Remarks is Required</span>
+                        <span Class="color-red font-sm" [hidden]="selectedAsset.IsValidCheck('ScrapRemarks','required') || !(selectedAsset.IsDirty('ScrapRemarks'))">{{ 'FIXED_ASSETS.REMARKS_REQUIRED' | translate }}</span>
 
                         <!--selectedAsset.IsValidCheck('DamagedRemarks','required') ||-->
                       </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="panel-footer text-right col-mg-12">
               <button class="btn primary-btn" (click)="UpdateAssetScrapDetails()" [disabled]="loading?true:null">
-                {{UnScrapAsset?"Cancel Scraping":"Submit"}}
+                {{ (UnScrapAsset ? 'FIXED_ASSETS.CANCEL_SCRAPING' : 'COMMON.SUBMIT') | translate }}
               </button>
             </div>
           </form>

@@ -9,30 +9,30 @@
     <a class="btn primary-btn btn-sm m1"><i class="fa fa-plus"></i> &nbsp;&nbsp;&nbsp;Add</a>
   </div>-->
   <div class="col-md-3">
-    <strong>Selected : &nbsp;&nbsp;</strong>
+    <strong>{{ 'FIXED_ASSETS.SELECTED' | translate }} : &nbsp;&nbsp;</strong>
     <select [(ngModel)]="selectedAssetListStatus" (change)="OnAssetStatusChange()" style="width:30%!important;">
-      <option value="all" selected>All Assets</option>
-      <option value="damaged">Damaged Asset</option>
-      <option value="warrantyExpired">Warranty Expired Asset</option>
+      <option value="all" selected>{{ 'FIXED_ASSETS.ALL_ASSETS' | translate }}</option>
+      <option value="damaged">{{ 'FIXED_ASSETS.DAMAGED_ASSET' | translate }}</option>
+      <option value="warrantyExpired">{{ 'FIXED_ASSETS.WARRANTY_EXPIRED_ASSET' | translate }}</option>
       <!-- <option value="Donation">Donation</option> -->
     </select>
   </div>
   <div class="col-md-5" style="display: flex; justify-content: space-evenly;">
     <div style="display: flex;flex-flow: row-reverse;align-items: baseline;">
-      <label for="showColdStorageItemCheckBox" style="margin-right: 20px;"> Show only cold storage item </label>
+      <label for="showColdStorageItemCheckBox" style="margin-right: 20px;"> {{ 'FIXED_ASSETS.SHOW_ONLY_COLD_STORAGE_ITEM' | translate }} </label>
       <input type="checkbox" id="showColdStorageItemCheckBox" style="zoom:1.23;scale: 1.23;margin-right: 6px;"
         [(ngModel)]="showOnlyColdStorageItems" (change)="OnAssetStatusChange()">
     </div>
     <div style="display: flex;flex-flow: row-reverse;align-items: baseline;">
-      <label for="showMaintainedByMeCheckBox" style="margin-right: 20px;"> Show assets maintained by me</label>
+      <label for="showMaintainedByMeCheckBox" style="margin-right: 20px;"> {{ 'FIXED_ASSETS.SHOW_ASSETS_MAINTAINED_BY_ME' | translate }}</label>
       <input type="checkbox" id="showMaintainedByMeCheckBox" style="zoom:1.23;scale: 1.23;margin-right: 6px;"
         [(ngModel)]="showOnlyAssetsMaintainedByUser" (change)="OnAssetStatusChange()">
     </div>
   </div>
   <div class="col-md-4 text-right">
-    <strong>Substore : &nbsp;&nbsp;</strong>
+    <strong>{{ 'FIXED_ASSETS.SUBSTORE' | translate }} : &nbsp;&nbsp;</strong>
     <select [(ngModel)]="selectedSubstore" (change)="OnAssetStatusChange()" style="width:40%!important;">
-      <option [ngValue]="null" selected>All Store</option>
+      <option [ngValue]="null" selected>{{ 'FIXED_ASSETS.ALL_STORE' | translate }}</option>
       <option *ngFor="let store of substoreList" [ngValue]="store.StoreId">{{store.Name}}</option>
     </select>
   </div>
@@ -65,8 +65,8 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Print Barcode Window</span></h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span>{{ 'FIXED_ASSETS.PRINT_BARCODE_WINDOW' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <form class="form-horizontal hm-form">
             <div class="form-body row  clearfix">
@@ -84,7 +84,7 @@
             </div>
             <div class="panel-footer text-right">
               <button type="button" class="btn btn-success" (click)="Print()">
-                Print</button>
+                {{ 'FIXED_ASSETS.PRINT' | translate }}</button>
             </div>
           </form>
         </div>

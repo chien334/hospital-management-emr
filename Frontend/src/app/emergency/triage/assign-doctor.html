@@ -23,7 +23,7 @@
                         <div class="row">
                             <a class="btn blue bordered btn-sm cstm-pat-registration-hdr" name="Anonymous Patient">
                                 <!-- ag7_mig_fix:(click)="RegisterNewERPatient()" not exist in component -->
-                                <span style="display: inline-block; margin-left: 5px;">Assign Doctor</span>
+                                <span style="display: inline-block; margin-left: 5px;">{{ 'EMERGENCY.ASSIGN_DOCTOR' | translate }}</span>
                             </a>
                         </div>
                     </div>
@@ -33,9 +33,9 @@
                             <table class="table table-bordered tbl-er-pat-info">
                                 <thead>
                                     <tr>
-                                        <th>Patient Name</th>
-                                        <th>Age/Sex</th>
-                                        <th>Visit Date/Time</th>
+                                        <th>{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+                                        <th>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</th>
+                                        <th>{{ 'GRID_HEADERS.DATE_TIME' | translate }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,20 +52,20 @@
                     <div class="col-md-12">
                         <div style="width: 100%; color: #fff; margin: 0 auto;padding: 15px;">
                             <div style="width: 100%; height: 200px;">
-                                <label><strong>Select Doctor:</strong></label>
+                                <label><strong>{{ 'DISPENSARY.SALE.SELECT_DOCTOR' | translate }}:</strong></label>
                                 <div style="color: #000;">
                                     <input style="color: #000;width: 30%;" class="form-control cstm-form-control" danphe-auto-complete
                                            [(ngModel)]="DoctorSelected"
                                            [source]="AllDoctorList"
                                            [list-formatter]="AssignedToDocListFormatter"
-                                           placeholder="Enter Doctor Name"
+                                           [placeholder]="'APPOINTMENT.SELECT_DOCTOR' | translate"
                                            display-property-name="FullName"
                                            value-property-name=null
                                            match-formatted="true"
                                            onClick="this.select();"
                                            max-num-list="10" />
                                     <a class="btn btn-primary" style="padding: 2px 15px; margin-top: 15px;"
-                                       (click)="loading=true;AssignSelectedDoctor()">Ok</a>
+                                       (click)="loading=true;AssignSelectedDoctor()">{{ 'COMMON.OK' | translate }}</a>
                                 </div>
                             </div>
                         </div>

@@ -148,12 +148,12 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <p class="patient-hdr-label">
-                                        <b>Address</b>&nbsp;: {{selectedDischarge?.Address}}
+                                        <b>{{ 'PATIENT_OVERVIEW.ADDRESS' | translate }}</b>&nbsp;: {{selectedDischarge?.Address}}
                                     </p>
                                 </div>
                                 <div class="col-md-4">
                                     <p class="patient-hdr-label">
-                                        <b>Contact No</b>&nbsp;: {{selectedDischarge?.PhoneNumber}}
+                                        <b>{{ 'PATIENT_OVERVIEW.CONTACT_NO' | translate }}</b>&nbsp;: {{selectedDischarge?.PhoneNumber}}
                                     </p>
                                 </div>
                             </div>
@@ -163,17 +163,17 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="patient-hdr-label">
-                                    <b>Hospital No</b>&nbsp;: {{selectedDischarge?.PatientCode}}
+                                    <b>{{ 'PATIENT_OVERVIEW.HOSPITAL_NO' | translate }}</b>&nbsp;: {{selectedDischarge?.PatientCode}}
                                 </p>
                             </div>
                             <div class="col-md-4">
                                 <p class="patient-hdr-label">
-                                    <b>InPatient No</b>&nbsp;: {{selectedDischarge?.VisitCode}}
+                                    <b>{{ 'PATIENT_OVERVIEW.INPATIENT_NO' | translate }}</b>&nbsp;: {{selectedDischarge?.VisitCode}}
                                 </p>
                             </div>
                             <div class="col-md-4">
                                 <p class="patient-hdr-label">
-                                    <b>Guardian</b>&nbsp;: {{selectedDischarge?.GuardianName}} |
+                                    <b>{{ 'PATIENT_OVERVIEW.GUARDIAN' | translate }}</b>&nbsp;: {{selectedDischarge?.GuardianName}} |
                                     <span>{{selectedDischarge?.GuardianRelation}}</span>
                                 </p>
                             </div>
@@ -183,24 +183,24 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="patient-hdr-label">
-                                    <b> Admitted On </b>&nbsp;:&nbsp;{{selectedDischarge?.AdmittedDate |
+                                    <b> {{ 'PATIENT_OVERVIEW.ADMITTED_ON' | translate }} </b>&nbsp;:&nbsp;{{selectedDischarge?.AdmittedDate |
                                     DanpheDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp;
                                     <strong>({{selectedDischarge?.AdmittedDate | nepaliDate}})</strong>
                                 </p>
                             </div>
                             <div class="col-md-4">
                                 <p *ngIf="selectedDischarge.ModuleName != 'emergency'" class="patient-hdr-label">
-                                    <b>Ward</b>&nbsp;: {{selectedDischarge.BedInformation?.Ward}}
+                                    <b>{{ 'PATIENT_OVERVIEW.WARD' | translate }}</b>&nbsp;: {{selectedDischarge.BedInformation?.Ward}}
                                 </p>
                             </div>
                             <div class="col-md-4">
                                 <p *ngIf="selectedDischarge.ModuleName != 'emergency'" class="patient-hdr-label">
-                                    <b>Bed Number</b>&nbsp;: {{selectedDischarge?.BedInformation?.BedNumber}}
+                                    <b>{{ 'PATIENT_OVERVIEW.BED_NUMBER' | translate }}</b>&nbsp;: {{selectedDischarge?.BedInformation?.BedNumber}}
                                 </p>
                             </div>
                             <div class="col-md-4">
                                 <p class="patient-hdr-label">
-                                    <b> Discharged On </b> &nbsp;:&nbsp;
+                                    <b> {{ 'PATIENT_OVERVIEW.DISCHARGED_ON' | translate }} </b> &nbsp;:&nbsp;
                                     <ng-container *ngIf="selectedDischarge?.DischargedDate">
                                         {{ selectedDischarge?.DischargedDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp;
                                         <strong>({{ selectedDischarge?.DischargedDate | nepaliDate }})</strong>
@@ -214,10 +214,10 @@
             </div>
 
             <div *ngIf="dischargeSummaryTemplates && dischargeSummaryTemplates.length">
-                <label for="dropdown">Select Template:</label>
+                <label for="dropdown">{{ 'PATIENT_OVERVIEW.SELECT_TEMPLATE' | translate }}</label>
                 <select (change)="OnTemplateSelected()" [(ngModel)]="selectedTemplateObj"
                         [ngModelOptions]="{standalone: true}">
-                    <option disabled>Select template</option>
+                    <option disabled>{{ 'PATIENT_OVERVIEW.SELECT_TEMPLATE_PLACEHOLDER' | translate }}</option>
                     <option [ngValue]="option" *ngFor="let option of dischargeSummaryTemplates">{{option.TemplateName}}
                     </option>
                 </select>
@@ -233,12 +233,12 @@
                         <div *ngIf="!fromClinical">
                             <div class="form-content-header clearfix">
                                 <input style="width: 200px;height: 35px;margin-right: 10px;float: right;"
-                                       class="btn blue" type="button" (click)="Save()" *ngIf="!update" value="Save" />
+                                       class="btn blue" type="button" (click)="Save()" *ngIf="!update" [value]="'PATIENT_OVERVIEW.SAVE' | translate" />
                                 <input style="width: 200px;height: 35px;margin-right: 10px;float: right;"
-                                       class="btn blue" type="button" (click)="Update()" *ngIf="update" value="Update" />
+                                       class="btn blue" type="button" (click)="Update()" *ngIf="update" [value]="'PATIENT_OVERVIEW.UPDATE' | translate" />
                                 <input style="width: 200px;height: 35px;margin-right: 10px;float: right;"
                                        class="btn blue" type="button" (click)="SubmitAndViewSummary()" *ngIf="update"
-                                       value="Submit and Print Summary" />
+                                       [value]="'PATIENT_OVERVIEW.SUBMIT_AND_PRINT_SUMMARY' | translate" />
                             </div>
                             <!-- <input style="width: 20%;margin-right: 30px;float: right;" class="btn blue" type="button" (click)="ViewBirthCertificate()" *ngIf="update && DeliveryType" value="Edit Birth Certificate" /><input style="width: 20%;margin-right: 30px;float: right;" class="btn blue" type="button" (click)="ViewDeathCertificate()" *ngIf="update && Isdeath" value="Edit Death Certificate" /> -->
                         </div>
@@ -247,7 +247,7 @@
                         <div class="row">
                             <div class="col-md-4 col-xs-12">
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.DischargeType?.Show">
-                                    <label class="control-label col-md-5">Discharge Type <b class="color-red"
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.DISCHARGE_TYPE' | translate }}<b class="color-red"
                                            *ngIf="dischSumFieldSettings?.DischargeType?.IsMandatory"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
@@ -270,7 +270,7 @@
                                 </div>
                                 <div class="form-group"
                                      *ngIf="DischargeConditionType && dischSumFieldSettings?.DischargeCondition?.Show">
-                                    <label class="control-label col-md-5">Discharge Condition <b class="color-red"
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.DISCHARGE_CONDITION' | translate }}<b class="color-red"
                                            *ngIf="dischSumFieldSettings?.DischargeCondition?.IsMandatory"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
@@ -304,7 +304,7 @@
               {{type.BirthConditionType}}
             </option></select><span class="color-red" *ngIf="CurrentDischargeSummary.IsDirty('BabyBirthConditionId')" [hidden]="CurrentDischargeSummary.IsValidCheck('BabyBirthConditionId','required')">Baby Birth Condition is required</span></div></div>-->
                                 <div class="form-group" *ngIf="Isdeath">
-                                    <label class="control-label col-md-5">Death Period <b class="color-red"> *</b>
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.DEATH_PERIOD' | translate }} <b class="color-red"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
@@ -321,21 +321,21 @@
                                 </div>
                                 <!--commented: Ramavtar-16Jan18,commmented/replaced dropdown doctor selector with autocomplete doctor selector-->
                                 <!--<div class="form-group"><label class="control-label col-md-5">Consultant<b class="color-red">  *</b><b style="float:right;">:</b></label><div class="col-md-7"><select class="form-control" [(ngModel)]="CurrentDischargeSummary.ConsultantId"
-                      formControlName="ConsultantId"><option *ngFor="let emp of providerList"
-                          value="{{emp.EmployeeId}}">
-                      {{emp.Salutation}}.{{emp.FirstName}} {{emp.MiddleName}} {{emp.LastName}}
-                  </option></select><span class="color-red" *ngIf="CurrentDischargeSummary.IsDirty('ConsultantId')" [hidden]="CurrentDischargeSummary.IsValidCheck('ConsultantId','required')">Consultant is required</span></div></div>-->
+                       formControlName="ConsultantId"><option *ngFor="let emp of providerList"
+                           value="{{emp.EmployeeId}}">
+                       {{emp.Salutation}}.{{emp.FirstName}} {{emp.MiddleName}} {{emp.LastName}}
+                   </option></select><span class="color-red" *ngIf="CurrentDischargeSummary.IsDirty('ConsultantId')" [hidden]="CurrentDischargeSummary.IsValidCheck('ConsultantId','required')">Consultant is required</span></div></div>-->
                                 <!-- <div class="form-group"><label class="control-label col-md-12">Consultant<b class="color-red"> *</b><b style="float: right">:</b></label></div><div class="form-group col-md-12" *ngFor="let cons of consultants;let i=index"><div class="col-md-8"><input danphe-auto-complete class="form-control" [(ngModel)]="consultant" [source]="providerList" [list-formatter]="myListFormatter" (focusout)="focusOut()" placeholder="Consultant name" display-property-name="FullName" value-property-name="null" (valueChanged)="loadConsultant()" min-chars="0" max-num-list="10" formControlName="ConsultantId" /><span class="color-red" *ngIf="CurrentDischargeSummary.IsDirty('ConsultantId')" [hidden]="CurrentDischargeSummary.IsValidCheck('ConsultantId','required')">Consultant is
-                      required</span></div><div class="col-md-1" style="margin-right: 10px;"><input type="button" style="height: 25px; width: 25px; padding: 2px;" class="btn btn-info btn-sm" title="Add new Medicine" (click)="AddConsultant(i)" value="+" /></div><div class="col-md-1"><input type="button" style="border-radius: 1px; height: 25px; width: 25px; padding: 2px;" title="Delete Medicine" class="btn btn-danger btn-sm" (click)="RemoveMedicine(i,0)" value="X" /></div></div> -->
+                       required</span></div><div class="col-md-1" style="margin-right: 10px;"><input type="button" style="height: 25px; width: 25px; padding: 2px;" class="btn btn-info btn-sm" title="Add new Medicine" (click)="AddConsultant(i)" value="+" /></div><div class="col-md-1"><input type="button" style="border-radius: 1px; height: 25px; width: 25px; padding: 2px;" title="Delete Medicine" class="btn btn-danger btn-sm" (click)="RemoveMedicine(i,0)" value="X" /></div></div> -->
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.Consultant?.Show">
-                                    <label class="control-label col-md-5">Consultant <b class="color-red"
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.CONSULTANT' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.Consultant?.IsMandatory"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
                                         <input danphe-auto-complete class="form-control" [(ngModel)]="consultant"
                                                [source]="providerList" [list-formatter]="myListFormatter"
-                                               (focusout)="focusOut();AddConsultant()" placeholder="Consultant name"
+                                               (focusout)="focusOut();AddConsultant()" [placeholder]="'PATIENT_OVERVIEW.CONSULTANT' | translate"
                                                display-property-name="FullName" value-property-name="null"
                                                (valueChanged)="loadConsultant()" min-chars="0" max-num-list="10"
                                                [ngModelOptions]="{standalone: true}" />
@@ -351,7 +351,7 @@
                                     </ol>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.DoctorIncharge?.Show">
-                                    <label class="control-label col-md-5">Doctor Incharge <b
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.DOCTOR_INCHARGE' | translate }} <b
                                            *ngIf="complusoryDoctorIncharge && dischSumFieldSettings?.DoctorIncharge?.IsMandatory"
                                            class="color-red"> *</b>
                                         <b style="float: right">:</b>
@@ -359,7 +359,7 @@
                                     <div class="col-md-7">
                                         <input danphe-auto-complete class="form-control" (focusout)="focusOut()"
                                                [(ngModel)]="drIncharge" [source]="providerList"
-                                               [list-formatter]="myListFormatter" placeholder="Doctor Incharge name"
+                                               [list-formatter]="myListFormatter" [placeholder]="'PATIENT_OVERVIEW.DOCTOR_INCHARGE' | translate"
                                                display-property-name="FullName" value-property-name="null"
                                                (valueChanged)="loadDrIncharge()" (focusout)="validateDrIncharge()"
                                                min-chars="0" max-num-list="10" formControlName="DoctorInchargeId" />
@@ -370,19 +370,19 @@
                                     </div>
                                 </div>
                                 <!--<div class="form-group"><label class="control-label col-md-5">Anasthetists <b style="float:right;">:</b></label><div class="col-md-7"><select class="form-control" [(ngModel)]="CurrentDischargeSummary.AnaesthetistsId"
-                      [ngModelOptions]="{standalone: true}"><option *ngFor="let emp of providerList"
-                          value="{{emp.EmployeeId}}">
-                      {{emp.Salutation}}.{{emp.FirstName}} {{emp.MiddleName}} {{emp.LastName}}
-                  </option></select></div></div>-->
+                       [ngModelOptions]="{standalone: true}"><option *ngFor="let emp of providerList"
+                           value="{{emp.EmployeeId}}">
+                       {{emp.Salutation}}.{{emp.FirstName}} {{emp.MiddleName}} {{emp.LastName}}
+                   </option></select></div></div>-->
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.Anesthetists?.Show">
-                                    <label class="control-label col-md-5">Anesthetists <b class="color-red"
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.ANESTHETISTS' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.Anesthetists?.IsMandatory"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
                                         <input danphe-auto-complete class="form-control" [(ngModel)]="anasthetists"
                                                [source]="AnasthetistsList" [list-formatter]="ListFormatter"
-                                               placeholder="Anasthetists name" display-property-name="FullName"
+                                               [placeholder]="'PATIENT_OVERVIEW.ANESTHETISTS' | translate" display-property-name="FullName"
                                                value-property-name="null" (valueChanged)="loadAnasthetists()"
                                                (focusout)="focusOut()" min-chars="0" max-num-list="10"
                                                formControlName="AnaesthetistsId" />
@@ -394,14 +394,14 @@
 
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.ResidentDr?.Show">
-                                    <label class="control-label col-md-5">Resident Dr <b class="color-red"
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.RESIDENT_DR' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.ResidentDr?.IsMandatory"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
                                         <input danphe-auto-complete class="form-control" [(ngModel)]="residenceDr"
                                                [source]="providerList" [list-formatter]="myListFormatter"
-                                               placeholder="Residence Dr name" display-property-name="FullName"
+                                               [placeholder]="'PATIENT_OVERVIEW.RESIDENT_DR' | translate" display-property-name="FullName"
                                                value-property-name="null" (valueChanged)="loadResidenceDr()"
                                                (focusout)="focusOut()" min-chars="0" max-num-list="10"
                                                formControlName="ResidenceDrId" />
@@ -412,13 +412,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.BabyWeight?.Show && ShowBabyWeight">
-                                    <label class="control-label col-md-5">Baby Weight(gm)<b class="color-red"
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.BABY_WEIGHT' | translate }}<b class="color-red"
                                            *ngIf="dischSumFieldSettings?.BabyWeight?.IsMandatory"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
                                         <input class="form-control" [(ngModel)]="CurrentDischargeSummary.BabyWeight"
-                                               placeholder="Baby Weight (in gm)" formControlName="BabyWeight" />
+                                               [placeholder]="'PATIENT_OVERVIEW.BABY_WEIGHT' | translate" formControlName="BabyWeight" />
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('BabyWeight') && dischSumFieldSettings?.BabyWeight?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('BabyWeight','required') ">BabyWeight
@@ -427,11 +427,11 @@
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.SelectDiagnosis?.Show">
                                     <label class="control-label col-md-5">
-                                        <b>Diagnosis</b>
+                                        <b>{{ 'PATIENT_OVERVIEW.DIAGNOSIS' | translate }}</b>
                                     </label>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.SelectDiagnosis?.Show">
-                                    <label class="control-label col-md-5"> Select Diagnosis <b class="color-red"
+                                    <label class="control-label col-md-5"> {{ 'PATIENT_OVERVIEW.SELECT_DIAGNOSIS' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.SelectDiagnosis?.IsMandatory"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
@@ -465,7 +465,7 @@
                                 </div>
                                 <!-- End: Selected Diagnosis List  -->
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.ProvisonalDiagnosis?.Show">
-                                    <label class="control-label col-md-5"> Provisonal Diagnosis <b class="color-red"
+                                    <label class="control-label col-md-5"> {{ 'PATIENT_OVERVIEW.PROVISIONAL_DIAGNOSIS' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.ProvisonalDiagnosis?.IsMandatory"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
@@ -500,16 +500,16 @@
                                 </div>
                                 <!-- End: Selected Diagnosis List  -->
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.OtherDiagnosis?.Show">
-                                    <label *ngIf="!IsFishTailtemplate" class="control-label col-md-12">Other Diagnosis
+                                    <label *ngIf="!IsFishTailtemplate" class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.OTHER_DIAGNOSIS' | translate }}
                                         <b class="color-red" *ngIf="dischSumFieldSettings?.OtherDiagnosis?.IsMandatory">
                                             *</b>
                                     </label>
-                                    <label *ngIf="IsFishTailtemplate" class="control-label col-md-12">Diagnosis </label>
+                                    <label *ngIf="IsFishTailtemplate" class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.DIAGNOSIS' | translate }} </label>
                                     <div class="col-md-12">
                                         <textarea *ngIf="!IsFishTailtemplate" class="form-control"
                                                   formControlName="DiagnosisFreeText"
                                                   [(ngModel)]="CurrentDischargeSummary.DiagnosisFreeText"
-                                                  (focusout)="focusOut()" placeholder="Enter Other Diagnosis"></textarea>
+                                                  (focusout)="focusOut()" [placeholder]="'PATIENT_OVERVIEW.OTHER_DIAGNOSIS' | translate"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('DiagnosisFreeText') && dischSumFieldSettings?.OtherDiagnosis?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('DiagnosisFreeText','required') ">OtherDiagnosis
@@ -522,7 +522,7 @@
                                         <textarea *ngIf="IsFishTailtemplate" class="form-control"
                                                   formControlName="DiagnosisFreeText"
                                                   [(ngModel)]="CurrentDischargeSummary.DiagnosisFreeText"
-                                                  (focusout)="focusOut()" placeholder="Enter Diagnosis"></textarea>
+                                                  (focusout)="focusOut()" [placeholder]="'PATIENT_OVERVIEW.DIAGNOSIS' | translate"></textarea>
                                         <br />
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('DiagnosisFreeText') &&IsFishTailtemplate"
@@ -531,35 +531,35 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.ClinicalFindings?.Show">
-                                    <label class="control-label col-md-12">Clinical Findings <b class="color-red"
+                                    <label class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.CLINICAL_FINDINGS' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.ClinicalFindings?.IsMandatory"> *</b>
                                     </label>
                                     <div class="col-md-12">
                                         <textarea class="form-control" maxlength="5000"
                                                   formControlName="ClinicalFindings"
                                                   [(ngModel)]="CurrentDischargeSummary.ClinicalFindings"
-                                                  (focusout)="focusOut()" placeholder="Clinical Findings"></textarea>
+                                                  (focusout)="focusOut()" [placeholder]="'PATIENT_OVERVIEW.CLINICAL_FINDINGS' | translate"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('ClinicalFindings') && dischSumFieldSettings?.ClinicalFindings?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('ClinicalFindings','required') ">ClinicalFindings
                                             is required</span>
                                         <br />
                                         <!-- <span class="color-red" *ngIf="CurrentDischargeSummary.IsDirty('ClinicalFindings')" [hidden]="CurrentDischargeSummary.IsValidCheck('ClinicalFindings','maxlength')">Clinical Findings must
-                      be less than 5000 characters</span> -->
+548:                       be less than 5000 characters</span> -->
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.CheifComplain?.Show">
-                                    <label class="control-label col-md-12">Chief Complain <b class="color-red"
+                                    <label class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.CHIEF_COMPLAINT_LABEL' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.CheifComplain?.IsMandatory"> *</b>
                                         <!-- <b style="float: right">:</b> -->
                                     </label>
                                     <div class="col-md-12">
                                         <!-- <span class="textarea form-control" role="textbox" maxlength="1000" contenteditable formControlName="CaseSummary"
-                    [(ngModel)]="CurrentDischargeSummary.CaseSummary" placeholder="CaseSummary"
-                    (focusout)="focusOut()"></span><br> -->
+                     [(ngModel)]="CurrentDischargeSummary.CaseSummary" placeholder="CaseSummary"
+                     (focusout)="focusOut()"></span><br> -->
                                         <textarea class="form-control" maxlength="1000" formControlName="ChiefComplaint"
                                                   [(ngModel)]="CurrentDischargeSummary.ChiefComplaint" (focusout)="focusOut()"
-                                                  placeholder="Chief Complaint"></textarea>
+                                                  [placeholder]="'PATIENT_OVERVIEW.CHIEF_COMPLAINT_LABEL' | translate"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('ChiefComplaint') && dischSumFieldSettings?.CheifComplain?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('ChiefComplaint','required') ">CheifComplain
@@ -573,17 +573,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.HistoryOfPresentingIllness?.Show">
-                                    <label class="control-label col-md-12">History of Presenting Illness<b
+                                    <label class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.HISTORY_OF_PRESENTING_ILLNESS' | translate }}<b
                                            class="color-red"
                                            *ngIf="dischSumFieldSettings?.HistoryOfPresentingIllness?.IsMandatory">
-                                            *</b>
+                                             *</b>
                                         <!-- <b style="float: right">:</b> -->
                                     </label>
                                     <div class="col-md-12">
                                         <textarea class="form-control" maxlength="5000"
                                                   formControlName="PresentingIllness"
                                                   [(ngModel)]="CurrentDischargeSummary.PresentingIllness"
-                                                  (focusout)="focusOut()" placeholder="Presenting Illness"></textarea>
+                                                  (focusout)="focusOut()" [placeholder]="'PATIENT_OVERVIEW.HISTORY_OF_PRESENTING_ILLNESS' | translate"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('PresentingIllness') && dischSumFieldSettings?.HistoryOfPresentingIllness?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('PresentingIllness','required') ">PresentingIllness
@@ -596,13 +596,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.PastHistory?.Show">
-                                    <label class="control-label col-md-12">Past History <b class="color-red"
+                                    <label class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.PAST_HISTORY' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.PastHistory?.IsMandatory"> *</b>
                                     </label>
                                     <div class="col-md-12">
                                         <textarea class="form-control" maxlength="5000" formControlName="PastHistory"
                                                   [(ngModel)]="CurrentDischargeSummary.PastHistory" (focusout)="focusOut()"
-                                                  placeholder="Past History"></textarea>
+                                                  [placeholder]="'PATIENT_OVERVIEW.PAST_HISTORY' | translate"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('PastHistory') && dischSumFieldSettings?.PastHistory?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('PastHistory','required') ">PastHistory
@@ -612,14 +612,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.CaseSummery?.Show">
-                                    <label class="control-label col-md-12">Case Summary<b class="color-red"
+                                    <label class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.CASE_SUMMARY' | translate }}<b class="color-red"
                                            *ngIf="dischSumFieldSettings?.CaseSummery?.IsMandatory"> *</b>
                                         <!-- <b style="float: right">:</b>                    -->
                                     </label>
                                     <div class="col-md-12">
                                         <textarea class="form-control" id="textarea" rows="10" maxlength="5000"
                                                   formControlName="CaseSummary"
-                                                  [(ngModel)]="CurrentDischargeSummary.CaseSummary" placeholder="CaseSummary"
+                                                  [(ngModel)]="CurrentDischargeSummary.CaseSummary" [placeholder]="'PATIENT_OVERVIEW.CASE_SUMMARY' | translate"
                                                   (focusout)="focusOut()"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('CaseSummary') && dischSumFieldSettings?.CaseSummery?.IsMandatory"
@@ -633,14 +633,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.Procedure?.Show">
-                                    <label class="control-label col-md-12"> Procedure <b class="color-red"
+                                    <label class="control-label col-md-12"> {{ 'PATIENT_OVERVIEW.PROCEDURE' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.Procedure?.IsMandatory"> *</b>
                                         <!-- <b style="float: right">:</b> -->
                                     </label>
                                     <div class="col-md-12">
                                         <textarea class="form-control" maxlength="1000" formControlName="ProcedureNts"
-                                                  [(ngModel)]="CurrentDischargeSummary.ProcedureNts"
-                                                  placeholder="ProcedureNts " (focusout)="focusOut()"></textarea>
+                                                   [(ngModel)]="CurrentDischargeSummary.ProcedureNts"
+                                                   [placeholder]="'PATIENT_OVERVIEW.PROCEDURE' | translate" (focusout)="focusOut()"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('ProcedureNts') && dischSumFieldSettings?.Procedure?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('ProcedureNts','required') ">Procedure
@@ -652,15 +652,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.OperativeFindings?.Show">
-                                    <label class="control-label col-md-12">Operative Findings<b class="color-red"
+                                    <label class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.OPERATIVE_FINDINGS' | translate }}<b class="color-red"
                                            *ngIf="dischSumFieldSettings?.OperativeFindings?.IsMandatory"> *</b>
                                         <!-- <b style="float: right">:</b> -->
                                     </label>
                                     <div class="col-md-12">
                                         <textarea class="form-control" maxlength="1000"
-                                                  formControlName="OperativeFindings"
-                                                  [(ngModel)]="CurrentDischargeSummary.OperativeFindings"
-                                                  placeholder="OperativeFindings" (focusout)="focusOut()"></textarea>
+                                                   formControlName="OperativeFindings"
+                                                   [(ngModel)]="CurrentDischargeSummary.OperativeFindings"
+                                                   [placeholder]="'PATIENT_OVERVIEW.OPERATIVE_FINDINGS' | translate" (focusout)="focusOut()"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('OperativeFindings') && dischSumFieldSettings?.OperativeFindings?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('OperativeFindings','required') ">OperativeFindings
@@ -694,14 +694,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.HospitalCourse?.Show">
-                                    <label class="control-label col-md-12">Hospital Course <b class="color-red"
+                                    <label class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.HOSPITAL_COURSE' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.HospitalCourse?.IsMandatory"> *</b>
                                         <!-- <b style="float: right">:</b> -->
                                     </label>
                                     <div class="col-md-12">
                                         <textarea class="form-control" maxlength="5000" formControlName="HospitalCourse"
                                                   [(ngModel)]="CurrentDischargeSummary.HospitalCourse" (focusout)="focusOut()"
-                                                  placeholder="Hospital Course"></textarea>
+                                                  [placeholder]="'PATIENT_OVERVIEW.HOSPITAL_COURSE' | translate"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('HospitalCourse') && dischSumFieldSettings?.HospitalCourse?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('HospitalCourse','required') ">HospitalCourse
@@ -724,7 +724,7 @@
                       than 1000 characters</span></div></div> -->
                                 <div class="form-group"
                                      *ngIf="dischSumFieldSettings?.TreatmentDuringHospitalStay?.Show">
-                                    <label class="control-label col-md-5">Treatment During Hospital Stay <b
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.TREATMENT_DURING_HOSPITAL_STAY' | translate }} <b
                                            class="color-red"
                                            *ngIf="dischSumFieldSettings?.TreatmentDuringHospitalStay?.IsMandatory">
                                             *</b><b style="float: right">:</b>
@@ -732,7 +732,7 @@
                                     <div class="col-md-7">
                                         <textarea class="form-control" maxlength="5000" formControlName="Treatment"
                                                   [(ngModel)]="CurrentDischargeSummary.Treatment"
-                                                  placeholder="Treatment during hospital stay"
+                                                  [placeholder]="'PATIENT_OVERVIEW.TREATMENT_DURING_HOSPITAL_STAY' | translate"
                                                   (focusout)="focusOut()"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('Treatment') && dischSumFieldSettings?.TreatmentDuringHospitalStay?.IsMandatory"
@@ -745,14 +745,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.ConditionOnDischarge?.Show">
-                                    <label class="control-label col-md-5">Condition On Discharge <b class="color-red"
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.CONDITION_ON_DISCHARGE' | translate }} <b class="color-red"
                                            *ngIf="dischSumFieldSettings?.TreatmentDuringHospitalStay?.IsMandatory">
                                             *</b>
                                         <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
                                         <textarea class="form-control" maxlength="100" formControlName="Condition"
-                                                  [(ngModel)]="CurrentDischargeSummary.Condition" placeholder="Condition"
+                                                  [(ngModel)]="CurrentDischargeSummary.Condition" [placeholder]="'PATIENT_OVERVIEW.CONDITION_ON_DISCHARGE' | translate"
                                                   (focusout)="focusOut()"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('Condition') && dischSumFieldSettings?.ConditionOnDischarge?.IsMandatory"
@@ -768,34 +768,34 @@
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.PendingReports?.Show">
-                                    <label class="control-label col-md-5">Pending Reports <b class="color-red"
-                                           *ngIf="dischSumFieldSettings?.PendingReports?.IsMandatory"> *</b>
+                                    <label class="control-label col-md-5">{{ 'PATIENT_OVERVIEW.PENDING_REPORTS' | translate }} <b class="color-red"
+                                            *ngIf="dischSumFieldSettings?.PendingReports?.IsMandatory"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
                                         <textarea class="form-control" maxlength="1000" formControlName="PendingReports"
-                                                  [(ngModel)]="CurrentDischargeSummary.PendingReports" (focusout)="focusOut()"
-                                                  placeholder="Pending Reports"></textarea>
+                                                   [(ngModel)]="CurrentDischargeSummary.PendingReports" (focusout)="focusOut()"
+                                                   [placeholder]="'PATIENT_OVERVIEW.PENDING_REPORTS' | translate"></textarea>
                                         <span class="color-red"
-                                              *ngIf="CurrentDischargeSummary.IsDirty('PendingReports') && dischSumFieldSettings?.PendingReports?.IsMandatory"
-                                              [hidden]="CurrentDischargeSummary.IsValidCheck('PendingReports','required') ">PendingReports
+                                               *ngIf="CurrentDischargeSummary.IsDirty('PendingReports') && dischSumFieldSettings?.PendingReports?.IsMandatory"
+                                               [hidden]="CurrentDischargeSummary.IsValidCheck('PendingReports','required') ">PendingReports
                                             is required</span>
                                         <br />
                                         <span class="color-red"
-                                              *ngIf="CurrentDischargeSummary.IsDirty('PendingReports')"
-                                              [hidden]="CurrentDischargeSummary.IsValidCheck('PendingReports','maxlength')">Pending
+                                               *ngIf="CurrentDischargeSummary.IsDirty('PendingReports')"
+                                               [hidden]="CurrentDischargeSummary.IsValidCheck('PendingReports','maxlength')">Pending
                                             Reports must be less than 1000 characters</span>
                                     </div>
                                 </div>
                                 <div class="form-group" *ngIf="dischSumFieldSettings?.SpecialNotes?.Show">
-                                    <label class="control-label col-md-12">Special Notes<b class="color-red"
-                                           *ngIf="dischSumFieldSettings?.SpecialNotes?.IsMandatory"> *</b>
+                                    <label class="control-label col-md-12">{{ 'PATIENT_OVERVIEW.SPECIAL_NOTES' | translate }}<b class="color-red"
+                                            *ngIf="dischSumFieldSettings?.SpecialNotes?.IsMandatory"> *</b>
                                         <!-- <b style="float: right">:</b> -->
                                     </label>
                                     <div class="col-md-12">
                                         <textarea class="form-control" maxlength="1000" formControlName="SpeicialNotes"
-                                                  [(ngModel)]="CurrentDischargeSummary.SpeicialNotes" (focusout)="focusOut()"
-                                                  placeholder="Special Notes"></textarea>
+                                                   [(ngModel)]="CurrentDischargeSummary.SpeicialNotes" (focusout)="focusOut()"
+                                                   [placeholder]="'PATIENT_OVERVIEW.SPECIAL_NOTES' | translate"></textarea>
                                         <span class="color-red"
                                               *ngIf="CurrentDischargeSummary.IsDirty('SpeicialNotes') && dischSumFieldSettings?.SpecialNotes?.IsMandatory"
                                               [hidden]="CurrentDischargeSummary.IsValidCheck('SpeicialNotes','required') ">SpeicialNotes

@@ -6,21 +6,21 @@
 </style>
 
 <div class="row">
-  <div class="col-md-12"> <a class="btn blue" style="margin-bottom:7px;float:left;" (click)="ShowConsumptionPage()"> <i class="fa fa-backward"></i> Back </a>
+  <div class="col-md-12"> <a class="btn blue" style="margin-bottom:7px;float:left;" (click)="ShowConsumptionPage()"> <i class="fa fa-backward"></i> {{ 'COMMON.BACK' | translate }} </a>
     <div class="col-md-4">
-      <label class="control-label">Select Ward:</label>
+      <label class="control-label ">{{ 'WARD_SUPPLY.SELECT_WARD' | translate }}:</label>
       <select [(ngModel)]="WardId" id="wardId" style="width:300px;height:30px;" (change)="onWardChange()">
         <option *ngFor="let v of WardList" value="{{v.WardId}}">{{v.WardName}}</option>
       </select>
     </div>
     <div class="col-md-4">
-      <label style="display:inline-block;">Search Patient:</label>
+      <label style="display:inline-block;">{{ 'WARD_SUPPLY.SEARCH_PATIENT' | translate }}:</label>
       <div class="autocomplete-item" style="display:inline-block;">
         <input danphe-auto-complete class="form-control"
                [(ngModel)]="SelectedPatient"
                [source]="PatientRefinedList"
                [list-formatter]="PatientListFormatter"
-               placeholder="-- Search Patient --"
+               [placeholder]="'WARD_SUPPLY.SEARCH_PATIENT_PLACEHOLDER' | translate"
                display-property-name="ShortName"
                value-property-name=null
                (valueChanged)="onClickPatient($event)"
@@ -38,22 +38,22 @@
     <div class="well" style="padding: inherit;">
       <div class="row">
         <div class="col-sm-2">
-          <label>Patient Code:<span [innerHTML]="SelectedPatient.PatientCode"></span></label>
+          <label>{{ 'WARD_SUPPLY.PATIENT_CODE' | translate }}:<span [innerHTML]="SelectedPatient.PatientCode"></span></label>
         </div>
         <div class="col-sm-2">
-          <label>Name:<span [innerHTML]="SelectedPatient.ShortName"></span></label>
+          <label>{{ 'COMMON.NAME' | translate }}:<span [innerHTML]="SelectedPatient.ShortName"></span></label>
         </div>
         <div class="col-sm-2">
-          <label>Address:<span [innerHTML]="SelectedPatient.Address"></span></label>
+          <label>{{ 'GRID_HEADERS.ADDRESS' | translate }}:<span [innerHTML]="SelectedPatient.Address"></span></label>
         </div>
         <div class="col-sm-2">
-          <label>Age:<span [innerHTML]="SelectedPatient.Age"></span></label>
+          <label>{{ 'PATIENT.AGE' | translate }}:<span [innerHTML]="SelectedPatient.Age"></span></label>
         </div>
         <div class="col-sm-2">
-          <label>Gender:<span [innerHTML]="SelectedPatient.Gender"></span></label>
+          <label>{{ 'PATIENT.GENDER' | translate }}:<span [innerHTML]="SelectedPatient.Gender"></span></label>
         </div>
         <div class="col-sm-2">
-          <label>Contact No:<span [innerHTML]="SelectedPatient.PhoneNumber"></span></label>
+          <label>{{ 'WARD_SUPPLY.CONTACT_NO' | translate }}:<span [innerHTML]="SelectedPatient.PhoneNumber"></span></label>
         </div>
       </div>
     </div>
@@ -64,14 +64,14 @@
         <thead>
           <tr class="table-tr-style">
             <th></th>
-            <th><b>Drug/Medicine Name</b></th>
-            <th><b>Expiry</b></th>
-            <th><b>Batch</b></th>
+            <th><b>{{ 'WARD_SUPPLY.DRUG_MEDICINE_NAME' | translate }}</b></th>
+            <th><b>{{ 'WARD_SUPPLY.EXPIRY' | translate }}</b></th>
+            <th><b>{{ 'WARD_SUPPLY.BATCH' | translate }}</b></th>
             <th></th>
-            <th><b>AvlQty</b></th>
-            <th><b>Qty</b></th>
-            <th><b>M.R.P.</b></th>
-            <th><b>Amount</b></th>
+            <th><b>{{ 'WARD_SUPPLY.AVAILABLE_QTY' | translate }}</b></th>
+            <th><b>{{ 'WARD_SUPPLY.QTY' | translate }}</b></th>
+            <th><b>{{ 'WARD_SUPPLY.MRP' | translate }}</b></th>
+            <th><b>{{ 'WARD_SUPPLY.AMOUNT' | translate }}</b></th>
           </tr>
         </thead>
         <tbody>
@@ -82,7 +82,7 @@
                        [(ngModel)]="row.SelectedItem"
                        [source]="ItemTypeListWithItems"
                        [list-formatter]="ItemListFormatter"
-                       placeholder="--Select Medicine--"
+                       [placeholder]="'WARD_SUPPLY.SELECT_MEDICINE_PLACEHOLDER' | translate"
                        display-property-name="ItemName"
                        value-property-name=null
                        onClick="this.select();"
@@ -94,7 +94,6 @@
                        [grid-sort]="'ItemName'"
                        match-formatted="true"
                        [ngModelOptions]="{standalone: true}"/>
-                <!--<span class="color-red font-sm" >Select Medicine..</span>-->
               </form></td>
             <td><label style="width:100px ; "
                      min="0" type="date" value="">{{row.ExpiryDate | date}}</label></td>
@@ -109,7 +108,7 @@
                        formControlName="Quantity" style="width:80px ; "
                        min="0" class="form-control" type="number" onwheel="this.blur()" value=""
                        id="{{ 'qty-box'+i }}" (keyup.enter)="AddRow(i)" onClick="this.select();">
-                <span class="color-red font-sm" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValid('Quantity','required')">Enter Quantity..</span>
+                <span style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValid('Quantity','invalidNumber')">{{ 'WARD_SUPPLY.ENTER_QUANTITY_VALIDATION' | translate }}</span>
               </form></td>
             <td><input [(ngModel)]="row.MRP" style="width:80px ; "
                      min="0" class="form-control" type="number" value="" disabled></td>
@@ -121,26 +120,26 @@
       <table class=" col-sm-6 ">
         <tr class="form-group">
           <td class="col-sm-offset-8 col-sm-2"></td>
-          <td>Total Amount: </td>
+          <td>{{ 'WARD_SUPPLY.TOTAL_AMOUNT_COLON' | translate }} </td>
           <td><input [(ngModel)]="TotalConsumption" disabled class="form-control" name="TotalAmount" type="number"></td>
         </tr>
         <tr class="dot">
           <td></td>
           <td></td>
-          <td class="text-capitalize">In Words : <b>{{TotalConsumption | NumberInWords}} </b>&nbsp; Only. <br />
+          <td class="text-capitalize" colspan="2">{{ 'WARD_SUPPLY.IN_WORDS' | translate }} <b>{{TotalConsumption | NumberInWords}} </b>&nbsp; {{ 'WARD_SUPPLY.ONLY' | translate }} <br />
             <br /></td>
         </tr>
         <tr class="form-group">
           <td></td>
-          <td>Remark:</td>
+          <td>{{ 'COMMON.REMARKS' | translate }}:</td>
           <td class="text-capitalize"><textarea [(ngModel)]="WardConsumption.Remark" name="Remark" id="Remark"></textarea></td>
         </tr>
         <tr>
           <td class="col-sm-offset-8 col-sm-2"></td>
           <td></td>
-          <td><input type="button" class="btn btn-success" value="Save" (click)="Save()" [disabled]="loading" />
+          <td><input type="button" class="btn btn-success" [value]="'COMMON.SAVE' | translate" (click)="Save()" [disabled]="loading" />
             <span></span>
-            <input type="button" class="btn btn-danger" [disabled]="loading" (click)="Cancel()" value="Cancel">
+            <input type="button" class="btn btn-danger" [disabled]="loading" (click)="Cancel()" [value]="'COMMON.CANCEL' | translate">
             <span></span></td>
         </tr>
       </table>

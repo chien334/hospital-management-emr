@@ -1,4 +1,4 @@
-<a feature="button" class="btn blue bordered" (click)="AddWardSubstoreMap()"><i class="fa fa-plus"></i>Add Ward SubStore Map</a>
+<a feature="button" class="btn blue bordered" (click)="AddWardSubstoreMap()"><i class="fa fa-plus"></i>{{ 'SETTINGS.ADD_WARD_SUBSTORE_MAP' | translate }}</a>
 <ward-substore-map-manage-add *ngIf="showAddPopup" (callback-add)="CallBackAdd($event)"
                               [wardStoreMapDataList]="substoreWardMapList"></ward-substore-map-manage-add>
 <div class="row">

@@ -2,7 +2,7 @@
   <div class="form-body">
     <div class="caption lb-caption">
       <i class="fa fa-money"></i>
-      <span class="caption-subject">Fixed Assets Movement </span>
+      <span class="caption-subject">{{ 'FIXED_ASSETS.MOVEMENT_TITLE' | translate }}</span>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -10,7 +10,7 @@
           <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true" (fiscalYearDate)="selectDate($event)"> </fiscal-year-calendar>
         </div>
         <div class="form-group">
-          <button class="btn blue primary-btn" type="button" style="float: right !important;margin-right:10% !important" (click)="Load()"> Show Report</button>
+          <button class="btn blue primary-btn" type="button" style="float: right !important;margin-right:10% !important" (click)="Load()"> {{ 'FIXED_ASSETS.SHOW_REPORT' | translate }}</button>
         </div>
       </div>
     </div>
@@ -18,10 +18,10 @@
 
   <div class="col-md-6 col-xs-12">
     <div class="form-group">
-      <label class="control-label col-md-4">Select Employee <b style="float:right;">:</b></label>
+      <label class="control-label col-md-4">{{ 'FIXED_ASSETS.SELECT_EMPLOYEE' | translate }} <b style="float:right;">:</b></label>
       <div class="col-md-7">
         <select [(ngModel)]="assetReportObj.EmployeeId" (ngModelChange)="OnEmployeeChange()" [ngModelOptions]="{standalone: true}" style="width:100%!important;">
-          <option [ngValue]="null" selected>All Employees</option>
+          <option [ngValue]="null" selected>{{ 'FIXED_ASSETS.ALL_EMPLOYEES' | translate }}</option>
           <ng-container *ngFor="let emp of employeeList">
             <option [ngValue]="emp.EmployeeId">{{emp.FullName}}</option>
           </ng-container>
@@ -29,10 +29,10 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-md-4">Select Department <b style="float:right;">:</b></label>
+      <label class="control-label col-md-4">{{ 'FIXED_ASSETS.SELECT_DEPARTMENT' | translate }} <b style="float:right;">:</b></label>
       <div class="col-md-7">
         <select [(ngModel)]="assetReportObj.DepartmentId" (ngModelChange)="OnDepartmentChange()" [ngModelOptions]="{standalone: true}" style="width:100%!important;">
-          <option [ngValue]="null" selected>All Departments</option>
+          <option [ngValue]="null" selected>{{ 'FIXED_ASSETS.ALL_DEPARTMENTS' | translate }}</option>
           <ng-container *ngFor="let dep of departmentList">
             <option [ngValue]="dep.DepartmentId">{{dep.DepartmentName}}</option>
           </ng-container>
@@ -42,10 +42,10 @@
   </div>
   <div class="col-md-6 col-xs-12">
     <div class="form-group">
-      <label class="control-label col-md-4">Select Item <b style="float:right;">:</b></label>
+      <label class="control-label col-md-4">{{ 'FIXED_ASSETS.SELECT_ITEM' | translate }} <b style="float:right;">:</b></label>
       <div class="col-md-7">
         <select [(ngModel)]="assetReportObj.ItemId" (ngModelChange)="OnItemChange()" [ngModelOptions]="{standalone: true}" style="width:100%!important;">
-          <option [ngValue]="null" selected>All Items</option>
+          <option [ngValue]="null" selected>{{ 'FIXED_ASSETS.ALL_ITEMS' | translate }}</option>
           <ng-container *ngFor="let itm of itemsList">
             <option [ngValue]="itm.ItemId">{{itm.ItemName}}</option>
           </ng-container>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-md-4">Search Via Reference No<b style="float:right;">:</b></label>
+      <label class="control-label col-md-4">{{ 'FIXED_ASSETS.SEARCH_VIA_REFERENCE_NO' | translate }}<b style="float:right;">:</b></label>
       <div class="col-md-7">
         <input type="text" [(ngModel)]="assetReportObj.ReferenceNumber" [ngModelOptions]="{standalone: true}" style="width:100%!important;">
       </div>
@@ -63,7 +63,7 @@
 
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="FixedAssetsMovementColumn" [grid-data]="FixedAssetsMovementData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [show-header]="true" [report-for]="'inventory'" [report-title]="'Fixed Assets Movement Report'" [filter-parameters]="FilterParameters">
+    <danphe-grid [grid-colDefaults]="FixedAssetsMovementColumn" [grid-data]="FixedAssetsMovementData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [show-header]="true" [report-for]="'inventory'" [report-title]="'FIXED_ASSETS.MOVEMENT_REPORT_TITLE' | translate" [filter-parameters]="FilterParameters">
     </danphe-grid>
   </div>
 </div>

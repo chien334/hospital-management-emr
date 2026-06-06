@@ -29,12 +29,10 @@
 <div class="row">
   <div class="col-md-12">
     <div class="left">
-      <button class="btn btn-primary btn-sm" (click)="requisitionList()"><i class="fa fa-backward"></i>&nbsp;Back to
-        Requisition
-        List</button>
+      <button class="btn btn-primary btn-sm" (click)="requisitionList()"><i class="fa fa-backward"></i>&nbsp;{{ 'WARD_SUPPLY.BACK_TO_REQUISITION_LIST' | translate }}</button>
     </div>
     <div class="right">
-      <button class="btn btn-primary btn-sm" (click)="print()"><i class="fa fa-print"></i>&nbsp;Print</button>
+      <button class="btn btn-primary btn-sm" (click)="print()"><i class="fa fa-print"></i>&nbsp;{{ 'COMMON.PRINT' | translate }}</button>
     </div>
   </div>
 </div>
@@ -47,28 +45,28 @@
         <print-header [unit-name]="'Inventory Unit'"></print-header>
         <div class="clear"></div>
         <div class="left" style="text-align:left;">
-          <p>Requisition No:<b> {{requisitionNo}}</b></p>
+          <p>{{ 'WARD_SUPPLY.REQUISITION_NO' | translate }}:<b> {{requisitionNo}}</b></p>
         </div>
         <div class="right" style="text-align:right;">
-          <p *ngIf="issueNo!=null">Issue No:<b> {{issueNo}}</b></p>
-          <p>Requisition Date:<b> {{requisitionDate}}</b> <i *ngIf="requisitionDate"> 
+          <p *ngIf="issueNo!=null">{{ 'WARD_SUPPLY.ISSUE_NO' | translate }}:<b> {{issueNo}}</b></p>
+          <p>{{ 'WARD_SUPPLY.REQUISITION_DATE' | translate }}:<b> {{requisitionDate}}</b> <i *ngIf="requisitionDate"> 
               {{requisitionDate | nepaliDate:'format':'YYYY-MM-DD'}}  </i> </p>
         </div>
         <div class="clear"></div>
-        <p class="text-center btm-pad border-up-down"><b> REQUISITION DETAILS PRINT</b></p>
+        <p class="text-center btm-pad border-up-down"><b> {{ 'WARD_SUPPLY.REQUISITION_DETAILS_PRINT' | translate }}</b></p>
         <div class="clear"></div>
         <div class="clear footer"></div>
         <div>
           <table class="table table-striped table-hover req_table" style="background-color:initial;margin-top:10px;width:100%">
             <thead>
               <tr style="font-weight: bold;text-align:center">
-                <td>Item Name</td>
-                <td>Code</td>
-                <td>Quantity</td>
-                <td>Received Qty.</td>
-                <td>Pending Qty.</td>
-                <td>Status</td>
-                <td>Remarks</td>
+                <td>{{ 'WARD_SUPPLY.ITEM_NAME' | translate }}</td>
+                <td>{{ 'GRID_HEADERS.CODE' | translate }}</td>
+                <td>{{ 'WARD_SUPPLY.QUANTITY' | translate }}</td>
+                <td>{{ 'WARD_SUPPLY.RECEIVED_QTY' | translate }}</td>
+                <td>{{ 'WARD_SUPPLY.PENDING_QTY' | translate }}</td>
+                <td>{{ 'COMMON.STATUS' | translate }}</td>
+                <td>{{ 'COMMON.REMARKS' | translate }}</td>
               </tr>
             </thead>
             <tbody>
@@ -80,9 +78,9 @@
                 <td>{{row.PendingQuantity}}</td>
                 <td>{{row.RequisitionItemStatus}} <span *ngIf="row.IsActive == false" id="CancellationToolTip" class="tooltip"> <span class="fa fa-info" style="margin-left:5px;padding: 3px 6px 3px 6px;background-color: #c8c8d2;border-radius: 9px;">
                     </span>
-                    <p class="tooltiptext ttptextdown no-print"> Cancelled&nbsp;By:&nbsp;{{row.CancelBy}}<br />
-                      Cancelled&nbsp;On:&nbsp;{{row.CancelOn | date : 'medium'}}<br />
-                      <em *ngIf="!!row.CancelRemarks">Remarks:&nbsp;{{row.CancelRemarks}}</em>
+                    <p class="tooltiptext ttptextdown no-print"> {{ 'WARD_SUPPLY.CANCELLED_BY' | translate }}:&nbsp;{{row.CancelBy}}<br />
+                      {{ 'WARD_SUPPLY.CANCELLED_ON' | translate }}:&nbsp;{{row.CancelOn | date : 'medium'}}<br />
+                      <em *ngIf="!!row.CancelRemarks">{{ 'COMMON.REMARKS' | translate }}:&nbsp;{{row.CancelRemarks}}</em>
                     </p>
                   </span></td>
                 <td><b>{{row.Remark}}</b></td>
@@ -93,22 +91,15 @@
         <hr />
         <div class="col-md-12" style="font-size:12px">
           <div class="col-md-12 text-left" *ngIf="!!mainRemarks">
-            <span class="col-md-2">Remarks:&nbsp;</span><span>{{mainRemarks}}</span>
+            <span class="col-md-2">{{ 'COMMON.REMARKS' | translate }}:&nbsp;</span><span>{{mainRemarks}}</span>
           </div>
           <div class="col-md-12 text-left">
             <div class="col-md-2" style="text-align: left;padding:0px;">
-              <div><u>Requested By</u>:</div>
+              <div><u>{{ 'WARD_SUPPLY.REQUESTED_BY' | translate }}</u>:</div>
               <div>{{createdby}}</div>
               <div>{{requisitionDate | date : 'mediumDate'}}</div>
             </div>
-
-            <!-- <div class="col-md-5" style="text-align: left;padding:0px;" *ngIf="dispatchers.length > 0"> <u>Dispatched By</u>:
-              <div *ngFor="let dispatcher of dispatchers;let i = index;"> {{i+1}}&nbsp;{{dispatcher.Name}}&nbsp;({{dispatcher.Date | date : 'medium'}})&nbsp; <span *ngIf="!!dispatcher.Remarks "><i>Rem:</i><span
-                  [title]="dispatcher.Remarks">{{dispatcher.Remarks | slice:0:10 }}..</span></span> </div>
-            </div> -->
           </div>
-          <!-- <div class="col-md-4" style="text-align: left;padding:0px;margin-top:10px;" *ngIf="!!receivedby"> <u>Received By</u>:&nbsp;{{receivedby}}
-            </div> -->
         </div>
       </div>
     </div>

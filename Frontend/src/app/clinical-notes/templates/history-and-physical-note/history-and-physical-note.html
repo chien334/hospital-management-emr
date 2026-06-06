@@ -72,11 +72,11 @@
     <div class="col-md-6">
       <div class="hm-form">
         <div class="text-head-wrapper clearfix">
-          <h3 class="text-head cstm-add-heading">Instructions</h3>
+          <h3 class="text-head cstm-add-heading">{{ 'CLINICAL.INSTRUCTIONS' | translate }}</h3>
         </div>
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-4">Follow Up<b>:</b></label>
+            <label class="control-label col-md-4">{{ 'CLINICAL.FOLLOW_UP' | translate }}<b>:</b></label>
             <div class="col-md-8">
               <div class="row">
                 <div class="col-md-3">
@@ -87,15 +87,15 @@
                     <div class="icheck-inline">
                       <label class="mt-radio mt-radio-outline">
                         <input name="FollowUpUnit" type="radio" value="day" [(ngModel)]="notes.FollowUpUnit" (focusout)="FocusOut()">
-                        <span></span>Days
+                        <span></span>{{ 'CLINICAL.DAYS' | translate }}
                       </label>
                       <label class="mt-radio mt-radio-outline">
                         <input name="FollowUpUnit" type="radio" value="week" [(ngModel)]="notes.FollowUpUnit" (focusout)="FocusOut()">
-                        <span></span>Weeks
+                        <span></span>{{ 'CLINICAL.WEEKS' | translate }}
                       </label>
                       <label class="mt-radio mt-radio-outline">
                         <input name="FollowUpUnit" type="radio" value="month" [(ngModel)]="notes.FollowUpUnit" (focusout)="FocusOut()">
-                        <span></span>Months
+                        <span></span>{{ 'CLINICAL.MONTHS' | translate }}
                       </label>
                     </div>
                   </div>
@@ -106,7 +106,7 @@
         </div>
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-4">Remarks<b>:</b></label>
+            <label class="control-label col-md-4">{{ 'CLINICAL.REMARKS' | translate }}<b>:</b></label>
             <div class="col-md-8">
               <textarea class="form-control" [(ngModel)]="notes.Remarks" maxlength="500" rows="3" (focusout)="FocusOut()"></textarea>
             </div>

@@ -44,14 +44,14 @@
 
 <div class="prob-entry hm-form">
     <div class="text-head-wrapper clearfix">
-        <h3 class="text-head cstm-add-heading">Assessment/Plan</h3>
+        <h3 class="text-head cstm-add-heading">{{ 'CLINICAL.ASSESSMENT_PLAN_TITLE' | translate }}</h3>
     </div>
     <div class="row">
         <div class="col-md-4">
             <!--<div *ngIf="editable">
     </div>-->
             <div class="autocomplete-item" *ngIf="ICD10List && ICD10List.length>0">
-                <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="Select {{IcdVersionDisplayName}}" display-property-name="ICD10Description" value-property-name=null (valueChanged)="AssignSelectedICD()" onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" />
+                <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="{{ 'CLINICAL.SELECT_ICD' | translate: { IcdVersionDisplayName: IcdVersionDisplayName } }}" display-property-name="ICD10Description" value-property-name=null (valueChanged)="AssignSelectedICD()" onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" />
             </div>
 
             <!--<span (click)="makeEditable(icd10Selected.ICD10Code)" *ngIf="!editable"><span>{{icd10Selected.ICD10Code}}</span>{{icd10Selected.ICD10Description}}</span>-->
@@ -59,7 +59,7 @@
         <div class="col-md-4">
             <div class="cstm-form-group">
                 <div class="row">
-                    <label class="cstm-control-label control-label col-md-4">Remark<b>:</b></label>
+                    <label class="cstm-control-label control-label col-md-4">{{ 'CLINICAL.REMARKS' | translate }}<b>:</b></label>
                     <div class="col-md-8">
                         <textarea rows="1"></textarea>
                     </div>
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <a *ngIf="(editIndex != null) && (editIndex >= 0)" (click)="Reset()" class="cancel-button">Cancel</a>
+            <a *ngIf="(editIndex != null) && (editIndex >= 0)" (click)="Reset()" class="cancel-button">{{ 'COMMON.CANCEL' | translate }}</a>
         </div>
         <!--<div class="col-md-1">
         <a (click)="Remove(i)" style="padding: 3px 8px 4px 8px;background: #b51717; text-align: center;color: #fff;"><i class="fa fa-close"></i></a>
@@ -81,16 +81,16 @@
 
 <div class="prob-entry hm-form">
     <div class="text-head-wrapper clearfix">
-        <h3 class="text-head cstm-add-heading">Selected Assessment and Orders</h3>
+        <h3 class="text-head cstm-add-heading">{{ 'CLINICAL.SELECTED_ASSESSMENT_AND_ORDERS' | translate }}</h3>
     </div>
 
-    <p *ngIf="!assessments.DiagnosisOrdersList.length">No ICD Selected Yet</p>
+    <p *ngIf="!assessments.DiagnosisOrdersList.length">{{ 'CLINICAL.NO_ICD_SELECTED' | translate }}</p>
     <table *ngIf="assessments.DiagnosisOrdersList.length" class="table table-bordered allIcdOrdersTable" style="width: 100%;">
         <thead>
             <tr>
-                <th>Assessment Name</th>
-                <th>Orders</th>
-                <th>Edit Orders</th>
+                <th>{{ 'CLINICAL.ASSESSMENT_NAME' | translate }}</th>
+                <th>{{ 'CLINICAL.ORDERS_LABEL' | translate }}</th>
+                <th>{{ 'CLINICAL.EDIT_ORDERS' | translate }}</th>
             </tr>
         </thead>
         <tr *ngFor="let assessment of assessments.DiagnosisOrdersList; let assessIndex=index;">
@@ -105,7 +105,7 @@
                 </p>
             </td>
             <td *ngIf="assessment.IsEditable" width="14%">
-                <a (click)="EditOrder(assessIndex)" style="padding: 2px 5px;margin-right: 5px;background: #006687;color: #fff;"><i class="fa fa-edit"></i>Add Order</a>
+                <a (click)="EditOrder(assessIndex)" style="padding: 2px 5px;margin-right: 5px;background: #006687;color: #fff;"><i class="fa fa-edit"></i>{{ 'CLINICAL.ADD_ORDER' | translate }}</a>
                 <a *ngIf="assessment.IsEditable" (click)="RemoveCompleteRow(assessIndex)" style="padding: 2px 5px;background: #b51717;color: #fff;"><i class="fa fa-close"></i></a>
             </td>
         </tr>

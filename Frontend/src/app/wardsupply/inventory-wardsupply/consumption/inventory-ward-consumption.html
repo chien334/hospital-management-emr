@@ -7,12 +7,12 @@
 
 <div class="row">
   <div class="col-md-8">
-    <div class="caption lb-caption left"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Consumption Entry</span> </div>
+    <div class="caption lb-caption left"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'WARD_SUPPLY.SUBSTORE_CONSUMPTION_ENTRY' | translate }}</span> </div>
   </div>
   <div class="col-md-8" style="margin-bottom: 10px;">
     <div class="col-md-7 col-xs-12">
       <div class="form-group">
-        <label class="control-label col-md-3">Consumption Date<sup class="color-red"> *</sup><b class="float:right;">:</b></label>
+        <label class="control-label col-md-3">{{ 'WARD_SUPPLY.CONSUMPTION_DATE' | translate }}<sup class="color-red"> *</sup><b class="float:right;">:</b></label>
         <div class="col-md-9">
           <danphe-date-picker [(ngModel)]="ConsumptionDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
           </danphe-date-picker>
@@ -20,13 +20,13 @@
       </div>
     </div>
     <div class="col-md-5">
-      <a class="btn blue right" (click)="ShowConsumptionPage()"> <i class="fa fa-backward"></i> Back </a>
+      <a class="btn blue right" (click)="ShowConsumptionPage()"> <i class="fa fa-backward"></i> {{ 'COMMON.BACK' | translate }} </a>
     </div>
 
   </div>
   <!-- <div class="col-md-8 col-xs-12">
     <div class="form-group">
-      <div class="row clearfix"><label class="control-label col-md-3">Consumption Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
+      <div class="row clearfix"><label class="control-label col-md-3">{{ 'WARD_SUPPLY.CONSUMPTION_DATE' | translate }}<b class="color-red"> *</b><b style="float:right;">:</b></label>
       <div class="col-md-9">
         <danphe-date-picker [(ngModel)]="ConsumptionDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}"> </danphe-date-picker>
         <div class="error-message" *ngIf="IsConsumptionDateValid() == false"> Invalid Fiscal Year Date. </div>
@@ -40,11 +40,11 @@
       <thead>
         <tr class="table-tr-style">
           <th></th>
-          <th><b>Item&nbsp;Name</b></th>
-          <th>Code</th>
-          <th>Unit</th>
-          <th><b>Available Qty.</b></th>
-          <th><b>Consumed Qty.</b></th>
+          <th><b>{{ 'WARD_SUPPLY.ITEM_NAME' | translate }}</b></th>
+          <th>{{ 'WARD_SUPPLY.CODE' | translate }}</th>
+          <th>{{ 'WARD_SUPPLY.UNIT' | translate }}</th>
+          <th><b>{{ 'WARD_SUPPLY.AVAILABLE_QTY' | translate }}</b></th>
+          <th><b>{{ 'WARD_SUPPLY.CONSUMED_QTY' | translate }}</b></th>
           <th></th>
         </tr>
       </thead>
@@ -53,7 +53,7 @@
           <td style="width: 46px;"><a class="" (click)="DeleteRow(i)"><i class="btn btn-xs btn-danger fa fa-times"></i></a></td>
           <td style="width: auto;" class="autocomplete-item">
             <form [formGroup]="row.ConsumptionValidator" autocomplete="off">
-              <input danphe-auto-complete class="form-control" id="itemName{{i}}" [(ngModel)]="row.SelectedItem" [source]="ItemTypeListWithItems" [list-formatter]="ItemListFormatter" placeholder="--Select Item--" display-property-name="ItemName" value-property-name=null onClick="this.select();" (valueChanged)="onChangeItem($event,i)" max-num-list="20" min-chars="1" [grid-sort]="'ItemName'" match-formatted="true" formControlName="ItemName" (keyup.enter)="OnPressedEnterKeyInItemField(i)" (keyup.esc)="DeleteRow(i)" />
+              <input danphe-auto-complete class="form-control" id="itemName{{i}}" [(ngModel)]="row.SelectedItem" [source]="ItemTypeListWithItems" [list-formatter]="ItemListFormatter" [placeholder]="'WARD_SUPPLY.SELECT_ITEM' | translate" display-property-name="ItemName" value-property-name=null onClick="this.select();" (valueChanged)="onChangeItem($event,i)" max-num-list="20" min-chars="1" [grid-sort]="'ItemName'" match-formatted="true" formControlName="ItemName" (keyup.enter)="OnPressedEnterKeyInItemField(i)" (keyup.esc)="DeleteRow(i)" />
               <span class="color-red font-sm" *ngIf="row.IsDirty('ItemName')" [hidden]="row.IsValid('ItemName','required')">Select Item..</span>
             </form>
           </td>
@@ -62,7 +62,7 @@
           <td style="width: 150px;"><input [(ngModel)]="row.Quantity" [ngModelOptions]="{standalone: true}" min="0" class="form-control" type="number" value="" disabled></td>
           <td style="width: 150px;">
             <form [formGroup]="row.ConsumptionValidator">
-              <input [(ngModel)]="row.ConsumeQuantity" formControlName="ConsumeQuantity" min="1" class="form-control" type="number" onwheel="this.blur()" value="" id="qtyip{{i}}" (keyup.enter)="AddRow()" onClick="this.select();"> <span class="color-red font-sm" [hidden]="row.IsValid('ConsumeQuantity','min(1)')">Enter Quantity..</span> <span class="color-red font-sm" *ngIf="row.IsDirty('ConsumeQuantity')" [hidden]="row.ConsumeQuantity<=row.Quantity">Consume Qty is greater.</span>
+              <input [(ngModel)]="row.ConsumeQuantity" formControlName="ConsumeQuantity" min="1" class="form-control" type="number" onwheel="this.blur()" value="" id="qtyip{{i}}" (keyup.enter)="AddRow()" onClick="this.select();"> <span class="color-red font-sm" [hidden]="row.IsValid('ConsumeQuantity','min(1)')">{{ 'WARD_SUPPLY.ENTER_QUANTITY' | translate }}</span> <span class="color-red font-sm" *ngIf="row.IsDirty('ConsumeQuantity')" [hidden]="row.ConsumeQuantity<=row.Quantity">{{ 'WARD_SUPPLY.CONSUME_QTY_GREATER_ALERT' | translate }}</span>
             </form>
           </td>
           <td style="width: 46px;"><a class="btn btn-primary btn-xs" (click)="AddRow()"><i class="fa fa-plus"></i></a>
@@ -83,7 +83,7 @@
     <div class="mt20 t-wrap clearfix">
       <table class="col-sm-8 col-md-offset-4 total-table">
         <tr>
-          <td>Remark:</td>
+          <td>{{ 'COMMON.REMARKS' | translate }}:</td>
           <td class="text-capitalize">
             <div class="form-group">
               <textarea [(ngModel)]="WardConsumption.Remark" name="remark" id="remark" style="width: 100%;"></textarea>
@@ -92,9 +92,9 @@
         </tr>
       </table>
       <div class="panel-footer text-right">
-        <input type="button" id="save" class="btn green btn-success margin-7-hr" value="Save" (click)="Save()" [disabled]="loading" />
+        <input type="button" id="save" class="btn green btn-success margin-7-hr" [value]="'COMMON.SAVE' | translate" (click)="Save()" [disabled]="loading" />
         <span></span>
-        <input type="button" class="btn btn-danger" [disabled]="loading" (click)="DiscardChanges()" value="Discard">
+        <input type="button" class="btn btn-danger" [disabled]="loading" (click)="DiscardChanges()" [value]="'WARD_SUPPLY.DISCARD' | translate">
         <span></span>
       </div>
     </div>
@@ -104,7 +104,7 @@
   <div class="portlet-body form" style="background-color:white">
     <div class="danphe-loading-image" style="display: block;padding-left: 49%;padding-top: 15%;" id='danpheLoading'>
       <img style="margin-top: 60px;width: 120px; height: 120px;" src="../../../../../themes/theme-default/images/loading-child.gif" alt="" />
-      <p style="font-size: 24px;color: #fff;"><b>Processing...Please Wait</b></p>
+      <p style="font-size: 24px;color: #fff;"><b>{{ 'WARD_SUPPLY.PROCESSING_PLEASE_WAIT' | translate }}</b></p>
     </div>
   </div>
 </div>

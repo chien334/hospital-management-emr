@@ -1,34 +1,34 @@
-﻿<div class="popup-static portlet box portlet-fullscreen custom_modal" *ngIf="showAddPage">
+<div class="popup-static portlet box portlet-fullscreen custom_modal" *ngIf="showAddPage">
   <div class="portlet-body form">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix">
 			<div class="caption custom-caption">
-                <h3> <span *ngIf="!update">Add EmployeeRole</span> <span *ngIf="update">Update EmployeeRole</span> </h3>
-                <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
+                <h3> <span *ngIf="!update">{{ 'EMPLOYEE.ADD_EMPLOYEE_ROLE' | translate }}</span> <span *ngIf="update">{{ 'EMPLOYEE.UPDATE_EMPLOYEE_ROLE' | translate }}</span> </h3>
+                <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
           <form [formGroup]="CurrentEmployeeRole.EmployeeRoleValidator" class="form-horizontal">
             <div class="form-body">              
               <div class="form-group">
-                <label class="control-label col-md-4">Role<b class="color-red">*</b><b style="float:right;">:</b></label>
+                <label class="control-label col-md-4">{{ 'EMPLOYEE.ROLE' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                 <div class="col-md-8">
                   <input type="text" name="" required value="" class="form-control" maxlength="40"
 													   [(ngModel)]="CurrentEmployeeRole.EmployeeRoleName"
 													   formControlName="EmployeeRoleName"
-													   id="Role" placeholder="Role" 
+													   id="Role" [placeholder]="'EMPLOYEE.ROLE' | translate" 
                              (keyup.enter)="FocusElementById('Description')"/>
-                  <span Class="color-red font-sm" [hidden]="CurrentEmployeeRole.IsValidCheck('EmploeeRoleName','required') || !(CurrentEmployeeRole.IsDirty('EmploeeRoleName'))">Enter Role Name</span> </div>
+                  <span Class="color-red font-sm" [hidden]="CurrentEmployeeRole.IsValidCheck('EmploeeRoleName','required') || !(CurrentEmployeeRole.IsDirty('EmploeeRoleName'))">{{ 'EMPLOYEE.ENTER_ROLE_NAME' | translate }}</span> </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Description<b style="float:right;">:</b></label>
+                <label class="control-label col-md-4">{{ 'EMPLOYEE.DESCRIPTION' | translate }}<b style="float:right;">:</b></label>
                 <div class="col-md-8">
                   <input type="text" name="" value="" class="form-control"
 													   [(ngModel)]="CurrentEmployeeRole.Description" [ngModelOptions]="{standalone: true}"
-													   id="Description" placeholder="Description"
+													   id="Description" [placeholder]="'EMPLOYEE.DESCRIPTION' | translate"
                              (keyup.enter)="FocusElementById('Add')" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Is Active <b style="float:right;">:</b> </label>
+                <label class="control-label col-md-4">{{ 'EMPLOYEE.IS_ACTIVE' | translate }} <b style="float:right;">:</b> </label>
                 <div class="col-md-8">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -43,8 +43,8 @@
               </div>
             </div>
             <div class="panel-footer">
-              <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" [disabled] = "loading" (click)="loading = true; Add()" value="Add" id="Add" />
-              <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" [disabled] = "loading" (click)="loading = true; Update()" value="Update" id="Add" />
+              <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" [disabled] = "loading" (click)="loading = true; Add()" [value]="'EMPLOYEE.ADD' | translate" id="Add" />
+              <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" [disabled] = "loading" (click)="loading = true; Update()" [value]="'EMPLOYEE.UPDATE' | translate" id="Add" />
             </div>
           </form>
         </div>

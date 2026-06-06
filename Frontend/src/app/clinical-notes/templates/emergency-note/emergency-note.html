@@ -75,16 +75,16 @@
           <div class="form-group">
             <div class="input-group">
               <div class="row">
-                <label class="control-label ">Brought In </label>
+                <label class="control-label ">{{ 'CLINICAL.BROUGHT_IN' | translate }} </label>
                 <label class="mt-checkbox mt-checkbox-outline">
                   <input name="broughtIn" type="radio" value="stretcher" [(ngModel)]="notes.EmergencyNote.BroughtIn" (focusout)="FocusOut()" style="width:15px;height:15px">
-                  <span></span>Stretcher </label>
+                  <span></span>{{ 'CLINICAL.STRETCHER' | translate }} </label>
                 <label class="mt-checkbox mt-checkbox-outline ">
                   <input name="broughtIn" type="radio" value="wheelChair" [(ngModel)]="notes.EmergencyNote.BroughtIn" (focusout)="FocusOut()" style="width:15px;height:15px">
-                  <span></span>Wheel-Chair </label>
+                  <span></span>{{ 'CLINICAL.WHEEL_CHAIR' | translate }} </label>
                 <label class="mt-checkbox mt-checkbox-outline ">
                   <input name="broughtIn" type="radio" value="walking" [(ngModel)]="notes.EmergencyNote.BroughtIn" (focusout)="FocusOut()" style="width:15px;height:15px">
-                  <span></span>Walking </label>
+                  <span></span>{{ 'CLINICAL.WALKING' | translate }} </label>
               </div>
             </div>
           </div>
@@ -92,13 +92,13 @@
         <div class="col-md-6">
           <div class="input-group">
             <div class="icheck-inline">
-              <label class="control-label">Trauma</label>
+              <label class="control-label">{{ 'CLINICAL.TRAUMA' | translate }}</label>
               <label class="mt-checkbox mt-checkbox-outline">
                 <input name="trauma" type="radio" [value]="true" [(ngModel)]="notes.EmergencyNote.Trauma" (focusout)="FocusOut()" style="width:15px;height:15px" />
-                <span></span>Yes </label>
+                <span></span>{{ 'COMMON.YES' | translate }} </label>
               <label class="mt-checkbox mt-checkbox-outline">
                 <input name="trauma" type="radio" [value]="false" [(ngModel)]="notes.EmergencyNote.Trauma" (focusout)="FocusOut()" style="width:15px;height:15px" />
-                <span></span>No </label>
+                <span></span>{{ 'COMMON.NO' | translate }} </label>
             </div>
           </div>
         </div>
@@ -109,9 +109,9 @@
     <div class="col-md-6">
       <div class="form-group">
         <div class="row">
-          <label class="control-label col-md-5">Brought By <b>:</b></label>
+          <label class="control-label col-md-5">{{ 'CLINICAL.BROUGHT_BY' | translate }} <b>:</b></label>
           <div class="col-md-7">
-            <input class="form-control" maxlength="30" type="text" [(ngModel)]="notes.EmergencyNote.BroughtBy" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" placeholder="Enter Person's name who brought the patient" />
+            <input class="form-control" maxlength="30" type="text" [(ngModel)]="notes.EmergencyNote.BroughtBy" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" placeholder="{{ 'CLINICAL.BROUGHT_BY_PLACEHOLDER' | translate }}" />
           </div>
         </div>
       </div>
@@ -119,9 +119,9 @@
     <div class="col-md-6">
       <div class="form-group">
         <div class="row">
-          <label class="control-label col-md-5">Relationship <b>:</b></label>
+          <label class="control-label col-md-5">{{ 'CLINICAL.RELATIONSHIP' | translate }} <b>:</b></label>
           <div class="col-md-7">
-            <input class="form-control" maxlength="30" type="text" [(ngModel)]="notes.EmergencyNote.Relationship" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" placeholder="Relation with Patient" />
+            <input class="form-control" maxlength="30" type="text" [(ngModel)]="notes.EmergencyNote.Relationship" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" placeholder="{{ 'CLINICAL.RELATIONSHIP_PLACEHOLDER' | translate }}" />
           </div>
         </div>
       </div>
@@ -129,9 +129,9 @@
     <div class="col-md-6">
       <div class="form-group">
         <div class="row">
-          <label class="control-label col-md-5">Phone Number <b>:</b> </label>
+          <label class="control-label col-md-5">{{ 'CLINICAL.PHONE_NUMBER' | translate }} <b>:</b> </label>
           <div class="col-md-7">
-            <input class="form-control" type="number" [(ngModel)]="notes.EmergencyNote.PhoneNumber" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" placeholder="Enter Phone Number" />
+            <input class="form-control" type="number" [(ngModel)]="notes.EmergencyNote.PhoneNumber" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" placeholder="{{ 'CLINICAL.PHONE_NUMBER_PLACEHOLDER' | translate }}" />
           </div>
         </div>
       </div>
@@ -139,16 +139,16 @@
     <div class="col-md-6">
       <div class="form-group">
         <div class="row">
-          <label class="control-label col-md-4">Mode of Arrival : </label>
+          <label class="control-label col-md-4">{{ 'CLINICAL.MODE_OF_ARRIVAL' | translate }} : </label>
           <div class="col-md-4">
             <select class="form-control height30px" [(ngModel)]="notes.EmergencyNote.ModeOfArrival" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}">
-              <option [ngValue]="null" disabled hidden>Select..</option>
-              <option value="self">Self</option>
-              <option value="referral">Referral</option>
+              <option [ngValue]="null" disabled hidden>{{ 'CLINICAL.SELECT_EMPTY' | translate }}</option>
+              <option value="self">{{ 'CLINICAL.SELF' | translate }}</option>
+              <option value="referral">{{ 'CLINICAL.REFERRAL_DISP' | translate }}</option>
             </select>
           </div>
           <div class="col-md-4" *ngIf="notes.EmergencyNote.ModeOfArrival=='referral'">
-            <input type="text" [ngModelOptions]="{standalone:true}" [(ngModel)]="notes.EmergencyNote.ReferralDoctorOrHospital" (focusout)="FocusOut()" placeholder="Referred-by Doctor or Hospital" />
+            <input type="text" [ngModelOptions]="{standalone:true}" [(ngModel)]="notes.EmergencyNote.ReferralDoctorOrHospital" (focusout)="FocusOut()" placeholder="{{ 'CLINICAL.REFERRED_BY_DOCTOR_HOSPITAL_PLACEHOLDER' | translate }}" />
           </div>
         </div>
       </div>
@@ -158,7 +158,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <div class="row">
-              <label class="control-label col-md-5"> Triage Time <b>:</b></label>
+              <label class="control-label col-md-5"> {{ 'CLINICAL.TRIAGE_TIME' | translate }} <b>:</b></label>
               <div class="col-md-7">
                 <input class="form-control" type="time" [(ngModel)]="notes.EmergencyNote.TriageTime" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" />
               </div>
@@ -169,13 +169,13 @@
           <div class="form-group">
             <div class="input-group">
               <div class="icheck-inline">
-                <label class="control-label col-md-4">Triaged By</label>
+                <label class="control-label col-md-4">{{ 'CLINICAL.TRIAGED_BY' | translate }}</label>
                 <label class="mt-checkbox mt-checkbox-outline">
                   <input name="triagedBy" type="radio" value="HA" [(ngModel)]="notes.EmergencyNote.TriagedBy" (focusout)="FocusOut()" style="width:10px;height:15px;margin-left:0!important;">
-                  <span></span>HA </label>
+                  <span></span>{{ 'CLINICAL.HA' | translate }} </label>
                 <label class="mt-checkbox mt-checkbox-outline">
                   <input name="triagedBy" type="radio" value="Nurse" [(ngModel)]="notes.EmergencyNote.TriagedBy" (focusout)="FocusOut()" style="width:10px;height:15px;margin-left:0!important;">
-                  <span></span>Nurse </label>
+                  <span></span>{{ 'CLINICAL.NURSE' | translate }} </label>
               </div>
             </div>
           </div>
@@ -184,18 +184,18 @@
     </div>
     <div class="col-md-12">
       <div class="form-group row">
-        <label class="control-label col-md-3">ER Course:</label>
+        <label class="control-label col-md-3">{{ 'CLINICAL.ER_COURSE' | translate }}:</label>
         <div class="autocomplete-item col-md-4" *ngIf="ICD10List">
-          <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="Select ICD10" display-property-name="ICD10Description" value-property-name=null onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" />
+          <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="{{ 'CLINICAL.SELECT_ICD10' | translate }}" display-property-name="ICD10Description" value-property-name=null onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" />
         </div>
       </div>
     </div>
     <div class="col-md-12">
       <div class="form-group">
         <div class="row">
-          <label class="control-label col-md-3">ER Course Description<b>:</b></label>
+          <label class="control-label col-md-3">{{ 'CLINICAL.ER_COURSE_DESCRIPTION' | translate }}<b>:</b></label>
           <div class="col-md-8">
-            <textarea class="form-control" [(ngModel)]="notes.EmergencyNote.ErCourseDescription" maxlength="800" rows="2" placeholder="Enter Er course description" [ngModelOptions]="{standalone:true}" (focusout)="FocusOut()"></textarea>
+            <textarea class="form-control" [(ngModel)]="notes.EmergencyNote.ErCourseDescription" maxlength="800" rows="2" placeholder="{{ 'CLINICAL.ER_COURSE_DESC_PLACEHOLDER' | translate }}" [ngModelOptions]="{standalone:true}" (focusout)="FocusOut()"></textarea>
           </div>
         </div>
       </div>
@@ -227,29 +227,29 @@
   <div class="col-md-12" style="margin-top:30px!important">
     <div class="form-group">
       <div class="row">
-        <label class="control-label col-md-2" style="font-weight:700;font-size:medium;">Disposition : </label>
+        <label class="control-label col-md-2" style="font-weight:700;font-size:medium;">{{ 'CLINICAL.DISPOSITION' | translate }} : </label>
         <div class="col-md-7">
           <label class="mt-checkbox mt-checkbox-outline">
             <input type="radio" name="disposition" value="admitted" [(ngModel)]="notes.EmergencyNote.Disposition" (focusout)="FocusOut()" style="width:15px;height:15px" />
-            <span></span>Admitted </label>
+            <span></span>{{ 'CLINICAL.ADMITTED' | translate }} </label>
           <label class="mt-checkbox mt-checkbox-outline">
             <input type="radio" name="disposition" value="dischargeHome" [(ngModel)]="notes.EmergencyNote.Disposition" (focusout)="FocusOut()" style="width:15px;height:15px" />
-            <span></span>Discharge Home </label>
+            <span></span>{{ 'CLINICAL.DISCHARGE_HOME' | translate }} </label>
           <label class="mt-checkbox mt-checkbox-outline">
             <input type="radio" name="disposition" value="referral" [(ngModel)]="notes.EmergencyNote.Disposition" (focusout)="FocusOut()" style="width:15px;height:15px" />
-            <span></span>Referral </label>
+            <span></span>{{ 'CLINICAL.REFERRAL_DISP' | translate }} </label>
           <label class="mt-checkbox mt-checkbox-outline">
             <input type="radio" name="disposition" value="lama" [(ngModel)]="notes.EmergencyNote.Disposition" (focusout)="FocusOut()" style="width:15px;height:15px" />
-            <span></span>LAMA </label>
+            <span></span>{{ 'CLINICAL.LAMA' | translate }} </label>
           <label class="mt-checkbox mt-checkbox-outline">
             <input type="radio" name="disposition" value="death" [(ngModel)]="notes.EmergencyNote.Disposition" (focusout)="FocusOut()" style="width:15px;height:15px" />
-            <span></span>Death </label>
+            <span></span>{{ 'CLINICAL.DEATH' | translate }} </label>
           <label class="mt-checkbox mt-checkbox-outline">
             <input type="radio" name="disposition" value="eloped" [(ngModel)]="notes.EmergencyNote.Disposition" (focusout)="FocusOut()" style="width:15px;height:15px" />
-            <span></span>Eloped </label>
+            <span></span>{{ 'CLINICAL.ELOPED' | translate }} </label>
         </div>
         <div class="col-md-3" *ngIf="notes.EmergencyNote.Disposition == 'admitted'">
-          <input class="form-control" danphe-auto-complete [(ngModel)]="selectedDepartment" [list-formatter]="myDepartmentListFormatter" [source]="departmentList" [ngModelOptions]="{standalone: true}" placeholder="Department Name" display-property-name="DepartmentName" (focusout)="FocusOut()" onClick="this.select()" (focus)="AssignSelectedDepartment()" match-formatted="true" (valueChanged)="AssignDispositionDepartment()" [grid-sort]="'DepartmentName'" max-num-list="10" />
+          <input class="form-control" danphe-auto-complete [(ngModel)]="selectedDepartment" [list-formatter]="myDepartmentListFormatter" [source]="departmentList" [ngModelOptions]="{standalone: true}" placeholder="{{ 'CLINICAL.DEPARTMENT_NAME_PLACEHOLDER' | translate }}" display-property-name="DepartmentName" (focusout)="FocusOut()" onClick="this.select()" (focus)="AssignSelectedDepartment()" match-formatted="true" (valueChanged)="AssignDispositionDepartment()" [grid-sort]="'DepartmentName'" max-num-list="10" />
         </div>
       </div>
     </div>
@@ -259,11 +259,11 @@
       <div class="col-md-6">
         <div class="hm-form">
           <div class="text-head-wrapper clearfix">
-            <h3 class="text-head cstm-add-heading">Instructions</h3>
+            <h3 class="text-head cstm-add-heading">{{ 'CLINICAL.INSTRUCTIONS' | translate }}</h3>
           </div>
           <div class="form-group">
             <div class="row">
-              <label class="control-label col-md-4">Follow Up<b>:</b></label>
+              <label class="control-label col-md-4">{{ 'CLINICAL.FOLLOW_UP' | translate }}<b>:</b></label>
               <div class="col-md-8">
                 <div class="row">
                   <div class="col-md-3">
@@ -274,13 +274,13 @@
                       <div class="icheck-inline">
                         <label class="mt-radio mt-radio-outline">
                           <input name="FollowUpUnit" type="radio" value="day" [(ngModel)]="notes.FollowUpUnit" (focusout)="FocusOut()">
-                          <span></span>Days </label>
+                          <span></span>{{ 'CLINICAL.DAYS' | translate }} </label>
                         <label class="mt-radio mt-radio-outline">
                           <input name="FollowUpUnit" type="radio" value="week" [(ngModel)]="notes.FollowUpUnit" (focusout)="FocusOut()">
-                          <span></span>Weeks </label>
+                          <span></span>{{ 'CLINICAL.WEEKS' | translate }} </label>
                         <label class="mt-radio mt-radio-outline">
                           <input name="FollowUpUnit" type="radio" value="month" [(ngModel)]="notes.FollowUpUnit" (focusout)="FocusOut()">
-                          <span></span>Months </label>
+                          <span></span>{{ 'CLINICAL.MONTHS' | translate }} </label>
                       </div>
                     </div>
                   </div>
@@ -290,7 +290,7 @@
           </div>
           <div class="form-group">
             <div class="row">
-              <label class="control-label col-md-4">Remarks<b>:</b></label>
+              <label class="control-label col-md-4">{{ 'CLINICAL.REMARKS' | translate }}<b>:</b></label>
               <div class="col-md-8">
                 <textarea class="form-control" [(ngModel)]="notes.Remarks" maxlength="500" rows="3" (focusout)="FocusOut()"></textarea>
               </div>

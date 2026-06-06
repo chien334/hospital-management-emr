@@ -1,12 +1,12 @@
 <div class="wrapper">
   <div class="form-body">
-    <div class="caption lb-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject ">Consumption Report</span> 
+    <div class="caption lb-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject ">{{ 'WARD_SUPPLY.CONSUMPTION_REPORT' | translate }}</span> 
 	  </div>
     <div class="row">
       <div class="col-md-5 col-xs-12">
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-3">From Date<sup>*</sup><b style="float:right;">:</b></label>
+            <label class="control-label col-md-3">{{ 'WARD_SUPPLY.FROM_DATE' | translate }}<sup>*</sup><b style="float:right;">:</b></label>
             <div class="col-md-9">
               <danphe-date-picker [(ngModel)]="wardReports.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}"> </danphe-date-picker>
             </div>
@@ -16,7 +16,7 @@
       <div class="col-md-5 col-xs-12">
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-3">To Date<sup>*</sup><b style="float:right;">:</b></label>
+            <label class="control-label col-md-3">{{ 'WARD_SUPPLY.TO_DATE' | translate }}<sup>*</sup><b style="float:right;">:</b></label>
             <div class="col-md-9">
               <danphe-date-picker [(ngModel)]="wardReports.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}"> </danphe-date-picker>
             </div>
@@ -25,7 +25,7 @@
       </div>
       <div class="col-md-2 col-xs-12">
         <div class="form-group">
-          <button class="btn blue" type="button" (click)="Load()"> Show Report</button>
+          <button class="btn blue" type="button" (click)="Load()"> {{ 'WARD_SUPPLY.SHOW_REPORT' | translate }}</button>
         </div>
       </div>
     </div>

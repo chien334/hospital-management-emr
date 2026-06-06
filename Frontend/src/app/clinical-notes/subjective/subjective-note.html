@@ -20,10 +20,10 @@
     -->
       <div class="form-body hm-form">
         <div class="text-head-wrapper mt0 clearfix">
-          <h3 class="text-head cstm-add-heading">Clinical Subjective Notes</h3>
+          <h3 class="text-head cstm-add-heading">{{ 'CLINICAL.CLINICAL_SUBJECTIVE_NOTES' | translate }}</h3>
         </div>
         <div class="form-group">
-          <label class="control-label col-md-4">Chief Complaint<b>:</b></label>
+          <label class="control-label col-md-4">{{ 'CLINICAL.CHIEF_COMPLAINT' | translate }}<b>:</b></label>
 
           <div class="col-md-8">
             <!--  -->
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-md-4">History Of Presenting Illness<b>:</b></label>
+          <label class="control-label col-md-4">{{ 'CLINICAL.HISTORY_OF_PRESENTING_ILLNESS' | translate }}<b>:</b></label>
 
           <div class="col-md-8">
             <textarea [(ngModel)]="subjectiveNote.HistoryOfPresentingIllness" (focusout)="Focusit()" [ngModelOptions]="{standalone: true}" maxlength="2000" rows="5" cols="80"></textarea>
@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-md-4">Review Of Systems<b>:</b></label>
+          <label class="control-label col-md-4">{{ 'CLINICAL.REVIEW_OF_SYSTEM' | translate }}<b>:</b></label>
           <div class="col-md-8">
             <textarea [(ngModel)]="subjectiveNote.ReviewOfSystems" (focusout)="Focusit()" [ngModelOptions]="{standalone: true}" maxlength="2000" rows="5" cols="80"></textarea>
             <!--<span class="error-msg" *ngIf="subjectiveNote.IsDirty('ReviewOfSystems')" [hidden]="subjectiveNote.IsValidCheck('ReviewOfSystems','maxLength')">Invalid length</span>-->
@@ -59,23 +59,23 @@
     <div class="hm-bg-white hm-ecard">
       <div class="each-card">
         <h4 class="clp clp-hd clearfix" data-bs-toggle="collapse" data-bs-target="#allergy" aria-expanded="true">
-          Allergy
+          {{ 'CLINICAL.ALLERGY' | translate }}
           <span>[{{clinicalDetail.Allergies.length}}]</span>
           <button class="btn primary-btn" (click)="AddAllergyPopUp()">
             <i class="fa fa-plus"></i>
-            Add
+            {{ 'COMMON.ADD' | translate }}
           </button>
         </h4>
         <div id="allergy" class="collapse in clp-cntnt" [ngStyle]="{'overflow-y': clinicalDetail.Allergies.length ? 'scroll' : ''}">
-          <p *ngIf="!clinicalDetail.Allergies.length">No records found</p>
+          <p *ngIf="!clinicalDetail.Allergies.length">{{ 'CLINICAL.NO_RECORDS' | translate }}</p>
           <table class="table table-striped" *ngIf="clinicalDetail.Allergies.length">
             <thead>
               <tr>
-                <th sortable-header col="itemnames"><b>Recorded On</b></th>
-                <th sortable-header col="itemnames"><b>Allergy Type</b></th>
-                <th sortable-header col="itemnames"><b>Allergy Name</b></th>
-                <th sortable-header col="itemnames"><b>Sevirity</b></th>
-                <th sortable-header col="itemnames"><b>IsVerified</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.RECORDED_ON' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.ALLERGY_TYPE' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.ALLERGY_NAME' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.SEVERITY' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.IS_VERIFIED' | translate }}</b></th>
               </tr>
             </thead>
             <tr *ngFor="let allergy of clinicalDetail.Allergies">
@@ -91,23 +91,23 @@
       </div>
       <div class="each-card">
         <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#pastmedicalhistory" aria-expanded="true">
-          Past Medical History
+          {{ 'CLINICAL.PAST_MEDICAL_HISTORY' | translate }}
           <span>[{{clinicalDetail.PastMedicals.length}}]</span>
           <button class="btn primary-btn" (click)="AddPastMedicalPopUp()">
             <i class="fa fa-plus"></i>
-            Add
+            {{ 'COMMON.ADD' | translate }}
           </button>
         </h4>
 
         <div id="pastmedicalhistory" class="collapse clp-cntnt" [ngStyle]="{'overflow-y': clinicalDetail.PastMedicals.length ? 'scroll' : ''}">
-          <p *ngIf="!clinicalDetail.PastMedicals.length">No records found</p>
+          <p *ngIf="!clinicalDetail.PastMedicals.length">{{ 'CLINICAL.NO_RECORDS' | translate }}</p>
           <table class="table table-striped" *ngIf="clinicalDetail.PastMedicals.length">
             <thead>
               <tr>
-                <th sortable-header col="itemnames"><b>ICD10 Description</b></th>
-                <th sortable-header col="itemnames"><b>On Set Date</b></th>
-                <th sortable-header col="itemnames"><b>Resolved Date</b></th>
-                <th sortable-header col="itemnames"><b>Notes</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.ICD10_DESCRIPTION' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.ON_SET_DATE' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.RESOLVED_DATE' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.NOTES_LABEL' | translate }}</b></th>
               </tr>
             </thead>
             <tr *ngFor="let pastMedical of clinicalDetail.PastMedicals">
@@ -122,22 +122,22 @@
       </div>
       <div class="each-card">
         <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#surgicalhistory" aria-expanded="true">
-          Surgical History
+          {{ 'CLINICAL.SURGICAL_HISTORY' | translate }}
           <span>[{{clinicalDetail.SurgicalHistory.length}}]</span>
           <button class="btn primary-btn" (click)="AddSurgeryHistoryPopUp()">
             <i class="fa fa-plus"></i>
-            Add
+            {{ 'COMMON.ADD' | translate }}
           </button>
         </h4>
         <div id="surgicalhistory" class="collapse clp-cntnt" [ngStyle]="{'overflow-y': clinicalDetail.SurgicalHistory.length ? 'scroll' : ''}">
-          <p *ngIf="!clinicalDetail.SurgicalHistory.length">No records found</p>
+          <p *ngIf="!clinicalDetail.SurgicalHistory.length">{{ 'CLINICAL.NO_RECORDS' | translate }}</p>
           <table class="table table-striped" *ngIf="clinicalDetail.SurgicalHistory.length">
             <thead>
               <tr>
-                <th sortable-header col="itemnames"><b>ICD10 Description</b></th>
-                <th sortable-header col="itemnames"><b>On Set Date</b></th>
-                <th sortable-header col="itemnames"><b>Resolved Date</b></th>
-                <th sortable-header col="itemnames"><b>Notes</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.ICD10_DESCRIPTION' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.ON_SET_DATE' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.RESOLVED_DATE' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.NOTES_LABEL' | translate }}</b></th>
               </tr>
             </thead>
             <tr *ngFor="let surgical of clinicalDetail.SurgicalHistory">
@@ -152,25 +152,25 @@
       </div>
       <div class="each-card">
         <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#socialhistory" aria-expanded="true">
-          Social History
+          {{ 'CLINICAL.SOCIAL_HISTORY' | translate }}
           <span>({{clinicalDetail.SocialHistory.length}})</span>
           <button class="btn primary-btn" (click)="AddSocialHistoryPopUp()">
             <i class="fa fa-plus"></i>
-            Add
+            {{ 'COMMON.ADD' | translate }}
           </button>
         </h4>
         <div id="socialhistory" class="collapse clp-cntnt" [ngStyle]="{'overflow-y': clinicalDetail.SocialHistory.length ? 'scroll' : ''}">
-          <p *ngIf="!clinicalDetail.SocialHistory.length">No records found</p>
+          <p *ngIf="!clinicalDetail.SocialHistory.length">{{ 'CLINICAL.NO_RECORDS' | translate }}</p>
           <table class="table table-striped" *ngIf="clinicalDetail.SocialHistory.length">
             <thead>
               <tr>
-                <th sortable-header col="itemnames"><b>Recorded On</b></th>
-                <th sortable-header col="itemnames"><b>Smoking History</b></th>
-                <th sortable-header col="itemnames"><b>Alcohol History</b></th>
-                <th sortable-header col="itemnames"><b>Drug History</b></th>
-                <th sortable-header col="itemnames"><b>Occupation</b></th>
-                <th sortable-header col="itemnames"><b>Family Support</b></th>
-                <th sortable-header col="itemnames"><b>Note</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.RECORDED_ON' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.SMOKING_HISTORY' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.ALCOHOL_HISTORY' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.DRUG_HISTORY' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.OCCUPATION' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.FAMILY_SUPPORT' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.NOTE' | translate }}</b></th>
               </tr>
             </thead>
             <tr *ngFor="let social of clinicalDetail.SocialHistory">
@@ -188,22 +188,22 @@
       </div>
       <div class="each-card">
         <h4 class="clp clp-hd" data-bs-toggle="collapse" data-bs-target="#familyhistory" aria-expanded="true">
-          Family History
+          {{ 'CLINICAL.FAMILY_HISTORY' | translate }}
           <span>[{{clinicalDetail.FamilyHistory.length}}]</span>
           <button class="btn primary-btn" (click)="AddFamilyHistoryPopUp()">
             <i class="fa fa-plus"></i>
-            Add
+            {{ 'COMMON.ADD' | translate }}
           </button>
         </h4>
         <div id="familyhistory" class="collapse clp-cntnt" [ngStyle]="{'overflow-y': clinicalDetail.FamilyHistory.length ? 'scroll' : ''}">
-          <p *ngIf="!clinicalDetail.FamilyHistory.length">No records found</p>
+          <p *ngIf="!clinicalDetail.FamilyHistory.length">{{ 'CLINICAL.NO_RECORDS' | translate }}</p>
           <table class="table table-striped" *ngIf="clinicalDetail.FamilyHistory.length">
             <thead>
               <tr>
-                <th sortable-header col="itemnames"><b>Recorded On</b></th>
-                <th sortable-header col="itemnames"><b>ICD10</b></th>
-                <th sortable-header col="itemnames"><b>Relationship</b></th>
-                <th sortable-header col="itemnames"><b>Note</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.RECORDED_ON' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.ICD10' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.RELATIONSHIP' | translate }}</b></th>
+                <th sortable-header col="itemnames"><b>{{ 'CLINICAL.NOTE' | translate }}</b></th>
               </tr>
             </thead>
             <tr *ngFor="let family of clinicalDetail.FamilyHistory">

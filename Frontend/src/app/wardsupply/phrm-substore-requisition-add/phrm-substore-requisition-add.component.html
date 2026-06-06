@@ -68,7 +68,7 @@
 <div class="wrapper">
   <div class="row">
     <div class="col-md-3">
-      <input type="button" class="btn btn-primary" (click)="CreateRequisition()" value="Create Requisition"
+      <input type="button" class="btn btn-primary" (click)="CreateRequisition()" [value]="'WARD_SUPPLY.CREATE_REQUISITION' | translate"
              *ngIf="!showAddRequisitionPage && ItemListForReq.length!=0" />
     </div>
     <div class="col-md-12" *ngIf="!showAddRequisitionPage">
@@ -85,9 +85,9 @@
             <div class="caption lb-caption">
               <h3>
                 <i class="fa fa-medkit"></i>
-                <span class="caption-subject">Add Requisition</span>
+                <span class="caption-subject">{{ 'WARD_SUPPLY.ADD_REQUISITION' | translate }}</span>
               </h3>
-              <a class="btn btn-danger" (click)="Close()" title="Cancel"><i class="fa fa-times"></i></a>
+              <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
             </div>
             <div class="panel-default no-border">
               <div class="panel-body">
@@ -101,11 +101,11 @@
                     <thead>
                       <tr>
                         <th></th>
-                        <th sortable-header col="itemnames"><b>ItemName</b></th>
-                        <th sortable-header col="uom"><b>Unit</b></th>
-                        <th sortable-header><b>Available Qty in Store</b></th>
-                        <th sortable-header col="quantity"><b>Requesting Quantity</b></th>
-                        <th sortable-header><b>Remark</b></th>
+                        <th sortable-header col="itemnames"><b>{{ 'WARD_SUPPLY.ITEM_NAME' | translate }}</b></th>
+                        <th sortable-header col="uom"><b>{{ 'WARD_SUPPLY.UNIT' | translate }}</b></th>
+                        <th sortable-header><b>{{ 'WARD_SUPPLY.AVAILABLE_QTY_IN_STORE' | translate }}</b></th>
+                        <th sortable-header col="quantity"><b>{{ 'WARD_SUPPLY.REQUESTING_QUANTITY' | translate }}</b></th>
+                        <th sortable-header><b>{{ 'WARD_SUPPLY.REMARK' | translate }}</b></th>
                         <th></th>
                       </tr>
                     </thead>
@@ -115,11 +115,11 @@
                         <td>
                           <form [formGroup]="row.RequisitionItemValidator">
                             <input danphe-auto-complete class="form-control" id="itemName{{i}}" [(ngModel)]="row.SelectedItem"
-                                   [source]="ItemListForReq" [list-formatter]="itemListFormatter" placeholder="Item Name"
+                                   [source]="ItemListForReq" [list-formatter]="itemListFormatter" [placeholder]="'WARD_SUPPLY.ITEM_NAME' | translate"
                                    display-property-name="ItemName" value-property-name=null onclick="this.select();"
                                    (ngModelChange)="OnItemSelected(row.SelectedItem,i)" min-chars="1" max-num-list="10" [grid-sort]="'ItemName'"
                                    match-formatted="true" formControlName="ItemId" (keyup.enter)="OnPressedEnterKeyInItemField(i)" />
-                            <div style="color: red" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')"> Item is required
+                            <div style="color: red" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')"> {{ 'WARD_SUPPLY.ITEM_IS_REQUIRED' | translate }}
                             </div>
                           </form>
                         </td>
@@ -130,8 +130,7 @@
                             <input [(ngModel)]="row.Quantity" id="req_qty{{i}}" onwheel="this.blur()" min="1" onClick="this.select();"
                                    onfocus="this.select();" formControlName="Quantity" class="form-control " name="quantity" type="number"
                                    value="{{1}}" (keyup.enter)="setFocusById('remark' + i)">
-                            <div style="color: red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','required')"> Quantity is
-                              required</div>
+                            <div style="color: red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','required')"> {{ 'WARD_SUPPLY.QUANTITY_IS_REQUIRED' | translate }}</div>
                           </form>
                         </td>
                         <td><input [(ngModel)]="row.Remark" id="remark{{i}}" class="form-control " name="quantity" type="text"
@@ -148,14 +147,13 @@
                             <input type="checkbox" class="custom-control-input" id="defaultUnchecked"
                                    [(ngModel)]="requisition.IsVerificationEnabled"
                                    (ngModelChange)="ShowVerifiers()">
-                            <label title="Check If Verification Needed" class="custom-control-label" for="defaultUnchecked">Need
-                              Verification</label>
+                            <label [title]="'WARD_SUPPLY.CHECK_IF_VERIFICATION_NEEDED' | translate" class="custom-control-label" for="defaultUnchecked">{{ 'WARD_SUPPLY.NEED_VERIFICATION' | translate }}</label>
                           </div>
                           <div class="verification-form-control">
                             <div class="left t-wrap col-md-12" *ngFor="let verifier of requisition.VerifierList; let i = index;let c= count;">
                               <div class="row">
                                 <div class="col-md-5">
-                                  <button title="Delete this Verifier" class="btn btn-sm btn-danger" (click)="DeleteVerifier(i)"
+                                  <button [title]="'WARD_SUPPLY.DELETE_THIS_VERIFIER' | translate" class="btn btn-sm btn-danger" (click)="DeleteVerifier(i)"
                                           [disabled]="CheckIfDeleteVerifierAllowed()"><i class="glyphicon glyphicon-minus"></i>
                                   </button>
                                   <label class="verifier" for="inputIconEx{{i}}">
@@ -164,11 +162,11 @@
                                 </div>
                                 <div class="col-md-6">
                                   <input danphe-auto-complete class="form-control " autocomplete="off" [source]="VerifierList"
-                                         [(ngModel)]="verifier" [list-formatter]="VerifierListFormatter" placeholder="Select Verifier"
+                                         [(ngModel)]="verifier" [list-formatter]="VerifierListFormatter" [placeholder]="'WARD_SUPPLY.SELECT_VERIFIER' | translate"
                                          display-property-name="Name" max-num-list="10" (valueChanged)="AssignVerifier($event,i)" />
                                 </div>
                                 <div class="col-md-1">
-                                  <button title="Add Verifier" class="btn btn-sm btn-primary" (click)="AddVerifier()"
+                                  <button [title]="'WARD_SUPPLY.ADD_VERIFIER' | translate" class="btn btn-sm btn-primary" (click)="AddVerifier()"
                                           [disabled]="CheckIfAddVerifierAllowed()"><i class="glyphicon glyphicon-plus"></i></button>
                                 </div>
                               </div>
@@ -179,7 +177,7 @@
                     </div>
                   </div>
                   <div class="form-actions text-right">
-                    <input type="button" class="btn btn-success" [disabled]="loading" value="Request" (click)="AddRequisition()" />
+                    <input type="button" class="btn btn-success" [disabled]="loading" [value]="'WARD_SUPPLY.REQUEST' | translate" (click)="AddRequisition()" />
                   </div>
                 </div>
               </div>
@@ -216,7 +214,7 @@
                       <span style="font-size:15px;"><strong>{{headerDetail.hospitalName}}</strong></span><br />
                       <span style="font-size:15px;">{{headerDetail.address}}</span><br />
                       <span style="font-size:13px;">{{GeneralFieldLabel.PANNo}}: {{headerDetail.PANno}} , Tel: {{ headerDetail.tel}}</span><br />
-                      <span style="font-size:15px;"><strong> Pharmacy Unit </strong></span><br />
+                      <span style="font-size:15px;"><strong> {{ 'WARD_SUPPLY.PHARMACY_UNIT' | translate }} </strong></span><br />
                     </div>
                   </div>
                   <div style="float: left;">
@@ -228,17 +226,17 @@
                 </div>
                 <div class="clear"></div>
                 <div class="left" style="text-align:left;">
-                  <p>Requisition No:<b> {{requisitionToView.RequisitionNo}}</b></p>
-                  <p>Requisiting Store:<b> {{requisitionToView.RequestedStoreName}}</b></p>
+                  <p>{{ 'WARD_SUPPLY.REQUISITION_NO' | translate }}:<b> {{requisitionToView.RequisitionNo}}</b></p>
+                  <p>{{ 'WARD_SUPPLY.REQUISITING_STORE' | translate }}:<b> {{requisitionToView.RequestedStoreName}}</b></p>
                 </div>
                 <div class="right" style="text-align:right;">
-                  <p><strong>Requisition Date:</strong>{{requisitionToView.RequisitionDate | date:"yyy-MM-dd"}}&nbsp;
+                  <p><strong>{{ 'WARD_SUPPLY.REQUISITION_DATE' | translate }}:</strong>{{requisitionToView.RequisitionDate | date:"yyy-MM-dd"}}&nbsp;
                     <i *ngIf="requisition.RequisitionDate">{{requisitionToView.RequisitionDate | nepaliDate:'format':'YYYY-MM-DD'}} 
                       </i>
                   </p>
                 </div>
                 <div class="clear"></div>
-                <p class="text-center btm-pad border-up-down"><b> REQUISITION DETAILS PRINT</b></p>
+                <p class="text-center btm-pad border-up-down"><b> {{ 'WARD_SUPPLY.REQUISITION_DETAILS_PRINT' | translate }}</b></p>
                 <div class="clear"></div>
                 <div class="clear footer"></div>
                 <div>
@@ -246,19 +244,19 @@
                     <thead>
                       <tr style="font-weight: bold;text-align:center">
                         <td></td>
-                        <td>Medicine Name</td>
-                        <td>Quantity</td>
-                        <td>Dispatched Qty.</td>
-                        <td>Pending Qty.</td>
-                        <td>Status</td>
-                        <td>Remarks</td>
+                        <td>{{ 'WARD_SUPPLY.MEDICINE_NAME' | translate }}</td>
+                        <td>{{ 'WARD_SUPPLY.QUANTITY' | translate }}</td>
+                        <td>{{ 'WARD_SUPPLY.DISPATCHED_QTY' | translate }}</td>
+                        <td>{{ 'WARD_SUPPLY.PENDING_QTY' | translate }}</td>
+                        <td>{{ 'COMMON.STATUS' | translate }}</td>
+                        <td>{{ 'COMMON.REMARKS' | translate }}</td>
                       </tr>
                     </thead>
                     <tbody>
                       <tr style="text-align:center" *ngFor="let row of requisitionToView.RequisitionItems">
                         <td>
                           <input *ngIf="row.RequestedItemStatus=='active' || row.RequestedItemStatus=='pending'" class="noPrint"
-                                 title="Cancel this item." type="checkbox" [(ngModel)]="row.IsSelected" style="zoom:1.2"
+                                 [title]="'WARD_SUPPLY.CANCEL_THIS_ITEM' | translate" type="checkbox" [(ngModel)]="row.IsSelected" style="zoom:1.2"
                                  (change)="ShowCancelButtonOnCkboxChange()" />
                         </td>
                         <td>{{row.ItemName}}(<i style="color: blue;">{{row.GenericName}}</i>)</td>
@@ -270,9 +268,9 @@
                             <span class="fa fa-info" style="margin-left:5px;padding: 3px 6px 3px 6px;background-color: #c8c8d2;border-radius: 9px;">
                             </span>
                             <p class="tooltiptext ttptextdown noPrint">
-                              Cancelled&nbsp;By:&nbsp;{{row.CancelledBy}}<br />
-                              Cancelled&nbsp;On:&nbsp;{{row.CancelledOn | date:"yyy-MM-dd"}}<i>{{row.CancelledOn | nepaliDate}}</i><br />
-                              <em>Remarks:&nbsp;{{row.CancelRemarks}}</em>
+                              {{ 'WARD_SUPPLY.CANCELLED_BY' | translate }}:&nbsp;{{row.CancelledBy}}<br />
+                              {{ 'WARD_SUPPLY.CANCELLED_ON' | translate }}:&nbsp;{{row.CancelledOn | date:"yyy-MM-dd"}}<i>{{row.CancelledOn | nepaliDate}}</i><br />
+                              <em>{{ 'COMMON.REMARKS' | translate }}:&nbsp;{{row.CancelRemarks}}</em>
                             </p>
                           </span>
                         </td>
@@ -283,27 +281,25 @@
                 </div>
                 <hr />
                 <div class="col-md-12 noPrint" style="margin:10px 0" *ngIf="showCancelButton == true">
-                  <label for="cancelRemarks" class="col-md-2">Remarks <sup class="color-red">*</sup> <span class="right">:</span></label>
+                  <label for="cancelRemarks" class="col-md-2">{{ 'COMMON.REMARKS' | translate }} <sup class="color-red">*</sup> <span class="right">:</span></label>
                   <textarea class="col-md-10" [(ngModel)]="cancelRemarks" name="cancelRemarks" rows="3"></textarea>
                 </div>
                 <div class="col-md-12">
-                  <div style="text-align: left" class="col-md-4">Requested By:&nbsp;<b>{{requisitionToView.RequestedBy}}</b></div>
-                  <div *ngIf="requisitionToView.ReceivedBy!=null" style="text-align: left" class="col-md-4">Received
-                    By:&nbsp;<b>{{requisitionToView.ReceivedBy}}</b></div>
-                  <div style="text-align: left" class="col-md-4" *ngIf="requisitionToView.DispatchedBy">Dispatched
-                    By:&nbsp;<b>{{requisitionToView.DispatchedBy}}</b></div>
+                  <div style="text-align: left" class="col-md-4">{{ 'WARD_SUPPLY.REQUESTED_BY' | translate }}:&nbsp;<b>{{requisitionToView.RequestedBy}}</b></div>
+                  <div *ngIf="requisitionToView.ReceivedBy!=null" style="text-align: left" class="col-md-4">{{ 'WARD_SUPPLY.RECEIVED_BY' | translate }}:&nbsp;<b>{{requisitionToView.ReceivedBy}}</b></div>
+                  <div style="text-align: left" class="col-md-4" *ngIf="requisitionToView.DispatchedBy">{{ 'WARD_SUPPLY.DISPATCHED_BY' | translate }}:&nbsp;<b>{{requisitionToView.DispatchedBy}}</b></div>
                 </div>
               </div>
             </div>
             <hr />
             <div class="col-md-12 col-xs-12 ">
-              <button id="printButton" (click)="print()" class="btn btn-default">Print
+              <button id="printButton" (click)="print()" class="btn btn-default">{{ 'COMMON.PRINT' | translate }}
                 <i class="glyphicon glyphicon-print"></i>
               </button><span> </span><span> </span>
               &nbsp;
 
               <button (click)="CancelSelectedItems()" class="btn btn-danger" *ngIf="showCancelButton">
-                Cancel Item(s)
+                {{ 'WARD_SUPPLY.CANCEL_ITEMS' | translate }}
                 <i class="glyphicon glyphicon-floppy-remove"></i>
               </button>
             </div>
@@ -334,17 +330,17 @@
                   <div class="media receiveContainer" style="display: flex;justify-content: space-between;"
                        *ngIf="PHRMSubStoreRequisitionDispatchToReceive.Requisition">
                     <p class="media-body small border-bottom border-gray">
-                      <strong>Requisition No:</strong>
+                      <strong>{{ 'WARD_SUPPLY.REQUISITION_NO' | translate }}:</strong>
                       {{PHRMSubStoreRequisitionDispatchToReceive.Requisition.RequisitionNo}}
                     </p>
                     <p class="media-body small border-bottom border-gray">
-                      <strong>Requisition Date:</strong>
+                      <strong>{{ 'WARD_SUPPLY.REQUISITION_DATE' | translate }}:</strong>
                       {{PHRMSubStoreRequisitionDispatchToReceive.Requisition.RequisitionDate | date : 'yyyy-MM-dd'}}&nbsp;
                       <i *ngIf="PHRMSubStoreRequisitionDispatchToReceive.Requisition.RequisitionDate">{{PHRMSubStoreRequisitionDispatchToReceive.Requisition.RequisitionDate
                         | nepaliDate:'format':'YYYY-MM-DD'}} </i>
                     </p>
                     <p class="media-body small border-bottom border-gray">
-                      <strong>Requisition Status:</strong>
+                      <strong>{{ 'WARD_SUPPLY.REQUISITION_STATUS' | translate }}:</strong>
                       {{PHRMSubStoreRequisitionDispatchToReceive.Requisition.RequisitionStatus}}
                     </p>
                   </div>
@@ -352,21 +348,21 @@
                     <div class="media text-muted receiveContainer" *ngFor="let dispatch of PHRMSubStoreRequisitionDispatchToReceive.Dispatch">
                       <div style="display: flex; justify-content: space-between;">
                         <div class="small">
-                          <strong>Dispatch Id:</strong>
+                          <strong>{{ 'WARD_SUPPLY.DISPATCH_ID' | translate }}:</strong>
                           {{dispatch.DispatchId}}
                         </div>
                         <div class="small">
-                          <strong>Received By:</strong>
+                          <strong>{{ 'WARD_SUPPLY.RECEIVED_BY' | translate }}:</strong>
                           <div *ngIf="!!dispatch.ReceivedBy; else elseBlockOne">{{dispatch.ReceivedBy}}</div>
-                          <ng-template #elseBlockOne>Not Received</ng-template>
+                          <ng-template #elseBlockOne>{{ 'WARD_SUPPLY.NOT_RECEIVED' | translate }}</ng-template>
                         </div>
                         <div class="small">
-                          <strong>Received On:</strong>
+                          <strong>{{ 'WARD_SUPPLY.RECEIVED_ON' | translate }}:</strong>
                           <div *ngIf="!!dispatch.ReceivedOn; else elseBlockTwo">
                             {{dispatch.ReceivedOn | date : "yyyy-MM-dd"}}
                             <i *ngIf="dispatch.ReceivedOn">{{dispatch.ReceivedOn | nepaliDate:'format':'YYYY-MM-DD'}} </i>
                           </div>
-                          <ng-template #elseBlockTwo>Not Received</ng-template>
+                          <ng-template #elseBlockTwo>{{ 'WARD_SUPPLY.NOT_RECEIVED' | translate }}</ng-template>
                         </div>
                       </div>
                       <div>
@@ -374,14 +370,14 @@
                           <table class="table table-striped table-condensed">
                             <thead>
                               <tr>
-                                <th>Medicine Name</th>
-                                <th>Requested Qty</th>
-                                <th>Pending Qty</th>
-                                <th>Batch No</th>
-                                <th>Rack No</th>
-                                <th>Expiry Date</th>
-                                <th>Dispatched Qty</th>
-                                <th>Item Remarks</th>
+                                <th>{{ 'WARD_SUPPLY.MEDICINE_NAME' | translate }}</th>
+                                <th>{{ 'WARD_SUPPLY.REQUESTED_QTY' | translate }}</th>
+                                <th>{{ 'WARD_SUPPLY.PENDING_QTY' | translate }}</th>
+                                <th>{{ 'WARD_SUPPLY.BATCH_NO' | translate }}</th>
+                                <th>{{ 'WARD_SUPPLY.RACK_NO' | translate }}</th>
+                                <th>{{ 'WARD_SUPPLY.EXPIRY_DATE' | translate }}</th>
+                                <th>{{ 'WARD_SUPPLY.DISPATCHED_QTY' | translate }}</th>
+                                <th>{{ 'WARD_SUPPLY.ITEM_REMARKS' | translate }}</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -401,11 +397,11 @@
                       </div>
                       <div class="media-body small border-bottom border-gray">
                         <div>
-                          <strong class="col-md-2">Dispatched Remarks:</strong>
+                          <strong class="col-md-2">{{ 'WARD_SUPPLY.DISPATCHED_REMARKS' | translate }}:</strong>
                           <span class="media-body" style="text-align: left;">{{dispatch.DispatchedRemarks}}</span>
                         </div><br />
                         <div>
-                          <strong class="col-md-2">Receiving Remarks :</strong>
+                          <strong class="col-md-2">{{ 'WARD_SUPPLY.RECEIVING_REMARKS' | translate }} :</strong>
                           <span *ngIf="!!dispatch.ReceivedBy; else elseBlockThree">{{dispatch.ReceivedRemarks}}</span>
                           <ng-template #elseBlockThree>
                             <textarea class="col-md-7 noPrint" id="remarks" [(ngModel)]="dispatch.ReceivedRemarks" name="ReceiveRemarks" rows="3"
@@ -416,9 +412,9 @@
                       <div class="text-center">
                         <button class="btn green btn-success noPrint" id="btn_Add" *ngIf="dispatch.ReceivedBy == null; else elseBlockFour"
                                 [disabled]="loading == true"
-                                (click)="ReceivedDispatchedItem(dispatch.DispatchId,dispatch.ReceivedRemarks)">Receive</button>
+                                (click)="ReceivedDispatchedItem(dispatch.DispatchId,dispatch.ReceivedRemarks)">{{ 'WARD_SUPPLY.RECEIVE' | translate }}</button>
                         <ng-template #elseBlockFour>
-                          <div class="receiveStamp"> Received </div>
+                          <div class="receiveStamp"> {{ 'WARD_SUPPLY.RECEIVED' | translate }} </div>
                         </ng-template>
                       </div>
                     </div>

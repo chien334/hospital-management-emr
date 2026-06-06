@@ -1,10 +1,10 @@
 <!-- //swapnil-2-april-2021 -->
 <div class="row" *ngIf="showReturnList" style="padding-bottom: 1rem;">
   <div class="col-md-4">
-    <input type="button" class="btn btn-primary" (click)="CreateReturnObj()" value="Return Items" />
+    <input type="button" class="btn btn-primary" (click)="CreateReturnObj()" [value]="'WARD_SUPPLY.RETURN_ITEMS' | translate" />
   </div>
   <div class="col-md-8">
-    <strong>Select Inventory : &nbsp;&nbsp;</strong>
+    <strong>{{ 'WARD_SUPPLY.SELECT_INVENTORY' | translate }} : &nbsp;&nbsp;</strong>
     <select [(ngModel)]="selectedInventory" (ngModelChange)="OnInventoryChange()">
       <option *ngFor="let inv of inventoryList" value="{{inv.StoreId}}"> {{inv.Name}} </option>
     </select>
@@ -49,53 +49,52 @@
   <div class="row">
     <div class="col-md-12">
       <div class="left">
-        <button class="btn btn-primary btn-sm" (click)="returnList()"><i class="fa fa-backward"></i>&nbsp;Back to Return
-          List</button>
+        <button class="btn btn-primary btn-sm" (click)="returnList()"><i class="fa fa-backward"></i>&nbsp;{{ 'WARD_SUPPLY.BACK_TO_RETURN_LIST' | translate }}</button>
       </div>
       <div class="right">
-        <button class="btn btn-primary btn-sm" (click)="print()"><i class="fa fa-print"></i>&nbsp;Print</button>
+        <button class="btn btn-primary btn-sm" (click)="print()"><i class="fa fa-print"></i>&nbsp;{{ 'COMMON.PRINT' | translate }}</button>
       </div>
     </div>
   </div>
   <div id="printpage" class="row printStyle print-border">
     <div style="text-align:center;">
       <div class="col-md-12">
-        <print-header [unit-name]="'Inventory Unit'"></print-header>
+        <print-header [unit-name]="'WARD_SUPPLY.INVENTORY_UNIT' | translate"></print-header>
         <div class="clear"></div>
         <div class="col-md-12">
           <div class="left" style="text-align:left;">
-            <p>Reference No:<b> {{returnDetail.ReturnId}}</b></p>
+            <p>{{ 'WARD_SUPPLY.REFERENCE_NO_COLON' | translate }}<b> {{returnDetail.ReturnId}}</b></p>
           </div>
           <div class="right" style="text-align:right;">
             <!-- <p *ngIf="issueNo!=null">Issue No:<b> {{issueNo}}</b></p> -->
-            <p>Return Date:<b> {{returnDetail.ReturnDate| date : 'mediumDate'}}</b> <i *ngIf="returnDate"> 
+            <p>{{ 'WARD_SUPPLY.RETURN_DATE_COLON' | translate }}<b> {{returnDetail.ReturnDate| date : 'mediumDate'}}</b> <i *ngIf="returnDate"> 
                 {{returnDate | nepaliDate:'format':'YYYY-MM-DD'}}  </i> </p>
           </div>
         </div>
         <div class="col-md-12">
           <div class="left" style="text-align:left;">
-            <p>Source Store Name:<b> {{returnDetail.SourceStoreName}}</b></p>
+            <p>{{ 'WARD_SUPPLY.SOURCE_STORE_NAME_COLON' | translate }}<b> {{returnDetail.SourceStoreName}}</b></p>
           </div>
           <div class="right" style="text-align:right;">
-            <p>Target Store Name:<b> {{returnDetail.TargetStoreName}}</b></p>
+            <p>{{ 'WARD_SUPPLY.TARGET_STORE_NAME_COLON' | translate }}<b> {{returnDetail.TargetStoreName}}</b></p>
           </div>
         </div>
         <div class="clear"></div>
-        <p class="text-center btm-pad border-up-down"><b> RETURN DETAILS PRINT</b></p>
+        <p class="text-center btm-pad border-up-down"><b> {{ 'WARD_SUPPLY.RETURN_DETAILS_PRINT' | translate }}</b></p>
         <div class="clear"></div>
         <div class="clear footer"></div>
         <div>
           <table class="table table-striped table-hover req_table" style="background-color:initial;margin-top:10px;width:100%">
             <thead>
               <tr style="font-weight: bold;text-align:center">
-                <td>Item Category</td>
-                <td>Item Name</td>
-                <td>Item Code</td>
-                <td>Batch Number</td>
-                <td>Expiry Date</td>
-                <td>Return Quantity</td>
-                <td>BarCode Number</td>
-                <td>Remark</td>
+                <td>{{ 'WARD_SUPPLY.ITEM_CATEGORY' | translate }}</td>
+                <td>{{ 'WARD_SUPPLY.ITEM_NAME' | translate }}</td>
+                <td>{{ 'WARD_SUPPLY.ITEM_CODE' | translate }}</td>
+                <td>{{ 'WARD_SUPPLY.BATCH_NUMBER' | translate }}</td>
+                <td>{{ 'WARD_SUPPLY.EXPIRY_DATE' | translate }}</td>
+                <td>{{ 'WARD_SUPPLY.RETURN_QUANTITY' | translate }}</td>
+                <td>{{ 'WARD_SUPPLY.BARCODE_NUMBER' | translate }}</td>
+                <td>{{ 'COMMON.REMARKS' | translate }}</td>
               </tr>
             </thead>
             <tbody>
@@ -119,12 +118,12 @@
           </div>
           <div class="col-md-12 text-left">
             <div class="col-md-6" style="text-align: left;padding:0px;">
-              <div><u>Returned By</u>:</div>
+              <div><u>{{ 'WARD_SUPPLY.RETURNED_BY' | translate }}</u>:</div>
               <div>{{returnDetail.EmpFullName}}</div>
               <div>{{returnDetail.ReturnDate | date : 'mediumDate'}}</div>
             </div>
 
-            <div class="col-md-6" style="text-align: right;padding:0px;"> <u>Remark</u>:
+            <div class="col-md-6" style="text-align: right;padding:0px;"> <u>{{ 'COMMON.REMARKS' | translate }}</u>:
               <div>{{returnDetail.Remarks}} </div>
             </div>
           </div>

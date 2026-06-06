@@ -12,14 +12,14 @@
           <thead>
             <tr>
               <th></th>
-              <th><b>Item Name</b></th>
+              <th><b>{{ 'WARD_SUPPLY.ITEM_NAME' | translate }}</b></th>
               <th></th>
-              <th><b>AvlQty</b></th>
-              <th><b>Qty</b></th>
-              <th><b>Batch No</b></th>
-              <th><b>Expiry Date</b></th>
-              <th><b>Sale Price</b></th>
-              <th><b>Total Amount</b></th>
+              <th><b>{{ 'WARD_SUPPLY.AVAILABLE_QTY' | translate }}</b></th>
+              <th><b>{{ 'WARD_SUPPLY.QTY' | translate }}</b></th>
+              <th><b>{{ 'WARD_SUPPLY.BATCH_NO' | translate }}</b></th>
+              <th><b>{{ 'WARD_SUPPLY.EXPIRY_DATE' | translate }}</b></th>
+              <th><b>{{ 'WARD_SUPPLY.SALE_PRICE' | translate }}</b></th>
+              <th><b>{{ 'WARD_SUPPLY.TOTAL_AMOUNT' | translate }}</b></th>
             </tr>
           </thead>
           <tbody>
@@ -27,9 +27,9 @@
               <td><a (click)="DeleteRow(i)"><i class="btn btn-xs btn-danger fa fa-times"></i></a></td>
               <td style="width:200px" class="autocomplete-item">
                 <form [formGroup]="row.InternalConsumptionItemsValidator">
-                  <input danphe-auto-complete class="form-control" [(ngModel)]="row.SelectedItem" formControlName="ItemName" [source]="pharmacyStockDetailsList" [list-formatter]="ItemListFormatter" placeholder="--Select Item--" display-property-name="ItemName" value-property-name=null (valueChanged)="onChangeItem($event,i)" onClick="this.select();" max-num-list="20" min-chars="0" style="width:250px;" id="{{'item-box' + i}}" [grid-sort]="'ItemName'" match-formatted="true" />
+                  <input danphe-auto-complete class="form-control" [(ngModel)]="row.SelectedItem" formControlName="ItemName" [source]="pharmacyStockDetailsList" [list-formatter]="ItemListFormatter" [placeholder]="'WARD_SUPPLY.SELECT_ITEM_PLACEHOLDER' | translate" display-property-name="ItemName" value-property-name=null (valueChanged)="onChangeItem($event,i)" onClick="this.select();" max-num-list="20" min-chars="0" style="width:250px;" id="{{'item-box' + i}}" [grid-sort]="'ItemName'" match-formatted="true" />
 
-                  <span class="color-red font-sm" *ngIf="row.IsDirty('ItemName')" [hidden]="row.IsValid('ItemName','required')">Select Item..</span>
+                  <span class="color-red font-sm" *ngIf="row.IsDirty('ItemName')" [hidden]="row.IsValid('ItemName','required')">{{ 'WARD_SUPPLY.SELECT_ITEM_VALIDATION' | translate }}</span>
                 </form>
               </td>
               <td><a (click)="AddRow()"><i class="fa fa-plus btn btn-sm btn-success"></i></a></td>
@@ -37,10 +37,8 @@
               <td>
                 <form [formGroup]="row.InternalConsumptionItemsValidator">
                   <input [(ngModel)]="row.Quantity " (ngModelChange)="QuantityChanged(i)" formControlName="Quantity" style="width:80px ; " min="1" class="form-control" type="number" onwheel="this.blur()" value="" id="{{ 'qty-box'+i }}" (keyup.enter)="AddRow(i)" onClick="this.select();">
-                  <span style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValid('Quantity','invalidNumber')"> required positive
-                    number</span>
-                  <span style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValid('Quantity','wrongDecimalValue')"> required whole
-                    number</span>
+                  <span style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValid('Quantity','invalidNumber')">{{ 'WARD_SUPPLY.REQUIRED_POSITIVE_NUMBER' | translate }}</span>
+                  <span style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValid('Quantity','wrongDecimalValue')">{{ 'WARD_SUPPLY.REQUIRED_WHOLE_NUMBER' | translate }}</span>
                 </form>
               </td>
               <td><label style="width:90px;height:30px;border: 1px solid #c8c9c9;padding: 5px;background-color: white;background-color: -internal-light-dark-color(white, black);" min="0" type="date" value="" ng-class="(switches.switch1)?'':'disabled-class'">{{row.BatchNo}}</label></td>
@@ -55,8 +53,8 @@
         </table>
         <div class="mt20 t-wrap clearfix">
           <table class=" col-sm-4 col-md-offset-8">
-            <tr>
-              <td>Total Amount: </td>
+             <tr>
+              <td>{{ 'WARD_SUPPLY.TOTAL_AMOUNT_COLON' | translate }} </td>
               <td>
                 <div class="form-group">
                   <input [(ngModel)]="TotalConsumption" disabled class="form-control" name="TotalAmount" type="number">
@@ -64,12 +62,12 @@
               </td>
             </tr>
             <tr class="dot">
-              <td class="text-capitalize" colspan="2">In Words : <b>{{TotalConsumption | NumberInWords}} </b>&nbsp; Only. <br />
+              <td class="text-capitalize" colspan="2">{{ 'WARD_SUPPLY.IN_WORDS' | translate }} <b>{{TotalConsumption | NumberInWords}} </b>&nbsp; {{ 'WARD_SUPPLY.ONLY' | translate }} <br />
                 <br />
               </td>
             </tr>
             <tr class="form-group">
-              <td>Consumed By:</td>
+              <td>{{ 'WARD_SUPPLY.CONSUMED_BY' | translate }}:</td>
               <td>
                 <div class="form-group">
                   <input [(ngModel)]="WardInternalConsumption.ConsumedBy" name="ConsumedBy" type="text" style="width:100%">
@@ -77,7 +75,7 @@
               </td>
             </tr>
             <tr class="form-group">
-              <td>Remark:</td>
+              <td>{{ 'COMMON.REMARKS' | translate }}:</td>
               <td class="text-capitalize">
                 <div class="form-group">
                   <textarea [(ngModel)]="WardInternalConsumption.Remark" name="remark" id="remark" style="width:100%"></textarea>
@@ -87,9 +85,9 @@
           </table>
         </div>
         <div class="panel-footer text-right">
-          <input type="button" class="btn btn-success" value="Save" (click)="Save()" [disabled]="loading" />
+          <input type="button" class="btn btn-success" [value]="'COMMON.SAVE' | translate" (click)="Save()" [disabled]="loading" />
           <span></span>
-          <input type="button" class="btn btn-danger" [disabled]="loading" (click)="Cancel()" value="Cancel">
+          <input type="button" class="btn btn-danger" [disabled]="loading" (click)="Cancel()" [value]="'COMMON.CANCEL' | translate">
           <span></span>
         </div>
       </div>

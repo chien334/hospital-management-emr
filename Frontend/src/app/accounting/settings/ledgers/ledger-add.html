@@ -52,59 +52,53 @@
     <div class="col-md-12">
       <div class="modelbox-div clearfix">
         <div class="caption lb-caption no-margin" style="padding: 5px 15px !important;">
-          <h3> <span style="    color: blue ; font-size: larger;">Create Ledger</span> </h3>
-          <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+          <h3> <span style="    color: blue ; font-size: larger;">{{ 'ACCOUNTING.CREATE_LEDGER' | translate }}</span> </h3>
+          <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
         </div>
         <div class="form-body" style="padding-top: 0px !important;">
           <form [formGroup]="CurrentLedger.LedgerValidator" class="hm-form clearfix">
             <div class="row" style="padding-top: 5px; background-color: #c9c6e3;">
               <div class="form-group col-md-4" style="margin-bottom:0px !important;">
-                <label class="control-label no-padding col-md-3">Primary Group<sup>*</sup><b>:</b></label>
+                <label class="control-label no-padding col-md-3">{{ 'ACCOUNTING.PRIMARY_GROUP' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-6">
                   <select class="form-control" maxlength="30" type="text" [(ngModel)]="CurrentLedger.PrimaryGroup"
-                          id="PrimaryGroup" (change)="PrimaryGroupChanged()" placeholder="PrimaryGroup"
+                          id="PrimaryGroup" (change)="PrimaryGroupChanged()"
                           formControlName="PrimaryGroup">
                     <option *ngFor="let pg of primaryGroupList" value={{pg.PrimaryGroupName}}>{{pg.PrimaryGroupName}}</option>
                   </select>
                   <span class="color-red font-sm"
-                        [hidden]="CurrentLedger.IsValidCheck('PrimaryGroup','required') || !(CurrentLedger.IsDirty('PrimaryGroup'))">primary
-                    group is required</span> <span class="color-red font-sm"
+                        [hidden]="CurrentLedger.IsValidCheck('PrimaryGroup','required') || !(CurrentLedger.IsDirty('PrimaryGroup'))">{{ 'ACCOUNTING.PRIMARY_GROUP_REQUIRED_ERR' | translate }}</span> <span class="color-red font-sm"
                         *ngIf="CurrentLedger.IsDirty('PrimaryGroup')"
-                        [hidden]="CurrentLedger.IsValidCheck('PrimaryGroup','maxlength')"> Length is not proper</span>
+                        [hidden]="CurrentLedger.IsValidCheck('PrimaryGroup','maxlength')"> {{ 'ACCOUNTING.LENGTH_NOT_PROPER' | translate }}</span>
                 </div>
               </div>
               <div class="form-group col-md-4" style="margin-bottom:0px !important;">
-                <label class="control-label no-padding  col-md-4">Chart of Accounts <sup>*</sup><b>:</b></label>
+                <label class="control-label no-padding  col-md-4">{{ 'ACCOUNTING.CHART_OF_ACCOUNT' | translate }} <sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
-
                   <select class="form-control" maxlength="30" type="text" [(ngModel)]="CurrentLedger.COA" id="COA"
-                          (change)="COAChanged()" placeholder="LedgerGroupName" formControlName="COA">
+                          (change)="COAChanged()" formControlName="COA">
                     <option *ngFor="let pg of coaList" value={{pg.ChartOfAccountName}}>{{pg.ChartOfAccountName}}</option>
                   </select>
-
                   <span class="color-red font-sm"
-                        [hidden]="CurrentLedger.IsValidCheck('COA','required') || !(CurrentLedger.IsDirty('COA'))">COA
-                    is
-                    required</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('COA')"
-                        [hidden]="CurrentLedger.IsValidCheck('COA','maxlength')"> Length is not proper</span>
+                        [hidden]="CurrentLedger.IsValidCheck('COA','required') || !(CurrentLedger.IsDirty('COA'))">{{ 'ACCOUNTING.COA_REQUIRED_ERR' | translate }}</span> <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('COA')"
+                        [hidden]="CurrentLedger.IsValidCheck('COA','maxlength')"> {{ 'ACCOUNTING.LENGTH_NOT_PROPER' | translate }}</span>
                 </div>
               </div>
               <div class="form-group col-md-4" style="margin-bottom:0px !important;">
-                <label class="control-label no-padding col-md-3">Ledger Group<sup>*</sup><b>:</b> </label>
+                <label class="control-label no-padding col-md-3">{{ 'ACCOUNTING.LEDGER_GROUP_NAME' | translate }}<sup>*</sup><b>:</b> </label>
                 <div class="col-md-8">
                   <div class="div-relative">
                     <input danphe-auto-complete class="col-md-11" [(ngModel)]="CurrentLedger.LedgerGroupName"
-                           [source]="ledgergroupList" placeholder="Ledger GroupName" display-property-name="LedgerGroupName"
+                           [source]="ledgergroupList" [placeholder]="'ACCOUNTING.LEDGER_GROUP_NAME' | translate" display-property-name="LedgerGroupName"
                            value-property-name="LedgerGroupName" (valueChanged)="AssignSelectedLedgerGroup()"
                            [list-formatter]="LedgerGroupListFormatter" max-num-list="20" onclick="this.select()"
                            style="background-color: azure;" formControlName="LedgerGroupName" />
                     <a class="fa fa-question" (click)="AddLedgerGroupPopUp()"
-                       title="Unable to find Ledger Group ? Click to add."></a>
+                       [title]="'ACCOUNTING.LEGER_GROUP_TOOLTIP' | translate"></a>
                   </div>
                   <span class="color-red font-sm"
-                        [hidden]="CurrentLedger.IsValidCheck('LedgerGroupName','required') || !(CurrentLedger.IsDirty('LedgerGroupName'))">Leadger
-                    Group Name is required</span><br />
-                  <span class="color-red" *ngIf="CurrentLedger.checkSelectedLedger==true">Please select Proper Ledger group</span>
+                        [hidden]="CurrentLedger.IsValidCheck('LedgerGroupName','required') || !(CurrentLedger.IsDirty('LedgerGroupName'))">{{ 'ACCOUNTING.LEDGER_GROUP_NAME_REQUIRED_ERR' | translate }}</span><br />
+                  <span class="color-red" *ngIf="CurrentLedger.checkSelectedLedger==true">{{ 'ACCOUNTING.SELECT_PROPER_LEDGER_GROUP' | translate }}</span>
                 </div>
               </div>
             </div>
@@ -119,13 +113,13 @@
                   <th></th>
                   <!-- <th width="70px">Code <i title="This ledger code is not final. It may change during save."
                        color=#006687 class="fa fa-info-circle" aria-hidden="true"></i></th> -->
-                  <th> LedgerName </th>
-                  <th> Legal Name </th>
-                  <th> Desciption </th>
-                  <th> Opening Balance </th>
-                  <th> Opening Balance Type </th>
-                  <th> Is Active </th>
-                  <th> Is Cost Center Applicable </th>
+                  <th> {{ 'ACCOUNTING.LEDGER_NAME_HEADER' | translate }} </th>
+                  <th> {{ 'ACCOUNTING.LEGAL_NAME' | translate }} </th>
+                  <th> {{ 'ACCOUNTING.DESCRIPTION' | translate }} </th>
+                  <th> {{ 'ACCOUNTING.OPENING_BALANCE' | translate }} </th>
+                  <th> {{ 'ACCOUNTING.OPENING_BALANCE_TYPE' | translate }} </th>
+                  <th> {{ 'ACCOUNTING.IS_ACTIVE' | translate }} </th>
+                  <th> {{ 'ACCOUNTING.IS_COST_CENTER_APPLICABLE' | translate }} </th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -138,14 +132,13 @@
                     <form [formGroup]="itm.LedgerValidator">
                       <div>
                         <input danphe-auto-complete [(ngModel)]="itm.LedgerName" [source]="ledgerList"
-                               placeholder="Ledger Name" display-property-name="LedgerName" value-property-name="LedgerName"
+                               [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" display-property-name="LedgerName" value-property-name="LedgerName"
                                (focusout)="CheckDuplicateLedger(i)" [list-formatter]="LedgerListFormatter"
                                max-num-list="10" onclick="this.select()" style="background-color: azure;"
                                formControlName="LedgerName" />
                         <span class="color-red font-sm"
-                              [hidden]="itm.IsValidCheck('LedgerName','required') || !(itm.IsDirty('LedgerName'))">Ledger
-                          Name is required</span> <span class="color-red font-sm" *ngIf="itm.IsDirty('LedgerName')"
-                              [hidden]="itm.IsValidCheck('LedgerName','maxlength')"> Length is not proper</span>
+                              [hidden]="itm.IsValidCheck('LedgerName','required') || !(itm.IsDirty('LedgerName'))">{{ 'ACCOUNTING.LEDGER_NAME_REQUIRED' | translate }}</span> <span class="color-red font-sm" *ngIf="itm.IsDirty('LedgerName')"
+                              [hidden]="itm.IsValidCheck('LedgerName','maxlength')"> {{ 'ACCOUNTING.LENGTH_NOT_PROPER' | translate }}</span>
                       </div>
                     </form>
                   </td>
@@ -153,19 +146,19 @@
                     <div class="form-group no-margin">
                       <input class="form-control" maxlength="200" type="text" title="itm.LegalLedgerName"
                              [(ngModel)]="itm.LegalLedgerName" [ngModelOptions]="{standalone: true}" id="LegalLedgerName"
-                             placeholder="Legal Ledger Name" />
+                             [placeholder]="'ACCOUNTING.LEGAL_LEDGER_NAME' | translate" />
                     </div>
                   </td>
                   <td>
                     <div class="form-group no-margin">
                       <input class="form-control" maxlength="200" type="text" title="itm.Description"
                              [(ngModel)]="itm.Description" [ngModelOptions]="{standalone: true}" id="Description"
-                             placeholder="Description" />
+                             [placeholder]="'ACCOUNTING.DESCRIPTION' | translate" />
                     </div>
                   </td>
                   <td><input class="form-control" maxlength="200" type="text" title="itm.OpeningBalance"
                            [(ngModel)]="itm.OpeningBalance" [ngModelOptions]="{standalone: true}" id="OpeningBalance"
-                           placeholder="Opening Balance" /></td>
+                           [placeholder]="'ACCOUNTING.OPENING_BALANCE' | translate" /></td>
                   <td>
                     <form [formGroup]="itm.LedgerValidator">
                       <div class="row">
@@ -192,8 +185,7 @@
                       </div>
                       <span class="color-red font-sm"
                             [hidden]="(itm.IsValidCheck('Dr','required') || !(itm.IsDirty('Dr')))
-                                                    ||(itm.IsValidCheck('Cr','required') || !(itm.IsDirty('Cr')))">Opening
-                        Balance Type is required</span>
+                                                    ||(itm.IsValidCheck('Cr','required') || !(itm.IsDirty('Cr')))">{{ 'ACCOUNTING.OPENING_BALANCE_TYPE_REQUIRED' | translate }}</span>
                     </form>
                   </td>
                   <td>
@@ -220,10 +212,10 @@
                       </div>
                     </div>
                   </td>
-                  <td><a (click)="AddNewLedger()" title="Click to add Ledger."><i
-                         class="fa fa-plus btn btn-success"></i></a></td>
-                  <td><a (click)="DeleteLedgerRow(i)" title="Alt+X,Alt+Delete,Click to remove this item"><i
-                         class="btn btn-danger fa fa-times"></i></a></td>
+                  <td><a (click)="AddNewLedger()" [title]="'ACCOUNTING.CLICK_TO_ADD_LEDGER_TOOLTIP' | translate"><i
+                          class="fa fa-plus btn btn-success"></i></a></td>
+                  <td><a (click)="DeleteLedgerRow(i)" [title]="'ACCOUNTING.REMOVE_ITEM_TOOLTIP' | translate"><i
+                          class="btn btn-danger fa fa-times"></i></a></td>
                 </tr>
               </tbody>
             </table>
@@ -237,7 +229,7 @@
               <button type="button" class="btn primary-btn" style="float:right;" (click)="AddLedger();"
                       [disabled]="loading">
                 <i class="fa fa-save"></i>
-                Save Ledgers
+                {{ 'ACCOUNTING.SAVE_LEDGERS' | translate }}
               </button>
             </div>
 

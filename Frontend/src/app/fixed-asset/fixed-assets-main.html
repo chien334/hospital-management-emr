@@ -47,12 +47,12 @@
       style="float: right;font-size: 25px;left: 6px;bottom: 11px;color: #313131;position: relative;"></div>
     <i (click)="CloseInfo()" class="fa fa-close"
       style="cursor:pointer;float: right;font-size: 15px;font-weight: lighter;left: 18px;top: 3px;position: relative;"></i>
-    <h6>You are currently in {{selectedInventory.Name}}. To change, you can always click here.</h6>
+    <h6>{{ 'FIXED_ASSETS.CURRENTLY_IN' | translate: {name: selectedInventory.Name} }}</h6>
   </div>
 
   <span style="padding:10px" class="right">
     <label class="label label-primary">
-      Active Inventory : <b>{{selectedInventory.Name}}</b>
+      {{ 'FIXED_ASSETS.ACTIVE_INVENTORY' | translate }} <b>{{selectedInventory.Name}}</b>
     </label>
     <i (mouseenter)="ShowInfo()" (click)="UnsetGlobalInventory()"
       style="cursor:pointer;margin-left: 5px;font-size: 20px;position: relative;top: 2px;left:5px;"

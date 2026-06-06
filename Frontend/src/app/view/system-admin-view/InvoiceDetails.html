@@ -11,7 +11,7 @@
     <div class="row">
         <div class="caption custom-caption">
             <i class="glyphicon glyphicon-asterisk"></i>
-            <span class="caption-subject" style="text-transform: uppercase;">Materialized Sales View</span>
+            <span class="caption-subject" style="text-transform: uppercase;">{{ 'SYSTEM_ADMIN.MATERIALIZED_SALES_VIEW' | translate }}</span>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -21,7 +21,7 @@
             <div class="col-md-2 col-xs-12">
                 <div class="form-group">
                     <button class="btn blue" type="button" (click)="GetInvoiceDetails()">
-                        <i class="fa fa-search"></i> Show Report
+                        <i class="fa fa-search"></i> {{ 'SYSTEM_ADMIN.SHOW_REPORT' | translate }}
                     </button>
                 </div>
             </div>
@@ -49,31 +49,31 @@
             <div style=" margin: 0px auto">
               <table class="tbl-summ" border="1" style="width:30%;">
                 <tr style="text-align: center; font-weight: bold;"> 
-                   <td colspan="3">Summary</td>
+                   <td colspan="3">{{ 'SYSTEM_ADMIN.SUMMARY' | translate }}</td>
                 </tr>
                 <tr>
                   <td style="text-align: center;">A</td>
-                  <td>Total Sales </td>
+                  <td>{{ 'SYSTEM_ADMIN.TOTAL_SALES' | translate }} </td>
                   <td>{{ summaryFormatted.TotalSales }}</td>
                 </tr>
                 <tr>
                   <td style="text-align: center;">B</td>
-                  <td>Total Discount Amount</td>
+                  <td>{{ 'SYSTEM_ADMIN.TOTAL_DISCOUNT_AMOUNT' | translate }}</td>
                   <td>{{ summaryFormatted.TotalDiscountAmount }}</td>
                 </tr>
                 <tr>
                   <td style="text-align: center;">C</td>
-                  <td>Total Taxable Amount</td>
+                  <td>{{ 'SYSTEM_ADMIN.TOTAL_TAXABLE_AMOUNT' | translate }}</td>
                   <td>{{ summaryFormatted.TotalTaxableAmount }}</td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">D</td>
-                    <td>Total Tax Amount</td>
+                    <td>{{ 'SYSTEM_ADMIN.TOTAL_TAX_AMOUNT' | translate }}</td>
                     <td>{{ summaryFormatted.TotalTaxAmount }}</td>
                   </tr>
                 <tr style="border: 2px solid;">
                     <td style="text-align: center;">E</td>
-                  <td style="font-weight: bold;">Total Amount (A-B+D)) </td>
+                  <td style="font-weight: bold;">{{ 'SYSTEM_ADMIN.TOTAL_AMOUNT_FORMULA' | translate }} </td>
                   <td style="font-weight: bold;">{{ summaryFormatted.TotalAmount }}</td>
                 </tr>
               </table>

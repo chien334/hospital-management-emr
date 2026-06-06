@@ -71,48 +71,48 @@
 
 
 <button class="btn btn-sm blue" *ngIf="showAddPart" (click)="showAddPart=!showAddPart">
-  Preview
+  {{ 'CLINICAL.PREVIEW' | translate }}
 </button>
 
 <button class="btn btn-sm blue" *ngIf="!showAddPart" (click)="showAddPart=!showAddPart">
-  <i class="fa fa-pencil"></i> Edit Note
+  <i class="fa fa-pencil"></i> {{ 'CLINICAL.EDIT_NOTE' | translate }}
 </button>
 <button class="btn btn-sm blue" *ngIf="!showAddPart" style="margin-left: 10px;" (click)="PrintNote()">
   <i class="fa fa-print"></i>
-  Print
+  {{ 'COMMON.PRINT' | translate }}
 </button>
-<h3 style="text-align: center">PRESCRIPTION</h3>
+<h3 style="text-align: center">{{ 'CLINICAL.PRESCRIPTION' | translate }}</h3>
 <hr style="border-top: 1px solid black;">
 
 <div *ngIf="showAddPart">
-    <p>Edit part has been shown</p>
+    <p>{{ 'CLINICAL.EDIT_PART_SHOWN' | translate }}</p>
   <div class="wrapper" style="padding: 0px 10px;">
 
     <div class="patient-info-table div-tbl">
       <div class="pat-item left">
-        <p>Patient Code : {{prescriptionNotes.PatientCode}}</p>
-        <p>Patient Name : {{prescriptionNotes.PatientName}}</p>
-        <p>Age/Gender : {{prescriptionNotes.AgeGender}}</p>
-        <p>Specialization: {{prescriptionNotes.Specialization}}</p>
-        <p>Doctor Name: {{prescriptionNotes.DoctorName}}</p>
-        <p>NMC No: {{prescriptionNotes.NMCNo}}</p>
+        <p>{{ 'CLINICAL.PATIENT_CODE' | translate }} : {{prescriptionNotes.PatientCode}}</p>
+        <p>{{ 'CLINICAL.PATIENT_NAME' | translate }} : {{prescriptionNotes.PatientName}}</p>
+        <p>{{ 'CLINICAL.AGE_GENDER' | translate }} : {{prescriptionNotes.AgeGender}}</p>
+        <p>{{ 'CLINICAL.SPECIALIZATION' | translate }} : {{prescriptionNotes.Specialization}}</p>
+        <p>{{ 'CLINICAL.DOCTOR_NAME' | translate }} : {{prescriptionNotes.DoctorName}}</p>
+        <p>{{ 'CLINICAL.NMC_NO' | translate }} : {{prescriptionNotes.NMCNo}}</p>
       </div>
       <div class="pat-item right">
-        <p>Registration No. : {{prescriptionNotes.RegistrationNo}}</p>
-        <p>Registration Date :{{prescriptionNotes.RegistrationDate}}</p>
-        <p>Patient Type : {{prescriptionNotes.PatientType}}</p>
+        <p>{{ 'CLINICAL.REGISTRATION_NO' | translate }} : {{prescriptionNotes.RegistrationNo}}</p>
+        <p>{{ 'CLINICAL.REGISTRATION_DATE' | translate }} : {{prescriptionNotes.RegistrationDate}}</p>
+        <p>{{ 'CLINICAL.PATIENT_TYPE' | translate }} : {{prescriptionNotes.PatientType}}</p>
       </div>
     </div>
 
     <div class="advice div-tbl" style="margin-top:20px">
-      <div style="text-align: center;margin-bottom: 15px;" class="col-md-3"><p style="font-weight: 700;margin: 8px 0px;">Advice</p></div>
+      <div style="text-align: center;margin-bottom: 15px;" class="col-md-3"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.ADVICE' | translate }}</p></div>
       <div class="col-md-6">
         <textarea rows="5" style="width:100%;" [(ngModel)]="prescriptionNotes.Advice">
         </textarea>
       </div>
     </div>
     <div class="advice div-tbl" style="margin-top:20px">
-      <div style="text-align: center;margin-bottom: 15px;" class="col-md-3"><p style="font-weight: 700;margin: 8px 0px;">Free Notes</p></div>
+      <div style="text-align: center;margin-bottom: 15px;" class="col-md-3"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.FREE_NOTES' | translate }}</p></div>
       <div class="col-md-6">
         <textarea rows="5" style="width:100%;" [(ngModel)]="prescriptionNotes.FreeNotes">
         </textarea>
@@ -123,14 +123,14 @@
       <input type="checkbox"
              [(ngModel)]="showfreenotes"
              [ngModelOptions]="{standalone: true}" />
-      <label>Show Free Notes</label>
+      <label>{{ 'CLINICAL.SHOW_FREE_NOTES' | translate }}</label>
     </div>
 
     <div class="neuro-assess">
-      <div style="text-align: center;margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">Neurological Assessment Form</p></div>
+      <div style="text-align: center;margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.NEURO_ASSESS_FORM' | translate }}</p></div>
       <div class="single-assessment">
         <div class="lft-30">
-          <p>Chief Complaint</p>
+          <p>{{ 'CLINICAL.CHIEF_COMPLAINT' | translate }}</p>
         </div>
         <div class="lft-70 uppercase">
           <p>
@@ -143,7 +143,7 @@
 
       <div class="single-assessment">
         <div class="lft-30">
-          <p>History of Presenting Illness</p>
+          <p>{{ 'CLINICAL.HISTORY_OF_PRESENTING_ILLNESS' | translate }}</p>
         </div>
         <div class="lft-30 uppercase">
           <p>
@@ -158,10 +158,10 @@
 
 
     <div class="neuro-assess">
-      <div><p style="margin: 8px 0px 8px -10px;"><em>Diagnosis</em></p></div>
+      <div><p style="margin: 8px 0px 8px -10px;"><em>{{ 'CLINICAL.DIAGNOSIS' | translate }}</em></p></div>
       <div class="single-assessment">
         <div class="lft-30">
-          <p>Type</p>
+          <p>{{ 'CLINICAL.DIAGNOSIS_TYPE' | translate }}</p>
         </div>
         <div class="lft-20 ">
 
@@ -175,7 +175,7 @@
 
       <div class="single-assessment">
         <div class="lft-30">
-          <p>Diagnosis</p>
+          <p>{{ 'CLINICAL.DIAGNOSIS' | translate }}</p>
         </div>
         <div class="lft-70 uppercase">
           <p>
@@ -187,38 +187,38 @@
     </div>
 
     <div class="advice div-tbl">
-      <div style="text-align: center;margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">Vital Sign</p></div>
+      <div style="text-align: center;margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.VITAL_SIGN' | translate }}</p></div>
       <div>
-        <p style="font-weight: 700; font-size: 12px">Visit Entry Date and Time: {{prescriptionNotes.RegistrationDate}} &nbsp;&nbsp;</p>
+        <p style="font-weight: 700; font-size: 12px">{{ 'CLINICAL.VISIT_ENTRY_DATE_TIME' | translate }}: {{prescriptionNotes.RegistrationDate}} &nbsp;&nbsp;</p>
       </div>
 
       <div class="vital-table-holder">
         <table class="vital-table table table-responsive table-hover">
           <thead>
             <tr>
-              <th>Vital Parameter</th>
-              <th>Sub Parameter</th>
-              <th>Result</th>
-              <th>Unit</th>
+              <th>{{ 'CLINICAL.VITAL_PARAMETER' | translate }}</th>
+              <th>{{ 'CLINICAL.SUB_PARAMETER' | translate }}</th>
+              <th>{{ 'CLINICAL.RESULT' | translate }}</th>
+              <th>{{ 'CLINICAL.UNIT' | translate }}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Height</td>
+              <td>{{ 'CLINICAL.HEIGHT' | translate }}</td>
               <td></td>
               <td><input type="text" [(ngModel)]="prescriptionNotes.Height" /></td>
               <td>Cm</td>
             </tr>
 
-            <tr><td>Weight</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.Weight" /></td><td>Kg</td></tr>
-            <tr><td>BMI</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.BMI" /></td><td></td></tr>
-            <tr><td>Temperature</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.Temp" /></td><td>Celsius</td></tr>
-            <tr><td>Pulse</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.Pulse" /></td><td>bpm</td></tr>
-            <tr><td>Respiration</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.Respiration" /></td><td></td></tr>
-            <tr><td>Blood Pressure</td><td>Systolic</td><td><input type="text" [(ngModel)]="prescriptionNotes.BPSystolic" /></td><td>mmHg</td></tr>
-            <tr><td>Blood Pressure</td><td>Diastolic</td><td><input type="text" [(ngModel)]="prescriptionNotes.BPDiastolic" /></td><td>mmHg</td></tr>
-            <tr><td>SPO2</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.SpO2" /></td><td>%</td></tr>
-            <tr><td>Pain Score</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.PainScale" /></td><td></td></tr>
+            <tr><td>{{ 'CLINICAL.WEIGHT' | translate }}</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.Weight" /></td><td>Kg</td></tr>
+            <tr><td>{{ 'CLINICAL.BMI' | translate }}</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.BMI" /></td><td></td></tr>
+            <tr><td>{{ 'CLINICAL.TEMPERATURE' | translate }}</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.Temp" /></td><td>Celsius</td></tr>
+            <tr><td>{{ 'CLINICAL.PULSE' | translate }}</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.Pulse" /></td><td>bpm</td></tr>
+            <tr><td>{{ 'CLINICAL.RESPIRATION' | translate }}</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.Respiration" /></td><td></td></tr>
+            <tr><td>{{ 'CLINICAL.BLOOD_PRESSURE' | translate }}</td><td>{{ 'CLINICAL.SYSTOLIC' | translate }}</td><td><input type="text" [(ngModel)]="prescriptionNotes.BPSystolic" /></td><td>mmHg</td></tr>
+            <tr><td>{{ 'CLINICAL.BLOOD_PRESSURE' | translate }}</td><td>{{ 'CLINICAL.DIASTOLIC' | translate }}</td><td><input type="text" [(ngModel)]="prescriptionNotes.BPDiastolic" /></td><td>mmHg</td></tr>
+            <tr><td>{{ 'CLINICAL.SPO2' | translate }}</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.SpO2" /></td><td>%</td></tr>
+            <tr><td>{{ 'CLINICAL.PAIN_SCORE' | translate }}</td><td></td><td><input type="text" [(ngModel)]="prescriptionNotes.PainScale" /></td><td></td></tr>
 
           </tbody>
           <tfoot>
@@ -239,17 +239,17 @@
   <div class="wrapper" style="padding: 0px 10px;" id="note_to_print">
     <div class="patient-info-table div-tbl">
       <div class="pat-item left">
-        <p>Patient Code : {{prescriptionNotes.PatientCode}}</p>
-        <p>Patient Name : {{prescriptionNotes.PatientName}}</p>
-        <p>Age/Gender : {{prescriptionNotes.AgeGender}}</p>
-        <p>Specialization: {{prescriptionNotes.Specialization}}</p>
-        <p>Doctor Name: {{prescriptionNotes.DoctorName}}</p>
-        <p>NMC No: {{prescriptionNotes.NMCNo}}</p>
+        <p>{{ 'CLINICAL.PATIENT_CODE' | translate }} : {{prescriptionNotes.PatientCode}}</p>
+        <p>{{ 'CLINICAL.PATIENT_NAME' | translate }} : {{prescriptionNotes.PatientName}}</p>
+        <p>{{ 'CLINICAL.AGE_GENDER' | translate }} : {{prescriptionNotes.AgeGender}}</p>
+        <p>{{ 'CLINICAL.SPECIALIZATION' | translate }} : {{prescriptionNotes.Specialization}}</p>
+        <p>{{ 'CLINICAL.DOCTOR_NAME' | translate }} : {{prescriptionNotes.DoctorName}}</p>
+        <p>{{ 'CLINICAL.NMC_NO' | translate }} : {{prescriptionNotes.NMCNo}}</p>
       </div>
       <div class="pat-item right">
-        <p>Registration No.  {{prescriptionNotes.RegistrationNo}}</p>
-        <p>Registration Date :{{prescriptionNotes.RegistrationDate}}</p>
-        <p>Patient Type : {{prescriptionNotes.PatientType}}</p>
+        <p>{{ 'CLINICAL.REGISTRATION_NO' | translate }}  {{prescriptionNotes.RegistrationNo}}</p>
+        <p>{{ 'CLINICAL.REGISTRATION_DATE' | translate }} : {{prescriptionNotes.RegistrationDate}}</p>
+        <p>{{ 'CLINICAL.PATIENT_TYPE' | translate }} : {{prescriptionNotes.PatientType}}</p>
       </div>
     </div>
 
@@ -257,7 +257,7 @@
     <div class="neuro-assess">
       <div *ngIf="prescriptionNotes.Advice" class="single-assessment">
         <div class="lft-30">
-          <p>Advice</p>
+          <p>{{ 'CLINICAL.ADVICE' | translate }}</p>
         </div>
         <div class="lft-70 uppercase">
           <p>{{prescriptionNotes.Advice}}</p>
@@ -266,20 +266,20 @@
       </div>
       <div class="single-assessment" style="margin-top:20px" *ngIf="showfreenotes == true && prescriptionNotes.FreeNotes">
         <div class="lft-30">
-          <p>Free Notes</p>
+          <p>{{ 'CLINICAL.FREE_NOTES' | translate }}</p>
         </div>
         <div class="lft-70 uppercase">
           <p>{{prescriptionNotes.FreeNotes}}</p>
 
         </div>
       </div>
-      <div style="text-align: center;margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">Neurological Assessment Form</p></div>
+      <div style="text-align: center;margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.NEURO_ASSESS_FORM' | translate }}</p></div>
 
       <div *ngIf="prescriptionNotes.ChiefComplaint || prescriptionNotes.HistoryIllness">
-        <div style="margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">Subjective Notes</p></div>
+        <div style="margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.SUBJECTIVE_NOTES' | translate }}</p></div>
         <div *ngIf="prescriptionNotes.ChiefComplaint" class="single-assessment">
           <div class="lft-30">
-            <p>Chief Complaint</p>
+            <p>{{ 'CLINICAL.CHIEF_COMPLAINT' | translate }}</p>
           </div>
           <div class="lft-70 uppercase">
             <p>{{prescriptionNotes.ChiefComplaint}}</p>
@@ -289,7 +289,7 @@
 
         <div *ngIf="prescriptionNotes.HistoryIllness" class="single-assessment">
           <div class="lft-30">
-            <p>History of Presenting Illness</p>
+            <p>{{ 'CLINICAL.HISTORY_OF_PRESENTING_ILLNESS' | translate }}</p>
           </div>
           <div class="lft-70 uppercase">
             <p>
@@ -302,11 +302,11 @@
       </div>
 
       <div *ngIf="prescriptionNotes.objNotes">
-        <div style="margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">Objective Notes</p></div>
+        <div style="margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.OBJECTIVE_NOTES' | translate }}</p></div>
 
         <div *ngIf="prescriptionNotes.objNotes.HEENT" class="single-assessment">
           <div class="lft-30">
-            <p>HEENT</p>
+            <p>{{ 'CLINICAL.HEENT' | translate }}</p>
           </div>
           <div class="lft-70 uppercase">
             <p>{{prescriptionNotes.objNotes.HEENT}}</p>
@@ -316,7 +316,7 @@
 
         <div *ngIf="prescriptionNotes.objNotes.Chest" class="single-assessment">
           <div class="lft-30">
-            <p>Chest</p>
+            <p>{{ 'CLINICAL.CHEST' | translate }}</p>
           </div>
           <div class="lft-70 uppercase">
             <p>{{prescriptionNotes.objNotes.Chest}}</p>
@@ -325,7 +325,7 @@
 
         <div *ngIf="prescriptionNotes.objNotes.CVS" class="single-assessment">
           <div class="lft-30">
-            <p>CVS</p>
+            <p>{{ 'CLINICAL.CVS' | translate }}</p>
           </div>
           <div class="lft-70 uppercase">
             <p>{{prescriptionNotes.objNotes.CVS}}</p>
@@ -335,7 +335,7 @@
 
         <div *ngIf="prescriptionNotes.objNotes.Abdomen" class="single-assessment">
           <div class="lft-30">
-            <p>Abdomen</p>
+            <p>{{ 'CLINICAL.ABDOMEN' | translate }}</p>
           </div>
           <div class="lft-70 uppercase">
             <p>{{prescriptionNotes.objNotes.Abdomen}}</p>
@@ -345,7 +345,7 @@
 
         <div *ngIf="prescriptionNotes.objNotes.Extremity" class="single-assessment">
           <div class="lft-30">
-            <p>Extremity</p>
+            <p>{{ 'CLINICAL.EXTREMITY' | translate }}</p>
           </div>
           <div class="lft-70 uppercase">
             <p>{{prescriptionNotes.objNotes.Extremity}}</p>
@@ -355,7 +355,7 @@
 
         <div *ngIf="prescriptionNotes.objNotes.Skin" class="single-assessment">
           <div class="lft-30">
-            <p>Skin</p>
+            <p>{{ 'CLINICAL.SKIN' | translate }}</p>
           </div>
           <div class="lft-70 uppercase">
             <p>{{prescriptionNotes.objNotes.Skin}}</p>
@@ -365,7 +365,7 @@
 
         <div *ngIf="prescriptionNotes.objNotes.Neurological" class="single-assessment">
           <div class="lft-30">
-            <p>Neurological</p>
+            <p>{{ 'CLINICAL.NEUROLOGICAL' | translate }}</p>
           </div>
           <div class="lft-70 uppercase">
             <p>{{prescriptionNotes.objNotes.Neurological}}</p>
@@ -375,10 +375,10 @@
 
       </div>
 
-      <div><p style="margin: 8px 0px 8px -10px;"><em>Diagnosis</em></p></div>
+      <div><p style="margin: 8px 0px 8px -10px;"><em>{{ 'CLINICAL.DIAGNOSIS' | translate }}</em></p></div>
       <div class="single-assessment">
         <div class="lft-30">
-          <p>Type</p>
+          <p>{{ 'CLINICAL.DIAGNOSIS_TYPE' | translate }}</p>
         </div>
         <div class="lft-20 ">
           <p> {{prescriptionNotes.DiagnosisType}}</p>          
@@ -387,7 +387,7 @@
 
       <div class="single-assessment">
         <div class="lft-30">
-          <p>Diagnosis</p>
+          <p>{{ 'CLINICAL.DIAGNOSIS' | translate }}</p>
         </div>
         <div class="lft-70 uppercase">
           <p> {{prescriptionNotes.Diagnosis}}</p>
@@ -396,38 +396,38 @@
     </div>
 
     <div class="advice div-tbl">
-      <div style="text-align: center;margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">Vital Sign</p></div>
+      <div style="text-align: center;margin-bottom: 15px;"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.VITAL_SIGN' | translate }}</p></div>
       <div>
-        <p style="font-weight: 700; font-size: 12px">Visit Entry Date and Time: {{prescriptionNotes.RegistrationDate}} &nbsp;&nbsp;</p>
+        <p style="font-weight: 700; font-size: 12px">{{ 'CLINICAL.VISIT_ENTRY_DATE_TIME' | translate }}: {{prescriptionNotes.RegistrationDate}} &nbsp;&nbsp;</p>
       </div>
 
       <div class="vital-table-holder">
         <table class="vital-table">
           <thead>
             <tr>
-              <th>Vital Parameter</th>
-              <th>Sub Parameter</th>
-              <th>Result</th>
-              <th>Unit</th>
+              <th>{{ 'CLINICAL.VITAL_PARAMETER' | translate }}</th>
+              <th>{{ 'CLINICAL.SUB_PARAMETER' | translate }}</th>
+              <th>{{ 'CLINICAL.RESULT' | translate }}</th>
+              <th>{{ 'CLINICAL.UNIT' | translate }}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Height</td>
+              <td>{{ 'CLINICAL.HEIGHT' | translate }}</td>
               <td></td>
               <td>{{prescriptionNotes.Height}}</td>
 
               <td>Cm</td>
             </tr>
-            <tr><td>Weight</td><td></td><td>{{prescriptionNotes.Weight}}</td><td>Kg</td></tr>
-            <tr><td>BMI</td><td></td><td>{{prescriptionNotes.BMI}}</td><td></td></tr>
-            <tr><td>Temperature</td><td></td><td>{{prescriptionNotes.Temp}}</td><td>Celsius</td></tr>
-            <tr><td>Pulse</td><td></td><td>{{prescriptionNotes.Pulse}}</td><td>bpm</td></tr>
-            <tr><td>Respiration</td><td></td><td>{{prescriptionNotes.Respiration}}</td><td></td></tr>
-            <tr><td>Blood Pressure</td><td>Systolic</td><td>{{prescriptionNotes.BPSystolic}}</td><td>mmHg</td></tr>
-            <tr><td>Blood Pressure</td><td>Diastolic</td><td>{{prescriptionNotes.BPDiastolic}}</td><td>mmHg</td></tr>
-            <tr><td>SPO2</td><td></td><td>{{prescriptionNotes.SpO2}}</td><td>%</td></tr>
-            <tr><td>Pain Score</td><td></td><td>{{prescriptionNotes.PainScale}}</td><td></td></tr>
+            <tr><td>{{ 'CLINICAL.WEIGHT' | translate }}</td><td></td><td>{{prescriptionNotes.Weight}}</td><td>Kg</td></tr>
+            <tr><td>{{ 'CLINICAL.BMI' | translate }}</td><td></td><td>{{prescriptionNotes.BMI}}</td><td></td></tr>
+            <tr><td>{{ 'CLINICAL.TEMPERATURE' | translate }}</td><td></td><td>{{prescriptionNotes.Temp}}</td><td>Celsius</td></tr>
+            <tr><td>{{ 'CLINICAL.PULSE' | translate }}</td><td></td><td>{{prescriptionNotes.Pulse}}</td><td>bpm</td></tr>
+            <tr><td>{{ 'CLINICAL.RESPIRATION' | translate }}</td><td></td><td>{{prescriptionNotes.Respiration}}</td><td></td></tr>
+            <tr><td>{{ 'CLINICAL.BLOOD_PRESSURE' | translate }}</td><td>{{ 'CLINICAL.SYSTOLIC' | translate }}</td><td>{{prescriptionNotes.BPSystolic}}</td><td>mmHg</td></tr>
+            <tr><td>{{ 'CLINICAL.BLOOD_PRESSURE' | translate }}</td><td>{{ 'CLINICAL.DIASTOLIC' | translate }}</td><td>{{prescriptionNotes.BPDiastolic}}</td><td>mmHg</td></tr>
+            <tr><td>{{ 'CLINICAL.SPO2' | translate }}</td><td></td><td>{{prescriptionNotes.SpO2}}</td><td>%</td></tr>
+            <tr><td>{{ 'CLINICAL.PAIN_SCORE' | translate }}</td><td></td><td>{{prescriptionNotes.PainScale}}</td><td></td></tr>
 
           </tbody>
           <tfoot>
@@ -438,25 +438,25 @@
       </div>
       <!-- --------------------------------------------------------------------------------------- -->
       <hr style="border-top: 1px solid black; margin-top:40px;">
-      <div style="text-align: center;margin-top: 50px; margin-bottom:15px;"><p style="font-weight: 700;margin: 8px 0px;">Medication Details</p></div>
+      <div style="text-align: center;margin-top: 50px; margin-bottom:15px;"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.MEDICATION_DETAILS' | translate }}</p></div>
       <div *ngIf="medicationPrescriptions != null">
-        <div *ngIf="medicationPrescriptions.length==0" style="text-align: center;margin-top: 20px; margin-bottom:15px;"><p style="font-weight: 400;margin: 8px 0px;">No Medication Prescribed </p></div>
+        <div *ngIf="medicationPrescriptions.length==0" style="text-align: center;margin-top: 20px; margin-bottom:15px;"><p style="font-weight: 400;margin: 8px 0px;">{{ 'CLINICAL.NO_MED_PRESCRIBED' | translate }} </p></div>
         <div *ngIf="medicationPrescriptions.length!=0">
           <div class="vital-table-holder">
             <table class="vital-table">
               <thead>
                 <tr>
-                  <th>Medication</th>
-                  <th>Dose (mg/ml/tabs)</th>
-                  <th>Frequency</th>
-                  <th>Days</th>
+                  <th>{{ 'CLINICAL.MEDICATION' | translate }}</th>
+                  <th>{{ 'CLINICAL.DOSE' | translate }}</th>
+                  <th>{{ 'CLINICAL.FREQUENCY' | translate }}</th>
+                  <th>{{ 'CLINICAL.DAYS' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let medication of medicationPrescriptions">
                   <td>{{medication.ItemName}}</td>
                   <td>{{medication.pres.Dosage}} </td>
-                  <td>{{medication.pres.Frequency}} times a day</td>
+                  <td>{{medication.pres.Frequency}} {{ 'CLINICAL.TIMES_A_DAY' | translate }}</td>
                   <td>{{medication.pres.HowManyDays}}</td>
                 </tr>
               </tbody>
@@ -471,16 +471,16 @@
       <!-- ---------------------------- -->
       <!-- --------------------------------------------------------------------------------------- -->
       <hr style="border-top: 1px solid black;margin-top:40px;">
-      <div style="text-align: center;margin-top: 50px; margin-bottom:15px;"><p style="font-weight: 700;margin: 8px 0px;">Follow-Up Details</p></div>
-      <div *ngIf="!followUpDetails" style="text-align: center;margin-top: 20px; margin-bottom:15px;"><p style="font-weight: 400;margin: 8px 0px;">No Upcoming Follow up </p></div>
+      <div style="text-align: center;margin-top: 50px; margin-bottom:15px;"><p style="font-weight: 700;margin: 8px 0px;">{{ 'CLINICAL.FOLLOW_UP_DETAILS' | translate }}</p></div>
+      <div *ngIf="!followUpDetails" style="text-align: center;margin-top: 20px; margin-bottom:15px;"><p style="font-weight: 400;margin: 8px 0px;">{{ 'CLINICAL.NO_UPCOMING_FOLLOW_UP' | translate }} </p></div>
 
       <div *ngIf="followUpDetails">
         <div class="vital-table-holder">
           <table class="vital-table">
             <thead>
               <tr>
-                <th>Follow-Up</th>
-                <th>Remarks</th>
+                <th>{{ 'CLINICAL.FOLLOW_UP' | translate }}</th>
+                <th>{{ 'COMMON.REMARKS' | translate }}</th>
               </tr>
             </thead>
             <tbody>
@@ -511,12 +511,12 @@
 
   <button class="btn btn-sm blue" *ngIf="showAddPart" (click)="SaveNote()">
     <i class="fa fa-save"></i>
-    Save
+    {{ 'COMMON.SAVE' | translate }}
   </button>
 
   <button class="btn btn-sm blue" *ngIf="!showAddPart" style="margin-left: 10px;" (click)="PrintNote()">
     <i class="fa fa-print"></i>
-    Print
+    {{ 'COMMON.PRINT' | translate }}
   </button>
 </div>
 

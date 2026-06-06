@@ -6,7 +6,7 @@
 </div>
 <br />-->
 
-<a feature="button" class="btn blue bordered" (click)="AddEmployeeRole()"><i class="fa fa-plus"></i>Add Role</a>
+<a feature="button" class="btn blue bordered" (click)="AddEmployeeRole()"><i class="fa fa-plus"></i>{{ 'EMPLOYEE.ADD_ROLE' | translate }}</a>
 <employee-role-add [showAddPage]="showAddPage"
                    [selectedItem]="selectedItem"
                    (callback-add)="CallBackAdd($event)"></employee-role-add>

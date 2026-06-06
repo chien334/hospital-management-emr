@@ -66,8 +66,8 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3>Assets Maintenance Edit </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3>{{ 'FIXED_ASSETS.ASSETS_MAINTENANCE_EDIT' | translate }}</h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <!--Put the class name hm-form in every form-->
           <form class="hm-form" [formGroup]="selectedAssetForEdit.FAEditAssetMainteanceValidators">
@@ -80,7 +80,7 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Item Code <b> : </b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.ITEM_CODE' | translate }} <b> : </b></label>
                         <div class="col-md-6">
                           {{selectedAssetForEdit.ItemCode}}
                         </div>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Bar Code Number <b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.BAR_CODE_NUMBER' | translate }} <b>:</b></label>
                         <div class="col-md-6">
                           {{selectedAssetForEdit.BarCodeNumber}}
                         </div>
@@ -96,7 +96,7 @@
                     </div>
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Item Name <b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.ITEM_NAME' | translate }} <b>:</b></label>
                         <div class="col-md-6">
                           {{selectedAssetForEdit.ItemName}}
                         </div>
@@ -106,7 +106,7 @@
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Warranty <b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.WARRANTY' | translate }} <b>:</b></label>
                         <div class="col-md-6">
                           {{selectedAssetForEdit.WarrantyExpiryDate | date:'yyyy-MM-dd'}}
                         </div>
@@ -116,13 +116,13 @@
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6"> Performance <b>:</b></label>
+                        <label class="control-label col-md-6"> {{ 'FIXED_ASSETS.PERFORMANCE' | translate }} <b>:</b></label>
                         <div class="col-md-6">
                           <select [(ngModel)]="selectedAssetForEdit.Performance" [ngModelOptions]="{standalone:true}"
                             class="col-md-12">
-                            <option [ngValue]="null" disabled>Choose...</option>
-                            <option value="Working">Working</option>
-                            <option value="Not Working">Not Working</option>
+                            <option [ngValue]="null" disabled>{{ 'FIXED_ASSETS.CHOOSE_PLACEHOLDER' | translate }}</option>
+                            <option value="Working">{{ 'FIXED_ASSETS.WORKING' | translate }}</option>
+                            <option value="Not Working">{{ 'FIXED_ASSETS.NOT_WORKING' | translate }}</option>
                           </select>
 
                           <!-- <span style="color:red" [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('Performance','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('Performance'))">
@@ -133,39 +133,37 @@
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Periodic Service ( In
-                          Every )<b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.PERIODIC_SERVICE_DAYS_LABEL' | translate }}<b>:</b></label>
                         <div class="col-md-5">
                           <input type="number" [(ngModel)]="selectedAssetForEdit.PeriodicServiceDays"
                             [ngModelOptions]="{standalone:true}" min="0" class="col-md-12"
-                            placeholder="Enter Periodic service days..." />
+                            [placeholder]="'FIXED_ASSETS.PERIODIC_SERVICE_DAYS_PLACEHOLDER' | translate" />
 
                           <!-- <span Class="color-red font-sm" formControlName="PeriodicServiceDays"
                             [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('YearOfUse','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('YearOfUse'))">
                             Required</span> -->
                         </div>
-                        <label class="col-md-1" style="padding-left:0px!important;">Days</label>
+                        <label class="col-md-1" style="padding-left:0px!important;">{{ 'FIXED_ASSETS.DAYS' | translate }}</label>
                       </div>
                     </div>
 
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Year of use<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.YEAR_OF_USE' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-6">
                           <input type="number" [(ngModel)]="selectedAssetForEdit.YearOfUse" formControlName="YearOfUse"
-                            class="col-md-12" placeholder="Enter Year Of Use..." />
+                            class="col-md-12" [placeholder]="'FIXED_ASSETS.ENTER_YEAR_OF_USE_PLACEHOLDER' | translate" />
 
                           <span Class="color-red font-sm"
-                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('YearOfUse','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('YearOfUse'))">Year
-                            of use is required !</span>
+                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('YearOfUse','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('YearOfUse'))">{{ 'FIXED_ASSETS.YEAR_OF_USE_REQUIRED' | translate }}</span>
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Manufacture Date <b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.MANUFACTURE_DATE' | translate }} <b>:</b></label>
                         <div class="col-md-6">
                           <danphe-date-picker [CalendarTypes]="'np,en'" formControlName="ManufactureDate"
                             [(ngModel)]="selectedAssetForEdit.ManufactureDate" style="width:100px;">
@@ -180,21 +178,20 @@
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Total Life in Year<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.TOTAL_LIFE_IN_YEAR' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-6">
                           <input type="number" [(ngModel)]="selectedAssetForEdit.TotalLife" formControlName="TotalLife"
-                            min="0" class="col-md-12" placeholder="Enter TotalLife..." />
+                            min="0" class="col-md-12" [placeholder]="'FIXED_ASSETS.ENTER_TOTAL_LIFE_PLACEHOLDER' | translate" />
 
                           <span Class="color-red font-sm"
-                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('TotalLife','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('TotalLife'))">Total
-                            Life in Year is required !</span>
+                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('TotalLife','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('TotalLife'))">{{ 'FIXED_ASSETS.TOTAL_LIFE_REQUIRED' | translate }}</span>
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Installation Date <b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.INSTALLATION_DATE' | translate }} <b>:</b></label>
                         <div class="col-md-6">
                           <danphe-date-picker [CalendarTypes]="'np,en'" formControlName="InstallationDate"
                             [(ngModel)]="selectedAssetForEdit.InstallationDate" style="width:100px;">
@@ -210,82 +207,78 @@
 
                     <div class="col-md-12" style="margin-bottom:15px!important;margin-top:30px!important;">
                       <label style="padding-left:0px!important; font-size:medium!important;font-weight:700!important;">
-                        <strong>Vendor Contact Details</strong></label>
+                        <strong>{{ 'FIXED_ASSETS.VENDOR_CONTACT_DETAILS' | translate }}</strong></label>
                     </div>
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Contact Person Name1<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.CONTACT_PERSON_NAME_1' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-6">
                           <input type="text" [(ngModel)]="selectedAssetForEdit.Name" formControlName="Name"
-                            class="col-md-12" placeholder="Enter Name..." />
+                            class="col-md-12" [placeholder]="'FIXED_ASSETS.ENTER_NAME_PLACEHOLDER' | translate" />
 
                           <span Class="color-red font-sm"
-                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('Name','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('Name'))">Name
-                            is required !</span>
+                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('Name','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('Name'))">{{ 'FIXED_ASSETS.NAME_REQUIRED' | translate }}</span>
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Contact Person Name2<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.CONTACT_PERSON_NAME_2' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-6">
                           <input type="text" [(ngModel)]="selectedAssetForEdit.Name2" formControlName="Name2"
-                            class="col-md-12" placeholder="Enter Name..." />
+                            class="col-md-12" [placeholder]="'FIXED_ASSETS.ENTER_NAME_PLACEHOLDER' | translate" />
 
                           <span Class="color-red font-sm"
-                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('Name2','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('Name2'))">Name
-                            is required !</span>
+                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('Name2','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('Name2'))">{{ 'FIXED_ASSETS.NAME_REQUIRED' | translate }}</span>
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Contact Person Position1<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.CONTACT_PERSON_POSITION_1' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-6">
                           <input type="text" [(ngModel)]="selectedAssetForEdit.CompanyPosition"
                             formControlName="CompanyPosition" class="col-md-12"
-                            placeholder="Enter Company Position..." />
+                            [placeholder]="'FIXED_ASSETS.ENTER_COMPANY_POSITION_PLACEHOLDER' | translate" />
 
                           <span Class="color-red font-sm"
-                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('CompanyPosition','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('CompanyPosition'))">Company
-                            Position is required !</span>
+                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('CompanyPosition','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('CompanyPosition'))">{{ 'FIXED_ASSETS.COMPANY_POSITION_REQUIRED' | translate }}</span>
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Contact Person Position2<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.CONTACT_PERSON_POSITION_2' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-6">
                           <input type="text" [(ngModel)]="selectedAssetForEdit.CompanyPosition2"
                             formControlName="CompanyPosition2" class="col-md-12"
-                            placeholder="Enter Company Position..." />
+                            [placeholder]="'FIXED_ASSETS.ENTER_COMPANY_POSITION_PLACEHOLDER' | translate" />
 
                           <span Class="color-red font-sm"
-                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('CompanyPosition2','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('CompanyPosition2'))">Company
-                            Position is required !</span>
+                            [hidden]="selectedAssetForEdit.IsEditAssetmaintenanceValidCheck('CompanyPosition2','required') || !(selectedAssetForEdit.IsEditAssetmaintenanceDirty('CompanyPosition2'))">{{ 'FIXED_ASSETS.COMPANY_POSITION_REQUIRED' | translate }}</span>
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Contact Person Phone Number1<b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.CONTACT_PERSON_PHONE_1' | translate }}<b>:</b></label>
                         <div class="col-md-6">
                           <input type="text" [(ngModel)]="selectedAssetForEdit.PhoneNumber"
-                            formControlName="PhoneNumber" class="col-md-12" placeholder="Enter Phone Number..." />
+                            formControlName="PhoneNumber" class="col-md-12" [placeholder]="'FIXED_ASSETS.ENTER_PHONE_NUMBER_PLACEHOLDER' | translate" />
                         </div>
                       </div>
                     </div>
 
                     <div class="form-group col-md-6">
                       <div class="row">
-                        <label class="control-label col-md-6">Contact Person Phone Number2<b>:</b></label>
+                        <label class="control-label col-md-6">{{ 'FIXED_ASSETS.CONTACT_PERSON_PHONE_2' | translate }}<b>:</b></label>
                         <div class="col-md-6">
                           <input type="text" [(ngModel)]="selectedAssetForEdit.PhoneNumber2"
-                            formControlName="PhoneNumber2" class="col-md-12" placeholder="Enter Phone Number..." />
+                            formControlName="PhoneNumber2" class="col-md-12" [placeholder]="'FIXED_ASSETS.ENTER_PHONE_NUMBER_PLACEHOLDER' | translate" />
 
 
                         </div>
@@ -302,7 +295,7 @@
 
             <div class="form-group panel-footer text-right no-margin">
               <button type="button" class="btn btn-success" (click)="Save()" [disabled]="loading">
-                Update
+                {{ 'FIXED_ASSETS.UPDATE' | translate }}
               </button>
             </div>
           </form>

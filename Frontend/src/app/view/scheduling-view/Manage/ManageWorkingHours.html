@@ -1,6 +1,6 @@
-﻿<div class="caption">
+<div class="caption">
     <i class="glyphicon glyphicon-asterisk font-green-turquoise"></i>
-    <span class="caption-subject font-blue-sharp bold uppercase">Manage Working Hours</span>
+    <span class="caption-subject font-blue-sharp bold uppercase">{{ 'SCHEDULING.MANAGE_WORKING_HOURS' | translate }}</span>
 </div>
 <br />
 <div class="row">
@@ -20,15 +20,15 @@
                 <div class="col-md-8 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
                     <div class="col-md-12">
                         <div class="caption" style="color:blue; margin-top:10px;">
-                            <span *ngIf="update">Update Employee Working Hours</span>
+                            <span *ngIf="update">{{ 'SCHEDULING.UPDATE_EMPLOYEE_WORKING_HOURS' | translate }}</span>
                         </div>
-                        <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                        <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                         <hr />
                     </div>
                     <br />
                     <div class="col-md-12">
                         <div class="col-md-7" *ngIf="!update">
-                            <label class="control-label col-md-5">Select Employee<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                            <label class="control-label col-md-5">{{ 'SCHEDULING.SELECT_EMPLOYEE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                            <!-- @*-----replace option list with autocomplete-----*@-->
                             <div class="col-md-7">
                                 <select class="form-control"
@@ -41,10 +41,10 @@
                         </div>
                         <div class="col-md-12">
                             <div class="left" style="margin-left:15px" *ngIf="currentEmpWH.EmployeeId">
-                                <p>Employee Name: <b>{{currentEmpWH.EmployeeName}}</b></p>
+                                <p>{{ 'SCHEDULING.EMPLOYEE_NAME' | translate }}: <b>{{currentEmpWH.EmployeeName}}</b></p>
                             </div>
                             <div class="right" *ngIf="currentEmpWH.EmployeeId">
-                                <input type="button" class="btn btn-primary" (click)="ShowDefaultShifts()" value="Show Default Shifts" />
+                                <input type="button" class="btn btn-primary" (click)="ShowDefaultShifts()" [value]="'SCHEDULING.SHOW_DEFAULT_SHIFTS' | translate" />
                             </div>
                         </div>
 
@@ -53,11 +53,11 @@
                         <table style="margin-left:15px">
                             <thead>
                                 <tr>
-                                    <th>Shift Name</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                    <th>Total Hrs</th>
-                                    <th>IsActive</th>
+                                    <th>{{ 'SCHEDULING.SHIFT_NAME' | translate }}</th>
+                                    <th>{{ 'SCHEDULING.START_TIME' | translate }}</th>
+                                    <th>{{ 'SCHEDULING.END_TIME' | translate }}</th>
+                                    <th>{{ 'SCHEDULING.TOTAL_HOURS' | translate }}</th>
+                                    <th>{{ 'SCHEDULING.IS_ACTIVE' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,9 +68,9 @@
                                                    [(ngModel)]="row.ShiftName"
                                                    value=""
                                                    formControlName="ShiftName"
-                                                   placeholder="Enter Shift Name" />
-                                            <span class="color-red font-sm" [hidden]="row.IsValidCheck('ShiftName','required') || !(row.IsDirty('ShiftName'))">Shift Name is required</span>
-                                            <span class="color-red font-sm" *ngIf="row.IsDirty('ShiftName')" [hidden]="row.IsValidCheck('ShiftName','maxlength')"> Length is not proper</span>
+                                                   [placeholder]="'SCHEDULING.ENTER_SHIFT_NAME' | translate" />
+                                            <span class="color-red font-sm" [hidden]="row.IsValidCheck('ShiftName','required') || !(row.IsDirty('ShiftName'))">{{ 'SCHEDULING.SHIFT_NAME_IS_REQUIRED' | translate }}</span>
+                                            <span class="color-red font-sm" *ngIf="row.IsDirty('ShiftName')" [hidden]="row.IsValidCheck('ShiftName','maxlength')">{{ 'SCHEDULING.LENGTH_IS_NOT_PROPER' | translate }}</span>
                                         </form>
                                     </td>
                                     <td>
@@ -79,7 +79,7 @@
                                                    (focusout)="CalculationForTotalHrs(row,i)"
                                                    [(ngModel)]="row.StartTime"
                                                    formControlName="StartTime" />
-                                            <span class="color-red font-sm" [hidden]="row.IsValidCheck('StartTime','required') || !(row.IsDirty('StartTime'))">Start Time is required</span>
+                                            <span class="color-red font-sm" [hidden]="row.IsValidCheck('StartTime','required') || !(row.IsDirty('StartTime'))">{{ 'SCHEDULING.START_TIME_IS_REQUIRED' | translate }}</span>
                                         </form>
                                     </td>
                                     <td>
@@ -88,7 +88,7 @@
                                                    (focusout)="CalculationForTotalHrs(row,i)"
                                                    [(ngModel)]="row.EndTime"
                                                    formControlName="EndTime" />
-                                            <span class="color-red font-sm" [hidden]="row.IsValidCheck('EndTime','required') || !(row.IsDirty('EndTime'))">End Time is required</span>
+                                            <span class="color-red font-sm" [hidden]="row.IsValidCheck('EndTime','required') || !(row.IsDirty('EndTime'))">{{ 'SCHEDULING.END_TIME_IS_REQUIRED' | translate }}</span>
                                         </form>
                                     </td>
                                     <td><input class="form-control" type="text" disabled [(ngModel)]="row.TotalHrs" /></td>
@@ -99,18 +99,18 @@
                         <div class="col-md-12" style="padding:10px 15px">
                             <table>
                                 <tr class="form-group">
-                                    <td>Total no of Shifts:</td>
+                                    <td>{{ 'SCHEDULING.TOTAL_NO_OF_SHIFTS' | translate }}:</td>
                                     <td><b>{{currentEmpWH.NoOfShifts}}</b></td>
                                 </tr>
                                 <tr>
-                                    <td>Total Working Hours:&nbsp;</td>
+                                    <td>{{ 'SCHEDULING.TOTAL_WORKING_HOURS' | translate }}:&nbsp;</td>
                                     <td><b>{{currentEmpWH.TotalWorkingHrs}}</b></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="col-md-12" style="padding-bottom: 18px;">
                             <div class="form-actions">
-                                <input type="button" class="btn btn-primary" (click)="Save()" value="Save" />
+                                <input type="button" class="btn btn-primary" (click)="Save()" [value]="'COMMON.SAVE' | translate" />
                             </div>
                         </div>
                     </div>
@@ -133,9 +133,9 @@
                 <div class="col-md-8 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
                     <div class="col-md-12">
                         <div class="caption" style="color:blue; margin-top:10px;">
-                            <span>Default Shifts</span>
+                            <span>{{ 'SCHEDULING.DEFAULT_SHIFTS' | translate }}</span>
                         </div>
-                        <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="ClosePopUp()" title="Cancel">X</a>
+                        <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="ClosePopUp()" [title]="'COMMON.CANCEL' | translate">X</a>
                         <hr />
                     </div>
                     <div class="col-md-12" style="margin-right: 24px;">
@@ -144,9 +144,9 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th><b>Shift Name</b></th>
-                                        <th><b>Start Time</b></th>
-                                        <th><b>End Time</b></th>
+                                        <th><b>{{ 'SCHEDULING.SHIFT_NAME' | translate }}</b></th>
+                                        <th><b>{{ 'SCHEDULING.START_TIME' | translate }}</b></th>
+                                        <th><b>{{ 'SCHEDULING.END_TIME' | translate }}</b></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -167,8 +167,8 @@
                     </div>
                     <div class="col-md-12" style="padding-bottom: 18px;">
                         <div class="form-actions">
-                            <input type="button" class="btn btn-primary" (click)="SelectDefShift()" value="Submit" />
-                            <button class="btn btn-primary right" (click)="AddNewShift()" title="If desired shift not found, click to add new Shift."><span class="glyphicon glyphicon-plus"> </span> Add New Shift</button>
+                            <input type="button" class="btn btn-primary" (click)="SelectDefShift()" [value]="'COMMON.SUBMIT' | translate" />
+                            <button class="btn btn-primary right" (click)="AddNewShift()" [title]="'SCHEDULING.ADD_NEW_SHIFT_TOOLTIP' | translate"><span class="glyphicon glyphicon-plus"> </span> {{ 'SCHEDULING.ADD_NEW_SHIFT' | translate }}</button>
                         </div>
                     </div>
                 </div>

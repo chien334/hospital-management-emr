@@ -12,13 +12,13 @@
             <div class="table-responsive" style="background:#fff; padding: 15px">
                 <table class="table doc-tbl">
                     <tr style="background-color:whitesmoke">
-                        <th>VisitType</th>
-                        <th>VisitCode</th>
-                        <th>Visit Date</th>
-                        <th>Visit Time</th>
-                        <th>Provider Name</th>
-                        <th>Comments</th>
-                        <th>Referred By Provider</th>
+                        <th>{{'PATIENT_OVERVIEW.VISIT_TYPE' | translate}}</th>
+                        <th>{{'PATIENT_OVERVIEW.VISIT_CODE' | translate}}</th>
+                        <th>{{'PATIENT_OVERVIEW.VISIT_DATE' | translate}}</th>
+                        <th>{{'PATIENT_OVERVIEW.VISIT_TIME' | translate}}</th>
+                        <th>{{'PATIENT_OVERVIEW.PROVIDER_NAME' | translate}}</th>
+                        <th>{{'PATIENT_OVERVIEW.COMMENTS' | translate}}</th>
+                        <th>{{'PATIENT_OVERVIEW.REFERRED_BY_PROVIDER' | translate}}</th>
                         <th></th>
                     </tr>
                     <tr *ngFor="let vis of visits">
@@ -30,7 +30,7 @@
                         <td>{{vis.Comments}}</td>
                         <td>{{vis.ReferredByProvider}}</td>
                         <td>
-                            <button class="btn b-border btn-sm" (click)="ViewVisitSummary()"><i class="fa fa-eye"></i>View Summary</button>
+                            <button class="btn b-border btn-sm" (click)="ViewVisitSummary()"><i class="fa fa-eye"></i>{{'PATIENT_OVERVIEW.VIEW_SUMMARY' | translate}}</button>
                         </td>
                 </table>
             </div>

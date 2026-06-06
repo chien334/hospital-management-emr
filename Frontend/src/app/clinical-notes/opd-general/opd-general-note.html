@@ -87,11 +87,11 @@
         <div class="col-md-6">
           <div class="hm-form">
             <div class="text-head-wrapper clearfix">
-              <h3 class="text-head cstm-add-heading">Instructions</h3>
+              <h3 class="text-head cstm-add-heading">{{ 'CLINICAL.INSTRUCTIONS' | translate }}</h3>
             </div>
             <div class="form-group">
               <div class="row">
-                <label class="control-label col-md-4">Follow Up<b>:</b></label>
+                <label class="control-label col-md-4">{{ 'CLINICAL.FOLLOW_UP' | translate }}<b>:</b></label>
                 <div class="col-md-8">
                   <div class="row">
                     <div class="col-md-3">
@@ -102,15 +102,15 @@
                         <div class="icheck-inline">
                           <label class="mt-radio mt-radio-outline">
                             <input name="FollowUpUnit" type="radio" value="Days" [(ngModel)]="FollowUp.Unit">
-                            <span></span>Days
+                            <span></span>{{ 'CLINICAL.DAYS' | translate }}
                           </label>
                           <label class="mt-radio mt-radio-outline">
                             <input name="FollowUpUnit" type="radio" value="Week" [(ngModel)]="FollowUp.Unit">
-                            <span></span>Weeks
+                            <span></span>{{ 'CLINICAL.WEEKS' | translate }}
                           </label>
                           <label class="mt-radio mt-radio-outline">
                             <input name="FollowUpUnit" type="radio" value="Month" [(ngModel)]="FollowUp.Unit">
-                            <span></span>Months
+                            <span></span>{{ 'CLINICAL.MONTHS' | translate }}
                           </label>
                         </div>
                       </div>
@@ -125,7 +125,7 @@
             </div>
             <div class="form-group">
               <div class="row">
-                <label class="control-label col-md-4">Remarks<b>:</b></label>
+                <label class="control-label col-md-4">{{ 'CLINICAL.REMARKS' | translate }}<b>:</b></label>
                 <div class="col-md-8">
                   <textarea class="form-control" [(ngModel)]="opdGeneralNote.Remarks" maxlength="500" rows="5"></textarea>
                 </div>
@@ -146,33 +146,33 @@
 
   <button class="btn blue pull-right" (click)="print()">
     <i class="fa fa-print"></i>
-    Print
+    {{ 'COMMON.PRINT' | translate }}
   </button>
 
   <div class="print-block">
 
     <div style="display: table;content: '';width: 100%;text-align: center;">
-      <h3 class="caption-subject font-blue-soft bold uppercase" style="font-size: 20px;margin:0px;display: inline-block;">OPD General Note</h3>
+      <h3 class="caption-subject font-blue-soft bold uppercase" style="font-size: 20px;margin:0px;display: inline-block;">{{ 'CLINICAL.OPD_NOTE_GENERAL' | translate }}</h3>
     </div>
 
     <div id="notePrintBlock">
       <div class="header-print hidden">
         <div style="width: 100%;display: table;content: '';margin-top: 10px;text-align:center;">
-          <h3 class="caption-subject font-blue-soft bold uppercase" style="font-size: 20px;margin:0px;display: inline-block;">SOAP Notes</h3>
+          <h3 class="caption-subject font-blue-soft bold uppercase" style="font-size: 20px;margin:0px;display: inline-block;">{{ 'CLINICAL.SOAP_NOTES' | translate }}</h3>
         </div>
         <div>
           <table class="pat-info-table" style="width: 100%; margin-top: 8px;">
             <tr>
-              <td>Hospital Number: {{patService.globalPatient.PatientCode}}</td>
-              <td>Patient Name: {{patService.globalPatient.ShortName}}</td>
-              <td>Age/Sex: {{patService.globalPatient.Age}}/{{patService.globalPatient.Gender}}</td>
-              <td>Contact Number:{{patService.globalPatient.PhoneNumber}}</td>
+              <td>{{ 'CLINICAL.HOSPITAL_NUMBER' | translate }}: {{patService.globalPatient.PatientCode}}</td>
+              <td>{{ 'CLINICAL.PATIENT_NAME' | translate }}: {{patService.globalPatient.ShortName}}</td>
+              <td>{{ 'CLINICAL.AGE_GENDER' | translate }}: {{patService.globalPatient.Age}}/{{patService.globalPatient.Gender}}</td>
+              <td>{{ 'CLINICAL.CONTACT_NUMBER' | translate }}: {{patService.globalPatient.PhoneNumber}}</td>
             </tr>
             <tr>
-              <td>Address: {{patService.globalPatient.Address}}</td>
-              <td>ConsultingDoctor: {{opdGeneralNote.ReferredBy}}</td>
-              <td>VisitDate/Code:{{opdGeneralNote.VisitDate}} / {{opdGeneralNote.VisitCode}}</td>
-              <td>Created On: {{opdGeneralNote.CreatedOn}}</td>
+              <td>{{ 'PATIENT.ADDRESS' | translate }}: {{patService.globalPatient.Address}}</td>
+              <td>{{ 'CLINICAL.CONSULTING_DOCTOR' | translate }}: {{opdGeneralNote.ReferredBy}}</td>
+              <td>{{ 'CLINICAL.VISIT_DATE_CODE' | translate }}: {{opdGeneralNote.VisitDate}} / {{opdGeneralNote.VisitCode}}</td>
+              <td>{{ 'CLINICAL.CREATED_ON' | translate }}: {{opdGeneralNote.CreatedOn}}</td>
             </tr>
           </table>
         </div>
@@ -181,23 +181,23 @@
          || clinicalDetail.Allergies.length || clinicalDetail.SocialHistory.length
          || clinicalDetail.FamilyHistory.length || clinicalDetail.SurgicalHistory.length">
         <div class="subjective each-card">
-          <h3>Subjective</h3>
+          <h3>{{ 'CLINICAL.SUBJECTIVE_NOTES' | translate }}</h3>
           <div class="all-components">
             <table class="all-sub-com" style="width: auto;">
               <tr *ngIf="opdGeneralNote.SubjectiveNote && opdGeneralNote.SubjectiveNote.ChiefComplaint">
-                <td>Chief Complaint:</td>
+                <td>{{ 'CLINICAL.CHIEF_COMPLAINT' | translate }}:</td>
                 <td>{{opdGeneralNote.SubjectiveNote.ChiefComplaint}}</td>
               </tr>
               <tr *ngIf="opdGeneralNote.SubjectiveNote && opdGeneralNote.SubjectiveNote.HistoryOfPresentingIllness">
-                <td>History of presenting Illness:</td>
+                <td>{{ 'CLINICAL.HISTORY_OF_PRESENTING_ILLNESS' | translate }}:</td>
                 <td>{{opdGeneralNote.SubjectiveNote.HistoryOfPresentingIllness}}</td>
               </tr>
               <tr *ngIf="opdGeneralNote.SubjectiveNote && opdGeneralNote.SubjectiveNote.ReviewOfSystems">
-                <td>Review of System:</td>
+                <td>{{ 'CLINICAL.REVIEW_OF_SYSTEM' | translate }}:</td>
                 <td>{{opdGeneralNote.SubjectiveNote.ReviewOfSystems}}</td>
               </tr>
               <tr *ngIf="clinicalDetail.Allergies.length">
-                <td>Allergy:</td>
+                <td>{{ 'CLINICAL.ALLERGY' | translate }}:</td>
                 <td>
                   <span *ngFor="let allergy of clinicalDetail.Allergies; let i=index;" style="padding: 0px 2px;">
                     <span *ngIf="i>0">,</span>{{allergy.AllergenAdvRecName}} ({{allergy.AllergyType}}) / Reaction-{{allergy.Reaction}}
@@ -205,7 +205,7 @@
                 </td>
               </tr>
               <tr *ngIf="clinicalDetail.SocialHistory.length">
-                <td> Social History:</td>
+                <td>{{ 'CLINICAL.SOCIAL_HISTORY' | translate }}:</td>
                 <td>
                   <span *ngFor="let social of clinicalDetail.SocialHistory">
                     <span *ngIf="social.AlcoholHistory">
@@ -230,7 +230,7 @@
                 </td>
               </tr>
               <tr *ngIf="clinicalDetail.FamilyHistory.length">
-                <td>Family History:</td>
+                <td>{{ 'CLINICAL.FAMILY_HISTORY' | translate }}:</td>
                 <td>
                   <span *ngFor="let family of clinicalDetail.FamilyHistory">
                     <span>
@@ -240,7 +240,7 @@
                 </td>
               </tr>
               <tr *ngIf="clinicalDetail.SurgicalHistory.length">
-                <td>Surgical History:</td>
+                <td>{{ 'CLINICAL.SURGICAL_HISTORY' | translate }}:</td>
                 <td>
                   <span *ngFor="let surgery of clinicalDetail.SurgicalHistory">
                     <span>
@@ -258,7 +258,7 @@
 
       <div style="width: 100%;display: table;content: '';background: #e1e1e4;margin-top: 10px;">
         <div class="objective each-card">
-          <h3>Diagnosis List</h3>
+          <h3>{{ 'CLINICAL.DIAGNOSIS_LIST' | translate }}</h3>
           <div class="all-components all-icd" style="display: table; content: '';">
             <p style="float: left;" *ngFor="let assessment of opdGeneralNote.ClinicalDiagnosis.DiagnosisOrdersList; let i =index">
               <span *ngIf="!assessment.IsEditable">
@@ -272,7 +272,7 @@
 
       <div style="width: 100%;display: table;content: '';background: #e1e1e4;margin-top: 10px;">
         <div class="objective each-card">
-          <h3>Orders</h3>
+          <h3>{{ 'CLINICAL.ORDERS' | translate }}</h3>
           <div class="all-components" style="display: table; content: '';">
 
             <p style="float: left;" *ngFor="let diag of opdGeneralNote.ClinicalDiagnosis.DiagnosisOrdersList">
@@ -289,21 +289,21 @@
 
       <div style="width: 100%;display: table;content: '';background: #e1e1e4;margin-top: 10px;" *ngIf="opdGeneralNote.ObjectiveNote">
         <div class="objective each-card">
-          <h3>Objective</h3>
+          <h3>{{ 'CLINICAL.OBJECTIVE_NOTES' | translate }}</h3>
           <div class="all-components">
             <div style="width: 100%; display: table;">
               <div style="width: 50%; float: left;">
                 <table class="all-obj-com" style="width: auto;">
                   <tr *ngIf="opdGeneralNote.ObjectiveNote.HEENT">
-                    <td>HEENT:</td>
+                    <td>{{ 'CLINICAL.HEENT' | translate }}:</td>
                     <td>{{opdGeneralNote.ObjectiveNote.HEENT}}</td>
                   </tr>
                   <tr *ngIf="opdGeneralNote.ObjectiveNote.Chest">
-                    <td>CHEST:</td>
+                    <td>{{ 'CLINICAL.CHEST' | translate }}:</td>
                     <td>{{opdGeneralNote.ObjectiveNote.Chest}}</td>
                   </tr>
                   <tr *ngIf="opdGeneralNote.ObjectiveNote.CVS">
-                    <td>CVS:</td>
+                    <td>{{ 'CLINICAL.CVS' | translate }}:</td>
                     <td>{{opdGeneralNote.ObjectiveNote.CVS}}</td>
                   </tr>
                 </table>
@@ -311,15 +311,15 @@
               <div style="width: 50%; float: left;">
                 <table class="all-obj-com" style="width: auto;">
                   <tr *ngIf="opdGeneralNote.ObjectiveNote.Abdomen">
-                    <td>Abdomen:</td>
+                    <td>{{ 'CLINICAL.ABDOMEN' | translate }}:</td>
                     <td> {{opdGeneralNote.ObjectiveNote.Abdomen}}</td>
                   </tr>
                   <tr *ngIf="opdGeneralNote.ObjectiveNote.Extremity">
-                    <td>Extremity:</td>
+                    <td>{{ 'CLINICAL.EXTREMITY' | translate }}:</td>
                     <td>{{opdGeneralNote.ObjectiveNote.Extremity}}</td>
                   </tr>
                   <tr *ngIf="opdGeneralNote.ObjectiveNote.Skin">
-                    <td>Skin:</td>
+                    <td>{{ 'CLINICAL.SKIN' | translate }}:</td>
                     <td>{{opdGeneralNote.ObjectiveNote.Skin}}</td>
                   </tr>
                 </table>
@@ -333,13 +333,13 @@
 
       <div *ngIf="FollowUp.Number || opdGeneralNote.Remarks" style="width: 100%;display: table;content: '';margin-top: 10px;">
         <div class="objective each-card">
-          <h3>Instructions</h3>
+          <h3>{{ 'CLINICAL.INSTRUCTIONS' | translate }}</h3>
           <div class="all-components">
             <p *ngIf="FollowUp.Number">
-              FollowUp: {{FollowUp.Number}} {{FollowUp.Unit}}<br>
+              {{ 'CLINICAL.FOLLOW_UP' | translate }}: {{FollowUp.Number}} {{FollowUp.Unit}}<br>
             </p>
             <p *ngIf="opdGeneralNote.Remarks">
-              Remarks: {{opdGeneralNote.Remarks}}
+              {{ 'CLINICAL.REMARKS' | translate }}: {{opdGeneralNote.Remarks}}
             </p>
           </div>
         </div>

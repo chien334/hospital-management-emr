@@ -1,20 +1,20 @@
 <div class="grid-title-wrap"
      style="margin: 10px 0; display: flex; justify-content: space-between; align-items: center;">
     <div>
-        <label for="max" style="font-size: 14px; font-weight: 600; color: #0773bc;">Total Patient: </label>
+        <label for="max" style="font-size: 14px; font-weight: 600; color: #0773bc;">{{ 'NURSING.TOTAL_PATIENT' | translate }}: </label>
         <span id="max" style="font-size: 14px; font-weight: 600; color: #0773bc; margin-left: 10px;">{{this.resultCount}}</span>
     </div>
     <div style="display: flex; justify-content: flex-end; align-items: center;">
         <div>
             <input _ngcontent-c6="" class="searchtbx" id="quickFilterInput" onclick="this.select();"
-                   onfocus="this.placeholder = ''" onfocusout="this.placeholder = 'Patient Name, HospitalNo, Rank'"
-                   placeholder="Patient Name, HospitalNo, Rank" style="width:360px;" type="text" [(ngModel)]="searchData"
+                   onfocus="this.placeholder = ''" [attr.onfocusout]="'this.placeholder = \'' + ('NURSING.SEARCH_PLACEHOLDER_DIET' | translate) + '\''"
+                   [placeholder]="'NURSING.SEARCH_PLACEHOLDER_DIET' | translate" style="width:360px;" type="text" [(ngModel)]="searchData"
                    (input)="filterTable()">
         </div>
         <div>
             <button class="btn green btn-success" (click)="PrintDietSheet()"
                     id="btnPrintReciptEchsMrpDrugCertificate" style="margin-left: 10px; ">
-                <span>Print</span>&nbsp;&nbsp;
+                <span>{{ 'COMMON.PRINT' | translate }}</span>&nbsp;&nbsp;
                 &nbsp;&nbsp; <i class="glyphicon glyphicon-print"></i>
             </button>
         </div>
@@ -28,31 +28,31 @@
             <table class="table table-bordered" style="margin-top: 0px;">
                 <thead style="background-color: rgb(51, 138, 245); color: white;">
                     <tr>
-                        <th>SN</th>
-                        <th>Unit/Address</th>
-                        <th>Hospital No.</th>
-                        <th>Scheme</th>
-                        <th>Patient Name</th>
-                        <th>Age/Sex</th>
+                        <th>{{ 'COMMON.SN' | translate }}</th>
+                        <th>{{ 'NURSING.UNIT_ADDRESS' | translate }}</th>
+                        <th>{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}</th>
+                        <th>{{ 'COMMON.SCHEME' | translate }}</th>
+                        <th>{{ 'NURSING.PATIENT_NAME' | translate }}</th>
+                        <th>{{ 'NURSING.AGE_SEX' | translate }}</th>
                         <!-- <th>DOA</th> -->
                         <th style="width: 120px;">
                             <div style="display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%;">
-                                <div>DOA<b *ngIf="!IsLocalDate">(AD)</b><b *ngIf="IsLocalDate">(BS)</b></div>
+                                <div>{{ 'NURSING.DOA' | translate }}<b *ngIf="!IsLocalDate">(AD)</b><b *ngIf="IsLocalDate">(BS)</b></div>
                                 <div class="tooltip ng-star-inserted" style="color: #a7b5c4 ;z-index: inherit;">
                                     <span style="cursor: pointer; font-size: 10px;">
                                         <i class="fa fa-refresh" (click)="ChangeDateFormate()" style="font-size: 12px !important;"></i>
                                     </span>
-                                    <p class="tooltiptext ttptextdown no-print">Change date format</p>
+                                    <p class="tooltiptext ttptextdown no-print">{{ 'NURSING.CHANGE_DATE_FORMAT' | translate }}</p>
                                 </div>
                             </div>
                         </th>
 
-                        <th>Bed No.</th>
-                        <th>Diet Type</th>
-                        <th>Extra Diet</th>
-                        <th>Remarks</th>
-                        <th>Last Updated On</th>
-                        <th>Actions</th>
+                        <th>{{ 'NURSING.BED_NO' | translate }}</th>
+                        <th>{{ 'NURSING.DIET_TYPE' | translate }}</th>
+                        <th>{{ 'NURSING.EXTRA_DIET' | translate }}</th>
+                        <th>{{ 'COMMON.REMARKS' | translate }}</th>
+                        <th>{{ 'NURSING.LAST_UPDATED_ON' | translate }}</th>
+                        <th>{{ 'COMMON.ACTION' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,17 +69,17 @@
                             nepaliDate:'format':'YYYY-MM-DD hh:mm'}}</td>
 
                         <td>{{item.BedNumber}}</td>
-                        <td style="text-align: center;">{{item.DietTypeName? item.DietTypeName : "--Not Set--"}}
+                        <td style="text-align: center;">{{item.DietTypeName? item.DietTypeName : ('NURSING.NOT_SET' | translate)}}
                         </td>
                         <td style="text-align: center;">{{item.ExtraDiet}}</td>
                         <td style="text-align: center;">{{item.Remarks}}</td>
                         <td style="text-align: center;">{{item.CreatedOn |date:'yyyy-MM-dd hh:mm'}}</td>
                         <td>
                             <div class="btn-wrap">
-                                <button class="btn green btn-success ml-2" (click)="AddNewDietPlan(item)" title="Edit Diet"><i
+                                <button class="btn green btn-success ml-2" (click)="AddNewDietPlan(item)" [attr.title]="'NURSING.EDIT_DIET' | translate"><i
                                        class='fa fa-pencil'></i></button>
                                 <button class="btn green btn-success" (click)="PatientDietHistory(item)">
-                                    <a danphe-grid-action="contract" class="grid-action-icon" title="Diet History"><i
+                                    <a danphe-grid-action="contract" class="grid-action-icon" [attr.title]="'NURSING.DIET_HISTORY' | translate"><i
                                            class="fa fa-file-text"></i></a></button>
                             </div>
                         </td>

@@ -429,7 +429,7 @@ namespace DanpheEMR.Controllers
                                                  where (PO.POStatus == "partial" || PO.POStatus == "active") && (PO.PurchaseOrderId == purchaseOrderId)
                                                  select PO)
                                   .Include(v => v.Vendor)
-                                  .Include(POI => POI.PurchaseOrderItems.Select(i => i.Item))
+                                  .Include(POI => POI.PurchaseOrderItems).ThenInclude(i => i.Item)
                                   .FirstOrDefault();
             string[] BadPOItemStatus = { "complete", "cancel", "cancelled", "withdrawn" };
             requestDetails.PurchaseOrderItems = requestDetails.PurchaseOrderItems.Where(POI => BadPOItemStatus.Contains(POI.POItemStatus) == false || POI.IsActive == true).ToList();
@@ -460,7 +460,7 @@ namespace DanpheEMR.Controllers
                                                     where requisition.RequisitionId == requisitionId
                                                         && incompleteReqStatus.Contains(requisition.RequisitionStatus)
                                                     select requisition
-                                                  ).Include(rItems => rItems.RequisitionItems.Select(i => i.Item))
+                                                  ).Include(rItems => rItems.RequisitionItems).ThenInclude(i => i.Item)
                                                    .FirstOrDefault();
 
 
@@ -549,7 +549,7 @@ namespace DanpheEMR.Controllers
             List<RequisitionModel> requList = (from requisition in _inventoryDbContext.Requisitions
                                                where (requisition.RequisitionStatus == "partial" || requisition.RequisitionStatus == "active")
                                                select requisition)
-                                                        .Include(rItems => rItems.RequisitionItems.Select(i => i.Item))
+                                                        .Include(rItems => rItems.RequisitionItems).ThenInclude(i => i.Item)
                                                         .ToList();
             List<DepartmentModel> deptList = (from dept in _masterDbContext.Departments
                                               select dept).ToList();

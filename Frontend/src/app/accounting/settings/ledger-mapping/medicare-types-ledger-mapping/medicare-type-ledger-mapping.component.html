@@ -25,8 +25,8 @@
                             <input id="isActive" type="checkbox" [(ngModel)]="isSelectAll"
                                    (change)="SelectAllChkOnChange()" />
                         </th>
-                        <th style="width: 40%;">Medicare Types</th>
-                        <th style="width: 20%;"> Ledger Name </th>
+                        <th style="width: 40%;">{{ 'ACCOUNTING.MEDICARE_TYPES_HEADER' | translate }}</th>
+                        <th style="width: 20%;"> {{ 'ACCOUNTING.LEDGER_NAME_HEADER' | translate }} </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,7 @@
                         </td>
                         <td>
                             <input danphe-auto-complete class="form-control"
-                                   [source]="sourceLedgerList" placeholder="Ledger Name" display-property-name="LedgerName"
+                                   [source]="sourceLedgerList" [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" display-property-name="LedgerName"
                                    value-property-name=LedgerId [(ngModel)]="selectedLedger[i]"
                                    [list-formatter]="LedgerListFormatter" max-num-list="15" (focusout)="AssignSelectedLedger(i)"
                                    onclick="this.select()" id="Ledger_{{i+1}}" style="width: 100%;" [disabled]="!led.IsSelected" />
@@ -57,6 +57,6 @@
 <div class="col-md-12" style="padding-bottom: 10px;">
     <button type="button" class="btn primary-btn" style="float:right; margin-right: 20px !important;" (click)="UpdateMedicareTypes();">
         <i class="fa fa-save"></i>
-        Map Ledgers
+        {{ 'ACCOUNTING.MAP_LEDGERS' | translate }}
     </button>
 </div>

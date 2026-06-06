@@ -1,4 +1,4 @@
-<input type="button" class="btn btn-primary" (click)="AddShifts()" value="Add Shift" />
+<input type="button" class="btn btn-primary" (click)="AddShifts()" [value]="'SCHEDULING.ADD_SHIFT' | translate" />
 <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12">
         <danphe-grid [grid-colDefaults]="shiftsGridColumns"
@@ -17,50 +17,50 @@
                     <div class="col-md-8 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
                         <div class="col-md-12">
                             <div class="caption" style="color:blue; margin-top:10px;">
-                                <span *ngIf="!update">Add Shift</span>
-                                <span *ngIf="update">Update Shift</span>
+                                <span *ngIf="!update">{{ 'SCHEDULING.ADD_SHIFT' | translate }}</span>
+                                <span *ngIf="update">{{ 'SCHEDULING.UPDATE_SHIFT' | translate }}</span>
                             </div>
-                            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                             <hr />
                         </div>
                         <br />
                         <div class="col-md-12">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Shift Name<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-4">{{ 'SCHEDULING.SHIFT_NAME' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="text" maxlength="50"
                                                [(ngModel)]="currentShifts.ShiftName" formControlName="ShiftName"
                                                value=""
-                                               placeholder="Enter Shift Name" />
-                                        <span class="color-red font-sm" [hidden]="currentShifts.IsValidCheck('ShiftName','required') || !(currentShifts.IsDirty('ShiftName'))">Shift Name is required</span>
-                                        <span class="color-red font-sm" *ngIf="currentShifts.IsDirty('ShiftName')" [hidden]="currentShifts.IsValidCheck('ShiftName','maxlength')"> Length is not proper</span>
+                                               [placeholder]="'SCHEDULING.ENTER_SHIFT_NAME' | translate" />
+                                        <span class="color-red font-sm" [hidden]="currentShifts.IsValidCheck('ShiftName','required') || !(currentShifts.IsDirty('ShiftName'))">{{ 'SCHEDULING.SHIFT_NAME_IS_REQUIRED' | translate }}</span>
+                                        <span class="color-red font-sm" *ngIf="currentShifts.IsDirty('ShiftName')" [hidden]="currentShifts.IsValidCheck('ShiftName','maxlength')">{{ 'SCHEDULING.LENGTH_IS_NOT_PROPER' | translate }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Start Time<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-4">{{ 'SCHEDULING.START_TIME' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="time"
                                                (ngModelChange)="CalculationForTotalHrs()"
                                                (focusout)="CalculationForTotalHrs()"
                                                [(ngModel)]="currentShifts.StartTime"
                                                formControlName="StartTime" />
-                                        <span class="color-red font-sm" [hidden]="currentShifts.IsValidCheck('StartTime','required') || !(currentShifts.IsDirty('StartTime'))">Start Time is required</span>
+                                        <span class="color-red font-sm" [hidden]="currentShifts.IsValidCheck('StartTime','required') || !(currentShifts.IsDirty('StartTime'))">{{ 'SCHEDULING.START_TIME_IS_REQUIRED' | translate }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">End Time<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-4">{{ 'SCHEDULING.END_TIME' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="time"
                                                (ngModelChange)="CalculationForTotalHrs()"
                                                (focusout)="CalculationForTotalHrs()"
                                                [(ngModel)]="currentShifts.EndTime"
                                                formControlName="EndTime" />
-                                        <span class="color-red font-sm" [hidden]="currentShifts.IsValidCheck('EndTime','required') || !(currentShifts.IsDirty('EndTime'))">End Time is required</span>
+                                        <span class="color-red font-sm" [hidden]="currentShifts.IsValidCheck('EndTime','required') || !(currentShifts.IsDirty('EndTime'))">{{ 'SCHEDULING.END_TIME_IS_REQUIRED' | translate }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Total Hrs<b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-4">{{ 'SCHEDULING.TOTAL_HOURS' | translate }}<b style="float:right;">:</b></label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="text" disabled
                                                [(ngModel)]="currentShifts.TotalHrs"
@@ -70,8 +70,8 @@
                             </div>
                             <div class="col-md-12" style="padding-bottom: 18px;">
                                 <div class="form-actions">
-                                    <input type="button" class="btn btn-primary" *ngIf="!update" (click)="Add()" value="Add" />
-                                    <input type="button" class="btn btn-primary" *ngIf="update" (click)="Update()" value="Update" />
+                                    <input type="button" class="btn btn-primary" *ngIf="!update" (click)="Add()" [value]="'COMMON.ADD' | translate" />
+                                    <input type="button" class="btn btn-primary" *ngIf="update" (click)="Update()" [value]="'SCHEDULING.UPDATE' | translate" />
                                 </div>
                             </div>
                         </div>

@@ -1,33 +1,33 @@
 <div class="row" *ngIf="showRequisitionList">   
   <div class="col-md-3">
     <button rbac-permission='{"name":"fixedasset-direct-dispatch-btn","actionOnInvalid":"hidden"}' class="btn btn-primary" (click)="DirectDispatch()">
-      Direct&nbsp;Dispatch&nbsp;
+      {{ 'FIXED_ASSETS.DIRECT_DISPATCH' | translate }}&nbsp;
       <i class="fa fa-mail-reply-all fa-flip-horizontal"></i>
     </button>
   </div>
     <div class="col-md-7">
       <div class="input-group pull-right">
-        <div class="icheck-inline"> List by Requisition Status: &nbsp;
+        <div class="icheck-inline"> {{ 'FIXED_ASSETS.LIST_BY_REQUISITION_STATUS' | translate }}: &nbsp;
           <label class="mt-radio mt-radio-outline">
             <input type="radio" (change)="LoadRequisitionListByStatus()" checked name="RequisitionStatusFilter"
               [(ngModel)]="RequisitionStatusFilter" value="pending" style="width:15px;height:15px" />
-            <span></span>Pending </label>
+            <span></span>{{ 'FIXED_ASSETS.PENDING' | translate }} </label>
           <label class="mt-radio mt-radio-outline">
             <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter"
               [(ngModel)]="RequisitionStatusFilter" value="complete" style="width:15px;height:15px" />
-            <span></span>Complete </label>
+            <span></span>{{ 'FIXED_ASSETS.COMPLETE' | translate }} </label>
           <label class="mt-radio mt-radio-outline">
             <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter"
               [(ngModel)]="RequisitionStatusFilter" value="cancelled" style="width:15px;height:15px" />
-            <span></span>Cancelled </label>
+            <span></span>{{ 'FIXED_ASSETS.CANCELLED' | translate }} </label>
           <label class="mt-radio mt-radio-outline">
             <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter"
               [(ngModel)]="RequisitionStatusFilter" value="withdrawn" style="width:15px;height:15px" />
-            <span></span>Withdrawn </label>
+            <span></span>{{ 'FIXED_ASSETS.WITHDRAWN' | translate }} </label>
           <label class="mt-radio mt-radio-outline">
             <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter"
               [(ngModel)]="RequisitionStatusFilter" value="all" style="width:15px;height:15px" />
-            <span></span>All </label>
+            <span></span>{{ 'FIXED_ASSETS.ALL' | translate }} </label>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
     <div class="col-md-12">
       <div class="caption lb-caption">
         <h3><i class="glyphicon glyphicon-asterisk"></i>
-          <span class="caption-subject">Dispatch Requisition</span>
+          <span class="caption-subject">{{ 'FIXED_ASSETS.DISPATCH_REQUISITION' | translate }}</span>
         </h3>
       </div>
     </div>
@@ -81,26 +81,26 @@
                         <input checked type="checkbox" class="chk-itms" name="SelectAllRequisition" [(ngModel)]="selectAllRequisition" (change)="toogleAllDispatchItems()">
                       </th>
                       <th sortable-header col="ItemName">
-                        <b>  Item Name</b>
+                        <b>  {{ 'FIXED_ASSETS.ITEM_NAME' | translate }}</b>
                       </th>
                       
                       <th sortable-header col="RequestedQuantity">
-                        <b> Requested Qty</b>
+                        <b> {{ 'FIXED_ASSETS.REQUESTED_QTY' | translate }}</b>
                       </th>
                       <th sortable-header col="PendingQuantity">
-                        <b> Pending Qty</b>
+                        <b> {{ 'FIXED_ASSETS.PENDING_QTY' | translate }}</b>
                       </th>
                       <th sortable-header col="ReceivedQuantity">
-                        <b>  Received Qty</b>
+                        <b>  {{ 'FIXED_ASSETS.RECEIVED_QTY' | translate }}</b>
                       </th>
                       <th sortable-header col="AvailableQuantity">
-                        <b> Available  Qty</b>
+                        <b> {{ 'FIXED_ASSETS.AVAILABLE_QTY' | translate }}</b>
                       </th>
                       <th sortable-header col="BarCodeNumber">
-                        <b> Bar Code number</b>
+                        <b> {{ 'FIXED_ASSETS.BAR_CODE_NUMBER' | translate }}</b>
                       </th>
                       <th sortable-header col="BatchNo">
-                        <b> Batch No</b>
+                        <b> {{ 'FIXED_ASSETS.BATCH_NO' | translate }}</b>
                       </th> 
                       <th ></th>
                       <th ></th>
@@ -132,7 +132,7 @@
                                 <td>                          
                                   <input danphe-auto-complete style="width:150px !important;" class="form-control" id="barCodeNumber{{i}}" [attr.disabled]="(row.IsDispatchingNow == false) ? true : null" 
                                    [(ngModel)]="dispatchingItem.SelectedBarCode" [source]="dispatchingItem.BarCodeNumberList" [list-formatter]="ListFormatter"
-                                      placeholder="BarCodeNumber" display-property-name="BarCodeNumber" value-property-name=null name="BarCodeNumber"
+                                      [placeholder]="'FIXED_ASSETS.BAR_CODE_NUMBER' | translate" display-property-name="BarCodeNumber" value-property-name=null name="BarCodeNumber"
                                     onclick="this.select();" (valueChanged)="OnBarCodeChange(i,j,dispatchingItem.SelectedBarCode,row.ItemId)" max-num-list="50"                
                                   />                                
                               </td>                              
@@ -155,11 +155,11 @@
       </div>
   </div>
   <div class="form-group">
-      <div class="col-md-12"> Received By: <input type="text" [(ngModel)]="ReceivedBy"> </div>
+      <div class="col-md-12"> {{ 'FIXED_ASSETS.RECEIVED_BY' | translate }}: <input type="text" [(ngModel)]="ReceivedBy"> </div>
       <div class="col-sm-offset-5 col-sm-5" style="width:30%">
-        <input type="button" class="btn btn-success" value="Dispatch" (click)="SaveDispatchItems()" [disabled]="loading" />
+        <input type="button" class="btn btn-success" [value]="'FIXED_ASSETS.DISPATCH' | translate" (click)="SaveDispatchItems()" [disabled]="loading" />
               <span></span>
-              <button class="btn btn-danger" (click)="Cancel()" [disabled]="loading">Cancel</button>
+              <button class="btn btn-danger" (click)="Cancel()" [disabled]="loading">{{ 'COMMON.CANCEL' | translate }}</button>
       </div>  
   </div>
 </div>

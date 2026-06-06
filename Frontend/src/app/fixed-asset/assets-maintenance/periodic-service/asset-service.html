@@ -48,14 +48,14 @@
             <div class="col-md-12">
                 <div class="modelbox-div clearfix">
                     <div class="caption custom-caption">
-                        <h3> <span>Service History | <strong> {{selectedAsset.ItemName | CapitalFirstLetter}} | {{selectedAsset.BarCodeNumber}}</strong></span></h3>
+                        <h3> <span>{{ 'FIXED_ASSETS.SERVICE_HISTORY' | translate }} | <strong> {{selectedAsset.ItemName | CapitalFirstLetter}} | {{selectedAsset.BarCodeNumber}}</strong></span></h3>
                         <a class="btn btn-danger" (click)="Close()"><i class="fa fa-close"></i></a>
                     </div>
                     <div class="update-page">
 
                         <div class="selectedAssetForEdit" style="padding: 0 10px;">
                             <div class="add-btn-wrap">
-                                <a class="btn btn-primary" (click)="OnAddButtonClick()">Add New Service<i class="fa fa-plus"></i></a>
+                                <a class="btn btn-primary" (click)="OnAddButtonClick()">{{ 'FIXED_ASSETS.ADD_NEW_SERVICE' | translate }}<i class="fa fa-plus"></i></a>
                                 
                                 <!-- <a class="btn"
                                     *ngIf="!(selectedAsset.IsUnderMaintenance) && !(selectedAsset.IsAssetDamageConfirmed)"
@@ -79,13 +79,13 @@
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr class="tbl-td-padding">
-                                        <th>S.No</th>
-                                        <th>Service Date</th>
-                                        <th>Service Remarks</th>
-                                        <th>Reported By</th>
-                                        <th>Service Complete Date</th>
-                                        <th>Service Complete Remarks</th>
-                                        <th>Action</th>
+                                        <th>{{ 'COMMON.SN' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.SERVICE_DATE' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.SERVICE_REMARKS' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.REPORTED_BY' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.SERVICE_COMPLETE_DATE' | translate }}</th>
+                                        <th>{{ 'FIXED_ASSETS.SERVICE_COMPLETE_REMARKS' | translate }}</th>
+                                        <th>{{ 'COMMON.ACTION' | translate }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,7 +98,7 @@
                                         <td><b>{{row.ServiceCompleteRemarks}}</b></td>
                                         <td>
                                             <button type="button" class="btn btn-primary" (click)="OnEditButtonClick(i) "><i
-                                                    class="fa fa-edit"></i> Edit</button>
+                                                    class="fa fa-edit"></i> {{ 'COMMON.EDIT' | translate }}</button>
 
                                         </td>
                                     </tr>
@@ -106,50 +106,50 @@
                             </table>
                         </div>
 
-                        <form action="" *ngIf="addMode||editMode" [formGroup]="assetService.AssetServiceValidators">
+                         <form action="" *ngIf="addMode||editMode" [formGroup]="assetService.AssetServiceValidators">
                             <p class="text-center" style="font-weight: 700!important; font-size: large!important;">
-                                <strong>{{editMode?"Edit":"Add"}} Service Form</strong></p>
+                                <strong>{{ (editMode ? 'FIXED_ASSETS.EDIT_SERVICE_FORM' : 'FIXED_ASSETS.ADD_SERVICE_FORM') | translate }}</strong></p>
                             <div class="form-group">
-                                <label class="control-label">Service Date<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.SERVICE_DATE' | translate }}<sup>*</sup><b>:</b></label>
                                 <danphe-date-picker formControlName="ServiceDate" ngDefaultControl
                                 [allow-future-date]="true"
                                     [CalendarTypes]="'np,en'" [(ngModel)]="assetService.ServiceDate"
                                     style="width:100px;"></danphe-date-picker>
-                                    &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceDate','required') || !(assetService.IsDirty('ServiceDate'))">Service Date is required !</span>
+                                    &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceDate','required') || !(assetService.IsDirty('ServiceDate'))">{{ 'FIXED_ASSETS.SERVICE_DATE_REQUIRED' | translate }}</span>
 
                                 <!-- [ngModelOptions]="{standalone:true}" -->
 
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Service Remarks<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.SERVICE_REMARKS' | translate }}<sup>*</sup><b>:</b></label>
                                 <textarea class="form-control" [(ngModel)]="assetService.ServiceRemarks"
                                 formControlName="ServiceRemarks" id="free-text" rows="8"
-                                    placeholder="Enter Fault Description.."></textarea>
-                                    &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceRemarks','required') || !(assetService.IsDirty('ServiceRemarks'))">Service Remarks is required !</span>
+                                    [placeholder]="'FIXED_ASSETS.ENTER_SERVICE_REMARKS_PLACEHOLDER' | translate"></textarea>
+                                    &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceRemarks','required') || !(assetService.IsDirty('ServiceRemarks'))">{{ 'FIXED_ASSETS.SERVICE_REMARKS_REQUIRED' | translate }}</span>
                             </div>
                             <div class="form-group" *ngIf="editMode">
-                                <label class="control-label">Service Complete Date<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.SERVICE_COMPLETE_DATE' | translate }}<sup>*</sup><b>:</b></label>
                                 <danphe-date-picker ngDefaultControl
                                     [CalendarTypes]="'np,en'"  [allow-future-date]="true" [(ngModel)]="assetService.ServiceCompleteDate"
                                     style="width:100px;" formControlName="ServiceCompleteDate"></danphe-date-picker>
-                                    &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceCompleteDate','required') || !(assetService.IsDirty('ServiceCompleteDate'))">Service Complete Date is required !</span>
+                                    &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceCompleteDate','required') || !(assetService.IsDirty('ServiceCompleteDate'))">{{ 'FIXED_ASSETS.SERVICE_COMPLETE_DATE_REQUIRED' | translate }}</span>
 
                                 <!-- [ngModelOptions]="{standalone:true}" -->
 
                             </div>
                             <div class="form-group" *ngIf="editMode">
-                                <label class="control-label">Service Complete Remarks<sup>*</sup><b>:</b></label>
+                                <label class="control-label">{{ 'FIXED_ASSETS.SERVICE_COMPLETE_REMARKS' | translate }}<sup>*</sup><b>:</b></label>
                                 <textarea class="form-control" [(ngModel)]="assetService.ServiceCompleteRemarks"
                                     id="free-text" rows="8" formControlName="ServiceCompleteRemarks"
-                                    placeholder="Enter Fault Description.."></textarea>
-                                    &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceCompleteRemarks','required') || !(assetService.IsDirty('ServiceCompleteRemarks'))">Service Complete Remarks is required !</span>
+                                    [placeholder]="'FIXED_ASSETS.ENTER_SERVICE_COMPLETE_REMARKS_PLACEHOLDER' | translate"></textarea>
+                                    &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceCompleteRemarks','required') || !(assetService.IsDirty('ServiceCompleteRemarks'))">{{ 'FIXED_ASSETS.SERVICE_COMPLETE_REMARKS_REQUIRED' | translate }}</span>
 
                             </div>
 
                             <button type="submit" *ngIf="addMode" class="btn btn-primary"
-                                (click)="Submit()">Submit</button>
+                                (click)="Submit()">{{ 'COMMON.SUBMIT' | translate }}</button>
                             <button *ngIf="editMode" type="submit" class="btn btn-primary"
-                                (click)="Update()">Update</button>
+                                (click)="Update()">{{ 'FIXED_ASSETS.UPDATE' | translate }}</button>
                             <a class="btn btn-danger" (click)="addMode=false; editMode=false;"><i
                                     class="fa fa-close"></i></a>
 

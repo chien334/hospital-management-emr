@@ -30,7 +30,7 @@
 
       <div class="col-md-2 col-xs-12">
         <div class="form-group">
-          <button (click)="LoadData()" class="btn blue" style="padding: 5px 10px;"> <i class="fa fa-refresh"></i> Load </button>
+          <button (click)="LoadData()" class="btn blue" style="padding: 5px 10px;"> <i class="fa fa-refresh"></i> {{ "INCENTIVE.LOAD" | translate }} </button>
         </div>
       </div>
     </div>
@@ -39,12 +39,12 @@
     <div class="row">
       <div class="col-md-6">
         <input danphe-auto-complete id="srch_invoiceList" class="form-control" [(ngModel)]="selInvoiceInfo"
-               [list-formatter]="invoiceListFormatter" [source]="allInvoiceInfoList" placeholder="type to search"
+               [list-formatter]="invoiceListFormatter" [source]="allInvoiceInfoList" [placeholder]="'INCENTIVE.TYPE_TO_SEARCH' | translate"
                display-property-name="PatientName" value-property-name=null (focusout)="InvoiceInfoChanged()"
                onClick="this.select();" max-num-list="100" />
       </div>
       <div class="col-md-3" *ngIf="allInvoiceInfoList"
-           style="padding-left: 0px;vertical-align: bottom;padding-top: 6px;margin-left: -14px;"> ({{allInvoiceInfoList.length}}) invoices found..
+           style="padding-left: 0px;vertical-align: bottom;padding-top: 6px;margin-left: -14px;"> ({{allInvoiceInfoList.length}}) {{ 'INCENTIVE.INVOICES_FOUND' | translate }}
       </div>
     </div>
   </div>
@@ -56,14 +56,14 @@
         <div class="row" style="text-align: left;">
           <!--This section is for Patient Information-->
           <div class="col-md-6 margin-8-bt">
-            <div class="margin-8-bt"> <b> InvoiceNo: </b><span *ngIf="selInvoiceInfo">{{selInvoiceInfo.InvoiceNo}}</span> </div>
-            <div class="margin-8-bt"> <b>Date: </b> <span *ngIf="selInvoiceInfo"> {{selInvoiceInfo.TransactionDate |
+            <div class="margin-8-bt"> <b> {{ 'INCENTIVE.INVOICE_NO' | translate }}: </b><span *ngIf="selInvoiceInfo">{{selInvoiceInfo.InvoiceNo}}</span> </div>
+            <div class="margin-8-bt"> <b>{{ 'INCENTIVE.DATE' | translate }}: </b> <span *ngIf="selInvoiceInfo"> {{selInvoiceInfo.TransactionDate |
                 DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} <i>{{selInvoiceInfo.TransactionDate | nepaliDate:'format':'YYYY-MM-DD HH:mm'}} </i>
               </span> </div>
           </div>
           <div class="col-md-6 text-right">
-            <div class="margin-8-bt"> <b>Patient: </b> <span *ngIf="selInvoiceInfo"> {{selInvoiceInfo.PatientName}} </span> </div>
-            <div class="margin-8-bt"> <b>Total Amount: </b><span *ngIf="selInvoiceInfo">{{selInvoiceInfo.TotalAmount}}</span> </div>
+            <div class="margin-8-bt"> <b>{{ 'INCENTIVE.PATIENT' | translate }}: </b> <span *ngIf="selInvoiceInfo"> {{selInvoiceInfo.PatientName}} </span> </div>
+            <div class="margin-8-bt"> <b>{{ 'INCENTIVE.TOTAL_AMOUNT' | translate }}: </b><span *ngIf="selInvoiceInfo">{{selInvoiceInfo.TotalAmount}}</span> </div>
           </div>
         </div>
         <div class="table-wrapper tbl-trns-itm-holder">
@@ -71,12 +71,12 @@
                  style="background-color: initial;width: 100%;">
             <thead>
               <tr>
-                <th>Service Name</th>
-                <th>PriceCategory</th>
-                <th>Qty</th>
-                <th>Rate</th>
-                <th>Discount</th>
-                <th>Net Total</th>
+                <th>{{ 'INCENTIVE.SERVICE_NAME' | translate }}</th>
+                <th>{{ 'INCENTIVE.PRICE_CATEGORY' | translate }}</th>
+                <th>{{ 'INCENTIVE.QTY' | translate }}</th>
+                <th>{{ 'INCENTIVE.RATE' | translate }}</th>
+                <th>{{ 'INCENTIVE.DISCOUNT' | translate }}</th>
+                <th>{{ 'INCENTIVE.NET_TOTAL' | translate }}</th>
                 <th></th>
               </tr>
             </thead>

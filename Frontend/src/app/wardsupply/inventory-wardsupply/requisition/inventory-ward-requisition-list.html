@@ -1,34 +1,34 @@
 <div class="row">
   <div class="col-md-2">
-    <button [disabled]="!IsItemLoaded" type="button" class="btn btn-primary" (click)="CreateRequisition()"> <span *ngIf="!IsItemLoaded"><i class="fa fa-circle-o-notch fa-spin"></i>Loading</span> <span *ngIf="IsItemLoaded">Create Requisition</span></button>
+    <button [disabled]="!IsItemLoaded" type="button" class="btn btn-primary" (click)="CreateRequisition()"> <span *ngIf="!IsItemLoaded"><i class="fa fa-circle-o-notch fa-spin"></i>{{ 'COMMON.LOADING' | translate }}</span> <span *ngIf="IsItemLoaded">{{ 'WARD_SUPPLY.CREATE_REQUISITION' | translate }}</span></button>
   </div>
   <div class="col-md-7">
     <div class="input-group">
-      <div class="icheck-inline"> List by Requisition Status: &nbsp;
+      <div class="icheck-inline"> {{ 'WARD_SUPPLY.LIST_BY_REQUISITION_STATUS_COLON' | translate }} &nbsp;
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" checked name="RequisitionStatusFilter" [(ngModel)]="RequisitionStatusFilter" value="pending" style="width:15px;height:15px" />
-          <span></span>Pending </label>
+          <span></span>{{ 'WARD_SUPPLY.PENDING' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter" [(ngModel)]="RequisitionStatusFilter" value="complete" style="width:15px;height:15px" />
-          <span></span>Complete </label>
+          <span></span>{{ 'WARD_SUPPLY.COMPLETE' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter" [(ngModel)]="RequisitionStatusFilter" value="cancelled" style="width:15px;height:15px" />
-          <span></span>Cancelled </label>
+          <span></span>{{ 'WARD_SUPPLY.CANCELLED' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter" [(ngModel)]="RequisitionStatusFilter" value="withdrawn" style="width:15px;height:15px" />
-          <span></span>Withdrawn </label>
+          <span></span>{{ 'WARD_SUPPLY.WITHDRAWN' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter" [(ngModel)]="RequisitionStatusFilter" value="all" style="width:15px;height:15px" />
-          <span></span>All </label>
+          <span></span>{{ 'WARD_SUPPLY.ALL' | translate }} </label>
       </div>
     </div>
   </div>
   <div class="col-md-3">
     <label for="selectedInventory">
-      <i class="fa fa-filter"></i> Filter by Store :
+      <i class="fa fa-filter"></i> {{ 'WARD_SUPPLY.FILTER_BY_STORE_COLON' | translate }}
     </label>
     <select [(ngModel)]="selectedInventoryId" id="selectedInventory" (change)="LoadRequisitionListByStatus()" style="margin-left: 1rem">
-      <option [ngValue]="null">ALL</option>
+      <option [ngValue]="null">{{ 'WARD_SUPPLY.ALL' | translate }}</option>
       <option *ngFor="let inventory of inventoryList" [value]="inventory.StoreId">{{inventory.Name}}</option>
     </select>
   </div>

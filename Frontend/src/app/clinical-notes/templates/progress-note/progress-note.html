@@ -16,11 +16,11 @@
     <form class="form-horizontal">
       <div class="form-body">
 
-        <h3 class="text-head" style="text-align:center">Progress Note</h3>
+        <h3 class="text-head" style="text-align:center">{{ 'CLINICAL.PROGRESS_NOTE_TITLE' | translate }}</h3>
 
 
         <div class="form-group">
-          <label class="control-label col-md-4">Subjective Notes<b style="float:right;">:</b></label>
+          <label class="control-label col-md-4">{{ 'CLINICAL.SUBJECTIVE_NOTES_SOAP' | translate }}<b style="float:right;">:</b></label>
 
           <div class="col-md-8">
             <textarea class="form-control" (focusout)="Focusit()" [(ngModel)]="progressNote.SubjectiveNotes" [ngModelOptions]="{standalone: true}" maxlength="2000" rows="5" cols="80"></textarea>
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-md-4">Objective Notes<b style="float:right;">:</b></label>
+          <label class="control-label col-md-4">{{ 'CLINICAL.OBJECTIVE_NOTES_SOAP' | translate }}<b style="float:right;">:</b></label>
 
           <div class="col-md-8">
             <textarea class="form-control" (focusout)="Focusit()" [(ngModel)]="progressNote.ObjectiveNotes" [ngModelOptions]="{standalone: true}" maxlength="2000" rows="5" cols="80"></textarea>
@@ -46,7 +46,7 @@
         </div> -->
 
         <div class="form-group">
-          <label class="control-label col-md-4">Instructions<b style="float:right;">:</b></label>
+          <label class="control-label col-md-4">{{ 'CLINICAL.INSTRUCTIONS_SOAP' | translate }}<b style="float:right;">:</b></label>
 
           <div class="col-md-8">
             <textarea class="form-control" (focusout)="Focusit()" [(ngModel)]="progressNote.Instructions" [ngModelOptions]="{standalone: true}" maxlength="2000" rows="5" cols="80"></textarea>

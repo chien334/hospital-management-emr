@@ -51,27 +51,27 @@
       <div class="col-md-10 col-md-offset-1">
         <div class=" modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Change Doctor/ Department</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span>{{ 'NURSING.CHANGE_DOCTOR_DEPARTMENT' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" title="{{ 'COMMON.CANCEL' | translate }}">X</a>
           </div>
           <div class="row">
             <div class="col-lg-12 col-sm-12">
               <div class="page-bar bill-p-info popup-pagebar mt10">
                 <div>
                   <span>
-                    Hospital No : <b>{{selectedVisit.PatientCode}} </b>
+                    {{ 'PATIENT.HOSPITAL_NO' | translate }} : <b>{{selectedVisit.PatientCode}} </b>
                   </span>
                   <span>
-                    Patient Name : <b>{{selectedVisit.ShortName}}</b>
+                    {{ 'PATIENT.FULL_NAME' | translate }} : <b>{{selectedVisit.ShortName}}</b>
                   </span>
                   <span>
-                    Age/Sex : {{selectedVisit.Age}}/ {{selectedVisit.Gender[0]}}
+                    {{ 'GRID_HEADERS.AGE_SEX' | translate }} : {{selectedVisit.Age}}/ {{selectedVisit.Gender[0]}}
                   </span>
                   <span>
-                    Address : <b>{{selectedVisit.Address}}</b>
+                    {{ 'PATIENT.ADDRESS' | translate }} : <b>{{selectedVisit.Address}}</b>
                   </span>
                   <span>
-                    Contact No : <b>{{selectedVisit.PhoneNumber}}</b>
+                    {{ 'COMMON.PHONE' | translate }} : <b>{{selectedVisit.PhoneNumber}}</b>
                   </span>
                 </div>
               </div>
@@ -81,7 +81,7 @@
             <div class="form-group col-md-5" style="margin: 0 0 10px 0;">
               <div class="row no-gutters d-flex">
                 <div class="col-md-5">
-                  <label class="control-label">Registration Date/Time<b>:</b></label>
+                  <label class="control-label">{{ 'NURSING.REGISTRATION_DATE_TIME' | translate }}<b>:</b></label>
                 </div>
                 <div class="col-md-7">
                   <div class="row">
@@ -97,7 +97,7 @@
             </div>
             <div class="form-group col-md-4" style="margin: 0 0 10px 0;">
               <div class="row no-gutters d-flex">
-                <label class="control-label col-md-5"> Registered Department<b>&nbsp;:</b></label>
+                <label class="control-label col-md-5"> {{ 'NURSING.REGISTERED_DEPARTMENT' | translate }}<b>&nbsp;:</b></label>
                 <div class="col-md-7">
                   <input disabled="disabled" type="text" [(ngModel)]="selectedVisit.DepartmentName" id="department"
                          style="margin-top: 5px; width: 100%;" />
@@ -106,7 +106,7 @@
             </div>
             <div class="form-group col-md-3" style="margin: 0 0 10px 0;">
               <div class="row no-gutters d-flex">
-                <label class="control-label col-md-5"> Assigned Doctor <b>&nbsp;:</b></label>
+                <label class="control-label col-md-5"> {{ 'NURSING.ASSIGNED_DOCTOR' | translate }} <b>&nbsp;:</b></label>
                 <div class="col-md-7">
                   <input disabled="disabled" type="text" [(ngModel)]="selectedVisit.PerformerName" style="width:100%; margin-top: 5px;" />
                 </div>
@@ -116,14 +116,14 @@
               <div class="row no-gutters d-flex">
                 <div class="col-md-5">
                   <form [formGroup]="freeReferValidator" class="row no-gutters d-flex">
-                    <label class="control-label col-md-5" style="margin-top: 10px;"> Referred Department<b><sup class="color-red">
-                          *</sup>&nbsp;:</b></label>
+                    <label class="control-label col-md-5" style="margin-top: 10px;"> {{ 'NURSING.REFERRED_DEPARTMENT' | translate }}<b><sup class="color-red">
+                           *</sup>&nbsp;:</b></label>
                     <div class="col-md-7" style="padding: 0 !important;">
                       <input id="txtDepartment" class="form-control" danphe-auto-complete autocomplete="off"
                              [(ngModel)]="selectedDepartment"
                              [list-formatter]="myDepartmentListFormatter"
                              [source]="departmentList"
-                             placeholder="Department Name"
+                             placeholder="{{ 'NURSING.DEPARTMENT_NAME' | translate }}"
                              formControlName="ReferredDepartment"
                              display-property-name="DepartmentName"
                              onClick="this.select();"
@@ -134,31 +134,31 @@
                              [min-chars]="1"
                              style="width: 100%;" />
                       <span class="color-red font-sm"
-                            *ngIf="freeReferValidator.get('ReferredDepartment').invalid && ((freeReferValidator.get('ReferredDepartment').dirty || freeReferValidator.get('ReferredDepartment').pristine || freeReferValidator.get('ReferredDepartment').touched)) && showValidationMessage">
-                        <small>Referred Department is Required</small></span>
+                             *ngIf="freeReferValidator.get('ReferredDepartment').invalid && ((freeReferValidator.get('ReferredDepartment').dirty || freeReferValidator.get('ReferredDepartment').pristine || freeReferValidator.get('ReferredDepartment').touched)) && showValidationMessage">
+                         <small>{{ 'NURSING.REFERRED_DEPARTMENT_REQUIRED' | translate }}</small></span>
                     </div>
                   </form>
                 </div>
                 <div class="col-md-4">
                   <form [formGroup]="freeReferValidator" class="row no-gutters d-flex">
-                    <label class="control-label col-md-5" style="margin-top: 10px;"> Referred Doctor<b><sup class="color-red">
-                          *</sup>&nbsp;:</b></label>
-                    <div class="col-md-3" style="">
+                    <label class="control-label col-md-5" style="margin-top: 10px;"> {{ 'NURSING.REFERRED_DOCTOR' | translate }}<b><sup class="color-red">
+                           *</sup>&nbsp;:</b></label>
+                    <div class="col-md-7" style="">
                       <input class="form-control"
                              id="doctorName" danphe-auto-complete autocomplete="off"
                              [(ngModel)]="selectedDoctor"
                              [list-formatter]="DocListFormatter"
                              [source]="filteredDocList"
                              formControlName="ReferredDoctor"
-                             placeholder="Doctor's Name"
+                             placeholder="{{ 'EMERGENCY.DOCTOR_NAME' | translate }}"
                              display-property-name="FullName"
                              (focusout)="AssignSelectedDoctor()"
                              onClick="this.select();"
                              max-num-list="10"
                              style="width:250px;" />
                       <span class="color-red font-sm"
-                            *ngIf="freeReferValidator.get('ReferredDoctor').invalid && showValidationMessage && ((freeReferValidator.get('ReferredDoctor').dirty || freeReferValidator.get('ReferredDoctor').pristine || freeReferValidator.get('ReferredDoctor').touched))">
-                        <small>Referred Doctor is Required</small>
+                             *ngIf="freeReferValidator.get('ReferredDoctor').invalid && showValidationMessage && ((freeReferValidator.get('ReferredDoctor').dirty || freeReferValidator.get('ReferredDoctor').pristine || freeReferValidator.get('ReferredDoctor').touched))">
+                         <small>{{ 'NURSING.REFERRED_DOCTOR_REQUIRED' | translate }}</small>
                       </span>
                     </div>
                   </form>
@@ -167,7 +167,7 @@
             </div>
             <div class="form-group col-md-5" style="margin: 0 0 10px 0;">
               <div class="row d-flex no-gutters">
-                <label class="control-label col-md-5"> Reason to Refer<b>:</b></label>
+                <label class="control-label col-md-5"> {{ 'NURSING.REASON_TO_REFER' | translate }}<b>:</b></label>
                 <div class="col-md-7" style="padding: 0 !important">
                   <textarea
                             type="text"
@@ -195,9 +195,9 @@
             <div class="modelbox-footer">
               <div class="all-buttons text-right">
                 <input type="button" id="discard" (click)="Discard()" class="btn orange btn-success margin-7-hr"
-                       value="Discard" />
+                       value="{{ 'COMMON.DISCARD' | translate }}" />
                 <input type="button" id="add" (click)="addReferDetails()" class="btn green btn-success margin-7-hr"
-                       value="Save" />
+                       value="{{ 'COMMON.SAVE' | translate }}" />
               </div>
             </div>
           </form>

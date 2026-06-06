@@ -50,7 +50,7 @@
                 -->
                 <input danphe-auto-complete class="form-control" [(ngModel)]="selectedExistingPatient"
                        [list-formatter]="patientListFormatter" [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
-                       placeholder="Existing Patient Name"
+                       [placeholder]="'EMERGENCY.EXISTING_PATIENT_NAME' | translate"
                        display-property-name="ShortName" value-property-name=null
                        (valueChanged)="AddCurrentExistingPatient()" onClick="this.select();" max-num-list="10" />
             </div>
@@ -61,7 +61,7 @@
                 <div class="col-md-4" *ngIf="showNewRegistrationEmergency">
                     <a class="btn green btn-success btn-sm" style="font-size: 14px;" name="name"
                        (click)="NewERPatientRegistration()">
-                        <span class="glyphicon glyphicon-plus"></span>New Registration
+                        <span class="glyphicon glyphicon-plus"></span>{{ 'EMERGENCY.NEW_REGISTRATION' | translate }}
                     </a>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="modelbox-div clearfix">
                         <div class="caption custom-caption">
-                            <h3> <span>Upload Files</span></h3>
+                            <h3> <span>{{ 'EMERGENCY.UPLOAD_FILES' | translate }}</span></h3>
                             <a class="btn btn-danger" (click)="CloseUpload()" title="Cancel">X</a>
                         </div>
 

@@ -8,7 +8,7 @@
         <span style="font-size:15px;"><strong>{{headerDetail.CustomerName}}</strong></span><br />
         <span style="font-size:15px;">{{headerDetail.Address}}</span><br />
         <span style="font-size:13px;">{{headerDetail.CustomerRegLabel}} , Tel: {{ headerDetail.Tel}}</span><br />
-        <span style="font-size:15px;"><strong> Clinical Unit </strong></span><br />
+        <span style="font-size:15px;"><strong> {{ 'CLINICAL.CLINICAL_UNIT' | translate }} </strong></span><br />
       </div>
     </div>
     <div style="float: left;">
@@ -23,21 +23,21 @@
 <div class="panel-body row" style="text-align:left;">
   <div class="col-md-12">
     <div class="row">
-      <p class="col-md-4" *ngIf="note">Patient Name:<b>{{note.PatientName}} </b></p>
-      <p class="col-md-4">Primary Doctor:<b *ngIf="note">{{note.PrimaryDoctor}}</b></p>
-      <p class="col-md-4">Secondary Doctor:<b *ngIf="note">{{note.SecondaryDoctor}}</b></p>
+      <p class="col-md-4" *ngIf="note">{{ 'CLINICAL.PATIENT_NAME' | translate }}:<b>{{note.PatientName}} </b></p>
+      <p class="col-md-4">{{ 'CLINICAL.PRIMARY_DOCTOR' | translate }}:<b *ngIf="note">{{note.PrimaryDoctor}}</b></p>
+      <p class="col-md-4">{{ 'CLINICAL.SECONDARY_DOCTOR' | translate }}:<b *ngIf="note">{{note.SecondaryDoctor}}</b></p>
     </div>
   </div>
   <div class="col-md-12">
     <div class="row">
-      <p class="col-md-4">Age/ Sex:<b *ngIf="note">{{note.Age}}/{{note.Sex}} </b></p>
-      <p class="col-md-4">Written By:<b *ngIf="note">{{note.WrittenBy}}</b></p>
-      <p class="col-md-4">Date:<b *ngIf="note">{{note.CreatedOn | date:'yyyy-MM-dd'}}</b></p>
+      <p class="col-md-4">{{ 'CLINICAL.AGE_GENDER' | translate }}:<b *ngIf="note">{{note.Age}}/{{note.Sex}} </b></p>
+      <p class="col-md-4">{{ 'CLINICAL.WRITTEN_BY' | translate }}:<b *ngIf="note">{{note.WrittenBy}}</b></p>
+      <p class="col-md-4">{{ 'CLINICAL.DATE' | translate }}:<b *ngIf="note">{{note.CreatedOn | date:'yyyy-MM-dd'}}</b></p>
     </div>
   </div>
   <div class="col-md-12">
     <div class="row">
-      <p class="col-md-4">Note Type:<b *ngIf="note">{{note.NoteType}}</b></p>
+      <p class="col-md-4">{{ 'CLINICAL.NOTE_TYPE' | translate }}:<b *ngIf="note">{{note.NoteType}}</b></p>
       <!--<p class="col-md-4">Start Time :<b>{{note.CreatedOn | date: 'dd-MM-yyyy h:mm:ss'}}</b></p>
       <p class="col-md-4">Finish Time:<b>{{note.ModifiedOn |date: 'dd-MM-yyyy h:mm:ss'}}</b></p>-->
     </div>
@@ -45,7 +45,7 @@
 </div>
 
 <div class="row panel-body">
-  <h3 class="text-capitalize text-center">Prescription Note</h3>
+  <h3 class="text-capitalize text-center">{{ 'CLINICAL.PRESCRIPTION_NOTE' | translate }}</h3>
 </div>
 
 <div class="row panel-body">
@@ -54,23 +54,23 @@
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-12 form-group">
-            <h3>Clinical Information</h3>
+            <h3>{{ 'CLINICAL.CLINICAL_INFO' | translate }}</h3>
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">Chief Complaint</div>
+          <div class="col-md-4">{{ 'CLINICAL.CHIEF_COMPLAINT' | translate }}</div>
           <div class="col-md-8" *ngIf="note && note.SubjectiveNote">
             {{note.SubjectiveNote.ChiefComplaint}}
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">History of Presenting Illness</div>
+          <div class="col-md-4">{{ 'CLINICAL.HISTORY_OF_PRESENTING_ILLNESS' | translate }}</div>
           <div class="col-md-8" *ngIf="note && note.SubjectiveNote">
             {{note.SubjectiveNote.HistoryOfPresentingIllness}}
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">Review of System</div>
+          <div class="col-md-4">{{ 'CLINICAL.REVIEW_OF_SYSTEM' | translate }}</div>
           <div class="col-md-8" *ngIf="note && note.SubjectiveNote">
             {{note.SubjectiveNote.ReviewOfSystems}}
           </div>
@@ -78,17 +78,17 @@
 
         <div class="row form-group">
           <div class="col-md-12">
-            <h3>Rx Medication</h3>
+            <h3>{{ 'CLINICAL.RX_MEDICATION' | translate }}</h3>
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">Old Medication to be stopped</div>
+          <div class="col-md-4">{{ 'CLINICAL.OLD_MED_STOP' | translate }}</div>
           <div class="col-md-8" *ngIf="note && note.Prescription">
             {{note.Prescription.OldMedicationStopped}}
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">New Medication to be started</div>
+          <div class="col-md-4">{{ 'CLINICAL.NEW_MED_START' | translate }}</div>
           <div class="col-md-8" *ngIf="note && note.Prescription">
             {{note.Prescription.NewMedicationStarted}}
           </div>
@@ -96,11 +96,11 @@
 
         <div class="row form-group">
           <div class="col-md-12">
-            <h3>Instruction</h3>
+            <h3>{{ 'CLINICAL.INSTRUCTIONS' | translate }}</h3>
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">Follow Up in</div>
+          <div class="col-md-4">{{ 'CLINICAL.FOLLOW_UP_IN' | translate }}</div>
           <div class="col-md-8">
             <div class="row">
               <div class="col-md-6" *ngIf="note">
@@ -110,7 +110,7 @@
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">Remarks</div>
+          <div class="col-md-4">{{ 'COMMON.REMARKS' | translate }}</div>
           <div class="col-md-8" *ngIf="note">
             {{note.Remarks}}
           </div>
@@ -125,13 +125,13 @@
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">Clinical Notes</div>
+          <div class="col-md-4">{{ 'CLINICAL.CLINICAL_NOTES' | translate }}</div>
           <div class="col-md-8" *ngIf="note && note.Prescription">
             {{note.Prescription.PrescriptionNoteText}}
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">Diagnosis({{IcdVersionDisplayName}} code)</div>
+          <div class="col-md-4">{{ 'CLINICAL.DIAGNOSIS_ICD_CODE' | translate: { IcdVersionDisplayName: IcdVersionDisplayName } }}</div>
           <div class="col-md-8" *ngIf="ICDList && ICDList.length">
             <div class="row margin-5-bt">
               <div class="col-md-12" *ngFor="let icd of ICDList; let i=index;">
@@ -141,14 +141,14 @@
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-md-4">ICD Remarks</div>
+          <div class="col-md-4">{{ 'CLINICAL.ICD_REMARKS' | translate }}</div>
           <div class="col-md-8" *ngIf="note && note.Prescription">
             {{note.Prescription.ICDRemarks}}
           </div>
 
           <div class="row" *ngIf="OrdersList && OrdersList.length">
             <div class="col-md-12 form-group">
-              <h3>Lab and Orders</h3>
+              <h3>{{ 'CLINICAL.LAB_AND_ORDERS' | translate }}</h3>
             </div>
             <div class="col-md-12">
               <div class="row form-group">

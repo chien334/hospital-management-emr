@@ -1,6 +1,6 @@
 <div class="row" *ngIf="showRequisitionList">
   <div class="col-md-2">
-    <input type="button" class="btn btn-primary" (click)="CreateRequisition()" value="Create Requisition" />
+    <input type="button" class="btn btn-primary" (click)="CreateRequisition()" [value]="'WARD_SUPPLY.CREATE_REQUISITION' | translate" />
   </div>
   <!-- <div class="col-md-3">
     <label class="icheck-inline col-md-4" style="font-size:13px;top:5px">Select Store<sup>*</sup><b>:</b></label>
@@ -10,34 +10,34 @@
     </select>
   </div> -->
   <div class="col-md-4">
-    <strong>Select Inventory : &nbsp;&nbsp;</strong>
+    <strong>{{ 'WARD_SUPPLY.SELECT_INVENTORY' | translate }} : &nbsp;&nbsp;</strong>
     <select [(ngModel)]="selectedInventory"   (ngModelChange)="OnInventoryChange()" style="width:60%!important;">       
       <option *ngFor="let inv of inventoryList" value="{{inv.StoreId}}"> {{inv.Name}} </option>
     </select>
   </div>
   <div class="col-md-6">
     <div class="input-group pull-right padding-15-tp">
-      <div class="icheck-inline"> List by Requisition Status: &nbsp;
+      <div class="icheck-inline"> {{ 'WARD_SUPPLY.LIST_BY_REQUISITION_STATUS' | translate }}: &nbsp;
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" checked name="RequisitionStatusFilter"
             [(ngModel)]="RequisitionStatusFilter" value="pending" style="width:15px;height:15px" />
-          <span></span>Pending </label>
+          <span></span>{{ 'WARD_SUPPLY.PENDING' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter"
             [(ngModel)]="RequisitionStatusFilter" value="complete" style="width:15px;height:15px" />
-          <span></span>Complete </label>
+          <span></span>{{ 'WARD_SUPPLY.COMPLETE' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter"
             [(ngModel)]="RequisitionStatusFilter" value="cancelled" style="width:15px;height:15px" />
-          <span></span>Cancelled </label>
+          <span></span>{{ 'WARD_SUPPLY.CANCELLED' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter"
             [(ngModel)]="RequisitionStatusFilter" value="withdrawn" style="width:15px;height:15px" />
-          <span></span>Withdrawn </label>
+          <span></span>{{ 'WARD_SUPPLY.WITHDRAWN' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter"
             [(ngModel)]="RequisitionStatusFilter" value="all" style="width:15px;height:15px" />
-          <span></span>All </label>
+          <span></span>{{ 'WARD_SUPPLY.ALL' | translate }} </label>
       </div>
     </div>
   </div>
@@ -92,13 +92,13 @@
         <div class="left">
           <button class="btn btn-primary btn-sm" (click)="RouteBack()">
             <i class="fa fa-backward"></i>
-            Back&nbsp;to&nbsp;Requisition&nbsp;List
+            {{ 'WARD_SUPPLY.BACK_TO_REQUISITION_LIST' | translate }}
           </button>
         </div>
         <div class="right">
           <button class="btn btn-primary btn-sm" (click)="Print()">
             <i class="fa fa-print"></i>
-            Print
+            {{ 'COMMON.PRINT' | translate }}
           </button>
         </div>
       </div>
@@ -109,45 +109,45 @@
               <div>
                 <div class="media receiveContainer" *ngIf="!!Requisition">
                   <p class="media-body small border-bottom border-gray">
-                    <strong>Requisition No:</strong>
+                    <strong>{{ 'WARD_SUPPLY.REQUISITION_NO' | translate }}:</strong>
                     {{Requisition.RequisitionNo}}
                   </p>
                   <p class="media-body small border-bottom border-gray">
-                    <strong>Requisition Date:</strong>
+                    <strong>{{ 'WARD_SUPPLY.REQUISITION_DATE' | translate }}:</strong>
                     {{Requisition.RequisitionDate | date : 'yyyy-MM-dd'}}&nbsp;
                     <i *ngIf="Requisition.RequisitionDate">{{Requisition.RequisitionDate | nepaliDate:'format':'YYYY-MM-DD'}} </i>
                   </p>
                   <p class="media-body small border-bottom border-gray">
-                    <strong>Requisition Status:</strong>
+                    <strong>{{ 'WARD_SUPPLY.REQUISITION_STATUS' | translate }}:</strong>
                     {{Requisition.RequisitionStatus}}
                   </p>
                 </div>
                 <div *ngIf="!!DispatchList">
                   <div class="media text-muted receiveContainer" *ngFor="let dispatch of DispatchList">
                     <span class="media-body small border-bottom border-gray">
-                      <strong>Dispatch Id:</strong>
+                      <strong>{{ 'WARD_SUPPLY.DISPATCH_ID' | translate }}:</strong>
                       {{dispatch.DispatchId}}
                     </span>
                     <span class="media-body small border-bottom border-gray">
-                      <strong>Dispatched By:</strong>
+                      <strong>{{ 'WARD_SUPPLY.DISPATCHED_BY' | translate }}:</strong>
                       <div *ngIf="!!dispatch.ReceivedBy; else elseBlockOne">{{dispatch.ReceivedBy}}</div>
-                      <ng-template #elseBlockOne>Not Received</ng-template>
+                      <ng-template #elseBlockOne>{{ 'WARD_SUPPLY.NOT_RECEIVED' | translate }}</ng-template>
                     </span>
                     <span class="media-body small border-bottom border-gray">
-                      <strong>Dispatched On:</strong>
+                      <strong>{{ 'WARD_SUPPLY.DISPATCHED_ON' | translate }}:</strong>
                       <div *ngIf="!!dispatch.ReceivedOn; else elseBlockTwo">
                         {{dispatch.ReceivedOn | date : "yyyy-MM-dd"}}
                         <i *ngIf="dispatch.ReceivedOn">{{dispatch.ReceivedOn | nepaliDate:'format':'YYYY-MM-DD'}} </i>
                       </div>
-                      <ng-template #elseBlockTwo>Not Received</ng-template>
+                      <ng-template #elseBlockTwo>{{ 'WARD_SUPPLY.NOT_RECEIVED' | translate }}</ng-template>
                     </span>
                     <div>
                       <table class="table table-striped table-condensed">
                         <thead>
                           <tr>
-                            <th>Item Name</th>
-                            <th>Batch No</th>
-                            <th>BarCode Number</th>
+                            <th>{{ 'WARD_SUPPLY.ITEM_NAME' | translate }}</th>
+                            <th>{{ 'WARD_SUPPLY.BATCH_NO' | translate }}</th>
+                            <th>{{ 'WARD_SUPPLY.BARCODE_NUMBER' | translate }}</th>
                           </tr>
                         </thead>
                         <tbody>

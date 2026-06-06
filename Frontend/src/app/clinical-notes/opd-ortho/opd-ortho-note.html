@@ -82,16 +82,16 @@
     <div class="portlet box green-meadow">
         <div class="portlet-title">
             <div class="caption">
-                <b style="font-size: large;text-decoration: underline;">OPD Note (Orthopedics)</b>
+                <b style="font-size: large;text-decoration: underline;">{{ 'CLINICAL.OPD_NOTE_ORTHO' | translate }}</b>
             </div>
         </div>
 
         <div class="portlet-body" style="display: block;">
             <div class="row">
-                <p style="padding-left: 15px;"><span class="pull-left"></span><b>1 &nbsp;Sites</b></p>
+                <p style="padding-left: 15px;"><span class="pull-left"></span><b>1 &nbsp;{{ 'CLINICAL.SITES' | translate }}</b></p>
                 <div class="col-md-12" *ngFor="let rw of allData; let i = index;" style="padding: 10px 0px;">
                     <div class="col-md-1">
-                        <a (click)="AddNewRow_Sites()" class="btn btn-success delBtn" title="Click to add new item"><i class="fa fa-plus"></i></a>
+                        <a (click)="AddNewRow_Sites()" class="btn btn-success delBtn" title="{{ 'COMMON.ADD' | translate }}"><i class="fa fa-plus"></i></a>
                     </div>
                     <div class="col-md-3">
                         <select id="site{{i}}" class="hideLabel form-control" [(ngModel)]="rw.allCheckBox" (change)="selectName(rw.allCheckBox, i);">
@@ -107,7 +107,7 @@
                         </label>
                     </div>
                     <div class="col-md-1">
-                        <a (click)="RemoveRow_Sites(i)" class="btn btn-danger delBtn" title="Click to remove this item"><i class=" fa fa-cross">X</i></a>
+                        <a (click)="RemoveRow_Sites(i)" class="btn btn-danger delBtn" title="{{ 'COMMON.DELETE' | translate }}"><i class=" fa fa-cross">X</i></a>
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">2 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Main Pathology</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.MAIN_PATHOLOGY' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
 
@@ -126,61 +126,61 @@
                                 <span>
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>Degenerative</i>
+                                        <i>{{ 'CLINICAL.DEGENERATIVE' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>Fracture</i>
+                                        <i>{{ 'CLINICAL.FRACTURE' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>Trauma</i>
+                                        <i>{{ 'CLINICAL.TRAUMA' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>Pathological</i>
+                                        <i>{{ 'CLINICAL.PATHOLOGICAL' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>Inflammation</i>
+                                        <i>{{ 'CLINICAL.INFLAMMATION' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>Infection</i>
+                                        <i>{{ 'CLINICAL.INFECTION' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>Tumor</i>
+                                        <i>{{ 'CLINICAL.TUMOR' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>Revision</i>
+                                        <i>{{ 'CLINICAL.REVISION' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>Surgery</i>
+                                        <i>{{ 'CLINICAL.SURGERY' | translate }}</i>
                                     </span>
                                 </span>
 
                                 <span href="#demo40" data-bs-toggle="collapse">
                                     <span>
                                         <input type="radio" name="mainPathology">
-                                        <i>other</i>
+                                        <i>{{ 'CLINICAL.OTHER' | translate }}</i>
                                     </span>
                                 </span>
 
                             </p>
 
                             <p id="demo40" class="collapse">
-                                <b style="float: left;">Please Specify!!</b>
+                                <b style="float: left;">{{ 'CLINICAL.PLEASE_SPECIFY' | translate }}</b>
                                 <textarea style="width: 300px;" rows="2"></textarea>
                             </p>
 
@@ -195,7 +195,7 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">3 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">History</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.HISTORY' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                         <div class="col-lg-6 col-md-6 mar-bottom">
@@ -205,7 +205,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Onset</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.ONSET' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom margin-botttom">
@@ -213,27 +213,27 @@
                                     <span>
                                         <span>
                                             <input type="radio" name="history_onset">
-                                            <i>Trauma</i>
+                                            <i>{{ 'CLINICAL.TRAUMA' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="history_onset">
-                                            <i>Spontaneous</i>
+                                            <i>{{ 'CLINICAL.SPONTANEOUS' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="history_onset">
-                                            <i>Acute</i>
+                                            <i>{{ 'CLINICAL.ACUTE' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="history_onset">
-                                            <i>Chronic</i>
+                                            <i>{{ 'CLINICAL.CHRONIC' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="history_onset">
-                                            <i>Insidious</i>
+                                            <i>{{ 'CLINICAL.INSIDIOUS' | translate }}</i>
                                         </span>
                                     </span>
                                 </p>
@@ -243,7 +243,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Pain</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.PAIN' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom margin-botttom">
@@ -251,27 +251,27 @@
                                     <span>
                                         <span>
                                             <input type="radio" name="history_pain">
-                                            <i>Throbbing</i>
+                                            <i>{{ 'CLINICAL.THROBBING' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="history_pain">
-                                            <i>Dull aching</i>
+                                            <i>{{ 'CLINICAL.DULL_ACHING' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="history_pain">
-                                            <i>Activity Related</i>
+                                            <i>{{ 'CLINICAL.ACTIVITY_RELATED' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="history_pain">
-                                            <i>At Rest</i>
+                                            <i>{{ 'CLINICAL.AT_REST' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="history_pain">
-                                            <i>At Night</i>
+                                            <i>{{ 'CLINICAL.AT_NIGHT' | translate }}</i>
                                         </span>
                                     </span>
                                 </p>
@@ -281,7 +281,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Duration</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.DURATION' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom margin-botttom">
@@ -292,32 +292,32 @@
                                     <span>
                                         <span>
                                             <input type="radio" name="duration">
-                                            <i>Days</i>
+                                            <i>{{ 'CLINICAL.DAYS' | translate }}</i>
                                         </span>
                                     </span>
                                     <span>
                                         <span>
                                             <input type="radio" name="duration">
-                                            <i>Weeks</i>
+                                            <i>{{ 'CLINICAL.WEEKS' | translate }}</i>
                                         </span>
                                     </span>
                                     <span>
                                         <span>
                                             <input type="radio" name="duration">
-                                            <i>Months</i>
+                                            <i>{{ 'CLINICAL.MONTHS' | translate }}</i>
                                         </span>
                                     </span>
                                     <span>
                                         <span>
                                             <input type="radio" name="duration">
-                                            <i>Years</i>
+                                            <i>{{ 'CLINICAL.YEARS' | translate }}</i>
                                         </span>
                                     </span>
 
                                 </p>
 
                                 <p id="demo41" class="collapse">
-                                    <b style="float: left;">Please Specify!!</b>
+                                    <b style="float: left;">{{ 'CLINICAL.PLEASE_SPECIFY' | translate }}</b>
                                     <textarea style="width: 300px;" rows="2"></textarea>
                                 </p>
                             </div>
@@ -326,7 +326,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Past History</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.PAST_HISTORY' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -339,7 +339,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Family History</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.FAMILY_HISTORY' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -352,7 +352,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Treatment History</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.TREATMENT_HISTORY' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -371,7 +371,7 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">4 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Local Examination</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.LOCAL_EXAMINATION' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                         <div class="col-lg-6 col-md-6 mar-bottom">
@@ -381,7 +381,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Local Temperature</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.LOCAL_TEMPERATURE' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -395,7 +395,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Tenderness</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.TENDERNESS' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -409,7 +409,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Swelling</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.SWELLING' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -423,7 +423,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Sinuses</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.SINUSES' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -437,7 +437,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Neighboring Joints</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.NEIGHBORING_JOINTS' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -451,7 +451,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Muscular Wasting</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.MUSCULAR_WASTING' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -465,7 +465,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Shortening or Lengthening of the Bone</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.BONE_SHORTENING_LENGTHENING' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -479,7 +479,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Lymph Nodes</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.LYMPH_NODES' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -493,7 +493,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Range of Motion of the Joints</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.JOINTS_RANGE_OF_MOTION' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -501,17 +501,17 @@
                                     <span>
                                         <span>
                                             <input type="radio" name="jointsMotion">
-                                            <i>Flexion-Extension</i>
+                                            <i>{{ 'CLINICAL.FLEXION_EXTENSION' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="jointsMotion">
-                                            <i>Adduction-Abduction</i>
+                                            <i>{{ 'CLINICAL.ADDUCTION_ABDUCTION' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="jointsMotion">
-                                            <i>Supination-Pronation</i>
+                                            <i>{{ 'CLINICAL.SUPINATION_PRONATION' | translate }}</i>
                                         </span>
                                     </span>
                                 </p>
@@ -521,7 +521,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Special Test</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.SPECIAL_TEST' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -539,26 +539,26 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">5 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Neurology</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.NEUROLOGY' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
                         <div class="col-lg-6 col-md-6 mar-bottom"></div>
                     </div>
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0" style="padding: 15px 0px !important;">Motor</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0" style="padding: 15px 0px !important;">{{ 'CLINICAL.MOTOR' | translate }}</label>
                             <!-- <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label> -->
 
                             <div class="col-lg-12 col-md-12 mar-bottom" style="padding:5px; background: #ececec;">
                                 <table class="motor-table table table-striped table-responsive">
 
                                     <tr>
-                                        <th>Root</th>
-                                        <th>Primary Motion</th>
-                                        <th>Tested Muscles</th>
-                                        <th>Sensory</th>
-                                        <th>Right</th>
-                                        <th>Left</th>
+                                        <th>{{ 'CLINICAL.ROOT' | translate }}</th>
+                                        <th>{{ 'CLINICAL.PRIMARY_MOTION' | translate }}</th>
+                                        <th>{{ 'CLINICAL.TESTED_MUSCLES' | translate }}</th>
+                                        <th>{{ 'CLINICAL.SENSORY' | translate }}</th>
+                                        <th>{{ 'CLINICAL.RIGHT' | translate }}</th>
+                                        <th>{{ 'CLINICAL.LEFT' | translate }}</th>
                                     </tr>
                                     <tbody>
                                         <tr>
@@ -685,7 +685,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Sensory</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.SENSORY' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -706,7 +706,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Reflexes</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.REFLEXES' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -714,27 +714,27 @@
                                     <span>
                                         <span>
                                             <input type="radio" name="reflexes">
-                                            <i>Biceps</i>
+                                            <i>{{ 'CLINICAL.BICEPS' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="reflexes">
-                                            <i>Triceps</i>
+                                            <i>{{ 'CLINICAL.TRICEPS' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="reflexes">
-                                            <i>Brachioradialis</i>
+                                            <i>{{ 'CLINICAL.BRACHIORADIALIS' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="reflexes">
-                                            <i>Knee</i>
+                                            <i>{{ 'CLINICAL.KNEE' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="reflexes">
-                                            <i>Ankle</i>
+                                            <i>{{ 'CLINICAL.ANKLE' | translate }}</i>
                                         </span>
                                     </span>
                                 </p>
@@ -744,7 +744,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Bulbocavernous Reflex</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.BULBOCAVERNOUS_REFLEX' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -758,7 +758,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Anal Sensation</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.ANAL_SENSATION' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -772,7 +772,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Anal Tone</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.ANAL_TONE' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -786,7 +786,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Bowel/Bladder</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.BOWEL_BLADDER' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -799,7 +799,7 @@
                     </div>
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0"> Babinski Sign</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.BABINSKI_SIGN' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -817,61 +817,61 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">6 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Risk factors- comorbidities</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.RISK_FACTORS_COMORBIDITIES' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
                         <div class="col-lg-6 col-md-6 mar-bottom">
                             <p>
                                 <span>
                                     <span>
                                         <input type="radio" name="riskFactors">
-                                        <i>rheumatoid arthritis</i>
+                                        <i>{{ 'CLINICAL.RHEUMATOID_ARTHRITIS' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="riskFactors">
-                                        <i>musculoskeletal comorbidities</i>
+                                        <i>{{ 'CLINICAL.MUSCULOSKELETAL_COMORBIDITIES' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="riskFactors">
-                                        <i>diabetes   mellitus</i>
+                                        <i>{{ 'CLINICAL.DIABETES_MELLITUS' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="riskFactors">
-                                        <i>anticoagulation</i>
+                                        <i>{{ 'CLINICAL.ANTICOAGULATION' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="riskFactors">
-                                        <i>hypertension</i>
+                                        <i>{{ 'CLINICAL.HYPERTENSION' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="riskFactors">
-                                        <i>thrombembolic history</i>
+                                        <i>{{ 'CLINICAL.THROMBEMBOLIC_HISTORY' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="riskFactors">
-                                        <i>gastroenterological</i>
+                                        <i>{{ 'CLINICAL.GASTROENTEROLOGICAL' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="riskFactors">
-                                        <i>cardiovascular</i>
+                                        <i>{{ 'CLINICAL.CARDIOVASCULAR' | translate }}</i>
                                     </span>
                                 </span>
                                 <span href="#demo17" data-bs-toggle="collapse">
                                     <span>
                                         <input type="radio" name="riskFactors">
-                                        <i>other</i>
+                                        <i>{{ 'CLINICAL.OTHER' | translate }}</i>
                                     </span>
                                 </span>
                             </p>
 
                             <p id="demo17" class="collapse">
-                                <b style="float: left;">Please Specify!!</b>
+                                <b style="float: left;">{{ 'CLINICAL.PLEASE_SPECIFY' | translate }}</b>
                                 <textarea style="width: 300px;" rows="2"></textarea>
                             </p>
 
@@ -886,13 +886,13 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">7 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Investigations</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.INVESTIGATIONS' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
                         <div class="col-lg-6 col-md-6 mar-bottom">
                             <div style="width: 100%;float: left;margin-bottom: 10px;" *ngFor="let row of allRows; let i=index;">
 
                                 <div class="col-md-1">
-                                    <a (click)="AddNew_Investigation()" class="btn btn-success delBtn" title="Click to add new item"><i class="fa fa-plus"></i></a>
+                                    <a (click)="AddNew_Investigation()" class="btn btn-success delBtn" title="{{ 'CLINICAL.CLICK_TO_ADD' | translate }}"><i class="fa fa-plus"></i></a>
                                 </div>
                                 <div class="col-md-4">
                                     <select id="investigation" class="hideLabel form-control">
@@ -905,7 +905,7 @@
                                     <input type="text" class="form form-control" style="width: 300px;">
                                 </div>
                                 <div class="col-md-1">
-                                    <a (click)="Remove_Investigation(i)" class="btn btn-danger delBtn" title="Click to remove this item"><i class=" fa fa-cross">X</i></a>
+                                    <a (click)="Remove_Investigation(i)" class="btn btn-danger delBtn" title="{{ 'CLINICAL.CLICK_TO_REMOVE' | translate }}"><i class=" fa fa-cross">X</i></a>
                                 </div>
 
                             </div>
@@ -918,39 +918,39 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">8 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Scores</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.SCORES' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
                         <div class="col-lg-6 col-md-6 mar-bottom">
                             <p>
                                 <span>
                                     <span>
                                         <input type="radio" name="scores">
-                                        <i>COMI</i>
+                                        <i>{{ 'CLINICAL.COMI' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="scores">
-                                        <i>SF-36 MCS</i>
+                                        <i>{{ 'CLINICAL.SF36_MCS' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="scores">
-                                        <i>SF-36 PCS</i>
+                                        <i>{{ 'CLINICAL.SF36_PCS' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="scores">
-                                        <i>SRS-22</i>
+                                        <i>{{ 'CLINICAL.SRS22' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="scores">
-                                        <i>ODI </i>
+                                        <i>{{ 'CLINICAL.ODI' | translate }}</i>
                                     </span>
                                 </span><span>
                                     <span>
                                         <input type="radio" name="scores">
-                                        <i>VAS</i>
+                                        <i>{{ 'CLINICAL.VAS' | translate }}</i>
                                     </span>
                                 </span>
                             </p>
@@ -963,7 +963,7 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">9 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Diagnosis</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.DIAGNOSIS' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
                         <div class="col-lg-6 col-md-6 mar-bottom">
                             <p style="padding-bottom: 5px;"><i href="#demo22" data-bs-toggle="collapse" title="show answer" class="fa fa-plus qtn-plus"></i></p>
@@ -978,7 +978,7 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">10 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Treatment</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.TREATMENT' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                         <div class="col-lg-6 col-md-6 mar-bottom">
@@ -988,7 +988,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Medication</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.MEDICATION' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -1002,7 +1002,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Physiotherapy</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.PHYSIOTHERAPY' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -1019,7 +1019,7 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">11 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Plan</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.PLAN' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                         <div class="col-lg-6 col-md-6 mar-bottom">
@@ -1029,7 +1029,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Conservative</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.CONSERVATIVE' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom margin-botttom">
@@ -1037,17 +1037,17 @@
                                     <span>
                                         <span>
                                             <input type="radio" name="plan_Conserv">
-                                            <i>Medication</i>
+                                            <i>{{ 'CLINICAL.MEDICATION' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="plan_Conserv">
-                                            <i>Physiotherapy/Medication</i>
+                                            <i>{{ 'CLINICAL.PHYSIOTHERAPY_MEDICATION' | translate }}</i>
                                         </span>
                                     </span><span>
                                         <span>
                                             <input type="radio" name="plan_Conserv">
-                                            <i>Physiotherapy</i>
+                                            <i>{{ 'CLINICAL.PHYSIOTHERAPY' | translate }}</i>
                                         </span>
                                     </span>
                                 </p>
@@ -1058,7 +1058,7 @@
 
                     <div class="margin-botttom" style="padding-left: 25px;">
                         <div style="width: 96%; float: left;">
-                            <label class="control-label col-lg-5 col-md-5 mar0">Surgey</label>
+                            <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.SURGERY_PLAN' | translate }}</label>
                             <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
 
                             <div class="col-lg-6 col-md-6 mar-bottom">
@@ -1076,7 +1076,7 @@
                 <div class="col-md-12 margin-botttom">
                     <span class="pull-left">12 &nbsp;</span>
                     <div style="width: 96%; float: left;">
-                        <label class="control-label col-lg-5 col-md-5 mar0">Follow Up Date</label>
+                        <label class="control-label col-lg-5 col-md-5 mar0">{{ 'CLINICAL.FOLLOW_UP_DATE' | translate }}</label>
                         <label class="control-label col-lg-1 col-md-1 mar0"><b>:</b></label>
                         <div class="col-lg-6 col-md-6 mar-bottom">
                             <p style="padding-bottom: 5px;"><i href="#demo23" data-bs-toggle="collapse" title="show answer" class="fa fa-plus qtn-plus"></i></p>

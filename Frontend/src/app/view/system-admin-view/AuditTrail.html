@@ -7,44 +7,44 @@
             <div class="col-md-12">
                 <div class="caption custom-caption">
                     <i class="glyphicon glyphicon-asterisk"></i>
-                    <span class="caption-subject" style="text-transform: uppercase;">Audit Trail Details</span>
+                    <span class="caption-subject" style="text-transform: uppercase;">{{ 'SYSTEM_ADMIN.AUDIT_TRAIL_DETAILS' | translate }}</span>
                 </div>
                 <div class="col-md-6 col-xs-12" style="margin-bottom:5px">
                     <div class="form-group">
-                        <label class="control-label col-md-3" style="padding:0px;">From Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                        <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.FROM_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                         <div class="col-md-9">
 
                             <danphe-date-picker [(ngModel)]="CurrentAudit.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="FromDate">
                             </danphe-date-picker>
 
 
-                            <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('FromDate')" [hidden]="CurrentAudit.IsValid('FromDate','required')"> From Date is required</span><br />
-                            <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('FromDate')" [hidden]="CurrentAudit.IsValid('FromDate','wrongDate')"> Enter Valid Date</span>
+                            <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('FromDate')" [hidden]="CurrentAudit.IsValid('FromDate','required')"> {{ 'SYSTEM_ADMIN.FROM_DATE_REQUIRED' | translate }}</span><br />
+                            <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('FromDate')" [hidden]="CurrentAudit.IsValid('FromDate','wrongDate')"> {{ 'SYSTEM_ADMIN.ENTER_VALID_DATE' | translate }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12" style="margin-bottom:5px">
                     <div class="form-group">
-                        <label class="control-label col-md-3" style="padding:0px;">To Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                        <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.TO_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                         <div class="col-md-9">
 
                             <danphe-date-picker [(ngModel)]="CurrentAudit.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="ToDate" >
                             </danphe-date-picker>
-                            <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('ToDate')" [hidden]="CurrentAudit.IsValid('ToDate','required')"> To Date is required</span><br />
-                            <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('ToDate')" [hidden]="CurrentAudit.IsValid('ToDate','wrongDate')"> Can't select future date</span>
+                            <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('ToDate')" [hidden]="CurrentAudit.IsValid('ToDate','required')"> {{ 'SYSTEM_ADMIN.TO_DATE_REQUIRED' | translate }}</span><br />
+                            <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('ToDate')" [hidden]="CurrentAudit.IsValid('ToDate','wrongDate')"> {{ 'SYSTEM_ADMIN.CANT_SELECT_FUTURE_DATE' | translate }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12" style="padding:5px">
                     <div class="col-md-4 col-xs-12">
-                        <label style="display:inline-block;">UserName:</label>
+                        <label style="display:inline-block;">{{ 'SYSTEM_ADMIN.USERNAME_COLON' | translate }}</label>
                         <div class=" autocomplete-item" style="display:inline-block;">
 
                             <input danphe-auto-complete class="form-control "
                                    [(ngModel)]="auditUserName"
                                    [source]="userNameList"
                                    [list-formatter]="userNameFormatter"
-                                   placeholder="--select UserName--"
+                                   [placeholder]="'SYSTEM_ADMIN.SELECT_USERNAME_PLACEHOLDER' | translate"
                                    display-property-name="UserName"
                                    value-property-name=null
                                    min-chars="0"
@@ -59,14 +59,14 @@
                     </div>
                   
                     <div class="col-md-4 col-xs-12">
-                        <label style="display:inline-block;">TableName:</label>
+                        <label style="display:inline-block;">{{ 'SYSTEM_ADMIN.TABLENAME_COLON' | translate }}</label>
                         <div class=" autocomplete-item" style="display:inline-block;">
 
                             <input danphe-auto-complete class="form-control "
                                    [(ngModel)]="auditTableName"
                                    [source]="tableNameList"
                                    [list-formatter]="tableNameFormatter"
-                                   placeholder="--select TableName--"
+                                   [placeholder]="'SYSTEM_ADMIN.SELECT_TABLENAME_PLACEHOLDER' | translate"
                                    display-property-name="Table_Name"
                                    value-property-name=null
                                    min-chars="0"
@@ -84,7 +84,7 @@
                         <div class="form-group pull-right">
                             <button class="btn blue" type="button" (click)="ShowAuditTrailDetails()" [disabled]="!(CurrentAudit.IsValid())">
                                 <i class="fa fa-search"></i>
-                                Show Details
+                                {{ 'SYSTEM_ADMIN.SHOW_DETAILS' | translate }}
                             </button>
                         </div>
                     </div>

@@ -1,10 +1,10 @@
 <div class="wrapper">
   <div class="row mb10">
     <div class="col-lg-4 col-md-12">
-      <label class="control-label mr10">Transfer Type:</label>
+      <label class="control-label mr10">{{ 'WARD_SUPPLY.TRANSFER_TYPE' | translate }}:</label>
       <select [(ngModel)]="TransferId" id="Transferid" style="width:250px;height:30px;" (change)="onChange(TransferId)">
-        <option value="1">Normal Transfer</option>
-        <option value="2">Expiry Transfer</option>
+        <option value="1">{{ 'WARD_SUPPLY.NORMAL_TRANSFER' | translate }}</option>
+        <option value="2">{{ 'WARD_SUPPLY.EXPIRY_TRANSFER' | translate }}</option>
       </select>
     </div>
   </div>
@@ -12,18 +12,18 @@
     <div class="col-md-12">
       <table class="table table-striped table-hover inv_table padLess_table table-bordered">
         <tr>
-          <th>Item Name</th>
-          <th>Generic Name</th>
-          <th>Batch No</th>
-          <th>Cost Price</th>
-          <th>Available Quantity</th>
-          <th>Return Quantity</th>
-          <th style="padding-right: 5px !important;">Quantity</th>
-          <th>Expiry Date</th>
+          <th>{{ 'WARD_SUPPLY.ITEM_NAME' | translate }}</th>
+          <th>{{ 'WARD_SUPPLY.GENERIC_NAME' | translate }}</th>
+          <th>{{ 'WARD_SUPPLY.BATCH_NO' | translate }}</th>
+          <th>{{ 'WARD_SUPPLY.COST_PRICE' | translate }}</th>
+          <th>{{ 'WARD_SUPPLY.AVAILABLE_QTY' | translate }}</th>
+          <th>{{ 'WARD_SUPPLY.RETURN_QUANTITY' | translate }}</th>
+          <th style="padding-right: 5px !important;">{{ 'WARD_SUPPLY.QTY' | translate }}</th>
+          <th>{{ 'WARD_SUPPLY.EXPIRY_DATE' | translate }}</th>
           <th style="width:30px;">
     
             <div class="icheck-inline">
-              <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" [(ngModel)]="selectAllItems" class="zoomcheckbox" ng-checked="selectAllItems" (change)="SelectAllChkOnChange()" title="Select All" [ngModelOptions]="{standalone: true}" />
+              <label class="mt-checkbox mt-checkbox-outline"><input type="checkbox" [(ngModel)]="selectAllItems" class="zoomcheckbox" ng-checked="selectAllItems" (change)="SelectAllChkOnChange()" [title]="'SECURITY.SELECT_ALL' | translate" [ngModelOptions]="{standalone: true}" />
                 <span></span>
               </label>
               </div>
@@ -36,30 +36,30 @@
                 <td>{{row.CostPrice}}</td>
           <td><input [(ngModel)]="row.AvailableQuantity" [ngModelOptions]="{standalone: true}" style="width:80px ; " min="0" class="form-control" type="text" value="" disabled></td>
           <td><input class="form-control" [(ngModel)]="row.DispachedQuantity" [ngModelOptions]="{standalone: true}" (ngModelChange)="ValueChanged(i,row)" style="width:80px ; " min="0" type="number">
-            <span class="error-msg" *ngIf="row.AvailableQuantity<row.DispachedQuantity">Return Qty Should be less than Dispatch Qty</span>
+            <span class="error-msg" *ngIf="row.AvailableQuantity<row.DispachedQuantity">{{ 'WARD_SUPPLY.RETURN_QTY_VALIDATION' | translate }}</span>
           </td>
           <td><input [(ngModel)]="row.Quantity" [ngModelOptions]="{standalone: true}" style="width:80px ; " (ngModelChange)="ValueChanged(i)" min="0" class="form-control" type="text" value="" disabled></td>
           <td>{{row.ExpiryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-          <td><input class="zoomcheckbox" [(ngModel)]="row.IsSelected" name="IsSelected" type="checkbox" ng-checked="row.IsSelected" (change)="SelectItemChkOnChange(row)" [ngModelOptions]="{standalone: true}" title="select item"></td>
+          <td><input class="zoomcheckbox" [(ngModel)]="row.IsSelected" name="IsSelected" type="checkbox" ng-checked="row.IsSelected" (change)="SelectItemChkOnChange(row)" [ngModelOptions]="{standalone: true}" [title]="'WARD_SUPPLY.SELECT_ITEM' | translate"></td>
           </tr>
           </table>
     </div>
     <div *ngIf="medicineList.length" class="" style="margin-top:10px; text-align:center;">
-      <input type="button" style="margin:2em;width:10em;" class="btn btn-success" value="Transfer" (click)="PharmacyTransfer()" [disabled]="loading" />
+      <input type="button" style="margin:2em;width:10em;" class="btn btn-success" [value]="'DISPENSARY.STOCK.TRANSFER' | translate" (click)="PharmacyTransfer()" [disabled]="loading" />
     </div>
   </div>
   <div class="popup-static portlet box portlet-fullscreen" *ngIf="showConfirmation">
     <div class="portlet-body form">
       <!--Model Box Body Start-->
       <div class="form-body">
-        <div class="col-md-12 modelbox-div" style="width: 95%;left: 3%;right:5%; padding-bottom: 10px;"> <i class="btn btn-danger" style="float: right;margin-top:15px;margin-right:15px" (click)="Close()" title="close window">X</i> <br />
+        <div class="col-md-12 modelbox-div" style="width: 95%;left: 3%;right:5%; padding-bottom: 10px;"> <i class="btn btn-danger" style="float: right;margin-top:15px;margin-right:15px" (click)="Close()" [title]="'COMMON.CLOSE' | translate">X</i> <br />
           <table class="table table-striped table-hover">
             <tr>
-              <th style="width: 140px;">Expiry Date</th>
-              <th>Item Name</th>
-              <th>Batch No</th>
-              <th>Ward Name</th>
-              <th>Return Quantity</th>
+              <th style="width: 140px;">{{ 'WARD_SUPPLY.EXPIRY_DATE' | translate }}</th>
+              <th>{{ 'WARD_SUPPLY.ITEM_NAME' | translate }}</th>
+              <th>{{ 'WARD_SUPPLY.BATCH_NO' | translate }}</th>
+              <th>{{ 'WARD_SUPPLY.WARD_NAME' | translate }}</th>
+              <th>{{ 'WARD_SUPPLY.RETURN_QUANTITY' | translate }}</th>
             </tr>
             <tr *ngFor="let row of returnItems;let i = index">
               <td>{{row.ExpiryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
@@ -70,12 +70,12 @@
             </tr>
           </table>
           <div>
-            <label>Received By:</label>
+            <label>{{ 'WARD_SUPPLY.RECEIVED_BY' | translate }}:</label>
             <input [(ngModel)]="ReceivedBy" ngModelOptions="{standalone:true}" name="receivedby" />
-            <span class="color-red font-sm" *ngIf="ReceivedBy==''">Received By User Is Compulsory</span>
+            <span class="color-red font-sm" *ngIf="ReceivedBy==''">{{ 'WARD_SUPPLY.RECEIVED_BY_VALIDATION' | translate }}</span>
             </div>
           <div class="" style="margin-top:10px; text-align:center;">
-            <input type="button" style="margin:2em;width:10em;" class="btn btn-danger" value="Confirm Transfer" (click)="ConfirmTransfer()" [disabled]="loading" />
+            <input type="button" style="margin:2em;width:10em;" class="btn btn-danger" [value]="'WARD_SUPPLY.CONFIRM_TRANSFER' | translate" (click)="ConfirmTransfer()" [disabled]="loading" />
           </div>
         </div>
       </div>

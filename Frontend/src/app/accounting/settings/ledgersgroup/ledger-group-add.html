@@ -1,60 +1,56 @@
-﻿<div class="popup-static portlet box portlet-fullscreen inv_modal" *ngIf="showAddPage">
+<div class="popup-static portlet box portlet-fullscreen inv_modal" *ngIf="showAddPage">
   <div class="portlet-body form">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
-            <h3> <span *ngIf="update==false">Create Ledger Group</span> <span *ngIf="update==true">Update Ledger
-                Group</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span *ngIf="update==false">{{ 'ACCOUNTING.CREATE_LEDGER_GROUP' | translate }}</span> <span *ngIf="update==true">{{ 'ACCOUNTING.UPDATE_LEDGER_GROUP' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <form [formGroup]="CurrentLedgerGroup.LedgerGroupValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-5">Primary Group<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'ACCOUNTING.PRIMARY_GROUP' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <select class="form-control" maxlength="30" type="text" [(ngModel)]="CurrentLedgerGroup.PrimaryGroup"
-                          id="PrimaryGroup" (change)="PrimaryGroupChanged()" placeholder="PrimaryGroup"
+                          id="PrimaryGroup" (change)="PrimaryGroupChanged()"
                           formControlName="PrimaryGroup">
                     <option *ngFor="let pg of primaryGroupList" [disabled]="update" value={{pg.PrimaryGroupName}}>{{pg.PrimaryGroupName}}</option>
                   </select>
                   <span class="color-red font-sm"
-                        [hidden]="CurrentLedgerGroup.IsValidCheck('PrimaryGroup','required') || !(CurrentLedgerGroup.IsDirty('PrimaryGroup'))">Primary
-                    Group Name is required</span>
+                        [hidden]="CurrentLedgerGroup.IsValidCheck('PrimaryGroup','required') || !(CurrentLedgerGroup.IsDirty('PrimaryGroup'))">{{ 'ACCOUNTING.PRIMARY_GROUP_REQUIRED' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Chart Of Account<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'ACCOUNTING.COA' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <select class="form-control" maxlength="30" type="text" [(ngModel)]="CurrentLedgerGroup.COAId" id="COA"
-                          (change)="COAChanged()" placeholder="LedgerGroupName" formControlName="COA">
+                          (change)="COAChanged()" formControlName="COA">
                     <option *ngFor="let pg of coaList" [disabled]="update" value={{pg.ChartOfAccountId}}>{{pg.ChartOfAccountName}}</option>
                   </select>
                   <span class="color-red font-sm"
-                        [hidden]="CurrentLedgerGroup.IsValidCheck('COA','required') || !(CurrentLedgerGroup.IsDirty('COA'))">COA
-                    Name is required</span>
+                        [hidden]="CurrentLedgerGroup.IsValidCheck('COA','required') || !(CurrentLedgerGroup.IsDirty('COA'))">{{ 'ACCOUNTING.COA_REQUIRED' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Ledger Group Name<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'ACCOUNTING.LEDGER_GROUP_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" maxlength="30" type="text"
-                         [(ngModel)]="CurrentLedgerGroup.LedgerGroupName" id="LedgerGroupName" placeholder="LedgerGroupName"
+                         [(ngModel)]="CurrentLedgerGroup.LedgerGroupName" id="LedgerGroupName" [placeholder]="'ACCOUNTING.LEDGER_GROUP_NAME' | translate"
                          formControlName="LedgerGroupName" />
                   <span class="color-red font-sm"
-                        [hidden]="CurrentLedgerGroup.IsValidCheck('LedgerGroupName','required') || !(CurrentLedgerGroup.IsDirty('LedgerGroupName'))">Ledger
-                    Group Name is required</span>
+                        [hidden]="CurrentLedgerGroup.IsValidCheck('LedgerGroupName','required') || !(CurrentLedgerGroup.IsDirty('LedgerGroupName'))">{{ 'ACCOUNTING.LEDGER_GROUP_NAME_REQUIRED' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Description <b>:</b> </label>
+                <label class="control-label col-md-5">{{ 'ACCOUNTING.DESCRIPTION_LABEL' | translate }} <b>:</b> </label>
                 <div class="col-md-7">
                   <input class="form-control" type="text" [(ngModel)]="CurrentLedgerGroup.Description" id="Description"
-                         placeholder="Enter Description" [ngModelOptions]="{standalone: true}" />
+                         [placeholder]="'ACCOUNTING.ENTER_DESCRIPTION' | translate" [ngModelOptions]="{standalone: true}" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Is Active <b>:</b> </label>
+                <label class="control-label col-md-5">{{ 'ACCOUNTING.IS_ACTIVE' | translate }} <b>:</b> </label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -67,10 +63,10 @@
               </div>
               <div class="form-actions">
                 <input type="button" class="btn green btn-success" [disabled]="loading"
-                       (click)="loading=true;AddLedgerGroup();" id="addledger" value="Add Ledger Group"
+                       (click)="loading=true;AddLedgerGroup();" id="addledger" [value]="'ACCOUNTING.ADD_LEDGER_GROUP' | translate"
                        *ngIf="update==false" />
                 <input type="button" class="btn btn-primary" (click)="loading=true;UpdateLedgerGroup();"
-                       [disabled]="loading" value="Update Ledger Group" *ngIf="update==true" />
+                       [disabled]="loading" [value]="'ACCOUNTING.UPDATE_LEDGER_GROUP' | translate" *ngIf="update==true" />
               </div>
               <div class="col-md-2 hidden-xs hidden-sm" style="margin-right: 24px;"> </div>
             </div>

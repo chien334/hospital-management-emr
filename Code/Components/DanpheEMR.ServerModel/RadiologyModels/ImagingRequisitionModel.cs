@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace DanpheEMR.ServerModel
@@ -37,6 +38,7 @@ namespace DanpheEMR.ServerModel
         public int? BillCancelledBy { get; set; }
         public DateTime? BillCancelledOn { get; set; }
         public bool IsReportSaved { get; set; }
+        [ForeignKey("PatientVisitId")]
         public virtual VisitModel Visit { get; set; }       
 
         public virtual PatientModel Patient { get; set; }

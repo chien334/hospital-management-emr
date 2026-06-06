@@ -12,6 +12,7 @@ import { CallbackService } from "../../shared/callback.service";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../shared/routefrom.service";
 import { DoctorsBLService } from "../shared/doctors.bl.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   templateUrl: "./patient-overview.html",
@@ -57,7 +58,8 @@ export class PatientOverviewComponent {
     public msgBoxServ: MessageboxService,
     public doctorsBLService: DoctorsBLService,
     public routeFromService: RouteFromService,
-    public securityService: SecurityService
+    public securityService: SecurityService,
+    public translate: TranslateService
   ) {
     this.currentPatient = new Patient();
     this.patientVisitId = this.visitservice.globalVisit.PatientVisitId;
@@ -84,7 +86,7 @@ export class PatientOverviewComponent {
             }
           }
         } else {
-          this.msgBoxServ.showMessage("failed to load data", [res.ErrorMessage]);
+          this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.FAILED"), [res.ErrorMessage]);
           this.complainLoading = false;
         }
       });
@@ -130,12 +132,12 @@ export class PatientOverviewComponent {
       if (compToAdd.length) {
         this.doctorsBLService.AddComplaints(compToAdd).subscribe(res => {
           if (res.Status == "OK") {
-            this.msgBoxServ.showMessage("success", ['Complaint Added Successfully']);
+            this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.SUCCESS"), [this.translate.instant("PATIENT_OVERVIEW.COMPLAINT_ADDED_SUCCESS")]);
             this.newChiefComplaints = [];
             this.GetChiefComplaints();
             this.complainLoading = false;
           } else {
-            this.msgBoxServ.showMessage("Failed to Add new complaints", [res.ErrorMessage]);
+            this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.FAILED"), [res.ErrorMessage]);
             this.complainLoading = false;
           }
         });
@@ -154,12 +156,12 @@ export class PatientOverviewComponent {
             this.GetChiefComplaints();
             this.complainLoading = false;
             if (res.Results.IsActive) {
-              this.msgBoxServ.showMessage("success", ['Complain Updated successfully']);
+              this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.SUCCESS"), [this.translate.instant("PATIENT_OVERVIEW.COMPLAINT_UPDATED_SUCCESS")]);
             } else {
-              this.msgBoxServ.showMessage("success", ['Complain Removed successfully']);
+              this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.SUCCESS"), [this.translate.instant("PATIENT_OVERVIEW.COMPLAINT_REMOVED_SUCCESS")]);
             }
           } else {
-            this.msgBoxServ.showMessage("Failed to remove this complaint", [res.ErrorMessage]);
+            this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.FAILED"), [res.ErrorMessage]);
             this.complainLoading = false;
           }
         });
@@ -339,7 +341,7 @@ export class PatientOverviewComponent {
       //format patient allergies so that we can show them in PatOverviewMain Page.
       pat.FormatPatientAllergies();
     } else {
-      this.msgBoxServ.showMessage("error", [res.ErrorMessage]);
+      this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.ERROR"), [res.ErrorMessage]);
     }
   }
 
@@ -395,11 +397,11 @@ export class PatientOverviewComponent {
             var index = this.currentPatient.Problems.findIndex(
               (a) => a.PatientProblemId == this.selectedProblem.PatientProblemId
             );
-            this.msgBoxServ.showMessage("success", ["Note Updated"]);
+            this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.SUCCESS"), [this.translate.instant("PATIENT_OVERVIEW.NOTE_UPDATED")]);
             this.currentPatient.Problems[index] = res.Results;
             this.CloseAddProblemNote();
           } else {
-            this.msgBoxServ.showMessage("error", [res.ErrorMessage]);
+            this.msgBoxServ.showMessage(this.translate.instant("PATIENT_OVERVIEW.ERROR"), [res.ErrorMessage]);
             console.log(res.ErrorMessage);
           }
         });

@@ -2,14 +2,14 @@
   <div class="page-breadcrumb" *ngIf="primaryNavItems !== undefined && activeOrganization.OrganizationName !== 'SSF'">
     <li *ngFor="let route of primaryNavItems">
       <a routerLink="{{route.RouterLink}}" [routerLinkActive]="'link3-active'">
-        {{route.DisplayName}}
+        {{ 'CLAIMMANAGEMENT.' + route.DisplayName | translate }}
       </a>
     </li>
   </div>
   <div>
     <span style="padding: 10px;" class="right">
       <label class="label label-primary">
-        Active Organization : <b>{{activeOrganization.DisplayName}}</b>
+        {{ 'CLAIMMANAGEMENT.ACTIVE_ORGANIZATION' | translate }} : <b>{{activeOrganization.DisplayName}}</b>
       </label>
       <i (click)="DeactivateOrganization()" style="
       cursor: pointer;

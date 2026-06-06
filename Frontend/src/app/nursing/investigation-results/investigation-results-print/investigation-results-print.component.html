@@ -99,7 +99,7 @@
                             <table border="0" style="width: 100%; margin: 0 auto;" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td colspan="10" style="text-align: center;">
-                                        <p style="margin: 0 0 5px 0;" class="c_name"><strong>Investigation Results</strong></p>
+                                        <p style="margin: 0 0 5px 0;" class="c_name"><strong>{{ 'NURSING.INVESTIGATION_RESULTS' | translate }}</strong></p>
                                     </td>
                                 </tr>
                                 <tr style="border: 1px solid #ccc;">
@@ -107,34 +107,32 @@
                                         <table style="width: 100%; margin-bottom: 0;">
                                             <tr>
                                                 <td colspan="5" style="text-align: left;">
-                                                    <p class="c_paragraphs" style="margin: 3px 0;">Hospital No.:<strong>
+                                                    <p class="c_paragraphs" style="margin: 3px 0;">{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}:<strong>
                                                             {{PatService.globalPatient.PatientCode}}</strong></p>
                                                 </td>
                                                 <td colspan="5" style="text-align: right;">
-                                                    <p class="c_paragraphs" style="margin: 3px 0;">Ward/Bed
-                                                        No.:<strong>{{PatService.globalPatient.WardName}} /
+                                                    <p class="c_paragraphs" style="margin: 3px 0;">{{ 'NURSING.WARD_BED' | translate }}:<strong>{{PatService.globalPatient.WardName}} /
                                                             {{PatService.globalPatient.BedNo}}</strong></p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="5" style="text-align: left;">
-                                                    <p class="c_paragraphs" style="margin: 3px 0;">Name:<strong>
+                                                    <p class="c_paragraphs" style="margin: 3px 0;">{{ 'NURSING.PATIENT_NAME' | translate }}:<strong>
                                                             {{PatService.globalPatient.ShortName}}</strong></p>
                                                 </td>
                                                 <td colspan="5" style="text-align: right;">
-                                                    <p class="c_paragraphs" style="margin: 3px 0;">Treating
-                                                        Unit:<strong>{{PatService.globalPatient.DepartmentName}}</strong></p>
+                                                    <p class="c_paragraphs" style="margin: 3px 0;">{{ 'NURSING.TREATING_UNIT' | translate }}:<strong>{{PatService.globalPatient.DepartmentName}}</strong></p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="5" style="text-align: left;">
                                                     <p class="c_paragraphs" style="margin: 3px 0;">
-                                                        Age/Sex:<strong>{{PatService.globalPatient.DateOfBirth | DanpheDateTime:'age' }} /
+                                                        {{ 'NURSING.AGE_SEX' | translate }}:<strong>{{PatService.globalPatient.DateOfBirth | DanpheDateTime:'age' }} /
                                                             {{PatService.globalPatient.Gender}}</strong></p>
                                                 </td>
                                                 <td colspan="5" style="text-align: right;">
                                                     <p class="c_paragraphs" style="margin: 3px 0;">
-                                                        D.O.Admission:<strong>{{PatService.globalPatient.AdmittedDate |
+                                                        {{ 'NURSING.DOA' | translate }}:<strong>{{PatService.globalPatient.AdmittedDate |
                                                             DanpheDateTime:'format':'YYYY-MM-DD'}}</strong></p>
                                                 </td>
                                             </tr>
@@ -151,7 +149,7 @@
 
                     <div style="text-align:center;z-index: 4;position: relative; margin-bottom: 25px; margin-top: 15px;">
                         <button class="btn green btn-success" (click)="Print()">
-                            <span>Print</span>&nbsp;&nbsp;
+                            <span>{{ 'COMMON.PRINT' | translate }}</span>&nbsp;&nbsp;
                             &nbsp;&nbsp; <i class="glyphicon glyphicon-print"></i>
                         </button>
                     </div>

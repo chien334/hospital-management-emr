@@ -35,11 +35,11 @@
                   <div class="portlet cstm-portlet portlet-with-collapse">
                     <div class="portlet-title cstm-pt-title">
                       <div class="cstm-portlet-caption">
-                        Vitals List
+                        {{ 'PATIENT_OVERVIEW.VITALS_LIST' | translate }}
                       </div>
                       <div class="cstm-action">
                         <a class="cstm-add" (click)="AddVitalBox()">
-                          <i class="fa fa-plus-circle"></i> New Vitals
+                          <i class="fa fa-plus-circle"></i> {{ 'PATIENT_OVERVIEW.NEW_VITALS' | translate }}
                         </a>
                       </div>
                     </div>
@@ -50,17 +50,17 @@
                                style="margin-bottom: 0px;">
                           <tbody>
                             <tr>
-                              <td>Recorded On</td>
+                              <td>{{ 'PATIENT_OVERVIEW.RECORDED_ON' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList">
                                 <strong>
                                   <!-- {{vitals.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'
-        }} ({{vitals.CreatedOn | nepaliDate }}) -->
+         }} ({{vitals.CreatedOn | nepaliDate }}) -->
                                   <date-lbl [value]="vitals.CreatedOn" [show-time]="true"></date-lbl>
                                 </strong>
                               </td>
                             </tr>
                             <tr>
-                              <td>Taken On</td>
+                              <td>{{ 'PATIENT_OVERVIEW.TAKEN_ON' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList">
                                 <strong>
                                   <date-lbl [value]="vitals.VitalsTakenOn" [show-time]="true"></date-lbl>
@@ -68,7 +68,7 @@
                               </td>
                             </tr>
                             <tr>
-                              <td>Height</td>
+                              <td>{{ 'PATIENT_OVERVIEW.HEIGHT' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList; let i=index;">
                                 <div *ngIf="vitals.HeightUnit!='inch'">
                                   <!--{{vitals.Height |HasValue: vitals.HeightUnit}}-->
@@ -80,33 +80,33 @@
                               </td>
                             </tr>
                             <tr>
-                              <td>Weight</td>
+                              <td>{{ 'PATIENT_OVERVIEW.WEIGHT' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList; let i = index;">
                                 <!--{{vitals.Weight | HasValue: vitals.WeightUnit}}-->
                                 <span class="tooltip" title="{{weightkg[i] | number: '1.2-2'}} kg &#013;{{weightPound[i] | number}}  lbs" style="display: inline; white-space:pre-line;">{{vitals.Weight | HasValue: vitals.WeightUnit}}</span>
                               </td>
                             </tr>
                             <tr>
-                              <td>BMI</td>
+                              <td>{{ 'PATIENT_OVERVIEW.BMI' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList">
                                 {{vitals.BMI}}
                               </td>
                             </tr>
                             <tr>
-                              <td>Temperature</td>
+                              <td>{{ 'PATIENT_OVERVIEW.TEMPERATURE' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList; let i=index;">
                                 <!--{{vitals.Temperature | HasValue: vitals.TemperatureUnit}}-->
                                 <span class="tooltip" title="{{degFarenheit[i] | number}} F&#013;{{degCelsius[i] | number}} C" style="display: inline; white-space:pre-line;">{{vitals.Temperature | HasValue: vitals.TemperatureUnit}}</span>
                               </td>
                             </tr>
                             <tr>
-                              <td>Pulse</td>
+                              <td>{{ 'PATIENT_OVERVIEW.PULSE' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList">
                                 {{vitals.Pulse | HasValue:'/min'}}
                               </td>
                             </tr>
                             <tr>
-                              <td>Blood Pressure</td>
+                              <td>{{ 'PATIENT_OVERVIEW.BLOOD_PRESSURE' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList">
                                 {{
 vitals.BPSystolic |
@@ -115,7 +115,7 @@ vitals.BPSystolic |
                               </td>
                             </tr>
                             <tr>
-                              <td>Respiratory Rate</td>
+                              <td>{{ 'PATIENT_OVERVIEW.RESPIRATORY_RATE' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList">
                                 {{
 vitals.RespiratoryRatePerMin |
@@ -124,19 +124,19 @@ vitals.RespiratoryRatePerMin |
                               </td>
                             </tr>
                             <tr>
-                              <td>SpO2</td>
+                              <td>{{ 'PATIENT_OVERVIEW.SPO2' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList">
                                 {{vitals.SpO2 | HasValue:'percent'}}
                               </td>
                             </tr>
                             <tr>
-                              <td>O<sub>2</sub> Deliver Method</td>
+                              <td>{{ 'PATIENT_OVERVIEW.O2_DELIVERY_METHOD' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList">
                                 {{vitals.OxygenDeliveryMethod}}
                               </td>
                             </tr>
                             <tr>
-                              <td>Body Pain Data</td>
+                              <td>{{ 'PATIENT_OVERVIEW.BODY_PAIN_DATA' | translate }}</td>
                               <td *ngFor="let painList of painDataList">
                                 <div *ngFor="let pnlist of painList">
                                   <span>
@@ -147,15 +147,15 @@ vitals.RespiratoryRatePerMin |
                             </tr>
 
                             <tr>
-                              <td>Action</td>
+                              <td>{{ 'PATIENT_OVERVIEW.ACTION' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList;let i = index">
                                 <a (click)="Edit(vitals,i)"
                                    style="margin-right: 15px;"
                                    class="bs-glyphicon-class btn yellow btn-primary">
-                                  <span class="glyphicon glyphicon-edit"></span>Edit
+                                  <span class="glyphicon glyphicon-edit"></span>{{ 'PATIENT_OVERVIEW.EDIT' | translate }}
                                 </a>
                                 <a (click)="Print(vitals,i)"
-                                   class="bs-glyphicon-class btn btn-primary yello"><span class="fa fa-print"></span>Print</a>
+                                   class="bs-glyphicon-class btn btn-primary yello"><span class="fa fa-print"></span>{{ 'COMMON.PRINT' | translate }}</a>
                               </td>
                             </tr>
                           </tbody>

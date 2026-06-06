@@ -25,10 +25,10 @@
                             <input id="isActive" type="checkbox" [(ngModel)]="isSelectAll"
                                    (change)="SelectAllChkOnChange()" />
                         </th>
-                        <th style="width: 40%;"> Bank Reconciliation Category</th>
-                        <th style="width: 20%;"> Ledger Name </th>
-                        <th style="width: 20%;"> Sub-Ledger Name </th>
-                        <th style="width: 20%;"> DrCr </th>
+                        <th style="width: 40%;"> {{ 'ACCOUNTING.BANK_RECONCILIATION_CATEGORY_HEADER' | translate }}</th>
+                        <th style="width: 20%;"> {{ 'ACCOUNTING.LEDGER_NAME_HEADER' | translate }} </th>
+                        <th style="width: 20%;"> {{ 'ACCOUNTING.SUB_LEDGER_NAME_HEADER' | translate }} </th>
+                        <th style="width: 20%;"> {{ 'ACCOUNTING.DR_CR' | translate }} </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,13 +42,13 @@
                         </td>
                         <td>
                             <input danphe-auto-complete class="form-control" [(ngModel)]="selectedLedger[i]"
-                                   [source]="sourceLedgerList" placeholder="Ledger Name" display-property-name="LedgerName"
+                                   [source]="sourceLedgerList" [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" display-property-name="LedgerName"
                                    value-property-name=LedgerId (focusout)="AssignSelectedLedger(i)"
                                    [list-formatter]="LedgerListFormatter" max-num-list="15"
                                    onclick="this.select()" id="Ledger_{{i+1}}" style="width: 100%;" [disabled]="!led.IsSelected" />
                         </td>
                         <td><input danphe-auto-complete class="form-control" [(ngModel)]="selectedSubLedger[i]"
-                                   [source]="ledgerWiseSubLedger[i]" placeholder="SubLedger Name" display-property-name="SubLedgerName"
+                                   [source]="ledgerWiseSubLedger[i]" [placeholder]="'ACCOUNTING.SUB_LEDGER_NAME_HEADER' | translate" display-property-name="SubLedgerName"
                                    value-property-name=null (valueChanged)="AssignSelectedSubLedger(i)"
                                    [list-formatter]="SubLedgerListFormatter" max-num-list="15"
                                    onclick="this.select()" id="Ledger_{{i+1}}" style="width: 100%;" [disabled]="!led.IsSelected" />
@@ -58,14 +58,14 @@
                                 <input id="Dr" name="Dr" type="checkbox"
                                        [(ngModel)]="led.Dr" (change)="HandleDrCr($event,i)" [ngModelOptions]="{standalone: true}"
                                        [disabled]="!led.IsSelected" />
-                                <span></span> Dr
+                                <span></span> {{ 'ACCOUNTING.DR' | translate }}
                             </label>
 
                             <label class="mt-checkbox mt-checkbox-outline">
                                 <input id="Cr" name="Cr" type="checkbox"
                                        [(ngModel)]="led.Cr" (change)="HandleDrCr($event,i)" [ngModelOptions]="{standalone: true}"
                                        [disabled]="!led.IsSelected" />
-                                <span></span> Cr
+                                <span></span> {{ 'ACCOUNTING.CR' | translate }}
                             </label>
                         </td>
                     </tr>
@@ -79,6 +79,6 @@
 <div class="col-md-12" style="padding-bottom: 10px;">
     <button type="button" class="btn primary-btn" style="float:right; margin-right: 20px !important;" (click)="UpdateBankReconciliation();">
         <i class="fa fa-save"></i>
-        Map Ledgers
+        {{ 'ACCOUNTING.MAP_LEDGERS' | translate }}
     </button>
 </div>

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-6 col-sm-12 text-left">
             <div class="caption lb-caption">
-              <h3><span><i class="fa fa-user"></i>Patient Queue List</span></h3>
+              <h3><span><i class="fa fa-user"></i>{{ 'QUEUE_MGMT.PATIENT_QUEUE_LIST' | translate }}</span></h3>
             </div>
           </div>
     </div>
@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-4" *ngIf="queueLevel!='hospital'">
             <div class="form-group" *ngIf="queueLevel=='department'">
-                <label class="control-label col-md-5">Department<b style="float: right;">:</b></label>
+                <label class="control-label col-md-5">{{ 'QUEUE_MGMT.DEPARTMENT' | translate }}<b style="float: right;">:</b></label>
                 <div class="col-md-7">
                     <input
                     class="form-control"
@@ -19,7 +19,7 @@
                     [ngModelOptions]="{standalone: true}"
                     [list-formatter]="DepartmentListFormatter"
                     [source]="DepartmentList"
-                    placeholder="Select Department"
+                    placeholder="{{ 'QUEUE_MGMT.SELECT_DEPARTMENT' | translate }}"
                     display-property-name="DepartmentName"
                     value-property-name="null"
                     onclick="this.select()"
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="form-group" *ngIf="queueLevel=='doctor'">
-                <label class="control-label col-md-5">Doctor<b style="float: right;">:</b></label>
+                <label class="control-label col-md-5">{{ 'QUEUE_MGMT.DOCTOR' | translate }}<b style="float: right;">:</b></label>
                 <div class="col-md-7">
                     <input
                     class="form-control"
@@ -37,7 +37,7 @@
                     [ngModelOptions]="{standalone: true}"
                     [list-formatter]="DoctorListFormatter"
                     [source]="DoctorList"
-                    placeholder="Select Doctor"
+                    placeholder="{{ 'QUEUE_MGMT.SELECT_DOCTOR' | translate }}"
                     display-property-name="FullName"
                     value-property-name="null"
                     onclick="this.select()"
@@ -48,16 +48,16 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label col-md-3">Status<b style="float: right;">:</b></label>
+                <label class="control-label col-md-3">{{ 'QUEUE_MGMT.STATUS' | translate }}<b style="float: right;">:</b></label>
                 <div *ngFor = "let radio of radioButtons" style="display: inline-flex;" >
                     <input type="radio" id ={{radio.id}} [checked]="radio.value == 'pending'" name='status'[(ngModel)]="selectedStatus" value={{radio.value}} (change)="filterByStatus()">
-                    <label for={{radio.id}} style="margin-left: 5px;margin-right: 10px;">{{radio.label}}</label>
+                    <label for={{radio.id}} style="margin-left: 5px;margin-right: 10px;">{{ 'QUEUE_MGMT.' + radio.id.toUpperCase() | translate }}</label>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="col-lg-6 col-sm-12 text-right"> <button class="btn blue" [disabled]="loading" (click)="loading=true; getAppointmentData()">
-                <i class="fa fa-refresh "></i> Load Data </button> </div>
+                <i class="fa fa-refresh "></i> {{ 'QUEUE_MGMT.LOAD_DATA' | translate }} </button> </div>
         </div>
     </div>
     <br>
@@ -71,18 +71,38 @@
         <div class="col-md-6 col-md-offset-3">
           <div class="modelbox-div">
             <div class="modelbox-header">
-              <h4 class="margin-0-vr">Confirm Your Action ???</h4>
+              <h4 class="margin-0-vr">{{ 'QUEUE_MGMT.CONFIRM_ACTION' | translate }}</h4>
             </div>
             <div class="modelbox-body">
-              <p style="color:green;" *ngIf="showUndoConfirmation">You Are About To <span style="color: rgb(29, 29, 82);"><b>Undo </b></span> <i>{{selectedPatient.ShortName}}</i>. With Queue Number: <i>{{selectedPatient.QueueNo}}</i>. Are You Sure?</p>
-                <p style="color:green;" *ngIf="showSkipConfirmation">You Are About To <span style="color: rgb(241, 90, 90);"><b>Skip </b></span> <i>{{selectedPatient.ShortName}}</i>. With Queue Number: <i>{{selectedPatient.QueueNo}}</i>. Are You Sure?</p>
-                <p style="color:green;" *ngIf="showCheckInConfirmation">You Are About To <span style="color: rgb(90, 92, 241);"><b>CheckIn </b></span> <i>{{selectedPatient.ShortName}}</i>. With Queue Number: <i>{{selectedPatient.QueueNo}}</i>. Are You Sure?</p>
+              <p style="color:green;" *ngIf="showUndoConfirmation">
+                {{ 'QUEUE_MGMT.YOU_ARE_ABOUT_TO' | translate }}
+                <span style="color: rgb(29, 29, 82);"><b>{{ 'QUEUE_MGMT.UNDO' | translate }} </b></span>
+                <i>{{selectedPatient.ShortName}}</i>.
+                {{ 'QUEUE_MGMT.WITH_QUEUE_NUMBER' | translate }}: <i>{{selectedPatient.QueueNo}}</i>.
+                {{ 'QUEUE_MGMT.ARE_YOU_SURE' | translate }}
+              </p>
+              <p style="color:green;" *ngIf="showSkipConfirmation">
+                {{ 'QUEUE_MGMT.YOU_ARE_ABOUT_TO' | translate }}
+                <span style="color: rgb(241, 90, 90);"><b>{{ 'QUEUE_MGMT.SKIP' | translate }} </b></span>
+                <i>{{selectedPatient.ShortName}}</i>.
+                {{ 'QUEUE_MGMT.WITH_QUEUE_NUMBER' | translate }}: <i>{{selectedPatient.QueueNo}}</i>.
+                {{ 'QUEUE_MGMT.ARE_YOU_SURE' | translate }}
+              </p>
+              <p style="color:green;" *ngIf="showCheckInConfirmation">
+                {{ 'QUEUE_MGMT.YOU_ARE_ABOUT_TO' | translate }}
+                <span style="color: rgb(90, 92, 241);"><b>{{ 'QUEUE_MGMT.CHECKIN' | translate }} </b></span>
+                <i>{{selectedPatient.ShortName}}</i>.
+                {{ 'QUEUE_MGMT.WITH_QUEUE_NUMBER' | translate }}: <i>{{selectedPatient.QueueNo}}</i>.
+                {{ 'QUEUE_MGMT.ARE_YOU_SURE' | translate }}
+              </p>
             </div>
             <div class="modelbox-footer">
               <div class="all-buttons text-right">
-                <button type="button" class="btn btn-success btn-sm horizontal-space" (click)="updateQueueStatus()"> Yes
+                <button type="button" class="btn btn-success btn-sm horizontal-space" (click)="updateQueueStatus()">
+                  {{ 'COMMON.YES' | translate }}
                 </button>
-                <button type="button" class="btn btn-cancel btn-sm horizontal-space" (click)="closeConfirmation()"> No
+                <button type="button" class="btn btn-cancel btn-sm horizontal-space" (click)="closeConfirmation()">
+                  {{ 'COMMON.NO' | translate }}
                 </button>
               </div>
             </div>

@@ -98,13 +98,13 @@
            style="border: 1px solid #f3f3f3;background-color: #ffffff; margin-bottom: 15px; border-radius: 5px !important;">
         <div>
           <div class="clearfix" style="font-weight: 600;border-bottom: 1px solid #d2c7c7;padding: 10px 12px;color: #333333;font-size: 14px;">
-            <span class="pull-left" style="padding: 5px 0;">Selected Orders</span>
+            <span class="pull-left" style="padding: 5px 0;">{{ 'PATIENT_OVERVIEW.SELECTED_ORDERS' | translate }}</span>
             <div class="pull-right"><button class="btn btn-danger btn-sm right" style="border-radius: 4px !important;margin-left:10px;"
                       (click)="CancelAll()">
-                Cancel
+                {{ 'CANCEL' | translate }}
               </button>
               <button class="btn blue btn-sm right" style="border-radius: 4px !important;" (click)="ProceedAll()">
-                Proceed
+                {{ 'PATIENT_OVERVIEW.PROCEED' | translate }}
               </button>
             </div>
 
@@ -113,7 +113,7 @@
             <div class="order-item-list">
               <div class="ord-new-items">
                 <div class="item-type-head">
-                  Lab
+                  {{ 'PATIENT_OVERVIEW.LAB_ORDER' | translate }}
                 </div>
 
                 <div class="item-type-name" *ngFor="let itm of selOrdItems;">
@@ -133,7 +133,7 @@
             <div class="order-item-list">
               <div class="ord-new-items">
                 <div class="item-type-head">
-                  Medication
+                  {{ 'PATIENT_OVERVIEW.MEDICATION_ORDER' | translate }}
                 </div>
 
                 <div class="med-itm" *ngFor="let itm of selOrdItems;">
@@ -153,7 +153,7 @@
             <div class="order-item-list">
               <div class="ord-new-items">
                 <div class="item-type-head">
-                  Imaging
+                  {{ 'PATIENT_OVERVIEW.IMAGING' | translate }}
                 </div>
 
                 <div class="item-type-name" *ngFor="let itm of selOrdItems;">
@@ -173,7 +173,7 @@
             <div class="order-item-list">
               <div class="ord-new-items">
                 <div class="item-type-head">
-                  Others
+                  {{ 'PATIENT_OVERVIEW.OTHERS' | translate }}
                 </div>
 
                 <div class="item-type-name" *ngFor="let itm of selOrdItems;">
@@ -200,7 +200,7 @@
         <div class="portlet">
           <div class="portlet-title cstm-pt-title">
             <div class="cstm-portlet-caption caption lb-caption no-padding">
-              <h3><span><i class="fa fa-lightbulb-o"></i> Active Orders</span></h3>
+              <h3><span><i class="fa fa-lightbulb-o"></i> {{ 'PATIENT_OVERVIEW.ACTIVE_ORDERS' | translate }}</span></h3>
             </div>
           </div>
           <div class="cstm-portlet-body" style="margin-top: 10px;">
@@ -208,13 +208,13 @@
               <table class="table table-responsive doc-tbl">
                 <tr>
                   <th>
-                    Type
+                    {{ 'PATIENT_OVERVIEW.TYPE' | translate }}
                   </th>
                   <th>
-                    Name
+                    {{ 'PATIENT_OVERVIEW.ORDER_NAME' | translate }}
                   </th>
                   <th>
-                    Status
+                    {{ 'PATIENT_OVERVIEW.STATUS' | translate }}
                   </th>
                 </tr>
                 <tr *ngFor="let res of currPat.LabRequisitions">
@@ -224,15 +224,15 @@
                   <td>{{res.LabTestName}} on <span>{{res.OrderDateTime | DanpheDateTime:'datename':'DD.MM.YYYY HH:mm'}}</span></td>
                   <td>
                     <a style="text-decoration:underline;font-weight:bold;cursor:pointer;" *ngIf="res.OrderStatus=='final'"
-                       (click)="ViewLabReport(res.RequisitionId)">View</a>
+                       (click)="ViewLabReport(res.RequisitionId)">{{ 'PATIENT_OVERVIEW.VIEW' | translate }}</a>
                     <span *ngIf="res.OrderStatus!='final'">{{res.OrderStatus}}</span>
                   </td>
                 </tr>
                 <tr *ngFor="let med of currPat.MedicationPrescriptions">
-                  <td>Medication</td>
+                  <td>{{ 'PATIENT_OVERVIEW.MEDICATION_ORDER' | translate }}</td>
                   <td>
-                    <b>{{med.MedicationName}}</b>&nbsp;&nbsp;{{med.Frequency}}&nbsp;times a day
-                    &nbsp;&nbsp;&nbsp;&nbsp;Start Date- {{med.CreatedOn | DanpheDateTime:'datename':'DD.MM.YYYY'}}
+                    <b>{{med.MedicationName}}</b>&nbsp;&nbsp;{{med.Frequency}}&nbsp;{{ 'PATIENT_OVERVIEW.TIMES_A_DAY' | translate }}
+                    &nbsp;&nbsp;&nbsp;&nbsp;{{ 'PATIENT_OVERVIEW.START_DATE' | translate }} {{med.CreatedOn | DanpheDateTime:'datename':'DD.MM.YYYY'}}
                   </td>
                   <td>
                     active
@@ -248,7 +248,7 @@
 
                 </tr>
                 <tr *ngFor="let otherOdr of otherActiveRequests">
-                  <td>Others</td>
+                  <td>{{ 'PATIENT_OVERVIEW.OTHERS' | translate }}</td>
                   <td>{{otherOdr.ItemName}} &nbsp;&nbsp;{{otherOdr.CreatedOn | DanpheDateTime:'datename':'DD.MM.YYYY HH:mm'}}</td>
                   <td>
                     {{otherOdr.BillStatus}}
@@ -266,7 +266,7 @@
         <div class="portlet">
           <div class="portlet-title cstm-pt-title">
             <div class="cstm-portlet-caption caption lb-caption no-padding">
-              <h3><span><i class="fa fa-plus"></i> New Orders</span></h3>
+              <h3><span><i class="fa fa-plus"></i> {{ 'PATIENT_OVERVIEW.NEW_ORDERS' | translate }}</span></h3>
             </div>
           </div>
           <div class="cstm-portlet-body">
@@ -274,10 +274,10 @@
               <div class="col-md-3">
                 <select class="form-control" [(ngModel)]="selItemType" style="width:90%; height: 30px;" (ngModelChange)="ItemsTypeOnChange()">
                   <option value="All">----------</option>
-                  <option value="Lab">Labs</option>
-                  <option value="Imaging">Imaging</option>
-                  <option value="Medication">Medication</option>
-                  <option value="Others">Others</option>
+                  <option value="Lab">{{ 'PATIENT_OVERVIEW.LABS' | translate }}</option>
+                  <option value="Imaging">{{ 'PATIENT_OVERVIEW.IMAGING' | translate }}</option>
+                  <option value="Medication">{{ 'PATIENT_OVERVIEW.MEDICATIONS' | translate }}</option>
+                  <option value="Others">{{ 'PATIENT_OVERVIEW.OTHERS' | translate }}</option>
                 </select>
 
               </div>
@@ -287,7 +287,7 @@
                          [(ngModel)]="selOrdItem"
                          [source]="ordItemsFiltered"
                          [list-formatter]="orderItemsListFormatter"
-                         placeholder="search order items"
+                         [placeholder]="'PATIENT_OVERVIEW.SEARCH_ORDER_ITEMS' | translate"
                          display-property-name="ItemName"
                          max-num-list="20"
                          match-formatted="false"
@@ -348,7 +348,7 @@
 
   <div class="row" style="margin-top: 25px;" *ngIf="MedicationExist">
     <div class="col-md-12">
-      <a class="btn btn-primary" (click)="printMedications()">Print Medication</a>
+      <a class="btn btn-primary" (click)="printMedications()">{{ 'PATIENT_OVERVIEW.PRINT_MEDICATION' | translate }}</a>
     </div>
   </div>
 </div>

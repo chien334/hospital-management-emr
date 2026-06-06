@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -240,7 +240,7 @@ namespace DanpheEMR.Controllers
             PatientModel patientModel = new PatientModel();
             patientModel = (from pat in _patientDbContext.Patients
                             where pat.PatientId == patientId
-                            select pat).Include(a => a.Visits.Select(v => v.Vitals))
+                            select pat).Include(a => a.Visits).ThenInclude(v => v.Vitals)
                              .Include(a => a.Problems)
                              .Include(a => a.Allergies)
                              .Include(a => a.Addresses)

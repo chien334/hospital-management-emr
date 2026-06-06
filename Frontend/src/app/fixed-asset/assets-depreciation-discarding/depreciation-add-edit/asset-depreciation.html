@@ -4,25 +4,25 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> Depreciation History of <strong> {{selectedAsset.ItemName | CapitalFirstLetter}} |
+            <h3> {{ 'FIXED_ASSETS.DEPRECIATION_HISTORY_OF' | translate }} <strong> {{selectedAsset.ItemName | CapitalFirstLetter}} |
                 {{selectedAsset.BarCodeNumber}}</strong>
             </h3>
             <a class="btn btn-danger" (click)="Close()"><i class="fa fa-close"></i></a>
           </div>
           <div style="padding: 0 10px;">
             <a class="btn btn-primary" (click)="AddDepreciationBtnClick()" style="margin-bottom: 10px!important;">
-              Add Depreciation</a>
+              {{ 'FIXED_ASSETS.ADD_DEPRECIATION' | translate }}</a>
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
-                  <th>Fiscal Year</th>
-                  <th>Depreciation Method</th>
-                  <th>Rate</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Depreciation Value</th>
-                  <th>Accumulated Amount</th>
-                  <th *ngIf="isCurrentYearDeprenRecorded">Action</th>
+                  <th>{{ 'FIXED_ASSETS.FISCAL_YEAR' | translate }}</th>
+                  <th>{{ 'FIXED_ASSETS.DEPRECIATION_METHOD' | translate }}</th>
+                  <th>{{ 'FIXED_ASSETS.RATE' | translate }}</th>
+                  <th>{{ 'FIXED_ASSETS.START_DATE' | translate }}</th>
+                  <th>{{ 'FIXED_ASSETS.END_DATE' | translate }}</th>
+                  <th>{{ 'FIXED_ASSETS.DEPRECIATION_VALUE' | translate }}</th>
+                  <th>{{ 'FIXED_ASSETS.ACCUMULATED_AMOUNT' | translate }}</th>
+                  <th *ngIf="isCurrentYearDeprenRecorded">{{ 'COMMON.ACTION' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -35,25 +35,25 @@
                   <td>{{dprn.DepreciationAmount}}</td>
                   <td>{{dprn.AccumulatedAmount}}</td>
                   <td *ngIf="isCurrentYearDeprenRecorded"><a *ngIf="dprn.FiscalYearId==currentFiscalYearId"
-                      class="btn btn-primary" (click)="EditCurrentYearDepreciation(i)"> Edit </a></td>
+                      class="btn btn-primary" (click)="EditCurrentYearDepreciation(i)"> {{ 'COMMON.EDIT' | translate }} </a></td>
                 </tr>
                 <tr *ngIf="(depreciationList.length==0)">
-                  <td class="text-center" colspan="7">No Depreciation Records</td>
+                  <td class="text-center" colspan="7">{{ 'FIXED_ASSETS.NO_DEPRECIATION_RECORDS' | translate }}</td>
                 </tr>
               </tbody>
             </table>
 
             <div *ngIf="showAddForm" style="margin-top: 50px!important;">
-              <p class="text-center" style="font-weight: 700;font-size: large;">{{EditMode?"Edit":"Add"}} Form</p>
+              <p class="text-center" style="font-weight: 700;font-size: large;">{{ (EditMode ? 'FIXED_ASSETS.EDIT_FORM' : 'FIXED_ASSETS.ADD_FORM') | translate }}</p>
               <form class="hm-form" [formGroup]="depreciation.DepreciationValidators">
                 <table class="table table-striped table-bordered table-hover">
                   <tbody>
                     <tr style="font-weight: 700; margin-bottom: 100px!important;">
-                      <td>Item Code :</td>
+                      <td>{{ 'FIXED_ASSETS.ITEM_CODE' | translate }} :</td>
                       <td>{{selectedAsset.ItemCode}}</td>
-                      <td>Item Name :</td>
+                      <td>{{ 'FIXED_ASSETS.ITEM_NAME' | translate }} :</td>
                       <td>{{selectedAsset.ItemName}}</td>
-                      <td>Barcode Number: </td>
+                      <td>{{ 'FIXED_ASSETS.BAR_CODE_NUMBER' | translate }}: </td>
                       <td>{{selectedAsset.BarCodeNumber}}</td>
                     </tr>
                     <tr>
@@ -63,28 +63,26 @@
                       <td></td>
                     </tr>
                     <tr>
-                      <td>Fiscal Year<sup>*</sup>:</td>
+                      <td>{{ 'FIXED_ASSETS.FISCAL_YEAR' | translate }}<sup>*</sup>:</td>
                       <!-- <td><input  type="text" [(ngModel)]="depreciation.FiscalYearId"/>   </td> (change)="FiscalYearChange(fy)"  -->
                       <td><select (change)="FiscalYearChange($event)" [(ngModel)]="depreciation.FiscalYearId"
-                          formControlName="FiscalYearId">
-                          <option [value]="undefined">Select Fiscal Year</option>
+                           formControlName="FiscalYearId">
+                          <option [value]="undefined">{{ 'FIXED_ASSETS.SELECT_FISCAL_YEAR' | translate }}</option>
                           <option *ngFor="let fy of fiscalYearList" [value]="fy.FiscalYearId">{{fy.FiscalYearName}}
                           </option>
                         </select>
                         &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm"
-                          [hidden]="depreciation.IsValidCheck('FiscalYearId','required') || !(depreciation.IsDirty('FiscalYearId'))">Fiscal
-                          Year is required !</span>
+                          [hidden]="depreciation.IsValidCheck('FiscalYearId','required') || !(depreciation.IsDirty('FiscalYearId'))">{{ 'FIXED_ASSETS.FISCAL_YEAR_REQUIRED' | translate }}</span>
                       </td>
-                      <td>Depreciation Method<sup>*</sup>:</td>
+                      <td>{{ 'FIXED_ASSETS.DEPRECIATION_METHOD' | translate }}<sup>*</sup>:</td>
                       <td><select (change)="DeprnMethodChange($event)" [(ngModel)]="depreciation.AssetDeprnMethodId"
                           formControlName="AssetDeprnMethodId">
-                          <option [value]="undefined">Select Method</option>
+                          <option [value]="undefined">{{ 'FIXED_ASSETS.SELECT_METHOD' | translate }}</option>
                           <option *ngFor="let meth of methodList" [value]="meth.AssetDeprnMethodId">{{meth.Method}}
                           </option>
                         </select>
                         &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm"
-                          [hidden]="depreciation.IsValidCheck('AssetDeprnMethodId','required') || !(depreciation.IsDirty('AssetDeprnMethodId'))">Depreciation
-                          Method is required !</span>
+                          [hidden]="depreciation.IsValidCheck('AssetDeprnMethodId','required') || !(depreciation.IsDirty('AssetDeprnMethodId'))">{{ 'FIXED_ASSETS.DEPRECIATION_METHOD_REQUIRED' | translate }}</span>
                       </td>
 
                     </tr>
@@ -92,22 +90,20 @@
                       <td></td>
                     </tr>
                     <tr>
-                      <td>Start Date<sup>*</sup>:</td>
+                      <td>{{ 'FIXED_ASSETS.START_DATE' | translate }}<sup>*</sup>:</td>
                       <td>
                         <danphe-date-picker ngDefaultControl [CalendarTypes]="'np,en'" formControlName="StartDate"
                           [(ngModel)]="depreciation.StartDate" style="width:100px;"></danphe-date-picker>
                         &nbsp;&nbsp;&nbsp;
                         <span Class="color-red font-sm"
-                          [hidden]="depreciation.IsValidCheck('StartDate','required') || !(depreciation.IsDirty('StartDate'))">Start
-                          Date is required !</span>
+                          [hidden]="depreciation.IsValidCheck('StartDate','required') || !(depreciation.IsDirty('StartDate'))">{{ 'FIXED_ASSETS.START_DATE_REQUIRED' | translate }}</span>
                       </td>
-                      <td>End Date<sup>*</sup>:</td>
+                      <td>{{ 'FIXED_ASSETS.END_DATE' | translate }}<sup>*</sup>:</td>
                       <td>
                         <danphe-date-picker ngDefaultControl [CalendarTypes]="'np,en'" formControlName="EndDate"
                           [(ngModel)]="depreciation.EndDate" style="width:100px;"></danphe-date-picker>
                         &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm"
-                          [hidden]="depreciation.IsValidCheck('EndDate','required') || !(depreciation.IsDirty('EndDate'))">End
-                          Date is required !</span>
+                          [hidden]="depreciation.IsValidCheck('EndDate','required') || !(depreciation.IsDirty('EndDate'))">{{ 'FIXED_ASSETS.END_DATE_REQUIRED' | translate }}</span>
                       </td>
                     </tr>
                     <tr>
@@ -115,15 +111,14 @@
                     </tr>
 
                     <tr>
-                      <td>Rate :</td>
+                      <td>{{ 'FIXED_ASSETS.RATE' | translate }} :</td>
                       <td><input type="number" [(ngModel)]="depreciation.Rate" [ngModelOptions]="{standalone:true}" />
                       </td>
-                      <td> Depreciation Value<sup>*</sup>:</td>
+                      <td> {{ 'FIXED_ASSETS.DEPRECIATION_VALUE' | translate }}<sup>*</sup>:</td>
                       <td><input type="number" [(ngModel)]="depreciation.DepreciationAmount"
                           formControlName="DepreciationAmount" />
                         &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm"
-                          [hidden]="depreciation.IsValidCheck('DepreciationAmount','required') || !(depreciation.IsDirty('DepreciationAmount'))">Depreciation
-                          Amount is required !</span>
+                          [hidden]="depreciation.IsValidCheck('DepreciationAmount','required') || !(depreciation.IsDirty('DepreciationAmount'))">{{ 'FIXED_ASSETS.DEPRECIATION_AMOUNT_REQUIRED' | translate }}</span>
                       </td>
                     </tr>
                   </tbody>
@@ -134,7 +129,7 @@
               <div class="panel-footer">
                 <button *ngIf="showAddForm" type="button" class="btn btn-success" (click)="Submit()"
                   [disabled]="loading">
-                  {{EditMode?"Update":"Add"}} Depreciation Details
+                  {{ (EditMode ? 'FIXED_ASSETS.UPDATE_DEPRECIATION_DETAILS' : 'FIXED_ASSETS.ADD_DEPRECIATION_DETAILS') | translate }}
                 </button>
               </div>
             </div>

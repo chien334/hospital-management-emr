@@ -86,7 +86,7 @@
   <div class="col-md-12">
     <div class="caption lb-caption">
       <i class="glyphicon glyphicon-asterisk"></i>
-      <span class="caption-subject">Select your Substore</span>
+      <span class="caption-subject">{{ 'WARD_SUPPLY.SELECT_YOUR_SUBSTORE' | translate }}</span>
     </div>
   </div>
   <div class="col-md-12" *ngIf="subStoreList != undefined">
@@ -99,7 +99,7 @@
           </span>
           <span class="report-name">
             <i>{{subStore.Name}}</i>
-            <i>Substore</i>
+            <i>{{ 'WARD_SUPPLY.SUBSTORE' | translate }}</i>
           </span>
         </div>
       </a>
@@ -114,11 +114,11 @@
       style="float: right;font-size: 25px;left: 6px;bottom: 11px;color: #313131;position: relative;"></div>
     <i (click)="CloseInfo()" class="fa fa-close"
       style="cursor:pointer;float: right;font-size: 15px;font-weight: lighter;left: 18px;top: 3px;position: relative;"></i>
-    <h6>You are currently in {{selectedStore.Name}} sub store. To change, you can always click here.</h6>
+    <h6>{{ 'WARD_SUPPLY.SUBSTORE_INFO_POPUP' | translate: { selectedStoreName: selectedStore.Name } }}</h6>
   </div>
   <span style="padding:10px" class="right">
     <label class="label label-primary">
-      Active Store : <b>{{selectedStore.Name}}</b>
+      {{ 'WARD_SUPPLY.ACTIVE_STORE' | translate }} : <b>{{selectedStore.Name}}</b>
     </label>
     <i (mouseenter)="ShowInfo()" (click)="UnsetGlobalSubStore()"
       style="cursor:pointer;margin-left: 5px;font-size: 20px;position: relative;top: 2px;left:5px;"
@@ -139,7 +139,7 @@
     <li *ngIf="secondaryNavItems && secondaryNavItems.length>0" class="dropdown bil-hr-bar"
       style="display:inline-block;">
       <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        More...
+        {{ 'COMMON.MORE' | translate }}
         <span class="caret"></span>
       </a>
       <ul class="dropdown-menu bil-hr-dropdown">

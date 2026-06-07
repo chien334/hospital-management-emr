@@ -8,9 +8,7 @@ DECLARE
 BEGIN
     /*
      file: sp_inctv_viewtxn_invoiceitemlevel
-     description: 
-     conditions/checks: 
-    
+     description: to get transaction item level details and fraction info
      remarks: we're returning 2 tables from here
      Change History:
      S.No.    ChangeDate/By					Remarks
@@ -22,30 +20,44 @@ BEGIN
     */
     
     	--table:1 -- get billingtransactionitem information---
-    	open ref1 for select patientid
-    		,billingtransactionitemid
-    		,billingtransactionid
-    		,integrationitemid
-    		,itemname
-    		,quantity
-    		,price
-    		,subtotal
-    		,discountamount
-    		,totalamount
-    		,serviceitemid
-    		,pricecat.pricecategoryid
-    		,pricecat.pricecategoryname
-    	from (select patientid,billingtransactionitemid,billingtransactionid, integrationitemid, itemname, quantity,
-    			price, subtotal, discountamount, totalamount, serviceitemid, pricecategoryid
-    			from bil_txn_billingtransactionitems
-    	where billingtransactionid = p_billingtansactionid) itms
-    	inner join bil_cfg_pricecategory pricecat on itms.pricecategoryid = pricecat.pricecategoryid;
-        return next ref1;
+    	OPEN ref1 FOR SELECT 
+    	    itms."PatientId",
+    		itms."BillingTransactionItemId",
+    		itms."BillingTransactionId",
+    		itms."IntegrationItemId",
+    		itms."ItemName",
+    		itms."Quantity",
+    		itms."Price",
+    		itms."SubTotal",
+    		itms."DiscountAmount",
+    		itms."TotalAmount",
+    		itms."ServiceItemId",
+    		pricecat."PriceCategoryId",
+    		pricecat."PriceCategoryName"
+    	FROM (
+    	    SELECT 
+    	        "PatientId",
+    	        "BillingTransactionItemId",
+    	        "BillingTransactionId", 
+    	        "IntegrationItemId", 
+    	        "ItemName", 
+    	        "Quantity",
+    			"Price", 
+    			"SubTotal", 
+    			"DiscountAmount", 
+    			"TotalAmount", 
+    			"ServiceItemId", 
+    			"PriceCategoryId"
+    		FROM "BIL_TXN_BillingTransactionItems"
+    	    WHERE "BillingTransactionId" = p_billingtansactionid
+    	) itms
+    	INNER JOIN "BIL_CFG_PriceCategory" pricecat ON itms."PriceCategoryId" = pricecat."PriceCategoryId";
+        RETURN NEXT ref1;
     
     	--table:2 -- get fraction information---
-    	open ref2 for select *
-    	from inctv_txn_incentivefractionitem
-    	where billingtransactionid = p_billingtansactionid;
-        return next ref2;
+    	OPEN ref2 FOR SELECT *
+    	FROM "INCTV_TXN_IncentiveFractionItem"
+    	WHERE "BillingTransactionId" = p_billingtansactionid;
+        RETURN NEXT ref2;
 END;
 $$ LANGUAGE plpgsql;

@@ -15,10 +15,7 @@ RETURNS TABLE (
 BEGIN
     /*
      file: sp_inctv_viewtxn_invoicelevel
-     description: 
-     conditions/checks: 
-            
-    
+     description: to get transaction invoices details on invoice level
      remarks: needs revision.
      change history:
      s.no.    changedate/by       remarks
@@ -26,18 +23,18 @@ BEGIN
      
     */
     
-    
     RETURN QUERY SELECT
-    pat.PatientId, pat.FirstName||' '||COALESCE(pat.MiddleName||' ','')||pat.LastName AS "PatientName", pat.PatientCode,
-    
-     fyear.FiscalYearFormatted ||'-'|| biltxn.invoicecode || cast(biltxn.invoiceno as varchar(20)) AS "InvoiceNo" 
-    , biltxn.createdon AS "TransactionDate", biltxn.totalamount, biltxn.billingtransactionid
-    
-    from bil_txn_billingtransaction biltxn, bil_cfg_fiscalyears fyear, pat_patient pat
-    where 
-    	biltxn.fiscalyearid=fyear.fiscalyearid 
-    	and biltxn.patientid=pat.patientid
-    	and (biltxn.createdon)::date between p_fromdate and p_todate
-    	and coalesce(biltxn.returnstatus,0) = 0;
+        pat."PatientId"::INT, 
+        (pat."FirstName" || ' ' || COALESCE(pat."MiddleName" || ' ', '') || pat."LastName")::VARCHAR AS "PatientName", 
+        pat."PatientCode"::VARCHAR,
+        (fyear."FiscalYearFormatted" || '-' || biltxn."InvoiceCode" || CAST(biltxn."InvoiceNo" AS VARCHAR(20)))::VARCHAR AS "InvoiceNo", 
+        biltxn."CreatedOn"::TIMESTAMP AS "TransactionDate", 
+        biltxn."TotalAmount"::DECIMAL, 
+        biltxn."BillingTransactionId"::INT
+    FROM "BIL_TXN_BillingTransaction" AS biltxn
+    JOIN "BIL_CFG_FiscalYears" AS fyear ON biltxn."FiscalYearId" = fyear."FiscalYearId"
+    JOIN "PAT_Patient" AS pat ON biltxn."PatientId" = pat."PatientId"
+    WHERE (biltxn."CreatedOn")::DATE BETWEEN (p_fromdate)::DATE AND (p_todate)::DATE
+      AND COALESCE(biltxn."ReturnStatus", FALSE) = FALSE;
 END;
 $$ LANGUAGE plpgsql;

@@ -22,16 +22,26 @@ BEGIN
     3.      rajib/02-26-2020						update invoiceitemid
     */
     
-    begin
-      if ((p_fromdate is not null) and (p_todate is not null) and (p_storeid is not null))
-    		then
-    			RETURN QUERY SELECT (consum.createdon)::date AS "Date", consum.itemname, gene.genericname, consum.quantity AS "Quantity" 
-    			from ward_consumption as consum 
-    			join phrm_mst_item as itm on consum.itemid=itm.itemid
-    			join phrm_mst_generic as gene on  itm.genericid=gene.genericid
-    			where consum.storeid = p_storeid and (consum.createdon)::date between coalesce(p_fromdate,current_timestamp)  and coalesce(p_todate,current_timestamp)+1
-    			group by (consum.createdon)::date,consum.itemname,consum.quantity, gene.genericname,consum.invoiceitemid;
-    		end if;		
-    end;
+    BEGIN
+      IF ((p_fromdate IS NOT NULL) AND (p_todate IS NOT NULL) AND (p_storeid IS NOT NULL))
+    		THEN
+    			RETURN QUERY SELECT 
+    			    (consum."CreatedOn")::date::timestamp AS "Date", 
+    			    consum."ItemName"::VARCHAR, 
+    			    gene."GenericName"::VARCHAR, 
+    			    consum."Quantity"::INT AS "Quantity" 
+    			FROM "WARD_Consumption" AS consum 
+    			JOIN "PHRM_MST_Item" AS itm ON consum."ItemId" = itm."ItemId"
+    			JOIN "PHRM_MST_Generic" AS gene ON itm."GenericId" = gene."GenericId"
+    			WHERE consum."StoreId" = p_storeid 
+    			  AND (consum."CreatedOn")::DATE BETWEEN (p_fromdate)::DATE AND (p_todate)::DATE
+    			GROUP BY 
+    			    (consum."CreatedOn")::DATE,
+    			    consum."ItemName",
+    			    consum."Quantity", 
+    			    gene."GenericName",
+    			    consum."InvoiceItemId";
+    		END IF;		
+    END;
 END;
 $$ LANGUAGE plpgsql;

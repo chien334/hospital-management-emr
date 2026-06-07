@@ -14,7 +14,7 @@ RETURNS TABLE (
 ) AS $$
 BEGIN
     /*
-    filename: "sp_wardreport_transferreport" '1/7/2020','1/8/2020',13
+    filename: "sp_wardreport_transferreport"
     createdby/date: rusha/03-26-2019
     description: to get the details of report of ward to ward tranfer and ward to pharmacy trannsfer of stock 
     remarks:    
@@ -25,29 +25,29 @@ BEGIN
     3.		sanjit/05-22-2020						corrected date format
     */
     
-    begin
-      if ((p_fromdate is not null) and (p_todate is not null)) 
-    		then
-    		--if (p_status = 1)
-    			--select convert(date,transc.createdon) AS "Date",itemname, transc.quantity AS "TransferQty", remarks,transc.createdby AS "TransferedBy",transc.receivedby AS "ReceivedBy" from ward_transaction as transc
-    			--join phrm_mst_item as itm on transc.itemid=itm.itemid
-    			--where transactiontype = 'WardtoWard' and convert(date, transc.createdon) between coalesce(p_fromdate,current_timestamp)  and coalesce(p_todate,current_timestamp)+1
-    			--group by itm.itemname, transc.quantity,transc.remarks, convert(date,transc.createdon),transc.createdby,transc.receivedby
-    		
-    		--elsif (p_status =0)
-    			 RETURN QUERY SELECT (transc.createdon)::varchar AS "Date",itemname, transc.quantity AS "TransferQty",transc.remarks,transc.createdby AS "TransferedBy",transc.receivedby AS "ReceivedBy" 
-    			from ward_transaction as transc
-    			join phrm_mst_item as itm on transc.itemid=itm.itemid
-    			where transc.storeid = p_storeid and transactiontype = 'WardToPharmacy' and (transc.createdon)::date between coalesce(p_fromdate,current_timestamp)  and coalesce(p_todate,current_timestamp)+1
-    			group by itm.itemname, transc.quantity,transc.remarks,transc.createdon,transc.createdby,transc.receivedby;
-    			 
-    
-    		--else
-    			--select convert(date,transc.createdon) AS "Date",itemname, transc.quantity AS "TransferQty", remarks,transc.createdby AS "TransferedBy",transc.receivedby AS "ReceivedBy" from ward_transaction as transc
-    			--join phrm_mst_item as itm on transc.itemid=itm.itemid
-    			--where transactiontype in ('WardToPharmacy','WardtoWard') and convert(date, transc.createdon) between coalesce(p_fromdate,current_timestamp)  and coalesce(p_todate,current_timestamp)+1
-    			--group by itm.itemname, transc.quantity,transc.remarks, convert(date,transc.createdon),transc.createdby,transc.receivedby
-    		end if;	
-    end;
+    BEGIN
+      IF ((p_fromdate IS NOT NULL) AND (p_todate IS NOT NULL)) 
+    		THEN
+    			 RETURN QUERY SELECT 
+    			    (transc."CreatedOn")::date::timestamp AS "Date",
+    			    itm."ItemName"::VARCHAR, 
+    			    transc."Quantity"::INT AS "TransferQty",
+    			    transc."Remarks"::VARCHAR,
+    			    transc."CreatedBy"::VARCHAR AS "TransferedBy",
+    			    transc."ReceivedBy"::VARCHAR AS "ReceivedBy" 
+    			FROM "WARD_Transaction" AS transc
+    			JOIN "PHRM_MST_Item" AS itm ON transc."ItemId" = itm."ItemId"
+    			WHERE transc."StoreId" = p_storeid 
+    			  AND transc."TransactionType" = 'WardToPharmacy' 
+    			  AND (transc."CreatedOn")::DATE BETWEEN (p_fromdate)::DATE AND (p_todate)::DATE
+    			GROUP BY 
+    			    itm."ItemName", 
+    			    transc."Quantity",
+    			    transc."Remarks",
+    			    transc."CreatedOn",
+    			    transc."CreatedBy",
+    			    transc."ReceivedBy";
+    		END IF;	
+    END;
 END;
 $$ LANGUAGE plpgsql;

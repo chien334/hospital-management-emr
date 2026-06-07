@@ -19,7 +19,7 @@ RETURNS TABLE (
 ) AS $$
 BEGIN
     /*
-    filename: "sp_wardreport_requisitionreport" '1/7/2020','1/7/2020'
+    filename: "sp_wardreport_requisitionreport"
     createdby/date: rusha/03-26-2019
     description: to get the requsition and dispatch details of stock such as wardname, itemname, batchno, requestedqty, mrp of each item selected by user 
     remarks:    
@@ -30,24 +30,43 @@ BEGIN
     3.		sanjit/03-20-2020					   substore integration
     */
     
-    begin
-      if ((p_fromdate is not null) and (p_todate is not null))
-    		then
-    			RETURN QUERY SELECT req.requisitionid,disp.dispatchid,(req.createdon)::date AS "RequestedDate",
-    			(dispitm.createdon)::date AS "DispatchDate", itm.itemname,sum(reqitm.quantity) AS "RequestedQty",
-    			sum(dispitm.quantity) AS "DispatchQty",dispitm.mrp, round(sum(dispitm.quantity)*dispitm.mrp, 2, 0) AS "TotalAmt",
-    			(select fullname from emp_employee as emp1 where emp1.employeeid = req.createdby) AS "RequestedByUser",
-    			(select fullname from emp_employee as emp2 where emp2.employeeid = dispitm.createdby) AS "DispatchedByUser",
-    			disp.receivedby AS "ReceivedBy"
-    			from ward_requisition as req
-    			join ward_requisitionitems as reqitm on req.requisitionid= reqitm.requisitionid
-    			join phrm_mst_item as itm on reqitm.itemid= itm.itemid
-    			left join ward_dispatch as disp on req.requisitionid = disp.requisitionid and req.storeid = disp.storeid
-    			left join ward_dispatchitems as dispitm on reqitm.requisitionitemid=dispitm.requisitionitemid and disp.dispatchid = dispitm.dispatchid
-    			where req.storeid = p_storeid and (req.createdon)::date between coalesce(p_fromdate,current_timestamp)  and coalesce(p_todate,current_timestamp)+1
-    			group by (req.createdon)::date,(dispitm.createdon)::date,reqitm.quantity,itm.itemname, dispitm.mrp, 
-    			dispitm.quantity,req.createdby,dispitm.createdby,req.requisitionid,disp.dispatchid,disp.receivedby,dispitm.dispatchitemid;
-    		end if;		
-    end;
+    BEGIN
+      IF ((p_fromdate IS NOT NULL) AND (p_todate IS NOT NULL))
+    		THEN
+    			RETURN QUERY SELECT 
+    			    req."RequisitionId"::INT,
+    			    disp."DispatchId"::INT,
+    			    (req."CreatedOn")::date::timestamp AS "RequestedDate",
+    			    (dispitm."CreatedOn")::date::timestamp AS "DispatchDate", 
+    			    itm."ItemName"::VARCHAR,
+    			    SUM(reqitm."Quantity")::INT AS "RequestedQty",
+    			    SUM(dispitm."Quantity")::INT AS "DispatchQty",
+    			    dispitm."MRP"::VARCHAR, 
+    			    ROUND(SUM(dispitm."Quantity") * COALESCE(dispitm."MRP", 0), 2)::DECIMAL AS "TotalAmt",
+    			    (SELECT "FullName"::VARCHAR FROM "EMP_Employee" AS emp1 WHERE emp1."EmployeeId" = req."CreatedBy") AS "RequestedByUser",
+    			    (SELECT "FullName"::VARCHAR FROM "EMP_Employee" AS emp2 WHERE emp2."EmployeeId" = dispitm."CreatedBy") AS "DispatchedByUser",
+    			    disp."ReceivedBy"::VARCHAR AS "ReceivedBy"
+    			FROM "WARD_Requisition" AS req
+    			JOIN "WARD_RequisitionItems" AS reqitm ON req."RequisitionId" = reqitm."RequisitionId"
+    			JOIN "PHRM_MST_Item" AS itm ON reqitm."ItemId" = itm."ItemId"
+    			LEFT JOIN "WARD_Dispatch" AS disp ON req."RequisitionId" = disp."RequisitionId" AND req."StoreId" = disp."StoreId"
+    			LEFT JOIN "WARD_DispatchItems" AS dispitm ON reqitm."RequisitionItemId" = dispitm."RequisitionItemId" AND disp."DispatchId" = dispitm."DispatchId"
+    			WHERE req."StoreId" = p_storeid 
+    			  AND (req."CreatedOn")::DATE BETWEEN (p_fromdate)::DATE AND (p_todate)::DATE
+    			GROUP BY 
+    			    req."CreatedOn",
+    			    dispitm."CreatedOn",
+    			    reqitm."Quantity",
+    			    itm."ItemName", 
+    			    dispitm."MRP", 
+    			    dispitm."Quantity",
+    			    req."CreatedBy",
+    			    dispitm."CreatedBy",
+    			    req."RequisitionId",
+    			    disp."DispatchId",
+    			    disp."ReceivedBy",
+    			    dispitm."DispatchItemId";
+    		END IF;		
+    END;
 END;
 $$ LANGUAGE plpgsql;

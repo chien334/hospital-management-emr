@@ -18,26 +18,50 @@ BEGIN
     2.		sanjit/02-03-2020					   substore integration
     */
     
-    begin
-      if (p_itemid !=0)
-    		then
-    			open ref1 for select gen.genericname,itm.itemname,ward.batchno,sum(availablequantity) as quantity,ward.expirydate, mrp from ward_stock as ward 
-    			join phrm_mst_item as itm on ward.itemid= itm.itemid 
-    			join phrm_mst_generic as gen on itm.genericid = gen.genericid  
-    			where itm.itemid =p_itemid and ward.storeid = p_storeid
-    			group by itemname, mrp ,genericname, ward.batchno, ward.expirydate;
-        return next ref1;
+    BEGIN
+      IF (p_itemid != 0)
+    		THEN
+    			OPEN ref1 FOR SELECT 
+    			    gen."GenericName"::VARCHAR,
+    			    itm."ItemName"::VARCHAR,
+    			    ward."BatchNo"::VARCHAR,
+    			    SUM(ward."AvailableQuantity")::INT AS "quantity",
+    			    ward."ExpiryDate"::TIMESTAMP, 
+    			    ward."MRP"::DECIMAL 
+    			FROM "WARD_Stock" AS ward 
+    			JOIN "PHRM_MST_Item" AS itm ON ward."ItemId" = itm."ItemId" 
+    			JOIN "PHRM_MST_Generic" AS gen ON itm."GenericId" = gen."GenericId"  
+    			WHERE itm."ItemId" = p_itemid 
+    			  AND ward."StoreId" = p_storeid
+    			GROUP BY 
+    			    itm."ItemName", 
+    			    ward."MRP", 
+    			    gen."GenericName", 
+    			    ward."BatchNo", 
+    			    ward."ExpiryDate";
+                RETURN NEXT ref1;
     			
-    		elsif (p_itemid =0)	
-    		then 
-    		open ref2 for select gen.genericname,itm.itemname,ward.batchno,sum(availablequantity) as quantity,ward.expirydate, mrp from ward_stock as ward 
-    			join phrm_mst_item as itm on ward.itemid= itm.itemid 
-    			join phrm_mst_generic as gen on itm.genericid = gen.genericid
-    			where ward.storeid = p_storeid
-    			--where itm.itemid  like '%'+coalesce(p_itemid,'')+'%'
-    			group by itemname, mrp,genericname, ward.batchno, ward.expirydate;
-        return next ref2;
-    		end if;
-    end;
+    		ELSIF (p_itemid = 0)	
+    		THEN 
+    		    OPEN ref2 FOR SELECT 
+    		        gen."GenericName"::VARCHAR,
+    		        itm."ItemName"::VARCHAR,
+    		        ward."BatchNo"::VARCHAR,
+    		        SUM(ward."AvailableQuantity")::INT AS "quantity",
+    		        ward."ExpiryDate"::TIMESTAMP, 
+    		        ward."MRP"::DECIMAL 
+    		    FROM "WARD_Stock" AS ward 
+    			JOIN "PHRM_MST_Item" AS itm ON ward."ItemId" = itm."ItemId" 
+    			JOIN "PHRM_MST_Generic" AS gen ON itm."GenericId" = gen."GenericId"
+    			WHERE ward."StoreId" = p_storeid
+    			GROUP BY 
+    			    itm."ItemName", 
+    			    ward."MRP", 
+    			    gen."GenericName", 
+    			    ward."BatchNo", 
+    			    ward."ExpiryDate";
+                RETURN NEXT ref2;
+    		END IF;
+    END;
 END;
 $$ LANGUAGE plpgsql;

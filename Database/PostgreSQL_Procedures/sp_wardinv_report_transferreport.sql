@@ -22,16 +22,23 @@ BEGIN
     
     */
     
-    begin
-      if ((p_fromdate is not null) and (p_todate is not null))
-    		then
-    			RETURN QUERY SELECT (trans.createdon)::date AS "Date",dep.departmentname,itm.itemname,trans.quantity,trans.remarks, trans.createdby 
-    			from ward_inv_transaction as trans
-    			join ward_inv_stock as stk on stk.stockid = trans.stockid
-    			join mst_department as dep on dep.departmentid = stk.departmentid
-    			join inv_mst_item as itm on itm.itemid = stk.itemid		
-    			where stk.storeid = p_storeid and (trans.createdon)::date between coalesce(p_fromdate,current_timestamp)  and coalesce(p_todate,current_timestamp)+1;
-    		end if;	
-    end;
+    BEGIN
+      IF ((p_fromdate IS NOT NULL) AND (p_todate IS NOT NULL))
+    		THEN
+    			RETURN QUERY SELECT 
+    			    (trans."CreatedOn")::date::timestamp AS "Date",
+    			    dep."DepartmentName"::VARCHAR,
+    			    itm."ItemName"::VARCHAR,
+    			    trans."Quantity"::INT,
+    			    trans."Remarks"::VARCHAR, 
+    			    trans."CreatedBy"::VARCHAR 
+    			FROM "WARD_INV_Transaction" AS trans
+    			JOIN "WARD_INV_Stock" AS stk ON stk."StockId" = trans."StockId"
+    			JOIN "MST_Department" AS dep ON dep."DepartmentId" = stk."DepartmentId"
+    			JOIN "INV_MST_Item" AS itm ON itm."ItemId" = stk."ItemId"		
+    			WHERE stk."StoreId" = p_storeid 
+    			  AND (trans."CreatedOn")::DATE BETWEEN (p_fromdate)::DATE AND (p_todate)::DATE;
+    		END IF;	
+    END;
 END;
 $$ LANGUAGE plpgsql;

@@ -23,18 +23,30 @@ BEGIN
     2.		sanjit/02-03-2020						substore integration
     */
     
-    begin
-      if ((p_fromdate is not null) and (p_todate is not null) and (p_storeid is not null))
-    		then
-    			RETURN QUERY SELECT (transc.createdon)::date AS "Date", itemname, transc.quantity,stk.mrp,
-    			round(stk.mrp*transc.quantity,2,0) AS "TotalAmt",transc.remarks 
-    			from ward_transaction as transc
-    			join phrm_mst_item as itm on transc.itemid=itm.itemid
-    			join ward_stock as stk on transc.stockid=stk.stockid and transc.itemid = stk.itemid 
-    			where transc.storeid = p_storeid and transactiontype = 'BreakageItem' and (transc.createdon)::date 
-    			between coalesce(p_fromdate,current_timestamp)  and coalesce(p_todate,current_timestamp)+1
-    			group by (transc.createdon)::date, itm.itemname, transc.quantity,transc.remarks,stk.mrp,transc.quantity;
-    		end if;	
-    end;
+    BEGIN
+      IF ((p_fromdate IS NOT NULL) AND (p_todate IS NOT NULL) AND (p_storeid IS NOT NULL))
+    		THEN
+    			RETURN QUERY SELECT 
+    			    (transc."CreatedOn")::date::timestamp AS "Date", 
+    			    itm."ItemName"::VARCHAR, 
+    			    transc."Quantity"::INT,
+    			    stk."MRP"::VARCHAR,
+    			    ROUND((stk."MRP" * transc."Quantity")::numeric, 2)::DECIMAL AS "TotalAmt",
+    			    transc."Remarks"::VARCHAR 
+    			FROM "WARD_Transaction" AS transc
+    			JOIN "PHRM_MST_Item" AS itm ON transc."ItemId" = itm."ItemId"
+    			JOIN "WARD_Stock" AS stk ON transc."StockId" = stk."StockId" AND transc."ItemId" = stk."ItemId" 
+    			WHERE transc."StoreId" = p_storeid 
+    			  AND transc."TransactionType" = 'BreakageItem' 
+    			  AND (transc."CreatedOn")::DATE BETWEEN (p_fromdate)::DATE AND (p_todate)::DATE
+    			GROUP BY 
+    			    (transc."CreatedOn")::DATE, 
+    			    itm."ItemName", 
+    			    transc."Quantity",
+    			    transc."Remarks",
+    			    stk."MRP",
+    			    transc."CreatedOn";
+    		END IF;	
+    END;
 END;
 $$ LANGUAGE plpgsql;

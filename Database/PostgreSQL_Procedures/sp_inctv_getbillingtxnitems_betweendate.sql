@@ -17,10 +17,11 @@ RETURNS TABLE (
     "TotalAmount" DECIMAL,
     "AssignedToEmpName" VARCHAR,
     "ReferredByEmpName" VARCHAR,
-    "FractionCount" TIMESTAMP,
-    "PriceCategoryName" DECIMAL,
+    "FractionCount" INT,
+    "PriceCategoryName" VARCHAR,
     "PriceCategoryId" INT
 ) AS $$
+#variable_conflict use_column
 BEGIN
     /*
      file: sp_inctv_getbillingtxnitems_betweendate
@@ -38,42 +39,39 @@ BEGIN
      3.		 22ndSept'23/krishna					read pricecategory 
     */
     
-    
     RETURN QUERY SELECT
-         pat.patientid, 
-    	 pat.shortname AS "PatientName", 
-    	 pat.patientcode,
-    	 fyear.fiscalyearformatted ||'-'||biltxn.invoicecode || cast(biltxn.invoiceno as varchar(20))AS "InvoiceNo", 
-    	 biltxn.createdon AS "TransactionDate",  
-    	 biltxn.billingtransactionid, 
-    	 txnitm.billingtransactionitemid AS "BillingTransactionItemId", 
-    	 txnitm.servicedepartmentname, 
-    	 txnitm.itemname,
-    	 txnitm.itemid,
-    	 txnitm.quantity , 
-    	 txnitm.totalamount,
-    	 txnitm.performername AS "AssignedToEmpName", 
-    	 emp2.fullname AS "ReferredByEmpName", 
-    	 inctvtxnitm.frccount AS "FractionCount",
-    	 pricecat.pricecategoryname,
-    	 pricecat.pricecategoryid
-    from  bil_cfg_fiscalyears fyear, 
-    	pat_patient pat,
-        bil_txn_billingtransaction biltxn 
-    	     join bil_txn_billingtransactionitems txnitm
-    	on biltxn.billingtransactionid = txnitm.billingtransactionid
-    	inner join bil_cfg_pricecategory pricecat on txnitm.pricecategoryid = pricecat.pricecategoryid
-    	    --left join emp_employee emp1 
-    		   --on txnitm.providerid = emp1.employeeid  -- for assignedtodoctor
-            left join emp_employee emp2
-    		   on txnitm.prescriberid= emp2.employeeid
-        left join (select billingtransactionitemid, count(*) as "frccount"  from inctv_txn_incentivefractionitem where isactive=1 group by billingtransactionitemid ) inctvtxnitm
-    	    on txnitm.billingtransactionitemid = inctvtxnitm.billingtransactionitemid
-    
-    where 
-    	    biltxn.fiscalyearid = fyear.fiscalyearid 
-    	and biltxn.patientid=pat.patientid
-    	and (biltxn.createdon)::date between p_fromdate and p_todate
-    	and coalesce(biltxn.returnstatus,0) = 0;
+        pat."PatientId"::INT, 
+        pat."ShortName"::VARCHAR AS "PatientName", 
+        pat."PatientCode"::VARCHAR,
+        (fyear."FiscalYearFormatted" || '-' || biltxn."InvoiceCode" || CAST(biltxn."InvoiceNo" AS VARCHAR(20)))::VARCHAR AS "InvoiceNo", 
+        biltxn."CreatedOn"::TIMESTAMP AS "TransactionDate",  
+        biltxn."BillingTransactionId"::INT, 
+        txnitm."BillingTransactionItemId"::INT AS "BillingTransactionItemId", 
+        txnitm."ServiceDepartmentName"::VARCHAR, 
+        txnitm."ItemName"::VARCHAR,
+        txnitm."ItemId"::INT,
+        txnitm."Quantity"::INT , 
+        txnitm."TotalAmount"::DECIMAL,
+        txnitm."PerformerName"::VARCHAR AS "AssignedToEmpName", 
+        emp2."FullName"::VARCHAR AS "ReferredByEmpName", 
+        COALESCE(inctvtxnitm.frccount, 0)::INT AS "FractionCount",
+        pricecat."PriceCategoryName"::VARCHAR,
+        pricecat."PriceCategoryId"::INT
+    FROM "BIL_CFG_FiscalYears" fyear, 
+         "PAT_Patient" pat,
+         "BIL_TXN_BillingTransaction" biltxn 
+    JOIN "BIL_TXN_BillingTransactionItems" txnitm ON biltxn."BillingTransactionId" = txnitm."BillingTransactionId"
+    INNER JOIN "BIL_CFG_PriceCategory" pricecat ON txnitm."PriceCategoryId" = pricecat."PriceCategoryId"
+    LEFT JOIN "EMP_Employee" emp2 ON txnitm."PrescriberId" = emp2."EmployeeId"
+    LEFT JOIN (
+        SELECT f."BillingTransactionItemId" AS "SubItemId", COUNT(*)::INT AS "frccount" 
+        FROM "INCTV_TXN_IncentiveFractionItem" f
+        WHERE f."IsActive" = TRUE 
+        GROUP BY f."BillingTransactionItemId"
+    ) inctvtxnitm ON txnitm."BillingTransactionItemId" = inctvtxnitm."SubItemId"
+    WHERE biltxn."FiscalYearId" = fyear."FiscalYearId"
+      AND biltxn."PatientId" = pat."PatientId"
+      AND (biltxn."CreatedOn")::DATE BETWEEN (p_fromdate)::DATE AND (p_todate)::DATE
+      AND COALESCE(biltxn."ReturnStatus", FALSE) = FALSE;
 END;
 $$ LANGUAGE plpgsql;

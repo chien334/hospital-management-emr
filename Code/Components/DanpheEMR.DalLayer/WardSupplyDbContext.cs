@@ -78,7 +78,7 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<WARDSupplyAssetRequisitionItemsModel>().ToTable("INV_TXN_FixedAssetRequisitionItems");
 
             modelBuilder.Entity<CssdItemTransactionModel>().ToTable("CSSD_TXN_ItemTransaction");
-            modelBuilder.Entity<InvPatientConsumptionReceiptModel>().ToTable("[WARD_INV_ConsumptionReceipt]");
+            modelBuilder.Entity<InvPatientConsumptionReceiptModel>().ToTable("WARD_INV_ConsumptionReceipt");
             //swapnil-2-april-2021
             modelBuilder.Entity<WARDSupplyAssetReturnModel>().ToTable("INV_TXN_FixedAssetReturn");
             modelBuilder.Entity<WARDSupplyAssetReturnItemsModel>().ToTable("INV_TXN_FixedAssetReturnItems");

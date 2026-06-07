@@ -38,7 +38,7 @@
         <table class="table tbl-hdr-info" *ngIf="selTxnItem">
           <tr *ngIf="showInvoiceHeaderInfo">
             <td colspan="2">
-              <span>Patient:</span>
+              <span>{{ 'INCENTIVE.PATIENT' | translate }}:</span>
               <span style="margin-left: 10px;font-weight: bold;">
                 {{selTxnItem.PatientName}}({{selTxnItem.PatientCode}})
               </span>
@@ -46,11 +46,11 @@
           </tr>
           <tr *ngIf="showInvoiceHeaderInfo">
             <td style="width: 60%;">
-              <span>Invoice No: {{selTxnItem.InvoiceNo}}</span>
+              <span>{{ 'GRID_HEADERS.INVOICE_NO' | translate }}: {{selTxnItem.InvoiceNo}}</span>
             </td>
             <td>
               <span>
-                Date:
+                {{ 'GRID_HEADERS.DATE' | translate }}:
                 {{selTxnItem.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
                 <i>{{selTxnItem.TransactionDate | nepaliDate:'format':'YYYY-MM-DD'}} </i>
               </span>
@@ -58,10 +58,10 @@
           </tr>
           <tr>
             <td style="width: 60%;">
-              <span>Item Name: {{selTxnItem.ItemName}}</span> <span style="margin-left: 50px;">PriceCategory: {{selTxnItem.PriceCategoryName}}</span>
+              <span>{{ 'GRID_HEADERS.ITEM_NAME' | translate }}: {{selTxnItem.ItemName}}</span> <span style="margin-left: 50px;">{{ 'GRID_HEADERS.PRICE_CATEGORY' | translate }}: {{selTxnItem.PriceCategoryName}}</span>
             </td>
             <td>
-              <span>Bill Item Amount:{{selTxnItem.TotalAmount}}</span>
+              <span>{{ 'INCENTIVE.BILL_ITEM_AMOUNT' | translate }}: {{selTxnItem.TotalAmount}}</span>
             </td>
           </tr>
         </table>
@@ -81,12 +81,12 @@
             <td style="width:20%;">
               <input type="checkbox" name="referral" id="id_referral_chkbox_inctv" [(ngModel)]="EnableDisableReferral"
                      (change)="EnableDisableReferralIncentive()" style="zoom:1.5;">
-              <label for="id_referral_chkbox_inctv" style="vertical-align: middle;">Referral?</label>
+              <label for="id_referral_chkbox_inctv" style="vertical-align: middle;">{{ 'INCENTIVE.REFERRAL_Q' | translate }}</label>
             </td>
             <td>
               <input type="text" name="referralEmployee" id="id_referral_employee_inctv" danphe-auto-complete
                      [(ngModel)]="ReferralEmployee" [list-formatter]="EmployeeListFormatter" [source]="allEmpList"
-                     placeholder="Referral Name" display-property-name="FullName" value-property-name=null
+                     [placeholder]="'INCENTIVE.REFERRAL_NAME_PLACEHOLDER' | translate" display-property-name="FullName" value-property-name=null
                      onclick="this.select()" [disabled]="!EnableDisableReferral" max-num-list="10"
                      (ngModelChange)="ReferralEmployeeChanged(selTxnItem)">
             </td>
@@ -105,7 +105,7 @@
             <td></td>
             <td></td>
             <td>
-              Remaining Amount:
+              {{ 'INCENTIVE.REMAINING_AMOUNT' | translate }}:
             </td>
             <td>{{ RemainingAmount }}</td>
           </tr>
@@ -118,10 +118,10 @@
         <table class="table table-hover custom_table padLess_table table-bordered light_bg_table">
           <thead>
             <tr>
-              <th style="width:80px;">Type</th>
-              <th style="width:150px;">Employee</th>
-              <th style="width:60px;">Percent</th>
-              <th style="width:100px;">Incentive Amt.</th>
+              <th style="width:80px;">{{ 'INCENTIVE.TYPE' | translate }}</th>
+              <th style="width:150px;">{{ 'INCENTIVE.EMPLOYEE' | translate }}</th>
+              <th style="width:60px;">{{ 'INCENTIVE.PERCENT' | translate }}</th>
+              <th style="width:100px;">{{ 'INCENTIVE.INCENTIVE_AMOUNT' | translate }}</th>
               <th style="width:80px;">
               </th>
             </tr>
@@ -137,7 +137,7 @@
                 </td>
                 <td>
                   <input danphe-auto-complete [(ngModel)]="frcItm.DocObj" [list-formatter]="EmployeeListFormatter"
-                         [source]="allEmpList" placeholder="Search Doctor Name" display-property-name="FullName"
+                         [source]="allEmpList" [placeholder]="'INCENTIVE.SEARCH_DOCTOR_NAME' | translate" display-property-name="FullName"
                          value-property-name=null onclick="this.select()"
                          [disabled]="frcItm.IsRemoved || frcItm.IsTransferToAcc" max-num-list="10"
                          (ngModelChange)="ChangeDoctor(frcItm)" id="empIp_{{indx}}"
@@ -157,11 +157,11 @@
                   <input style="width:60px;" disabled type="number" [(ngModel)]="frcItm.TDSPercentage" />
                 </td>-->
                 <td style="text-align: center;">
-                  <button *ngIf="frcItm.IsRemoved" class="btn blue btn-sm" title="undo delete"
+                  <button *ngIf="frcItm.IsRemoved" class="btn blue btn-sm" [title]="'INCENTIVE.UNDO_DELETE' | translate"
                           (click)="UndoRemove_FractionItem_Single(frcItm)">
                     <i class="fa fa-rotate-left "></i>
                   </button>
-                  <button *ngIf="!frcItm.IsRemoved" class="" title="Remove this"
+                  <button *ngIf="!frcItm.IsRemoved" class="" [title]="'INCENTIVE.REMOVE_THIS' | translate"
                           (click)="RemoveFractionItem_Single(frcItm,indx)">
                     <i class="btn btn-danger btn-sm fa fa-times"></i>
                   </button>
@@ -175,7 +175,7 @@
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-6">
-            <button class="btn green primary-btn btn-add-new-row" title="Click To Add New"
+            <button class="btn green primary-btn btn-add-new-row" [title]="'INCENTIVE.CLICK_TO_ADD_NEW' | translate"
                     (click)="AddNewRow_FractionItem()" [disabled]="fractionItems[0] && fractionItems[0].IsTransferToAcc"
                     id="btn_AddNewRow">
               <i class="glyphicon glyphicon-plus" style="margin-right: 0px;"></i>
@@ -185,7 +185,7 @@
             <button class="btn green btn-success btn-save-frc" (click)="SaveFractionItems()"
                     [disabled]="loading || fractionItems[0] && fractionItems[0].IsTransferToAcc" id="btn_SaveFraction">
               <i class="fa fa-save"></i>
-              SAVE Fractions
+              {{ 'INCENTIVE.SAVE_FRACTIONS' | translate }}
             </button>
 
           </div>

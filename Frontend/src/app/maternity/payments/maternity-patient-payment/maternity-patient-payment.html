@@ -1,17 +1,16 @@
 <div class="wrapper">
     <div class="row">
         <div class="caption custom-caption" style="margin-left: 10px;">
-            <h3 style="color: black;font-size: 20px;"><span><i class="fa fa-file-text-o"></i>Maternity Allowance
-                    Payment</span></h3>
+            <h3 style="color: black;font-size: 20px;"><span><i class="fa fa-file-text-o"></i>{{ 'MATERNITY.MATERNITY_ALLOWANCE_PAYMENT' | translate }}</span></h3>
         </div>
         <br>
         <div>
             <b style="margin-left: 10px;">
                 <span>
-                    <i class="fa fa-user"></i>Patient: {{patient.ShortName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-user"></i>{{ 'MATERNITY.PATIENT' | translate }} {{patient.ShortName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </span>
                 <span>
-                    <i class="fa fa-male"></i>Age/Sex : {{patient.Age}}
+                    <i class="fa fa-male"></i>{{ 'MATERNITY.AGE_SEX' | translate }} : {{patient.Age}}
                 </span>
                 <span>
                     /
@@ -19,11 +18,11 @@
                 </span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span>
-                    <i class="fa fa-h-square"></i>Hospital No :
+                    <i class="fa fa-h-square"></i>{{ 'MATERNITY.HOSPITAL_NO' | translate }} :
                     {{patient.PatientCode}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </span>
                 <span>
-                    <i class="fa fa-calendar"></i>Discharge On : {{patient.DischargeDate |
+                    <i class="fa fa-calendar"></i>{{ 'MATERNITY.DISCHARGE_ON' | translate }} : {{patient.DischargeDate |
                     DanpheDateTime:'format':'YYYY-MM-DD' }}
                 </span>
             </b>
@@ -36,8 +35,7 @@
                             <div class="row">
                                 <div class="col-md-12" style="text-align: right;">
                                     <label for="chkPaymentReturn"
-                                        style="font-size: 14px; color: green;vertical-align: text-bottom;margin-right: 16px;">Payment
-                                        Return ?<b>:</b></label>
+                                        style="font-size: 14px; color: green;vertical-align: text-bottom;margin-right: 16px;">{{ 'MATERNITY.PAYMENT_RETURN' | translate }}<b>:</b></label>
                                     <input [attr.disabled]="this.maternityPatientPaymentData.length == 0 ? true : null"
                                         type="checkbox" name="paymentreturn" id="chkPaymentReturn"
                                         style="width: 20px;height: 20px;" [(ngModel)]="isPaymentReturn"
@@ -45,46 +43,42 @@
                                 </div>
                             </div>
 
-                            <div class="form-group" style="margin-top: 15px;">
-                                <label *ngIf="!isPaymentReturn" class="control-label col-md-4">Paid
-                                    Amount<b>:</b></label>
-                                <label *ngIf="isPaymentReturn" class="control-label col-md-4">Return
-                                    Amount<b>:</b></label>
+                             <div class="form-group" style="margin-top: 15px;">
+                                <label *ngIf="!isPaymentReturn" class="control-label col-md-4">{{ 'MATERNITY.PAID_AMOUNT' | translate }}<b>:</b></label>
+                                <label *ngIf="isPaymentReturn" class="control-label col-md-4">{{ 'MATERNITY.RETURN_AMOUNT' | translate }}<b>:</b></label>
                                 <div class="col-md-8">
                                     <select style="margin-bottom:5px;" formControlName="Amount" class="form-control"
                                         [(ngModel)]="paymentModelObj.InOrOutAmount">
-                                        <option selected [ngValue]="null">--Select Amount--</option>
+                                        <option selected [ngValue]="null">{{ 'MATERNITY.SELECT_AMOUNT_PLACEHOLDER' | translate }}</option>
                                         <option *ngFor="let amount of paymentAmounts" [ngValue]="amount">{{amount}}
                                         </option>
                                     </select>
                                     <span class="color-red font-sm" *ngIf="paymentModelObj.IsDirty('Amount')"
-                                        [hidden]="paymentModelObj.IsValidCheck('Amount','required')"> Amount is
-                                        required.</span><br>
-                                    <b> In Words :</b>&nbsp; {{paymentModelObj.InOrOutAmount | Currency:'4' |
+                                        [hidden]="paymentModelObj.IsValidCheck('Amount','required')">{{ 'MATERNITY.AMOUNT_REQUIRED' | translate }}</span><br>
+                                    <b> {{ 'MATERNITY.IN_WORDS' | translate }} :</b>&nbsp; {{paymentModelObj.InOrOutAmount | Currency:'4' |
                                     NumberInWords | CapitalFirstLetter}} <span
-                                        *ngIf="paymentModelObj.InOrOutAmount !=0 && paymentModelObj.InOrOutAmount != null">Only</span>
+                                        *ngIf="paymentModelObj.InOrOutAmount !=0 && paymentModelObj.InOrOutAmount != null">{{ 'MATERNITY.ONLY' | translate }}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-4">Remarks<b>:</b></label>
+                                <label class="control-label col-md-4">{{ 'COMMON.REMARKS' | translate }}<b>:</b></label>
                                 <div class="col-md-8">
-                                    <textarea rows="2" id="txtRemarks" class="form-control" placeholder="Remarks"
+                                    <textarea rows="2" id="txtRemarks" class="form-control" [placeholder]="'COMMON.REMARKS' | translate"
                                         name="remarks" type="text" formControlName="Remarks"
                                         [(ngModel)]="paymentModelObj.Remarks"></textarea>
                                     <span class="color-red font-sm"
                                         *ngIf="isPaymentReturn && paymentModelObj.IsDirty('Remarks')"
-                                        [hidden]="paymentModelObj.IsValidCheck('Remarks','required')"> Remark is
-                                        required.</span>
+                                        [hidden]="paymentModelObj.IsValidCheck('Remarks','required')">{{ 'MATERNITY.REMARK_REQUIRED' | translate }}</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-8">
                                     <input type="button" class="btn green btn-success fa" [disabled]="loading"
-                                        value="Proceed" (click)="Save()" />
+                                        [value]="'MATERNITY.PROCEED' | translate" (click)="Save()" />
                                     &nbsp;
                                     <input type="button" class="btn red btn-danger fa" [disabled]="loading"
-                                        value="Discard" (click)="Discard()" />
+                                        [value]="'MATERNITY.DISCARD' | translate" (click)="Discard()" />
                                     &nbsp;
                                 </div>
                             </div>
@@ -95,7 +89,7 @@
             <div class="col-md-6 col-md-8">
                 <div class="page-bar">
                     <div class="text-left">
-                        <h4 class="header-sm inner-header-sm"><b>Payment History</b></h4>
+                        <h4 class="header-sm inner-header-sm"><b>{{ 'MATERNITY.PAYMENT_HISTORY' | translate }}</b></h4>
                     </div>
                     <danphe-grid [show-print-button]="false" [customServerSearch]="false"
                         [grid-colDefaults]="maternityPatientGridColumns" [grid-data]="maternityPatientPaymentData">

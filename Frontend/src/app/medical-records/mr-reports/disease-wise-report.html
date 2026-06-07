@@ -1,4 +1,4 @@
-<button class="btn btn-primary" (click)="Back()">Back</button>
+<button class="btn btn-primary" (click)="Back()">{{ 'COMMON.BACK' | translate }}</button>
 
 <div class="row">
 
@@ -8,7 +8,7 @@
         <div class="caption custom-caption">
 
           <i class="glyphicon glyphicon-asterisk"></i>
-          <span class="caption-subject">DiagnosisWise Patient Report</span>
+          <span class="caption-subject">{{ 'MEDICAL_RECORDS.DIAGNOSIS_WISE_PATIENT_REPORT' | translate }}</span>
         </div>
 
         
@@ -16,14 +16,14 @@
 		<div class="col-md-12">
 			<div class="row"><div class="col-md-3 col-xs-12">
           <div class="form-group">
-            <label class="control-label col-md-3">From Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
+            <label class="control-label col-md-3">{{ 'COMMON.FROM_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
             <div class="col-md-9">
               <danphe-date-picker [(ngModel)]="currentdiagnosiswisepatient.fromDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="fromDate">
               </danphe-date-picker>
 
 
-              <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('fromDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('fromDate','required')"> From Date is required</span><br />
-              <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('fromDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('fromDate','wrongDate')"> Enter Valid Date</span>
+              <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('fromDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('fromDate','required')">{{ 'COMMON.FROM_DATE_IS_REQUIRED' | translate }}</span><br />
+              <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('fromDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('fromDate','wrongDate')">{{ 'COMMON.ENTER_VALID_DATE' | translate }}</span>
 
             </div>
           </div>
@@ -31,12 +31,12 @@
         </div>
         <div class="col-md-3 col-xs-12">
           <div class="form-group">
-            <label class="control-label col-md-3">To Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
+            <label class="control-label col-md-3">{{ 'COMMON.TO_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
             <div class="col-md-9">
               <danphe-date-picker [(ngModel)]="currentdiagnosiswisepatient.toDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="toDate">
               </danphe-date-picker>
-              <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('toDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('toDate','required')"> To Date is required</span><br />
-              <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('toDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('toDate','wrongDate')"> Can't select future date</span>
+              <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('toDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('toDate','required')">{{ 'COMMON.TO_DATE_IS_REQUIRED' | translate }}</span><br />
+              <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('toDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('toDate','wrongDate')">{{ 'COMMON.CANT_SELECT_FUTURE_DATE' | translate }}</span>
 
             </div>
           </div>
@@ -44,7 +44,7 @@
         </div>
 		<div class="col-md-4 col-xs-12">
           <div class="form-group">
-            <label class="control-label col-md-5">Diagnosis Name<b style="float:right;">:</b></label>
+            <label class="control-label col-md-5">{{ 'MEDICAL_RECORDS.DIAGNOSIS_NAME' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-7">
 
               <input class="form-control" danphe-auto-complete
@@ -52,7 +52,7 @@
                      [ngModelOptions]="{standalone: true}"
                      [list-formatter]="myListFormatter"
                      [source]="diagnosisList"
-                     placeholder="Enter Diagnosis Name"
+                     [placeholder]="'MEDICAL_RECORDS.ENTER_DIAGNOSIS_NAME' | translate"
                      display-property-name="Diagnosis"
                      value-property-name=null
                      (focusout)="diagnosisChanged()">
@@ -64,7 +64,7 @@
           <div class="form-group">
             <button class="btn blue" type="button" (click)="Load()" [disabled]="!(currentdiagnosiswisepatient.IsValid())">
               <i class="fa fa-search"></i>
-              Show Report
+              {{ 'COMMON.SHOW_REPORT' | translate }}
             </button>
           </div>
         </div></div>

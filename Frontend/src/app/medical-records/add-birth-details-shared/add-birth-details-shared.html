@@ -144,24 +144,24 @@
             <table class="table brth-detail-holder table-bordered">
                 <thead>
                     <tr>
-                        <th colspan="7" class="text-center text-capitalize hdr-bg">Birth List</th>
+                        <th colspan="7" class="text-center text-capitalize hdr-bg">{{ 'MEDICAL_RECORDS.BIRTH_LIST' | translate }}</th>
                     </tr>
                 </thead>
                 <thead>
                     <tr>
-                        <th>Cert. No.</th>
-                        <th>Sex</th>
-                        <th>Wt.(gm)</th>
-                        <th>Father Name</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Action</th>
+                        <th>{{ 'MEDICAL_RECORDS.CERTIFICATE_NO' | translate }}</th>
+                        <th>{{ 'MEDICAL_RECORDS.SEX' | translate }}</th>
+                        <th>{{ 'MEDICAL_RECORDS.WT_GM' | translate }}</th>
+                        <th>{{ 'MEDICAL_RECORDS.FATHER_NAME' | translate }}</th>
+                        <th>{{ 'COMMON.DATE' | translate }}</th>
+                        <th>{{ 'COMMON.TIME' | translate }}</th>
+                        <th>{{ 'COMMON.ACTION' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody *ngIf="BabyBirthDetails && BabyBirthDetails.length == 0">
                     <tr>
                         <td class="text-center" colspan="7">
-                            <p><strong>No Birth Certificates Data</strong></p>
+                            <p><strong>{{ 'MEDICAL_RECORDS.NO_BIRTH_CERTIFICATE_DATA' | translate }}</strong></p>
                         </td>
                     </tr>
                 </tbody>
@@ -176,10 +176,10 @@
                         <th>
                             <!-- [attr.disabled] = "brth.BabyBirthDetailsId != 0 ? true : false" -->
                             <button style="display: inline-block; border: none;" (click)="EditCurrentBirthDetail(b)"
-                                class="margin-7-hr tbl-action-edit" title="edit"><i class="fa fa-edit"></i></button>
+                                class="margin-7-hr tbl-action-edit" [title]="'COMMON.EDIT' | translate"><i class="fa fa-edit"></i></button>
 
                             <a *ngIf="!brth.BabyBirthDetailsId && !IsEditMode" (click)="RemoveCurrentBirthDetail(b)"
-                                style="display: inline-block;" class="margin-7-hr tbl-action-del" title="delete"><i
+                                style="display: inline-block;" class="margin-7-hr tbl-action-del" [title]="'COMMON.DELETE' | translate"><i
                                     class="fa fa-close"></i></a>
                         </th>
                     </tr>
@@ -196,84 +196,79 @@
                 border-bottom: 3px solid #cfcfcf;
                 border-right: 3px solid #cfcfcf;">
             <div class="col-md-12" style="margin-top: 15px;" *ngIf="showSelectMother">
-                <label for="srch_PatientList" class="col-md-3" style="font-weight: 600;font-size: medium;"> Select
-                    Mother<sup>*</sup>:</label>
+                <label for="srch_PatientList" class="col-md-3" style="font-weight: 600;font-size: medium;"> {{ 'MEDICAL_RECORDS.SELECT_MOTHER' | translate }}<sup>*</sup>:</label>
                 <input danphe-auto-complete id="srch_PatientList" class="form-control searchtbx"
                     [(ngModel)]="SelectedPatient" [list-formatter]="PatientListFormatter"
                     [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
-                    placeholder="Search by HospitalNo, Patient Name" display-property-name="ShortName"
+                    [placeholder]="'MEDICAL_RECORDS.SEARCH_BY_HOSPITAL_NO_PATIENT_NAME' | translate" display-property-name="ShortName"
                     value-property-name=null (valueChanged)="PatientInfoChanged()" onClick="this.select();"
                     max-num-list="500" [min-chars]="3" match-formatted="true" [grid-sort]="'ShortName'"
                     style="width: 494px !important;" [ngModelOptions]="{standalone: true}" />
-                <span class="color-red font-sm" [hidden]="ValidPatient">Patient is Required!</span>
+                <span class="color-red font-sm" [hidden]="ValidPatient">{{ 'MEDICAL_RECORDS.PATIENT_IS_REQUIRED' | translate }}</span>
 
                 <!--(keyup.enter)="FocusElementById('itemName0')"-->
             </div>
             <div class="col-md-12" *ngIf="showSelectMother" style="
                     padding: 0px!important; margin-top: 15px; margin-bottom: 15px;">
-                <div class="col-md-5"><label class="control-label lbl-text">Mothers Name:</label>
+                <div class="col-md-5"><label class="control-label lbl-text">{{ 'MEDICAL_RECORDS.MOTHERS_NAME_COLON' | translate }}</label>
                     {{SelectedPatient?.ShortName}}
                 </div>
-                <div class="col-md-4"><label class="control-label lbl-text">Age:</label> {{SelectedPatient?.Age}}
+                <div class="col-md-4"><label class="control-label lbl-text">{{ 'COMMON.AGE_COLON' | translate }}</label> {{SelectedPatient?.Age}}
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-5"><label for="certNum" class="control-label lbl-text">Certificate
-                    Number </label></div>
+            <div class="col-md-5"><label for="certNum" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.CERTIFICATE_NUMBER' | translate }} </label></div>
             <div class="col-md-5">
                 <div [ngClass]="{'alert alert-warning':duplicateCertificateNumber}">
                     <input id="certNum" [(ngModel)]="BirthDetail.CertificateNumber"
                         (ngModelChange)="BirthCertificateNumberDuplicationCheck()" [ngModelOptions]="{standalone:true}"
                         type="text" name="birth-condition" class="cstm-field-ip" />
                     <div class="color-red font-sm" *ngIf="duplicateCertificateNumber">
-                        <i class="fa fa-warning"></i>Duplicate birth-certificate not allowed
+                        <i class="fa fa-warning"></i>{{ 'MEDICAL_RECORDS.DUPLICATE_BIRTH_CERTIFICATE_NOT_ALLOWED' | translate }}
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-5"><label for="ddlBirthCondition" class="control-label lbl-text">Condition at Birth
+            <div class="col-md-5"><label for="ddlBirthCondition" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.CONDITION_AT_BIRTH' | translate }}
                     <sup>*</sup></label>
             </div>
             <div class="col-md-5">
                 <select id="ddlBirthCondition" [(ngModel)]="BirthDetail.BirthConditionId" type="text"
                     class="cstm-field-ip" formControlName="BirthConditionId">
-                    <option value="null">--Please Select--</option>
+                    <option value="null">{{ 'COMMON.PLEASE_SELECT' | translate }}</option>
                     <option *ngFor="let brthcondition of allMasterDataForMR.AllBirthConditions"
                         [ngValue]="brthcondition.BabyBirthConditionId">
                         {{brthcondition.BirthConditionType}}</option>
                 </select>
 
                 <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('BirthConditionId')"
-                    [hidden]="BirthDetail.IsValidCheck('BirthConditionId','required')">Birth Condition is
-                    Required!</span>
+                    [hidden]="BirthDetail.IsValidCheck('BirthConditionId','required')">{{ 'MEDICAL_RECORDS.BIRTH_CONDITION_REQUIRED' | translate }}</span>
             </div>
         </div>
 
 
         <div class="form-group">
-            <div class="col-md-5"><label for="sex" class="control-label lbl-text">Gender
+            <div class="col-md-5"><label for="sex" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.GENDER' | translate }}
                     <sup>*</sup></label></div>
             <div class="col-md-5">
                 <!-- <input id="sex" formControlName="Sex" [(ngModel)]="BirthDetail.Sex" type="text"
                             name="birth-condition" class="cstm-field-ip" /> -->
                 <select id="sex" formControlName="Sex" [(ngModel)]="BirthDetail.Sex">
-                    <option value="">--Select--</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
+                    <option value="">{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
+                    <option value="Male">{{ 'PATIENT.MALE' | translate }}</option>
+                    <option value="Female">{{ 'PATIENT.FEMALE' | translate }}</option>
+                    <option value="Other">{{ 'PATIENT.OTHER' | translate }}</option>
                 </select>
                 <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('Sex')"
-                    [hidden]="BirthDetail.IsValidCheck('Sex','required')">Gender is
-                    Required!</span>
+                    [hidden]="BirthDetail.IsValidCheck('Sex','required')">{{ 'MEDICAL_RECORDS.GENDER_IS_REQUIRED' | translate }}</span>
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-5"><label for="babyWt" class="control-label lbl-text">Weight <span
-                        style="line-height: 2;">(gram)</span>
+            <div class="col-md-5"><label for="babyWt" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.WEIGHT_GRAM' | translate }}
                     <sup>*</sup></label>
             </div>
             <div class="col-md-5">
@@ -283,18 +278,16 @@
                             onwheel="this.blur()" /></div>
                 </div>
                 <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('WeightOfBaby')"
-                    [hidden]="BirthDetail.IsValidCheck('WeightOfBaby','required')">Enter baby
-                    Weight</span>
+                    [hidden]="BirthDetail.IsValidCheck('WeightOfBaby','required')">{{ 'MEDICAL_RECORDS.ENTER_BABY_WEIGHT' | translate }}</span>
                 <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('WeightOfBaby')"
-                    [hidden]="BirthDetail.IsValidCheck('WeightOfBaby','min')">Weight can't be 0.</span>
+                    [hidden]="BirthDetail.IsValidCheck('WeightOfBaby','min')">{{ 'MEDICAL_RECORDS.WEIGHT_CANT_BE_0' | translate }}</span>
                 <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('WeightOfBaby')"
-                    [hidden]="BirthDetail.IsValidCheck('WeightOfBaby','pattern')">Too long decimal Digits</span>
+                    [hidden]="BirthDetail.IsValidCheck('WeightOfBaby','pattern')">{{ 'MEDICAL_RECORDS.TOO_LONG_DECIMAL_DIGITS' | translate }}</span>
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-5"><label for="fatherName" class="control-label lbl-text">Father
-                    Name</label>
+            <div class="col-md-5"><label for="fatherName" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.FATHER_NAME' | translate }}</label>
             </div>
             <div class="col-md-5">
                 <input id="fatherName" [(ngModel)]="BirthDetail.FathersName" [ngModelOptions]="{standalone: true}"
@@ -303,7 +296,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-5">
-                <label for="birthDate" class="control-label lbl-text">Birth Date
+                <label for="birthDate" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.BIRTH_DATE' | translate }}
                     <sup>*</sup></label>
 
             </div>
@@ -313,33 +306,30 @@
                 </danphe-date-picker>
                 <!--<input id="birthDate" formControlName="BirthDate" [(ngModel)]="BirthDetail.BirthDate" type="date" class="cstm-field-ip" />-->
                 <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('BirthDate')"
-                    [hidden]="BirthDetail.IsValidCheck('BirthDate','required')">Enter
-                    Birth Date</span>
+                    [hidden]="BirthDetail.IsValidCheck('BirthDate','required')">{{ 'MEDICAL_RECORDS.ENTER_BIRTH_DATE' | translate }}</span>
             </div>
 
         </div>
         <div class="form-group">
-            <div class="col-md-5"><label for="birthTime" class="control-label lbl-text">Birth
-                    Time <sup>*</sup></label>
+            <div class="col-md-5"><label for="birthTime" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.BIRTH_TIME' | translate }} <sup>*</sup></label>
             </div>
             <div class="col-md-5">
                 <input class="cstm-field-ip" id="birthTime" type="time" formControlName="BirthTime"
                     [(ngModel)]="BirthDetail.BirthTime" />
                 <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('BirthTime')"
-                    [hidden]="BirthDetail.IsValidCheck('BirthTime','required')">Enter Birth
-                    Time</span>
+                    [hidden]="BirthDetail.IsValidCheck('BirthTime','required')">{{ 'MEDICAL_RECORDS.ENTER_BIRTH_TIME' | translate }}</span>
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-5"><label for="ddlBirthNumberType" class="control-label lbl-text">Birth Number Type
+            <div class="col-md-5"><label for="ddlBirthNumberType" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.BIRTH_NUMBER_TYPE' | translate }}
                 </label>
             </div>
             <div class="col-md-5">
                 <select id="ddlBirthNumberType" [(ngModel)]="BirthDetail.BirthNumberType" type="text"
                     class="cstm-field-ip" [ngModelOptions]="{standalone: true}">
-                    <option value="single">Single</option>
-                    <option value="twins">Twins</option>
-                    <option value="multiple">Multiple</option>
+                    <option value="single">{{ 'MEDICAL_RECORDS.SINGLE' | translate }}</option>
+                    <option value="twins">{{ 'MEDICAL_RECORDS.TWINS' | translate }}</option>
+                    <option value="multiple">{{ 'MEDICAL_RECORDS.MULTIPLE' | translate }}</option>
                 </select>
                 <!-- <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('BirthNumberType')"
         [hidden]="BirthDetail.IsValidCheck('BirthNumberType','required')">Enter Birth
@@ -347,13 +337,13 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-5"><label for="ddlBirthType" class="control-label lbl-text">Birth Type
+            <div class="col-md-5"><label for="ddlBirthType" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.BIRTH_TYPE' | translate }}
                 </label>
             </div>
             <div class="col-md-5">
                 <select id="ddlBirthType" name="BirthType" [(ngModel)]="BirthDetail.BirthType"
                     [ngModelOptions]="{standalone: true}" type="text" class="cstm-field-ip">
-                    <option [ngValue]="undefined" selected> --Please select-- </option>
+                    <option [ngValue]="undefined" selected> {{ 'COMMON.PLEASE_SELECT' | translate }} </option>
                     <option *ngFor="let brthTypeItem of BirthTypeList" [ngValue]="brthTypeItem.type">
                         {{brthTypeItem.type}}</option>
                     <!-- <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('BirthType')"
@@ -365,11 +355,11 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-5"><label for="certNum" class="control-label lbl-text">Issued By:
+            <div class="col-md-5"><label for="certNum" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.ISSUED_BY' | translate }}
                 </label></div>
             <div class="col-md-5">
                 <input danphe-auto-complete class="form-control" [source]="providerList"
-                    [list-formatter]="myListFormatter" placeholder="Issued By" display-property-name="FullName"
+                    [list-formatter]="myListFormatter" [placeholder]="'MEDICAL_RECORDS.ISSUED_BY_PLACEHOLDER' | translate" display-property-name="FullName"
                     value-property-name=null (valueChanged)="OnChangeIssuedSignatory()" min-chars="0"
                     [(ngModel)]="IssuedSignatory" max-num-list="10" [ngModelOptions]="{standalone: true}" />
 
@@ -381,12 +371,12 @@
         <!-- [(ngModel)]="BirthDetail.CertifiedBy"  [(ngModel)]="BirthDetail.IssuedBy"-->
         <div class="form-group">
             <div class="col-md-5">
-                <label for="certNum" class="control-label lbl-text">Certified By:
+                <label for="certNum" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.CERTIFIED_BY' | translate }}
                 </label>
             </div>
             <div class="col-md-5">
                 <input danphe-auto-complete class="form-control" [(ngModel)]="CertifiedSignatory"
-                    [source]="providerList" [list-formatter]="myListFormatter" placeholder="Certified By"
+                    [source]="providerList" [list-formatter]="myListFormatter" [placeholder]="'MEDICAL_RECORDS.CERTIFIED_BY_PLACEHOLDER' | translate"
                     display-property-name="FullName" value-property-name=null
                     (valueChanged)="OnChangeCertifiedSignatory()" min-chars="0" max-num-list="10"
                     [ngModelOptions]="{standalone: true}" />
@@ -403,18 +393,15 @@
             </div>
             <div class="col-md-7">
                 <button [attr.disabled]="loading?true:null" *ngIf="!IsEditMode && !showSelectMother"
-                    (click)="AddBirthDetailToList()" class="add-cert btn-pd btn btn-sm btn-primary left">Add
-                    Certificate</button>
+                    (click)="AddBirthDetailToList()" class="add-cert btn-pd btn btn-sm btn-primary left">{{ 'MEDICAL_RECORDS.ADD_CERTIFICATE' | translate }}</button>
                 <button [attr.disabled]="loading?true:null" *ngIf="!IsEditMode && showSelectMother"
                     (click)="AddBirthDetailToList()" class="add-cert btn-pd btn btn-sm btn-primary left"
-                    style=" margin-top:5px;">Add
-                    Certificate</button>
+                    style=" margin-top:5px;">{{ 'MEDICAL_RECORDS.ADD_CERTIFICATE' | translate }}</button>
 
                 <button [attr.disabled]="loading?true:null" *ngIf="IsEditMode" (click)="SaveBirthDetail()"
-                    class="add-cert btn-pd btn btn-sm btn-primary left" style="margin-right:10px;">Update Birth
-                    Certificate</button>
+                    class="add-cert btn-pd btn btn-sm btn-primary left" style="margin-right:10px;">{{ 'MEDICAL_RECORDS.UPDATE_BIRTH_CERTIFICATE' | translate }}</button>
                 <button *ngIf="IsEditMode" (click)="CancelUpdate()"
-                    class="cancel-cert btn-pd btn btn-sm btn-danger left" style="margin-right:3px;">Discard</button>
+                    class="cancel-cert btn-pd btn btn-sm btn-danger left" style="margin-right:3px;">{{ 'COMMON.DISCARD' | translate }}</button>
             </div>
         </div>
     </div>

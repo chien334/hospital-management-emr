@@ -3,48 +3,48 @@
     <div class="modelbox-div clearfix" style="padding:5rem; margin: 5rem;">
       <div class="caption lb-caption">
         <h3>
-          Disinfection Details of {{selectedItemName}}
+          {{ 'CSSD.DISINFECTION_DETAILS_OF' | translate: { itemName: selectedItemName } }}
         </h3>
       </div>
       <form [formGroup]="storeForm" class="hm-form" (ngSubmit)="submit(storeForm.value)" *ngIf="storeForm">
         <div class="form-body">
           <div class="form-group">
-            <label class="control-label col-md-4">Disinfected On<sup class="color-red">*</sup><b>:</b></label>
+            <label class="control-label col-md-4">{{ 'CSSD.DISINFECTED_ON' | translate }}<sup class="color-red">*</sup><b>:</b></label>
             <div class="col-md-8">
               <danphe-date-picker formControlName="DisinfectedDate" [(ngModel)]="disinfectionDate" [CalendarTypes]="'en,np'" showTime="true"></danphe-date-picker>
               <div *ngIf="storeForm.get('DisinfectedDate').invalid && (storeForm.get('DisinfectedDate').dirty || storeForm.get('DisinfectedDate').touched)">
                 <div *ngIf="storeForm.get('DisinfectedDate').errors.required">
-                  <span class="color-red font-sm">Disinfection Date is required</span>
+                  <span class="color-red font-sm">{{ 'CSSD.DISINFECTION_DATE_IS_REQUIRED' | translate }}</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-md-4">Disinfection Method<sup class="color-red">*</sup><b>:</b></label>
+            <label class="control-label col-md-4">{{ 'CSSD.DISINFECTION_METHOD' | translate }}<sup class="color-red">*</sup><b>:</b></label>
             <div class="col-md-8">
               <select name="DisinfectionMethod" id="DisinfectionMethod" formControlName="DisinfectionMethod">
-                <option value="Chemical Disinfection">Chemical Disinfection</option>
-                <option value="Autoclave">Autoclave</option>
-                <option value="Microwave">Microwave</option>
-                <option value="Other">Other</option>
+                <option value="Chemical Disinfection">{{ 'CSSD.CHEMICAL_DISINFECTION' | translate }}</option>
+                <option value="Autoclave">{{ 'CSSD.AUTOCLAVE' | translate }}</option>
+                <option value="Microwave">{{ 'CSSD.MICROWAVE' | translate }}</option>
+                <option value="Other">{{ 'CSSD.OTHER' | translate }}</option>
               </select>
               <div *ngIf="storeForm.get('DisinfectionMethod').invalid && (storeForm.get('DisinfectionMethod').dirty || storeForm.get('DisinfectionMethod').touched)">
                 <div *ngIf="storeForm.get('DisinfectionMethod').errors.required">
-                  <span class="color-red font-sm">Disinfection Method is required</span>
+                  <span class="color-red font-sm">{{ 'CSSD.DISINFECTION_METHOD_IS_REQUIRED' | translate }}</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-md-4">Disinfection Remarks<b>:</b></label>
+            <label class="control-label col-md-4">{{ 'CSSD.DISINFECTION_REMARKS' | translate }}<b>:</b></label>
             <div class="col-md-8">
               <textarea name="DisinfectionRemarks" id="DisinfectionRemarks" cols="30" rows="3" formControlName="DisinfectionRemarks"></textarea>
             </div>
           </div>
           <div style="float:right">
             <button type="submit" disabled style="display: none" aria-hidden="true"></button>
-            <button type="submit" class="btn btn-success green">Proceed </button>
-            <button type="reset" class="btn btn-danger" (click)="Close()"> Cancel </button>
+            <button type="submit" class="btn btn-success green">{{ 'CSSD.PROCEED' | translate }}</button>
+            <button type="reset" class="btn btn-danger" (click)="Close()">{{ 'COMMON.CANCEL' | translate }}</button>
           </div>
         </div>
       </form>

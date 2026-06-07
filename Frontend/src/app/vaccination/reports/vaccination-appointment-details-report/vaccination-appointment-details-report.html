@@ -4,8 +4,7 @@
             <div class="form-body">
                 <div class="col-md-12">
                     <div class="caption custom-caption" style="float: left;"> <i
-                            class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Appointment Details
-                            Report</span>
+                            class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'VACCINATION.APPOINTMENT_DETAILS_REPORT' | translate }}</span>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -16,19 +15,19 @@
                             </from-to-date-select>
                         </div>
                         <div class="col-md-4">
-                            Appointment Type : <select [(ngModel)]="AppointmentType"
+                            {{ 'VACCINATION.APPOINTMENT_TYPE' | translate }} : <select [(ngModel)]="AppointmentType"
                                 [ngModelOptions]="{standalone: true}" style="width:100px;height:30px;">
-                                <option value="all">All</option>
-                                <option value="new">New</option>
-                                <option value="followup">Followup</option>
+                                <option value="all">{{ 'COMMON.ALL' | translate }}</option>
+                                <option value="new">{{ 'COMMON.NEW' | translate }}</option>
+                                <option value="followup">{{ 'VACCINATION.FOLLOWUP' | translate }}</option>
                             </select>
                         </div>
                         <div class="col-md-2">
                             <button class="btn green btn-success" type="button"
                                 (click)="GetAppointmentDetailsReport();this.loading=true;" [disabled]="loading"> <i
-                                    class="fa fa-search"></i> Show Report
+                                    class="fa fa-search"></i> {{ 'VACCINATION.SHOW_REPORT' | translate }}
                             </button>
-                            <span *ngIf="loading">Loading... Please wait.</span>
+                            <span *ngIf="loading">{{ 'COMMON.LOADING_PLEASE_WAIT' | translate }}</span>
                         </div>
 
                     </div>

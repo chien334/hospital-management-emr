@@ -1,6 +1,6 @@
 <div>
   <div class="caption custom-caption">
-    <h3><span>Calculate and Load Incentive from Billing</span></h3>
+    <h3><span>{{ 'INCENTIVE.CALCULATE_AND_LOAD_INCENTIVE_FROM_BILLING' | translate }}</span></h3>
   </div>
 </div>
 <div class="row">
@@ -34,7 +34,7 @@
           <div class="col-md-3">
             <div class="row">
               <div class="col-md-3">
-                <button (click)="LoadUptoDateFractionTransactions()" class="btn blue" style="padding: 5px 10px;" [disabled] = "loading"> <i class="fa fa-refresh"></i> Sync Billing to Incentives </button>
+                <button (click)="LoadUptoDateFractionTransactions()" class="btn blue" style="padding: 5px 10px;" [disabled] = "loading"> <i class="fa fa-refresh"></i> {{ 'INCENTIVE.SYNC_BILLING_TO_INCENTIVES' | translate }} </button>
               </div>
             </div>
           </div>

@@ -8,25 +8,25 @@
                         <div class="page-bar bill-p-info">
                             <div>
                                 <span>
-                                    <i class="fa fa-user"></i>&nbsp;Name : <b>{{patientDetail.PatientName}}</b>
-                                </span>
-                                <span>
-                                    <i class="fa fa-h-sign"></i>&nbsp;Hospital # : <b>{{patientDetail.PatientCode}}</b>
-                                </span>
-                                <span>
-                                    <i class="fa fa-male"></i>&nbsp;Age/Sex :
-                                    {{patientDetail.Age}}/{{patientDetail.Gender}}
-                                </span>
-                                <span>
-                                    <i class="fa fa-h-sign"></i>&nbsp;Date of Birth : {{patientDetail.DateOfBirth |
-                                    DanpheDateTime:'format':'YYYY-MM-DD'}}
-                                </span>
-                                <span>
-                                    <i class="fa fa-h-sign"></i>&nbsp;Address : <b>{{patientDetail.Address}}</b>
-                                </span>
-                                <span *ngIf="patientDetail.PhoneNumber">
-                                    <i class="fa fa-phone"></i>&nbsp;Contact No : <b>{{patientDetail.PhoneNumber}}</b>
-                                </span>
+                                     <i class="fa fa-user"></i>&nbsp;{{ 'COMMON.NAME' | translate }} : <b>{{patientDetail.PatientName}}</b>
+                                 </span>
+                                 <span>
+                                     <i class="fa fa-h-sign"></i>&nbsp;{{ 'VACCINATION.HOSPITAL_HASH' | translate }} : <b>{{patientDetail.PatientCode}}</b>
+                                 </span>
+                                 <span>
+                                     <i class="fa fa-male"></i>&nbsp;{{ 'GRID_HEADERS.AGE_SEX' | translate }} :
+                                     {{patientDetail.Age}}/{{patientDetail.Gender}}
+                                 </span>
+                                 <span>
+                                     <i class="fa fa-h-sign"></i>&nbsp;{{ 'VACCINATION.DATE_OF_BIRTH' | translate }} : {{patientDetail.DateOfBirth |
+                                     DanpheDateTime:'format':'YYYY-MM-DD'}}
+                                 </span>
+                                 <span>
+                                     <i class="fa fa-h-sign"></i>&nbsp;{{ 'GRID_HEADERS.ADDRESS' | translate }} : <b>{{patientDetail.Address}}</b>
+                                 </span>
+                                 <span *ngIf="patientDetail.PhoneNumber">
+                                     <i class="fa fa-phone"></i>&nbsp;{{ 'VACCINATION.CONTACT_NO_LABEL' | translate }} : <b>{{patientDetail.PhoneNumber}}</b>
+                                 </span>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                             <div class="row" *ngIf="!isVaccRegNumAutoIncreaseEnabled">
                                 <div class="col-md-12" style="text-align: right;">
                                     <div style="display: inline-block;margin-right: 15px;">
-                                        <b>Fiscal Year: </b>
+                                        <b>{{ 'VACCINATION.FISCAL_YEAR' | translate }}: </b>
                                         <select [(ngModel)]="selectedFiscalYear" [ngModelOptions]="{standalone: true}"
                                             (change)="GetLatestRegistrationNumber()">
                                             <option *ngFor="let fisc of allFiscalYrs;" value="{{fisc.FiscalYearId}}">
@@ -45,7 +45,7 @@
                                         </select>
                                     </div>
                                     <div style="display: inline-block;margin-right: 15px;">
-                                        <label style="display: inline-block;">Vaccine Reg. No: &nbsp;</label>
+                                        <label style="display: inline-block;">{{ 'VACCINATION.VACC_REG_NO' | translate }}: &nbsp;</label>
                                         <input [(ngModel)]="vaccRegNumber" class="form-control" min="0"
                                             (focusout)="vaccRegNumberChanged()"
                                             style="display: inline-block;width: 110px;"
@@ -56,7 +56,7 @@
                                             [disabled]="loading || !vaccRegNumber || (vaccRegNumber < 0)"
                                             class="btn green btn-success margin-7-hr"
                                             (click)="loading=true;UpdateVaccineRegNumberForPatient()">
-                                            Update
+                                            {{ 'COMMON.UPDATE' | translate }}
                                         </button>
                                     </div>
                                 </div>
@@ -67,14 +67,12 @@
 
                             <div *ngIf="duplicateRegNumberData && (duplicateRegNumberData.PatientId != patientId)">
                                 <span class="error-msg">
-                                    This vaccination Reg. No. is Already used</span>
+                                    {{ 'VACCINATION.VACC_REG_NO_ALREADY_USED' | translate }}</span>
                             </div>
 
                             <div>
                                 <span *ngIf="latestVaccRegNumForSelectedFiscYear"
-                                    style="font-size: 10px; line-height: 3;">Latest
-                                    Vaccination Registration number for selected fiscal
-                                    year is
+                                    style="font-size: 10px; line-height: 3;">{{ 'VACCINATION.LATEST_VACC_REG_NUM_MESSAGE' | translate }}
                                     {{latestVaccRegNumForSelectedFiscYear}}</span>
                             </div>
 
@@ -87,7 +85,7 @@
                     <div class="row margin-top-15">
                         <div class="form-group col-md-4">
                             <div class="row">
-                                <label class="control-label col-md-12">Vaccine Date</label>
+                                <label class="control-label col-md-12">{{ 'VACCINATION.VACCINE_DATE' | translate }}</label>
                             </div>
                             <div class="row">
                                 <div class="col-md-8">
@@ -101,52 +99,50 @@
 
                         <div class="form-group col-md-2">
                             <div class="row">
-                                <label class="control-label col-md-12">Vaccine Name</label>
+                                <label class="control-label col-md-12">{{ 'VACCINATION.VACCINE_NAME' | translate }}</label>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <select id="vaccine" class="form-control" formControlName="VaccineId"
                                         [(ngModel)]="patientVaccineDetail.VaccineId" (change)="VaccineChanged()">
-                                        <option value="0">--Vaccine--</option>
+                                        <option value="0">{{ 'VACCINATION.SELECT_VACCINE_OPTION' | translate }}</option>
                                         <option *ngFor="let vacc of vaccineList" value="{{vacc.VaccineId}}">
                                             {{vacc.VaccineName}}
                                         </option>
                                     </select>
                                     <span class="error-msg" *ngIf="patientVaccineDetail.IsDirty('VaccineId')"
-                                        [hidden]="patientVaccineDetail.IsValidCheck('VaccineId','min')"> Vaccine is
-                                        required</span>
+                                        [hidden]="patientVaccineDetail.IsValidCheck('VaccineId','min')"> {{ 'VACCINATION.VACCINE_REQUIRED' | translate }}</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group col-md-3">
                             <div class="row">
-                                <label class="control-label col-md-12">Vaccine Dose</label>
+                                <label class="control-label col-md-12">{{ 'VACCINATION.VACCINE_DOSE' | translate }}</label>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <select id="vaccineDose" class="form-control" formControlName="DoseNumber"
                                         [(ngModel)]="patientVaccineDetail.DoseNumber">
-                                        <option value="0">--Dose--</option>
+                                        <option value="0">{{ 'VACCINATION.SELECT_DOSE_OPTION' | translate }}</option>
                                         <option *ngFor="let dose of doseListOfVaccine" value="{{dose.Id}}">
                                             {{dose.NumberInfo}}
                                         </option>
                                     </select>
                                     <span class="error-msg" *ngIf="patientVaccineDetail.IsDirty('DoseNumber')"
-                                        [hidden]="patientVaccineDetail.IsValidCheck('DoseNumber','min')"> Dose is
-                                        required</span>
+                                        [hidden]="patientVaccineDetail.IsValidCheck('DoseNumber','min')"> {{ 'VACCINATION.DOSE_REQUIRED' | translate }}</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group col-md-3">
                             <div class="row">
-                                <label class="control-label col-md-12">Remarks</label>
+                                <label class="control-label col-md-12">{{ 'COMMON.REMARKS' | translate }}</label>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <input [(ngModel)]="patientVaccineDetail.Remarks" class="form-control"
-                                        [ngModelOptions]="{standalone: true}" placeholder="Remarks" type="text" />
+                                        [ngModelOptions]="{standalone: true}" [placeholder]="'COMMON.REMARKS' | translate" type="text" />
                                 </div>
                             </div>
                         </div>
@@ -158,17 +154,17 @@
                                 <button *ngIf="!patientVaccineDetail.PatientVaccineId" type="button" id="register"
                                     [disabled]="loading" class="btn green btn-success margin-7-hr"
                                     (click)="loading=true;AddVaccineForPatient()">
-                                    Add
+                                    {{ 'VACCINATION.ADD' | translate }}
                                 </button>
                                 <button *ngIf="patientVaccineDetail.PatientVaccineId > 0" type="button" id="reset"
                                     [disabled]="loading" class="btn grey btn-success margin-7-hr"
                                     (click)="loading=true;Reset()">
-                                    Cancel
+                                    {{ 'COMMON.CANCEL' | translate }}
                                 </button>
                                 <button *ngIf="patientVaccineDetail.PatientVaccineId > 0" type="button" id="register"
                                     [disabled]="loading" class="btn green btn-success margin-7-hr"
                                     (click)="loading=true;AddVaccineForPatient()">
-                                    Update
+                                    {{ 'COMMON.UPDATE' | translate }}
                                 </button>
                             </div>
                         </div>
@@ -189,7 +185,7 @@
     padding: 8px 0;
     text-align: center;
     font-size: 14px;
-    color: #f3f3f3;">Vaccines list taken by {{patientDetail.ShortName}}</p>
+    color: #f3f3f3;">{{ 'VACCINATION.VACCINES_LIST_TAKEN_BY' | translate }} {{patientDetail.ShortName}}</p>
     </div>
     <div class="col-md-12">
         <danphe-grid [grid-colDefaults]="patientVaccListGridColumns" [grid-data]="vaccinesListOfPat"
@@ -202,6 +198,6 @@
 <div class="row margin-top-15 margin-bottom-15" *ngIf="!vaccinesListOfPat || (vaccinesListOfPat.length==0)" style="min-height: 80px;display: flex;
     align-items: center;background-color: #f8f7f7;">
     <div class="col-md-12 text-center" style="font-weight: 600;">
-        <h5>No Vaccines Record</h5>
+        <h5>{{ 'VACCINATION.NO_VACCINES_RECORD' | translate }}</h5>
     </div>
 </div>

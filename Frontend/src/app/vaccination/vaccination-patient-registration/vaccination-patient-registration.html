@@ -15,25 +15,24 @@
                 <div class="col-md-12">
                     <div class="col-md-6 col-xs-12">
                         <div class="form-group">
-                            <label class="control-label col-md-4">Mother Name<sup>*</sup><b
+                            <label class="control-label col-md-4">{{ 'VACCINATION.MOTHER_NAME' | translate }}<sup>*</sup><b
                                    style="float:right;">:</b></label>
                             <div class="col-md-8">
                                 <input id="regPatMotherName" class="form-control" type="text" maxlength="30"
                                        formControlName="MotherName" [(ngModel)]="model.MotherName" required value=""
                                        (ngModelChange)="setBabyName()" (keyup.enter)="SetFocusById('regPatShortName')"
                                        (focusout)="capitalizeFirstLetter('MotherName');EthnicGroupAutoSelect()"
-                                       placeholder="Mother Name" />
+                                       [placeholder]="'VACCINATION.MOTHER_NAME' | translate" />
                                 <span class="error-msg" *ngIf="model.IsDirty('MotherName')"
-                                      [hidden]="model.IsValidCheck('MotherName','required')"> Mother
-                                    Name is required</span>
+                                      [hidden]="model.IsValidCheck('MotherName','required')"> {{ 'VACCINATION.MOTHER_NAME_REQUIRED' | translate }}</span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4">Baby Name<b style="float:right;">:</b></label>
+                            <label class="control-label col-md-4">{{ 'VACCINATION.BABY_NAME' | translate }}<b style="float:right;">:</b></label>
                             <div class="col-md-8">
                                 <input id="regPatShortName" class="form-control" type="text" maxlength="30"
                                        (keyup.enter)="SetFocusById('babyAge')" [(ngModel)]="model.ShortName" required
-                                       value="" (focusout)="capitalizeFirstLetter('ShortName')" placeholder="Baby Name"
+                                       value="" (focusout)="capitalizeFirstLetter('ShortName')" [placeholder]="'VACCINATION.BABY_NAME' | translate"
                                        [ngModelOptions]="{standalone: true}" />
                                 <!-- <span class="error-msg" *ngIf="model.IsDirty('ShortName')"
                                     [hidden]="model.IsValidCheck('ShortName','required')"> Baby Name is required</span>
@@ -43,18 +42,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4">Age<sup>*</sup><b style="float:right;">:</b></label>
+                            <label class="control-label col-md-4">{{ 'VACCINATION.AGE' | translate }}<sup>*</sup><b style="float:right;">:</b></label>
                             <div class="col-md-8">
                                 <div class="col-md-3" style="padding-left:0px !important;padding-right: 0px;">
                                     <input class="form-control" type="number" min="0" max="150" formControlName="Age"
                                            id="babyAge" onclick="this.select()" (focusout)="CalculateDob();"
                                            (keyup.enter)="SetFocusById('babyAgeUnit')" [(ngModel)]="model.Age"
-                                           placeholder="Age" style="padding-right:0px;" oninput="validity.valid||(value='');" />
+                                           [placeholder]="'VACCINATION.AGE' | translate" style="padding-right:0px;" oninput="validity.valid||(value='');" />
                                     <span class="error-msg" *ngIf="model.IsDirty('Age')"
-                                          [hidden]="model.IsValidCheck('Age','required')"> Age is
-                                        required</span>
-                                    <span *ngIf="model.Age == 0" class="color-red font-sm">Age should be greater than
-                                        0</span>
+                                          [hidden]="model.IsValidCheck('Age','required')"> {{ 'VACCINATION.AGE_REQUIRED' | translate }}</span>
+                                    <span *ngIf="model.Age == 0" class="color-red font-sm">{{ 'VACCINATION.AGE_GREATER_THAN_ZERO' | translate }}</span>
                                 </div>
                                 <div class="col-md-9" style="padding-right: 0px;">
                                     <div class="input-group">
@@ -65,15 +62,15 @@
                                                 (blur)="coreService.RemoveFocusFromCurrentSelect('babyAgeUnit')">
                                             <option value="D"
                                                     (click)="coreService.SetFocusToNextSelectElement('gender')">
-                                                Days
+                                                {{ 'VACCINATION.DAYS' | translate }}
                                             </option>
                                             <option value="M"
                                                     (click)="coreService.SetFocusToNextSelectElement('gender')">
-                                                Months
+                                                {{ 'VACCINATION.MONTHS' | translate }}
                                             </option>
                                             <option value="Y"
                                                     (click)="coreService.SetFocusToNextSelectElement('gender')">
-                                                Years
+                                                {{ 'VACCINATION.YEARS' | translate }}
                                             </option>
                                         </select>
                                     </div>
@@ -84,21 +81,18 @@
                         <input type="text" hidden [(ngModel)]="model.DateOfBirth" formControlName="DateOfBirth"
                                (ngModelChange)="GenerateAge()" />
                         <div class="form-group">
-                            <label class="control-label col-md-4 left" style="padding-top: 1px;">Date Of
-                                Birth<b style="float:right;">:</b></label>
+                            <label class="control-label col-md-4 left" style="padding-top: 1px;">{{ 'VACCINATION.DATE_OF_BIRTH' | translate }}<b style="float:right;">:</b></label>
                             <div class="col-md-8 datepicker-wrap">
                                 <danphe-date-picker [(ngModel)]="model.DateOfBirth" ngDefaultControl id="dateOfBirth"
-                                                    (keyup.enter)="SetFocusById('gender')" [CalendarTypes]="calType"
-                                                    formControlName="DateOfBirth" [year-settings]="'DateOfBirth'"> </danphe-date-picker>
+                                                     (keyup.enter)="SetFocusById('gender')" [CalendarTypes]="calType"
+                                                     formControlName="DateOfBirth" [year-settings]="'DateOfBirth'"> </danphe-date-picker>
                                 <span class="error-msg" *ngIf="model.IsDirty('DateOfBirth')"
-                                      [hidden]="model.IsValidCheck('DateOfBirth','required')"> Date Of Birth is
-                                    required</span> <span class="error-msg" *ngIf="model.IsDirty('DateOfBirth')"
-                                      [hidden]="model.IsValidCheck('DateOfBirth','wrongDate')">Wrong date is
-                                    selected</span>
+                                      [hidden]="model.IsValidCheck('DateOfBirth','required')"> {{ 'VACCINATION.DATE_OF_BIRTH_REQUIRED' | translate }}</span> <span class="error-msg" *ngIf="model.IsDirty('DateOfBirth')"
+                                      [hidden]="model.IsValidCheck('DateOfBirth','wrongDate')">{{ 'VACCINATION.WRONG_DATE_SELECTED' | translate }}</span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4">Gender<sup>*</sup><b
+                            <label class="control-label col-md-4">{{ 'VACCINATION.GENDER' | translate }}<sup>*</sup><b
                                    style="float:right;">:</b></label>
                             <div class="col-md-8">
                                 <div class="input-group">
@@ -107,24 +101,24 @@
                                             (focus)="coreService.SetFocusOnCurrentSelect('gender','countrySubdivision')"
                                             (blur)="coreService.RemoveFocusFromCurrentSelect('gender')" id="gender">
                                         <option value="Male"
-                                                (click)="coreService.SetFocusToNextSelectElement('countrySubdivision')">Male
+                                                (click)="coreService.SetFocusToNextSelectElement('countrySubdivision')">{{ 'VACCINATION.MALE' | translate }}
                                         </option>
                                         <option value="Female"
                                                 (click)="coreService.SetFocusToNextSelectElement('countrySubdivision')">
-                                            Female</option>
+                                            {{ 'VACCINATION.FEMALE' | translate }}</option>
                                         <option value="Others"
                                                 (click)="coreService.SetFocusToNextSelectElement('countrySubdivision')">
-                                            Other</option>
+                                            {{ 'VACCINATION.OTHER' | translate }}</option>
                                     </select>
                                 </div>
                                 <span class="error-msg" *ngIf="model.IsDirty('Gender')"
                                       [hidden]="model.IsValidCheck('Gender','required')">
-                                    Gender is required</span>
+                                    {{ 'VACCINATION.GENDER_REQUIRED' | translate }}</span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Country<b class="color-red"> *</b><b
+                            <label class="control-label col-md-4">{{ 'VACCINATION.COUNTRY' | translate }}<b class="color-red"> *</b><b
                                    style="float:right;">:</b></label>
                             <div class="col-md-7">
                                 <select id="ddlCountry" class="form-control" [(ngModel)]="model.CountryId"
@@ -134,8 +128,7 @@
                                         {{cont.CountryName}}</option>
                                 </select>
                                 <span class="color-red font-sm" *ngIf="model.IsDirty('CountryId')"
-                                      [hidden]="model.IsValidCheck('CountryId','required')"> Country is
-                                    required.</span>
+                                      [hidden]="model.IsValidCheck('CountryId','required')"> {{ 'VACCINATION.COUNTRY_REQUIRED' | translate }}</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -151,7 +144,7 @@
                                        onClick="this.select();" max-num-list="10" />
                                 <span class="color-red font-sm" *ngIf="model.IsDirty('CountrySubDivisionId')"
                                       [hidden]="model.IsValidCheck('CountrySubDivisionId','required')">
-                                    {{GeneralFieldLabel.DistrictState}} is required.</span>
+                                    {{GeneralFieldLabel.DistrictState}} {{ 'VACCINATION.IS_REQUIRED' | translate }}</span>
                             </div>
                         </div>
                     </div>
@@ -165,11 +158,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4">Address<b style="float:right;">:</b></label>
+                            <label class="control-label col-md-4">{{ 'GRID_HEADERS.ADDRESS' | translate }}<b style="float:right;">:</b></label>
                             <div class="col-md-8">
                                 <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
                                        id="address" [(ngModel)]="model.Address" [source]="olderAddressList"
-                                       placeholder="Address" display-property-name="PatAddress" value-property-name=null
+                                       [placeholder]="'GRID_HEADERS.ADDRESS' | translate" display-property-name="PatAddress" value-property-name=null
                                        no-match-found-text=" " onClick="this.select();" min-chars="2"
                                        style="text-transform: capitalize;" [grid-sort]="'sortonbasicdatatype'"
                                        (keyup.enter)="!isVaccRegNumAutoIncreaseEnabled ? SetFocusById('patVaccRegNumber') : SetFocusById('register')"
@@ -177,7 +170,7 @@
                             </div>
                         </div>
                         <div class="form-group" *ngIf="(patientId > 0) || !isVaccRegNumAutoIncreaseEnabled">
-                            <label class="control-label col-md-4">Vacc. Regd. No.<b class="color-red"> *</b><b
+                            <label class="control-label col-md-4">{{ 'VACCINATION.VACC_REGD_NO' | translate }}<b class="color-red"> *</b><b
                                    style="float:right;">:</b></label>
                             <div class="col-md-8">
                                 <p *ngIf="isVaccRegNumAutoIncreaseEnabled && (patientId > 0)" id="regNumber"
@@ -185,31 +178,31 @@
                                 <input *ngIf="!isVaccRegNumAutoIncreaseEnabled" id="patVaccRegNumber"
                                        class="form-control" type="text" maxlength="30" formControlName="VaccinationRegNo"
                                        [(ngModel)]="model.VaccinationRegNo" required value="" min="1"
-                                       (keyup.enter)="SetFocusById('register')" type="number" placeholder="Reg No." />
+                                       (keyup.enter)="SetFocusById('register')" type="number" [placeholder]="'VACCINATION.REG_NO_PLACEHOLDER' | translate" />
                                 <span class="color-red font-sm"
                                       *ngIf="!isVaccRegNumAutoIncreaseEnabled && model.IsDirty('VaccinationRegNo')"
                                       [hidden]="model.IsValidCheck('VaccinationRegNo','required')">
-                                    Vacc. reg. No. is required. &nbsp; &nbsp;</span>
+                                    {{ 'VACCINATION.VACC_REG_NO_REQUIRED' | translate }} &nbsp; &nbsp;</span>
                                 <span *ngIf="!isVaccRegNumAutoIncreaseEnabled && !(model.VaccinationRegNo > 0)"
-                                      class="color-red font-sm">Vacc. reg. No. should be greater than 0</span>
+                                      class="color-red font-sm">{{ 'VACCINATION.VACC_REG_NO_GREATER_THAN_ZERO' | translate }}</span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Father Name<b style="float:right;">:</b></label>
+                            <label class="control-label col-md-4">{{ 'VACCINATION.FATHER_NAME' | translate }}<b style="float:right;">:</b></label>
                             <div class="col-md-8">
                                 <input id="regPatFatherName" class="form-control" type="text" maxlength="30"
                                        [(ngModel)]="model.FatherName" required value=""
                                        (keyup.enter)="SetFocusById('phoneNumber')" [ngModelOptions]="{standalone: true}"
-                                       (focusout)="capitalizeFirstLetter('FatherName')" placeholder="Father Name" />
+                                       (focusout)="capitalizeFirstLetter('FatherName')" [placeholder]="'VACCINATION.FATHER_NAME' | translate" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4">Phone number<b style="float:right;">:</b></label>
+                            <label class="control-label col-md-4">{{ 'VACCINATION.PHONE_NUMBER' | translate }}<b style="float:right;">:</b></label>
                             <div class="col-md-8">
                                 <input class="form-control" type="tel" maxlength="11" [(ngModel)]="model.PhoneNumber"
                                        (keyup.enter)="SetFocusById('ethnicGroup')" id="phoneNumber"
-                                       [ngModelOptions]="{standalone: true}" placeholder="Phone number" />
+                                       [ngModelOptions]="{standalone: true}" [placeholder]="'VACCINATION.PHONE_NUMBER' | translate" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -218,12 +211,12 @@
                             <div class="col-md-8">
                                 <select class="form-control" [(ngModel)]="model.EthnicGroup" id="ethnicGroup"
                                         (change)="SetFocusById('register')" [ngModelOptions]="{standalone: true}">
-                                    <option value="Dalit">Dalit</option>
-                                    <option value="JanaJaati">JanaJaati</option>
-                                    <option value="Madhesi">Madhesi</option>
-                                    <option value="Muslim">Muslim</option>
-                                    <option value="Brahmin/Chhetri">Brahmin/Chhetri</option>
-                                    <option value="Others">Others</option>
+                                    <option value="Dalit">{{ 'VACCINATION.ETHNICITY_DALIT' | translate }}</option>
+                                    <option value="JanaJaati">{{ 'VACCINATION.ETHNICITY_JANAFJAATI' | translate }}</option>
+                                    <option value="Madhesi">{{ 'VACCINATION.ETHNICITY_MADHESI' | translate }}</option>
+                                    <option value="Muslim">{{ 'VACCINATION.ETHNICITY_MUSLIM' | translate }}</option>
+                                    <option value="Brahmin/Chhetri">{{ 'VACCINATION.ETHNICITY_BRAHMIN_CHHETRI' | translate }}</option>
+                                    <option value="Others">{{ 'VACCINATION.ETHNICITY_OTHERS' | translate }}</option>
                                 </select>
                             </div>
                         </div>
@@ -233,25 +226,25 @@
                                     <button type="button" id="cancelRegistration"
                                             class="btn grey btn-default margin-7-hr"
                                             (click)="CloseVaccinationRegister(false)">
-                                        Cancel
+                                        {{ 'COMMON.CANCEL' | translate }}
                                     </button>
                                     <button *ngIf="patientId == 0" type="button" id="register"
                                             class="btn green btn-success margin-7-hr" [disabled]="loading"
                                             (click)="loading=true;AddUpdateVaccinationPatient()">
-                                        Register
+                                        {{ 'VACCINATION.REGISTER' | translate }}
                                     </button>
                                     <button *ngIf="patientId > 0" type="button" id="register"
                                             class="btn green btn-success margin-7-hr" [disabled]="loading"
                                             (click)="loading=true;AddUpdateVaccinationPatient()">
-                                        Update
+                                        {{ 'COMMON.UPDATE' | translate }}
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group" *ngIf="patientId == 0">
                             <span style="color:darkgreen;">
-                                Note: 'Register' will also create a new Visit for this patient in <span
-                                      style="text-transform:uppercase;">{{vaccDeptName}} </span> Department.
+                                {{ 'VACCINATION.REGISTRATION_NOTE_PREFIX' | translate }}<span
+                                      style="text-transform:uppercase;">{{vaccDeptName}} </span>{{ 'VACCINATION.REGISTRATION_NOTE_SUFFIX' | translate }}
                             </span>
 
                         </div>

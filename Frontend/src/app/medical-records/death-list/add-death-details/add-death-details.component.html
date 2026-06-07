@@ -5,8 +5,8 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="modelbox-div clearfix">
                     <div class="caption custom-caption">
-                        <h3> <span>Add Death Details</span></h3>
-                        <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                        <h3> <span>{{ 'MEDICAL_RECORDS.ADD_DEATH_DETAILS' | translate }}</span></h3>
+                        <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                     </div>
 
                     <add-death-details-shared (death-details-emitter)="callBackForDeathDetails($event)">

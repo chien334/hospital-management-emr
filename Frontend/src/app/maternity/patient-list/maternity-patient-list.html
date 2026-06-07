@@ -39,14 +39,14 @@
       <!--<input type="text"  name="Existing Patient Name" placeholder="Patient Name" />-->
       <div class="search-with-label flex-container">
         <div class="flex-item bs-atuo text-left">
-          <label for="maternityPats">Edit Information Of</label>
+          <label for="maternityPats">{{ 'MATERNITY.EDIT_INFORMATION_OF' | translate }}</label>
         </div>
         &nbsp;&nbsp;
         <!--[source]="allPatientsForDDL"-->
         <div class="flex-item bs-55">
           <input danphe-auto-complete class="form-control" [(ngModel)]="selectedPatientForEdit"
             [list-formatter]="patientListFormatter" [source]="SearchPatientForEdit(this)"
-            placeholder="Existing Patient Name" display-property-name="ShortName" value-property-name=null
+            [placeholder]="'MATERNITY.EXISTING_PATIENT_NAME' | translate" display-property-name="ShortName" value-property-name=null
             (valueChanged)="EditExistingPatientInfo()" onClick="this.select();" id="maternityPats" min-chars="3"
             max-num-list="20" />
         </div>
@@ -59,7 +59,7 @@
           <label class="mt-checkbox mt-checkbox-outline">
             <input name="salutation" type="checkbox" value="Mr." [(ngModel)]="getConcludedPat"
               (ngModelChange)="GetMaternityPatient()">
-            <span></span>View all Maternity Patient
+            <span></span>{{ 'MATERNITY.VIEW_ALL_MATERNITY_PATIENT' | translate }}
           </label>
         </div>
       </div>
@@ -206,59 +206,57 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="modelbox-div clearfix">
             <div class="caption custom-caption">
-              <h3><span>Details of {{selectedPatient.ShortName}}</span></h3>
-              <a class="btn btn-danger" (click)="showHideButtonObj.view_concluded_patient=false" title="Cancel">X</a>
+              <h3><span>{{ 'MATERNITY.DETAILS_OF' | translate:{name: selectedPatient.ShortName} }}</span></h3>
+              <a class="btn btn-danger" (click)="showHideButtonObj.view_concluded_patient=false" [title]="'COMMON.CANCEL' | translate">X</a>
             </div>
             <form class="form-horizontal clearfix" [formGroup]="matPatToUpdate.MaternityPatientValidator">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="patHusbandName" class="control-label col-md-4">Husband's Name<b class="color-red">
+                  <label for="patHusbandName" class="control-label col-md-4">{{ 'MATERNITY.HUSBANDS_NAME' | translate }}<b class="color-red">
                       *
                     </b><b style="float:right;">:</b></label>
 
                   <div class="col-md-8">
                     <input type="text" id="patHusbandName" class="form-control" [(ngModel)]="matPatToUpdate.HusbandName"
-                      required value="{{matPatToUpdate.HusbandName | CapitalFirstLetter}}" placeholder="Husband's Name"
+                      required value="{{matPatToUpdate.HusbandName | CapitalFirstLetter}}" [placeholder]="'MATERNITY.HUSBANDS_NAME' | translate"
                       (keyup.enter)="setFocusById('patHeight')" formControlName="HusbandName" disabled>
                     <span class="color-red font-sm" *ngIf="matPatToUpdate.IsDirty('HusbandName')"
-                      [hidden]="matPatToUpdate.IsValidCheck('HusbandName','required')"> Husband's Name is
-                      required.</span>
+                      [hidden]="matPatToUpdate.IsValidCheck('HusbandName','required')">{{ 'MATERNITY.HUSBAND_NAME_REQUIRED' | translate }}</span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="patHeight" class="control-label col-md-4">Patient Height(in cm)<b class="color-red">
+                  <label for="patHeight" class="control-label col-md-4">{{ 'MATERNITY.PATIENT_HEIGHT_IN_CM' | translate }}<b class="color-red">
                       *
                     </b><b style="float:right;">:</b></label>
 
                   <div class="col-md-8">
                     <input type="text" id="patHeight" class="form-control" [(ngModel)]="matPatToUpdate.Height" required
-                      value="{{matPatToUpdate.Height}}" placeholder="Height in cm"
+                      value="{{matPatToUpdate.Height}}" [placeholder]="'MATERNITY.HEIGHT_IN_CM_PLACEHOLDER' | translate"
                       (keyup.enter)="setFocusById('patWeight')" formControlName="Height" disabled>
                     <span class="color-red font-sm" *ngIf="matPatToUpdate.IsDirty('Height')"
-                      [hidden]="matPatToUpdate.IsValidCheck('Height','required')"> Height is required.</span>
+                      [hidden]="matPatToUpdate.IsValidCheck('Height','required')">{{ 'MATERNITY.HEIGHT_REQUIRED' | translate }}</span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="patWeight" class="control-label col-md-4">Patient Weight(in kg)<b class="color-red">
+                  <label for="patWeight" class="control-label col-md-4">{{ 'MATERNITY.PATIENT_WEIGHT_IN_KG' | translate }}<b class="color-red">
                       *
                     </b><b style="float:right;">:</b></label>
 
                   <div class="col-md-8">
                     <input type="text" id="patWeight" class="form-control" [(ngModel)]="matPatToUpdate.Weight" required
-                      value="{{matPatToUpdate.Weight}}" placeholder="Weight in kgs"
+                      value="{{matPatToUpdate.Weight}}" [placeholder]="'MATERNITY.WEIGHT_IN_KGS_PLACEHOLDER' | translate"
                       (keyup.enter)="setFocusById('patFLM')" formControlName="Weight" disabled>
                     <span class="color-red font-sm" *ngIf="matPatToUpdate.IsDirty('Weight')"
-                      [hidden]="matPatToUpdate.IsValidCheck('Weight','required')"> Weight is required.</span>
+                      [hidden]="matPatToUpdate.IsValidCheck('Weight','required')">{{ 'MATERNITY.WEIGHT_REQUIRED' | translate }}</span>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="patFLM" class="control-label col-md-5">1<sup class="flm">st</sup> day of Last
-                    Menstruation<b class="color-red">
+                  <label for="patFLM" class="control-label col-md-5">{{ 'MATERNITY.LAST_MENSTRUAL_PERIOD_LABEL' | translate }}<b class="color-red">
                       *
                     </b><b style="float:right;">:</b></label>
 
@@ -271,7 +269,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="patEDD" class="control-label col-md-5">Expected Date of Delivery<b class="color-red">
+                  <label for="patEDD" class="control-label col-md-5">{{ 'MATERNITY.EXPECTED_DATE_OF_DELIVERY' | translate }}<b class="color-red">
                       *
                     </b><b style="float:right;">:</b></label>
 
@@ -283,15 +281,13 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="patObsHistory" class="control-label col-md-5">OBS history<b
+                  <label for="patObsHistory" class="control-label col-md-5">{{ 'MATERNITY.OBS_HISTORY' | translate }}<b
                       style="float:right;">:</b></label>
 
                   <div class="col-md-7">
                     <input type="text" id="patObsHistory" class="form-control" [(ngModel)]="matPatToUpdate.OBSHistory"
-                      required value="{{matPatToUpdate.OBSHistory}}" placeholder="OBSHistory"
+                      required value="{{matPatToUpdate.OBSHistory}}" [placeholder]="'MATERNITY.OBS_HISTORY' | translate"
                       (keyup.enter)="setFocusById('register')" [ngModelOptions]="{standalone: true}" disabled>
-                    <!-- <span class="color-red font-sm" *ngIf="matPatToUpdate.IsDirty('OBSHistory')"
-                    [hidden]="matPatToUpdate.IsValidCheck('OBSHistory','required')"> OBS History is required.</span> -->
                   </div>
                 </div>
               </div>
@@ -300,7 +296,7 @@
               <div class="all-buttons text-right">
                 <button type="button" id="register" class="btn green btn-success margin-7-hr"
                   (click)="UpdateMaternityPatient();showHideButtonObj.view_concluded_patient=false" disabled>
-                  Update
+                  {{ 'COMMON.UPDATE' | translate }}
                 </button>
               </div>
             </div>
@@ -318,8 +314,8 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Maternity ANC</span></h3>
-            <a class="btn btn-danger" (click)="showHideButtonObj.anc=false" title="Cancel">X</a>
+            <h3> <span>{{ 'MATERNITY.MATERNITY_ANC' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="showHideButtonObj.anc=false" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
 
           <div class="col-md-12">
@@ -339,8 +335,8 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Maternity Register</span></h3>
-            <a class="btn btn-danger" (click)="showHideButtonObj.maternity_register=false" title="Cancel">X</a>
+            <h3> <span>{{ 'MATERNITY.MATERNITY_REGISTER_TITLE' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="showHideButtonObj.maternity_register=false" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
 
           <div class="col-md-12">
@@ -360,22 +356,22 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Alert !!</span></h3>
-            <a class="btn btn-danger" (click)="showHideButtonObj.remove=false" title="Cancel">X</a>
+            <h3> <span>{{ 'MATERNITY.ALERT_TITLE' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="showHideButtonObj.remove=false" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
 
           <div class="modelbox-body">
-            Are you sure, you want to remove {{selectedPatient.ShortName}} ?
+            {{ 'MATERNITY.REMOVE_PATIENT_CONFIRM' | translate:{name: selectedPatient.ShortName} }}
           </div>
 
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
               <button type="button" id="register" class="btn green btn-success margin-7-hr" (click)="RemovePatient()">
-                Remove
+                {{ 'MATERNITY.REMOVE' | translate }}
               </button>
               <button type="button" id="register" class="btn grey btn-default margin-7-hr"
                 (click)="showHideButtonObj.remove=false">
-                Cancel
+                {{ 'COMMON.CANCEL' | translate }}
               </button>
             </div>
           </div>
@@ -391,22 +387,22 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Conclude Alert !!</span></h3>
-            <a class="btn btn-danger" (click)="showHideButtonObj.conclude=false" title="Cancel">X</a>
+            <h3> <span>{{ 'MATERNITY.CONCLUDE_ALERT_TITLE' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="showHideButtonObj.conclude=false" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
 
           <div class="modelbox-body">
-            Are you sure, you want to conclude this visit for {{selectedPatient.ShortName}} ?
+            {{ 'MATERNITY.CONCLUDE_VISIT_CONFIRM' | translate:{name: selectedPatient.ShortName} }}
           </div>
 
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
               <button type="button" id="register" class="btn green btn-success margin-7-hr" (click)="ConcludePatient()">
-                Conclude
+                {{ 'MATERNITY.CONCLUDE' | translate }}
               </button>
               <button type="button" id="register" class="btn grey btn-default margin-7-hr"
                 (click)="showHideButtonObj.conclude=false">
-                Cancel
+                {{ 'COMMON.CANCEL' | translate }}
               </button>
             </div>
           </div>
@@ -422,8 +418,8 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Upload Files</span></h3>
-            <a class="btn btn-danger" (click)="showHideButtonObj.upload_files=false" title="Cancel">X</a>
+            <h3> <span>{{ 'MATERNITY.UPLOAD_FILES' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="showHideButtonObj.upload_files=false" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
 
           <div class="col-md-12">

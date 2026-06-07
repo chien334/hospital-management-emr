@@ -7,7 +7,7 @@
             <div class="col-md-12">
               <div class="caption custom-caption">
                 <i class="glyphicon glyphicon-asterisk"></i>
-                <span class="caption-subject">{{GeneralFieldLabel.Caste}} Group Statistics Report</span>
+                <span class="caption-subject">{{ 'MEDICAL_RECORDS.CASTE_GROUP_STATISTICS_REPORT' | translate:{caste: GeneralFieldLabel.Caste} }}</span>
               </div>
               <div class="row">
                 <div class="col-md-6 col-xs-12">
@@ -16,7 +16,7 @@
                 <div class="col-md-2 col-xs-12">
                   <div class="form-group">
                     <button class="btn green btn-success" type="button" (click)="GetEthnicGroupStatisticsData()" [disabled]="">
-                      <i class="fa fa-search"></i> Show Report
+                      <i class="fa fa-search"></i> {{ 'COMMON.SHOW_REPORT' | translate }}
                     </button>
                   </div>
                 </div>
@@ -33,17 +33,17 @@
                 <tr class="sticky-row">
                   <td class="Selected report-title" colspan="6">
                     <b>
-                      {{GeneralFieldLabel.Caste}} wise Inpatient Report
+                      {{ 'MEDICAL_RECORDS.CASTE_WISE_INPATIENT_REPORT' | translate:{caste: GeneralFieldLabel.Caste} }}
                     </b>
                   </td>
                 </tr>
                 <tr style="background-color: #e1e2ea;font-weight: bold;" class="sticky-row" align="center">
                   <th class="text-center">{{GeneralFieldLabel.Caste}}</th>
-                  <th class="text-center">Total Male Children</th>
-                  <th class="text-center">Total Female Children</th>
-                  <th class="text-center">Total Men</th>
-                  <th class="text-center">Total Women</th>
-                  <th class="text-center">Total</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_MALE_CHILDREN' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_FEMALE_CHILDREN' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_MEN' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_WOMEN' | translate }}</th>
+                  <th class="text-center">{{ 'COMMON.TOTAL' | translate }}</th>
                 </tr>
                 <tr *ngFor="let item of InPatientEthnicGroupStaticsData">
                   <td align="center">{{ item.EthnicGroup }}</td>
@@ -61,25 +61,25 @@
                 <tr class="sticky-row">
                   <td class="Selected report-title" colspan="6">
                     <b>
-                      {{GeneralFieldLabel.Caste}} Group wise Outpatient Report
+                      {{ 'MEDICAL_RECORDS.CASTE_GROUP_WISE_OUTPATIENT_REPORT' | translate:{caste: GeneralFieldLabel.Caste} }}
                     </b>
                   </td>
                 </tr>
                 <tr style="background-color: #e1e2ea;font-weight: bold;" align="center" class="sticky-row">
                   <th class="text-center">{{GeneralFieldLabel.Caste}} Group</th>
-                  <th class="text-center">Total Male Children(New)</th>
-                  <th class="text-center">Total Female Children(New)</th>
-                  <th class="text-center">Total Male Children(Old)</th>
-                  <th class="text-center">Total Female Children(Old)</th>
-                  <th class="text-center">Total Male Children(Followup)</th>
-                  <th class="text-center">Total Female Children(Followup)</th>
-                  <th class="text-center">Total Male(New)</th>
-                  <th class="text-center">Total Female(New)</th>
-                  <th class="text-center">Total Male(Old)</th>
-                  <th class="text-center">Total Female(Old)</th>
-                  <th class="text-center">Total Male(Followup)</th>
-                  <th class="text-center">Total Female(Followup)</th>
-                  <th class="text-center">Total</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_MALE_CHILDREN_NEW' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_FEMALE_CHILDREN_NEW' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_MALE_CHILDREN_OLD' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_FEMALE_CHILDREN_OLD' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_MALE_CHILDREN_FOLLOWUP' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_FEMALE_CHILDREN_FOLLOWUP' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_MALE_NEW' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_FEMALE_NEW' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_MALE_OLD' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_FEMALE_OLD' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_MALE_FOLLOWUP' | translate }}</th>
+                  <th class="text-center">{{ 'MEDICAL_RECORDS.TOTAL_FEMALE_FOLLOWUP' | translate }}</th>
+                  <th class="text-center">{{ 'COMMON.TOTAL' | translate }}</th>
                 </tr>
                 <tr *ngFor="let item of OutPatientEthnicGroupStaticsData">
                   <td align="center">{{ item.EthnicGroup }}</td>
@@ -101,9 +101,9 @@
             </div>
           </div>
           <p style="text-align:center;">
-            <button class="btn green btn-success" (click)="Print()"> Print Report <i class="glyphicon glyphicon-print"></i> </button>
-            <button class="blue btn" type="button" title="Export to Excel" (click)="ExportToExcel('PrintPage_EthnicGroupWiseStatisticsReport')">
-              <i class="fa fa-file-excel-o"></i> Export </button>
+            <button class="btn green btn-success" (click)="Print()"> {{ 'MEDICAL_RECORDS.PRINT_REPORT' | translate }} <i class="glyphicon glyphicon-print"></i> </button>
+            <button class="blue btn" type="button" [title]="'COMMON.EXPORT_TO_EXCEL' | translate" (click)="ExportToExcel('PrintPage_EthnicGroupWiseStatisticsReport')">
+              <i class="fa fa-file-excel-o"></i> {{ 'COMMON.EXPORT' | translate }} </button>
           </p>
         </div>
       </div>

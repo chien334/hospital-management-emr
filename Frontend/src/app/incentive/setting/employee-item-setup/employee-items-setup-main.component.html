@@ -2,7 +2,7 @@
   <div class="pull-left">
     <button class="btn btn-primary" (click)="AddEmployeeIncentive_ForNEW()">
       <i class="fa fa-plus"></i>
-      New Employee Incentive
+      {{ 'INCENTIVE.NEW_EMPLOYEE_INCENTIVE' | translate }}
     </button>
   </div>
   <!-- <div class="pull-right">
@@ -36,13 +36,13 @@
         <div class="col-md-6 col-md-offset-3 mt20">
           <div class="modelbox-div no-margin no-padding clearfix">
             <div class="caption custom-caption">
-              <h3> <span style="color:black;">Edit TDS Percent For: {{selEmpObjForTds.FullName}} </span></h3>
+              <h3> <span style="color:black;">{{ 'INCENTIVE.EDIT_TDS_PERCENT_FOR' | translate }}: {{selEmpObjForTds.FullName}} </span></h3>
               <a style="float:right;" class="btn btn-danger" (click)="CloseTDSPopup()" title="Close">X</a>
             </div>
             <div class="form-horizontal hm-form">
               <div class="form-body">
                 <div style="padding-bottom: 15px;">
-                  TDS Percent : <input type="number" [(ngModel)]="selEmpObjForTds.TDSPercent"
+                  {{ 'INCENTIVE.TDS_PERCENT' | translate }} : <input type="number" [(ngModel)]="selEmpObjForTds.TDSPercent"
                          (wheel)="coreService.PreventNumberChangeOnScroll($event)">
                 </div>
 
@@ -53,7 +53,7 @@
                   <div class="col-md-6 text-right">
                     <button class="btn green btn-success btn-save-frc" (click)="SaveTDSPercent()"
                             id="btn_GroupDistribution">
-                      <i class="fa fa-save"></i> Update TDS
+                      <i class="fa fa-save"></i> {{ 'INCENTIVE.UPDATE_TDS' | translate }}
                     </button>
                   </div>
                 </div>

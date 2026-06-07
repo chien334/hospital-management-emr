@@ -9,25 +9,25 @@
             <div class="page-bar bill-p-info">
               <div>
                 <span>
-                  <i class="fa fa-user"></i>&nbsp;Name : <b>{{patientDetail.ShortName}}</b>
+                  <i class="fa fa-user"></i>&nbsp;{{ 'COMMON.NAME' | translate }} : <b>{{patientDetail.ShortName}}</b>
                 </span>
                 <span>
-                  <i class="fa fa-h-sign"></i>&nbsp;Hospital # : <b> {{patientDetail.PatientCode}}</b>
+                  <i class="fa fa-h-sign"></i>&nbsp;{{ 'GRID_HEADERS.HOSPITAL_NUMBER' | translate }} : <b> {{patientDetail.PatientCode}}</b>
                 </span>
                 <span>
-                  <i class="fa fa-male"></i>&nbsp;Age/Sex : {{patientDetail.Age}}/ {{patientDetail.Gender}}
+                  <i class="fa fa-male"></i>&nbsp;{{ 'GRID_HEADERS.AGE_SEX' | translate }} : {{patientDetail.Age}}/ {{patientDetail.Gender}}
                 </span>
                 <span>
-                  <i class="fa fa-h-sign"></i>&nbsp;Date of Birth : {{patientDetail.DateOfBirth |
+                  <i class="fa fa-h-sign"></i>&nbsp;{{ 'PATIENT.BIRTH_DATE' | translate }} : {{patientDetail.DateOfBirth |
                   DanpheDateTime:'format':'YYYY-MM-DD'}}
                 </span>
               </div>
               <div>
                 <span>
-                  <i class="fa fa-h-sign"></i>&nbsp;Address : <b>{{patientDetail.Address}}</b>
+                  <i class="fa fa-h-sign"></i>&nbsp;{{ 'GRID_HEADERS.ADDRESS' | translate }} : <b>{{patientDetail.Address}}</b>
                 </span>
                 <span *ngIf="patientDetail.PhoneNumber">
-                  <i class="fa fa-phone"></i>&nbsp;Contact No : <b>{{patientDetail.PhoneNumber}}</b>
+                  <i class="fa fa-phone"></i>&nbsp;{{ 'GRID_HEADERS.PHONE' | translate }} : <b>{{patientDetail.PhoneNumber}}</b>
                 </span>
               </div>
             </div>
@@ -35,7 +35,7 @@
           <div class="row margin-top-15">
             <div class="form-group col-md-6">
               <div class="row">
-                <label class="control-label col-md-4">Date Time<b>:</b></label>
+                <label class="control-label col-md-4">{{ 'GRID_HEADERS.DATE_TIME' | translate }}<b>:</b></label>
                 <div class="col-md-8">
                   <danphe-date-picker [(ngModel)]="addUpdateANCData.ANCDateTime" [ngModelOptions]="{standalone: true}"
                     [showTime]="true" [CalendarTypes]="'en,np'">
@@ -46,17 +46,17 @@
 
             <div class="form-group col-md-6">
               <div class="row">
-                <label class="control-label col-md-4">Select ANC Visit<sup class="color-red">
+                <label class="control-label col-md-4">{{ 'MATERNITY.SELECT_ANC_VISIT' | translate }}<sup class="color-red">
                   *
                 </sup><b>:</b></label>
                 <div class="col-md-8">
                   <select [(ngModel)]="addUpdateANCData.VisitNumber" class="form-control" name="" id=""
                     formControlName="VisitNumber">
-                    <option [ngValue]="null">--select--</option>
+                    <option [ngValue]="null">{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
                     <option *ngFor="let visit of visitList" [ngValue]="visit.Id">{{visit.NumberInfo}}</option>
                   </select>
                   <span class="color-red font-sm" *ngIf="addUpdateANCData.IsDirty('VisitNumber')"
-                    [hidden]="addUpdateANCData.IsValidCheck('VisitNumber','required')"> ANC Visit is required.</span>
+                    [hidden]="addUpdateANCData.IsValidCheck('VisitNumber','required')">{{ 'MATERNITY.ANC_VISIT_REQUIRED' | translate }}</span>
                 </div>
               </div>
             </div>
@@ -66,30 +66,28 @@
           <div class="row">
             <div class="form-group col-md-6">
               <div class="row">
-                <label class="control-label col-md-4">Condition of ANC<sup class="color-red">
+                <label class="control-label col-md-4">{{ 'MATERNITY.CONDITION_OF_ANC' | translate }}<sup class="color-red">
                   *
                 </sup><b style="float: right;">:</b></label>
                 <div class="col-md-8">
                   <input [(ngModel)]="addUpdateANCData.ConditionOfANC" class="form-control"
-                    formControlName="ConditionOfANC" placeholder="Condition of ANC" type="text" />
+                    formControlName="ConditionOfANC" [placeholder]="'MATERNITY.CONDITION_OF_ANC' | translate" type="text" />
                   <span class="color-red font-sm" *ngIf="addUpdateANCData.IsDirty('ConditionOfANC')"
-                    [hidden]="addUpdateANCData.IsValidCheck('ConditionOfANC','required')"> Condition of ANC is
-                    required.</span>
+                    [hidden]="addUpdateANCData.IsValidCheck('ConditionOfANC','required')">{{ 'MATERNITY.CONDITION_OF_ANC_REQUIRED' | translate }}</span>
                 </div>
               </div>
             </div>
 
             <div class="form-group col-md-6">
               <div class="row">
-                <label class="control-label col-md-4">Pregnancy Period(in weeks)<sup class="color-red">
+                <label class="control-label col-md-4">{{ 'MATERNITY.PREGNANCY_PERIOD_IN_WEEKS' | translate }}<sup class="color-red">
                   *
                 </sup><b style="float: right;">:</b></label>
                 <div class="col-md-8">
                   <input [(ngModel)]="addUpdateANCData.PregnancyPeriodInWeeks" class="form-control"
-                    formControlName="PregnancyPeriodInWeeks" placeholder="Pregnancy Period" type="number" />
+                    formControlName="PregnancyPeriodInWeeks" [placeholder]="'MATERNITY.PREGNANCY_PERIOD' | translate" type="number" />
                   <span class="color-red font-sm" *ngIf="addUpdateANCData.IsDirty('PregnancyPeriodInWeeks')"
-                    [hidden]="addUpdateANCData.IsValidCheck('PregnancyPeriodInWeeks','required')"> Pregnancy Period is
-                    required.</span>
+                    [hidden]="addUpdateANCData.IsValidCheck('PregnancyPeriodInWeeks','required')">{{ 'MATERNITY.PREGNANCY_PERIOD_REQUIRED' | translate }}</span>
                 </div>
               </div>
             </div>
@@ -98,29 +96,29 @@
           <div class="row">
             <div class="form-group col-md-6">
               <div class="row">
-                <label class="control-label col-md-4">Place Of ANC<sup class="color-red">
+                <label class="control-label col-md-4">{{ 'MATERNITY.PLACE_OF_ANC' | translate }}<sup class="color-red">
                   *
                 </sup><b style="float: right;">:</b></label>
                 <div class="col-md-8">
                   <input [(ngModel)]="addUpdateANCData.ANCPlace" class="form-control" formControlName="ANCPlace"
-                    placeholder="Place Of ANC" type="text" />
+                    [placeholder]="'MATERNITY.PLACE_OF_ANC' | translate" type="text" />
                   <span class="color-red font-sm" *ngIf="addUpdateANCData.IsDirty('ANCPlace')"
-                    [hidden]="addUpdateANCData.IsValidCheck('ANCPlace','required')"> ANC Place is required.</span>
+                    [hidden]="addUpdateANCData.IsValidCheck('ANCPlace','required')">{{ 'MATERNITY.ANC_PLACE_REQUIRED' | translate }}</span>
                 </div>
               </div>
             </div>
 
             <div class="form-group col-md-6">
               <div class="row">
-                <label class="control-label col-md-4">Weight(in kg)<sup class="color-red">
+                <label class="control-label col-md-4">{{ 'MATERNITY.WEIGHT_IN_KG' | translate }}<sup class="color-red">
                   *
                 </sup><b style="float: right;">:</b></label>
                 <div class="col-md-8">
                   <input [(ngModel)]="addUpdateANCData.Weight" class="form-control" formControlName="Weight"
-                    placeholder="Weight in Kgs" type="number" />
+                    [placeholder]="'MATERNITY.WEIGHT_IN_KGS_PLACEHOLDER' | translate" type="number" />
                   <span class="color-red font-sm" *ngIf="addUpdateANCData.IsDirty('Weight')"
-                    [hidden]="addUpdateANCData.IsValidCheck('Weight','required')"> Weight is required.</span>
-                    <span class="color-red font-sm" *ngIf="addUpdateANCData.IsDirty('Weight')" [hidden]="addUpdateANCData.IsValidCheck('Weight','pattern')">Invalid Weight input.</span>
+                    [hidden]="addUpdateANCData.IsValidCheck('Weight','required')">{{ 'MATERNITY.WEIGHT_REQUIRED' | translate }}</span>
+                    <span class="color-red font-sm" *ngIf="addUpdateANCData.IsDirty('Weight')" [hidden]="addUpdateANCData.IsValidCheck('Weight','pattern')">{{ 'MATERNITY.INVALID_WEIGHT_INPUT' | translate }}</span>
                 </div>
               </div>
             </div>
@@ -134,15 +132,15 @@
                 <div class="col-md-8 text-right">
                   <button *ngIf="!addUpdateANCData.MaternityANCId" [disabled]="coreService.loading" (click)="AddANC()"
                     style="width: 45%" type="button" class="btn primary-btn margin-7-hr">
-                    Add
+                    {{ 'COMMON.ADD' | translate }}
                   </button>
                   <button *ngIf="addUpdateANCData.MaternityANCId" [disabled]="coreService.loading" (click)="AddANC()"
                     style="width: 45%" type="button" class="btn primary-btn margin-7-hr">
-                    Update
+                    {{ 'COMMON.UPDATE' | translate }}
                   </button>
                   <button [disabled]="coreService.loading" (click)="ResetAddANCForm()" style="width: 45%" type="button"
                     class="btn grey btn-default margin-7-hr">
-                    Reset
+                    {{ 'COMMON.RESET' | translate }}
                   </button>
                 </div>
               </div>
@@ -157,24 +155,24 @@
 
   <!--anc-list-->
   <div class="col-md-12" *ngIf="!patientANCList || !patientANCList.length">
-    <p style="font-size: 18px; line-height: 3; text-align: center;">No ANC in List</p>
+    <p style="font-size: 18px; line-height: 3; text-align: center;">{{ 'MATERNITY.NO_ANC_IN_LIST' | translate }}</p>
   </div>
 
   <div id="ancList" class="col-md-12" *ngIf="patientANCList && patientANCList.length > 0">
     <div class="full-width-flx table-responsive">
       <div class="text-center" style="line-height: 2">
-        ANC List of {{patientDetail.ShortName}}
+        {{ 'MATERNITY.ANC_LIST_OF' | translate:{name: patientDetail.ShortName} }}
       </div>
       <table class="table table-bordered tbl-small-text">
         <thead>
           <tr class="table-header-bg">
-            <th>DateTime</th>
-            <th>ANC Visit</th>
-            <th>Place of ANC</th>
-            <th>Pregnancy Period</th>
-            <th>Condition of ANC</th>
-            <th>Weight</th>
-            <th class="no-print">Actions</th>
+            <th>{{ 'GRID_HEADERS.DATE_TIME' | translate }}</th>
+            <th>{{ 'MATERNITY.ANC_VISIT' | translate }}</th>
+            <th>{{ 'MATERNITY.PLACE_OF_ANC' | translate }}</th>
+            <th>{{ 'MATERNITY.PREGNANCY_PERIOD' | translate }}</th>
+            <th>{{ 'MATERNITY.CONDITION_OF_ANC' | translate }}</th>
+            <th>{{ 'MATERNITY.WEIGHT' | translate }}</th>
+            <th class="no-print">{{ 'GRID_HEADERS.ACTIONS' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -186,8 +184,8 @@
             <td>{{anc.ConditionOfANC}}</td>
             <td>{{anc.Weight}}</td>
             <td class="no-print">
-              <a class="grid-action no-print" (click)="EditANC(anc)">Edit</a>
-              <a class="grid-action no-print" (click)="RemoveANC(anc.MaternityANCId)">Remove</a>
+              <a class="grid-action no-print" (click)="EditANC(anc)">{{ 'COMMON.EDIT' | translate }}</a>
+              <a class="grid-action no-print" (click)="RemoveANC(anc.MaternityANCId)">{{ 'MATERNITY.REMOVE' | translate }}</a>
             </td>
           </tr>
         </tbody>
@@ -199,8 +197,8 @@
     <hr />
     <div class="text-right margin-top-15 margin-bottom-15">
       <button type="button" id="ancPrint" class="btn primary-btn margin-7-hr" (click)="PrintANC()"><i
-          class="fa fa-print"></i>Print</button>
-      <button type="button" id="register" class="btn grey btn-default margin-7-hr" (click)="Close()">Close</button>
+          class="fa fa-print"></i>{{ 'COMMON.PRINT' | translate }}</button>
+      <button type="button" id="register" class="btn grey btn-default margin-7-hr" (click)="Close()">{{ 'COMMON.CLOSE' | translate }}</button>
     </div>
   </div>
 

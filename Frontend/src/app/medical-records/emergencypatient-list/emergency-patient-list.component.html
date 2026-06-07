@@ -1,11 +1,11 @@
 <div class="row col-md-12" style="padding-bottom: 15px;">
   <div class="col-md-6 col-sm-12">
     <label for="#diseaseWiseCategory" class="label label-default" style="height: 25px; padding-top: 7px;"><i class="fa fa-filter"></i>
-      Select Disease Category : &nbsp;
+      {{ 'MEDICAL_RECORDS.SELECT_DISEASE_CATEGORY_COLON' | translate }} &nbsp;
     </label>
 
     <select [(ngModel)]="selectedReportingGroupId" (ngModelChange)="OnReportingGroupChange()">
-      <option [ngValue]="null" selected>All</option>
+      <option [ngValue]="null" selected>{{ 'COMMON.ALL' | translate }}</option>
       <option *ngFor="let repo of icdReportingGroupList; let i = index;" [ngValue]="repo.EMER_ReportingGroupId">
         {{repo.EMER_ReportingGroupName}} </option>
     </select>
@@ -13,11 +13,11 @@
   </div>
   <div class="col-md-6 col-sm-12">
     <label for="#ProviderList" class="label label-default col-md-3" style="height: 25px; padding-top: 7px;">
-      <i class="fa fa-filter"></i> Doctor Filter :
+      <i class="fa fa-filter"></i> {{ 'MEDICAL_RECORDS.DOCTOR_FILTER_COLON' | translate }}
     </label>
     <!-- This is for auto-complete -->
     <div class="col-md-6">
-      <input danphe-auto-complete [(ngModel)]="selectedDoctor" [source]="providerList" class="form-control" [list-formatter]="providerListFormatter" placeholder="Doctor Name" (focusout)="FilterList(selectedDoctor)" display-property-name="FullName" value-property-name=null max-num-list="10" />
+      <input danphe-auto-complete [(ngModel)]="selectedDoctor" [source]="providerList" class="form-control" [list-formatter]="providerListFormatter" [placeholder]="'MEDICAL_RECORDS.DOCTOR_NAME_PLACEHOLDER' | translate" (focusout)="FilterList(selectedDoctor)" display-property-name="FullName" value-property-name=null max-num-list="10" />
     </div>
   </div>
 </div>
@@ -27,11 +27,11 @@
   <div class="col-md-6 col-sm-12">
     <label for="#diagnosisWiseCategory" class="label label-default col-md-3" style="height: 25px; padding-top: 7px;">
       <i class="fa fa-filter"></i>
-      Select Diagnosis :
+      {{ 'MEDICAL_RECORDS.SELECT_DIAGNOSIS_COLON' | translate }}
     </label>
 
     <div class="col-md-6">
-      <input danphe-auto-complete class="form-control" [(ngModel)]="selectedDiagnosisICDCode" [source]="icdDiagnosisFilteredList" [list-formatter]="DignosisFormatter" placeholder="Select {{IcdVersionDisplayName}}(s)" display-property-name="EMER_DiseaseGroupName" value-property-name="ICDCode" (focusout)="FilterDiagnosisPatientsList()" [match-formatted]='true' [max-num-list]=10 [ngModelOptions]="{standalone: true}" />
+      <input danphe-auto-complete class="form-control" [(ngModel)]="selectedDiagnosisICDCode" [source]="icdDiagnosisFilteredList" [list-formatter]="DignosisFormatter" [placeholder]="'MEDICAL_RECORDS.SELECT_ICD_VERSION' | translate:{version: IcdVersionDisplayName}" display-property-name="EMER_DiseaseGroupName" value-property-name="ICDCode" (focusout)="FilterDiagnosisPatientsList()" [match-formatted]='true' [max-num-list]=10 [ngModelOptions]="{standalone: true}" />
     </div>
   </div>
 </div>
@@ -45,22 +45,22 @@
     <div class="icheck-inline">
       <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
         <input checked="checked" [value]="'all'" [(ngModel)]="diagnosisStatus" (change)="FilterDiagnosisList()" name="name" style="width:15px;height:15px" type="radio" class="ng-untouched ng-pristine ng-valid">
-        <span></span>ALL
+        <span></span>{{ 'COMMON.ALL' | translate | uppercase }}
       </label>
       <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
         <input name="name" [value]="'complete'" [(ngModel)]="diagnosisStatus" (change)="FilterDiagnosisList()" style="width:15px;height:15px" type="radio" class="ng-untouched ng-pristine ng-valid">
-        <span></span>Diagnosis Added
+        <span></span>{{ 'MEDICAL_RECORDS.DIAGNOSIS_ADDED' | translate }}
       </label>
       <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
         <input name="name" [value]="'pending'" [(ngModel)]="diagnosisStatus" (change)="FilterDiagnosisList()" style="width:15px;height:15px" type="radio" class="ng-untouched ng-pristine ng-valid">
-        <span></span>Diagnosis Pending
+        <span></span>{{ 'MEDICAL_RECORDS.DIAGNOSIS_PENDING' | translate }}
       </label>
     </div>
   </div>
 </div>
 <!-- radio -->
 <div class="col-md-12">
-  <p>Filter by Appointment Date: </p>
+  <p>{{ 'MEDICAL_RECORDS.FILTER_BY_APPOINTMENT_DATE' | translate }}</p>
   <danphe-grid [grid-colDefaults]="gridColumns" [grid-data]="finalFilteredEmergencypatientList" (grid-actions)="GridActions($event)" [rangeType]="dateRange" (onDateChange)="onDateChange($event)" [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings" [show-print-button]="false">
 
   </danphe-grid>

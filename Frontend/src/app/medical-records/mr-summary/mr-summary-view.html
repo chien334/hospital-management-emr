@@ -5,14 +5,14 @@
             <div class="modelbox-div">
 
                 <div class="modelbox-header">
-                    <h4 class="margin-0-vr text-center"><strong>Medical Record of {{patientDetail.Name}}</strong></h4>
+                    <h4 class="margin-0-vr text-center"><strong>{{ 'MEDICAL_RECORDS.MEDICAL_RECORD_OF' | translate:{name: patientDetail.Name} }}</strong></h4>
                 </div>
 
                 <div id="patMrRecordDetail" class="modelbox-body">
                     <div class="flex-container margin-8-bt">
                         <div style="width: 100%;" class="no-print">
                             <button *ngIf="allDataLoaded" [disabled]="loading" type="button" class="btn btn-primary btn-sm margin-7-lft pull-right" (click)="loading=true;EditRecord()">
-                <i class="fa fa-pencil"></i> Edit Record
+                <i class="fa fa-pencil"></i> {{ 'COMMON.EDIT_RECORD' | translate }}
               </button>
                         </div>
                     </div>
@@ -22,66 +22,66 @@
                                 <div class="flex-container">
                                     <div class="flex-1">
                                         <p class="patient-hdr-label">
-                                            <b>Name</b>&nbsp;:&nbsp;{{patientDetail.Name}}
+                                            <b>{{ 'COMMON.NAME' | translate }}</b>&nbsp;:&nbsp;{{patientDetail.Name}}
                                             <!--&nbsp;&nbsp;-->
                                         </p>
                                     </div>
                                     <div class="flex-1">
                                         <p class="patient-hdr-label">
-                                            <b>InPatient ID</b>&nbsp;: {{patientDetail.VisitCode}}
+                                            <b>{{ 'MEDICAL_RECORDS.INPATIENT_ID' | translate }}</b>&nbsp;: {{patientDetail.VisitCode}}
                                         </p>
                                     </div>
                                     <div class="flex-1">
                                         <p class="patient-hdr-label">
                                             <b>
-                        Ward
-                      </b>&nbsp;:&nbsp;{{patientDetail.Ward}}
+                                                {{ 'MEDICAL_RECORDS.WARD' | translate }}
+                                            </b>&nbsp;:&nbsp;{{patientDetail.Ward}}
                                         </p>
                                     </div>
                                 </div>
                                 <div class="flex-container">
                                     <div class="flex-1">
                                         <p class="patient-hdr-label">
-                                            <b>Hospital No.</b>&nbsp;: {{patientDetail.PatientCode}}
+                                            <b>{{ 'MEDICAL_RECORDS.HOSPITAL_NO' | translate }}</b>&nbsp;: {{patientDetail.PatientCode}}
                                         </p>
                                     </div>
                                     <div class="flex-1">
                                         <p class="patient-hdr-label">
-                                            <b>Department</b>&nbsp;: {{patientDetail.Department}}
+                                            <b>{{ 'COMMON.DEPARTMENT' | translate }}</b>&nbsp;: {{patientDetail.Department}}
                                         </p>
                                     </div>
                                     <div class="flex-1">
                                         <p class="patient-hdr-label">
-                                            <b>Room Type</b>&nbsp;: {{patientDetail.BedFeature}}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="flex-container">
-                                    <div class="flex-1">
-                                        <p class="patient-hdr-label">
-                                            <b>File No.</b>&nbsp;: {{RecordSummary.FileNumber}}
-                                        </p>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="patient-hdr-label">
-                                            <b>Doctor Name</b>&nbsp;: {{patientDetail.AdmittingDoctorName}}
-                                        </p>
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="patient-hdr-label">
-                                            <b>Bed No.</b>&nbsp;: {{patientDetail.BedNumber}}
+                                            <b>{{ 'MEDICAL_RECORDS.ROOM_TYPE' | translate }}</b>&nbsp;: {{patientDetail.BedFeature}}
                                         </p>
                                     </div>
                                 </div>
                                 <div class="flex-container">
                                     <div class="flex-1">
                                         <p class="patient-hdr-label">
-                                            <b>Age/Sex</b>&nbsp;: {{patientDetail.DateOfBirth | DanpheDateTime:'age' }}/{{patientDetail.Gender}}
+                                            <b>{{ 'MEDICAL_RECORDS.FILE_NO' | translate }}</b>&nbsp;: {{RecordSummary.FileNumber}}
                                         </p>
                                     </div>
                                     <div class="flex-1">
                                         <p class="patient-hdr-label">
-                                            <b>IsDischarge</b>&nbsp;: Yes
+                                            <b>{{ 'COMMON.DOCTOR_NAME' | translate }}</b>&nbsp;: {{patientDetail.AdmittingDoctorName}}
+                                        </p>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="patient-hdr-label">
+                                            <b>{{ 'MEDICAL_RECORDS.BED_NO' | translate }}</b>&nbsp;: {{patientDetail.BedNumber}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex-container">
+                                    <div class="flex-1">
+                                        <p class="patient-hdr-label">
+                                            <b>{{ 'COMMON.AGE_SEX' | translate }}</b>&nbsp;: {{patientDetail.DateOfBirth | DanpheDateTime:'age' }}/{{patientDetail.Gender}}
+                                        </p>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="patient-hdr-label">
+                                            <b>{{ 'MEDICAL_RECORDS.IS_DISCHARGE' | translate }}</b>&nbsp;: {{ 'COMMON.YES' | translate }}
                                         </p>
                                     </div>
                                     <div class="flex-1">
@@ -107,7 +107,7 @@
                                     <div class="flex-1">
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Inpatient Date</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.INPATIENT_DATE' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{patientDetail.AdmittedDate | nepaliDate }}&nbsp;&nbsp;({{patientDetail.AdmittedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}&nbsp;AD)
@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Discharged Date</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.DISCHARGED_DATE' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{patientDetail.DischargedDate | nepaliDate }}&nbsp;&nbsp;({{patientDetail.DischargedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}&nbsp;AD)
@@ -125,7 +125,7 @@
                                         </div>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Discharge Type</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.DISCHARGE_TYPE' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{allTypeName.DischargeTypeName}}</p>
@@ -133,7 +133,7 @@
                                         </div>
                                         <div *ngIf="allTypeName.DischargeConditionName" class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Discharge Condition</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.DISCHARGE_CONDITION' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{allTypeName.DischargeConditionName}}</p>
@@ -141,7 +141,7 @@
                                         </div>
                                         <div *ngIf="allTypeName.DeliveryTypeName" class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Delivery Type</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.DELIVERY_TYPE' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{allTypeName.DeliveryTypeName}}</p>
@@ -149,7 +149,7 @@
                                         </div>
                                         <div *ngIf="RecordSummary.ReferredDate" class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Referred Date</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.REFERRED_DATE' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{RecordSummary.ReferredDate | nepaliDate}}</p>
@@ -157,7 +157,7 @@
                                         </div>
                                         <div *ngIf="RecordSummary.ReferredTime" class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Referred Time</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.REFERRED_TIME' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{RecordSummary.ReferredTime}}</p>
@@ -165,7 +165,7 @@
                                         </div>
                                         <div *ngIf="allTypeName.DeathPeriodTypeName && RecordSummary.ShowDeathCertDetail" class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Death Period</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.DEATH_PERIOD' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{allTypeName.DeathPeriodTypeName}}</p>
@@ -173,7 +173,7 @@
                                         </div>
                                         <div class="flex-container" *ngIf="RecordSummary.NumberOfBabies">
                                             <div class="flex-1">
-                                                <p><b>Number Of Babies</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.NUMBER_OF_BABIES' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{RecordSummary.NumberOfBabies}}</p>
@@ -181,7 +181,7 @@
                                         </div>
                                         <div *ngIf="allTypeName.GravitaName && RecordSummary.ShowBirthCertDetail" class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Gravita</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.GRAVIDA' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{allTypeName.GravitaName}}</p>
@@ -189,15 +189,15 @@
                                         </div>
                                         <div *ngIf="RecordSummary.GestationalWeek||RecordSummary.GestationalDay && RecordSummary.ShowBirthCertDetail" class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Gestational</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.GESTATIONAL' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
-                                                <p>{{RecordSummary.GestationalWeek}} &nbsp;&nbsp; Week &nbsp;&nbsp; {{RecordSummary.GestationalDay}}&nbsp;&nbsp; days</p>
+                                                <p>{{RecordSummary.GestationalWeek}} &nbsp;&nbsp; {{ 'MEDICAL_RECORDS.WEEK' | translate }} &nbsp;&nbsp; {{RecordSummary.GestationalDay}}&nbsp;&nbsp; {{ 'MEDICAL_RECORDS.DAYS_LOWER' | translate }}</p>
                                             </div>
                                         </div>
                                         <div *ngIf="RecordSummary.BloodLost && RecordSummary.ShowBirthCertDetail" class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Blood Lost</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.BLOOD_LOST' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{RecordSummary.BloodLost}} &nbsp;&nbsp; {{RecordSummary.BloodLostUnit}} </p>
@@ -208,7 +208,7 @@
                                         <ng-container *ngIf="allTypeName.OperationTypeName">
                                             <div class="flex-container">
                                                 <div class="flex-1">
-                                                    <p><b>Operation Type</b></p>
+                                                    <p><b>{{ 'MEDICAL_RECORDS.OPERATION_TYPE' | translate }}</b></p>
                                                 </div>
                                                 <div class="flex-2">
                                                     <p>{{allTypeName.OperationTypeName}}</p>
@@ -216,7 +216,7 @@
                                             </div>
                                             <div class="flex-container">
                                                 <div class="flex-1">
-                                                    <p><b>Operation Doctor</b></p>
+                                                    <p><b>{{ 'MEDICAL_RECORDS.OPERATION_DOCTOR' | translate }}</b></p>
                                                 </div>
                                                 <div class="flex-2">
                                                     <p>{{allTypeName.OperatedByDoctorName}}</p>
@@ -224,7 +224,7 @@
                                             </div>
                                             <div class="flex-container">
                                                 <div class="flex-1">
-                                                    <p><b>Operation Date</b></p>
+                                                    <p><b>{{ 'MEDICAL_RECORDS.OPERATION_DATE' | translate }}</b></p>
                                                 </div>
                                                 <div class="flex-2">
                                                     <p>{{RecordSummary.OperationDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
@@ -232,7 +232,7 @@
                                             </div>
                                             <div class="flex-container margin-15-tp">
                                                 <div class="flex-1">
-                                                    <p><b>Operation Diagnosis</b></p>
+                                                    <p><b>{{ 'MEDICAL_RECORDS.OPERATION_DIAGNOSIS' | translate }}</b></p>
                                                 </div>
                                                 <div class="flex-5">
                                                     <p><span>{{RecordSummary.OperationDiagnosis}}</span></p>
@@ -244,10 +244,10 @@
 
                                 <div *ngIf="RecordSummary.ShowBirthCertDetail" class="flex-container">
                                     <div *ngFor="let brth of RecordSummary.BabyBirthDetails" class="flex-1">
-                                        <h2 class="mr-cert-head"><b>Birth Detail</b></h2>
+                                        <h2 class="mr-cert-head"><b>{{ 'MEDICAL_RECORDS.BIRTH_DETAIL' | translate }}</b></h2>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Certificate No.</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.CERTIFICATE_NO' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{brth.CertificateNumber}}</p>
@@ -255,7 +255,7 @@
                                         </div>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Sex</b></p>
+                                                <p><b>{{ 'COMMON.SEX' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{brth.Sex}}</p>
@@ -263,7 +263,7 @@
                                         </div>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Weight(gram)</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.WEIGHT_GRAM' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{brth.WeightOfBaby}}</p>
@@ -271,7 +271,7 @@
                                         </div>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Father Name</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.FATHER_NAME' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{brth.FathersName}}</p>
@@ -279,7 +279,7 @@
                                         </div>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Birth Date</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.BIRTH_DATE' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{brth.BirthDate}}</p>
@@ -287,7 +287,7 @@
                                         </div>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Birth Time</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.BIRTH_TIME' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{brth.BirthTime}}</p>
@@ -302,10 +302,10 @@
 
                                 <div *ngIf="RecordSummary.ShowDeathCertDetail" class="flex-container">
                                     <div class="flex-1">
-                                        <h2 class="mr-cert-head"><b>Death Detail</b></h2>
+                                        <h2 class="mr-cert-head"><b>{{ 'MEDICAL_RECORDS.DEATH_DETAIL' | translate }}</b></h2>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Certificate No.</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.CERTIFICATE_NO' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{RecordSummary.DeathDetail.CertificateNumber}}</p>
@@ -313,7 +313,7 @@
                                         </div>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Death Date</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.DEATH_DATE' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{RecordSummary.DeathDetail.DeathDate}}</p>
@@ -321,7 +321,7 @@
                                         </div>
                                         <div class="flex-container">
                                             <div class="flex-1">
-                                                <p><b>Operation Date</b></p>
+                                                <p><b>{{ 'MEDICAL_RECORDS.OPERATION_DATE' | translate }}</b></p>
                                             </div>
                                             <div class="flex-2">
                                                 <p>{{RecordSummary.DeathDetail.DeathTime}}</p>
@@ -336,7 +336,7 @@
 
                                 <div *ngIf="RecordSummary.AllTestList && RecordSummary.AllTestList.length > 0" class="flex-container margin-15-tp">
                                     <div class="flex-1">
-                                        <p><b>Investigations</b></p>
+                                        <p><b>{{ 'MEDICAL_RECORDS.INVESTIGATIONS' | translate }}</b></p>
                                     </div>
                                     <div class="flex-5">
                                         <p>
@@ -348,7 +348,7 @@
                                 </div>
                                 <div *ngIf="RecordSummary.ICDCodeList && RecordSummary.ICDCodeList.length > 0" class="flex-container margin-15-tp">
                                     <div class="flex-1">
-                                        <p><b>ICD10</b></p>
+                                        <p><b>{{ 'MEDICAL_RECORDS.ICD10' | translate }}</b></p>
                                     </div>
                                     <div class="flex-5">
                                         <p><span *ngFor="let icd of RecordSummary.ICDCodeList; let j=index;">
@@ -360,7 +360,7 @@
                                 </div>
                                 <div *ngIf="RecordSummary.Remarks" class="flex-container margin-15-tp">
                                     <div class="flex-1">
-                                        <p><b>Remarks</b></p>
+                                        <p><b>{{ 'COMMON.REMARKS' | translate }}</b></p>
                                     </div>
                                     <div class="flex-5">
                                         <p><span>{{RecordSummary.Remarks}}</span></p>
@@ -375,8 +375,8 @@
 
                 <div class="modelbox-footer">
                     <div class="all-buttons text-right">
-                        <button *ngIf="allDataLoaded" [disabled]="loading" type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="loading=true;PrintRecord()">Print Record</button>
-                        <button *ngIf="allDataLoaded" [disabled]="loading" type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="CloseMRViewPopUp()">Close</button>
+                        <button *ngIf="allDataLoaded" [disabled]="loading" type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="loading=true;PrintRecord()">{{ 'COMMON.PRINT_RECORD' | translate }}</button>
+                        <button *ngIf="allDataLoaded" [disabled]="loading" type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="CloseMRViewPopUp()">{{ 'COMMON.CLOSE' | translate }}</button>
                     </div>
                 </div>
 

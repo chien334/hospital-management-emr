@@ -245,25 +245,25 @@
         <div class="modelbox-div clearfix" style="width: 94%; left: 3%;">
           <div class="caption custom-caption no-margin" style="padding: 8px 15px;">
             <h3>
-              <span *ngIf="!update && newProfile">Add New INCENTIVE Profile </span>
-              <span *ngIf="update">Profile Item Setup</span>
+              <span *ngIf="!update && newProfile">{{ 'INCENTIVE.ADD_NEW_PROFILE' | translate }} </span>
+              <span *ngIf="update">{{ 'INCENTIVE.PROFILE_ITEM_SETUP' | translate }}</span>
               <span *ngIf="update">
-                for:
+                {{ 'INCENTIVE.FOR' | translate }}:
                 <span style="font-weight: bold; color: blue;margin-left: 40px;font-size: 20px;">
                   {{currentProfile.ProfileName}}
                 </span>
               </span>
             </h3>
 
-            <a class="btn btn-danger" (click)="Close()" title="Close Popup">X</a>
+            <a class="btn btn-danger" (click)="Close()" [title]="'INCENTIVE.CLOSE_POPUP' | translate">X</a>
           </div>
           <div class="form-horizontal hm-form incentive_form">
             <div class="row">
               <div class="col-md-3" style="padding: 10px 0 0 31px !important;" *ngIf="!update">
-                PriceCategory:
+                {{ 'INCENTIVE.PRICE_CATEGORY' | translate }}:
                 <select name="priceCategorySelection" id="id_select_priceCategory_profile_map"
                         (change)="OnPriceCategoryChanged($event)">
-                  <option value="">--select PriceCategory--</option>
+                  <option value="">{{ 'INCENTIVE.SELECT_PRICE_CATEGORY' | translate }}</option>
                   <option *ngFor="let priceCat of PriceCategories" value="{{priceCat.PriceCategoryId}}">{{priceCat.PriceCategoryName}}</option>
                 </select>
               </div>
@@ -272,10 +272,10 @@
                   <div class="form-group mb10">
                     <div class="col-md-3">
                       <div class="row">
-                        <span class="col-md-5" style="text-align: right;">Profile Name <b>:</b></span>
+                        <span class="col-md-5" style="text-align: right;">{{ 'INCENTIVE.PROFILE_NAME' | translate }} <b>:</b></span>
                         <div class="col-md-7">
                           <input danphe-auto-complete [(ngModel)]="ProfileObj" [list-formatter]="profileListFormatter"
-                                 [source]="profileList" placeholder="Enter Profile Name" display-property-name="ProfileName"
+                                 [source]="profileList" [placeholder]="'INCENTIVE.ENTER_PROFILE_NAME_PLACEHOLDER' | translate" display-property-name="ProfileName"
                                  value-property-name=null onclick="this.select()" max-num-list="10"
                                  (ngModelChange)="OnChangeProfile()" class="incentive-search-doctor" [disabled]="update" />
                         </div>
@@ -283,7 +283,7 @@
                     </div>
                     <div class="col-md-3">
                       <div class="row">
-                        <span class="col-md-5" style="text-align: right;">Description<b>:</b> </span>
+                        <span class="col-md-5" style="text-align: right;">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b> </span>
                         <div class="col-md-7">
                           <textarea id="description" [(ngModel)]="currentProfile.Description"
                                     [ngModelOptions]="{standalone: true}"></textarea>
@@ -293,9 +293,9 @@
                     <div class="col-md-1" *ngIf="!update">
                       <div class="row" style="text-align: right;">
                         <button class="btn primary-btn btn-success btn-add-new-row"
-                                title="Click To Save employee incentive Info" (click)="SaveProfile()"
+                                [title]="'COMMON.SAVE' | translate" (click)="SaveProfile()"
                                 id="btn_SaveIncentiveInfo" style="width: 100px;">
-                          <i class="fa fa-save" style="margin-right: 0px;"></i> Save
+                          <i class="fa fa-save" style="margin-right: 0px;"></i> {{ 'COMMON.SAVE' | translate }}
                         </button>
                       </div>
                     </div>
@@ -305,14 +305,14 @@
                   <table class="table billing-table" style="background-color:initial;margin-top:10px">
                     <thead>
                       <tr>
-                        <th sortable-header col="department"><b>Department</b></th>
-                        <th sortable-header col="itemnames"><b>ItemName</b></th>
-                        <th sortable-header col="price"><b>Price</b></th>
-                        <th sortable-header col="performerPercent"><b>Performer %</b></th>
-                        <th sortable-header col="prescriberPercent"><b>Prescriber %</b></th>
-                        <th sortable-header col="referrerPercent"><b>Referrer %</b></th>
-                        <th sortable-header col="referredByPercent" *ngIf="OpdIpdSettings.EnableOpdIpd"><b>Outpatient?</b></th>
-                        <th sortable-header col="referredByPercent" *ngIf="OpdIpdSettings.EnableOpdIpd"><b>Inpatient?</b></th>
+                        <th sortable-header col="department"><b>{{ 'GRID_HEADERS.DEPARTMENT' | translate }}</b></th>
+                        <th sortable-header col="itemnames"><b>{{ 'GRID_HEADERS.ITEM_NAME' | translate }}</b></th>
+                        <th sortable-header col="price"><b>{{ 'INCENTIVE.PRICE' | translate }}</b></th>
+                        <th sortable-header col="performerPercent"><b>{{ 'INCENTIVE.PERFORMER_PERCENT' | translate }}</b></th>
+                        <th sortable-header col="prescriberPercent"><b>{{ 'INCENTIVE.PRESCRIBER_PERCENT' | translate }}</b></th>
+                        <th sortable-header col="referrerPercent"><b>{{ 'INCENTIVE.REFERRER_PERCENT' | translate }}</b></th>
+                        <th sortable-header col="referredByPercent" *ngIf="OpdIpdSettings.EnableOpdIpd"><b>{{ 'INCENTIVE.OUTPATIENT_Q' | translate }}</b></th>
+                        <th sortable-header col="referredByPercent" *ngIf="OpdIpdSettings.EnableOpdIpd"><b>{{ 'INCENTIVE.INPATIENT_Q' | translate }}</b></th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -324,7 +324,7 @@
                             <input class="form-control cstm-form-control" danphe-auto-complete
                                    title="{{ProfileItemSetup.SelServDepartment}}" [(ngModel)]="ProfileItemSetup.SelServDepartment"
                                    [list-formatter]="ServiceDeptListFormatter" [source]="uniqueDeptNames"
-                                   placeholder="Enter Department" display-property-name="ServiceDepartmentName"
+                                   [placeholder]="'INCENTIVE.ENTER_DEPARTMENT_PLACEHOLDER' | translate" display-property-name="ServiceDepartmentName"
                                    value-property-name=null (focusout)="OnDepartmentChange()"
                                    [ngModelOptions]="{standalone: true}" onClick="this.select();" max-num-list="10" />
                           </form>
@@ -335,7 +335,7 @@
                               <input id="srch_itemName" class="form-control cstm-form-control" danphe-auto-complete
                                      title="{{ProfileItemSetup.ItemName}}" autocomplete="off" [(ngModel)]="SelectedItem"
                                      [list-formatter]="ItemsListFormatter" [source]="FilteredItemList"
-                                     placeholder="Enter Item Name" display-property-name="ItemName" value-property-name=null
+                                     [placeholder]="'INCENTIVE.ENTER_ITEM_NAME_PLACEHOLDER' | translate" display-property-name="ItemName" value-property-name=null
                                      match-formatted="true" (focusout)="AssignSelectedItem()" max-num-list="20"
                                      [ngModelOptions]="{standalone: true}" onClick="this.select();"
                                      (keyup.enter)="GoToNextInput('txt_AssignedPercent')" />
@@ -359,8 +359,7 @@
                                    (keyup.enter)="GoToNextInput('txt_ReferredPercent')"
                                    (ngModelChange)="CheckIfItemPercentValid(ProfileItemSetup)">
                             <p *ngIf="!IsPercentageValid" class="tooltiptext ttptextdown">
-                              Total of
-                              Performer% or Prescriber% or Referrer% Can't be more than 100.
+                              {{ 'INCENTIVE.TOTAL_PERCENT_LIMIT_WARNING' | translate }}
                             </p>
                           </div>
                         </td>
@@ -374,8 +373,7 @@
                                    (keyup.enter)="GoToNextInput('txt_id_referrerPercent')"
                                    (ngModelChange)="CheckIfItemPercentValid(ProfileItemSetup)">
                             <p *ngIf="!IsPercentageValid" class="tooltiptext ttptextdown">
-                              Total of
-                              Performer% or Prescriber% or Referrer% Can't be more than 100.
+                              {{ 'INCENTIVE.TOTAL_PERCENT_LIMIT_WARNING' | translate }}
                             </p>
                           </div>
                         </td>
@@ -389,8 +387,7 @@
                                    (keyup.enter)="GoToNextInput('btn_SaveIncentiveItem')"
                                    (ngModelChange)="CheckIfItemPercentValid(ProfileItemSetup)">
                             <p *ngIf="!IsPercentageValid" class="tooltiptext ttptextdown">
-                              Total of
-                              Performer% or Prescriber% or Referrer% Can't be more than 100.
+                              {{ 'INCENTIVE.TOTAL_PERCENT_LIMIT_WARNING' | translate }}
                             </p>
                           </div>
                         </td>
@@ -421,16 +418,16 @@
                           </div>
                         </td>
                         <td>
-                          <button class="btn green btn-success" title="Click To Save Item"
+                          <button class="btn green btn-success" [title]="'COMMON.SAVE' | translate"
                                   (click)="SaveIncentiveItem()" [disabled]="!IsPercentageValid"
                                   id="btn_SaveIncentiveItem" style="width: 100px;">
-                            <i class="fa fa-save" style="margin-right: 0px;"></i> Save
+                            <i class="fa fa-save" style="margin-right: 0px;"></i> {{ 'COMMON.SAVE' | translate }}
                           </button>
                         </td>
                         <td>
-                          <button class="btn btn-danger btn-add-new-row" title="Click To Discard Item"
+                          <button class="btn btn-danger btn-add-new-row" [title]="'COMMON.DISCARD' | translate"
                                   (click)="DiscardItem()">
-                            Discard
+                            {{ 'COMMON.DISCARD' | translate }}
                           </button>
                         </td>
                       </tr>
@@ -441,7 +438,7 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div>
-                        <h4> <span>Incentive Percentage Setting</span> </h4>
+                        <h4> <span>{{ 'INCENTIVE.INCENTIVE_PERCENTAGE_SETTING' | translate }}</span> </h4>
                       </div>
                     </div>
                     <div class="col-md-7">
@@ -455,19 +452,19 @@
                         <div class="col-md-12">
                           <div class="modelbox-div no-margin no-padding clearfix">
                             <div class="caption custom-caption">
-                              <h3> <span style="color:black;">Edit Item</span></h3>
+                              <h3> <span style="color:black;">{{ 'INCENTIVE.EDIT_ITEM' | translate }}</span></h3>
                               <a style="float:right;" class="btn btn-danger" (click)="CloseShowEditItemPopup()"
-                                 title="Close">X</a>
+                                 [title]="'COMMON.CLOSE' | translate">X</a>
                             </div>
                             <div class="form-horizontal hm-form">
                               <div class="form-body">
                                 <table class="table table-hover custom_table padLess_table table-bordered light_bg_table">
                                   <thead>
                                     <tr>
-                                      <th>ItemName</th>
-                                      <th>Performer %</th>
-                                      <th>Prescriber %</th>
-                                      <th>Referrer %</th>
+                                      <th>{{ 'GRID_HEADERS.ITEM_NAME' | translate }}</th>
+                                      <th>{{ 'INCENTIVE.PERFORMER_PERCENT' | translate }}</th>
+                                      <th>{{ 'INCENTIVE.PRESCRIBER_PERCENT' | translate }}</th>
+                                      <th>{{ 'INCENTIVE.REFERRER_PERCENT' | translate }}</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -528,7 +525,7 @@
                                       <div class="col-md-12" *ngIf="OpdIpdSettings.EnableOpdIpd">
                                         <div class="col-md-6">
                                           <span>
-                                            Outpatient?
+                                            {{ 'INCENTIVE.OUTPATIENT_Q' | translate }}
                                           </span>
                                           <div class="input-group">
                                             <div class="icheck-inline no-margin">
@@ -542,7 +539,7 @@
                                         </div>
                                         <div class="col-md-6">
                                           <span>
-                                            Inpatient?
+                                            {{ 'INCENTIVE.INPATIENT_Q' | translate }}
                                           </span>
                                           <div class="input-group">
                                             <div class="icheck-inline no-margin">

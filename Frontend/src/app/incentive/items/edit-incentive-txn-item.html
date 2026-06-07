@@ -9,7 +9,7 @@
       <div style="width: 100%; float: left;background: #fff;padding:5px;">
         <div class="col-md-12">
           <p>
-            <label style="font-size:large;font-weight:100;"><b> Edit Items</b></label>
+            <label style="font-size:large;font-weight:100;"><b> {{ 'INCENTIVE.EDIT_ITEMS' | translate }}</b></label>
             <i class="btn btn-danger" style="float: right;margin:0px 10px 0 0" (click)="ClosePopup()">X</i>
           </p>
         </div>
@@ -18,12 +18,12 @@
             <div class=" col-md-12">
               <div class="row">
                 <div class=" col-md-4">
-                  <label>Patient Name:</label>
+                  <label>{{ 'INCENTIVE.PATIENT_NAME' | translate }}:</label>
                   <b>{{txnItemToEdit.PatientName}}</b>
                 </div>
 
                 <div class=" col-md-4">
-                  <label>Hospital Number:</label>
+                  <label>{{ 'INCENTIVE.HOSPITAL_NUMBER' | translate }}:</label>
                   <b>{{txnItemToEdit.PatientCode}}</b>
                 </div>
               </div>
@@ -33,15 +33,15 @@
             <div class=" col-md-12">
               <div class="row">
                 <div class=" col-md-4">
-                  <label>Transaction Date</label>
+                  <label>{{ 'INCENTIVE.TRANSACTION_DATE' | translate }}</label>
                   <b>{{txnItemToEdit.TransactionDate | DanpheDateTime:'format':'YY/MM/DD HH:mm'}}</b>
                 </div>
                 <div class=" col-md-4">
-                  <label>Item Name:</label>
+                  <label>{{ 'GRID_HEADERS.ITEM_NAME' | translate }}:</label>
                   <b> {{txnItemToEdit.ItemName}}</b>
                 </div>
                 <div class=" col-md-4">
-                  <label>Service Department:</label>
+                  <label>{{ 'INCENTIVE.SERVICE_DEPARTMENT' | translate }}:</label>
                   <b> {{txnItemToEdit.ItemName}}</b>
                 </div>
               </div>
@@ -54,13 +54,13 @@
             <div class="col-md-12" style="margin-bottom: 24px;">
               <div class="row">
                 <div class="col-md-4">
-                  Referred By:
+                  {{ 'INCENTIVE.REFERRED_BY' | translate }}:
                   <select [(ngModel)]="txnItemToEdit.ReferredByEmpId" (change)="OnReferredByEmpChange()">
                     <option *ngFor="let emp of allEmpList" value="{{emp.EmployeeId}}">{{emp.FullName}}</option>
                   </select>
                 </div>
                 <div class="col-md-3">
-                  Referral %
+                  {{ 'INCENTIVE.REFERRAL_PERCENT' | translate }}
                   <!--<input type="number" [(ngModel)]="txnItemToEdit.ReferredByPercent"
                          (change)="OnReferredByPercentChange()"
                          [disabled]="!txnItemToEdit.ReferredByEmpId || txnItemToEdit.ReferredByEmpId=='0'"
@@ -74,14 +74,13 @@
                            onClick="this.select();" style="width: 70px;font-weight: bold;"
                            [ngClass]="{'invalid-percent': !isPercentagesValid}" />
                     <p *ngIf="!isPercentagesValid" class="tooltiptext ttptextdown">
-                      Total of Referral% and Assigned%
-                      Can't be more than 100.
+                      {{ 'INCENTIVE.REFERRAL_ASSIGNED_TOTAL_LIMIT_WARN' | translate }}
                     </p>
                   </div>
                   <!--<span *ngIf="!isPercentagesValid">Total of Referral% and Assigned% Can't be more than 100</span>-->
                 </div>
                 <div class="col-md-3">
-                  Amount : <input type="number" [(ngModel)]="txnItemToEdit.ReferralAmount" disabled
+                  {{ 'INCENTIVE.AMOUNT' | translate }} : <input type="number" [(ngModel)]="txnItemToEdit.ReferralAmount" disabled
                                   style="width: 120px;font-weight: bold;" />
                 </div>
               </div>
@@ -93,13 +92,13 @@
                 <div class="col-md-12">
                   <div class="row">
                     <div class="col-md-4">
-                      Assigned To:
+                      {{ 'INCENTIVE.ASSIGNED_TO' | translate }}:
                       <select [(ngModel)]="txnItemToEdit.AssignedToEmpId" (change)="OnAssignedToEmpChange()">
                         <option *ngFor="let emp of allEmpList" value="{{emp.EmployeeId}}">{{emp.FullName}}</option>
                       </select>
                     </div>
                     <div class="col-md-3">
-                      Assigned %
+                      {{ 'INCENTIVE.ASSIGNED_PERCENT' | translate }}
                       <!--<input type="number" [(ngModel)]="txnItemToEdit.AssignedToPercent"
                                          style="width: 70px;font-weight: bold;"
                                          [disabled]="!txnItemToEdit.AssignedToEmpId || txnItemToEdit.AssignedToEmpId=='0'"
@@ -112,18 +111,17 @@
                                [disabled]="!txnItemToEdit.AssignedToEmpId || txnItemToEdit.AssignedToEmpId==0"
                                (change)="OnAssignedToPercentChange()" [ngClass]="{'invalid-percent': !isPercentagesValid}" />
                         <p *ngIf="!isPercentagesValid" class="tooltiptext ttptextdown">
-                          Total of Referral% and Assigned%
-                          Can't be more than 100.
+                          {{ 'INCENTIVE.REFERRAL_ASSIGNED_TOTAL_LIMIT_WARN' | translate }}
                         </p>
                       </div>
                     </div>
                     <!--<span *ngIf="!isPercentagesValid">Total of Referral% and Assigned% Can't be more than 100</span>-->
                     <div class="col-md-3">
-                      Amount : <input type="number" [(ngModel)]="txnItemToEdit.AssignedToAmount" disabled
+                      {{ 'INCENTIVE.AMOUNT' | translate }} : <input type="number" [(ngModel)]="txnItemToEdit.AssignedToAmount" disabled
                                       style="width: 120px;font-weight: bold;" />
                     </div>
                     <div class="col-md-2">
-                      <input type="button" class="btn btn-sm blue" value="Add Fraction" [disabled]="showAddFractionDiv" (click)="addFraction()" />
+                      <input type="button" class="btn btn-sm blue" [value]="'INCENTIVE.ADD_FRACTION' | translate" [disabled]="showAddFractionDiv" (click)="addFraction()" />
                     </div>
                   </div>
                   <div class="row" *ngIf="showAddFractionDiv">
@@ -133,9 +131,9 @@
                           <thead>
                             <tr>
                               <th></th>
-                              <th><b>Employee</b></th>
-                              <th><b>Final %</b></th>
-                              <th><b>Fraction Amount</b></th>
+                              <th><b>{{ 'INCENTIVE.EMPLOYEE' | translate }}</b></th>
+                              <th><b>{{ 'INCENTIVE.FINAL_PERCENT' | translate }}</b></th>
+                              <th><b>{{ 'INCENTIVE.FRACTION_AMOUNT' | translate }}</b></th>
                               <th></th>
                             </tr>
                           </thead>
@@ -151,8 +149,8 @@
                                     {{emp.FullName}}
                                   </option>
                                 </select>
-                                <span *ngIf="row.hasError && row.EmployeeId == 0" class="color-red font-sm">Select Employee</span>
-                                <span *ngIf="row.hasError && row.EmployeeId != 0" class="color-red font-sm">Employee already selected.</span>
+                                <span *ngIf="row.hasError && row.EmployeeId == 0" class="color-red font-sm">{{ 'INCENTIVE.SELECT_EMPLOYEE_ERR' | translate }}</span>
+                                <span *ngIf="row.hasError && row.EmployeeId != 0" class="color-red font-sm">{{ 'INCENTIVE.EMPLOYEE_ALREADY_SELECTED_ERR' | translate }}</span>
                               </td>
                               <td style="width:80px">
                                 <input type="number" [(ngModel)]="row.FinalPercent"
@@ -162,8 +160,7 @@
                                        (change)="onFinalPercentChange(i)"
                                        [ngClass]="{'invalid-percent': !isFractionValid}" />
                                 <span *ngIf="!isFractionValid" class="color-red font-sm">
-                                  Total of Final% Can't be more
-                                  than {{ txnItemToEdit.AssignedToPercent }}.
+                                  {{ 'INCENTIVE.FINAL_PERCENT_LIMIT_WARN' | translate }} {{ txnItemToEdit.AssignedToPercent }}.
                                 </span>
                               </td>
                               <td style="width:150px;">
@@ -187,7 +184,7 @@
 
             <div class="col-md-12">
               <div class="col-md-12" style="padding-top:5px;padding-right:0px;">
-                <input type="button" class="btn btn-sm blue" value="Save"
+                <input type="button" class="btn btn-sm blue" [value]="'COMMON.SAVE' | translate"
                        (click)="SaveTxnItem()" />
               </div>
             </div>

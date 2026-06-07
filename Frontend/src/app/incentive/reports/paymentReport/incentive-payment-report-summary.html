@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="caption custom-caption">
           <i class="glyphicon glyphicon-asterisk"></i>
-          <span class="caption-subject">Incentive Payment Summary Report</span>
+          <span class="caption-subject">{{ 'INCENTIVE.PAYMENT_SUMMARY_REPORT' | translate }}</span>
         </div>
         <div class="col-md-7">
           <from-to-date-select (on-change)="OnDateRangeChange($event)">
@@ -45,7 +45,7 @@
           <div class="form-group">
             <button class="btn blue" type="button" (click)="loadDocPaymentSummary()">
               <i class="fa fa-search"></i>
-              Show Report
+              {{ 'INCENTIVE.SHOW_REPORT' | translate }}
             </button>
 
           </div>
@@ -118,15 +118,15 @@
   <div class="row" id="printPage">
     <div class="col-md-12">
       <div class="row">
-        <div class="col-md-6 col-sm-6">From Date: {{curDocReportMain.fromDate}}<br />ToDate:
+        <div class="col-md-6 col-sm-6">{{ 'INCENTIVE.FROM_DATE' | translate }}: {{curDocReportMain.fromDate}}<br />{{ 'INCENTIVE.TO_DATE' | translate }}:
           {{curDocReportMain.toDate}}<br /></div>
         <div class="col-md-6 col-sm-6" style="text-align:right;">
-          <span>Print Date: {{currentDate}}</span>
+          <span>{{ 'INCENTIVE.PRINT_DATE' | translate }}: {{currentDate}}</span>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12 text-center" style="text-align:center;font-size:18px">
-          <span><b>Incentive Payment Summary Report</b></span>
+          <span><b>{{ 'INCENTIVE.PAYMENT_SUMMARY_REPORT' | translate }}</b></span>
         </div>
       </div>
     </div>
@@ -147,8 +147,8 @@
         <div class="col-md-10 col-sm-12 col-xs-12 modelbox-div">
           <div class="row">
             <div id="printpageTransactionView">
-              <a class="btn btn-danger hidden-print rt_close_btn" (click)="Close()" title="Cancel">X</a>
-              <customer-header [header-title]="'Incentive Payment Voucher'">
+              <a class="btn btn-danger hidden-print rt_close_btn" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
+              <customer-header [header-title]="'INCENTIVE.PAYMENT_VOUCHER' | translate">
               </customer-header>
               <div class="row">
                 <div class="col-md-12 col-xs-12">
@@ -159,10 +159,10 @@
                       <div class="col-md-12 patient-hdr-label">
                         <table style="width:100%;" align="center">
                           <tr>
-                            <td> <b>Voucher No:</b>&nbsp;{{paymentDetails.VoucherNumber}} </td>
+                            <td> <b>{{ 'INCENTIVE.VOUCHER_NO' | translate }}:</b>&nbsp;{{paymentDetails.VoucherNumber}} </td>
                             <td style="text-align:center;"> </td>
                             <td style="text-align:center;float:right;padding-right:10px;">
-                              <b>Payment Date:</b>
+                              <b>{{ 'INCENTIVE.PAYMENT_DATE' | translate }}:</b>
                               <span style="float:right">
                                 &nbsp;
                                 {{paymentDetails.PaymentDate | nepaliDate:'format':'YYYY-MM-DD'}} 
@@ -179,10 +179,10 @@
                       <div class="col-md-12" style="overflow-y:auto">
                         <table class="table_data" style="width:100%;" border="1">
                           <tr>
-                            <td> Name </td>
-                            <td> Total Amount </td>
-                            <td> TDS Amount</td>
-                            <td> Net Amount</td>
+                            <td> {{ 'COMMON.NAME' | translate }} </td>
+                            <td> {{ 'INCENTIVE.TOTAL_AMOUNT' | translate }} </td>
+                            <td> {{ 'INCENTIVE.TDS_AMOUNT' | translate }}</td>
+                            <td> {{ 'INCENTIVE.NET_AMOUNT' | translate }}</td>
                           </tr>
                           <tr>
                             <td> {{paymentDetails.ReceiverName}} </td>
@@ -196,15 +196,15 @@
                         <br> <br>
                         <table style="width:100%;border:0;">
                           <tr>
-                            <td> In Words :</td>
-                            <td> <b>  {{paymentDetails.NetPayAmount | Currency | NumberInWords | CapitalFirstLetter}}</b>  <span>Only</span></td>
-                            <td > Adjust Amount : </td>
+                            <td> {{ 'INCENTIVE.IN_WORDS' | translate }} :</td>
+                            <td> <b>  {{paymentDetails.NetPayAmount | Currency | NumberInWords | CapitalFirstLetter}}</b>  <span>{{ 'INCENTIVE.ONLY' | translate }}</span></td>
+                            <td > {{ 'INCENTIVE.ADJUST_AMOUNT' | translate }} : </td>
                             <td> {{paymentDetails.AdjustedAmount | Currency}}</td>
                           </tr>
                           <tr>
-                            <td> Narration:</td>
+                            <td> {{ 'INCENTIVE.NARRATION' | translate }}:</td>
                             <td> <b> {{paymentDetails.Remarks}}</b></td>
-                            <td >  Net (Voucher Amount) :</td>
+                            <td >  {{ 'INCENTIVE.NET_VOUCHER_AMOUNT' | translate }} :</td>
                             <td> {{paymentDetails.NetPayAmount | Currency}}</td>
                           </tr>
                         </table>
@@ -221,22 +221,21 @@
                             <td>
                               <br />
                               <b style="border-top:1px solid black; padding:0px 10px;">
-                                Prepared
-                                By
+                                {{ 'INCENTIVE.PREPARED_BY' | translate }}
                               </b>
                               <br />
                               {{paymentDetails.CreatedBy}}
 
                             </td>
                             <td>
-                              <b style="border-top:1px solid black; padding:0px 10px;"> Checked By </b>
+                              <b style="border-top:1px solid black; padding:0px 10px;"> {{ 'INCENTIVE.CHECKED_BY' | translate }} </b>
                               <br />
                             </td>
                             <td>
                               <br />
                             </td>
                             <td>
-                              <b style="border-top:1px solid black; padding:0px 10px;"> Received By </b>
+                              <b style="border-top:1px solid black; padding:0px 10px;"> {{ 'INCENTIVE.RECEIVED_BY' | translate }} </b>
                               <br />
                             </td>
                           </tr>
@@ -247,9 +246,9 @@
                     <br />
                     <div class="col-md-12" style="padding-bottom: 15px;">
                       <div class="form-actions">
-                        <button style="float: right;" id="printbtn" class="btn btn-primary hidden-print" (click)="Print()" value="Print"
-                          title="print page">
-                          Print<i class="glyphicon glyphicon-print" style="margin-left:10px; "></i>
+                        <button style="float: right;" id="printbtn" class="btn btn-primary hidden-print" (click)="Print()" [value]="'COMMON.PRINT' | translate"
+                          [title]="'COMMON.PRINT' | translate">
+                          {{ 'COMMON.PRINT' | translate }}<i class="glyphicon glyphicon-print" style="margin-left:10px; "></i>
                         </button>
                       </div>
                     </div>

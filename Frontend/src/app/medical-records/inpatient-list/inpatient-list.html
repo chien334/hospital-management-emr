@@ -8,7 +8,7 @@
 <div class="col-md-12">
   <div class="">
     <div class="row">
-      <p>Filter by Discharged Date: </p>
+      <p>{{ 'MEDICAL_RECORDS.FILTER_BY_DISCHARGED_DATE' | translate }}</p>
       <div class="col-md-6">
         <from-to-date-select (on-change)="OnFromToDateChange($event)" [date-settings-name]="null">
         </from-to-date-select>
@@ -17,7 +17,7 @@
         <div class="form-group">
           <button class="btn green btn-success" type="button" (click)="LoadAllDischargedPatients()"
             [disabled]="loading">
-            <i class="fa fa-search"></i> Load Patients
+            <i class="fa fa-search"></i> {{ 'MEDICAL_RECORDS.LOAD_PATIENTS' | translate }}
           </button>
         </div>
       </div>
@@ -27,17 +27,17 @@
             <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
               <input checked="checked" [value]="'all'" [(ngModel)]="MrStatus" (change)="FilterMrList()" name="MrStatus"
                 style="width:15px;height:15px" type="radio" class="ng-untouched ng-pristine ng-valid">
-              <span></span>ALL
+              <span></span>{{ 'COMMON.ALL' | translate | uppercase }}
             </label>
             <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
               <input name="MrStatus" [value]="'complete'" [(ngModel)]="MrStatus" (change)="FilterMrList()"
                 style="width:15px;height:15px" type="radio" class="ng-untouched ng-pristine ng-valid">
-              <span></span>MR Added
+              <span></span>{{ 'MEDICAL_RECORDS.MR_ADDED' | translate }}
             </label>
             <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
               <input name="MrStatus" [value]="'pending'" [(ngModel)]="MrStatus" (change)="FilterMrList()"
                 style="width:15px;height:15px" type="radio" class="ng-untouched ng-pristine ng-valid">
-              <span></span>MR Pending
+              <span></span>{{ 'MEDICAL_RECORDS.MR_PENDING' | translate }}
             </label>
           </div>
         </div>

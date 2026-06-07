@@ -26,7 +26,7 @@
   <div class="row">
 
     <div class="caption custom-caption">
-      <i class="glyphicon glyphicon-asterisk"></i><span class="caption-subject">Hospital Service Summary Report</span>
+      <i class="glyphicon glyphicon-asterisk"></i><span class="caption-subject">{{ 'MEDICAL_RECORDS.HOSPITAL_SERVICE_SUMMARY_REPORT' | translate }}</span>
     </div>
 
     <div class="col-md-6 col-xs-12">
@@ -34,7 +34,7 @@
     </div>
 
     <div class="col-md-2 col-xs-12">
-      <button class="btn blue" type="button" (click)="Load()"> <i class="fa fa-search"></i> Show Report </button>
+      <button class="btn blue" type="button" (click)="Load()"> <i class="fa fa-search"></i> {{ 'COMMON.SHOW_REPORT' | translate }} </button>
     </div>
 
   </div>
@@ -51,10 +51,10 @@
         </div>
         <div class="col-md-8" style="text-align: center;">
           <!-- style="width: 50%; text-align: center; text-align: center; margin-left: -28rem; -->
-          <span>Government of Nepal</span> <br>
-          <span> Ministry of Health and Population</span> <br>
-          <b>Department Of Health Services</b><br>
-          <b> Public Hospital Monthly Reporting Form <br /> {{GovTemplate1Data.hospitalName}} </b>
+          <span>{{ 'MEDICAL_RECORDS.GOVERNMENT_OF_NEPAL' | translate }}</span> <br>
+          <span>{{ 'MEDICAL_RECORDS.MINISTRY_OF_HEALTH_AND_POPULATION' | translate }}</span> <br>
+          <b>{{ 'MEDICAL_RECORDS.DEPARTMENT_OF_HEALTH_SERVICES' | translate }}</b><br>
+          <b>{{ 'MEDICAL_RECORDS.PUBLIC_HOSPITAL_MONTHLY_REPORTING_FORM' | translate }} <br /> {{GovTemplate1Data.hospitalName}} </b>
         </div>
         <div class="col-md-2"></div>
       </div>
@@ -68,19 +68,19 @@
             <div style="width: 100%;">
               <table class="Selected" style="width:100%">
                 <tr>
-                  <td style="width:7.5rem">Fiscal Year</td>
+                  <td style="width:7.5rem">{{ 'MEDICAL_RECORDS.FISCAL_YEAR' | translate }}</td>
                   <td style="width: 1.5rem;">20...../20.....</td>
                   <td style="width:1rem">T0</td>
                   <td style="width: 27rem;"></td>
-                  <td style="width: 1.5rem;">HF Code</td>
+                  <td style="width: 1.5rem;">{{ 'MEDICAL_RECORDS.HF_CODE' | translate }}</td>
                   <td style="width: 28rem;"></td>
                 </tr>
               </table>
               <table class="Selected" style="width:100%">
                 <tr>
-                  <td>Reference No:</td>
+                  <td>{{ 'MEDICAL_RECORDS.REFERENCE_NO' | translate }}:</td>
                   <td style="width: 13.5rem;"></td>
-                  <td style="width: 50rem;"> Subject: Submission of Monthly Report on Hospital Services :</td>
+                  <td style="width: 50rem;">{{ 'MEDICAL_RECORDS.SUBJECT_SUBMISSION_OF_MONTHLY_REPORT_ON_HOSPITAL_SERVICES' | translate }}:</td>
                   <td>M...../Y 20.....</td>
                 </tr>
               </table>
@@ -89,26 +89,26 @@
               <div style="width: 100%;  margin: 0 0.5rem 0 0;">
                 <table border="1" class="Selected" align="center" style="width:100%">
                   <tr>
-                    <td colspan="5" align="center"><b>Hospital Services</b></td>
+                    <td colspan="5" align="center"><b>{{ 'MEDICAL_RECORDS.HOSPITAL_SERVICES' | translate }}</b></td>
                     <td style="width:10px !important;"></td>
-                    <td colspan="2" align="center"><b>Emergency Services</b>
+                    <td colspan="2" align="center"><b>{{ 'MEDICAL_RECORDS.EMERGENCY_SERVICES' | translate }}</b>
 
                   </tr>
                   <tr>
-                    <td class="Selected" rowspan="2" align="center">Age Group</td>
-                    <td class="Selected" colspan="2" align="center">New Client Serviced</td>
-                    <td class="Selected" colspan="2" align="center">Total Clients Served</td>
+                    <td class="Selected" rowspan="2" align="center">{{ 'COMMON.AGE_GROUP' | translate }}</td>
+                    <td class="Selected" colspan="2" align="center">{{ 'MEDICAL_RECORDS.NEW_CLIENT_SERVICED' | translate }}</td>
+                    <td class="Selected" colspan="2" align="center">{{ 'MEDICAL_RECORDS.TOTAL_CLIENTS_SERVED' | translate }}</td>
                     <td style="width:10px !important;"></td>
-                    <td class="Selected" colspan="2" align="center">Total Clients Served</td>
+                    <td class="Selected" colspan="2" align="center">{{ 'MEDICAL_RECORDS.TOTAL_CLIENTS_SERVED' | translate }}</td>
                   </tr>
                   <tr>
-                    <td class="Selected" width="80px">Female</td>
-                    <td class="Selected" width="80px">Male</td>
-                    <td class="Selected" width="80px">Female</td>
-                    <td class="Selected" width="80px">Male</td>
+                    <td class="Selected" width="80px">{{ 'PATIENT.FEMALE' | translate }}</td>
+                    <td class="Selected" width="80px">{{ 'PATIENT.MALE' | translate }}</td>
+                    <td class="Selected" width="80px">{{ 'PATIENT.FEMALE' | translate }}</td>
+                    <td class="Selected" width="80px">{{ 'PATIENT.MALE' | translate }}</td>
                     <td style="width:10px !important;"></td>
-                    <td class="Selected" width="80px">Female</td>
-                    <td class="Selected" width="80px">Male</td>
+                    <td class="Selected" width="80px">{{ 'PATIENT.FEMALE' | translate }}</td>
+                    <td class="Selected" width="80px">{{ 'PATIENT.MALE' | translate }}</td>
                   </tr>
                   <tr *ngFor="let o of outPatientServices">
                     <td class="Selected"> {{o.AgeRange}} </td>
@@ -128,11 +128,11 @@
               <div style="width: 40%; margin: 0 0.5rem 0 0;">
                 <table cborder="1" class="Selected" align="center" style="width:100%">
                   <tr>
-                    <td class="Selected"> <b>Free Service Received</b> <br />
-                      <b>by Impoverished Citizen</b>
+                    <td class="Selected"> <b>{{ 'MEDICAL_RECORDS.FREE_SERVICE_RECEIVED' | translate }}</b> <br />
+                      <b>{{ 'MEDICAL_RECORDS.BY_IMPOVERISHED_CITIZEN' | translate }}</b>
                     </td>
-                    <td class="Selected" width="80px" align="center"><b>Female</b></td>
-                    <td class="Selected" width="80px" align="center"><b>Male</b></td>
+                    <td class="Selected" width="80px" align="center"><b>{{ 'PATIENT.FEMALE' | translate }}</b></td>
+                    <td class="Selected" width="80px" align="center"><b>{{ 'PATIENT.MALE' | translate }}</b></td>
                   </tr>
                   <tr>
                     <td class="Selected" align="center">1</td>
@@ -150,39 +150,39 @@
                 <div>
                   <table border="1" class="Selected" align="left" style="width:90%; font-size: small;">
                     <tr>
-                      <td class="Selected" width="180"><b>ORC Clinics / FCHV</b></td>
-                      <td class="Selected" width="80px" align="center"><b>Planned / Total No.</b></td>
-                      <td class="Selected" width="80px" align="center"><b>Conducted / Report Received.</b>
+                      <td class="Selected" width="180"><b>{{ 'MEDICAL_RECORDS.ORC_CLINICS_FCHV' | translate }}</b></td>
+                      <td class="Selected" width="80px" align="center"><b>{{ 'MEDICAL_RECORDS.PLANNED_TOTAL_NO' | translate }}</b></td>
+                      <td class="Selected" width="80px" align="center"><b>{{ 'MEDICAL_RECORDS.CONDUCTED_REPORT_RECEIVED' | translate }}</b>
                       </td>
-                      <td class="Selected" width="80px" align="center"><b>No of Clients Served.</b></td>
+                      <td class="Selected" width="80px" align="center"><b>{{ 'MEDICAL_RECORDS.NO_OF_CLIENTS_SERVED' | translate }}</b></td>
                     </tr>
                     <tr>
-                      <td class="Selected">Outreach Clinic </td>
-                      <td class="Selected" width="80px">-</td>
-                      <td class="Selected" width="80px">-</td>
-                      <td class="Selected" width="80px">-</td>
-                    </tr>
-                    <tr>
-                      <td class="Selected">Immunization Clinic</td>
+                      <td class="Selected">{{ 'MEDICAL_RECORDS.OUTREACH_CLINIC' | translate }} </td>
                       <td class="Selected" width="80px">-</td>
                       <td class="Selected" width="80px">-</td>
                       <td class="Selected" width="80px">-</td>
                     </tr>
                     <tr>
-                      <td class="Selected">Immunization Session </td>
+                      <td class="Selected">{{ 'MEDICAL_RECORDS.IMMUNIZATION_CLINIC' | translate }}</td>
+                      <td class="Selected" width="80px">-</td>
+                      <td class="Selected" width="80px">-</td>
+                      <td class="Selected" width="80px">-</td>
+                    </tr>
+                    <tr>
+                      <td class="Selected">{{ 'MEDICAL_RECORDS.IMMUNIZATION_SESSION' | translate }} </td>
                       <td class="Selected" width="80px">-</td>
                       <td class="Selected" width="80px">-</td>
                       <td class="Selected" width="80px">
                         {{immunizationServices[0]?.TotalVaccinationClientServed}}</td>
                     </tr>
                     <tr>
-                      <td class="Selected">Hygiene Promotion Session</td>
+                      <td class="Selected">{{ 'MEDICAL_RECORDS.HYGIENE_PROMOTION_SESSION' | translate }}</td>
                       <td class="Selected" width="80px">-</td>
                       <td class="Selected" width="80px">-</td>
                       <td class="Selected" width="80px">-</td>
                     </tr>
                     <tr>
-                      <td class="Selected">FCHV</td>
+                      <td class="Selected">{{ 'MEDICAL_RECORDS.FCHV' | translate }}</td>
                       <td class="Selected" width="80px">-</td>
                       <td class="Selected" width="80px">-</td>
                       <td class="Selected" width="80px">-</td>
@@ -192,17 +192,17 @@
                 <div>
                   <table border="1" class="Selected" align="left" style="width:90%; font-size: small;">
                     <tr>
-                      <td class="Selected" rowspan="2" align="center"><b>Referrals</b></td>
-                      <td class="Selected" rowspan="2"><b>Referral In</b></td>
-                      <td class="Selected" colspan=3><b>Referred Out</b></td>
+                      <td class="Selected" rowspan="2" align="center"><b>{{ 'MEDICAL_RECORDS.REFERRALS' | translate }}</b></td>
+                      <td class="Selected" rowspan="2"><b>{{ 'MEDICAL_RECORDS.REFERRAL_IN' | translate }}</b></td>
+                      <td class="Selected" colspan=3><b>{{ 'MEDICAL_RECORDS.REFERRED_OUT' | translate }}</b></td>
                     </tr>
                     <tr>
-                      <td class="Selected">Outpatient</td>
-                      <td class="Selected">Inpatient</td>
-                      <td class="Selected">Emergency</td>
+                      <td class="Selected">{{ 'MEDICAL_RECORDS.OUTPATIENT' | translate }}</td>
+                      <td class="Selected">{{ 'MEDICAL_RECORDS.INPATIENT' | translate }}</td>
+                      <td class="Selected">{{ 'MEDICAL_RECORDS.EMERGENCY' | translate }}</td>
                     </tr>
                     <tr>
-                      <td class="Selected">Female</td>
+                      <td class="Selected">{{ 'PATIENT.FEMALE' | translate }}</td>
                       <td class="Selected">-</td>
                       <td class="Selected">{{outpatientReferredOut.OpReferred_FemaleCount}}</td>
                       <td class="Selected">{{HospitalServiceSummaryReport?.InpatientReferredOut[0]?.IpRO_FemaleCount}}
@@ -210,7 +210,7 @@
                       <td class="Selected">-</td>
                     </tr>
                     <tr>
-                      <td class="Selected">Male</td>
+                      <td class="Selected">{{ 'PATIENT.MALE' | translate }}</td>
                       <td class="Selected">-</td>
                       <td class="Selected">{{outpatientReferredOut.OpReferred_MaleCount}}</td>
                       <td class="Selected">{{HospitalServiceSummaryReport?.InpatientReferredOut[0]?.IpRO_MaleCount}}</td>
@@ -225,78 +225,78 @@
               <div style="width: 100%;  margin: 0 0.5rem 0 0;">
                 <table border="1" class="Selected" align="center" style="width:100%">
                   <tr>
-                    <td rowspan="2" style="padding: 0.3rem;">Available Services (Circle the appropriate code)</td>
-                    <td colspan="2">Services</td>
-                    <td rowspan="2" style="padding: 0.3rem;">Available Services (Circle the appropriate code)</td>
-                    <td colspan="2">Services</td>
+                    <td rowspan="2" style="padding: 0.3rem;">{{ 'MEDICAL_RECORDS.AVAILABLE_SERVICES_CIRCLE_APPROPRIATE_CODE' | translate }}</td>
+                    <td colspan="2">{{ 'MEDICAL_RECORDS.SERVICES' | translate }}</td>
+                    <td rowspan="2" style="padding: 0.3rem;">{{ 'MEDICAL_RECORDS.AVAILABLE_SERVICES_CIRCLE_APPROPRIATE_CODE' | translate }}</td>
+                    <td colspan="2">{{ 'MEDICAL_RECORDS.SERVICES' | translate }}</td>
                   </tr>
                   <tr style="padding: 0.3rem;">
-                    <td class="Selected">Yes</td>
-                    <td class="Selected">No</td>
-                    <td class="Selected">Yes</td>
-                    <td class="Selected">No</td>
+                    <td class="Selected">{{ 'COMMON.YES' | translate }}</td>
+                    <td class="Selected">{{ 'COMMON.NO' | translate }}</td>
+                    <td class="Selected">{{ 'COMMON.YES' | translate }}</td>
+                    <td class="Selected">{{ 'COMMON.NO' | translate }}</td>
                   </tr>
                   <tr>
-                    <td class="Selected">Birthing Center</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.BIRTHING_CENTER' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
-                    <td class="Selected">DOTS Site</td>
-                    <td class="Selected">1</td>
-                    <td class="Selected">2</td>
-                  </tr>
-                  <tr>
-                    <td class="Selected">BEONC Site</td>
-                    <td class="Selected">1</td>
-                    <td class="Selected">2</td>
-                    <td class="Selected">Microscopy Site</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.DOTS_SITE' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
                   </tr>
                   <tr>
-                    <td class="Selected">CEONC Site</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.BEONC_SITE' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
-                    <td class="Selected">Laboratory Service</td>
-                    <td class="Selected">1</td>
-                    <td class="Selected">2</td>
-                  </tr>
-                  <tr>
-                    <td class="Selected">Safe Aboration Service (SAS) Site</td>
-                    <td class="Selected">1</td>
-                    <td class="Selected">2</td>
-                    <td class="Selected">HTC Site</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.MICROSCOPY_SITE' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
                   </tr>
                   <tr>
-                    <td class="Selected">IUCD Service Site</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.CEONC_SITE' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
-                    <td class="Selected">PMTCT Site</td>
-                    <td class="Selected">1</td>
-                    <td class="Selected">2</td>
-                  </tr>
-                  <tr>
-                    <td class="Selected">Implant Service Site</td>
-                    <td class="Selected">1</td>
-                    <td class="Selected">2</td>
-                    <td class="Selected">CB-PMTCT Site</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.LABORATORY_SERVICE' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
                   </tr>
                   <tr>
-                    <td class="Selected">Adolescent Friendly Service Site</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.SAFE_ABORTION_SERVICE_SAS_SITE' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
-                    <td class="Selected">ART Site</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.HTC_SITE' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
                   </tr>
                   <tr>
-                    <td class="Selected">OTC Site</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.IUCD_SERVICE_SITE' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
-                    <td class="Selected">Other (Specify)...</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.PMTCT_SITE' | translate }}</td>
+                    <td class="Selected">1</td>
+                    <td class="Selected">2</td>
+                  </tr>
+                  <tr>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.IMPLANT_SERVICE_SITE' | translate }}</td>
+                    <td class="Selected">1</td>
+                    <td class="Selected">2</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.CB_PMTCT_SITE' | translate }}</td>
+                    <td class="Selected">1</td>
+                    <td class="Selected">2</td>
+                  </tr>
+                  <tr>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.ADOLESCENT_FRIENDLY_SERVICE_SITE' | translate }}</td>
+                    <td class="Selected">1</td>
+                    <td class="Selected">2</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.ART_SITE' | translate }}</td>
+                    <td class="Selected">1</td>
+                    <td class="Selected">2</td>
+                  </tr>
+                  <tr>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.OTC_SITE' | translate }}</td>
+                    <td class="Selected">1</td>
+                    <td class="Selected">2</td>
+                    <td class="Selected">{{ 'MEDICAL_RECORDS.OTHER_SPECIFY' | translate }}</td>
                     <td class="Selected">1</td>
                     <td class="Selected">2</td>
                   </tr>
@@ -308,23 +308,23 @@
             <div style=" margin-bottom: 1rem;">
               <table class="Selected" style="width:100%">
                 <tr>
-                  <td class="Selected">Dispatched Date : </td>
+                  <td class="Selected">{{ 'MEDICAL_RECORDS.DISPATCHED_DATE' | translate }} : </td>
                   <td class="Selected" colspan="7">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     /&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 207...</td>
                 </tr>
                 <tr>
-                  <td class="Selected">Received Date : </td>
+                  <td class="Selected">{{ 'MEDICAL_RECORDS.RECEIVED_DATE' | translate }} : </td>
                   <td class="Selected" colspan="7">&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;/&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;207...</td>
                 </tr>
                 <tr>
-                  <td class="Selected" colspan="3">Sanctioned Bed</td>
-                  <td class="Selected" colspan="3">Operational Inpatient Bed</td>
-                  <td class="Selected" colspan="3">Emergency Bed</td>
+                  <td class="Selected" colspan="3">{{ 'MEDICAL_RECORDS.SANCTIONED_BED' | translate }}</td>
+                  <td class="Selected" colspan="3">{{ 'MEDICAL_RECORDS.OPERATIONAL_INPATIENT_BED' | translate }}</td>
+                  <td class="Selected" colspan="3">{{ 'MEDICAL_RECORDS.EMERGENCY_BED' | translate }}</td>
                 </tr>
                 <tr style="height:1.5rem;">
                   <td class="Selected" colspan="3"></td>
@@ -335,7 +335,7 @@
               <table class="Selected" style="width:100%">
                 <tr>
                   <td class="Selected" colspan="2">
-                    <b>Total Patients Admitted</b>
+                    <b>{{ 'MEDICAL_RECORDS.TOTAL_PATIENTS_ADMITTED' | translate }}</b>
                   </td>
                   <td class="Selected">
                     {{totalPatientAdmitted != null && totalPatientAdmitted.length>0 &&
@@ -344,7 +344,7 @@
                 </tr>
                 <tr>
                   <td class="Selected" colspan="2" style="width:27rem;">
-                    <b>Total Inpatient Service Days</b>
+                    <b>{{ 'MEDICAL_RECORDS.TOTAL_INPATIENT_SERVICE_DAYS' | translate }}</b>
                   </td>
                   <td class="Selected">
                     {{totalInpatientDays != null && totalInpatientDays.length>0 &&
@@ -356,9 +356,9 @@
             <div>
               <table class="Selected" style="width: 100%;">
                 <tr>
-                  <th class="Selected" height="20px" align="center">Diagnostic / Other Services</th>
-                  <th class="Selected" width="70px" align="center">Unit</th>
-                  <th class="Selected" align="center">No.</th>
+                  <th class="Selected" height="20px" align="center">{{ 'MEDICAL_RECORDS.DIAGNOSTIC_OTHER_SERVICES' | translate }}</th>
+                  <th class="Selected" width="70px" align="center">{{ 'COMMON.UNIT' | translate }}</th>
+                  <th class="Selected" align="center">{{ 'COMMON.NO' | translate }}</th>
                 </tr>
                 <tr *ngFor="let d of diagServices">
                   <td class="Selected" height="20px"> {{d.ReportingItemName}} </td>
@@ -371,13 +371,13 @@
                   <td class="Selected" height="20px">-</td>
                 </tr> -->
                 <tr>
-                  <td class="Selected" height="20px">Total Laboratory Service Provided</td>
-                  <td class="Selected" height="20px">Person</td>
+                  <td class="Selected" height="20px">{{ 'MEDICAL_RECORDS.TOTAL_LABORATORY_SERVICE_PROVIDED' | translate }}</td>
+                  <td class="Selected" height="20px">{{ 'MEDICAL_RECORDS.PERSON' | translate }}</td>
                   <td class="Selected" height="20px">{{TotlLabServiceProvidedPersonCount}}</td>
                 </tr>
                 <tr>
-                  <td class="Selected" height="20px">Other Service Provided (If any)</td>
-                  <td class="Selected" height="20px">Person</td>
+                  <td class="Selected" height="20px">{{ 'MEDICAL_RECORDS.OTHER_SERVICE_PROVIDED_IF_ANY' | translate }}</td>
+                  <td class="Selected" height="20px">{{ 'MEDICAL_RECORDS.PERSON' | translate }}</td>
                   <td class="Selected" height="20px">-</td>
                 </tr>
               </table>
@@ -386,15 +386,15 @@
             <div style="margin-top:1rem ;">
               <table class="Selected" style="width:100%">
                 <tr>
-                  <td class="Selected" rowspan="2"><b>Minimun Service Standard (MSS)</b></td>
-                  <td class="Selected"><b>Date</b></td>
-                  <td class="Selected" colspan="2"><b>Implementation</b></td>
-                  <td class="Selected"><b>Score (%)</b></td>
+                  <td class="Selected" rowspan="2"><b>{{ 'MEDICAL_RECORDS.MINIMUM_SERVICE_STANDARD' | translate }}</b></td>
+                  <td class="Selected"><b>{{ 'COMMON.DATE' | translate }}</b></td>
+                  <td class="Selected" colspan="2"><b>{{ 'MEDICAL_RECORDS.IMPLEMENTATION' | translate }}</b></td>
+                  <td class="Selected"><b>{{ 'MEDICAL_RECORDS.SCORE_PERCENT' | translate }}</b></td>
                 </tr>
                 <tr>
                   <td> </td>
-                  <td class="Selected">1. First</td>
-                  <td class="Selected">2. Second</td>
+                  <td class="Selected">{{ 'MEDICAL_RECORDS.FIRST_1' | translate }}</td>
+                  <td class="Selected">{{ 'MEDICAL_RECORDS.SECOND_2' | translate }}</td>
                   <td></td>
                 </tr>
               </table>
@@ -404,23 +404,23 @@
 
         <div style="display: flex; justify-content: space-between;">
           <div style="width: 20%; text-align: left;">
-            <b><u>Prepared By</u>:</b>
-            <p>Signature:</p>
-            <p>Name of Medical Recorder:</p>
+            <b><u>{{ 'MEDICAL_RECORDS.PREPARED_BY' | translate }}</u>:</b>
+            <p>{{ 'MEDICAL_RECORDS.SIGNATURE' | translate }}:</p>
+            <p>{{ 'MEDICAL_RECORDS.NAME_OF_MEDICAL_RECORDER' | translate }}:</p>
           </div>
           <div style="width: 50%"></div>
           <div style="width: 30%; text-align: left;">
-            <b><u>Approved By</u>:</b>
-            <p>Signature:</p>
-            <p>Name of Hospital Superintendent/Director:</p>
+            <b><u>{{ 'MEDICAL_RECORDS.APPROVED_BY' | translate }}</u>:</b>
+            <p>{{ 'MEDICAL_RECORDS.SIGNATURE' | translate }}:</p>
+            <p>{{ 'MEDICAL_RECORDS.NAME_OF_HOSPITAL_SUPERINTENDENT_DIRECTOR' | translate }}:</p>
           </div>
         </div>
       </div>
     </div>
     <div style="margin-top: 25px;">
       <p style="text-align:center;">
-        <button class="btn blue" (click)="Print()"> Print Report <i class="glyphicon glyphicon-print"></i> </button>
-        <button class="blue btn" type="button" title="Export to Excel" (click)="ExportToExcel('govReportWithoutHeader')"> <i class="fa fa-file-excel-o"></i> Export</button>
+        <button class="btn blue" (click)="Print()"> {{ 'MEDICAL_RECORDS.PRINT_REPORT' | translate }} <i class="glyphicon glyphicon-print"></i> </button>
+        <button class="blue btn" type="button" [title]="'COMMON.EXPORT_TO_EXCEL' | translate" (click)="ExportToExcel('govReportWithoutHeader')"> <i class="fa fa-file-excel-o"></i> {{ 'COMMON.EXPORT' | translate }}</button>
       </p>
     </div>
   </section>

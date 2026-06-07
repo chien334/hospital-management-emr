@@ -30,7 +30,7 @@
         <form [formGroup]="currentInpatientOutcome.DyanamicValidator" class="form-horizontal">
           <div class="form-body">
             <div class="col-md-12">
-              <div class="caption custom-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Inpatient Service Report</span> </div>
+              <div class="caption custom-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'MEDICAL_RECORDS.INPATIENT_SERVICE_REPORT' | translate }}</span> </div>
               <div class="row">
                 <div class="col-md-6 col-xs-12">
                   <from-to-date-select (on-change)="OnFromToDateChange($event)">
@@ -39,7 +39,7 @@
                 <div class="col-md-2 col-xs-12">
                   <div class="form-group">
                     <button class="btn blue" type="button" (click)="Load()" [disabled]=""> <i class="fa fa-search"></i>
-                      Show Report </button>
+                      {{ 'COMMON.SHOW_REPORT' | translate }} </button>
                   </div>
                 </div>
               </div>
@@ -60,45 +60,44 @@
                     <td>
                       <table border="1" class="Selected" style="width:100%" align="center">
                         <tr>
-                          <td class="Selected report-title" align="center" colspan="17"><b>1. Summary of Indoor
-                              Services</b>
+                          <td class="Selected report-title" align="center" colspan="17"><b>{{ 'MEDICAL_RECORDS.SUMMARY_OF_INDOOR_SERVICES_1' | translate }}</b>
                           </td>
                         </tr>
                         <tr>
-                          <td class="Selected" align="center" colspan="17"><b>A. Inpatient Outcome</b></td>
+                          <td class="Selected" align="center" colspan="17"><b>{{ 'MEDICAL_RECORDS.INPATIENT_OUTCOME_A' | translate }}</b></td>
                         </tr>
                         <tr>
-                          <td class="Selected" align="center" rowspan="2">Age Group</td>
+                          <td class="Selected" align="center" rowspan="2">{{ 'COMMON.AGE_GROUP' | translate }}</td>
                           <!-- <td class="Selected" align="center" colspan="2">Admitted</td> -->
-                          <td class="Selected" align="center" colspan="2">Cured/Recovered</td>
-                          <td class="Selected" align="center" colspan="2">Stable</td>
-                          <td *ngIf="oldData" class="Selected" align="center" colspan="2">Not Cured</td>
-                          <td class="Selected" align="center" colspan="2">Referred Out</td>
-                          <td class="Selected" align="center" colspan="2">DOR/LAMA/DAMA</td>
-                          <td class="Selected" align="center" colspan="2">Absconded</td>
+                          <td class="Selected" align="center" colspan="2">{{ 'MEDICAL_RECORDS.CURED_RECOVERED' | translate }}</td>
+                          <td class="Selected" align="center" colspan="2">{{ 'MEDICAL_RECORDS.STABLE' | translate }}</td>
+                          <td *ngIf="oldData" class="Selected" align="center" colspan="2">{{ 'MEDICAL_RECORDS.NOT_CURED' | translate }}</td>
+                          <td class="Selected" align="center" colspan="2">{{ 'MEDICAL_RECORDS.REFERRED_OUT' | translate }}</td>
+                          <td class="Selected" align="center" colspan="2">{{ 'MEDICAL_RECORDS.DOR_LAMA_DAMA' | translate }}</td>
+                          <td class="Selected" align="center" colspan="2">{{ 'MEDICAL_RECORDS.ABSCONDED' | translate }}</td>
                           <!-- <td class="Selected" align="center" colspan="2">Deaths </td> -->
-                          <td class="Selected" align="center" colspan="2">Death &lt;= 48 Hours</td>
-                          <td class="Selected" align="center" colspan="2">Death &gt;= 48 Hours</td>
+                          <td class="Selected" align="center" colspan="2">{{ 'MEDICAL_RECORDS.DEATH_LE_48_HOURS' | translate }}</td>
+                          <td class="Selected" align="center" colspan="2">{{ 'MEDICAL_RECORDS.DEATH_GE_48_HOURS' | translate }}</td>
                         </tr>
                         <tr>
                           <!-- <td class="Selected" align="center">Male</td>
                         <td class="Selected" align="center">Female</td> -->
-                          <td class="Selected" align="center">Female</td>
-                          <td class="Selected" align="center">Male</td>
-                          <td class="Selected" align="center">Female</td>
-                          <td class="Selected" align="center">Male</td>
-                          <td *ngIf="oldData" class="Selected" align="center">Female</td>
-                          <td *ngIf="oldData" class="Selected" align="center">Male</td>
-                          <td class="Selected" align="center">Female</td>
-                          <td class="Selected" align="center">Male</td>
-                          <td class="Selected" align="center">Female</td>
-                          <td class="Selected" align="center">Male</td>
-                          <td class="Selected" align="center">Female</td>
-                          <td class="Selected" align="center">Male</td>
-                          <td class="Selected" align="center">Female</td>
-                          <td class="Selected" align="center">Male</td>
-                          <td class="Selected" align="center">Female</td>
-                          <td class="Selected" align="center">Male</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.FEMALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.MALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.FEMALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.MALE' | translate }}</td>
+                          <td *ngIf="oldData" class="Selected" align="center">{{ 'PATIENT.FEMALE' | translate }}</td>
+                          <td *ngIf="oldData" class="Selected" align="center">{{ 'PATIENT.MALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.FEMALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.MALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.FEMALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.MALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.FEMALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.MALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.FEMALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.MALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.FEMALE' | translate }}</td>
+                          <td class="Selected" align="center">{{ 'PATIENT.MALE' | translate }}</td>
                         </tr>
                         <tr *ngFor="let o of InpatientServiceSummary.InpatientOutcome">
                           <td class="Selected" align="center">{{o.AgeRange}}</td>
@@ -137,8 +136,8 @@
 
                         <tr>
                           <!-- <td rowspan="5"></td> -->
-                          <td class="Selected" align="center" rowspan="2"><b>Neonate Form</b></td>
-                          <td class="Selected" align="center" colspan="4"><b>Gestational Weeks</b></td>
+                          <td class="Selected" align="center" rowspan="2"><b>{{ 'MEDICAL_RECORDS.NEONATE_FORM' | translate }}</b></td>
+                          <td class="Selected" align="center" colspan="4"><b>{{ 'MEDICAL_RECORDS.GESTATIONAL_WEEKS' | translate }}</b></td>
                         </tr>
                         <tr>
                           <td class="Selected" align="center">22-27</td>
@@ -156,7 +155,7 @@
                       </table>
                       <table border="1" class="Selected" style="width:100%;" align="center">
                         <tr>
-                          <td rowspan="4" class="Selected" align="center" class="rotate90" style="width: 77px; -webkit-transform: rotate(-90.0deg);">Maternal Age (Yrs)</td>
+                          <td rowspan="4" class="Selected" align="center" class="rotate90" style="width: 77px; -webkit-transform: rotate(-90.0deg);">{{ 'MEDICAL_RECORDS.MATERNAL_AGE_YRS' | translate }}</td>
                           <td colspan="5" class="blank_row"></td>
                         </tr>
                         <tr *ngFor="let o of InpatientServiceSummary.GestationalWeek_MaternalAge">
@@ -169,9 +168,9 @@
                       </table>
                       <table border="1" class="Selected" align="centre" style="width:100%; margin-top: 0.5rem;">
                         <tr>
-                          <td rowspan="2" colspan="2">Medico-Legal Cases</td>
-                          <td>Male</td>
-                          <td>Female</td>
+                          <td rowspan="2" colspan="2">{{ 'MEDICAL_RECORDS.MEDICO_LEGAL_CASES' | translate }}</td>
+                          <td>{{ 'PATIENT.MALE' | translate }}</td>
+                          <td>{{ 'PATIENT.FEMALE' | translate }}</td>
                         </tr>
                         <tr>
                           <td class="Selected" align="center">{{InpatientServiceSummary.MedicoLegalCases[0]? InpatientServiceSummary.MedicoLegalCases[0].caseCount:0}}</td>
@@ -190,17 +189,17 @@
                       <table border="1" class="Selected" style="width:100%" align="center">
 
                         <tr>
-                          <td class="Selected" align="center" rowspan="2" colspan="2"><b> Type of Surgeries</b></td>
-                          <td class="Selected" align="center" colspan="2"><b> Number of Surgeries</b></td>
-                          <td class="Selected" align="center" colspan="5"><b> Post Operative Infections</b></td>
+                          <td class="Selected" align="center" rowspan="2" colspan="2"><b> {{ 'MEDICAL_RECORDS.TYPE_OF_SURGERIES' | translate }}</b></td>
+                          <td class="Selected" align="center" colspan="2"><b> {{ 'MEDICAL_RECORDS.NUMBER_OF_SURGERIES' | translate }}</b></td>
+                          <td class="Selected" align="center" colspan="5"><b> {{ 'MEDICAL_RECORDS.POST_OPERATIVE_INFECTIONS' | translate }}</b></td>
                         </tr>
                         <tr>
-                          <td class="Selected" align="center"><b>Female</b></td>
-                          <td class="Selected" align="center"><b>Male</b></td>
+                          <td class="Selected" align="center"><b>{{ 'PATIENT.FEMALE' | translate }}</b></td>
+                          <td class="Selected" align="center"><b>{{ 'PATIENT.MALE' | translate }}</b></td>
                           <td class="Selected" align="center"><b></b></td>
                         </tr>
                         <tr *ngIf="InpatientServiceSummary.SurgerySummary && InpatientServiceSummary.SurgerySummary[0]">
-                          <td rowspan="2"> Major </td>
+                          <td rowspan="2"> {{ 'MEDICAL_RECORDS.MAJOR' | translate }} </td>
                           <td class="Selected" align="center">
                             {{InpatientServiceSummary.SurgerySummary[0].SurgeryDisplayName}}</td>
                           <td class="Selected" align="center">{{InpatientServiceSummary.SurgerySummary[0].FemaleCount}}
@@ -217,7 +216,7 @@
                           <td class="Selected" align="center">0</td>
                         </tr>
                         <tr *ngIf="InpatientServiceSummary.SurgerySummary && InpatientServiceSummary.SurgerySummary[2]">
-                          <td rowspan="2"> Intermediate </td>
+                          <td rowspan="2"> {{ 'MEDICAL_RECORDS.INTERMEDIATE' | translate }} </td>
                           <td class="Selected" align="center">
                             {{InpatientServiceSummary.SurgerySummary[2].SurgeryDisplayName}}</td>
                           <td class="Selected" align="center">{{InpatientServiceSummary.SurgerySummary[2].FemaleCount}}
@@ -234,7 +233,7 @@
                           <td class="Selected" align="center">0</td>
                         </tr>
                         <tr *ngIf="InpatientServiceSummary.SurgerySummary && InpatientServiceSummary.SurgerySummary[4]">
-                          <td rowspan="3"> Minor </td>
+                          <td rowspan="3"> {{ 'MEDICAL_RECORDS.MINOR' | translate }} </td>
                           <td class="Selected" align="center">
                             {{InpatientServiceSummary.SurgerySummary[4].SurgeryDisplayName}}</td>
                           <td class="Selected" align="center">{{InpatientServiceSummary.SurgerySummary[4].FemaleCount}}
@@ -281,13 +280,13 @@
                     <td>
                       <table border="1" class="Selected" style="width:100%" align="center">
                         <tr>
-                          <td colspan="2" align="center"><b>Death Information</b></td>
+                          <td colspan="2" align="center"><b>{{ 'MEDICAL_RECORDS.DEATH_INFORMATION' | translate }}</b></td>
                           <!-- <td class="blank_row"></td> -->
-                          <td align="center" class="Selected"> Female</td>
-                          <td align="center" class="Selected"> Male</td>
+                          <td align="center" class="Selected"> {{ 'PATIENT.FEMALE' | translate }}</td>
+                          <td align="center" class="Selected"> {{ 'PATIENT.MALE' | translate }}</td>
                         </tr>
                         <tr>
-                          <td class="rotate90" rowspan="6" style="width: 25px; height:100px; -webkit-transform: rotate(-90.0deg);">Hospital Death
+                          <td class="rotate90" rowspan="6" style="width: 25px; height:100px; -webkit-transform: rotate(-90.0deg);">{{ 'MEDICAL_RECORDS.HOSPITAL_DEATH' | translate }}
                           </td>
 
                           <!-- <tr>
@@ -300,17 +299,17 @@
 
                         </tr>
                         <tr>
-                          <td colspan="2" align="center">Brought Dead</td>
+                          <td colspan="2" align="center">{{ 'MEDICAL_RECORDS.BROUGHT_DEAD' | translate }}</td>
                           <td align="center" class="Selected">{{InpatientServiceSummary.BroughtDead[0].FemaleCount}}</td>
                           <td align="center" class="Selected">{{InpatientServiceSummary.BroughtDead[0].MaleCount}}</td>
                         </tr>
                         <tr>
-                          <td colspan="2" align="center">Postmortem Done</td>
+                          <td colspan="2" align="center">{{ 'MEDICAL_RECORDS.POSTMORTEM_DONE' | translate }}</td>
                           <td align="center" class="Selected">0</td>
                           <td align="center" class="Selected">0</td>
                         </tr>
                       </table>
-                      <span><i>* Including Neonatal & Maternal Death</i></span>
+                      <span><i>* {{ 'MEDICAL_RECORDS.INCLUDING_NEONATAL_MATERNAL_DEATH' | translate }}</i></span>
                     </td>
                   </tr>
                 </table>
@@ -327,12 +326,12 @@
                     <td>
                       <table border="1" class="Selected" style="width:100%" align="center">
                         <tr>
-                          <td class="Selected" align="center" colspan="3"><b>Free Health Service Summary</b></td>
+                          <td class="Selected" align="center" colspan="3"><b>{{ 'MEDICAL_RECORDS.FREE_HEALTH_SERVICE_SUMMARY' | translate }}</b></td>
                         </tr>
                         <tr>
-                          <td class="Selected" align="center"><b>Cost Exemption</b></td>
-                          <td class="Selected" align="center"><b>No. of Patients</b></td>
-                          <td class="Selected" align="center"><b>Total Exempted Cost (NRS)</b></td>
+                          <td class="Selected" align="center"><b>{{ 'MEDICAL_RECORDS.COST_EXEMPTION' | translate }}</b></td>
+                          <td class="Selected" align="center"><b>{{ 'MEDICAL_RECORDS.NO_OF_PATIENTS' | translate }}</b></td>
+                          <td class="Selected" align="center"><b>{{ 'MEDICAL_RECORDS.TOTAL_EXEMPTED_COST_NRS' | translate }}</b></td>
                         </tr>
                         <tr *ngFor="let o of InpatientServiceSummary.FreeHealthServiceSummary">
                           <td class="Selected" align="center">{{o.CostExemption }}</td>
@@ -351,11 +350,10 @@
                     <td>
                       <table border="1" class="Selected" style="width:100%" align="center">
                         <tr>
-                          <td class="Selected" align="center" colspan="5"><b>Free Health Service And Social Security
-                              Programme</b></td>
+                          <td class="Selected" align="center" colspan="5"><b>{{ 'MEDICAL_RECORDS.FREE_HEALTH_SERVICE_SSP' | translate }}</b></td>
                         </tr>
                         <tr>
-                          <td class="Selected" align="center"><b>Patients at</b></td>
+                          <td class="Selected" align="center"><b>{{ 'MEDICAL_RECORDS.PATIENTS_AT' | translate }}</b></td>
                           <ng-container *ngFor="let o of InpatientServiceSummary.FreeHealthServiceSummary_SSP">
                             <td>{{o.MembershipTypeName}}</td>
 
@@ -390,28 +388,28 @@
                         </tr>
 
                         <tr>
-                          <td class="Selected" align="center"><b>Outpatients</b>
+                          <td class="Selected" align="center"><b>{{ 'MEDICAL_RECORDS.OUTPATIENTS' | translate }}</b>
                           </td>
                           <ng-container *ngFor="let o of InpatientServiceSummary.FreeHealthServiceSummary_SSP; let i=index">
                             <td>{{o.OutpatientsCount}}</td>
                           </ng-container>
                         </tr>
                         <tr>
-                          <td class="Selected" align="center"><b>Inpatients</b>
+                          <td class="Selected" align="center"><b>{{ 'MEDICAL_RECORDS.INPATIENTS' | translate }}</b>
                           </td>
                           <ng-container *ngFor="let o of InpatientServiceSummary.FreeHealthServiceSummary_SSP; let i=index">
                             <td>{{o.InpatientsCount}}</td>
                           </ng-container>
                         </tr>
                         <tr>
-                          <td class="Selected" align="center"><b>Emergency</b>
+                          <td class="Selected" align="center"><b>{{ 'MEDICAL_RECORDS.EMERGENCY' | translate }}</b>
                           </td>
                           <ng-container *ngFor="let o of InpatientServiceSummary.FreeHealthServiceSummary_SSP; let i=index">
                             <td>{{o.ErPatientsCount}}</td>
                           </ng-container>
                         </tr>
                         <tr>
-                          <td class="Selected" align="center"><b>Referred Out</b>
+                          <td class="Selected" align="center"><b>{{ 'MEDICAL_RECORDS.REFERRED_OUT' | translate }}</b>
                           </td>
                           <ng-container *ngFor="let o of InpatientServiceSummary.FreeHealthServiceSummary_SSP; let i=index">
                             <td>0</td>
@@ -427,8 +425,8 @@
             </div>
           </table>
           <p style="text-align:center;">
-            <button class="btn blue" (click)="Print()"> Print Report <i class="glyphicon glyphicon-print"></i> </button>
-            <button class="blue btn" type="button" title="Export to Excel" (click)="ExportToExcel('wholeTable')"> <i class="fa fa-file-excel-o"></i> Export </button>
+            <button class="btn blue" (click)="Print()"> {{ 'MEDICAL_RECORDS.PRINT_REPORT' | translate }} <i class="glyphicon glyphicon-print"></i> </button>
+            <button class="blue btn" type="button" [title]="'COMMON.EXPORT_TO_EXCEL' | translate" (click)="ExportToExcel('wholeTable')"> <i class="fa fa-file-excel-o"></i> {{ 'COMMON.EXPORT' | translate }} </button>
           </p>
         </div>
       </div>

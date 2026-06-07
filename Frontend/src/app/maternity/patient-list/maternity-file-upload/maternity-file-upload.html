@@ -8,25 +8,25 @@
                             <div class="page-bar bill-p-info mt10">
                                 <div>
                                     <span>
-                    <i class="fa fa-user"></i>&nbsp;Name : <b>{{patientDetail.ShortName}}</b>
+                    <i class="fa fa-user"></i>&nbsp;{{ 'COMMON.NAME' | translate }} : <b>{{patientDetail.ShortName}}</b>
                   </span>
                                     <span>
-                    <i class="fa fa-h-sign"></i>&nbsp;Hospital # : <b> {{patientDetail.PatientCode}}</b>
+                    <i class="fa fa-h-sign"></i>&nbsp;{{ 'GRID_HEADERS.HOSPITAL_NUMBER' | translate }} : <b> {{patientDetail.PatientCode}}</b>
                   </span>
                                     <span>
-                    <i class="fa fa-male"></i>&nbsp;Age/Sex : {{patientDetail.Age}}/ {{patientDetail.Gender}}
+                    <i class="fa fa-male"></i>&nbsp;{{ 'GRID_HEADERS.AGE_SEX' | translate }} : {{patientDetail.Age}}/ {{patientDetail.Gender}}
                   </span>
                                     <span>
-                    <i class="fa fa-h-sign"></i>&nbsp;Date of Birth : {{patientDetail.DateOfBirth |
+                    <i class="fa fa-h-sign"></i>&nbsp;{{ 'PATIENT.BIRTH_DATE' | translate }} : {{patientDetail.DateOfBirth |
                     DanpheDateTime:'format':'YYYY-MM-DD'}}
                   </span>
                                 </div>
                                 <div>
                                     <span>
-                    <i class="fa fa-h-sign"></i>&nbsp;Address : <b>{{patientDetail.Address}}</b>
+                    <i class="fa fa-h-sign"></i>&nbsp;{{ 'GRID_HEADERS.ADDRESS' | translate }} : <b>{{patientDetail.Address}}</b>
                   </span>
                                     <span *ngIf="patientDetail.PhoneNumber">
-                    <i class="fa fa-phone"></i>&nbsp;Contact No : <b>{{patientDetail.PhoneNumber}}</b>
+                    <i class="fa fa-phone"></i>&nbsp;{{ 'GRID_HEADERS.PHONE' | translate }} : <b>{{patientDetail.PhoneNumber}}</b>
                   </span>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                     <hr />
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <div class="form-group">
-                            <label class="control-label col-md-3">Display Name<b style="float:right;">:</b></label>
+                            <label class="control-label col-md-3">{{ 'MATERNITY.DISPLAY_NAME' | translate }}<b style="float:right;">:</b></label>
                             <div class="col-md-6">
                                 <input class="form-control" [(ngModel)]="selectedReport.DisplayName" [ngModelOptions]="{standalone: true}" type="text" id="DisplayName" />
                             </div>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <div class="form-group">
-                            <label class="control-label col-md-3">Upload Images<b class="color-red">*</b><b
+                            <label class="control-label col-md-3">{{ 'MATERNITY.UPLOAD_IMAGES' | translate }}<b class="color-red">*</b><b
                   style="float:right;">:</b></label>
                             <div class="col-md-6">
                                 <input class="form-control" #fileInput type="file" value="" multiple />
@@ -55,7 +55,7 @@
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <div class="form-group">
                             <div class="col-md-3">
-                                <input type="button" class="btn btn-primary" (click)="SubmitFiles()" value="Submit" [disabled]="loading" />
+                                <input type="button" class="btn btn-primary" (click)="SubmitFiles()" [value]="'COMMON.SUBMIT' | translate" [disabled]="loading" />
                             </div>
                         </div>
                     </div>
@@ -73,16 +73,16 @@
     <div id="fileList" class="col-md-12" *ngIf="uploadedDocumentslist && uploadedDocumentslist.length > 0">
         <div class="full-width-flx table-responsive">
             <div class="text-center" style="line-height: 2">
-                Files of {{patientDetail.ShortName}}
+                {{ 'MATERNITY.FILES_OF' | translate:{name: patientDetail.ShortName} }}
             </div>
             <table class="table table-bordered tbl-small-text">
                 <thead>
                     <tr class="table-header-bg">
-                        <th>S.N.</th>
-                        <th>Display Name</th>
-                        <th>File Name</th>
-                        <th>File Type</th>
-                        <th class="no-print">Actions</th>
+                        <th>{{ 'COMMON.SN' | translate }}</th>
+                        <th>{{ 'MATERNITY.DISPLAY_NAME' | translate }}</th>
+                        <th>{{ 'MATERNITY.FILE_NAME' | translate }}</th>
+                        <th>{{ 'MATERNITY.FILE_TYPE' | translate }}</th>
+                        <th class="no-print">{{ 'GRID_HEADERS.ACTIONS' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,8 +93,8 @@
                             <td>{{file.FileName}}</td>
                             <td>{{file.FileType}}</td>
                             <td class="no-print">
-                                <a class="grid-action no-print btn-danger" (click)="RemoveFile(file.FileId)">Remove</a>
-                                <a class="grid-action no-print" (click)="download(file.FileId)">Download</a>
+                                <a class="grid-action no-print btn-danger" (click)="RemoveFile(file.FileId)">{{ 'MATERNITY.REMOVE' | translate }}</a>
+                                <a class="grid-action no-print" (click)="download(file.FileId)">{{ 'MATERNITY.DOWNLOAD' | translate }}</a>
                             </td>
                         </tr>
                     </ng-container>

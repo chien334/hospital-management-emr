@@ -4,15 +4,15 @@
         <div class="col-lg-6 col-sm-6">
             <div class="caption lb-caption">
                 <!-- <i class="glyphicon glyphicon-asterisk font-green-turquoise"></i> -->
-                <span class="caption-subject">Vaccination Details</span>
+                <span class="caption-subject">{{ 'VACCINATION.VACCINATION_DETAILS' | translate }}</span>
             </div>
         </div>
         <div class="col-lg-2 col-sm-2">
             <select class="form-control" [(ngModel)]="gender" (change)="GenderChanged()">
-                <option value="All" selected>--All--</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Others">Other</option>
+                <option value="All" selected>{{ 'COMMON.ALL' | translate }}</option>
+                <option value="Male">{{ 'VACCINATION.MALE' | translate }}</option>
+                <option value="Female">{{ 'VACCINATION.FEMALE' | translate }}</option>
+                <option value="Others">{{ 'VACCINATION.OTHER' | translate }}</option>
             </select>
         </div>
         <div class="col-lg-4 col-sm-4">

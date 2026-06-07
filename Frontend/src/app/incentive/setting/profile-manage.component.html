@@ -1,6 +1,6 @@
 <button class="btn btn-primary" (click)="AddProfile()">
   <i class="fa fa-plus"></i>
-  Add New Profile
+  {{ 'INCENTIVE.ADD_NEW_PROFILE' | translate }}
 </button>
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
@@ -30,22 +30,21 @@
               <div class="modelbox-div clearfix">
                 <div class="caption lb-caption">
                   <h3>
-                    <span>Update Profile Name</span>
+                    <span>{{ 'INCENTIVE.UPDATE_PROFILE_NAME' | translate }}</span>
                   </h3>
-                  <a class="btn btn-danger" (click)="Close()" title="Cancel"><i class="fa fa-times"></i></a>
+                  <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="control-label col-md-4">
-                      Profile Name<sup class="color-red"> *</sup><b>:</b>
+                      {{ 'INCENTIVE.PROFILE_NAME' | translate }}<sup class="color-red"> *</sup><b>:</b>
                     </label>
                     <div class="col-md-8">
                       <input class="form-control" type="text" maxlength="50" [(ngModel)]="currentProfile.ProfileName"
-                             formControlName="ProfileName" value="" placeholder="Enter Profile Name" onClick="this.select();" />
+                             formControlName="ProfileName" value="" [placeholder]="'INCENTIVE.ENTER_PROFILE_NAME_PLACEHOLDER' | translate" onClick="this.select();" />
                       <span class="color-red font-sm"
                             [hidden]="currentProfile.IsValidCheck('ProfileName','required') || !(currentProfile.IsDirty('ProfileName'))">
-                        Profile
-                        Name is required
+                        {{ 'INCENTIVE.PROFILE_NAME_REQUIRED_ERR' | translate }}
                       </span>
                       <!-- <span class="color-red font-sm" *ngIf="currentProfile.IsDirty('ProfileName')" [hidden]="currentProfile.IsValidCheck('ProfileName','maxlength')"> Length is not proper</span> -->
                     </div>
@@ -107,7 +106,7 @@
                     </div>
                   </div>-->
                   <div class="form-group">
-                    <label class="control-label col-md-4">Description<b>:</b> </label>
+                    <label class="control-label col-md-4">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b> </label>
                     <div class="col-md-8">
                       <!--<div class="input-group">
                         <div class="icheck-inline">
@@ -124,7 +123,7 @@
                   </div>
                   <div class="form-actions">
                     <!--<input type="button" class="btn primary-btn" *ngIf="!update" (click)="Add()" value="Add" />-->
-                    <input type="button" class="btn primary-btn" *ngIf="update" (click)="Update()" value="Update" />
+                    <input type="button" class="btn primary-btn" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
                   </div>
                 </div>
                 <div class="col-md-2 hidden-xs hidden-sm" style="margin-right: 24px;">
@@ -143,12 +142,12 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="modelbox-div">
         <div class="modelbox-header">
-          <h4 class="margin-0-vr text-danger text-center"><strong>Confirm !!!</strong></h4>
+          <h4 class="margin-0-vr text-danger text-center"><strong>{{ 'INCENTIVE.CONFIRM_HEADER' | translate }}</strong></h4>
         </div>
         <div class="modelbox-body">
           <div>
             <p>
-              Do you sure, You don't want to add item mapping from existing profile ?
+              {{ 'INCENTIVE.CONFIRMATION_ADD_MAPPING' | translate }}
             </p>
             <!-- <div>
               <p *ngIf="visitType && visitType.toLowerCase()=='outpatient'">Run Number <b>{{LatestSampleCode.SampleNumber}} / {{LatestSampleCode.SampleCode}}</b> is already used for patient <b>{{sampleCodeExistingDetail.PatientName}}</b></p>
@@ -157,8 +156,8 @@
             </div> -->
             <div class="modelbox-footer">
               <div class="all-buttons text-right">
-                <button type="button" class="btn btn-sm" (click)="confirmBxAction(true)">Yes</button>
-                <button type="button" class="btn btn-sm" (click)="confirmBxAction(false)">No</button>
+                <button type="button" class="btn btn-sm" (click)="confirmBxAction(true)">{{ 'COMMON.YES' | translate }}</button>
+                <button type="button" class="btn btn-sm" (click)="confirmBxAction(false)">{{ 'COMMON.NO' | translate }}</button>
               </div>
             </div>
           </div>

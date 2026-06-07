@@ -43,74 +43,68 @@
                                             <div align="center">
                                                 <h3
                                                     *ngIf="maternityPatientPaymentData.TransactionType != 'MaternityAllowanceReturn'">
-                                                    <u>Maternity Allowance Payment Receipt</u></h3>
+                                                    <u>{{ 'MATERNITY.PAYMENT_RECEIPT' | translate }}</u></h3>
                                                 <h3
                                                     *ngIf="maternityPatientPaymentData.TransactionType == 'MaternityAllowanceReturn'">
-                                                    <u>Maternity Allowance Return Receipt</u></h3>
+                                                    <u>{{ 'MATERNITY.RETURN_RECEIPT' | translate }}</u></h3>
                                             </div>
 
                                             <hr style="border:0.5px solid black;margin:0px;" />
 
                                             <div>
                                                 <span style="display:inline-block;">
-                                                    Receipt No : {{maternityPatientPaymentData.ReceiptNo}}
+                                                    {{ 'MATERNITY.RECEIPT_NO_LABEL' | translate }} {{maternityPatientPaymentData.ReceiptNo}}
                                                 </span>
-                                                <span style="float:right;padding-right: 5px;">Date:
+                                                <span style="float:right;padding-right: 5px;">{{ 'MATERNITY.DATE' | translate }}
                                                     {{localDate}}</span>
                                             </div>
 
                                             <div>
                                                 <span style="display:inline-block;">
-                                                    Hospital No : {{maternityPatientPaymentData.HospitalNo}}
+                                                    {{ 'MATERNITY.HOSPITAL_NO' | translate }} : {{maternityPatientPaymentData.HospitalNo}}
                                                 </span>
                                             </div>
 
                                             <div>
                                                 <span style="display:inline-block;">
-                                                    Patient Name : {{maternityPatientPaymentData.PatientName}}
+                                                    {{ 'MATERNITY.PATIENT_NAME_LABEL' | translate }} {{maternityPatientPaymentData.PatientName}}
                                                 </span>
-                                                <span style="float:right;padding-right: 5px;"> Age/Sex : {{this.maternityPatientPaymentData.Age}}/{{this.maternityPatientPaymentData.Gender}}
+                                                <span style="float:right;padding-right: 5px;"> {{ 'MATERNITY.AGE_SEX' | translate }} : {{this.maternityPatientPaymentData.Age}}/{{this.maternityPatientPaymentData.Gender}}
                                                 </span>
                                             </div>
 
                                             <div *ngIf="maternityPatientPaymentData.TransactionType != 'MaternityAllowanceReturn'">
                                                 <span style="display:inline-block;">
-                                                    Paid Amount : {{coreService.currencyUnit}}
+                                                    {{ 'MATERNITY.PAID_AMOUNT_RECEIPT' | translate }} {{coreService.currencyUnit}}
                                                     {{maternityPatientPaymentData.OutAmount}}
                                                 </span>
                                             </div>
                                             <div style="margin-left: 4px;" *ngIf="maternityPatientPaymentData.TransactionType != 'MaternityAllowanceReturn'">
-                                                (In Words :&nbsp; {{maternityPatientPaymentData.OutAmount |
-                                                Currency:'4' | NumberInWords | CapitalFirstLetter}} Only)
+                                                ({{ 'MATERNITY.IN_WORDS' | translate }} :&nbsp; {{maternityPatientPaymentData.OutAmount |
+                                                Currency:'4' | NumberInWords | CapitalFirstLetter}} {{ 'MATERNITY.ONLY' | translate }})
                                             </div>
 
                                             <div *ngIf="maternityPatientPaymentData.TransactionType == 'MaternityAllowanceReturn'">
                                                 <span style="display:inline-block;">
-                                                    Return Amount : {{coreService.currencyUnit}}
+                                                    {{ 'MATERNITY.RETURN_AMOUNT_RECEIPT' | translate }} {{coreService.currencyUnit}}
                                                     {{maternityPatientPaymentData.InAmount}}
                                                 </span>
                                                 <span style="float:right;padding-right: 5px;"></span>
                                             </div>
                                             <div style="margin-left: 4px;" *ngIf="maternityPatientPaymentData.TransactionType == 'MaternityAllowanceReturn'">
-                                                (In Words :&nbsp; {{maternityPatientPaymentData.InAmount |
-                                                Currency:'4' | NumberInWords | CapitalFirstLetter}} Only
+                                                ({{ 'MATERNITY.IN_WORDS' | translate }} :&nbsp; {{maternityPatientPaymentData.InAmount |
+                                                Currency:'4' | NumberInWords | CapitalFirstLetter}} {{ 'MATERNITY.ONLY' | translate }})
                                             </div>
 
                                                 <div style="margin-top: 10px;">
                                                     <div style="width: 80%" *ngIf="maternityPatientPaymentData.TransactionType != 'MaternityAllowanceReturn'">
                                                         <span>
-                                                            {{coreService.currencyUnit}}
-                                                            {{maternityPatientPaymentData.OutAmount}} paid to
-                                                            {{maternityPatientPaymentData.PatientName}} , Hospital No :
-                                                            {{maternityPatientPaymentData.HospitalNo}}&nbsp;&nbsp;
+                                                            {{ 'MATERNITY.PAID_TO_MESSAGE' | translate:{currency: coreService.currencyUnit, amount: maternityPatientPaymentData.OutAmount, name: maternityPatientPaymentData.PatientName, hospitalNo: maternityPatientPaymentData.HospitalNo} }}
                                                         </span>
                                                     </div>
                                                     <div style="width: 80%" *ngIf="maternityPatientPaymentData.TransactionType == 'MaternityAllowanceReturn'">
                                                         <span>
-                                                            {{coreService.currencyUnit}}
-                                                            {{maternityPatientPaymentData.InAmount}} returned from
-                                                            {{maternityPatientPaymentData.PatientName}} , Hospital No :
-                                                            {{maternityPatientPaymentData.HospitalNo}}&nbsp;&nbsp;
+                                                            {{ 'MATERNITY.RETURNED_FROM_MESSAGE' | translate:{currency: coreService.currencyUnit, amount: maternityPatientPaymentData.InAmount, name: maternityPatientPaymentData.PatientName, hospitalNo: maternityPatientPaymentData.HospitalNo} }}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -122,8 +116,8 @@
                                             [ngClass]="'dptdescleft-' + hospitalCode" class="dptdesc-left">
 
                                             <div style="padding-top: 10px;">
-                                                <span> User&nbsp;: {{maternityPatientPaymentData.EmployeeName}} </span>
-                                                <span style="float:right;padding-right: 20px;"> Time &nbsp;:
+                                                <span> {{ 'MATERNITY.USER_LABEL' | translate }}&nbsp;: {{maternityPatientPaymentData.EmployeeName}} </span>
+                                                <span style="float:right;padding-right: 20px;"> {{ 'MATERNITY.TIME_LABEL' | translate }} &nbsp;:
                                                     {{this.time}} </span>
                                             </div>
                                         </div>
@@ -136,7 +130,7 @@
                                 style="text-align:center;z-index: 4;position: relative;margin-bottom: 25px; margin-top: 15px;">
                                 <button class="btn green btn-success" value="" (click)="print()"
                                     id="btnPrintOpdSticker">
-                                    <span>Print</span>&nbsp;&nbsp;
+                                    <span>{{ 'COMMON.PRINT' | translate }}</span>&nbsp;&nbsp;
                                     &nbsp;&nbsp; <i class="glyphicon glyphicon-print"></i>
                                 </button>
                             </div>

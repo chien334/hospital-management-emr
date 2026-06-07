@@ -4,22 +4,21 @@
             <div class="row">
                 <div class="col-md-6 xol-xs-12">
                     <div class="form-group">
-                        <label for="placeOfDelivery" class="control-label col-md-4">Place of Delivery<b
+                        <label for="placeOfDelivery" class="control-label col-md-4">{{ 'MATERNITY.PLACE_OF_DELIVERY' | translate }}<b
                                 class="color-red">
                                 *
                             </b><b style="float:right;">:</b></label>
 
                         <div class="col-md-8">
                             <input type="text" id="placeOfDelivery" class="form-control"
-                                placeholder="Enter place of Delivery" [(ngModel)]="matPat.PlaceOfDelivery"
+                                [placeholder]="'MATERNITY.ENTER_PLACE_OF_DELIVERY' | translate" [(ngModel)]="matPat.PlaceOfDelivery"
                                 formControlName="PlaceOfDelivery">
                             <span class="color-red font-sm" *ngIf="matPat.IsDirty('PlaceOfDelivery')"
-                                [hidden]="matPat.IsValidCheck('PlaceOfDelivery','required')"> PlaceOfDelivery is
-                                required.</span>
+                                [hidden]="matPat.IsValidCheck('PlaceOfDelivery','required')">{{ 'MATERNITY.PLACE_OF_DELIVERY_REQUIRED' | translate }}</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="deliveryDate" class="control-label col-md-4"> Delivery Date and Time<b
+                        <label for="deliveryDate" class="control-label col-md-4"> {{ 'MATERNITY.DELIVERY_DATE_AND_TIME' | translate }}<b
                                 class="color-red">
                                 *
                             </b><b style="float:right;">:</b></label>
@@ -32,47 +31,45 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="deliveryType" class="control-label col-md-4">Type of Delivery<b class="color-red">
+                        <label for="deliveryType" class="control-label col-md-4">{{ 'MATERNITY.TYPE_OF_DELIVERY' | translate }}<b class="color-red">
                                 *
                             </b><b style="float:right;">:</b></label>
 
                         <div class="col-md-8">
-                            <select [(ngModel)]="matPat.TypeOfDelivery" placeholder="Enter type of Delivery"
+                            <select [(ngModel)]="matPat.TypeOfDelivery"
                                 formControlName="TypeOfDelivery" class="form-control">
                                 <option *ngFor="let del of deliveryTypes" value="{{del.Id}}">{{del.Type}}</option>
                             </select>
                             <span class="color-red font-sm" *ngIf="matPat.IsDirty('TypeOfDelivery')"
-                                [hidden]="matPat.IsValidCheck('TypeOfDelivery','required')"> TypeOfDelivery is
-                                required.</span>
+                                [hidden]="matPat.IsValidCheck('TypeOfDelivery','required')">{{ 'MATERNITY.TYPE_OF_DELIVERY_REQUIRED' | translate }}</span>
                         </div>
 
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="presentation" class="control-label col-md-4">Presentation<b class="color-red">
+                        <label for="presentation" class="control-label col-md-4">{{ 'MATERNITY.PRESENTATION' | translate }}<b class="color-red">
                                 *
                             </b><b style="float:right;">:</b></label>
 
                         <div class="col-md-8">
-                            <select [(ngModel)]="matPat.Presentation" placeholder="Enter Presentation"
+                            <select [(ngModel)]="matPat.Presentation"
                                 formControlName="Presentation" class="form-control">
-                                <option value="cephalic">Cephalic</option>
-                                <option value="shoulder">Shoulder</option>
-                                <option value="breech">Breech</option>
+                                <option value="cephalic">{{ 'MATERNITY.CEPHALIC' | translate }}</option>
+                                <option value="shoulder">{{ 'MATERNITY.SHOULDER' | translate }}</option>
+                                <option value="breech">{{ 'MATERNITY.BREECH' | translate }}</option>
                             </select>
                             <span class="color-red font-sm" *ngIf="matPat.IsDirty('Presentation')"
-                                [hidden]="matPat.IsValidCheck('Presentation','required')"> Presentation is
-                                required.</span>
+                                [hidden]="matPat.IsValidCheck('Presentation','required')">{{ 'MATERNITY.PRESENTATION_REQUIRED' | translate }}</span>
                         </div>
 
                     </div>
                     <div class="form-group">
-                        <label for="deliveryType" class="control-label col-md-4">Obstretic Complication<b
+                        <label for="deliveryType" class="control-label col-md-4">{{ 'MATERNITY.OBSTETRIC_COMPLICATION' | translate }}<b
                                 style="float:right;">:</b></label>
 
                         <div class="col-md-8">
-                            <select [(ngModel)]="matPat.Complications" placeholder="Enter Complication"
+                            <select [(ngModel)]="matPat.Complications"
                                 [ngModelOptions]="{standalone: true}" class="form-control">
                                 <option *ngFor="let comp of complicationTypes" value="{{comp.ComplicationType}}">
                                     {{comp.ComplicationType}}</option>
@@ -84,7 +81,7 @@
                     <button *ngIf="matPat.MaternityRegisterId" [disabled]="coreService.loading"
                         (click)="UpdateMotherDetails()" style="margin: 0 15px 15px 0;" type="button"
                         class="btn green btn-success pull-right">
-                        Update Mother Details
+                        {{ 'MATERNITY.UPDATE_MOTHER_DETAILS' | translate }}
                     </button>
                 </div>
             </div>
@@ -93,12 +90,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="clp">
-                        New Born Baby details
+                        {{ 'MATERNITY.NEW_BORN_BABY_DETAILS' | translate }}
                     </h4>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="noOfBabies" class="control-label col-md-4">Number of Babies<b
+                                <label for="noOfBabies" class="control-label col-md-4">{{ 'MATERNITY.NUMBER_OF_BABIES' | translate }}<b
                                         class="color-red">
                                         *
                                     </b><b style="float:right;">:</b></label>
@@ -127,10 +124,10 @@
                                     <table class="table table-bordered tbl-small-text">
                                         <thead>
                                             <tr class="table-header-bg">
-                                                <th width="200">Gender</th>
-                                                <th width="270">WeightInGram</th>
-                                                <th width="270">Outcome of Baby</th>
-                                                <th width="270">Outcome of Mother</th>
+                                                <th width="200">{{ 'PATIENT.GENDER' | translate }}</th>
+                                                <th width="270">{{ 'MATERNITY.WEIGHT_IN_GRAM' | translate }}</th>
+                                                <th width="270">{{ 'MATERNITY.OUTCOME_OF_BABY' | translate }}</th>
+                                                <th width="270">{{ 'MATERNITY.OUTCOME_OF_MOTHER' | translate }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -138,48 +135,43 @@
                                                 <td>
                                                     <select #gender class="form-control" [(ngModel)]="m.Gender"
                                                         formControlName="Gender">
-                                                        <option value="null" selected>--select--</option>
-                                                        <option value="Male">Male</option>
-                                                        <option value="Female">Female</option>
-                                                        <option value="Others">Other</option>
+                                                        <option value="null" selected>{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
+                                                        <option value="Male">{{ 'PATIENT.MALE' | translate }}</option>
+                                                        <option value="Female">{{ 'PATIENT.FEMALE' | translate }}</option>
+                                                        <option value="Others">{{ 'PATIENT.OTHER' | translate }}</option>
                                                     </select>
                                                     <span class="color-red font-sm"
                                                         *ngIf="childDetail.IsDirty('Gender')"
-                                                        [hidden]="childDetail.IsValidCheck('Gender','required')"> Gender
-                                                        is
-                                                        required.</span>
+                                                        [hidden]="childDetail.IsValidCheck('Gender','required')">{{ 'MATERNITY.GENDER_REQUIRED' | translate }}</span>
                                                 </td>
 
                                                 <td>
                                                     <input type="text" id="babyWeight" class="form-control"
                                                         [(ngModel)]="m.WeightInGram" required
-                                                        placeholder="Weight in grams" formControlName="WeightInGram"
+                                                        [placeholder]="'MATERNITY.WEIGHT_IN_GRAMS_PLACEHOLDER' | translate" formControlName="WeightInGram"
                                                         type="number">
                                                     <span class="color-red font-sm"
                                                         *ngIf="childDetail.IsDirty('WeightInGram')"
-                                                        [hidden]="childDetail.IsValidCheck('WeightInGram','required')">
-                                                        Weight is required.</span>
+                                                        [hidden]="childDetail.IsValidCheck('WeightInGram','required')">{{ 'MATERNITY.WEIGHT_REQUIRED' | translate }}</span>
                                                 </td>
 
                                                 <td>
                                                     <input type="text" class="form-control"
-                                                        [(ngModel)]="m.OutcomeOfBaby" placeholder="Outcome of the baby"
+                                                        [(ngModel)]="m.OutcomeOfBaby" [placeholder]="'MATERNITY.OUTCOME_OF_BABY_PLACEHOLDER' | translate"
                                                         formControlName="OutcomeOfBaby">
                                                     <span class="color-red font-sm"
                                                         *ngIf="childDetail.IsDirty('OutcomeOfBaby')"
-                                                        [hidden]="childDetail.IsValidCheck('OutcomeOfBaby','required')">
-                                                        OutcomeOfBaby is required.</span>
+                                                        [hidden]="childDetail.IsValidCheck('OutcomeOfBaby','required')">{{ 'MATERNITY.OUTCOME_OF_BABY_REQUIRED' | translate }}</span>
                                                 </td>
 
                                                 <td>
                                                     <input type="text" class="form-control"
                                                         [(ngModel)]="m.OutcomeOfMother"
-                                                        placeholder="Outcome of the Mother"
+                                                        [placeholder]="'MATERNITY.OUTCOME_OF_MOTHER_PLACEHOLDER' | translate"
                                                         formControlName="OutcomeOfMother">
                                                     <span class="color-red font-sm"
                                                         *ngIf="childDetail.IsDirty('OutcomeOfMother')"
-                                                        [hidden]="childDetail.IsValidCheck('OutcomeOfMother','required')">
-                                                        OutcomeOfMother is required.</span>
+                                                        [hidden]="childDetail.IsValidCheck('OutcomeOfMother','required')">{{ 'MATERNITY.OUTCOME_OF_MOTHER_REQUIRED' | translate }}</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -194,12 +186,12 @@
             <div class="row">
                 <button *ngIf="!matPat.MaternityRegisterId" class="btn green btn-success pull-right"
                     style="margin: 0 15px 15px 0;" [disabled]="coreService.loading" (click)="AddNewMatDetails();">
-                    Save
+                    {{ 'COMMON.SAVE' | translate }}
                 </button>
                 <button *ngIf="matPat.MaternityRegisterId" [disabled]="coreService.loading"
                     (click)="UpdateChildDetails()" style="margin: 0 15px 15px 0;" type="button"
                     class="btn green btn-success pull-right">
-                    Update Child Details
+                    {{ 'MATERNITY.UPDATE_CHILD_DETAILS' | translate }}
                 </button>
             </div>
         </form>
@@ -209,22 +201,22 @@
 <hr />
 
 <div class="col-md-12" *ngIf="!matRegDataList || !matRegDataList.length">
-    <p style="font-size: 18px; line-height: 3; text-align: center;">No Child Details in List</p>
+    <p style="font-size: 18px; line-height: 3; text-align: center;">{{ 'MATERNITY.NO_CHILD_DETAILS_IN_LIST' | translate }}</p>
 </div>
 <div id="matRegList" class="col-md-12" *ngIf="matRegDataList && matRegDataList.length > 0">
     <div class="full-width-flx table-responsive">
         <div class="text-center" style="line-height: 2">
-            Child Details of {{selectedPatient.ShortName}}
+            {{ 'MATERNITY.CHILD_DETAILS_OF' | translate:{name: selectedPatient.ShortName} }}
         </div>
         <table class="table table-bordered tbl-small-text">
             <thead>
                 <tr class="table-header-bg">
-                    <th>DeliveryDate</th>
-                    <th>Gender</th>
-                    <th>Weight(in grams)</th>
-                    <th>Outcome of Baby</th>
-                    <th>Outcome of Mother</th>
-                    <th class="no-print">Actions</th>
+                    <th>{{ 'MATERNITY.DELIVERY_DATE' | translate }}</th>
+                    <th>{{ 'PATIENT.GENDER' | translate }}</th>
+                    <th>{{ 'MATERNITY.WEIGHT_IN_GRAMS_LABEL' | translate }}</th>
+                    <th>{{ 'MATERNITY.OUTCOME_OF_BABY' | translate }}</th>
+                    <th>{{ 'MATERNITY.OUTCOME_OF_MOTHER' | translate }}</th>
+                    <th class="no-print">{{ 'GRID_HEADERS.ACTIONS' | translate }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -235,9 +227,9 @@
                     <td>{{data.OutcomeOfBaby}}</td>
                     <td>{{data.OutcomeOfMother}}</td>
                     <td class="no-print">
-                        <a class="grid-action no-print" (click)="EditDeliveryDetails(data)">Edit</a>
+                        <a class="grid-action no-print" (click)="EditDeliveryDetails(data)">{{ 'COMMON.EDIT' | translate }}</a>
                         <a class="grid-action no-print"
-                            (click)="RemoveChildDetails(data.MaternityRegisterId)">Remove</a>
+                            (click)="RemoveChildDetails(data.MaternityRegisterId)">{{ 'MATERNITY.REMOVE' | translate }}</a>
                     </td>
                 </tr>
             </tbody>
@@ -249,7 +241,7 @@
 <div class="col-md-12">
     <div class="text-right margin-top-15 margin-bottom-15">
         <button type="button" id="ancPrint" class="btn primary-btn margin-7-hr" (click)="Print()"><i
-                class="fa fa-print"></i>Print</button>
-        <button type="button" id="register" class="btn grey btn-default margin-7-hr" (click)="Close()">Close</button>
+                class="fa fa-print"></i>{{ 'COMMON.PRINT' | translate }}</button>
+        <button type="button" id="register" class="btn grey btn-default margin-7-hr" (click)="Close()">{{ 'COMMON.CLOSE' | translate }}</button>
     </div>
 </div>

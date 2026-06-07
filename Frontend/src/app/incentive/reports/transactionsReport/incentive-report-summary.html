@@ -10,22 +10,22 @@
 <div class="col-md-12 text-right " *ngIf="showBillDocSummary">
   <button class="primary-btn btn right non-printable" type="button" (click)="ExportToExcelDocSummaryReport('excelExportPage')">
     <i class="fa fa-file-excel-o"></i>
-    Excel
+    {{ 'INCENTIVE.EXCEL' | translate }}
   </button>
 </div>
 <div class="col-md-12 round-shadow-div" *ngIf="showBillDocSummary">
   <div class="row">
     <div class="col-md-12">
       <div class="row">
-        <div class="col-md-6 col-sm-6">From Date: {{FromDate}}<br />ToDate: {{ToDate}}<br /></div>
+        <div class="col-md-6 col-sm-6">{{ 'INCENTIVE.FROM_DATE' | translate }}: {{FromDate}}<br />{{ 'INCENTIVE.TO_DATE' | translate }}: {{ToDate}}<br /></div>
         <div class="col-md-6 col-sm-6" style="text-align:right;">
-          <span>Print Date: {{currentDate}}</span>
+          <span>{{ 'INCENTIVE.PRINT_DATE' | translate }}: {{currentDate}}</span>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12 text-center" style="text-align:center;font-size:18px">
-          <span *ngIf="IsReferralOnly"><b>Incentive Referral Summary Report</b></span>
-          <span *ngIf="!IsReferralOnly"><b>Incentive Summary Report</b></span>
+          <span *ngIf="IsReferralOnly"><b>{{ 'INCENTIVE.REFERRAL_SUMMARY_REPORT' | translate }}</b></span>
+          <span *ngIf="!IsReferralOnly"><b>{{ 'INCENTIVE.SUMMARY_REPORT' | translate }}</b></span>
         </div>
       </div>
     </div>
@@ -35,15 +35,15 @@
         <table class="table-striped table-hover table-bordered custom_table padLess_table" style="width: 100%; margin-top: 15px;">
           <thead>
             <tr>
-              <td style="text-align:center"><b>Sr No.</b></td>
-              <td><b>Doctor Name</b></td>
+              <td style="text-align:center"><b>{{ 'COMMON.SN' | translate }}</b></td>
+              <td><b>{{ 'INCENTIVE.DOCTOR_NAME' | translate }}</b></td>
               <td style="text-align:center"><b>{{GeneralFieldLabel.PANNo}}</b></td>
               <!--<td style="text-align:center"><b>Referral Income</b></td>
               <td style="text-align:center"><b>Assigned Income</b></td>-->
-              <td style="text-align:center"><b>Total Income</b></td>  
+              <td style="text-align:center"><b>{{ 'INCENTIVE.TOTAL_INCOME' | translate }}</b></td>  
               <!--<td style="text-align:center"><b>TDS%</b></td>-->
-              <td style="text-align:center"><b>TDS Amt.</b></td>
-              <td style="text-align:center"><b>Net Income</b></td>
+              <td style="text-align:center"><b>{{ 'INCENTIVE.TDS_AMOUNT' | translate }}</b></td>
+              <td style="text-align:center"><b>{{ 'INCENTIVE.NET_INCOME' | translate }}</b></td>
             </tr>
           </thead>
           <tbody>
@@ -61,7 +61,7 @@
             <tr style="font-weight: bold">
               <td style="text-align:right"></td>
               <td style="text-align:right"></td>
-              <td style="text-align:right"><b>Total :</b></td>
+              <td style="text-align:right"><b>{{ 'INCENTIVE.TOTAL' | translate }} :</b></td>
               <!--<td style="text-align:right">{{summary.tot_RefAmount}}</td>
               <td style="text-align:right">{{summary.tot_AssignAmount}}</td>-->
               <td style="text-align:right">{{summary.tot_TotIncome}}</td>

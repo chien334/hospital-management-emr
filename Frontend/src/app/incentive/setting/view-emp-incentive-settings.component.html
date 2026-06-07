@@ -65,19 +65,19 @@
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption no-margin">
             <h3>
-              <span>View All Incentive Settings of Employee: {{ employeeName }}</span>
+              <span>{{ 'INCENTIVE.VIEW_ALL_SETTINGS_OF_EMPLOYEE' | translate }} {{ employeeName }}</span>
             </h3>
-            <a class="btn btn-danger" (click)="close()" title="Close">X</a>
+            <a class="btn btn-danger" (click)="close()" [title]="'COMMON.CLOSE' | translate">X</a>
           </div>
           <div class="form-horizontal hm-form incentive_form">
             <div class="form-body">
               <div class="row">
                 <div class="col-md-5">
                   <div class="row no-gutters">
-                    <label for="" class="control-label filter-label col-md-6">Filter By Service Department:</label>
+                    <label for="" class="control-label filter-label col-md-6">{{ 'INCENTIVE.FILTER_BY_SERVICE_DEPARTMENT' | translate }}:</label>
                     <div class="col-md-6">
                       <select class="form-control" [(ngModel)]="selServDept" (ngModelChange)="filterList()">
-                        <option value="">--- Select ---</option>
+                        <option value="">{{ 'INCENTIVE.SELECT' | translate }}</option>
                         <option *ngFor="let dept of uniqueDeptNames" value="{{ dept.ServiceDepartmentName }}">
                           {{ dept.ServiceDepartmentName }}
                         </option>
@@ -87,32 +87,32 @@
                 </div>
                 <div class="col-md-4">
                   <div class="row no-gutters">
-                    <label for="" class="control-label filter-label col-md-5">Filter By Item Name:</label>
+                    <label for="" class="control-label filter-label col-md-5">{{ 'INCENTIVE.FILTER_BY_ITEM_NAME' | translate }}:</label>
                     <div class="col-md-7">
-                      <input type="text" class="form-control incentive-item-name" placeholder="Enter Item Name" [(ngModel)]="strSearchitem"
+                      <input type="text" class="form-control incentive-item-name" [placeholder]="'INCENTIVE.ENTER_ITEM_NAME_PLACEHOLDER' | translate" [(ngModel)]="strSearchitem"
                              (ngModelChange)="filterList()">
                     </div>
                   </div>
                 </div>
 
                 <div class="col-md-3">
-                  <input class="btn btn-primary" type="button" (click)="toggleNonMappedItems()" [disabled]="loading" value="{{ showNonMappedItems ? 'Hide Non-Mapped Items' : 'Show Non-Mapped Items' }}" style="width:100%;box-shadow: none !important;border: none;border-radius: 5px !important;">
+                  <input class="btn btn-primary" type="button" (click)="toggleNonMappedItems()" [disabled]="loading" [value]="showNonMappedItems ? ('INCENTIVE.HIDE_NON_MAPPED_ITEMS' | translate) : ('INCENTIVE.SHOW_NON_MAPPED_ITEMS' | translate)" style="width:100%;box-shadow: none !important;border: none;border-radius: 5px !important;">
                 </div>
               </div>
               <div class="table-wrapper">
                 <table class="table table-striped table-hover custom_table padLess_table table-bordered">
                   <thead>
                     <tr>
-                      <th rowspan="2"><b>Service Department</b></th>
-                      <th rowspan="2"><b>Item</b></th>
+                      <th rowspan="2"><b>{{ 'INCENTIVE.SERVICE_DEPARTMENT' | translate }}</b></th>
+                      <th rowspan="2"><b>{{ 'INCENTIVE.ITEM' | translate }}</b></th>
                       <th colspan="2" *ngFor="let cat of categories" style="text-align: center;">
                         <b>{{ cat.ProfileName }} ({{ cat.PriceCategoryName }})</b>
                       </th>
                     </tr>
                     <tr>
                       <ng-container *ngFor="let cat of categories">
-                        <th style="top: 26px;"><b>Assigned %</b></th>
-                        <th style="top: 26px;"><b>Referred %</b></th>
+                        <th style="top: 26px;"><b>{{ 'INCENTIVE.ASSIGNED_PERCENT' | translate }}</b></th>
+                        <th style="top: 26px;"><b>{{ 'INCENTIVE.REFERRAL_PERCENT' | translate }}</b></th>
                       </ng-container>
                     </tr>
                   </thead>

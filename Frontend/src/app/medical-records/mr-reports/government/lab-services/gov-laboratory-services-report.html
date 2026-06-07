@@ -16,14 +16,14 @@
         <form [formGroup]="currentLaboratoryServices.DyanamicValidator" class="form-horizontal">
           <div class="form-body">
             <div class="col-md-12">
-              <div class="caption custom-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Laboratory Services </span> </div>
+              <div class="caption custom-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'MEDICAL_RECORDS.LABORATORY_SERVICES' | translate }} </span> </div>
               <div class="row">
                 <div class="col-md-6 col-xs-12">
                   <from-to-date-select (on-change)="OnFromToDateChange($event)"> </from-to-date-select>
                 </div>
                 <div class="col-md-2 col-xs-12">
                   <div class="form-group">
-                    <button class="btn blue" type="button" (click)="Load()"> <i class="fa fa-search"></i> Show Report
+                    <button class="btn blue" type="button" (click)="Load()"> <i class="fa fa-search"></i> {{ 'COMMON.SHOW_REPORT' | translate }}
                     </button>
                   </div>
                 </div>
@@ -37,20 +37,20 @@
         <div *ngIf="displayReport">
           <div class="col-md-12" id="printpageForLabReport">
             <div class="multi-table-wrap">
-              <div class="report-title"><b>16.Laboratory Services</b></div>
+              <div class="report-title"><b>16.{{ 'MEDICAL_RECORDS.LABORATORY_SERVICES' | translate }}</b></div>
               <div class="table-row">
                 <div>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th width="50px">DE</th>
-                        <th colspan="2">Test</th>
-                        <th>No.</th>
+                        <th colspan="2">{{ 'MEDICAL_RECORDS.TEST' | translate }}</th>
+                        <th>{{ 'COMMON.NO' | translate }}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">HAEMATOLOGY</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.HAEMATOLOGY' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of hematology | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -73,13 +73,13 @@
                     <thead>
                       <tr>
                         <th width="50px">DE</th>
-                        <th colspan="2">Test</th>
-                        <th>No.</th>
+                        <th colspan="2">{{ 'MEDICAL_RECORDS.TEST' | translate }}</th>
+                        <th>{{ 'COMMON.NO' | translate }}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">IMMUNOLOGY</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.IMMUNOLOGY' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of immunology | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -103,13 +103,13 @@
                     <thead>
                       <tr>
                         <th width="50px">DE</th>
-                        <th colspan="2">Test</th>
-                        <th>No.</th>
+                        <th colspan="2">{{ 'MEDICAL_RECORDS.TEST' | translate }}</th>
+                        <th>{{ 'COMMON.NO' | translate }}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">BIOCHEMISTRY</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.BIOCHEMISTRY' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of biochemistry | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -133,13 +133,13 @@
                     <thead>
                       <tr>
                         <th width="50px">DE</th>
-                        <th colspan="2">Test</th>
-                        <th>No.</th>
+                        <th colspan="2">{{ 'MEDICAL_RECORDS.TEST' | translate }}</th>
+                        <th>{{ 'COMMON.NO' | translate }}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">BACTERIOLOGY</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.BACTERIOLOGY' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of bacteriology | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -155,7 +155,7 @@
                         </ng-container>
                       </tr>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">VIROLOGY</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.VIROLOGY' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of virology | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -178,13 +178,13 @@
                     <thead>
                       <tr>
                         <th width="50px">DE</th>
-                        <th colspan="2">Test</th>
-                        <th>No.</th>
+                        <th colspan="2">{{ 'MEDICAL_RECORDS.TEST' | translate }}</th>
+                        <th>{{ 'COMMON.NO' | translate }}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">PARASITOLOGY</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.PARASITOLOGY' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of parasitology | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -201,7 +201,7 @@
 
                       </tr>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">HORMONE/ENDOCRINE</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.HORMONE_ENDOCRINE' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of hormone | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -218,7 +218,7 @@
 
                       </tr>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">DRUG ANALYSIS</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.DRUG_ANALYSIS' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of drugAnalysis | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -235,7 +235,7 @@
 
                       </tr>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">HISTOPATHOLOGY/CYTOLOGY</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.HISTOPATHOLOGY_CYTOLOGY' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of histopathology | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -259,13 +259,13 @@
                     <thead>
                       <tr>
                         <th width="50px">DE</th>
-                        <th colspan="2">Test</th>
-                        <th>No.</th>
+                        <th colspan="2">{{ 'MEDICAL_RECORDS.TEST' | translate }}</th>
+                        <th>{{ 'COMMON.NO' | translate }}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="text-center bg-gray">
-                        <td colspan="4">IMMUNO-HISTO CHEMISTRY</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.IMMUNO_HISTO_CHEMISTRY' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of immunoHistoChemistry | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -283,8 +283,7 @@
                       </tr>
 
                       <tr class="text-center bg-gray">
-                        <td colspan="4">MOLECULAR LAB &
-                          FLOWCYTOMETRY</td>
+                        <td colspan="4">{{ 'MEDICAL_RECORDS.MOLECULAR_LAB_FLOWCYTOMETRY' | translate }}</td>
                       </tr>
                       <tr *ngFor="let item of MolecularLabFlowcytometry | labKeys, let i = index">
                         <ng-container *ngIf="!item.InnerTestGroupName">
@@ -309,7 +308,7 @@
             </div>
 
             <p style="text-align:center;" class="no-print">
-              <button class="btn blue" (click)="Print()"> Print Report <i class="glyphicon glyphicon-print"></i>
+              <button class="btn blue" (click)="Print()"> {{ 'MEDICAL_RECORDS.PRINT_REPORT' | translate }} <i class="glyphicon glyphicon-print"></i>
               </button>
             </p>
           </div>
@@ -321,7 +320,7 @@
           <div id="printpageold">
             <table style="width:100%" align="center">
               <tr>
-                <td class="Selected" align="center"><b>16. Laboratory Servies</b></td>
+                <td class="Selected" align="center"><b>16. {{ 'MEDICAL_RECORDS.LABORATORY_SERVICES' | translate }}</b></td>
               </tr>
             </table>
             <br />
@@ -334,7 +333,7 @@
                       <td rowspan="2" style="text-align:center;width:150px;">
                         <table style="text-align:center;width:150px;">
                           <tr>
-                            <td>HAEMATOLOGY</td>
+                            <td>{{ 'MEDICAL_RECORDS.HAEMATOLOGY' | translate }}</td>
                           </tr>
                         </table>
                       </td>
@@ -400,9 +399,9 @@
                             <td rowspan="2">AEC</td>
                           </tr>
                           <tr style="text-align:center">
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
                           </tr>
                           <tr>
                             <td style="text-align:center;width:100px;" *ngFor="let o of HaematologyTable1">
@@ -422,7 +421,7 @@
                       <td rowspan="2" style="text-align:center;width:150px;">
                         <table style="text-align:center;width:150px;">
                           <tr>
-                            <td>IMMUNOLOGY</td>
+                            <td>{{ 'MEDICAL_RECORDS.IMMUNOLOGY' | translate }}</td>
                           </tr>
                         </table>
                       </td>
@@ -450,18 +449,18 @@
                             <td rowspan="2">Echino-coccus</td>
                           </tr>
                           <tr style="text-align:center">
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
-                            <td>Total</td>
-                            <td>Reactive</td>
-                            <td>Non-Reactive</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.REACTIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NON_REACTIVE' | translate }}</td>
                           </tr>
                           <tr>
                             <td style="text-align:center;width:100px;" *ngFor="let o of ImmunologyTable0">{{o.Quantity}}
@@ -487,12 +486,12 @@
                             <td colspan="3">Scrub Typhus</td>
                           </tr>
                           <tr style="text-align:center">
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
                           </tr>
                           <tr>
                             <td style="text-align:center;width:100px;" *ngFor="let o of ImmunologyTable1">{{o.Quantity}}
@@ -512,7 +511,7 @@
                       <td style="text-align:center;width:150px;" rowspan="2">
                         <table style="text-align:center;width:150px;">
                           <tr>
-                            <td>BIOCHEMISTRY</td>
+                            <td>{{ 'MEDICAL_RECORDS.BIOCHEMISTRY' | translate }}</td>
                           </tr>
                         </table>
                       </td>
@@ -577,7 +576,7 @@
                       <td style="text-align:center;width:150px;">
                         <table style="text-align:center;width:150px;">
                           <tr>
-                            <td>BACTERIOLOGY</td>
+                            <td>{{ 'MEDICAL_RECORDS.BACTERIOLOGY' | translate }}</td>
                           </tr>
                         </table>
                       </td>
@@ -608,12 +607,12 @@
                           </tr>
                           <tr style="text-align:center"> </tr>
                           <tr style="text-align:center">
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
                           </tr>
                           <tr>
                             <td style="text-align:center;width:100px;" *ngFor="let o of BacteriologyTable0">
@@ -633,7 +632,7 @@
                       <td style="text-align:center;width:150px;">
                         <table style="text-align:center;width:150px;">
                           <tr>
-                            <td>CYTOLOGY</td>
+                            <td>{{ 'MEDICAL_RECORDS.CYTOLOGY' | translate }}</td>
                           </tr>
                         </table>
                       </td>
@@ -666,7 +665,7 @@
                       <td style="text-align:center;width:150px;">
                         <table style="text-align:center;width:150px;">
                           <tr>
-                            <td>VIROLOGY</td>
+                            <td>{{ 'MEDICAL_RECORDS.VIROLOGY' | translate }}</td>
                           </tr>
                         </table>
                       </td>
@@ -683,15 +682,15 @@
                             <td rowspan="2">Viral load</td>
                           </tr>
                           <tr style="text-align:center">
-                            <td>Total</td>
-                            <td>Reactive</td>
-                            <td>Non-Reactive</td>
-                            <td>Total</td>
-                            <td>Reactive</td>
-                            <td>Non-Reactive</td>
-                            <td>Total</td>
-                            <td>Reactive</td>
-                            <td>Non-Reactive</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.REACTIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NON_REACTIVE' | translate }}</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.REACTIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NON_REACTIVE' | translate }}</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.REACTIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NON_REACTIVE' | translate }}</td>
                           </tr>
                           <tr>
                             <td style="text-align:center;width:100px;" *ngFor="let o of VirologyTable0">{{o.Quantity}}
@@ -712,8 +711,7 @@
                         <table style="text-align:center;width:150px;">
                           <tr>
                             <td>
-                              IMMUNOHISTO<br />
-                              CHEMISTRY
+                              {{ 'MEDICAL_RECORDS.IMMUNO_HISTO_CHEMISTRY' | translate }}
                             </td>
                           </tr>
                         </table>
@@ -746,7 +744,7 @@
                       <td style="text-align:center;width:150px;">
                         <table style="text-align:center;width:150px;">
                           <tr>
-                            <td>HISTOLOGY</td>
+                            <td>{{ 'MEDICAL_RECORDS.HISTOLOGY' | translate }}</td>
                           </tr>
                         </table>
                       </td>
@@ -773,7 +771,7 @@
                       <td style="text-align:center;width:150px;">
                         <table style="text-align:center;width:150px;">
                           <tr>
-                            <td>PARASITOLOGY</td>
+                            <td>{{ 'MEDICAL_RECORDS.PARASITOLOGY' | translate }}</td>
                           </tr>
                         </table>
                       </td>
@@ -795,12 +793,12 @@
                             <td rowspan="2">Sp. Gravity</td>
                           </tr>
                           <tr style="text-align:center">
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
                           </tr>
                           <tr>
                             <td style="text-align:center;width:100px;" *ngFor="let o of ParasitologyTable0">
@@ -821,8 +819,7 @@
                         <table style="text-align:center;width:150px;">
                           <tr>
                             <td>
-                              CARDIAC<br />
-                              ENZYMES
+                              {{ 'MEDICAL_RECORDS.CARDIAC_ENZYMES' | translate }}
                             </td>
                           </tr>
                         </table>
@@ -836,9 +833,9 @@
                             <td colspan="3">Trop-I</td>
                           </tr>
                           <tr style="text-align:center">
-                            <td>Total</td>
-                            <td>Positive</td>
-                            <td>Negative</td>
+                            <td>{{ 'COMMON.TOTAL' | translate }}</td>
+                            <td>{{ 'COMMON.POSITIVE' | translate }}</td>
+                            <td>{{ 'COMMON.NEGATIVE' | translate }}</td>
                           </tr>
                           <tr>
                             <td style="text-align:center;width:100px;" *ngFor="let o of CardiacenzymesTable0">
@@ -859,8 +856,7 @@
                         <table style="text-align:center;width:150px;">
                           <tr>
                             <td>
-                              HORMONES/<br />
-                              ENDOCRINOLOGY
+                              {{ 'MEDICAL_RECORDS.HORMONES_ENDOCRINOLOGY' | translate }}
                             </td>
                           </tr>
                         </table>
@@ -897,7 +893,7 @@
             </table>
           </div>
           <p style="text-align:center;">
-            <button class="btn blue" (click)="Print()"> Print Report <i class="glyphicon glyphicon-print"></i> </button>
+            <button class="btn blue" (click)="Print()"> {{ 'MEDICAL_RECORDS.PRINT_REPORT' | translate }} <i class="glyphicon glyphicon-print"></i> </button>
           </p>
         </div>
       </div>

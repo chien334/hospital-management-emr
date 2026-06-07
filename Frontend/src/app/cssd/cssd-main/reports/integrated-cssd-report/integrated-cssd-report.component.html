@@ -1,21 +1,21 @@
 <div class="selectedAssetForEdit row" style="margin-left: 20px; margin-right: 10px;">
 
   <div class="col-md-4">
-    <label for="" style="padding-right: 5px;">Disinfection Methods:</label>
+    <label for="" style="padding-right: 5px;">{{ 'CSSD.DISINFECTION_METHODS' | translate }}</label>
     <select name="DisinfectionMethod" id="DisinfectionMethod" [(ngModel)]="selectedDisinfectionMethod"
       (change)="OnFiltersChange()">
-      <option value="all" selected>All</option>
-      <option value="Chemical Disinfection">Chemical Disinfection</option>
-      <option value="Autoclave">Autoclave</option>
-      <option value="Microwave">Microwave</option>
-      <option value="Other">Other</option>
+      <option value="all" selected>{{ 'CSSD.ALL' | translate }}</option>
+      <option value="Chemical Disinfection">{{ 'CSSD.CHEMICAL_DISINFECTION' | translate }}</option>
+      <option value="Autoclave">{{ 'CSSD.AUTOCLAVE' | translate }}</option>
+      <option value="Microwave">{{ 'CSSD.MICROWAVE' | translate }}</option>
+      <option value="Other">{{ 'CSSD.OTHER' | translate }}</option>
     </select>
   </div>
 
   <div class="col-md-4 text-right">
-    <strong>Substore : &nbsp;&nbsp;</strong>
+    <strong>{{ 'CSSD.SUBSTORE_COLON' | translate }} &nbsp;&nbsp;</strong>
     <select [(ngModel)]="selectedSubstore" (change)="OnFiltersChange()" style="width:40%!important;">
-      <option value="0" selected>All Store</option>
+      <option value="0" selected>{{ 'CSSD.ALL_STORE' | translate }}</option>
       <option *ngFor="let store of substoreList" value="{{store.StoreId}}">{{store.Name}}</option>
     </select>
   </div>

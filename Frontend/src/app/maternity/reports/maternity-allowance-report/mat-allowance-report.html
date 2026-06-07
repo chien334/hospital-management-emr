@@ -34,7 +34,7 @@
             <div class="caption custom-caption">
               <!-- <i class="glyphicon glyphicon-asterisk"></i> -->
               <i class="fa fa-money"></i>
-              <span class="caption-subject">Maternity Allowance Report </span>
+              <span class="caption-subject">{{ 'MATERNITY.ALLOWANCE_REPORT_TITLE' | translate }}</span>
             </div>
             <div class="row">
               <div class="col-md-6">
@@ -43,7 +43,7 @@
               </div>
               <div class="col-md-4 col-xs-12">
                 <div class="form-group">
-                    <label class="control-label col-md-4">Select User<b style="float: right;">:</b></label >
+                    <label class="control-label col-md-4">{{ 'MATERNITY.SELECT_USER' | translate }}<b style="float: right;">:</b></label >
                     <div class="col-md-8">
                          <input
                          class="form-control"
@@ -52,7 +52,7 @@
                          [ngModelOptions]="{standalone: true}"
                          [list-formatter]="UserListFormatter"
                          [source]="userList"
-                         placeholder="Select User Name"
+                         [placeholder]="'MATERNITY.SELECT_USER_NAME_PLACEHOLDER' | translate"
                          display-property-name="EmployeeName"
                          value-property-name="null"
                          onclick="this.select()"
@@ -64,7 +64,7 @@
               <div class="col-md-2 col-xs-12">
                 <div class="form-group">
                   <button class="btn green btn-success" type="button" (click)="Load()" [disabled]="loading">
-                    <i class="fa fa-search"></i> Show Report
+                    <i class="fa fa-search"></i> {{ 'MATERNITY.SHOW_REPORT' | translate }}
                   </button>
                 </div>
               </div>
@@ -75,7 +75,7 @@
     </div>
     <div class="row">
       <div class="col-lg-12 col-sm-12">
-        <customer-header style="display:none;padding:0px" id="headerForPrint" [header-title]="'Maternity Allowance Report'"></customer-header>
+        <customer-header style="display:none;padding:0px" id="headerForPrint" [header-title]="'MATERNITY.ALLOWANCE_REPORT_TITLE' | translate"></customer-header>
         <danphe-grid [grid-colDefaults]="matRptAllowanceGridColumns" [grid-data]="matRptAllowanceGridReportData"
           [grid-showExport]="true" *ngIf="IsSummaryViewMode" [grid-footer-content]="footerContent"  [grid-exportOptions]="gridExportOptions"
           [grid-date-range]="dateRange" [report-for]="'MRReport'"  (grid-actions)="MaternityAllowanceGridActions($event)"> 
@@ -88,25 +88,25 @@
           <div id="print_netCashCollection">
             <div style="padding-top:7px;">
               <h4 style="font-weight:bold">
-                Summary&nbsp;&nbsp;  
+                {{ 'MATERNITY.SUMMARY' | translate }}&nbsp;&nbsp;  
               </h4>
               <div>
                 <table class="tbl-summ" border="1" style="width:50%;">
-                  <th>Particulars</th>
-                  <th>Patient Count</th>
-                  <th>Amount</th>
+                  <th>{{ 'MATERNITY.PARTICULARS' | translate }}</th>
+                  <th>{{ 'MATERNITY.PATIENT_COUNT' | translate }}</th>
+                  <th>{{ 'MATERNITY.AMOUNT_LABEL' | translate }}</th>
                   <tr>
-                    <td> Paid to Patient </td>
+                    <td> {{ 'MATERNITY.PAID_TO_PATIENT' | translate }} </td>
                     <td>{{ PatientCount.PaidCount }}</td>
                     <td> {{summaryFormatted.PaidToPatient}} </td>
                   </tr>
                   <tr>
-                    <td> Returned from Patient </td>
+                    <td> {{ 'MATERNITY.RETURNED_FROM_PATIENT' | translate }} </td>
                     <td>{{ PatientCount.ReturnCount }}</td>
                     <td> {{summaryFormatted.ReturnedFromPatient}} </td>
                   </tr>
                   <tr>
-                    <td> Net Paid Amount </td>
+                    <td> {{ 'MATERNITY.NET_PAID_AMOUNT' | translate }} </td>
                     <td></td>
                     <td> {{summaryFormatted.NetPaidAmount}} </td>
                   </tr>

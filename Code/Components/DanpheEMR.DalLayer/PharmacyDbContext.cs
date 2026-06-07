@@ -1,4 +1,4 @@
-﻿using Audit.EntityFramework;
+using Audit.EntityFramework;
 using DanpheEMR.Security;
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.BillingModels;
@@ -241,6 +241,30 @@ namespace DanpheEMR.DalLayer
                 .HasOne(a => a.StockMaster)
                 .WithMany(a => a.StoreStocks)
                 .HasForeignKey(a => a.StockId);
+
+            // Goods Receipt and Items relationship
+            modelBuilder.Entity<PHRMGoodsReceiptModel>()
+                .HasMany(a => a.GoodReceiptItem)
+                .WithOne()
+                .HasForeignKey(a => a.GoodReceiptId);
+
+            // Purchase Order and Items relationship
+            modelBuilder.Entity<PHRMPurchaseOrderModel>()
+                .HasMany(a => a.PHRMPurchaseOrderItems)
+                .WithOne()
+                .HasForeignKey(a => a.PurchaseOrderId);
+
+            // Return to Supplier and Items relationship
+            modelBuilder.Entity<PHRMReturnToSupplierModel>()
+                .HasMany(a => a.returnToSupplierItems)
+                .WithOne()
+                .HasForeignKey(a => a.ReturnToSupplierId);
+
+            // Invoice Return and Items relationship
+            modelBuilder.Entity<PHRMInvoiceReturnModel>()
+                .HasMany(a => a.InvoiceReturnItems)
+                .WithOne()
+                .HasForeignKey(a => a.InvoiceReturnId);
 
             // Stock Barcodes
             modelBuilder.Entity<PHRMStockBarcode>().ToTable("PHRM_MST_StockBarcode");

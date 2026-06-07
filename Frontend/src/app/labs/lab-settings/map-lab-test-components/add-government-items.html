@@ -12,8 +12,8 @@
             <div class="modelbox-div lab_modal_box">
                 <div class="modelbox-header">
                     <h4 class="margin-0-vr">
-                        <span *ngIf="!update">Map Lab Components</span>
-                        <span *ngIf="update">Update Mapped Lab Components</span>
+                        <span *ngIf="!update">{{ 'LABS.MAP_LAB_COMPONENTS' | translate }}</span>
+                        <span *ngIf="update">{{ 'LABS.UPDATE_MAPPED_LAB_COMPONENTS' | translate }}</span>
                     </h4>
                 </div>
                 <div class="modelbox-body">
@@ -22,21 +22,20 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="row">
-                                        <label for="LabComponentName" class="contorl-label col-md-4">Gov LabReportItem
-                                            Name:</label>
+                                        <label for="LabComponentName" class="contorl-label col-md-4">{{ 'LABS.GOV_LABREPORTITEM_NAME' | translate }}</label>
                                         <div class="col-md-8 drpdown">
                                             <input class="form-control" danphe-auto-complete
                                                 [ngModelOptions]="{standalone: true}"
                                                 [(ngModel)]="selectedGovReportItem"
                                                 [list-formatter]="govReportItemsListFormatter" [source]="allgovitems"
-                                                placeholder="Enter Component Name" display-property-name="TestName"
+                                                [placeholder]="'LABS.ENTER_COMPONENT_NAME' | translate" display-property-name="TestName"
                                                 value-property-name=null (valueChanged)="GoveReportItemOnChange()"
                                                 onclick="this.select();" match-formatted="true" 
                                                 [disabled]="disableSelectedGovReportItem?true:null"/>
                                             <span class="color-red font-sm"
                                                 *ngIf="MappedComponent.IsDirty('ReportItemId')"
                                                 [hidden]="MappedComponent.IsValidCheck('ReportItemId','required')">
-                                                Enter Gov. Lab Report Name</span>
+                                                {{ 'LABS.ENTER_GOV_LAB_REPORT_NAME' | translate }}</span>
                                             <!--<select class="form-control" [(ngModel)]="MappedComponent.ReportItemId" formControlName="ReportItemId">
                                             <option selected>Select Component Name</option>
                                             <option *ngFor="let item of allgovitems" value="{{item.ReportItemId}}">
@@ -53,18 +52,17 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="row">
-                                        <label for="LabTestName" class="contorl-label col-md-4">Lab Test Name:</label>
+                                        <label for="LabTestName" class="contorl-label col-md-4">{{ 'LABS.LAB_TEST_NAME' | translate }}</label>
 
                                         <div class="col-md-8">
                                             <input class="form-control" danphe-auto-complete
                                                 [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTest"
                                                 [list-formatter]="myListFormatter" [source]="labtestitems"
-                                                placeholder="Enter Test Name" display-property-name="LabTestName"
+                                                [placeholder]="'LABS.ENTER_TEST_NAME' | translate" display-property-name="LabTestName"
                                                 (valueChanged)="LabTestOnChange()" onclick="this.select();"
                                                 match-formatted="true" />
                                             <span class="color-red font-sm" *ngIf="MappedComponent.IsDirty('LabItemId')"
-                                                [hidden]="MappedComponent.IsValidCheck('LabItemId','required')">Enter
-                                                Lab Test Name</span>
+                                                [hidden]="MappedComponent.IsValidCheck('LabItemId','required')">{{ 'LABS.ENTER_LAB_TEST_NAME' | translate }}</span>
                                         </div>
 
 
@@ -90,7 +88,7 @@
                             <div class="col-md-6" *ngIf="update">
                                 <div class="form-group">
                                     <div class="row">
-                                        <label for="IsActive" class="contorl-label col-md-4">Is Active:</label>
+                                        <label for="IsActive" class="contorl-label col-md-4">{{ 'LABS.IS_ACTIVE_1' | translate }}</label>
                                         <div class="col-md-8 chkBox">
                                             <input type="checkbox" name="IsActive" class="" id="IsActive"
                                                 [(ngModel)]="MappedComponent.IsActive"
@@ -104,8 +102,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="row">
-                                        <label for="IsComponentBased" class="contorl-label col-md-4">Is Component
-                                            Based:</label>
+                                        <label for="IsComponentBased" class="contorl-label col-md-4">{{ 'LABS.IS_COMPONENT_BASED' | translate }}</label>
                                         <div class="col-md-8 chkBox">
                                             <input type="checkbox" class="chkBox" id="IsComponentBased"
                                                 [(ngModel)]="MappedComponent.IsComponentBased"
@@ -119,20 +116,18 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="row" *ngIf="MappedComponent.IsComponentBased">
-                                        <label for="ComponentName" class="contorl-label col-md-4">Component
-                                            Name:</label>
+                                        <label for="ComponentName" class="contorl-label col-md-4">{{ 'LABS.COMPONENT_NAME' | translate }}</label>
                                         <div class="col-md-8 drpdown">
                                             <input class="form-control drpdown" danphe-auto-complete
                                                 [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedComponent"
                                                 [list-formatter]="componentListFormatter"
-                                                [source]="labTestComponentItems" placeholder="Enter Component Name"
+                                                [source]="labTestComponentItems" [placeholder]="'LABS.ENTER_COMPONENT_NAME' | translate"
                                                 display-property-name="DisplayName"
                                                 (valueChanged)="LabComponentOnChange()" onclick="this.select();"
                                                 match-formatted="true" />
                                             <span class="color-red font-sm"
                                                 *ngIf="MappedComponent.IsDirty('ComponentId')"
-                                                [hidden]="MappedComponent.IsValidCheck('ComponentId','required')"> Enter
-                                                component name</span>
+                                                [hidden]="MappedComponent.IsValidCheck('ComponentId','required')"> {{ 'LABS.ENTER_COMPONENT_NAME_1' | translate }}</span>
                                             <!--<select class="form-control" [(ngModel)]="MappedComponent.ComponentName" [ngModelOptions]="{standalone: true}">
                                             <option [selected] ="true">Select Component Name</option>
                                             <option *ngFor="let item of allgovitems" value="{{item.ComponentName}}">
@@ -149,8 +144,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="row" *ngIf="MappedComponent.IsComponentBased">
-                                        <label for="IsResultCount" class="contorl-label col-md-4">Is Result
-                                            Count:</label>
+                                        <label for="IsResultCount" class="contorl-label col-md-4">{{ 'LABS.IS_RESULT_COUNT' | translate }}</label>
                                         <div class="col-md-8">
                                             <input type="checkbox" class="chkBox" id="IsResultCount" [checked]="MappedComponent.IsResultCount"
                                                 [(ngModel)]="MappedComponent.IsResultCount"
@@ -163,7 +157,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="row" *ngIf="MappedComponent.IsResultCount">
-                                        <label for="IsActive" class="contorl-label col-md-4">Positive Indicator:</label>
+                                        <label for="IsActive" class="contorl-label col-md-4">{{ 'LABS.POSITIVE_INDICATOR' | translate }}</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control"
                                                 [(ngModel)]="MappedComponent.PositiveIndicator"
@@ -179,11 +173,11 @@
                     <div class="all-buttons text-right">
                         <button type="button" class="btn btn-primary margin-7-hr" *ngIf="!update" [disabled]="loading"
                             (click)="loading=true;MapNewItem()">
-                            Add
+                            {{ 'LABS.ADD_1' | translate }}
                         </button>
                         <button type="button" class="btn primary-btn margin-7-hr" *ngIf="update" [disabled]="loading"
                             (click)="loading=true;UpdateMappedItem()">
-                            Update
+                            {{ 'COMMON.UPDATE' | translate }}
                         </button>
                         <!-- <button type="button" class="btn btn-cancel btn-outline margin-7-hr" (click)="Close()">
                 Close

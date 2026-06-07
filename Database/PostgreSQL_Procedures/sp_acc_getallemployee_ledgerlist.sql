@@ -1,25 +1,29 @@
+/* ***********************************************************************
+FileName: [SP_ACC_GetAllEmployee_LedgerList]  
+CreatedBy/date: Anish/Apr-2020
+Description: To get ledger details for Consultant ledgers from acc-mapping table 
+Change History
+S.No.    UpdatedBy/Date                        Remarks
+1.      Sud/Nagesh:20Jun'20                    HospitalId added for Phrm-Acc Separation
+************************************************************************ */
 CREATE OR REPLACE FUNCTION sp_acc_getallemployee_ledgerlist(
     p_hospitalid INT
 )
 RETURNS TABLE (
-    ledgerid INT,
-    employeeid INT,
-    ledgername VARCHAR,
-    ledgercode VARCHAR,
-    ledgergroupname VARCHAR
+    "LedgerId" INT,
+    "EmployeeId" INT,
+    "LedgerName" VARCHAR,
+    "LedgerCode" VARCHAR,
+    "LedgerGroupName" VARCHAR
 ) AS $$
 BEGIN
-    RETURN QUERY
-    SELECT led.ledgerid, consLedMap.referenceid AS employeeid,
-           led.ledgername, led.code AS ledgercode, ledGrp.ledgergroupname
-    FROM acc_ledger led
-    JOIN acc_mst_ledgergroup ledGrp ON led.ledgergroupid = ledGrp.ledgergroupid
-    JOIN (
-        SELECT * 
-        FROM acc_ledger_mapping 
-        WHERE ledgertype = 'consultant' AND hospitalid = p_hospitalid
-    ) consLedMap ON led.ledgerid = consLedMap.ledgerid
-    WHERE led.hospitalid = p_hospitalid 
-      AND ledGrp.hospitalid = p_hospitalid;
+    
+      RETURN QUERY SELECT led.ledgerid, consledmap.referenceid AS "EmployeeId",
+      led.ledgername, led.code AS "LedgerCode", ledgrp.ledgergroupname
+      from acc_ledger led, acc_mst_ledgergroup ledgrp, 
+      (select * from acc_ledger_mapping where ledgertype='consultant' and hospitalid=p_hospitalid) consledmap
+      where led.ledgergroupid=ledgrp.ledgergroupid
+        and led.ledgerid=consledmap.ledgerid 
+        and led.hospitalid = p_hospitalid and ledgrp.hospitalid=p_hospitalid;
 END;
 $$ LANGUAGE plpgsql;

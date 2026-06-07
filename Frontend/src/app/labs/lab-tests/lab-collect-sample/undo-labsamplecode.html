@@ -5,22 +5,22 @@
     <div *ngIf="allLabRequisitions && allLabRequisitions.length > 0">
       <div class="number-note-wrapper">
         <blockquote>
-          <p><strong>Note: Resetting the Run Number Causes the Removal of Current Run Number </strong></p>
+          <p><strong>{{ 'LABS.NOTE_RESETTING_THE_RUN_NUMBER_CAUSES_THE_REMOVAL_O' | translate }} </strong></p>
         </blockquote>
       </div>
       <div class="table-responsive scroll-vertical tbl-max">
         <table class="table table-bordered thin-bordered">
           <thead>
             <tr>
-              <td><b>Name:</b> {{patientinfos.PatientName}}</td>
-              <td><b>Age/Sex:</b> {{patientinfos.AgeSex}}</td>
-              <td><b>Visit Type:</b> {{patientinfos.VisitType}}</td>
-              <td><b>Sample Code:</b> {{patientinfos.SampleCodeFormatted}}</td>
+              <td><b>{{ 'LABS.NAME_2' | translate }}</b> {{patientinfos.PatientName}}</td>
+              <td><b>{{ 'LABS.AGESEX_1' | translate }}</b> {{patientinfos.AgeSex}}</td>
+              <td><b>{{ 'LABS.VISIT_TYPE_1' | translate }}</b> {{patientinfos.VisitType}}</td>
+              <td><b>{{ 'LABS.SAMPLE_CODE' | translate }}</b> {{patientinfos.SampleCodeFormatted}}</td>
             </tr>
             <tr>
-              <td colspan="2"><b>Test Name</b></td>
-              <td><b>Requested On</b></td>
-              <td><b>Apply Reset On</b></td>
+              <td colspan="2"><b>{{ 'LABS.TEST_NAME' | translate }}</b></td>
+              <td><b>{{ 'LABS.REQUESTED_ON_1' | translate }}</b></td>
+              <td><b>{{ 'LABS.APPLY_RESET_ON' | translate }}</b></td>
             </tr>
           </thead>
           <tbody>
@@ -28,7 +28,7 @@
               <td colspan="2" >{{req.LabTestName}}</td>
               <td>{{req.OrderDateTime  | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
               <td><label class="mt-checkbox mt-checkbox-outline">
-                  <input type="checkbox" [(ngModel)]="req.IsSelected"  title="SampleCode of Checked test will Reset" />
+                  <input type="checkbox" [(ngModel)]="req.IsSelected"  [title]="'LABS.SAMPLECODE_OF_CHECKED_TEST_WILL_RESET' | translate" />
                   <span></span> </label></td>
             </tr>
           </tbody>
@@ -39,8 +39,8 @@
       <div class="margin-15-bt margin-15-tp">
         <div class="modelbox-footer padding-0-bt">
           <div class="all-buttons text-right">
-            <button [disabled]="loading" (click)="loading = true;UndoSampleCode(allLabRequisitions);" class="btn primary-btn btn-sm margin-7-hr" >Reset Run Number</button>
-            <button type="button" class="btn btn-cancel btn-outline btn-sm margin-7-hr" (click)="loading = false;CloseUndoBox()"> Cancel </button>
+            <button [disabled]="loading" (click)="loading = true;UndoSampleCode(allLabRequisitions);" class="btn primary-btn btn-sm margin-7-hr" >{{ 'LABS.RESET_RUN_NUMBER' | translate }}</button>
+            <button type="button" class="btn btn-cancel btn-outline btn-sm margin-7-hr" (click)="loading = false;CloseUndoBox()"> {{ 'COMMON.CANCEL' | translate }} </button>
           </div>
         </div>
       </div>

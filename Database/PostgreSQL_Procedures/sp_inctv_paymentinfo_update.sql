@@ -5,14 +5,13 @@ CREATE OR REPLACE FUNCTION sp_inctv_paymentinfo_update(
     p_paymentinfoid INT DEFAULT NULL
 )
 RETURNS TABLE (
-    result VARCHAR
+    "Result" VARCHAR
 ) AS $$
 BEGIN
-    UPDATE "INCTV_TXN_IncentiveFractionItem" 
-    SET "IsPaymentProcessed" = TRUE, "PaymentInfoId" = p_paymentinfoid
-    WHERE "IncentiveReceiverId" = p_employeeid 
-      AND "TransactionDate"::DATE BETWEEN p_fromdate AND p_todate;
-
-    RETURN QUERY SELECT 'success'::VARCHAR AS result;
+    
+    	update inctv_txn_incentivefractionitem set ispaymentprocessed=1, paymentinfoid=p_paymentinfoid
+    	where incentivereceiverid = p_employeeid and (transactiondate)::date between p_fromdate and p_todate;
+    	
+    	RETURN QUERY SELECT 'success' AS "Result";
 END;
 $$ LANGUAGE plpgsql;

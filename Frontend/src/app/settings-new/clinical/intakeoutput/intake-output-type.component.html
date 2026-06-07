@@ -1,4 +1,4 @@
-<a feature="button" class="btn blue bordered" (click)="AddIntakeOutput()"><i class="fa fa-plus"></i>Add New Variable</a>
+<a feature="button" class="btn blue bordered" (click)="AddIntakeOutput()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_NEW_VARIABLE' | translate }}</a>
 <div *ngIf="ShowAddPage">
     <intake-output-add [show-add-page]="ShowAddPage" [row-data]="RowData" [is-update]="IsUpdate"
                        (callback-Add)="CallBackAdd()"></intake-output-add>

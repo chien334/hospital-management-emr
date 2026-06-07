@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="caption custom-caption" style="float: left;">
                 <i class="glyphicon glyphicon-asterisk"></i>
-                <span class="caption-subject">Rank-Membershipwise Sales Report</span>
+                <span class="caption-subject">{{ 'PHARMACY.RANKMEMBERSHIPWISE_SALES_REPORT' | translate }}</span>
             </div>
 
         </div>
@@ -18,7 +18,7 @@
             <div class="row mt10">
                 <div class="col-md-5 col-xs-12">
                     <div class="form-group">
-                        <label class="control-label col-md-4 text-right">Membership:</label>
+                        <label class="control-label col-md-4 text-right">{{ 'PHARMACY.MEMBERSHIP' | translate }}:</label>
                         <div class="col-md-8">
                             <danphe-multiselect *ngIf="Membership.length > 0" [ddl-data]="Membership" [pre-selected]="preSelectedMemberships" [placeholder-text]="'--Select Memberships--'" [value-property-name]="'MembershipTypeId'" (selected-items-list)="MembershipsChanged($event)" [display-property-name]="'MembershipTypeName'" [single-selection]="false">
                             </danphe-multiselect>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-5 col-xs-12">
                     <div class="form-group">
-                        <label class="control-label col-md-4 text-right">Rank :</label>
+                        <label class="control-label col-md-4 text-right">{{ 'PHARMACY.RANK' | translate }} :</label>
                         <div class="col-md-8">
                             <danphe-multiselect *ngIf="Rank.length > 0" [ddl-data]="Rank" [pre-selected]="preSelectedRanks" [placeholder-text]="'--Select Ranks--'" [value-property-name]="'RankId'" (selected-items-list)="RanksChanged($event)" [display-property-name]="'RankName'" [single-selection]="false">
                             </danphe-multiselect>
@@ -36,8 +36,8 @@
                 </div>
                 <div class="col-md-2">
                     <button class="btn blue" type="button" (click)="GetRankMembershipwiseSalesData()" [disabled]="loading">
-                        <span *ngIf="!loading">Show Report</span>
-                        <span *ngIf="loading">Loading...</span>
+                        <span *ngIf="!loading">{{ 'PHARMACY.SHOW_REPORT' | translate }}</span>
+                        <span *ngIf="loading">{{ 'PHARMACY.LOADING' | translate }}</span>
                     </button>
                 </div>
 

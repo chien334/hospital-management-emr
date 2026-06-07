@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="caption custom-caption no-margin"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Substore Dispatch And Consumption Report</span> </div>
+    <div class="caption custom-caption no-margin"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'INVENTORY.SUBSTORE_DISPATCH_AND_CONSUMPTION_REPORT' | translate }}</span> </div>
   </div>
 </div>
 
@@ -14,29 +14,29 @@
         <table class="table billing-table" style="background-color:initial;margin-bottom:0px;">
           <tbody>
             <tr>
-              <td>SubStore:</td>
+              <td>{{ 'INVENTORY.SUBSTORE' | translate }}:</td>
               <td style="width: 250px;">
                 <select [(ngModel)]="StoreId" class="form-control" (ngModelChange)="OnStoreChange()">
-                  <option [ngValue]="null" selected>All Store</option>
+                  <option [ngValue]="null" selected>{{ 'INVENTORY.ALL_STORE' | translate }}</option>
                   <option *ngFor="let store of subStoreList" [ngValue]="store.StoreId">{{store.Name}}</option>
                 </select>
               </td>
-              <td class="text-right">SubCategory:</td>
+              <td class="text-right">{{ 'INVENTORY.SUBCATEGORY' | translate }}:</td>
               <td style="width: 250px;">
                 <select [(ngModel)]="SubCategoryId" class="form-control">
-                  <option [ngValue]="null" selected>All SubCategory</option>
+                  <option [ngValue]="null" selected>{{ 'INVENTORY.ALL_SUBCATEGORY' | translate }}</option>
                   <option *ngFor="let SubCategory of SubCategoryList" [ngValue]="SubCategory.SubCategoryId">{{SubCategory.SubCategoryName}}</option>
                 </select>
               </td>
-              <td class="text-right">Item:</td>
+              <td class="text-right">{{ 'INVENTORY.ITEM' | translate }}:</td>
               <td style="width: 250px;">
                 <select [(ngModel)]="ItemId" class="form-control">
-                  <option [ngValue]="null" selected>All Item</option>
+                  <option [ngValue]="null" selected>{{ 'INVENTORY.ALL_ITEM' | translate }}</option>
                   <option *ngFor="let item of ItemList" [ngValue]="item.ItemId">{{item.ItemName}}</option>
                 </select>
               </td>
               <td class="text-right">
-                <button class="btn btn-primary btn-add-new-row" (click)="GetReportData()">Show Report
+                <button class="btn btn-primary btn-add-new-row" (click)="GetReportData()">{{ 'INVENTORY.SHOW_REPORT' | translate }}
                 </button>
               </td>
             </tr>

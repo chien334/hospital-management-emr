@@ -3,12 +3,12 @@
   <button class="btn btn-cancel" *ngIf="enableResultEdit && !showAddEditResult && securityService.HasPermission('btn-lab-final-reports-tests-edit')"
           style="float:right"
           (click)="EditReport()" [rbac-permission]='{"name":"btn-lab-final-reports-tests-edit","actionOnInvalid":"remove"}'>
-    Edit Result <i class="fa fa-edit"></i> </button>
+    {{ 'LABS.EDIT_RESULT' | translate }} <i class="fa fa-edit"></i> </button>
   <!--<button class="btn btn-cancel" *ngIf="enableResultEdit" style="float:right" (click)="EditReport()"> Edit Result <i class="fa fa-edit"></i> </button>-->
 
 
   <button class="btn primary-btn pull-left margin-7-lft" *ngIf="showAddEditResult && isEditResult"
-          (click)="BackToViewReport()"> <i class="fa fa-arrow-left"></i> Back To Report View </button>
+          (click)="BackToViewReport()"> <i class="fa fa-arrow-left"></i> {{ 'LABS.BACK_TO_REPORT_VIEW' | translate }} </button>
   <danphe-lab-add-result *ngIf="showAddEditResult" [templateReport]="templateReport"
                          [showAddEditResult]="showAddEditResult" [isEditResult]="isEditResult" [barcodeNumber]="barcodeNumber"
                          (callback-addupdate)="CallBackAddUpdate($event)" (callback-cancel)="CallbackCancel($event)"></danphe-lab-add-result>
@@ -35,16 +35,16 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="modelbox-div">
         <div class="modelbox-header">
-          <h4 class="margin-0-vr" style="color: rgb(184, 73, 73);">Attention !!!</h4>
+          <h4 class="margin-0-vr" style="color: rgb(184, 73, 73);">{{ 'LABS.ATTENTION' | translate }}</h4>
         </div>
         <div class="modelbox-body">
-          <p style="color:green;">This Report Is Alredy Uploaded. Are You Sure To Upload It Again ???</p>
+          <p style="color:green;">{{ 'LABS.THIS_REPORT_IS_ALREDY_UPLOADED_ARE_YOU_SURE_TO_UPL' | translate }}</p>
         </div>
         <div class="modelbox-footer">
           <div class="all-buttons text-right">
-            <button type="button" class="btn btn-success btn-sm horizontal-space" (click)="UploadLabReportToTeleMedicine()"> Yes
+            <button type="button" class="btn btn-success btn-sm horizontal-space" (click)="UploadLabReportToTeleMedicine()"> {{ 'COMMON.YES' | translate }}
             </button>
-            <button type="button" class="btn btn-cancel btn-sm horizontal-space" (click)="closeConfirmationPopUp()"> No
+            <button type="button" class="btn btn-cancel btn-sm horizontal-space" (click)="closeConfirmationPopUp()"> {{ 'COMMON.NO' | translate }}
             </button>
           </div>
         </div>

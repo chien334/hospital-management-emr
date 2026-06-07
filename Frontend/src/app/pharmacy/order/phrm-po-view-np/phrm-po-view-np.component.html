@@ -2,7 +2,7 @@
   <div class="portlet-body form">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <div class="modelbox-div clearfix"> <a class="btn btn-danger history-del-btn" (click)="Close()" title="Cancel"><i class="fa fa-times"></i></a>
+        <div class="modelbox-div clearfix"> <a class="btn btn-danger history-del-btn" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
           <!--Model Box Body Start-->
           <div id="printpage">
             <div>
@@ -149,10 +149,10 @@
             </div>
           </div>
           <p style="text-align:center;z-index: 4;position: relative;">
-            <button type="button" id="edit" class="btn green btn-success" (click)="EditPO()">Edit <i
+            <button type="button" id="edit" class="btn green btn-success" (click)="EditPO()">{{ 'COMMON.EDIT' | translate }} <i
                  class="glyphicon glyphicon-edit"></i></button>&nbsp;
             <button class="btn green btn-success" (click)="print()" id="btnPrintRecipt">
-              <span> <i class="glyphicon glyphicon-print">&nbsp;&nbsp;</i>Print Receipt</span>
+              <span> <i class="glyphicon glyphicon-print">&nbsp;&nbsp;</i>{{ 'PHARMACY.PRINT_RECEIPT' | translate }}</span>
             </button>
           </p>
           <!--Model Box Body END-->

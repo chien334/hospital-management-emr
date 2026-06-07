@@ -4,20 +4,20 @@
     margin: 10px 100px;
   }
 
-  .print-border-top {
+  .{{ 'COMMON.PRINT' | translate }}-border-top {
     border-top: dotted 1px;
   }
 
-  .print-border-bottom {
+  .{{ 'COMMON.PRINT' | translate }}-border-bottom {
     border-bottom: dotted 1px;
   }
 
-  .print-border {
+  .{{ 'COMMON.PRINT' | translate }}-border {
     border: dotted 1px;
   }
 
   .center-style {
-    text-align: center;
+    {{ 'INVENTORY.TEXT' | translate }}-align: center;
   }
 
   .border-up-down {
@@ -66,12 +66,12 @@
 <div class="wrapper">
   <div class="col-md-12">
     <div class="left">
-      <button class="btn btn-primary btn-sm" (click)="RouteBack()"><i class="fa fa-backward"></i> &nbsp;Back to Purchase
-        Request
+      <button class="btn btn-primary btn-sm" (click)="RouteBack()"><i class="fa fa-backward"></i> &nbsp;{{ 'INVENTORY.BACK_TO_PURCHASE' | translate }}
+        {{ 'INVENTORY.REQUEST' | translate }}
         List</button>
     </div>
     <div class="right">
-      <button id="printBtn" class="btn btn-primary btn-sm" (click)="print()"><i class="fa fa-print"></i>&nbsp;Print</button>
+      <button id="printBtn" class="btn btn-primary btn-sm" (click)="print()"><i class="fa fa-print"></i>&nbsp;{{ 'COMMON.PRINT' | translate }}</button>
     </div>
   </div>
 
@@ -92,7 +92,7 @@
                     <span style="font-size:15px;"><strong>{{headerDetail.hospitalName}}</strong></span><br />
                     <span style="font-size:15px;">{{headerDetail.address}}</span><br />
                     <span style="font-size:13px;">{{GeneralFieldLabel.PANNo}}: {{headerDetail.PANno}} , Tel: {{ headerDetail.tel}}</span><br />
-                    <span style="font-size:15px;"><strong> Inventory Unit </strong></span><br />
+                    <span style="font-size:15px;"><strong> {{ 'INVENTORY.INVENTORY_UNIT' | translate }} </strong></span><br />
                   </div>
                 </div>
               </div>
@@ -109,39 +109,39 @@
             </div>
             <div class="clear"></div>
             <div class="left" style="text-align:left;">
-              <div>PRF No.:<b> {{PurchaseRequestVM.PurchaseRequest.PRNumber}}</b></div>
-              <!-- <div *ngIf="!!PurchaseRequestVM.PurchaseRequest.VendorName">Vendor Name:<b> {{PurchaseRequestVM.PurchaseRequest.VendorName}}</b></div> -->
+              <div>{{ 'INVENTORY.PRF_NO' | translate }}:<b> {{PurchaseRequestVM.PurchaseRequest.PRNumber}}</b></div>
+              <!-- <div *ngIf="!!PurchaseRequestVM.PurchaseRequest.VendorName">{{ 'INVENTORY.VENDOR_NAME' | translate }}:<b> {{PurchaseRequestVM.PurchaseRequest.VendorName}}</b></div> -->
             </div>
             <div class="right" style="text-align:right;">
               <div>
-                PRF Date:<b> {{PurchaseRequestVM.PurchaseRequest.RequestDate | date : 'yyyy-MM-dd'}}</b>&nbsp;&nbsp;
+                {{ 'INVENTORY.PRF_DATE' | translate }}:<b> {{PurchaseRequestVM.PurchaseRequest.RequestDate | date : 'yyyy-MM-dd'}}</b>&nbsp;&nbsp;
                 <i *ngIf="PurchaseRequestVM.PurchaseRequest.RequestDate">{{PurchaseRequestVM.PurchaseRequest.RequestDate | nepaliDate:'format':'YYYY-MM-DD'}}
                   </i>
               </div>
             </div>
 
             <div class="clear"></div>
-            <p class="text-center btm-pad border-up-down"><b>&nbsp;PURCHASE&nbsp;REQUEST&nbsp;DETAILS&nbsp;PRINT</b></p>
+            <p class="text-center btm-pad border-up-down"><b>&nbsp;PURCHASE&nbsp;{{ 'INVENTORY.REQUEST' | translate }}&nbsp;DETAILS&nbsp;{{ 'COMMON.PRINT' | translate }}</b></p>
             <div class="clear"></div>
             <div class="clear footer"></div>
             <div *ngIf="PurchaseRequestVM.PurchaseRequest != null">
               <table border="1" rules="all" class="table table-striped table-hover req_table" style="background-color:initial;margin-top:10px;width:100%">
                 <thead>
                   <tr style="font-weight: bold;text-align:center">
-                    <td>Item Category</td>
-                    <td>Material Name</td>
-                    <!-- <td>Supplier Name</td> -->
-                    <td>UMO</td>
-                    <td>Item Code</td>
-                    <td>Quantity Required</td>
-                    <td>Quantity Avaiable In Stores</td>
-                    <td>Quantity verified On</td>
-                    <td>Supply Required Before</td>
-                    <td><b>Approved Quantity by Top Management</b></td>
-                    <td><b>Po No.& Date</b></td>
-                    <td><b>Supplier Invoice No. & Date</b></td>
-                    <!-- <td>Status</td>
-                  <td>Remarks</td> -->
+                    <td>{{ 'INVENTORY.ITEM_CATEGORY' | translate }}</td>
+                    <td>{{ 'INVENTORY.MATERIAL_NAME' | translate }}</td>
+                    <!-- <td>{{ 'INVENTORY.SUPPLIER_NAME' | translate }}</td> -->
+                    <td>{{ 'INVENTORY.UMO' | translate }}</td>
+                    <td>{{ 'INVENTORY.ITEM_CODE' | translate }}</td>
+                    <td>{{ 'INVENTORY.QUANTITY_REQUIRED' | translate }}</td>
+                    <td>{{ 'INVENTORY.QUANTITY_AVAIABLE_IN_STORES' | translate }}</td>
+                    <td>{{ 'INVENTORY.QUANTITY_VERIFIED_ON' | translate }}</td>
+                    <td>{{ 'INVENTORY.SUPPLY_REQUIRED_BEFORE' | translate }}</td>
+                    <td><b>{{ 'INVENTORY.APPROVED_QUANTITY_BY_TOP_MANAGEMENT' | translate }}</b></td>
+                    <td><b>{{ 'INVENTORY.PO_NO_DATE' | translate }}</b></td>
+                    <td><b>{{ 'INVENTORY.SUPPLIER_INVOICE_NO_DATE' | translate }}</b></td>
+                    <!-- <td>{{ 'COMMON.STATUS' | translate }}</td>
+                  <td>{{ 'COMMON.REMARKS' | translate }}</td> -->
                   </tr>
                 </thead>
                 <tbody *ngFor="let reqItm of PurchaseRequestVM.RequestedItemList;let i = index">
@@ -179,16 +179,16 @@
 
               <!-- <div *ngIf="!!PurchaseRequestVM.PurchaseRequest.Remarks" class="col-md-12 hidden-in-print text-left"
             style="margin:10px 0">
-            <label for="Remarks" class="col-md-2">Remarks<span class="right">:</span></label>&nbsp;&nbsp;
+            <label for="Remarks" class="col-md-2">{{ 'COMMON.REMARKS' | translate }}<span class="right">:</span></label>&nbsp;&nbsp;
             <span>{{PurchaseRequestVM.PurchaseRequest.Remarks}}</span>
           </div> -->
               <hr />
               <table width="100%" align="center">
                 <thead>
                   <tr>
-                    <th>Prepared by Stores-RM/PM in Charge Sign with Date</th>
-                    <th>Processd by Purchase In Charge Sign With Date</th>
-                    <th>Approved by Top management Sign with Date</th>
+                    <th>{{ 'INVENTORY.PREPARED_BY_STORESRMPM_IN_CHARGE_SIGN_WITH_DATE' | translate }}</th>
+                    <th>{{ 'INVENTORY.PROCESSD_BY_PURCHASE_IN_CHARGE_SIGN_WITH_DATE' | translate }}</th>
+                    <th>{{ 'INVENTORY.APPROVED_BY_TOP_MANAGEMENT_SIGN_WITH_DATE' | translate }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -202,15 +202,15 @@
             </div>
             <div class="col-md-12" *ngIf="PurchaseRequestVM.PurchaseRequest != null" style="font-size: 12px;">
               <div class="col-md-2" style="text-align: left;padding:0px;">
-                <div><u>Requested By</u>:</div>
+                <div><u>{{ 'INVENTORY.REQUESTED_BY' | translate }}</u>:</div>
                 <div>{{PurchaseRequestVM.RequestingUser.Name}}</div>
                 <div>{{PurchaseRequestVM.RequestingUser.Date | date : 'medium'}}</div>
               </div>
               <div class="col-md-5" style="text-align: left;padding:0px;" *ngIf="PurchaseRequestVM.Verifiers != null">
-                <u>Verified By</u>:
+                <u>{{ 'INVENTORY.VERIFIED_BY' | translate }}</u>:
                 <div *ngFor="let verifier of PurchaseRequestVM.Verifiers;let i = index;">
                   {{i+1}}&nbsp;{{verifier.Name}}&nbsp;({{verifier.Date | date : 'medium'}})&nbsp;
-                  <div><span *ngIf="!!verifier.Remarks "><i>Rem:</i><span [title]="verifier.Remarks">{{verifier.Remarks}}</span></span></div>
+                  <div><span *ngIf="!!verifier.Remarks "><i>{{ 'INVENTORY.REM' | translate }}:</i><span [title]="verifier.Remarks">{{verifier.Remarks}}</span></span></div>
                 </div>
               </div>
             </div>
@@ -224,10 +224,10 @@
     <div class="row center-style">
       <div class="col-md-12 col-xs-12 ">
         <button [disabled]="isModificationApplicable==false" class="btn btn-warning" (click)="EditRequest()">
-          Edit&nbsp;&nbsp;<i class="fa fa-edit"></i>
+          {{ 'COMMON.EDIT' | translate }}&nbsp;&nbsp;<i class="fa fa-edit"></i>
         </button>
         <button [disabled]="isModificationApplicable==false" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#WithdrawPopup">
-          Withdraw&nbsp;&nbsp;<i class="fa fa-minus"></i>
+          {{ 'INVENTORY.WITHDRAW' | translate }}&nbsp;&nbsp;<i class="fa fa-minus"></i>
         </button>
       </div>
     </div>
@@ -245,14 +245,14 @@
     <div class="modal-content" *ngIf="PurchaseRequestVM.PurchaseRequest">
       <div class="modal-header">
         <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
-        <h3 class="modal-title">Warning</h3>
+        <h3 class="modal-title">{{ 'INVENTORY.WARNING' | translate }}</h3>
       </div>
       <div class="modal-body" style="height:16em">
-        <p>Are you sure you want to withdraw this Purchase Request?</p>
-        <i>If yes, Remarks is mandatory.</i>
+        <p>{{ 'INVENTORY.ARE_YOU_SURE_YOU_WANT_TO_WITHDRAW_THIS_PURCHASE_REQUEST' | translate }}</p>
+        <i>{{ 'INVENTORY.IF_YES_REMARKS_IS_MANDATORY' | translate }}.</i>
         <div class="col-md-12" style="margin-top:15px">
           <div class="col-md-4">
-            <b>Withdraw Remarks<i style="color:red">*</i><span class="right">:</span></b>
+            <b>{{ 'INVENTORY.WITHDRAW_REMARKS' | translate }}<i style="color:red">*</i><span class="right">:</span></b>
           </div>
           <div class="col-md-8">
             <textarea style="height:7em;width:100%;" type="text" name="cancelRemarks" [(ngModel)]="PurchaseRequestVM.PurchaseRequest.CancelRemarks"></textarea>
@@ -260,8 +260,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default btn btn-danger" data-bs-dismiss="modal" [disabled]="PurchaseRequestVM.PurchaseRequest.CancelRemarks == ''" (click)="WithdrawPurchaseRequest()">Yes</button>
-        <button type="button" class="btn btn-default btn btn-success" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-default btn btn-danger" data-bs-dismiss="modal" [disabled]="PurchaseRequestVM.PurchaseRequest.CancelRemarks == ''" (click)="WithdrawPurchaseRequest()">{{ 'COMMON.YES' | translate }}</button>
+        <button type="button" class="btn btn-default btn btn-success" data-bs-dismiss="modal">{{ 'COMMON.NO' | translate }}</button>
       </div>
     </div>
   </div>

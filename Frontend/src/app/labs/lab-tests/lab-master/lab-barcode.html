@@ -22,8 +22,8 @@ table thead tr th:first-child {
       <div class="clearfix lab-header-top">
         <div class="caption lb-caption pull-left"> 
           <!-- <i class="glyphicon glyphicon-asterisk font-green-turquoise"></i> --> 
-          <span class="caption-subject">Sample-Summary-Page</span> </div>
-        <div class="pull-right"> <a (click)="pageLoading=true; ReloadPageData();" class="btn primary-btn"><i class="fa fa-refresh "></i> Reload</a> </div>
+          <span class="caption-subject">{{ 'LABS.SAMPLESUMMARYPAGE' | translate }}</span> </div>
+        <div class="pull-right"> <a (click)="pageLoading=true; ReloadPageData();" class="btn primary-btn"><i class="fa fa-refresh "></i> {{ 'LABS.RELOAD' | translate }}</a> </div>
       </div>
     </div>
   </div>
@@ -32,8 +32,8 @@ table thead tr th:first-child {
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-3">
-            <button *ngIf="!qrService.show" (click)="ShowQrScanner()" class="btn primary-btn" id="showQrScan">Show Qr-Scan</button>
-            <button *ngIf="qrService.show" (click)="HideQrScanner()" class="btn btn-danger" id="showQrScan">Hide Qr-Scan</button>
+            <button *ngIf="!qrService.show" (click)="ShowQrScanner()" class="btn primary-btn" id="showQrScan">{{ 'LABS.SHOW_QRSCAN' | translate }}</button>
+            <button *ngIf="qrService.show" (click)="HideQrScanner()" class="btn btn-danger" id="showQrScan">{{ 'LABS.HIDE_QRSCAN' | translate }}</button>
           </div>
           <div class="col-md-9">
             <danphe-qr-reader *ngIf="qrService.show" [department]="'lab'" (on-ReadFailed)="ReadFailed($event)"
@@ -44,13 +44,13 @@ table thead tr th:first-child {
       <div class="col-md-12">
         <div class="row m1">
           <div class="col-md-4 col-sm-4">
-            <div class="search-wrap"><strong>Search Patient : </strong>
+            <div class="search-wrap"><strong>{{ 'LABS.SEARCH_PATIENT' | translate }} </strong>
               <div class="autocomplete-item">
                 <input danphe-auto-complete class="form-control round-input" aria-label="search"
 				   [(ngModel)]="patientToSearch"
 				   [source]="allPatientList"
 				   [list-formatter]="patientListFormatter"
-				   placeholder="-- Search Patient --"
+				   [placeholder]="'LABS.SEARCH_PATIENT_1' | translate"
 				   display-property-name="ShortName"
 				   (focusout)="GetAllDataByPatientName()"
 				   onClick="this.select();"
@@ -62,14 +62,14 @@ table thead tr th:first-child {
           </div>
           <div class="col-md-8 col-sm-8">
             <div class="lab_form_wrap">
-              <div><strong>Bar-Code Number :</strong>
+              <div><strong>{{ 'LABS.BARCODE_NUMBER' | translate }}</strong>
                 <input id="barCodeSearchInput" type="number" (keydown.enter)="EnterPressed($event)"  [(ngModel)]="barCodeNumber" name="barCodeNumber" value="" onwheel="this.blur()" />
               </div>
-              <div> <strong>Run Num :</strong> &nbsp;
+              <div> <strong>{{ 'LABS.RUN_NUM' | translate }}</strong> &nbsp;
                 <input id="runNumberInput" type="text" (keydown.enter)="EnterPressed($event)"  [(ngModel)]="runNumber" name="runNumber" value="" />
               </div>
               <div class="text-right">
-                <button (click)="loading=true;GetAllLabDataByBarcodeNumber();" class="btn primary-btn" id="submitBarcode">ShowDetails</button>
+                <button (click)="loading=true;GetAllLabDataByBarcodeNumber();" class="btn primary-btn" id="submitBarcode">{{ 'LABS.SHOWDETAILS' | translate }}</button>
               </div>
             </div>
           </div>
@@ -114,11 +114,11 @@ table thead tr th:first-child {
           <div class="table-responsive">
             <table class="table table-bordered" style="margin-bottom: 0px; margin-top: 15px;background: #006687;color: #fff;">
               <tr>
-                <td>Hospital Number: {{allLabDataByBarCodeNumber.PatientCode}}</td>
-                <td>Name: {{allLabDataByBarCodeNumber.PatientName}}</td>
-                <td>Age/Sex: {{allLabDataByBarCodeNumber.AgeSex}}</td>
+                <td>{{ 'GRID_HEADERS.HOSPITAL_NUMBER' | translate }}: {{allLabDataByBarCodeNumber.PatientCode}}</td>
+                <td>{{ 'LABS.NAME_2' | translate }} {{allLabDataByBarCodeNumber.PatientName}}</td>
+                <td>{{ 'LABS.AGESEX_1' | translate }} {{allLabDataByBarCodeNumber.AgeSex}}</td>
                 <td>SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-                <td>BarCodeNumber: {{allLabDataByBarCodeNumber.BarCodeNumber}}</td>
+                <td>{{ 'LABS.BARCODENUMBER_1' | translate }}: {{allLabDataByBarCodeNumber.BarCodeNumber}}</td>
               </tr>
             </table>
           </div>
@@ -134,19 +134,19 @@ table thead tr th:first-child {
             <table *ngIf="allLabDataByBarCodeNumber.LabRequisitions && allLabDataByBarCodeNumber.LabRequisitions.length > 0" class="table table-hover table-bordered" style="margin-bottom: 0px;">
               <thead>
                 <tr>
-                  <td colspan="8" style="background: #126687; color: #fff; font-weight: 700;text-align: center;">Sample Not Collected</td>
+                  <td colspan="8" style="background: #126687; color: #fff; font-weight: 700;text-align: center;">{{ 'LABS.SAMPLE_NOT_COLLECTED' | translate }}</td>
                 </tr>
               </thead>
               <thead>
                 <tr>
-                  <th>Requisition Date</th>
-                  <th>Hospital Number</th>
-                  <th>Patient Name</th>
-                  <th>Age/Sex</th>
-                  <th>Requesting Dept.</th>
-                  <th>Visit Type</th>
-                  <th>RunNumType</th>
-                  <th style="width: 125px;">Actions</th>
+                  <th>{{ 'LABS.REQUISITION_DATE' | translate }}</th>
+                  <th>{{ 'GRID_HEADERS.HOSPITAL_NUMBER' | translate }}</th>
+                  <th>{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+                  <th>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</th>
+                  <th>{{ 'LABS.REQUESTING_DEPT' | translate }}</th>
+                  <th>{{ 'LABS.VISIT_TYPE' | translate }}</th>
+                  <th>{{ 'LABS.RUNNUMTYPE' | translate }}</th>
+                  <th style="width: 125px;">{{ 'GRID_HEADERS.ACTIONS' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -158,7 +158,7 @@ table thead tr th:first-child {
                   <td>{{requisition.WardName}}</td>
                   <td>{{requisition.VisitType}}</td>
                   <td>{{requisition.RunNumberType}}</td>
-                  <td><button class="grid-action" (click)="ViewDetails(requisition)">View Details</button></td>
+                  <td><button class="grid-action" (click)="ViewDetails(requisition)">{{ 'LABS.VIEW_DETAILS' | translate }}</button></td>
                 </tr>
               </tbody>
             </table>
@@ -171,19 +171,19 @@ table thead tr th:first-child {
             <table *ngIf="allLabDataByBarCodeNumber.AddResult && allLabDataByBarCodeNumber.AddResult.length > 0" class="table table-hover table-bordered" style="margin-bottom: 0px;">
               <thead>
                 <tr>
-                  <td [attr.colspan]="showDetailTestsByRunNumber ? '8' : '6'" style="background: #f35252; color: #fff; font-weight: 700;text-align: center;">Results Not Added</td>
+                  <td [attr.colspan]="showDetailTestsByRunNumber ? '8' : '6'" style="background: #f35252; color: #fff; font-weight: 700;text-align: center;">{{ 'LABS.RESULTS_NOT_ADDED' | translate }}</td>
                 </tr>
               </thead>
               <thead>
                 <tr>
-                  <th *ngIf="showDetailTestsByRunNumber">Patient Name</th>
-                  <th>Test Name</th>
-                  <th>Category</th>
-                  <th>Run Number</th>
-                  <th *ngIf="showDetailTestsByRunNumber">Sample Coll. On</th>
-                  <th>Visit Type</th>
-                  <th>Ward Name</th>
-                  <th style="width: 125px;">Actions</th>
+                  <th *ngIf="showDetailTestsByRunNumber">{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+                  <th>{{ 'LABS.TEST_NAME' | translate }}</th>
+                  <th>{{ 'LABS.CATEGORY_1' | translate }}</th>
+                  <th>{{ 'LABS.RUN_NUMBER' | translate }}</th>
+                  <th *ngIf="showDetailTestsByRunNumber">{{ 'LABS.SAMPLE_COLL_ON' | translate }}</th>
+                  <th>{{ 'LABS.VISIT_TYPE' | translate }}</th>
+                  <th>{{ 'GRID_HEADERS.WARDNAME' | translate }}</th>
+                  <th style="width: 125px;">{{ 'GRID_HEADERS.ACTIONS' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -195,7 +195,7 @@ table thead tr th:first-child {
                   <td *ngIf="showDetailTestsByRunNumber">{{resToAdd.SampleDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
                   <td>{{resToAdd.VisitType}}</td>
                   <td>{{resToAdd.WardName}}</td>
-                  <td><button class="grid-action" (click)="GetReportDetail(resToAdd,1)">Add Result</button></td>
+                  <td><button class="grid-action" (click)="GetReportDetail(resToAdd,1)">{{ 'LABS.ADD_RESULT' | translate }}</button></td>
                 </tr>
               </tbody>
             </table>
@@ -208,18 +208,18 @@ table thead tr th:first-child {
             <table *ngIf="allLabDataByBarCodeNumber.PendingReport && allLabDataByBarCodeNumber.PendingReport.length > 0" class="table table-hover  table-bordered" style="margin-bottom: 0px;">
               <thead>
                 <tr>
-                  <td [attr.colspan]="showDetailTestsByRunNumber ? '7' : '6'" style="background: #e09435; color: #fff; font-weight: 700;text-align: center;">Reports Pending</td>
+                  <td [attr.colspan]="showDetailTestsByRunNumber ? '7' : '6'" style="background: #e09435; color: #fff; font-weight: 700;text-align: center;">{{ 'LABS.REPORTS_PENDING' | translate }}</td>
                 </tr>
               </thead>
               <thead>
                 <tr>
-                  <th *ngIf="showDetailTestsByRunNumber">Patient Name</th>
-                  <th>Test Name</th>
-                  <th>Run Number</th>
-                  <th *ngIf="showDetailTestsByRunNumber">Sample Coll. On</th>
-                  <th>Visit Type</th>
-                  <th>Ward Name</th>
-                  <th style="width: 125px;">Actions</th>
+                  <th *ngIf="showDetailTestsByRunNumber">{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+                  <th>{{ 'LABS.TEST_NAME' | translate }}</th>
+                  <th>{{ 'LABS.RUN_NUMBER' | translate }}</th>
+                  <th *ngIf="showDetailTestsByRunNumber">{{ 'LABS.SAMPLE_COLL_ON' | translate }}</th>
+                  <th>{{ 'LABS.VISIT_TYPE' | translate }}</th>
+                  <th>{{ 'GRID_HEADERS.WARDNAME' | translate }}</th>
+                  <th style="width: 125px;">{{ 'GRID_HEADERS.ACTIONS' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -230,7 +230,7 @@ table thead tr th:first-child {
                   <td *ngIf="showDetailTestsByRunNumber">{{resToAdd.SampleDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
                   <td>{{resToAdd.VisitType}}</td>
                   <td>{{resToAdd.WardName}}</td>
-                  <td><button (click)="GetCurrentPendingReportDetail(resToAdd)" class="grid-action">View Details</button></td>
+                  <td><button (click)="GetCurrentPendingReportDetail(resToAdd)" class="grid-action">{{ 'LABS.VIEW_DETAILS' | translate }}</button></td>
                 </tr>
               </tbody>
             </table>
@@ -243,19 +243,19 @@ table thead tr th:first-child {
             <table *ngIf="allLabDataByBarCodeNumber.FinalReport && allLabDataByBarCodeNumber.FinalReport.length > 0" class="table table-hover  table-bordered" style="margin-bottom: 0px;">
               <thead>
                 <tr>
-                  <td [attr.colspan]="showDetailTestsByRunNumber ? '8' : '7'" style="background: #1c671f; color: #fff; font-weight: 700;text-align: center;">Reports Generated</td>
+                  <td [attr.colspan]="showDetailTestsByRunNumber ? '8' : '7'" style="background: #1c671f; color: #fff; font-weight: 700;text-align: center;">{{ 'LABS.REPORTS_GENERATED' | translate }}</td>
                 </tr>
               </thead>
               <thead>
                 <tr>
-                  <th *ngIf="showDetailTestsByRunNumber">Patient Name</th>
-                  <th>Test Name</th>
-                  <th>Run Number</th>
-                  <th *ngIf="showDetailTestsByRunNumber">Sample Coll. On</th>
-                  <th>Visit Type</th>
-                  <th>Ward Name</th>
-                  <th>Is Printed</th>
-                  <th style="width: 125px;">Actions</th>
+                  <th *ngIf="showDetailTestsByRunNumber">{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+                  <th>{{ 'LABS.TEST_NAME' | translate }}</th>
+                  <th>{{ 'LABS.RUN_NUMBER' | translate }}</th>
+                  <th *ngIf="showDetailTestsByRunNumber">{{ 'LABS.SAMPLE_COLL_ON' | translate }}</th>
+                  <th>{{ 'LABS.VISIT_TYPE' | translate }}</th>
+                  <th>{{ 'GRID_HEADERS.WARDNAME' | translate }}</th>
+                  <th>{{ 'LABS.IS_PRINTED' | translate }}</th>
+                  <th style="width: 125px;">{{ 'GRID_HEADERS.ACTIONS' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -266,9 +266,9 @@ table thead tr th:first-child {
                   <td *ngIf="showDetailTestsByRunNumber">{{finalReport.SampleDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
                   <td>{{finalReport.VisitType}}</td>
                   <td>{{finalReport.WardName}}</td>
-                  <td><b style="color: green;" *ngIf="finalReport.IsPrinted">Yes</b><b style="color: red;" *ngIf="!finalReport.IsPrinted">No</b></td>
-                  <td *ngIf="finalReport.IsValidToPrint"><button (click)="GetCurrentFinalReportDetail(finalReport)" class="grid-action">View Details</button></td>
-                  <td *ngIf="!finalReport.IsValidToPrint"><p class="margin-0-vr" style="color: red; font-weight: 700;">Bill Not Paid</p></td>
+                  <td><b style="color: green;" *ngIf="finalReport.IsPrinted">{{ 'COMMON.YES' | translate }}</b><b style="color: red;" *ngIf="!finalReport.IsPrinted">{{ 'COMMON.NO' | translate }}</b></td>
+                  <td *ngIf="finalReport.IsValidToPrint"><button (click)="GetCurrentFinalReportDetail(finalReport)" class="grid-action">{{ 'LABS.VIEW_DETAILS' | translate }}</button></td>
+                  <td *ngIf="!finalReport.IsValidToPrint"><p class="margin-0-vr" style="color: red; font-weight: 700;">{{ 'LABS.BILL_NOT_PAID' | translate }}</p></td>
                 </tr>
               </tbody>
             </table>

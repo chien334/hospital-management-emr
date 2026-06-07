@@ -4,22 +4,22 @@
         <div class="col-md-4 col-md-offset-4">
           <div class="modelbox-div clearfix">
             <div class="caption custom-caption">
-              <h3> <span *ngIf="!update">Add Reporting Items</span> <span *ngIf="update">Update Reporting Items</span> </h3>
-              <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
+              <h3> <span *ngIf="!update">{{ 'SETTINGS_NEW.ADD_REPORTING_ITEMS' | translate }}</span> <span *ngIf="update">{{ 'SETTINGS_NEW.UPDATE_REPORTING_ITEMS' | translate }}</span> </h3>
+              <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
             <form [formGroup]="currentReportingItem.ReportingItemsValidator" class="form-horizontal hm-form">
               <div class="form-body">
                 <div class="form-group">
-                  <label class="control-label col-md-5" for="ReportName">Report Name<sup class="color-red">*</sup><b>:</b>
+                  <label class="control-label col-md-5" for="ReportName">{{ 'SETTINGS_NEW.REPORT_NAME' | translate }}<sup class="color-red">*</sup><b>:</b>
                   </label>
                   <div class="col-md-6">
                     <select id="ReportName" [(ngModel)]="currentReportingItem.DynamicReportId" [ngModelOptions]="{standalone: true}" (change)="OnReportChangeName(currentReportingItem.DynamicReportId)" class="form-control">
-                      <option value="0">--Select--</option>
+                      <option value="0">{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
                       <option *ngFor="let report of dynamicReportNameList" value="{{report.DynamicReportId}}">{{report.ReportName}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-md-5">Report Code<b>:</b></label>
+                  <label class="control-label col-md-5">{{ 'SETTINGS_NEW.REPORT_CODE' | translate }}<b>:</b></label>
                   <div class="col-md-7">
                   <span>
                     {{dynamicReportNameObj.ReportCode}}
@@ -29,7 +29,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-md-5">Report Description<b>:</b></label>
+                  <label class="control-label col-md-5">{{ 'SETTINGS_NEW.REPORT_DESCRIPTION' | translate }}<b>:</b></label>
                   <div class="col-md-7">
                     <span>
                       {{dynamicReportNameObj.ReportDescription}}
@@ -39,27 +39,27 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-md-5">Reporting Items Name<sup>*</sup><b>:</b></label>
+                  <label class="control-label col-md-5">{{ 'SETTINGS_NEW.REPORTING_ITEMS_NAME' | translate }}<sup>*</sup><b>:</b></label>
                   <div class="col-md-7">
                     <input type="text" name="" value="" class="form-control" maxlength="50"
                                          [(ngModel)]="currentReportingItem.ReportingItemName"
                                          formControlName="ReportingItemName"
-                                         id="ReportingItemName" placeholder="Reporting ItemName" />
-                    <span Class="color-red font-sm" [hidden]="currentReportingItem.IsValidCheck('ReportingItemName','required') || !(currentReportingItem.IsDirty('ReportingItemName'))">Enter Reporting Item Name</span> 
+                                         id="ReportingItemName" [placeholder]="'SETTINGS_NEW.REPORTING_ITEMNAME' | translate" />
+                    <span Class="color-red font-sm" [hidden]="currentReportingItem.IsValidCheck('ReportingItemName','required') || !(currentReportingItem.IsDirty('ReportingItemName'))">{{ 'SETTINGS_NEW.ENTER_REPORTING_ITEM_NAME' | translate }}</span> 
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-md-5"> Report Count Unit <b>:</b></label>
+                  <label class="control-label col-md-5"> {{ 'SETTINGS_NEW.REPORT_COUNT_UNIT' | translate }} <b>:</b></label>
                   <div class="col-md-7">
                     <select id="ReportName" [(ngModel)]="currentReportingItem.RptCountUnit" [ngModelOptions]="{standalone: true}" class="form-control">
-                      <option value="undefined">--Select--</option>
-                      <option value="number">Number</option>
-                      <option value="person">Person</option>
+                      <option value="undefined">{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
+                      <option value="number">{{ 'SETTINGS_NEW.NUMBER' | translate }}</option>
+                      <option value="person">{{ 'SETTINGS_NEW.PERSON' | translate }}</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-md-5">Is Active <b>:</b> </label>
+                  <label class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                   <div class="col-md-7">
                     <div class="input-group">
                       <div class="icheck-inline">
@@ -75,8 +75,8 @@
                 
               </div>
                 <div class="panel-footer">
-                  <input  id="savebtn"  type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="Add()" value="Add" />
-                  <input  id="savebtn"  type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" value="Update" />
+                  <input  id="savebtn"  type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="Add()" [value]="'SETTINGS_NEW.ADD' | translate" />
+                  <input  id="savebtn"  type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
                 </div>
             </form>
           </div>

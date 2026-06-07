@@ -4,9 +4,9 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="modelbox-div clearfix">
                     <div class="caption custom-caption">
-                        <h3> <span *ngIf="!update">Add Bed Feature Scheme And PriceCategory</span> <span *ngIf="update">Update Bed Feature Scheme And
+                        <h3> <span *ngIf="!update">{{ 'SETTINGS_NEW.ADD_BED_FEATURE_SCHEME_AND_PRICECATEGORY' | translate }}</span> <span *ngIf="update">Update Bed Feature Scheme And
                                 PriceCategory</span> </h3>
-                        <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                        <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                     </div>
                     <div>
                         <div class="col-md-12">
@@ -17,9 +17,9 @@
                                             <form [formGroup]="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator"
                                                   class="form-horizontal hm-form">
                                                 <div class="text-center" style="display: flex;align-items: center;">
-                                                    <label>Bed Feature:<sup style="color: red">*</sup></label>
+                                                    <label>{{ 'SETTINGS_NEW.BED_FEATURE_1' | translate }}<sup style="color: red">*</sup></label>
                                                     <input danphe-auto-complete [source]="bedFeatureList" [(ngModel)]="selectedBedFeature"
-                                                           placeholder="Select Bed Feature" max-num-list="8" min-chars="0"
+                                                           [placeholder]="'SETTINGS_NEW.SELECT_BED_FEATURE' | translate" max-num-list="8" min-chars="0"
                                                            display-property-name="BedFeatureName" [list-formatter]="BedFeatureFormatter"
                                                            onclick="select()" (valueChanged)="BedFeatureEventHandler()" formControlName="BedFeatureId"
                                                            value-property-name="BedFeatureId" class="form-control">
@@ -27,7 +27,7 @@
                                                 <span
                                                       *ngIf="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.dirty && BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.invalid ">
                                                     <span style="color: red"
-                                                          *ngIf="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.controls['BedFeatureId'].hasError('required')">required</span>
+                                                          *ngIf="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.controls['BedFeatureId'].hasError('required')">{{ 'SETTINGS_NEW.REQUIRED' | translate }}</span>
 
                                                 </span>
                                             </form>
@@ -36,9 +36,9 @@
                                             <form [formGroup]="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator"
                                                   class="form-horizontal hm-form">
                                                 <div class="text-center" style="display: flex; align-items: center;">
-                                                    <label>Scheme:<sup style="color: red">*</sup></label>
+                                                    <label>{{ 'COMMON.SCHEME' | translate }}<sup style="color: red">*</sup></label>
                                                     <input danphe-auto-complete [source]="BillSchemeList" [(ngModel)]="selectedScheme"
-                                                           placeholder="Select Scheme" max-num-list="8" min-chars="0"
+                                                           [placeholder]="'SETTINGS_NEW.SELECT_SCHEME' | translate" max-num-list="8" min-chars="0"
                                                            display-property-name="SchemeName" [list-formatter]="SchemeFormatter" onclick="select()"
                                                            (valueChanged)="SchemeEventHandler()" formControlName="SchemeId"
                                                            value-property-name="SchemeId">
@@ -46,7 +46,7 @@
                                                 <span
                                                       *ngIf="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.dirty && BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.invalid ">
                                                     <span style="color: red"
-                                                          *ngIf="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.controls['SchemeId'].hasError('required')">required</span>
+                                                          *ngIf="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.controls['SchemeId'].hasError('required')">{{ 'SETTINGS_NEW.REQUIRED' | translate }}</span>
 
                                                 </span>
                                             </form>
@@ -55,9 +55,9 @@
                                             <form [formGroup]="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator"
                                                   class="form-horizontal hm-form">
                                                 <div class="text-center" style="display: flex; align-items: center;">
-                                                    <label>Price Category:<sup style="color: red">*</sup></label>
+                                                    <label>{{ 'SETTINGS_NEW.PRICE_CATEGORY' | translate }}<sup style="color: red">*</sup></label>
                                                     <input danphe-auto-complete [source]="PriceCategoryList" [(ngModel)]="selectedPriceCategory"
-                                                           placeholder="Select Price Category" max-num-list="8" min-chars="0"
+                                                           [placeholder]="'SETTINGS_NEW.SELECT_PRICE_CATEGORY' | translate" max-num-list="8" min-chars="0"
                                                            display-property-name="PriceCategoryName" [list-formatter]="PriceCategoryFormatter"
                                                            onclick="select()" (valueChanged)="PriceCategoryEventHandler()"
                                                            formControlName="PriceCategoryId" value-property-name="PriceCategoryId">
@@ -65,7 +65,7 @@
                                                 <span
                                                       *ngIf="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.dirty && BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.invalid ">
                                                     <span style="color: red"
-                                                          *ngIf="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.controls['PriceCategoryId'].hasError('required')">required</span>
+                                                          *ngIf="BedFeatureSchemePriceCategory.BedFeatureSchemePriceCategoryValidator.controls['PriceCategoryId'].hasError('required')">{{ 'SETTINGS_NEW.REQUIRED' | translate }}</span>
 
                                                 </span>
                                             </form>
@@ -74,10 +74,10 @@
                                                    class="fa fa-plus"></i></button></td>
                                     </tr>
                                     <tr *ngIf="!update">
-                                        <th>Bed Feature Name</th>
-                                        <th>Scheme Name</th>
-                                        <th>Price Category</th>
-                                        <th>Action</th>
+                                        <th>{{ 'SETTINGS_NEW.BED_FEATURE_NAME' | translate }}</th>
+                                        <th>{{ 'SETTINGS_NEW.SCHEME_NAME' | translate }}</th>
+                                        <th>{{ 'SETTINGS_NEW.PRICE_CATEGORY_1' | translate }}</th>
+                                        <th>{{ 'COMMON.ACTION' | translate }}</th>
                                     </tr>
                                     <tr *ngFor="let bedSchemePriceCateoryMap of BedFeatureSchemePriceCategoryMaps; let i =index;">
                                         <td>{{bedSchemePriceCateoryMap.BedFeatureName}}</td>
@@ -91,9 +91,9 @@
                         </div>
                     </div>
                     <div class="col-md-12 text-right" style="margin-top: 10px;margin-bottom: 10px;">
-                        <input type="button" class="btn btn-green" [disabled]="loading" *ngIf="!update" (click)="Save()" value="Save" />
-                        <input type="button" class="btn btn-primary" *ngIf="update" (click)="Update()" value="Update" />
-                        <input type="button" class="btn btn-warning" *ngIf="!update" (click)="Discard()" value="Discard" />
+                        <input type="button" class="btn btn-green" [disabled]="loading" *ngIf="!update" (click)="Save()" [value]="'COMMON.SAVE' | translate" />
+                        <input type="button" class="btn btn-primary" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
+                        <input type="button" class="btn btn-warning" *ngIf="!update" (click)="Discard()" [value]="'COMMON.DISCARD' | translate" />
                     </div>
                 </div>
             </div>

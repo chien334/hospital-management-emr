@@ -5,7 +5,7 @@
 </style>
 <div class="wrapper">
   <div class="row m1">
-    <div class="col-md-2"> <a class="btn blue bordered btn-sm" name="name" (click)="AddNewLabTestComponent()"> <i class="fa fa-plus"></i>Add New Lab Test Component </a> </div>
+    <div class="col-md-2"> <a class="btn blue bordered btn-sm" name="name" (click)="AddNewLabTestComponent()"> <i class="fa fa-plus"></i>{{ 'LABS.ADD_NEW_LAB_TEST_COMPONENT' | translate }} </a> </div>
   </div>
   <danphe-grid [grid-colDefaults]="labTestComponentGridCol" [grid-data]="labTestComponentList" (grid-actions)="EditComponent($event)"> </danphe-grid>
   
@@ -15,7 +15,7 @@
       <div class="col-md-12">
         <div class="modelbox-div no-padding">
           <div class="modelbox-header">
-            <h4 class="margin-0-vr"> <span *ngIf="!update">Add Components</span> <span *ngIf="update">Update Component</span> </h4>
+            <h4 class="margin-0-vr"> <span *ngIf="!update">{{ 'LABS.ADD_COMPONENTS' | translate }}</span> <span *ngIf="update">{{ 'LABS.UPDATE_COMPONENT' | translate }}</span> </h4>
           </div>
           <div class="modelbox-body">
             <add-labTestComponent [allLabTestcomponentList]="labTestComponentList"

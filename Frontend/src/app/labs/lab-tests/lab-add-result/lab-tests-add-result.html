@@ -55,23 +55,23 @@
       <div class="flex-container">
         <div class="info-item text-capitalize flex-2" *ngIf="allowRunNoChange">
           <p>
-            <b>{{templateReport.Lookups.VisitType}} Run Number :</b>
+            <b>{{templateReport.Lookups.VisitType}} {{ 'LABS.RUN_NUMBER' | translate }} :</b>
             {{templateReport.Lookups.SampleCodeFormatted}} &nbsp;
-            <a (click)="ConfirmChangeRunNumber()"> (Change) </a>
+            <a (click)="ConfirmChangeRunNumber()"> {{ 'LABS.CHANGE' | translate }} </a>
           </p>
         </div>
         <div *ngIf="patientService.globalPatient.WardName" class="info-item text-capitalize flex-2">
           <p>
-            <b>Ward :</b> {{patientService.globalPatient.WardName}}
-            <span class="bold green" *ngIf="hasInsurance">(Under Insurance)</span>
+            <b>{{ 'LABS.WARD' | translate }}</b> {{patientService.globalPatient.WardName}}
+            <span class="bold green" *ngIf="hasInsurance">{{ 'LABS.UNDER_INSURANCE' | translate }}</span>
           </p>
         </div>
         <div *ngIf="patientService.globalPatient.WardName" class="info-item text-capitalize flex-2">
-          <p><b>Prescribed By :</b> {{templateReport.Lookups.PrescriberName}}</p>
+          <p><b>{{ 'LABS.PRESCRIBED_BY' | translate }}</b> {{templateReport.Lookups.PrescriberName}}</p>
         </div>
         <div *ngIf="showMachineResultLoadButton && !isEditResult" class="info-item text-capitalize">
           <button class="btn green btn-success " [disabled]="loading" (click)="loading=true;LoadMachineResult()">
-            Load Machine Result
+            {{ 'LABS.LOAD_MACHINE_RESULT' | translate }}
             <i class="fa fa-search"></i>
           </button>
         </div>
@@ -93,12 +93,12 @@
                 </td>
               </tr>
               <tr class="bg-grad-header">
-                <th>Component</th>
-                <th width="270">Value</th>
-                <th width="130">Unit</th>
-                <th width="220">Range</th>
+                <th>{{ 'LABS.COMPONENT' | translate }}</th>
+                <th width="270">{{ 'LABS.VALUE' | translate }}</th>
+                <th width="130">{{ 'LABS.UNIT' | translate }}</th>
+                <th width="220">{{ 'LABS.RANGE' | translate }}</th>
                 <!--<th width="200">Remark</th>-->
-                <th width="100">Completed</th>
+                <th width="100">{{ 'LABS.COMPLETED' | translate }}</th>
                 <th></th>
               </tr>
             </thead>
@@ -106,7 +106,7 @@
               <ng-container *ngFor="let test of template.Tests; let j=index;">
                 <tr *ngIf="test.VendorDetail && !test.VendorDetail.IsDefault">
                   <td colspan="6" class="text-center vender-detail">
-                    Send to Vendor: {{test.VendorDetail.VendorName}}
+                    {{ 'LABS.SEND' | translate }} to {{ 'LABS.VENDOR_1' | translate }}: {{test.VendorDetail.VendorName}}
                   </td>
                 </tr>
                 <tr class="test-infos-detail">
@@ -116,13 +116,13 @@
                         <span class="test-title">{{j+1}}.&nbsp;{{test.TestName}}</span>
                       </div>
                       <div class="flex-1 text-black text-center">
-                        <b>Requested On:</b> {{
+                        <b>{{ 'LABS.REQUESTED_ON' | translate }}</b> {{
                         test.RequestDate |
                         DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'
                         }}
                       </div>
                       <div class="flex-1 text-black text-center">
-                        <b>Sample Collected By:</b> {{test.SampleCollectedBy}}
+                        <b>{{ 'LABS.SAMPLE_COLLECTED_BY_1' | translate }}</b> {{test.SampleCollectedBy}}
                       </div>
                     </div>
                   </td>
@@ -130,7 +130,7 @@
                     <label class="mt-checkbox mt-checkbox-outline">
                       <input autocomplete="off" *ngIf="!isEditResult" type="checkbox" [(ngModel)]="test.SelectAll"
                              class="zoomcheckbox margin-0-vr top-0" ng-checked="test.SelectAll"
-                             (change)="TestCheckBoxOnChange(test)" title="Check/Uncheck all components of: {{test.TestName}}"
+                             (change)="TestCheckBoxOnChange(test)" [title]="'LABS.CHECKUNCHECK_ALL_COMPONENTS_OF' | translate: { TestName: test.TestName }"
                              [ngModelOptions]="{standalone: true}" />
                       <span></span>
                     </label>
@@ -164,12 +164,12 @@
                       <span class="input_name">
                         <sup class="color-red">*</sup>
                         <input autocomplete="off" tabindex="1" class="cstm-res-input" [(ngModel)]="comp.ComponentName"
-                               placeholder="Component Name" type="text" formControlName="ComponentName" />
+                               [placeholder]="'LABS.COMPONENT_NAME_1' | translate" type="text" formControlName="ComponentName" />
                       </span>
                       <span class="color-red font-sm error-message"
                             *ngIf="comp.IsDynamic && comp.IsDirty('ComponentName')"
                             [hidden]="comp.IsValidCheck('ComponentName','required')">
-                        name is required
+                        {{ 'LABS.NAME_IS_REQUIRED' | translate }}
                       </span>
                     </div>
                   </td>
@@ -189,14 +189,14 @@
                              *ngIf="(comp.ValueType==null || comp.ValueType == 'string') && (comp.ControlType==null || comp.ControlType=='TextBox')"
                              tabindex="1" [(ngModel)]="comp.Value" style="width: 88% !important;"
                              (ngModelChange)="CheckComponentValueIsValid(test, comp, template.TemplateType,i,j,k)"
-                             (focusout)="CheckIfAbnormal(comp,test)" formControlName="Value" placeholder="enter value" />
+                             (focusout)="CheckIfAbnormal(comp,test)" formControlName="Value" [placeholder]="'LABS.ENTER_VALUE' | translate" />
                       <span class="color-red font-sm" *ngIf="comp.ControlType=='Label'"></span>
                       <div class="cstm-res-autocomplete pull-right"
                            *ngIf="comp.ValueType == 'string' && comp.ControlType=='SearchBox'">
                         <input autocomplete="off" danphe-auto-complete class="form-control cstm-res-input inputbox"
                                id="inputbox{{i}}{{j}}{{k}}" (keyup.enter)="GoToNextBox(i,j,k)"
                                [ngClass]="comp.IsValueValid ? 'bg-on' : 'bg-off'" formControlName="Value"
-                               [(ngModel)]="comp.Value" [source]="comp.ValueDataSource" placeholder="enter text"
+                               [(ngModel)]="comp.Value" [source]="comp.ValueDataSource" [placeholder]="'LABS.ENTER_TEXT_1' | translate"
                                display-property-name="Value" value-property-name="null" no-match-found-text=" "
                                onClick="this.select();" style="width: 88% !important;"
                                (ngModelChange)="CheckComponentValueIsValid(test, comp, template.TemplateType,i,j,k)"
@@ -205,7 +205,7 @@
                       </div>
                       <div class="test-error-msg pull-left" *ngIf="comp.IsSelected==true">
                         <i class="fa fa-close msg-icn-err" *ngIf="comp.IsDirty('Value') && !comp.IsValueValid"
-                           title="value is invalid"></i>
+                           [title]="'LABS.VALUE_IS_INVALID' | translate"></i>
                         <!-- <i *ngIf="comp.IsDirty('Value') && comp.IsAbnormal && comp.IsValueValid"
                           class="fa fa-warning msg-icn-warn" title="abnormal"></i> -->
                       </div>
@@ -225,7 +225,7 @@
                       {{comp.Unit}}
                     </span>
                     <span *ngIf="comp.IsDynamic">
-                      <input tabindex="1" class="cstm-res-input" [(ngModel)]="comp.Unit" placeholder="unit" type="text"
+                      <input tabindex="1" class="cstm-res-input" [(ngModel)]="comp.Unit" [placeholder]="'LABS.UNIT_1' | translate" type="text"
                              formControlName="Unit" />
                     </span>
                   </td>
@@ -249,7 +249,7 @@
                     </span>
                     <span *ngIf="comp.IsDynamic">
                       <input autocomplete="off" tabindex="1" class="cstm-res-input" [(ngModel)]="comp.RangeDescription"
-                             placeholder="range" type="text" formControlName="RangeDescription"
+                             [placeholder]="'LABS.RANGE_1' | translate" type="text" formControlName="RangeDescription"
                              (focusout)="CheckIfAbnormal(comp,test,1)" />
                     </span>
                   </td>
@@ -268,7 +268,7 @@
                   </td>
                   <td class="text-center">
                     <i *ngIf="comp.IsDynamic" class="btn btn-sm btn-danger btn-delete-comp"
-                       title="Remove this Component" (click)="RemoveComponent(test, k)">X</i>
+                       [title]="'LABS.REMOVE_THIS_COMPONENT' | translate" (click)="RemoveComponent(test, k)">X</i>
                   </td>
                 </tr>
 
@@ -282,7 +282,7 @@
                 <tr>
                   <td colspan="6">
                     <button class="btn btn-addnew-comp primary-btn btn-xs"
-                            title="Add New Component to {{test.TestName}}" (click)="AddNewComponent(test)">
+                            [title]="'LABS.ADD_NEW_COMPONENT_TO' | translate: { TestName: test.TestName }" (click)="AddNewComponent(test)">
                       <i class="fa fa-plus"></i>
                     </button>
                   </td>
@@ -300,16 +300,16 @@
                 </td>
               </tr>
               <tr class="bg-grad-header">
-                <th width="120">Component</th>
-                <th>Value</th>
-                <th width="30">Select</th>
+                <th width="120">{{ 'LABS.COMPONENT' | translate }}</th>
+                <th>{{ 'LABS.VALUE' | translate }}</th>
+                <th width="30">{{ 'LABS.SELECT' | translate }}</th>
               </tr>
             </thead>
             <tbody>
               <ng-container *ngFor="let test of template.Tests; let j=index;">
                 <tr *ngIf="test.VendorDetail && !test.VendorDetail.IsDefault">
                   <td colspan="3" class="text-center vender-detail">
-                    Send to Vendor: {{test.VendorDetail.VendorName}}
+                    {{ 'LABS.SEND' | translate }} to {{ 'LABS.VENDOR_1' | translate }}: {{test.VendorDetail.VendorName}}
                   </td>
                 </tr>
                 <tr class="test-infos-detail">
@@ -319,13 +319,13 @@
                         <span class="test-title">{{j+1}}.&nbsp;{{test.TestName}}</span>
                       </div>
                       <div class="flex-1 text-black text-center">
-                        <b>Requested On:</b> {{
+                        <b>{{ 'LABS.REQUESTED_ON' | translate }}</b> {{
                         test.RequestDate |
                         DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'
                         }}
                       </div>
                       <div class="flex-1 text-black text-center">
-                        <b>Sample Collected By:</b> {{test.SampleCollectedBy}}
+                        <b>{{ 'LABS.SAMPLE_COLLECTED_BY_1' | translate }}</b> {{test.SampleCollectedBy}}
                       </div>
                     </div>
                   </td>
@@ -335,7 +335,7 @@
                         <input autocomplete="off" *ngIf="!isEditResult" type="checkbox" [(ngModel)]="test.SelectAll"
                                class="zoomcheckbox margin-0-vr top-0" ng-checked="test.SelectAll"
                                (change)="TestCheckBoxOnChange(test)"
-                               title="Check/Uncheck all components of: {{test.TestName}}"
+                               [title]="'LABS.CHECKUNCHECK_ALL_COMPONENTS_OF' | translate: { TestName: test.TestName }"
                                [ngModelOptions]="{standalone: true}" />
                         <span></span>
                       </label>
@@ -344,14 +344,14 @@
                 </tr>
                 <tr>
                   <td colspan="1" style="text-align: left;">
-                    <div class="specimen-name">Specimen</div>
+                    <div class="specimen-name">{{ 'LABS.SPECIMEN' | translate }}</div>
                   </td>
                   <td colspan="1" style="text-align: left;">
                     <div class="culture-ip-wrapper">
                       <div class="test-data-input-box">
                         <input autocomplete="off" tabindex="1" id="inputbox{{i}}{{j}}x01"
                                (keyup.enter)="GoToNextBox(i,j,-1,true)" class="cstm-res-input" type="text"
-                               placeholder="Specimen" [(ngModel)]="test.Specimen" />
+                               [placeholder]="'LABS.SPECIMEN' | translate" [(ngModel)]="test.Specimen" />
                       </div>
                     </div>
                   </td>
@@ -360,7 +360,7 @@
                 <tr *ngIf="test.ShowNegativeCheckbox">
                   <td colspan="1">
                     <div>
-                      <label class="margin-0-vr pull-left lbl-no-growth" for="negRes">No Growth:</label>
+                      <label class="margin-0-vr pull-left lbl-no-growth" for="negRes">{{ 'LABS.NO_GROWTH' | translate }}</label>
                       <input autocomplete="off" tabindex="1" id="negRes" type="checkbox"
                              [(ngModel)]="test.IsNegativeResult" class="zoomcheckbox top-0 margin-7-hr"
                              [ngModelOptions]="{standalone: true}" />
@@ -377,7 +377,7 @@
                     <td>
                       <button [disabled]="test.MaxResultGroup == maxIsolatedOrganismCount" class="btn btn-primary"
                               (click)="AddNewCultureGroupResult(test)">
-                        +1 More Isolated Organism
+                        {{ 'LABS.KEY_1_MORE_ISOLATED_ORGANISM' | translate }}
                       </button>
                     </td>
                     <td colspan="2">
@@ -408,12 +408,12 @@
                         <span class="input_name">
                           <sup class="color-red">*</sup>
                           <input autocomplete="off" tabindex="1" class="cstm-res-input" [(ngModel)]="comp.ComponentName"
-                                 placeholder="Component Name" type="text" formControlName="ComponentName" />
+                                 [placeholder]="'LABS.COMPONENT_NAME_1' | translate" type="text" formControlName="ComponentName" />
                         </span>
                         <span class="color-red font-sm error-message"
                               *ngIf="comp.IsDynamic && comp.IsDirty('ComponentName')"
                               [hidden]="comp.IsValidCheck('ComponentName','required')">
-                          name is required
+                          {{ 'LABS.NAME_IS_REQUIRED' | translate }}
                         </span>
                       </div>
                     </td>
@@ -430,7 +430,7 @@
                                  [ngClass]="comp.IsValueValid ? 'bg-on' : 'bg-off'" type="text"
                                  *ngIf="(comp.ValueType==null || comp.ValueType == 'string') && (comp.ControlType==null || comp.ControlType=='TextBox')"
                                  tabindex="1" [(ngModel)]="comp.Value" (focusout)="CheckIfAbnormal(comp,test)"
-                                 [ngModelOptions]="{standalone: true}" placeholder="enter value" />
+                                 [ngModelOptions]="{standalone: true}" [placeholder]="'LABS.ENTER_VALUE' | translate" />
                           <span class="color-red font-sm" *ngIf="comp.ControlType=='Label'"></span>
                           <div class="cstm-res-autocomplete pull-left"
                                *ngIf="comp.ValueType == 'string' && comp.ControlType=='SearchBox'">
@@ -438,7 +438,7 @@
                                    id="inputbox{{i}}{{j}}{{k}}" (keyup.enter)="GoToNextBox(i,j,k)"
                                    [ngClass]="comp.IsValueValid ? 'bg-on' : 'bg-off'" [(ngModel)]="comp.Value"
                                    [ngModelOptions]="{standalone: true}" [source]="comp.ValueDataSource"
-                                   placeholder="enter text" display-property-name="Value" value-property-name="null"
+                                   [placeholder]="'LABS.ENTER_TEXT_1' | translate" display-property-name="Value" value-property-name="null"
                                    no-match-found-text=" " onClick="this.select();" [tab-to-select]="false" max-num-list="10"
                                    tabindex="1" />
                           </div>
@@ -455,27 +455,27 @@
                                  (keyup.enter)="GoToNextGroupBox(i,j,k,g)"
                                  class="cltr-cstm-res-input pull-left inputbox bg-off" type="text"
                                  *ngIf="(compgrp.ValueType==null || compgrp.ValueType == 'string') && (compgrp.ControlType==null || compgrp.ControlType=='TextBox')"
-                                 tabindex="1" [(ngModel)]="compgrp.Value" placeholder="enter value"
+                                 tabindex="1" [(ngModel)]="compgrp.Value" [placeholder]="'LABS.ENTER_VALUE' | translate"
                                  (focusout)="CheckIfAbnormal(compgrp,test)" />
                           <div class="cstm-res-autocomplete pull-left"
                                *ngIf="compgrp.ValueType == 'string' && compgrp.ControlType=='SearchBox'">
                             <input autocomplete="off" danphe-auto-complete
                                    class="form-control cstm-res-input inputbox bg-off" id="inputboxGrp{{i}}{{j}}{{k}}{{g}}"
                                    (keyup.enter)="GoToNextGroupBox(i,j,k,g)" [(ngModel)]="compgrp.Value"
-                                   [source]="compgrp.ValueDataSource" placeholder="enter text" display-property-name="Value"
+                                   [source]="compgrp.ValueDataSource" [placeholder]="'LABS.ENTER_TEXT_1' | translate" display-property-name="Value"
                                    value-property-name="null" no-match-found-text=" " onClick="this.select();"
                                    [tab-to-select]="false" max-num-list="10" tabindex="1" />
                           </div>
                         </div>
                         <i *ngIf="comp.IsDynamic" class="btn btn-sm btn-danger btn-delete-comp"
-                           title="Remove this Component" (click)="RemoveComponent(test, k)">X</i>
+                           [title]="'LABS.REMOVE_THIS_COMPONENT' | translate" (click)="RemoveComponent(test, k)">X</i>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td colspan="3">
                       <button class="btn btn-addnew-comp primary-btn btn-xs"
-                              title="Add New Component to {{test.TestName}}" (click)="AddNewComponent(test, 'culture')">
+                              [title]="'LABS.ADD_NEW_COMPONENT_TO' | translate: { TestName: test.TestName }" (click)="AddNewComponent(test, 'culture')">
                         <i class="fa fa-plus"></i>
                       </button>
                     </td>
@@ -511,7 +511,7 @@
           <i class="fa fa-save"></i>
         </button>
         <button class="btn btn-cancel btn-outline margin-7-hr" (click)="loading=true;Cancel()">
-          Cancel
+          {{ 'COMMON.CANCEL' | translate }}
         </button>
       </div>
     </div>
@@ -520,15 +520,15 @@
       <div class="flex-container">
         <div class="info-item text-capitalize flex-2">
           <p>
-            {{templateReport.Lookups.VisitType}} Run Number :
+            {{templateReport.Lookups.VisitType}} {{ 'LABS.RUN_NUMBER' | translate }} :
             {{templateReport.Lookups.SampleCodeFormatted}} &nbsp;
-            <a (click)="ConfirmChangeRunNumber()"> (Change) </a>
+            <a (click)="ConfirmChangeRunNumber()"> {{ 'LABS.CHANGE' | translate }} </a>
           </p>
         </div>
         <div *ngIf="patientService.globalPatient.WardName" class="info-item text-capitalize flex-2">
           <p>
-            Ward : {{patientService.globalPatient.WardName}}
-            <span class="bold green" *ngIf="hasInsurance">(Under Insurance)</span>
+            {{ 'LABS.WARD' | translate }} {{patientService.globalPatient.WardName}}
+            <span class="bold green" *ngIf="hasInsurance">{{ 'LABS.UNDER_INSURANCE' | translate }}</span>
           </p>
         </div>
         <!--<div *ngIf="patientService.globalPatient.WardName" class="info-item text-capitalize flex-2">
@@ -552,7 +552,7 @@
             <div *ngIf="test.VendorDetail && !test.VendorDetail.IsDefault" class="row">
               <div class="col-md-12 text-center vender-detail">
                 <p class="text-center margin-0-vr pad-8-all">
-                  Send to Vendor: {{test.VendorDetail.VendorName}}
+                  {{ 'LABS.SEND' | translate }} to {{ 'LABS.VENDOR_1' | translate }}: {{test.VendorDetail.VendorName}}
                 </p>
               </div>
             </div>
@@ -562,7 +562,7 @@
               </div>
               <div class="col-md-4 text-center">
                 <span class="text-black">
-                  <b>Requested On:</b> {{
+                  <b>{{ 'LABS.REQUESTED_ON' | translate }}</b> {{
                   test.RequestDate |
                   DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'
                   }}
@@ -574,7 +574,7 @@
               </div>
               <div class="col-md-4 text-center">
                 <span class="text-black">
-                  Requested On: {{
+                  {{ 'LABS.REQUESTED_ON' | translate }} {{
                   test.RequestDate |
                   DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'
                   }}
@@ -592,20 +592,20 @@
                 <div class="row" style="padding: 5px 0px;">
                   <div class="col-md-5">
                     <p class="margin-0-vr">
-                      Report Template:
+                      {{ 'LABS.REPORT_TEMPLATE_1' | translate }}
                       <b style="color: green; font-style: italic;">
                         <span>{{templateName}}</span>
                       </b>
                     </p>
                   </div>
                   <div class="col-md-4">
-                    <a *ngIf="!changeReportTemplate" (click)="showLists()" title="click to change report template"
+                    <a *ngIf="!changeReportTemplate" (click)="showLists()" [title]="'LABS.CLICK_TO_CHANGE_REPORT_TEMPLATE' | translate"
                        style="color: #b56714; font-size: 13px;">
-                      Select different template ?
+                      {{ 'LABS.SELECT_DIFFERENT_TEMPLATE' | translate }}
                     </a>
                     <div *ngIf="changeReportTemplate">
                       <input autocomplete="off" class="form-control" danphe-auto-complete
-                             [(ngModel)]="selectedHTMLTemplate" [source]="reportTemplates" placeholder="search template"
+                             [(ngModel)]="selectedHTMLTemplate" [source]="reportTemplates" [placeholder]="'LABS.SEARCH_TEMPLATE' | translate"
                              [list-formatter]="ReportTempListFormatter" display-property-name="ReportTemplateName"
                              value-property-name="null" match-formatted="true" (focusout)="AssignSelectedTemplate()"
                              onClick="this.select();" max-num-list="10" />
@@ -633,7 +633,7 @@
               <i class="fa fa-save"></i>
             </button>
             <button class="btn btn-cancel margin-7-hr" (click)="loading=true;Cancel()">
-              Cancel
+              {{ 'COMMON.CANCEL' | translate }}
             </button>
           </div>
         </div>
@@ -648,22 +648,22 @@
         <div class="modelbox-div">
           <div class="modelbox-header">
             <h4 class="margin-0-vr text-warning text-center">
-              <strong>Alert</strong>
+              <strong>{{ 'LABS.ALERT' | translate }}</strong>
             </h4>
           </div>
           <div class="modelbox-body">
             <p>
-              Few of the Tests have abnormal values, Do you want to proceed?
+              {{ 'LABS.FEW_OF_THE_TESTS_HAVE_ABNORMAL_VALUES_DO_YOU_WANT' | translate }}
             </p>
           </div>
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
               <button type="button" class="btn green btn-success btn-sm margin-7-hr" id="proceedWithAbnormalResult"
                       (click)="SaveResult();showWarningConfirmBox=false">
-                Proceed
+                {{ 'LABS.PROCEED' | translate }}
               </button>
               <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="ReviewValues()">
-                Review Values
+                {{ 'LABS.REVIEW_VALUES' | translate }}
               </button>
             </div>
           </div>
@@ -680,14 +680,14 @@
       <div class="col-md-6 col-md-offset-3">
         <div class="modelbox-div">
           <div class="caption lb-caption">
-            <h3 class="margin-0-vr"><strong>Change Run Number</strong></h3>
+            <h3 class="margin-0-vr"><strong>{{ 'LABS.CHANGE_RUN_NUMBER' | translate }}</strong></h3>
             <button class="btn btn-danger" (click)="showChangeSample=false;">
               X
             </button>
           </div>
           <div class="modelbox-body">
             <div class="row">
-              <div class="col-md-5">Sample Collection Date <b>:</b></div>
+              <div class="col-md-5">{{ 'LABS.SAMPLE_COLLECTION_DATE_1' | translate }} <b>:</b></div>
               <div class="col-md-7">
                 <danphe-date-picker [(ngModel)]="sampleCode.SampleCreatedOn" ngDefaultControl [CalendarTypes]="'np'"
                                     (ngModelChange)="SampleDateChanged()"></danphe-date-picker>
@@ -695,7 +695,7 @@
             </div>
             <div class="row margin-15-tp">
               <div class="col-md-5 text-capitalize">
-                {{RunNumberType}} ({{visitType}}) Run Number <b>:</b>
+                {{RunNumberType}} ({{visitType}}) {{ 'LABS.RUN_NUMBER' | translate }} <b>:</b>
               </div>
               <div class="col-md-7">
                 <input autocomplete="off" [(ngModel)]="sampleCode.RunNumber" style="
@@ -720,7 +720,7 @@
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
               <button type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="CheckIfSampleCodeExist()">
-                Update
+                {{ 'COMMON.UPDATE' | translate }}
               </button>
               <!-- <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="showChangeSample=false;"> Close </button> -->
             </div>
@@ -739,7 +739,7 @@
         <div class="modelbox-div">
           <div class="modelbox-header">
             <h4 class="margin-0-vr text-danger text-center">
-              <strong>Alert !!!</strong>
+              <strong>{{ 'LABS.ALERT_1' | translate }}</strong>
             </h4>
           </div>
           <div class="modelbox-body">
@@ -747,22 +747,20 @@
               <div>
                 <p *ngIf="visitType && visitType.toLowerCase()=='outpatient'">
                   <span style="text-transform: capitalize;">{{visitType}}</span>
-                  Run Number
-                  <b>{{sampleCode.RunNumber}} / {{sampleCode.SampleCode}}</b> is
-                  already used for patient
+                  {{ 'LABS.RUN_NUMBER' | translate }}
+                  <b>{{sampleCode.RunNumber}} / {{sampleCode.SampleCode}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_PATIENT' | translate }}
                   <b>{{sampleCodeExistingDetail.PatientName}}</b>
                 </p>
                 <p *ngIf="visitType && visitType.toLowerCase()==='inpatient'">
                   <span style="text-transform: capitalize;">{{visitType}}</span>
-                  Run Number <b>{{sampleCode.RunNumber}}</b> is already used for
-                  patient <b>{{sampleCodeExistingDetail.PatientName}}</b>
+                  {{ 'LABS.RUN_NUMBER' | translate }} <b>{{sampleCode.RunNumber}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_PATIENT_1' | translate }} <b>{{sampleCodeExistingDetail.PatientName}}</b>
                 </p>
-                <p>Please select another run number.</p>
+                <p>{{ 'LABS.PLEASE_SELECT_ANOTHER_RUN_NUMBER' | translate }}</p>
               </div>
               <div class="modelbox-footer">
                 <div class="all-buttons text-right">
                   <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="showConfirmationBox=false">
-                    Close
+                    {{ 'COMMON.CLOSE' | translate }}
                   </button>
                 </div>
               </div>
@@ -770,23 +768,21 @@
             <div *ngIf="templateReport.Lookups.PatientId == sampleCodeExistingDetail.PatientId">
               <div>
                 <p *ngIf="visitType && visitType.toLowerCase()=='outpatient'">
-                  {{visitType}} Run Number
-                  <b>{{sampleCode.RunNumber}} / {{sampleCode.SampleCode}}</b> is
-                  already used for another test for the same patient<b>({{sampleCodeExistingDetail.PatientName}})</b>
+                  {{visitType}} {{ 'LABS.RUN_NUMBER' | translate }}
+                  <b>{{sampleCode.RunNumber}} / {{sampleCode.SampleCode}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI' | translate }}<b>({{sampleCodeExistingDetail.PatientName}})</b>
                 </p>
                 <p *ngIf="visitType && visitType.toLowerCase()=='inpatient'">
-                  {{visitType}} Run Number <b>{{sampleCode.RunNumber}}</b> is
-                  already used for another test for the same patient<b>({{sampleCodeExistingDetail.PatientName}})</b>
+                  {{visitType}} {{ 'LABS.RUN_NUMBER' | translate }} <b>{{sampleCode.RunNumber}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI' | translate }}<b>({{sampleCodeExistingDetail.PatientName}})</b>
                 </p>
-                <p>Do you want to continue with the same run number?</p>
+                <p>{{ 'LABS.DO_YOU_WANT_TO_CONTINUE_WITH_THE_SAME_RUN_NUMBER' | translate }}</p>
               </div>
               <div class="modelbox-footer">
                 <div class="all-buttons text-right">
                   <button type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="UpdateSampleCode()">
-                    Continue
+                    {{ 'LABS.CONTINUE' | translate }}
                   </button>
                   <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="showConfirmationBox=false">
-                    Cancel
+                    {{ 'COMMON.CANCEL' | translate }}
                   </button>
                 </div>
               </div>

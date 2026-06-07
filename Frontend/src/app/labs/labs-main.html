@@ -42,7 +42,7 @@
     <li *ngIf="secondaryNavItems && secondaryNavItems.length>0" class="dropdown bil-hr-bar"
       style="display:inline-block;">
       <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        More...
+        {{ 'COMMON.MORE' | translate }}
         <span class="caret"></span>
       </a>
       <ul class="dropdown-menu bil-hr-dropdown">
@@ -79,13 +79,13 @@
       z-index: 9;
     "></i>
       <h6>
-        You are currently in {{securityService.getActiveLab()?.LabTypeName}} lab. To
+        You are currently in {{securityService.getActiveLab()?.LabTypeName}} lab. {{ 'LABS.TO_1' | translate }}
         change, you can always click here.
       </h6>
     </div>
     <span style="padding: 10px;" class="right">
       <label class="label label-primary">
-        Active lab : <b>{{securityService.getActiveLab()?.LabTypeName}}</b>
+        {{ 'LABS.ACTIVE_LAB' | translate }} <b>{{securityService.getActiveLab()?.LabTypeName}}</b>
       </label>
       <i (mouseenter)="ShowInfo()" (click)="UnsetGloballab()" style="
       cursor: pointer;

@@ -7,8 +7,8 @@
       <div class="modelbox-div lab_modal_box">
         <div class="modelbox-header">
           <h4 class="margin-0-vr"> <strong>
-            <ng-container *ngIf="!update">Add Lab Report Template</ng-container>
-            <ng-container *ngIf="update">Update Lab Report Template</ng-container>
+            <ng-container *ngIf="!update">{{ 'LABS.ADD_LAB_REPORT_TEMPLATE' | translate }}</ng-container>
+            <ng-container *ngIf="update">{{ 'LABS.UPDATE_LAB_REPORT_TEMPLATE' | translate }}</ng-container>
             </strong> </h4>
         </div>
         <div class="modelbox-body">
@@ -18,25 +18,25 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <div class="row">
-                      <label class="control-label col-md-4">Report Template Name<sup class="color-red">*</sup><b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'LABS.REPORT_TEMPLATE_NAME' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                       <div class="col-md-8">
                         <input class="form-control" maxlength="30"
                                [(ngModel)]="rptTemplate.ReportTemplateName"
                                formControlName="ReportTemplateName"
                                required
                                value=""
-                               type="text" id="ReportTemplateName" placeholder="Report Template Name" />
-                        <span class="color-red font-sm" [hidden]="rptTemplate.IsValidCheck('ReportTemplateName','required') || !(rptTemplate.IsDirty('ReportTemplateName'))">Enter Report Template Name</span> </div>
+                               type="text" id="ReportTemplateName" [placeholder]="'LABS.REPORT_TEMPLATE_NAME' | translate" />
+                        <span class="color-red font-sm" [hidden]="rptTemplate.IsValidCheck('ReportTemplateName','required') || !(rptTemplate.IsDirty('ReportTemplateName'))">{{ 'LABS.ENTER_REPORT_TEMPLATE_NAME' | translate }}</span> </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="control-label col-md-4">Description<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                       <div class="col-md-8">
                         <input class="form-control" maxlength="30"
                                [(ngModel)]="rptTemplate.Description"
                                [ngModelOptions]="{standalone: true}"
-                               type="text" id="ReportDescription" placeholder="Report Description" />
+                               type="text" id="ReportDescription" [placeholder]="'LABS.REPORT_DESCRIPTION' | translate" />
                       </div>
                     </div>
                   </div>                
@@ -44,25 +44,25 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <div class="row">
-                      <label class="control-label col-md-5">Report Template Short Name<sup class="color-red">*</sup><b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'LABS.REPORT_TEMPLATE_SHORT_NAME' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                       <div class="col-md-7">
                         <input class="form-control" maxlength="30"
                                [(ngModel)]="rptTemplate.ReportTemplateShortName"
                                formControlName="ReportTemplateShortName"
                                required
                                value=""
-                               type="text" id="ReportTemplateShortName" placeholder="Report Template Short Name" />
-                        <span class="color-red font-sm" [hidden]="rptTemplate.IsValidCheck('ReportTemplateShortName','required') || !(rptTemplate.IsDirty('ReportTemplateShortName'))">Enter Report Template Name</span> </div>
+                               type="text" id="ReportTemplateShortName" [placeholder]="'LABS.REPORT_TEMPLATE_SHORT_NAME' | translate" />
+                        <span class="color-red font-sm" [hidden]="rptTemplate.IsValidCheck('ReportTemplateShortName','required') || !(rptTemplate.IsDirty('ReportTemplateShortName'))">{{ 'LABS.ENTER_REPORT_TEMPLATE_NAME' | translate }}</span> </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="control-label col-md-5">Report Template Type<sup class="color-red">*</sup><b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'LABS.REPORT_TEMPLATE_TYPE' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                       <div class="col-md-7">
-                        <select class="form-control" [(ngModel)]="rptTemplate.TemplateType" [ngModelOptions]="{standalone: true}" (change)="DDLChange()" id="ReportTemplateType" placeholder="Report Template Type">
-                          <option value="normal">Normal</option>
-                          <option value="html">Word Editor</option>
-                          <option value="culture">Culture & Sensitivity</option>
+                        <select class="form-control" [(ngModel)]="rptTemplate.TemplateType" [ngModelOptions]="{standalone: true}" (change)="DDLChange()" id="ReportTemplateType" [placeholder]="'LABS.REPORT_TEMPLATE_TYPE' | translate">
+                          <option value="normal">{{ 'LABS.NORMAL' | translate }}</option>
+                          <option value="html">{{ 'LABS.WORD_EDITOR' | translate }}</option>
+                          <option value="culture">{{ 'LABS.CULTURE_SENSITIVITY' | translate }}</option>
                         </select>
                       </div>
                     </div>
@@ -72,13 +72,13 @@
 				  <div class="col-md-12">
 				  	<div class="form-group">
                     <div class="row">
-                      <label class="control-label col-md-2">Column Settings<b>:</b> </label>
+                      <label class="control-label col-md-2">{{ 'LABS.COLUMN_SETTINGS' | translate }}<b>:</b> </label>
                       <div class="col-md-10">
 						  <div class="colsetting-name">
                         <label class="mt-checkbox mt-checkbox-outline" for="selectall">
                           <input id="selectall" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.SelectAll" width="100" type="checkbox" ng-checked="colSettings.SelectAll=true"
                                  (change)="ColSettingsData()" [ngModelOptions]="{standalone: true}">
-                          <span></span>Select All</label>
+                          <span></span>{{ 'LABS.SELECT_ALL' | translate }}</label>
                         <!--
                         <label for="selectall">
                           <input id="selectall" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.SelectAll" width="100" type="checkbox" ng-checked="colSettings.SelectAll=true"
@@ -90,7 +90,7 @@
                           <label class="mt-checkbox mt-checkbox-outline" for="name">
                             <input id="name" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Name" width="100" type="checkbox" ng-checked="colSettings.Name=true"
                                    (change)="checkAllTrueOrFalse()" [ngModelOptions]="{standalone: true}">
-                            <span></span>Name </label>
+                            <span></span>{{ 'COMMON.NAME' | translate }} </label>
                           <!--
                           <label for="name">
                             <input id="name" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Name" width="100" type="checkbox" ng-checked="colSettings.Name=true"
@@ -102,7 +102,7 @@
                           <label class="mt-checkbox mt-checkbox-outline" for="result">
                             <input id="result" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Result" width="100" type="checkbox" ng-checked="colSettings.Result=true"
                                    (change)="checkAllTrueOrFalse()" [ngModelOptions]="{standalone: true}">
-                            <span></span>Result </label>
+                            <span></span>{{ 'LABS.RESULT' | translate }} </label>
                           <!--
                           <label for="result">
                             <input id="result" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Result" width="100" type="checkbox" ng-checked="colSettings.Result=true"
@@ -114,7 +114,7 @@
                           <label class="mt-checkbox mt-checkbox-outline" for="range">
                             <input id="range" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Range" width="100" type="checkbox" ng-checked="colSettings.Range=true"
                                    (change)="checkAllTrueOrFalse()" [ngModelOptions]="{standalone: true}">
-                            <span></span>Range </label>
+                            <span></span>{{ 'LABS.RANGE' | translate }} </label>
                           <!--
                           <label for="range">
                             <input id="range" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Range" width="100" type="checkbox" ng-checked="colSettings.Range=true"
@@ -126,7 +126,7 @@
                           <label class="mt-checkbox mt-checkbox-outline" for="method">
                             <input id="method" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Method" width="100" type="checkbox" ng-checked="colSettings.Method=true"
                                    (change)="checkAllTrueOrFalse()" [ngModelOptions]="{standalone: true}">
-                            <span></span>Method </label>
+                            <span></span>{{ 'LABS.METHOD' | translate }} </label>
                           <!--
                           <label for="method">
                             <input id="method" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Method" width="100" type="checkbox" ng-checked="colSettings.Method=true"
@@ -138,7 +138,7 @@
                           <label class="mt-checkbox mt-checkbox-outline" for="unit">
                             <input id="unit" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Unit" width="100" type="checkbox" ng-checked="colSettings.Unit=true"
                                    (change)="checkAllTrueOrFalse()" [ngModelOptions]="{standalone: true}">
-                            <span></span>Unit </label>
+                            <span></span>{{ 'LABS.UNIT' | translate }} </label>
                           <!--
                           <label for="unit">
                             <input id="unit" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Unit" width="100" type="checkbox" ng-checked="colSettings.Unit=true"
@@ -150,7 +150,7 @@
                           <label class="mt-checkbox mt-checkbox-outline" for="remarks">
                             <input id="remarks" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Remarks" width="100" type="checkbox" ng-checked="colSettings.Remarks=true"
                                    (change)="checkAllTrueOrFalse()" [ngModelOptions]="{standalone: true}">
-                            <span></span>Remarks </label>
+                            <span></span>{{ 'COMMON.REMARKS' | translate }} </label>
                           <!--
                           <label for="remarks">
                             <input id="remarks" class="zoomcheckbox pull-left" [(ngModel)]="colSettings.Remarks" width="100" type="checkbox" ng-checked="colSettings.Remarks=true"
@@ -165,23 +165,23 @@
 				  <div class="col-md-6">
 				  	<div class="form-group">
                     <div class="row">
-                      <label class="control-label col-md-4">Header Text<b>:</b> </label>
+                      <label class="control-label col-md-4">{{ 'LABS.HEADER_TEXT' | translate }}<b>:</b> </label>
                       <div class="col-md-8">
                         <input class="form-control" rows="4"
                                [(ngModel)]="rptTemplate.HeaderText"
                                [ngModelOptions]="{standalone: true}"
-                               type="text" id="headerDescription" placeholder="Header Description">
+                               type="text" id="headerDescription" [placeholder]="'LABS.HEADER_DESCRIPTION' | translate">
                       </div>
                     </div>
                   </div>
 					  <div class="form-group">
                     <div class="row">
-                      <label class="control-label col-md-4">Footer Text<b>:</b> </label>
+                      <label class="control-label col-md-4">{{ 'LABS.FOOTER_TEXT' | translate }}<b>:</b> </label>
                       <div class="col-md-8">
                         <textarea class="form-control" rows="4"
                                   [(ngModel)]="rptTemplate.FooterText"
                                   [ngModelOptions]="{standalone: true}"
-                                  type="text" id="footerDescription" placeholder="Footer Description">
+                                  type="text" id="footerDescription" [placeholder]="'LABS.FOOTER_DESCRIPTION' | translate">
                                             </textarea>
                       </div>
                     </div>
@@ -192,7 +192,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="row">
-                          <label class="control-label col-md-8">Is Default <b>:</b> </label>
+                          <label class="control-label col-md-8">{{ 'LABS.IS_DEFAULT' | translate }} <b>:</b> </label>
                           <div class="col-md-4">
                             <div class="input-group">
                               <div class="icheck-inline">
@@ -227,7 +227,7 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <label class="control-label col-md-5">Display Sequence<b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'LABS.DISPLAY_SEQUENCE' | translate }}<b>:</b></label>
                       <div class="col-md-7">
                         <input type="number" [(ngModel)]="rptTemplate.DisplaySequence" [ngModelOptions]="{standalone: true}">
                       </div>
@@ -243,8 +243,8 @@
         </div>
         <div class="modelbox-footer">
           <div class="all-buttons text-right">
-            <button class="btn primary-btn margin-7-hr" *ngIf="!update" (click)="AddReportTemplate()">Add Template</button>
-            <button class="btn primary-btn margin-7-hr" *ngIf="update" (click)="UpdateReportTemplate()">Update</button>
+            <button class="btn primary-btn margin-7-hr" *ngIf="!update" (click)="AddReportTemplate()">{{ 'LABS.ADD_TEMPLATE' | translate }}</button>
+            <button class="btn primary-btn margin-7-hr" *ngIf="update" (click)="UpdateReportTemplate()">{{ 'COMMON.UPDATE' | translate }}</button>
             <!-- <button class="btn btn-cancel btn-outline margin-7-hr" (click)="Close()">Cancel</button> -->
           </div>
         </div>

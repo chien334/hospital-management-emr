@@ -4,204 +4,243 @@ CREATE OR REPLACE FUNCTION sp_acc_rpt_subledgerreport(
     p_hospitalid INT,
     p_openingfiscalyearid INT,
     p_subledgerids VARCHAR
-) RETURNS SETOF refcursor AS $$
+)
+RETURNS SETOF refcursor AS $$
 DECLARE
-    ref1 refcursor := 'ref1';
-    ref2 refcursor := 'ref2';
-    v_openingbalancefromdate TIMESTAMP;
-    v_openingbalancetodate TIMESTAMP;
-    v_fiscalyearid_loop INT;
-    v_subledger_id_list INT[];
+    ref1 refcursor := 'cursor1';
+    ref2 refcursor := 'cursor2';
+    v_openingbalancefromdate TIMESTAMP := (
+			SELECT  StartDate
+			FROM ACC_MST_FiscalYears
+			WHERE FiscalYearId = p_openingfiscalyearid LIMIT 1
+			);
+    v_openingbalancetodate TIMESTAMP := (
+			SELECT p_fromdate - 1
+			);
 BEGIN
-    -- Parse comma separated subledger IDs to integer array
-    v_subledger_id_list := string_to_array(p_subledgerids, ',')::int[];
-
-    SELECT startdate INTO v_openingbalancefromdate 
-    FROM acc_mst_fiscalyears 
-    WHERE fiscalyearid = p_openingfiscalyearid 
-    LIMIT 1;
-
-    v_openingbalancetodate := p_fromdate - INTERVAL '1 day';
-
-    -- Create temp tables
-    CREATE TEMP TABLE IF NOT EXISTS temp_unclosed_fiscal_year (
-        fiscalyearid INT
-    );
-    TRUNCATE temp_unclosed_fiscal_year;
-
-    CREATE TEMP TABLE IF NOT EXISTS temp_yearly_opening_balance (
-        balance DECIMAL,
-        subledgerid INT,
-        ledgerid INT
-    );
-    TRUNCATE temp_yearly_opening_balance;
-
-    -- First Insert: Yearly Opening Balance for p_openingfiscalyearid
-    INSERT INTO temp_yearly_opening_balance (balance, subledgerid, ledgerid)
-    SELECT COALESCE(SUM(COALESCE(openingdramount, 0)) + SUM(COALESCE(openingtxndramount, 0)) - SUM(COALESCE(openingcramount, 0)) - SUM(COALESCE(openingtxncramount, 0)), 0)::DECIMAL AS balance
-         , subledgerid
-         , ledgerid
-    FROM (
-        -- 1. Subledger opening balance from SubLedger balance history table
-        SELECT CASE 
-                WHEN COALESCE(lbh.openingdrcr, TRUE) = TRUE
-                    THEN COALESCE(lbh.openingbalance, 0)
-                ELSE 0
-                END AS openingdramount
-            , CASE 
-                WHEN COALESCE(lbh.openingdrcr, TRUE) = FALSE
-                    THEN COALESCE(lbh.openingbalance, 0)
-                ELSE 0
-                END AS openingcramount
-            , 0::DECIMAL AS openingtxndramount
-            , 0::DECIMAL AS openingtxncramount
-            , subLed.subledgerid
-            , subLed.ledgerid
-        FROM acc_ledger led
-        JOIN acc_mst_subledger subLed ON led.ledgerid = subLed.ledgerid
-        JOIN acc_subledgerbalancehistory lbh ON subLed.subledgerid = lbh.subledgerid AND subLed.hospitalid = lbh.hospitalid
-        WHERE lbh.hospitalid = p_hospitalid
-            AND lbh.fiscalyearid = p_openingfiscalyearid
-            AND led.isactive = TRUE
-            AND subLed.isactive = TRUE
-            AND subLed.subledgerid = ANY(v_subledger_id_list)
-        
-        UNION ALL
-        
-        -- 2. Balance from transaction table from opening fiscal year start date to FromDate-1
-        SELECT 0::DECIMAL AS openingdramount
-            , 0::DECIMAL AS openingcramount
-            , COALESCE(txn.dramount, 0)::DECIMAL AS openingtxndramount
-            , COALESCE(txn.cramount, 0)::DECIMAL AS openingtxncramount
-            , subLed.subledgerid
-            , subLed.ledgerid
-        FROM acc_txn_subledgerrecords txn
-        JOIN acc_mst_subledger subLed ON txn.subledgerid = subLed.subledgerid
-        WHERE txn.hospitalid = p_hospitalid
-            AND (txn.voucherdate::DATE BETWEEN v_openingbalancefromdate::DATE AND v_openingbalancetodate::DATE)
-            AND subLed.isactive = TRUE
-            AND txn.isverified = TRUE
-            AND txn.subledgerid = ANY(v_subledger_id_list)
-    ) innerTbl
-    GROUP BY innerTbl.subledgerid, innerTbl.ledgerid;
-
-    -- Insert unclosed fiscal years before FromDate
-    INSERT INTO temp_unclosed_fiscal_year (fiscalyearid)
-    SELECT fiscalyearid
-    FROM acc_mst_fiscalyears
-    WHERE isactive = TRUE
-        AND isclosed = FALSE
-        AND startdate < (
-            SELECT startdate
-            FROM acc_mst_fiscalyears
-            WHERE startdate <= p_fromdate
-                AND enddate >= p_fromdate
-            LIMIT 1
-        );
-
-    -- Loop through unclosed fiscal years
-    FOR v_fiscalyearid_loop IN SELECT fiscalyearid FROM temp_unclosed_fiscal_year LOOP
-        INSERT INTO temp_yearly_opening_balance (balance, subledgerid, ledgerid)
-        SELECT COALESCE(SUM(COALESCE(openingdramount, 0)) + SUM(COALESCE(openingtxndramount, 0)) - SUM(COALESCE(openingcramount, 0)) - SUM(COALESCE(openingtxncramount, 0)), 0)::DECIMAL AS balance
-             , subledgerid
-             , ledgerid
-        FROM (
-            SELECT CASE 
-                    WHEN COALESCE(lbh.openingdrcr, TRUE) = TRUE
-                        THEN COALESCE(lbh.openingbalance, 0)
-                    ELSE 0
-                    END AS openingdramount
-                , CASE 
-                    WHEN COALESCE(lbh.openingdrcr, TRUE) = FALSE
-                        THEN COALESCE(lbh.openingbalance, 0)
-                    ELSE 0
-                    END AS openingcramount
-                , 0::DECIMAL AS openingtxndramount
-                , 0::DECIMAL AS openingtxncramount
-                , subLed.subledgerid
-                , subLed.ledgerid
-            FROM acc_ledger led
-            JOIN acc_mst_subledger subLed ON led.ledgerid = subLed.ledgerid
-            JOIN acc_subledgerbalancehistory lbh ON subLed.subledgerid = lbh.subledgerid AND subLed.hospitalid = lbh.hospitalid
-            WHERE lbh.hospitalid = p_hospitalid
-                AND lbh.fiscalyearid = v_fiscalyearid_loop
-                AND led.isactive = TRUE
-                AND subLed.isactive = TRUE
-                AND subLed.subledgerid = ANY(v_subledger_id_list)
-            
-            UNION ALL
-            
-            SELECT 0::DECIMAL AS openingdramount
-                , 0::DECIMAL AS openingcramount
-                , COALESCE(txn.dramount, 0)::DECIMAL AS openingtxndramount
-                , COALESCE(txn.cramount, 0)::DECIMAL AS openingtxncramount
-                , subLed.subledgerid
-                , subLed.ledgerid
-            FROM acc_txn_subledgerrecords txn
-            JOIN acc_mst_subledger subLed ON txn.subledgerid = subLed.subledgerid
-            WHERE txn.hospitalid = p_hospitalid
-                AND (
-                    txn.voucherdate::DATE BETWEEN (
-                                    SELECT startdate
-                                    FROM acc_mst_fiscalyears
-                                    WHERE fiscalyearid = v_fiscalyearid_loop
-                                    LIMIT 1
-                                    )::DATE
-                        AND (
-                                    SELECT enddate
-                                    FROM acc_mst_fiscalyears
-                                    WHERE fiscalyearid = v_fiscalyearid_loop
-                                    LIMIT 1
-                                    )::DATE
-                    )
-                AND subLed.isactive = TRUE
-                AND txn.isverified = TRUE
-                AND txn.subledgerid = ANY(v_subledger_id_list)
-        ) innerTbl
-        GROUP BY innerTbl.subledgerid, innerTbl.ledgerid;
-    END LOOP;
-
-    -- Return Table 1: Opening balance per subledger
-    OPEN ref1 FOR
-    SELECT SUM(balance)::DECIMAL AS OpeningBalance, subledgerid AS SubLedgerId, ledgerid AS LedgerId
-    FROM temp_yearly_opening_balance
-    GROUP BY subledgerid, ledgerid;
-    RETURN NEXT ref1;
-
-    -- Return Table 2: Transaction Details
-    OPEN ref2 FOR
-    SELECT data.ledgerid AS LedgerId
-        , data.subledgerid AS SubLedgerId
-        , data.transactiondate AS TransactionDate
-        , data.voucherid AS VoucherId
-        , data.vouchernumber AS VoucherNumber
-        , SUM(data.txndramount)::DECIMAL AS DrAmount
-        , SUM(data.txncramount)::DECIMAL AS CrAmount
-    FROM (
-        SELECT txn.ledgerid
-            , txn.subledgerid
-            , txn.voucherdate::DATE AS transactiondate
-            , txn.voucherno AS vouchernumber
-            , txn.vouchertype AS voucherid
-            , COALESCE(txn.dramount, 0)::DECIMAL AS txndramount
-            , COALESCE(txn.cramount, 0)::DECIMAL AS txncramount
-        FROM acc_mst_subledger subLed 
-        JOIN acc_txn_subledgerrecords txn ON subLed.subledgerid = txn.subledgerid
-        WHERE txn.hospitalid = p_hospitalid
-            AND (txn.voucherdate::DATE BETWEEN p_fromdate::DATE AND p_todate::DATE)
-            AND subLed.isactive = TRUE
-            AND txn.isverified = TRUE
-            AND txn.subledgerid = ANY(v_subledger_id_list)
-        ) data
-    GROUP BY data.transactiondate
-        , data.ledgerid
-        , data.subledgerid
-        , data.voucherid
-        , data.vouchernumber;
-    RETURN NEXT ref2;
-
-    -- Cleanup temp tables
-    DROP TABLE temp_unclosed_fiscal_year;
-    DROP TABLE temp_yearly_opening_balance;
+    /* ***********************************************************************
+      filename: "sp_acc_rpt_subledgerreport"
+      --exec sp_acc_rpt_subledgerreport '2022-12-01','2022-12-22',3,6,'67,68,69'
+      drop procedure "sp_acc_rpt_subledgerreport"
+      s.no.    updatedby/date                        remarks
+      1.      dev narayan 22'Dec'22               sp script created for subledger report
+      2.      dev narayan 26'March'23             added isverified filter in acc_txn_subledgerrecords table.
+      ************************************************************************ */
+    begin
+    	
+    
+    	
+    
+    	drop table if exists temp_unclosedfiscalyear;create temp table temp_unclosedfiscalyear (
+    		fiscalyearid int
+    		);
+    	drop table if exists temp_yearlyopeningbalance;create temp table temp_yearlyopeningbalance (balance int ,subledgerid int,ledgerid int);
+    
+    	insert into temp_yearlyopeningbalance (balance,subledgerid, ledgerid)
+    	select row.openingbalance,row.subledgerid, row.ledgerid from (
+    			select coalesce(sum(coalesce(openingdramount, 0)) + sum(coalesce(openingtxndramount, 0)) - sum(coalesce(openingcramount, 0)) - sum(coalesce(openingtxncramount, 0)), 0) as openingbalance
+    				,subledgerid as subledgerid
+    				,ledgerid
+    			from (
+    				--get subledger opening balance from subledger balance history table
+    				select case 
+    						when coalesce(lbh.openingdrcr, 1) = 1
+    							then coalesce(lbh.openingbalance, 0)
+    						else 0
+    						end as openingdramount
+    					,case 
+    						when lbh.openingdrcr = 0
+    							then coalesce(lbh.openingbalance, 0)
+    						else 0
+    						end as openingcramount
+    					,0 as openingtxndramount
+    					,0 as openingtxncramount
+    					, subled.subledgerid
+    					,subled.ledgerid
+    				from acc_ledger led
+    				join acc_mst_subledger subled on led.ledgerid = subled.ledgerid
+    				join acc_subledgerbalancehistory lbh on subled.subledgerid = lbh.subledgerid
+    					and subled.hospitalid = lbh.hospitalid
+    				where lbh.hospitalid = p_hospitalid
+    					and lbh.fiscalyearid = p_openingfiscalyearid
+    					and led.isactive = 1
+    					and subled.isactive = 1
+    					and subled.subledgerid in (
+    						select *
+    						from string_split(p_subledgerids, ',')
+    						)
+    				
+    				union all
+    				
+    				--get balance from transaction table from opening fiscal year start date to fromdate-1
+    				select 0 as openingdramount
+    					,0 as openingcramount
+    					,coalesce(txn.dramount,0) as openingtxndramount
+    					,coalesce(txn.cramount,0) as openingtxncramount
+    					,subled.subledgerid
+    					,subled.ledgerid
+    				from acc_txn_subledgerrecords txn
+    				join acc_mst_subledger subled on txn.subledgerid = subled.subledgerid
+    				where txn.hospitalid = p_hospitalid
+    					and (
+    						(txn.voucherdate)::date between (v_openingbalancefromdate)::date
+    							and (v_openingbalancetodate)::date
+    						)
+    					and subled.isactive = 1
+    					and txn.isverified = 1
+    					and txn.subledgerid in (
+    						select *
+    						from string_split(p_subledgerids, ',')
+    						)
+    				) as innertbl
+    				group by innertbl.subledgerid,innertbl.ledgerid
+    			) as row;
+    
+    	insert into temp_unclosedfiscalyear (fiscalyearid)
+    	select (
+    			select fiscalyearid
+    			from acc_mst_fiscalyears
+    			where isactive = 1
+    				and isclosed = 0
+    				and startdate < (
+    					select startdate
+    					from acc_mst_fiscalyears
+    					where startdate <= p_fromdate
+    						and enddate >= p_fromdate
+    					)
+    			);
+    
+    	while (
+    			(
+    				select count(*)
+    				from temp_unclosedfiscalyear
+    				) > 0
+    			)
+    	loop
+    		insert into temp_yearlyopeningbalance (balance,subledgerid,ledgerid)
+    		select row.openingbalance, row.subledgerid, row.ledgerid from  (
+    				select coalesce(sum(coalesce(openingdramount, 0)) + sum(coalesce(openingtxndramount, 0)) - sum(coalesce(openingcramount, 0)) - sum(coalesce(openingtxncramount, 0)), 0) as openingbalance
+    					,subledgerid as subledgerid
+    					,ledgerid
+    				from (
+    					--get ledger opening balance from ledger balance history table
+    					select case 
+    							when coalesce(lbh.openingdrcr, 1) = 1
+    								then coalesce(lbh.openingbalance, 0)
+    							else 0
+    							end as openingdramount
+    						,case 
+    							when lbh.openingdrcr = 0
+    								then coalesce(lbh.openingbalance, 0)
+    							else 0
+    							end as openingcramount
+    						,0 as openingtxndramount
+    						,0 as openingtxncramount
+    						,subled.subledgerid
+    						,subled.ledgerid
+    				from acc_ledger led
+    				join acc_mst_subledger subled on led.ledgerid = subled.ledgerid
+    				join acc_subledgerbalancehistory lbh on subled.subledgerid = lbh.subledgerid
+    						and subled.hospitalid = lbh.hospitalid
+    					where lbh.hospitalid = p_hospitalid
+    						and lbh.fiscalyearid = (
+    							select  fiscalyearid
+    							from temp_unclosedfiscalyear limit 1
+    							)
+    						and led.isactive = 1
+    						and subled.isactive = 1
+    						and subled.subledgerid in (
+    							select *
+    							from string_split(p_subledgerids, ',')
+    							)
+    					
+    					union all
+    					
+    					--get balance from transaction table from opening fiscal year start date to fromdate-1
+    					select 0 as openingdramount
+    						,0 as openingcramount
+    						,coalesce(txn.dramount,0) as openingtxndramount
+    						,coalesce(txn.cramount,0) as openingtxncramount
+    						,subled.subledgerid
+    						,subled.ledgerid
+    				from acc_txn_subledgerrecords txn
+    				join acc_mst_subledger subled on txn.subledgerid = subled.subledgerid
+    					where txn.hospitalid = p_hospitalid
+    						and (
+    							(txn.voucherdate)::date between ((
+    											select startdate
+    											from acc_mst_fiscalyears
+    											where fiscalyearid = (
+    													select  fiscalyearid
+    													from temp_unclosedfiscalyear limit 1
+    													)
+    											))::date
+    								and ((
+    											select enddate
+    											from acc_mst_fiscalyears
+    											where fiscalyearid = (
+    													select  fiscalyearid
+    													from temp_unclosedfiscalyear limit 1
+    													)
+    											))::date
+    							)
+    						and subled.isactive = 1
+    						and txn.isverified = 1
+    						and txn.subledgerid in (
+    							select *
+    							from string_split(p_subledgerids, ',')
+    							)
+    					) as innertbl
+    					group by innertbl.subledgerid,innertbl.ledgerid
+    				) as row;
+    
+    		delete from temp_unclosedfiscalyear where ctid = (select ctid from temp_unclosedfiscalyear limit 1);
+    	end loop;
+    
+    	open ref1 for select sum(balance) as openingbalance, subledgerid ,ledgerid
+    	from temp_yearlyopeningbalance
+    	group by subledgerid,ledgerid;
+        return next ref1;
+    
+    	drop table if exists temp_unclosedfiscalyear;
+    
+    	drop table if exists temp_yearlyopeningbalance;
+    
+    	open ref2 for select data.ledgerid
+    		,data.subledgerid
+    		,data.transactiondate
+    		,data.voucherid
+    		,data.vouchernumber
+    		,sum(data.txndramount) as "dramount"
+    		,sum(data.txncramount) as "cramount"
+    	from (
+    		select txn.ledgerid
+    			,txn.subledgerid
+    			,(txn.voucherdate)::date as "transactiondate"
+    			,txn.voucherno as "vouchernumber"
+    			,txn.vouchertype as "voucherid"
+    			,coalesce(txn.dramount,0) as txndramount
+    			,coalesce(txn.cramount,0) as txncramount
+    		from acc_mst_subledger subled 
+    		join acc_txn_subledgerrecords txn on subled.subledgerid = txn.subledgerid
+    		where txn.hospitalid = p_hospitalid
+    			and (
+    				(txn.voucherdate)::date between (p_fromdate)::date
+    					and (p_todate)::date
+    				)
+    			and subled.isactive = 1
+    			and txn.isverified = 1
+    			and txn.subledgerid in (
+    				select *
+    				from string_split(p_subledgerids, ',')
+    				)
+    		) as data
+    	group by data.transactiondate
+    		,data.ledgerid
+    		,data.subledgerid
+    		,data.voucherid
+    		,data.vouchernumber;
+        return next ref2;
+    end;
 END;
 $$ LANGUAGE plpgsql;

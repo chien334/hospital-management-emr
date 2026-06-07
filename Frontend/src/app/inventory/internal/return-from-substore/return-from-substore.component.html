@@ -17,7 +17,7 @@
     .modal-contents {
         width: 600px;
         background-color: white;
-        text-align: center;
+        {{ 'INVENTORY.TEXT' | translate }}-align: center;
         padding: 20px;
         position: relative;
         border-radius: 4px;
@@ -33,7 +33,7 @@
         left: 39px;
     }
 
-    .qr-code {
+    .qr-{{ 'GRID_HEADERS.CODE' | translate }} {
         bottom: 14px;
         position: relative;
     }
@@ -60,8 +60,8 @@
                 <div class="col-md-4">
                     <div class="form-group row">
                         <div class="col-md-12 autocomplete-item" style=" display: flex; align-items: center; flex-direction: row;">
-                            <label class="control-label col-md-3"><b>Substore :</b></label>
-                            <input  danphe-auto-complete class="form-control col-md-8" placeholder="Select Substore" 
+                            <label class="control-label col-md-3"><b>{{ 'INVENTORY.SUBSTORE' | translate }}:</b></label>
+                            <input  danphe-auto-complete class="form-control col-md-8" [placeholder]="'INVENTORY.SELECT_SUBSTORE' | translate" 
                             [(ngModel)]="selectedStore" [source]="substores" [list-formatter]="ReturnListFormatter" 
                             display-property-name="StoreName" value-property-name="StoreId" [match-formatted]="true" 
                             (valueChanged)="AssignSelectedSubstore($event)" onclick="this.select()" />
@@ -71,7 +71,7 @@
                 </div>
                 <div class="col-md-2">
                     <button class="btn blue" type="button" (click)="ShowReturnData()">
-                        <i class="fa fa-search"></i> Show Data</button>
+                        <i class="fa fa-search"></i> {{ 'INVENTORY.SHOW_DATA' | translate }}</button>
                 </div>
             </div>
         </div>

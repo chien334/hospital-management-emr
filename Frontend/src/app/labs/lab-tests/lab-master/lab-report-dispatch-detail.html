@@ -1,17 +1,17 @@
 <div class="wrapper" style="margin-top: -38px;">
   <div style="height: 38px; text-align: right;"><button *ngIf="showPreviewButton" [disabled]="loading"
-      class="btn btn-primary btn-dispatch-preview" (click)="PreviewSelectedReport();">Preview
+      class="btn btn-primary btn-dispatch-preview" (click)="PreviewSelectedReport();">{{ 'LABS.PREVIEW' | translate }}
       <i class="fa fa-eye"></i></button></div>
   <div class="final-reports-holer">
     <table class="table test-list-table">
       <thead>
         <tr>
-          <th>Sample No</th>
-          <th>Test Name</th>
-          <th>Collected By</th>
-          <th>Result By</th>
-          <th *ngIf="showVerifiedByColumn">Verified By</th>
-          <th>Printed By</th>
+          <th>{{ 'LABS.SAMPLE_NO' | translate }}</th>
+          <th>{{ 'LABS.TEST_NAME' | translate }}</th>
+          <th>{{ 'LABS.COLLECTED_BY' | translate }}</th>
+          <th>{{ 'LABS.RESULT_BY' | translate }}</th>
+          <th *ngIf="showVerifiedByColumn">{{ 'LABS.VERIFIED_BY' | translate }}</th>
+          <th>{{ 'LABS.PRINTED_BY' | translate }}</th>
           <th><input class="slct-checkbox" type="checkbox" name="selectAllReportsAndTests"
               value="selectAllReportsAndTest" [(ngModel)]="selectAllReportsAndTest"
               (change)="SelectDeselectAllReportsAndTests()" /></th>
@@ -44,7 +44,7 @@
             <td>{{test.PrintedByName}}</td>
             <td *ngIf="test.ValidTestToPrint"><input class="slct-checkbox" type="checkbox" name="allTests"
                 [(ngModel)]="test.CheckedForPrint" /></td>
-            <td class="txt-red" *ngIf="!test.ValidTestToPrint"> Not Paid </td>
+            <td class="txt-red" *ngIf="!test.ValidTestToPrint"> {{ 'LABS.NOT_PAID' | translate }} </td>
           </tr>
         </ng-container>
 
@@ -56,18 +56,18 @@
     <div>
 
       <label for="showAllTestSumm"><input id="showAllTestSumm" type="checkbox" [(ngModel)]="showPendingTests"
-          [disabled]="loading" (change)="ShowPendingTestList()" />Show Pending Tests of this Patient ?</label>
+          [disabled]="loading" (change)="ShowPendingTestList()" />{{ 'LABS.SHOW_PENDING_TESTS_OF_THIS_PATIENT' | translate }}</label>
     </div>
     <div *ngIf="showPendingTests">
       <div class="all-requisitions" *ngIf="requisitions && requisitions.length">
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th colspan="4" style="text-align: center;">Lab Requisitions</th>
+              <th colspan="4" style="text-align: center;">{{ 'LABS.LAB_REQUISITIONS' | translate }}</th>
             </tr>
             <tr>
-              <th>S.No.</th>
-              <th>Test Name</th>
+              <th>{{ 'LABS.SNO' | translate }}</th>
+              <th>{{ 'LABS.TEST_NAME' | translate }}</th>
             </tr>
           </thead>
           <tbody>
@@ -83,13 +83,13 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th colspan="4" style="text-align: center;">Results To Add</th>
+              <th colspan="4" style="text-align: center;">{{ 'LABS.RESULTS_TO_ADD' | translate }}</th>
             </tr>
             <tr>
-              <th>S.No.</th>
-              <th>Sample No.</th>
-              <th>Test Name</th>
-              <th>Sample Collected By</th>
+              <th>{{ 'LABS.SNO' | translate }}</th>
+              <th>{{ 'LABS.SAMPLE_NO_1' | translate }}</th>
+              <th>{{ 'LABS.TEST_NAME' | translate }}</th>
+              <th>{{ 'LABS.SAMPLE_COLLECTED_BY' | translate }}</th>
             </tr>
           </thead>
           <tbody>
@@ -107,14 +107,14 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th colspan="4" style="text-align: center;">Results Added</th>
+              <th colspan="4" style="text-align: center;">{{ 'LABS.RESULTS_ADDED' | translate }}</th>
             </tr>
             <tr>
-              <th>S.No.</th>
-              <th>Sample No.</th>
-              <th>Test Name</th>
-              <th>Sample Collected By</th>
-              <th>Result Added By</th>
+              <th>{{ 'LABS.SNO' | translate }}</th>
+              <th>{{ 'LABS.SAMPLE_NO_1' | translate }}</th>
+              <th>{{ 'LABS.TEST_NAME' | translate }}</th>
+              <th>{{ 'LABS.SAMPLE_COLLECTED_BY' | translate }}</th>
+              <th>{{ 'LABS.RESULT_ADDED_BY' | translate }}</th>
             </tr>
           </thead>
           <tbody>
@@ -145,9 +145,9 @@
         </div>
         <div class="modelbox-body">
           <div class="text-right" style="margin-bottom: 5px;">
-              <a class="text-left" *ngIf="emailSettings.EnableSendEmail" class="btn btn-cancel hidden-print btn-sm" title="Send Report as Email" (click)="showEmailDataBox=true;ProcessSendingData()"> <i class="fa fa-envelope"></i> Send Email </a>
+              <a class="text-left" *ngIf="emailSettings.EnableSendEmail" class="btn btn-cancel hidden-print btn-sm" [title]="'LABS.SEND_REPORT_AS_EMAIL' | translate" (click)="showEmailDataBox=true;ProcessSendingData()"> <i class="fa fa-envelope"></i> {{ 'LABS.SEND_EMAIL' | translate }} </a>
             <button [disabled]="loading" class="btn btn-primary margin-7-hr" (click)="loading=true;printLabReport()">
-              Print <i class="fa fa-print"></i>
+              {{ 'COMMON.PRINT' | translate }} <i class="fa fa-print"></i>
             </button>
           </div>
           <div class="lab-all-reports" id="all-lab-reports">
@@ -167,7 +167,7 @@
           <div>
             <div class="margin-20-tp text-center">
               <button [disabled]="loading" class="btn btn-primary margin-7-hr" (click)="loading=true;printLabReport()">
-                Print <i class="fa fa-print"></i>
+                {{ 'COMMON.PRINT' | translate }} <i class="fa fa-print"></i>
               </button>
             </div>
           </div>
@@ -195,36 +195,36 @@
       <div class="row"><div class="col-md-8 col-md-offset-2">
         <div class="modelbox-div">       
         <div class="caption custom-caption">
-              <h3> <span>Enter the email informations</span></h3>
-              <a class="btn btn-danger" (click)="CloseSendEmailPopUp()" title="Cancel">X</a> </div>
+              <h3> <span>{{ 'LABS.ENTER_THE_EMAIL_INFORMATIONS' | translate }}</span></h3>
+              <a class="btn btn-danger" (click)="CloseSendEmailPopUp()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
           <div class="modelbox-body">
             <div class="row margin-15-vr">
               <div class="col-md-12">
                 <form [formGroup]="labEmail.LabEmailValidator" class="form-horizontal">
                   <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">To</label>
+                    <label for="inputEmail" class="col-sm-2 control-label">{{ 'LABS.TO_1' | translate }}</label>
                     <div class="col-sm-10">
-                      <input formControlName="EmailAddress" [(ngModel)]="labEmail.EmailAddress" type="email" class="form-control" id="inputEmail" placeholder="Email">
+                      <input formControlName="EmailAddress" [(ngModel)]="labEmail.EmailAddress" type="email" class="form-control" id="inputEmail" [placeholder]="'GRID_HEADERS.EMAIL' | translate">
                       <div class="color-red font-sm" *ngIf="labEmail.IsDirty('EmailAddress')"
-                           [hidden]="labEmail.IsValidCheck('EmailAddress','required')"> Email Address is required </div>
-                      <p style="font-size: small;"><i>Note: separate multiple email by semicolon (;)</i></p>
+                           [hidden]="labEmail.IsValidCheck('EmailAddress','required')"> {{ 'LABS.EMAIL_ADDRESS_IS_REQUIRED' | translate }} </div>
+                      <p style="font-size: small;"><i>{{ 'LABS.NOTE_SEPARATE_MULTIPLE_EMAIL_BY_SEMICOLON' | translate }}</i></p>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="subject" class="col-sm-2 control-label">Subject</label>
+                    <label for="subject" class="col-sm-2 control-label">{{ 'LABS.SUBJECT' | translate }}</label>
                     <div class="col-sm-10">
-                      <input formControlName="Subject" [(ngModel)]="labEmail.Subject" type="text" class="form-control" id="subject" placeholder="Subject">
+                      <input formControlName="Subject" [(ngModel)]="labEmail.Subject" type="text" class="form-control" id="subject" [placeholder]="'LABS.SUBJECT' | translate">
                       <div class="color-red font-sm" *ngIf="labEmail.IsDirty('Subject')"
-                           [hidden]="labEmail.IsValidCheck('Subject','required')"> Subject is required </div>
+                           [hidden]="labEmail.IsValidCheck('Subject','required')"> {{ 'LABS.SUBJECT_IS_REQUIRED' | translate }} </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-10">                         
                       <textarea formControlName="PlainContent"  maxlength="500" id="remark" cols="50" rows="5" 
-                      placeholder="Enter text" name="text" 
+                      [placeholder]="'LABS.ENTER_TEXT' | translate" name="text" 
                       [(ngModel)]="labEmail.PlainContent"></textarea> 
                       <div class="color-red font-sm" [hidden]="labEmail.IsValidCheck('PlainContent','required')" *ngIf="labEmail.IsDirty('PlainContent')">
-                        Remark is required
+                        {{ 'LABS.REMARK_IS_REQUIRED' | translate }}
                       </div>           
                   </div>
                 </div>
@@ -250,8 +250,8 @@
           </div>
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
-              <button [disabled]="loading" type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="loading=true;SendEmail()"> Send </button>
-              <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="CloseSendEmailPopUp()"> Cancel </button>
+              <button [disabled]="loading" type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="loading=true;SendEmail()"> {{ 'LABS.SEND' | translate }} </button>
+              <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="CloseSendEmailPopUp()"> {{ 'COMMON.CANCEL' | translate }} </button>
             </div>
           </div>
   <!--

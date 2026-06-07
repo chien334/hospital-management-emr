@@ -20,13 +20,13 @@ table.billing-table tr td {
           <!--start: patient autocomplete-->
           <div class="row">
             <div class="col-md-12" *ngIf="showpatientsearch">
-              <label class="control-label col-md-2">Search Patient<b class="color-red"> *</b><b style="float:right;">:</b></label>
+              <label class="control-label col-md-2">{{ 'LABS.SEARCH_PATIENT_2' | translate }}<b class="color-red"> *</b><b style="float:right;">:</b></label>
               <div class="col-md-4">
                 <input danphe-auto-complete class="form-control"
                                    [(ngModel)]="selectedPatient"
                                    [source]="inpatientList"
                                    [list-formatter]="patientListFormatter"
-                                   placeholder="-- Search Patient --"
+                                   [placeholder]="'LABS.SEARCH_PATIENT_1' | translate"
                                    display-property-name="ShortName"
                                    value-property-name=null
                                    onClick="this.select();"
@@ -70,19 +70,19 @@ table.billing-table tr td {
                   <thead>
                     <tr>
                       <th></th>
-                      <th>S.N</th>
+                      <th>{{ 'LABS.SN_1' | translate }}</th>
                       <th></th>
-                      <th sortable-header col="itemnames"><b>ItemName</b></th>
-                      <th sortable-header col="quantity"><b>Qty</b></th>
-                      <th><b>Price</b></th>
-                      <th><b>Total </b></th>
+                      <th sortable-header col="itemnames"><b>{{ 'LABS.ITEMNAME' | translate }}</b></th>
+                      <th sortable-header col="quantity"><b>{{ 'LABS.QTY' | translate }}</b></th>
+                      <th><b>{{ 'LABS.PRICE' | translate }}</b></th>
+                      <th><b>{{ 'LABS.TOTAL' | translate }} </b></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let row of billingTransaction.BillingTransactionItems; let i = index">
-                      <td style="padding: 7px 0px 0px 0px;"><a class="btn btn-danger delBtn" (click)="deleteRow(i)" title="Click to remove this item"><i class=" fa fa-cross">X</i></a></td>
+                      <td style="padding: 7px 0px 0px 0px;"><a class="btn btn-danger delBtn" (click)="deleteRow(i)" [title]="'LABS.CLICK_TO_REMOVE_THIS_ITEM' | translate"><i class=" fa fa-cross">X</i></a></td>
                       <td style="padding: 7px 0px 0px 0px;"><label class="form-control cstm-form-control" style="text-align:center">{{i+1}}</label></td>
-                      <td style="padding: 7px 0px 0px 0px;"><a class="btn btn-success delBtn" (click)="AddNewBillTxnItemRow(i)" title="Click to add new item"><i class="fa fa-plus"></i></a></td>
+                      <td style="padding: 7px 0px 0px 0px;"><a class="btn btn-success delBtn" (click)="AddNewBillTxnItemRow(i)" [title]="'LABS.CLICK_TO_ADD_NEW_ITEM' | translate"><i class="fa fa-plus"></i></a></td>
                       <td><form [formGroup]="row.BillingTransactionItemValidator" class="bill-itemname">
                           <input (keyup.enter)="AddNewBillTxnItemRow(i)" class="form-control cstm-form-control" danphe-auto-complete title="{{row.ItemName}}" autocomplete="off"
                                                        formControlName="ItemName"
@@ -90,7 +90,7 @@ table.billing-table tr td {
                                                        [(ngModel)]="selectedItems[i]"
                                                        [list-formatter]="ItemsListFormatter"
                                                        [source]="labBillItems"
-                                                       placeholder="Enter Item Name"
+                                                       [placeholder]="'LABS.ENTER_ITEM_NAME' | translate"
                                                        display-property-name="ItemName"
                                                        value-property-name=null
                                                        style="width:190px"
@@ -99,8 +99,8 @@ table.billing-table tr td {
                                                        max-num-list="20"
                                                        onClick="this.select();"
                                                        id="{{ 'items-box'+i }}" />
-                          <div class="color-red font-sm" *ngIf="row.IsDuplicateItem">Duplicate Item not allowed</div>
-                          <div class="color-red font-sm" *ngIf="row.IsDirty('ItemName')" [hidden]="row.IsValidCheck('ItemName','required')"> Item Name is required</div>
+                          <div class="color-red font-sm" *ngIf="row.IsDuplicateItem">{{ 'LABS.DUPLICATE_ITEM_NOT_ALLOWED' | translate }}</div>
+                          <div class="color-red font-sm" *ngIf="row.IsDirty('ItemName')" [hidden]="row.IsValidCheck('ItemName','required')"> {{ 'LABS.ITEM_NAME_IS_REQUIRED' | translate }}</div>
                         </form></td>
                       <td><form [formGroup]="row.BillingTransactionItemValidator">
                           <input [(ngModel)]="row.Quantity"
@@ -110,7 +110,7 @@ table.billing-table tr td {
                                                        name="quantity"
                                                        type="number"
                                                        formControlName="Quantity">
-                          <div class="color-red font-sm" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','invalidNumber')">Enter valid number.</div>
+                          <div class="color-red font-sm" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','invalidNumber')">{{ 'LABS.ENTER_VALID_NUMBER' | translate }}</div>
                         </form></td>
                       <td><form [formGroup]="row.BillingTransactionItemValidator">
                           <input [(ngModel)]="row.Price"
@@ -122,7 +122,7 @@ table.billing-table tr td {
                                                        class="form-control cstm-form-control" name="price"
                                                        type="number"
                                                        value="row.Price">
-                          <div class="color-red font-sm" *ngIf="row.IsDirty('Price')" [hidden]="row.IsValidCheck('Price','invalidNumber')">Enter valid number.</div>
+                          <div class="color-red font-sm" *ngIf="row.IsDirty('Price')" [hidden]="row.IsValidCheck('Price','invalidNumber')">{{ 'LABS.ENTER_VALID_NUMBER' | translate }}</div>
                         </form></td>
                       <td><input [(ngModel)]="row.TotalAmount" style="width:90px" disabled class="form-control cstm-form-control" name="total" type="number"></td>
                     </tr>
@@ -133,7 +133,7 @@ table.billing-table tr td {
                       <th></th>
                       <th></th>
                       <th></th>
-                      <th><b>Total : {{billingTransaction.TotalAmount}} </b></th>
+                      <th><b>{{ 'LABS.TOTAL' | translate }} : {{billingTransaction.TotalAmount}} </b></th>
                     </tr>
                     <tr class="dot" *ngIf="billingTransaction.TotalAmount">
                       <th></th>
@@ -141,7 +141,7 @@ table.billing-table tr td {
                       <th></th>
                       <th></th>
                       <th></th>
-                      <td colspan="3" class="text-capitalize">In Words : <b>{{billingTransaction.TotalAmount | NumberInWords}} </b>Only.</td>
+                      <td colspan="3" class="text-capitalize">{{ 'LABS.IN_WORDS' | translate }} <b>{{billingTransaction.TotalAmount | NumberInWords}} </b>{{ 'LABS.ONLY' | translate }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -151,7 +151,7 @@ table.billing-table tr td {
           
           <!--end: billing row--> 
           <!--form ends here-->
-          <div class="row" *ngIf="selectedPatient && patBillHistory"> Deposit Balance Amount : <b>{{patBillHistory.BalanceAmount}}</b> </div>
+          <div class="row" *ngIf="selectedPatient && patBillHistory"> {{ 'LABS.DEPOSIT_BALANCE_AMOUNT' | translate }} <b>{{patBillHistory.BalanceAmount}}</b> </div>
           <div class="form-group">
             <div class="col-sm-offset-5 col-sm-5">
               <input type="submit" class="btn btn-success" [disabled]="loading" value="Request" (click)="loading=true;CheckAndSubmitBillingTransaction();" />
@@ -163,15 +163,15 @@ table.billing-table tr td {
               <div class="modelbox-div" style="margin-left:30%;margin-right:25%;margin-top:2%">
                 <div class="row">
                   <div class="col-md-12" style="margin-top:15px;text-align:center">
-                    <h4><b style="color:#bd8111">Alert!</b></h4>
-                    <p><b style="color:#bd8111">Patient doesn't have sufficient DEPOSIT BALANCE for Inpatient Billing.</b></p>
+                    <h4><b style="color:#bd8111">{{ 'LABS.ALERT_3' | translate }}</b></h4>
+                    <p><b style="color:#bd8111">{{ 'LABS.PATIENT_DOESNT_HAVE_SUFFICIENT_DEPOSIT_BALANCE_FOR' | translate }}</b></p>
                     <!--<p> <b style="color:#bd8111">Suggest to add deposit before processing.</b> <br /></p>-->
                     <hr />
                   </div>
                   <br />
                   <div class="col-md-12" style="padding-bottom: 18px;padding-left:250px">
-                    <button type="button" class="btn btn-primary" (click)="ProceedWithoutDeposit()"> Continue </button>
-                    <button type="button" class="btn btn-danger" (click)="CloseIpWarningPopUp()"> Cancel </button>
+                    <button type="button" class="btn btn-primary" (click)="ProceedWithoutDeposit()"> {{ 'LABS.CONTINUE' | translate }} </button>
+                    <button type="button" class="btn btn-danger" (click)="CloseIpWarningPopUp()"> {{ 'COMMON.CANCEL' | translate }} </button>
                   </div>
                 </div>
               </div>

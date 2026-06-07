@@ -6,8 +6,8 @@
                     <div class="caption custom-caption no-margin">
                         <h3>
                             <span>
-                                <span *ngIf="ComponentMode=='add'">Add New Scheme</span>
-                                <span *ngIf="ComponentMode=='edit'">Edit Scheme</span>
+                                <span *ngIf="ComponentMode=='add'">{{ 'SETTINGS_NEW.ADD_NEW_SCHEME' | translate }}</span>
+                                <span *ngIf="ComponentMode=='edit'">{{ 'SETTINGS_NEW.EDIT_SCHEME' | translate }}</span>
                             </span>
 
                         </h3>
@@ -34,7 +34,7 @@
                                                     <span class="color-red font-sm" *ngIf="isDirty('SchemeName')"
                                                           [hidden]="isValidCheck('SchemeName','required')">
 
-                                                        <small>Scheme Name is Required</small></span>
+                                                        <small>{{ 'SETTINGS_NEW.SCHEME_NAME_IS_REQUIRED_1' | translate }}</small></span>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
@@ -48,7 +48,7 @@
                                                            (keyup.enter)="GoToNextInput('id_bill_scheme_is_membership_applicable')" />
                                                     <span class="color-red font-sm" *ngIf="isDirty('CommunityName')"
                                                           [hidden]="isValidCheck('CommunityName','required')">
-                                                        <small>Community Name is Required</small></span>
+                                                        <small>{{ 'SETTINGS_NEW.COMMUNITY_NAME_IS_REQUIRED' | translate }}</small></span>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
@@ -91,7 +91,7 @@
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label class="control-label col-md-8">Is Visiting
-                                                    Compulsary In Billing ?</label>
+                                                    Compulsary In {{ 'SETTINGS_NEW.BILLING' | translate }} ?</label>
                                                 <div class="col-md-4">
                                                     <div class="input-group">
                                                         <div class="icheck-inline">
@@ -110,7 +110,7 @@
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label class="control-label col-md-8">Is Visiting
-                                                    Compulsary In Pharmacy ?</label>
+                                                    Compulsary In {{ 'SETTINGS_NEW.PHARMACY' | translate }} ?</label>
                                                 <div class="col-md-4">
                                                     <div class="input-group">
                                                         <div class="icheck-inline">
@@ -128,7 +128,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label class="control-label col-md-5">Default Price Category :
+                                                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.DEFAULT_PRICE_CATEGORY' | translate }}
                                                 </label>
                                                 <div class="col-md-5">
                                                     <select class="form-control custom-select1 col-md-5"
@@ -136,7 +136,7 @@
                                                             [ngModelOptions]=" {standalone: true}"
                                                             (change)="OnPriceCategoryChange()"
                                                             id="defaultPricecategoryupdate">
-                                                        <option disabled selected>-Select Price Category-
+                                                        <option disabled selected>{{ 'SETTINGS_NEW.SELECT_PRICE_CATEGORY_1' | translate }}
                                                         </option>
                                                         <option *ngFor="let pricelist of priceCategoryList"
                                                                 [ngValue]="pricelist">
@@ -156,7 +156,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label class="control-label col-md-8">Allow Provisional? :</label>
+                                                <label class="control-label col-md-8">{{ 'SETTINGS_NEW.ALLOW_PROVISIONAL' | translate }}</label>
                                                 <div class="col-md-4">
                                                     <div class="input-group">
                                                         <div class="icheck-inline">
@@ -186,26 +186,26 @@
                                                                class="form-control" formControlName="SchemeCode" />
                                                         <span class="color-red font-sm" *ngIf="isDirty('SchemeCode')"
                                                               [hidden]="isValidCheck('SchemeCode','required')">
-                                                            <small>Scheme Code is Required</small></span>
+                                                            <small>{{ 'SETTINGS_NEW.SCHEME_CODE_IS_REQUIRED' | translate }}</small></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-6">Description :
+                                                    <label class="control-label col-md-6">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}
                                                     </label>
                                                     <div class="col-md-6">
                                                         <textarea type="text" id="id_bill_scheme_Description" row="6"
                                                                   [(ngModel)]="billScheme.Description" col="50"
                                                                   style="resize: none" [ngModelOptions]="{standalone: true}"
                                                                   (keyup.enter)="GoToNextInput('id_bill_scheme_valid_from')"
-                                                                  class="form-control" placeholder="Description"></textarea>
+                                                                  class="form-control" [placeholder]="'GRID_HEADERS.DESCRIPTION' | translate"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-5">Valid From
+                                                    <label class="control-label col-md-5">{{ 'SETTINGS_NEW.VALID_FROM' | translate }}
                                                         <sup>*</sup><b>:</b></label>
                                                     <div class="col-md-6">
                                                         <danphe-date-picker [(ngModel)]="billScheme.ValidFromDate"
@@ -216,7 +216,7 @@
                                                         <!-- <span class="color-red font-sm"
                                                         *ngIf="billScheme.IsDirty('ValidFrom')"
                                                         [hidden]="billScheme.IsValidCheck('ValidFrom','required')">
-                                                        <small>Valid From  date is Required</small></span> -->
+                                                        <small>{{ 'SETTINGS_NEW.VALID_FROM' | translate }}  date is Required</small></span> -->
 
                                                     </div>
                                                 </div>
@@ -239,7 +239,7 @@
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-5">Default Payment Mode
+                                                    <label class="control-label col-md-5">{{ 'SETTINGS_NEW.DEFAULT_PAYMENT_MODE' | translate }}
                                                         <sup>*</sup><b>:</b></label>
                                                     <div class="col-md-5">
                                                         <select class="form-control custom-select"
@@ -247,11 +247,11 @@
                                                                 [ngModelOptions]=" {standalone: true}"
                                                                 (onchange)="filterPaymentMode()"
                                                                 id="id_bill_scheme_default_Payment_mode">
-                                                            <option disabled selected>-Select payment Mode-
+                                                            <option disabled selected>{{ 'SETTINGS_NEW.SELECT_PAYMENT_MODE' | translate }}
                                                             </option>
-                                                            <option value="cash">cash
+                                                            <option value="cash">{{ 'SETTINGS_NEW.CASH' | translate }}
                                                             </option>
-                                                            <option value="credit">credit
+                                                            <option value="credit">{{ 'SETTINGS_NEW.CREDIT' | translate }}
                                                             </option>
 
                                                         </select>
@@ -281,7 +281,7 @@
                                     Setting</label>
                                 <div class=" DiscountSetting form-group col-md-12 main-form">
                                     <div class="form-group col-md-12">
-                                        <label class="control-label col-md-3">Is Discount Applicable ?</label>
+                                        <label class="control-label col-md-3">{{ 'SETTINGS_NEW.IS_DISCOUNT_APPLICABLE' | translate }}</label>
                                         <div class="col-md-1">
                                             <div class="input-group">
                                                 <div class="icheck-inline">
@@ -295,7 +295,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <label for="Name" class="control-label col-md-2">Discount Percent</label>
+                                        <label for="Name" class="control-label col-md-2">{{ 'SETTINGS_NEW.DISCOUNT_PERCENT' | translate }}</label>
                                         <div class="col-md-2">
                                             <input type="number"
                                                    id="id_bill_scheme_discount_percent" min="0" max="100"
@@ -304,7 +304,7 @@
                                                    (keyup.enter)="GoToNextInput('id_bill_scheme_is_discount_Editable')"
                                                    (wheel)="coreService.PreventNumberChangeOnScroll($event)" />
                                         </div>
-                                        <label class="control-label col-md-3">Is Discount Editable ? </label>
+                                        <label class="control-label col-md-3">{{ 'SETTINGS_NEW.IS_DISCOUNT_EDITABLE' | translate }} </label>
                                         <div class="input-group">
                                             <div class="icheck-inline">
                                                 <label class="mt-checkbox mt-checkbox-outline">
@@ -320,16 +320,16 @@
                                         <table class="table table-responsive " style="max-width:100%">
                                             <tr>
                                                 <th></th>
-                                                <th>Is Applicable ?</th>
-                                                <th>Discount Percent</th>
-                                                <th>Is Editable ?</th>
+                                                <th>{{ 'SETTINGS_NEW.IS_APPLICABLE' | translate }}</th>
+                                                <th>{{ 'SETTINGS_NEW.DISCOUNT_PERCENT' | translate }}</th>
+                                                <th>{{ 'SETTINGS_NEW.IS_EDITABLE' | translate }}</th>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <div style="display: flex; align-items: center;">
 
                                                         <span style="padding: 5px;">
-                                                            Registration</span>
+                                                            {{ 'SETTINGS_NEW.REGISTRATION' | translate }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -362,7 +362,7 @@
                                                     <div style="display: flex; align-items: center;">
 
                                                         <span style="padding: 5px;">
-                                                            OP Billing</span>
+                                                            {{ 'SETTINGS_NEW.OP_BILLING' | translate }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -391,7 +391,7 @@
                                                     <div style="display: flex; align-items: center;">
 
                                                         <span style="padding: 5px;">
-                                                            IP Billing</span>
+                                                            {{ 'SETTINGS_NEW.IP_BILLING' | translate }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -420,7 +420,7 @@
                                                     <div style="display: flex; align-items: center;">
 
                                                         <span style="padding: 5px;">
-                                                            Admission</span>
+                                                            {{ 'SETTINGS_NEW.ADMISSION' | translate }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -451,7 +451,7 @@
                                                     <div style="display: flex; align-items: center;">
 
                                                         <span style="padding: 5px;">
-                                                            OP Pharmacy</span>
+                                                            {{ 'SETTINGS_NEW.OP_PHARMACY' | translate }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -484,7 +484,7 @@
                                                     <div style="display: flex; align-items: center;">
 
                                                         <span style="padding: 5px;">
-                                                            IP Pharmacy </span>
+                                                            {{ 'SETTINGS_NEW.IP_PHARMACY' | translate }} </span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -521,7 +521,7 @@
                                     Setting</label>
                                 <div class=" CreditSetting form-group col-md-12 main-form">
                                     <div class="form-group col-md-12">
-                                        <label class="control-label col-md-3">Is Credit Applicable ?</label>
+                                        <label class="control-label col-md-3">{{ 'SETTINGS_NEW.IS_CREDIT_APPLICABLE' | translate }}</label>
                                         <div class="col-md-1">
                                             <div class="input-group">
                                                 <div class="icheck-inline">
@@ -536,7 +536,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <label class="control-label col-md-3">Is Credit Only Scheme?</label>
+                                        <label class="control-label col-md-3">{{ 'SETTINGS_NEW.IS_CREDIT_ONLY_SCHEME' | translate }}</label>
                                         <div class="col-md-1">
                                             <div class="input-group">
                                                 <div class="icheck-inline">
@@ -550,7 +550,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <label class="control-label col-md-3">Is Credit Limited ? </label>
+                                        <label class="control-label col-md-3">{{ 'SETTINGS_NEW.IS_CREDIT_LIMITED' | translate }} </label>
                                         <div class="input-group">
                                             <div class="icheck-inline">
                                                 <label class="mt-checkbox mt-checkbox-outline">
@@ -573,7 +573,7 @@
                                                         [ngModelOptions]=" {standalone: true}"
                                                         (change)="OnCreditOrganizationChange()"
                                                         id="defaultCreditOrganizationupdate">
-                                                    <option disabled selected>-Select Credit Organization-
+                                                    <option disabled selected>{{ 'SETTINGS_NEW.SELECT_CREDIT_ORGANIZATION' | translate }}
                                                     </option>
                                                     <option *ngFor="let CreditOrg of CreditOrganizations"
                                                             [ngValue]="CreditOrg">
@@ -702,7 +702,7 @@
                                                 <div class="form-group col-md-6">
                                                     <div class="form-group col-md-12">
                                                         <label class="control-label col-md-8"> Credit Applicable in
-                                                            Registration ?</label>
+                                                            {{ 'SETTINGS_NEW.REGISTRATION' | translate }} ?</label>
                                                         <div class="col-md-4">
                                                             <div class="input-group">
                                                                 <div class="icheck-inline">
@@ -723,7 +723,7 @@
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label class="control-label col-md-8">Credit Applicable in
-                                                            OP Billing ?</label>
+                                                            {{ 'SETTINGS_NEW.OP_BILLING' | translate }} ?</label>
                                                         <div class="col-md-4">
                                                             <div class="input-group">
                                                                 <div class="icheck-inline">
@@ -744,7 +744,7 @@
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label class="control-label col-md-8">Credit Applicable in
-                                                            OP Pharmacy ?</label>
+                                                            {{ 'SETTINGS_NEW.OP_PHARMACY' | translate }} ?</label>
                                                         <div class="col-md-4">
                                                             <div class="input-group">
                                                                 <div class="icheck-inline">
@@ -767,7 +767,7 @@
                                                 <div class="form-group col-md-6">
                                                     <div class="form-group col-md-12">
                                                         <label class="control-label col-md-8"> Credit Applicable in
-                                                            Admission ?</label>
+                                                            {{ 'SETTINGS_NEW.ADMISSION' | translate }} ?</label>
                                                         <div class="col-md-4">
                                                             <div class="input-group">
                                                                 <div class="icheck-inline">
@@ -788,7 +788,7 @@
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label class="control-label col-md-8">Credit Applicable in
-                                                            IP Billing ?</label>
+                                                            {{ 'SETTINGS_NEW.IP_BILLING' | translate }} ?</label>
                                                         <div class="col-md-4">
                                                             <div class="input-group">
                                                                 <div class="icheck-inline">
@@ -809,7 +809,7 @@
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label class="control-label col-md-8">Credit Applicable in
-                                                            IP Pharmacy</label>
+                                                            {{ 'SETTINGS_NEW.IP_PHARMACY' | translate }}</label>
                                                         <div class="col-md-4">
                                                             <div class="input-group">
                                                                 <div class="icheck-inline">
@@ -842,7 +842,7 @@
                                      style="margin-bottom:30px">
                                     <div class="form-group col-md-12">
 
-                                        <label class="control-label col-md-5">Is Copayment Applicable ?</label>
+                                        <label class="control-label col-md-5">{{ 'SETTINGS_NEW.IS_COPAYMENT_APPLICABLE' | translate }}</label>
                                         <div class="col-md-2">
                                             <div class="input-group">
                                                 <div class="icheck-inline">
@@ -864,16 +864,16 @@
                                                class="table table-responsive " style="max-width:100%">
                                             <tr>
                                                 <th></th>
-                                                <th>Is Applicable ?</th>
-                                                <th>Copay-Cash Percent</th>
-                                                <th>Copay-Credit Percent</th>
+                                                <th>{{ 'SETTINGS_NEW.IS_APPLICABLE' | translate }}</th>
+                                                <th>{{ 'SETTINGS_NEW.COPAYCASH_PERCENT' | translate }}</th>
+                                                <th>{{ 'SETTINGS_NEW.COPAYCREDIT_PERCENT' | translate }}</th>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <div style="display: flex; align-items: center;">
 
                                                         <span style="padding: 5px;">
-                                                            Billing</span>
+                                                            {{ 'SETTINGS_NEW.BILLING' | translate }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -904,7 +904,7 @@
                                                     <div style="display: flex; align-items: center;">
 
                                                         <span style="padding: 5px;">
-                                                            Pharmacy</span>
+                                                            {{ 'SETTINGS_NEW.PHARMACY' | translate }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -940,12 +940,12 @@
                     <!-- SubScheme Setting -->
                     <div class="row col-md-12" style="margin-left: 25px !important;">
                         <label
-                               style=" text-decoration: underline; margin-top: 10px; margin-left:10px;">SubScheme Setting</label>
+                               style=" text-decoration: underline; margin-top: 10px; margin-left:10px;">{{ 'SETTINGS_NEW.SUBSCHEME_SETTING' | translate }}</label>
                         <div class="col-md-12"
                              style="margin-bottom: 65px !important;">
                             <div class="col-md-12" style="padding: 0px !important; margin-top: 10px !important;">
                                 <label class="control-label col-md-2"
-                                       style="font-weight: 700 !important;">Has Sub Schemes?</label>
+                                       style="font-weight: 700 !important;">{{ 'SETTINGS_NEW.HAS_SUB_SCHEMES' | translate }}</label>
                                 <div class="col-md-2">
                                     <div>
                                         <div class="icheck-inline">
@@ -976,9 +976,9 @@
                                         <thead class="table-header-bg">
                                             <tr>
                                                 <th scope="col" class="wd-10">S.N.</th>
-                                                <th scope="col" class="wd-200">SubSchemeName</th>
-                                                <th scope="col" class="wd-50">IsActive</th>
-                                                <th scope="col" class="wd-200">Action</th>
+                                                <th scope="col" class="wd-200">{{ 'SETTINGS_NEW.SUBSCHEMENAME' | translate }}</th>
+                                                <th scope="col" class="wd-50">{{ 'SETTINGS_NEW.ISACTIVE' | translate }}</th>
+                                                <th scope="col" class="wd-200">{{ 'COMMON.ACTION' | translate }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -991,7 +991,7 @@
                                                            id="id_edit_subscheme"
                                                            (click)="EditSubScheme(subScheme)"
                                                            class="grid-action"
-                                                           value="Edit" />
+                                                           [value]="'COMMON.EDIT' | translate" />
                                                     <input *ngIf="subScheme.SubSchemeId !== 0" type="button" id="id_activate_deactivate_subscheme"
                                                            (click)="ActivateDeactivateSubScheme(subScheme.SubSchemeId)"
                                                            class="grid-action"
@@ -1011,11 +1011,11 @@
                     <div class="modelbox-footer">
                         <div class="all-buttons text-right">
                             <input type="button" id="id_discard_scheme" class="btn orange btn-success margin-7-hr"
-                                   (click)="DiscardChanges()" value="Discard" />
+                                   (click)="DiscardChanges()" [value]="'COMMON.DISCARD' | translate" />
                             <input type="button" id="id_add_scheme" class="btn green btn-success margin-7-hr"
-                                   (click)="AddBillScheme()" value="Save" *ngIf="ComponentMode=='add'" [disabled]="loading" />
+                                   (click)="AddBillScheme()" [value]="'COMMON.SAVE' | translate" *ngIf="ComponentMode=='add'" [disabled]="loading" />
                             <input type="button" id="id_update_scheme" class="btn green btn-success margin-7-hr"
-                                   (click)="UpdateBillScheme()" value="Update" *ngIf="ComponentMode=='edit'" />
+                                   (click)="UpdateBillScheme()" [value]="'COMMON.UPDATE' | translate" *ngIf="ComponentMode=='edit'" />
                         </div>
                     </div>
                 </div>

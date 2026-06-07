@@ -4,14 +4,14 @@
       <div class="modelbox-div">
         <div class="modelbox-header">
           <h4 class="margin-0-vr text-warning">
-            <strong> Choose Vendor</strong>
+            <strong> {{ 'LABS.CHOOSE_VENDOR' | translate }}</strong>
           </h4>
         </div>
 
         <div class="modelbox-body">
           <div class="row">
             <div class="col-md-5">
-              External Vendor:
+              {{ 'LABS.EXTERNAL_VENDOR' | translate }}
             </div>
             <div class="col-md-7">
               <select [(ngModel)]="selectedVendorId">
@@ -25,9 +25,9 @@
 
         <div class="modelbox-footer">
           <div class="all-buttons text-right">
-            <button class="btn green btn-success btn-sm margin-7-hr" (click)="UpdateVendorForRequisitions()">Submit </button>
+            <button class="btn green btn-success btn-sm margin-7-hr" (click)="UpdateVendorForRequisitions()">{{ 'COMMON.SUBMIT' | translate }} </button>
             <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="OnClose()">
-              Close
+              {{ 'COMMON.CLOSE' | translate }}
             </button>
           </div>
         </div>

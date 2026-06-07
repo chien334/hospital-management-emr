@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix" style="zoom: 0.9;">
-          <a class="btn btn-danger history-del-btn" (click)="Close()" title="Cancel">
+          <a class="btn btn-danger history-del-btn" (click)="Close()" [title]="'COMMON.CANCEL' | translate">
             <i class="fa fa-times"></i>
           </a>
           <!--Model Box Body Start-->
@@ -141,9 +141,9 @@
             </div>
           </div>
           <p style="text-align:center;z-index: 4;position: relative;">
-            <button class="btn green btn-success" (click)="Print()" id="btnPrintRecipt"><span> <i class="glyphicon glyphicon-print">&nbsp;&nbsp;</i>Print</span></button>
-            <!-- <button id="editGR" (click)="Edit(donationData.donationDetails.DonationId)" class="btn  btn-small btn-info"><span><i class="glyphicon glyphicon-edit">&nbsp;&nbsp;</i>Edit</span></button> -->
-            <button class="btn  btn-small btn-danger" (click)="Cancel()" title="Cancel Goods Receipt" data-bs-toggle="modal" data-bs-target="#CancelPopup"><span> <i class="fa fa-times">&nbsp;&nbsp;</i>Cancel Donation</span></button>
+            <button class="btn green btn-success" (click)="Print()" id="btnPrintRecipt"><span> <i class="glyphicon glyphicon-print">&nbsp;&nbsp;</i>{{ 'COMMON.PRINT' | translate }}</span></button>
+            <!-- <button id="editGR" (click)="Edit(donationData.donationDetails.DonationId)" class="btn  btn-small btn-info"><span><i class="glyphicon glyphicon-edit">&nbsp;&nbsp;</i>{{ 'COMMON.EDIT' | translate }}</span></button> -->
+            <button class="btn  btn-small btn-danger" (click)="Cancel()" [title]="'INVENTORY.CANCEL_GOODS_RECEIPT' | translate" data-bs-toggle="modal" data-bs-target="#CancelPopup"><span> <i class="fa fa-times">&nbsp;&nbsp;</i>{{ 'INVENTORY.CANCEL_DONATION' | translate }}</span></button>
           </p>
         </div>
       </div>
@@ -158,14 +158,14 @@
     <div class="modal-content" *ngIf="showCancelPopUp">
       <div class="modal-header">
         <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
-        <h3 class="modal-title">Warning</h3>
+        <h3 class="modal-title">{{ 'INVENTORY.WARNING' | translate }}</h3>
       </div>
       <div class="modal-body" style="height:16em">
-        <p>Are you sure want to cancel the donation ?</p>
-        <i>If yes, Remarks is mandatory.</i>
+        <p>{{ 'INVENTORY.ARE_YOU_SURE_WANT_TO_CANCEL_THE_DONATION' | translate }}</p>
+        <i>{{ 'INVENTORY.IF_YES_REMARKS_IS_MANDATORY' | translate }}.</i>
         <div class="col-md-12" style="margin-top:15px">
           <div class="col-md-4">
-            <b>Cancel Remarks<i style="color:red">*</i><span class="right">:</span></b>
+            <b>{{ 'INVENTORY.CANCEL_REMARKS' | translate }}<i style="color:red">*</i><span class="right">:</span></b>
           </div>
           <div class="col-md-8">
             <textarea style="height:7em;width:100%;" [(ngModel)]="Remarks" (ngModelChange)="LoadRemarks()" type="text" name="cancelRemarks"></textarea>
@@ -173,8 +173,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default btn btn-danger" data-bs-dismiss="modal" (click)="CancelDonation(donationData.donationDetails.DonationId)" [disabled]="disableButton">Yes</button>
-        <button type="button" class="btn btn-default btn btn-success" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-default btn btn-danger" data-bs-dismiss="modal" (click)="CancelDonation(donationData.donationDetails.DonationId)" [disabled]="disableButton">{{ 'COMMON.YES' | translate }}</button>
+        <button type="button" class="btn btn-default btn btn-success" data-bs-dismiss="modal">{{ 'COMMON.NO' | translate }}</button>
       </div>
     </div>
   </div>

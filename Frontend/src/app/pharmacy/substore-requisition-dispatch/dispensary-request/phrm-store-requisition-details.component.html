@@ -39,8 +39,8 @@
           <div class="text-center bill-head" style="text-align: center;font-family:sans-serif; margin-top: 10px;">
             <span style="font-size:15px;"><strong>{{headerDetail.hospitalName}}</strong></span><br />
             <span style="font-size:15px;">{{headerDetail.address}}</span><br />
-            <span style="font-size:13px;">{{GeneralFieldLabel.PANNo}}: {{headerDetail.PANno}} , Tel: {{ headerDetail.tel}}</span><br />
-            <span style="font-size:15px;"><strong> Pharmacy Unit </strong></span><br />
+            <span style="font-size:13px;">{{GeneralFieldLabel.PANNo}}: {{headerDetail.PANno}} {{ 'PHARMACY.TEL' | translate }}: {{ headerDetail.tel}}</span><br />
+            <span style="font-size:15px;"><strong> {{ 'PHARMACY.PHARMACY_UNIT' | translate }} </strong></span><br />
           </div>
         </div>
         <div style="float: left;">
@@ -52,17 +52,17 @@
       </div>
       <div class="clear"></div>
       <div class="left" style="text-align:left;">
-        <p>Requisition No:<b> {{requisition.RequisitionNo}}</b></p>
-        <p>Requisiting Store:<b> {{requisition.RequestedStoreName}}</b></p>
+        <p>{{ 'PHARMACY.REQUISITION_NO' | translate }}:<b> {{requisition.RequisitionNo}}</b></p>
+        <p>{{ 'PHARMACY.REQUISITING_STORE' | translate }}:<b> {{requisition.RequestedStoreName}}</b></p>
       </div>
       <div class="right" style="text-align:right;">
-        <p><strong>Requisition Date:</strong>{{requisition.RequisitionDate | date:"yyy-MM-dd"}}&nbsp;
+        <p><strong>{{ 'PHARMACY.REQUISITION_DATE' | translate }}:</strong>{{requisition.RequisitionDate | date:"yyy-MM-dd"}}&nbsp;
           <i *ngIf="requisition.RequisitionDate">({{requisition.RequisitionDate | nepaliDate:'format':'YYYY-MM-DD'}} 
             )</i>
         </p>
       </div>
       <div class="clear"></div>
-      <p class="text-center btm-pad border-up-down"><b> REQUISITION DETAILS PRINT</b></p>
+      <p class="text-center btm-pad border-up-down"><b> {{ 'PHARMACY.REQUISITION_DETAILS_PRINT' | translate }}</b></p>
       <div class="clear"></div>
       <div class="clear footer"></div>
       <div>
@@ -71,19 +71,19 @@
           <thead>
             <tr style="font-weight: bold;text-align:center">
               <td></td>
-              <td>Medicine Name</td>
-              <td>Quantity</td>
-              <td>Dispatched Qty.</td>
-              <td>Pending Qty.</td>
-              <td>Status</td>
-              <td>Remarks</td>
+              <td>{{ 'PHARMACY.MEDICINE_NAME' | translate }}</td>
+              <td>{{ 'PHARMACY.QUANTITY' | translate }}</td>
+              <td>{{ 'PHARMACY.DISPATCHED_QTY' | translate }}</td>
+              <td>{{ 'PHARMACY.PENDING_QTY' | translate }}</td>
+              <td>{{ 'COMMON.STATUS' | translate }}</td>
+              <td>{{ 'COMMON.REMARKS' | translate }}</td>
             </tr>
           </thead>
           <tbody>
             <tr style="text-align:center" *ngFor="let row of requisition.RequisitionItems">
               <td>
                 <input *ngIf="row.RequestedItemStatus=='active' || row.RequestedItemStatus=='pending'" class="noPrint"
-                  title="Cancel this item." type="checkbox" [(ngModel)]="row.IsSelected" style="zoom:1.2"
+                  [title]="'PHARMACY.CANCEL_THIS_ITEM' | translate" type="checkbox" [(ngModel)]="row.IsSelected" style="zoom:1.2"
                   (change)="ShowCancelButtonOnCkboxChange()" />
               </td>
               <td>{{row.ItemName}}(<i style="color: blue;">{{row.GenericName}}</i>)</td>
@@ -98,7 +98,7 @@
                   <p class="tooltiptext ttptextdown noPrint">
                     Cancelled&nbsp;By:&nbsp;{{row.CancelledBy}}<br />
                     Cancelled&nbsp;On:&nbsp;{{row.CancelledOn | date:"yyy-MM-dd"}}(<i>{{row.CancelledOn | nepaliDate}}</i>)<br />
-                    <em>Remarks:&nbsp;{{row.CancelRemarks}}</em>
+                    <em>{{ 'COMMON.REMARKS' | translate }}:&nbsp;{{row.CancelRemarks}}</em>
                   </p>
                 </span>
               </td>
@@ -109,32 +109,30 @@
       </div>
       <hr />
       <div class="col-md-12 noPrint" style="margin:10px 0" *ngIf="showCancelButton == true">
-        <label for="cancelRemarks" class="col-md-2">Remarks <sup class="color-red">*</sup> <span
+        <label for="cancelRemarks" class="col-md-2">{{ 'COMMON.REMARKS' | translate }} <sup class="color-red">*</sup> <span
             class="right">:</span></label>
         <textarea class="col-md-10" [(ngModel)]="cancelRemarks" name="cancelRemarks" rows="3"></textarea>
       </div>
       <div class="col-md-12">
-        <div style="text-align: left" class="col-md-4">Requested By:&nbsp;<b>{{requisition.RequestedBy}}</b></div>
-        <div *ngIf="requisition.ReceivedBy!=null" style="text-align: left" class="col-md-4">Received
-          By:&nbsp;<b>{{requisition.ReceivedBy}}</b></div>
-        <div style="text-align: left" class="col-md-4" *ngIf="requisition.DispatchedBy">Dispatched
-          By:&nbsp;<b>{{requisition.DispatchedBy}}</b></div>
+        <div style="text-align: left" class="col-md-4">{{ 'PHARMACY.REQUESTED_BY' | translate }}:&nbsp;<b>{{requisition.RequestedBy}}</b></div>
+        <div *ngIf="requisition.ReceivedBy!=null" style="text-align: left" class="col-md-4">{{ 'PHARMACY.RECEIVED_BY' | translate }}:&nbsp;<b>{{requisition.ReceivedBy}}</b></div>
+        <div style="text-align: left" class="col-md-4" *ngIf="requisition.DispatchedBy">{{ 'PHARMACY.DISPATCHED_BY' | translate }}:&nbsp;<b>{{requisition.DispatchedBy}}</b></div>
       </div>
     </div>
   </div>
 </ng-template>
 <div class="row center-style">
   <div class="col-md-12 col-xs-12 ">
-    <button id="printButton" (click)="print()" class="btn btn-default">Print
+    <button id="printButton" (click)="print()" class="btn btn-default">{{ 'COMMON.PRINT' | translate }}
       <i class="glyphicon glyphicon-print"></i>
     </button><span> </span><span> </span>
     &nbsp;
     <button (click)="routeToRequisitionList()" class="btn btn-primary">
-      Requisition List
+      {{ 'PHARMACY.REQUISITION_LIST' | translate }}
       <i class="glyphicon glyphicon-share-alt"></i>
     </button>
     <button (click)="CancelSelectedItems()" class="btn btn-danger" *ngIf="showCancelButton">
-      Cancel Item(s)
+      {{ 'PHARMACY.CANCEL_ITEMS' | translate }}
       <i class="glyphicon glyphicon-floppy-remove"></i>
     </button>
   </div>

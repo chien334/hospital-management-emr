@@ -14,7 +14,7 @@
       <div class="col-md-3">
         <label>
           <b>
-            Sample Collection Date :
+            {{ 'LABS.SAMPLE_COLLECTION_DATE' | translate }}
           </b>
         </label>
       </div>
@@ -25,7 +25,7 @@
     </div>
     <div class="col-md-5 col-xs-12">
       <div class="row">
-        <label class="col-md-3 text-right" style="line-height: 3;"><b>Category:</b></label>
+        <label class="col-md-3 text-right" style="line-height: 3;"><b>{{ 'LABS.CATEGORY' | translate }}</b></label>
         <div class="col-md-6">
           <div class="row">
             <div style="display: inline-block; width: 100%;">
@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-3">
           <button [disabled]="loading" class="btn green btn-success pull-right"
-                  (click)="LoadWorkListData(fromDate,toDate,categoryIdList)">Load
+                  (click)="LoadWorkListData(fromDate,toDate,categoryIdList)">{{ 'LABS.LOAD' | translate }}
             <i class="fa fa-refresh"></i></button>
         </div>
       </div>
@@ -53,17 +53,17 @@
           <div class="row">
             <div class="col-md-3 headerDate">
               <span class="text-left">From: {{fromDate | nepaliDate:'format':'YYYY-MM-DD'}} {{fromDate}}
-              </span><span class="text-left">To: {{toDate | nepaliDate:'format':'YYYY-MM-DD'}} {{toDate}}
+              </span><span class="text-left">{{ 'LABS.TO_1' | translate }}: {{toDate | nepaliDate:'format':'YYYY-MM-DD'}} {{toDate}}
               </span>
             </div>
             <div class="col-md-6 headerHospName" style="width: 50%;">
               <span>{{this.workListHeader.hospitalName}}</span>
               <span>{{this.workListHeader.address}}</span>
-              <span> Work List Report</span>
+              <span> {{ 'LABS.WORK_LIST_REPORT' | translate }}</span>
               <span>Department: {{departmentName}}</span>
             </div>
             <div class="col-md-3 headerPrintDate">
-              <span class="text-right"> Printed On: <date-lbl [value]="printDate" [show-time]="true"></date-lbl></span>
+              <span class="text-right"> {{ 'LABS.PRINTED_ON' | translate }} <date-lbl [value]="printDate" [show-time]="true"></date-lbl></span>
             </div>
           </div>
 
@@ -71,14 +71,14 @@
 
       </tr>
       <tr>
-        <th style="width:50px;">S.N.</th>
-        <th style="width:100px;">Collected On</th>
-        <th style="width:100px;">Run No.</th>
-        <th style="width:80px;">BarCode No.</th>
-        <th style="width:150px;">Patient Name</th>
-        <th style="width:100px;">Hospital No</th>
-        <th style="width:80px;">Age/Sex</th>
-        <th style="width:150px;">Tests</th>
+        <th style="width:50px;">{{ 'COMMON.SN' | translate }}</th>
+        <th style="width:100px;">{{ 'LABS.COLLECTED_ON' | translate }}</th>
+        <th style="width:100px;">{{ 'LABS.RUN_NO' | translate }}</th>
+        <th style="width:80px;">{{ 'LABS.BARCODE_NO' | translate }}</th>
+        <th style="width:150px;">{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+        <th style="width:100px;">{{ 'LABS.HOSPITAL_NO_1' | translate }}</th>
+        <th style="width:80px;">{{ 'GRID_HEADERS.AGE_SEX' | translate }}</th>
+        <th style="width:150px;">{{ 'LABS.TESTS' | translate }}</th>
         <th style="width:150px;"></th>
       </tr>
     </thead>
@@ -114,9 +114,9 @@
 </div>
 
 <div class="lab-workbook" style="text-align: center;" *ngIf="loading">
-  <p>Please wait.</p>
+  <p>{{ 'LABS.PLEASE_WAIT' | translate }}</p>
 </div>
 
 <div style="margin-top: 20px; text-align: center;" *ngIf="!loading">
-  <button (click)="Print()" class="btn btn-primary no-print"><i class="fa fa-print"></i> &nbsp;Print</button>
+  <button (click)="Print()" class="btn btn-primary no-print"><i class="fa fa-print"></i> &nbsp;{{ 'COMMON.PRINT' | translate }}</button>
 </div>

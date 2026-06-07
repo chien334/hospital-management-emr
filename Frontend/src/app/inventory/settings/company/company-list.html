@@ -1,5 +1,5 @@
 ﻿
-<input type="button" class="btn primary-btn m1" (click)="AddCompany()" value="Add Company"   />
+<input type="button" class="btn primary-btn m1" (click)="AddCompany()" [value]="'INVENTORY.ADD_COMPANY' | translate"   />
 
 <company-add [showAddPage]="showAddPage" [selected-company]="company" (callback-add)="pushToList($event)"></company-add>
 

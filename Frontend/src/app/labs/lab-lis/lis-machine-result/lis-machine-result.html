@@ -10,14 +10,14 @@
                         <select class="form-control" style="display: inline-block;width: 65%;"
                             [(ngModel)]="selectedMachineId" id="ddlMachineSelection"
                             [disabled]="allMachines && allMachines.length == 1">
-                            <option value="0" *ngIf="allMachines && (allMachines.length > 1)">Select Lab Machine
+                            <option value="0" *ngIf="allMachines && (allMachines.length > 1)">{{ 'LABS.SELECT_LAB_MACHINE' | translate }}
                             </option>
                             <option *ngFor="let machine of allMachines; let i=index;"
                                 [value]="allMachines[i].MachineId">
                                 {{allMachines[i].MachineName}}-{{allMachines[i].ModelName}}
                             </option>
                         </select>
-                        <button class="btn blue" (click)="LoadMachineData()">Load</button>
+                        <button class="btn blue" (click)="LoadMachineData()">{{ 'LABS.LOAD' | translate }}</button>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
 </div>
 <div class="row">
     <div class="col-md-4" style="text-align: left;">
-        <button *ngIf="anySelected" class="btn green" (click)="SaveMachineDataToDanphe()">Save</button>
+        <button *ngIf="anySelected" class="btn green" (click)="SaveMachineDataToDanphe()">{{ 'COMMON.SAVE' | translate }}</button>
     </div>
 </div>
 
@@ -42,17 +42,17 @@
                                     (change)="SelectComps(1)" type="checkbox" /><span></span><b></b>
                             </label>
                         </th>
-                        <th>S.N.</th>
-                        <th>PatientName</th>
-                        <th>Barcode No.</th>
-                        <th>TestName</th>
-                        <th>Run No.</th>
-                        <th>Machine Component Name</th>
-                        <th>Component Name</th>
-                        <th>Value</th>
-                        <th>Machine Unit</th>
-                        <th>Comp. Unit</th>
-                        <th>Range</th>
+                        <th>{{ 'COMMON.SN' | translate }}</th>
+                        <th>{{ 'LABS.PATIENTNAME_1' | translate }}</th>
+                        <th>{{ 'LABS.BARCODE_NO_1' | translate }}</th>
+                        <th>{{ 'LABS.TESTNAME' | translate }}</th>
+                        <th>{{ 'LABS.RUN_NO' | translate }}</th>
+                        <th>{{ 'LABS.MACHINE_COMPONENT_NAME' | translate }}</th>
+                        <th>{{ 'LABS.COMPONENT_NAME_1' | translate }}</th>
+                        <th>{{ 'LABS.VALUE' | translate }}</th>
+                        <th>{{ 'LABS.MACHINE_UNIT' | translate }}</th>
+                        <th>{{ 'LABS.COMP_UNIT' | translate }}</th>
+                        <th>{{ 'LABS.RANGE' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody>

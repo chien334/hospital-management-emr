@@ -17,7 +17,7 @@
                 <div class="caption custom-caption no-margin">
                   <h3>
                     <span>
-                      <ng-container>Edit Payment Mode Settings <span style="color: blue; font-weight: bold;">(For: {{ PageName }})</span></ng-container>
+                      <ng-container>{{ 'SETTINGS_NEW.EDIT_PAYMENT_MODE_SETTINGS' | translate }} <span style="color: blue; font-weight: bold;">(For: {{ PageName }})</span></ng-container>
                     </span>
                   </h3>
                   <a class="btn btn-danger" (click)="close()">X</a>
@@ -27,11 +27,11 @@
                     <thead style="background-color: rgb(220, 220, 220);">
                       <tr>
                         <th style="text-align: center;">S.N.</th>
-                        <th style="text-align: center;">Payment Mode</th>
-                        <th style="text-align: center;">Is Active</th>
-                        <th style="text-align: center;">Remark Mandatory</th>
-                        <th style="text-align: center;">Payment Detail Mandatory</th>
-                        <th style="text-align: center;">Display Sequence</th>
+                        <th style="text-align: center;">{{ 'SETTINGS_NEW.PAYMENT_MODE' | translate }}</th>
+                        <th style="text-align: center;">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }}</th>
+                        <th style="text-align: center;">{{ 'SETTINGS_NEW.REMARK_MANDATORY' | translate }}</th>
+                        <th style="text-align: center;">{{ 'SETTINGS_NEW.PAYMENT_DETAIL_MANDATORY' | translate }}</th>
+                        <th style="text-align: center;">{{ 'SETTINGS_NEW.DISPLAY_SEQUENCE' | translate }}</th>
                       </tr>
                     </thead>
                       <tbody>
@@ -76,7 +76,7 @@
                 <div class="modelbox-footer">
                   <div class="all-buttons text-right">
                     <input type="button" id="update" *ngIf="ShowEditPage" class="btn green btn-success margin-7-hr" [disabled] = "loading" (click)="loading = true;UpdateConfiguration()"
-                      value="Update" />
+                      [value]="'COMMON.UPDATE' | translate" />
                   </div>
                 </div>
               </div>

@@ -22,7 +22,7 @@
   <div class="col-md-12">
     <div class="caption lb-caption">
       <!-- <i class="glyphicon glyphicon-asterisk font-red-sunglo"></i> -->
-      <span class="caption-subject">Return To Vendor</span>
+      <span class="caption-subject">{{ 'INVENTORY.RETURN_TO_VENDOR' | translate }}</span>
     </div>
   </div>
 </div>
@@ -32,7 +32,7 @@
       <div class="row">
         <div class="col-md-3 col-xs-12">
           <div class="form-group row  clearfix">
-            <label class="control-label col-md-5"><b>Fiscal Year:</b></label>
+            <label class="control-label col-md-5"><b>{{ 'INVENTORY.FISCAL_YEAR' | translate }}:</b></label>
             <div class="col-md-7">
               <select [(ngModel)]="selFiscYrId" [ngModelOptions]="{standalone: true}" style="height: 28px; width:100%;">
                 <option *ngFor="let fisc of allFiscalYrs;" value="{{fisc.FiscalYearId}}">{{fisc.FiscalYearFormatted}}</option>
@@ -47,10 +47,10 @@
               <form [formGroup]="ReturnValidator">
                 <div class="div-relative">
                   <input id="vendor" (keyup.enter)="setFocusById('GrNo')" danphe-auto-complete class="form-control" [(ngModel)]="selectedVendor"
-                         [source]="Vendors" [list-formatter]="myVendorListFormatter" placeholder="Search Vendor Name"
+                         [source]="Vendors" [list-formatter]="myVendorListFormatter" [placeholder]="'INVENTORY.SEARCH_VENDOR_NAME' | translate"
                          display-property-name="VendorName" value-property-name=null max-num-list="20" match-formatted="true"
                          [grid-sort]="'VendorName'" formControlName="VendorId" (focusout)="SelectVendorFromSearchBox()" onclick="this.select();" />
-                  <div style="color:red; font-size:12px !important" *ngIf="IsDirty('VendorId')" [hidden]="IsValid('VendorId','required')"> Select
+                  <div style="color:red; font-size:12px !important" *ngIf="IsDirty('VendorId')" [hidden]="IsValid('VendorId','required')"> {{ 'INVENTORY.SELECT' | translate }}
                     Vendor.</div>
                 </div>
               </form>
@@ -59,13 +59,13 @@
         </div>
         <div class="col-md-3 col-xs-12">
           <div class="form-group row clearfix">
-            <label class="control-label col-md-5"><b> GR No. <sup style="color: red">*</sup>:</b></label>
+            <label class="control-label col-md-5"><b> {{ 'INVENTORY.GR_NO' | translate }}. <sup style="color: red">*</sup>:</b></label>
             <div class="col-md-7">
               <form [formGroup]="ReturnValidator">
                 <div>
                   <input id="GrNo" [(ngModel)]="GoodsReceiptNo" class="form-control " style="width:100%" formControlName="GrNo" name="grNo"
                          type="number" (keyUp.enter)="setFocusById('searchBtn')" (wheel)="coreService.PreventNumberChangeOnScroll($event)">
-                  <div style="color:red; font-size:12px !important" *ngIf="IsDirty('GrNo')" [hidden]="IsValid('GrNo','required')"> Enter GR No.</div>
+                  <div style="color:red; font-size:12px !important" *ngIf="IsDirty('GrNo')" [hidden]="IsValid('GrNo','required')"> {{ 'INVENTORY.ENTER_GR_NO' | translate }}.</div>
                 </div>
               </form>
             </div>
@@ -73,7 +73,7 @@
         </div>
         <div class="col-md-3 col-xs-12">
           <div class="form-group row clearfix">
-            <label class="control-label col-md-5"><b> Credit Note No <sup style="color: red">*</sup> : </b> </label>
+            <label class="control-label col-md-5"><b> {{ 'INVENTORY.CREDIT_NOTE_NO' | translate }} <sup style="color: red">*</sup> : </b> </label>
             <div class="col-md-7">
               <form [formGroup]="ReturnValidator">
                 <div>
@@ -92,7 +92,7 @@
       <div class="form-group clearfix">
         <button id="searchBtn" class="btn green btn-success margin-7-hr" type="button" (click)="GetItemList()" (keyup.enter)="GetItemList()">
           <i class="fa fa-search"></i>
-          Search
+          {{ 'COMMON.SEARCH' | translate }}
         </button>
       </div>
     </div>
@@ -107,20 +107,20 @@
         <thead>
           <tr>
             <th></th>
-            <th sortable-header col="itemnames"><b>ItemName</b></th>
+            <th sortable-header col="itemnames"><b>{{ 'INVENTORY.ITEMNAME' | translate }}</b></th>
             <th><b>Batch No</b></th>
-            <th><b>Good Receipt No</b></th>
-            <th><b>Available Qty</b></th>
-            <th><b>Item Rate</b></th>
-            <th><b>Return Rate</b></th>
+            <th><b>{{ 'INVENTORY.GOOD_RECEIPT_NO' | translate }}</b></th>
+            <th><b>{{ 'INVENTORY.AVAILABLE_QTY' | translate }}</b></th>
+            <th><b>{{ 'INVENTORY.ITEM_RATE' | translate }}</b></th>
+            <th><b>{{ 'INVENTORY.RETURN_RATE' | translate }}</b></th>
             <th sortable-header col="quantity"><b>Quantity</b></th>
-            <th><b>Subtotal</b></th>
+            <th><b>{{ 'INVENTORY.SUBTOTAL' | translate }}</b></th>
             <!-- <th><b>VAT %</b></th> -->
-            <th><b>Return Discount Amt</b></th>
-            <th><b>Return VAT Amt</b></th>
-            <th><b>Return CC Amt</b></th>
-            <th><b>Total Amount</b></th>
-            <th><b>Remark <b style="color: red">*</b></b></th>
+            <th><b>{{ 'INVENTORY.RETURN_DISCOUNT_AMT' | translate }}</b></th>
+            <th><b>{{ 'INVENTORY.RETURN_VAT_AMT' | translate }}</b></th>
+            <th><b>{{ 'INVENTORY.RETURN_CC_AMT' | translate }}</b></th>
+            <th><b>{{ 'INVENTORY.TOTAL_AMOUNT' | translate }}</b></th>
+            <th><b>{{ 'INVENTORY.REMARK' | translate }} <b style="color: red">*</b></b></th>
             <th></th>
           </tr>
         </thead>
@@ -133,8 +133,8 @@
                        id="itemName{{i}}" placeholder="Item Name" display-property-name="ItemName" value-property-name=null onclick="this.select();"
                        max-num-list="10" [min-chars]="0" (valueChanged)="SelectItemFromSearchBox(row.Item,i)" formControlName="ItemId"
                        style="width:150px ;" (keyup.enter)="GoToNextInput('returnrate'+i,row.Item,i)" />
-                <div style="color:red;font-size:12px;" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')"> Item is
-                  required</div>
+                <div style="color:red;font-size:12px;" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')"> {{ 'INVENTORY.ITEM_IS' | translate }}
+                  {{ 'INVENTORY.REQUIRED' | translate }}</div>
               </form>
             </td>
             <td>
@@ -144,8 +144,8 @@
                   <option *ngFor="let batch of row.batchNoList" value="{{batch.GoodsReceiptId}}" [disabled]="disableTextBox">{{batch.BatchNo}}
                   </option>
                 </select>
-                <div style="color:red;font-size:12px;" *ngIf="row.IsDirty('BatchNo')" [hidden]="row.IsValidCheck('BatchNo','required')"> BatchNo is
-                  required</div>
+                <div style="color:red;font-size:12px;" *ngIf="row.IsDirty('BatchNo')" [hidden]="row.IsValidCheck('BatchNo','required')"> {{ 'INVENTORY.BATCHNO_IS' | translate }}
+                  {{ 'INVENTORY.REQUIRED' | translate }}</div>
               </form>
             </td>
             <td>
@@ -166,10 +166,10 @@
                        formControlName="ReturnItemRate" type="number" (ngModelChange)="CalculateAll(i)"
                        (keyup.enter)="GoToNextInput('qtyip'+i,row.Item,i)" onClick="this.select();"
                        (wheel)="coreService.PreventNumberChangeOnScroll($event)">
-                <span *ngIf="row.ReturnItemRate>row.ItemRate" style="color:orange">Warning: Return Rate is more than ItemRate </span>
+                <span *ngIf="row.ReturnItemRate>row.ItemRate" style="color:orange">{{ 'INVENTORY.WARNING_RETURN_RATE_IS_MORE_THAN_ITEMRATE' | translate }} </span>
                 <div style="color:red" *ngIf="row.IsDirty('ReturnItemRate')"
                      [hidden]="row.IsValidCheck('ReturnItemRate','required') && row.IsValidCheck('ReturnItemRate','positivenum')">
-                  Invalid
+                  {{ 'INVENTORY.INVALID' | translate }}
                 </div>
               </form>
             </td>
@@ -177,12 +177,12 @@
               <form [formGroup]="row.ReturnItemValidator">
                 <input id="qtyip{{i}}" [(ngModel)]="row.Quantity" style="width:80px ;" min="0" [disabled]="disableTextBox" class="form-control "
                        (ngModelChange)="CalculateAll(i)" name="quantity" type="number" [ngClass]="row.Quantity>row.AvailableQuantity?'bg-on':'bg-off'"
-                       value="" formControlName="Quantity" (keyup.enter)="setFocusById('discountamt'+i)" onClick="this.select();"
+                       value="" formControlName="Quantity" (keyup.enter)="setFocusById('discountamt'+i)" onclick="this.select();"
                        (wheel)="coreService.PreventNumberChangeOnScroll($event)">
-                <span *ngIf="row.Quantity>row.AvailableQuantity" style="color:red">No more Qty is Available </span>
+                <span *ngIf="row.Quantity>row.AvailableQuantity" style="color:red">{{ 'INVENTORY.NO_MORE_QTY_IS_AVAILABLE' | translate }} </span>
                 <div style="color:red;font-size:12px;" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','required') "> Quantity
-                  is required</div>
-                <div style="color:red;font-size:12px;" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','positivenum') "> Invalid
+                  is {{ 'INVENTORY.REQUIRED' | translate }}</div>
+                <div style="color:red;font-size:12px;" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','positivenum') "> {{ 'INVENTORY.INVALID' | translate }}
                 </div>
               </form>
             </td>
@@ -195,7 +195,7 @@
                        (keyup.enter)="setFocusById('vatamt'+i)" onClick="this.select();" (wheel)="coreService.PreventNumberChangeOnScroll($event)">
                 <div style="color:red" *ngIf="row.IsDirty('DiscountAmount')"
                      [hidden]="row.IsValidCheck('DiscountAmount','required') && row.IsValidCheck('DiscountAmount','positivenum')">
-                  Invalid
+                  {{ 'INVENTORY.INVALID' | translate }}
                 </div>
               </form>
             </td>
@@ -208,7 +208,7 @@
                        (wheel)="coreService.PreventNumberChangeOnScroll($event)">
                 <div style="color:red" *ngIf="row.IsDirty('VATAmount')"
                      [hidden]="row.IsValidCheck('VATAmount','required') && row.IsValidCheck('VATAmount','positivenum')">
-                  Invalid
+                  {{ 'INVENTORY.INVALID' | translate }}
                 </div>
               </form>
             </td>
@@ -221,7 +221,7 @@
                        (wheel)="coreService.PreventNumberChangeOnScroll($event)">
                 <div style="color:red" *ngIf="row.IsDirty('CCAmount')"
                      [hidden]="row.IsValidCheck('CCAmount','required') && row.IsValidCheck('CCAmount','positivenum')">
-                  Invalid
+                  {{ 'INVENTORY.INVALID' | translate }}
                 </div>
               </form>
             </td>
@@ -236,8 +236,8 @@
               <form [formGroup]="row.ReturnItemValidator">
                 <input id="remark{{i}}" [(ngModel)]="row.Remark" style="width:120px;" class="form-control " name="Remark" type="text" value=""
                        formControlName="Remark" (keyup.enter)="AddRowRequest(i+1)">
-                <div style="color:red;font-size:12px;" *ngIf="row.IsDirty('Remark')" [hidden]="row.IsValidCheck('Remark','required')"> Remark is
-                  required</div>
+                <div style="color:red;font-size:12px;" *ngIf="row.IsDirty('Remark')" [hidden]="row.IsValidCheck('Remark','required')"> {{ 'INVENTORY.REMARK_IS' | translate }}
+                  {{ 'INVENTORY.REQUIRED' | translate }}</div>
               </form>
             </td>
             <td><a (click)="AddRowRequest(i+1)"><i class="glyphicon glyphicon-plus btn btn-success"></i></a>
@@ -248,44 +248,44 @@
       <table *ngIf="ShowVendorDetails== true" class="col-sm-offset-4 col-sm-5 ">
         <tr>
           <td class="col-sm-offset-6 col-sm-3"></td>
-          <td> SubTotal: </td>
+          <td> {{ 'INVENTORY.SUBTOTAL' | translate }}: </td>
           <td><input class="form-control" [(ngModel)]="returnToVendor.SubTotal" style="background-color: azure;" disabled id="subtotal"
                    name="subtotal" type="number"></td>
         </tr>
         <tr>
           <td class="col-sm-offset-6 col-sm-3"></td>
-          <td> Discount: </td>
+          <td> {{ 'INVENTORY.DISCOUNT' | translate }}: </td>
           <td><input class="form-control" [(ngModel)]="returnToVendor.DiscountAmount" style="background-color: azure;" disabled id="discountamount"
                    name="subtotal" type="number"></td>
         </tr>
         <tr class="form-group">
           <td class="col-sm-offset-8 col-sm-2"></td>
-          <td>VAT Amount</td>
+          <td>{{ 'INVENTORY.VAT_AMOUNT' | translate }}</td>
           <td> <input [(ngModel)]="returnToVendor.VATTotal" style="background-color:azure" disabled class="form-control" name="vattotal"
                    type="number"></td>
         </tr>
         <tr class="form-group">
           <td class="col-sm-offset-8 col-sm-2"></td>
-          <td>CC Amount</td>
+          <td>{{ 'INVENTORY.CC_AMOUNT' | translate }}</td>
           <td> <input [(ngModel)]="returnToVendor.CCAmount" style="background-color:azure" disabled class="form-control" name="vattotal"
                    type="number"></td>
         </tr>
         <tr class="form-group">
           <td class="col-sm-offset-8 col-sm-2"></td>
-          <td>Total Amount: </td>
+          <td>{{ 'INVENTORY.TOTAL_AMOUNT' | translate }}: </td>
           <td><input [(ngModel)]="returnToVendor.TotalAmount" style="background-color:azure" disabled class="form-control" name="TotalAmount"
                    type="number"></td>
         </tr>
         <tr class="dot">
-          <td colspan="3" class="text-capitalize">In Words : <b>{{returnToVendor.TotalAmount | NumberInWords}} </b>Only. <br /><br /></td>
+          <td colspan="3" class="text-capitalize">{{ 'INVENTORY.IN_WORDS' | translate }}: <b>{{returnToVendor.TotalAmount | NumberInWords}} </b>{{ 'INVENTORY.ONLY' | translate }}. <br /><br /></td>
         </tr>
         <tr></tr>
       </table>
     </div>
     <div *ngIf="ShowVendorDetails== true" class="col-sm-offset-5 col-sm-5">
-      <input id="Request" type="button" class="btn green btn-success margin-7-hr" value="Return" (click)="AddReturnItems()" [disabled]="loading" />
+      <input id="Request" type="button" class="btn green btn-success margin-7-hr" [value]="'INVENTORY.RETURN' | translate" (click)="AddReturnItems()" [disabled]="loading" />
       <span></span>
-      <input type="button" class="btn btn-danger" (click)="Cancel()" value="Cancel">
+      <input type="button" class="btn btn-danger" (click)="Cancel()" [value]="'COMMON.CANCEL' | translate">
       <span></span>
     </div>
   </div>

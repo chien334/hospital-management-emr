@@ -1,5 +1,5 @@
 ﻿<div>
-    <input type="button" class="btn primary-btn m1" (click)="AddCurrency()" value="Add Currency" />
+    <input type="button" class="btn primary-btn m1" (click)="AddCurrency()" [value]="'INVENTORY.ADD_CURRENCY' | translate" />
     <currency-add [showAddPage]="showAddPage"
                 [selectedCurrency]="selectedCurrency"
                 (callback-add)="CallBackAdd($event)"></currency-add>

@@ -10,32 +10,31 @@
     <div class="col-md-12">
       <div class="tp-header">
         <div class="row margin-15-bt">
-          <div class="col-md-2"> <a class="btn blue bordered btn-sm primary-btn" name="name" (click)="AddNewLabTest()"> <i class="fa fa-plus"></i>Add
-              New Lab Test </a> </div>
+          <div class="col-md-2"> <a class="btn blue bordered btn-sm primary-btn" name="name" (click)="AddNewLabTest()"> <i class="fa fa-plus"></i>{{ 'LABS.ADD_NEW_LAB_TEST' | translate }} </a> </div>
           <div class="col-md-6">
             <div class="lb-search-filter text-center">
-              <div class="search-title"> Search Filters: </div>
+              <div class="search-title"> {{ 'LABS.SEARCH_FILTERS' | translate }} </div>
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="mt-checkbox mt-checkbox-outline">
                     <input type="radio" [(ngModel)]="itmIsActiveValue" (change)="OnTestFiltersChanged()" name="name" value="Active"
                            style="width:15px;height:15px" />
-                    <span></span>Active </label>
+                    <span></span>{{ 'LABS.ACTIVE' | translate }} </label>
                   <label class="mt-checkbox mt-checkbox-outline">
                     <input type="radio" [(ngModel)]="itmIsActiveValue" (change)="OnTestFiltersChanged()" name="name" value="InActive"
                            style="width:15px;height:15px" />
-                    <span></span>Inactive </label>
+                    <span></span>{{ 'LABS.INACTIVE' | translate }} </label>
                   <label class="mt-checkbox mt-checkbox-outline">
                     <input type="radio" checked="checked" [(ngModel)]="itmIsActiveValue" (change)="OnTestFiltersChanged()" name="name" value="All"
                            style="width:15px;height:15px" />
-                    <span></span>ALL </label>
+                    <span></span>{{ 'LABS.ALL_1' | translate }} </label>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="pull-right lb-search-filter no-padding">
-              <div class="search-title"> Category: </div>
+              <div class="search-title"> {{ 'LABS.CATEGORY' | translate }} </div>
               <div class="input-group">
                 <select *ngIf="rptCategoryList" [(ngModel)]="selCategoryId" (ngModelChange)="OnTestFiltersChanged()">
                   <option *ngFor="let tmp of rptCategoryList" value="{{tmp.TestCategoryId}}">{{tmp.TestCategoryName}}</option>

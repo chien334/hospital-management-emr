@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="col-md-6 caption custom-caption">
             <i class="fa fa-archive"></i>
-            <span class="caption-subject">Purchase Items Report</span>
+            <span class="caption-subject">{{ 'INVENTORY.PURCHASE_ITEMS_REPORT' | translate }}</span>
         </div>
     </div>
     <div class="col-md-12">
@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-3">
             <div class="form-group row clearfix">
-                <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange($event)" placeholder="Select Item Name" [(ngModel)]="selectedItem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" value-property-name="ItemId" [source]="itemList" [match-formatted]="true" onclick="this.select();" />
+                <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange($event)" [placeholder]="'INVENTORY.SELECT_ITEM_NAME' | translate" [(ngModel)]="selectedItem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" value-property-name="ItemId" [source]="itemList" [match-formatted]="true" onclick="this.select();" />
 
             </div>
         </div>
@@ -19,18 +19,18 @@
         <div class="col-md-2">
             <button class="btn blue" type="button" (click)="PurchaseItemsReport()"  [disabled]="loading" >
                 <i class="fa fa-search"></i>&nbsp;
-                <span *ngIf="!loading" >Load</span>
-                <span *ngIf="loading">Loading...</span>
+                <span *ngIf="!loading" >{{ 'INVENTORY.LOAD' | translate }}</span>
+                <span *ngIf="loading">{{ 'INVENTORY.LOADING' | translate }}.</span>
 
             </button>
         </div>
         <div class="col-md-12 icheck-inline" style="text-align: right;" >
             <label class="mt-checkbox mt-checkbox-outline">
                 <input name="salutation"  type="radio" value="Consumables" [(ngModel)]="ItemType" (ngModelChange)="OnItemTypeChange()">
-                <span></span>Consumables </label>
+                <span></span>{{ 'INVENTORY.CONSUMABLES' | translate }} </label>
             <label class="mt-checkbox mt-checkbox-outline">
                 <input  name="salutation" type="radio" value="Capital Goods"  [(ngModel)]="ItemType" (ngModelChange)="OnItemTypeChange()">
-                <span></span>Capital Goods </label>
+                <span></span>{{ 'INVENTORY.CAPITAL_GOODS' | translate }} </label>
         </div>
     </div>
 </div>
@@ -45,14 +45,14 @@
             <table class="table table-bordered table-hover table-condensed custom_table padLess_table" border="1">
                 <thead>
                     <tr>
-                        <th colspan="5" style="text-align: center; font-weight: bold; ">Purchase Items Summary {{ItemType}}</th>
+                        <th colspan="5" style="text-align: center; font-weight: bold; ">Purchase {{ 'INVENTORY.ITEMS' | translate }} {{ 'INVENTORY.SUMMARY' | translate }} {{ItemType}}</th>
                     </tr>
                     <tr>
-                        <th><b>Total Qty</b></th>
-                        <th><b>Sub Total</b></th>
-                        <th><b>Discount</b></th>
-                        <th><b>VAT</b></th>
-                        <th><b>Total Amount</b></th>
+                        <th><b>{{ 'INVENTORY.TOTAL_QTY' | translate }}</b></th>
+                        <th><b>{{ 'INVENTORY.SUB_TOTAL' | translate }}</b></th>
+                        <th><b>{{ 'INVENTORY.DISCOUNT' | translate }}</b></th>
+                        <th><b>{{ 'INVENTORY.VAT' | translate }}</b></th>
+                        <th><b>{{ 'INVENTORY.TOTAL_AMOUNT' | translate }}</b></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,6 +89,6 @@
         </div>
     </div>
     <div class="col-lg-12 col-sm-12 col-md-12" style="margin-bottom: 25px !important;">
-        <button class="blue btn" type="button" (click)="Print('print_summary')"> <i class="fa fa-print"></i> Print </button>
+        <button class="blue btn" type="button" (click)="Print('print_summary')"> <i class="fa fa-print"></i> {{ 'COMMON.PRINT' | translate }} </button>
     </div>
 </div>

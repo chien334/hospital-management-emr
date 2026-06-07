@@ -5,7 +5,7 @@
     <span class="caption-subject font-blue bold uppercase">Manage Ward</span>
 </div>
 <br />-->
-<a feature="button" class="btn blue bordered "  (click)="AddWard()"><i class="fa fa-plus"></i>Add Ward</a>
+<a feature="button" class="btn blue bordered "  (click)="AddWard()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_WARD' | translate }}</a>
 
         <ward-add [showAddPage]="showAddPage"
                   [selectedItem]="selectedItem"

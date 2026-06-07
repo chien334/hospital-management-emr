@@ -4,20 +4,20 @@
     margin: 10px 100px;
   }
 
-  .print-border-top {
+  .{{ 'COMMON.PRINT' | translate }}-border-top {
     border-top: dotted 1px;
   }
 
-  .print-border-bottom {
+  .{{ 'COMMON.PRINT' | translate }}-border-bottom {
     border-bottom: dotted 1px;
   }
 
-  .print-border {
+  .{{ 'COMMON.PRINT' | translate }}-border {
     border: dotted 1px;
   }
 
   .center-style {
-    text-align: center;
+    {{ 'INVENTORY.TEXT' | translate }}-align: center;
   }
 
   .border-up-down {
@@ -27,7 +27,7 @@
 
   .table-details-value {
     margin-left: 10px;
-    text-align: center;
+    {{ 'INVENTORY.TEXT' | translate }}-align: center;
   }
 
   .img-responsive {
@@ -47,7 +47,7 @@
             <span style="font-size:15px;"><strong>{{headerDetail.hospitalName}}</strong></span><br />
             <span style="font-size:15px;">{{headerDetail.address}}</span><br />
             <span style="font-size:13px;">{{GeneralFieldLabel.PANNo}}: {{headerDetail.PANno}} , Tel: {{ headerDetail.tel}}</span><br />
-            <span style="font-size:15px;"><strong> Inventory Unit </strong></span><br />
+            <span style="font-size:15px;"><strong> {{ 'INVENTORY.INVENTORY_UNIT' | translate }} </strong></span><br />
           </div>
         </div>
         <div style="float: left;">
@@ -60,31 +60,31 @@
       </div>
       <div class="clear"></div>
       <div class="left" style="text-align:left;">
-        <p>Supplier:<b> {{vendorName}}</b></p>
+        <p>{{ 'INVENTORY.SUPPLIER' | translate }}:<b> {{vendorName}}</b></p>
       </div>
 
       <div class="right" style="text-align:right;">
-        <p>Returned Date:<b> {{returnDate | date: 'yyyy-MM-dd'}}</b></p>
+        <p>{{ 'INVENTORY.RETURNED_DATE' | translate }}:<b> {{returnDate | date: 'yyyy-MM-dd'}}</b></p>
       </div>
       <div class="clear"></div>
-      <p class="text-center btm-pad border-up-down"><b> RETURN ITEMS DETAILS PRINT</b></p>
+      <p class="text-center btm-pad border-up-down"><b> {{ 'INVENTORY.RETURN_ITEMS_DETAILS_PRINT' | translate }}</b></p>
       <div class="clear"></div>
       <div class="clear footer"></div>
       <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered" style="background-color:initial;margin-top:10px;width:100%">
           <thead>
             <tr style="font-weight: bold;text-align:center">
-              <td>Code</td>
-              <td>Item Name</td>
-              <td>S. Bill No.</td>
-              <td>Qty</td>
-              <td>Rate</td>
-              <td>Subtotal</td>
-              <td>Discount Amount</td>
-              <td>VAT Amount</td>
-              <td>CC Amount</td>
-              <td>Amount</td>
-              <td>Remarks</td>
+              <td>{{ 'GRID_HEADERS.CODE' | translate }}</td>
+              <td>{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}</td>
+              <td>{{ 'INVENTORY.S_BILL_NO' | translate }}.</td>
+              <td>{{ 'INVENTORY.QTY' | translate }}</td>
+              <td>{{ 'INVENTORY.RATE' | translate }}</td>
+              <td>{{ 'INVENTORY.SUBTOTAL' | translate }}</td>
+              <td>{{ 'INVENTORY.DISCOUNT_AMOUNT' | translate }}</td>
+              <td>{{ 'INVENTORY.VAT_AMOUNT' | translate }}</td>
+              <td>{{ 'INVENTORY.CC_AMOUNT' | translate }}</td>
+              <td>{{ 'INVENTORY.AMOUNT' | translate }}</td>
+              <td>{{ 'COMMON.REMARKS' | translate }}</td>
             </tr>
           </thead>
           <tbody>
@@ -110,23 +110,23 @@
           <table class="table table-details table-striped table-hover table-bordered" style="text-align:right;">
             <tbody>
               <tr>
-                <td><b>SubTotal:</b></td>
+                <td><b>{{ 'INVENTORY.SUBTOTAL' | translate }}:</b></td>
                 <td class="table-details-value">{{SubTotal | number: '1.2-2'}}</td>
               </tr>
               <tr>
-                <td><b>Discount:</b></td>
+                <td><b>{{ 'INVENTORY.DISCOUNT' | translate }}:</b></td>
                 <td class="table-details-value">{{DiscountAmount | number: '1.2-2'}}</td>
               </tr>
               <tr>
-                <td><b>Vat:</b></td>
+                <td><b>{{ 'INVENTORY.VAT' | translate }}:</b></td>
                 <td class="table-details-value">{{VATTotal | number: '1.2-2'}}</td>
               </tr>
               <tr>
-                <td><b>CCAmount:</b></td>
+                <td><b>{{ 'INVENTORY.CCAMOUNT' | translate }}:</b></td>
                 <td class="table-details-value">{{CCAmount | number: '1.2-2'}}</td>
               </tr>
               <tr>
-                <td><b>Net:</b></td>
+                <td><b>{{ 'INVENTORY.NET' | translate }}:</b></td>
                 <td class="table-details-value">{{AllTotalAmount | number: '1.2-2'}}</td>
               </tr>
             </tbody>
@@ -134,7 +134,7 @@
         </div>
       </div>
       <div class="col-md-12 pull-right">
-        <div style="text-align: left" class="col-md-6">Returned By:&nbsp;<b>{{returnBy}}</b></div>
+        <div style="text-align: left" class="col-md-6">{{ 'INVENTORY.RETURNED_BY' | translate }}:&nbsp;<b>{{returnBy}}</b></div>
 
       </div>
     </div>
@@ -143,12 +143,12 @@
 <div class="row center-style">
   <div class="col-md-12 col-xs-12 ">
     <button id="printBtn" (click)="print()" class="btn green btn-success margin-7-hr">
-      Print
+      {{ 'COMMON.PRINT' | translate }}
       <i class="glyphicon glyphicon-print"></i>
     </button><span> </span><span> </span>
     &nbsp;
     <a (click)="returnToVendorList()" class="btn btn-primary">
-      Return Item List
+      {{ 'INVENTORY.RETURN_ITEM_LIST' | translate }}
       <i class="glyphicon glyphicon-share-alt"></i>
     </a>
   </div>

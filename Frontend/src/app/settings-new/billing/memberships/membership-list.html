@@ -1,4 +1,4 @@
-<a feature="button" class="btn blue bordered" (click)="AddMembership()"><i class="fa fa-plus"></i>Add Membership</a>
+<a feature="button" class="btn blue bordered" (click)="AddMembership()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_MEMBERSHIP' | translate }}</a>
 <membership-add *ngIf="showAddPage" [selectedItem]="selectedItem"
                 [showAddPage]="showAddPage"
                 [community-list]="distinctCommunityList"

@@ -1,7 +1,7 @@
 <div class="sub-navtab">
   <ul class="nav nav-tabs">
-    <li><a [ngClass]="{'a-tab-active': showReactionList==true}" (click)="updateView(0)">Manage Reactions</a></li>
-    <li><a [ngClass]="{'a-tab-active': showICD10GroupList==true}" (click)="selectIcd10GroupList()">ICD Groups</a></li>
+    <li><a [ngClass]="{'a-tab-active': showReactionList==true}" (click)="updateView(0)">{{ 'SETTINGS_NEW.MANAGE_REACTIONS' | translate }}</a></li>
+    <li><a [ngClass]="{'a-tab-active': showICD10GroupList==true}" (click)="selectIcd10GroupList()">{{ 'SETTINGS_NEW.ICD_GROUPS' | translate }}</a></li>
     <li><a [ngClass]="{'a-tab-active': showICD10GroupList==true}" (click)="IntakeOutputParametrs()"> Intake/Output
         Variables</a></li>
   </ul>

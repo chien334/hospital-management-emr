@@ -4,7 +4,7 @@
             <div class="col-md-4 col-md-offset-8">
                 <select class="form-control" [(ngModel)]="selectedMachineId" id="ddlMachineSelection"
                     [disabled]="isEdit || allMachineMasterData.length == 1" (change)="MachineChanged()">
-                    <option value="0" *ngIf="(allMachineMasterData.length > 1) && !isEdit">Select Lab Machine</option>
+                    <option value="0" *ngIf="(allMachineMasterData.length > 1) && !isEdit">{{ 'LABS.SELECT_LAB_MACHINE' | translate }}</option>
                     <option *ngFor="let machine of allMachineMasterData; let i=index;"
                         [value]="allMachineMasterData[i].MachineId">
                         {{allMachineMasterData[i].MachineName}}-{{allMachineMasterData[i].ModelName}}
@@ -22,11 +22,11 @@
                 <thead>
                     <tr>
                         <th>
-                            Danphe Component
+                            {{ 'LABS.DANPHE_COMPONENT' | translate }}
                         </th>
-                        <th class="text-center">Map To</th>
-                        <th>Machine Component</th>
-                        <th>Conversion Factor</th>
+                        <th class="text-center">{{ 'LABS.MAP_TO' | translate }}</th>
+                        <th>{{ 'LABS.MACHINE_COMPONENT' | translate }}</th>
+                        <th>{{ 'LABS.CONVERSION_FACTOR' | translate }}</th>
                         <th *ngIf="!isEdit" style="width: 110px;"></th>
                     </tr>
                 </thead>
@@ -40,7 +40,7 @@
                                     [source]="notMappedDataList" [list-formatter]="ComponentListFormatter"
                                     onClick="this.select();" display-property-name="ComponentName"
                                     (valueChanged)="ComponentSelected(i,'dph')" type="text">
-                                <span *ngIf="!comp.IsValidComponent" class="color-red font-sm">Invalid Component</span>
+                                <span *ngIf="!comp.IsValidComponent" class="color-red font-sm">{{ 'LABS.INVALID_COMPONENT' | translate }}</span>
 
                             </div>
                         </td>
@@ -55,8 +55,7 @@
                                     [source]="allMasterDataFiltered" display-property-name="ComponentName"
                                     (valueChanged)="ComponentSelected(i,'lis')" onClick="this.select();"
                                     [(ngModel)]="comp.LISComponent" class="form-control" type="text">
-                                <span *ngIf="!comp.IsValidLISComponent" class="color-red font-sm">Invalid
-                                    Component</span>
+                                <span *ngIf="!comp.IsValidLISComponent" class="color-red font-sm">{{ 'LABS.INVALID_COMPONENT_1' | translate }}</span>
                             </div>
                         </td>
 
@@ -65,10 +64,10 @@
                         </td>
 
                         <td *ngIf="!isEdit">
-                            <a class="btn btn-success inlie-block" title="Click to add new component mapping"
+                            <a class="btn btn-success inlie-block" [title]="'LABS.CLICK_TO_ADD_NEW_COMPONENT_MAPPING' | translate"
                                 (click)="AddNewMappingRow()"><i class="fa fa-plus"></i></a>
                             <a *ngIf="compMappingArrayTemp.length > 1" class="btn btn-danger inlie-block"
-                                title="Click to remove this component mapping" (click)="RemoveCurrentMappingRow(i)"><i
+                                [title]="'LABS.CLICK_TO_REMOVE_THIS_COMPONENT_MAPPING' | translate" (click)="RemoveCurrentMappingRow(i)"><i
                                     class="fa fa-remove"></i></a>
                         </td>
                     </tr>
@@ -79,9 +78,9 @@
 
     <div class="col-md-12 mt20 text-right">
         <hr />
-        <button class="btn btn-cancel grey" id="btnCancel" (click)="Cancel()">Cancel</button>
+        <button class="btn btn-cancel grey" id="btnCancel" (click)="Cancel()">{{ 'COMMON.CANCEL' | translate }}</button>
         <button class="btn btn-success blue" id="btnSave" (click)="loading=true;Save()"
-            [disabled]="loading">Save</button>
+            [disabled]="loading">{{ 'COMMON.SAVE' | translate }}</button>
     </div>
 </div>
 
@@ -92,18 +91,17 @@
             <div class="modelbox-div">
                 <div class="modelbox-header">
                     <h4 class="margin-0-vr text-danger text-center">
-                        <strong>Are you sure ?</strong>
+                        <strong>{{ 'LABS.ARE_YOU_SURE' | translate }}</strong>
                     </h4>
                 </div>
                 <div class="modelbox-body">
-                    Currently mapped component will be lost.
-                    Are you sure ?
+                    {{ 'LABS.CURRENTLY_MAPPED_COMPONENT_WILL_BE_LOST_ARE_YOU_SU' | translate }}
                 </div>
                 <div class="modelbox-footer">
                     <button class="btn btn-cancel grey" id="btnCancelMachineChange"
-                        (click)="CancelMachineChange()">Cancel</button>
+                        (click)="CancelMachineChange()">{{ 'COMMON.CANCEL' | translate }}</button>
                     <button class="btn btn-success blue" id="btnProceed"
-                        (click)="ProceedWithMachineChange()">Proceed</button>
+                        (click)="ProceedWithMachineChange()">{{ 'LABS.PROCEED' | translate }}</button>
                 </div>
                 <div class="close-modelbox lb-close-btn">
                     <button class="btn btn-danger" (click)="CancelMachineChange()">

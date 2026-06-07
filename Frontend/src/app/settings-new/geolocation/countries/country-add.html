@@ -4,12 +4,12 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span *ngIf="!update">Add Country</span> <span *ngIf="update">Update Country</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
+            <h3> <span *ngIf="!update">{{ 'SETTINGS_NEW.ADD_COUNTRY' | translate }}</span> <span *ngIf="update">{{ 'SETTINGS_NEW.UPDATE_COUNTRY' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
           <form [formGroup]="CurrentCountry.CountryValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-5">Country Name<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.COUNTRY_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="text"
                                                [(ngModel)]="CurrentCountry.CountryName"
@@ -17,45 +17,45 @@
                                                required
                                                id="CountryName"
                                                value=""
-                                               placeholder="Country Name" 
+                                               [placeholder]="'SETTINGS_NEW.COUNTRY_NAME' | translate" 
                                                (keyup.enter)="FocusElementById('CountryShortName')" />
-                  <span class="color-red font-sm" [hidden]="CurrentCountry.IsValidCheck('CountryName','required') || !(CurrentCountry.IsDirty('CountryName'))">Country Name is required</span> </div>
+                  <span class="color-red font-sm" [hidden]="CurrentCountry.IsValidCheck('CountryName','required') || !(CurrentCountry.IsDirty('CountryName'))">{{ 'SETTINGS_NEW.COUNTRY_NAME_IS_REQUIRED' | translate }}</span> </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Country Short Name<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.COUNTRY_SHORT_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" maxlength="30"
                                                [(ngModel)]="CurrentCountry.CountryShortName"
                                                formControlName="CountryShortName"
                                                required
-                                               type="text" id="CountryShortName" value="" placeholder="Country Short Name"
+                                               type="text" id="CountryShortName" value="" [placeholder]="'SETTINGS_NEW.COUNTRY_SHORT_NAME' | translate"
                                                (keyup.enter)="FocusElementById('ISDCode')"  />
                   <br />
-                  <span class="color-red font-sm" [hidden]="CurrentCountry.IsValidCheck('CountryShortName','required') || !(CurrentCountry.IsDirty('CountryShortName'))">Country Short Name is required</span> <span style="color:red" [hidden]="CurrentCountry.IsValidCheck('CountryShortName','pattern') || !(CurrentCountry.IsDirty('CountryShortName'))">Country Short Name Is Capital Alphabets Letters Only </span> </div>
+                  <span class="color-red font-sm" [hidden]="CurrentCountry.IsValidCheck('CountryShortName','required') || !(CurrentCountry.IsDirty('CountryShortName'))">{{ 'SETTINGS_NEW.COUNTRY_SHORT_NAME_IS_REQUIRED' | translate }}</span> <span style="color:red" [hidden]="CurrentCountry.IsValidCheck('CountryShortName','pattern') || !(CurrentCountry.IsDirty('CountryShortName'))">{{ 'SETTINGS_NEW.COUNTRY_SHORT_NAME_IS_CAPITAL_ALPHABETS_LETTERS_ONLY' | translate }} </span> </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">ISD Code<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.ISD_CODE' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control"
                                                [(ngModel)]="CurrentCountry.ISDCode"
                                                formControlName="ISDCode"
                                                type="text" id="ISDCode" value=""
-                                               placeholder="Country ISD Code"
+                                               [placeholder]="'SETTINGS_NEW.COUNTRY_ISD_CODE' | translate"
                                                (keyup.enter)="FocusElementById('Add')"  />
-                  <span class="color-red font-sm" [hidden]="CurrentCountry.IsValidCheck('ISDCode','required') || !(CurrentCountry.IsDirty('ISDCode'))">ISD Code is required</span> </div>
+                  <span class="color-red font-sm" [hidden]="CurrentCountry.IsValidCheck('ISDCode','required') || !(CurrentCountry.IsDirty('ISDCode'))">{{ 'SETTINGS_NEW.ISD_CODE_IS_REQUIRED' | translate }}</span> </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Country SubDivision Type<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.COUNTRY_SUBDIVISION_TYPE' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control"
                                                [(ngModel)]="CurrentCountry.CountrySubDivisionType"
                                                [ngModelOptions]="{standalone: true}"
                                                type="text" value=""
-                                               placeholder="Country Sub Division Type" />
+                                               [placeholder]="'SETTINGS_NEW.COUNTRY_SUB_DIVISION_TYPE' | translate" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Is Active <b>:</b> </label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -72,8 +72,8 @@
               
             </div>
 			  <div class="panel-footer">
-                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddCountry()" value="Add Country" id="Add" />
-                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" value="Update" id="Add" />
+                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddCountry()" [value]="'SETTINGS_NEW.ADD_COUNTRY' | translate" id="Add" />
+                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" id="Add" />
               </div>
           </form>
         </div>

@@ -4,7 +4,7 @@
     <div class="form-body">
       <div class="caption lb-caption" style="padding: 5px; margin: 5px;">
         <i class="fa fa-bar-chart"></i>
-        <span class="caption-subject">Current Stock Level Report</span>
+        <span class="caption-subject">{{ 'INVENTORY.CURRENT_STOCK_LEVEL_REPORT' | translate }}</span>
       </div>
       <div class="row" style="background: #eaeaea;padding: 5px; margin: 5px;">
         <div class="col-md-4" *ngIf="showStoreList">
@@ -14,8 +14,8 @@
         <div class="col-md-2">
           <button class="btn blue" type="button" (click)="ShowStockLevelReport()" [disabled]="loading" style="height: 40px;">
             <i class="fa fa-search"></i>&nbsp;
-            <span *ngIf="!loading">Load</span>
-            <span *ngIf="loading">Loading...</span>
+            <span *ngIf="!loading">{{ 'INVENTORY.LOAD' | translate }}</span>
+            <span *ngIf="loading">{{ 'INVENTORY.LOADING' | translate }}.</span>
             
           </button>
         </div>
@@ -24,19 +24,19 @@
             <div class="col-md-12">
               <div class="input-group pull-right">
                 <div class="icheck-inline">
-                  List by Item Type: &nbsp;
+                  {{ 'INVENTORY.LIST_BY_ITEM_TYPE' | translate }}: &nbsp;
                   <label class="mt-checkbox mt-checkbox-outline">
                     <input type="radio" (change)="LoadStockLevelReportByStatus('a')" [(ngModel)]="value" name="name" value="a" style="width:15px;height:15px" />
-                    <span></span>All
+                    <span></span>{{ 'INVENTORY.ALL' | translate }}
                   </label>
                   <label class="mt-checkbox mt-checkbox-outline">
                     <input type="radio" (change)="LoadStockLevelReportByStatus('b')" name="name" [(ngModel)]="value" value="b" style="width:15px;height:15px" />
-                    <span></span>Capital Goods
+                    <span></span>{{ 'INVENTORY.CAPITAL_GOODS' | translate }}
                   </label>
 
                   <label class="mt-checkbox mt-checkbox-outline">
                     <input type="radio" (change)="LoadStockLevelReportByStatus('c')" name="name" [(ngModel)]="value" value="c" style="width:15px;height:15px" />
-                    <span></span>Consumables
+                    <span></span>{{ 'INVENTORY.CONSUMABLES' | translate }}
                   </label>
                 </div>
               </div>
@@ -61,9 +61,9 @@
         <thead>
           <tr>
             <th colspan="2" style="text-align: center;">
-              <span style="font-size:large;"> Summary </span> ({{selectedGRCategory}})
+              <span style="font-size:large;"> {{ 'INVENTORY.SUMMARY' | translate }} </span> ({{selectedGRCategory}})
               <br>
-              <span style="font-size: large;"> Selected Stores : </span> [{{storeNames}}]
+              <span style="font-size: large;"> {{ 'INVENTORY.SELECTED_STORES' | translate }}: </span> [{{storeNames}}]
             </th>
           </tr>
         </thead>
@@ -71,7 +71,7 @@
           <ng-container>
             <tr>
               <td style="font-weight:bold; color:blue">
-                <span> <b> Total Stock Quantity </b> </span>
+                <span> <b> {{ 'INVENTORY.TOTAL_STOCK_QUANTITY' | translate }} </b> </span>
               </td>
               <td>
                 <span> {{summary.TotalQuantity }}</span>
@@ -79,7 +79,7 @@
             </tr>
             <tr>
               <td style="font-weight:bold; color:blue">
-                <span> <b> Total Stock Value </b> </span>
+                <span> <b> {{ 'INVENTORY.TOTAL_STOCK_VALUE' | translate }} </b> </span>
               </td>
               <td>
                 <span> {{summary.TotalStockValue | Currency}} </span>
@@ -101,24 +101,24 @@
       <div class="col-md-12" id="sf" style="margin-left: 200px;">
         <div class="col-md-8 modelbox-div">
           <div id="printpageTransactionView">
-            <a class="btn btn-danger hidden-print rt_close_btn" (click)="ClosePopup()" title="Cancel">X</a>
+            <a class="btn btn-danger hidden-print rt_close_btn" (click)="ClosePopup()" [title]="'COMMON.CANCEL' | translate">X</a>
             <div style="text-align: center;">
-              <label style="font-size: x-large;"> <b>Item Details </b> </label>
+              <label style="font-size: x-large;"> <b>{{ 'INVENTORY.ITEM_DETAILS' | translate }} </b> </label>
             </div>
             <div class="row">
               <div>
                 <div class="col-md-12">
                   <table>
                     <tr>
-                      <td> <b> Item Name : </b> </td>
+                      <td> <b> {{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }} : </b> </td>
                       <td> {{itemDetails.ItemName}} </td>
                     </tr>
                     <tr>
-                      <td> <b> Item Code :</b> </td>
+                      <td> <b> {{ 'INVENTORY.ITEM_CODE' | translate }}:</b> </td>
                       <td> {{itemDetails.ItemCode}} </td>
                     </tr>
                     <tr>
-                      <td> <b> Item Type :</b></td>
+                      <td> <b> {{ 'INVENTORY.ITEM_TYPE' | translate }}:</b></td>
                       <td> {{itemDetails.ItemType}} </td>
                     </tr>
                   </table>
@@ -137,13 +137,13 @@
                         <div class="col-md-12" style="overflow-y:auto">
                           <table class="table_data" style="width:100%;" border="1">
                             <tr>
-                              <th> Store Name </th>
-                              <th> GoodsReceiptNo </th>
-                              <th> GoodsReceiptDate</th>
-                              <th> Received Quantity </th>
-                              <th> Available Quantity </th>
-                              <th> Unit Price </th>
-                              <th> Total Value </th>
+                              <th> {{ 'GRID_HEADERS.STORE_NAME' | translate }} </th>
+                              <th> {{ 'INVENTORY.GOODSRECEIPTNO' | translate }} </th>
+                              <th> {{ 'INVENTORY.GOODSRECEIPTDATE' | translate }}</th>
+                              <th> {{ 'INVENTORY.RECEIVED_QUANTITY' | translate }} </th>
+                              <th> {{ 'INVENTORY.AVAILABLE_QUANTITY' | translate }} </th>
+                              <th> {{ 'INVENTORY.UNIT_PRICE' | translate }} </th>
+                              <th> {{ 'INVENTORY.TOTAL_VALUE' | translate }} </th>
                             </tr>
                             <tr *ngFor="let gr of grdetails">
                               <td> {{gr.StoreName}} </td>

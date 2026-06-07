@@ -4,53 +4,52 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span *ngIf="!update">Add Bed Feature</span> <span *ngIf="update">Update Bed Feature</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span *ngIf="!update">{{ 'SETTINGS_NEW.ADD_BED_FEATURE' | translate }}</span> <span *ngIf="update">{{ 'SETTINGS_NEW.UPDATE_BED_FEATURE' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <form [formGroup]="CurrentBedFeature.BedFeatureValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-4">Bed Feature Code<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-4">{{ 'SETTINGS_NEW.BED_FEATURE_CODE' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-8">
                   <input class="form-control" maxlength="100" type="text" id="id_bed_feature_code"
                          [(ngModel)]="CurrentBedFeature.BedFeatureCode"
                          formControlName="BedFeatureCode"
                          [attr.disabled]="update ? '' : null"
-                         value="" placeholder="Enter Bed Feature Code"
+                         value="" [placeholder]="'SETTINGS_NEW.ENTER_BED_FEATURE_CODE' | translate"
                          (keyup.enter)="SetFocusById('BedFeatureName')" (ngModelChange)="CapitalizeSectionCode()" />
                   <span class="color-red font-sm"
-                        [hidden]="CurrentBedFeature.IsValidCheck('BedFeatureCode','required') || !(CurrentBedFeature.IsDirty('BedFeatureCode'))">Bed
-                    Feature Code is required</span>
+                        [hidden]="CurrentBedFeature.IsValidCheck('BedFeatureCode','required') || !(CurrentBedFeature.IsDirty('BedFeatureCode'))">{{ 'SETTINGS_NEW.BED_FEATURE_CODE' | translate }} is required</span>
                   <div class="color-red font-sm" *ngIf="CurrentBedFeature.IsDirty('BedFeatureCode')"
-                       [hidden]="CurrentBedFeature.IsValidCheck('BedFeatureCode','maxlength')"> Length is not proper</div>
+                       [hidden]="CurrentBedFeature.IsValidCheck('BedFeatureCode','maxlength')"> {{ 'SETTINGS_NEW.LENGTH_IS_NOT_PROPER' | translate }}</div>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Feature Name<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-4">{{ 'SETTINGS_NEW.FEATURE_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-8">
                   <input class="form-control" maxlength="100" type="text" id="BedFeatureName"
                          [(ngModel)]="CurrentBedFeature.BedFeatureName"
                          formControlName="BedFeatureName"
                          [attr.disabled]="update ? '' : null"
-                         value="" placeholder="Enter Bed Feature Name"
+                         value="" [placeholder]="'SETTINGS_NEW.ENTER_BED_FEATURE_NAME' | translate"
                          (keyup.enter)="SetFocusById('BedFeatureFullName')" />
                   <span class="color-red font-sm"
                         [hidden]="CurrentBedFeature.IsValidCheck('BedFeatureName','required') || !(CurrentBedFeature.IsDirty('BedFeatureName'))">Bed
-                    Feature Name is required</span>
+                    {{ 'SETTINGS_NEW.FEATURE_NAME' | translate }} is required</span>
                   <div class="color-red font-sm" *ngIf="CurrentBedFeature.IsDirty('BedFeatureName')"
-                       [hidden]="CurrentBedFeature.IsValidCheck('BedFeatureName','maxlength')"> Length is not proper</div>
+                       [hidden]="CurrentBedFeature.IsValidCheck('BedFeatureName','maxlength')"> {{ 'SETTINGS_NEW.LENGTH_IS_NOT_PROPER' | translate }}</div>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Feature Full Name<b>:</b></label>
+                <label class="control-label col-md-4">{{ 'SETTINGS_NEW.FEATURE_FULL_NAME' | translate }}<b>:</b></label>
                 <div class="col-md-8">
                   <input class="form-control" maxlength="100" type="text" id="BedFeatureFullName"
                          [(ngModel)]="CurrentBedFeature.BedFeatureFullName"
                          formControlName="BedFeatureFullName"
-                         value="" placeholder="Enter Bed Feature Full Name"
+                         value="" [placeholder]="'SETTINGS_NEW.ENTER_BED_FEATURE_FULL_NAME' | translate"
                          (keyup.enter)="SetFocusById('Price')" />
                   <div class="color-red font-sm" *ngIf="CurrentBedFeature.IsDirty('BedFeatureFullName')"
-                       [hidden]="CurrentBedFeature.IsValidCheck('BedFeatureFullName','maxlength')"> Length is not proper</div>
+                       [hidden]="CurrentBedFeature.IsValidCheck('BedFeatureFullName','maxlength')"> {{ 'SETTINGS_NEW.LENGTH_IS_NOT_PROPER' | translate }}</div>
                 </div>
               </div>
               <!-- <div class="form-group">
@@ -79,7 +78,7 @@
                 </div>
               </div> -->
               <div class="form-group">
-                <label class="control-label col-md-4">Is Active <b>:</b> </label>
+                <label class="control-label col-md-4">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                 <div class="col-md-8">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -95,9 +94,9 @@
 
             </div>
             <div class="panel-footer">
-              <input type="button" id="add" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="Add()" value="Add" />
+              <input type="button" id="add" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="Add()" [value]="'SETTINGS_NEW.ADD' | translate" />
 
-              <input type="button" id="add" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" value="Update" />
+              <input type="button" id="add" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
 
             </div>
           </form>

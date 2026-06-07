@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="caption custom-caption no-margin"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Substore-Wise Stock Summary Report</span> </div>
+    <div class="caption custom-caption no-margin"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'INVENTORY.SUBSTOREWISE_STOCK_SUMMARY_REPORT' | translate }}</span> </div>
   </div>
 </div>
 
@@ -16,16 +16,16 @@
                   <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true" (fiscalYearDate)="OnDateRangeChange($event)"> </fiscal-year-calendar>
                 </div>
               </td>
-              <td>SubStore:</td>
+              <td>{{ 'INVENTORY.SUBSTORE' | translate }}:</td>
               <td style="width: 250px;">
                 <select [(ngModel)]="StoreId" class="form-control" (ngModelChange)="OnStoreChange()">
-                  <option [ngValue]="null" selected>All Store</option>
+                  <option [ngValue]="null" selected>{{ 'INVENTORY.ALL_STORE' | translate }}</option>
                   <option *ngFor="let store of subStoreList" [ngValue]="store.StoreId">{{store.Name}}</option>
                 </select>
               </td>
               <td></td>
               <td>
-                <button class="btn btn-primary btn-add-new-row" (click)="GetReportData()">Show Report
+                <button class="btn btn-primary btn-add-new-row" (click)="GetReportData()">{{ 'INVENTORY.SHOW_REPORT' | translate }}
                 </button>
               </td>
             </tr>
@@ -46,7 +46,7 @@
                 <thead>
                   <tr>
                     <th colspan="4" style="text-align: center;">
-                      <span style="font-size:large;"> Summary </span>
+                      <span style="font-size:large;"> {{ 'INVENTORY.SUMMARY' | translate }} </span>
                     </th>
                   </tr>
                 </thead>
@@ -54,13 +54,13 @@
                   <ng-container>
                     <tr>
                       <td style="font-weight:bold; color:blue">
-                        <span> <b> Opening Value </b> </span>
+                        <span> <b> {{ 'INVENTORY.OPENING_VALUE' | translate }} </b> </span>
                       </td>
                       <td>
                         <span> {{summary.OpeningValue | Currency}}</span>
                       </td>
                       <td style="font-weight:bold; color:blue">
-                        <span> <b> Opening Quantity </b> </span>
+                        <span> <b> {{ 'INVENTORY.OPENING_QUANTITY' | translate }} </b> </span>
                       </td>
                       <td>
                         <span> {{summary.OpeningQuantity}}</span>
@@ -68,13 +68,13 @@
                     </tr>
                     <tr>
                       <td style="font-weight:bold; color:blue">
-                        <span> <b> Dispatch Value </b> </span>
+                        <span> <b> {{ 'INVENTORY.DISPATCH_VALUE' | translate }} </b> </span>
                       </td>
                       <td>
                         <span> {{summary.ConsumptionValue| Currency}}</span>
                       </td>
                       <td style="font-weight:bold; color:blue">
-                        <span> <b> Dispatch Quantity(Consumables) </b> </span>
+                        <span> <b> {{ 'INVENTORY.DISPATCH_QUANTITYCONSUMABLES' | translate }} </b> </span>
                       </td>
                       <td>
                         <span> {{summary.ConsumptionQty }}</span>
@@ -82,13 +82,13 @@
                     </tr>
                     <tr>
                       <td style="font-weight:bold; color:blue">
-                        <span> <b> Consumption Value </b> </span>
+                        <span> <b> {{ 'INVENTORY.CONSUMPTION_VALUE' | translate }} </b> </span>
                       </td>
                       <td>
                         <span> {{summary.ConsumptionValue | Currency}}</span>
                       </td>
                       <td style="font-weight:bold; color:blue">
-                        <span> <b> Consumption Quantity </b> </span>
+                        <span> <b> {{ 'INVENTORY.CONSUMPTION_QUANTITY' | translate }} </b> </span>
                       </td>
                       <td>
                         <span> {{summary.ConsumptionQty }}</span>
@@ -96,13 +96,13 @@
                     </tr>
                     <tr>
                       <td style="font-weight:bold; color:blue">
-                        <span> <b> Closing Value </b> </span>
+                        <span> <b> {{ 'INVENTORY.CLOSING_VALUE' | translate }} </b> </span>
                       </td>
                       <td>
                         <span> {{summary.ClosingValue| Currency }}</span>
                       </td>
                       <td style="font-weight:bold; color:blue">
-                        <span> <b> Closing Quantity </b> </span>
+                        <span> <b> {{ 'INVENTORY.CLOSING_QUANTITY' | translate }} </b> </span>
                       </td>
                       <td>
                         <span> {{summary.ClosingQuantity }}</span>

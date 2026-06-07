@@ -15,7 +15,7 @@
         background-color: #f36a5a61;
     }
 
-    .box-text-alignment {
+    .box-{{ 'INVENTORY.TEXT' | translate }}-alignment {
         display: flex;
     }
 
@@ -27,30 +27,30 @@
     <div style="display: flex; justify-content: start;">
         <div class="form-group">
             <div style="margin-left: 15px;" *ngIf="security.HasPermission('show-inventory-manage-button') && showManageButton && loadingStock">
-                <button type="button" class="btn btn-success" (click)="StockReconciliationPopupOpen()"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;Manage Stock</button>
+                <button type="button" class="btn btn-success" (click)="StockReconciliationPopupOpen()"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;{{ 'INVENTORY.MANAGE_STOCK' | translate }}</button>
             </div>
         </div>
         <div class="form-group row col-md-4">
-            <label class="control-label col-md-4">SubCategory <sup style="color: red">*</sup><b style="float:right;">:</b></label>
+            <label class="control-label col-md-4">{{ 'INVENTORY.SUBCATEGORY' | translate }} <sup style="color: red">*</sup><b style="float:right;">:</b></label>
             <div class="col-md-6 autocomplete-item">
-                <input danphe-auto-complete class="form-control" (valueChanged)="onSubCategoryChange($event)" placeholder="Select SubCategory" [(ngModel)]="selectedSubCategory" [list-formatter]="SubCategoryListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="SubCategoryName" [source]="SubCategoryList" [match-formatted]="true" onclick="this.select()" />
+                <input danphe-auto-complete class="form-control" (valueChanged)="onSubCategoryChange($event)" [placeholder]="'INVENTORY.SELECT_SUBCATEGORY' | translate" [(ngModel)]="selectedSubCategory" [list-formatter]="SubCategoryListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="SubCategoryName" [source]="SubCategoryList" [match-formatted]="true" onclick="this.select()" />
             </div>
         </div>
         <div>
             <input type="checkbox" (change)="FilterFixedAssets()" [(ngModel)]="IsFixedAssets" name="isFixedAssets" id="isFixedAssets" value="" style="zoom:1.23;scale: 1.23;margin-right: 6px;" />
-            <label for="isFixedAssets" style="margin-right: 20px;">Show FixedAssets Applicable Item</label>
+            <label for="isFixedAssets" style="margin-right: 20px;">{{ 'INVENTORY.SHOW_FIXEDASSETS_APPLICABLE_ITEM' | translate }}</label>
         </div>
         <div>
             <input type="checkbox" id="showColdStorageItemCheckBox" style="zoom:1.23;scale: 1.23;margin-right: 6px;" (change)="OnChangeShowColdStorageCheckbox($event)">
-            <label for="showColdStorageItemCheckBox" style="margin-right: 20px;">Show only cold storage item </label>
+            <label for="showColdStorageItemCheckBox" style="margin-right: 20px;">{{ 'INVENTORY.SHOW_ONLY_COLD_STORAGE_ITEM' | translate }} </label>
         </div>
         <div>
             <input type="checkbox" (change)="FilterStockListForZeroQty()" [(ngModel)]="showStockWithZeroQty" name="showStockWithZeroQty" id="showStockWithZeroQty" value="" style="zoom:1.23;scale: 1.23;margin-right: 6px;" />
-            <label for="showStockWithZeroQty" style="margin-right: 20px;">Show Zero Quantity</label>
+            <label for="showStockWithZeroQty" style="margin-right: 20px;">{{ 'INVENTORY.SHOW_ZERO_QUANTITY' | translate }}</label>
         </div>
         <div>
-            <div class="box-text-alignment"><span class="box red margin"></span><span>Zero Quantity</span> </div>
-            <div class="box-text-alignment"><span class="box threshold margin"></span><span>Below MinStockQuantity </span></div>
+            <div class="box-text-alignment"><span class="box red margin"></span><span>{{ 'INVENTORY.ZERO_QUANTITY' | translate }}</span> </div>
+            <div class="box-text-alignment"><span class="box threshold margin"></span><span>{{ 'INVENTORY.BELOW_MINSTOCKQUANTITY' | translate }} </span></div>
         </div>
 
     </div>

@@ -9,7 +9,7 @@
         <!-- <div class="caption custom-caption mt10 col-md-2">
           <h3>
             <i class="fa fa-calendar-check-o"></i>
-            <span class="caption-subject">Goods Receipt Page</span>
+            <span class="caption-subject">Goods {{ 'PHARMACY.RECEIPT' | translate }} Page</span>
           </h3>
         </div> -->
         <div class="row">
@@ -17,7 +17,7 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="row">
-                  <label class="col-md-5">Supplier Bill Date:</label>
+                  <label class="col-md-5">{{ 'PHARMACY.SUPPLIER_BILL_DATE' | translate }}:</label>
                   <div class="col-md-7">
                     <danphe-date-picker [(ngModel)]="goodsReceiptVM.goodReceipt.SupplierBillDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
                     </danphe-date-picker>
@@ -26,7 +26,7 @@
               </div>
               <div class="col-md-7">
                 <div class="row">
-                  <label class="col-md-4">Goods Receipt Date:</label>
+                  <label class="col-md-4">{{ 'PHARMACY.GOODS_RECEIPT_DATE' | translate }}:</label>
                   <div class="col-md-8">
                     <danphe-date-picker [(ngModel)]="goodsReceiptVM.goodReceipt.GoodReceiptDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
                     </danphe-date-picker>
@@ -37,12 +37,12 @@
           </div>
           <div class="col-md-1">
             <div class="pull-right">
-              <div class="shortcut-key shortkey-right " title="Shortcut Keys">
+              <div class="shortcut-key shortkey-right " [title]="'PHARMACY.SHORTCUT_KEYS' | translate">
                 <a href="#"><img src="../../../themes/theme-default/images/Keyboard-icon.svg" alt=""></a>
                 <div class="keydropdown">
                   <ul>
-                    <li><kbd>ALT</kbd> + <kbd>P</kbd> = <samp> <span *ngIf="IsGRedit; else updateshortcut">Update</span> Receipt
-                        <ng-template #updateshortcut> <span> Print </span> </ng-template>
+                    <li><kbd>{{ 'PHARMACY.ALT' | translate }}</kbd> + <kbd>{{ 'PHARMACY.P' | translate }}</kbd> = <samp> <span *ngIf="IsGRedit; else updateshortcut">{{ 'COMMON.UPDATE' | translate }}</span> {{ 'PHARMACY.RECEIPT' | translate }}
+                        <ng-template #updateshortcut> <span> {{ 'COMMON.PRINT' | translate }} </span> </ng-template>
                       </samp> </li>
                   </ul>
                 </div>
@@ -54,7 +54,7 @@
       <div class="form-group row">
         <div *ngIf="IsPOorder" class="col-md-2 ml20">
           <div class="row no-gutters">
-            <label class="col-md-8">Purchase Order No:</label>
+            <label class="col-md-8">{{ 'PHARMACY.PURCHASE_ORDER_NO' | translate }}:</label>
             <div class="col-md-4 text-right">
               <label class="" style="border: none !important;"><b>{{PurchaseOrderNo}}</b></label>
             </div>
@@ -63,12 +63,12 @@
         </div>
         <div class="col-md-3 padding-set ml20">
           <div class="row no-gutters">
-            <label class="col-md-4 pt5">Supplier Name<sup>*</sup> <b>:</b></label>
+            <label class="col-md-4 pt5">{{ 'PHARMACY.SUPPLIER_NAME' | translate }}<sup>*</sup> <b>:</b></label>
             <div class="col-md-8 no-padding no-margin">
               <div class="div-relative">
-                <input danphe-auto-complete class="form-control mb-0" [(ngModel)]="currentSupplier" [source]="supplierList" [list-formatter]="supplierListFormatter" placeholder="Select Supplier" display-property-name="SupplierName" id="SupplierName" value-property-name=null min-chars="0" max-num-list="20" onClick="this.select();" (keyup.enter)="SetFocusById('InvoiceId')" match-formatted="true" [grid-sort]="'SupplierName'" [ngModelOptions]="{standalone: true}" [disabled]="IsPOorder" (change)="OnInvoiceChange()" />
-                <a style="z-index:initial" class="fa fa-question" (click)="AddSupplierPopUp()" *ngIf="!IsPOorder && loading == false " title="Unable to find Supplier ? Click to add to Master"></a>
-                <a *ngIf="loading == true" style="z-index:initial" title="Supplier is loading.">
+                <input danphe-auto-complete class="form-control mb-0" [(ngModel)]="currentSupplier" [source]="supplierList" [list-formatter]="supplierListFormatter" [placeholder]="'PHARMACY.SELECT_SUPPLIER' | translate" display-property-name="SupplierName" id="SupplierName" value-property-name=null min-chars="0" max-num-list="20" onClick="this.select();" (keyup.enter)="SetFocusById('InvoiceId')" match-formatted="true" [grid-sort]="'SupplierName'" [ngModelOptions]="{standalone: true}" [disabled]="IsPOorder" (change)="OnInvoiceChange()" />
+                <a style="z-index:initial" class="fa fa-question" (click)="AddSupplierPopUp()" *ngIf="!IsPOorder && loading == false " [title]="'PHARMACY.UNABLE_TO_FIND_SUPPLIER_CLICK_TO' | translate"></a>
+                <a *ngIf="loading == true" style="z-index:initial" [title]="'PHARMACY.SUPPLIER_IS_LOADING' | translate">
                   <i class="fa fa-spinner"></i>
                 </a>
               </div>
@@ -78,12 +78,12 @@
         <div class="col-md-2 padding-set">
           <div class="row no-gutters">
             <div [ngClass]="{'alert alert-warning':duplicateInvoice}" style="padding:0px!important;margin:0px!important">
-              <label class="col-md-4 col-sm-5">Invoice<sup>*</sup> <b>:</b></label>
+              <label class="col-md-4 col-sm-5">{{ 'PHARMACY.INVOICE' | translate }}<sup>*</sup> <b>:</b></label>
               <div class="col-md-8 col-sm-7">
-                <input type="text" [(ngModel)]="goodsReceiptVM.goodReceipt.InvoiceNo" name="InvoiceNo" id="InvoiceId" [ngModelOptions]="{standalone: true}" placeholder="Invoice No" style="width:100%" (keyup.enter)="SetFocusById('btn_AddNew')" class="form-control mb-0" (change)="OnInvoiceChange()">
+                <input type="text" [(ngModel)]="goodsReceiptVM.goodReceipt.InvoiceNo" name="InvoiceNo" id="InvoiceId" [ngModelOptions]="{standalone: true}" [placeholder]="'PHARMACY.INVOICE_NO' | translate" style="width:100%" (keyup.enter)="SetFocusById('btn_AddNew')" class="form-control mb-0" (change)="OnInvoiceChange()">
               </div>
               <div class="color-red font-sm" *ngIf="duplicateInvoice">
-                <i class="fa fa-warning"></i>Duplicate Invoice No. not allowed
+                <i class="fa fa-warning"></i>{{ 'PHARMACY.DUPLICATE_INVOICE_NO_NOT_ALLOWED' | translate }}
               </div>
             </div>
 
@@ -92,21 +92,21 @@
         </div>
         <div class="col-md-3 padding-set ml20">
           <div class="row">
-            <label class="col-md-5">Payment Mode<sup>*</sup> <b>:</b></label>
+            <label class="col-md-5">{{ 'PHARMACY.PAYMENT_MODE' | translate }}<sup>*</sup> <b>:</b></label>
             <div class="form-group col-md-7  mt-0">
               <select [(ngModel)]="goodsReceiptVM.goodReceipt.TransactionType" type="text" name="TransactionType" style="width:100%" [ngModelOptions]="{standalone: true}" placeholder="" class="form-control mb-0" id="paymentMode">
-                <option value="cash">Cash </option>
-                <option value="credit">Credit </option>
+                <option value="cash">{{ 'PHARMACY.CASH' | translate }} </option>
+                <option value="credit">{{ 'PHARMACY.CREDIT' | translate }} </option>
               </select>
             </div>
           </div>
         </div>
         <div class="col-md-2">
           <div class="row no-gutters">
-            <label class="col-md-6">Credit Period <b>:</b></label>
+            <label class="col-md-6">{{ 'PHARMACY.CREDIT_PERIOD' | translate }} <b>:</b></label>
             <div class="col-md-6">
               <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.CreditPeriod" name="CreditPeriod" id="CreditPeriod" style="width:100%" (keyup.enter)="IsPOorder ? SetFocusById('editButton0') : SetFocusById('btn_AddNew')" [ngModelOptions]="{standalone: true}" placeholder="Credit Period" class="form-control mb-0" (ngModelChange)="OnCreditPeriodChange()" />
-              <div *ngIf="checkCreditPeriod" class="color-red font-sm">Credit Period must be positive and whole number</div>
+              <div *ngIf="checkCreditPeriod" class="color-red font-sm">{{ 'PHARMACY.CREDIT_PERIOD_MUST_BE_POSITIVE_AND' | translate }}</div>
             </div>
           </div>
         </div>
@@ -122,41 +122,41 @@
           <tr>
             <th></th>
             <th></th>
-            <th>Generic Name</th>
-            <th>Item Name</th>
-            <th>Batch No</th>
-            <th>Rack No</th>
-            <th *ngIf="!isExpiryNotApplicable">Exp Date</th>
-            <th *ngIf="IsPOorder || (IsGRedit && goodsReceiptVM.goodReceipt.PurchaseOrderId != null)">Pending Qty </th>
-            <th *ngIf="IsPkgitem">Packing</th>
-            <th *ngIf="IsPkgitem">Packing Qty</th>
-            <th *ngIf="!IsPkgitem">Item Qty</th>
-            <th *ngIf="showFreeQty">Free Qty </th>
-            <th *ngIf="showFreeQty">Total Qty </th>
-            <th *ngIf="IsPkgitem"> Strip Rate </th>
-            <th *ngIf="!IsPkgitem">Rate</th>
-            <th>Margin%</th>
-            <th *ngIf="IsPkgitem">Strip SalePrice</th>
-            <th *ngIf="!IsPkgitem"> SalePrice</th>
-            <th *ngIf="showFreeQty">Free Amt</th>
-            <th *ngIf="showCCCharge">CC Charge%</th>
-            <th>Sub Total</th>
-            <th *ngIf="isItemLevelDiscountApplicable">Discount Amt</th>
-            <th>VAT Amt</th>
-            <th>Total Amount</th>
+            <th>{{ 'PHARMACY.GENERIC_NAME' | translate }}</th>
+            <th>{{ 'PHARMACY.ITEM_NAME' | translate }}</th>
+            <th>{{ 'PHARMACY.BATCH_NO' | translate }}</th>
+            <th>{{ 'PHARMACY.RACK_NO' | translate }}</th>
+            <th *ngIf="!isExpiryNotApplicable">{{ 'PHARMACY.EXP_DATE' | translate }}</th>
+            <th *ngIf="IsPOorder || (IsGRedit && goodsReceiptVM.goodReceipt.PurchaseOrderId != null)">{{ 'PHARMACY.PENDING_QTY' | translate }} </th>
+            <th *ngIf="IsPkgitem">{{ 'PHARMACY.PACKING' | translate }}</th>
+            <th *ngIf="IsPkgitem">{{ 'PHARMACY.PACKING_QTY' | translate }}</th>
+            <th *ngIf="!IsPkgitem">{{ 'PHARMACY.ITEM_QTY' | translate }}</th>
+            <th *ngIf="showFreeQty">{{ 'PHARMACY.FREE_QTY' | translate }} </th>
+            <th *ngIf="showFreeQty">{{ 'PHARMACY.TOTAL_QTY' | translate }} </th>
+            <th *ngIf="IsPkgitem"> {{ 'PHARMACY.STRIP_RATE' | translate }} </th>
+            <th *ngIf="!IsPkgitem">{{ 'PHARMACY.RATE' | translate }}</th>
+            <th>{{ 'PHARMACY.MARGIN' | translate }}</th>
+            <th *ngIf="IsPkgitem">{{ 'PHARMACY.STRIP_SALEPRICE' | translate }}</th>
+            <th *ngIf="!IsPkgitem"> {{ 'PHARMACY.SALEPRICE' | translate }}</th>
+            <th *ngIf="showFreeQty">{{ 'PHARMACY.FREE_AMT' | translate }}</th>
+            <th *ngIf="showCCCharge">{{ 'PHARMACY.CC_CHARGE' | translate }}</th>
+            <th>{{ 'PHARMACY.SUB_TOTAL' | translate }}</th>
+            <th *ngIf="isItemLevelDiscountApplicable">{{ 'PHARMACY.DISCOUNT_AMT' | translate }}</th>
+            <th>{{ 'PHARMACY.VAT_AMT' | translate }}</th>
+            <th>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}</th>
           </tr>
         </thead>
         <tbody>
           <!--class="alert alert-warning"-->
           <tr *ngFor="let row of grItemList; let i = index" [style.background-color]="row.VATAmount > 0 ? '#f6f696' : 'none'" [ngClass]="{'alert alert-warning':HasDuplicateItems(row.ItemId,i)}">
-            <td title="Delete record">
+            <td [title]="'PHARMACY.DELETE_RECORD' | translate">
               <div *ngIf="i>=0 && grItemList[i].ItemId !== 0">
                 <a (click)="DeleteGrItemRow(i)">
                   <i class="fa fa-times fa-2x" style="color: red;" aria-hidden="true"></i>
                 </a>
               </div>
             </td>
-            <td title="Edit record">
+            <td [title]="'PHARMACY.EDIT_RECORD' | translate">
               <div *ngIf="i>=0 && grItemList[i].ItemId !== 0">
                 <button id="editButton{{i}}" (click)="EditRow(i)" style="border: none; background: none;"><i class="fa fa-edit" style="font-size:20px;color: blue;"></i></button>
               </div>
@@ -223,12 +223,12 @@
         </tbody>
       </table>
       <tr>
-        <td title="Add New Item" *ngIf="itemList && itemList.length">
+        <td [title]="'PHARMACY.ADD_NEW_ITEM' | translate" *ngIf="itemList && itemList.length">
           <button id="btn_AddNew" class="btn green btn-success" (click)="AddGRItemPopUp()" tabindex="1"><i class="fa fa-plus" style="width: auto;"></i> Add New Item</button>
         </td>
         <td>
           <div style="margin-left: 20px; color: blue; font-size: 15px;">
-            <b>Items Count:</b>&nbsp;
+            <b>{{ 'PHARMACY.ITEMS_COUNT' | translate }}:</b>&nbsp;
             <label *ngIf="grItemList && grItemList.length>0">
               <b style="font-size: 15px;">{{grItemList.length}}</b>
             </label>
@@ -245,7 +245,7 @@
         <div class="mt20 t-wrap">
           <table class="inv_table">
             <tr class="form-group">
-              <td> Taxable Sub Total: </td>
+              <td> {{ 'PHARMACY.TAXABLE_SUB_TOTAL' | translate }}: </td>
               <td>
                 <div class="form-group">
                   <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.TaxableSubTotal" [ngModelOptions]="{standalone:true}" disabled min="0" name="subtotal" class="form-control" value="{{0}}">
@@ -253,7 +253,7 @@
               </td>
             </tr>
             <tr class="form-group">
-              <td> Non-Taxable Sub Total: </td>
+              <td> {{ 'PHARMACY.NONTAXABLE_SUB_TOTAL' | translate }}: </td>
               <td>
                 <div class="form-group">
                   <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.NonTaxableSubTotal" [ngModelOptions]="{standalone:true}" disabled min="0" name="subtotal" class="form-control" value="{{0}}">
@@ -261,7 +261,7 @@
               </td>
             </tr>
             <tr class="form-group">
-              <td> Sub Total: </td>
+              <td> {{ 'PHARMACY.SUB_TOTAL' | translate }}: </td>
               <td>
                 <div class="form-group">
                   <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.SubTotal" [ngModelOptions]="{standalone:true}" disabled min="0" name="subtotal" class="form-control" value="{{0}}">
@@ -269,52 +269,52 @@
               </td>
             </tr>
             <tr class="form-group" *ngIf="isMainDiscountApplicable">
-              <td>Discount Percent: </td>
+              <td>{{ 'PHARMACY.DISCOUNT_PERCENT' | translate }}: </td>
               <td>
                 <div class="form-group">
                     <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.DiscountPercentage" tabindex="2" (focusout)="CalculationForPHRMGoodsReceipt(goodsReceiptVM.goodReceipt.DiscountPercentage,0)" min="0" name="DiscountPercentage" class="form-control" value="{{0}}" [disabled]="!isMainDiscountApplicable" onClick="this.select();" onwheel=this.blur() (keyup.enter)="setFocusById('discountAmount')">
-                    <!-- <span class="color-red font-sm" *ngIf="throwError"> Discount % Range: 0-100% </span> -->
+                    <!-- <span class="color-red font-sm" *ngIf="throwError"> {{ 'PHARMACY.DISCOUNT_RANGE_0100' | translate }} </span> -->
                     <div style="color:red" *ngIf="invalidDiscountPercentage">
-                      Discount % Range: 0-100%
+                      {{ 'PHARMACY.DISCOUNT_RANGE_0100' | translate }}
                     </div>
                 </div>
               </td>
             </tr>
             <tr class="form-group" *ngIf="isMainDiscountApplicable">
-              <td>Discount Amount: </td>
+              <td>{{ 'PHARMACY.DISCOUNT_AMOUNT' | translate }}: </td>
               <td>
                 <div class="form-group">
                     <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.DiscountAmount" (focusout)="CalculationForPHRMGoodsReceipt(0,goodsReceiptVM.goodReceipt.DiscountAmount)" min="0" name="DiscTotal" class="form-control" value="{{0}}" [disabled]="!isMainDiscountApplicable" onClick="this.select();" (keyup.enter)="setFocusById('remarks')" onwheel=this.blur() id="discountAmount">
                     <div style="color:red" *ngIf="invalidDiscountAmount">
-                      Min (0)
+                      {{ 'PHARMACY.MIN_0' | translate }}
                     </div>
                 </div>
                 </td>
                 </tr>
                 <tr class="form-group">
-                  <td>VAT%: </td>
+                  <td>{{ 'PHARMACY.VAT' | translate }}: </td>
                   <td>
                     <div class="form-group">
                       <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.VATPercentage" (focusout)="OnVATChange(goodsReceiptVM.goodReceipt.VATPercentage,0)" min="0" name="VATTotal" class="form-control" value="{{0}}">
                       <div style="color:red" *ngIf="invalidVATPercentage">
-                        VAT % Range: 0-100%
+                        {{ 'PHARMACY.VAT_RANGE_0100' | translate }}
                       </div>
                 </div>
               </td>
             </tr>
             <tr class="form-group">
-              <td>VAT Total: </td>
+              <td>{{ 'PHARMACY.VAT_TOTAL' | translate }}: </td>
               <td>
                 <div class="form-group">
                   <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.VATAmount" (focusout)="OnVATChange(0,goodsReceiptVM.goodReceipt.VATAmount)" min="0" name="VATTotal" class="form-control" value="{{0}}">
                   <div style="color:red" *ngIf="invalidVATAmount">
-                    Min (0)
+                    {{ 'PHARMACY.MIN_0' | translate }}
                   </div>
                   </div>
                   </td>
                   </tr>
                   <tr class="form-group">
-                    <td>CC Charge: </td>
+                    <td>{{ 'PHARMACY.CC_CHARGE' | translate }}: </td>
                     <td>
                       <div class="form-group">
                         <input type="number" disabled [(ngModel)]="goodsReceiptVM.goodReceipt.CCAmount" [ngModelOptions]="{standalone:true}" min="0" name="VATTotal" class="form-control" value="{{0}}">
@@ -322,7 +322,7 @@
               </td>
             </tr>
             <tr class="form-group">
-              <td> Adjustment: </td>
+              <td> {{ 'PHARMACY.ADJUSTMENT' | translate }}: </td>
               <td>
                 <div class="form-group">
                   <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.Adjustment" [ngModelOptions]="{standalone:true}" disabled min="0" name="Adjustment" class="form-control" value="{{0}}">
@@ -330,7 +330,7 @@
               </td>
             </tr>
             <tr class="form-group">
-              <td> Total Amount: </td>
+              <td> {{ 'PHARMACY.TOTAL_AMOUNT' | translate }}: </td>
               <td>
                 <div class="form-group">
                   <input type="number" [(ngModel)]="goodsReceiptVM.goodReceipt.TotalAmount" [ngModelOptions]="{standalone:true}" disabled min="0" name="totalamount" class="form-control" value="{{0}}">
@@ -340,7 +340,7 @@
 
 
             <tr class="form-group">
-              <td>Remarks: </td>
+              <td>{{ 'COMMON.REMARKS' | translate }}: </td>
               <td>
                 <div class="form-group">
                   <input type="text" [(ngModel)]="goodsReceiptVM.goodReceipt.Remarks" [ngModelOptions]="{standalone:true}" name="remarks" class="form-control" id="remarks" (keyup.enter)="IsGRedit ? setFocusToBtnById('updateGr') : setFocusToBtnById('saveGr')" />
@@ -350,17 +350,17 @@
             <tr class="dot">
               <td colspan="2" class="text-capitalize" style="color: blue; font-weight: bold;
               ">
-                In Words :
-                <b>{{goodsReceiptVM.goodReceipt.TotalAmount | NumberInWords}} </b>Only. <br /><br />
+                {{ 'PHARMACY.IN_WORDS' | translate }} :
+                <b>{{goodsReceiptVM.goodReceipt.TotalAmount | NumberInWords}} </b>{{ 'PHARMACY.ONLY' | translate }} <br /><br />
               </td>
             </tr>
           </table>
           <div class="form-group clearfix">
             <div class="text-right mt20">
-              <button id="saveGr" *ngIf="!IsGRedit" class="btn green btn-success tooltip" title="ALT + P" (click)="SaveGoodsReceipt()" [disabled]="loading"> <u>P</u>rint Receipt </button>
-              <button id="updateGr" *ngIf="IsGRedit" class="btn green btn-success tooltip" title="ALT + P" (click)="EditGR()" [disabled]="loading">U<u>p</u>date Receipt </button>
+              <button id="saveGr" *ngIf="!IsGRedit" class="btn green btn-success tooltip" [title]="'PHARMACY.ALT_P' | translate" (click)="SaveGoodsReceipt()" [disabled]="loading"> <u>{{ 'PHARMACY.P' | translate }}</u>{{ 'PHARMACY.RINT_RECEIPT' | translate }} </button>
+              <button id="updateGr" *ngIf="IsGRedit" class="btn green btn-success tooltip" [title]="'PHARMACY.ALT_P' | translate" (click)="EditGR()" [disabled]="loading">{{ 'PHARMACY.U' | translate }}<u>{{ 'PHARMACY.P' | translate }}</u>{{ 'PHARMACY.DATE_RECEIPT' | translate }} </button>
               <span></span>
-              <button class="btn btn-danger" (click)="DiscardGoodsReceipt()">Discard</button>
+              <button class="btn btn-danger" (click)="DiscardGoodsReceipt()">{{ 'COMMON.DISCARD' | translate }}</button>
 
             </div>
           </div>

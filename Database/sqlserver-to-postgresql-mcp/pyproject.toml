@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sqlserver-to-postgresql-mcp"
+version = "1.0.0"
+description = "A Model Context Protocol (MCP) server for converting SQL Server T-SQL to PostgreSQL PL/pgSQL"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+sqlserver-to-postgresql-mcp = "src.main:main"

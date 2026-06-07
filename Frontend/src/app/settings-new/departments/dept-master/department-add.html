@@ -4,121 +4,118 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span *ngIf="!update">Add Department</span> <span *ngIf="update">Update Department</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span *ngIf="!update">{{ 'SETTINGS_NEW.ADD_DEPARTMENT' | translate }}</span> <span *ngIf="update">{{ 'SETTINGS_NEW.UPDATE_DEPARTMENT' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <form [formGroup]="CurrentDepartment.DepartmentValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-4">Department Code<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-4">{{ 'SETTINGS_NEW.DEPARTMENT_CODE' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input id="id_department_code" class="form-control" maxlength="30" [(ngModel)]="CurrentDepartment.DepartmentCode"
-                         formControlName="DepartmentCode" (ngModelChange)="CapitalizeDeptCode()" type="text" value="" placeholder="Department Code"
+                         formControlName="DepartmentCode" (ngModelChange)="CapitalizeDeptCode()" type="text" value="" [placeholder]="'SETTINGS_NEW.DEPARTMENT_CODE' | translate"
                          (keyup.enter)="setFocusById('id_department_name')" (keyup.escape)="Close()" />
                   <br />
                   <span style="color:red"
-                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentCode','pattern') || !(CurrentDepartment.IsDirty('DepartmentCode'))">Department
-                    Code Is Capital Alphabets Letters Only </span>
+                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentCode','pattern') || !(CurrentDepartment.IsDirty('DepartmentCode'))">{{ 'SETTINGS_NEW.DEPARTMENT_CODE' | translate }} Is Capital Alphabets Letters Only </span>
                   <span class="color-red font-sm"
-                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentCode','required') || !(CurrentDepartment.IsDirty('DepartmentName'))">Department
-                    Code is required</span>
+                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentCode','required') || !(CurrentDepartment.IsDirty('DepartmentName'))">{{ 'SETTINGS_NEW.DEPARTMENT_CODE' | translate }} is required</span>
                   <span style="color:red" *ngIf="CurrentDepartment.IsDirty('DepartmentCode')"
-                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentCode','maxlength')"> Length is not proper</span>
+                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentCode','maxlength')"> {{ 'SETTINGS_NEW.LENGTH_IS_NOT_PROPER' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Department Name<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-4">{{ 'GRID_HEADERS.DEPARTMENT_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input id="id_department_name" class="form-control" maxlength="30" type="text" [(ngModel)]="CurrentDepartment.DepartmentName"
-                         formControlName="DepartmentName" placeholder="Department Name" (keyup.enter)="setFocusById('id_department_head')" />
+                         formControlName="DepartmentName" [placeholder]="'GRID_HEADERS.DEPARTMENT_NAME' | translate" (keyup.enter)="setFocusById('id_department_head')" />
                   <span class="color-red font-sm"
-                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentName','required') || !(CurrentDepartment.IsDirty('DepartmentName'))">Department
-                    Name is required</span>
+                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentName','required') || !(CurrentDepartment.IsDirty('DepartmentName'))">{{ 'GRID_HEADERS.DEPARTMENT_NAME' | translate }} is required</span>
                   <span class="color-red font-sm" *ngIf="CurrentDepartment.IsDirty('DepartmentName')"
-                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentName','maxlength')"> Length is not proper</span>
+                        [hidden]="CurrentDepartment.IsValidCheck('DepartmentName','maxlength')"> {{ 'SETTINGS_NEW.LENGTH_IS_NOT_PROPER' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Parent Department Name<b>:</b></label>
+                <label class="control-label col-md-4">{{ 'SETTINGS_NEW.PARENT_DEPARTMENT_NAME' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <select id="id_parent_department" class="form-control" [(ngModel)]="CurrentDepartment.ParentDepartmentId"
                           [ngModelOptions]="{standalone: true}">
-                    <option [ngValue]="null">--select--</option>
+                    <option [ngValue]="null">{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
                     <option *ngFor="let dept of deptList" value="{{dept.DepartmentId}}"> {{dept.DepartmentName}}
                     </option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Department Description<b>:</b></label>
+                <label class="control-label col-md-4">{{ 'SETTINGS_NEW.DEPARTMENT_DESCRIPTION' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <textarea id="id_department_description" class="form-control" [(ngModel)]="CurrentDepartment.Description"
                             [ngModelOptions]="{standalone: true}"
-                            type="text" value="" placeholder="Department Description"></textarea>
+                            type="text" value="" [placeholder]="'SETTINGS_NEW.DEPARTMENT_DESCRIPTION' | translate"></textarea>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Department Notice Text<b>:</b></label>
+                <label class="control-label col-md-4">{{ 'SETTINGS_NEW.DEPARTMENT_NOTICE_TEXT' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <textarea id="id_department_notice" class="form-control" [(ngModel)]="CurrentDepartment.NoticeText"
                             [ngModelOptions]="{standalone: true}"
-                            type="text" value="" placeholder="Department Notice"></textarea>
+                            type="text" value="" [placeholder]="'SETTINGS_NEW.DEPARTMENT_NOTICE' | translate"></textarea>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Department Head<b>:</b></label>
+                <label class="control-label col-md-4">{{ 'SETTINGS_NEW.DEPARTMENT_HEAD' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input id="id_department_head" class="form-control" [(ngModel)]="CurrentDepartment.DepartmentHead"
                          [ngModelOptions]="{standalone: true}"
-                         type="number" value="" placeholder="Department Head" (keyup.enter)="setFocusById('id_room_number')" />
+                         type="number" value="" [placeholder]="'SETTINGS_NEW.DEPARTMENT_HEAD' | translate" (keyup.enter)="setFocusById('id_room_number')" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Room Number<b>:</b></label>
+                <label class="control-label col-md-4">{{ 'SETTINGS_NEW.ROOM_NUMBER' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input id="id_room_number" class="form-control" [(ngModel)]="CurrentDepartment.RoomNumber" [ngModelOptions]="{standalone: true}"
-                         type="text" value="" placeholder="Room Number" (keyup.enter)="setFocusById('id_select_department_isActive')" />
+                         type="text" value="" [placeholder]="'SETTINGS_NEW.ROOM_NUMBER' | translate" (keyup.enter)="setFocusById('id_select_department_isActive')" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Is Active <b>:</b> </label>
+                <label class="control-label col-md-4">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <select id="id_select_department_isActive" class="form-control" [(ngModel)]="CurrentDepartment.IsActive"
                             [ngModelOptions]="{standalone: true}"
                             (change)="setFocusById('id_select_department_isAppointmentApplicable');">
-                      <option [ngValue]="null">--select--</option>
-                      <option value="true">Yes</option>
-                      <option value="false">No</option>
+                      <option [ngValue]="null">{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
+                      <option value="true">{{ 'COMMON.YES' | translate }}</option>
+                      <option value="false">{{ 'COMMON.NO' | translate }}</option>
                     </select>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-4">Is Appointment Applicable<b>:</b> </label>
+                <label class="control-label col-md-4">{{ 'GRID_HEADERS.IS_APPOINTMENT_APPLICABLE' | translate }}<b>:</b> </label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <select id="id_select_department_isAppointmentApplicable" class="form-control"
                             [(ngModel)]="CurrentDepartment.IsAppointmentApplicable"
                             [ngModelOptions]="{standalone: true}" (change)="OnAppointmentApplicableChange(); setFocusById('AddDepartment');"
                             [disabled]="disableBtn">
-                      <option [ngValue]="null">--select--</option>
-                      <option [ngValue]="true">Yes</option>
-                      <option [ngValue]="false">No</option>
+                      <option [ngValue]="null">{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
+                      <option [ngValue]="true">{{ 'COMMON.YES' | translate }}</option>
+                      <option [ngValue]="false">{{ 'COMMON.NO' | translate }}</option>
                     </select>
                   </div>
                 </div>
               </div>
               <div class="form-group" *ngIf="onApptApplicable">
-                <label class="control-label col-md-4"> Allow Zero Price <b>:</b> </label>
+                <label class="control-label col-md-4"> {{ 'SETTINGS_NEW.ALLOW_ZERO_PRICE' | translate }} <b>:</b> </label>
                 <div class="col-md-8">
                   <div class="input-group">
                     <select id="id_select_department_isZeroPriceAllowed" name="IsZeroPriceAllowed" class="form-control"
                             [(ngModel)]="CurrentDepartment.IsZeroPriceAllowed"
                             [ngModelOptions]="{standalone: true}">
-                      <option [ngValue]="null" selected>--select--</option>
-                      <option value="true">Yes</option>
-                      <option value="false">No</option>
+                      <option [ngValue]="null" selected>{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
+                      <option value="true">{{ 'COMMON.YES' | translate }}</option>
+                      <option value="false">{{ 'COMMON.NO' | translate }}</option>
                     </select>
                   </div>
                 </div>
@@ -127,8 +124,8 @@
                 <table class="table table-responsive">
                   <thead>
                     <tr>
-                      <td class="col-md-3">Service Name</td>
-                      <td class="col-md-3">Service Item Name</td>
+                      <td class="col-md-3">{{ 'SETTINGS_NEW.SERVICE_NAME' | translate }}</td>
+                      <td class="col-md-3">{{ 'SETTINGS_NEW.SERVICE_ITEM_NAME' | translate }}</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -139,16 +136,16 @@
                           <input type="checkbox" id="id_checkbox_opd_new_patient_service"
                                  [(ngModel)]="OpdNewService.IsServiceEnabled" [checked]="OpdNewService.IsMandatory"
                                  (click)="opdNewServiceSelectChange()" [ngModelOptions]="{standalone: true}" [disabled]="OpdNewService.IsMandatory" />
-                          <span></span>OPD (New Patient)</label>
+                          <span></span>{{ 'SETTINGS_NEW.OPD_NEW_PATIENT' | translate }}</label>
                         <b *ngIf="OpdNewService.IsServiceEnabled" class="color-red">*</b>
                       </td>
                       <td class="col-md-3"><input class="form-control" danphe-auto-complete [disabled]="!OpdNewService.IsServiceEnabled"
                                [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOpdNewServiceItem"
                                onClick="this.select();" (focusout)="NewPatientServiceItemChanged(selectedOpdNewServiceItem)"
-                               [list-formatter]="myItemListFormatter" [source]="opdServiceItems" placeholder="enter text"
+                               [list-formatter]="myItemListFormatter" [source]="opdServiceItems" [placeholder]="'SETTINGS_NEW.ENTER_TEXT' | translate"
                                display-property-name="ServiceItemName" value-property-name=null max-num-list="10" />
                         <span class="color-red font-sm" [hidden]="!OpdNewService.IsServiceEnabled || OpdNewService.IsItemNameValid">
-                          Item Name required </span>
+                          {{ 'SETTINGS_NEW.ITEM_NAME_REQUIRED' | translate }} </span>
                       </td>
                     </tr>
 
@@ -158,16 +155,16 @@
                           <input type="checkbox" id="id_checkbox_opd_followup_patient_service"
                                  [(ngModel)]="OpdFollowupService.IsServiceEnabled"
                                  (click)="opdFollowupServiceSelectChange()" [ngModelOptions]="{standalone: true}" />
-                          <span></span>OPD (Followup Patient)</label>
+                          <span></span>{{ 'SETTINGS_NEW.OPD_FOLLOWUP_PATIENT' | translate }}</label>
                         <b *ngIf="OpdFollowupService.IsServiceEnabled" class="color-red">*</b>
                       </td>
                       <td class="col-md-3"><input class="form-control" danphe-auto-complete [disabled]="!OpdFollowupService.IsServiceEnabled"
                                [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOpdFollowupServiceItem"
                                onClick="this.select();" (focusout)="FollowupServiceItemChanged(selectedOpdFollowupServiceItem)"
-                               [list-formatter]="myItemListFormatter" [source]="opdServiceItems" placeholder="enter text"
+                               [list-formatter]="myItemListFormatter" [source]="opdServiceItems" [placeholder]="'SETTINGS_NEW.ENTER_TEXT' | translate"
                                display-property-name="ServiceItemName" value-property-name=null max-num-list="10" />
                         <span class="color-red font-sm" [hidden]="!OpdFollowupService.IsServiceEnabled || OpdFollowupService.IsItemNameValid">
-                          Item Name required </span>
+                          {{ 'SETTINGS_NEW.ITEM_NAME_REQUIRED' | translate }} </span>
                       </td>
                     </tr>
 
@@ -177,16 +174,16 @@
                           <input type="checkbox" id="id_checkbox_opd_old_patient_service"
                                  [(ngModel)]="OpdOldService.IsServiceEnabled"
                                  (click)="opdOldServiceSelectChange()" [ngModelOptions]="{standalone: true}" />
-                          <span></span>OPD (Old Patient)</label>
+                          <span></span>{{ 'SETTINGS_NEW.OPD_OLD_PATIENT' | translate }}</label>
                         <b *ngIf="OpdOldService.IsServiceEnabled" class="color-red">*</b>
                       </td>
                       <td class="col-md-3"><input class="form-control" danphe-auto-complete [disabled]="!OpdOldService.IsServiceEnabled"
                                [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOpdOldServiceItem"
                                onClick="this.select();" (focusout)="OldPatientServiceItemChanged(selectedOpdOldServiceItem)"
-                               [list-formatter]="myItemListFormatter" [source]="opdServiceItems" placeholder="enter text"
+                               [list-formatter]="myItemListFormatter" [source]="opdServiceItems" [placeholder]="'SETTINGS_NEW.ENTER_TEXT' | translate"
                                display-property-name="ServiceItemName" value-property-name=null max-num-list="10" />
                         <span class="color-red font-sm" [hidden]="!OpdOldService.IsServiceEnabled || OpdOldService.IsItemNameValid">
-                          Item Name required </span>
+                          {{ 'SETTINGS_NEW.ITEM_NAME_REQUIRED' | translate }} </span>
                       </td>
                     </tr>
 
@@ -199,8 +196,8 @@
               <input id="AddDepartment" type="button"
 
                      class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddDepartment()"
-                     value="Add Department" />
-              <input id="UpdateDepartment" type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" value="Update" />
+                     [value]="'SETTINGS_NEW.ADD_DEPARTMENT' | translate" />
+              <input id="UpdateDepartment" type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
             </div>
           </form>
         </div>

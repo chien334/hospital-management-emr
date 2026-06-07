@@ -1,17 +1,17 @@
 <div class="row col-md-12" style="padding-bottom: 10px;">
   <div class="col-md-6 col-sm-12">
     <!--  rbac-permission='{"name":"inventory-AddDonation","actionOnInvalid":"remove"}' -->
-    <a class="btn primary-btn btn-sm m1" routerLink="../AddDonation"><i class="fa fa-plus"></i> Add Donation</a>
+    <a class="btn primary-btn btn-sm m1" routerLink="../AddDonation"><i class="fa fa-plus"></i> {{ 'INVENTORY.ADD_DONATION' | translate }}</a>
   </div>
   <div class="col-md-6 col-sm-12">
     <div class="col-md-6 col-sm-12 row filterVendor" style="display: flex; flex-direction: row-reverse; margin-top: 10px;">
       <div class="col-md-6 col-sm-12">
         <label for="#VendorWiseCategory" class="label label-default"><i class="fa fa-filter"></i>
-          Select Vendor : &nbsp;
+          {{ 'INVENTORY.SELECT_VENDOR' | translate }} : &nbsp;
         </label>
 
         <select [(ngModel)]="selectedVendorId" (ngModelChange)="OnVendorChange()">
-          <option [ngValue]="null" selected>All</option>
+          <option [ngValue]="null" selected>{{ 'INVENTORY.ALL' | translate }}</option>
           <option *ngFor="let vendor of vendorsThatReceiveDonation; let i = index;" [ngValue]="vendor.VendorId">
             {{vendor.VendorName}} </option>
         </select>

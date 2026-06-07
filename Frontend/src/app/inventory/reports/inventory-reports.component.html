@@ -1,5 +1,5 @@
 <style>
-    .p-category .span2 {
+    .p-{{ 'INVENTORY.CATEGORY' | translate }} .span2 {
         min-width: 20.5%;
     }
 
@@ -19,7 +19,7 @@
         border-color: #e4e4e4;
     }
 
-        .b-light i.text-white {
+        .b-light i.{{ 'INVENTORY.TEXT' | translate }}-white {
             color: #fff;
         }
 
@@ -48,7 +48,7 @@
         <!--Start: Secondary Menu Items-->
         <li *ngIf="secondaryNavItems && secondaryNavItems.length>0" class="dropdown bil-hr-bar" style="display:inline-block;">
             <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                More...
+                {{ 'COMMON.MORE' | translate }}.
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu bil-hr-dropdown">
@@ -78,7 +78,7 @@
                             </span>
                             <span class="report-name">
                                 <i>{{route.DisplayName}}</i>
-                                <i>Report</i>
+                                <i>{{ 'INVENTORY.REPORT' | translate }}</i>
                             </span>
                         </div>
                     </a>

@@ -3,7 +3,7 @@
         <li *ngFor="let route of validRoutes">
             <a routerLink="{{route.RouterLink}}" [routerLinkActive]="'a-tab-active'">{{route.DisplayName}}<i class="{{route.Css}}"></i></a>
         </li>
-        <li><a routerLink="List" [routerLinkActive]="'a-tab-active'">Suppliers List</a></li>
+        <li><a routerLink="List" [routerLinkActive]="'a-tab-active'">{{ 'PHARMACY.SUPPLIERS_LIST' | translate }}</a></li>
     </ul>
 </div>
 <router-outlet>

@@ -10,22 +10,22 @@
                     <div class="col-md-10 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
                         <div class="col-md-12">
                             <div class="caption" style="color:blue; margin-top:10px;">
-                                <span *ngIf="!update">Add Item</span>
-                                <span *ngIf="update">Update Item</span>
+                                <span *ngIf="!update">{{ 'PHARMACY.ADD_ITEM' | translate }}</span>
+                                <span *ngIf="update">{{ 'PHARMACY.UPDATE_ITEM' | translate }}</span>
                             </div>
-                            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">{{ 'PHARMACY.X' | translate }}</a>
                             <hr />
                         </div>
                         <br />
                         <div class="col-md-12">
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label class="control-label col-md-4">Select Sales Category<b class="color-red">*</b><b style="float:right;">:</b></label>
+                              <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_SALES_CATEGORY' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
                                 <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
                                        [(ngModel)]="selCategory"
                                        [source]="categoryList"
-                                       placeholder="Category Type"
+                                       [placeholder]="'PHARMACY.CATEGORY_TYPE' | translate"
                                        formControlName="SalesCategoryId"
                                        display-property-name="Name"
                                        value-property-name="Name"
@@ -34,37 +34,37 @@
                                        max-num-list="15"
                                        style="width:100%;height:32px;" />
 
-                                <div class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('SalesCategoryId','required') || !(CurrentItem.IsDirty('SalesCategoryId'))">Category is required</div>
+                                <div class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('SalesCategoryId','required') || !(CurrentItem.IsDirty('SalesCategoryId'))">{{ 'PHARMACY.CATEGORY_IS_REQUIRED' | translate }}</div>
                               </div>
                             </div>
                             <div class="form-group">
-                              <label class="control-label col-md-4">Item Name<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                              <label class="control-label col-md-4">{{ 'PHARMACY.ITEM_NAME' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
                                 <input class="form-control" type="text" maxlength="50"
                                        [(ngModel)]="CurrentItem.ItemName"
                                        value=""
                                        formControlName="ItemName"
-                                       placeholder="Enter name of Item" />
-                                <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemName','required') || !(CurrentItem.IsDirty('ItemName'))">name of item is required</span>
+                                       [placeholder]="'PHARMACY.ENTER_NAME_OF_ITEM' | translate" />
+                                <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemName','required') || !(CurrentItem.IsDirty('ItemName'))">{{ 'PHARMACY.NAME_OF_ITEM_IS_REQUIRED' | translate }}</span>
                               </div>
                             </div>
                             <div class="form-group">
-                              <label class="control-label col-md-4">Item Code<b style="float:right;">:</b></label>
+                              <label class="control-label col-md-4">{{ 'PHARMACY.ITEM_CODE' | translate }}<b style="float:right;">:</b></label>
                               <div class="col-md-8">
                                 <input class="form-control" type="text" maxlength="50"
                                        [(ngModel)]="CurrentItem.ItemCode" [ngModelOptions]="{standalone: true}"
                                        value=""
-                                       placeholder="Enter code of Item" />
+                                       [placeholder]="'PHARMACY.ENTER_CODE_OF_ITEM' | translate" />
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-4">Select Company<b class="color-red">*</b><b style="float:right;">:</b></label>
+                              <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_COMPANY' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
                                 <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
                                        [(ngModel)]="selCompany"
                                        [source]="companyList"
-                                       placeholder="Company Name"
+                                       [placeholder]="'PHARMACY.COMPANY_NAME' | translate"
                                        formControlName="CompanyId"
                                        display-property-name="CompanyName"
                                        value-property-name="CompanyName"
@@ -72,14 +72,14 @@
                                        [list-formatter]="CompaniesListFormatter"
                                        max-num-list="15"
                                        style="width:100%;height:32px;" />
-                                <div class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('CompanyId','required') || !(CurrentItem.IsDirty('CompanyId'))">company is required</div>
+                                <div class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('CompanyId','required') || !(CurrentItem.IsDirty('CompanyId'))">{{ 'PHARMACY.COMPANY_IS_REQUIRED' | translate }}</div>
                               </div>
                             </div>
                             <span style="vertical-align:middle;width:20px">
-                              <a *ngIf="!selCompany || !selCompany.CompanyId" (click)="AddCompanyPopUp(i)" title="Unable to find item ? Click to add to Master">New Company</a>
+                              <a *ngIf="!selCompany || !selCompany.CompanyId" (click)="AddCompanyPopUp(i)" [title]="'PHARMACY.UNABLE_TO_FIND_ITEM_CLICK_TO' | translate">{{ 'PHARMACY.NEW_COMPANY' | translate }}</a>
                             </span>
                             <div class="form-group">
-                              <label class="control-label col-md-4">Item Type<b class="color-red">*</b><b style="float:right;">:</b></label>
+                              <label class="control-label col-md-4">{{ 'PHARMACY.ITEM_TYPE' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
                                 <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
                                        [(ngModel)]="selItemType"
@@ -92,12 +92,12 @@
                                        [list-formatter]="ItemTypesListFormatter"
                                        max-num-list="15"
                                        style="width:100%;height:32px;" />
-                                <div class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemTypeId','required') || !(CurrentItem.IsDirty('ItemTypeId'))">Item type is required</div>
+                                <div class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemTypeId','required') || !(CurrentItem.IsDirty('ItemTypeId'))">{{ 'PHARMACY.ITEM_TYPE_IS_REQUIRED' | translate }}</div>
                               </div>
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-4">Select Unit<b class="color-red">*</b><b style="float:right;">:</b></label>
+                              <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_UNIT' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
                                 <select class="form-control" [(ngModel)]="CurrentItem.UOMId"
                                         formControlName="UOMId">
@@ -106,11 +106,11 @@
                                     {{unit.UOMName}}
                                   </option>
                                 </select>
-                                <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('UOMId','required') || !(CurrentItem.IsDirty('UOMId'))">Unit is required</span>
+                                <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('UOMId','required') || !(CurrentItem.IsDirty('UOMId'))">{{ 'PHARMACY.UNIT_IS_REQUIRED' | translate }}</span>
                               </div>
                             </div>
                             <div class="form-group">
-                              <label class="control-label col-md-4">Generic Name<b class="color-red">*</b><b style="float:right;">:</b></label>
+                              <label class="control-label col-md-4">{{ 'PHARMACY.GENERIC_NAME' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
                                 <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
                                        [(ngModel)]="selGenName"
@@ -124,7 +124,7 @@
                                        max-num-list="15"
                                        style="width:100%;height:32px;"
                                        formControlName="GenericId" />
-                                <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('GenericId','required') || (CurrentItem.IsDirty('GenericId'))">Generic Name is required</span>
+                                <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('GenericId','required') || (CurrentItem.IsDirty('GenericId'))">{{ 'PHARMACY.GENERIC_NAME_IS_REQUIRED' | translate }}</span>
                               </div>
                             </div>
 
@@ -132,7 +132,7 @@
 
 
                             <div class="form-group">
-                              <label class="control-label col-md-4">Is Active<b style="float:right;">:</b></label>
+                              <label class="control-label col-md-4">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }}<b style="float:right;">:</b></label>
                               <div class="col-md-7">
                                 <div class="input-group">
                                   <div class="icheck-inline">
@@ -145,7 +145,7 @@
                               </div>
                             </div>
                             <div class="form-group">
-                              <label class="control-label col-md-4">Is International Brand<b style="float:right;">:</b></label>
+                              <label class="control-label col-md-4">{{ 'PHARMACY.IS_INTERNATIONAL_BRAND' | translate }}<b style="float:right;">:</b></label>
                               <div class="col-md-7">
                                 <div class="input-group">
                                   <div class="icheck-inline">
@@ -160,60 +160,60 @@
                           </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Re-Order<b class="color-red">*</b><b style="float:right;">:</b><br />Quantity</label>
+                                    <label class="control-label col-md-4">{{ 'PHARMACY.REORDER' | translate }}<b class="color-red">*</b><b style="float:right;">:</b><br />{{ 'PHARMACY.QUANTITY' | translate }}</label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="text" maxlength="10"
                                                [(ngModel)]="CurrentItem.ReOrderQuantity" formControlName="ReOrderQuantity"
                                                value=""
-                                               placeholder="Enter re-order quantity" />
-                                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ReOrderQuantity','required') || !(CurrentItem.IsDirty('ReOrderQuantity'))">re-order quantity is required</span>
-                                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('ReOrderQuantity')" [hidden]="CurrentItem.IsValidCheck('ReOrderQuantity','pattern')">re-order quantity in numbers only</span>
+                                               [placeholder]="'PHARMACY.ENTER_REORDER_QUANTITY' | translate" />
+                                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ReOrderQuantity','required') || !(CurrentItem.IsDirty('ReOrderQuantity'))">{{ 'PHARMACY.REORDER_QUANTITY_IS_REQUIRED' | translate }}</span>
+                                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('ReOrderQuantity')" [hidden]="CurrentItem.IsValidCheck('ReOrderQuantity','pattern')">{{ 'PHARMACY.REORDER_QUANTITY_IN_NUMBERS_ONLY' | translate }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Min-Stock<b class="color-red">*</b><b style="float:right;">:</b><br />Quantity</label>
+                                    <label class="control-label col-md-4">{{ 'PHARMACY.MINSTOCK' | translate }}<b class="color-red">*</b><b style="float:right;">:</b><br />{{ 'PHARMACY.QUANTITY' | translate }}</label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="text" maxlength="10"
                                                [(ngModel)]="CurrentItem.MinStockQuantity" formControlName="MinStockQuantity"
                                                value=""
-                                               placeholder="Enter min-stock quantity" />
-                                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('MinStockQuantity','required') || !(CurrentItem.IsDirty('MinStockQuantity'))">Min-stock quantity is required</span>
-                                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('MinStockQuantity')" [hidden]="CurrentItem.IsValidCheck('MinStockQuantity','pattern')"> Min-stock quantity in numbers only</span>
+                                               [placeholder]="'PHARMACY.ENTER_MINSTOCK_QUANTITY' | translate" />
+                                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('MinStockQuantity','required') || !(CurrentItem.IsDirty('MinStockQuantity'))">{{ 'PHARMACY.MINSTOCK_QUANTITY_IS_REQUIRED' | translate }}</span>
+                                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('MinStockQuantity')" [hidden]="CurrentItem.IsValidCheck('MinStockQuantity','pattern')"> {{ 'PHARMACY.MINSTOCK_QUANTITY_IN_NUMBERS_ONLY' | translate }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Dosage<b class="color-red">*</b></label>
+                                    <label class="control-label col-md-4">{{ 'PHARMACY.DOSAGE' | translate }}<b class="color-red">*</b></label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="text" maxlength="10"
                                                [(ngModel)]="CurrentItem.Dosage" [ngModelOptions]="{standalone: true}"
                                                value=""
-                                               placeholder="Enter dosage" />
+                                               [placeholder]="'PHARMACY.ENTER_DOSAGE' | translate" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Budgeted<b class="color-red">*</b><b style="float:right;">:</b><br />Quantity</label>
+                                    <label class="control-label col-md-4">{{ 'PHARMACY.BUDGETED' | translate }}<b class="color-red">*</b><b style="float:right;">:</b><br />{{ 'PHARMACY.QUANTITY' | translate }}</label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="text" maxlength="10"
                                                [(ngModel)]="CurrentItem.BudgetedQuantity" formControlName="BudgetedQuantity"
                                                value=""
-                                               placeholder="Enter budgeted quantity" />
-                                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('BudgetedQuantity','required') || !(CurrentItem.IsDirty('BudgetedQuantity'))">Budgeted quantity is required</span>
-                                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('BudgetedQuantity')" [hidden]="CurrentItem.IsValidCheck('BudgetedQuantity','pattern')">Budgeted quantity in numbers only</span>
+                                               [placeholder]="'PHARMACY.ENTER_BUDGETED_QUANTITY' | translate" />
+                                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('BudgetedQuantity','required') || !(CurrentItem.IsDirty('BudgetedQuantity'))">{{ 'PHARMACY.BUDGETED_QUANTITY_IS_REQUIRED' | translate }}</span>
+                                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('BudgetedQuantity')" [hidden]="CurrentItem.IsValidCheck('BudgetedQuantity','pattern')">{{ 'PHARMACY.BUDGETED_QUANTITY_IN_NUMBERS_ONLY' | translate }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">VAT Percentage<b class="color-red">*</b><b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-4">{{ 'PHARMACY.VAT_PERCENTAGE' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="text" maxlength="10"
                                                [(ngModel)]="CurrentItem.VATPercentage" formControlName="VATPercentage"
                                                value=""
-                                               placeholder="Enter VAT Percentage" />
-                                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('VATPercentage','required') || !(CurrentItem.IsDirty('VATPercentage'))">VAT Percentage is required</span>
-                                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('VATPercentage')" [hidden]="CurrentItem.IsValidCheck('VATPercentage','pattern')">Percentage is not proper</span>
+                                               [placeholder]="'PHARMACY.ENTER_VAT_PERCENTAGE' | translate" />
+                                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('VATPercentage','required') || !(CurrentItem.IsDirty('VATPercentage'))">{{ 'PHARMACY.VAT_PERCENTAGE_IS_REQUIRED' | translate }}</span>
+                                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('VATPercentage')" [hidden]="CurrentItem.IsValidCheck('VATPercentage','pattern')">{{ 'PHARMACY.PERCENTAGE_IS_NOT_PROPER' | translate }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Is VAT Applicable<b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-4">{{ 'PHARMACY.IS_VAT_APPLICABLE' | translate }}<b style="float:right;">:</b></label>
                                     <div class="col-md-7">
                                         <div class="input-group">
                                             <div class="icheck-inline">
@@ -226,12 +226,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">A,B or C<b style="float:right;">:</b></label>
+                                    <label class="control-label col-md-4">{{ 'PHARMACY.AB_OR_C' | translate }}<b style="float:right;">:</b></label>
                                     <div class="col-md-8">
                                         <select class="form-control" [(ngModel)]="CurrentItem.ABCCategory"
                                                 [ngModelOptions]="{standalone: true}">
                                             &#64;*
-                                            <option value="null">--Choose Category--</option>*&#64;
+                                            <option value="null">--{{ 'PHARMACY.CHOOSE_CATEGORY' | translate }}--</option>*&#64;
                                             <option *ngFor="let abc of abcCategory"
                                                     value="{{abc.value}}">
                                                 {{abc.text}}
@@ -243,7 +243,7 @@
                         </div>
                         <div class="col-md-12" style="padding-bottom: 18px;">
                             <div class="form-actions">
-                                <input type="button" class="btn btn-primary" (click)="Add()" value="Add" />
+                                <input type="button" class="btn btn-primary" (click)="Add()" [value]="'PHARMACY.ADD' | translate" />
                                 <!--<input type="button" class="btn btn-primary" *ngIf="update" (click)="Update()" value="Update" />-->
                             </div>
                         </div>

@@ -41,28 +41,28 @@
         <div class="col-md-2">
             <div class="form-group">
                 <button class="btn green btn-success" type="button" (click)="GetAllSMSApplicableTest()">
-                    <i class="fa fa-search"></i> Show Data
+                    <i class="fa fa-search"></i> {{ 'LABS.SHOW_DATA' | translate }}
                 </button>
             </div>
         </div>
         <div class="col-md-2">
             <button *ngIf="showSendToAll" class="btn green btn-success" type="button" (click)="SendToAll()">
-                <i class="fa fa-search"></i> Send To All
+                <i class="fa fa-search"></i> {{ 'LABS.SEND_TO_ALL' | translate }}
             </button>
         </div>
         <div class="col-md-3">
             <div class="lb-search-filter text-center">
-                <div class="search-title">Filter SMS: </div>
+                <div class="search-title">{{ 'LABS.FILTER_SMS' | translate }} </div>
                 <div class="input-group">
                     <div class="icheck-inline">
                         <label class="mt-checkbox mt-checkbox-outline">
                             <input type="radio" [(ngModel)]="itmIsActiveValue" name="name"
                                 (change)="OnTestFiltersChanged()" value="Sent" style="width:15px;height:15px" />
-                            <span></span>Sent </label>
+                            <span></span>{{ 'LABS.SENT' | translate }} </label>
                         <label class="mt-checkbox mt-checkbox-outline">
                             <input type="radio" [(ngModel)]="itmIsActiveValue" name="name"
                                 (change)="OnTestFiltersChanged()" value="NotSent" style="width:15px;height:15px" />
-                            <span></span>Not Sent</label>
+                            <span></span>{{ 'LABS.NOT_SENT' | translate }}</label>
                     </div>
                 </div>
             </div>
@@ -70,26 +70,26 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            <input class="searchtbx" [(ngModel)]="searchString" onclick="this.select();" placeholder="Search">
+            <input class="searchtbx" [(ngModel)]="searchString" onclick="this.select();" [placeholder]="'LABS.SEARCH_1' | translate">
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-4">
             <div class="lb-search-filter text-center">
-                <div class="search-title">Filter Findings: </div>
+                <div class="search-title">{{ 'LABS.FILTER_FINDINGS' | translate }} </div>
                 <div class="input-group">
                     <div class="icheck-inline">
                         <label class="mt-checkbox mt-checkbox-outline">
                             <input type="radio" [(ngModel)]="itmResultValue" name="findings"
                                 (change)="OnTestFiltersChanged()" value="positive" style="width:15px;height:15px" />
-                            <span></span>Positive </label>
+                            <span></span>{{ 'LABS.POSITIVE' | translate }} </label>
                         <label class="mt-checkbox mt-checkbox-outline">
                             <input type="radio" [(ngModel)]="itmResultValue" name="findings"
                                 (change)="OnTestFiltersChanged()" value="negative" style="width:15px;height:15px" />
-                            <span></span>Negative</label>
+                            <span></span>{{ 'LABS.NEGATIVE' | translate }}</label>
                         <label class="mt-checkbox mt-checkbox-outline">
                             <input type="radio" [(ngModel)]="itmResultValue" name="findings"
                                 (change)="OnTestFiltersChanged()" value="all" style="width:15px;height:15px" />
-                            <span></span>All</label>
+                            <span></span>{{ 'LABS.ALL' | translate }}</label>
                     </div>
                 </div>
             </div>
@@ -109,15 +109,15 @@
                                       <span></span>
                                   </label>
                               </th> -->
-                            <th colspan="2">Hospital No.</th>
-                            <th colspan="3">Patient Name</th>
-                            <th colspan="2">Age/Sex</th>
-                            <th colspan="2">Phone Number</th>
-                            <th colspan="2">TestName</th>
-                            <th colspan="3">Sample Coll. On</th>
-                            <th colspan="2">Result</th>
-                            <th colspan="2" title="Shows if Lab Report uploaded or not ?">Uploaded ?</th>
-                            <th colspan="4">Action</th>
+                            <th colspan="2">{{ 'GRID_HEADERS.HOSPITAL_NO_' | translate }}</th>
+                            <th colspan="3">{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+                            <th colspan="2">{{ 'GRID_HEADERS.AGE_SEX' | translate }}</th>
+                            <th colspan="2">{{ 'LABS.PHONE_NUMBER' | translate }}</th>
+                            <th colspan="2">{{ 'LABS.TESTNAME' | translate }}</th>
+                            <th colspan="3">{{ 'LABS.SAMPLE_COLL_ON' | translate }}</th>
+                            <th colspan="2">{{ 'LABS.RESULT' | translate }}</th>
+                            <th colspan="2" [title]="'LABS.SHOWS_IF_LAB_REPORT_UPLOADED_OR_NOT' | translate">{{ 'LABS.UPLOADED' | translate }}</th>
+                            <th colspan="4">{{ 'COMMON.ACTION' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -143,11 +143,11 @@
                                 <td colspan="2">{{test.IsFileUploaded ? 'Yes' : 'No'}}</td>
                                 <td colspan="4">
                                     <button class="btn green btn-success btn-sm" (click)="sendSingleSMS(test)">
-                                        Send Sms
+                                        {{ 'LABS.SEND_SMS' | translate }}
                                     </button>
                                     <button class="btn green btn-success btn-sm" (click)="sendPdf(test)">
-                                        <ng-container *ngIf="sendPsfAndSmsOnSingleClick">Pdf & Sms</ng-container>
-                                        <ng-container *ngIf="!sendPsfAndSmsOnSingleClick">Upload Pdf</ng-container>
+                                        <ng-container *ngIf="sendPsfAndSmsOnSingleClick">{{ 'LABS.PDF_SMS' | translate }}</ng-container>
+                                        <ng-container *ngIf="!sendPsfAndSmsOnSingleClick">{{ 'LABS.UPLOAD_PDF' | translate }}</ng-container>
                                     </button>
                                 </td>
                             </tr>
@@ -171,7 +171,7 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="modelbox-div">
                 <div class="modelbox-header text-center">
-                    <h4 class="margin-0-vr text-danger"><strong>SMS Message</strong></h4>
+                    <h4 class="margin-0-vr text-danger"><strong>{{ 'LABS.SMS_MESSAGE' | translate }}</strong></h4>
                 </div>
                 <div class="modelbox-body">
                     <p *ngIf="smsDataToSend">Message that will be send to {{smsDataToSend.PhoneNumber}} is: </p>
@@ -181,11 +181,11 @@
                     <div class="all-buttons text-right">
                         <button type="button" class="btn btn-primary btn-sm margin-7-hr" id="btnSendSms"
                             (click)="SendSMS()">
-                            Send Message
+                            {{ 'LABS.SEND_MESSAGE' | translate }}
                         </button>
                         <button type="button" id="btnSendCancel" class="btn btn-cancel btn-sm margin-7-hr"
                             (click)="CancelMessageSend()">
-                            Cancel
+                            {{ 'COMMON.CANCEL' | translate }}
                         </button>
                     </div>
                 </div>
@@ -206,10 +206,10 @@
                 <div class="modelbox-div clearfix">
                     <div class="caption custom-caption clearfix">
                         <button class="btn green btn-success pull-right" (click)="exportToPdf()" [disabled]="loading"
-                            *ngIf="loadedForExport && !sendPsfAndSmsOnSingleClick">Export
+                            *ngIf="loadedForExport && !sendPsfAndSmsOnSingleClick">{{ 'COMMON.EXPORT' | translate }}
                         </button>
                         <button class="btn green btn-success pull-right" (click)="exportToPdf()" [disabled]="loading"
-                            *ngIf="loadedForExport && sendPsfAndSmsOnSingleClick">Export with SMS
+                            *ngIf="loadedForExport && sendPsfAndSmsOnSingleClick">{{ 'LABS.EXPORT_WITH_SMS' | translate }}
                         </button>
                         <button class="btn btn-danger pull-right" [disabled]="loading" (click)="Close()">X</button>
                     </div>

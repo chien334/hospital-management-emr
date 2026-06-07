@@ -1,17 +1,17 @@
 <div class="row">
   <div class="form-body">
     <div class="col-md-12">
-      <div class="caption custom-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Return From Customer Report</span> </div>
+      <div class="caption custom-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'PHARMACY.RETURN_FROM_CUSTOMER_REPORT' | translate }}</span> </div>
       <div class="row">
         <div class="col-md-6">
           <from-to-date-select (on-change)="OnFromToDateChange($event)" [date-settings-name]="'billing-reports'"> </from-to-date-select>
         </div>
         <div class="col-md-4">
           <div class="form-group row">
-            <label for="selectedStore" class="control-label col-md-5"> User<b style="float:right;">:</b></label>
+            <label for="selectedStore" class="control-label col-md-5"> {{ 'PHARMACY.USER' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-7">
               <select name="selectedStore" id="selectedStore" [(ngModel)]="selectedUser" class="form-control">
-                <option [ngValue]="null" selected>All</option>
+                <option [ngValue]="null" selected>{{ 'PHARMACY.ALL' | translate }}</option>
                 <option *ngFor="let user of userList" [ngValue]="user">
                   {{user.userName}}</option>
               </select>
@@ -23,10 +23,10 @@
           <div class="row">
             <div class="col-md-4 col-xs-12">
               <div class="form-group row">
-                <label class="control-label col-md-5">Select Dispensary<b style="float:right;">:</b></label>
+                <label class="control-label col-md-5">{{ 'PHARMACY.SELECT_DISPENSARY' | translate }}<b style="float:right;">:</b></label>
                 <div class="col-md-6">
                   <select name="selectedDispensary" id="selectedDispensary" [(ngModel)]="selectedDispensary" class="form-control">
-                    <option [ngValue]="null" selected>All</option>
+                    <option [ngValue]="null" selected>{{ 'PHARMACY.ALL' | translate }}</option>
                     <option *ngFor="let dispensary of dispensaryList" [ngValue]="dispensary">
                       {{dispensary.Name}}</option>
                   </select>
@@ -37,8 +37,8 @@
             <div class="col-md-4 col-xs-12">
               <div class="form-group">
                 <button class="btn blue" type="button" (click)="LoadReport()" [disabled]="loading">
-                  <span *ngIf="!loading">Show Report</span>
-                  <span *ngIf="loading">Loading...</span>
+                  <span *ngIf="!loading">{{ 'PHARMACY.SHOW_REPORT' | translate }}</span>
+                  <span *ngIf="loading">{{ 'PHARMACY.LOADING' | translate }}</span>
                  </button>
               </div>
             </div>
@@ -59,14 +59,14 @@
         <thead>
           <tr>
             <th colspan="8" style="text-align: center;">
-              <span style="font-size:large;"> Summary </span>
+              <span style="font-size:large;"> {{ 'PHARMACY.SUMMARY' | translate }} </span>
             </th>
           </tr>
         </thead>
         <tbody>
           <ng-container>
             <tr>
-              <td style="font-weight:bold; color:blue"> Total Returned Amount </td>
+              <td style="font-weight:bold; color:blue"> {{ 'PHARMACY.TOTAL_RETURNED_AMOUNT' | translate }} </td>
               <td> {{grandTotalAmount | number}} </td>
             </tr>
             <tr>

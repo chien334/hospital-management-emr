@@ -23,7 +23,7 @@
             <div class=" col-md-8">
                 <div class="caption custom-caption mb-0">
                     <!-- <i class="glyphicon glyphicon-asterisk"></i> -->
-                    <span class="caption-subject"> Stock Summary Report</span>
+                    <span class="caption-subject"> {{ 'PHARMACY.STOCK_SUMMARY_REPORT' | translate }}</span>
                 </div>
             </div>
             <div class="col-md-4">
@@ -34,7 +34,7 @@
                            (change)="onIncludeProvisionalSettingsChanged()">
                     <!-- <span aria-hidden="true">Yes</span> -->
                     <label class="screen-reader-only m-0" for="choice">
-                        <h5 class="m-0">Include Provisional Sales?</h5>
+                        <h5 class="m-0">{{ 'PHARMACY.INCLUDE_PROVISIONAL_SALES' | translate }}</h5>
                     </label>
 
                 </div>
@@ -57,8 +57,8 @@
                     <div class="form-group mb-0">
                         <button class="btn blue" type="button" (click)="OnClickShowReport()" [disabled]="loading">
                             <i class="fa fa-search"></i>&nbsp;
-                            <span *ngIf="!loading">Show Report</span>
-                            <span *ngIf="loading">Loading...</span>
+                            <span *ngIf="!loading">{{ 'PHARMACY.SHOW_REPORT' | translate }}</span>
+                            <span *ngIf="loading">{{ 'PHARMACY.LOADING' | translate }}</span>
                         </button>
                     </div>
                 </div> -->
@@ -68,7 +68,7 @@
                 <div class="col-md-6">
                     <div class="col-md-4">
                         <label class="screen-reader-only" for="choice">
-                            <h5><b>Include Provisional Sales? </b></h5>
+                            <h5><b>{{ 'PHARMACY.INCLUDE_PROVISIONAL_SALES' | translate }} </b></h5>
                         </label>
                     </div>
                     <div style="display: flex; width: 7.5rem;padding: 0.8rem 0;">
@@ -83,7 +83,7 @@
             <div class="row d-flex align-items-center">
                 <div class="col-sm-5">
                     <div class="form-group row mb-0 d-flex align-items-center">
-                        <label class="control-label col-md-4">Select Store:</label>
+                        <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_STORE' | translate }}:</label>
                         <div class="col-md-8">
                             <input danphe-auto-complete id="store" class="form-control " autocomplete="off"
                                    [(ngModel)]="selectedStore" [source]="StoreList" [list-formatter]="StoreListFormatter"
@@ -94,7 +94,7 @@
                 </div>
                 <div class="col-sm-5">
                     <div class="form-group row mb-0 d-flex align-items-center">
-                        <label class="control-label col-md-4">Select Item:</label>
+                        <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_ITEM' | translate }}:</label>
                         <div class="col-md-8">
                             <input danphe-auto-complete id="item" class="form-control " autocomplete="off"
                                    [source]="allItemList" [list-formatter]="ItemListFormatter" placeholder="Select Item"
@@ -107,8 +107,8 @@
                     <div class="form-group mb-0 d-flex align-items-center">
                         <button class="btn blue" type="button" (click)="OnClickShowReport()" [disabled]="loading">
                             <!-- <i class="fa fa-search"></i>&nbsp; -->
-                            <span *ngIf="!loading">Show Report</span>
-                            <span *ngIf="loading">Loading...</span>
+                            <span *ngIf="!loading">{{ 'PHARMACY.SHOW_REPORT' | translate }}</span>
+                            <span *ngIf="loading">{{ 'PHARMACY.LOADING' | translate }}</span>
                         </button>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
         <ng-template #backButton>
             <button class="btn blue" type="button" (click)="HideItemTxnSummary()">
                 <i class="fa fa-arrow-left"></i>
-                Back
+                {{ 'COMMON.BACK' | translate }}
             </button>
         </ng-template>
     </div>
@@ -144,7 +144,7 @@
             <thead>
                 <tr>
                     <th colspan="4" style="text-align: center;">
-                        <span style="font-size:large;"> Summary </span>
+                        <span style="font-size:large;"> {{ 'PHARMACY.SUMMARY' | translate }} </span>
 
                     </th>
                 </tr>
@@ -153,7 +153,7 @@
                 <ng-container>
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Opening Value </b> </span>
+                            <span> <b> {{ 'PHARMACY.OPENING_VALUE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{ (!!includeProvisionalSalesInReport ?
@@ -161,7 +161,7 @@
                                 Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Opening Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.OPENING_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{ !!includeProvisionalSalesInReport ?
@@ -172,13 +172,13 @@
 
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Purchase Value </b> </span>
+                            <span> <b> {{ 'PHARMACY.PURCHASE_VALUE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.PurchaseValue | Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Purchase Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.PURCHASE_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.PurchaseQty }}</span>
@@ -186,13 +186,13 @@
                     </tr>
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Purchase Return Value </b> </span>
+                            <span> <b> {{ 'PHARMACY.PURCHASE_RETURN_VALUE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.PurchaseReturnValue | Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Purchase Return Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.PURCHASE_RETURN_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.PurchaseReturnQty }}</span>
@@ -200,13 +200,13 @@
                     </tr>
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Sale </b> </span>
+                            <span> <b> {{ 'PHARMACY.SALE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.SalesValue | Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Sale Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.SALE_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.SalesQty }}</span>
@@ -214,13 +214,13 @@
                     </tr>
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Sale Return </b> </span>
+                            <span> <b> {{ 'PHARMACY.SALE_RETURN' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.SaleReturnValue | Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Sale Return Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.SALE_RETURN_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.SaleReturnQty }}</span>
@@ -228,13 +228,13 @@
                     </tr>
                     <tr *ngIf="!!includeProvisionalSalesInReport">
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Provisional Sale </b> </span>
+                            <span> <b> {{ 'PHARMACY.PROVISIONAL_SALE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.ProvisionalValue | Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Sale Return Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.SALE_RETURN_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.ProvisionalQty }}</span>
@@ -242,13 +242,13 @@
                     </tr>
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Write-off </b> </span>
+                            <span> <b> {{ 'PHARMACY.WRITEOFF' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.WriteOffValue | Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Write-off Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.WRITEOFF_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.WriteOffQty }}</span>
@@ -257,13 +257,13 @@
 
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> StockManage In-Value </b> </span>
+                            <span> <b> {{ 'PHARMACY.STOCKMANAGE_INVALUE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.StockManageInValue | Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> StockManage In-Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.STOCKMANAGE_INQUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.StockManageInQty }}</span>
@@ -272,13 +272,13 @@
 
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> StockManage OUT-Value </b> </span>
+                            <span> <b> {{ 'PHARMACY.STOCKMANAGE_OUTVALUE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.StockManageOutValue | Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> StockManage OUT-Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.STOCKMANAGE_OUTQUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.StockManageOutQty }}</span>
@@ -287,13 +287,13 @@
 
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b>Consumption</b> </span>
+                            <span> <b>{{ 'PHARMACY.CONSUMPTION' | translate }}</b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.ConsumptionValue | Currency}}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Consumption Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.CONSUMPTION_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.ConsumptionQty }}</span>
@@ -302,13 +302,13 @@
 
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Transfer In Value </b> </span>
+                            <span> <b> {{ 'PHARMACY.TRANSFER_IN_VALUE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.TransferInValue | Currency }}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Transfer In Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.TRANSFER_IN_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.TransferInQty }}</span>
@@ -317,13 +317,13 @@
 
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Transfer Out Value </b> </span>
+                            <span> <b> {{ 'PHARMACY.TRANSFER_OUT_VALUE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.TransferOutValue | Currency }}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Transfer Out Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.TRANSFER_OUT_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{GrandTotalReportData.TransferOutQty }}</span>
@@ -332,7 +332,7 @@
 
                     <tr>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Closing Value </b> </span>
+                            <span> <b> {{ 'PHARMACY.CLOSING_VALUE' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{(!!includeProvisionalSalesInReport ?
@@ -340,7 +340,7 @@
                                 Currency }}</span>
                         </td>
                         <td style="font-weight:bold; color:blue">
-                            <span> <b> Closing Quantity </b> </span>
+                            <span> <b> {{ 'PHARMACY.CLOSING_QUANTITY' | translate }} </b> </span>
                         </td>
                         <td>
                             <span> {{!!includeProvisionalSalesInReport ? GrandTotalReportData.ClosingQty_WithProvisional
@@ -352,8 +352,8 @@
             </tbody>
         </table>
         <div style="color: green; padding-top: 5px;">
-            <label> Note: The values above are based on the Cost Price. <br />
-                These cannot be compared to Revenue reports, which are based on Sales Price. </label>
+            <label> {{ 'PHARMACY.NOTE_THE_VALUES_ABOVE_ARE_BASED' | translate }} <br />
+                {{ 'PHARMACY.THESE_CANNOT_BE_COMPARED_TO_REVENUE' | translate }} </label>
         </div>
     </div>
     <br>

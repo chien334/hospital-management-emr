@@ -26,9 +26,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="caption custom-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span
-                    class="caption-subject">Rack Stock Distribution Report</span> </div>
+                    class="caption-subject">{{ 'PHARMACY.RACK_STOCK_DISTRIBUTION_REPORT' | translate }}</span> </div>
             <div class="row"><div class="col-md-4">
-                <div class="row"><label class="control-label col-md-5">Location:</label>
+                <div class="row"><label class="control-label col-md-5">{{ 'PHARMACY.LOCATION' | translate }}:</label>
                 <div class="col-md-7"><select [(ngModel)]="locationList"
                     (change)="FilterRackBasedOnLocation()">
                     <option *ngFor="let location of locationList | keyvalue"
@@ -36,28 +36,28 @@
                 </select></div></div>
             </div>
             <div class="col-md-4">
-                <div class="row"><label class="control-label col-md-5">Parent Rack:</label>
+                <div class="row"><label class="control-label col-md-5">{{ 'PHARMACY.PARENT_RACK' | translate }}:</label>
                 <div class="col-md-7"><select [(ngModel)]="selectedParentRackId"
                     (change)=SelectAllChildRackByParentId()>
                     <option value="null"
                         selected
                         disabled
                         hidden>
-                        Select an Option
+                        {{ 'PHARMACY.SELECT_AN_OPTION' | translate }}
                     </option>
                     <option *ngFor="let parentRack of parentRackListFiltered"
                         [value]="parentRack.RackId">{{parentRack.Name}}</option>
                 </select></div></div>
             </div>
             <div class="col-md-4">
-                <div class="row"><label class="control-label col-md-5">Child Rack:</label>
+                <div class="row"><label class="control-label col-md-5">{{ 'PHARMACY.CHILD_RACK' | translate }}:</label>
                 <div class="col-md-7"><select [(ngModel)]="selectedChildRackId"
                     (change)=SelectChildRack()>
                     <option value="null"
                         selected
                         disabled
                         hidden>
-                        Select an Option
+                        {{ 'PHARMACY.SELECT_AN_OPTION' | translate }}
                     </option>
                     <option *ngFor="let childRack of childRackListFiltered"
                         [value]="childRack.RackId">{{childRack.Name}}</option>
@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="search-form">
-                            <label>Selected Rack:</label>
+                            <label>{{ 'PHARMACY.SELECTED_RACK' | translate }}:</label>
                             <span *ngFor="let rack of selectedRacks">
                                 <span class="activeFilterBox">
                                     <span class="activeFilterText">{{rack.Name}}</span>
@@ -86,9 +86,9 @@
             </div>
             <div>
                 <button class="btn btn-primary"
-                    (click)=LoadRackReport()>Load</button>
+                    (click)=LoadRackReport()>{{ 'PHARMACY.LOAD' | translate }}</button>
                 <button class="btn btn-primary"
-                    (click)=ClearSelectedRack()>Clear All</button>
+                    (click)=ClearSelectedRack()>{{ 'PHARMACY.CLEAR_ALL' | translate }}</button>
             </div>
         </div>
         <div class="col-lg-12 col-sm-12"
@@ -102,7 +102,7 @@
                                 <div class="center-align">{{TotalEvaluation.TotalAvailableQuantity}}
                                 </div>
                             </div>
-                            <div class="card-title">Total Stock</div>
+                            <div class="card-title">{{ 'PHARMACY.TOTAL_STOCK' | translate }}</div>
                             <div class="card-icon"> <i class="fa fa-home fa-2x"></i> </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                                 <div class="center-align">{{coreService.currencyUnit}}
                                     {{TotalEvaluation.TotalStockValuation | number:'1.0-2'}}</div>
                             </div>
-                            <div class="card-title">Total Value</div>
+                            <div class="card-title">{{ 'PHARMACY.TOTAL_VALUE' | translate }}</div>
                             <div class="card-icon"> <i class="fa fa-dollar fa-2x"></i> </div>
                         </div>
                     </div>

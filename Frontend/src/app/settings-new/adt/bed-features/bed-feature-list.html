@@ -6,7 +6,7 @@
     <span class="caption-subject font-blue bold uppercase">Manage Bed Feature</span>
 </div>
 <br />-->
-<a feature="button" class="btn blue bordered"(click)="AddBedFeature()" value=""><i class="fa fa-plus"></i>Add BedFeature</a>
+<a feature="button" class="btn blue bordered"(click)="AddBedFeature()" value=""><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_BEDFEATURE' | translate }}</a>
 
 <bed-feature-add [showAddPage]="showAddPage"
               [selectedItem]="selectedItem"

@@ -5,15 +5,15 @@
   <div class="col-md-12">
     <div class="form-group">
       <div style="float:left;" *ngIf="securityService.HasPermission('show-pharmacy-manage-button') && showManageButton && loadingStock">
-        <button type="button" class="btn btn-success" (click)="StockReconciliationPopupOpen()"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;Manage Stock</button>
+        <button type="button" class="btn btn-success" (click)="StockReconciliationPopupOpen()"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;{{ 'PHARMACY.MANAGE_STOCK' | translate }}</button>
       </div>
 
       <!-- Store Filter -->
       <div class="input-group" style="float: right;">
         <div class="icheck-inline">
-          <label for="Store" class="mt-checkbox mt-checkbox-outline"><i class="fa fa-filter"></i>Filter by Store:</label>
+          <label for="Store" class="mt-checkbox mt-checkbox-outline"><i class="fa fa-filter"></i>{{ 'PHARMACY.FILTER_BY_STORE' | translate }}:</label>
           <select name="Store" id="Store" [(ngModel)]="selectedStoreId" (change)="FilterStockList()">
-            <option [ngValue]="null">All</option>
+            <option [ngValue]="null">{{ 'PHARMACY.ALL' | translate }}</option>
             <option *ngFor="let store of storeList" [ngValue]="store.StoreId">{{store.Name}}</option>
           </select>
         </div>
@@ -22,7 +22,7 @@
       <div class="input-group" style="float: right;">
         <div style="display: flex;align-items: flex-end;">
           <div style="margin-right: 1rem;"><input type="checkbox" (change)="FilterStockList()" [(ngModel)]="showStockWithZeroQty" name="showStockWithZeroQty" id="showStockWithZeroQty" style="zoom: 1.4;" /></div>
-          <label for="showStockWithZeroQty">Show Zero Quantity </label>
+          <label for="showStockWithZeroQty">{{ 'PHARMACY.SHOW_ZERO_QUANTITY' | translate }} </label>
         </div>
       </div>
     </div>
@@ -35,8 +35,8 @@
 <div class="row" *ngIf="!showStockList">
   <div class="col-md-12">
     <div class="caption lb-caption">
-      <input type="button" class="btn blue" value="Back" (click)="Cancel()" style="margin-right:10px !important;" />
-      <i class="fa fa-bar-chart"></i> <span class="caption-subject"> Stock Manage </span>
+      <input type="button" class="btn blue" [value]="'COMMON.BACK' | translate" (click)="Cancel()" style="margin-right:10px !important;" />
+      <i class="fa fa-bar-chart"></i> <span class="caption-subject"> {{ 'PHARMACY.STOCK_MANAGE' | translate }} </span>
     </div>
   </div>
   <div class="col-md-12">
@@ -45,27 +45,27 @@
         <table class="table table-bordered table-hover table-condensed bg-white" id="exportTable" style="background-color:initial;margin-top:10px">
           <tbody>
             <tr>
-              <td style="font-weight:bold;"> Item Name </td>
+              <td style="font-weight:bold;"> {{ 'PHARMACY.ITEM_NAME' | translate }} </td>
               <td> {{selectedItem.ItemName}} </td>
             </tr>
             <tr>
-              <td style="font-weight:bold;"> Batch No </td>
+              <td style="font-weight:bold;"> {{ 'PHARMACY.BATCH_NO' | translate }} </td>
               <td> {{selectedItem.BatchNo}} </td>
             </tr>
             <tr>
-              <td style="font-weight:bold;"> Expiry Date </td>
+              <td style="font-weight:bold;"> {{ 'PHARMACY.EXPIRY_DATE' | translate }} </td>
               <td> {{selectedItem.ExpiryDate | date}} </td>
             </tr>
             <tr>
-              <td style="font-weight:bold;"> Price </td>
+              <td style="font-weight:bold;"> {{ 'PHARMACY.PRICE' | translate }} </td>
               <td> {{selectedItem.Price}} </td>
             </tr>
             <tr>
-              <td style="font-weight:bold;"> SalePrice </td>
+              <td style="font-weight:bold;"> {{ 'PHARMACY.SALEPRICE' | translate }} </td>
               <td> {{selectedItem.SalePrice}} </td>
             </tr>
             <tr>
-              <td style="font-weight:bold;"> GoodReceiptID </td>
+              <td style="font-weight:bold;"> {{ 'PHARMACY.GOODRECEIPTID' | translate }} </td>
               <td> {{goodReceiptId}} </td>
             </tr>
           </tbody>
@@ -75,7 +75,7 @@
     <div class="col-lg-6 col-sm-12">
       <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom:5px !important;">
         <div class="form-group">
-          <label class="control-label col-md-4">Adjustment Type <b class="color-red"> *</b><b style="float:right;">:</b>
+          <label class="control-label col-md-4">{{ 'PHARMACY.ADJUSTMENT_TYPE' | translate }} <b class="color-red"> *</b><b style="float:right;">:</b>
           </label>
           <div class="col-md-8">
             <form [formGroup]="selectedItem.StoreManageValidator">
@@ -83,20 +83,20 @@
                 <div class="icheck-inline">
                   <label class="mt-checkbox mt-checkbox-outline">
                     <input type="radio" value="in" [(ngModel)]="selectedItem.InOut" formControlName="InOut">
-                    <span></span>In </label>
+                    <span></span>{{ 'PHARMACY.IN' | translate }} </label>
                   <label class="mt-checkbox mt-checkbox-outline">
                     <input type="radio" value="out" [(ngModel)]="selectedItem.InOut" formControlName="InOut">
-                    <span></span>Out </label>
+                    <span></span>{{ 'PHARMACY.OUT' | translate }} </label>
                 </div>
               </div>
-              <span class="error-msg" *ngIf="selectedItem.IsDirty('InOut')" [hidden]="selectedItem.IsValidCheck('InOut','required')"> adjustment-type is required</span>
+              <span class="error-msg" *ngIf="selectedItem.IsDirty('InOut')" [hidden]="selectedItem.IsValidCheck('InOut','required')"> {{ 'PHARMACY.ADJUSTMENTTYPE_IS_REQUIRED' | translate }}</span>
             </form>
           </div>
         </div>
       </div>
       <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom:5px !important;">
         <div class="form-group">
-          <label class="control-label col-md-4">Current Qty <b style="float:right;">:</b> </label>
+          <label class="control-label col-md-4">{{ 'PHARMACY.CURRENT_QTY' | translate }} <b style="float:right;">:</b> </label>
           <div class="col-md-8">
             <input [(ngModel)]="selectedItem.Quantity" typeof="number" disabled class="form-control" name="Quantity" />
           </div>
@@ -104,25 +104,24 @@
       </div>
       <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom:5px !important;">
         <div class="form-group">
-          <label class="control-label col-md-4">Modified Qty <b class="color-red"> *</b><b style="float:right;">:</b>
+          <label class="control-label col-md-4">{{ 'PHARMACY.MODIFIED_QTY' | translate }} <b class="color-red"> *</b><b style="float:right;">:</b>
           </label>
           <div class="col-md-8">
             <form [formGroup]="selectedItem.StoreManageValidator">
               <input [(ngModel)]="selectedItem.UpdatedQty" formControlName="UpdatedQty" class="form-control" name="UpdatedQty" type="number" />
-              <div style="color:red" *ngIf="selectedItem.IsDirty('UpdatedQty')" [hidden]="selectedItem.IsValidCheck('UpdatedQty','invalidNumber')">quantity is required</div>
-              <div style="color:red" *ngIf="selectedItem.InOut=='out' && selectedItem.Quantity < selectedItem.UpdatedQty">cant out more
-                quantity than current qty</div>
+              <div style="color:red" *ngIf="selectedItem.IsDirty('UpdatedQty')" [hidden]="selectedItem.IsValidCheck('UpdatedQty','invalidNumber')">{{ 'PHARMACY.QUANTITY_IS_REQUIRED' | translate }}</div>
+              <div style="color:red" *ngIf="selectedItem.InOut=='out' && selectedItem.Quantity < selectedItem.UpdatedQty">{{ 'PHARMACY.CANT_OUT_MORE_QUANTITY_THAN_CURRENT_QTY' | translate }}</div>
             </form>
           </div>
         </div>
       </div>
       <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom:5px !important;">
         <div class="form-group">
-          <label class="control-label col-md-4">Remark <b class="color-red"> *</b><b style="float:right;">:</b> </label>
+          <label class="control-label col-md-4">{{ 'PHARMACY.REMARK' | translate }} <b class="color-red"> *</b><b style="float:right;">:</b> </label>
           <div class="col-md-8">
             <form [formGroup]="selectedItem.StoreManageValidator">
               <textarea [(ngModel)]="selectedItem.Remark" formControlName="Remark" class="form-control" name="Remark" type="text"></textarea>
-              <div style="color:red" *ngIf="selectedItem.IsDirty('Remark')" [hidden]="selectedItem.IsValidCheck('Remark','required')">remark is required</div>
+              <div style="color:red" *ngIf="selectedItem.IsDirty('Remark')" [hidden]="selectedItem.IsValidCheck('Remark','required')">{{ 'PHARMACY.REMARK_IS_REQUIRED' | translate }}</div>
             </form>
           </div>
         </div>
@@ -131,9 +130,9 @@
         <div class="form-group">
           <div class="control-label col-md-4"> </div>
           <div class="" style="margin-top:10px; float:right;">
-            <input type="button" class="btn btn-success" value="Update Stock" (click)="SaveManagedStock()" [disabled]="loading" />
+            <input type="button" class="btn btn-success" [value]="'PHARMACY.UPDATE_STOCK' | translate" (click)="SaveManagedStock()" [disabled]="loading" />
             <span></span>
-            <input type="button" class="btn btn-danger" (click)="Cancel()" value="Cancel" [disabled]="loading">
+            <input type="button" class="btn btn-danger" (click)="Cancel()" [value]="'COMMON.CANCEL' | translate" [disabled]="loading">
             <span></span>
           </div>
         </div>
@@ -148,32 +147,31 @@
       <div class="modelbox-div clearfix">
         <div class="caption lb-caption">
           <h3>
-            <span>Transfer To Dispensary</span>
+            <span>{{ 'PHARMACY.TRANSFER_TO_DISPENSARY' | translate }}</span>
           </h3>
-          <a class="btn btn-danger" (click)="Close()" title="close window">X</a>
+          <a class="btn btn-danger" (click)="Close()" [title]="'PHARMACY.CLOSE_WINDOW' | translate">{{ 'PHARMACY.X' | translate }}</a>
         </div>
         <div class="dis_content_wrap text-center mb20 clearfix">
-          <p><strong>Item Name:</strong>{{selectedItem.ItemName}}</p>
-          <p><strong>Expiry Date:</strong>{{selectedItem.ExpiryDate | date}}</p>
-          <p><strong>Price:</strong>{{selectedItem.Price}}</p>
-          <p><strong>Available Quantity:</strong>{{selectedItem.Quantity}}</p>
-          <div class="bold col-md-6">Transfer Quantity:</div>
+          <p><strong>{{ 'PHARMACY.ITEM_NAME' | translate }}:</strong>{{selectedItem.ItemName}}</p>
+          <p><strong>{{ 'PHARMACY.EXPIRY_DATE' | translate }}:</strong>{{selectedItem.ExpiryDate | date}}</p>
+          <p><strong>{{ 'PHARMACY.PRICE' | translate }}:</strong>{{selectedItem.Price}}</p>
+          <p><strong>{{ 'PHARMACY.AVAILABLE_QUANTITY' | translate }}:</strong>{{selectedItem.Quantity}}</p>
+          <div class="bold col-md-6">{{ 'PHARMACY.TRANSFER_QUANTITY' | translate }}:</div>
           <div class="col-md-6">
             <form [formGroup]="selectedItem.StoreManageValidator">
               <input style="max-width:326px;margin-bottom:4px;" class="col-md-6" type="number" [(ngModel)]="selectedItem.UpdatedQty" formControlName="UpdatedQty" />
             </form>
           </div>
-          <div style="color:red" *ngIf="selectedItem.IsDirty('UpdatedQty')" [hidden]="selectedItem.IsValidCheck('UpdatedQty','wrongDecimalValue')">Required whole number</div>
-          <div> <span class="error-msg" *ngIf="selectedItem.UpdatedQty<0"> Quantity is not valid. </span> <span class="error-msg" *ngIf="selectedItem.Quantity<selectedItem.UpdatedQty"> Transfer Qty should be less than
-              Total Qty </span> </div>
-          <div class="bold col-md-6">Dispensary Name:</div>
+          <div style="color:red" *ngIf="selectedItem.IsDirty('UpdatedQty')" [hidden]="selectedItem.IsValidCheck('UpdatedQty','wrongDecimalValue')">{{ 'PHARMACY.REQUIRED_WHOLE_NUMBER' | translate }}</div>
+          <div> <span class="error-msg" *ngIf="selectedItem.UpdatedQty<0"> {{ 'PHARMACY.QUANTITY_IS_NOT_VALID' | translate }} </span> <span class="error-msg" *ngIf="selectedItem.Quantity<selectedItem.UpdatedQty"> {{ 'PHARMACY.TRANSFER_QTY_SHOULD_BE_LESS_THAN' | translate }} </span> </div>
+          <div class="bold col-md-6">{{ 'PHARMACY.DISPENSARY_NAME' | translate }}:</div>
           <div class="col-md-6">
-            <input danphe-auto-complete class="form-control col-md-6" [(ngModel)]="currentDispensary" [source]="dispensaryList" [list-formatter]="myDispensaryListFormatter" placeholder="Select Dispensary" display-property-name="Name" value-property-name="DispensaryId" min-chars="0" max-num-list="20" onClick="this.select();" match-formatted="true" [grid-sort]="'Name'" [ngModelOptions]="{standalone: true}" />
+            <input danphe-auto-complete class="form-control col-md-6" [(ngModel)]="currentDispensary" [source]="dispensaryList" [list-formatter]="myDispensaryListFormatter" [placeholder]="'PHARMACY.SELECT_DISPENSARY' | translate" display-property-name="Name" value-property-name="DispensaryId" min-chars="0" max-num-list="20" onClick="this.select();" match-formatted="true" [grid-sort]="'Name'" [ngModelOptions]="{standalone: true}" />
           </div>
 
         </div>
         <div class="panel-footer p1 text-center">
-          <button (click)="transferToDispensary()" class="btn btn-danger">Transfer</button>
+          <button (click)="transferToDispensary()" class="btn btn-danger">{{ 'PHARMACY.TRANSFER' | translate }}</button>
         </div>
       </div>
     </div>
@@ -197,8 +195,8 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Print Barcode Window</span></h3>
-            <a class="btn btn-danger" (click)="closeBarcodePopUp()" title="Cancel">X</a>
+            <h3> <span>{{ 'PHARMACY.PRINT_BARCODE_WINDOW' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="closeBarcodePopUp()" title="Cancel">{{ 'PHARMACY.X' | translate }}</a>
           </div>
           <form class="form-horizontal hm-form">
             <div class="form-body row  clearfix">
@@ -213,7 +211,7 @@
             </div>
             <div class="panel-footer text-right">
               <button type="button" class="btn btn-success" (click)="printBarcode()">
-                Print</button>
+                {{ 'COMMON.PRINT' | translate }}</button>
             </div>
           </form>
         </div>

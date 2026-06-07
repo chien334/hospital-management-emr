@@ -138,23 +138,23 @@
   <div class="col-lg-12 col-sm-12">
     <div style="display:flex;justify-content:space-between">
       <div>
-        <button type="button" class="btn btn-success" (click)="ShowPurchaseOrderAddEditPage()">Add Purchase Order</button>
+        <button type="button" class="btn btn-success" (click)="ShowPurchaseOrderAddEditPage()">{{ 'PHARMACY.ADD_PURCHASE_ORDER' | translate }}</button>
       </div>
       <div>
         <div class="input-group">
           <div class="icheck-inline">
             <label class="mt-checkbox mt-checkbox-outline">
               <input type="radio" checked="checked" (change)="LoadPHRMPOListByStatus('pending')" name="name" value="" style="width:15px;height:15px" />
-              <span></span>Pending </label>
+              <span></span>{{ 'PHARMACY.PENDING' | translate }} </label>
             <label class="mt-checkbox mt-checkbox-outline">
               <input type="radio" (change)="LoadPHRMPOListByStatus('complete')" name="name" value="" style="width:15px;height:15px" />
-              <span></span>Completed </label>
+              <span></span>{{ 'PHARMACY.COMPLETED' | translate }} </label>
             <label class="mt-checkbox mt-checkbox-outline">
               <input type="radio" (change)="LoadPHRMPOListByStatus('cancel')" name="name" value="" style="width:15px;height:15px" />
-              <span></span>Cancelled </label>
+              <span></span>{{ 'PHARMACY.CANCELLED' | translate }} </label>
             <label class="mt-checkbox mt-checkbox-outline">
               <input type="radio" (change)="LoadPHRMPOListByStatus('all')" name="name" value="" style="width:15px;height:15px" />
-              <span></span>All </label>
+              <span></span>{{ 'PHARMACY.ALL' | translate }} </label>
           </div>
         </div>
       </div>
@@ -181,7 +181,7 @@
   <div class="portlet-body form">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <div class="modelbox-div clearfix"><a class="btn btn-danger history-del-btn" (click)="Close()" title="Cancel"><i class="fa fa-times"></i></a>
+        <div class="modelbox-div clearfix"><a class="btn btn-danger history-del-btn" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
           <div id="printpage" class="row printStyle print-border">
             <div class="A5 auto">
               <section class="sheet" id="content-print">
@@ -194,7 +194,7 @@
                       <td colspan="4" width="50%">
                         <h3 class="c_name" style="text-align: center;"><strong>{{ headerDetail.hospitalName }}</strong></h3>
                         <p class="c_paragraphs" style="text-align: center;">{{ headerDetail.address }}</p>
-                        <p class="c_paragraphs" style="text-align: center;">Ph No: {{ headerDetail.tel }}</p>
+                        <p class="c_paragraphs" style="text-align: center;">{{ 'PHARMACY.PH_NO' | translate }}: {{ headerDetail.tel }}</p>
                       </td>
                       <td colspan="3" width="25%" style="text-align: right; vertical-align: top;">
                         <p class="c_paragraphs" style="text-align: right; margin-top: 10px; margin: 0;"><strong>{{GeneralFieldLabel.PANNo}}
@@ -205,7 +205,7 @@
                   <table border="0" style="margin: 0 auto;" cellspacing="0" cellpadding="0">
                     <tr>
                       <td colspan="12" style="text-align: center; padding: 0 10px;">
-                        <p style="margin: 0 0 5px 0;"><strong>Purchase Order</strong></p>
+                        <p style="margin: 0 0 5px 0;"><strong>{{ 'PHARMACY.PURCHASE_ORDER' | translate }}</strong></p>
                       </td>
 
                     </tr>
@@ -214,17 +214,17 @@
                         <table style="width: 100%; margin-bottom: 0;">
                           <tr>
                             <td colspan="6" style="text-align: left;">
-                              <p class="c_paragraphs">PO No.:<strong> {{PHRMPO.PurchaseOrderNo}}</strong></p>
+                              <p class="c_paragraphs">{{ 'PHARMACY.PO_NO' | translate }}:<strong> {{PHRMPO.PurchaseOrderNo}}</strong></p>
                             </td>
                             <td colspan="6" style="text-align: right;">
-                              <p class="c_paragraphs">PO Date :<strong> {{PHRMPO.PODate | date : 'yyyy-MM-dd'}} &nbsp; {{PHRMPO.PODate |
+                              <p class="c_paragraphs">{{ 'PHARMACY.PO_DATE' | translate }} :<strong> {{PHRMPO.PODate | date : 'yyyy-MM-dd'}} &nbsp; {{PHRMPO.PODate |
                                   nepaliDate:'format':'YYYY-MM-DD'}} </strong>
                               </p>
                             </td>
                           </tr>
                           <tr>
                             <td colspan="6" style="text-align: left;">
-                              <p class="c_paragraphs">Supplier's Name : <strong>{{PHRMPO.SupplierName}}</strong></p>
+                              <p class="c_paragraphs">{{ 'PHARMACY.SUPPLIERS_NAME' | translate }} : <strong>{{PHRMPO.SupplierName}}</strong></p>
                             </td>
                             <td colspan="6" style="text-align: right;">
                               <p class="c_paragraphs">{{GeneralFieldLabel.PANNo}} :<strong>{{PHRMPO.PANNumber}}</strong></p>
@@ -232,36 +232,36 @@
                           </tr>
                           <tr>
                             <td colspan="6" style="text-align: left;">
-                              <p class="c_paragraphs">Address : <strong>{{PHRMPO.ContactAddress}}</strong></p>
+                              <p class="c_paragraphs">{{ 'GRID_HEADERS.ADDRESS' | translate }} : <strong>{{PHRMPO.ContactAddress}}</strong></p>
                             </td>
                             <td colspan="6" style="text-align: right;">
-                              <p class="c_paragraphs">Delivery Days : <strong>{{PHRMPO.DeliveryDays}}</strong></p>
+                              <p class="c_paragraphs">{{ 'PHARMACY.DELIVERY_DAYS' | translate }} : <strong>{{PHRMPO.DeliveryDays}}</strong></p>
                             </td>
                           </tr>
                           <tr>
                             <td colspan="6" style="text-align: left;">
-                              <p class="c_paragraphs">Contact /Mobile Number : <strong>{{PHRMPO.ContactNo}}</strong></p>
+                              <p class="c_paragraphs">{{ 'PHARMACY.CONTACT_MOBILE_NUMBER' | translate }} : <strong>{{PHRMPO.ContactNo}}</strong></p>
                             </td>
                             <td colspan="6" style="text-align: right;">
-                              <p class="c_paragraphs">Delivery Date : <strong>{{PHRMPO.DeliveryDate | date : 'yyyy-MM-dd'}} {{PHRMPO.DeliveryDate |
+                              <p class="c_paragraphs">{{ 'PHARMACY.DELIVERY_DATE' | translate }} : <strong>{{PHRMPO.DeliveryDate | date : 'yyyy-MM-dd'}} {{PHRMPO.DeliveryDate |
                                   nepaliDate:'format':'YYYY-MM-DD'}} </strong>
                               </p>
                             </td>
                           </tr>
                           <tr>
                             <td colspan="6" style="text-align: left;">
-                              <p class="c_paragraphs"><strong>Invoicing Address : </strong>{{PHRMPO.InvoicingAddress}}</p>
+                              <p class="c_paragraphs"><strong>{{ 'PHARMACY.INVOICING_ADDRESS' | translate }} : </strong>{{PHRMPO.InvoicingAddress}}</p>
                             </td>
                             <td colspan="6" style="text-align: right;">
-                              <p class="c_paragraphs">Reference No:<strong>{{PHRMPO.ReferenceNo}}</strong></p>
+                              <p class="c_paragraphs">{{ 'PHARMACY.REFERENCE_NO' | translate }}:<strong>{{PHRMPO.ReferenceNo}}</strong></p>
                             </td>
                           </tr>
                           <tr>
                             <td colspan="6" style="text-align: left;">
-                              <p class="c_paragraphs">Delivery Address :<strong>{{PHRMPO.DeliveryAddress}}</strong></p>
+                              <p class="c_paragraphs">{{ 'PHARMACY.DELIVERY_ADDRESS' | translate }} :<strong>{{PHRMPO.DeliveryAddress}}</strong></p>
                             </td>
                             <td colspan="6" style="text-align: right;">
-                              <p class="c_paragraphs">Contact Details:<strong>{{PHRMPO.Contact}}</strong></p>
+                              <p class="c_paragraphs">{{ 'PHARMACY.CONTACT_DETAILS' | translate }}:<strong>{{PHRMPO.Contact}}</strong></p>
                             </td>
                           </tr>
                         </table>
@@ -269,21 +269,20 @@
 
                     </tr>
                     <tr>
-                      <td colspan="12" style="padding: 10px 0; border-bottom: 1px solid #ccc; font-weight: bold;">We are pleased to place this order
-                        for below mentioned materials to your above stated company/firm.
+                      <td colspan="12" style="padding: 10px 0; border-bottom: 1px solid #ccc; font-weight: bold;">{{ 'PHARMACY.WE_ARE_PLEASED_TO_PLACE_THIS' | translate }}
                       </td>
                     </tr>
                     <tr>
-                      <th style="padding: 5px 5px; width: 2%;">SN.</th>
-                      <th colspan="3" style="padding: 5px 5px;">Item Name</th>
-                      <th style="padding: 5px 5px;">Qty</th>
-                      <th style="padding: 5px 5px;">Free Qty</th>
-                      <th style="padding: 5px 5px;">Total Qty</th>
-                      <th style="padding: 5px 5px;">UOM</th>
-                      <th style="padding: 5px 5px;">Standard Rate</th>
-                      <th style="padding: 5px 5px;">CCCharge %</th>
-                      <th style="padding: 5px 5px;">CCCharge Amt</th>
-                      <th style="padding: 5px 5px;">Total Amt</th>
+                      <th style="padding: 5px 5px; width: 2%;">{{ 'PHARMACY.SN' | translate }}</th>
+                      <th colspan="3" style="padding: 5px 5px;">{{ 'PHARMACY.ITEM_NAME' | translate }}</th>
+                      <th style="padding: 5px 5px;">{{ 'PHARMACY.QTY' | translate }}</th>
+                      <th style="padding: 5px 5px;">{{ 'PHARMACY.FREE_QTY' | translate }}</th>
+                      <th style="padding: 5px 5px;">{{ 'PHARMACY.TOTAL_QTY' | translate }}</th>
+                      <th style="padding: 5px 5px;">{{ 'PHARMACY.UOM' | translate }}</th>
+                      <th style="padding: 5px 5px;">{{ 'PHARMACY.STANDARD_RATE' | translate }}</th>
+                      <th style="padding: 5px 5px;">{{ 'PHARMACY.CCCHARGE' | translate }}</th>
+                      <th style="padding: 5px 5px;">{{ 'PHARMACY.CCCHARGE_AMT' | translate }}</th>
+                      <th style="padding: 5px 5px;">{{ 'PHARMACY.TOTAL_AMT' | translate }}</th>
                     </tr>
                     <tr *ngFor="let row of PHRMPOItemsList; let i = index ">
                       <td style="padding: 5px 5px; width: 2%;">{{i+1}}</td>
@@ -299,21 +298,20 @@
                     </tr>
                     <tr style="border-top: 1px solid #ccc;">
                       <td colspan="6" style="padding: 5px 5px; vertical-align: top;">
-                        <p class="c_paragraphs"><strong>Total Value In Words: Total Value in
-                            words:&nbsp;{{PHRMPO.TotalAmount | NumberInWords }}Only.</strong>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.TOTAL_VALUE_IN_WORDS_TOTAL_VALUE' | translate }}:&nbsp;{{PHRMPO.TotalAmount | NumberInWords }}{{ 'PHARMACY.ONLY' | translate }}</strong>
                         </p>
                       </td>
                       <td colspan="5" style="padding: 5px 5px; text-align: right;">
-                        <p class="c_paragraphs"><strong>SubTotal: </strong></p>
-                        <p class="c_paragraphs"><strong>Discount %:</strong></p>
-                        <p class="c_paragraphs"><strong>Discount Amount: </strong></p>
-                        <p class="c_paragraphs"><strong>Taxable Amount: </strong></p>
-                        <p class="c_paragraphs"><strong>Non-Taxable Amount: </strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.SUBTOTAL' | translate }}: </strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.DISCOUNT' | translate }}:</strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.DISCOUNT_AMOUNT' | translate }}: </strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.TAXABLE_AMOUNT' | translate }}: </strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.NONTAXABLE_AMOUNT' | translate }}: </strong></p>
                         <!-- <p class="c_paragraphs"><strong>VAT %: </strong></p> -->
-                        <p class="c_paragraphs"><strong>VAT Amount: </strong></p>
-                        <p class="c_paragraphs"><strong>CCCharge Amount: </strong></p>
-                        <p class="c_paragraphs"><strong>Adjustment: </strong></p>
-                        <p class="c_paragraphs"><strong>Total Amount: </strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.VAT_AMOUNT' | translate }}: </strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.CCCHARGE_AMOUNT' | translate }}: </strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.ADJUSTMENT' | translate }}: </strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}: </strong></p>
 
                       </td>
                       <td style="padding: 5px 5px;">
@@ -331,13 +329,13 @@
                     </tr>
                     <tr style="border-top: 1px solid #ccc;">
                       <td colspan="12" style="padding: 5px 5px; vertical-align: top;">
-                        <p class="c_paragraphs"><strong>Remarks: </strong><span class="tc-notes" style="font-style: italic" [innerHtml]="PHRMPO.Remarks"></span></p>
+                        <p class="c_paragraphs"><strong>{{ 'COMMON.REMARKS' | translate }}: </strong><span class="tc-notes" style="font-style: italic" [innerHtml]="PHRMPO.Remarks"></span></p>
                       </td>
 
                     </tr>
                     <tr style="border-top: 1px solid #ccc;">
                       <td colspan="12" style="padding: 5px 5px; vertical-align: top;">
-                        <p class="c_paragraphs"><strong>Terms & Conditions: </strong><span class="tc-notes" style="font-style: italic" [innerHtml]="PHRMPO.TermsConditions"></span></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.TERMS_CONDITIONS' | translate }}: </strong><span class="tc-notes" style="font-style: italic" [innerHtml]="PHRMPO.TermsConditions"></span></p>
                       </td>
 
                     </tr>
@@ -349,9 +347,9 @@
                         <div *ngIf="GetVerifierDetails(i+1)">
                           <div>{{GetVerifierDetails(i+1).FullName}}</div>
                           <div>({{GetVerifierDetails(i+1).EmployeeRoleName}})</div>
-                          <div><b>Checked On :</b>{{GetVerifierDetails(i+1).VerifiedOn | date:'medium'}}</div>
-                          <div><b>Status :</b>{{GetVerifierDetails(i+1).VerificationStatus}}</div>
-                          <div><b>Remarks
+                          <div><b>{{ 'PHARMACY.CHECKED_ON' | translate }} :</b>{{GetVerifierDetails(i+1).VerifiedOn | date:'medium'}}</div>
+                          <div><b>{{ 'COMMON.STATUS' | translate }} :</b>{{GetVerifierDetails(i+1).VerificationStatus}}</div>
+                          <div><b>{{ 'COMMON.REMARKS' | translate }}
                               :</b>{{GetVerifierDetails(i+1).VerificationRemarks}}</div>
                         </div>
                       </td>
@@ -360,7 +358,7 @@
                     </tr>
                     <tr style="border-bottom: 1px solid #ccc;">
                       <td colspan="2" style="padding: 5px 10px 10px 10px; vertical-align: top;">
-                        <p class="c_paragraphs"><strong>Prepared By </strong></p>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.PREPARED_BY' | translate }} </strong></p>
                       </td>
                       <td *ngFor="let s of SignatoriesWithTheirColSpan" [attr.colSpan]="s.colSpan" style="padding: 5px 10px 10px 10px; vertical-align: top;">
                         <p class="c_paragraphs"><strong>{{s.signatory}}</strong></p>
@@ -369,7 +367,7 @@
 
                     <tr>
                       <td colspan="12" style="padding: 5px 5px; text-align: center;">
-                        <p class="c_paragraphs"><strong>Note:This is computer generated Purchase Order signature not required.</strong>
+                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.NOTETHIS_IS_COMPUTER_GENERATED_PURCHASE_ORDER' | translate }}</strong>
                         </p>
                       </td>
                     </tr>
@@ -381,9 +379,9 @@
           </div>
           <div class="row center-style p2">
             <div class="col-md-12 col-xs-12 ">
-              <button *ngIf="!'complete,cancel'.includes(PHRMPO.POStatus)" type="button" id="edit" class="btn btn-primary" (click)="EditPO()">Edit <i class="glyphicon glyphicon-edit"></i></button>
+              <button *ngIf="!'complete,cancel'.includes(PHRMPO.POStatus)" type="button" id="edit" class="btn btn-primary" (click)="EditPO()">{{ 'COMMON.EDIT' | translate }} <i class="glyphicon glyphicon-edit"></i></button>
 
-              <button id="printButton" (click)="print()" class="btn btn-default"> Print
+              <button id="printButton" (click)="print()" class="btn btn-default"> {{ 'COMMON.PRINT' | translate }}
                 <i class="glyphicon glyphicon-print"></i>
               </button> &nbsp;
             </div>
@@ -411,9 +409,9 @@
           <div class="caption lb-caption">
             <h3>
               <i class="fa fa-shopping-cart"></i>
-              <span class="caption-subject">Add Good Receipt</span>
+              <span class="caption-subject">{{ 'PHARMACY.ADD_GOOD_RECEIPT' | translate }}</span>
             </h3>
-            <a class="btn btn-danger" (click)="CloseGoodReceiptItemAddEditPage()" title="Cancel"><i class="fa fa-times"></i></a>
+            <a class="btn btn-danger" (click)="CloseGoodReceiptItemAddEditPage()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
           </div>
           <phrm-goods-receipt></phrm-goods-receipt>
         </div>

@@ -5,39 +5,39 @@
                 <div class="modelbox-div">               
                     <div class="caption lb-caption">
                         <h3>
-                            <span *ngIf="!update">Add PackagingType</span>
-                            <span *ngIf="update">Update PackagingType</span>
+                            <span *ngIf="!update">{{ 'INVENTORY.ADD_PACKAGINGTYPE' | translate }}</span>
+                            <span *ngIf="update">{{ 'INVENTORY.UPDATE_PACKAGINGTYPE' | translate }}</span>
                         </h3>
-                        <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                        <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                     </div>                 
                 <form [formGroup]="CurrentPackagingType.PackagingTypeValidator" class="form-horizontal hm-form">
                     <div class="form-body">
                        
                             <div class="form-group">
-                                <label class="control-label col-md-5">PackagingType Name<sup class="color-red">*</sup><b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'INVENTORY.PACKAGINGTYPE_NAME' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" maxlength="50" type="text"
                                            [(ngModel)]="CurrentPackagingType.PackagingTypeName"
                                            formControlName="PackagingTypeName"
                                            id="PackagingTypeName"
-                                           placeholder="PackagingType Name"
+                                           [placeholder]="'INVENTORY.PACKAGINGTYPE_NAME' | translate"
                                            (keyup.enter)="FocusElementById('AddPackagingType')" />
-                                    <span class="color-red font-sm" [hidden]="CurrentPackagingType.IsValidCheck('PackagingTypeName','required') || !(CurrentPackagingType.IsDirty('PackagingTypeName'))">Name is required</span>
-                                    <span class="color-red font-sm" *ngIf="CurrentPackagingType.IsDirty('PackagingTypeName')" [hidden]="CurrentPackagingType.IsValidCheck('PackagingTypeName','maxlength')"> Length is not proper</span>
+                                    <span class="color-red font-sm" [hidden]="CurrentPackagingType.IsValidCheck('PackagingTypeName','required') || !(CurrentPackagingType.IsDirty('PackagingTypeName'))">{{ 'INVENTORY.NAME_IS_REQUIRED' | translate }}</span>
+                                    <span class="color-red font-sm" *ngIf="CurrentPackagingType.IsDirty('PackagingTypeName')" [hidden]="CurrentPackagingType.IsValidCheck('PackagingTypeName','maxlength')"> {{ 'INVENTORY.LENGTH_IS_NOT_PROPER' | translate }}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Description<b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" maxlength="200" type="text"
                                            [(ngModel)]="CurrentPackagingType.Description"
                                            [ngModelOptions]="{standalone: true}"
                                            id="Description"
-                                           placeholder="Description" />
+                                           [placeholder]="'GRID_HEADERS.DESCRIPTION' | translate" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Is Active <b>:</b> </label>
+                                <label class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                                 <div class="col-md-7">
                                     <div class="input-group">
                                         <div class="icheck-inline">
@@ -53,8 +53,8 @@
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddPackagingType()" value="Add PackagingType" [disabled]="loading" id="AddPackagingType" />
-                                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" value="Update" [disabled]="loading" id="AddPackagingType" />
+                                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddPackagingType()" [value]="'INVENTORY.ADD_PACKAGINGTYPE' | translate" [disabled]="loading" id="AddPackagingType" />
+                                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" [disabled]="loading" id="AddPackagingType" />
                             </div>
                        
                     </div>

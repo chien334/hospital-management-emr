@@ -1,5 +1,5 @@
 <style>
-  .info-warning {
+  .info-{{ 'INVENTORY.WARNING' | translate }} {
     background-color: orange !important;
   }
 </style>
@@ -13,10 +13,10 @@
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
             <h3>
-              <span *ngIf="!update">Add Item</span>
-              <span *ngIf="update">Update Item</span>
+              <span *ngIf="!update">{{ 'INVENTORY.ADD_ITEM' | translate }}</span>
+              <span *ngIf="update">{{ 'INVENTORY.UPDATE_ITEM' | translate }}</span>
             </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <form [formGroup]="CurrentItem.ItemValidator" class="hm-form">
             <div class="form-body">
@@ -25,7 +25,7 @@
                 <div class="col-md-6">
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">Item Category<sup class="color-red">*</sup><b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.ITEM_CATEGORY' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                       <div class="col-md-8">
                         <select id="ddlItemCategory" class="form-control" [(ngModel)]="CurrentItem.ItemCategoryId" formControlName="ItemCategoryId" (ngModelChange)="filterSubCategory()" [attr.disabled]="update ? true: null" (change)="FocusElementById('ItemName')">
                           <option *ngFor="let div of ItemCategoryList" value="{{div.ItemCategoryId}}">
@@ -37,29 +37,29 @@
                         <option *ngFor="let div of ItemCategoryList" value="{{div.ItemCategoryId}}">
                           {{div.ItemCategoryName}}</option>
                       </select> -->
-                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemCategoryId','required') || !(CurrentItem.IsDirty('ItemCategoryId'))">Item
-                          Category is required</span>
+                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemCategoryId','required') || !(CurrentItem.IsDirty('ItemCategoryId'))">{{ 'INVENTORY.ITEM' | translate }}
+                          {{ 'INVENTORY.CATEGORY_IS_REQUIRED' | translate }}</span>
                       </div>
 
 
                     </div>
-                    <!--<span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemCategoryId','required') || !(CurrentItem.IsDirty('ItemCategoryId'))">Item CategoryId is required</span>-->
+                    <!--<span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemCategoryId','required') || !(CurrentItem.IsDirty('ItemCategoryId'))">{{ 'INVENTORY.ITEM' | translate }} CategoryId is {{ 'INVENTORY.REQUIRED' | translate }}</span>-->
                     <!--<a *ngIf="!CurrentItem.ItemCategoryId" class="fa fa-question" (click)="AddCategoryPopUp()" title="Click to add to Category"></a>-->
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">Item Name <sup class="color-red">*</sup><b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }} <sup class="color-red">*</sup><b>:</b></label>
                       <div class="col-md-8">
-                        <input class="form-control" maxlength="200" [(ngModel)]="CurrentItem.ItemName" formControlName="ItemName" id="ItemName" placeholder="ItemName" (keyup.enter)="FocusElementById('ddlSubItemCategory')" />
-                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemName','required') || !(CurrentItem.IsDirty('ItemName'))">Item
-                          Name is required</span>
-                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('ItemName')" [hidden]="CurrentItem.IsValidCheck('ItemName','maxlength')"> Length is not proper</span>
+                        <input class="form-control" maxlength="200" [(ngModel)]="CurrentItem.ItemName" formControlName="ItemName" id="ItemName" [placeholder]="'INVENTORY.ITEMNAME' | translate" (keyup.enter)="FocusElementById('ddlSubItemCategory')" />
+                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('ItemName','required') || !(CurrentItem.IsDirty('ItemName'))">{{ 'INVENTORY.ITEM' | translate }}
+                          {{ 'INVENTORY.NAME_IS_REQUIRED' | translate }}</span>
+                        <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('ItemName')" [hidden]="CurrentItem.IsValidCheck('ItemName','maxlength')"> {{ 'INVENTORY.LENGTH_IS_NOT_PROPER' | translate }}</span>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">Item Sub Category <sup class="color-red">*</sup>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.ITEM_SUB_CATEGORY' | translate }} <sup class="color-red">*</sup>
                         <b>:</b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
@@ -71,16 +71,16 @@
                             <option *ngFor="let div of filteredSubCategoryList" value="{{div.SubCategoryId}}">
                               {{div.SubCategoryName}}</option>
                           </select>
-                          <a *ngIf="!CurrentItem.SubCategoryId" class="fa fa-question" (click)="AddSubCategoryPopUp()" title="Click to add to Sub Category"></a>
+                          <a *ngIf="!CurrentItem.SubCategoryId" class="fa fa-question" (click)="AddSubCategoryPopUp()" [title]="'INVENTORY.CLICK_TO_ADD_TO_SUB_CATEGORY' | translate"></a>
                         </div>
-                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('SubCategoryId','required') || !(CurrentItem.IsDirty('SubCategoryId'))">SubCategory
-                          is required</span>
+                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('SubCategoryId','required') || !(CurrentItem.IsDirty('SubCategoryId'))">{{ 'INVENTORY.SUBCATEGORY' | translate }}
+                          is {{ 'INVENTORY.REQUIRED' | translate }}</span>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">Unit of Measurement <sup class="color-red">*</sup>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.UNIT_OF_MEASUREMENT' | translate }} <sup class="color-red">*</sup>
                         <b>:</b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
@@ -90,9 +90,9 @@
                           <select id="ddlUnitOfMeasurement" class="form-control" [(ngModel)]="CurrentItem.UnitOfMeasurementId" formControlName="UnitOfMeasurementId" (change)="FocusElementById('RegisterPageNumber')" *ngIf="update">
                             <option *ngFor="let div of UOMList" value="{{div.UOMId}}">{{div.UOMName}}</option>
                           </select>
-                          <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('UnitOfMeasurementId','required') || !(CurrentItem.IsDirty('UnitOfMeasurementId'))">Unit
-                            Of Measurement is required. Use 'N/A' instead of blank.</span>
-                          <a *ngIf="!CurrentItem.UnitOfMeasurementId" class="fa fa-question" (click)="AddUnitOfMeasurementPopUp()" title="Click to add to Unit of Measurement"></a>
+                          <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('UnitOfMeasurementId','required') || !(CurrentItem.IsDirty('UnitOfMeasurementId'))">{{ 'INVENTORY.UNIT' | translate }}
+                            Of Measurement is {{ 'INVENTORY.REQUIRED' | translate }}. Use 'N/A' instead of blank.</span>
+                          <a *ngIf="!CurrentItem.UnitOfMeasurementId" class="fa fa-question" (click)="AddUnitOfMeasurementPopUp()" [title]="'INVENTORY.CLICK_TO_ADD_TO_UNIT_OF_MEASUREMENT' | translate"></a>
                         </div>
                       </div>
                     </div>
@@ -107,17 +107,17 @@
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">MinStock Quantity<sup class="color-red">*</sup><b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.MINSTOCK_QUANTITY' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                       <div class="col-md-8">
-                        <input class="form-control" min="1" type="number" [(ngModel)]="CurrentItem.MinStockQuantity" formControlName="MinStockQuantity" id="MinStockQuantity" placeholder="MinStock Quantity" (keyup.enter)="FocusElementById('StandardRate')" />
-                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('MinStockQuantity','required') || !(CurrentItem.IsDirty('MinStockQuantity'))">MinStockQuantity
-                          is required</span>
+                        <input class="form-control" min="1" type="number" [(ngModel)]="CurrentItem.MinStockQuantity" formControlName="MinStockQuantity" id="MinStockQuantity" [placeholder]="'INVENTORY.MINSTOCK_QUANTITY' | translate" (keyup.enter)="FocusElementById('StandardRate')" />
+                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('MinStockQuantity','required') || !(CurrentItem.IsDirty('MinStockQuantity'))">{{ 'INVENTORY.MINSTOCKQUANTITY' | translate }}
+                          is {{ 'INVENTORY.REQUIRED' | translate }}</span>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4" for="chkVatApplicable">Is VAT Applicable <b>:</b> </label>
+                      <label class="control-label col-md-4" for="chkVatApplicable">{{ 'INVENTORY.IS_VAT_APPLICABLE' | translate }} <b>:</b> </label>
                       <div class="col-md-8">
                         <div class="input-group">
                           <div class="icheck-inline">
@@ -132,38 +132,38 @@
                   </div>
                   <div class="form-group col-md-12" *ngIf="CurrentItem.IsVATApplicable">
                     <div class="row" [@enterAnimation]>
-                      <label class="control-label col-md-4">VAT (in %)<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.VAT_IN' | translate }}<b>:</b></label>
                       <div class="col-md-8">
-                        <input class="form-control" min="0" type="number" id="VAT" [(ngModel)]="CurrentItem.VAT" formControlName="VAT" placeholder="VAT" />
-                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('VAT','required') || !(CurrentItem.IsDirty('VAT'))">VAT is
-                          required</span>
+                        <input class="form-control" min="0" type="number" id="VAT" [(ngModel)]="CurrentItem.VAT" formControlName="VAT" [placeholder]="'INVENTORY.VAT' | translate" />
+                        <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('VAT','required') || !(CurrentItem.IsDirty('VAT'))">{{ 'INVENTORY.VAT_IS' | translate }}
+                          {{ 'INVENTORY.REQUIRED' | translate }}</span>
                         <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('VAT')" [hidden]="CurrentItem.IsValidCheck('VAT','pattern')">
-                          Vat percentage is not proper.
+                          {{ 'INVENTORY.VAT_PERCENTAGE_IS_NOT_PROPER' | translate }}.
                         </span>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">Description<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                       <div class="col-md-8">
-                        <textarea class="form-control" rows="4" cols="50" type="text" [(ngModel)]="CurrentItem.Description" [ngModelOptions]="{standalone: true}" id="Description" placeholder="Description"></textarea>
+                        <textarea class="form-control" rows="4" cols="50" type="text" [(ngModel)]="CurrentItem.Description" [ngModelOptions]="{standalone: true}" id="Description" [placeholder]="'GRID_HEADERS.DESCRIPTION' | translate"></textarea>
                       </div>
                     </div>
 
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">StandardRate<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.STANDARDRATE' | translate }}<b>:</b></label>
                       <div class="col-md-8">
-                        <input class="form-control" min="0" type="number" [(ngModel)]="CurrentItem.StandardRate" [ngModelOptions]="{standalone: true}" id="StandardRate" placeholder="Standard Rate" (keyup.enter)="FocusElementById('AddItem')" />
-                        <!-- <input class="form-control" min="0" type="number" [(ngModel)]="CurrentItem.StandardRate" formControlName="StandardRate" id="StandardRate" placeholder="Standard Rate" />
+                        <input class="form-control" min="0" type="number" [(ngModel)]="CurrentItem.StandardRate" [ngModelOptions]="{standalone: true}" id="StandardRate" [placeholder]="'INVENTORY.STANDARD_RATE' | translate" (keyup.enter)="FocusElementById('AddItem')" />
+                        <!-- <input class="form-control" min="0" type="number" [(ngModel)]="CurrentItem.StandardRate" formControlName="StandardRate" id="StandardRate" [placeholder]="'INVENTORY.STANDARD_RATE' | translate" />
                         <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('StandardRate')" [hidden]="CurrentItem.IsValidCheck('StandardRate','pattern')">
-                          Standard Rate in numbers only
+                          {{ 'INVENTORY.STANDARD_RATE' | translate }} in numbers {{ 'INVENTORY.ONLY' | translate }}
                         </span> -->
                       </div>
                     </div>
-                    <!--<span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('StandardRate','required') || !(CurrentItem.IsDirty('StandardRate'))">Standard Rate is required</span>-->
+                    <!--<span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('StandardRate','required') || !(CurrentItem.IsDirty('StandardRate'))">{{ 'INVENTORY.STANDARD_RATE' | translate }} is {{ 'INVENTORY.REQUIRED' | translate }}</span>-->
                   </div>
                 </div>
                 <!-- div left end -->
@@ -173,17 +173,17 @@
 
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">Item Code<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.ITEM_CODE' | translate }}<b>:</b></label>
                       <div class="col-md-8 div-relative">
-                        <input disabled class="form-control" maxlength="200" [(ngModel)]="CurrentItem.Code" [ngModelOptions]="{standalone: true}" stand id="Code" placeholder="Code" pattern="[A-Z]*" />
-                        <i *ngIf="!update" title="This Item Code is not final. It may change during SAVE." color=#006687 class="fa fa-info-circle info-warning" aria-hidden="true">
+                        <input disabled class="form-control" maxlength="200" [(ngModel)]="CurrentItem.Code" [ngModelOptions]="{standalone: true}" stand id="Code" [placeholder]="'GRID_HEADERS.CODE' | translate" pattern="[A-Z]*" />
+                        <i *ngIf="!update" [title]="'INVENTORY.THIS_ITEM_CODE_IS_NOT_FINAL_IT_MAY_CHANGE_DURING_SAVE' | translate" color=#006687 class="fa fa-info-circle info-warning" aria-hidden="true">
                         </i>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row" style="margin-bottom: 10px">
-                      <label class="control-label col-md-4" for="Inventory">Inventory <b>:</b></label>
+                      <label class="control-label col-md-4" for="Inventory">{{ 'INVENTORY.INVENTORY' | translate }} <b>:</b></label>
                       <div class="col-md-8" style="display: flex;justify-content: space-evenly;">
                         <div *ngFor="let inventory of activeInventories">
                           <input style="zoom: 1.6; height: 1rem; margin: 0.5rem;" type="radio" name="Inventory" id="{{inventory.Name}}" [value]="inventory.StoreId" [(ngModel)]="CurrentItem.StoreId" [ngModelOptions]="{standalone: true}">
@@ -192,15 +192,15 @@
                       </div>
                     </div>
                     <div class="row">
-                      <label class="control-label col-md-4">Item Company<sup class="color-red">*</sup> <b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.ITEM_COMPANY' | translate }}<sup class="color-red">*</sup> <b>:</b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
                           <select class="form-control" [(ngModel)]="CurrentItem.CompanyId" formControlName="CompanyId">
                             <option *ngFor="let co of GetCompanyList" value="{{co.CompanyId}}">{{co.CompanyName}}</option>
                           </select>
-                          <a *ngIf="!CurrentItem.CompanyId" class="fa fa-question" (click)="AddCompanyPopUp()" title="Click to add to Company"></a>
-                          <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('CompanyId','required') || !(CurrentItem.IsDirty('CompanyId'))">Company
-                            is required</span>
+                          <a *ngIf="!CurrentItem.CompanyId" class="fa fa-question" (click)="AddCompanyPopUp()" [title]="'INVENTORY.CLICK_TO_ADD_TO_COMPANY' | translate"></a>
+                          <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('CompanyId','required') || !(CurrentItem.IsDirty('CompanyId'))">{{ 'INVENTORY.COMPANY' | translate }}
+                            is {{ 'INVENTORY.REQUIRED' | translate }}</span>
 
                         </div>
                       </div>
@@ -209,20 +209,20 @@
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">ReOrderQuantity<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.REORDERQUANTITY' | translate }}<b>:</b></label>
                       <div class="col-md-8">
-                        <input class="form-control" min="1" type="number" [(ngModel)]="CurrentItem.ReOrderQuantity" formControlName="ReOrderQuantity" id="ReOrderQuantity" placeholder="ReOrder Quantity" />
+                        <input class="form-control" min="1" type="number" [(ngModel)]="CurrentItem.ReOrderQuantity" formControlName="ReOrderQuantity" id="ReOrderQuantity" [placeholder]="'INVENTORY.REORDER_QUANTITY' | translate" />
                         <span class="color-red font-sm" *ngIf="CurrentItem.IsDirty('ReOrderQuantity')" [hidden]="CurrentItem.IsValidCheck('ReOrderQuantity','pattern')">
-                          Re-order quantity in numbers only
+                          {{ 'INVENTORY.REORDER_QUANTITY_IN_NUMBERS_ONLY' | translate }}
                         </span>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">UnitQuantity<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.UNITQUANTITY' | translate }}<b>:</b></label>
                       <div class="col-md-8">
-                        <input class="form-control" min="1" type="number" [(ngModel)]="CurrentItem.UnitQuantity" id="UnitQuantity" placeholder="Unit Quantity" [ngModelOptions]="{standalone: true}" />
+                        <input class="form-control" min="1" type="number" [(ngModel)]="CurrentItem.UnitQuantity" id="UnitQuantity" [placeholder]="'INVENTORY.UNIT_QUANTITY' | translate" [ngModelOptions]="{standalone: true}" />
                       </div>
                     </div>
 
@@ -235,32 +235,32 @@
                       <select disabled id="ddlAccountHead" class="form-control" [(ngModel)]="CurrentItem.AccountHeadId" formControlName="AccountHeadId">
                         <option *ngFor="let div of GetAccountHeadList" value="{{div.AccountHeadId}}">{{div.AccountHeadName}}</option>
                       </select>
-                      <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('AccountHeadId','required') || !(CurrentItem.IsDirty('AccountHeadId'))">Account Head is required</span>
+                      <span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('AccountHeadId','required') || !(CurrentItem.IsDirty('AccountHeadId'))">Account Head is {{ 'INVENTORY.REQUIRED' | translate }}</span>
                       <a *ngIf="!CurrentItem.AccountHeadId" class="fa fa-question" (click)="AddAccountHeadPopUp()" title="Click to add to Account Head"></a>
                     </div>
                   </div>
                 </div> -->
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4">Packaging Type<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.PACKAGING_TYPE' | translate }}<b>:</b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
                           <select id="ddlPackagingType" class="form-control" [(ngModel)]="CurrentItem.PackagingTypeId" [ngModelOptions]="{standalone: true}">
                             <option *ngFor="let div of GetPackagingTypeList" value="{{div.PackagingTypeId}}">
                               {{div.PackagingTypeName}}</option>
                           </select>
-                          <!--<span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('PackagingTypeId','required') || !(CurrentItem.IsDirty('PackagingTypeId'))">Packaging TypeId is required</span>-->
-                          <a *ngIf="!CurrentItem.PackagingTypeId" class="fa fa-question" (click)="AddPackagingTypePopUp()" title="Click to add to Packaging Type"></a>
+                          <!--<span class="color-red font-sm" [hidden]="CurrentItem.IsValidCheck('PackagingTypeId','required') || !(CurrentItem.IsDirty('PackagingTypeId'))">Packaging TypeId is {{ 'INVENTORY.REQUIRED' | translate }}</span>-->
+                          <a *ngIf="!CurrentItem.PackagingTypeId" class="fa fa-question" (click)="AddPackagingTypePopUp()" [title]="'INVENTORY.CLICK_TO_ADD_TO_PACKAGING_TYPE' | translate"></a>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4 col-sm-4">Vendor Name<b>: </b></label>
+                      <label class="control-label col-md-4 col-sm-4">{{ 'INVENTORY.VENDOR_NAME' | translate }}<b>: </b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
-                          <input danphe-auto-complete class="form-control" placeholder="Select Vendor" placeholder="Vendor Name" [list-formatter]="VendorListFormatter" display-property-name="VendorName" [source]="vendorList" [(ngModel)]="selectedVendor" [ngModelOptions]="{standalone:true}" (focusout)="AssignSelectedVendor()" />
+                          <input danphe-auto-complete class="form-control" [placeholder]="'INVENTORY.SELECT_VENDOR' | translate" [placeholder]="'INVENTORY.VENDOR_NAME' | translate" [list-formatter]="VendorListFormatter" display-property-name="VendorName" [source]="vendorList" [(ngModel)]="selectedVendor" [ngModelOptions]="{standalone:true}" (focusout)="AssignSelectedVendor()" />
                           <br />
                         </div>
                       </div>
@@ -268,20 +268,20 @@
                   </div>
                   <div class="form-group col-md-12" *ngIf="registerNoDisplayParam && registerNoDisplayParam.MaintenanceOwner.Show==true">
                     <div class="row">
-                      <label class="control-label col-md-4">Maintenance Owner<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.MAINTENANCE_OWNER' | translate }}<b>:</b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
-                          <input danphe-auto-complete class="form-control" placeholder="Assign Role" [list-formatter]="RoleAutocompleteFormatter" display-property-name="RoleName" [source]="roleList" [(ngModel)]="selectedMaintenanceOwner" [ngModelOptions]="{standalone:true}" (focusout)="AssignMaintenanceOwner()" />
+                          <input danphe-auto-complete class="form-control" [placeholder]="'INVENTORY.ASSIGN_ROLE' | translate" [list-formatter]="RoleAutocompleteFormatter" display-property-name="RoleName" [source]="roleList" [(ngModel)]="selectedMaintenanceOwner" [ngModelOptions]="{standalone:true}" (focusout)="AssignMaintenanceOwner()" />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-12" *ngIf="registerNoDisplayParam && registerNoDisplayParam.MSSNo.Show==true">
                     <div class="row">
-                      <label class="control-label col-md-4">MSS NO.<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.MSS_NO' | translate }}.<b>:</b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
-                          <input class="form-control" type="text" [(ngModel)]="CurrentItem.MSSNO" [ngModelOptions]="{standalone: true}" placeholder="MSS Number" />
+                          <input class="form-control" type="text" [(ngModel)]="CurrentItem.MSSNO" [ngModelOptions]="{standalone: true}" [placeholder]="'INVENTORY.MSS_NUMBER' | translate" />
                         </div>
                       </div>
                     </div>
@@ -289,17 +289,17 @@
 
                   <div class="form-group col-md-12" *ngIf="registerNoDisplayParam && registerNoDisplayParam.HSNCode.Show==true">
                     <div class="row">
-                      <label class="control-label col-md-4">HSN Code<b>:</b></label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.HSN_CODE' | translate }}<b>:</b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
-                          <input class="form-control" type="text" [(ngModel)]="CurrentItem.HSNCODE" [ngModelOptions]="{standalone: true}" placeholder="HSN Code" />
+                          <input class="form-control" type="text" [(ngModel)]="CurrentItem.HSNCODE" [ngModelOptions]="{standalone: true}" [placeholder]="'INVENTORY.HSN_CODE' | translate" />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-12" *ngIf="registerNoDisplayParam && registerNoDisplayParam.CssdApplicable.Show==true">
                     <div class="row">
-                      <label class="control-label col-md-4" for="IsCssdApplicable">Is Cssd Applicable <b>:</b> </label>
+                      <label class="control-label col-md-4" for="IsCssdApplicable">{{ 'INVENTORY.IS_CSSD_APPLICABLE' | translate }} <b>:</b> </label>
                       <div class="col-md-8">
                         <div class="input-group">
                           <div class="icheck-inline">
@@ -314,7 +314,7 @@
                   </div>
                   <div class="form-group col-md-12" *ngIf="registerNoDisplayParam && registerNoDisplayParam.ColdStorageApplicable.Show==true">
                     <div class="row">
-                      <label class="control-label col-md-4" for="IsColdStorageApplicable">Is Cold Storage Applicable <b>:</b> </label>
+                      <label class="control-label col-md-4" for="IsColdStorageApplicable">{{ 'INVENTORY.IS_COLD_STORAGE_APPLICABLE' | translate }} <b>:</b> </label>
                       <div class="col-md-8">
                         <div class="input-group">
                           <div class="icheck-inline">
@@ -329,7 +329,7 @@
                   </div>
                   <div class="form-group col-md-12" *ngIf="registerNoDisplayParam && registerNoDisplayParam.PatientConsumption.Show==true">
                     <div class="row">
-                      <label class="control-label col-md-5" for="IsPatConsumptionApplicable">Is Patient Consumption
+                      <label class="control-label col-md-5" for="IsPatConsumptionApplicable">{{ 'INVENTORY.IS_PATIENT_CONSUMPTION' | translate }}
                         Applicable <b>:</b> </label>
                       <div class="col-md-5">
                         <div class="input-group">
@@ -345,7 +345,7 @@
                   </div>
                   <div class="form-group col-md-12" *ngIf="registerNoDisplayParam && registerNoDisplayParam.UploadExcel.Show==true">
                     <div class="row">
-                      <label class="control-label col-md-4">Upload Excel <b>:</b> </label>
+                      <label class="control-label col-md-4">{{ 'INVENTORY.UPLOAD_EXCEL' | translate }} <b>:</b> </label>
                       <div class="col-md-8">
                         <div class="input-group">
                           <div class="icheck-inline">
@@ -360,7 +360,7 @@
                   </div>
                   <div class="form-group col-md-12">
                     <div class="row">
-                      <label class="control-label col-md-4" for="chkIsActive">Is Active <b>:</b> </label>
+                      <label class="control-label col-md-4" for="chkIsActive">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                       <div class="col-md-8">
                         <div class="input-group">
                           <div class="icheck-inline">
@@ -377,7 +377,7 @@
 
                     <div class="form-group col-md-12">
                       <div class="row">
-                        <label class="control-label col-md-4" for="chkIsActive">Is Fixed Assets ? <b>:</b> </label>
+                        <label class="control-label col-md-4" for="chkIsActive">{{ 'INVENTORY.IS_FIXED_ASSETS' | translate }} <b>:</b> </label>
                         <div class="col-md-8">
                           <div class="input-group">
                             <div class="icheck-inline">
@@ -392,12 +392,12 @@
                     </div>
                     <div class="form-group col-md-12">
                       <div class="row">
-                        <label class="control-label col-md-4" for="chkIsActive">Description <b>:</b> </label>
+                        <label class="control-label col-md-4" for="chkIsActive">{{ 'GRID_HEADERS.DESCRIPTION' | translate }} <b>:</b> </label>
                         <div class="col-md-8">
                           <div class="input-group">
                             <div class="icheck-inline">
                               <label class="col-md-12">
-                                <span>Turning <b>'Is Fixed Assets ?'</b> feature on will enable history maintenance, unique identification of assets ,barcode tracking, assets scrapping and description features.</span>
+                                <span>{{ 'INVENTORY.TURNING' | translate }} <b>'Is Fixed Assets ?'</b> {{ 'INVENTORY.FEATURE_ON_WILL_ENABLE_HISTORY_MAINTENANCE_UNIQUE_IDENTIFICATION_OF_ASSETS_BARCODE_TRACKING_ASSETS_SCRAPPING_AND_DESCRIPTION_FEATURES' | translate }}.</span>
                               </label>
                             </div>
                           </div>
@@ -413,8 +413,8 @@
 
               </div>
               <div class="form-actions col-md-12">
-                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddItem()" value="SAVE ITEM" [disabled]="loading" id="AddItem" />
-                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" value="Update" [disabled]="loading" id="AddItem" />
+                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddItem()" [value]="'INVENTORY.SAVE_ITEM' | translate" [disabled]="loading" id="AddItem" />
+                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" [disabled]="loading" id="AddItem" />
               </div>
 
             </div>

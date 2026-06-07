@@ -8,12 +8,12 @@
           margin-right: 15px;
           cursor: pointer;
         " (click)="loading=true;Export('print')">
-                Print <i class="fa fa-print"></i>
+                {{ 'COMMON.PRINT' | translate }} <i class="fa fa-print"></i>
             </button>
             <div style="float:right;margin-right: 10px;">
                 <input type="checkbox" id="myCheckbox" name="myCheckbox" style="transform: scale(1.4); margin-bottom: 7px; margin-left:10px;"
                        [(ngModel)]="showHeader">
-                <label for="myCheckbox" style="margin-left:10px;">Show Header Image</label>
+                <label for="myCheckbox" style="margin-left:10px;">{{ 'LABS.SHOW_HEADER_IMAGE' | translate }}</label>
             </div>
         </div>
         <div #exportContent id="lab-report" class="padding-15-hr margin-50-tp">
@@ -24,11 +24,11 @@
                             <div class="flex-container txt-left">
                                 <div class="single-head">
                                     <div *ngIf="templateReport.PrintedBy" class="display-blk margin-7-hr">
-                                        <strong>Last Printed By</strong> : {{templateReport.PrintedByName}} , &nbsp;
+                                        <strong>{{ 'LABS.LAST_PRINTED_BY' | translate }}</strong> : {{templateReport.PrintedByName}} , &nbsp;
                                     </div>
                                     <div *ngIf="templateReport.PrintCount" class="display-blk">
                                         <div>
-                                            <strong>Print Count</strong> : {{templateReport.PrintCount}}
+                                            <strong>{{ 'LABS.PRINT_COUNT' | translate }}</strong> : {{templateReport.PrintCount}}
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                             <div class="flex-container flex-align-center justify-sp-around">
                                                 <div class="single-head">
                                                     <div class="left-col-data">
-                                                        <strong>Name</strong> : {{templateReport.Lookups.PatientName}}
+                                                        <strong>{{ 'COMMON.NAME' | translate }}</strong> : {{templateReport.Lookups.PatientName}}
                                                     </div>
                                                 </div>
                                                 <div class="single-head">
@@ -82,9 +82,9 @@
                                                                                  [height]="24" [barcode-margin]="2" [text-margin]="0">
                                                                 </danphe-bar-code>
                                                             </div>
-                                                            <strong>Patient No.</strong> : {{templateReport.Lookups.PatientCode}} (
+                                                            <strong>{{ 'LABS.PATIENT_NO' | translate }}</strong> : {{templateReport.Lookups.PatientCode}} (
                                                             <b>{{templateReport.Lookups.VisitTypeCode}}</b>)
-                                                            <b *ngIf="hasInsurance"> / (INS)</b>
+                                                            <b *ngIf="hasInsurance"> {{ 'LABS.INS' | translate }}</b>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -92,7 +92,7 @@
                                             <div class="flex-container flex-align-center justify-sp-around">
                                                 <div class="single-head">
                                                     <div class="left-col-data">
-                                                        <strong>Address</strong> : {{templateReport.Lookups.CountrySubDivisionName != null ?
+                                                        <strong>{{ 'GRID_HEADERS.ADDRESS' | translate }}</strong> : {{templateReport.Lookups.CountrySubDivisionName != null ?
                                                         templateReport.Lookups.CountrySubDivisionName + ',' : '' }}
                                                         {{templateReport.Lookups.MunicipalityName != null?
                                                         templateReport.Lookups.MunicipalityName + ',' : '' }} {{templateReport.Lookups.Address}}
@@ -101,7 +101,7 @@
                                                 <div class="single-head">
                                                     <div class="right-col-data">
                                                         <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                                            <strong>Age/Sex</strong> : {{templateReport.Lookups.DOB | DanpheDateTime:'age'}}
+                                                            <strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</strong> : {{templateReport.Lookups.DOB | DanpheDateTime:'age'}}
                                                             /{{templateReport.Lookups.Gender}}
                                                         </div>
                                                     </div>
@@ -123,7 +123,7 @@
                                                                 <i class="fa fa-edit edit-ic"></i>
                                                             </span>
                                                             <p class="tooltiptext ttptextdown no-print">
-                                                                Click to Change Prescriber Dr.
+                                                                {{ 'LABS.CLICK_TO_CHANGE_PRESCRIBER_DR' | translate }}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -131,7 +131,7 @@
                                                 <div class="single-head">
                                                     <div class="right-col-data">
                                                         <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                                            <strong>Collection Date</strong> :
+                                                            <strong>{{ 'LABS.COLLECTION_DATE' | translate }}</strong> :
                                                             {{templateReport.Lookups.ReceivingDate |
                                                             DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
                                                             {{templateReport.Lookups.ReceivingDate |
@@ -143,7 +143,7 @@
                                             <div class="flex-container flex-align-center justify-sp-around">
                                                 <div class="single-head">
                                                     <div class="left-col-data">
-                                                        <strong>Lab No</strong> :
+                                                        <strong>{{ 'LABS.LAB_NO' | translate }}</strong> :
                                                         {{templateReport.Lookups.SampleCodeFormatted}}
                                                         <div class="tooltip no-print"
                                                              *ngIf="allowLabNoChange && securityService.HasPermission('btn-lab-report-labnumber-edit')">
@@ -151,7 +151,7 @@
                                                                 <i class="fa fa-edit edit-ic"></i>
                                                             </span>
                                                             <p class="tooltiptext ttptextdown">
-                                                                Click to Change Run Number.
+                                                                {{ 'LABS.CLICK_TO_CHANGE_RUN_NUMBER' | translate }}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -159,7 +159,7 @@
                                                 <div class="single-head">
                                                     <div class="right-col-data">
                                                         <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                                            <strong>Reporting Date</strong> : {{verificationEnabled ?
+                                                            <strong>{{ 'LABS.REPORTING_DATE_1' | translate }}</strong> : {{verificationEnabled ?
                                                             (templateReport.Lookups.VerifiedOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):
                                                             (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}
                                                             {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):
@@ -173,7 +173,7 @@
                                                 <div *ngIf="isCovidTest && templateReport.Lookups.PassPortNumber" class="single-head">
                                                     <div class="left-col-data">
                                                         <div>
-                                                            <strong>PassPort Number</strong>
+                                                            <strong>{{ 'LABS.PASSPORT_NUMBER' | translate }}</strong>
                                                             :{{templateReport.Lookups.PassPortNumber }}
                                                         </div>
                                                     </div>
@@ -214,7 +214,7 @@
                                                                 <button *ngIf="showDigitalSignature" id="showSignImage{{i}}"
                                                                         [style.display]="emp.Show ? 'none':'inline-block'"
                                                                         (click)="ShowHideDigitalImage(emp)" class="signature-image-show no-print">
-                                                                    Show ESignature
+                                                                    {{ 'LABS.SHOW_ESIGNATURE' | translate }}
                                                                 </button>
                                                                 <img class="labsignature-image" id="signImage{{i}}"
                                                                      [style.display]="emp.Show ? 'inline-block':'none'"
@@ -258,7 +258,7 @@
                                                                     [style.display]="CreatedByUser.Show ? 'none':'inline-block'"
                                                                     (click)="ShowHideDigitalImage(CreatedByUser)"
                                                                     class="signature-image-show no-print">
-                                                                Show ESignature
+                                                                {{ 'LABS.SHOW_ESIGNATURE' | translate }}
                                                             </button>
                                                             <img class="labsignature-image" id="currUserSignImage"
                                                                  [style.display]="CreatedByUser.Show ? 'inline-block':'none'"
@@ -275,7 +275,7 @@
                                         </div>
                                         <div *ngIf="templateReport.ReportId && verificationRequired" class="prelim-note">
                                             <p *ngIf="preliminaryText && preliminaryText.length > 0">
-                                                <em><strong>Note: </strong>{{preliminaryText}}</em>
+                                                <em><strong>{{ 'LABS.NOTE' | translate }} </strong>{{preliminaryText}}</em>
                                             </p>
                                         </div>
                                     </td>
@@ -303,29 +303,29 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <th style="min-width: 28%" *ngIf="tmplate.TemplateColumns.Name">
-                                                                            Test(s)
+                                                                            {{ 'LABS.TESTS_1' | translate }}
                                                                         </th>
                                                                         <th style="min-width: 12%" *ngIf="tmplate.TemplateColumns.Result">
-                                                                            Finding(s)
+                                                                            {{ 'LABS.FINDINGS' | translate }}
                                                                         </th>
                                                                         <th style="width: 8%"
                                                                             *ngIf="showHideHighLowNormalFlag && tmplate.TemplateType=='normal'">
-                                                                            Flag
+                                                                            {{ 'LABS.FLAG' | translate }}
                                                                         </th>
                                                                         <th style="width: 12%" *ngIf="tmplate.TemplateColumns.Unit">
-                                                                            Unit
+                                                                            {{ 'LABS.UNIT' | translate }}
                                                                         </th>
                                                                         <th style="width: 20%" *ngIf="tmplate.TemplateColumns.Range">
-                                                                            Reference
+                                                                            {{ 'LABS.REFERENCE' | translate }}
                                                                         </th>
                                                                         <th style="width: 30%" *ngIf="tmplate.TemplateColumns.Method">
-                                                                            Method
+                                                                            {{ 'LABS.METHOD' | translate }}
                                                                         </th>
                                                                         <th style="width: 30%" *ngIf="!tmplate.TemplateColumns.Method">
 
                                                                         </th>
                                                                         <th style="width: 10%" *ngIf="tmplate.TemplateColumns.Remarks">
-                                                                            Remarks
+                                                                            {{ 'COMMON.REMARKS' | translate }}
                                                                         </th>
                                                                     </tr>
                                                                 </thead>
@@ -348,7 +348,7 @@
                                                                                            [(ngModel)]="res.Print"
                                                                                            name="showHideInPrint"
                                                                                            (change)="ShowHidePrintForTestsWithComp(tmplate, res)"
-                                                                                           title="unchecked test will not be printed" />
+                                                                                           [title]="'LABS.UNCHECKED_TEST_WILL_NOT_BE_PRINTED' | translate" />
                                                                                     <span></span><b>{{res.ReportingName}}</b></label>
 
                                                                                 <!--
@@ -386,7 +386,7 @@
                                                                                                    type="checkbox" [(ngModel)]="cmp.Print"
                                                                                                    (change)="ShowHidePrintForTestsWithoutComp(tmplate,res, res.Components.length)"
                                                                                                    value=""
-                                                                                                   title="unchecked test will not be printed" />
+                                                                                                   [title]="'LABS.UNCHECKED_TEST_WILL_NOT_BE_PRINTED' | translate" />
                                                                                             <span></span><b>{{cmp.ComponentName}}</b></label>
 
                                                                                         <!--
@@ -405,7 +405,7 @@
                                                                                                    [(ngModel)]="cmp.Print"
                                                                                                    (change)="ShowHidePrintForTestsWithoutComp(tmplate,res, res.Components.length)"
                                                                                                    value=""
-                                                                                                   title="unchecked test will not be printed" />
+                                                                                                   [title]="'LABS.UNCHECKED_TEST_WILL_NOT_BE_PRINTED' | translate" />
                                                                                             <span></span>{{cmp.ComponentName}}</label>
 
                                                                                         <!--
@@ -424,11 +424,11 @@
                                                                                         <span
                                                                                               *ngIf="!cmp.ControlType || (cmp.ControlType && ((cmp.ControlType.toLowerCase() != 'searchbox') && (cmp.ControlType.toLowerCase() != 'label')))">
                                                                                             <span
-                                                                                                  *ngIf="cmp.AbnormalType && cmp.AbnormalType=='low'">L</span>
+                                                                                                  *ngIf="cmp.AbnormalType && cmp.AbnormalType=='low'">{{ 'LABS.L' | translate }}</span>
                                                                                             <span
-                                                                                                  *ngIf="cmp.AbnormalType && cmp.AbnormalType=='high'">H</span>
+                                                                                                  *ngIf="cmp.AbnormalType && cmp.AbnormalType=='high'">{{ 'LABS.H' | translate }}</span>
                                                                                             <span
-                                                                                                  *ngIf="cmp.AbnormalType && cmp.AbnormalType=='normal'">N</span>
+                                                                                                  *ngIf="cmp.AbnormalType && cmp.AbnormalType=='normal'">{{ 'LABS.N' | translate }}</span>
                                                                                         </span>
                                                                                     </td>
                                                                                     <td class="test-data-pstv unit"
@@ -464,9 +464,9 @@
                                                                                                        [(ngModel)]="res.PrintInterpretation"
                                                                                                        name="showHideInPrint"
                                                                                                        (change)="ShowHideInterpretationToPrint(res)"
-                                                                                                       title="unchecked Interpretation will not be printed" />
+                                                                                                       [title]="'LABS.UNCHECKED_INTERPRETATION_WILL_NOT_BE_PRINTED' | translate" />
                                                                                                 <label for="{{'interpretationTxt' + idx}}">
-                                                                                                    <b>Interpretation({{res.TestName}}):</b>
+                                                                                                    <b>{{ 'LABS.INTERPRETATION' | translate }}({{res.TestName}}):</b>
                                                                                                 </label>
                                                                                                 <div class="interpretation-txt-holder"
                                                                                                      [innerHTML]="res.Interpretation">
@@ -482,7 +482,7 @@
                                                                                 <tr class="res-negative-rw"
                                                                                     [ngClass]="cmp.Print ? 'showInPrint' : 'dontShowInPrint'">
                                                                                     <td *ngIf="tmplate.TemplateColumns.Name" class="padding-15-hr">
-                                                                                        Result
+                                                                                        {{ 'LABS.RESULT' | translate }}
                                                                                     </td>
                                                                                     <td *ngIf="tmplate.TemplateColumns.Result"
                                                                                         class="padding-15-hr text-center">
@@ -514,9 +514,9 @@
                                                                                                        [(ngModel)]="res.PrintInterpretation"
                                                                                                        name="showHideInPrint"
                                                                                                        (change)="ShowHideInterpretationToPrint(res)"
-                                                                                                       title="unchecked Interpretation will not be printed" />
+                                                                                                       [title]="'LABS.UNCHECKED_INTERPRETATION_WILL_NOT_BE_PRINTED' | translate" />
                                                                                                 <label for="{{'interpretationTxt' + idx}}">
-                                                                                                    <b>Interpretation({{res.TestName}}):</b>
+                                                                                                    <b>{{ 'LABS.INTERPRETATION' | translate }}({{res.TestName}}):</b>
                                                                                                 </label>
                                                                                                 <div class="interpretation-txt-holder"
                                                                                                      [innerHTML]="res.Interpretation">
@@ -545,10 +545,10 @@
                                                                     </tr>
                                                                     <tr class="culture-heading-col">
                                                                         <th *ngIf="tmplate.TemplateColumns.Name">
-                                                                            Test(s)
+                                                                            {{ 'LABS.TESTS_1' | translate }}
                                                                         </th>
                                                                         <th colspan="2" *ngIf="tmplate.TemplateColumns.Result">
-                                                                            Finding(s)
+                                                                            {{ 'LABS.FINDINGS' | translate }}
                                                                         </th>
                                                                         <!--<th *ngIf="tmplate.TemplateColumns.Range" style="padding: 0px 5px;text-align: center;">Ref. Range</th>-->
                                                                     </tr>
@@ -565,7 +565,7 @@
                                                                                            [(ngModel)]="tst.Print"
                                                                                            namie="showHideInPrint"
                                                                                            (change)="ShowHidePrintForTestsWithComp(tmplate, tst)"
-                                                                                           title="unchecked test will not be printed" />
+                                                                                           [title]="'LABS.UNCHECKED_TEST_WILL_NOT_BE_PRINTED' | translate" />
                                                                                     <span></span><b>{{tst.ReportingName}}</b>
                                                                                 </label>
                                                                             </td>
@@ -573,7 +573,7 @@
                                                                         <tr class="row-brdr">
                                                                             <td colspan="3" style="padding: 0px 7px;">
                                                                                 <!--below is temporary solution until we get proper sample from server side: sud:5Sept'18-->
-                                                                                Specimen:
+                                                                                {{ 'LABS.SPECIMEN_1' | translate }}
                                                                                 <input type="text" [(ngModel)]="tst.Specimen"
                                                                                        (focusout)="UpdateSpecimen(tst)" class="no-print" />
                                                                                 <span class="hidden">{{tst.Specimen}}</span>
@@ -589,7 +589,7 @@
                                                                             </tr>
                                                                             <tr class="row-brdr">
                                                                                 <td style="padding: 0px 7px;">
-                                                                                    <b>Result</b>
+                                                                                    <b>{{ 'LABS.RESULT' | translate }}</b>
                                                                                 </td>
                                                                                 <td class="cs-result" colspan="2">
                                                                                     <b>{{culRepFormatted.IsolatedOrganism}}
@@ -610,7 +610,7 @@
                                                                             <tr *ngIf="culRepFormatted.ColonyCount.length > 0"
                                                                                 class="row-brdr not-bdr-cltr">
                                                                                 <td colspan="3" style="padding: 0px 7px;">
-                                                                                    Colony Count:
+                                                                                    {{ 'LABS.COLONY_COUNT' | translate }}
                                                                                     <span>{{culRepFormatted.ColonyCount}}</span>
                                                                                 </td>
                                                                             </tr>
@@ -622,15 +622,15 @@
                                               padding: 0px 7px;
                                               text-align: center;
                                             " colspan="3">
-                                                                                        <b>Antibiotics Result</b>
+                                                                                        <b>{{ 'LABS.ANTIBIOTICS_RESULT' | translate }}</b>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr class="sensitiv-rst-hd">
-                                                                                    <td><b>Sensitive</b></td>
+                                                                                    <td><b>{{ 'LABS.SENSITIVE' | translate }}</b></td>
                                                                                     <td *ngIf="showIntermediateInCultureRpt">
-                                                                                        <b>Intermediate</b>
+                                                                                        <b>{{ 'LABS.INTERMEDIATE' | translate }}</b>
                                                                                     </td>
-                                                                                    <td><b>Resistant</b></td>
+                                                                                    <td><b>{{ 'LABS.RESISTANT' | translate }}</b></td>
                                                                                 </tr>
                                                                                 <tr class="sensitiv-rst-data" style="
                                             page-break-inside: avoid;
@@ -668,13 +668,13 @@
                                                                                 <input *ngIf="!hidePrintButton" class="dontShowInPrint outer-select"
                                                                                        type="checkbox" [(ngModel)]="tst.Print" name="showHideInPrint"
                                                                                        (change)="ShowHidePrintForTestsWithComp(tmplate, tst)"
-                                                                                       title="unchecked test will not be printed" />
+                                                                                       [title]="'LABS.UNCHECKED_TEST_WILL_NOT_BE_PRINTED' | translate" />
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td colspan="3">
                                                                                 <!--below is temporary solution until we get proper sample from server side: sud:5Sept'18-->
-                                                                                Specimen:
+                                                                                {{ 'LABS.SPECIMEN_1' | translate }}
                                                                                 <input type="text" [(ngModel)]="tst.Specimen"
                                                                                        (focusout)="UpdateSpecimen(tst)" class="no-print" />
                                                                                 <span class="hidden">
@@ -684,7 +684,7 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td *ngIf="tmplate.TemplateColumns.Name">
-                                                                                <b> Result </b>
+                                                                                <b> {{ 'LABS.RESULT' | translate }} </b>
                                                                             </td>
                                                                             <td class="text-center" colspan="2">
                                                                                 <b> {{tst.NegativeResultText}} </b>
@@ -704,11 +704,11 @@
                                     <tr>
                                         <td colspan="2" style="padding: 0;">
                                             <div *ngIf="showSignatoriesEdit">
-                                                <p class="dontShowInPrint"><b>Comments: </b></p>
+                                                <p class="dontShowInPrint"><b>{{ 'LABS.COMMENTS' | translate }} </b></p>
                                                 <textarea [(ngModel)]="templateReport.Comments" rows="4"></textarea>
                                             </div>
                                             <div *ngIf="!showSignatoriesEdit && templateReport.Comments" style="width: 95%;">
-                                                <p style="font-weight: bold; margin: 0;">Comments:</p>
+                                                <p style="font-weight: bold; margin: 0;">{{ 'LABS.COMMENTS' | translate }}</p>
                                                 <p style="white-space: pre-line; margin: 0;" [innerHTML]="templateReport.Comments"></p>
                                             </div>
                                         </td>
@@ -771,7 +771,7 @@
                             </label>
                         </div>
                         <div *ngIf="showPrintInfo" class="report-print-info">
-                            Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
+                            {{ 'LABS.PRINTED_BY' | translate }}: {{CreatedByUser.FullName}} on {{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
                         </div>
                     </div>
                 </div>
@@ -792,31 +792,31 @@
             <div class="margin-20-tp">
                 <div class="text-center" *ngIf="showSignatoriesEdit">
                     <button class="btn green btn-success margin-7-hr" (click)="SubmitLabReport()" id="btnUpdateSignatories">
-                        Update Signatories {{ templateReport.ReportId ? '' : 'and Print'}}
+                        {{ 'COMMON.UPDATE' | translate }} Signatories {{ templateReport.ReportId ? '' : 'and Print'}}
                         <i class="fa fa-print"></i>
                     </button>
                 </div>
                 <div class="text-center" *ngIf="!showSignatoriesEdit && templateReport.ReportId">
                     <button *ngIf="verificationRequired" [disabled]="loading" class="btn btn-primary margin-7-hr" id="btnVerify" (click)="Verify()"
                             [rbac-permission]="{'name':'lab-verifier','actionOnInvalid':'remove'}">
-                        Verify <i class="fa fa-check"></i>
+                        {{ 'LABS.VERIFY' | translate }} <i class="fa fa-check"></i>
                     </button>
                     <button *ngIf="IsTeleMedicineEnabled && showUplaodToTeleMedicine"
                             [ngClass]="(templateReport.IsFileUploadedToTeleMedicine || IsFileUploaded)? 'btn btn-danger margin-7-hr':'btn btn-success margin-7-hr'"
                             id="btnUplaod" (click)="loading = true; callBackUpload()"
                             [disabled]="loading">
-                        Upload To Patient Portal <i class="fa fa-upload"></i>
+                        {{ 'LABS.UPLOAD_TO_PATIENT_PORTAL' | translate }} <i class="fa fa-upload"></i>
                     </button>
                     <button [disabled]="loading" *ngIf="templateReport.ValidToPrint && !verificationRequired" id="btnPrint"
                             class="btn btn-primary margin-7-hr" (click)="loading=true;printLabReport()">
-                        Print <i class="fa fa-print"></i>
+                        {{ 'COMMON.PRINT' | translate }} <i class="fa fa-print"></i>
                     </button>
                     <button [disabled]="loading" *ngIf="templateReport.ReportId && verificationRequired" id="btnPrintPreliminaryReport"
                             class="btn btn-primary margin-7-hr" (click)="loading=true;printLabReport('preliminary')">
-                        Print Preliminary Report <i class="fa fa-print"></i>
+                        {{ 'LABS.PRINT_PRELIMINARY_REPORT' | translate }} <i class="fa fa-print"></i>
                     </button>
                     <button [disabled]="loading" class="btn btn-cancel margin-7-hr" (click)="EditSignatories()">
-                        Edit Signatories <i class="fa fa-edit"></i>
+                        {{ 'LABS.EDIT_SIGNATORIES' | translate }} <i class="fa fa-edit"></i>
                     </button>
                 </div>
             </div>
@@ -825,7 +825,7 @@
             <div class="margin-20-tp text-center">
                 <button [disabled]="loading" *ngIf="templateReport.ValidToPrint && !verificationRequired" class="btn btn-primary margin-7-hr"
                         (click)="loading=true;printLabReport()">
-                    Print <i class="fa fa-print"></i>
+                    {{ 'COMMON.PRINT' | translate }} <i class="fa fa-print"></i>
                 </button>
             </div>
         </div>
@@ -864,13 +864,13 @@
                 <div class="modelbox-div">
                     <div class="modelbox-header">
                         <h4 class="margin-0-vr">
-                            <strong>Change Prescriber Doctor</strong>
+                            <strong>{{ 'LABS.CHANGE_PRESCRIBER_DOCTOR' | translate }}</strong>
                         </h4>
                     </div>
                     <div class="modelbox-body">
                         <div class="row margin-15-vr">
                             <div class="col-md-3">
-                                <label class="ref-label" for="refDoctor"><strong>Select Prescriber</strong></label>
+                                <label class="ref-label" for="refDoctor"><strong>{{ 'LABS.SELECT_PRESCRIBER' | translate }}</strong></label>
                             </div>
                             <div class="col-md-8">
                                 <!--<input class="form-control" danphe-auto-complete
@@ -895,10 +895,10 @@
                     <div class="modelbox-footer">
                         <div class="all-buttons text-right">
                             <button type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="AssignSelectedDoctor()">
-                                Change
+                                {{ 'LABS.CHANGE_1' | translate }}
                             </button>
                             <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="closePopUpBox()">
-                                Cancel
+                                {{ 'COMMON.CANCEL' | translate }}
                             </button>
                         </div>
                     </div>
@@ -914,11 +914,11 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="modelbox-div">
                     <div class="modelbox-header">
-                        <h4 class="margin-0-vr"><strong>Change Run Number</strong></h4>
+                        <h4 class="margin-0-vr"><strong>{{ 'LABS.CHANGE_RUN_NUMBER' | translate }}</strong></h4>
                     </div>
                     <div class="modelbox-body">
                         <div class="row">
-                            <div class="col-md-5">Sample Collection Date</div>
+                            <div class="col-md-5">{{ 'LABS.SAMPLE_COLLECTION_DATE_1' | translate }}</div>
                             <div class="col-md-7">
                                 <danphe-date-picker [(ngModel)]="sampleCode.SampleCreatedOn" ngDefaultControl [CalendarTypes]="'np'"
                                                     (ngModelChange)="SampleDateChanged()"></danphe-date-picker>
@@ -926,7 +926,7 @@
                         </div>
                         <div class="row margin-15-tp">
                             <div class="col-md-5 text-capitalize">
-                                {{RunNumberType}} ({{visitType}}) Run Number
+                                {{RunNumberType}} ({{visitType}}) {{ 'LABS.RUN_NUMBER' | translate }}
                             </div>
                             <div class="col-md-7">
                                 <input [(ngModel)]="sampleCode.RunNumber" style="
@@ -951,10 +951,10 @@
                     <div class="modelbox-footer">
                         <div class="all-buttons text-right">
                             <button type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="CheckIfSampleCodeExist()">
-                                Update
+                                {{ 'COMMON.UPDATE' | translate }}
                             </button>
                             <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="showChangeSample=false;">
-                                Close
+                                {{ 'COMMON.CLOSE' | translate }}
                             </button>
                         </div>
                     </div>
@@ -972,30 +972,28 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="modelbox-div">
                     <div class="modelbox-header text-center">
-                        <h4 class="margin-0-vr text-danger"><strong>Alert !!!</strong></h4>
+                        <h4 class="margin-0-vr text-danger"><strong>{{ 'LABS.ALERT_1' | translate }}</strong></h4>
                     </div>
                     <div class="modelbox-body">
                         <div *ngIf="templateReport.Lookups.PatientId != sampleCodeExistingDetail.PatientId">
                             <div>
                                 <p *ngIf="visitType && visitType.toLowerCase()=='outpatient'">
-                                    <span style="text-transform: capitalize;">{{visitType}}</span> Run Number
-                                    <b>{{sampleCode.RunNumber}} / {{sampleCode.SampleCode}}</b> is already used for patient
+                                    <span style="text-transform: capitalize;">{{visitType}}</span> {{ 'LABS.RUN_NUMBER' | translate }}
+                                    <b>{{sampleCode.RunNumber}} / {{sampleCode.SampleCode}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_PATIENT_2' | translate }}
                                     <b>{{sampleCodeExistingDetail.PatientName}}</b>
                                 </p>
                                 <p *ngIf="visitType && visitType.toLowerCase()==='inpatient'">
-                                    <span style="text-transform: capitalize;">{{visitType}}</span> Run Number <b>{{sampleCode.RunNumber}}</b> is
-                                    already used for patient <b>{{sampleCodeExistingDetail.PatientName}}</b>
+                                    <span style="text-transform: capitalize;">{{visitType}}</span> {{ 'LABS.RUN_NUMBER' | translate }} <b>{{sampleCode.RunNumber}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_PATIENT_3' | translate }} <b>{{sampleCodeExistingDetail.PatientName}}</b>
                                 </p>
                                 <p *ngIf="visitType && visitType.toLowerCase()==='emergency'">
-                                    <span style="text-transform: capitalize;">{{visitType}}</span> Run Number <b>{{sampleCode.RunNumber}}</b> is
-                                    already used for patient <b>{{sampleCodeExistingDetail.PatientName}}</b>
+                                    <span style="text-transform: capitalize;">{{visitType}}</span> {{ 'LABS.RUN_NUMBER' | translate }} <b>{{sampleCode.RunNumber}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_PATIENT_3' | translate }} <b>{{sampleCodeExistingDetail.PatientName}}</b>
                                 </p>
-                                <p>Please select another run number.</p>
+                                <p>{{ 'LABS.PLEASE_SELECT_ANOTHER_RUN_NUMBER' | translate }}</p>
                             </div>
                             <div class="modelbox-footer">
                                 <div class="all-buttons text-right">
                                     <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="showConfirmationBox=false">
-                                        Close
+                                        {{ 'COMMON.CLOSE' | translate }}
                                     </button>
                                 </div>
                             </div>
@@ -1003,27 +1001,24 @@
                         <div *ngIf="templateReport.Lookups.PatientId == sampleCodeExistingDetail.PatientId">
                             <div>
                                 <p *ngIf="visitType && visitType.toLowerCase()=='outpatient'">
-                                    {{visitType}} Run Number
-                                    <b>{{sampleCode.RunNumber}} / {{sampleCode.SampleCode}}</b> is already used for another test for the same
-                                    patient<b>({{sampleCodeExistingDetail.PatientName}})</b>
+                                    {{visitType}} {{ 'LABS.RUN_NUMBER' | translate }}
+                                    <b>{{sampleCode.RunNumber}} / {{sampleCode.SampleCode}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI_3' | translate }}<b>({{sampleCodeExistingDetail.PatientName}})</b>
                                 </p>
                                 <p *ngIf="visitType && visitType.toLowerCase()=='inpatient'">
-                                    {{visitType}} Run Number <b>{{sampleCode.RunNumber}}</b> is already used for another test for the same
-                                    patient<b>({{sampleCodeExistingDetail.PatientName}})</b>
+                                    {{visitType}} {{ 'LABS.RUN_NUMBER' | translate }} <b>{{sampleCode.RunNumber}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI_3' | translate }}<b>({{sampleCodeExistingDetail.PatientName}})</b>
                                 </p>
                                 <p *ngIf="visitType && visitType.toLowerCase()==='emergency'">
-                                    <span style="text-transform: capitalize;">{{visitType}}</span> Run Number <b>{{sampleCode.RunNumber}}</b> is
-                                    already used for patient <b>{{sampleCodeExistingDetail.PatientName}}</b>
+                                    <span style="text-transform: capitalize;">{{visitType}}</span> {{ 'LABS.RUN_NUMBER' | translate }} <b>{{sampleCode.RunNumber}}</b> {{ 'LABS.IS_ALREADY_USED_FOR_PATIENT_3' | translate }} <b>{{sampleCodeExistingDetail.PatientName}}</b>
                                 </p>
-                                <p>Do you want to continue with the same run number?</p>
+                                <p>{{ 'LABS.DO_YOU_WANT_TO_CONTINUE_WITH_THE_SAME_RUN_NUMBER' | translate }}</p>
                             </div>
                             <div class="modelbox-footer">
                                 <div class="all-buttons text-right">
                                     <button type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="UpdateSampleCode()">
-                                        Continue
+                                        {{ 'LABS.CONTINUE' | translate }}
                                     </button>
                                     <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="showConfirmationBox=false">
-                                        Cancel
+                                        {{ 'COMMON.CANCEL' | translate }}
                                     </button>
                                 </div>
                             </div>

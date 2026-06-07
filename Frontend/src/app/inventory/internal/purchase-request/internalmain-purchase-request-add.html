@@ -3,7 +3,7 @@
     <div class="panel-heading good-panel-heading">
       <div class="row">
         <div class="col-md-6">
-          <b>Purchase Request</b>
+          <b>{{ 'INVENTORY.PURCHASE_REQUEST' | translate }}</b>
         </div>
       </div>
     </div>
@@ -12,7 +12,7 @@
         <!-- <div class="col-md-4">
           <div class="row">
             <label for="PRCategory" class="control-label col-md-4" style="margin-top: 5px;">
-              PR Category<sup style="color: red">*</sup><b>:</b>
+              {{ 'INVENTORY.PR_CATEGORY' | translate }}<sup style="color: red">*</sup><b>:</b>
             </label>
             <div class="col-md-6">
               <select name="PRCategory" [(ngModel)]="currentPurchaseRequest.PRCategory" (change)="OnPRCategoryChanged()">
@@ -24,10 +24,10 @@
                 <span style="cursor: pointer;">
                   <i class="fa fa-info icon-info"></i>
                 </span>
-                <p class="tooltiptext ttptextdown no-print">Items will be filtered based on this category. Only
-                  '{{currentPurchaseRequest.PRCategory}}' items are searchable now. </p>
+                <p class="tooltiptext ttptextdown no-print">{{ 'INVENTORY.ITEMS' | translate }} will be filtered based on this {{ 'INVENTORY.CATEGORY' | translate }}. {{ 'INVENTORY.ONLY' | translate }}
+                  '{{currentPurchaseRequest.PRCategory}}' {{ 'INVENTORY.ITEMS' | translate }} are searchable now. </p>
               </div>
-               <div class="error-message" *ngIf="goodsReceipt.IsDirty('GRCategory')" [hidden]="goodsReceipt.IsValidCheck('GRCategory','required')"> GR Category is required. </div>
+               <div class="error-message" *ngIf="goodsReceipt.IsDirty('GRCategory')" [hidden]="goodsReceipt.IsValidCheck('GRCategory','required')"> GR {{ 'INVENTORY.CATEGORY_IS_REQUIRED' | translate }}. </div>
             </div>
           </div>
         </div> -->
@@ -37,8 +37,8 @@
               <label class="control-label col-md-3">Vendor<b>:</b></label>
               <div class="col-md-8">
                 <div class="div-relative">
-                  <input danphe-auto-complete class="form-control" [(ngModel)]="selectedVendor" [source]="VendorList" [list-formatter]="VendorListFormatter" placeholder="Vendor Name" display-property-name="VendorName" value-property-name=null max-num-list="10" [ngModelOptions]="{standalone:true}" (focusout)="SelectVendorFromSearchBox()" onclick="this.select();" />
-                  <a *ngIf="!selectedVendor" class="fa fa-question" (click)="AddVendorPopUp()" title="Unable to find Vendor? Click to Add Vendor."></a>
+                  <input danphe-auto-complete class="form-control" [(ngModel)]="selectedVendor" [source]="VendorList" [list-formatter]="VendorListFormatter" [placeholder]="'INVENTORY.VENDOR_NAME' | translate" display-property-name="VendorName" value-property-name=null max-num-list="10" [ngModelOptions]="{standalone:true}" (focusout)="SelectVendorFromSearchBox()" onclick="this.select();" />
+                  <a *ngIf="!selectedVendor" class="fa fa-question" (click)="AddVendorPopUp()" [title]="'INVENTORY.UNABLE_TO_FIND_VENDOR_CLICK_TO_ADD_VENDOR' | translate"></a>
                 </div>
               </div>
             </form>
@@ -47,7 +47,7 @@
         <div class="col-md-4">
           <div class="row">
             <form [formGroup]="currentPurchaseRequest.PurchaseRequestValidator" class="form-inline hm-form">
-              <label class="control-label col-md-4">Request Date<b>:</b></label>
+              <label class="control-label col-md-4">{{ 'INVENTORY.REQUEST_DATE' | translate }}<b>:</b></label>
               <div class="col-md-8 col-sm-6">
                 <danphe-date-picker [(ngModel)]="currentPurchaseRequest.RequestDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
                 </danphe-date-picker>
@@ -60,19 +60,19 @@
             <thead>
               <tr>
                 <th></th>
-                <th><b>PR Category</b></th>
-                <!-- <th><b>MSS NO.</b></th> -->
-                <th><b>Item Name</b></th>
-                <th><b>Code</b></th>
-                <th><b>UOM</b></th>
+                <th><b>{{ 'INVENTORY.PR_CATEGORY' | translate }}</b></th>
+                <!-- <th><b>{{ 'INVENTORY.MSS_NO' | translate }}.</b></th> -->
+                <th><b>{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}</b></th>
+                <th><b>{{ 'GRID_HEADERS.CODE' | translate }}</b></th>
+                <th><b>{{ 'INVENTORY.UOM' | translate }}</b></th>
                 <th><b>Quantity</b></th>
-                <th><b>Available Qty</b></th>
-                <th><b>Quantity Verified On</b></th>
-                <th><b></b>Supply required before</th>
-                <!-- <th><b>Approved Quantity by Top Management</b></th>
-                <th><b>Po No.& Date</b></th>
-                <th><b>Supplier Invoice No. & Date</b></th> -->
-                <th><b>Item Remark</b></th>
+                <th><b>{{ 'INVENTORY.AVAILABLE_QTY' | translate }}</b></th>
+                <th><b>{{ 'INVENTORY.QUANTITY_VERIFIED_ON' | translate }}</b></th>
+                <th><b></b>{{ 'INVENTORY.SUPPLY_REQUIRED_BEFORE' | translate }}</th>
+                <!-- <th><b>{{ 'INVENTORY.APPROVED_QUANTITY_BY_TOP_MANAGEMENT' | translate }}</b></th>
+                <th><b>{{ 'INVENTORY.PO_NO_DATE' | translate }}</b></th>
+                <th><b>{{ 'INVENTORY.SUPPLIER_INVOICE_NO_DATE' | translate }}</b></th> -->
+                <th><b>{{ 'INVENTORY.ITEM_REMARK' | translate }}</b></th>
                 <th></th>
               </tr>
             </thead>
@@ -90,10 +90,10 @@
                     <form [formGroup]="row.PurchaseRequestItemValidator">
                       <input id="itemName{{i}}" danphe-auto-complete class="form-control " [(ngModel)]="row.SelectedItem" [source]="row.filteredItemList" [list-formatter]="ItemListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null (focusout)="SelectItemFromSearchBox(row.SelectedItem,i)" max-num-list="20" formControlName="ItemId" onclick="this.select();" [min-chars]="1" (keyup.enter)="GoToNextInput('qty'+i,row.SelectedItem,i)" no-match-found-text="click ? to add new item" match-formatted="true" />
 
-                      <a *ngIf="!row.SelectedItem || !row.SelectedItem.ItemId" class="fa fa-question" (click)="AddItemPopUp(i)" title="Unable to find item ? Click to add to Master"></a>
+                      <a *ngIf="!row.SelectedItem || !row.SelectedItem.ItemId" class="fa fa-question" (click)="AddItemPopUp(i)" [title]="'INVENTORY.UNABLE_TO_FIND_ITEM_CLICK_TO_ADD_TO_MASTER' | translate"></a>
                     </form>
                     <div style="color:red" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required') || row.IsValidCheck('ItemId','notRegisteredItem')">
-                      Item is required</div>
+                      {{ 'INVENTORY.ITEM_IS_REQUIRED' | translate }}</div>
                   </div>
                 </td>
                 <td>
@@ -106,7 +106,7 @@
                   <form [formGroup]="row.PurchaseRequestItemValidator">
                     <input id="qty{{i}}" [(ngModel)]="row.RequestedQuantity" class="form-control" min="0" [disabled]="disableTextBox" (wheel)="coreService.PreventNumberChangeOnScroll($event)" formControlName="Quantity" (keyup.enter)="AddRowRequest()" name="quantity" type="number">
                     <div style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','required') && row.IsValidCheck('Quantity','invalidValue')">
-                      Invalid Quantity
+                      {{ 'INVENTORY.INVALID_QUANTITY' | translate }}
                     </div>
                   </form>
                 </td>
@@ -121,7 +121,7 @@
                 <td>
                   <div class="col-md-6">
                     <select [(ngModel)]="row.SupplyRequiredBefore" [ngModelOptions]="{standalone:true}">
-                      <option [ngValue]="null" disabled>Choose...</option>
+                      <option [ngValue]="null" disabled>{{ 'INVENTORY.CHOOSE' | translate }}.</option>
                       <option value="1 Month">1 Month</option>
                       <option value="2 Month">2 Month</option>
                       <option value="3 Month">3 Month</option>
@@ -153,7 +153,7 @@
           </table>
         </div>
         <div class="col-md-12" style="margin:10px 0">
-          <label for="Remarks" class="col-md-2">Remarks <span class="right">:</span></label>
+          <label for="Remarks" class="col-md-2">{{ 'COMMON.REMARKS' | translate }} <span class="right">:</span></label>
           <textarea id="remarks" class="col-md-6" [(ngModel)]="currentPurchaseRequest.Remarks" name="Remarks" rows="3" cols="50" (keyup.enter)="setFocusById('RequestPORequisition')"></textarea>
         </div>
       </div>
@@ -161,9 +161,9 @@
 
 
     <div class="panel-footer text-center">
-      <input *ngIf="isEdit" id="UpdatePORequisition" type="button" class="btn green btn-success margin-7-hr" (click)="UpdatePORequisition()" value="Update" [disabled]="loading" />
-      <input *ngIf="!isEdit" id="RequestPORequisition" type="button" class="btn green btn-success margin-7-hr" (click)="AddPORequisition()" value="Request" [disabled]="loading" />
-      <input type="button" class="btn btn-danger" (click)="DiscardChanges()" value="Discard">
+      <input *ngIf="isEdit" id="UpdatePORequisition" type="button" class="btn green btn-success margin-7-hr" (click)="UpdatePORequisition()" [value]="'COMMON.UPDATE' | translate" [disabled]="loading" />
+      <input *ngIf="!isEdit" id="RequestPORequisition" type="button" class="btn green btn-success margin-7-hr" (click)="AddPORequisition()" [value]="'INVENTORY.REQUEST' | translate" [disabled]="loading" />
+      <input type="button" class="btn btn-danger" (click)="DiscardChanges()" [value]="'COMMON.DISCARD' | translate">
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@
     <span class="caption-subject font-blue bold uppercase">Manage Beds</span>
 </div>
 <br />-->
-<a feature="button" class="btn blue bordered " (click)="AddBed()"><i class="fa fa-plus"></i>Add Bed</a>
+<a feature="button" class="btn blue bordered " (click)="AddBed()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_BED' | translate }}</a>
 
 <bed-add [showAddPage]="showAddPage"
          [selectedItem]="selectedItem"

@@ -112,8 +112,7 @@
             <div class="caption lb-caption col-md-3">
                 <h3>
                     <i class="fa fa-shopping-cart"></i>
-                    <span class="caption-subject" *ngIf="!editPO">Add Purchase Order</span><span *ngIf="editPO" class="caption-subject">Edit
-                        Purchase Order</span>
+                    <span class="caption-subject" *ngIf="!editPO">{{ 'PHARMACY.ADD_PURCHASE_ORDER' | translate }}</span><span *ngIf="editPO" class="caption-subject">{{ 'PHARMACY.EDIT_PURCHASE_ORDER' | translate }}</span>
                 </h3>
             </div>
         </div>
@@ -121,18 +120,18 @@
             <div class="row" style="margin-top:20px">
                 <div class="col-md-4">
                     <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 5px;" class="row">
-                        <label class="control-label col-md-5 col-sm-5">Supplier:<sup style="color:red">*</sup></label>
+                        <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.SUPPLIER' | translate }}:<sup style="color:red">*</sup></label>
                         <div class="col-md-7 col-sm-7">
-                            <input danphe-auto-complete class="form-control left" id="SupplierName" formControlName="SupplierId" [(ngModel)]="SelectedSupplier" [source]="supplierList" [list-formatter]="SupplierListFormatter" placeholder="Select Supplier" display-property-name="SupplierName" value-property-name=null min-chars="1" max-num-list="20" onClick="this.select();" (keyup.enter)="SetFocusById('PODate')" match-formatted="true" [grid-sort]="'SupplierName'" (valueChanged)="OnSupplierChanged()" />
+                            <input danphe-auto-complete class="form-control left" id="SupplierName" formControlName="SupplierId" [(ngModel)]="SelectedSupplier" [source]="supplierList" [list-formatter]="SupplierListFormatter" [placeholder]="'PHARMACY.SELECT_SUPPLIER' | translate" display-property-name="SupplierName" value-property-name=null min-chars="1" max-num-list="20" onClick="this.select();" (keyup.enter)="SetFocusById('PODate')" match-formatted="true" [grid-sort]="'SupplierName'" (valueChanged)="OnSupplierChanged()" />
                             <span style="color:red" *ngIf="currentPO.IsDirty('SupplierId')" [hidden]="currentPO.IsValidCheck('SupplierId','required')">
-                                Supplier is required
+                                {{ 'PHARMACY.SUPPLIER_IS_REQUIRED' | translate }}
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 5px;" class="row">
-                        <label class="control-label col-md-5 col-sm-5 left">PO Date:<sup style="color:red">*</sup></label>
+                        <label class="control-label col-md-5 col-sm-5 left">{{ 'PHARMACY.PO_DATE' | translate }}:<sup style="color:red">*</sup></label>
                         <div class="col-md-7 col-sm-7 ">
                             <input type="date" class="from-control" [(ngModel)]="currentPO.PODate" [ngModelOptions]="{standalone:true}" id="PODate" (ngModelChange)="OnPODateChange($event)" (keyup.enter)="SetFocusById('deliveryDays')">
                         </div>
@@ -140,14 +139,14 @@
                 </div>
                 <div class="col-md-4">
                     <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 5px;" class="row">
-                        <label class="control-label col-md-5 col-sm-5">Delivery Days:</label>
+                        <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.DELIVERY_DAYS' | translate }}:</label>
                         <div class="col-md-7 col-sm-7 ">
                             <input type="number" [(ngModel)]="currentPO.DeliveryDays" (focusout)="OnDeliveryDaysChange()" formControlName="DeliveryDays" class="form-control" (keyup.enter)="coreService.FocusInputById('DeliveryDate')" id="deliveryDays">
                             <span style="color:red" *ngIf="currentPO.IsDirty('DeliveryDays')" [hidden]="currentPO.IsValidCheck('DeliveryDays','required')">
-                                Delivery Days is required
+                                {{ 'PHARMACY.DELIVERY_DAYS_IS_REQUIRED' | translate }}
                             </span>
                             <span style="color:red" *ngIf="currentPO.IsDirty('DeliveryDays')" [hidden]="currentPO.IsValidCheck('DeliveryDays','invalidNumber')">
-                                Invalid number
+                                {{ 'PHARMACY.INVALID_NUMBER' | translate }}
                             </span>
                         </div>
 
@@ -155,7 +154,7 @@
                 </div>
                 <div class="col-md-4">
                     <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 5px;" class="row">
-                        <label class="control-label col-md-5 col-sm-5">Delivery Date:</label>
+                        <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.DELIVERY_DATE' | translate }}:</label>
                         <div class="col-md-7 col-sm-7">
                             <input type="date" class="from-control" [(ngModel)]="currentPO.DeliveryDate" [ngModelOptions]="{standalone:true}" id="DeliveryDate" (ngModelChange)="OnDeliveryDateChange($event)" (keyup.enter)="coreService.FocusInputById('referenceNo')">
                         </div>
@@ -163,7 +162,7 @@
                 </div>
                 <div class="col-md-4">
                     <div style="display: flex; justify-content: flex-start; margin-bottom: 5px" class="row">
-                        <label class="control-label col-md-5 col-sm-5">Reference No.:</label>
+                        <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.REFERENCE_NO' | translate }}:</label>
                         <div class="col-md-7 col-sm-7">
                             <input type="number" [(ngModel)]="currentPO.ReferenceNo" [ngModelOptions]="{standalone:true}" (keyup.enter)="SetFocusById('InvoicingAddress')" style="width: 100%;" id="referenceNo">
                         </div>
@@ -171,7 +170,7 @@
                 </div>
                 <div class="col-md-4">
                     <div style="display: flex; justify-content: flex-start; margin-bottom: 5px" class="row">
-                        <label class="control-label col-md-5 col-sm-5">Invoicing Address:</label>
+                        <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.INVOICING_ADDRESS' | translate }}:</label>
                         <div class="col-md-7 col-sm-7">
                             <textarea [(ngModel)]="currentPO.InvoicingAddress" [ngModelOptions]="{standalone:true}" id="InvoicingAddress" (keyup.enter)="SetFocusById('DeliveryAddress')" style="width: 100%;">
                             </textarea>
@@ -180,7 +179,7 @@
                 </div>
                 <div class="col-md-4">
                     <div style="display: flex; justify-content: flex-start; margin-bottom: 5px" class="row">
-                        <label class="control-label col-md-5 col-sm-5">Delivery Address:</label>
+                        <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.DELIVERY_ADDRESS' | translate }}:</label>
                         <div class="col-md-7 col-sm-7">
                             <textarea [(ngModel)]="currentPO.DeliveryAddress" [ngModelOptions]="{standalone:true}" id="DeliveryAddress" (keyup.enter)="SetFocusById('ContactDetails')" style="width: 100%;">
                             </textarea>
@@ -189,7 +188,7 @@
                 </div>
                 <div class="col-md-4">
                     <div style="display: flex; justify-content: flex-start; margin-bottom: 5px" class="row">
-                        <label class="control-label col-md-5 col-sm-5">Contact:</label>
+                        <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.CONTACT' | translate }}:</label>
                         <div class="col-md-7 col-sm-7">
                             <textarea [(ngModel)]="currentPO.Contact" [ngModelOptions]="{standalone:true}" id="ContactDetails" (keyup.enter)="SetFocusById('ItemName')" style="width: 100%;">
                                     </textarea>
@@ -207,25 +206,25 @@
             <table class="table table-striped table-hover inv_table table-bordered table-form" style="background-color:initial;margin-top:10px;">
                 <thead>
                     <tr>
-                        <th><b>Generic Name</b></th>
-                        <th><b>Item Name</b></th>
-                        <th><b>Quantity</b></th>
-                        <th><b>Free Qty</b></th>
-                        <th><b>Total Qty</b></th>
-                        <th><b>Standard Rate</b></th>
-                        <th><b>SubTotal</b></th>
-                        <th><b>CCCharge %</b></th>
-                        <th><b>Dis %</b></th>
-                        <th><b>VAT %</b></th>
-                        <th><b>TotalAmt </b></th>
-                        <th><b>Remarks </b></th>
+                        <th><b>{{ 'PHARMACY.GENERIC_NAME' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.ITEM_NAME' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.QUANTITY' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.FREE_QTY' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.TOTAL_QTY' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.STANDARD_RATE' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.SUBTOTAL' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.CCCHARGE' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.DIS' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.VAT' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.TOTALAMT' | translate }} </b></th>
+                        <th><b>{{ 'COMMON.REMARKS' | translate }} </b></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
                             <div>
-                                <input danphe-auto-complete id="GenericName" class="form-control" [(ngModel)]="SelectedGeneric" [source]="FilteredGenericList" [list-formatter]="GenericListFormatter" placeholder="GenericName" display-property-name="GenericName" value-property-name=null min-chars="1" max-num-list="20" (valueChanged)="OnGenericNameChange()" onClick="this.select();" (keyup.enter)="coreService.FocusInputById('ItemName')" match-formatted="true" [grid-sort]="'GenericName'" />
+                                <input danphe-auto-complete id="GenericName" class="form-control" [(ngModel)]="SelectedGeneric" [source]="FilteredGenericList" [list-formatter]="GenericListFormatter" [placeholder]="'PHARMACY.GENERICNAME' | translate" display-property-name="GenericName" value-property-name=null min-chars="1" max-num-list="20" (valueChanged)="OnGenericNameChange()" onClick="this.select();" (keyup.enter)="coreService.FocusInputById('ItemName')" match-formatted="true" [grid-sort]="'GenericName'" />
                             </div>
                         </td>
                         <td>
@@ -255,14 +254,14 @@
                                 <span class="fa fa-info" style="margin-left:5px;padding: 3px 6px 3px 6px;background-color: #c8c8d2;border-radius: 9px;">
                                 </span>
                                 <p class="tooltiptext tooltip-list-type ttptextdown no-print" *ngIf="ItemRateHistory.length;else noPriceHistoryMessage">
-                                    <span class="tooltip-header">Rate History</span>
+                                    <span class="tooltip-header">{{ 'PHARMACY.RATE_HISTORY' | translate }}</span>
                                     <span *ngFor="let itemRate of ItemRateHistory">
-                                        Rs.{{itemRate.GRItemPrice}}-{{itemRate.SupplierName}}-{{itemRate.GoodReceiptDate | date: 'yyyy-M-d'}}
+                                        {{ 'PHARMACY.RS' | translate }}{{itemRate.GRItemPrice}}-{{itemRate.SupplierName}}-{{itemRate.GoodReceiptDate | date: 'yyyy-M-d'}}
                                     </span>
                                 </p>
                                 <ng-template #noPriceHistoryMessage>
                                     <p class="tooltiptext ttptextdown no-print">
-                                        No price available.
+                                        {{ 'PHARMACY.NO_PRICE_AVAILABLE' | translate }}
                                     </p>
                                 </ng-template>
                             </a>
@@ -300,15 +299,15 @@
             </table>
             <div *ngIf="purchaseOrderItem.PurchaseOrderItemValidator.invalid && purchaseOrderItem.PurchaseOrderItemValidator.dirty">
                 <div class="error-message alert alert-danger error-message-alert">
-                    <span style="color:red" *ngIf="!purchaseOrderItem.IsValidCheck('ItemId','required') ||!purchaseOrderItem.IsValidCheck('ItemId','invalidNumber')">Invalid Item.</span>
+                    <span style="color:red" *ngIf="!purchaseOrderItem.IsValidCheck('ItemId','required') ||!purchaseOrderItem.IsValidCheck('ItemId','invalidNumber')">{{ 'PHARMACY.INVALID_ITEM' | translate }}</span>
 
-                    <span style="color:red" *ngIf="!purchaseOrderItem.IsValidCheck('Quantity','required')"> Qty(required).</span>
+                    <span style="color:red" *ngIf="!purchaseOrderItem.IsValidCheck('Quantity','required')"> {{ 'PHARMACY.QTYREQUIRED' | translate }}</span>
                     <span style="color:red" *ngIf="!purchaseOrderItem.IsValidCheck('Quantity','wrongDecimalValue')"> Qty(required whole
                         number)</span>
                     <span style="color:red" *ngIf="!purchaseOrderItem.IsValidCheck('Quantity','invalidNumber')"> Qty(required positive
                         number)</span>
 
-                    <span style="color:red" *ngIf="!purchaseOrderItem.IsValidCheck('FreeQuantity','required')"> FreeQty(required).</span>
+                    <span style="color:red" *ngIf="!purchaseOrderItem.IsValidCheck('FreeQuantity','required')"> {{ 'PHARMACY.FREEQTYREQUIRED' | translate }}</span>
                     <span style="color:red" *ngIf="!purchaseOrderItem.IsValidCheck('FreeQuantity','negativeNumber')"> FreeQty(required positive
                         number)</span>
 
@@ -318,13 +317,13 @@
                         number)</span>
 
                     <span class="color-red font-sm" *ngIf="!purchaseOrderItem.IsValidCheck('CCChargePercentage','required') || !purchaseOrderItem.IsValidCheck('CCChargePercentage','min') || !purchaseOrderItem.IsValidCheck('CCChargePercentage','max')">
-                        CC Charge% Range: 0-100%</span>
+                        {{ 'PHARMACY.CC_CHARGE_RANGE_0100' | translate }}</span>
 
                     <span class="color-red font-sm" *ngIf="!purchaseOrderItem.IsValidCheck('DiscountPercentage','required') || !purchaseOrderItem.IsValidCheck('DiscountPercentage','min') || !purchaseOrderItem.IsValidCheck('DiscountPercentage','max')">
-                        Discount% Range: 0-100%</span>
+                        {{ 'PHARMACY.DISCOUNT_RANGE_0100' | translate }}</span>
 
                     <span class="color-red font-sm" *ngIf="!purchaseOrderItem.IsValidCheck('VATPercentage','required') || !purchaseOrderItem.IsValidCheck('VATPercentage','min') || !purchaseOrderItem.IsValidCheck('VATPercentage','max')">
-                        VAT% Range: 0-100%</span>
+                        {{ 'PHARMACY.VAT_RANGE_0100' | translate }}</span>
                 </div>
             </div>
         </div>
@@ -335,20 +334,20 @@
                         <th></th>
                         <th *ngIf="editPO"></th>
                         <th>#</th>
-                        <th><b>Generic Name</b></th>
-                        <th><b>Item Name</b></th>
-                        <th><b>Quantity</b></th>
-                        <th><b>Free Qty</b></th>
-                        <th><b>Total Qty</b></th>
-                        <th><b>Rate</b></th>
-                        <th><b>CCCharge %</b></th>
-                        <th><b>CCCharge Amt</b></th>
-                        <th><b>Dis %</b></th>
-                        <th><b>Dis Amt</b></th>
-                        <th><b>VAT %</b></th>
-                        <th><b>VAT Amt</b></th>
-                        <th><b>Total Amt </b></th>
-                        <th><b>Status </b></th>
+                        <th><b>{{ 'PHARMACY.GENERIC_NAME' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.ITEM_NAME' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.QUANTITY' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.FREE_QTY' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.TOTAL_QTY' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.RATE' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.CCCHARGE' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.CCCHARGE_AMT' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.DIS' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.DIS_AMT' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.VAT' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.VAT_AMT' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.TOTAL_AMT' | translate }} </b></th>
+                        <th><b>{{ 'COMMON.STATUS' | translate }} </b></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -360,7 +359,7 @@
                                 <i class="fa fa-times"></i></a>
                         </td>
                         <td *ngIf="editPO">
-                            <a [attr.disabled]="item.PurchaseOrderItemId> 0? null: true" class="btn btn-success" (click)="EditPOItem(i)" title="Click to edit this item">
+                            <a [attr.disabled]="item.PurchaseOrderItemId> 0? null: true" class="btn btn-success" (click)="EditPOItem(i)" [title]="'PHARMACY.CLICK_TO_EDIT_THIS_ITEM' | translate">
                                 <i class="fa fa-pencil"></i></a>
                         </td>
                         <td>{{i + 1}}</td>
@@ -387,15 +386,15 @@
             <div class="row">
                 <div class="col-md-6 col-lg-6">
                     <div class="row clearfix">
-                        <div class="col-md-6"><b>Select Terms & Conditions:</b></div>
+                        <div class="col-md-6"><b>{{ 'PHARMACY.SELECT_TERMS_CONDITIONS' | translate }}:</b></div>
                         <div class="col-md-6">
                             <div class="form-group div-relative">
                                 <select [(ngModel)]="currentPO.TermsConditions" class="form-control">
-                                    <option value="null">-- Select Terms --</option>
+                                    <option value="null">-- {{ 'PHARMACY.SELECT_TERMS' | translate }} --</option>
                                     <option *ngFor="let terms of termsList" title="{{ terms.Text }}" value="{{ terms.Text }}">
                                         {{ terms.ShortName }}</option>
                                 </select>
-                                <a class="fa fa-question" (click)="AddTermsPopUp()" title="Unable to find Terms? Click to add to Terms and Conditions">
+                                <a class="fa fa-question" (click)="AddTermsPopUp()" [title]="'PHARMACY.UNABLE_TO_FIND_TERMS_CLICK_TO' | translate">
                                 </a>
                             </div>
                         </div>
@@ -410,24 +409,23 @@
                             <div>
                                 <div class="custom-control  custom-checkbox verification-check">
                                     <input type="checkbox" class="custom-control-input" id="defaultUnchecked" [(ngModel)]="currentPO.IsVerificationEnabled" (ngModelChange)="ShowVerifiers()">
-                                    <label title="Check If Verification Needed" class="custom-control-label" for="defaultUnchecked">Need
-                                        Verification</label>
+                                    <label [title]="'PHARMACY.CHECK_IF_VERIFICATION_NEEDED' | translate" class="custom-control-label" for="defaultUnchecked">{{ 'PHARMACY.NEED_VERIFICATION' | translate }}</label>
                                 </div>
                                 <div class="verification-form-control">
                                     <div class="left t-wrap col-md-12" *ngFor="let verifier of currentPO.VerifierList; let i = index;let c= count;">
                                         <div class="row">
                                             <div class="col-md-5">
-                                                <button title="Delete this Verifier" class="btn btn-sm btn-danger" (click)="DeleteVerifier(i)" [disabled]="CheckIfDeleteVerifierAllowed()"><i class="glyphicon glyphicon-minus"></i>
+                                                <button [title]="'PHARMACY.DELETE_THIS_VERIFIER' | translate" class="btn btn-sm btn-danger" (click)="DeleteVerifier(i)" [disabled]="CheckIfDeleteVerifierAllowed()"><i class="glyphicon glyphicon-minus"></i>
                                                 </button>
                                                 <label class="verifier" for="inputIconEx{{i}}">
                                                     <i class="fa fa-user"></i>{{GetSignatoryName(i)}}
                                                 </label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input danphe-auto-complete class="form-control " autocomplete="off" [source]="VerifierList" [(ngModel)]="verifier" [list-formatter]="VerifierListFormatter" placeholder="Select Verifier" display-property-name="Name" max-num-list="10" (valueChanged)="AssignVerifier($event,i)" />
+                                                <input danphe-auto-complete class="form-control " autocomplete="off" [source]="VerifierList" [(ngModel)]="verifier" [list-formatter]="VerifierListFormatter" [placeholder]="'PHARMACY.SELECT_VERIFIER' | translate" display-property-name="Name" max-num-list="10" (valueChanged)="AssignVerifier($event,i)" />
                                             </div>
                                             <div class="col-md-1">
-                                                <button title="Add Verifier" class="btn btn-sm btn-primary" (click)="AddVerifier()" [disabled]="CheckIfAddVerifierAllowed()"><i class="glyphicon glyphicon-plus"></i></button>
+                                                <button [title]="'PHARMACY.ADD_VERIFIER' | translate" class="btn btn-sm btn-primary" (click)="AddVerifier()" [disabled]="CheckIfAddVerifierAllowed()"><i class="glyphicon glyphicon-plus"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -444,7 +442,7 @@
         <div class="mt20 t-wrap">
             <table class="inv_table">
                 <tr>
-                    <td class="text-right"><b>SubTotal:</b></td>
+                    <td class="text-right"><b>{{ 'PHARMACY.SUBTOTAL' | translate }}:</b></td>
                     <td>
                         <div class="form-group">
                             <input class="form-control" [(ngModel)]="currentPO.SubTotal" disabled name="subtotal" type="number">
@@ -452,7 +450,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right"><b>Discount %:</b></td>
+                    <td class="text-right"><b>{{ 'PHARMACY.DISCOUNT' | translate }}:</b></td>
                     <td>
                         <div class="form-group">
                             <input class="form-control" (focusout)="OnDiscountChange(currentPO.DiscountPercentage,0)" [(ngModel)]="currentPO.DiscountPercentage" id="main-discoutpercentage" name="discoutpercentage" type="number" (wheel)="coreService.PreventNumberChangeOnScroll($event)" onfocus="this.select()" (keyup.enter)="coreService.FocusInputById('main-remark')">
@@ -460,7 +458,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right"><b>Discount:</b></td>
+                    <td class="text-right"><b>{{ 'PHARMACY.DISCOUNT' | translate }}:</b></td>
                     <td>
                         <div class="form-group">
                             <input class="form-control" (focusout)="OnDiscountChange(0,currentPO.DiscountAmount)" [(ngModel)]="currentPO.DiscountAmount" name="main-discountamount" id="main-discountamount" type="number" (wheel)="coreService.PreventNumberChangeOnScroll($event)" onfocus="this.select()" (keyup.enter)="coreService.FocusInputById('main-remark')">
@@ -468,7 +466,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right"><b>Taxable Amount:</b></td>
+                    <td class="text-right"><b>{{ 'PHARMACY.TAXABLE_AMOUNT' | translate }}:</b></td>
                     <td>
                         <div class="form-group">
                             <input class="form-control" [(ngModel)]="currentPO.TaxableAmount" disabled name="subtotal" type="number">
@@ -476,7 +474,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right"><b>Non-Taxable Amount:</b></td>
+                    <td class="text-right"><b>{{ 'PHARMACY.NONTAXABLE_AMOUNT' | translate }}:</b></td>
                     <td>
                         <div class="form-group">
                             <input class="form-control" [(ngModel)]="currentPO.NonTaxableAmount" disabled name="subtotal" type="number">
@@ -484,7 +482,7 @@
                     </td>
                 </tr>
                 <tr class="form-group">
-                    <td class="text-right"><b>VAT Amount:</b></td>
+                    <td class="text-right"><b>{{ 'PHARMACY.VAT_AMOUNT' | translate }}:</b></td>
                     <td>
                         <div class="form-group">
                             <input [(ngModel)]="currentPO.VATAmount" disabled class="form-control" name="DiscountPercent" type="number">
@@ -492,7 +490,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-right"><b>CCCharge:</b></td>
+                    <td class="text-right"><b>{{ 'PHARMACY.CCCHARGE' | translate }}:</b></td>
                     <td>
                         <div class="form-group">
                             <input class="form-control" [(ngModel)]="currentPO.CCChargeAmount" disabled name="subtotal" type="number">
@@ -500,7 +498,7 @@
                     </td>
                 </tr>
                 <tr class="form-group">
-                    <td class="text-right"><b>Adjustment</b></td>
+                    <td class="text-right"><b>{{ 'PHARMACY.ADJUSTMENT' | translate }}</b></td>
                     <td>
                         <div class="form-group">
                             <input [(ngModel)]="currentPO.Adjustment" disabled class="form-control" name="DiscountPercent" type="number">
@@ -508,7 +506,7 @@
                     </td>
                 </tr>
                 <tr class="form-group">
-                    <td class="text-right"><b>Total Amount:</b></td>
+                    <td class="text-right"><b>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}:</b></td>
                     <td>
                         <div class="form-group">
                             <input [(ngModel)]="currentPO.TotalAmount" disabled class="form-control" name="TotalAmount" type="number">
@@ -516,7 +514,7 @@
                     </td>
                 </tr>
                 <tr class="form-group">
-                    <td class="text-right"><b>Remarks:</b></td>
+                    <td class="text-right"><b>{{ 'COMMON.REMARKS' | translate }}:</b></td>
                     <td>
                         <div class="form-group">
                             <input [(ngModel)]="currentPO.Remarks" id="main-remark" class="form-control" name="Remarks" type="text" (keyup.enter)="!editPO?coreService.FocusButtonById('btn-print'):coreService.FocusButtonById('btn-update')">
@@ -524,17 +522,17 @@
                     </td>
                 </tr>
                 <tr class="dot">
-                    <td class="text-capitalize" colspan="2"> <b>In Words : </b><b>{{currentPO.TotalAmount |
-                            NumberInWords}} </b> Only.</td>
+                    <td class="text-capitalize" colspan="2"> <b>{{ 'PHARMACY.IN_WORDS' | translate }} : </b><b>{{currentPO.TotalAmount |
+                            NumberInWords}} </b> {{ 'PHARMACY.ONLY' | translate }}</td>
                 </tr>
             </table>
         </div>
         <div class="text-right mt20 mb20">
             <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
-                <input *ngIf="!editPO" DanpheConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()" (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" title="ALT + P" [disabled]="loading" value="Print Order" id="btn-print">
-                <input *ngIf="editPO" DanpheConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()" (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" title="ALT + P" [disabled]="loading" value="Update Order" id="btn-update">
+                <input *ngIf="!editPO" DanpheConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()" (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" [title]="'PHARMACY.ALT_P' | translate" [disabled]="loading" [value]="'PHARMACY.PRINT_ORDER' | translate" id="btn-print">
+                <input *ngIf="editPO" DanpheConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()" (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" [title]="'PHARMACY.ALT_P' | translate" [disabled]="loading" [value]="'PHARMACY.UPDATE_ORDER' | translate" id="btn-update">
                 <span></span>
-                <button type="button" class="btn btn-danger" (click)="DiscardPurchaseOrder()" id="btn-discard">Discard</button>
+                <button type="button" class="btn btn-danger" (click)="DiscardPurchaseOrder()" id="btn-discard">{{ 'COMMON.DISCARD' | translate }}</button>
                 <span></span>
             </div>
         </div>

@@ -11,10 +11,10 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Configure Billing Package</span>
+            <h3> <span>{{ 'SETTINGS_NEW.CONFIGURE_BILLING_PACKAGE' | translate }}</span>
               <!--<span *ngIf="update">Update Package</span>-->
             </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <div class="row" style="padding: 15px;"
                *ngIf="(SchemePriCeCategory && SchemePriCeCategory.SchemeId && SchemePriCeCategory.PriceCategoryId) || DisplaySchemePriceCategorySelection">
@@ -30,38 +30,38 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="control-label col-md-4">Package Name<sup>*</sup><b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'SETTINGS_NEW.PACKAGE_NAME' | translate }}<sup>*</sup><b>:</b></label>
                     <div class="col-md-8">
                       <input id="PackageName" (keyup.enter)="GoToNextElement('PackageCode')" name="PackageName" max="100" class="form-control"
                              formControlName="BillingPackageName">
                       <span class="color-red font-sm"
                             [hidden]="CurrentBillingPackage.IsValidCheck('BillingPackageName','required') || !(CurrentBillingPackage.IsDirty('BillingPackageName'))">
-                        Billing Package Name is required.</span>
+                        {{ 'SETTINGS_NEW.BILLING_PACKAGE_NAME_IS_REQUIRED' | translate }}</span>
                       <span class="color-red font-sm"
                             *ngIf="CurrentBillingPackage.IsDirty('BillingPackageName')"
                             [hidden]="CurrentBillingPackage.IsValidCheck('BillingPackageName','maxlength')">
-                        Max length 100 characters.</span>
+                        {{ 'SETTINGS_NEW.MAX_LENGTH_100_CHARACTERS' | translate }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="control-label col-md-4">Package Code<sup>*</sup><b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'SETTINGS_NEW.PACKAGE_CODE' | translate }}<sup>*</sup><b>:</b></label>
                     <div class="col-md-8">
                       <input type="text" id="PackageCode" (keyup.enter)="GoToNextElement('Description')" name="PackageCode" max="100"
                              class="form-control"
                              formControlName="PackageCode">
                       <span class="color-red font-sm"
                             [hidden]="CurrentBillingPackage.IsValidCheck('PackageCode','required') || !(CurrentBillingPackage.IsDirty('PackageCode'))">
-                        Billing Package Code is required.</span>
+                        {{ 'SETTINGS_NEW.BILLING_PACKAGE_CODE_IS_REQUIRED' | translate }}</span>
                       <span class="color-red font-sm" *ngIf="CurrentBillingPackage.IsDirty('PackageCode')"
-                            [hidden]="CurrentBillingPackage.IsValidCheck('PackageCode','maxlength')">Max length 20 characters.</span>
+                            [hidden]="CurrentBillingPackage.IsValidCheck('PackageCode','maxlength')">{{ 'SETTINGS_NEW.MAX_LENGTH_20_CHARACTERS' | translate }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="control-label col-md-2">Description<b>:</b></label>
+                    <label class="control-label col-md-2">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                     <div class="col-md-4">
                       <textarea id="Description" (keyup.enter)="GoToNextElement('id_billing_serviceItemName')" name="Description" max="200"
                                 class="form-control"
@@ -78,12 +78,12 @@
               <label for="id_checkbox_isItemLevelDiscount" class="is-ref mt-checkbox mt-checkbox-outline"><input type="checkbox"
                        id="id_checkbox_isItemLevelDiscount" [(ngModel)]="IsItemLevelDiscount"
                        (change)="ItemLevelDiscountCheckBoxOnChange()" />
-                <span></span>Item Level Discount?</label>
+                <span></span>{{ 'SETTINGS_NEW.ITEM_LEVEL_DISCOUNT' | translate }}</label>
             </div>
             <div class="icheck-inline col-md-6">
               <label for="id_checkbox_isEditable" class="is-ref mt-checkbox mt-checkbox-outline"><input type="checkbox"
                        id="id_checkbox_isEditable" [(ngModel)]="IsEditable" />
-                <span></span>Is Editable?</label>
+                <span></span>{{ 'SETTINGS_NEW.IS_EDITABLE_1' | translate }}</label>
             </div>
           </div>
 
@@ -94,13 +94,13 @@
                   <table class="table table-form">
                     <thead>
                       <tr>
-                        <th style="width: 390px;">ItemName</th>
-                        <th style="width: 20px;">Quantity</th>
-                        <th style="width: 120px;">Price</th>
-                        <th style="width: 100px;">Disc%</th>
+                        <th style="width: 390px;">{{ 'SETTINGS_NEW.ITEMNAME' | translate }}</th>
+                        <th style="width: 20px;">{{ 'SETTINGS_NEW.QUANTITY' | translate }}</th>
+                        <th style="width: 120px;">{{ 'SETTINGS_NEW.PRICE' | translate }}</th>
+                        <th style="width: 100px;">{{ 'SETTINGS_NEW.DISC' | translate }}</th>
                         <!-- <th style="width: 100px;" *ngIf="ShowItemLevelDiscountAmountField">DiscAmt</th> -->
-                        <th style="width: 120px;">TotalAmount</th>
-                        <th>Performer</th>
+                        <th style="width: 120px;">{{ 'SETTINGS_NEW.TOTALAMOUNT' | translate }}</th>
+                        <th>{{ 'SETTINGS_NEW.PERFORMER' | translate }}</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -118,13 +118,13 @@
                                    onClick="this.select();" [min-chars]="2" match-formatted="true"
                                    [match-property-csv]="'ItemCode,ItemName'" [grid-sort]="'ItemName'"
                                    style="text-transform: uppercase;"
-                                   placeholder="ItemName">
+                                   [placeholder]="'SETTINGS_NEW.ITEMNAME' | translate">
                           </div>
                         </td>
                         <td>
                           <div class="form-group">
                             <input type="number" class="form-control" id="id_billing_serviceItemQty"
-                                   placeholder="Qty" (focusout)="OnItemQuantityChanged()"
+                                   [placeholder]="'SETTINGS_NEW.QTY' | translate" (focusout)="OnItemQuantityChanged()"
                                    [(ngModel)]="SelectedServiceItem.Quantity"
                                    (keyup.enter)="GoToNextElement(IsItemLevelDiscount? 'id_billing_serviceItemDiscPercent' : 'id_billing_performer')"
                                    onClick="this.select();"
@@ -134,7 +134,7 @@
                         <td>
                           <div class="form-group">
                             <input type="number" min="0" class="form-control" id="id_billing_serviceItemPrice" onClick="this.select();"
-                                   placeholder="Price"
+                                   [placeholder]="'SETTINGS_NEW.PRICE' | translate"
                                    [(ngModel)]="SelectedServiceItem.Price"
                                    [attr.disabled]="true"
                                    (wheel)="coreService.PreventNumberChangeOnScroll($event)" (focusout)="CalculationForSelectedServiceItem()">
@@ -143,7 +143,7 @@
                         <td>
                           <div class="form-group">
                             <input type="number" class="form-control" id="id_billing_serviceItemDiscPercent"
-                                   placeholder="Disc%"
+                                   [placeholder]="'SETTINGS_NEW.DISC' | translate"
                                    (focusout)="OnItemDiscountPercentChanged()"
                                    [(ngModel)]="SelectedServiceItem.DiscountPercent"
                                    [disabled]="(IsItemLevelDiscount === true ? null : true)"
@@ -168,7 +168,7 @@
                         <td>
                           <div class="form-group">
                             <input type="number" class="form-control" id="id_billing_serviceItemTotal"
-                                   placeholder="Total" [attr.disabled]="true" onClick="this.select();"
+                                   [placeholder]="'SETTINGS_NEW.TOTAL' | translate" [attr.disabled]="true" onClick="this.select();"
                                    [(ngModel)]="SelectedServiceItem.TotalAmount"
                                    (wheel)="coreService.PreventNumberChangeOnScroll($event)">
                           </div>
@@ -180,7 +180,7 @@
                                    [source]="doctorList" display-property-name="FullName"
                                    [list-formatter]="billingInvoiceBlService.PerformerListFormatter" value-property-name=null
                                    match-formatted="true" max-num-list="10" [(ngModel)]="SelectedPerformer"
-                                   placeholder="Enter Name" onClick="this.select();" (focusout)="AssignSelectedPerformer()"
+                                   [placeholder]="'SETTINGS_NEW.ENTER_NAME' | translate" onClick="this.select();" (focusout)="AssignSelectedPerformer()"
                                    (keyup.enter)="GoToNextElement('id_btn_add_serviceItem')" onClick="this.select();">
                           </div>
                         </td>
@@ -203,19 +203,19 @@
                       <tr>
                         <th></th>
                         <th>#</th>
-                        <th>ItemCode</th>
-                        <th>ItemName</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>DiscountAmt.</th>
-                        <th>Total</th>
-                        <th>Performer</th>
+                        <th>{{ 'SETTINGS_NEW.ITEMCODE' | translate }}</th>
+                        <th>{{ 'SETTINGS_NEW.ITEMNAME' | translate }}</th>
+                        <th>{{ 'SETTINGS_NEW.QTY' | translate }}</th>
+                        <th>{{ 'SETTINGS_NEW.PRICE' | translate }}</th>
+                        <th>{{ 'SETTINGS_NEW.DISCOUNTAMT' | translate }}</th>
+                        <th>{{ 'SETTINGS_NEW.TOTAL' | translate }}</th>
+                        <th>{{ 'SETTINGS_NEW.PERFORMER' | translate }}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let item of SelectedServiceItemList; let i = index">
                         <td>
-                          <a class="btn btn-danger" (click)="RemoveInvoiceItem(i)" title="Click to remove this item">
+                          <a class="btn btn-danger" (click)="RemoveInvoiceItem(i)" [title]="'SETTINGS_NEW.CLICK_TO_REMOVE_THIS_ITEM' | translate">
                             <i class="fa fa-times"></i></a>
                         </td>
                         <td>{{i + 1}}</td>
@@ -239,18 +239,18 @@
                 <div>
                   <table class="total-table" style="width: 100%;">
                     <tr class="form-group">
-                      <td> SubTotal: </td>
+                      <td> {{ 'SETTINGS_NEW.SUBTOTAL' | translate }} </td>
                       <td><input class="form-control" [(ngModel)]="CurrentBillingPackage.TotalPrice" disabled id="subtotal" name="subtotal"
                                type="number"></td>
                     </tr>
                     <tr class="form-group">
-                      <td>Discount % Total: </td>
+                      <td>{{ 'SETTINGS_NEW.DISCOUNT_TOTAL' | translate }} </td>
                       <td><input [(ngModel)]="CurrentBillingPackage.DiscountPercent" disabled min="0" max="100"
 
                                class="form-control" name="DiscountPercent" type="number"></td>
                     </tr>
                     <tr class="form-group">
-                      <td> Discount Amt: </td>
+                      <td> {{ 'SETTINGS_NEW.DISCOUNT_AMT' | translate }} </td>
                       <td>
                         <!-- <input id="Discount" (keyup.enter)="GoToNextElement('savebtn')" [(ngModel)]="totalDiscount" class="form-control"
                                (focusout)="OnDiscountAmountChange()" name="DiscountAmount"
@@ -267,12 +267,12 @@
                       </td>
                     </tr>
                     <tr class="form-group">
-                      <td>Total Amount: </td>
+                      <td>{{ 'SETTINGS_NEW.TOTAL_AMOUNT' | translate }} </td>
                       <td><input [(ngModel)]="totalAmount" disabled class="form-control" name="Total Amount" type="number"></td>
                     </tr>
                     <tr class="dot">
-                      <td colspan="2" class="text-capitalize" style="color: #0773bc;">In Words : <b>{{CurrentBillingPackage.TotalPrice |
-                          NumberInWords}} </b><span *ngIf="CurrentBillingPackage.TotalPrice">Only.</span></td>
+                      <td colspan="2" class="text-capitalize" style="color: #0773bc;">{{ 'SETTINGS_NEW.IN_WORDS' | translate }} <b>{{CurrentBillingPackage.TotalPrice |
+                          NumberInWords}} </b><span *ngIf="CurrentBillingPackage.TotalPrice">{{ 'SETTINGS_NEW.ONLY' | translate }}</span></td>
                     </tr>
                   </table>
                 </div>
@@ -307,7 +307,7 @@
                    (cancel)="HandleCancel()"
                    style="font-weight: bold; margin-right: 10px;"
                    class="btn green btn-success margin-7-hr"
-                   value="Update" />
+                   [value]="'COMMON.UPDATE' | translate" />
           </div>
         </div>
       </div>

@@ -86,8 +86,8 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span>Select your Lab Type</span></h3>
-            <a class="btn btn-danger" (click)="GoHome()" title="Close">X</a>
+            <h3> <span>{{ 'LABS.SELECT_YOUR_LAB_TYPE' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="GoHome()" [title]="'COMMON.CLOSE' | translate">X</a>
           </div>
           <div class="form-horizontal hm-form">
             <div class="form-body">
@@ -96,7 +96,7 @@
                 <div class="col-md-12">
                   <div class="row" style="margin-bottom: 50px; margin-top: 15px;">
                     <div class="col-md-12">
-                      You do not have permission to enter the Lab
+                      {{ 'LABS.YOU_DO_NOT_HAVE_PERMISSION_TO_ENTER_THE_LAB' | translate }}
                     </div>
                   </div>
                 </div>
@@ -128,10 +128,9 @@
                   <div class="row" style="margin-bottom: 50px; margin-top: 15px;">
                     <div class="col-md-12">
                       <p>You are in {{activeLab.LabTypeName}}.</p>
-                      <span>Do you want to Change the Lab?</span>
+                      <span>{{ 'LABS.DO_YOU_WANT_TO_CHANGE_THE_LAB' | translate }}</span>
                       <button class="btn btn-sm btn-danger" style="margin-left: 7px;"
-                        (click)="DeactivateLab()">Deactivate
-                        Lab </button>
+                        (click)="DeactivateLab()">{{ 'LABS.DEACTIVATE_LAB' | translate }} </button>
                     </div>
                   </div>
                 </div>

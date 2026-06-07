@@ -1,5 +1,5 @@
 <style>
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+input[{{ 'INVENTORY.TYPE' | translate }}=number]::-webkit-inner-spin-button, input[{{ 'INVENTORY.TYPE' | translate }}=number]::-webkit-outer-spin-button {
 -webkit-appearance: none;
 margin: 0;
 }
@@ -11,55 +11,55 @@ margin: 0;
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
             <h3> <span>{{ !CurrentCompany.CompanyId ? 'Add Company' : 'Update ' + CurrentCompany.CompanyName}}</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
           <form [formGroup]="CurrentCompany.CompanyValidator" class="form-horizontal hm-form">
             <div class="form-body"> 
               <!-- <div class="col-md-3 hidden-xs hidden-sm" style="margin-right:24px;">
                                 </div> -->
               
               <div class="form-group">
-                <label class="control-label col-md-5">Company Name<sup class="color-red">*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'INVENTORY.COMPANY_NAME' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" maxlength="30" [(ngModel)]="CurrentCompany.CompanyName"
                                         formControlName="CompanyName" type="text" id="CompanyName" value=""
-                                        placeholder="Company Name"
+                                        [placeholder]="'INVENTORY.COMPANY_NAME' | translate"
                                         (keyup.enter)="FocusElementById('AddCompany')" />               
                   <span style="color:red" *ngIf="CurrentCompany.IsDirty('CompanyName')"
-                                        [hidden]="CurrentCompany.IsValidCheck('CompanyName','required')"> Company Name
-                  is required.</span> </div>
+                                        [hidden]="CurrentCompany.IsValidCheck('CompanyName','required')"> {{ 'INVENTORY.COMPANY_NAME' | translate }}
+                  is {{ 'INVENTORY.REQUIRED' | translate }}.</span> </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Code<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.CODE' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" [(ngModel)]="CurrentCompany.Code"
-                                        [ngModelOptions]="{standalone: true}" placeholder="Code" />
+                                        [ngModelOptions]="{standalone: true}" [placeholder]="'GRID_HEADERS.CODE' | translate" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Address<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.ADDRESS' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" [(ngModel)]="CurrentCompany.ContactAddress"
-                                        [ngModelOptions]="{standalone: true}" placeholder="Address" />
+                                        [ngModelOptions]="{standalone: true}" [placeholder]="'GRID_HEADERS.ADDRESS' | translate" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Email<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.EMAIL' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input type="email" class="form-control" [(ngModel)]="CurrentCompany.Email"
-                                        [ngModelOptions]="{standalone: true}" placeholder="Email" />
-                  <!--<span style="color:red" *ngIf="CurrentCompany.IsDirty('Email')" [hidden]="CurrentCompany.IsValidCheck('Email','email')"> Incorrect format for email.</span>--> 
+                                        [ngModelOptions]="{standalone: true}" [placeholder]="'GRID_HEADERS.EMAIL' | translate" />
+                  <!--<span style="color:red" *ngIf="CurrentCompany.IsDirty('Email')" [hidden]="CurrentCompany.IsValidCheck('Email','email')"> Incorrect format for {{ 'GRID_HEADERS.EMAIL' | translate }}.</span>--> 
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Contact No<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'INVENTORY.CONTACT_NO' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input type="text" maxLength="10" class="form-control"
                                         [(ngModel)]="CurrentCompany.ContactNo" [ngModelOptions]="{standalone: true}"
-                                        placeholder="Contact No." />
+                                        [placeholder]="'INVENTORY.CONTACT_NO' | translate" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Description<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <textarea class="form-control" [(ngModel)]="CurrentCompany.Description"
                                         [ngModelOptions]="{standalone: true}"></textarea>
@@ -67,9 +67,9 @@ margin: 0;
               </div>
               <div class="form-actions">
                 <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!CurrentCompany.CompanyId "
-                                    (click)="AddCompany()" value="Add Company" [disabled]="loading" id="AddCompany" />
+                                    (click)="AddCompany()" [value]="'INVENTORY.ADD_COMPANY' | translate" [disabled]="loading" id="AddCompany" />
                 <input type="button" class="btn green btn-success margin-7-hr" *ngIf="CurrentCompany.CompanyId "
-                                    (click)="UpdateCompany()" value="Update" [disabled]="loading" id="AddCompany" />
+                                    (click)="UpdateCompany()" [value]="'COMMON.UPDATE' | translate" [disabled]="loading" id="AddCompany" />
               </div>
             </div>
           </form>

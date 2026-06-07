@@ -2,7 +2,7 @@
   <div class="row" >
     <div class="col-md-12">
       <div class="caption lb-caption">
-        <h3><span class="caption-subject">Breakage Item(s)</span></h3>
+        <h3><span class="caption-subject">{{ 'PHARMACY.BREAKAGE_ITEMS' | translate }}</span></h3>
       </div>
     </div>
   </div>
@@ -13,17 +13,17 @@
           <thead>
             <tr>
               <th></th>
-              <th sortable-header col="itemnames"><b>Item Name</b></th>
-              <th sortable-header col="quantity"><b>Avl Qty</b></th>
-              <th><b>Batch </b></th>
-              <th><b>Exp Date</b></th>
+              <th sortable-header col="itemnames"><b>{{ 'PHARMACY.ITEM_NAME' | translate }}</b></th>
+              <th sortable-header col="quantity"><b>{{ 'PHARMACY.AVL_QTY' | translate }}</b></th>
+              <th><b>{{ 'PHARMACY.BATCH' | translate }} </b></th>
+              <th><b>{{ 'PHARMACY.EXP_DATE' | translate }}</b></th>
               <th></th>
-              <th sortable-header col="quantity"><b>Qty</b></th>
-              <th><b>SalePrice</b></th>
-              <th><b>Sub Total</b></th>
-              <th><b>Discount Amt</b></th>
-              <th><b>VAT %</b></th>
-              <th><b>Total Amount </b></th>
+              <th sortable-header col="quantity"><b>{{ 'PHARMACY.QTY' | translate }}</b></th>
+              <th><b>{{ 'PHARMACY.SALEPRICE' | translate }}</b></th>
+              <th><b>{{ 'PHARMACY.SUB_TOTAL' | translate }}</b></th>
+              <th><b>{{ 'PHARMACY.DISCOUNT_AMT' | translate }}</b></th>
+              <th><b>{{ 'PHARMACY.VAT' | translate }}</b></th>
+              <th><b>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }} </b></th>
             </tr>
           </thead>
           <tbody>
@@ -33,13 +33,13 @@
                 <form [formGroup]="row.WriteOffItemValidator" class="autocomplete-item">
                   <input danphe-auto-complete class="form-control" id="{{'breakageitem'+i}}"
                     [(ngModel)]="row.SelectedItem" (keyup.enter)="OnPressedEnterKeyInItemField(i)"
-                    [source]="stockDetailsList" [list-formatter]="myItemListFormatter" placeholder="--Select Medicine--"
+                    [source]="stockDetailsList" [list-formatter]="myItemListFormatter" [placeholder]="'PHARMACY.SELECT_MEDICINE' | translate"
                     display-property-name="ItemName" value-property-name=null onClick="this.select();"
                     (valueChanged)="onChangeItem($event,i)" min-chars="1" max-num-list="10"
                     (focusout)="CheckProperSelectedItem(row.SelectedItem,i)" formControlName="ItemId" 
                     style="width:200px;" />
                   <div style="color:red" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')">
-                    Item is required</div>
+                    {{ 'PHARMACY.ITEM_IS_REQUIRED' | translate }}</div>
                 </form>
               </td>
               <td><input style="width:60px;" class="form-control" [(ngModel)]="row.AvailableQuantity" disabled min="1"
@@ -55,9 +55,8 @@
                     (keyup.enter)="OnPressedEnterKeyInQuantityField(i)"
                     [ngClass]="row.Quantity > row.AvailableQuantity  ? 'bg-on' : 'bg-off'"
                     formControlName="WriteOffQuantity" name="WriteOffQuantity" type="number">
-                  <span class="color-red font-sm" *ngIf="row.AvailableQuantity<row.WriteOffQuantity"> Qty Should be less
-                    then available Qty</span> <span class="color-red font-sm" *ngIf="row.IsDirty('WriteOffQuantity')"
-                    [hidden]="row.IsValidCheck('WriteOffQuantity','invalidNumber')">quantity required</span>
+                  <span class="color-red font-sm" *ngIf="row.AvailableQuantity<row.WriteOffQuantity"> {{ 'PHARMACY.QTY_SHOULD_BE_LESS_THEN_AVAILABLE_QTY' | translate }}</span> <span class="color-red font-sm" *ngIf="row.IsDirty('WriteOffQuantity')"
+                    [hidden]="row.IsValidCheck('WriteOffQuantity','invalidNumber')">{{ 'PHARMACY.QUANTITY_REQUIRED' | translate }}</span>
                 </form>
               </td>
               <td><input style="width:60px;" [(ngModel)]="row.ItemPrice" class="form-control" disabled name="price"
@@ -76,7 +75,7 @@
         <div class="mt20 t-wrap">
           <table class="col-sm-offset-8 col-sm-4 total-table">
             <tr>
-              <td>Select Breakage Date:<sup>*</sup></td>
+              <td>{{ 'PHARMACY.SELECT_BREAKAGE_DATE' | translate }}:<sup>*</sup></td>
               <td>
                 <danphe-date-picker [(ngModel)]="curtWriteOffModel.WriteOffDate" ngDefaultControl
                   [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
@@ -84,40 +83,40 @@
               </td>
             </tr>
             <tr>
-              <td>Remark:<sup>*</sup></td>
+              <td>{{ 'PHARMACY.REMARK' | translate }}:<sup>*</sup></td>
               <td>
                 <form [formGroup]="curtWriteOffModel.WriteOffValidator">
                   <textarea id="remarks" [(ngModel)]="curtWriteOffModel.WriteOffRemark" formControlName="WriteOffRemark"
                     (keyup.enter)="SetFocusById('request')" style="width:200px" class="form-control"
                     name="WriteOffRemark" type="text"></textarea>
                   <div style="color:red" *ngIf="curtWriteOffModel.IsDirty('WriteOffRemark')"
-                    [hidden]="curtWriteOffModel.IsValidCheck('WriteOffRemark','required')">remark is required</div>
+                    [hidden]="curtWriteOffModel.IsValidCheck('WriteOffRemark','required')">{{ 'PHARMACY.REMARK_IS_REQUIRED' | translate }}</div>
                 </form>
               </td>
             </tr>
             <tr>
-              <td> SubTotal: </td>
+              <td> {{ 'PHARMACY.SUBTOTAL' | translate }}: </td>
               <td><input class="form-control" [(ngModel)]="curtWriteOffModel.SubTotal" disabled id="subtotal"
                   name="subtotal" type="number"></td>
             </tr>
             <tr>
-              <td> DiscountedAmount: </td>
+              <td> {{ 'PHARMACY.DISCOUNTEDAMOUNT' | translate }}: </td>
               <td><input class="form-control" [(ngModel)]="curtWriteOffModel.DiscountAmount" disabled id="subtotal"
                   name="subtotal" type="number"></td>
             </tr>
             <tr>
-              <td>VAT Amount:</td>
+              <td>{{ 'PHARMACY.VAT_AMOUNT' | translate }}:</td>
               <td><input disabled class="form-control" [(ngModel)]="curtWriteOffModel.VATAmount" name="VATAmount"
                   type="number"></td>
             </tr>
             <tr>
-              <td>Total Amount: </td>
+              <td>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}: </td>
               <td><input disabled class="form-control" [(ngModel)]="curtWriteOffModel.TotalAmount" name="TotalAmount"
                   type="number"></td>
             </tr>
             <tr class="dot">
-              <td colspan="3" class="text-capitalize">In Words : <b>{{curtWriteOffModel.TotalAmount | NumberInWords}}
-                </b>Only. <br />
+              <td colspan="3" class="text-capitalize">{{ 'PHARMACY.IN_WORDS' | translate }} : <b>{{curtWriteOffModel.TotalAmount | NumberInWords}}
+                </b>{{ 'PHARMACY.ONLY' | translate }} <br />
                 <br />
               </td>
             </tr>
@@ -127,15 +126,15 @@
       </div>
     </div>
     <div class="col-sm-offset-8 col-sm-4 text-right">
-      <input type="button" class="btn btn-success" id="request" value="Request" (click)="PostWriteOffItems()"
+      <input type="button" class="btn btn-success" id="request" [value]="'PHARMACY.REQUEST' | translate" (click)="PostWriteOffItems()"
         [disabled]="loading" />
       <span></span>
-      <input type="button" class="btn btn-danger" (click)="Cancel()" value="Cancel">
+      <input type="button" class="btn btn-danger" (click)="Cancel()" [value]="'COMMON.CANCEL' | translate">
       <span></span>
     </div>
   </div>
 </div>
 
 <ng-template #loadingText>
-   loading
+   {{ 'PHARMACY.LOADING' | translate }}
 </ng-template>

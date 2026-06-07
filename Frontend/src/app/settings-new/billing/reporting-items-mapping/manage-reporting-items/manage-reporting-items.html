@@ -12,10 +12,10 @@
     <div class="col-md-8">
         <div class="caption">
             <i class="glyphicon glyphicon-asterisk font-red-sunglo"></i>
-            <span class="caption-subject font-blue bold uppercase">Select Items for <b>{{selectedReportingItem.ReportingItemName}}</b></span>
+            <span class="caption-subject font-blue bold uppercase">{{ 'SETTINGS_NEW.SELECT_ITEMS_FOR' | translate }} <b>{{selectedReportingItem.ReportingItemName}}</b></span>
         </div>
        
-        <input type="button" class="btn btn-primary" (click)="Submit()" value="Submit" />
+        <input type="button" class="btn btn-primary" (click)="Submit()" [value]="'COMMON.SUBMIT' | translate" />
         <div style="height:20%">
             <table>
                 <tr>
@@ -25,7 +25,7 @@
                                [(ngModel)]="selectedItem"
                                [source]="billingItemList"
                                [list-formatter]="myListFormatter"
-                               placeholder="Item Name"
+                               [placeholder]="'SETTINGS_NEW.ITEM_NAME' | translate"
                                display-prorolty-name="ItemName"
                                value-prorolty-name=null
                                min-chars="2"
@@ -59,7 +59,7 @@
         <table style="width:100%;" border="1">
             <thead *ngIf="selectedReportingItemBillItemList.length !=0">
                 <tr>
-                    <th class="BillCreditHdr" style="color:red;text-align: center;"> Selected Item</th>
+                    <th class="BillCreditHdr" style="color:red;text-align: center;"> {{ 'SETTINGS_NEW.SELECTED_ITEM' | translate }}</th>
                 </tr>
             </thead>
             <tr *ngFor="let item of selectedReportingItemBillItemList;let i=index;">

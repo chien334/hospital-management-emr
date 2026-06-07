@@ -6,7 +6,7 @@
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
             <h3> <span>{{ 'SECURITY.USER_ADD' | translate }}</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> 
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> 
 			</div>
           <form [formGroup]="CurrentUser.UserProfileValidator" class="form-horizontal hm-form">
             <div class="form-body"> 

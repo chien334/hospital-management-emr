@@ -1,4 +1,4 @@
-<a feature="button" class="btn blue bordered" (click)="AddCreditOrganization()"><i class="fa fa-plus"></i>Add Organization</a>
+<a feature="button" class="btn blue bordered" (click)="AddCreditOrganization()"><i class="fa fa-plus"></i>{{ 'PHARMACY.ADD_ORGANIZATION' | translate }}</a>
 <phrm-credit-organizations [showAddPage]="showAddPage" *ngIf="showAddPage"
                    [selectedItem]="selectedItem"
                    (callback-add)="CallBackAdd($event)"></phrm-credit-organizations>

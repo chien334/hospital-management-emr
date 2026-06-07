@@ -1,0 +1,1946 @@
+{
+  "YOU_ARE_CURRENTLY_IN_LAB_TO_CHANGE_YOU_CAN_ALWAYS": {
+    "english": "You are currently in {{securityService.getActiveLab()?.LabTypeName}} lab. To\n        change, you can always click here.",
+    "vietnamese": "Bạn hiện đang ở trong phòng thí nghiệm{{securityService.getActiveLab()?.LabTypeName}}. Đến\n        thay đổi, bạn luôn có thể nhấp vào đây."
+  },
+  "ACTIVE_LAB": {
+    "english": "Active lab :",
+    "vietnamese": "Phòng thí nghiệm hoạt động:"
+  },
+  "EXTERNAL_LAB_TEST_LIST": {
+    "english": "External Lab Test List",
+    "vietnamese": "Danh sách kiểm tra phòng thí nghiệm bên ngoài"
+  },
+  "HOSPITAL_NO": {
+    "english": "Hospital No :",
+    "vietnamese": "Bệnh viện số:"
+  },
+  "ENTER_HOSPITAL_NUMBER": {
+    "english": "Enter Hospital Number...",
+    "vietnamese": "Nhập số bệnh viện..."
+  },
+  "PATIENTNAME": {
+    "english": "PatientName :",
+    "vietnamese": "Tên bệnh nhân:"
+  },
+  "ENTER_PATIENT_NAME": {
+    "english": "Enter Patient Name...",
+    "vietnamese": "Nhập tên bệnh nhân..."
+  },
+  "SEARCH_1": {
+    "english": "Search",
+    "vietnamese": "Tìm kiếm"
+  },
+  "VENDOR": {
+    "english": "Vendor :",
+    "vietnamese": "Người bán :"
+  },
+  "LABTESTS": {
+    "english": "LabTests :",
+    "vietnamese": "Phòng thí nghiệm:"
+  },
+  "EXTERNAL_LAB_STATUS": {
+    "english": "External Lab Status :",
+    "vietnamese": "Tình trạng phòng thí nghiệm bên ngoài:"
+  },
+  "PRINT_PAGE": {
+    "english": "print page",
+    "vietnamese": "trang in"
+  },
+  "EXPORT_TO_EXCEL": {
+    "english": "export to excel",
+    "vietnamese": "xuất sang excel"
+  },
+  "LOAD": {
+    "english": "Load",
+    "vietnamese": "Trọng tải"
+  },
+  "CHANGE_VENDOR": {
+    "english": "Change Vendor",
+    "vietnamese": "Thay đổi nhà cung cấp"
+  },
+  "DISPATCH": {
+    "english": "Dispatch",
+    "vietnamese": "Gửi đi"
+  },
+  "RECEIVE_REPORT": {
+    "english": "Receive Report",
+    "vietnamese": "Nhận báo cáo"
+  },
+  "FROM_BS": {
+    "english": "From: {{FromDate | nepaliDate:'format':'YYYY-MM-DD'}} BS ({{FromDate}})",
+    "vietnamese": "Từ:{{FromDate | nepaliDate:'format':'YYYY-MM-DD'}}BS ({{FromDate}})"
+  },
+  "TO_BS": {
+    "english": "To: {{ToDate | nepaliDate:'format':'YYYY-MM-DD'}} BS ({{ToDate}})",
+    "vietnamese": "Tới:{{ToDate | nepaliDate:'format':'YYYY-MM-DD'}}BS ({{ToDate}})"
+  },
+  "OUTSOURCE_LAB_TEST_LIST_REPORT": {
+    "english": "Outsource Lab Test List Report({{SelectedExternalLabStatus}})",
+    "vietnamese": "Báo cáo danh sách kiểm tra phòng thí nghiệm thuê ngoài({{SelectedExternalLabStatus}})"
+  },
+  "PRINTED_ON": {
+    "english": "Printed On:",
+    "vietnamese": "In trên:"
+  },
+  "TEST_NAME": {
+    "english": "Test Name",
+    "vietnamese": "Tên bài kiểm tra"
+  },
+  "VENDOR_NAME": {
+    "english": "Vendor Name",
+    "vietnamese": "Tên nhà cung cấp"
+  },
+  "PATIENT": {
+    "english": "Patient",
+    "vietnamese": "Kiên nhẫn"
+  },
+  "TESTNAME": {
+    "english": "TestName",
+    "vietnamese": "Tên kiểm tra"
+  },
+  "VENDOR_1": {
+    "english": "Vendor",
+    "vietnamese": "Người bán"
+  },
+  "CHOOSE_VENDOR": {
+    "english": "Choose Vendor",
+    "vietnamese": "Chọn nhà cung cấp"
+  },
+  "EXTERNAL_VENDOR": {
+    "english": "External Vendor:",
+    "vietnamese": "Nhà cung cấp bên ngoài:"
+  },
+  "ADD_NEW_EXTERNAL_VENDOR": {
+    "english": "Add New External Vendor",
+    "vietnamese": "Thêm nhà cung cấp bên ngoài mới"
+  },
+  "ADD_LAB_EXTERNAL_VENDOR": {
+    "english": "Add Lab External Vendor",
+    "vietnamese": "Thêm nhà cung cấp bên ngoài phòng thí nghiệm"
+  },
+  "EDIT_LAB_EXTERNAL_VENDOR": {
+    "english": "Edit Lab External Vendor",
+    "vietnamese": "Chỉnh sửa nhà cung cấp bên ngoài phòng thí nghiệm"
+  },
+  "CONTACT_ADDRESS": {
+    "english": "Contact Address",
+    "vietnamese": "Địa chỉ liên hệ"
+  },
+  "VENDOR_CODE": {
+    "english": "Vendor Code",
+    "vietnamese": "Mã nhà cung cấp"
+  },
+  "CONTACT_NUMBER": {
+    "english": "Contact Number",
+    "vietnamese": "Số liên lạc"
+  },
+  "ADD_1": {
+    "english": "Add",
+    "vietnamese": "Thêm vào"
+  },
+  "SHOW_DATA": {
+    "english": "Show Data",
+    "vietnamese": "Hiển thị dữ liệu"
+  },
+  "SEND_TO_ALL": {
+    "english": "Send To All",
+    "vietnamese": "Gửi tới tất cả"
+  },
+  "FILTER_SMS": {
+    "english": "Filter SMS:",
+    "vietnamese": "Lọc tin nhắn SMS:"
+  },
+  "SENT": {
+    "english": "Sent",
+    "vietnamese": "Đã gửi"
+  },
+  "NOT_SENT": {
+    "english": "Not Sent",
+    "vietnamese": "Chưa gửi"
+  },
+  "FILTER_FINDINGS": {
+    "english": "Filter Findings:",
+    "vietnamese": "Kết quả lọc:"
+  },
+  "POSITIVE": {
+    "english": "Positive",
+    "vietnamese": "Tích cực"
+  },
+  "NEGATIVE": {
+    "english": "Negative",
+    "vietnamese": "Tiêu cực"
+  },
+  "ALL": {
+    "english": "All",
+    "vietnamese": "Tất cả"
+  },
+  "PHONE_NUMBER": {
+    "english": "Phone Number",
+    "vietnamese": "Số điện thoại"
+  },
+  "SAMPLE_COLL_ON": {
+    "english": "Sample Coll. On",
+    "vietnamese": "Mẫu Coll. TRÊN"
+  },
+  "RESULT": {
+    "english": "Result",
+    "vietnamese": "Kết quả"
+  },
+  "SHOWS_IF_LAB_REPORT_UPLOADED_OR_NOT": {
+    "english": "Shows if Lab Report uploaded or not ?",
+    "vietnamese": "Hiển thị nếu Báo cáo phòng thí nghiệm được tải lên hay không?"
+  },
+  "UPLOADED": {
+    "english": "Uploaded ?",
+    "vietnamese": "Đã tải lên?"
+  },
+  "SEND_SMS": {
+    "english": "Send Sms",
+    "vietnamese": "Gửi tin nhắn SMS"
+  },
+  "PDF_SMS": {
+    "english": "Pdf & Sms",
+    "vietnamese": "Pdf & tin nhắn"
+  },
+  "UPLOAD_PDF": {
+    "english": "Upload Pdf",
+    "vietnamese": "Tải lên PDF"
+  },
+  "SMS_MESSAGE": {
+    "english": "SMS Message",
+    "vietnamese": "Tin nhắn SMS"
+  },
+  "MESSAGE_THAT_WILL_BE_SEND_TO_IS": {
+    "english": "Message that will be send to {{smsDataToSend.PhoneNumber}} is:",
+    "vietnamese": "Tin nhắn sẽ được gửi tới{{smsDataToSend.PhoneNumber}}là:"
+  },
+  "SEND_MESSAGE": {
+    "english": "Send Message",
+    "vietnamese": "Gửi tin nhắn"
+  },
+  "EXPORT_WITH_SMS": {
+    "english": "Export with SMS",
+    "vietnamese": "Xuất bằng SMS"
+  },
+  "LOAD_DATA": {
+    "english": "Load Data",
+    "vietnamese": "Tải dữ liệu"
+  },
+  "UPLOAD_TO_IMU": {
+    "english": "Upload To IMU",
+    "vietnamese": "Tải lên IMU"
+  },
+  "UPLOAD_PENDING": {
+    "english": "Upload Pending",
+    "vietnamese": "Tải lên đang chờ xử lý"
+  },
+  "UPLOAD_COMPLETED": {
+    "english": "Upload Completed",
+    "vietnamese": "Tải lên đã hoàn tất"
+  },
+  "UPLOAD_STATUS": {
+    "english": "Upload Status",
+    "vietnamese": "Trạng thái tải lên"
+  },
+  "LAB_TEST": {
+    "english": "Lab Test",
+    "vietnamese": "Thử nghiệm trong phòng thí nghiệm"
+  },
+  "LAB_TEST_COMPONENTS": {
+    "english": "Lab Test Components",
+    "vietnamese": "Thành phần thử nghiệm trong phòng thí nghiệm"
+  },
+  "REPORT_TEMPLATE": {
+    "english": "Report Template",
+    "vietnamese": "Mẫu báo cáo"
+  },
+  "DEFAULT_SIGNATORIES": {
+    "english": "Default Signatories",
+    "vietnamese": "Người ký mặc định"
+  },
+  "VENDORS": {
+    "english": "Vendors",
+    "vietnamese": "Nhà cung cấp"
+  },
+  "LOOK_UPS": {
+    "english": "Look Ups",
+    "vietnamese": "tra cứu"
+  },
+  "LAB_CATEGORIES": {
+    "english": "Lab Categories",
+    "vietnamese": "Danh mục phòng thí nghiệm"
+  },
+  "MAP_GOVERNMENT_ITEMS": {
+    "english": "Map Government Items",
+    "vietnamese": "Bản đồ các mục chính phủ"
+  },
+  "ADD_NEW_LAB_TEMPLATE": {
+    "english": "Add New Lab Template",
+    "vietnamese": "Thêm mẫu phòng thí nghiệm mới"
+  },
+  "ADD_LAB_REPORT_TEMPLATE": {
+    "english": "Add Lab Report Template",
+    "vietnamese": "Thêm mẫu báo cáo phòng thí nghiệm"
+  },
+  "UPDATE_LAB_REPORT_TEMPLATE": {
+    "english": "Update Lab Report Template",
+    "vietnamese": "Cập nhật mẫu báo cáo phòng thí nghiệm"
+  },
+  "REPORT_TEMPLATE_NAME": {
+    "english": "Report Template Name",
+    "vietnamese": "Tên mẫu báo cáo"
+  },
+  "ENTER_REPORT_TEMPLATE_NAME": {
+    "english": "Enter Report Template Name",
+    "vietnamese": "Nhập tên mẫu báo cáo"
+  },
+  "REPORT_DESCRIPTION": {
+    "english": "Report Description",
+    "vietnamese": "Mô tả báo cáo"
+  },
+  "REPORT_TEMPLATE_SHORT_NAME": {
+    "english": "Report Template Short Name",
+    "vietnamese": "Tên viết tắt của mẫu báo cáo"
+  },
+  "REPORT_TEMPLATE_TYPE": {
+    "english": "Report Template Type",
+    "vietnamese": "Loại mẫu báo cáo"
+  },
+  "NORMAL": {
+    "english": "Normal",
+    "vietnamese": "Bình thường"
+  },
+  "WORD_EDITOR": {
+    "english": "Word Editor",
+    "vietnamese": "Trình soạn thảo văn bản"
+  },
+  "CULTURE_SENSITIVITY": {
+    "english": "Culture & Sensitivity",
+    "vietnamese": "Văn hóa & Sự nhạy cảm"
+  },
+  "COLUMN_SETTINGS": {
+    "english": "Column Settings",
+    "vietnamese": "Cài đặt cột"
+  },
+  "SELECT_ALL": {
+    "english": "Select All",
+    "vietnamese": "Chọn tất cả"
+  },
+  "RANGE": {
+    "english": "Range",
+    "vietnamese": "Phạm vi"
+  },
+  "METHOD": {
+    "english": "Method",
+    "vietnamese": "Phương pháp"
+  },
+  "UNIT": {
+    "english": "Unit",
+    "vietnamese": "Đơn vị"
+  },
+  "HEADER_TEXT": {
+    "english": "Header Text",
+    "vietnamese": "Văn bản tiêu đề"
+  },
+  "HEADER_DESCRIPTION": {
+    "english": "Header Description",
+    "vietnamese": "Mô tả tiêu đề"
+  },
+  "FOOTER_TEXT": {
+    "english": "Footer Text",
+    "vietnamese": "Văn bản chân trang"
+  },
+  "FOOTER_DESCRIPTION": {
+    "english": "Footer Description",
+    "vietnamese": "Mô tả chân trang"
+  },
+  "IS_DEFAULT": {
+    "english": "Is Default",
+    "vietnamese": "Là mặc định"
+  },
+  "DISPLAY_SEQUENCE": {
+    "english": "Display Sequence",
+    "vietnamese": "trình tự hiển thị"
+  },
+  "ADD_TEMPLATE": {
+    "english": "Add Template",
+    "vietnamese": "Thêm mẫu"
+  },
+  "ADD_LAB_CATEGORY": {
+    "english": "Add Lab Category",
+    "vietnamese": "Thêm danh mục phòng thí nghiệm"
+  },
+  "UPDATE_LAB_CATEGORY": {
+    "english": "Update Lab Category",
+    "vietnamese": "Cập nhật danh mục phòng thí nghiệm"
+  },
+  "CATEGORY_NAME": {
+    "english": "Category Name",
+    "vietnamese": "Tên danh mục"
+  },
+  "IS_DEFAULT_1": {
+    "english": "Is Default?",
+    "vietnamese": "Là mặc định?"
+  },
+  "ADD_NEW_LAB_CATEGORY": {
+    "english": "Add New Lab Category",
+    "vietnamese": "Thêm danh mục phòng thí nghiệm mới"
+  },
+  "MAP_NEW_COMPONENT": {
+    "english": "Map New Component",
+    "vietnamese": "Bản đồ thành phần mới"
+  },
+  "MAP_LAB_COMPONENTS": {
+    "english": "Map Lab Components",
+    "vietnamese": "Thành phần phòng thí nghiệm bản đồ"
+  },
+  "UPDATE_MAPPED_LAB_COMPONENTS": {
+    "english": "Update Mapped Lab Components",
+    "vietnamese": "Cập nhật các thành phần phòng thí nghiệm được ánh xạ"
+  },
+  "GOV_LABREPORTITEM_NAME": {
+    "english": "Gov LabReportItem\n                                            Name:",
+    "vietnamese": "Mục báo cáo của Gov Lab\n                                            Tên:"
+  },
+  "ENTER_COMPONENT_NAME": {
+    "english": "Enter Component Name",
+    "vietnamese": "Nhập tên thành phần"
+  },
+  "ENTER_GOV_LAB_REPORT_NAME": {
+    "english": "Enter Gov. Lab Report Name",
+    "vietnamese": "Nhập tên báo cáo phòng thí nghiệm của chính phủ"
+  },
+  "LAB_TEST_NAME": {
+    "english": "Lab Test Name:",
+    "vietnamese": "Tên xét nghiệm trong phòng thí nghiệm:"
+  },
+  "ENTER_TEST_NAME": {
+    "english": "Enter Test Name",
+    "vietnamese": "Nhập tên bài kiểm tra"
+  },
+  "ENTER_LAB_TEST_NAME": {
+    "english": "Enter\n                                                Lab Test Name",
+    "vietnamese": "Nhập\n                                                Tên xét nghiệm trong phòng thí nghiệm"
+  },
+  "IS_ACTIVE_1": {
+    "english": "Is Active:",
+    "vietnamese": "Đang hoạt động:"
+  },
+  "IS_COMPONENT_BASED": {
+    "english": "Is Component\n                                            Based:",
+    "vietnamese": "Là thành phần\n                                            Dựa trên:"
+  },
+  "COMPONENT_NAME": {
+    "english": "Component\n                                            Name:",
+    "vietnamese": "thành phần\n                                            Tên:"
+  },
+  "ENTER_COMPONENT_NAME_1": {
+    "english": "Enter\n                                                component name",
+    "vietnamese": "Nhập\n                                                tên thành phần"
+  },
+  "IS_RESULT_COUNT": {
+    "english": "Is Result\n                                            Count:",
+    "vietnamese": "là kết quả\n                                            Đếm:"
+  },
+  "POSITIVE_INDICATOR": {
+    "english": "Positive Indicator:",
+    "vietnamese": "Chỉ số tích cực:"
+  },
+  "MODULE_NAME": {
+    "english": "Module Name",
+    "vietnamese": "Tên mô-đun"
+  },
+  "LOOK_UP_NAME": {
+    "english": "Look Up Name",
+    "vietnamese": "Tra cứu tên"
+  },
+  "LOOK_UP_DATA": {
+    "english": "Look Up Data",
+    "vietnamese": "Tra cứu dữ liệu"
+  },
+  "ADD_DATA": {
+    "english": "Add Data",
+    "vietnamese": "Thêm dữ liệu"
+  },
+  "ADD_NEW_LOOKUP": {
+    "english": "Add New Look-up",
+    "vietnamese": "Thêm tra cứu mới"
+  },
+  "ADD_LOOKUP": {
+    "english": "Add Lookup",
+    "vietnamese": "Thêm tra cứu"
+  },
+  "UPDATE_LOOKUP": {
+    "english": "Update Lookup",
+    "vietnamese": "Cập nhật tra cứu"
+  },
+  "ADD_NEW_LAB_TEST_COMPONENT": {
+    "english": "Add New Lab Test Component",
+    "vietnamese": "Thêm thành phần thử nghiệm trong phòng thí nghiệm mới"
+  },
+  "ADD_COMPONENTS": {
+    "english": "Add Components",
+    "vietnamese": "Thêm thành phần"
+  },
+  "UPDATE_COMPONENT": {
+    "english": "Update Component",
+    "vietnamese": "Cập nhật thành phần"
+  },
+  "COMPONENTNAME": {
+    "english": "ComponentName",
+    "vietnamese": "Tên thành phần"
+  },
+  "VALUETYPE": {
+    "english": "ValueType",
+    "vietnamese": "Loại giá trị"
+  },
+  "CONTROLTYPE": {
+    "english": "ControlType",
+    "vietnamese": "Loại điều khiển"
+  },
+  "RANGE_DESCRIPTION": {
+    "english": "Range Description",
+    "vietnamese": "Mô tả phạm vi"
+  },
+  "VALUELOOKP": {
+    "english": "ValueLookp",
+    "vietnamese": "Giá trịLookp"
+  },
+  "DISPLAY_NAME": {
+    "english": "Display Name",
+    "vietnamese": "Tên hiển thị"
+  },
+  "COMPONENT_NAME_1": {
+    "english": "Component Name",
+    "vietnamese": "Tên thành phần"
+  },
+  "GEN_RANGE": {
+    "english": "Gen. Range",
+    "vietnamese": "Tướng quân"
+  },
+  "RANGE_VALUE": {
+    "english": "Range Value",
+    "vietnamese": "Giá trị phạm vi"
+  },
+  "MIN": {
+    "english": "Min",
+    "vietnamese": "tối thiểu"
+  },
+  "MAX": {
+    "english": "Max",
+    "vietnamese": "Tối đa"
+  },
+  "MALE_RANGE": {
+    "english": "Male Range",
+    "vietnamese": "Phạm vi nam"
+  },
+  "FEMALE_RANGE": {
+    "english": "Female Range",
+    "vietnamese": "Phạm vi nữ"
+  },
+  "CHILD_RANGE": {
+    "english": "Child Range",
+    "vietnamese": "Phạm vi trẻ em"
+  },
+  "ENTER_LOOKUP_NAME": {
+    "english": "Enter LookUp Name",
+    "vietnamese": "Nhập tên tra cứu"
+  },
+  "COMPONENT_DISPLAY_NAME": {
+    "english": "Component Display Name",
+    "vietnamese": "Tên hiển thị thành phần"
+  },
+  "DEFAULT_SIGNATORIES_FOR_NORMAL_TESTS": {
+    "english": "Default Signatories for Normal Tests:",
+    "vietnamese": "Người ký mặc định cho các bài kiểm tra thông thường:"
+  },
+  "DEFAULT_HISTOCYTO_SIGNATORIES": {
+    "english": "Default Histo/Cyto Signatories:",
+    "vietnamese": "Người ký Histo/Cyto mặc định:"
+  },
+  "UPDATE_DEFAULT_SIGNATORIES": {
+    "english": "Update Default Signatories",
+    "vietnamese": "Cập nhật người ký mặc định"
+  },
+  "ADD_NEW_LAB_TEST": {
+    "english": "Add\n              New Lab Test",
+    "vietnamese": "Thêm\n              Thử nghiệm phòng thí nghiệm mới"
+  },
+  "SEARCH_FILTERS": {
+    "english": "Search Filters:",
+    "vietnamese": "Bộ lọc tìm kiếm:"
+  },
+  "ACTIVE": {
+    "english": "Active",
+    "vietnamese": "Tích cực"
+  },
+  "INACTIVE": {
+    "english": "Inactive",
+    "vietnamese": "Không hoạt động"
+  },
+  "ALL_1": {
+    "english": "ALL",
+    "vietnamese": "TẤT CẢ"
+  },
+  "CATEGORY": {
+    "english": "Category:",
+    "vietnamese": "Loại:"
+  },
+  "ADD_LAB_TEST": {
+    "english": "Add Lab Test",
+    "vietnamese": "Thêm xét nghiệm trong phòng thí nghiệm"
+  },
+  "UPDATE_LAB_TEST": {
+    "english": "Update Lab Test",
+    "vietnamese": "Cập nhật xét nghiệm trong phòng thí nghiệm"
+  },
+  "LAB_TEST_NAME_1": {
+    "english": "Lab Test Name",
+    "vietnamese": "Tên xét nghiệm trong phòng thí nghiệm"
+  },
+  "ENTER_LAB_TEST_NAME_1": {
+    "english": "Enter\n                      Lab Test Name",
+    "vietnamese": "Nhập\n                      Tên xét nghiệm trong phòng thí nghiệm"
+  },
+  "REPORTING_NAME": {
+    "english": "Reporting Name",
+    "vietnamese": "Tên báo cáo"
+  },
+  "LAB_TEST_REPORTING_NAME": {
+    "english": "Lab Test Reporting Name",
+    "vietnamese": "Tên báo cáo thử nghiệm trong phòng thí nghiệm"
+  },
+  "LAB_CATEGORY": {
+    "english": "Lab Category",
+    "vietnamese": "Hạng mục phòng thí nghiệm"
+  },
+  "SELECT_LAB_CATEGORY": {
+    "english": "Select Lab Category",
+    "vietnamese": "Chọn danh mục phòng thí nghiệm"
+  },
+  "SELECT_SPECIMENS": {
+    "english": "Select Specimen(s)",
+    "vietnamese": "Chọn (các) mẫu"
+  },
+  "ADD_NEW_SPECIMEN": {
+    "english": "Add New Specimen",
+    "vietnamese": "Thêm mẫu mới"
+  },
+  "IS_SMS_APPLICABLE": {
+    "english": "Is SMS Applicable?",
+    "vietnamese": "SMS có áp dụng được không?"
+  },
+  "IS_LIS_APPLICABLE": {
+    "english": "Is LIS Applicable?",
+    "vietnamese": "LIS có được áp dụng không?"
+  },
+  "IS_VALID_FOR_REPORTING": {
+    "english": "Is Valid for Reporting",
+    "vietnamese": "Có giá trị để báo cáo"
+  },
+  "TAX_APPLICABLE": {
+    "english": "Tax Applicable",
+    "vietnamese": "Thuế áp dụng"
+  },
+  "IS_OUTSOURCED_TEST": {
+    "english": "Is Outsourced Test?",
+    "vietnamese": "Là thử nghiệm thuê ngoài?"
+  },
+  "HAS_NEGATIVE_RESULTS": {
+    "english": "Has Negative Results",
+    "vietnamese": "Có kết quả âm tính"
+  },
+  "NEGATIVE_RESULT_TEXT": {
+    "english": "Negative Result Text",
+    "vietnamese": "Văn bản Kết quả Âm tính"
+  },
+  "DEFAULT_OUTSOURCE_VENDOR": {
+    "english": "Default Outsource Vendor",
+    "vietnamese": "Nhà cung cấp thuê ngoài mặc định"
+  },
+  "LAB_TEST_CODE": {
+    "english": "Lab Test Code",
+    "vietnamese": "Mã kiểm tra phòng thí nghiệm"
+  },
+  "SELECT_REPORT_TEMPLATE_SHORT_NAME": {
+    "english": "Select Report Template Short Name",
+    "vietnamese": "Chọn Tên Viết tắt của Mẫu Báo cáo"
+  },
+  "SERVICE_DEPARTMENT": {
+    "english": "Service Department",
+    "vietnamese": "Phòng dịch vụ"
+  },
+  "SELECT_SERVICE_DEPARTMENT_NAME": {
+    "english": "Select Service Department Name",
+    "vietnamese": "Chọn tên bộ phận dịch vụ"
+  },
+  "RUN_NO_TYPE": {
+    "english": "Run No. Type",
+    "vietnamese": "Số lần chạy Loại"
+  },
+  "INTERPRETATION": {
+    "english": "Interpretation",
+    "vietnamese": "Phiên dịch"
+  },
+  "SELECT_COMPONENTS_FOR_THIS_LAB_TEST": {
+    "english": "Select Components For this Lab Test",
+    "vietnamese": "Chọn thành phần cho bài kiểm tra trong phòng thí nghiệm này"
+  },
+  "VALUE_TYPE": {
+    "english": "Value Type",
+    "vietnamese": "Loại giá trị"
+  },
+  "DISP_SEQUENCE": {
+    "english": "Disp. Sequence",
+    "vietnamese": "Hiển thị. Sự liên tiếp"
+  },
+  "INDENT": {
+    "english": "Indent",
+    "vietnamese": "thụt lề"
+  },
+  "GROUP_VAL": {
+    "english": "Group Val.",
+    "vietnamese": "Nhóm Val."
+  },
+  "SHEET": {
+    "english": "Sheet",
+    "vietnamese": "Tờ giấy"
+  },
+  "SELECT_COMPONENT": {
+    "english": "Select Component",
+    "vietnamese": "Chọn thành phần"
+  },
+  "CREATE_NEW_COMPONENT": {
+    "english": "Create New Component ?",
+    "vietnamese": "Tạo thành phần mới?"
+  },
+  "SPECIMEN_NAME": {
+    "english": "Specimen Name",
+    "vietnamese": "Tên mẫu vật"
+  },
+  "EDIT_RESULT": {
+    "english": "Edit Result",
+    "vietnamese": "Chỉnh sửa kết quả"
+  },
+  "BACK_TO_REPORT_VIEW": {
+    "english": "Back To Report View",
+    "vietnamese": "Quay lại chế độ xem báo cáo"
+  },
+  "ATTENTION": {
+    "english": "Attention !!!",
+    "vietnamese": "Chú ý !!!"
+  },
+  "THIS_REPORT_IS_ALREDY_UPLOADED_ARE_YOU_SURE_TO_UPL": {
+    "english": "This Report Is Alredy Uploaded. Are You Sure To Upload It Again ???",
+    "vietnamese": "Báo cáo này đã được tải lên. Bạn có chắc chắn tải nó lên lại không ???"
+  },
+  "WORK_LIST": {
+    "english": "Work List",
+    "vietnamese": "Danh sách công việc"
+  },
+  "BACK_TO_GRID": {
+    "english": "Back To Grid",
+    "vietnamese": "Quay lại lưới"
+  },
+  "PRINT_LAB_STICKER": {
+    "english": "Print Lab Sticker",
+    "vietnamese": "In nhãn dán phòng thí nghiệm"
+  },
+  "RESET_RUN_NUMBER": {
+    "english": "Reset Run Number",
+    "vietnamese": "Đặt lại số lần chạy"
+  },
+  "PRINT_EMPTY_SHEET": {
+    "english": "Print Empty Sheet",
+    "vietnamese": "In tờ giấy trống"
+  },
+  "SAMPLE_COLLECTION_DATE": {
+    "english": "Sample Collection Date :",
+    "vietnamese": "Ngày lấy mẫu:"
+  },
+  "FROM": {
+    "english": "From: {{fromDate | nepaliDate:'format':'YYYY-MM-DD'}} {{fromDate}}",
+    "vietnamese": "Từ:{{fromDate | nepaliDate:'format':'YYYY-MM-DD'}}{{fromDate}}"
+  },
+  "TO": {
+    "english": "To: {{toDate | nepaliDate:'format':'YYYY-MM-DD'}} {{toDate}}",
+    "vietnamese": "Tới:{{toDate | nepaliDate:'format':'YYYY-MM-DD'}}{{toDate}}"
+  },
+  "WORK_LIST_REPORT": {
+    "english": "Work List Report",
+    "vietnamese": "Báo cáo danh sách công việc"
+  },
+  "DEPARTMENT_1": {
+    "english": "Department: {{departmentName}}",
+    "vietnamese": "Sở:{{departmentName}}"
+  },
+  "COLLECTED_ON": {
+    "english": "Collected On",
+    "vietnamese": "Đã thu thập vào"
+  },
+  "RUN_NO": {
+    "english": "Run No.",
+    "vietnamese": "Chạy số"
+  },
+  "BARCODE_NO": {
+    "english": "BarCode No.",
+    "vietnamese": "Mã vạch số"
+  },
+  "HOSPITAL_NO_1": {
+    "english": "Hospital No",
+    "vietnamese": "Bệnh viện số"
+  },
+  "TESTS": {
+    "english": "Tests",
+    "vietnamese": "Kiểm tra"
+  },
+  "PLEASE_WAIT": {
+    "english": "Please wait.",
+    "vietnamese": "Vui lòng chờ."
+  },
+  "LIST_REQUISITION": {
+    "english": "List Requisition",
+    "vietnamese": "Danh sách yêu cầu"
+  },
+  "SAMPLES_COLLECTED_LIST": {
+    "english": "Samples Collected\n        List",
+    "vietnamese": "Mẫu được thu thập\n        Danh sách"
+  },
+  "SAMPLE_COLLECTED_LIST_FROMDATE_AD_TODATE_AD": {
+    "english": "Sample Collected List FromDate :{{fromDate | nepaliDate:'format':'YYYY-MM-DD'}}\n                          (A.D.{{fromDate}}) ToDate :{{toDate | nepaliDate:'format':'YYYY-MM-DD'}} (A.D.{{toDate}})",
+    "vietnamese": "Danh sách được Thu thập Mẫu Từ Ngày :{{fromDate | nepaliDate:'format':'YYYY-MM-DD'}}(AD{{fromDate}}) Ngày hôm nay :{{toDate | nepaliDate:'format':'YYYY-MM-DD'}}(AD{{toDate}})"
+  },
+  "SPECIMEN": {
+    "english": "Specimen",
+    "vietnamese": "Mẫu vật"
+  },
+  "DEPARTMENTASSIGNED": {
+    "english": "DepartmentAssigned",
+    "vietnamese": "Bộ phận được giao"
+  },
+  "BAR_CODE": {
+    "english": "Bar Code",
+    "vietnamese": "Mã vạch"
+  },
+  "SAMPLES_COLLECTED_ON": {
+    "english": "Samples Collected On",
+    "vietnamese": "Mẫu được thu thập trên"
+  },
+  "PENDING_REPORTS": {
+    "english": "Pending Reports",
+    "vietnamese": "Báo cáo đang chờ xử lý"
+  },
+  "BACK_TO_GRID_1": {
+    "english": "Back\n      To Grid",
+    "vietnamese": "Quay lại\n      Vào lưới"
+  },
+  "REPORT_DISPATCH": {
+    "english": "Report Dispatch",
+    "vietnamese": "Báo cáo công văn"
+  },
+  "REQUEST_DATE": {
+    "english": "Request Date:",
+    "vietnamese": "Ngày yêu cầu:"
+  },
+  "SEARCH_BY_HOSPITAL_NO_OR_PATIENT_NAME": {
+    "english": "Search by Hospital No. Or Patient Name",
+    "vietnamese": "Tìm kiếm theo số bệnh viện hoặc tên bệnh nhân"
+  },
+  "SAMPLESUMMARYPAGE": {
+    "english": "Sample-Summary-Page",
+    "vietnamese": "Mẫu-Tóm tắt-Trang"
+  },
+  "RELOAD": {
+    "english": "Reload",
+    "vietnamese": "Tải lại"
+  },
+  "SHOW_QRSCAN": {
+    "english": "Show Qr-Scan",
+    "vietnamese": "Hiển thị Qr-Quét"
+  },
+  "HIDE_QRSCAN": {
+    "english": "Hide Qr-Scan",
+    "vietnamese": "Ẩn Qr-Scan"
+  },
+  "SEARCH_PATIENT": {
+    "english": "Search Patient :",
+    "vietnamese": "Tìm kiếm bệnh nhân:"
+  },
+  "SEARCH_PATIENT_1": {
+    "english": "-- Search Patient --",
+    "vietnamese": "-- Tìm kiếm bệnh nhân --"
+  },
+  "BARCODE_NUMBER": {
+    "english": "Bar-Code Number :",
+    "vietnamese": "Số mã vạch :"
+  },
+  "RUN_NUM": {
+    "english": "Run Num :",
+    "vietnamese": "Chạy số:"
+  },
+  "SHOWDETAILS": {
+    "english": "ShowDetails",
+    "vietnamese": "Hiển thị chi tiết"
+  },
+  "HOSPITAL_NUMBER_1": {
+    "english": "Hospital Number: {{allLabDataByBarCodeNumber.PatientCode}}",
+    "vietnamese": "Số bệnh viện:{{allLabDataByBarCodeNumber.PatientCode}}"
+  },
+  "NAME_1": {
+    "english": "Name: {{allLabDataByBarCodeNumber.PatientName}}",
+    "vietnamese": "Tên:{{allLabDataByBarCodeNumber.PatientName}}"
+  },
+  "AGESEX": {
+    "english": "Age/Sex: {{allLabDataByBarCodeNumber.AgeSex}}",
+    "vietnamese": "Tuổi/Giới tính:{{allLabDataByBarCodeNumber.AgeSex}}"
+  },
+  "SAMPLECOLLECTION_DATE": {
+    "english": "SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}",
+    "vietnamese": "Ngày thu thập mẫu:{{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}"
+  },
+  "BARCODENUMBER": {
+    "english": "BarCodeNumber: {{allLabDataByBarCodeNumber.BarCodeNumber}}",
+    "vietnamese": "Mã vạchSố:{{allLabDataByBarCodeNumber.BarCodeNumber}}"
+  },
+  "SAMPLE_NOT_COLLECTED": {
+    "english": "Sample Not Collected",
+    "vietnamese": "Mẫu không được thu thập"
+  },
+  "REQUISITION_DATE": {
+    "english": "Requisition Date",
+    "vietnamese": "Ngày yêu cầu"
+  },
+  "REQUESTING_DEPT": {
+    "english": "Requesting Dept.",
+    "vietnamese": "Bộ phận yêu cầu"
+  },
+  "VISIT_TYPE": {
+    "english": "Visit Type",
+    "vietnamese": "Loại chuyến thăm"
+  },
+  "RUNNUMTYPE": {
+    "english": "RunNumType",
+    "vietnamese": "ChạyNumType"
+  },
+  "VIEW_DETAILS": {
+    "english": "View Details",
+    "vietnamese": "Xem chi tiết"
+  },
+  "RESULTS_NOT_ADDED": {
+    "english": "Results Not Added",
+    "vietnamese": "Kết quả không được thêm vào"
+  },
+  "CATEGORY_1": {
+    "english": "Category",
+    "vietnamese": "Loại"
+  },
+  "RUN_NUMBER": {
+    "english": "Run Number",
+    "vietnamese": "Số chạy"
+  },
+  "ADD_RESULT": {
+    "english": "Add Result",
+    "vietnamese": "Thêm kết quả"
+  },
+  "REPORTS_PENDING": {
+    "english": "Reports Pending",
+    "vietnamese": "Báo cáo đang chờ xử lý"
+  },
+  "REPORTS_GENERATED": {
+    "english": "Reports Generated",
+    "vietnamese": "Báo cáo đã tạo"
+  },
+  "IS_PRINTED": {
+    "english": "Is Printed",
+    "vietnamese": "được in"
+  },
+  "BILL_NOT_PAID": {
+    "english": "Bill Not Paid",
+    "vietnamese": "Hóa đơn chưa thanh toán"
+  },
+  "PREVIEW": {
+    "english": "Preview",
+    "vietnamese": "Xem trước"
+  },
+  "SAMPLE_NO": {
+    "english": "Sample No",
+    "vietnamese": "Mẫu số"
+  },
+  "COLLECTED_BY": {
+    "english": "Collected By",
+    "vietnamese": "Được thu thập bởi"
+  },
+  "RESULT_BY": {
+    "english": "Result By",
+    "vietnamese": "Kết quả theo"
+  },
+  "VERIFIED_BY": {
+    "english": "Verified By",
+    "vietnamese": "Được xác minh bởi"
+  },
+  "PRINTED_BY": {
+    "english": "Printed By",
+    "vietnamese": "Được in bởi"
+  },
+  "LAB_REPORT_OF": {
+    "english": "{{j+1}}. Lab Report of\n            {{rep.PatientName}}",
+    "vietnamese": "{{j+1}}. Báo cáo phòng thí nghiệm của{{rep.PatientName}}"
+  },
+  "LAB_REPORT_OF_1": {
+    "english": "{{j+1}}. Lab Report\n            of\n            {{rep.PatientName}}",
+    "vietnamese": "{{j+1}}. Báo cáo phòng thí nghiệm\n            của{{rep.PatientName}}"
+  },
+  "NOT_PAID": {
+    "english": "Not Paid",
+    "vietnamese": "Không được thanh toán"
+  },
+  "SHOW_PENDING_TESTS_OF_THIS_PATIENT": {
+    "english": "Show Pending Tests of this Patient ?",
+    "vietnamese": "Hiển thị các xét nghiệm đang chờ xử lý của bệnh nhân này?"
+  },
+  "LAB_REQUISITIONS": {
+    "english": "Lab Requisitions",
+    "vietnamese": "Yêu cầu phòng thí nghiệm"
+  },
+  "SNO": {
+    "english": "S.No.",
+    "vietnamese": "S.Không."
+  },
+  "RESULTS_TO_ADD": {
+    "english": "Results To Add",
+    "vietnamese": "Kết quả cần thêm"
+  },
+  "SAMPLE_NO_1": {
+    "english": "Sample No.",
+    "vietnamese": "Mẫu số"
+  },
+  "SAMPLE_COLLECTED_BY": {
+    "english": "Sample Collected By",
+    "vietnamese": "Mẫu được thu thập bởi"
+  },
+  "RESULTS_ADDED": {
+    "english": "Results Added",
+    "vietnamese": "Kết quả đã thêm"
+  },
+  "RESULT_ADDED_BY": {
+    "english": "Result Added By",
+    "vietnamese": "Kết quả được thêm bởi"
+  },
+  "LAB_REPORT_OF_2": {
+    "english": "Lab Report of\n              {{patientService.globalPatient.ShortName}}",
+    "vietnamese": "Báo cáo phòng thí nghiệm của{{patientService.globalPatient.ShortName}}"
+  },
+  "SEND_REPORT_AS_EMAIL": {
+    "english": "Send Report as Email",
+    "vietnamese": "Gửi báo cáo dưới dạng email"
+  },
+  "SEND_EMAIL": {
+    "english": "Send Email",
+    "vietnamese": "Gửi email"
+  },
+  "ENTER_THE_EMAIL_INFORMATIONS": {
+    "english": "Enter the email informations",
+    "vietnamese": "Nhập thông tin email"
+  },
+  "TO_1": {
+    "english": "To",
+    "vietnamese": "ĐẾN"
+  },
+  "EMAIL_ADDRESS_IS_REQUIRED": {
+    "english": "Email Address is required",
+    "vietnamese": "Địa chỉ Email là bắt buộc"
+  },
+  "NOTE_SEPARATE_MULTIPLE_EMAIL_BY_SEMICOLON": {
+    "english": "Note: separate multiple email by semicolon (;)",
+    "vietnamese": "Lưu ý: phân tách nhiều email bằng dấu chấm phẩy (;)"
+  },
+  "SUBJECT": {
+    "english": "Subject",
+    "vietnamese": "Chủ thể"
+  },
+  "SUBJECT_IS_REQUIRED": {
+    "english": "Subject is required",
+    "vietnamese": "Chủ đề là bắt buộc"
+  },
+  "ENTER_TEXT": {
+    "english": "Enter text",
+    "vietnamese": "Nhập văn bản"
+  },
+  "REMARK_IS_REQUIRED": {
+    "english": "Remark is required",
+    "vietnamese": "Cần có chú thích"
+  },
+  "PDF": {
+    "english": "{{i+1}}. {{pdf.ImageName}}.pdf",
+    "vietnamese": "{{i+1}}.{{pdf.ImageName}}.pdf"
+  },
+  "SEND": {
+    "english": "Send",
+    "vietnamese": "Gửi"
+  },
+  "RUN_NUMBER_1": {
+    "english": "{{templateReport.Lookups.VisitType}} Run Number :",
+    "vietnamese": "{{templateReport.Lookups.VisitType}}Số lần chạy :"
+  },
+  "CHANGE": {
+    "english": "(Change)",
+    "vietnamese": "(Thay đổi)"
+  },
+  "WARD": {
+    "english": "Ward :",
+    "vietnamese": "Phường :"
+  },
+  "UNDER_INSURANCE": {
+    "english": "(Under Insurance)",
+    "vietnamese": "(Theo bảo hiểm)"
+  },
+  "PRESCRIBED_BY": {
+    "english": "Prescribed By :",
+    "vietnamese": "Được quy định bởi:"
+  },
+  "LOAD_MACHINE_RESULT": {
+    "english": "Load Machine Result",
+    "vietnamese": "Kết quả máy tải"
+  },
+  "COMPONENT": {
+    "english": "Component",
+    "vietnamese": "Thành phần"
+  },
+  "VALUE": {
+    "english": "Value",
+    "vietnamese": "Giá trị"
+  },
+  "COMPLETED": {
+    "english": "Completed",
+    "vietnamese": "Hoàn thành"
+  },
+  "SEND_TO_VENDOR": {
+    "english": "Send to Vendor: {{test.VendorDetail.VendorName}}",
+    "vietnamese": "Gửi tới nhà cung cấp:{{test.VendorDetail.VendorName}}"
+  },
+  "REQUESTED_ON": {
+    "english": "Requested On:",
+    "vietnamese": "Đã yêu cầu vào:"
+  },
+  "SAMPLE_COLLECTED_BY_1": {
+    "english": "Sample Collected By:",
+    "vietnamese": "Mẫu được thu thập bởi:"
+  },
+  "CHECKUNCHECK_ALL_COMPONENTS_OF": {
+    "english": "Check/Uncheck all components of: {{test.TestName}}",
+    "vietnamese": "Chọn/Bỏ chọn tất cả các thành phần của:{{test.TestName}}"
+  },
+  "NAME_IS_REQUIRED": {
+    "english": "name is required",
+    "vietnamese": "tên là bắt buộc"
+  },
+  "ENTER_VALUE": {
+    "english": "enter value",
+    "vietnamese": "nhập giá trị"
+  },
+  "ENTER_TEXT_1": {
+    "english": "enter text",
+    "vietnamese": "nhập văn bản"
+  },
+  "VALUE_IS_INVALID": {
+    "english": "value is invalid",
+    "vietnamese": "giá trị không hợp lệ"
+  },
+  "UNIT_1": {
+    "english": "unit",
+    "vietnamese": "đơn vị"
+  },
+  "RANGE_1": {
+    "english": "range",
+    "vietnamese": "phạm vi"
+  },
+  "REMOVE_THIS_COMPONENT": {
+    "english": "Remove this Component",
+    "vietnamese": "Xóa thành phần này"
+  },
+  "ADD_NEW_COMPONENT_TO": {
+    "english": "Add New Component to {{test.TestName}}",
+    "vietnamese": "Thêm thành phần mới vào{{test.TestName}}"
+  },
+  "SELECT": {
+    "english": "Select",
+    "vietnamese": "Lựa chọn"
+  },
+  "NO_GROWTH": {
+    "english": "No Growth:",
+    "vietnamese": "Không tăng trưởng:"
+  },
+  "KEY_1_MORE_ISOLATED_ORGANISM": {
+    "english": "+1 More Isolated Organism",
+    "vietnamese": "+1 Sinh vật biệt lập khác"
+  },
+  "RUN_NUMBER_2": {
+    "english": "{{templateReport.Lookups.VisitType}} Run Number :\n            {{templateReport.Lookups.SampleCodeFormatted}}",
+    "vietnamese": "{{templateReport.Lookups.VisitType}}Số lần chạy :{{templateReport.Lookups.SampleCodeFormatted}}"
+  },
+  "WARD_1": {
+    "english": "Ward : {{patientService.globalPatient.WardName}}",
+    "vietnamese": "Phường :{{patientService.globalPatient.WardName}}"
+  },
+  "REQUESTED_ON_TESTREQUESTDATE_DANPHEDATETIMEFORMATY": {
+    "english": "Requested On: {{\n                  test.RequestDate |\n                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}",
+    "vietnamese": "Đã yêu cầu vào: {{\n                  test.RequestDate |\n                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}"
+  },
+  "REPORT_TEMPLATE_1": {
+    "english": "Report Template:",
+    "vietnamese": "Mẫu báo cáo:"
+  },
+  "CLICK_TO_CHANGE_REPORT_TEMPLATE": {
+    "english": "click to change report template",
+    "vietnamese": "bấm vào để thay đổi mẫu báo cáo"
+  },
+  "SELECT_DIFFERENT_TEMPLATE": {
+    "english": "Select different template ?",
+    "vietnamese": "Chọn mẫu khác?"
+  },
+  "SEARCH_TEMPLATE": {
+    "english": "search template",
+    "vietnamese": "mẫu tìm kiếm"
+  },
+  "ALERT": {
+    "english": "Alert",
+    "vietnamese": "Báo động"
+  },
+  "FEW_OF_THE_TESTS_HAVE_ABNORMAL_VALUES_DO_YOU_WANT": {
+    "english": "Few of the Tests have abnormal values, Do you want to proceed?",
+    "vietnamese": "Một số Thử nghiệm có giá trị bất thường. Bạn có muốn tiếp tục không?"
+  },
+  "PROCEED": {
+    "english": "Proceed",
+    "vietnamese": "Tiếp tục"
+  },
+  "REVIEW_VALUES": {
+    "english": "Review Values",
+    "vietnamese": "Xem lại giá trị"
+  },
+  "CHANGE_RUN_NUMBER": {
+    "english": "Change Run Number",
+    "vietnamese": "Thay đổi số lần chạy"
+  },
+  "SAMPLE_COLLECTION_DATE_1": {
+    "english": "Sample Collection Date",
+    "vietnamese": "Ngày lấy mẫu"
+  },
+  "RUN_NUMBER_3": {
+    "english": "{{RunNumberType}} ({{visitType}}) Run Number",
+    "vietnamese": "{{RunNumberType}}({{visitType}}) Số lần chạy"
+  },
+  "ALERT_1": {
+    "english": "Alert !!!",
+    "vietnamese": "Báo động !!!"
+  },
+  "IS_ALREADY_USED_FOR_PATIENT": {
+    "english": "is\n                  already used for patient",
+    "vietnamese": "là\n                  đã được sử dụng cho bệnh nhân"
+  },
+  "IS_ALREADY_USED_FOR_PATIENT_1": {
+    "english": "is already used for\n                  patient",
+    "vietnamese": "đã được sử dụng cho\n                  bệnh nhân"
+  },
+  "PLEASE_SELECT_ANOTHER_RUN_NUMBER": {
+    "english": "Please select another run number.",
+    "vietnamese": "Vui lòng chọn số chạy khác."
+  },
+  "RUN_NUMBER_4": {
+    "english": "{{visitType}} Run Number",
+    "vietnamese": "{{visitType}}Số lần chạy"
+  },
+  "IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI": {
+    "english": "is\n                  already used for another test for the same patient",
+    "vietnamese": "là\n                  đã được sử dụng cho một xét nghiệm khác cho cùng một bệnh nhân"
+  },
+  "DO_YOU_WANT_TO_CONTINUE_WITH_THE_SAME_RUN_NUMBER": {
+    "english": "Do you want to continue with the same run number?",
+    "vietnamese": "Bạn có muốn tiếp tục với số lần chạy tương tự không?"
+  },
+  "CONTINUE": {
+    "english": "Continue",
+    "vietnamese": "Tiếp tục"
+  },
+  "PATIENT_NO": {
+    "english": "Patient No.",
+    "vietnamese": "Số bệnh nhân"
+  },
+  "ER": {
+    "english": "ER",
+    "vietnamese": "phòng cấp cứu"
+  },
+  "IP": {
+    "english": "IP",
+    "vietnamese": "IP"
+  },
+  "OP": {
+    "english": "OP",
+    "vietnamese": "OP"
+  },
+  "REFERRED_BY": {
+    "english": "Referred By :",
+    "vietnamese": "Được giới thiệu bởi:"
+  },
+  "RECEIVING_DATE": {
+    "english": "Receiving Date",
+    "vietnamese": "Ngày nhận"
+  },
+  "LAB_NO": {
+    "english": "Lab No",
+    "vietnamese": "Phòng thí nghiệm số"
+  },
+  "TESTS_1": {
+    "english": "Test(s)",
+    "vietnamese": "(Các) bài kiểm tra"
+  },
+  "FINDINGS": {
+    "english": "Finding(s)",
+    "vietnamese": "(Các) phát hiện"
+  },
+  "NO_PRINTING_OPTION_FOR_THIS_TYPE_OF_TESTS": {
+    "english": "No printing option for this type of Tests..",
+    "vietnamese": "Không có tùy chọn in cho loại Xét nghiệm này.."
+  },
+  "PRINT_SHEET": {
+    "english": "Print Sheet",
+    "vietnamese": "Tờ in"
+  },
+  "COLLECT_SAMPLE": {
+    "english": "Collect Sample",
+    "vietnamese": "Thu thập mẫu"
+  },
+  "PLEASE_VERIFY_THE_RUN_NUMBER_AND_TESTS_CAREFULLY_B": {
+    "english": "Please verify the RUN Number and\n      Tests Carefully before Collecting Sample",
+    "vietnamese": "Vui lòng xác minh Số RUN và\n      Kiểm tra cẩn thận trước khi lấy mẫu"
+  },
+  "WARD_2": {
+    "english": "Ward:",
+    "vietnamese": "Phường:"
+  },
+  "PHONE_NUMBER_1": {
+    "english": "Phone Number:",
+    "vietnamese": "Số điện thoại:"
+  },
+  "REQUESTED_ON_1": {
+    "english": "Requested On",
+    "vietnamese": "Đã yêu cầu vào"
+  },
+  "AD": {
+    "english": "(AD)",
+    "vietnamese": "(Quảng cáo)"
+  },
+  "BS": {
+    "english": "(BS)",
+    "vietnamese": "(BS)"
+  },
+  "CHANGE_DATE_FORMAT_TO_ADBS": {
+    "english": "Change date format to AD/BS",
+    "vietnamese": "Thay đổi định dạng ngày thành AD/BS"
+  },
+  "PRESCRIBED_BY_1": {
+    "english": "Prescribed By",
+    "vietnamese": "Được quy định bởi"
+  },
+  "SELECT_TEST": {
+    "english": "Select Test",
+    "vietnamese": "Chọn kiểm tra"
+  },
+  "IS_OUTSOURCED": {
+    "english": "Is Outsourced?",
+    "vietnamese": "Được thuê ngoài?"
+  },
+  "TYPE": {
+    "english": "Type",
+    "vietnamese": "Kiểu"
+  },
+  "GOVERNMENT_INSURANCE": {
+    "english": "Government Insurance",
+    "vietnamese": "Bảo hiểm Chính phủ"
+  },
+  "CHANGE_TEST": {
+    "english": "Change Test",
+    "vietnamese": "Kiểm tra thay đổi"
+  },
+  "TRANSFER": {
+    "english": "Transfer",
+    "vietnamese": "Chuyển khoản"
+  },
+  "RUN_NUMBER_5": {
+    "english": "{{visitType}}\n              ({{RunNumberType}}) Run Number:",
+    "vietnamese": "{{visitType}}({{RunNumberType}}) Số lần chạy:"
+  },
+  "GET_LATEST_RUN_NUMBER": {
+    "english": "Get Latest Run Number",
+    "vietnamese": "Nhận số lần chạy mới nhất"
+  },
+  "CHANGE_SAMPLE_COLLECTION_DATE": {
+    "english": "Change Sample Collection Date",
+    "vietnamese": "Thay đổi ngày lấy mẫu"
+  },
+  "USE_EARLIER_SAMPLE": {
+    "english": "Use Earlier Sample ?[",
+    "vietnamese": "Sử dụng mẫu trước đó ?["
+  },
+  "RUNNUMBER_BARCODENUMBER": {
+    "english": "RunNumber: \n                {{LastSampleCodeOfPat.SampleCodeFormatted}}, BarCodeNumber: {{LastSampleCodeOfPat.BarCodeNumber}}",
+    "vietnamese": "Số chạy:{{LastSampleCodeOfPat.SampleCodeFormatted}}, Số mã vạch:{{LastSampleCodeOfPat.BarCodeNumber}}"
+  },
+  "IS_ALREADY_USED_FOR_PATIENT_2": {
+    "english": "is already used for patient",
+    "vietnamese": "đã được sử dụng cho bệnh nhân"
+  },
+  "PLEASE_CHANGE_THE_RUN_NUMBER": {
+    "english": "Please change the run number.",
+    "vietnamese": "Vui lòng thay đổi số chạy."
+  },
+  "IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI_1": {
+    "english": "is already used for another test for the same\n                  patient",
+    "vietnamese": "đã được sử dụng cho một thử nghiệm khác cho cùng một thử nghiệm\n                  bệnh nhân"
+  },
+  "IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI_2": {
+    "english": "is already used\n                  for another test for the same patient",
+    "vietnamese": "đã được sử dụng rồi\n                  cho một xét nghiệm khác cho cùng một bệnh nhân"
+  },
+  "SAMPLE_CODE_GENERATED_SUCCESSFULLY": {
+    "english": "Sample Code generated successfully",
+    "vietnamese": "Mã mẫu được tạo thành công"
+  },
+  "CHANGE_1": {
+    "english": "Change",
+    "vietnamese": "Thay đổi"
+  },
+  "NOTE_RESETTING_THE_RUN_NUMBER_CAUSES_THE_REMOVAL_O": {
+    "english": "Note: Resetting the Run Number Causes the Removal of Current Run Number",
+    "vietnamese": "Lưu ý: Việc đặt lại số lần chạy sẽ xóa số lần chạy hiện tại"
+  },
+  "NAME_2": {
+    "english": "Name:",
+    "vietnamese": "Tên:"
+  },
+  "AGESEX_1": {
+    "english": "Age/Sex:",
+    "vietnamese": "Tuổi/Giới tính:"
+  },
+  "VISIT_TYPE_1": {
+    "english": "Visit Type:",
+    "vietnamese": "Loại chuyến thăm:"
+  },
+  "SAMPLE_CODE": {
+    "english": "Sample Code:",
+    "vietnamese": "Mã mẫu:"
+  },
+  "APPLY_RESET_ON": {
+    "english": "Apply Reset On",
+    "vietnamese": "Áp dụng Đặt lại Bật"
+  },
+  "SAMPLECODE_OF_CHECKED_TEST_WILL_RESET": {
+    "english": "SampleCode of Checked test will Reset",
+    "vietnamese": "Mã mẫu của bài kiểm tra đã kiểm tra sẽ đặt lại"
+  },
+  "FINAL_REPORTS": {
+    "english": "Final Reports",
+    "vietnamese": "Báo cáo cuối cùng"
+  },
+  "REPORTING_DATE": {
+    "english": "Reporting Date:",
+    "vietnamese": "Ngày báo cáo:"
+  },
+  "UPLOAD_TO_TELEMEDICINE": {
+    "english": "Upload To Telemedicine",
+    "vietnamese": "Tải lên y học từ xa"
+  },
+  "SHOW_HEADER_IMAGE": {
+    "english": "Show Header Image",
+    "vietnamese": "Hiển thị hình ảnh tiêu đề"
+  },
+  "LAST_PRINTED_BY": {
+    "english": "Last Printed By",
+    "vietnamese": "Được in lần cuối bởi"
+  },
+  "PRINT_COUNT": {
+    "english": "Print Count",
+    "vietnamese": "Số lượng bản in"
+  },
+  "INS": {
+    "english": "/ (INS)",
+    "vietnamese": "/ (INS)"
+  },
+  "TEMPLATEREPORTLOOKUPSCOUNTRYSUBDIVISIONNAME_NULL_T": {
+    "english": ": {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                                        templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                                        {{templateReport.Lookups.MunicipalityName != null?\n                                                        templateReport.Lookups.MunicipalityName + ',' : '' }} {{templateReport.Lookups.Address}}",
+    "vietnamese": ": {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                                        templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                                        {{templateReport.Lookups.MunicipalityName != null?\n                                                        templateReport.Lookups.MunicipalityName + ',' : '' }}{{templateReport.Lookups.Address}}"
+  },
+  "CLICK_TO_CHANGE_PRESCRIBER_DR": {
+    "english": "Click to Change Prescriber Dr.",
+    "vietnamese": "Nhấn vào đây để thay đổi người kê đơn Dr."
+  },
+  "COLLECTION_DATE": {
+    "english": "Collection Date",
+    "vietnamese": "Ngày thu thập"
+  },
+  "TEMPLATEREPORTLOOKUPSRECEIVINGDATE_DANPHEDATETIMEF": {
+    "english": ":\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            nepaliDate }}",
+    "vietnamese": ":\n                                                            {{templateReport.Lookups.ReceiveDate |\n                                                            DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceiveDate |\n                                                            nepaliNgày }}"
+  },
+  "CLICK_TO_CHANGE_RUN_NUMBER": {
+    "english": "Click to Change Run Number.",
+    "vietnamese": "Nhấp để Thay đổi số lần chạy."
+  },
+  "REPORTING_DATE_1": {
+    "english": "Reporting Date",
+    "vietnamese": "Ngày báo cáo"
+  },
+  "VERIFICATIONENABLED_TEMPLATEREPORTLOOKUPSVERIFIEDO": {
+    "english": ": {{verificationEnabled ?\n                                                            (templateReport.Lookups.VerifiedOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}",
+    "vietnamese": ": {{xác minhĐã bật ?\n                                                            (templateReport.Lookups. VerifyOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}"
+  },
+  "PASSPORT_NUMBER": {
+    "english": "PassPort Number",
+    "vietnamese": "Số cổng thông qua"
+  },
+  "SHOW_ESIGNATURE": {
+    "english": "Show ESignature",
+    "vietnamese": "Hiển thị chữ ký điện tử"
+  },
+  "NOTE": {
+    "english": "Note:",
+    "vietnamese": "Ghi chú:"
+  },
+  "FLAG": {
+    "english": "Flag",
+    "vietnamese": "Lá cờ"
+  },
+  "REFERENCE": {
+    "english": "Reference",
+    "vietnamese": "Thẩm quyền giải quyết"
+  },
+  "UNCHECKED_TEST_WILL_NOT_BE_PRINTED": {
+    "english": "unchecked test will not be printed",
+    "vietnamese": "bài kiểm tra không được đánh dấu sẽ không được in"
+  },
+  "L": {
+    "english": "L",
+    "vietnamese": "L"
+  },
+  "H": {
+    "english": "H",
+    "vietnamese": "H"
+  },
+  "N": {
+    "english": "N",
+    "vietnamese": "N"
+  },
+  "UNCHECKED_INTERPRETATION_WILL_NOT_BE_PRINTED": {
+    "english": "unchecked Interpretation will not be printed",
+    "vietnamese": "không được chọn Phần giải thích sẽ không được in"
+  },
+  "INTERPRETATION_1": {
+    "english": "Interpretation({{res.TestName}}):",
+    "vietnamese": "Giải thích({{res.TestName}}):"
+  },
+  "SPECIMEN_1": {
+    "english": "Specimen:",
+    "vietnamese": "Mẫu vật:"
+  },
+  "COLONY_COUNT": {
+    "english": "Colony Count:",
+    "vietnamese": "Số thuộc địa:"
+  },
+  "ANTIBIOTICS_RESULT": {
+    "english": "Antibiotics Result",
+    "vietnamese": "Kết quả kháng sinh"
+  },
+  "SENSITIVE": {
+    "english": "Sensitive",
+    "vietnamese": "Nhạy cảm"
+  },
+  "INTERMEDIATE": {
+    "english": "Intermediate",
+    "vietnamese": "Trung cấp"
+  },
+  "RESISTANT": {
+    "english": "Resistant",
+    "vietnamese": "Chống chịu"
+  },
+  "COMMENTS": {
+    "english": "Comments:",
+    "vietnamese": "Bình luận:"
+  },
+  "PRINTED_BY_ON": {
+    "english": "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}",
+    "vietnamese": "Được in bởi:{{CreatedByUser.FullName}}trên{{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
+  },
+  "UPDATE_SIGNATORIES": {
+    "english": "Update Signatories {{ templateReport.ReportId ? '' : 'and Print'}}",
+    "vietnamese": "Cập nhật người ký{{ templateReport.ReportId ? '' : 'and Print'}}"
+  },
+  "VERIFY": {
+    "english": "Verify",
+    "vietnamese": "Xác minh"
+  },
+  "UPLOAD_TO_PATIENT_PORTAL": {
+    "english": "Upload To Patient Portal",
+    "vietnamese": "Tải lên cổng thông tin bệnh nhân"
+  },
+  "PRINT_PRELIMINARY_REPORT": {
+    "english": "Print Preliminary Report",
+    "vietnamese": "In báo cáo sơ bộ"
+  },
+  "EDIT_SIGNATORIES": {
+    "english": "Edit Signatories",
+    "vietnamese": "Chỉnh sửa người ký"
+  },
+  "CHANGE_PRESCRIBER_DOCTOR": {
+    "english": "Change Prescriber Doctor",
+    "vietnamese": "Thay đổi bác sĩ kê đơn"
+  },
+  "SELECT_PRESCRIBER": {
+    "english": "Select Prescriber",
+    "vietnamese": "Chọn người kê đơn"
+  },
+  "IS_ALREADY_USED_FOR_PATIENT_3": {
+    "english": "is\n                                    already used for patient",
+    "vietnamese": "là\n                                    đã được sử dụng cho bệnh nhân"
+  },
+  "IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI_3": {
+    "english": "is already used for another test for the same\n                                    patient",
+    "vietnamese": "đã được sử dụng cho một thử nghiệm khác cho cùng một thử nghiệm\n                                    bệnh nhân"
+  },
+  "INSURANCE": {
+    "english": "/ (Insurance)",
+    "vietnamese": "/ (Bảo hiểm)"
+  },
+  "TEMPLATEREPORTLOOKUPSCOUNTRYSUBDIVISIONNAME_NULL_T_1": {
+    "english": ":\n                            {{templateReport.Lookups.CountrySubDivisionName != null ?\n                            templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                            {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                            ',' : '' }}\n                            {{templateReport.Lookups.Address}}",
+    "vietnamese": ":\n                            {{templateReport.Lookups.CountrySubDivisionName != null ?\n                            templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                            {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                            ',' : '' }}{{templateReport.Lookups.Address}}"
+  },
+  "TEMPLATEREPORTLOOKUPSDOB_DANPHEDATETIMEAGE": {
+    "english": ":\n                              {{templateReport.Lookups.DOB |\n                              DanpheDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}",
+    "vietnamese": ":\n                              {{templateReport.Lookups.DOB |\n                              DanpheDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}"
+  },
+  "TEMPLATEREPORTLOOKUPSRECEIVINGDATE_DANPHEDATETIMEF_1": {
+    "english": ":\n                              {{templateReport.Lookups.ReceivingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceivingDate |\n                              nepaliDate }}",
+    "vietnamese": ":\n                              {{templateReport.Lookups.ReceiveDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceiveDate |\n                              nepaliNgày }}"
+  },
+  "COLLECTION_SITE": {
+    "english": "Collection Site",
+    "vietnamese": "Trang web sưu tập"
+  },
+  "TESTING_DATE": {
+    "english": "Testing Date",
+    "vietnamese": "Ngày kiểm tra"
+  },
+  "TEMPLATEREPORTLOOKUPSREPORTINGDATE_DANPHEDATETIMEF": {
+    "english": ":{{templateReport.Lookups.ReportingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliDate }}",
+    "vietnamese": ":{{templateReport.Lookups.ReportingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliNgày }}"
+  },
+  "VERIFICATIONENABLED_TEMPLATEREPORTLOOKUPSVERIFIEDO_1": {
+    "english": ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                              (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliDate) }}",
+    "vietnamese": ":{{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'):\n                              (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliNgày) }}"
+  },
+  "TEMPLATEREPORTLOOKUPSCOUNTRYSUBDIVISIONNAME_NULL_T_2": {
+    "english": ":\n                                {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                                ',' : '' }}\n                                {{templateReport.Lookups.Address}}",
+    "vietnamese": ":\n                                {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                                ',' : '' }}{{templateReport.Lookups.Address}}"
+  },
+  "TEMPLATEREPORTLOOKUPSDOB_DANPHEDATETIMEAGE_1": {
+    "english": ":\n                                  {{templateReport.Lookups.DOB |\n                                  DanpheDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}",
+    "vietnamese": ":\n                                  {{templateReport.Lookups.DOB |\n                                  DanpheDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}"
+  },
+  "CONTACT": {
+    "english": "Contact",
+    "vietnamese": "Liên hệ"
+  },
+  "TEMPLATEREPORTLOOKUPSRECEIVINGDATE_DANPHEDATETIMEF_2": {
+    "english": ":\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  nepaliDate }}",
+    "vietnamese": ":\n                                  {{templateReport.Lookups.ReceiveDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceiveDate |\n                                  nepaliNgày }}"
+  },
+  "TEMPLATEREPORTLOOKUPSREPORTINGDATE_DANPHEDATETIMEF_1": {
+    "english": ":{{templateReport.Lookups.ReportingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliDate }}",
+    "vietnamese": ":{{templateReport.Lookups.ReportingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliNgày }}"
+  },
+  "VERIFICATIONENABLED_TEMPLATEREPORTLOOKUPSVERIFIEDO_2": {
+    "english": ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                                  (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliDate) }}",
+    "vietnamese": ":{{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'):\n                                  (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliNgày) }}"
+  },
+  "WARD_3": {
+    "english": "Ward",
+    "vietnamese": "Phường"
+  },
+  "VERIFIED_ON": {
+    "english": "Verified On",
+    "vietnamese": "Đã xác minh vào"
+  },
+  "REF_RANGE": {
+    "english": "Ref. Range",
+    "vietnamese": "Tham chiếu Phạm vi"
+  },
+  "PRINTED_BY_ON_CURRENTDATETIME_DANPHEDATETIMEFORMAT": {
+    "english": "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime |\n              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}",
+    "vietnamese": "Được in bởi:{{CreatedByUser.FullName}}vào {{CurrentDateTime |\n              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
+  },
+  "IS_ALREADY_USED_FOR_PATIENT_4": {
+    "english": "is already used\n                    for patient",
+    "vietnamese": "đã được sử dụng rồi\n                    cho bệnh nhân"
+  },
+  "IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI_4": {
+    "english": "is already used for another test for the same\n                    patient",
+    "vietnamese": "đã được sử dụng cho một thử nghiệm khác cho cùng một thử nghiệm\n                    bệnh nhân"
+  },
+  "IS_ALREADY_USED_FOR_ANOTHER_TEST_FOR_THE_SAME_PATI_5": {
+    "english": "is\n                    already used for another test for the same patient",
+    "vietnamese": "là\n                    đã được sử dụng cho một xét nghiệm khác cho cùng một bệnh nhân"
+  },
+  "PRESCRIBER_NAME": {
+    "english": "Prescriber Name",
+    "vietnamese": "Tên người kê đơn"
+  },
+  "BARCODENUMBER_1": {
+    "english": "BarCodeNumber",
+    "vietnamese": "Mã VạchSố"
+  },
+  "HOSPITAL_NO_2": {
+    "english": "Hospital No: {{patientinfos.HospitalNumber}}",
+    "vietnamese": "Số bệnh viện:{{patientinfos.HospitalNumber}}"
+  },
+  "RN": {
+    "english": "RN: {{patientinfos.SampleCodeFormatted}}",
+    "vietnamese": "RN:{{patientinfos.SampleCodeFormatted}}"
+  },
+  "NO_OF_COPIES": {
+    "english": "No. of copies:",
+    "vietnamese": "Số bản sao:"
+  },
+  "CHANGE_LABTEST": {
+    "english": "Change Labtest",
+    "vietnamese": "Thay đổi Labtest"
+  },
+  "INITIALLY_REQUESTED_TEST": {
+    "english": "Initially Requested Test",
+    "vietnamese": "Kiểm tra được yêu cầu ban đầu"
+  },
+  "PRICE": {
+    "english": "Price",
+    "vietnamese": "Giá"
+  },
+  "CHANGE_THIS_LABTEST_WITH": {
+    "english": "Change this Labtest with",
+    "vietnamese": "Thay đổi Labtest này bằng"
+  },
+  "NOTE_YOU_CAN_ONLY_CHANGE_TO_ANOTHER_TEST_HAVING_EQ": {
+    "english": "Note: You can only change to another test having EQUAL PRICE.",
+    "vietnamese": "Lưu ý: Bạn chỉ được đổi sang bài thi khác có GIÁ BẰNG."
+  },
+  "NOT_FOUND": {
+    "english": "not\n          found",
+    "vietnamese": "không\n          tìm thấy"
+  },
+  "NOT_FOUND_1": {
+    "english": "not found",
+    "vietnamese": "không tìm thấy"
+  },
+  "SELECT_SIGNATORIES": {
+    "english": "Select Signatories:",
+    "vietnamese": "Chọn người ký:"
+  },
+  "SELECT_LAB_MACHINE": {
+    "english": "Select Lab Machine",
+    "vietnamese": "Chọn máy thí nghiệm"
+  },
+  "PATIENTNAME_1": {
+    "english": "PatientName",
+    "vietnamese": "Tên bệnh nhân"
+  },
+  "BARCODE_NO_1": {
+    "english": "Barcode No.",
+    "vietnamese": "Mã vạch số"
+  },
+  "MACHINE_COMPONENT_NAME": {
+    "english": "Machine Component Name",
+    "vietnamese": "Tên linh kiện máy"
+  },
+  "MACHINE_UNIT": {
+    "english": "Machine Unit",
+    "vietnamese": "Đơn vị máy"
+  },
+  "COMP_UNIT": {
+    "english": "Comp. Unit",
+    "vietnamese": "Comp. Đơn vị"
+  },
+  "DANPHE_COMPONENT": {
+    "english": "Danphe Component",
+    "vietnamese": "Hợp phần Danphe"
+  },
+  "MAP_TO": {
+    "english": "Map To",
+    "vietnamese": "Bản đồ tới"
+  },
+  "MACHINE_COMPONENT": {
+    "english": "Machine Component",
+    "vietnamese": "Linh kiện máy"
+  },
+  "CONVERSION_FACTOR": {
+    "english": "Conversion Factor",
+    "vietnamese": "Hệ số chuyển đổi"
+  },
+  "INVALID_COMPONENT": {
+    "english": "Invalid Component",
+    "vietnamese": "Thành phần không hợp lệ"
+  },
+  "INVALID_COMPONENT_1": {
+    "english": "Invalid\n                                    Component",
+    "vietnamese": "không hợp lệ\n                                    thành phần"
+  },
+  "CLICK_TO_ADD_NEW_COMPONENT_MAPPING": {
+    "english": "Click to add new component mapping",
+    "vietnamese": "Nhấp để thêm ánh xạ thành phần mới"
+  },
+  "CLICK_TO_REMOVE_THIS_COMPONENT_MAPPING": {
+    "english": "Click to remove this component mapping",
+    "vietnamese": "Nhấp để xóa ánh xạ thành phần này"
+  },
+  "ARE_YOU_SURE": {
+    "english": "Are you sure ?",
+    "vietnamese": "Bạn có chắc không?"
+  },
+  "CURRENTLY_MAPPED_COMPONENT_WILL_BE_LOST_ARE_YOU_SU": {
+    "english": "Currently mapped component will be lost.\n                    Are you sure ?",
+    "vietnamese": "Thành phần được ánh xạ hiện tại sẽ bị mất.\n                    Bạn có chắc không?"
+  },
+  "ADD_NEW_MAPPING": {
+    "english": "Add New Mapping",
+    "vietnamese": "Thêm bản đồ mới"
+  },
+  "ADD_MAPPING_FOR_LAB_COMPONENT_TO_MACHINE_COMPONENT": {
+    "english": "Add Mapping for Lab Component to Machine Component",
+    "vietnamese": "Thêm ánh xạ cho thành phần phòng thí nghiệm vào thành phần máy"
+  },
+  "ALERT_2": {
+    "english": "Alert !!",
+    "vietnamese": "Báo động !!"
+  },
+  "ARE_YOU_SURE_YOU_WANT_TO_REMOVE_THIS_MAPPING": {
+    "english": "Are you sure you want to remove this mapping?",
+    "vietnamese": "Bạn có chắc chắn muốn xóa ánh xạ này không?"
+  },
+  "SELECT_YOUR_LAB_TYPE": {
+    "english": "Select your Lab Type",
+    "vietnamese": "Chọn loại phòng thí nghiệm của bạn"
+  },
+  "YOU_DO_NOT_HAVE_PERMISSION_TO_ENTER_THE_LAB": {
+    "english": "You do not have permission to enter the Lab",
+    "vietnamese": "Bạn không có quyền vào Lab"
+  },
+  "YOU_ARE_IN": {
+    "english": "You are in {{activeLab.LabTypeName}}.",
+    "vietnamese": "Bạn đang ở{{activeLab.LabTypeName}}."
+  },
+  "DO_YOU_WANT_TO_CHANGE_THE_LAB": {
+    "english": "Do you want to Change the Lab?",
+    "vietnamese": "Bạn có muốn thay đổi phòng thí nghiệm?"
+  },
+  "DEACTIVATE_LAB": {
+    "english": "Deactivate\n                        Lab",
+    "vietnamese": "Vô hiệu hóa\n                        phòng thí nghiệm"
+  },
+  "LAB_TESTS_ORDERS_OF_PATIENT_NUMBER": {
+    "english": "Lab Tests Orders of  {{this.selectedPatient.Name}}  (Patient Number: {{this.selectedPatient.PatientCode}})",
+    "vietnamese": "Đơn đặt hàng xét nghiệm trong phòng thí nghiệm của{{this.selectedPatient.Name}}(Mã số bệnh nhân:{{this.selectedPatient.PatientCode}})"
+  },
+  "WARDBED": {
+    "english": "Ward/Bed: {{selectedPatient.BedInformation.Ward}} - {{selectedPatient.BedInformation.BedNumber}}",
+    "vietnamese": "Phòng/Giường:{{selectedPatient.BedInformation.Ward}}-{{selectedPatient.BedInformation.BedNumber}}"
+  },
+  "ADMITTING_DOCOR": {
+    "english": "Admitting Docor: {{selectedPatient.AdmittingDoctorName}}",
+    "vietnamese": "Tiếp nhận bác sĩ:{{selectedPatient.AdmittingDoctorName}}"
+  },
+  "ADMITTED_ON_1": {
+    "english": "Admitted On:",
+    "vietnamese": "Được thừa nhận vào:"
+  },
+  "ORDER_DATE_TIME": {
+    "english": "Order Date Time",
+    "vietnamese": "Ngày đặt hàng Thời gian"
+  },
+  "ORDERSTATUS": {
+    "english": "OrderStatus",
+    "vietnamese": "Trạng thái đơn hàng"
+  },
+  "CANNOT_CANCEL": {
+    "english": "Cannot Cancel",
+    "vietnamese": "Không thể hủy"
+  },
+  "NO_TEST_FOR_CURRENT_INPATIENT": {
+    "english": "No Test For Current InPatient",
+    "vietnamese": "Không có xét nghiệm cho bệnh nhân nội trú hiện tại"
+  },
+  "SEARCH_PATIENT_2": {
+    "english": "Search Patient",
+    "vietnamese": "Tìm kiếm bệnh nhân"
+  },
+  "SN_1": {
+    "english": "S.N",
+    "vietnamese": "SN"
+  },
+  "ITEMNAME": {
+    "english": "ItemName",
+    "vietnamese": "Tên mặt hàng"
+  },
+  "QTY": {
+    "english": "Qty",
+    "vietnamese": "Số lượng"
+  },
+  "TOTAL": {
+    "english": "Total",
+    "vietnamese": "Tổng cộng"
+  },
+  "CLICK_TO_REMOVE_THIS_ITEM": {
+    "english": "Click to remove this item",
+    "vietnamese": "Bấm để xóa mục này"
+  },
+  "CLICK_TO_ADD_NEW_ITEM": {
+    "english": "Click to add new item",
+    "vietnamese": "Nhấn vào đây để thêm mục mới"
+  },
+  "ENTER_ITEM_NAME": {
+    "english": "Enter Item Name",
+    "vietnamese": "Nhập tên mặt hàng"
+  },
+  "DUPLICATE_ITEM_NOT_ALLOWED": {
+    "english": "Duplicate Item not allowed",
+    "vietnamese": "Mục trùng lặp không được phép"
+  },
+  "ITEM_NAME_IS_REQUIRED": {
+    "english": "Item Name is required",
+    "vietnamese": "Tên mặt hàng là bắt buộc"
+  },
+  "ENTER_VALID_NUMBER": {
+    "english": "Enter valid number.",
+    "vietnamese": "Nhập số hợp lệ."
+  },
+  "TOTAL_1": {
+    "english": "Total : {{billingTransaction.TotalAmount}}",
+    "vietnamese": "Tổng cộng :{{billingTransaction.TotalAmount}}"
+  },
+  "IN_WORDS": {
+    "english": "In Words :",
+    "vietnamese": "Bằng lời:"
+  },
+  "ONLY": {
+    "english": "Only.",
+    "vietnamese": "Chỉ một."
+  },
+  "DEPOSIT_BALANCE_AMOUNT": {
+    "english": "Deposit Balance Amount :",
+    "vietnamese": "Số dư tiền gửi:"
+  },
+  "ALERT_3": {
+    "english": "Alert!",
+    "vietnamese": "Báo động!"
+  },
+  "PATIENT_DOESNT_HAVE_SUFFICIENT_DEPOSIT_BALANCE_FOR": {
+    "english": "Patient doesn't have sufficient DEPOSIT BALANCE for Inpatient Billing.",
+    "vietnamese": "Bệnh nhân không có đủ SỐ DƯ TIỀN GỬI để thanh toán cho bệnh nhân nội trú."
+  }
+}

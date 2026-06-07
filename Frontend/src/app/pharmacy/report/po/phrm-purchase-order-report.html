@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="caption custom-caption">
                 <i class="glyphicon glyphicon-asterisk"></i>
-                <span class="caption-subject">PurchaseOrder Report</span>
+                <span class="caption-subject">{{ 'PHARMACY.PURCHASEORDER_REPORT' | translate }}</span>
             </div>
             <div class="row">
 				<div class="col-md-6">
@@ -14,13 +14,13 @@
             <div class="row">
 				<div class="col-md-7 col-xs-12">
                 <div class="form-group">
-                    <label class="control-label col-md-5">Status Name<b style="float:right;">:</b></label>
+                    <label class="control-label col-md-5">{{ 'PHARMACY.STATUS_NAME' | translate }}<b style="float:right;">:</b></label>
                     <div class="col-md-7">
                         <select class="form-control" [(ngModel)]="phrmReports.Status"
                                 [ngModelOptions]="{standalone: true}">
-                            <option selected value="active">Pending </option>
-                            <option value="complete">Complete </option>
-                            <option selected="selected" value="all">All </option>
+                            <option selected value="active">{{ 'PHARMACY.PENDING' | translate }} </option>
+                            <option value="complete">{{ 'PHARMACY.COMPLETE' | translate }} </option>
+                            <option selected="selected" value="all">{{ 'PHARMACY.ALL' | translate }} </option>
                         </select>
                     </div>
                 </div>
@@ -31,8 +31,8 @@
                     <div class="form-group">
                         <button class="btn blue" type="button" (click)="Load()" [disabled]="loading">
                             <i class="fa fa-search"></i>&nbsp;
-                            <span *ngIf="!loading">Show Report</span>
-                            <span *ngIf="loading">Loading...</span>
+                            <span *ngIf="!loading">{{ 'PHARMACY.SHOW_REPORT' | translate }}</span>
+                            <span *ngIf="loading">{{ 'PHARMACY.LOADING' | translate }}</span>
                         </button>
                     </div>
                 </div>

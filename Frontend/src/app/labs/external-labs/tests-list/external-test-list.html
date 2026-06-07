@@ -11,13 +11,13 @@
 
 <div class="wrapper">
   <div class="tbl-container">
-    <input class="custom-table-search" [(ngModel)]="searchString" onclick="this.select();" placeholder="Search">
+    <input class="custom-table-search" [(ngModel)]="searchString" onclick="this.select();" [placeholder]="'LABS.SEARCH_1' | translate">
     <table class="table table-responsive">
       <thead class="table-header-bg">
         <tr>
-          <th> Patient </th>
-          <th> TestName </th>
-          <th> Vendor </th>
+          <th> {{ 'LABS.PATIENT' | translate }} </th>
+          <th> {{ 'LABS.TESTNAME' | translate }} </th>
+          <th> {{ 'LABS.VENDOR_1' | translate }} </th>
         </tr>
       </thead>
       <tbody>

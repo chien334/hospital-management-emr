@@ -21,31 +21,31 @@
         <div class="receipt">
             <div *ngIf="settlementInfo.PrintCount > 0">
                 <p class="no-margin" style="text-align:right;font-style:italic;font-size:13px;">
-                    COPY({{settlementInfo.PrintCount}}) OF ORIGINAL</p>
+                    {{ 'PHARMACY.COPY' | translate }}{{settlementInfo.PrintCount}}{{ 'PHARMACY.OF_ORIGINAL' | translate }}</p>
             </div>
             <billing-header></billing-header>
             <div style="display:inline-block" class="right">
             </div>
             <p class="no-margin" style="text-align:center;padding-top: 10px;padding-bottom: 10px;clear: both;">
                 <span>
-                    <b>Settlement Slip</b>
+                    <b>{{ 'PHARMACY.SETTLEMENT_SLIP' | translate }}</b>
                 </span>
             </p>
             <div class="col-md-12" style="padding:0px;">
                 <div class="left">
-                    <p class="no-margin" style="text-align:left">Receipt No: SR{{ settlementInfo.SettlementReceiptNo }}
+                    <p class="no-margin" style="text-align:left">{{ 'PHARMACY.RECEIPT_NO_SR' | translate }}{{ settlementInfo.SettlementReceiptNo }}
                     </p>
                 </div>
                 <div class="right">
                     <p class="no-margin" style="text-align:right">
-                        Date: {{settlementInfo.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                        {{ 'GRID_HEADERS.DATE' | translate }}: {{settlementInfo.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}
                         {{localDate}}
                     </p>
                 </div>
             </div>
             <div class="col-md-12" style="padding:0px;padding-top: 4px;">
                 <div class="left" style="width:69%">
-                    <div class="no-margin" style="text-align: left;display: inline-block; float: left;">Patient's Name :
+                    <div class="no-margin" style="text-align: left;display: inline-block; float: left;">{{ 'PHARMACY.PATIENTS_NAME' | translate }} :
                     </div>
                     <div style="display: inline-block;width: 67%;text-align: left;">
                         {{settlementInfo.Patient.ShortName}}
@@ -59,19 +59,19 @@
             <div class="col-md-12" style="padding:0px;">
                 <div class="left" style="width:50%">
                     <p class="no-margin" style="text-align:left">
-                        Hospital No: {{settlementInfo.Patient.PatientCode}}
+                        {{ 'PHARMACY.HOSPITAL_NO' | translate }}: {{settlementInfo.Patient.PatientCode}}
                     </p>
                 </div>
                 <div class="right" style="width:50%">
                     <p class="no-margin" style="text-align:right">
-                        Contact No: {{settlementInfo.Patient.PhoneNumber}}
+                        {{ 'PHARMACY.CONTACT_NO' | translate }}: {{settlementInfo.Patient.PhoneNumber}}
                     </p>
                 </div>
 
             </div>
             <div class="col-md-12" style="padding:0px;">
                 <div class="left" style="width: 69%;">
-                    <p class="no-margin" style="text-align:left">Address: {{settlementInfo.Patient.Address}},
+                    <p class="no-margin" style="text-align:left">{{ 'GRID_HEADERS.ADDRESS' | translate }}: {{settlementInfo.Patient.Address}},
                         {{settlementInfo.Patient.CountrySubDivisionName}} </p>
                 </div>
 
@@ -79,7 +79,7 @@
 
             <div class="clear"></div>
             <div class="col-md-12" style="padding:0px;border-bottom: 1px dotted;">
-                <p style="text-align: center;">Method of payment: <span style="text-transform:capitalize;">
+                <p style="text-align: center;">{{ 'PHARMACY.METHOD_OF_PAYMENT' | translate }}: <span style="text-transform:capitalize;">
                         {{settlementInfo.PaymentMode }}</span></p>
             </div>
             <hr style="border-top: dotted 1px;margin:7px 0px;" />
@@ -88,16 +88,16 @@
                 <table style="width:100%;" class="rect-table">
                     <tr *ngIf="settlementInfo.PHRMInvoiceTransactions">
                         <th>
-                            S.No
+                            {{ 'PHARMACY.SNO' | translate }}
                         </th>
                         <th>
-                            Invoice Date
+                            {{ 'PHARMACY.INVOICE_DATE' | translate }}
                         </th>
                         <th>
-                            Invoice No.
+                            {{ 'PHARMACY.INVOICE_NO' | translate }}
                         </th>
                         <th>
-                            Amount
+                            {{ 'PHARMACY.AMOUNT' | translate }}
                         </th>
                     </tr>
                     <tr *ngFor="let txn of settlementInfo.PHRMInvoiceTransactions;let i=index;">
@@ -116,7 +116,7 @@
                     </tr>
                     <tr style="border-top: 1px solid;">
                         <td colspan="3" style="text-align:left;">
-                            Total Amount
+                            {{ 'PHARMACY.TOTAL_AMOUNT' | translate }}
                         </td>
                         <td>
                             {{totalCrAmount | number : "1.2-2"}}
@@ -124,7 +124,7 @@
                     </tr>
                     <tr *ngIf="settlementInfo.DepositDeducted > 0">
                         <td colspan="3" style="text-align:left;">
-                            Less: Deposit Amount
+                            {{ 'PHARMACY.LESS_DEPOSIT_AMOUNT' | translate }}
                         </td>
                         <td>
                             {{settlementInfo.DepositDeducted | number : "1.2-2"}}
@@ -132,12 +132,12 @@
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align:left;">
-                            Balance Amount
+                            {{ 'PHARMACY.BALANCE_AMOUNT' | translate }}
                             <span *ngIf="settlementInfo.PayableAmount > 0" style="font-weight:bold;">
-                                Payable
+                                {{ 'PHARMACY.PAYABLE' | translate }}
                             </span>
                             <span *ngIf="settlementInfo.RefundableAmount > 0" style="font-weight:bold;">
-                                Refundable
+                                {{ 'PHARMACY.REFUNDABLE' | translate }}
                             </span>
                         </td>
                         <td>
@@ -145,15 +145,15 @@
                         </td>
                     </tr>
                     <tr *ngIf="settlementInfo.DiscountAmount > 0">
-                        <td colspan="3" style="text-align:left;">Discount Amount</td>
+                        <td colspan="3" style="text-align:left;">{{ 'PHARMACY.DISCOUNT_AMOUNT' | translate }}</td>
                         <td>
                             {{settlementInfo.DiscountAmount | number : "1.2-2"}}
                         </td>
                     </tr>
                     <tr *ngIf="settlementInfo.PaidAmount>0">
                         <td colspan="3" style="text-align:left;">
-                            <span> Paid Amount</span>
-                            <!--<span *ngIf="settlementInfo.ReturnedAmount>0"> Returned Amount</span>-->
+                            <span> {{ 'PHARMACY.PAID_AMOUNT' | translate }}</span>
+                            <!--<span *ngIf="settlementInfo.ReturnedAmount>0"> {{ 'PHARMACY.RETURNED_AMOUNT' | translate }}</span>-->
                         </td>
                         <td>
                             {{ settlementInfo.PaidAmount | number : "1.2-2"}}
@@ -161,7 +161,7 @@
                     </tr>
                     <tr *ngIf="settlementInfo.ReturnedAmount > 0">
                         <td colspan="3" style="text-align:left;">
-                            <span>Returned Amount</span>
+                            <span>{{ 'PHARMACY.RETURNED_AMOUNT' | translate }}</span>
 
                         </td>
                         <td>
@@ -170,7 +170,7 @@
                     </tr>
                     <!--<tr *ngIf="settlementInfo.DueAmount > 0">
                         <td colspan="3" style="text-align:left;">
-                            <span> Due Amount</span>
+                            <span> Due {{ 'PHARMACY.AMOUNT' | translate }}</span>
 
                         </td>
                         <td>
@@ -184,7 +184,7 @@
 
             <div class="col-md-12" style="text-align: left;"
                  *ngIf="settlementInfo.PaymentDetails !=null && settlementInfo.PaymentDetails!=''">
-                <span style="font-style:italic;">Payment Details: {{settlementInfo.PaymentDetails}}</span>
+                <span style="font-style:italic;">{{ 'PHARMACY.PAYMENT_DETAILS' | translate }}: {{settlementInfo.PaymentDetails}}</span>
             </div>
             <div class="col-md-12" style="border-bottom: 1px dotted;padding-bottom: 4px;margin-bottom: 5px;">
 
@@ -192,15 +192,15 @@
             <div class="clear"></div>
             <div class="col-md-12" style="padding:0px 0px 0px 15px;">
                 <div class="left">
-                    <p class="no-margin" style="text-align:left">Processed By</p>
+                    <p class="no-margin" style="text-align:left">{{ 'PHARMACY.PROCESSED_BY' | translate }}</p>
                     <p class="no-margin" style="text-align:left">{{settlementInfo.BillingUser}}</p>
-                    <p style="text-align:left">Time: {{settlementInfo.CreatedOn | DanpheDateTime:'format':'HH:mm'}}</p>
+                    <p style="text-align:left">{{ 'COMMON.TIME' | translate }}: {{settlementInfo.CreatedOn | DanpheDateTime:'format':'HH:mm'}}</p>
                 </div>
 
                 <div class="right" style="width:50%;">
-                    <p class="no-margin" style="text-align:left">Acknowledged By</p>
-                    <p class="no-margin" style="text-align:left">Signature</p>
-                    <p class="no-margin" style="text-align:left">Remark: {{settlementInfo.Remarks}}</p>
+                    <p class="no-margin" style="text-align:left">{{ 'PHARMACY.ACKNOWLEDGED_BY' | translate }}</p>
+                    <p class="no-margin" style="text-align:left">{{ 'PHARMACY.SIGNATURE' | translate }}</p>
+                    <p class="no-margin" style="text-align:left">{{ 'PHARMACY.REMARK' | translate }}: {{settlementInfo.Remarks}}</p>
                 </div>
             </div>
             <div class="clear"></div>
@@ -211,7 +211,7 @@
     </select-printer>
     <p style="text-align:center;">
         <button class="btn blue" (click)="print()">
-            Print Receipt
+            {{ 'PHARMACY.PRINT_RECEIPT' | translate }}
             <i class="glyphicon glyphicon-print"></i>
         </button>
     </p>

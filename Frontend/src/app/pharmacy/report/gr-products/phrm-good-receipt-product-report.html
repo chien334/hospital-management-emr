@@ -1,7 +1,7 @@
 ﻿<div class="row">
   <div class="form-body">
     <div class="col-md-12">
-      <div class="caption custom-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Good Receipt Product Report</span> </div>
+      <div class="caption custom-caption"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'PHARMACY.GOOD_RECEIPT_PRODUCT_REPORT' | translate }}</span> </div>
       <div class="row">
         <div class="col-md-6">
           <from-to-date-select (on-change)="OnFromToDateChange($event)" [date-settings-name]="'billing-reports'"> </from-to-date-select>
@@ -27,14 +27,14 @@
         <div class="col-md-6 col-xs-12">
           <div class="row">
             <div class="col-md-8">
-              <div class="row"><label class="control-label col-md-5">Select Item <b style="float:right;">:</b></label>
+              <div class="row"><label class="control-label col-md-5">{{ 'PHARMACY.SELECT_ITEM' | translate }} <b style="float:right;">:</b></label>
               <div class="col-md-7">
                 <div class="form-group">
                   <input danphe-auto-complete class="form-control"
                                [(ngModel)]="selectedItem"
                                [source]="itemList"
                                [list-formatter]="myItemListFormatter"
-                               placeholder="--Select Item--"
+                               [placeholder]="'PHARMACY.SELECT_ITEM' | translate"
                                display-property-name="ItemName"
                                value-property-name=null
                                onClick="this.select();"
@@ -48,7 +48,7 @@
               </div></div>
             </div>
             <div class="col-md-2">
-              <button class="btn blue" type="button" (click)="Load()"> Show Report</button>
+              <button class="btn blue" type="button" (click)="Load()"> {{ 'PHARMACY.SHOW_REPORT' | translate }}</button>
             </div>
           </div>
         </div>

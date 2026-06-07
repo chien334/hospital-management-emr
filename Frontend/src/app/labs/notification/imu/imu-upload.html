@@ -39,15 +39,15 @@
           </from-to-date-select>
         </div>
         <div class="col-md-2">
-          <button id="reload" [disabled]="loading" (click)=" loading = true; GetAllIMUData()" class="btn btn-primary"><i class="fa fa-refresh"></i> Load Data</button>
+          <button id="reload" [disabled]="loading" (click)=" loading = true; GetAllIMUData()" class="btn btn-primary"><i class="fa fa-refresh"></i> {{ 'LABS.LOAD_DATA' | translate }}</button>
         </div>
         <div class="col-md-2">
-            <button id="reload"  (click)="PostDataToIMU()" class="btn btn-success"><i class="fa fa-upload"></i> Upload To IMU</button>
+            <button id="reload"  (click)="PostDataToIMU()" class="btn btn-success"><i class="fa fa-upload"></i> {{ 'LABS.UPLOAD_TO_IMU' | translate }}</button>
           </div>
     </div>
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-5">
-            <input class="searchtbx" [(ngModel)]="searchString" onclick="this.select();" placeholder="Search">
+            <input class="searchtbx" [(ngModel)]="searchString" onclick="this.select();" [placeholder]="'LABS.SEARCH_1' | translate">
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-5">
@@ -56,13 +56,13 @@
                     <div class="icheck-inline">
                         <input type="radio" id="test_pending" checked  name="TestRadioFinding"
                         (change)="OnTestFiltersChanged($event)" value="pending" style="width:15px;height:15px" />
-                        <label for="test_pending" style="margin-right: 15px;">Upload Pending </label>
+                        <label for="test_pending" style="margin-right: 15px;">{{ 'LABS.UPLOAD_PENDING' | translate }} </label>
                         <input type="radio" id="test_completed"  name="TestRadioFinding"
                         (change)="OnTestFiltersChanged($event)" value="completed" style="width:15px;height:15px" />
-                        <label for="test_completed" style="margin-right: 15px;">Upload Completed </label>
+                        <label for="test_completed" style="margin-right: 15px;">{{ 'LABS.UPLOAD_COMPLETED' | translate }} </label>
                         <input type="radio" id="test_all" name="TestRadioFinding"
                         (change)="OnTestFiltersChanged($event)" value="all" style="width:15px;height:15px" />
-                        <label for="test_all" style="margin-right: 15px;">All</label>
+                        <label for="test_all" style="margin-right: 15px;">{{ 'LABS.ALL' | translate }}</label>
                     </div>
                 </div>
             </div>
@@ -77,14 +77,14 @@
                             <th colspan="1" style="text-align: center;">
                                 <input autocomplete="off" class="mt-checkbox mt-checkbox-outline" type="checkbox" [(ngModel)]="SelectAll" (change)="SelectAllData()" />
                             </th>
-                            <th colspan="2">Hospital No.</th>
-                            <th colspan="3">Patient Name</th>
-                            <th colspan="2">Age/Sex</th>
-                            <th colspan="2">Phone Number</th>
-                            <th colspan="2">TestName</th>
-                            <th colspan="3">Sample Coll. On</th>
-                            <th colspan="2">Result</th>
-                            <th colspan="2" title="Shows if Lab Report uploaded or not ?">Upload Status</th>
+                            <th colspan="2">{{ 'GRID_HEADERS.HOSPITAL_NO_' | translate }}</th>
+                            <th colspan="3">{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+                            <th colspan="2">{{ 'GRID_HEADERS.AGE_SEX' | translate }}</th>
+                            <th colspan="2">{{ 'LABS.PHONE_NUMBER' | translate }}</th>
+                            <th colspan="2">{{ 'LABS.TESTNAME' | translate }}</th>
+                            <th colspan="3">{{ 'LABS.SAMPLE_COLL_ON' | translate }}</th>
+                            <th colspan="2">{{ 'LABS.RESULT' | translate }}</th>
+                            <th colspan="2" [title]="'LABS.SHOWS_IF_LAB_REPORT_UPLOADED_OR_NOT' | translate">{{ 'LABS.UPLOAD_STATUS' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -10,11 +10,11 @@
         font-weight: bold;
     }
 
-    input[type=checkbox].chk-itms {
+    input[{{ 'INVENTORY.TYPE' | translate }}=checkbox].chk-itms {
         zoom: 1.5;
     }
 
-    tr.dispatch-disabled {
+    tr.{{ 'INVENTORY.DISPATCH' | translate }}-disabled {
         opacity: 0.8;
         color: #908181;
     }
@@ -24,7 +24,7 @@
     <div class="col-md-12">
         <div class="caption">
             <i class="glyphicon glyphicon-asterisk font-red-sunglo"></i>
-            <span class="caption-subject font-blue-sharp bold uppercase">Dispatch Requisition</span>
+            <span class="caption-subject font-blue-sharp bold uppercase">{{ 'INVENTORY.DISPATCH_REQUISITION' | translate }}</span>
         </div>
     </div>
 </div>
@@ -32,9 +32,9 @@
     <div class="col-md-12">
         <div class="form-control" style="background-color:whitesmoke">
             <div class="row">
-                <div class="col-md-4">Requisition No: {{requisitionStockVM.requisition.RequisitionNo}}<b></b></div>
-                <div class="col-md-4">Store Name:<b> {{StoreName}}</b><br /></div>
-                <div class="col-md-4">Requested On: {{RequestedOn}}<b></b></div>
+                <div class="col-md-4">{{ 'INVENTORY.REQUISITION_NO' | translate }}: {{requisitionStockVM.requisition.RequisitionNo}}<b></b></div>
+                <div class="col-md-4">{{ 'GRID_HEADERS.STORE_NAME' | translate }}:<b> {{StoreName}}</b><br /></div>
+                <div class="col-md-4">{{ 'INVENTORY.REQUESTED' | translate }} On: {{RequestedOn}}<b></b></div>
             </div>
         </div>
     </div>
@@ -49,24 +49,24 @@
                         <th><input checked type="checkbox" class="chk-itms" name="ToogleAll" [(ngModel)]="selectedAll"
                                    (change)="ToogleAllDispatchItems()"></th>
                         <th></th>
-                        <th>ItemCategory</th>
+                        <th>{{ 'INVENTORY.ITEMCATEGORY' | translate }}</th>
                         <th>
-                            Item Name
+                            {{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}
                         </th>
                         <th>
-                            Require Quantity
+                            {{ 'INVENTORY.REQUIRE_QUANTITY' | translate }}
                         </th>
                         <th>
-                            Dispatch Quantity
+                            {{ 'INVENTORY.DISPATCH_QUANTITY' | translate }}
                         </th>
                         <th>
-                            Available Quantity
+                            {{ 'INVENTORY.AVAILABLE_QUANTITY' | translate }}
                         </th>
                         <th *ngIf="showBarcode">
-                            BarCode No.
+                            {{ 'INVENTORY.BARCODE_NO' | translate }}.
                         </th>
                         <!-- <th>
-                            Item Remarks
+                            {{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.REMARKS' | translate }}
                         </th> -->
                     </tr>
                 </thead>
@@ -99,8 +99,8 @@
                                        [attr.disabled]="row.IsFixedAsset ==true? '' :  null" />
 
                                 <div style="color:red" *ngIf="row.IsDirty('DispatchedQuantity')"
-                                     [hidden]="row.IsValidCheck('DispatchedQuantity','required')">required</div>
-                                <!-- <div style="color:red" *ngIf="row.DispatchedQuantity == 0 && row.isActive == true">Please uncheck this item.</div> -->
+                                     [hidden]="row.IsValidCheck('DispatchedQuantity','required')">{{ 'INVENTORY.REQUIRED' | translate }}</div>
+                                <!-- <div style="color:red" *ngIf="row.DispatchedQuantity == 0 && row.isActive == true">{{ 'INVENTORY.PLEASE' | translate }} uncheck this {{ 'INVENTORY.ITEM' | translate }}.</div> -->
                             </form>
                         </td>
                         <td>
@@ -126,20 +126,20 @@
 
     <div class="form-group">
         <div class="col-md-12">
-            <span class="col-md-2">Remarks<sup *ngIf="isDispatchAllowed==false" class="color-red">*</sup><b></b><span class="right">:</span></span>
+            <span class="col-md-2">{{ 'COMMON.REMARKS' | translate }}<sup *ngIf="isDispatchAllowed==false" class="color-red">*</sup><b></b><span class="right">:</span></span>
             <textarea id="remarks" name="Remarks" [(ngModel)]="Remarks" cols="70" rows="3" (keyup.enter)="setFocusById('receivedBy')"></textarea>
         </div>
         <div class="col-md-12">
-            <span class="col-md-2"> Received By<span class="right">:</span></span>
+            <span class="col-md-2"> {{ 'INVENTORY.RECEIVED_BY' | translate }}<span class="right">:</span></span>
             <input id="receivedBy" type="text" [(ngModel)]="ReceivedBy" (keyup.enter)="setFocusById('DispatchBtn')">
         </div>
         <div class="col-sm-offset-5 col-sm-5">
 
-            <input id="DispatchBtn" type="button" class="btn green btn-success margin-7-hr" value="Dispatch" (click)="SaveDispatchItems()"
+            <input id="DispatchBtn" type="button" class="btn green btn-success margin-7-hr" [value]="'INVENTORY.DISPATCH' | translate" (click)="SaveDispatchItems()"
                    [disabled]="loading" />
             <span></span>
 
-            <a class="btn btn-danger" (click)="Cancel()">Discard</a>
+            <a class="btn btn-danger" (click)="Cancel()">{{ 'COMMON.DISCARD' | translate }}</a>
 
         </div>
     </div>

@@ -8,11 +8,10 @@
   <div class="row">
     <div class="caption lb-caption col-md-6">
       <!-- <i class="glyphicon glyphicon-asterisk font-green-turquoise"></i> -->
-      <span class="caption-subject">List Requisition</span>
+      <span class="caption-subject">{{ 'LABS.LIST_REQUISITION' | translate }}</span>
     </div>
     <div class="col-md-6">
-      <button class="btn green btn-success pull-right" (click)="ShowHideSamplesCollected();">Samples Collected
-        List</button>
+      <button class="btn green btn-success pull-right" (click)="ShowHideSamplesCollected();">{{ 'LABS.SAMPLES_COLLECTED_LIST' | translate }}</button>
     </div>
   </div>
 
@@ -86,15 +85,15 @@
 
                 </tr>
                 <tr>
-                  <th>S.N.</th>
-                  <th>Hospital No.</th>
-                  <th>Patient Name</th>
-                  <th>Test Name</th>
-                  <th>Specimen</th>
-                  <th>DepartmentAssigned</th>
-                  <th>Run No.</th>
-                  <th>Bar Code</th>
-                  <th>Samples Collected On</th>
+                  <th>{{ 'COMMON.SN' | translate }}</th>
+                  <th>{{ 'GRID_HEADERS.HOSPITAL_NO_' | translate }}</th>
+                  <th>{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+                  <th>{{ 'LABS.TEST_NAME' | translate }}</th>
+                  <th>{{ 'LABS.SPECIMEN' | translate }}</th>
+                  <th>{{ 'LABS.DEPARTMENTASSIGNED' | translate }}</th>
+                  <th>{{ 'LABS.RUN_NO' | translate }}</th>
+                  <th>{{ 'LABS.BAR_CODE' | translate }}</th>
+                  <th>{{ 'LABS.SAMPLES_COLLECTED_ON' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,7 +116,7 @@
           </div>
 
           <div style="margin: 20px 0; text-align: center;">
-            <button (click)="Print()" class="btn btn-primary no-print"><i class="fa fa-print"></i> &nbsp;Print</button>
+            <button (click)="Print()" class="btn btn-primary no-print"><i class="fa fa-print"></i> &nbsp;{{ 'COMMON.PRINT' | translate }}</button>
           </div>
         </div>
       </div>

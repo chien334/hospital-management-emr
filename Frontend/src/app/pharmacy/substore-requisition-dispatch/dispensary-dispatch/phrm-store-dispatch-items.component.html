@@ -14,7 +14,7 @@
     <div class="col-md-12">
         <div class="caption">
             <i class="glyphicon glyphicon-asterisk font-red-sunglo"></i>
-            <span class="caption-subject font-blue-sharp bold uppercase">Dispatch Requisition</span>
+            <span class="caption-subject font-blue-sharp bold uppercase">{{ 'PHARMACY.DISPATCH_REQUISITION' | translate }}</span>
         </div>
     </div>
 </div>
@@ -28,26 +28,26 @@
                             <input checked type="checkbox" class="chk-itms" name="SelectAllRequisition" [(ngModel)]="selectAllRequisition" (change)="toogleAllDispatchItems()">
                         </th>
                         <th>
-                            Item Name
+                            {{ 'PHARMACY.ITEM_NAME' | translate }}
                         </th>
-                        <th>Rack</th>
+                        <th>{{ 'PHARMACY.RACK' | translate }}</th>
                         <th>
-                            Requested Quantity
-                        </th>
-                        <th>
-                            Pending Quantity
+                            {{ 'PHARMACY.REQUESTED_QUANTITY' | translate }}
                         </th>
                         <th>
-                            BatchNo
+                            {{ 'PHARMACY.PENDING_QUANTITY' | translate }}
                         </th>
                         <th>
-                            Expiry Date
+                            {{ 'PHARMACY.BATCHNO' | translate }}
                         </th>
                         <th>
-                            Available Quantity
+                            {{ 'PHARMACY.EXPIRY_DATE' | translate }}
                         </th>
                         <th>
-                            Dispatching Quantity
+                            {{ 'PHARMACY.AVAILABLE_QUANTITY' | translate }}
+                        </th>
+                        <th>
+                            {{ 'PHARMACY.DISPATCHING_QUANTITY' | translate }}
                         </th>
                         <th></th>
                     </tr>
@@ -74,8 +74,8 @@
                                 <tr *ngFor="let dispatchingItem of row.DispatchedItems; let j = index">
                                     <td>
                                         <select name="BatchNo" id="BatchNo{{i}}{{j}}" [(ngModel)]="dispatchingItem.BatchNo" [attr.disabled]="(row.IsDispatchingNow == false) ? true : null" (ngModelChange)="OnBatchChange(i,j)">
-                                            <option disabled [value]="null">select batch</option>
-                                            <option *ngFor="let stock of row.AvailableStockList" [value]="stock.BatchNo">{{stock.BatchNo}} (Qty : {{stock.AvailableQuantity}})</option>
+                                            <option disabled [value]="null">{{ 'PHARMACY.SELECT_BATCH' | translate }}</option>
+                                            <option *ngFor="let stock of row.AvailableStockList" [value]="stock.BatchNo">{{stock.BatchNo}} {{ 'PHARMACY.QTY' | translate }} : {{stock.AvailableQuantity}})</option>
                                         </select>
                                     </td>
                                     <!-- <td>
@@ -105,11 +105,11 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-12"> Received By: <input type="text" [(ngModel)]="ReceivedBy"> </div>
+        <div class="col-md-12"> {{ 'PHARMACY.RECEIVED_BY' | translate }}: <input type="text" [(ngModel)]="ReceivedBy"> </div>
         <div class="col-sm-offset-5 col-sm-5">
-            <input type="button" class="btn btn-success" value="Dispatch" (click)="SaveDispatchItems()" [disabled]="loading" />
+            <input type="button" class="btn btn-success" [value]="'PHARMACY.DISPATCH' | translate" (click)="SaveDispatchItems()" [disabled]="loading" />
             <span></span>
-            <a class="btn btn-danger" (click)="Cancel()">Cancel</a>
+            <a class="btn btn-danger" (click)="Cancel()">{{ 'COMMON.CANCEL' | translate }}</a>
         </div>
     </div>
 </div>

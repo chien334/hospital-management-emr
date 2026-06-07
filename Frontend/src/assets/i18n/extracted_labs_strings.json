@@ -1,0 +1,6719 @@
+{
+  "More...": {
+    "occurrences": [
+      {
+        "file": "labs-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.MORE"
+  },
+  "You are currently in {{securityService.getActiveLab()?.LabTypeName}} lab. To\n        change, you can always click here.": {
+    "occurrences": [
+      {
+        "file": "labs-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Active lab :": {
+    "occurrences": [
+      {
+        "file": "labs-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "External Lab Test List": {
+    "occurrences": [
+      {
+        "file": "external-labs/external-labs-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Hospital No :": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter Hospital Number...": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "PatientName :": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter Patient Name...": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Search": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "attribute"
+      },
+      {
+        "file": "external-labs/tests-list/external-test-list.html",
+        "type": "attribute"
+      },
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "attribute"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Vendor :": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "LabTests :": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "External Lab Status :": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "print page": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Print": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.PRINT"
+  },
+  "export to excel": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Export": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.EXPORT"
+  },
+  "Load": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-reports/lab-tests-pending-reports.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-final-reports.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Change Vendor": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Dispatch": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Receive Report": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "From: {{FromDate | nepaliDate:'format':'YYYY-MM-DD'}} BS ({{FromDate}})": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "To: {{ToDate | nepaliDate:'format':'YYYY-MM-DD'}} BS ({{ToDate}})": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Outsource Lab Test List Report({{SelectedExternalLabStatus}})": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Printed On:": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "S.N.": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.SN"
+  },
+  "Patient Name": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "GRID_HEADERS.PATIENT_NAME"
+  },
+  "Hospital No.": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "GRID_HEADERS.HOSPITAL_NO_"
+  },
+  "Test Name": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      },
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Vendor Name": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "text"
+      },
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Status": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/internal-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.STATUS"
+  },
+  "Patient": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/external-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "TestName": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/external-test-list.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Vendor": {
+    "occurrences": [
+      {
+        "file": "external-labs/tests-list/external-test-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Choose Vendor": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendor-assignment/vendor-select.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "External Vendor:": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendor-assignment/vendor-select.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Submit": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendor-assignment/vendor-select.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.SUBMIT"
+  },
+  "Close": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendor-assignment/vendor-select.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-reports/lab-tests-pending-reports.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-selection/lab-type-selection.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": "COMMON.CLOSE"
+  },
+  "X": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendor-assignment/vendor-select.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-tests-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-reports/lab-tests-pending-reports.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-final-reports.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-selection/lab-type-selection.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add New External Vendor": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add Lab External Vendor": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Edit Lab External Vendor": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Contact Address": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "text"
+      },
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Email": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "text"
+      },
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": "GRID_HEADERS.EMAIL"
+  },
+  "Vendor Code": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "text"
+      },
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Contact Number": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "text"
+      },
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Add": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-category/add-lab-category.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-lookups/lookups-add.component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Update": {
+    "occurrences": [
+      {
+        "file": "external-labs/vendors-settings/lab-vendor-add.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-category/add-lab-category.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-lookups/lookups-add.component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.UPDATE"
+  },
+  "Show Data": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Send To All": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Filter SMS:": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sent": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Not Sent": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Filter Findings:": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Positive": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Negative": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "All": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Age/Sex": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "GRID_HEADERS.AGE_SEX"
+  },
+  "Phone Number": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample Coll. On": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Result": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Shows if Lab Report uploaded or not ?": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "attribute"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Uploaded ?": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Action": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.ACTION"
+  },
+  "{{test.DateOfBirth | DanpheDateTime:'age'}}/{{test.Gender}}": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Send Sms": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Pdf & Sms": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Upload Pdf": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "SMS Message": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Message that will be send to {{smsDataToSend.PhoneNumber}} is:": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Send Message": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Cancel": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.CANCEL"
+  },
+  "Export with SMS": {
+    "occurrences": [
+      {
+        "file": "notification/sms/send-sms.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Load Data": {
+    "occurrences": [
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Upload To IMU": {
+    "occurrences": [
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Upload Pending": {
+    "occurrences": [
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Upload Completed": {
+    "occurrences": [
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Upload Status": {
+    "occurrences": [
+      {
+        "file": "notification/imu/imu-upload.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Test": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-settings-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Test Components": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-settings-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Report Template": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-settings-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Default Signatories": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-settings-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Vendors": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-settings-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Look Ups": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-settings-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Categories": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-settings-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Map Government Items": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-settings-main.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add New Lab Template": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add Lab Report Template": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Update Lab Report Template": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Report Template Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter Report Template Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Description": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-lookups/lookups-add.component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-lookups/lookups-add.component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": "GRID_HEADERS.DESCRIPTION"
+  },
+  "Report Description": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Report Template Short Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Report Template Type": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Normal": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Word Editor": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Culture & Sensitivity": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Column Settings": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select All": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.NAME"
+  },
+  "Range": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Method": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Unit": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Remarks": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.REMARKS"
+  },
+  "Header Text": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Header Description": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Footer Text": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Footer Description": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Is Default": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Display Sequence": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Add Template": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-report-template/add-lab-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add Lab Category": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-category/add-lab-category.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Update Lab Category": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-category/add-lab-category.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Category Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-category/add-lab-category.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-category/add-lab-category.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Is Default?": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-category/add-lab-category.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add New Lab Category": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-category/lab-category.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Map New Component": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/map-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Map Lab Components": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Update Mapped Lab Components": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Gov LabReportItem\n                                            Name:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter Component Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter Gov. Lab Report Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Test Name:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter Test Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "attribute"
+      },
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter\n                                                Lab Test Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Is Active:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Is Component\n                                            Based:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Component\n                                            Name:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter\n                                                component name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Is Result\n                                            Count:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Positive Indicator:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/map-lab-test-components/add-government-items.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Module Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-lookups/lookups-add.component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Look Up Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-lookups/lookups-add.component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-lookups/lookups-add.component.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Look Up Data": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-lookups/lookups-add.component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add Data": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-lookups/lookups-add.component.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Add New Look-up": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-lookups/lookups-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add Lookup": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-lookups/lookups-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Update Lookup": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-lookups/lookups-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add New Lab Test Component": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/labtestComp-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add Components": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/labtestComp-component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Update Component": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/labtestComp-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "ComponentName": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "ValueType": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "ControlType": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Range Description": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "ValueLookp": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Display Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Component Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Gen. Range": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Range Value": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Min": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Max": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Male Range": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Female Range": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Child Range": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter LookUp Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Component Display Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test-component/add-lab-test-component.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Default Signatories for Normal Tests:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/signatories/edit-signatories.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{doctor.FirstName}}  {{doctor.LastName}}": {
+    "occurrences": [
+      {
+        "file": "lab-settings/signatories/edit-signatories.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Default Histo/Cyto Signatories:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/signatories/edit-signatories.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{doc.FirstName}}  {{doc.LastName}}": {
+    "occurrences": [
+      {
+        "file": "lab-settings/signatories/edit-signatories.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Update Default Signatories": {
+    "occurrences": [
+      {
+        "file": "lab-settings/signatories/edit-signatories.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add\n              New Lab Test": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Search Filters:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Active": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Inactive": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "ALL": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Category:": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-reports/lab-tests-pending-reports.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-final-reports.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add Lab Test": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Update Lab Test": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Test Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter\n                      Lab Test Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Reporting Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Test Reporting Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Category": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Lab Category": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Specimen(s)": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add New Specimen": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Is SMS Applicable?": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Is LIS Applicable?": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Is Valid for Reporting": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Tax Applicable": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Is Outsourced Test?": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Has Negative Results": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Negative Result Text": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Default Outsource Vendor": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Test Code": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Report Template Short Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Service Department": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Service Department Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Run No. Type": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Interpretation": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Components For this Lab Test": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Value Type": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Disp. Sequence": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Indent": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Group Val.": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sheet": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Component": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Create New Component ?": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Specimen Name": {
+    "occurrences": [
+      {
+        "file": "lab-settings/lab-test/add-labtest.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Edit Result": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-tests-results.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Back To Report View": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-tests-results.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Attention !!!": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-tests-results.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "This Report Is Alredy Uploaded. Are You Sure To Upload It Again ???": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-tests-results.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Yes": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-tests-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.YES"
+  },
+  "No": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-tests-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.NO"
+  },
+  "Work List": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Back To Grid": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Print Lab Sticker": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-pending-reports/lab-tests-pending-reports.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Reset Run Number": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Print Empty Sheet": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-tests-pending-results.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample Collection Date :": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "From: {{fromDate | nepaliDate:'format':'YYYY-MM-DD'}} {{fromDate}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "To: {{toDate | nepaliDate:'format':'YYYY-MM-DD'}} {{toDate}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Work List Report": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Department: {{departmentName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Collected On": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Run No.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "BarCode No.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Hospital No": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Tests": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Please wait.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-results/lab-worklist-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "List Requisition": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Samples Collected\n        List": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample Collected List FromDate :{{fromDate | nepaliDate:'format':'YYYY-MM-DD'}}\n                          (A.D.{{fromDate}}) ToDate :{{toDate | nepaliDate:'format':'YYYY-MM-DD'}} (A.D.{{toDate}})": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Specimen": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "DepartmentAssigned": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Bar Code": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Samples Collected On": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-requisition/lab-list-requisition.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Pending Reports": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-reports/lab-tests-pending-reports.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Back\n      To Grid": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-pending-reports/lab-tests-pending-reports.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-final-reports.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Report Dispatch": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Request Date:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Search by Hospital No. Or Patient Name": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample-Summary-Page": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Reload": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Show Qr-Scan": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Hide Qr-Scan": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Search Patient :": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "-- Search Patient --": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Bar-Code Number :": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Run Num :": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "ShowDetails": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Hospital Number: {{allLabDataByBarCodeNumber.PatientCode}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Name: {{allLabDataByBarCodeNumber.PatientName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Age/Sex: {{allLabDataByBarCodeNumber.AgeSex}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "BarCodeNumber: {{allLabDataByBarCodeNumber.BarCodeNumber}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample Not Collected": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Requisition Date": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Hospital Number": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "GRID_HEADERS.HOSPITAL_NUMBER"
+  },
+  "Requesting Dept.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Visit Type": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "RunNumType": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Actions": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "GRID_HEADERS.ACTIONS"
+  },
+  "View Details": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Results Not Added": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Category": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Run Number": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Ward Name": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "GRID_HEADERS.WARDNAME"
+  },
+  "Add Result": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Reports Pending": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Reports Generated": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Is Printed": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Bill Not Paid": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-barcode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Preview": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample No": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Collected By": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Result By": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Verified By": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Printed By": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{j+1}}. Lab Report of\n            {{rep.PatientName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{j+1}}. Lab Report\n            of\n            {{rep.PatientName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Not Paid": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Show Pending Tests of this Patient ?": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Requisitions": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "S.No.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Results To Add": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample No.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample Collected By": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Results Added": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Result Added By": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Report of\n              {{patientService.globalPatient.ShortName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Send Report as Email": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Send Email": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter the email informations": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "To": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Email Address is required": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Note: separate multiple email by semicolon (;)": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Subject": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Subject is required": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter text": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Remark is required": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{i+1}}. {{pdf.ImageName}}.pdf": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Send": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-master/lab-report-dispatch-detail.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{templateReport.Lookups.VisitType}} Run Number :": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "(Change)": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Ward :": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "(Under Insurance)": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Prescribed By :": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Load Machine Result": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Component": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Value": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Completed": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Send to Vendor: {{test.VendorDetail.VendorName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{j+1}}. {{test.TestName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Requested On:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample Collected By:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Check/Uncheck all components of: {{test.TestName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "name is required": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "enter value": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "enter text": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "value is invalid": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "unit": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "range": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Remove this Component": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Add New Component to {{test.TestName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Select": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "No Growth:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "+1 More Isolated Organism": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{templateReport.Lookups.VisitType}} Run Number :\n            {{templateReport.Lookups.SampleCodeFormatted}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Ward : {{patientService.globalPatient.WardName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Requested On: {{\n                  test.RequestDate |\n                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Report Template:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "click to change report template": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Select different template ?": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "search template": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Alert": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Few of the Tests have abnormal values, Do you want to proceed?": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Proceed": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Review Values": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Change Run Number": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample Collection Date": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{RunNumberType}} ({{visitType}}) Run Number": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Alert !!!": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{sampleCode.RunNumber}} / {{sampleCode.SampleCode}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is\n                  already used for patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is already used for\n                  patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Please select another run number.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{visitType}} Run Number": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is\n                  already used for another test for the same patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "({{sampleCodeExistingDetail.PatientName}})": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Do you want to continue with the same run number?": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Continue": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.Lookups.PatientName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Patient No.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.Lookups.PatientCode}} (": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "ER": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "IP": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "OP": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Address": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "GRID_HEADERS.ADDRESS"
+  },
+  ": {{templateReport.Lookups.Address}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.Lookups.DOB | DanpheDateTime:'age'}} /{{templateReport.Lookups.Gender}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Referred By :": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Receiving Date": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.Lookups.ReceivingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}} {{templateReport.Lookups.ReceivingDate | nepaliDate }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab No": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.Lookups.SampleCodeFormatted}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Test(s)": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Finding(s)": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "No printing option for this type of Tests..": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Print Sheet": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Collect Sample": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Please verify the RUN Number and\n      Tests Carefully before Collecting Sample": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Ward:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Phone Number:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Requested On": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      },
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "(AD)": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "(BS)": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Change date format to AD/BS": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Prescribed By": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Test": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Is Outsourced?": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Type": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Government Insurance": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "YES": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.YES"
+  },
+  "NO": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.NO"
+  },
+  "Change Test": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Transfer": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{visitType}}\n              ({{RunNumberType}}) Run Number:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Get Latest Run Number": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Change Sample Collection Date": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Use Earlier Sample ?[": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "RunNumber: \n                {{LastSampleCodeOfPat.SampleCodeFormatted}}, BarCodeNumber: {{LastSampleCodeOfPat.BarCodeNumber}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{LatestSampleCode.SampleNumber}} / {{LatestSampleCode.SampleCode}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is already used for patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Please change the run number.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{LatestSampleCode.SampleNumber}} /\n                    {{LatestSampleCode.SampleCode}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is already used for another test for the same\n                  patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is already used\n                  for another test for the same patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample Code generated successfully": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Change": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/lab-tests-collect-sample.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Note: Resetting the Run Number Causes the Removal of Current Run Number": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Name:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Age/Sex:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Visit Type:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sample Code:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Apply Reset On": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "SampleCode of Checked test will Reset": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-collect-sample/undo-labsamplecode.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Final Reports": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-final-reports.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Reporting Date:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-final-reports.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Upload To Telemedicine": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-final-reports.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Show Header Image": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Last Printed By": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.PrintedByName}} ,": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Print Count": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.PrintCount}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "/ (INS)": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                                        templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                                        {{templateReport.Lookups.MunicipalityName != null?\n                                                        templateReport.Lookups.MunicipalityName + ',' : '' }} {{templateReport.Lookups.Address}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.Lookups.DOB | DanpheDateTime:'age'}}\n                                                            /{{templateReport.Lookups.Gender}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{ prescriberLabelInLabReport }} :": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Click to Change Prescriber Dr.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Collection Date": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            nepaliDate }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                                        {{templateReport.Lookups.SampleCodeFormatted}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Click to Change Run Number.": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Reporting Date": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{verificationEnabled ?\n                                                            (templateReport.Lookups.VerifiedOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "PassPort Number": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":{{templateReport.Lookups.PassPortNumber }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Show ESignature": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Note:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Flag": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Reference": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "unchecked test will not be printed": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "L": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "H": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "N": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "unchecked Interpretation will not be printed": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "attribute"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Interpretation({{res.TestName}}):": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Specimen:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Colony Count:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Antibiotics Result": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Sensitive": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Intermediate": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Resistant": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Comments:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Update Signatories {{ templateReport.ReportId ? '' : 'and Print'}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Verify": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Upload To Patient Portal": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Print Preliminary Report": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Edit Signatories": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Change Prescriber Doctor": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Prescriber": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is\n                                    already used for patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is already used for another test for the same\n                                    patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                    {{templateReport.PrintedByName}} ,": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                      {{templateReport.PrintCount}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                            {{templateReport.Lookups.PatientName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                              {{templateReport.Lookups.PatientCode}}\n                              (": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "/ (Insurance)": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                            {{templateReport.Lookups.CountrySubDivisionName != null ?\n                            templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                            {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                            ',' : '' }}\n                            {{templateReport.Lookups.Address}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                              {{templateReport.Lookups.DOB |\n                              DanpheDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                              {{templateReport.Lookups.ReceivingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceivingDate |\n                              nepaliDate }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Collection Site": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                            {{collectionSite}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Testing Date": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":{{templateReport.Lookups.ReportingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliDate }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                            {{templateReport.Lookups.SampleCodeFormatted}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                              (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliDate) }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                            {{templateReport.Lookups.Specimen}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                {{templateReport.Lookups.PatientName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                  {{templateReport.Lookups.PatientCode}}\n                                  (": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                                ',' : '' }}\n                                {{templateReport.Lookups.Address}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                  {{templateReport.Lookups.DOB |\n                                  DanpheDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Contact": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                {{templateReport.Lookups.PhoneNumber}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  nepaliDate }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{ prescriberLabelInLabReport }}:": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":{{templateReport.Lookups.ReportingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliDate }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                {{templateReport.Lookups.SampleCodeFormatted}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                                  (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliDate) }}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                {{collectionSite}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ": {{templateReport.Lookups.Specimen}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Ward": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                {{templateReport.Lookups.WardName}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Verified On": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  ":\n                                  {{templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.VerifiedOn | nepaliDate}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Ref. Range": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime |\n              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is already used\n                    for patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is already used for another test for the same\n                    patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "is\n                    already used for another test for the same patient": {
+    "occurrences": [
+      {
+        "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Prescriber Name": {
+    "occurrences": [
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "BarCodeNumber": {
+    "occurrences": [
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Hospital No: {{patientinfos.HospitalNumber}}": {
+    "occurrences": [
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{patientinfos.PatientName}}  {{patientinfos.AgeSex}}": {
+    "occurrences": [
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "RN: {{patientinfos.SampleCodeFormatted}}": {
+    "occurrences": [
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "No. of copies:": {
+    "occurrences": [
+      {
+        "file": "shared/lab-sticker.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Change Labtest": {
+    "occurrences": [
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Initially Requested Test": {
+    "occurrences": [
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Price": {
+    "occurrences": [
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{coreService.currencyUnit}} {{selectedLabTest.Price}}": {
+    "occurrences": [
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Change this Labtest with": {
+    "occurrences": [
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Note: You can only change to another test having EQUAL PRICE.": {
+    "occurrences": [
+      {
+        "file": "shared/lab-test-change.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "not\n          found": {
+    "occurrences": [
+      {
+        "file": "shared/signatories/signatories.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "not found": {
+    "occurrences": [
+      {
+        "file": "shared/signatories/signatories.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Signatories:": {
+    "occurrences": [
+      {
+        "file": "shared/signatories/signatories.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select Lab Machine": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{allMachines[i].MachineName}}-{{allMachines[i].ModelName}}": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Save": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": "COMMON.SAVE"
+  },
+  "PatientName": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Barcode No.": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Machine Component Name": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Machine Unit": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Comp. Unit": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-machine-result/lis-machine-result.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "{{allMachineMasterData[i].MachineName}}-{{allMachineMasterData[i].ModelName}}": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Danphe Component": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Map To": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Machine Component": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Conversion Factor": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Invalid Component": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Invalid\n                                    Component": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Click to add new component mapping": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Click to remove this component mapping": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Are you sure ?": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Currently mapped component will be lost.\n                    Are you sure ?": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping-add.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add New Mapping": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Add Mapping for Lab Component to Machine Component": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Alert !!": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Are you sure you want to remove this mapping?": {
+    "occurrences": [
+      {
+        "file": "lab-lis/lis-mapping/lis-mapping.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Select your Lab Type": {
+    "occurrences": [
+      {
+        "file": "lab-selection/lab-type-selection.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "You do not have permission to enter the Lab": {
+    "occurrences": [
+      {
+        "file": "lab-selection/lab-type-selection.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "You are in {{activeLab.LabTypeName}}.": {
+    "occurrences": [
+      {
+        "file": "lab-selection/lab-type-selection.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Do you want to Change the Lab?": {
+    "occurrences": [
+      {
+        "file": "lab-selection/lab-type-selection.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Deactivate\n                        Lab": {
+    "occurrences": [
+      {
+        "file": "lab-selection/lab-type-selection.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Lab Tests Orders of  {{this.selectedPatient.Name}}  (Patient Number: {{this.selectedPatient.PatientCode}})": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Ward/Bed: {{selectedPatient.BedInformation.Ward}} - {{selectedPatient.BedInformation.BedNumber}}": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Admitting Docor: {{selectedPatient.AdmittingDoctorName}}": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Admitted On:": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Order Date Time": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "OrderStatus": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Cannot Cancel": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "No Test For Current InPatient": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-request-list.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Search Patient": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "S.N": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "ItemName": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Qty": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Total": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Click to remove this item": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Click to add new item": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter Item Name": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "attribute"
+      }
+    ],
+    "reusable": null
+  },
+  "Duplicate Item not allowed": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Item Name is required": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Enter valid number.": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      },
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Total : {{billingTransaction.TotalAmount}}": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "In Words :": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Only.": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Deposit Balance Amount :": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Alert!": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  },
+  "Patient doesn't have sufficient DEPOSIT BALANCE for Inpatient Billing.": {
+    "occurrences": [
+      {
+        "file": "lab-requests/lab-requests.html",
+        "type": "text"
+      }
+    ],
+    "reusable": null
+  }
+}

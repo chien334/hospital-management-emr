@@ -6,8 +6,8 @@
             <div class="caption custom-caption no-margin">
               <h3>
                 <span>
-                  <ng-container *ngIf="isAddNewConfiguration">Add New Configuration</ng-container>
-                  <ng-container *ngIf="!isAddNewConfiguration">Edit Configuration Details</ng-container>
+                  <ng-container *ngIf="isAddNewConfiguration">{{ 'SETTINGS_NEW.ADD_NEW_CONFIGURATION' | translate }}</ng-container>
+                  <ng-container *ngIf="!isAddNewConfiguration">{{ 'SETTINGS_NEW.EDIT_CONFIGURATION_DETAILS' | translate }}</ng-container>
                 </span>
               </h3>
               <a class="btn btn-danger" (click)="close()">X</a>
@@ -15,31 +15,31 @@
             <form [formGroup]="configuration.ConfigurationValidator" class="form-horizontal hm-form">
               <div class="form-body">
                 <div class="form-group">
-                  <label for="SettingName" class="control-label col-md-5">Setting Name<b><span style="color: red;">*</span>:</b></label>
+                  <label for="SettingName" class="control-label col-md-5">{{ 'SETTINGS_NEW.SETTING_NAME' | translate }}<b><span style="color: red;">*</span>:</b></label>
                   <div class="col-md-7">
-                    <input id="SettingName" class="form-control" type="text" placeholder="Setting Name"
+                    <input id="SettingName" class="form-control" type="text" [placeholder]="'SETTINGS_NEW.SETTING_NAME' | translate"
                       formControlName="SettingName" [(ngModel)]="configuration.SettingName"
                       (keyup.enter)="SetFocusById('PageHeaderText')">
                     <span class="color-red font-sm margin-15-lft"
-                      [hidden]="!(configuration.IsDirty('SettingName') && !configuration.IsValidCheck('SettingName','required'))">Setting Name is
+                      [hidden]="!(configuration.IsDirty('SettingName') && !configuration.IsValidCheck('SettingName','required'))">{{ 'SETTINGS_NEW.SETTING_NAME' | translate }} is
                       required</span>
                   </div>
                 </div>
                 <div class="form-group">
-                    <label for="PageHeaderText" class="control-label col-md-5">Page Header Text<b><span style="color: red;">*</span>:</b></label>
+                    <label for="PageHeaderText" class="control-label col-md-5">{{ 'SETTINGS_NEW.PAGE_HEADER_TEXT' | translate }}<b><span style="color: red;">*</span>:</b></label>
                     <div class="col-md-7">
-                      <input id="PageHeaderText" class="form-control" type="text" placeholder="Page HeaderText"
+                      <input id="PageHeaderText" class="form-control" type="text" [placeholder]="'SETTINGS_NEW.PAGE_HEADERTEXT' | translate"
                         formControlName="PageHeaderText" [(ngModel)]="configuration.PageHeaderText"
                         (keyup.enter)="SetFocusById('ReportDescription')">
                       <span class="color-red font-sm margin-15-lft"
-                        [hidden]="!(configuration.IsDirty('PageHeaderText') && !configuration.IsValidCheck('PageHeaderText','required'))">Page Header Text is
+                        [hidden]="!(configuration.IsDirty('PageHeaderText') && !configuration.IsValidCheck('PageHeaderText','required'))">{{ 'SETTINGS_NEW.PAGE_HEADER_TEXT' | translate }} is
                         required</span>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ReportDescription" class="control-label col-md-5">Report Description Text<b>:</b></label>
+                    <label for="ReportDescription" class="control-label col-md-5">{{ 'SETTINGS_NEW.REPORT_DESCRIPTION_TEXT' | translate }}<b>:</b></label>
                     <div class="col-md-7">
-                      <textarea id="ReportDescription" class="form-control" type="text" placeholder="Report Description"
+                      <textarea id="ReportDescription" class="form-control" type="text" [placeholder]="'SETTINGS_NEW.REPORT_DESCRIPTION' | translate"
                         [ngModelOptions]="{standalone: true}" [(ngModel)]="configuration.ReportDescription"
                         (keyup.enter)="SetFocusById('ModuleName')"></textarea>
                       <!-- <span class="color-red font-sm margin-15-lft"
@@ -48,17 +48,17 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ModuleName" class="control-label col-md-5">ModuleName<b><span style="color: red;">*</span>:</b></label>
+                    <label for="ModuleName" class="control-label col-md-5">{{ 'SETTINGS_NEW.MODULENAME' | translate }}<b><span style="color: red;">*</span>:</b></label>
                     <div class="col-md-7">
-                      <input id="ModuleName" class="form-control" type="text" placeholder="ModuleName"
+                      <input id="ModuleName" class="form-control" type="text" [placeholder]="'SETTINGS_NEW.MODULENAME' | translate"
                         formControlName="ModuleName" [(ngModel)]="configuration.ModuleName">
                       <span class="color-red font-sm margin-15-lft"
-                        [hidden]="!(configuration.IsDirty('ModuleName') && !configuration.IsValidCheck('ModuleName','required'))">ModuleName is
+                        [hidden]="!(configuration.IsDirty('ModuleName') && !configuration.IsValidCheck('ModuleName','required'))">{{ 'SETTINGS_NEW.MODULENAME' | translate }} is
                         required</span>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ShowHeader" class="control-label col-md-5">Show Header</label>
+                    <label for="ShowHeader" class="control-label col-md-5">{{ 'SETTINGS_NEW.SHOW_HEADER' | translate }}</label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -66,14 +66,14 @@
                             <input id="isActive" type="checkbox" [ngModelOptions]="{standalone: true}"
                               [(ngModel)]="configuration.ShowHeader" name="chkShowHeader" />
                             <span></span>
-                            True
+                            {{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ShowFooter" class="control-label col-md-5">Show Footer</label>
+                    <label for="ShowFooter" class="control-label col-md-5">{{ 'SETTINGS_NEW.SHOW_FOOTER' | translate }}</label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -81,14 +81,14 @@
                             <input id="ShowFooter" type="checkbox" [ngModelOptions]="{standalone: true}"
                               [(ngModel)]="configuration.ShowFooter" name="chkShowFooter" />
                             <span></span>
-                            True
+                            {{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ShowUserName" class="control-label col-md-5">Show UserName</label>
+                    <label for="ShowUserName" class="control-label col-md-5">{{ 'SETTINGS_NEW.SHOW_USERNAME' | translate }}</label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -96,14 +96,14 @@
                             <input id="ShowUserName" type="checkbox" [ngModelOptions]="{standalone: true}"
                               [(ngModel)]="configuration.ShowUserName" name="chkShowUserName" />
                             <span></span>
-                            True
+                            {{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ShowPrintExportDateTime" class="control-label col-md-5">Show PrintExport DateTime</label>
+                    <label for="ShowPrintExportDateTime" class="control-label col-md-5">{{ 'SETTINGS_NEW.SHOW_PRINTEXPORT_DATETIME' | translate }}</label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -111,14 +111,14 @@
                             <input id="ShowPrintExportDateTime" type="checkbox" [ngModelOptions]="{standalone: true}"
                               [(ngModel)]="configuration.ShowPrintExportDateTime" name="chkShowPrintExportDateTime" />
                             <span></span>
-                            True
+                            {{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ShowNpDate" class="control-label col-md-5">Show Nepali Date</label>
+                    <label for="ShowNpDate" class="control-label col-md-5">{{ 'SETTINGS_NEW.SHOW_NEPALI_DATE' | translate }}</label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -126,14 +126,14 @@
                             <input id="ShowNpDate" type="checkbox" [ngModelOptions]="{standalone: true}"
                               [(ngModel)]="configuration.ShowNpDate" name="chkShowNpDate" />
                             <span></span>
-                            True
+                            {{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ShowEnDate" class="control-label col-md-5">Show English Date</label>
+                    <label for="ShowEnDate" class="control-label col-md-5">{{ 'SETTINGS_NEW.SHOW_ENGLISH_DATE' | translate }}</label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -141,14 +141,14 @@
                             <input id="ShowEnDate" type="checkbox" [ngModelOptions]="{standalone: true}"
                               [(ngModel)]="configuration.ShowEnDate" name="chkShowEnDate" />
                             <span></span>
-                            True
+                            {{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ShowFilterDateRange" class="control-label col-md-5">Show FilterDateRange</label>
+                    <label for="ShowFilterDateRange" class="control-label col-md-5">{{ 'SETTINGS_NEW.SHOW_FILTERDATERANGE' | translate }}</label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -156,14 +156,14 @@
                             <input id="ShowFilterDateRange" type="checkbox" [ngModelOptions]="{standalone: true}"
                               [(ngModel)]="configuration.ShowFilterDateRange" name="chkShowFilterDateRange" />
                             <span></span>
-                            True
+                            {{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ShowOtherFilterVariables" class="control-label col-md-5">Show Other Filter Variables</label>
+                    <label for="ShowOtherFilterVariables" class="control-label col-md-5">{{ 'SETTINGS_NEW.SHOW_OTHER_FILTER_VARIABLES' | translate }}</label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -171,14 +171,14 @@
                             <input id="ShowOtherFilterVariables" type="checkbox" [ngModelOptions]="{standalone: true}"
                               [(ngModel)]="configuration.ShowOtherFilterVariables" name="chkShowOtherFilterVariables" />
                             <span></span>
-                            True
+                            {{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="IsActive" class="control-label col-md-5">Is Active</label>
+                    <label for="IsActive" class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }}</label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -186,7 +186,7 @@
                             <input id="IsActive" type="checkbox" [ngModelOptions]="{standalone: true}"
                               [(ngModel)]="configuration.IsActive" name="chkIsActive" />
                             <span></span>
-                            True
+                            {{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                         </div>
                       </div>
@@ -198,9 +198,9 @@
             <div class="modelbox-footer">
               <div class="all-buttons text-right">
                 <input type="button" id="add" *ngIf="isAddNewConfiguration" class="btn green btn-success margin-7-hr" (click)="AddConfiguration()"
-                  value="Add" />
+                  [value]="'SETTINGS_NEW.ADD' | translate" />
                 <input type="button" id="add" *ngIf="!isAddNewConfiguration" class="btn green btn-success margin-7-hr"
-                  (click)="UpdateConfiguration()" value="Update" />
+                  (click)="UpdateConfiguration()" [value]="'COMMON.UPDATE' | translate" />
                 <!-- <button type="button" class="btn btn-danger btn-sm margin-7-hr" (click)="close()">Close</button> -->
               </div>
             </div>

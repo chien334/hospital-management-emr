@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="signature-title">
-    <h4>Default Signatories for Radiology:</h4>
+    <h4>{{ 'SETTINGS_NEW.DEFAULT_SIGNATORIES_FOR_RADIOLOGY' | translate }}</h4>
   </div>
   <div class="col-md-12">
     <div class="signature-div" *ngFor="let doct of allRadSignatoryEmpList; let i= index;">
@@ -24,7 +24,7 @@
   </div>
   <div class="col-md-12">
     <div style="text-align: center;">
-      <button class="btn btn-blue blue" (click)="Update()">Update Default Signatories</button>
+      <button class="btn btn-blue blue" (click)="Update()">{{ 'SETTINGS_NEW.UPDATE_DEFAULT_SIGNATORIES' | translate }}</button>
     </div>
   </div>
 </div>

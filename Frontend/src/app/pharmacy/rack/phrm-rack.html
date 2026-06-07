@@ -4,14 +4,14 @@
 
 <div class="row">
     <div class="col-md-4">
-        <input type="button" class="btn btn-primary" (click)="AddRack()" value="Add Rack" />
+        <input type="button" class="btn btn-primary" (click)="AddRack()" [value]="'PHARMACY.ADD_RACK' | translate" />
     </div>
     <div class="col-md-8">
         <div class="right">
-            <label class="control-label ">Store:</label>
+            <label class="control-label ">{{ 'GRID_HEADERS.STORE' | translate }}:</label>
             <select [(ngModel)]="selectedStore" style="width:250px;height:30px;margin-bottom:7px;" (change)="FilterRackBasedOnLocation()" >
-                <!-- <option [ngValue]="null" selected>All</option> -->
-                <option [ngValue]="null" selected>All</option>
+                <!-- <option [ngValue]="null" selected>{{ 'PHARMACY.ALL' | translate }}</option> -->
+                <option [ngValue]="null" selected>{{ 'PHARMACY.ALL' | translate }}</option>
                 <option *ngFor="let store of StoreList" [ngValue]="store">{{store.StoreName}}</option>
             </select>
         </div>

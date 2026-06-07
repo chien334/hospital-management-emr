@@ -4,12 +4,12 @@
         <div class="form-body">            
             <div class="caption lb-caption">
                 <i class="fa fa-money"></i>
-                <span class="caption-subject">Goods Receipt Evaluation Report</span>
+                <span class="caption-subject">{{ 'INVENTORY.GOODS_RECEIPT_EVALUATION_REPORT' | translate }}</span>
             </div>
             <div class="row">
                 <div class="col-md-5 col-xs-12">
                     <div class="form-group">
-                        <label class="control-label col-md-3">From Date<sup class="color-red"> *</sup><b class="float:right;">:</b></label>
+                        <label class="control-label col-md-3">{{ 'INVENTORY.FROM_DATE' | translate }}<sup class="color-red"> *</sup><b class="float:right;">:</b></label>
                         <div class="col-md-9">
                             <danphe-date-picker [(ngModel)]="CurrentGREvaluationReport.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone:true}">
                             </danphe-date-picker>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-md-5 col-xs-12">
                     <div class="form-group">
-                        <label class="control-label col-md-3">To Date<sup class="color-red"> *</sup><b class="float:right;">:</b></label>
+                        <label class="control-label col-md-3">{{ 'INVENTORY.TO_DATE' | translate }}<sup class="color-red"> *</sup><b class="float:right;">:</b></label>
                         <div class="col-md-9">
                             <danphe-date-picker [(ngModel)]="CurrentGREvaluationReport.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone:true}">
                             </danphe-date-picker>
@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <button class="btn blue primary-btn" type="button" (click)="ShowValuation()">
                 <i class="fa fa-search"></i>
-                Show Report
+                {{ 'INVENTORY.SHOW_REPORT' | translate }}
               </button>
                         </div>                   
                 </div>
@@ -40,7 +40,7 @@
                                 <label class="col-md-5">
                   <!-- <span></span> -->
                   <div class="row">
-                    <b class="col-md-4">Goods Receipt No :</b>
+                    <b class="col-md-4">{{ 'INVENTORY.GOODS_RECEIPT_NO' | translate }}:</b>
                     <div class="col-md-8">
                         <input type="number" [(ngModel)]="CurrentGREvaluationReport.GoodReceiptNo" [ngModelOptions]="{standalone:true}" name="name" value="false" />
                     </div>                 
@@ -50,17 +50,17 @@
 
                   <!-- <span></span> -->
                   <div class="row">
-                    <b class="col-md-4">Transaction Type :</b>
+                    <b class="col-md-4">{{ 'INVENTORY.TRANSACTION_TYPE' | translate }}:</b>
                     <div class="col-md-8">
                         <select [(ngModel)]="CurrentGREvaluationReport.TransactionType" [ngModelOptions]="{standalone:true}" name="name" value="true">
-                            <option selected value="">All</option>
-                            <option value="goodreceipt-items">Good Receipt Creation</option>
+                            <option selected value="">{{ 'INVENTORY.ALL' | translate }}</option>
+                            <option value="goodreceipt-items">{{ 'INVENTORY.GOOD_RECEIPT_CREATION' | translate }}</option>
                             <!-- <option value="edit-gr">Good Receipt Edited</option> -->
-                            <option value="cancel-gr-items">Good Receipt Cancelled</option>
-                            <option value="stockmanaged-items">Stock Manage</option>
-                            <option value="dispatched-items">Dispatch</option>
-                            <option value="writeoff-items">Write Off</option>
-                            <option value="returntovendor-items">Return To Vendor</option>
+                            <option value="cancel-gr-items">{{ 'INVENTORY.GOOD_RECEIPT_CANCELLED' | translate }}</option>
+                            <option value="stockmanaged-items">{{ 'INVENTORY.STOCK_MANAGE' | translate }}</option>
+                            <option value="dispatched-items">{{ 'INVENTORY.DISPATCH' | translate }}</option>
+                            <option value="writeoff-items">{{ 'INVENTORY.WRITE_OFF' | translate }}</option>
+                            <option value="returntovendor-items">{{ 'INVENTORY.RETURN_TO_VENDOR' | translate }}</option>
                           </select>
                     </div>                 
                   </div>                     

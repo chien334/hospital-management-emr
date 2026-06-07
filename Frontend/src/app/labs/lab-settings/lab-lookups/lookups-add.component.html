@@ -13,7 +13,7 @@
   <div class="hm-form lu_up_wrap">
     <div class="form-group">
       <div class="row">
-        <label class="control-label col-md-4">Module Name<sup class="color-red">*</sup> <b>:</b></label>
+        <label class="control-label col-md-4">{{ 'LABS.MODULE_NAME' | translate }}<sup class="color-red">*</sup> <b>:</b></label>
         <div class="col-md-8">
           <input class="form-control"
              [ngModelOptions]="{standalone: true}"
@@ -26,11 +26,11 @@
     </div>
     <div class="form-group">
       <div class="row managetxt">
-        <label for="lookUpName" class="control-label col-md-4">Look Up Name<sup class="color-red">*</sup> <b>:</b></label>
+        <label for="lookUpName" class="control-label col-md-4">{{ 'LABS.LOOK_UP_NAME' | translate }}<sup class="color-red">*</sup> <b>:</b></label>
         <div class="col-md-8">
           <input class="form-control"
              type="text"
-             placeholder="Look Up Name"
+             [placeholder]="'LABS.LOOK_UP_NAME' | translate"
              id="lookUpName"
              [ngModelOptions]="{standalone: true}"
              [(ngModel)]="labLookUpComponent.LookUpName"
@@ -41,11 +41,11 @@
     </div>
     <div class="form-group">
       <div class="row">
-        <label for="lookUpDescription" class="control-label col-md-4">Description <b>:</b></label>
+        <label for="lookUpDescription" class="control-label col-md-4">{{ 'GRID_HEADERS.DESCRIPTION' | translate }} <b>:</b></label>
         <div class="col-md-8">
           <input id="lookUpDescription" class="form-control"
              type="text"
-             placeholder="Description"
+             [placeholder]="'GRID_HEADERS.DESCRIPTION' | translate"
              [ngModelOptions]="{standalone: true}"
              [(ngModel)]="labLookUpComponent.Description"
              max-num-list="100"
@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="data-title">
-      <h4 class="margin-0-vr"> Look Up Data </h4>
+      <h4 class="margin-0-vr"> {{ 'LABS.LOOK_UP_DATA' | translate }} </h4>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -65,7 +65,7 @@
                 <td><a (click)="AddRowRequest()" class=" btn primary-btn"><i class="fa fa-plus"></i></a></td>
                 <td class="align-vertical-middle" width="95%"><div>
                     <input type="text" class="form-control"
-                         placeholder="Add Data"
+                         [placeholder]="'LABS.ADD_DATA' | translate"
                          [(ngModel)]="lookUpData[i]"
                          name="row" />
                   </div></td>
@@ -79,8 +79,8 @@
     <div class="row">
       <div class="modelbox-footer">
         <div class="all-buttons text-right">
-          <button [disabled]="loading" *ngIf="!update" class="btn primary-btn btn-sm margin-7-hr" (click)="loading=true;AddNewLookUp()">Add</button>
-          <button [disabled]="loading" *ngIf="update" class="btn primary-btn btn-sm margin-7-hr" (click)="loading=true;UpdateLookUp()">Update</button>
+          <button [disabled]="loading" *ngIf="!update" class="btn primary-btn btn-sm margin-7-hr" (click)="loading=true;AddNewLookUp()">{{ 'LABS.ADD_1' | translate }}</button>
+          <button [disabled]="loading" *ngIf="update" class="btn primary-btn btn-sm margin-7-hr" (click)="loading=true;UpdateLookUp()">{{ 'COMMON.UPDATE' | translate }}</button>
           
           <!-- <button type="button" class="btn btn-cancel btn-outline btn-sm margin-7-hr" (click)="closePopUpBox()">
           Cancel

@@ -10,6 +10,6 @@
   </div>
 
   <div *ngIf="showReceipt">
-    <button class="btn btn-primary" (click)="BackToGrid()"><i class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;Back</button>
+    <button class="btn btn-primary" (click)="BackToGrid()"><i class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;{{ 'COMMON.BACK' | translate }}</button>
     <phrm-settlement-receipt [settlementInfo]="setlmntToDisplay" [showReceipt]="showReceipt" (close-receipt)="OnReceiptClosed($event)"></phrm-settlement-receipt>
   </div>

@@ -9,12 +9,12 @@
   <div class="form-body">
     <div class="caption lb-caption">
         <i class="fa fa-money"></i>
-        <span class="caption-subject">Approved Material Stock Register</span>
+        <span class="caption-subject">{{ 'INVENTORY.APPROVED_MATERIAL_STOCK_REGISTER' | translate }}</span>
       </div>
       <div class="row">
         <div class="col-md-5 col-xs-12">
           <div class="form-group">
-            <label class="control-label col-md-3">From Date<sup class="color-red">  *</sup ><b>:</b></label>
+            <label class="control-label col-md-3">{{ 'INVENTORY.FROM_DATE' | translate }}<sup class="color-red">  *</sup ><b>:</b></label>
             <div class="col-md-9">
               <danphe-date-picker  [(ngModel)]="invReport.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
               </danphe-date-picker>
@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-5 col-xs-12">
           <div class="form-group">
-            <label class="control-label col-md-4">To Date<sup class="color-red">  *</sup ><b>:</b></label>
+            <label class="control-label col-md-4">{{ 'INVENTORY.TO_DATE' | translate }}<sup class="color-red">  *</sup ><b>:</b></label>
             <div class="col-md-8">
               <danphe-date-picker  [(ngModel)]="invReport.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
               </danphe-date-picker>
@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-2 col-xs-12">
           <div class="form-group">
-            <button class="btn blue primary-btn" type="button" (click)="Load()" > Show Report</button>
+            <button class="btn blue primary-btn" type="button" (click)="Load()" > {{ 'INVENTORY.SHOW_REPORT' | translate }}</button>
           </div>
         </div> 
       </div>        
@@ -50,12 +50,12 @@
     <table class="table" style="width:100%" border="1"  align="center">
       <thead>
         <tr>
-          <th>MSS No.</th>
-          <th>Material Name</th>
-          <th>Supplier Name</th>
-          <th>Location in StoresS</th>
-          <th>UOM</th>
-          <th>Minimum Stock Quantity</th>
+          <th>{{ 'INVENTORY.MSS_NO' | translate }}.</th>
+          <th>{{ 'INVENTORY.MATERIAL_NAME' | translate }}</th>
+          <th>{{ 'INVENTORY.SUPPLIER_NAME' | translate }}</th>
+          <th>{{ 'INVENTORY.LOCATION_IN_STORESS' | translate }}</th>
+          <th>{{ 'INVENTORY.UOM' | translate }}</th>
+          <th>{{ 'INVENTORY.MINIMUM_STOCK_QUANTITY' | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -70,33 +70,33 @@
       </tbody>
     </table>
   <div class="btn-wrapper text-right mb10">
-    <button class="btn btn-primary">Export</button>
-    <button class="btn btn-primary">Print</button>
+    <button class="btn btn-primary">{{ 'COMMON.EXPORT' | translate }}</button>
+    <button class="btn btn-primary">{{ 'COMMON.PRINT' | translate }}</button>
   </div>
     <table style="" border="1"  cellpadding="5" width="100%">
       <thead>
         <tr>
-          <th rowspan="3"><p class="text-center">Date</p></th>
-          <th colspan="6"><p class="text-center">Incoming to stores-RM/PM</p></th>
-          <th colspan="3"><p class="text-center">Outgoing from stores-RM/PM</p></th>
-          <th colspan="2" rowspan="2"><p class="text-center">Closing Stocks</p></th>
+          <th rowspan="3"><p class="text-center">{{ 'GRID_HEADERS.DATE' | translate }}</p></th>
+          <th colspan="6"><p class="text-center">{{ 'INVENTORY.INCOMING_TO_STORESRMPM' | translate }}</p></th>
+          <th colspan="3"><p class="text-center">{{ 'INVENTORY.OUTGOING_FROM_STORESRMPM' | translate }}</p></th>
+          <th colspan="2" rowspan="2"><p class="text-center">{{ 'INVENTORY.CLOSING_STOCKS' | translate }}</p></th>
         </tr>
         <tr>
-          <th colspan="3">Approved Material Received from Supplier</th>
-          <th colspan="3">Excess Material Return from User Department</th>
-          <th colspan="3">Material issued to the User Department</th>
+          <th colspan="3">{{ 'INVENTORY.APPROVED_MATERIAL_RECEIVED_FROM_SUPPLIER' | translate }}</th>
+          <th colspan="3">{{ 'INVENTORY.EXCESS_MATERIAL_RETURN_FROM_USER_DEPARTMENT' | translate }}</th>
+          <th colspan="3">{{ 'INVENTORY.MATERIAL_ISSUED_TO_THE_USER_DEPARTMENT' | translate }}</th>
         </tr>
         <tr style="font-weight: bold;text-align:center">
-          <th>GRN No. & Date</th>
-          <th>Lot No. & Expiry Date</th>
+          <th>{{ 'INVENTORY.GRN_NO_DATE' | translate }}</th>
+          <th>{{ 'INVENTORY.LOT_NO_EXPIRY_DATE' | translate }}</th>
           <th>Quantity</th>
-          <th>EMRN No. & Date</th>
-          <th>Lot No. & Expiry Date</th>
+          <th>{{ 'INVENTORY.EMRN_NO_DATE' | translate }}</th>
+          <th>{{ 'INVENTORY.LOT_NO_EXPIRY_DATE' | translate }}</th>
           <th>Quantity</th>
-          <th>MIN No. & Date</th>
-          <th>Lot No. & Expiry Date</th>
+          <th>{{ 'INVENTORY.MIN_NO_DATE' | translate }}</th>
+          <th>{{ 'INVENTORY.LOT_NO_EXPIRY_DATE' | translate }}</th>
           <th>Quantity</th>
-          <th>Lot No. & Expiry Date</th>
+          <th>{{ 'INVENTORY.LOT_NO_EXPIRY_DATE' | translate }}</th>
           <th>Quantity</th>
         </tr>
       </thead>

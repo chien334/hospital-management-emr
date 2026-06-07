@@ -3,7 +3,7 @@
         <div class="form-body">
             <div class="caption lb-caption">
                 <i class="fa fa-bar-chart"></i>
-                <span class="caption-subject">Cancelled PO and GR Report</span>
+                <span class="caption-subject">{{ 'INVENTORY.CANCELLED_PO_AND_GR_REPORT' | translate }}</span>
             </div>
             <div class="row">
                 <div class="col-md-6 col-xs-12">
@@ -18,11 +18,11 @@
                                 <div class="icheck-inline">
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="radio" (change)="OnChangePOGRCheckbox()" [(ngModel)]="CurrentCancelledPOGR.isGR" [ngModelOptions]="{standalone:true}" name="name" value="true" />
-                                        <span></span><b>Cancelled GR</b>
+                                        <span></span><b>{{ 'INVENTORY.CANCELLED_GR' | translate }}</b>
                                     </label>
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="radio" (change)="OnChangePOGRCheckbox()" [(ngModel)]="CurrentCancelledPOGR.isGR" [ngModelOptions]="{standalone:true}" name="name" value="false" checked />
-                                        <span></span><b>Cancelled PO</b>
+                                        <span></span><b>{{ 'INVENTORY.CANCELLED_PO' | translate }}</b>
                                     </label>
                                 </div>
                             </div>
@@ -33,8 +33,8 @@
                     <div class="form-group">
                         <button class="btn blue" type="button" (click)="GetReportDetails()" [disabled]="loading">
                             <i class="fa fa-search"></i>&nbsp;
-                            <span *ngIf="!loading"> Report</span>
-                            <span *ngIf="loading"> Loading...</span>
+                            <span *ngIf="!loading"> {{ 'INVENTORY.REPORT' | translate }}</span>
+                            <span *ngIf="loading"> {{ 'INVENTORY.LOADING' | translate }}.</span>
                         </button>
                     </div>
                 </div>

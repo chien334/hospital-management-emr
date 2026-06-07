@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-4 col-sm-4" style="text-align: left;">
         <a class="btn green btn-success btn-sm" style="font-size: 14px;" name="name" (click)="AddNewMapping()">
-            <span class="glyphicon glyphicon-plus"></span>Add New Mapping
+            <span class="glyphicon glyphicon-plus"></span>{{ 'LABS.ADD_NEW_MAPPING' | translate }}
         </a>
     </div>
     <div class="col-lg-8 col-sm-8" style="text-align: left;">
@@ -21,7 +21,7 @@
             <div class="modelbox-div">
                 <div class="modelbox-header">
                     <h4 class="margin-0-vr text-danger text-center">
-                        <strong>Add Mapping for Lab Component to Machine Component</strong>
+                        <strong>{{ 'LABS.ADD_MAPPING_FOR_LAB_COMPONENT_TO_MACHINE_COMPONENT' | translate }}</strong>
                     </h4>
                 </div>
                 <div class="modelbox-body">
@@ -45,16 +45,16 @@
             <div class="modelbox-div">
                 <div class="modelbox-header">
                     <h4 class="margin-0-vr text-danger text-center">
-                        <strong>Alert !!</strong>
+                        <strong>{{ 'LABS.ALERT_2' | translate }}</strong>
                     </h4>
                 </div>
                 <div class="modelbox-body">
-                    Are you sure you want to remove this mapping?
+                    {{ 'LABS.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_THIS_MAPPING' | translate }}
                 </div>
                 <div class="modelbox-footer">
                     <button class="btn btn-cancel grey" id="btnCancelMachineChange"
-                        (click)="Remove(false)">Cancel</button>
-                    <button class="btn btn-success blue" id="btnProceed" (click)="Remove(true)">Yes</button>
+                        (click)="Remove(false)">{{ 'COMMON.CANCEL' | translate }}</button>
+                    <button class="btn btn-success blue" id="btnProceed" (click)="Remove(true)">{{ 'COMMON.YES' | translate }}</button>
                 </div>
                 <div class="close-modelbox lb-close-btn">
                     <button class="btn btn-danger" (click)="Remove(false)">

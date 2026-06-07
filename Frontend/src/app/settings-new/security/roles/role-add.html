@@ -17,7 +17,7 @@
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
             <h3> <span *ngIf="!update">{{ 'SECURITY.ADD_ROLE' | translate }}</span> <span *ngIf="update">{{ 'SECURITY.UPDATE_ROLE' | translate }}</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
           <form [formGroup]="CurrentRole.RoleValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">

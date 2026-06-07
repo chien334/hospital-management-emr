@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="modelbox-div clearfix">
-                    <a class="btn btn-danger history-del-btn" (click)="Cancel()" title="Cancel"><i class="fa fa-close"></i></a>
+                    <a class="btn btn-danger history-del-btn" (click)="Cancel()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-close"></i></a>
                     <div class="form-body">
                         <div class="col-md-12">
                             <div class="row printStyle print-border">
@@ -13,24 +13,24 @@
                                             <div>
                                                 <div class="media text-muted receiveContainer">
                                                     <span class="media-body small border-bottom border-gray">
-                                                        <strong>Returned From:</strong>
+                                                        <strong>{{ 'INVENTORY.RETURNED_FROM' | translate }}:</strong>
                                                         {{ReturnedItem.SourceStore}}
                                                     </span>
                                                     <span class="media-body small border-bottom border-gray">
-                                                        <strong>Received By:</strong>
+                                                        <strong>{{ 'INVENTORY.RECEIVED_BY' | translate }}:</strong>
                                                         <div>{{ReturnedItem.ReceivedByName}}</div>
-                                                        <ng-template #elseBlockOne>Not Received</ng-template>
+                                                        <ng-template #elseBlockOne>{{ 'INVENTORY.NOT_RECEIVED' | translate }}</ng-template>
                                                     </span>
                                                     <span class="media-body small border-bottom border-gray">
-                                                        <strong>Received On:</strong>
+                                                        <strong>{{ 'INVENTORY.RECEIVED_ON' | translate }}:</strong>
                                                     </span>
                                                     <div>
                                                         <table class="table table-striped table-condensed">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Item Name</th>
+                                                                    <th>{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}</th>
                                                                     <th>Batch No</th>
-                                                                    <th>Incoming Qty</th>
+                                                                    <th>{{ 'INVENTORY.INCOMING_QTY' | translate }}</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -44,12 +44,12 @@
                                                     </div>
                                                     <div class="media-body small border-bottom border-gray">
                                                         <div>
-                                                            <strong class="col-md-2">Receiving Remarks :</strong>
+                                                            <strong class="col-md-2">{{ 'INVENTORY.RECEIVING_REMARKS' | translate }}:</strong>
                                                             <textarea class="col-md-7" id="remarks" [(ngModel)]="ReturnedItem.ReceivedRemarks" name="ReceiveRemarks" rows="3"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <button class="btn green btn-success" id="btn_Save" (click)="ReceiveIncomingStock()">Receive</button>
+                                                        <button class="btn green btn-success" id="btn_Save" (click)="ReceiveIncomingStock()">{{ 'INVENTORY.RECEIVE' | translate }}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,7 +70,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="modelbox-div clearfix">
-                    <a class="btn btn-danger history-del-btn" (click)="Cancel()" title="Cancel"><i class="fa fa-close"></i></a>
+                    <a class="btn btn-danger history-del-btn" (click)="Cancel()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-close"></i></a>
                     <div class="form-body">
                         <div class="col-md-12">
                             <div class="row printStyle print-border">
@@ -83,17 +83,17 @@
                                                 <div class="media text-muted receiveContainer">
 
                                                     <span class="media-body small border-bottom border-gray">
-                                                        <strong>Returned From:</strong>
+                                                        <strong>{{ 'INVENTORY.RETURNED_FROM' | translate }}:</strong>
                                                         {{ReturnedItem.SourceStore}}
                                                         <!-- get the source store -->
                                                     </span>
                                                     <span class="media-body small border-bottom border-gray">
-                                                        <strong>Received By:</strong>
+                                                        <strong>{{ 'INVENTORY.RECEIVED_BY' | translate }}:</strong>
                                                         <div>{{ReturnedItem.ReceivedByName}}</div>
-                                                        <ng-template #elseBlockOne>Not Received</ng-template>
+                                                        <ng-template #elseBlockOne>{{ 'INVENTORY.NOT_RECEIVED' | translate }}</ng-template>
                                                     </span>
                                                     <span class="media-body small border-bottom border-gray">
-                                                        <strong>Received On:</strong>
+                                                        <strong>{{ 'INVENTORY.RECEIVED_ON' | translate }}:</strong>
                                                         <div>{{ReturnedItem.ReceivedOn | date : "yyyy-MM-dd"}}</div>
 
                                                         <!-- <div *ngIf="!!incomingStockDetail.ReceivedOn; else elseBlockTwo">
@@ -105,10 +105,10 @@
                                                         <table class="table table-striped table-condensed">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Item Name</th>
+                                                                    <th>{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}</th>
                                                                     <th>Batch No</th>
-                                                                    <!-- <th>Expiry Date</th> -->
-                                                                    <th>Incoming Qty</th>
+                                                                    <!-- <th>Expiry {{ 'GRID_HEADERS.DATE' | translate }}</th> -->
+                                                                    <th>{{ 'INVENTORY.INCOMING_QTY' | translate }}</th>
 
                                                                 </tr>
                                                             </thead>
@@ -124,16 +124,16 @@
                                                     </div>
                                                     <div class="media-body small border-bottom border-gray">
                                                         <!-- <div>
-                                                                <strong class="col-md-2">Transferred Remarks:</strong>
+                                                                <strong class="col-md-2">Transferred {{ 'COMMON.REMARKS' | translate }}:</strong>
                                                                 <span class="media-body" style="text-align: left;">{{incomingStockDetail.TransferredRemarks}}</span>
                                                             </div><br /> -->
                                                         <div>
-                                                            <strong class="col-md-2">Receiving Remarks :</strong>
+                                                            <strong class="col-md-2">{{ 'INVENTORY.RECEIVING_REMARKS' | translate }}:</strong>
                                                             <textarea disabled class="col-md-7" id="remarks" [(ngModel)]="ReturnedItem.ReceivedRemarks" name="ReceiveRemarks" rows="3"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <button class="btn green btn-success" id="btn_Save" (click)="Cancel()">Cancel</button>
+                                                        <button class="btn green btn-success" id="btn_Save" (click)="Cancel()">{{ 'COMMON.CANCEL' | translate }}</button>
                                                     </div>
                                                 </div>
                                             </div>

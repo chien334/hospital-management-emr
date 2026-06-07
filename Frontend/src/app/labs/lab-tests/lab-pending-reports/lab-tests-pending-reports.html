@@ -4,7 +4,7 @@
     <div class="col-lg-8 col-sm-8">
       <div class="caption lb-caption">
         <!-- <i class="glyphicon glyphicon-asterisk font-green-turquoise"></i> -->
-        <span class="caption-subject">Pending Reports</span>
+        <span class="caption-subject">{{ 'LABS.PENDING_REPORTS' | translate }}</span>
       </div>
     </div>
     <!-- <div class="col-lg-4 col-sm-4">
@@ -20,7 +20,7 @@
       </div>
       <div class="col-md-5">
         <div class="row">
-          <label class="col-md-3 text-right" style="line-height: 3;">Category:</label>
+          <label class="col-md-3 text-right" style="line-height: 3;">{{ 'LABS.CATEGORY' | translate }}</label>
           <div class="col-md-6">
             <div class="row">
               <div style="display: inline-block; width: 100%;">
@@ -30,7 +30,7 @@
           </div>
           <div class="col-md-3">
             <button [disabled]="loading" class="btn green btn-success pull-right"
-            (click)="GetPendingReportList(this.fromDate, this.toDate, this.catIdList);this.loading=true;">Load
+            (click)="GetPendingReportList(this.fromDate, this.toDate, this.catIdList);this.loading=true;">{{ 'LABS.LOAD' | translate }}
             <i class="fa fa-refresh"></i></button>
           </div>
         </div>
@@ -56,8 +56,7 @@
     </div>
   </div>
   <div style="margin-top: 5px;" *ngIf="!showGrid">
-    <button class="btn primary-btn pull-left margin-7-rt" (click)="BackToGrid();"> <i class="fa fa-arrow-left"></i> Back
-      To Grid </button>
+    <button class="btn primary-btn pull-left margin-7-rt" (click)="BackToGrid();"> <i class="fa fa-arrow-left"></i> {{ 'LABS.BACK_TO_GRID_1' | translate }} </button>
     <danphe-lab-results [showReport]="showReport" [showAddEditResult]="showAddEditResult"
       [requisitionIdList]="requisitionIdList" [verificationRequired]="verificationRequired"
       (callbackAddUpdate)="CallBackBackToGrid($event)"></danphe-lab-results>
@@ -67,7 +66,7 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="modelbox-div">
           <div class="modelbox-header">
-            <h4 class="margin-0-vr">Print Lab Sticker</h4>
+            <h4 class="margin-0-vr">{{ 'LABS.PRINT_LAB_STICKER' | translate }}</h4>
           </div>
           <div class="modelbox-body">
             <lab-sticker (callback-Add)="ExitOutCall($event)" [showlabsticker]="showlabsticker"
@@ -75,7 +74,7 @@
           </div>
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
-              <button type="button" class="btn btn-cancel btn-sm horizontal-space" (click)="CloseSticker()"> Close
+              <button type="button" class="btn btn-cancel btn-sm horizontal-space" (click)="CloseSticker()"> {{ 'COMMON.CLOSE' | translate }}
               </button>
             </div>
           </div>

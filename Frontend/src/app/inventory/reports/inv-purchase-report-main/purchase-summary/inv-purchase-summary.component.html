@@ -12,7 +12,7 @@
 
     .custom_table a {
         font-family: 'Quicksand', 'Open Sans', sans-serif;
-        text-align: left;
+        {{ 'INVENTORY.TEXT' | translate }}-align: left;
     }
 
     .padLess_table th {
@@ -49,11 +49,11 @@
         bottom: 0;
     }
 
-    .control-label {
+    .control-{{ 'GRID_HEADERS.LABEL' | translate }} {
         margin: 7px 0 0 0;
     }
 
-    .control-label b {
+    .control-{{ 'GRID_HEADERS.LABEL' | translate }} b {
         font-weight: 600;
     }
 
@@ -65,8 +65,8 @@
         padding: 0 5px;
     }
 
-    @media only screen and (max-width: 1080px) {
-        .label-frm-to {
+    @media {{ 'INVENTORY.ONLY' | translate }} screen and (max-width: 1080px) {
+        .{{ 'GRID_HEADERS.LABEL' | translate }}-frm-to {
             margin-left: 5px;
         }
     }
@@ -75,7 +75,7 @@
     <div class="col-md-6">
         <div class="caption lb-caption">
             <i class="fa fa-bar-chart"></i>
-            <span class="caption-subject">Purchase Summary Report </span>
+            <span class="caption-subject">{{ 'INVENTORY.PURCHASE_SUMMARY_REPORT' | translate }} </span>
         </div>
     </div>
 </div>
@@ -89,7 +89,7 @@
         <div class="form-group row">
             <label class="control-label col-md-4">Vendor<b style="float:right;">:</b></label>
             <div class="col-md-6 autocomplete-item">
-                <input id="VendorName" danphe-auto-complete class="form-control" [(ngModel)]="selectedVndr" [source]="VendorList" [list-formatter]="VendorListFormatter" placeholder="Vendor Name" display-property-name="VendorName" value-property-name=null (valueChanged)="GetVendorDetails()" (focusout)="GetVendorDetails()" onclick="this.select();" [match-formatted]="true" />
+                <input id="VendorName" danphe-auto-complete class="form-control" [(ngModel)]="selectedVndr" [source]="VendorList" [list-formatter]="VendorListFormatter" [placeholder]="'INVENTORY.VENDOR_NAME' | translate" display-property-name="VendorName" value-property-name=null (valueChanged)="GetVendorDetails()" (focusout)="GetVendorDetails()" onclick="this.select();" [match-formatted]="true" />
             </div>
         </div>
     </div>
@@ -97,8 +97,8 @@
         <div class="form-group">
             <button class="btn green btn-success" type="button" (click)="GetPurchaseSummaryReport()" [disabled]="loading">
                 <i class="fa fa-search"></i>&nbsp;
-                <span *ngIf="!loading">Load</span>
-                <span *ngIf="loading">Loading...</span>
+                <span *ngIf="!loading">{{ 'INVENTORY.LOAD' | translate }}</span>
+                <span *ngIf="loading">{{ 'INVENTORY.LOADING' | translate }}.</span>
 
             </button>
         </div>
@@ -116,15 +116,15 @@
                 <thead>
                     <tr>
                         <th colspan="6" style="text-align: center; font-weight: bold; ">
-                            Purchase Summary {{vendorName ? 'of '+ vendorName: ''}}</th>
+                            Purchase {{ 'INVENTORY.SUMMARY' | translate }} {{vendorName ? 'of '+ vendorName: ''}}</th>
                     </tr>
                     <tr>
                         <th><b></b></th>
-                        <th><b>Sub Total</b></th>
-                        <th><b>Discount</b></th>
-                        <th><b>VAT</b></th>
-                        <th><b>Other Charges</b></th>
-                        <th><b>Total Amount</b></th>
+                        <th><b>{{ 'INVENTORY.SUB_TOTAL' | translate }}</b></th>
+                        <th><b>{{ 'INVENTORY.DISCOUNT' | translate }}</b></th>
+                        <th><b>{{ 'INVENTORY.VAT' | translate }}</b></th>
+                        <th><b>{{ 'INVENTORY.OTHER_CHARGES' | translate }}</b></th>
+                        <th><b>{{ 'INVENTORY.TOTAL_AMOUNT' | translate }}</b></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -166,7 +166,7 @@
         </div>
     </div>
     <div class="col-lg-12 col-sm-12 col-md-12" style="margin-bottom: 25px !important;">
-        <button class="blue btn" type="button" (click)="Print('print_summary')"> <i class="fa fa-print"></i> Print </button>
+        <button class="blue btn" type="button" (click)="Print('print_summary')"> <i class="fa fa-print"></i> {{ 'COMMON.PRINT' | translate }} </button>
     </div>
 </div>
 

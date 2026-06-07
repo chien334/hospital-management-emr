@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-5 col-xs-12">
         <div class="row">
-          <label class="col-md-3 text-right" style="line-height: 3;">Category:</label>
+          <label class="col-md-3 text-right" style="line-height: 3;">{{ 'LABS.CATEGORY' | translate }}</label>
           <div class="col-md-6">
             <div class="row">
               <div style="display: inline-block; width: 100%;">
@@ -23,14 +23,14 @@
           </div>
           <div class="col-md-3">
             <button [disabled]="loading" class="btn green btn-success pull-right"
-                    (click)="GetPendingLabResults(this.fromDate, this.toDate, this.catIdList);this.loading=true;">Load
+                    (click)="GetPendingLabResults(this.fromDate, this.toDate, this.catIdList);this.loading=true;">{{ 'LABS.LOAD' | translate }}
               <i class="fa fa-refresh"></i></button>
           </div>
         </div>
 
       </div>
       <div class="col-md-2">
-        <a (click)="ShowWorkList()" style="font-weight: bold;float:right;text-decoration: underline;">Work List</a>
+        <a (click)="ShowWorkList()" style="font-weight: bold;float:right;text-decoration: underline;">{{ 'LABS.WORK_LIST' | translate }}</a>
       </div>
 
     </div>
@@ -45,7 +45,7 @@
 
   <div *ngIf="!showGrid" style="margin-top: 5px;">
     <button class="btn primary-btn margin-7-rt pull-left" style="z-index: 1;position: relative;" (click)="BackToGrid()">
-      <i class="fa fa-arrow-left"></i> Back To Grid </button>
+      <i class="fa fa-arrow-left"></i> {{ 'LABS.BACK_TO_GRID' | translate }} </button>
     <danphe-lab-results [showReport]="showReport" [showAddEditResult]="showAddEditResult"
                         [barcodeNumber]="selectedBarCodeNumber"
                         [requisitionIdList]="requisitionIdList" [verificationRequired]="verificationRequired"
@@ -56,7 +56,7 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="modelbox-div">
           <div class="modelbox-header">
-            <h4 class="margin-0-vr">Print Lab Sticker</h4>
+            <h4 class="margin-0-vr">{{ 'LABS.PRINT_LAB_STICKER' | translate }}</h4>
           </div>
           <div class="modelbox-body">
             <lab-sticker (callback-Add)="ExitOutCall($event)" [showlabsticker]="showlabsticker"
@@ -64,7 +64,7 @@
           </div>
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
-              <button type="button" class="btn btn-cancel btn-sm horizontal-space" (click)="CloseSticker()"> Close
+              <button type="button" class="btn btn-cancel btn-sm horizontal-space" (click)="CloseSticker()"> {{ 'COMMON.CLOSE' | translate }}
               </button>
             </div>
           </div>
@@ -80,7 +80,7 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="modelbox-div">
           <div class="modelbox-header">
-            <h4 class="margin-0-vr">Reset Run Number</h4>
+            <h4 class="margin-0-vr">{{ 'LABS.RESET_RUN_NUMBER' | translate }}</h4>
           </div>
           <div class="modelbox-body">
             <undo-samplecode (callback-Add)="ExitOutUndoCall($event)" [showUndoOption]="showUndoOption"
@@ -98,7 +98,7 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div">
           <div class="modelbox-header">
-            <h4 class="margin-0-vr"><strong>Print Empty Sheet</strong></h4>
+            <h4 class="margin-0-vr"><strong>{{ 'LABS.PRINT_EMPTY_SHEET' | translate }}</strong></h4>
           </div>
           <div class="modelbox-body">
             <empty-add-report *ngIf="showEmptySheet" (closeEmptyReport)="CloseEmptyReportSheetPopUp($event)"
@@ -117,7 +117,7 @@
       <div class="col-md-12">
         <div class="modelbox-div">
           <div class="modelbox-header">
-            <h4 class="margin-0-vr"><strong>Work List</strong></h4>
+            <h4 class="margin-0-vr"><strong>{{ 'LABS.WORK_LIST' | translate }}</strong></h4>
           </div>
           <div class="modelbox-body">
             <lab-worklist *ngIf="showWorkList" [categoryList]="categoryList" (closeWorkListReport)="CloseWorkListPopUp($event)"></lab-worklist>

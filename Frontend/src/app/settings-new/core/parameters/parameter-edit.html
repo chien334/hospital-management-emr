@@ -20,23 +20,23 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="modelbox-div">
         <div class="caption custom-caption">
-          <h3><span>Edit Core CFG Parameter</span></h3>
+          <h3><span>{{ 'SETTINGS_NEW.EDIT_CORE_CFG_PARAMETER' | translate }}</span></h3>
           <!--			 <button class="btn btn-danger" (click)="Close()">X</button>-->
-          <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+          <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
         </div>
 
         <div class="modelbox-body">
           <div class="row">
             <div class="col-md-6">
-              <p class="margin-0-vr">Name: &nbsp;<b>{{currentParameter.ParameterName}}</b></p>
+              <p class="margin-0-vr">{{ 'COMMON.NAME' | translate }} &nbsp;<b>{{currentParameter.ParameterName}}</b></p>
             </div>
             <div class="col-md-6">
-              <p class="margin-0-vr">Group Name: &nbsp;<b>{{currentParameter.ParameterGroupName}}</b></p>
+              <p class="margin-0-vr">{{ 'SETTINGS_NEW.GROUP_NAME' | translate }} &nbsp;<b>{{currentParameter.ParameterGroupName}}</b></p>
             </div>
           </div>
           <div class="row margin-8-tp margin-5-bt">
             <div class="col-md-12">
-              <p class="margin-0-vr">Parameter Description: &nbsp;<b>{{currentParameter.Description}}</b></p>
+              <p class="margin-0-vr">{{ 'SETTINGS_NEW.PARAMETER_DESCRIPTION' | translate }} &nbsp;<b>{{currentParameter.Description}}</b></p>
             </div>
           </div>
           <hr />
@@ -56,11 +56,11 @@
                         <div class="icheck-inline">
                           <label class="mt-checkbox mt-checkbox-outline">
                             <input name="{{obj.KeyName}}" type="radio" value="true" [(ngModel)]="obj.Value">
-                            <span></span>True
+                            <span></span>{{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                           <label class="mt-checkbox mt-checkbox-outline">
                             <input name="{{obj.KeyName}}" type="radio" value="false" [(ngModel)]="obj.Value">
-                            <span></span>False
+                            <span></span>{{ 'SETTINGS_NEW.FALSE' | translate }}
                           </label>
                         </div>
                       </div>
@@ -104,12 +104,12 @@
                                   <label class="mt-checkbox mt-checkbox-outline">
                                     <input name="{{mappedObj.KeyName}}{{i}}{{j}}" type="radio" value="true"
                                       [(ngModel)]="mappedObj.Value">
-                                    <span></span>True
+                                    <span></span>{{ 'SETTINGS_NEW.TRUE' | translate }}
                                   </label>
                                   <label class="mt-checkbox mt-checkbox-outline">
                                     <input name="{{mappedObj.KeyName}}{{i}}{{j}}" type="radio" value="false"
                                       [(ngModel)]="mappedObj.Value">
-                                    <span></span>False
+                                    <span></span>{{ 'SETTINGS_NEW.FALSE' | translate }}
                                   </label>
                                 </div>
                               </div>
@@ -154,11 +154,11 @@
                         <div class="icheck-inline">
                           <label class="mt-checkbox mt-checkbox-outline">
                             <input name="{{obj.KeyName}}" type="radio" value="true" [(ngModel)]="obj.Value">
-                            <span></span>True
+                            <span></span>{{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                           <label class="mt-checkbox mt-checkbox-outline">
                             <input name="{{obj.KeyName}}" type="radio" value="false" [(ngModel)]="obj.Value">
-                            <span></span>False
+                            <span></span>{{ 'SETTINGS_NEW.FALSE' | translate }}
                           </label>
                         </div>
                       </div>
@@ -197,11 +197,11 @@
                         <div class="icheck-inline">
                           <label class="mt-checkbox mt-checkbox-outline">
                             <input name="{{i}}" type="radio" value="true" [(ngModel)]="obj.Value">
-                            <span></span>True
+                            <span></span>{{ 'SETTINGS_NEW.TRUE' | translate }}
                           </label>
                           <label class="mt-checkbox mt-checkbox-outline">
                             <input name="{{i}}" type="radio" value="false" [(ngModel)]="obj.Value">
-                            <span></span>False
+                            <span></span>{{ 'SETTINGS_NEW.FALSE' | translate }}
                           </label>
                         </div>
                       </div>
@@ -229,10 +229,10 @@
         <div class="panel-footer">
           <div class="all-buttons text-right">
             <button type="button" class="btn green btn-success btn-sm margin-7-hr" (click)="Update()">
-              Update
+              {{ 'COMMON.UPDATE' | translate }}
             </button>
             <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="Close()">
-              Close
+              {{ 'COMMON.CLOSE' | translate }}
             </button>
           </div>
         </div>

@@ -82,7 +82,7 @@
 <div class="row" style="margin-top:10px">
   <div class="col-md-12">
     <div class="caption custom-caption">
-      <h3> <img src="../../../themes/theme-default/images/counter1.svg" alt=""/><span class="caption-subject">Counter Selection</span></h3>
+      <h3> <img src="../../../themes/theme-default/images/counter1.svg" alt=""/><span class="caption-subject">{{ 'PHARMACY.COUNTER_SELECTION' | translate }}</span></h3>
     </div>
   </div>
 </div>
@@ -98,7 +98,7 @@
 	  	<div class="col-md-2" *ngFor="let counter of counterlist">
         <div class="counter" (click)="ActivateCounter(counter)">
           <div class="counter-item"> <img src="../../../themes/theme-default/images/counter1.svg" alt=""/>
-            <h5>{{counter.CounterName}} <span>click to Activate</span></h5>
+            <h5>{{counter.CounterName}} <span>{{ 'PHARMACY.CLICK_TO_ACTIVATE' | translate }}</span></h5>
           </div>
         </div>
 			
@@ -116,7 +116,7 @@
         <tbody>
           <tr *ngFor="let counter of counterlist">
             <td><div class="span2 padder-v b-r b-light rpt-link-container" (click)="ActivateCounter(counter)"> <span class="fa-stack fa-2x pull-left m-r-sm"> <i class="fa fa-magic fa-stack-2x text-info"></i> <i class="fa fa-arrow-circle-o-right fa-stack-1x text-white"></i> </span> <span> <i style="font-weight:bold;font-size:14px">{{counter.CounterName}}</i> </span><br />
-                <span style="font-size:13px;color:green;">click to Activate</span> </div></td>
+                <span style="font-size:13px;color:green;">{{ 'PHARMACY.CLICK_TO_ACTIVATE' | translate }}</span> </div></td>
           </tr>
         </tbody>
       </table>
@@ -129,18 +129,18 @@
   <div *ngIf="!disable" style="margin-top:30px" class="col-lg-6 col-sm-12 col-xs-12">
     <div class="portlet light bordered ">
       <div class="portlet-title">
-        <div class="caption custom-caption no-margin no-padding"> <h3><i class="icon-cursor font-dark hide"></i> <span class="caption-subject">Activated Counter Information</span></h3> </div>
+        <div class="caption custom-caption no-margin no-padding"> <h3><i class="icon-cursor font-dark hide"></i> <span class="caption-subject">{{ 'PHARMACY.ACTIVATED_COUNTER_INFORMATION' | translate }}</span></h3> </div>
       </div>
       <div class="portlet-body">
         <div class="row">
-          <div class="col-md-12"><div class="mt-comment-info"> You have activated the counter and the current activated counter is: <b style="color: #25a904;font-size: 19px;background-color: #f3fff0;padding: 10px;display: inline-block;margin: 10px 0 0 0;"> {{currentCounterId}}:{{currentCounterName}} </b> </div></div>
+          <div class="col-md-12"><div class="mt-comment-info"> {{ 'PHARMACY.YOU_HAVE_ACTIVATED_THE_COUNTER_AND' | translate }}: <b style="color: #25a904;font-size: 19px;background-color: #f3fff0;padding: 10px;display: inline-block;margin: 10px 0 0 0;"> {{currentCounterId}}:{{currentCounterName}} </b> </div></div>
         </div>
         <hr />
         <div class="row">
           <div class="mt-body-actions ">
-            <div class="caption col-md-6 col-sm-6"> <i class="icon-cursor font-dark hide"></i> <span>Do you want to Change the counter?</span> </div>
+            <div class="caption col-md-6 col-sm-6"> <i class="icon-cursor font-dark hide"></i> <span>{{ 'PHARMACY.DO_YOU_WANT_TO_CHANGE_THE_COUNTER' | translate }}</span> </div>
             <div class="actions"> <span>
-              <button class="btn btn-danger" style="font-weight:bold;font-size:14px" (click)="DeactivateCounter()">Deactivate Counter </button>
+              <button class="btn btn-danger" style="font-weight:bold;font-size:14px" (click)="DeactivateCounter()">{{ 'PHARMACY.DEACTIVATE_COUNTER' | translate }} </button>
               </span> </div>
           </div>
         </div>

@@ -33,16 +33,16 @@
 </style>
 <div class="row" *ngIf="showGrid">
   <div class="col-lg-12 col-sm-12">
-    <label>Sort By:</label>
+    <label>{{ 'PHARMACY.SORT_BY' | translate }}:</label>
     <label class="lab-radio-holder margin-15-lft" style="color:#4658e5">
       <input type="radio" checked="checked" [(ngModel)]="billStatus" (change)="OnBillStatusChange()" name="billStatus" value="All" style="width:15px;height:15px" />
-      ALL </label>
+      {{ 'PHARMACY.ALL' | translate }} </label>
     <label class="lab-radio-holder margin-15-lft" style="color:#4658e5">
       <input type="radio" [(ngModel)]="billStatus" (change)="OnBillStatusChange()" name="billStatus" value="paid" style="width:15px;height:15px" />
-      Paid </label>
+      {{ 'PHARMACY.PAID' | translate }} </label>
     <label class="lab-radio-holder margin-15-lft" style="color:#4658e5">
       <input type="radio" [(ngModel)]="billStatus" (change)="OnBillStatusChange()" name="billStatus" value="unpaid" style="width:15px;height:15px" />
-      Unpaid </label>
+      {{ 'PHARMACY.UNPAID' | translate }} </label>
   </div>
   <div class="col-lg-12 col-sm-12">
     <danphe-grid [grid-colDefaults]="PHRMSettlementGridCols"
@@ -55,8 +55,8 @@
 </div>
 
 <div *ngIf="showReceipt || showActionPanel">
-  <button class="btn btn-primary" (click)="BackToGrid()"><i class="fa fa-backward" style="display:inline-block;"></i>&nbsp;&nbsp;&nbsp;Back</button>
-	<h3 style="display:inline-block;font-size: 15px;margin-left: 10px;margin-bottom: 20px;margin-top: 0;"> <b>Summary View</b></h3>
+  <button class="btn btn-primary" (click)="BackToGrid()"><i class="fa fa-backward" style="display:inline-block;"></i>&nbsp;&nbsp;&nbsp;{{ 'COMMON.BACK' | translate }}</button>
+	<h3 style="display:inline-block;font-size: 15px;margin-left: 10px;margin-bottom: 20px;margin-top: 0;"> <b>{{ 'PHARMACY.SUMMARY_VIEW' | translate }}</b></h3>
 </div>
 
 <div class="row" *ngIf="showActionPanel">
@@ -72,10 +72,10 @@
       <table class="table table-striped inv-detail inv_table table-bordered">
         <thead>
           <tr>
-            <th>S.N.</th>
-            <th>Invoice No</th>
-            <th>Invoice Date</th>
-            <th>Total Amount</th>
+            <th>{{ 'COMMON.SN' | translate }}</th>
+            <th>{{ 'PHARMACY.INVOICE_NO' | translate }}</th>
+            <th>{{ 'PHARMACY.INVOICE_DATE' | translate }}</th>
+            <th>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}</th>
           </tr>
         </thead>
         <ng-container *ngFor="let row of patCrInvoicDetails;let j=index;">
@@ -109,7 +109,7 @@
           <div class="icheck-inline">
             <label class="mt-checkbox mt-checkbox-outline" style="color:blue;">
               <input type="checkbox" value="" [(ngModel)]="showDetailView" (change)="showDetailedView((showDetailView?'true':'false'))">
-              <span></span><b>Show Detailed View</b>
+              <span></span><b>{{ 'PHARMACY.SHOW_DETAILED_VIEW' | translate }}</b>
             </label>
           </div>
         </div>
@@ -118,20 +118,20 @@
         <table class="table table-striped inv-detail inv_table table-bordered">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Item Name</th>
-              <th>SalePrice</th>
-              <th>Quantity</th>
-              <th>Discount</th>
-              <th>Tax</th>
-              <th>Total Amount</th>
+              <th>{{ 'COMMON.SN' | translate }}</th>
+              <th>{{ 'PHARMACY.ITEM_NAME' | translate }}</th>
+              <th>{{ 'PHARMACY.SALEPRICE' | translate }}</th>
+              <th>{{ 'PHARMACY.QUANTITY' | translate }}</th>
+              <th>{{ 'PHARMACY.DISCOUNT' | translate }}</th>
+              <th>{{ 'PHARMACY.TAX' | translate }}</th>
+              <th>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}</th>
             </tr>
           </thead>
           <ng-container *ngFor="let row of patCrInvoicDetails;let j=index;">
             <tbody>
 
               <tr>
-                <td colspan="8" style="text-align:center;font-weight:bold;color:black;padding:4px;border-bottom:1px solid black;">Invoice No: {{row.InvoiceCode}}{{row.InvoicePrintId}}</td>
+                <td colspan="8" style="text-align:center;font-weight:bold;color:black;padding:4px;border-bottom:1px solid black;">{{ 'PHARMACY.INVOICE_NO' | translate }}: {{row.InvoiceCode}}{{row.InvoicePrintId}}</td>
               </tr>
               <tr *ngFor="let txnItm of row.InvoiceItems; let i=index">
                 <td>
@@ -168,12 +168,12 @@
 <div class="row" *ngIf="showActionPanel" style="padding-left: 25px;">
   <div class="bil-action-2">
     <table>
-      <tr><td>SubTotal <b class="colon">:</b></td><td>{{patBillHistory.SubtotalAmount}}</td></tr>
-      <tr><td>Discount Amount <b class="colon">:</b></td><td>{{patBillHistory.DiscountAmount}}</td></tr>
-      <tr><td>Credit Total <b class="colon">:</b></td><td>{{patBillHistory.CreditAmount}}</td></tr>
+      <tr><td>{{ 'PHARMACY.SUBTOTAL' | translate }} <b class="colon">:</b></td><td>{{patBillHistory.SubtotalAmount}}</td></tr>
+      <tr><td>{{ 'PHARMACY.DISCOUNT_AMOUNT' | translate }} <b class="colon">:</b></td><td>{{patBillHistory.DiscountAmount}}</td></tr>
+      <tr><td>{{ 'PHARMACY.CREDIT_TOTAL' | translate }} <b class="colon">:</b></td><td>{{patBillHistory.CreditAmount}}</td></tr>
       <tr *ngIf="patBillHistory.ProvisionalAmt >= 0">
         <td>
-          Provisional Amount
+          {{ 'PHARMACY.PROVISIONAL_AMOUNT' | translate }}
           <b class="colon">:</b>
         </td>
         <td style="text-decoration:underline;">
@@ -182,23 +182,23 @@
           </span>
           <span *ngIf="patBillHistory.ProvisionalAmt > 0">
             <i style="color:blue;text-decoration:underline;cursor:pointer;margin-left: 27px;font-weight:bold;"
-               title="Click to Generate receipt of these items" (click)="PayProvisionalItems()">
-              Generate Invoice
+               [title]="'PHARMACY.CLICK_TO_GENERATE_RECEIPT_OF_THESE_ITEMS' | translate" (click)="PayProvisionalItems()">
+              {{ 'PHARMACY.GENERATE_INVOICE' | translate }}
             </i>
             <i class="fa fa-hand-o-left" style="font-weight: bold;font-size: 18px;margin-left: 8px;"></i>
           </span>
         </td>
       </tr>
-      <tr><td>Total Due<b class="colon">:</b></td><td>{{patBillHistory.TotalDue}}</td></tr>
-      <tr><td>Deposit Balance <b class="colon">:</b> </td><td>{{patBillHistory.DepositBalance}}</td></tr>
+      <tr><td>{{ 'PHARMACY.TOTAL_DUE' | translate }}<b class="colon">:</b></td><td>{{patBillHistory.TotalDue}}</td></tr>
+      <tr><td>{{ 'PHARMACY.DEPOSIT_BALANCE' | translate }} <b class="colon">:</b> </td><td>{{patBillHistory.DepositBalance}}</td></tr>
       <tr>
       <tr>
         <td colspan="2" class="blinkAmount">
           <div *ngIf="model.RefundableAmount > 0">
-            Amount Refundable : {{model.RefundableAmount}}
+            {{ 'PHARMACY.AMOUNT_REFUNDABLE' | translate }} : {{model.RefundableAmount}}
           </div>
           <div *ngIf="model.PayableAmount>0">
-            Amount Payable: {{model.PayableAmount}}
+            {{ 'PHARMACY.AMOUNT_PAYABLE' | translate }}: {{model.PayableAmount}}
           </div>
         </td>
       </tr>
@@ -210,21 +210,21 @@
       <div class="col-md-12">
         <div class="col-md-4">
           <div style="padding-top:5px;">
-            Discount Percentage: <input type="number" [(ngModel)]="model.DiscountPercentage" max="100" (ngModelChange)="DiscountAmountOnChange();CheckRemarks()" />
+            {{ 'PHARMACY.DISCOUNT_PERCENTAGE' | translate }}: <input type="number" [(ngModel)]="model.DiscountPercentage" max="100" (ngModelChange)="DiscountAmountOnChange();CheckRemarks()" />
           </div>
           <div *ngIf="model.DiscountPercentage > 0" style="padding-top:5px;">
-            Discount Amount: <input type="number" disabled [(ngModel)]="model.DiscountAmount" (ngModelChange)="DiscountAmountOnChange()" />
+            {{ 'PHARMACY.DISCOUNT_AMOUNT' | translate }}: <input type="number" disabled [(ngModel)]="model.DiscountAmount" (ngModelChange)="DiscountAmountOnChange()" />
           </div>
           <div *ngIf="model.PayableAmount > 0">
-            Amount to be Paid: <input type="number" [(ngModel)]="model.PaidAmount" (ngModelChange)="PaidAmountOnChange()" />
+            {{ 'PHARMACY.AMOUNT_TO_BE_PAID' | translate }}: <input type="number" [(ngModel)]="model.PaidAmount" (ngModelChange)="PaidAmountOnChange()" />
           </div>
           <div *ngIf="model.RefundableAmount > 0">
-            Amount Returned: <input disabled type="number" [(ngModel)]="model.ReturnedAmount" />
+            {{ 'PHARMACY.AMOUNT_RETURNED' | translate }}: <input disabled type="number" [(ngModel)]="model.ReturnedAmount" />
           </div>
         </div>
 
         <div class="col-md-4" *ngIf="model.PayableAmount < model.PaidAmount" style="color: green;font-weight: bold;font-size: 15px;">
-          Change/Return : {{-model.ReturnedAmount}}
+          {{ 'PHARMACY.CHANGERETURN' | translate }} : {{-model.ReturnedAmount}}
         </div>
       </div>
     </div>
@@ -232,18 +232,18 @@
     <div class="bil-action-2" style="margin-top: 60px;">
       <div class="col-md-12">
         <div class="col-md-3">
-          Payment Mode:
+          {{ 'PHARMACY.PAYMENT_MODE' | translate }}:
           <select [(ngModel)]="model.PaymentMode" style="width:100px" (change)="OnPaymentModeChange()">
-            <option value="cash">Cash</option>
-            <option value="cheque">Cheque</option>
-            <option value="card">Smart Card</option>
+            <option value="cash">{{ 'PHARMACY.CASH' | translate }}</option>
+            <option value="cheque">{{ 'PHARMACY.CHEQUE' | translate }}</option>
+            <option value="card">{{ 'PHARMACY.SMART_CARD' | translate }}</option>
           </select>
         </div>
         <div class="col-md-5">
 
           <div *ngIf="model.PaymentMode != 'cash'">
             <div class="col-md-4">
-              Payment Details:
+              {{ 'PHARMACY.PAYMENT_DETAILS' | translate }}:
             </div>
             <div class="col-md-8">
               <textarea [(ngModel)]="model.PaymentDetails"></textarea>
@@ -255,15 +255,15 @@
 
       <div class="col-md-12 bil-action-2">
         <div class="col-md-1">
-          <strong style="line-height:3;">Remarks:</strong><br />
+          <strong style="line-height:3;">{{ 'COMMON.REMARKS' | translate }}:</strong><br />
         </div>
         <div class="col-md-4">
           <textarea rows="2" [(ngModel)]="model.Remarks" (ngModelChange)= "CheckRemarks()"></textarea> <br />
-          <div class="color-red font-sm" *ngIf="model.IsDiscounted && !model.Remarks" [hidden] = "model.Remarks && !model.IsDiscounted ">Remarks is mandatory.</div>
+          <div class="color-red font-sm" *ngIf="model.IsDiscounted && !model.Remarks" [hidden] = "model.Remarks && !model.IsDiscounted ">{{ 'PHARMACY.REMARKS_IS_MANDATORY' | translate }}</div>
         </div>
       </div>
 
-      <input style="margin-top: 15px;" type="button" class="btn green-meadow" (click)="SettlePatientBills()" [disabled]="loading" value="Proceed" />
+      <input style="margin-top: 15px;" type="button" class="btn green-meadow" (click)="SettlePatientBills()" [disabled]="loading" [value]="'PHARMACY.PROCEED' | translate" />
 
     </div>
   </div>

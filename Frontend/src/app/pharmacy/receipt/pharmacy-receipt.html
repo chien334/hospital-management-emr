@@ -159,7 +159,7 @@
     <div *ngIf="receipt.PrintCount>0">
         <div id="printpage2" class="invoice-receipt">
             <div>
-                <p class="no-margin" style="text-align:right;font-style:italic;">COPY({{receipt.PrintCount}}) OF ORIGINAL</p>
+                <p class="no-margin" style="text-align:right;font-style:italic;">{{ 'PHARMACY.COPY' | translate }}{{receipt.PrintCount}}{{ 'PHARMACY.OF_ORIGINAL' | translate }}</p>
             </div>
             <div class="box-body invoice header">
                 <table border="0" style="width: 100%; margin: 0 auto;" cellspacing="0" cellpadding="0">
@@ -184,13 +184,13 @@
                 <table border="0" style="width: 100%; margin: 0 auto;" cellspacing="0" cellpadding="0">
                     <tr>
                         <td colspan="12" style="text-align: center; color: #000 !important;">
-                            <p><strong>PHARMACY UNITS</strong></p>
+                            <p><strong>{{ 'PHARMACY.PHARMACY_UNITS' | translate }}</strong></p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="12" style="text-align: center; color: #000 !important;">
-                            <p *ngIf="!receipt.IsReturned"><strong>INVOICE</strong></p>
-                            <p *ngIf="receipt.IsReturned"><strong>CREDIT NOTE</strong></p>
+                            <p *ngIf="!receipt.IsReturned"><strong>{{ 'PHARMACY.INVOICE' | translate }}</strong></p>
+                            <p *ngIf="receipt.IsReturned"><strong>{{ 'PHARMACY.CREDIT_NOTE' | translate }}</strong></p>
                         </td>
                     </tr>
                     <tr style="border: 1px solid #ccc; color:black!important;">
@@ -198,33 +198,32 @@
                             <table style="width: 100%; margin-bottom: 0;">
                                 <tr>
                                     <td colspan="6" style="text-align: left;">
-                                        <p *ngIf="receipt.IsReturned && receipt.ReferenceInvoiceNo===null" class="c_paragraphs"><strong>CRN
-                                                No:</strong>
-                                            {{receipt.CurrentFiscalYearName}}-CR-PH{{receipt.CreditNoteNo}}</p>
-                                        <p *ngIf="!receipt.IsReturned" class="c_paragraphs"><strong>Invoice No:</strong>
+                                        <p *ngIf="receipt.IsReturned && receipt.ReferenceInvoiceNo===null" class="c_paragraphs"><strong>{{ 'PHARMACY.CRN_NO' | translate }}:</strong>
+                                            {{receipt.CurrentFiscalYearName}}-{{ 'PHARMACY.CRPH' | translate }}{{receipt.CreditNoteNo}}</p>
+                                        <p *ngIf="!receipt.IsReturned" class="c_paragraphs"><strong>{{ 'PHARMACY.INVOICE_NO' | translate }}:</strong>
                                             {{receipt.CurrentFiscalYearName}} -
-                                            PH{{
+                                            {{ 'PHARMACY.PH' | translate }}{{
                                             receipt.ReceiptPrintNo }}</p>
-                                        <p *ngIf="receipt.ReferenceInvoiceNo!==null" class="c_paragraphs"><strong>Reference No:</strong>
-                                            {{receipt.CurrentFiscalYearName}}-PH{{receipt.ReferenceInvoiceNo}}</p>
+                                        <p *ngIf="receipt.ReferenceInvoiceNo!==null" class="c_paragraphs"><strong>{{ 'PHARMACY.REFERENCE_NO' | translate }}:</strong>
+                                            {{receipt.CurrentFiscalYearName}}-{{ 'PHARMACY.PH' | translate }}{{receipt.ReferenceInvoiceNo}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"><strong>Transaction Date:</strong> {{receipt.ReceiptDate |
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.TRANSACTION_DATE' | translate }}:</strong> {{receipt.ReceiptDate |
                                             DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"><strong>Hospital No : </strong>{{receipt.PatientInfo.PatientCode}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.HOSPITAL_NO' | translate }} : </strong>{{receipt.PatientInfo.PatientCode}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"><strong>Invoice Date:</strong> {{receipt.ReceiptDate |
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.INVOICE_DATE' | translate }}:</strong> {{receipt.ReceiptDate |
                                             DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"><strong>Patient's Name: </strong>{{receipt.PatientInfo.ShortName}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.PATIENTS_NAME' | translate }}: </strong>{{receipt.PatientInfo.ShortName}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
                                         <p class="c_paragraphs">{{receipt.ReceiptDate | nepaliDate }}</p>
@@ -232,18 +231,18 @@
                                 </tr>
                                 <tr *ngIf="receipt.PatientInfo.PatientId > 0">
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"><strong>Address: </strong><span
+                                        <p class="c_paragraphs"><strong>{{ 'GRID_HEADERS.ADDRESS' | translate }}: </strong><span
                                                   *ngIf="receipt.PatientInfo.Address!==null">{{receipt.PatientInfo.Address}},</span>
                                             {{receipt.PatientInfo.CountrySubDivisionName}} </p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"> Age/Sex :{{receipt.PatientInfo.DateOfBirth | DanpheDateTime:'age'
+                                        <p class="c_paragraphs"> {{ 'GRID_HEADERS.AGE_SEX' | translate }} :{{receipt.PatientInfo.DateOfBirth | DanpheDateTime:'age'
                                             }}/{{receipt.PatientInfo.Gender}}</p>
                                     </td>
                                 </tr>
                                 <tr *ngIf="receipt.ProviderName && receipt.ProviderNMCNumber">
                                     <td colspan="6" style="text-align: left;">
-                                        <p *ngIf="receipt.ProviderName" class="c_paragraphs"><strong>Provider's Name:
+                                        <p *ngIf="receipt.ProviderName" class="c_paragraphs"><strong>{{ 'PHARMACY.PROVIDERS_NAME' | translate }}:
                                             </strong>{{receipt.ProviderName}}
                                         </p>
                                     </td>
@@ -253,33 +252,33 @@
                                 </tr>
                                 <tr *ngIf="receipt.ClaimCode || receipt.PolicyNo">
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"> ClaimCode: {{receipt.ClaimCode}}</p>
+                                        <p class="c_paragraphs"> {{ 'PHARMACY.CLAIMCODE' | translate }}: {{receipt.ClaimCode}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"><strong>PolicyNo: </strong>{{receipt.PolicyNo}} </p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.POLICYNO' | translate }}: </strong>{{receipt.PolicyNo}} </p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"><strong>Contact No: </strong>{{receipt.PatientInfo.PhoneNumber}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.CONTACT_NO' | translate }}: </strong>{{receipt.PatientInfo.PhoneNumber}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"><strong>Method of payment: </strong>{{receipt.PaymentMode}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.METHOD_OF_PAYMENT' | translate }}: </strong>{{receipt.PaymentMode}}</p>
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
                     <tr style="color:black!important;">
-                        <th style="padding: 10px 10px;">SN.</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.SN' | translate }}</th>
                         <th colspan="4" style="padding: 10px 10px;">Particular(s)</th>
-                        <th style="padding: 10px 10px;" *ngIf="!receipt.IsReturned">Qty</th>
-                        <th style="padding: 10px 10px;" *ngIf="receipt.IsReturned">Ret.Qty</th>
-                        <th colspan="2" style="padding: 10px 10px;">Expiry</th>
-                        <th style="padding: 10px 10px;">Batch</th>
-                        <th style="padding: 10px 10px;">Rack No.</th>
-                        <th style="padding: 10px 10px;">Rate</th>
-                        <th style="padding: 10px 10px;">Amount</th>
+                        <th style="padding: 10px 10px;" *ngIf="!receipt.IsReturned">{{ 'PHARMACY.QTY' | translate }}</th>
+                        <th style="padding: 10px 10px;" *ngIf="receipt.IsReturned">{{ 'PHARMACY.RETQTY' | translate }}</th>
+                        <th colspan="2" style="padding: 10px 10px;">{{ 'PHARMACY.EXPIRY' | translate }}</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.BATCH' | translate }}</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.RACK_NO' | translate }}</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.RATE' | translate }}</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.AMOUNT' | translate }}</th>
                     </tr>
                     <tr *ngFor="let row of receipt.InvoiceItems; let i=index" style="color:black!important;">
                         <td style="padding: 5px 10px; ">{{i+1}}</td>
@@ -294,24 +293,24 @@
                     </tr>
                     <tr style="border-top: 1px solid #ccc; color:black!important;">
                         <td colspan="8" style="padding: 10px; vertical-align: top;">
-                            <p class="c_paragraphs"><strong>In Words :{{receipt.TotalAmount | NumberInWords}} <span
-                                          *ngIf="receipt.TotalAmount !=0">Only</span></strong></p>
+                            <p class="c_paragraphs"><strong>{{ 'PHARMACY.IN_WORDS' | translate }} :{{receipt.TotalAmount | NumberInWords}} <span
+                                          *ngIf="receipt.TotalAmount !=0">{{ 'PHARMACY.ONLY' | translate }}</span></strong></p>
                         </td>
                         <td colspan="3" style="padding: 10px; text-align: right;">
-                            <p class="c_paragraphs"><strong>SubTotal: </strong></p>
-                            <p *ngIf="receipt.DiscountAmount  && IsitemlevlDis || isMainDiscountAvailable" class="c_paragraphs"><strong>Discount:
+                            <p class="c_paragraphs"><strong>{{ 'PHARMACY.SUBTOTAL' | translate }}: </strong></p>
+                            <p *ngIf="receipt.DiscountAmount  && IsitemlevlDis || isMainDiscountAvailable" class="c_paragraphs"><strong>{{ 'PHARMACY.DISCOUNT' | translate }}:
                                 </strong></p>
-                            <p *ngIf="receipt.VATAmount && isItemLevelVATApplicable" class="c_paragraphs"><strong>Taxable Amount:
+                            <p *ngIf="receipt.VATAmount && isItemLevelVATApplicable" class="c_paragraphs"><strong>{{ 'PHARMACY.TAXABLE_AMOUNT' | translate }}:
                                 </strong></p>
-                            <p *ngIf="receipt.VATAmount && isItemLevelVATApplicable" class="c_paragraphs"><strong>Non Taxable Amount:
+                            <p *ngIf="receipt.VATAmount && isItemLevelVATApplicable" class="c_paragraphs"><strong>{{ 'PHARMACY.NON_TAXABLE_AMOUNT' | translate }}:
                                 </strong></p>
-                            <p *ngIf="receipt.VATAmount && isItemLevelVATApplicable" class="c_paragraphs"><strong>VAT:
+                            <p *ngIf="receipt.VATAmount && isItemLevelVATApplicable" class="c_paragraphs"><strong>{{ 'PHARMACY.VAT' | translate }}:
                                 </strong></p>
-                            <p *ngIf="!receipt.IsReturned" class="c_paragraphs"><strong>Cash Amount: </strong></p>
-                            <p *ngIf="receipt.IsReturned" class="c_paragraphs"><strong>Cash Ret Amount: </strong></p>
-                            <p *ngIf="!receipt.IsReturned" class="c_paragraphs"><strong>Credit Amount: </strong></p>
-                            <p *ngIf="receipt.IsReturned" class="c_paragraphs"><strong>Credit Ret Amount: </strong></p>
-                            <p class="c_paragraphs"><strong>Total Amount: </strong></p>
+                            <p *ngIf="!receipt.IsReturned" class="c_paragraphs"><strong>{{ 'PHARMACY.CASH_AMOUNT' | translate }}: </strong></p>
+                            <p *ngIf="receipt.IsReturned" class="c_paragraphs"><strong>{{ 'PHARMACY.CASH_RET_AMOUNT' | translate }}: </strong></p>
+                            <p *ngIf="!receipt.IsReturned" class="c_paragraphs"><strong>{{ 'PHARMACY.CREDIT_AMOUNT' | translate }}: </strong></p>
+                            <p *ngIf="receipt.IsReturned" class="c_paragraphs"><strong>{{ 'PHARMACY.CREDIT_RET_AMOUNT' | translate }}: </strong></p>
+                            <p class="c_paragraphs"><strong>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}: </strong></p>
                         </td>
                         <td style="padding: 10px;">
                             <p class="c_paragraphs">{{receipt.SubTotal | number: "1.2-2"}}</p>
@@ -334,9 +333,9 @@
                     </tr>
                     <tr *ngIf=" receipt.PaymentMode != 'credit'" style=" border-top: 1px solid #ccc; color:black!important;">
                         <td colspan="12" style="padding: 10px; vertical-align: top;">
-                            <p class="c_paragraphs" *ngIf=" receipt.PaymentMode != 'credit' && !receipt.IsReturned"><strong>Tender:
+                            <p class="c_paragraphs" *ngIf=" receipt.PaymentMode != 'credit' && !receipt.IsReturned"><strong>{{ 'PHARMACY.TENDER' | translate }}:
                                 </strong>{{receipt.Tender | number : "1.2-2"}}</p>
-                            <p class="c_paragraphs" *ngIf=" receipt.PaymentMode != 'credit' && !receipt.IsReturned"><strong>Change/Return:</strong>
+                            <p class="c_paragraphs" *ngIf=" receipt.PaymentMode != 'credit' && !receipt.IsReturned"><strong>{{ 'PHARMACY.CHANGERETURN' | translate }}:</strong>
                                 {{receipt.Change | number: "1.2-2"}}</p>
                         </td>
                     </tr>
@@ -347,21 +346,21 @@
                     </tr>
                     <tr style="border-top: 1px solid #ccc; color:black!important;">
                         <td colspan="6" style="padding: 10px 10px 0 10px; vertical-align: top; text-align: left">
-                            <p *ngIf="receipt.CreditOrganizationName" class="c_paragraphs"><strong>Credit Organization:
+                            <p *ngIf="receipt.CreditOrganizationName" class="c_paragraphs"><strong>{{ 'PHARMACY.CREDIT_ORGANIZATION' | translate }}:
                                 </strong>{{receipt.CreditOrganizationName}}</p>
                         </td>
                         <td colspan="6" style="padding: 10px 10px 0 10px; vertical-align: top; text-align: right">
-                            <p *ngIf="receipt.Remarks!=null" style="text-align: right" class="c_paragraphs"><strong>Remarks:
+                            <p *ngIf="receipt.Remarks!=null" style="text-align: right" class="c_paragraphs"><strong>{{ 'COMMON.REMARKS' | translate }}:
                                 </strong>{{receipt.Remarks}}
                             </p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="6" style="padding: 0 10px; vertical-align: top;" style="color:black!important;">
-                            <p class="c_paragraphs"><strong>User: </strong>{{receipt.BillingUser}}</p>
+                            <p class="c_paragraphs"><strong>{{ 'PHARMACY.USER' | translate }}: </strong>{{receipt.BillingUser}}</p>
                         </td>
                         <td colspan="6" style="padding: 0 10px; vertical-align: top; text-align: right;" style="color:black!important;">
-                            <p class="c_paragraphs" style="text-align: right;"><strong>Time: </strong>{{receipt.ReceiptDate |
+                            <p class="c_paragraphs" style="text-align: right;"><strong>{{ 'COMMON.TIME' | translate }}: </strong>{{receipt.ReceiptDate |
                                 DanpheDateTime:'format':'HH:mm'}}</p>
                         </td>
                     </tr>
@@ -379,7 +378,7 @@
         </select-printer>
         <div style="text-align: center; margin-bottom: 15px;">
             <button class="btn blue" id="btnPrintPhrmInvoice" class="btn green btn-success" (click)="print('printpage2')">
-                Print Receipt
+                {{ 'PHARMACY.PRINT_RECEIPT' | translate }}
                 <i class="glyphicon glyphicon-print"></i>
             </button>
 
@@ -414,13 +413,13 @@
                 <table border="0" style="width: 800px; margin: 0 auto;" cellspacing="0" cellpadding="0">
                     <tr>
                         <td colspan="12" style="text-align: center; color: #000 !important;">
-                            <p><strong>PHARMACY UNITS</strong></p>
+                            <p><strong>{{ 'PHARMACY.PHARMACY_UNITS' | translate }}</strong></p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="12" style="text-align: center; color: #000 !important;">
-                            <p *ngIf="!receipt.IsReturned"><strong>INVOICE</strong></p>
-                            <p *ngIf="receipt.IsReturned"><strong>CREDIT NOTE</strong></p>
+                            <p *ngIf="!receipt.IsReturned"><strong>{{ 'PHARMACY.INVOICE' | translate }}</strong></p>
+                            <p *ngIf="receipt.IsReturned"><strong>{{ 'PHARMACY.CREDIT_NOTE' | translate }}</strong></p>
                         </td>
                     </tr>
                     <tr style="border: 1px solid #ccc; color:black!important;">
@@ -428,33 +427,32 @@
                             <table style="width: 100%; margin-bottom: 0;">
                                 <tr>
                                     <td colspan="6" style="text-align: left;">
-                                        <p *ngIf="receipt.IsReturned && receipt.ReferenceInvoiceNo===null" class="c_paragraphs"><strong>CRN
-                                                No:</strong>
-                                            {{receipt.CurrentFiscalYearName}}-CR-PH{{receipt.CreditNoteNo}}</p>
-                                        <p *ngIf="!receipt.IsReturned" class="c_paragraphs"><strong>Invoice No:</strong>
+                                        <p *ngIf="receipt.IsReturned && receipt.ReferenceInvoiceNo===null" class="c_paragraphs"><strong>{{ 'PHARMACY.CRN_NO' | translate }}:</strong>
+                                            {{receipt.CurrentFiscalYearName}}-{{ 'PHARMACY.CRPH' | translate }}{{receipt.CreditNoteNo}}</p>
+                                        <p *ngIf="!receipt.IsReturned" class="c_paragraphs"><strong>{{ 'PHARMACY.INVOICE_NO' | translate }}:</strong>
                                             {{receipt.CurrentFiscalYearName}} -
-                                            PH{{
+                                            {{ 'PHARMACY.PH' | translate }}{{
                                             receipt.ReceiptPrintNo }}</p>
-                                        <p *ngIf="receipt.ReferenceInvoiceNo!==null" class="c_paragraphs"><strong>Reference No:</strong>
-                                            {{receipt.CurrentFiscalYearName}}-PH{{receipt.ReferenceInvoiceNo}}</p>
+                                        <p *ngIf="receipt.ReferenceInvoiceNo!==null" class="c_paragraphs"><strong>{{ 'PHARMACY.REFERENCE_NO' | translate }}:</strong>
+                                            {{receipt.CurrentFiscalYearName}}-{{ 'PHARMACY.PH' | translate }}{{receipt.ReferenceInvoiceNo}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"><strong>Transaction Date:</strong> {{receipt.ReceiptDate |
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.TRANSACTION_DATE' | translate }}:</strong> {{receipt.ReceiptDate |
                                             DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"><strong>Hospital No : </strong>{{receipt.PatientInfo.PatientCode}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.HOSPITAL_NO' | translate }} : </strong>{{receipt.PatientInfo.PatientCode}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"><strong>Invoice Date:</strong> {{receipt.ReceiptDate |
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.INVOICE_DATE' | translate }}:</strong> {{receipt.ReceiptDate |
                                             DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"><strong>Patient's Name: </strong>{{receipt.PatientInfo.ShortName}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.PATIENTS_NAME' | translate }}: </strong>{{receipt.PatientInfo.ShortName}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
                                         <p class="c_paragraphs">{{receipt.ReceiptDate | nepaliDate }}</p>
@@ -462,7 +460,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: left;" *ngIf="receipt.ProviderName">
-                                        <p class="c_paragraphs"><strong>Provider's Name: </strong>{{receipt.ProviderName}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.PROVIDERS_NAME' | translate }}: </strong>{{receipt.ProviderName}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;" *ngIf="receipt.ProviderNMCNumber">
                                         <p class="c_paragraphs"><strong>{{GeneralFieldLabel.NMCNo}}: </strong>{{receipt.ProviderNMCNumber}}</p>
@@ -470,45 +468,45 @@
                                 </tr>
                                 <tr *ngIf="receipt.PatientInfo.PatientId > 0">
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"><strong>Address:</strong><span
+                                        <p class="c_paragraphs"><strong>{{ 'GRID_HEADERS.ADDRESS' | translate }}:</strong><span
                                                   *ngIf="receipt.PatientInfo.Address!==null">{{receipt.PatientInfo.Address}},</span>
                                             {{receipt.PatientInfo.CountrySubDivisionName}}
                                         </p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"><strong>Age/Sex :</strong> {{receipt.PatientInfo.DateOfBirth | DanpheDateTime:'age'
+                                        <p class="c_paragraphs"><strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }} :</strong> {{receipt.PatientInfo.DateOfBirth | DanpheDateTime:'age'
                                             }}/{{receipt.PatientInfo.Gender}}</p>
                                     </td>
                                 </tr>
                                 <tr *ngIf="receipt.ClaimCode || receipt.PolicyNo">
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"><strong>ClaimCode: </strong>{{receipt.ClaimCode}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.CLAIMCODE' | translate }}: </strong>{{receipt.ClaimCode}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"><strong>PolicyNo: </strong>{{receipt.PolicyNo}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.POLICYNO' | translate }}: </strong>{{receipt.PolicyNo}}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: left;">
-                                        <p class="c_paragraphs"><strong>Contact No: </strong>{{receipt.PatientInfo.PhoneNumber}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.CONTACT_NO' | translate }}: </strong>{{receipt.PatientInfo.PhoneNumber}}</p>
                                     </td>
                                     <td colspan="6" style="text-align: right;">
-                                        <p class="c_paragraphs"><strong>Method of payment: </strong>{{receipt.PaymentMode}}</p>
+                                        <p class="c_paragraphs"><strong>{{ 'PHARMACY.METHOD_OF_PAYMENT' | translate }}: </strong>{{receipt.PaymentMode}}</p>
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
                     <tr style="color:black!important;">
-                        <th style="padding: 10px 10px;">SN.</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.SN' | translate }}</th>
                         <th colspan="4" style="padding: 10px 10px;">Particular(s)</th>
-                        <th style="padding: 10px 10px;" *ngIf="!receipt.IsReturned">Qty</th>
-                        <th style="padding: 10px 10px;" *ngIf="receipt.IsReturned">Ret.Qty</th>
-                        <th colspan="2" style="padding: 10px 10px;">Expiry</th>
-                        <th style="padding: 10px 10px;">Batch</th>
-                        <th style="padding: 10px 10px;">Rack No.</th>
-                        <th style="padding: 10px 10px;">Rate</th>
-                        <th style="padding: 10px 10px;">Amount</th>
+                        <th style="padding: 10px 10px;" *ngIf="!receipt.IsReturned">{{ 'PHARMACY.QTY' | translate }}</th>
+                        <th style="padding: 10px 10px;" *ngIf="receipt.IsReturned">{{ 'PHARMACY.RETQTY' | translate }}</th>
+                        <th colspan="2" style="padding: 10px 10px;">{{ 'PHARMACY.EXPIRY' | translate }}</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.BATCH' | translate }}</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.RACK_NO' | translate }}</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.RATE' | translate }}</th>
+                        <th style="padding: 10px 10px;">{{ 'PHARMACY.AMOUNT' | translate }}</th>
                     </tr>
                     <tr *ngFor="let row of receipt.InvoiceItems; let i=index" style="color:black!important;">
                         <td style="padding: 5px 10px; ">{{i+1}}</td>
@@ -523,18 +521,18 @@
                     </tr>
                     <tr style="border-top: 1px solid #ccc; color:black!important;">
                         <td colspan="8" style="padding: 10px; vertical-align: top;">
-                            <p class="c_paragraphs"><strong>In Words :{{receipt.TotalAmount | NumberInWords}} <span
-                                          *ngIf="receipt.TotalAmount !=0">Only</span></strong></p>
+                            <p class="c_paragraphs"><strong>{{ 'PHARMACY.IN_WORDS' | translate }} :{{receipt.TotalAmount | NumberInWords}} <span
+                                          *ngIf="receipt.TotalAmount !=0">{{ 'PHARMACY.ONLY' | translate }}</span></strong></p>
                         </td>
                         <td colspan="3" style="padding: 10px; text-align: right;">
-                            <p class="c_paragraphs"><strong>SubTotal: </strong></p>
-                            <p *ngIf="receipt.DiscountAmount  && IsitemlevlDis || isMainDiscountAvailable" class="c_paragraphs"><strong>Discount:
+                            <p class="c_paragraphs"><strong>{{ 'PHARMACY.SUBTOTAL' | translate }}: </strong></p>
+                            <p *ngIf="receipt.DiscountAmount  && IsitemlevlDis || isMainDiscountAvailable" class="c_paragraphs"><strong>{{ 'PHARMACY.DISCOUNT' | translate }}:
                                 </strong></p>
-                            <p class="c_paragraphs" *ngIf="!receipt.IsReturned"><strong>Cash Amount: </strong></p>
-                            <p class="c_paragraphs" *ngIf="receipt.IsReturned"><strong>Cash Ret Amount: </strong></p>
-                            <p class="c_paragraphs" *ngIf="!receipt.IsReturned"><strong>Credit Amount: </strong></p>
-                            <p class="c_paragraphs" *ngIf="receipt.IsReturned"><strong>Credit Ret Amt: </strong></p>
-                            <p class="c_paragraphs"><strong>Total Amount: </strong></p>
+                            <p class="c_paragraphs" *ngIf="!receipt.IsReturned"><strong>{{ 'PHARMACY.CASH_AMOUNT' | translate }}: </strong></p>
+                            <p class="c_paragraphs" *ngIf="receipt.IsReturned"><strong>{{ 'PHARMACY.CASH_RET_AMOUNT' | translate }}: </strong></p>
+                            <p class="c_paragraphs" *ngIf="!receipt.IsReturned"><strong>{{ 'PHARMACY.CREDIT_AMOUNT' | translate }}: </strong></p>
+                            <p class="c_paragraphs" *ngIf="receipt.IsReturned"><strong>{{ 'PHARMACY.CREDIT_RET_AMT' | translate }}: </strong></p>
+                            <p class="c_paragraphs"><strong>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}: </strong></p>
                         </td>
                         <td style="padding: 10px;">
                             <p class="c_paragraphs">{{receipt.SubTotal | number: "1.2-2"}}</p>
@@ -551,7 +549,7 @@
                     </tr>
                     <tr style="border-top: 1px solid #ccc; color:black!important;" *ngIf=" receipt.PaymentMode != 'credit' && !receipt.IsReturned">
                         <td colspan="12" style="padding: 10px; vertical-align: top;">
-                            <p class="c_paragraphs"><strong>Tender:
+                            <p class="c_paragraphs"><strong>{{ 'PHARMACY.TENDER' | translate }}:
                                 </strong>{{receipt.Tender | number : "1.2-2"}}</p>
                         </td>
                     </tr>
@@ -562,21 +560,21 @@
                     </tr>
                     <tr style="border-top: 1px solid #ccc; color:black!important;">
                         <td colspan="6" style="padding: 10px 10px 0 10px; vertical-align: top; text-align: left">
-                            <p *ngIf="receipt.CreditOrganizationName" class="c_paragraphs"><strong>Credit Organization:
+                            <p *ngIf="receipt.CreditOrganizationName" class="c_paragraphs"><strong>{{ 'PHARMACY.CREDIT_ORGANIZATION' | translate }}:
                                 </strong>{{receipt.CreditOrganizationName}}</p>
                         </td>
                         <td colspan="6" style="padding: 10px 10px 0 10px; vertical-align: top; text-align: right">
-                            <p *ngIf="receipt.Remarks!=null" style="text-align: right" class="c_paragraphs"><strong>Remarks:
+                            <p *ngIf="receipt.Remarks!=null" style="text-align: right" class="c_paragraphs"><strong>{{ 'COMMON.REMARKS' | translate }}:
                                 </strong>{{receipt.Remarks}}
                             </p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="6" style="padding: 0 10px; vertical-align: top;" style="color:black!important;">
-                            <p class="c_paragraphs"><strong>User: </strong>{{receipt.BillingUser}}</p>
+                            <p class="c_paragraphs"><strong>{{ 'PHARMACY.USER' | translate }}: </strong>{{receipt.BillingUser}}</p>
                         </td>
                         <td colspan="6" style="padding: 0 10px; vertical-align: top; text-align: right" style="color:black!important;">
-                            <p class="c_paragraphs" style="text-align:right"><strong>Time: </strong>{{receipt.ReceiptDate |
+                            <p class="c_paragraphs" style="text-align:right"><strong>{{ 'COMMON.TIME' | translate }}: </strong>{{receipt.ReceiptDate |
                                 DanpheDateTime:'format':'HH:mm'}}</p>
                         </td>
                     </tr>
@@ -593,12 +591,12 @@
         </select-printer>
         <div style="text-align: center; margin-bottom: 15px;">
             <button class="btn blue" id="btnPrintPhrmInvoice" class="btn green btn-success" (click)="print('printpage3')">
-                Print Receipt
+                {{ 'PHARMACY.PRINT_RECEIPT' | translate }}
                 <i class="glyphicon glyphicon-print"></i>
             </button>
             <button class="btn purple" *ngIf="receipt.IsReturned" (click)="CreateCopyForResale()">
                 <i></i>
-                Copy Items for Resale
+                {{ 'PHARMACY.COPY_ITEMS_FOR_RESALE' | translate }}
             </button>
         </div>
     </div>

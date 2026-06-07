@@ -113,12 +113,12 @@
         <div class="col-md-6 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
           <div class="col-md-12">
             <div class="caption" style="color:blue; margin-top:10px;"> </div>
-            <a style="float:right;  margin-top: -11px; margin-right: -31px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a style="float:right;  margin-top: -11px; margin-right: -31px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">{{ 'PHARMACY.X' | translate }}</a>
           </div>
           <div style="text-align: left; margin-left: 50px;"> <a *ngIf="prevButtonDisable" class="btn blue"
-               style="margin-bottom:10px;margin-right: 10px" (click)="ShowPreviousInvoice()"> <i class="fa fa-backward"></i> Previous </a> <a
+               style="margin-bottom:10px;margin-right: 10px" (click)="ShowPreviousInvoice()"> <i class="fa fa-backward"></i> {{ 'PHARMACY.PREVIOUS' | translate }} </a> <a
                *ngIf="nextButtonDisable" class="btn blue" style="margin-bottom:10px;margin-right: 10px" (click)="ShowNextInvoice()"> <i
-                 class="fa fa-forward"></i>Next </a> </div>
+                 class="fa fa-forward"></i>{{ 'PHARMACY.NEXT' | translate }} </a> </div>
           <div id="printpage" class="row printStyle print-border">
             <div style="text-align:center;">
               <pharmacy-receipt *ngIf="pharmacyReceipt !=null" [invoice-id]="pharmacyReceipt.InvoiceId"> </pharmacy-receipt>

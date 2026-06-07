@@ -4,20 +4,20 @@
     margin: 10px 100px;
   }
 
-  .print-border-top {
+  .{{ 'COMMON.PRINT' | translate }}-border-top {
     border-top: dotted 1px;
   }
 
-  .print-border-bottom {
+  .{{ 'COMMON.PRINT' | translate }}-border-bottom {
     border-bottom: dotted 1px;
   }
 
-  .print-border {
+  .{{ 'COMMON.PRINT' | translate }}-border {
     border: dotted 1px;
   }
 
   .center-style {
-    text-align: center;
+    {{ 'INVENTORY.TEXT' | translate }}-align: center;
   }
 
   .border-up-down {
@@ -25,7 +25,7 @@
     border-bottom: dotted 1px;
   }
 
-  td.td--break-text {
+  td.td--break-{{ 'INVENTORY.TEXT' | translate }} {
     width: 30rem;
     line-break: anywhere;
   }
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
-          <a class="btn btn-danger history-del-btn" (click)="Close()" title="Cancel"><i class="fa fa-close"></i></a>
+          <a class="btn btn-danger history-del-btn" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-close"></i></a>
           <div class="form-body">
             <div class="col-md-12">
               <!--Nepali-Receipt-view-->
@@ -55,7 +55,7 @@
                             <span style="font-size:15px;"><strong>{{headerDetail.hospitalName}}</strong></span><br />
                             <span style="font-size:15px;">{{headerDetail.address}}</span><br />
                             <span style="font-size:13px;">{{GeneralFieldLabel.PANNo}}: {{headerDetail.PANno}} , Tel: {{ headerDetail.tel}}</span><br />
-                            <span style="font-size:15px;"><strong> Inventory Unit </strong></span><br />
+                            <span style="font-size:15px;"><strong> {{ 'INVENTORY.INVENTORY_UNIT' | translate }} </strong></span><br />
                           </div>
                         </div>
                         <div style="float: left;">
@@ -68,15 +68,15 @@
                       </div>
                       <div class="clear"></div>
                       <div class="left" style="text-align:left;">
-                        <div>Requisition No:<b> {{requisitionDispatch.RequisitionNo}}</b></div>
-                        <p>Request From:<b> {{requisitionDispatch.TargetStoreName}}</b></p>
+                        <div>{{ 'INVENTORY.REQUISITION_NO' | translate }}:<b> {{requisitionDispatch.RequisitionNo}}</b></div>
+                        <p>{{ 'INVENTORY.REQUEST_FROM' | translate }}:<b> {{requisitionDispatch.TargetStoreName}}</b></p>
 
                       </div>
 
                       <div class="right" style="text-align:right;">
-                        <p *ngIf="requisitionDispatch.IssueNo!==null">Issue No:<b> {{requisitionDispatch.IssueNo}}</b></p>
-                        <p *ngIf="requisitionDispatch.DispatchNo!==null">Dispatch No:<b> {{requisitionDispatch.DispatchNo}}</b></p>
-                        <p>Requisition Date:
+                        <p *ngIf="requisitionDispatch.IssueNo!==null">{{ 'INVENTORY.ISSUE_NO' | translate }}:<b> {{requisitionDispatch.IssueNo}}</b></p>
+                        <p *ngIf="requisitionDispatch.DispatchNo!==null">{{ 'INVENTORY.DISPATCH_NO' | translate }}:<b> {{requisitionDispatch.DispatchNo}}</b></p>
+                        <p>{{ 'INVENTORY.REQUISITION_DATE' | translate }}:
                           <b> {{requisitionDispatch.RequisitionDate | date:'yyyy-MM-dd'}}</b>
                           &nbsp;&nbsp;
                           <i *ngIf="requisitionDispatch.RequisitionDate">
@@ -85,23 +85,23 @@
                         </p>
                       </div>
                       <div class="clear"></div>
-                      <p class="text-center btm-pad border-up-down"><b>DISPATCH DETAILS PRINT</b></p>
+                      <p class="text-center btm-pad border-up-down"><b>{{ 'INVENTORY.DISPATCH_DETAILS_PRINT' | translate }}</b></p>
                       <div class="clear"></div>
                       <div class="clear footer"></div>
                       <div class="table-responsive">
                         <table class="table table-striped table-hover req_table" style="background-color:initial;margin-top:10px;width:100%">
                           <thead>
                             <tr style="font-weight: bold;text-align:center">
-                              <td>Item Name</td>
-                              <td *ngIf="showBarcode">BarCode</td>
-                              <td *ngIf="showSpecification">Specification</td>
-                              <td>Item Code</td>
-                              <td>Requested Qty</td>
-                              <td>Dispatched Qty</td>
-                              <td>Total Received</td>
-                              <td>Pending</td>
-                              <td>Status</td>
-                              <td>Remarks</td>
+                              <td>{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}</td>
+                              <td *ngIf="showBarcode">{{ 'INVENTORY.BARCODE' | translate }}</td>
+                              <td *ngIf="showSpecification">{{ 'INVENTORY.SPECIFICATION' | translate }}</td>
+                              <td>{{ 'INVENTORY.ITEM_CODE' | translate }}</td>
+                              <td>{{ 'INVENTORY.REQUESTED_QTY' | translate }}</td>
+                              <td>{{ 'INVENTORY.DISPATCHED_QTY' | translate }}</td>
+                              <td>{{ 'INVENTORY.TOTAL_RECEIVED' | translate }}</td>
+                              <td>{{ 'INVENTORY.PENDING' | translate }}</td>
+                              <td>{{ 'COMMON.STATUS' | translate }}</td>
+                              <td>{{ 'COMMON.REMARKS' | translate }}</td>
                             </tr>
                           </thead>
                           <tbody>
@@ -122,7 +122,7 @@
                       </div>
                       <hr />
                       <div class="row" style="text-align: left;">
-                        <label for="Remarks" class="col-md-2">Dispatch Remarks <span class="right">:</span></label>
+                        <label for="Remarks" class="col-md-2">{{ 'INVENTORY.DISPATCH_REMARKS' | translate }} <span class="right">:</span></label>
                         <span>{{requisitionDispatch.Remarks}}</span>
                       </div>
                       <div class="row">
@@ -130,18 +130,18 @@
                           <div style="display: flex;flex-direction: row;justify-content: space-between;">
                             <div style="margin-bottom:1rem; text-align: left;">
                               <div [hidden]="requisitionDispatch.IsDirectDispatched">
-                                <div><u>Requested By</u>:</div>
+                                <div><u>{{ 'INVENTORY.REQUESTED_BY' | translate }}</u>:</div>
                                 <div>{{requisitionDispatch.RequestedByName}}</div>
                                 <div>{{requisitionDispatch.RequisitionDate | date : 'mediumDate'}}</div>
                               </div>
                             </div>
                             <div style="margin-bottom:1rem; text-align: left;" *ngIf="requisitionDispatch.DispatchedByName">
-                              <div><u>Dispatched By</u>:</div>
+                              <div><u>{{ 'INVENTORY.DISPATCHED_BY' | translate }}</u>:</div>
                               <div>{{requisitionDispatch.DispatchedByName}} </div>
                               <div>{{requisitionDispatch.DispatchedDate | date : 'mediumDate'}}</div>
                             </div>
                             <div style="margin-bottom:1rem; text-align: left;" *ngIf="requisitionDispatch.ReceivedBy">
-                              <div><u>Received By</u>:</div>
+                              <div><u>{{ 'INVENTORY.RECEIVED_BY' | translate }}</u>:</div>
                               <div>{{requisitionDispatch.ReceivedBy}}</div>
                               <div>{{requisitionDispatch.ReceivedDate | date : 'mediumDate'}}</div>
                             </div>
@@ -160,7 +160,7 @@
             </div>
             <div class="col-md-12" *ngIf="!showNepaliReceipt">
               <div class="right">
-                <button id="printButton" class="btn green btn-success margin-7-hr" (click)="print()"><i class="fa fa-print"></i>Print</button>
+                <button id="printButton" class="btn green btn-success margin-7-hr" (click)="print()"><i class="fa fa-print"></i>{{ 'COMMON.PRINT' | translate }}</button>
               </div>
             </div>
           </div>

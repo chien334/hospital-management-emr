@@ -3,20 +3,20 @@
     <div class="col-lg-8 col-sm-8">
       <div class="caption lb-caption">
         <!-- <i class="glyphicon glyphicon-asterisk font-green-turquoise"></i> -->
-        <span class="caption-subject">Report Dispatch</span>
+        <span class="caption-subject">{{ 'LABS.REPORT_DISPATCH' | translate }}</span>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-7 col-xs-12">
-      <label style="vertical-align: top;margin-top: 10px; margin-right: 10px;">Request Date: </label>
+      <label style="vertical-align: top;margin-top: 10px; margin-right: 10px;">{{ 'LABS.REQUEST_DATE' | translate }} </label>
       <div style="display: inline-block;">
         <from-to-date-select (on-change)="OnFromToDateChange($event)"> </from-to-date-select>
       </div>
     </div>
     <div class="col-md-5 col-xs-12">
       <div class="row">
-        <label class="col-md-3 text-right" style="line-height: 3;">Category:</label>
+        <label class="col-md-3 text-right" style="line-height: 3;">{{ 'LABS.CATEGORY' | translate }}</label>
         <div class="col-md-6">
           <div class="row">
             <div style="display: inline-block; width: 100%;">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="col-md-3">
-          <button [disabled]="loading" class="btn green btn-success pull-right" (click)="GetPendingReportList();">Load
+          <button [disabled]="loading" class="btn green btn-success pull-right" (click)="GetPendingReportList();">{{ 'LABS.LOAD' | translate }}
             <i class="fa fa-refresh"></i></button>
         </div>
 
@@ -41,7 +41,7 @@
       <div class="row">
         <div class="col-md-5">
           <input id="searchBxLabReport" class="custom-table-search" [(ngModel)]="searchString" onclick="this.select();"
-            placeholder="Search by Hospital No. Or Patient Name">
+            [placeholder]="'LABS.SEARCH_BY_HOSPITAL_NO_OR_PATIENT_NAME' | translate">
         </div>
         <div class="col-md-7">
         </div>
@@ -51,10 +51,10 @@
       <table class="table table-responsive dispatch-report-table">
         <thead class="table-header-bg">
           <tr>
-            <th scope="col" style="width: 50px;">S.N.</th>
-            <th scope="col" class="wd-130"> Hospital No. </th>
-            <th scope="col" class="wd-270"> Patient Name </th>
-            <th scope="col" class="wd-80"> Age/Sex </th>
+            <th scope="col" style="width: 50px;">{{ 'COMMON.SN' | translate }}</th>
+            <th scope="col" class="wd-130"> {{ 'GRID_HEADERS.HOSPITAL_NO_' | translate }} </th>
+            <th scope="col" class="wd-270"> {{ 'GRID_HEADERS.PATIENT_NAME' | translate }} </th>
+            <th scope="col" class="wd-80"> {{ 'GRID_HEADERS.AGE_SEX' | translate }} </th>
           </tr>
         </thead>
         <tbody>

@@ -5,7 +5,7 @@
 </div>
 <br />-->
 
-<a feature="button" class="btn blue bordered"  (click)="AddImgItem()"><i class="fa fa-plus"></i>Add Item</a>
+<a feature="button" class="btn blue bordered"  (click)="AddImgItem()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_ITEM' | translate }}</a>
 <img-item-add [showAddPage]="showAddPage"
               [selectedImgItem]="selectedImgItem"
               (callback-add)="CallBackAdd($event)"></img-item-add>

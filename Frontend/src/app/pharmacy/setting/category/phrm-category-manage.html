@@ -1,5 +1,5 @@
-﻿<input type="button" class="btn btn-primary" (click)="AddCategory()" value="Add Category" />
-<input type="button" class="btn btn-primary" (click)="sendSMS()" value="Send SMS" style="visibility: hidden;" />
+﻿<input type="button" class="btn btn-primary" (click)="AddCategory()" [value]="'PHARMACY.ADD_CATEGORY' | translate" />
+<input type="button" class="btn btn-primary" (click)="sendSMS()" [value]="'PHARMACY.SEND_SMS' | translate" style="visibility: hidden;" />
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
     <danphe-grid [grid-colDefaults]="categoryGridColumns" [grid-data]="categoryList" (grid-actions)="CategoryGridActions($event)">
@@ -15,28 +15,28 @@
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
             <h3><span *ngIf="!update">Add Category</span>
-              <span *ngIf="update">Update Category</span>
+              <span *ngIf="update">{{ 'PHARMACY.UPDATE_CATEGORY' | translate }}</span>
             </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel"><i class="fa fa-times"></i></a>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
           </div>
           <form [formGroup]="CurrentCategory.CategoryValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-5">Category Name<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'PHARMACY.CATEGORY_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
-                  <input id="cat" class="form-control" type="text" maxlength="50" [(ngModel)]="CurrentCategory.CategoryName" formControlName="CategoryName" value="" (keyup.enter)="!update?setFocusById('save'):setFocusById('update')" placeholder="Enter Category Name" />
-                  <span class="color-red font-sm" [hidden]="CurrentCategory.IsValidCheck('CategoryName','required') || !(CurrentCategory.IsDirty('CategoryName'))">Category name is required</span>
-                  <span class="color-red font-sm" *ngIf="CurrentCategory.IsDirty('CategoryName')" [hidden]="CurrentCategory.IsValidCheck('CategoryName','maxlength')"> Length is not proper</span>
+                  <input id="cat" class="form-control" type="text" maxlength="50" [(ngModel)]="CurrentCategory.CategoryName" formControlName="CategoryName" value="" (keyup.enter)="!update?setFocusById('save'):setFocusById('update')" [placeholder]="'PHARMACY.ENTER_CATEGORY_NAME' | translate" />
+                  <span class="color-red font-sm" [hidden]="CurrentCategory.IsValidCheck('CategoryName','required') || !(CurrentCategory.IsDirty('CategoryName'))">{{ 'PHARMACY.CATEGORY_NAME_IS_REQUIRED' | translate }}</span>
+                  <span class="color-red font-sm" *ngIf="CurrentCategory.IsDirty('CategoryName')" [hidden]="CurrentCategory.IsValidCheck('CategoryName','maxlength')"> {{ 'PHARMACY.LENGTH_IS_NOT_PROPER' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Description<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                 <div class="col-md-7">
-                  <input class="form-control" type="text" maxlength="100" [(ngModel)]="CurrentCategory.Description" [ngModelOptions]="{standalone: true}" value="" placeholder="Enter Description" />
+                  <input class="form-control" type="text" maxlength="100" [(ngModel)]="CurrentCategory.Description" [ngModelOptions]="{standalone: true}" value="" [placeholder]="'PHARMACY.ENTER_DESCRIPTION' | translate" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">IsActive<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'PHARMACY.ISACTIVE' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -49,8 +49,8 @@
                 </div>
               </div>
               <div class="all-buttons text-right">
-                <button type="button" id="save" class="btn green btn-success" *ngIf="!update" (click)="Add()">Save</button>
-                <button type="button" id="update" class="btn green btn-success" *ngIf="update" (click)="Update()">Update</button>
+                <button type="button" id="save" class="btn green btn-success" *ngIf="!update" (click)="Add()">{{ 'COMMON.SAVE' | translate }}</button>
+                <button type="button" id="update" class="btn green btn-success" *ngIf="update" (click)="Update()">{{ 'COMMON.UPDATE' | translate }}</button>
               </div>
             </div>
           </form>

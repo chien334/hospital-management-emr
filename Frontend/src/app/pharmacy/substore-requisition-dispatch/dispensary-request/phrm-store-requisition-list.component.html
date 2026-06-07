@@ -82,17 +82,17 @@
                     <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
                         <input checked="checked" (change)="FilterRequisitionList('all')" name="name" style="width:15px;height:15px" type="radio"
                                class="ng-untouched ng-pristine ng-valid">
-                        <span></span>ALL
+                        <span></span>{{ 'PHARMACY.ALL' | translate }}
                     </label>
                     <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
                         <input name="name" (change)="FilterRequisitionList('complete')" style="width:15px;height:15px" type="radio"
                                class="ng-untouched ng-pristine ng-valid">
-                        <span></span>Completed
+                        <span></span>{{ 'PHARMACY.COMPLETED' | translate }}
                     </label>
                     <label class="mt-checkbox mt-checkbox-outline" style="font-weight: bold;color: green;">
                         <input name="name" (change)="FilterRequisitionList('pending')" style="width:15px;height:15px" type="radio"
                                class="ng-untouched ng-pristine ng-valid">
-                        <span></span>Pending
+                        <span></span>{{ 'PHARMACY.PENDING' | translate }}
                     </label>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                     <div class="col-md-12 noPrint">
                         <div class="caption" style="color:blue; margin-top:10px;">
                         </div>
-                        <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                        <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">{{ 'PHARMACY.X' | translate }}</a>
                         <hr />
                     </div>
                     <danphe-grid [grid-colDefaults]="DispatchListGridColumns" [grid-data]="dispatchList"
@@ -138,7 +138,7 @@
 
         <div class="col-md-12" style="display: flex; justify-content: center;">
             <div class="col-md-10 col-sm-12 col-xs-12 modelbox-div" style="margin-right: 24px;">
-                <div><a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" title="Cancel"><span class="fa fa-times">
+                <div><a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><span class="fa fa-times">
                         </span></a></div>
                 <!-- Nepali Dispatch Receipt -->
                 <app-dispatch-np-view *ngIf="showNepaliReceipt else EnglishReceiptView" [dispatch-id]="DispatchId"
@@ -159,7 +159,7 @@
                                             <td colspan="4" width="50%">
                                                 <h3 class="c_name" style="text-align: center;"><strong>{{ headerDetail.hospitalName }}</strong></h3>
                                                 <p class="c_paragraphs" style="text-align: center;">{{ headerDetail.address }}</p>
-                                                <p class="c_paragraphs" style="text-align: center;">Ph No: {{ headerDetail.tel }}</p>
+                                                <p class="c_paragraphs" style="text-align: center;">{{ 'PHARMACY.PH_NO' | translate }}: {{ headerDetail.tel }}</p>
                                             </td>
                                             <td colspan="3" width="25%" style="text-align: right; vertical-align: top;">
                                                 <p class="c_paragraphs" style="text-align: right; margin-top: 10px; margin: 0;"><strong>{{GeneralFieldLabel.PANNo}}
@@ -170,7 +170,7 @@
                                     <table border="0" style="margin: 0 auto;" cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td colspan="12" style="text-align: center; padding: 0 10px;">
-                                                <p style="margin: 0 0 5px 0;"><strong>Issue Note</strong></p>
+                                                <p style="margin: 0 0 5px 0;"><strong>{{ 'PHARMACY.ISSUE_NOTE' | translate }}</strong></p>
                                             </td>
 
                                         </tr>
@@ -179,11 +179,11 @@
                                                 <table style="width: 100%; margin-bottom: 0;">
                                                     <tr>
                                                         <td colspan="6" style="text-align: left;">
-                                                            <p class="c_paragraphs">Dispatch Id : <strong>
+                                                            <p class="c_paragraphs">{{ 'PHARMACY.DISPATCH_ID' | translate }} : <strong>
                                                                     {{innerDispatchdetails.DispatchId}}</strong></p>
                                                         </td>
                                                         <td colspan="6" style="text-align: right;">
-                                                            <p class="c_paragraphs">Dispatch Date :<strong> {{innerDispatchdetails.DispatchedDate |
+                                                            <p class="c_paragraphs">{{ 'PHARMACY.DISPATCH_DATE' | translate }} :<strong> {{innerDispatchdetails.DispatchedDate |
                                                                     date:"yyyy-MM-dd"}} &nbsp;
                                                                     <i *ngIf="innerDispatchdetails.DispatchedDate">{{innerDispatchdetails.DispatchedDate
                                                                         |
@@ -193,12 +193,12 @@
                                                     </tr>
                                                     <tr>
                                                         <td colspan="6" style="text-align: left;">
-                                                            <p class="c_paragraphs">Requisition No :
+                                                            <p class="c_paragraphs">{{ 'PHARMACY.REQUISITION_NO' | translate }} :
                                                                 <strong>{{innerDispatchdetails.RequisitionNo}}</strong>
                                                             </p>
                                                         </td>
                                                         <td colspan="6" style="text-align: right;">
-                                                            <p class="c_paragraphs">Requisition Date :<strong>{{requisitionDate | date:"yyyy-MM-dd"}}
+                                                            <p class="c_paragraphs">{{ 'PHARMACY.REQUISITION_DATE' | translate }} :<strong>{{requisitionDate | date:"yyyy-MM-dd"}}
                                                                     &nbsp;
                                                                     <i *ngIf="requisitionDate">{{requisitionDate | nepaliDate:'format':'YYYY-MM-DD'}}
                                                                         </i></strong></p>
@@ -206,8 +206,8 @@
                                                     </tr>
                                                     <tr>
                                                         <td colspan="6" style="text-align: left;">
-                                                            <p class="c_paragraphs">From :<strong>{{innerDispatchdetails.SourceStore}}</strong></p>
-                                                            <p class="c_paragraphs">To :<strong>{{innerDispatchdetails.TargetStore}}</strong></p>
+                                                            <p class="c_paragraphs">{{ 'PHARMACY.FROM' | translate }} :<strong>{{innerDispatchdetails.SourceStore}}</strong></p>
+                                                            <p class="c_paragraphs">{{ 'PHARMACY.TO' | translate }} :<strong>{{innerDispatchdetails.TargetStore}}</strong></p>
                                                         </td>
                                                         <td colspan="6" style="text-align: right;">
 
@@ -220,21 +220,21 @@
                                         <tr>
                                             <td colspan="12"
                                                 style="padding: 10px 5px !important; border-bottom: 1px solid #ccc; font-weight: bold; text-align: center;">
-                                                <p style="margin: 0 0 5px 0;"><strong>Dispatch Details Print</strong></p>
+                                                <p style="margin: 0 0 5px 0;"><strong>{{ 'PHARMACY.DISPATCH_DETAILS_PRINT' | translate }}</strong></p>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th style="padding: 5px 5px !important; width: 2%;">SN.</th>
-                                            <th colspan="2" style="padding: 5px 5px !important;">Item Name</th>
-                                            <th style="padding: 5px 5px !important;">From Rack</th>
-                                            <th style="padding: 5px 5px !important;">To Rack</th>
-                                            <th style="padding: 5px 5px !important;">Item Code</th>
-                                            <th style="padding: 5px 5px !important;">UOM</th>
-                                            <th style="padding: 5px 5px !important;">Batch No</th>
-                                            <th style="padding: 5px 5px !important;">Expiry Date</th>
-                                            <th style="padding: 5px 5px !important;">Dispatched Qty.</th>
-                                            <th style="padding: 5px 5px !important;">Rate</th>
-                                            <th style="padding: 5px 5px !important;">Amount</th>
+                                            <th style="padding: 5px 5px !important; width: 2%;">{{ 'PHARMACY.SN' | translate }}</th>
+                                            <th colspan="2" style="padding: 5px 5px !important;">{{ 'PHARMACY.ITEM_NAME' | translate }}</th>
+                                            <th style="padding: 5px 5px !important;">{{ 'PHARMACY.FROM_RACK' | translate }}</th>
+                                            <th style="padding: 5px 5px !important;">{{ 'PHARMACY.TO_RACK' | translate }}</th>
+                                            <th style="padding: 5px 5px !important;">{{ 'PHARMACY.ITEM_CODE' | translate }}</th>
+                                            <th style="padding: 5px 5px !important;">{{ 'PHARMACY.UOM' | translate }}</th>
+                                            <th style="padding: 5px 5px !important;">{{ 'PHARMACY.BATCH_NO' | translate }}</th>
+                                            <th style="padding: 5px 5px !important;">{{ 'PHARMACY.EXPIRY_DATE' | translate }}</th>
+                                            <th style="padding: 5px 5px !important;">{{ 'PHARMACY.DISPATCHED_QTY' | translate }}</th>
+                                            <th style="padding: 5px 5px !important;">{{ 'PHARMACY.RATE' | translate }}</th>
+                                            <th style="padding: 5px 5px !important;">{{ 'PHARMACY.AMOUNT' | translate }}</th>
 
                                         </tr>
                                         <tr style="text-align:center" *ngFor="let row of dispatchListbyId ; let i= index ">
@@ -272,17 +272,17 @@
                                         </tr>
                                         <tr style="border-bottom: 1px solid #ccc;">
                                             <td colspan="4" style="padding: 5px 10px 10px 10px !important; vertical-align: top;">
-                                                <p class="c_paragraphs">Requested By:&nbsp;
+                                                <p class="c_paragraphs">{{ 'PHARMACY.REQUESTED_BY' | translate }}:&nbsp;
                                                     <b>{{innerDispatchdetails.CreatedByName}}</b>
                                                 </p>
                                             </td>
                                             <td colspan="4" style="padding: 5px 10px 10px 10px !important; vertical-align: top; text-align: center;">
-                                                <p class="c_paragraphs">Received By:&nbsp;
+                                                <p class="c_paragraphs">{{ 'PHARMACY.RECEIVED_BY' | translate }}:&nbsp;
                                                     <b>{{innerDispatchdetails.ReceivedBy}}</b>
                                                 </p>
                                             </td>
                                             <td colspan="4" style="padding: 5px 10px 10px 10px !important; vertical-align: top; text-align: right;">
-                                                <p class="c_paragraphs">Dispatched By:&nbsp;
+                                                <p class="c_paragraphs">{{ 'PHARMACY.DISPATCHED_BY' | translate }}:&nbsp;
                                                     <b>{{innerDispatchdetails.DispatchedByName}}</b>
                                                 </p>
                                             </td>
@@ -308,7 +308,7 @@
                                             <span style="font-size:15px;">{{headerDetail.address}}</span><br />
                                             <span style="font-size:13px;">PAN no: {{headerDetail.PANno}} , Tel: {{
                                                 headerDetail.tel}}</span><br />
-                                            <span style="font-size:15px;"><strong> Issue Note </strong></span><br />
+                                            <span style="font-size:15px;"><strong> {{ 'PHARMACY.ISSUE_NOTE' | translate }} </strong></span><br />
                                         </div>
                                     </div>
                                     <div style="float: left;">
@@ -321,21 +321,21 @@
                                 </div>
                                 <div class="clear"></div>
                                 <div class="left" style="text-align:left;">
-                                    <p>Dispatch Id :<b> {{innerDispatchdetails.DispatchId}}</b></p>
-                                    <p>Requisition No:<b> {{innerDispatchdetails.RequisitionNo}}</b></p>
-                                    <p>From :<b> {{innerDispatchdetails.SourceStore}}</b></p>
-                                    <p>To :<b> {{innerDispatchdetails.TargetStore}}</b></p>
+                                    <p>{{ 'PHARMACY.DISPATCH_ID' | translate }} :<b> {{innerDispatchdetails.DispatchId}}</b></p>
+                                    <p>{{ 'PHARMACY.REQUISITION_NO' | translate }}:<b> {{innerDispatchdetails.RequisitionNo}}</b></p>
+                                    <p>{{ 'PHARMACY.FROM' | translate }} :<b> {{innerDispatchdetails.SourceStore}}</b></p>
+                                    <p>{{ 'PHARMACY.TO' | translate }} :<b> {{innerDispatchdetails.TargetStore}}</b></p>
                                 </div>
                                 <div class="right" style="text-align:right;">
-                                    <p *ngIf="requisitionId > 0">Dispatch Date:<b> {{innerDispatchdetails.CreatedOn | date}}</b>&nbsp;
+                                    <p *ngIf="requisitionId > 0">{{ 'PHARMACY.DISPATCH_DATE' | translate }}:<b> {{innerDispatchdetails.CreatedOn | date}}</b>&nbsp;
                                         <i *ngIf="innerDispatchdetails.CreatedOn">{{innerDispatchdetails.CreatedOn |
                                             nepaliDate:'format':'YYYY-MM-DD'}} </i>
                                     </p>
-                                    <p *ngIf="!requisitionId">Dispatch Date:<b> {{currentDate | date}}</b>&nbsp;
+                                    <p *ngIf="!requisitionId">{{ 'PHARMACY.DISPATCH_DATE' | translate }}:<b> {{currentDate | date}}</b>&nbsp;
                                         <i *ngIf="currentDate">{{currentDate |
                                             nepaliDate:'format':'YYYY-MM-DD'}} </i>
                                     </p>
-                                    <p>Requisition Date:<b> {{requisitionDate | date}}</b>&nbsp;
+                                    <p>{{ 'PHARMACY.REQUISITION_DATE' | translate }}:<b> {{requisitionDate | date}}</b>&nbsp;
                                         <i *ngIf="requisitionDate">{{requisitionDate | nepaliDate:'format':'YYYY-MM-DD'}} </i>
                                     </p>
                                 </div>
@@ -348,16 +348,16 @@
                                         <thead>
                                             <tr style="font-weight: bold;text-align:center">
                                                 <td>S.N</td>
-                                                <td>Item Name</td>
-                                                <td>From Rack </td>
-                                                <td>To Rack </td>
-                                                <td>Item Code</td>
-                                                <td>UOM</td>
-                                                <td>Batch No</td>
-                                                <td>Expiry Date</td>
-                                                <td>Dispatched Qty.</td>
-                                                <td>Rate</td>
-                                                <td>Amount</td>
+                                                <td>{{ 'PHARMACY.ITEM_NAME' | translate }}</td>
+                                                <td>{{ 'PHARMACY.FROM_RACK' | translate }} </td>
+                                                <td>{{ 'PHARMACY.TO_RACK' | translate }} </td>
+                                                <td>{{ 'PHARMACY.ITEM_CODE' | translate }}</td>
+                                                <td>{{ 'PHARMACY.UOM' | translate }}</td>
+                                                <td>{{ 'PHARMACY.BATCH_NO' | translate }}</td>
+                                                <td>{{ 'PHARMACY.EXPIRY_DATE' | translate }}</td>
+                                                <td>{{ 'PHARMACY.DISPATCHED_QTY' | translate }}</td>
+                                                <td>{{ 'PHARMACY.RATE' | translate }}</td>
+                                                <td>{{ 'PHARMACY.AMOUNT' | translate }}</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -379,13 +379,13 @@
                                 </div>
                                 <hr />
                                 <div class="col-md-12">
-                                    <div style="text-align: left" class="col-md-4">Requested By:&nbsp;
+                                    <div style="text-align: left" class="col-md-4">{{ 'PHARMACY.REQUESTED_BY' | translate }}:&nbsp;
                                         <b>{{innerDispatchdetails.CreatedByName}}</b>
                                     </div>
-                                    <div *ngIf="receivedby!=null" style="text-align: left" class="col-md-4">Received By:&nbsp;
+                                    <div *ngIf="receivedby!=null" style="text-align: left" class="col-md-4">{{ 'PHARMACY.RECEIVED_BY' | translate }}:&nbsp;
                                         <b>{{innerDispatchdetails.ReceivedBy}}</b>
                                     </div>
-                                    <div style="text-align: left" class="col-md-4">Dispatched By:&nbsp;
+                                    <div style="text-align: left" class="col-md-4">{{ 'PHARMACY.DISPATCHED_BY' | translate }}:&nbsp;
                                         <b>{{innerDispatchdetails.DispatchedByName}}</b>
                                     </div>
                                 </div>
@@ -399,7 +399,7 @@
                 <div class="row center-style" *ngIf="!showNepaliReceipt">
                     <div class="col-md-12 col-xs-12 ">
                         <a (click)="print()" class="btn btn-default" style="">
-                            Print
+                            {{ 'COMMON.PRINT' | translate }}
                             <i class="glyphicon glyphicon-print"></i>
                         </a><span> </span><span> </span>
                     </div>

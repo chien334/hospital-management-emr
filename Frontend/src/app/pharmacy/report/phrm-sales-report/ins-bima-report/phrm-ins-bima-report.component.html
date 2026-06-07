@@ -6,12 +6,12 @@
           <div class="col-md-5">
             <div class="caption custom-caption">
               <!-- <i class="glyphicon glyphicon-asterisk"></i> -->
-              <span class="caption-subject">Insurance Patient (BIMA) Report</span>
+              <span class="caption-subject">{{ 'PHARMACY.INSURANCE_PATIENT_BIMA_REPORT' | translate }}</span>
             </div>
           </div>
           <div class="col-md-7">
             <div class="alert alert-info warning-note">
-              (<b>*Note:</b> Return Sales are not included in this report.)
+              (<b>*{{ 'PHARMACY.NOTE' | translate }}:</b> {{ 'PHARMACY.RETURN_SALES_ARE_NOT_INCLUDED_IN' | translate }}
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group row">
-              <label class="control-label col-md-4">ClaimCode:</label>
+              <label class="control-label col-md-4">{{ 'PHARMACY.CLAIMCODE' | translate }}:</label>
               <div class="col-md-8">
                 <input type="text" name="ClaimCode" id="ClaimCode" [(ngModel)]="ClaimCode" class="form-control">
               </div>
@@ -49,10 +49,10 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group row">
-              <label class="control-label col-md-4">Counter:</label>
+              <label class="control-label col-md-4">{{ 'PHARMACY.COUNTER' | translate }}:</label>
               <div class="col-md-8">
                 <select id="ddlCounter" [(ngModel)]="CounterId" class="form-control" [ngModelOptions]="{standalone: true}">
-                  <option [ngValue]="null">All</option>
+                  <option [ngValue]="null">{{ 'PHARMACY.ALL' | translate }}</option>
                   <option *ngFor="let counter of counterlist" value="{{counter.CounterId}}">{{counter.CounterName}}</option>
                 </select>
               </div>
@@ -60,10 +60,10 @@
           </div>
           <div class="col-md-6">
             <div class="form-group row">
-              <label class="control-label col-md-4">User:</label>
+              <label class="control-label col-md-4">{{ 'PHARMACY.USER' | translate }}:</label>
               <div class="col-md-8">
                 <input danphe-auto-complete [(ngModel)]="selectedUser" class="form-control" [list-formatter]="UserListFormatter" [source]="userList"
-                       placeholder="Enter User Name" display-property-name="EmployeeName" value-property-name=null onclick="this.select();" id="user"
+                       [placeholder]="'PHARMACY.ENTER_USER_NAME' | translate" display-property-name="EmployeeName" value-property-name=null onclick="this.select();" id="user"
                        (valueChanged)="OnUserChange()" max-num-list="10" [ngModelOptions]="{standalone: true}" />
               </div>
             </div>
@@ -73,8 +73,8 @@
       <div class="col-md-2">
         <div class="text-right">
           <button class="btn blue" type="button" (click)="LoadReport()" [disabled]="loading">
-            <span *ngIf="!loading">Show Report</span>
-            <span *ngIf="loading">Loading...</span>
+            <span *ngIf="!loading">{{ 'PHARMACY.SHOW_REPORT' | translate }}</span>
+            <span *ngIf="loading">{{ 'PHARMACY.LOADING' | translate }}</span>
           </button>
         </div>
       </div>
@@ -95,7 +95,7 @@
         <thead>
           <tr>
             <th colspan="4" style="text-align: center;">
-              <span style="font-size:large;"> Summary </span>
+              <span style="font-size:large;"> {{ 'PHARMACY.SUMMARY' | translate }} </span>
 
             </th>
           </tr>
@@ -104,7 +104,7 @@
           <ng-container>
             <tr>
               <td style="font-weight:bold; color:blue">
-                <span> <b> Total Insurance Sales Value </b> </span>
+                <span> <b> {{ 'PHARMACY.TOTAL_INSURANCE_SALES_VALUE' | translate }} </b> </span>
               </td>
               <td>
                 <span style="font-size:2rem;"> {{grandTotal | Currency }}</span>

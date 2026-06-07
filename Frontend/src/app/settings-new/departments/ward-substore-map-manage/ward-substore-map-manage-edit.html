@@ -6,17 +6,17 @@
                     <div class="caption custom-caption">
                         <h3> <span>Edit Ward Substore Map &nbsp;&nbsp;&nbsp;&nbsp; {{mappedDetail.WardName}}</span>
                         </h3>
-                        <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                        <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                     </div>
 
                     <div style=" border: 1px solid rgb(55, 54, 54) ;margin-left:4px; margin-right: 4px;">
                         <div class="table-responsive">
                             <table class="table  table-bordered table-hover" style="background-color:initial;margin-top:20px">
                                 <tr>
-                                    <th><b>S.No</b></th>
-                                    <th><b>SubstoreName</b></th>
-                                    <th><b>IsDefault</b></th>
-                                    <th><b>IsActive</b></th>
+                                    <th><b>{{ 'SETTINGS_NEW.SNO' | translate }}</b></th>
+                                    <th><b>{{ 'SETTINGS_NEW.SUBSTORENAME' | translate }}</b></th>
+                                    <th><b>{{ 'SETTINGS_NEW.ISDEFAULT' | translate }}</b></th>
+                                    <th><b>{{ 'SETTINGS_NEW.ISACTIVE' | translate }}</b></th>
                                 </tr>
 
                                 <tbody>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="panel-footer text-center" style="float:right;">
                         <input id="AddDepartment" type="button" class="btn green btn-success margin-7-hr" (click)="Update()"
-                               value="Update" />
+                               [value]="'COMMON.UPDATE' | translate" />
                     </div>
                 </div>
             </div>

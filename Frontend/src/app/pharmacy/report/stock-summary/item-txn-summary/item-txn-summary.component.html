@@ -1,6 +1,6 @@
 <div>
-    Transaction Report for Item : <b>{{ItemName}}</b> from <b>{{FromDate}}</b> to <b>{{ToDate}}</b>
-    <span *ngIf="FromDate">&nbsp;{{FromDate | nepaliDate }}</span> to <span *ngIf="ToDate">{{ToDate | nepaliDate }}</span>
+    {{ 'PHARMACY.TRANSACTION_REPORT_FOR_ITEM' | translate }} : <b>{{ItemName}}</b> {{ 'PHARMACY.FROM' | translate }} <b>{{FromDate}}</b> {{ 'PHARMACY.TO' | translate }} <b>{{ToDate}}</b>
+    <span *ngIf="FromDate">&nbsp;{{FromDate | nepaliDate }}</span> {{ 'PHARMACY.TO' | translate }} <span *ngIf="ToDate">{{ToDate | nepaliDate }}</span>
 </div>
 <danphe-grid [grid-colDefaults]="ItemTxnSummaryReportColumns" [grid-data]="ItemTxnSummaryReportData" [grid-showExport]="true" [grid-exportOptions]="gridExportOptions" [report-for]="pharmacy" [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="ItemTxnSummaryGridAction($event)">
 </danphe-grid>
@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="modelbox-div clearfix" style="zoom: 0.9; padding: 5rem;">
-                    <a class="btn btn-danger history-del-btn" (click)="OnDispatchPopUpClose()" title="Close">
+                    <a class="btn btn-danger history-del-btn" (click)="OnDispatchPopUpClose()" [title]="'COMMON.CLOSE' | translate">
                         <i class="fa fa-times"></i>
                     </a>
                     <app-dispatch-np-view [dispatch-id]="selectedDispatchId" [module-type]="'pharmacy-dispensary'" (call-back-close)="OnDispatchPopUpClose()"></app-dispatch-np-view>

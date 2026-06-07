@@ -6,8 +6,8 @@
           <div class="caption custom-caption no-margin">
             <h3>
               <span>
-                <ng-container *ngIf="isAddNewRef">Add External Referral</ng-container>
-                <ng-container *ngIf="!isAddNewRef">Edit External Referral</ng-container>
+                <ng-container *ngIf="isAddNewRef">{{ 'SETTINGS_NEW.ADD_EXTERNAL_REFERRAL' | translate }}</ng-container>
+                <ng-container *ngIf="!isAddNewRef">{{ 'SETTINGS_NEW.EDIT_EXTERNAL_REFERRAL' | translate }}</ng-container>
               </span>
             </h3>
             <a class="btn btn-danger" (click)="close()">X</a>
@@ -15,39 +15,39 @@
           <form [formGroup]="externalRef.ExternalRefValidator" class="form-horizontal hm-form externalForm">
             <div class="form-body">
               <div class="form-group">
-                <label for="referrerName" class="control-label col-md-5">Referrer Name<sup>*</sup><b>:</b></label>
+                <label for="referrerName" class="control-label col-md-5">{{ 'SETTINGS_NEW.REFERRER_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
-                  <input id="referrerName" class="form-control" type="text" placeholder="Referrer Name"
+                  <input id="referrerName" class="form-control" type="text" [placeholder]="'SETTINGS_NEW.REFERRER_NAME' | translate"
                          formControlName="ReferrerName" [(ngModel)]="externalRef.ReferrerName"
                          (keyup.enter)="SetFocusById('ExtRefferaddress')">
                   <span class="color-red font-sm margin-15-lft"
-                        [hidden]="!(externalRef.IsDirty('ReferrerName') && !externalRef.IsValidCheck('ReferrerName','required'))">Referrer Name is
+                        [hidden]="!(externalRef.IsDirty('ReferrerName') && !externalRef.IsValidCheck('ReferrerName','required'))">{{ 'SETTINGS_NEW.REFERRER_NAME' | translate }} is
                     required</span>
 
                 </div>
               </div>
               <div class="form-group">
-                <label for="address" class="control-label col-md-5">Address <b>:</b></label>
+                <label for="address" class="control-label col-md-5">{{ 'GRID_HEADERS.ADDRESS' | translate }} <b>:</b></label>
                 <div class="col-md-7">
-                  <input type="text" id="ExtRefferaddress" class="form-control" placeholder="Address"
+                  <input type="text" id="ExtRefferaddress" class="form-control" [placeholder]="'GRID_HEADERS.ADDRESS' | translate"
                          [ngModelOptions]="{standalone: true}" [(ngModel)]="externalRef.ContactAddress"
                          (keyup.enter)="SetFocusById('contactNum')">
                 </div>
               </div>
               <div class="form-group">
-                <label for="contactNum" class="control-label col-md-5">Contact Number<b>:</b></label>
+                <label for="contactNum" class="control-label col-md-5">{{ 'SETTINGS_NEW.CONTACT_NUMBER' | translate }}<b>:</b></label>
                 <div class="col-md-7">
-                  <input id="contactNum" class="form-control" type="number" placeholder="Contact Number"
+                  <input id="contactNum" class="form-control" type="number" [placeholder]="'SETTINGS_NEW.CONTACT_NUMBER' | translate"
                          formControlName="ContactNumber" [(ngModel)]="externalRef.ContactNumber" maxlength="15"
                          (keyup.enter)="SetFocusById('panNum')">
                   <span class="color-red font-sm" *ngIf="externalRef.IsDirty('ContactNumber')"
-                        [hidden]="externalRef.IsValidCheck('ContactNumber','pattern')">Please enter valid contact number.</span>
+                        [hidden]="externalRef.IsValidCheck('ContactNumber','pattern')">{{ 'SETTINGS_NEW.PLEASE_ENTER_VALID_CONTACT_NUMBER' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label for="email" class="control-label col-md-5">Email<b>:</b></label>
+                <label for="email" class="control-label col-md-5">{{ 'GRID_HEADERS.EMAIL' | translate }}<b>:</b></label>
                 <div class="col-md-7">
-                  <input id="email" class="form-control" type="email" placeholder="Email"
+                  <input id="email" class="form-control" type="email" [placeholder]="'GRID_HEADERS.EMAIL' | translate"
                          formControlName="EmailAddress" [(ngModel)]="externalRef.EmailAddress" (keyup.enter)="SetFocusById('panNum')">
                 </div>
                 <span class="color-red font-sm margin-15-lft"
@@ -75,7 +75,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="referrerName" class="control-label col-md-5">TDS Percent<b>:</b></label>
+                <label for="referrerName" class="control-label col-md-5">{{ 'SETTINGS_NEW.TDS_PERCENT' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" type="number"
                          onClick="this.select();"
@@ -84,7 +84,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="IsIncentiveApplicable" class="control-label col-md-5">Is Incentive Applicable</label>
+                <label for="IsIncentiveApplicable" class="control-label col-md-5">{{ 'SETTINGS_NEW.IS_INCENTIVE_APPLICABLE' | translate }}</label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -94,14 +94,14 @@
                                [(ngModel)]="externalRef.IsIncentiveApplicable"
                                [ngModelOptions]="{standalone: true}">
                         <span></span>
-                        True
+                        {{ 'SETTINGS_NEW.TRUE' | translate }}
                       </label>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="isActive" class="control-label col-md-5">Is Active</label>
+                <label for="isActive" class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }}</label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -109,7 +109,7 @@
                         <input id="isActive" type="checkbox"
                                [ngModelOptions]="{standalone: true}" [(ngModel)]="externalRef.IsActive" name="chkIsActive" />
                         <span></span>
-                        True
+                        {{ 'SETTINGS_NEW.TRUE' | translate }}
                       </label>
                     </div>
                   </div>
@@ -120,8 +120,8 @@
 
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
-              <button id="add" *ngIf="isAddNewRef" class="btn green btn-success margin-7-hr" (click)="AddReferral()">Add</button>
-              <button id="add" *ngIf="!isAddNewRef" class="btn green btn-success margin-7-hr" (click)="UpdateReferral()">Update</button>
+              <button id="add" *ngIf="isAddNewRef" class="btn green btn-success margin-7-hr" (click)="AddReferral()">{{ 'SETTINGS_NEW.ADD' | translate }}</button>
+              <button id="add" *ngIf="!isAddNewRef" class="btn green btn-success margin-7-hr" (click)="UpdateReferral()">{{ 'COMMON.UPDATE' | translate }}</button>
               <!-- <button type="button" class="btn btn-danger btn-sm margin-7-hr" (click)="close()">Close</button> -->
             </div>
           </div>

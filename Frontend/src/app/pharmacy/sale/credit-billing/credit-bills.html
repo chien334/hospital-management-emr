@@ -28,30 +28,30 @@
 </div>
 <div [hidden]="showAllPatient">
   <div>
-    <button class="btn btn-primary" (click)="BackToGrid()"><i class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;Back</button>
+    <button class="btn btn-primary" (click)="BackToGrid()"><i class="fa fa-backward"></i>&nbsp;&nbsp;&nbsp;{{ 'COMMON.BACK' | translate }}</button>
   </div>
   <div class="mt15">
     <div class="table-responsive">
       <table class="table table-striped table-hover inv_table">
         <thead>
           <tr>
-            <th style="width: 140px;">Request Date</th>
-            <th>Item Name</th>
-            <th>Batch</th>
-            <th>Expiry Date</th>
-            <th>Dispatch Qty</th>
-            <th>Return Qty</th>
-            <th>Qty.</th>
-            <th *ngIf="IsitemlevlDis">Discount %</th>
-            <th *ngIf="IsitemlevlDis">DiscountAmount</th>
-            <th>Amount</th>
+            <th style="width: 140px;">{{ 'PHARMACY.REQUEST_DATE' | translate }}</th>
+            <th>{{ 'PHARMACY.ITEM_NAME' | translate }}</th>
+            <th>{{ 'PHARMACY.BATCH' | translate }}</th>
+            <th>{{ 'PHARMACY.EXPIRY_DATE' | translate }}</th>
+            <th>{{ 'PHARMACY.DISPATCH_QTY' | translate }}</th>
+            <th>{{ 'PHARMACY.RETURN_QTY' | translate }}</th>
+            <th>{{ 'PHARMACY.QTY' | translate }}</th>
+            <th *ngIf="IsitemlevlDis">{{ 'PHARMACY.DISCOUNT' | translate }}</th>
+            <th *ngIf="IsitemlevlDis">{{ 'PHARMACY.DISCOUNTAMOUNT' | translate }}</th>
+            <th>{{ 'PHARMACY.AMOUNT' | translate }}</th>
             <th class="text-center"> <label class="mt-checkbox mt-checkbox-outline">
-                <input type="checkbox" [(ngModel)]="selectAllItems" class="zoomcheckbox" ng-checked="selectAllItems"   (change)="SelectAllChkOnChange()" title="Select All"
+                <input type="checkbox" [(ngModel)]="selectAllItems" class="zoomcheckbox" ng-checked="selectAllItems"   (change)="SelectAllChkOnChange()" [title]="'PHARMACY.SELECT_ALL' | translate"
                    [ngModelOptions]="{standalone: true}" />
                 <span></span> </label>
             </th>
-            <th>Ward Name</th>
-            <th>User Name</th>
+            <th>{{ 'GRID_HEADERS.WARDNAME' | translate }}</th>
+            <th>{{ 'PHARMACY.USER_NAME' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -70,7 +70,7 @@
                    onClick="this.select();"
                    (ngModelChange)="ValueChanged(i)"
                    style="width:80px ; " min="0" type="number">
-              <span class="error-msg" *ngIf="row.DispatchQty<row.ReturnQty">Return Qty Should be less than Dispatch Qty</span></td>
+              <span class="error-msg" *ngIf="row.DispatchQty<row.ReturnQty">{{ 'PHARMACY.RETURN_QTY_SHOULD_BE_LESS_THAN' | translate }}</span></td>
             <td><input [(ngModel)]="row.Quantity"
                    [ngModelOptions]="{standalone: true}" style="width:80px ; " (ngModelChange)="ValueChanged(i)"
                    min="0" class="form-control" type="text" value="" disabled></td>
@@ -79,7 +79,7 @@
             <td>{{row.TotalAmount}}</td>
             <td class="text-center"><label class="mt-checkbox mt-checkbox-outline">
                 <input class="zoomcheckbox" [(ngModel)]="row.IsSelected" name="IsSelected" type="checkbox"  ng-checked="row.IsSelected"
-                   (change)="SelectItemChkOnChange(row,i)" [ngModelOptions]="{standalone: true}" title="select item">
+                   (change)="SelectItemChkOnChange(row,i)" [ngModelOptions]="{standalone: true}" [title]="'PHARMACY.SELECT_ITEM' | translate">
                 <span></span> </label></td>
             <td>{{row.WardName}}</td>
             <td>{{row.WardUser}}</td>
@@ -94,26 +94,26 @@
     <div class="row">
       <div class="col-md-4">
         <div class="invoice-history">
-          <div class="history-title"> <b>Invoice History</b> </div>
+          <div class="history-title"> <b>{{ 'PHARMACY.INVOICE_HISTORY' | translate }}</b> </div>
           <table>
             <!-- @*<tr>
-              <td>Credit <b class="colon">:</b></td>
+              <td>{{ 'PHARMACY.CREDIT' | translate }} <b class="colon">:</b></td>
               <td>0</td>
           </tr>*@ -->
             <tr>
-              <td>Provisional Amount <b class="colon">:</b></td>
+              <td>{{ 'PHARMACY.PROVISIONAL_AMOUNT' | translate }} <b class="colon">:</b></td>
               <td style="text-decoration:underline;">{{patBillHistory.ProvisionalAmt}}</td>
             </tr>
             <tr>
-              <td>Total Due<b class="colon">:</b></td>
+              <td>{{ 'PHARMACY.TOTAL_DUE' | translate }}<b class="colon">:</b></td>
               <td>{{patBillHistory.TotalDue}}</td>
             </tr>
             <tr>
-              <td>Deposit Balance <b class="colon">:</b></td>
+              <td>{{ 'PHARMACY.DEPOSIT_BALANCE' | translate }} <b class="colon">:</b></td>
               <td>{{patBillHistory.DepositBalance}}</td>
             </tr>
             <tr>
-              <td>Balance Amount <b class="colon">:</b></td>
+              <td>{{ 'PHARMACY.BALANCE_AMOUNT' | translate }} <b class="colon">:</b></td>
               <td style="font-weight: bold;color: blue;font-size: 17px;"> {{patBillHistory.BalanceAmount}} </td>
             </tr>
           </table>
@@ -122,55 +122,55 @@
       <div class="col-md-4">
         <table class="accountinfo">
           <tr>
-            <td>Discount Amount: </td>
+            <td>{{ 'PHARMACY.DISCOUNT_AMOUNT' | translate }}: </td>
             <td><div class="form-group">
                 <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.DiscountAmount" (focusout)="AllCalculation(0,currSale.DiscountAmount)" id="discountamount" name="discountamount" type="number" [disabled]="IsitemlevlDis">
               </div></td>
           </tr>
           <tr>
-            <td>Discount Percentage:</td>
+            <td>{{ 'PHARMACY.DISCOUNT_PERCENTAGE' | translate }}:</td>
             <td><div class="form-group">
                 <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.DiscountPer" (focusout)="AllCalculation(currSale.DiscountPer,0)" id="discountpercent" name="discountpercent" type="number" [disabled]="IsitemlevlDis">
               </div></td>
           </tr>
           <tr>
-            <td>Tender:</td>
+            <td>{{ 'PHARMACY.TENDER' | translate }}:</td>
             <td><div class="form-group">
                 <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.Tender" (focusout)="ChangeTenderAmount()" id="tender" name="tender" type="number">
               </div></td>
           </tr>
           <tr>
-            <td>Change:</td>
+            <td>{{ 'PHARMACY.CHANGE' | translate }}:</td>
             <td><div class="form-group">
                 <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.Change" (focusout)="AllCalculation()" id="change" name="change" type="number">
               </div></td>
           </tr>
           <tr>
-            <td>Remarks:<sup *ngIf="currSale.PaymentMode=='credit'">*</sup></td>
+            <td>{{ 'COMMON.REMARKS' | translate }}:<sup *ngIf="currSale.PaymentMode=='credit'">*</sup></td>
             <td><div class="form-group">
                 <textarea [(ngModel)]="currSale.Remark" [ngModelOptions]="{standalone: true}" class="form-control" name="Remarks"></textarea>
               </div></td>
           </tr>
           <tr>
-            <td>Payment Mode:</td>
+            <td>{{ 'PHARMACY.PAYMENT_MODE' | translate }}:</td>
             <td><div class="form-group">
                 <select class="form-control" [(ngModel)]="currSale.PaymentMode" [ngModelOptions]="{standalone: true}" [disabled]="this.deductDeposit==true">
-                  <option value="cash">Cash</option>
-                  <option value="credit" style="font-weight:bold">CREDIT</option>
-                  <option value="cheque">Cheque</option>
-                  <option value="card">Smart Card</option>
+                  <option value="cash">{{ 'PHARMACY.CASH' | translate }}</option>
+                  <option value="credit" style="font-weight:bold">{{ 'PHARMACY.CREDIT' | translate }}</option>
+                  <option value="cheque">{{ 'PHARMACY.CHEQUE' | translate }}</option>
+                  <option value="card">{{ 'PHARMACY.SMART_CARD' | translate }}</option>
                 </select>
               </div></td>
           </tr>
           <tr>
-            <td>Deduct from Deposit:</td>
+            <td>{{ 'PHARMACY.DEDUCT_FROM_DEPOSIT' | translate }}:</td>
             <td><div class="form-group">
                 <input type="checkbox" [(ngModel)]="deductDeposit" ng-checked="deductDeposit" [disabled]="patBillHistory.DepositBalance <= 0" style="width:18px;height:18px;" (change)="DepositDeductCheckBoxChanged()">
               </div></td>
           </tr>
           <tr>
-            <td colspan="2"><div *ngIf="deductDeposit" style="border: 1px solid;border-radius: 5px !important;padding:4px 10px;"> <span>Deposit Deduction: {{depositDeductAmount}}</span><br />
-                <span> New Deposit Balance: </span> <span style="width:150px"><b style="color:blue"> {{newdepositBalance}}</b></span><br />
+            <td colspan="2"><div *ngIf="deductDeposit" style="border: 1px solid;border-radius: 5px !important;padding:4px 10px;"> <span>{{ 'PHARMACY.DEPOSIT_DEDUCTION' | translate }}: {{depositDeductAmount}}</span><br />
+                <span> {{ 'PHARMACY.NEW_DEPOSIT_BALANCE' | translate }}: </span> <span style="width:150px"><b style="color:blue"> {{newdepositBalance}}</b></span><br />
               </div></td>
           </tr>
         </table>
@@ -178,31 +178,31 @@
       <div class="col-md-4">
         <table class="accountinfo">
           <tr>
-            <td>Sub Total:</td>
+            <td>{{ 'PHARMACY.SUB_TOTAL' | translate }}:</td>
             <td><div class="form-group">
                 <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.SubTotal" disabled id="subtotal" name="subtotal" type="number">
               </div></td>
           </tr>
           <tr>
-            <td>Total Amount:</td>
+            <td>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}:</td>
             <td><div class="form-group">
                 <input [(ngModel)]="currSale.TotalAmount" [ngModelOptions]="{standalone: true}" disabled class="form-control" name="TotalAmount" type="number">
               </div></td>
           </tr>
           <tr>
-            <td>Adjustment:</td>
+            <td>{{ 'PHARMACY.ADJUSTMENT' | translate }}:</td>
             <td><div class="form-group">
                 <input [(ngModel)]="currSale.Adjustment" [ngModelOptions]="{standalone: true}" class="form-control" name="Adjustment" type="number" disabled>
               </div></td>
           </tr>
           <tr>
-            <td>Paid Amount: <i class="glyphicon glyphicon-hand-right blink" style="color:red;font-size:10px;"></i></td>
+            <td>{{ 'PHARMACY.PAID_AMOUNT' | translate }}: <i class="glyphicon glyphicon-hand-right blink" style="color:red;font-size:10px;"></i></td>
             <td><div class="form-group">
                 <input [(ngModel)]="currSale.PaidAmount" [ngModelOptions]="{standalone: true}" class="form-control blink" name="PaidAmount" type="number" disabled>
               </div></td>
           </tr>
           <tr class="dot">
-            <td colspan="2" class="text-capitalize">In Words : <b>{{currSale.PaidAmount | NumberInWords}} </b>Only. <br />
+            <td colspan="2" class="text-capitalize">{{ 'PHARMACY.IN_WORDS' | translate }} : <b>{{currSale.PaidAmount | NumberInWords}} </b>{{ 'PHARMACY.ONLY' | translate }} <br />
               <br /></td>
           </tr>
         </table>
@@ -214,27 +214,27 @@
     <div class="col-md-3">
       <div style="border: 1px solid blue;padding:5px;border-radius: 15px !important;">
         <div style="border-bottom: 1px solid green;">
-          Invoice History
+          {{ 'PHARMACY.INVOICE_HISTORY' | translate }}
         </div>
         <table>
            @*<tr>
-              <td>Credit <b class="colon">:</b></td>
+              <td>{{ 'PHARMACY.CREDIT' | translate }} <b class="colon">:</b></td>
               <td>0</td>
           </tr>*@ 
           <tr>
-            <td>Provisional Amount <b class="colon">:</b></td>
+            <td>{{ 'PHARMACY.PROVISIONAL_AMOUNT' | translate }} <b class="colon">:</b></td>
             <td style="text-decoration:underline;">{{patBillHistory.ProvisionalAmt}}</td>
           </tr>
           <tr>
-            <td>Total Due<b class="colon">:</b></td>
+            <td>{{ 'PHARMACY.TOTAL_DUE' | translate }}<b class="colon">:</b></td>
             <td>{{patBillHistory.TotalDue}}</td>
           </tr>
           <tr>
-            <td>Deposit Balance <b class="colon">:</b> </td>
+            <td>{{ 'PHARMACY.DEPOSIT_BALANCE' | translate }} <b class="colon">:</b> </td>
             <td>{{patBillHistory.DepositBalance}}</td>
           </tr>
           <tr>
-            <td>Balance Amount <b class="colon">:</b></td>
+            <td>{{ 'PHARMACY.BALANCE_AMOUNT' | translate }} <b class="colon">:</b></td>
             <td style="font-weight: bold;color: blue;font-size: 17px;">
               {{patBillHistory.BalanceAmount}}
             </td>
@@ -245,28 +245,28 @@
     <table class=" col-sm-4 ">
       <tr>
         <td class="col-sm-offset-6 col-sm-3"></td>
-        <td> Discount Amount: </td>
+        <td> {{ 'PHARMACY.DISCOUNT_AMOUNT' | translate }}: </td>
         <td>
           <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.DiscountAmount" (focusout)="AllCalculation(0,currSale.DiscountAmount)" id="discountamount" name="discountamount" type="number">
         </td>
       </tr>
       <tr>
         <td class="col-sm-offset-6 col-sm-3"></td>
-        <td> Discount Percentage: </td>
+        <td> {{ 'PHARMACY.DISCOUNT_PERCENTAGE' | translate }}: </td>
         <td>
           <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.DiscountPer" (focusout)="AllCalculation(currSale.DiscountPer,0)" id="discountpercent" name="discountpercent" type="number">
         </td>
       </tr>
       <tr>
         <td class="col-sm-offset-6 col-sm-3"></td>
-        <td> Tender </td>
+        <td> {{ 'PHARMACY.TENDER' | translate }} </td>
         <td>
           <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.Tender" (focusout)="ChangeTenderAmount()" id="tender" name="tender" type="number">
         </td>
       </tr>
       <tr>
         <td class="col-sm-offset-6 col-sm-3"></td>
-        <td> Change </td>
+        <td> {{ 'PHARMACY.CHANGE' | translate }} </td>
         <td>
           <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.Change" (focusout)="AllCalculation()" id="change" name="change" type="number">
         </td>
@@ -276,7 +276,7 @@
     <table class=" col-sm-5 ">
       <tr>
         <td class="col-sm-offset-6 col-sm-3"></td>
-        <td>Sub Total: </td>
+        <td>{{ 'PHARMACY.SUB_TOTAL' | translate }}: </td>
         <td>
           <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="currSale.SubTotal" disabled id="subtotal" name="subtotal" type="number">
         </td>
@@ -284,27 +284,27 @@
 
       <tr class="form-group">
         <td class="col-sm-offset-8 col-sm-2"></td>
-        <td>Total Amount: </td>
+        <td>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}: </td>
         <td>
           <input [(ngModel)]="currSale.TotalAmount" [ngModelOptions]="{standalone: true}" disabled class="form-control" name="TotalAmount" type="number">
         </td>
       </tr>
       <tr class="form-group">
         <td class="col-sm-offset-8 col-sm-2"></td>
-        <td> Adjustment: </td>
+        <td> {{ 'PHARMACY.ADJUSTMENT' | translate }}: </td>
         <td>
           <input [(ngModel)]="currSale.Adjustment" [ngModelOptions]="{standalone: true}" class="form-control" name="Adjustment" type="number" disabled>
         </td>
       </tr>
       <tr class="form-group">
         <td class="col-sm-offset-8 col-sm-2"></td>
-        <td> Paid Amount: <i class="glyphicon glyphicon-hand-right blink" style="color:red;font-size:10px;"></i> </td>
+        <td> {{ 'PHARMACY.PAID_AMOUNT' | translate }}: <i class="glyphicon glyphicon-hand-right blink" style="color:red;font-size:10px;"></i> </td>
         <td>
           <input [(ngModel)]="currSale.PaidAmount" [ngModelOptions]="{standalone: true}" class="form-control blink" name="PaidAmount" type="number" disabled>
         </td>
       </tr>
       <tr class="dot">
-        <td colspan="3" class="text-capitalize">In Words : <b>{{currSale.PaidAmount | NumberInWords}} </b>Only. <br /><br /></td>
+        <td colspan="3" class="text-capitalize">{{ 'PHARMACY.IN_WORDS' | translate }} : <b>{{currSale.PaidAmount | NumberInWords}} </b>{{ 'PHARMACY.ONLY' | translate }} <br /><br /></td>
       </tr>
     </table>
 --> 
@@ -318,24 +318,24 @@
 
         <div class="col-md-4">
           <div>
-            Deduct from Deposit: <input type="checkbox" [(ngModel)]="deductDeposit" ng-checked="deductDeposit" [disabled]="patBillHistory.DepositBalance <= 0" style="width:18px;height:18px;" (change)="DepositDeductCheckBoxChanged()">
+            {{ 'PHARMACY.DEDUCT_FROM_DEPOSIT' | translate }}: <input type="checkbox" [(ngModel)]="deductDeposit" ng-checked="deductDeposit" [disabled]="patBillHistory.DepositBalance <= 0" style="width:18px;height:18px;" (change)="DepositDeductCheckBoxChanged()">
           </div>
           <div *ngIf="deductDeposit" style="border: 1px solid;border-radius: 5px !important;padding-left: 14px;padding-bottom: 5px;">
-            <span>Deposit Deduction: {{depositDeductAmount}}</span><br />
+            <span>{{ 'PHARMACY.DEPOSIT_DEDUCTION' | translate }}: {{depositDeductAmount}}</span><br />
             <span>
-              New Deposit Balance:
+              {{ 'PHARMACY.NEW_DEPOSIT_BALANCE' | translate }}:
             </span>
             <span style="width:150px"><b style="color:blue"> {{newdepositBalance}}</b></span><br />
           </div>
         </div>
         <div class="col-md-4">
-          <label class="col-md-5">Payment Mode<b style="float:right;">:</b></label>
+          <label class="col-md-5">{{ 'PHARMACY.PAYMENT_MODE' | translate }}<b style="float:right;">:</b></label>
           <div class="col-md-7">
             <select class="form-control" style="width:100px" [(ngModel)]="currSale.PaymentMode" [ngModelOptions]="{standalone: true}" [disabled]="this.deductDeposit==true">
-              <option value="cash">Cash</option>
-              <option value="credit" style="font-weight:bold">CREDIT</option>
-              <option value="cheque">Cheque</option>
-              <option value="card">Smart Card</option>
+              <option value="cash">{{ 'PHARMACY.CASH' | translate }}</option>
+              <option value="credit" style="font-weight:bold">{{ 'PHARMACY.CREDIT' | translate }}</option>
+              <option value="cheque">{{ 'PHARMACY.CHEQUE' | translate }}</option>
+              <option value="card">{{ 'PHARMACY.SMART_CARD' | translate }}</option>
             </select>
           </div>
         </div>
@@ -346,18 +346,18 @@
       <div class="col-md-4"> </div>
       <div class="col-md-2"> </div>
       <div class="col-md-6" style="padding-top:5px;">
-        <input type="button" class="btn btn-success" value="Update" (click)="update()" [disabled]="loading">
+        <input type="button" class="btn btn-success" [value]="'COMMON.UPDATE' | translate" (click)="update()" [disabled]="loading">
         <span></span>
-        <input type="button" class="btn btn-success" value="Print Invoice" (click)="PrintReceipt()" [disabled]="loading" />
+        <input type="button" class="btn btn-success" [value]="'PHARMACY.PRINT_INVOICE' | translate" (click)="PrintReceipt()" [disabled]="loading" />
         <span></span>
-        <input type="button" class="btn btn-danger" [disabled]="loading" (click)="Cancel()" value="Cancel All items">
+        <input type="button" class="btn btn-danger" [disabled]="loading" (click)="Cancel()" [value]="'PHARMACY.CANCEL_ALL_ITEMS' | translate">
         <span></span> </div>
     </div>
     
     <!--
     <div>
 
-      <strong style="line-height:3;">Remarks:</strong><br />
+      <strong style="line-height:3;">{{ 'COMMON.REMARKS' | translate }}:</strong><br />
       <textarea style="width:20%;" [(ngModel)]="currSale.Remark" [ngModelOptions]="{standalone: true}" class="form-control" name="Remarks"></textarea>
     </div>
 --> 
@@ -366,26 +366,26 @@
 </div>
 <div *ngIf="showPatBillHistory && patBillHistory.IsLoaded" class="bill-action" style="top:340px;background-color:#FFF;">
   <div style="border: 1px solid blue;padding:5px;border-radius: 15px !important;" *ngIf="patBillHistory.IsLoaded">
-    <div style="padding-left: 51px;margin-bottom: 5px;border-bottom: 1px solid green;"> Billing History </div>
+    <div style="padding-left: 51px;margin-bottom: 5px;border-bottom: 1px solid green;"> {{ 'PHARMACY.BILLING_HISTORY' | translate }} </div>
     <table>
       <tr>
-        <td>Credit <b class="colon">:</b></td>
+        <td>{{ 'PHARMACY.CREDIT' | translate }} <b class="colon">:</b></td>
         <td>{{patBillHistory.CreditAmount}}</td>
       </tr>
       <tr>
-        <td>Provisional Amount <b class="colon">:</b></td>
+        <td>{{ 'PHARMACY.PROVISIONAL_AMOUNT' | translate }} <b class="colon">:</b></td>
         <td style="text-decoration:underline;">{{patBillHistory.ProvisionalAmt}}</td>
       </tr>
       <tr>
-        <td>Total Due<b class="colon">:</b></td>
+        <td>{{ 'PHARMACY.TOTAL_DUE' | translate }}<b class="colon">:</b></td>
         <td>{{patBillHistory.TotalDue}}</td>
       </tr>
       <tr>
-        <td>Deposit Balance <b class="colon">:</b></td>
+        <td>{{ 'PHARMACY.DEPOSIT_BALANCE' | translate }} <b class="colon">:</b></td>
         <td>{{patBillHistory.DepositBalance}}</td>
       </tr>
       <tr>
-        <td>Balance Amount <b class="colon">:</b></td>
+        <td>{{ 'PHARMACY.BALANCE_AMOUNT' | translate }} <b class="colon">:</b></td>
         <td style="font-weight: bold;color: blue;font-size: 17px;"><span [ngClass]="{'neg-amt': patBillHistory.BalanceAmount < 0}"> {{patBillHistory.BalanceAmount}} </span></td>
       </tr>
     </table>
@@ -393,14 +393,14 @@
 </div>
 <div class="row" *ngIf="showCancelSummaryPanel" style="margin-top: 20px;">
   <div class="col-md-12">
-    <p style="font-weight: bold;color: #1a1a98;"> Cancelled items summary </p>
+    <p style="font-weight: bold;color: #1a1a98;"> {{ 'PHARMACY.CANCELLED_ITEMS_SUMMARY' | translate }} </p>
     <div class="table-responsive" style="width: 70%;">
       <table class="table table-striped table-hover">
         <tr>
-          <th> Item Name </th>
-          <th> Quantity </th>
-          <th> Amount </th>
-          <th> Cancelled On </th>
+          <th> {{ 'PHARMACY.ITEM_NAME' | translate }} </th>
+          <th> {{ 'PHARMACY.QUANTITY' | translate }} </th>
+          <th> {{ 'PHARMACY.AMOUNT' | translate }} </th>
+          <th> {{ 'PHARMACY.CANCELLED_ON' | translate }} </th>
         </tr>
         <tr *ngFor="let row of cancelledItems">
           <td> {{row.ItemName}} </td>
@@ -421,7 +421,7 @@
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
             <h3> <span *ngIf="!update"></span> <span *ngIf="update"></span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel"><i class="fa fa-close"></i></a> </div>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-close"></i></a> </div>
           <form class="form-horizontal hm-form">
             <div class="form-body">
               <div class="col-md-12">
@@ -431,49 +431,49 @@
                     <div class="col-md-12">
                       <div class="col-md-12" style="padding:0px;">
                         <div class="left">
-                          <p class="no-margin" style="text-align:left;font-size:11px;"> Hospital No: {{currentPatient.PatientCode}} </p>
+                          <p class="no-margin" style="text-align:left;font-size:11px;"> {{ 'PHARMACY.HOSPITAL_NO' | translate }}: {{currentPatient.PatientCode}} </p>
                         </div>
                         <div class="right">
-                          <p class="no-margin" style="text-align:right;font-size:11px;">Transaction Date: {{today | date}}</p>
+                          <p class="no-margin" style="text-align:right;font-size:11px;">{{ 'PHARMACY.TRANSACTION_DATE' | translate }}: {{today | date}}</p>
                         </div>
                       </div>
                       <div class="clear"></div>
                       <div class="col-md-12" style="padding:0px;padding-top: 4px;">
                         <div class="left" style="width:69%" id="pat-name">
-                          <div class="no-margin" style="text-align: left;display: inline-block;font-size:11px;/*width: 31%;*/">Patient's Name:&nbsp;</div>
+                          <div class="no-margin" style="text-align: left;display: inline-block;font-size:11px;/*width: 31%;*/">{{ 'PHARMACY.PATIENTS_NAME' | translate }}:&nbsp;</div>
                           <div style="display: inline-block;width: 69%;text-align: left;font-size:11px;"> {{currentPatient.ShortName}} </div>
                         </div>
                       </div>
                       <div class="col-md-12" style="padding:0px;">
                         <div class="left" style="width: 69%;">
-                          <p class="no-margin" style="text-align:left;font-size:11px;">Address: {{currentPatient.Address}}, {{currentPatient.CountrySubDivisionName}} </p>
+                          <p class="no-margin" style="text-align:left;font-size:11px;">{{ 'GRID_HEADERS.ADDRESS' | translate }}: {{currentPatient.Address}}, {{currentPatient.CountrySubDivisionName}} </p>
                         </div>
                         <div class="right" style="width:31%">
-                          <p class="no-margin" style="text-align:right;font-size:11px;"> Age/Sex : {{currentPatient.DateOfBirth | DanpheDateTime:'age'  }}/{{currentPatient.Gender}}</p>
+                          <p class="no-margin" style="text-align:right;font-size:11px;"> {{ 'GRID_HEADERS.AGE_SEX' | translate }} : {{currentPatient.DateOfBirth | DanpheDateTime:'age'  }}/{{currentPatient.Gender}}</p>
                         </div>
                       </div>
                       <div class="col-md-12" style="padding:0px;">
                         <div class="left" style="width:50%">
-                          <p class="no-margin" style="text-align:left;font-size:11px;"> Contact No: {{currentPatient.PhoneNumber}} </p>
+                          <p class="no-margin" style="text-align:left;font-size:11px;"> {{ 'PHARMACY.CONTACT_NO' | translate }}: {{currentPatient.PhoneNumber}} </p>
                         </div>
                         <div class="right" style="width:50%" *ngIf="currentPatient.PANNumber">
-                          <p class="no-margin" style="text-align:right;font-size:11px;"> Purchaser's {{GeneralFieldLabel.PANNo}}: {{currentPatient.PANNumber}} </p>
+                          <p class="no-margin" style="text-align:right;font-size:11px;"> {{ 'PHARMACY.PURCHASERS' | translate }} {{GeneralFieldLabel.PANNo}}: {{currentPatient.PANNumber}} </p>
                         </div>
                       </div>
                     </div>
                     <div class="col-md-12">
-                      <p style="text-align:center;font-weight:bold;text-decoration:underline;">Return Slip</p>
+                      <p style="text-align:center;font-weight:bold;text-decoration:underline;">{{ 'PHARMACY.RETURN_SLIP' | translate }}</p>
                     </div>
                     <div class="bill-patinfo" style="font-size: 14px;">
                       <div class="clear"></div>
                       <div class="clear footer"></div>
                       <table class="bill-itms">
                         <tr>
-                          <td width="30px" class="print-sn"> Sn.</td>
-                          <td width="170px" class="print-par">Item Name</td>
-                          <td width="20px" class="text-right print-qty">Quantity</td>
-                          <td width="20px" class="text-right print-qty">Discount Amount</td>
-                          <td width="60px" class="text-right print-amt">Amount</td>
+                          <td width="30px" class="print-sn"> {{ 'PHARMACY.SN' | translate }}</td>
+                          <td width="170px" class="print-par">{{ 'PHARMACY.ITEM_NAME' | translate }}</td>
+                          <td width="20px" class="text-right print-qty">{{ 'PHARMACY.QUANTITY' | translate }}</td>
+                          <td width="20px" class="text-right print-qty">{{ 'PHARMACY.DISCOUNT_AMOUNT' | translate }}</td>
+                          <td width="60px" class="text-right print-amt">{{ 'PHARMACY.AMOUNT' | translate }}</td>
                         </tr>
                         <tr *ngFor="let row of currSaleItemsRetOnly; let i=index">
                           <td>{{i+1}}</td>
@@ -484,13 +484,13 @@
                         </tr>
                         <tr> 
                           <!--                        <td></td>-->
-                          <td colspan="3" class="text-right"><strong>Total Amount:</strong></td>
+                          <td colspan="3" class="text-right"><strong>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}:</strong></td>
                           <!--                        <td></td>-->
                           <td class="text-right"><strong>{{total | number: "1.2-2"}}</strong></td>
                         </tr>
                         <tr> 
                           <!--                        <td></td>-->
-                          <td colspan="3" class="text-right"><strong>Remarks:</strong></td>
+                          <td colspan="3" class="text-right"><strong>{{ 'COMMON.REMARKS' | translate }}:</strong></td>
                           <!--                        <td></td>-->
                           <td class="text-right"><strong>{{currSale.Remark}}</strong></td>
                         </tr>
@@ -499,7 +499,7 @@
                   </div>
                 </div>
                 <p style="text-align:center; z-index: 4; position: relative; margin: 15px 0;">
-                  <button class="btn blue" (click)="print()"> Print <i class="glyphicon glyphicon-print"></i> </button>
+                  <button class="btn blue" (click)="print()"> {{ 'COMMON.PRINT' | translate }} <i class="glyphicon glyphicon-print"></i> </button>
                 </p>
               </div>
             </div>

@@ -1,4 +1,4 @@
-<a class="btn green btn-success margin-7-hr" feature="button" (click)="ShowAddPage()"><i class="fa fa-plus"></i>Additional Service Item</a>
+<a class="btn green btn-success margin-7-hr" feature="button" (click)="ShowAddPage()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADDITIONAL_SERVICE_ITEM' | translate }}</a>
 
 <div *ngIf="showGrid">
     <danphe-grid [grid-colDefaults]="additionalServiceItemGridColumns"
@@ -14,29 +14,29 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="modelbox-div clearfix">
                     <div class="caption custom-caption no-margin">
-                        <h3> <span *ngIf="!isUpdate">Add Additional Service Item</span>
-                            <span *ngIf="isUpdate">Update Additional Service Item</span>
+                        <h3> <span *ngIf="!isUpdate">{{ 'SETTINGS_NEW.ADD_ADDITIONAL_SERVICE_ITEM' | translate }}</span>
+                            <span *ngIf="isUpdate">{{ 'SETTINGS_NEW.UPDATE_ADDITIONAL_SERVICE_ITEM' | translate }}</span>
                         </h3>
-                        <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                        <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                     </div>
                     <form [formGroup]="CurrentAdditionalServiceItem.AdditionalServiceItemValidator" class="form-horizontal hm-form">
                         <div class="form-body">
                             <div class="form-group">
-                                <label class="control-label col-md-5">Group Name<sup>*</sup><b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.GROUP_NAME_1' | translate }}<sup>*</sup><b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control"
                                            type="text"
-                                           placeholder="Enter GroupName" formControlName="GroupName" />
+                                           [placeholder]="'SETTINGS_NEW.ENTER_GROUPNAME' | translate" formControlName="GroupName" />
                                     <span class="color-red font-sm"
                                           [hidden]="CurrentAdditionalServiceItem.IsValidCheck('GroupName','required') ||
                                            !(CurrentAdditionalServiceItem.IsDirty('GroupName'))"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Price Category<sup>*</sup><b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.PRICE_CATEGORY_1' | translate }}<sup>*</sup><b>:</b></label>
                                 <div class="col-md-7">
                                     <input danphe-auto-complete class="form-control" [(ngModel)]="selectedPriceCategory"
-                                           [source]="priceCategoryList" placeholder="PriceCategory" display-property-name="PriceCategoryName"
+                                           [source]="priceCategoryList" [placeholder]="'SETTINGS_NEW.PRICECATEGORY' | translate" display-property-name="PriceCategoryName"
                                            value-property-name="PriceCategoryName"
                                            (valueChanged)="AssignSelectedPriceCategory($event)"
                                            [list-formatter]="PriceCategoryListFormatter" max-num-list="50"
@@ -48,10 +48,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Service Item<sup>*</sup><b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.SERVICE_ITEM' | translate }}<sup>*</sup><b>:</b></label>
                                 <div class="col-md-7">
                                     <input danphe-auto-complete class="form-control"
-                                           [source]="serviceItemList" placeholder="ServiceItem" display-property-name="ItemName"
+                                           [source]="serviceItemList" [placeholder]="'SETTINGS_NEW.SERVICEITEM' | translate" display-property-name="ItemName"
                                            [(ngModel)]="selectedServiceItem"
                                            (valueChanged)="AssignSelectedServiceItem($event)"
                                            [list-formatter]="ServiceItemListFormatter" max-num-list="50"
@@ -63,21 +63,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Minimum Charge Amount<b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.MINIMUM_CHARGE_AMOUNT' | translate }}<b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" type="number"
-                                           placeholder="Minimum Charge Amount"
+                                           [placeholder]="'SETTINGS_NEW.MINIMUM_CHARGE_AMOUNT' | translate"
                                            formControlName="MinimumChargeAmount"
                                            (wheel)="coreService.PreventNumberChangeOnScroll($event)" />
                                     <span class="color-red font-sm" *ngIf="CurrentAdditionalServiceItem.IsDirty('MinimumChargeAmount')"
                                           [hidden]="CurrentAdditionalServiceItem.IsValidCheck('MinimumChargeAmount','required')
                                            && CurrentAdditionalServiceItem.IsValidCheck('MinimumChargeAmount','min')">
-                                        Charge amount cannot be negative or less than zero</span>
+                                        {{ 'SETTINGS_NEW.CHARGE_AMOUNT_CANNOT_BE_NEGATIVE_OR_LESS_THAN_ZERO' | translate }}</span>
 
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Use Item Self Price? <b>:</b> </label>
+                                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.USE_ITEM_SELF_PRICE' | translate }} <b>:</b> </label>
                                 <div class="col-md-7">
                                     <div class="input-group">
                                         <div class="icheck-inline">
@@ -89,29 +89,29 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Percentage Of Parent Item For Same Dept<b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.PERCENTAGE_OF_PARENT_ITEM_FOR_SAME_DEPT' | translate }}<b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" type="number"
-                                           placeholder="Percentage Of Parent Item For Same Dept"
+                                           [placeholder]="'SETTINGS_NEW.PERCENTAGE_OF_PARENT_ITEM_FOR_SAME_DEPT' | translate"
                                            formControlName="PercentageOfParentItemForSameDept"
                                            (wheel)="coreService.PreventNumberChangeOnScroll($event)" />
                                     <span class="color-red font-sm" *ngIf="CurrentAdditionalServiceItem.IsDirty('PercentageOfParentItemForSameDept')"
                                           [hidden]="CurrentAdditionalServiceItem.IsValidCheck('PercentageOfParentItemForSameDept','required') 
                                           && CurrentAdditionalServiceItem.IsValidCheck('PercentageOfParentItemForSameDept','min') && CurrentAdditionalServiceItem.IsValidCheck('PercentageOfParentItemForSameDept','max')">
-                                        Discount Percent cannot be less than 0 and greater than 100
+                                        {{ 'SETTINGS_NEW.DISCOUNT_PERCENT_CANNOT_BE_LESS_THAN_0_AND_GREATER_THAN_100' | translate }}
                                     </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Percentage Of Parent Item For Diff Dept<b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.PERCENTAGE_OF_PARENT_ITEM_FOR_DIFF_DEPT' | translate }}<b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" type="number"
-                                           placeholder="Percentage Of Parent Item For Diff Dept"
+                                           [placeholder]="'SETTINGS_NEW.PERCENTAGE_OF_PARENT_ITEM_FOR_DIFF_DEPT' | translate"
                                            formControlName="PercentageOfParentItemForDiffDept"
                                            (wheel)="coreService.PreventNumberChangeOnScroll($event)" />
                                     <span class="color-red font-sm" *ngIf="CurrentAdditionalServiceItem.IsDirty('PercentageOfParentItemForDiffDept')"
                                           [hidden]="CurrentAdditionalServiceItem.IsValidCheck('PercentageOfParentItemForDiffDept','required') && CurrentAdditionalServiceItem.IsValidCheck('PercentageOfParentItemForDiffDept','min') && CurrentAdditionalServiceItem.IsValidCheck('PercentageOfParentItemForDiffDept','max')">
-                                        Discount Percent cannot be less than 0 and greater than 100
+                                        {{ 'SETTINGS_NEW.DISCOUNT_PERCENT_CANNOT_BE_LESS_THAN_0_AND_GREATER_THAN_100' | translate }}
                                     </span>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                     <div style="margin-left:140px;">
                                         <label class="mt-checkbox mt-checkbox-outline">
                                             <input type="checkbox" formControlName="WithPreAnaesthesia" />
-                                            <label class="control-label">With PreAnaesthesia?</label>
+                                            <label class="control-label">{{ 'SETTINGS_NEW.WITH_PREANAESTHESIA' | translate }}</label>
                                             <span></span>
                                         </label>
                                     </div>
@@ -129,7 +129,7 @@
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox"
                                                formControlName="IsPreAnaesthesia" />
-                                        <label class="control-label">IsPreAnaesthesia?</label>
+                                        <label class="control-label">{{ 'SETTINGS_NEW.ISPREANAESTHESIA' | translate }}</label>
                                         <span></span>
                                     </label>
                                 </div>
@@ -140,14 +140,14 @@
                                         <label class="mt-checkbox mt-checkbox-outline">
                                             <input type="checkbox"
                                                    formControlName="IsIpServiceItem" />
-                                            <label class="control-label col-md-5">IsIpServiceItem</label>
+                                            <label class="control-label col-md-5">{{ 'SETTINGS_NEW.ISIPSERVICEITEM' | translate }}</label>
                                             <span></span> </label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="mt-checkbox mt-checkbox-outline">
                                         <input type="checkbox" formControlName="IsOpServiceItem" />
-                                        <label class="control-label col-md-5">IsOpServiceItem</label>
+                                        <label class="control-label col-md-5">{{ 'SETTINGS_NEW.ISOPSERVICEITEM' | translate }}</label>
                                         <span></span> </label>
                                 </div>
                             </div>
@@ -156,10 +156,10 @@
                     <div class="panel-footer" style="text-align: right;">
                         <input id="savebtn" type="button" (click)="AddAdditionalServiceItem()" class="btn green btn-success margin-7-hr"
                                *ngIf="!isUpdate"
-                               [disabled]="loading" value="Add" />
+                               [disabled]="loading" [value]="'SETTINGS_NEW.ADD' | translate" />
                         <input id="savebtn" type="button" (click)="UpdateAdditionalServiceItem()" class="btn green btn-success margin-7-hr"
                                *ngIf="isUpdate"
-                               [disabled]="loading" value="Update" />
+                               [disabled]="loading" [value]="'COMMON.UPDATE' | translate" />
                     </div>
                 </div>
             </div>

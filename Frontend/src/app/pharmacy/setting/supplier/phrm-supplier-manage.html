@@ -1,4 +1,4 @@
-<input type="button" class="btn btn-primary" (click)="AddSupplier()" value="Add Supplier" />
+<input type="button" class="btn btn-primary" (click)="AddSupplier()" [value]="'PHARMACY.ADD_SUPPLIER' | translate" />
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
     <danphe-grid [grid-colDefaults]="supplierGridColumns" [grid-data]="supplierList" (grid-actions)="SupplierGridActions($event)"> </danphe-grid>
@@ -11,61 +11,59 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
-            <h3><span *ngIf="!update">Add Supplier</span> <span *ngIf="update">Update Supplier</span></h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel"><i class="fa fa-times"></i></a>
+            <h3><span *ngIf="!update">Add Supplier</span> <span *ngIf="update">{{ 'PHARMACY.UPDATE_SUPPLIER' | translate }}</span></h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
           </div>
           <!--Model Box Body Start-->
           <form [formGroup]="CurrentSupplier.SupplierValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Supplier Name<sup>*</sup><b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'PHARMACY.SUPPLIER_NAME' | translate }}<sup>*</sup><b>:</b></label>
                   <div class="col-md-8">
                     <input id="supplier" class="form-control" type="text" maxlength="50" [(ngModel)]="CurrentSupplier.SupplierName"
-                           formControlName="SupplierName" value="" placeholder="Enter Supplier Name"
+                           formControlName="SupplierName" value="" [placeholder]="'PHARMACY.ENTER_SUPPLIER_NAME' | translate"
                            (keyup.enter)="setFocusById('suppliercontact')" />
                     <span class="color-red font-sm"
-                          [hidden]="CurrentSupplier.IsValidCheck('SupplierName','required') || !(CurrentSupplier.IsDirty('SupplierName'))">Supplier
-                      name is required</span> <span class="color-red font-sm" *ngIf="CurrentSupplier.IsDirty('SupplierName')"
-                          [hidden]="CurrentSupplier.IsValidCheck('SupplierName','maxlength')"> Length is not proper</span>
+                          [hidden]="CurrentSupplier.IsValidCheck('SupplierName','required') || !(CurrentSupplier.IsDirty('SupplierName'))">{{ 'PHARMACY.SUPPLIER_NAME_IS_REQUIRED' | translate }}</span> <span class="color-red font-sm" *ngIf="CurrentSupplier.IsDirty('SupplierName')"
+                          [hidden]="CurrentSupplier.IsValidCheck('SupplierName','maxlength')"> {{ 'PHARMACY.LENGTH_IS_NOT_PROPER' | translate }}</span>
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Contact<sup>*</sup><b>:</b><br />
-                    Number</label>
+                  <label class="control-label col-md-4">{{ 'PHARMACY.CONTACT' | translate }}<sup>*</sup><b>:</b><br />
+                    {{ 'PHARMACY.NUMBER' | translate }}</label>
                   <div class="col-md-8">
                     <input id="suppliercontact" class="form-control" type="text" [(ngModel)]="CurrentSupplier.ContactNo" formControlName="ContactNo"
-                           value="" placeholder="Enter Contact number" (keyup.enter)="setFocusById('suppliercity')" />
+                           value="" [placeholder]="'PHARMACY.ENTER_CONTACT_NUMBER' | translate" (keyup.enter)="setFocusById('suppliercity')" />
                     <span class="color-red font-sm"
-                          [hidden]="CurrentSupplier.IsValidCheck('ContactNo','required') || !(CurrentSupplier.IsDirty('ContactNo'))">Contact number is
-                      required</span> <span class="color-red font-sm" *ngIf="CurrentSupplier.IsDirty('ContactNo')"
-                          [hidden]="CurrentSupplier.IsValidCheck('ContactNo','pattern')"> Invalid Contact</span>
+                          [hidden]="CurrentSupplier.IsValidCheck('ContactNo','required') || !(CurrentSupplier.IsDirty('ContactNo'))">{{ 'PHARMACY.CONTACT_NUMBER_IS_REQUIRED' | translate }}</span> <span class="color-red font-sm" *ngIf="CurrentSupplier.IsDirty('ContactNo')"
+                          [hidden]="CurrentSupplier.IsValidCheck('ContactNo','pattern')"> {{ 'PHARMACY.INVALID_CONTACT' | translate }}</span>
                   </div>
                 </div>
                 <div class="form-group col-md-6">
 
-                  <label class="control-label col-md-4">Description<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" type="text" maxlength="100" [(ngModel)]="CurrentSupplier.Description"
-                           [ngModelOptions]="{standalone: true}" value="" placeholder="Enter Description" />
+                           [ngModelOptions]="{standalone: true}" value="" [placeholder]="'PHARMACY.ENTER_DESCRIPTION' | translate" />
                   </div>
 
                 </div>
                 <div class="form-group col-md-6">
 
-                  <label class="control-label col-md-4">City<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'PHARMACY.CITY' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input id="suppliercity" class="form-control" type="text" maxlength="30" [(ngModel)]="CurrentSupplier.City"
-                           [ngModelOptions]="{standalone: true}" value="" placeholder="Enter City" (keyup.enter)="setFocusById('supplierpan')" />
+                           [ngModelOptions]="{standalone: true}" value="" [placeholder]="'PHARMACY.ENTER_CITY' | translate" (keyup.enter)="setFocusById('supplierpan')" />
                   </div>
 
                 </div>
                 <div class="form-group col-md-6">
 
-                  <label class="control-label col-md-4">Credit Period<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'PHARMACY.CREDIT_PERIOD' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" type="number" [(ngModel)]="CurrentSupplier.CreditPeriod" [ngModelOptions]="{standalone: true}"
-                           value="" placeholder="Enter Credit Period" />
+                           value="" [placeholder]="'PHARMACY.ENTER_CREDIT_PERIOD' | translate" />
                   </div>
 
                 </div>
@@ -77,7 +75,7 @@
                            [(ngModel)]="CurrentSupplier.PANNumber" formControlName="PANNumber" value="" placeholder="{{GeneralFieldLabel.PANNo}}" />
                     <span class="color-red font-sm"
                           [hidden]="CurrentSupplier.IsValidCheck('PANNumber','required') || !(CurrentSupplier.IsDirty('PANNumber'))">{{GeneralFieldLabel.PANNo}}
-                      is required</span>
+                      {{ 'PHARMACY.IS_REQUIRED' | translate }}</span>
                     <!-- <span class="color-red font-sm" *ngIf="CurrentSupplier.IsDirty('PANNumber')" [hidden]="CurrentSupplier.IsValidCheck('PANNumber','pattern')"> Pan No. is not proper</span> -->
                   </div>
                 </div>
@@ -85,42 +83,41 @@
                 </div>
                 <div class="form-group col-md-6">
 
-                  <label class="control-label col-md-4">DDA<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'PHARMACY.DDA' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input id="supplierdda" class="form-control" type="text" maxlength="30" (keyup.enter)="setFocusById('supplieraddress')"
-                           [(ngModel)]="CurrentSupplier.DDA" [ngModelOptions]="{standalone: true}" placeholder="Enter DDA." />
+                           [(ngModel)]="CurrentSupplier.DDA" [ngModelOptions]="{standalone: true}" [placeholder]="'PHARMACY.ENTER_DDA' | translate" />
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Contact<sup>*</sup><b>:</b><br />
-                    Address</label>
+                  <label class="control-label col-md-4">{{ 'PHARMACY.CONTACT' | translate }}<sup>*</sup><b>:</b><br />
+                    {{ 'GRID_HEADERS.ADDRESS' | translate }}</label>
                   <div class="col-md-8">
                     <input id="supplieraddress" class="form-control" type="text" maxlength="100" [(ngModel)]="CurrentSupplier.ContactAddress"
-                           formControlName="ContactAddress" value="" placeholder="Enter Contact Address"
+                           formControlName="ContactAddress" value="" [placeholder]="'PHARMACY.ENTER_CONTACT_ADDRESS' | translate"
                            (keyup.enter)="!update?setFocusById('save'):setFocusById('update')" />
                     <span class="color-red font-sm"
-                          [hidden]="CurrentSupplier.IsValidCheck('ContactAddress','required') || !(CurrentSupplier.IsDirty('ContactAddress'))">Contact
-                      Address is required</span>
+                          [hidden]="CurrentSupplier.IsValidCheck('ContactAddress','required') || !(CurrentSupplier.IsDirty('ContactAddress'))">{{ 'PHARMACY.CONTACT_ADDRESS_IS_REQUIRED' | translate }}</span>
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Additional Contact<b>:</b><br /></label>
+                  <label class="control-label col-md-4">{{ 'PHARMACY.ADDITIONAL_CONTACT' | translate }}<b>:</b><br /></label>
                   <div class="col-md-8">
                     <textarea class="form-control" [(ngModel)]="CurrentSupplier.AdditionalContactInformation" [ngModelOptions]="{standalone: true}"
-                              placeholder="Enter Additional Contact Information"></textarea>
+                              [placeholder]="'PHARMACY.ENTER_ADDITIONAL_CONTACT_INFORMATION' | translate"></textarea>
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">Email<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'GRID_HEADERS.EMAIL' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <input class="form-control" type="text" maxlength="100" [(ngModel)]="CurrentSupplier.Email" value="" formControlName="Email"
-                           placeholder="Enter Email" />
+                           [placeholder]="'PHARMACY.ENTER_EMAIL' | translate" />
                     <span class="color-red font-sm" *ngIf="CurrentSupplier.IsDirty('Email')"
-                          [hidden]="CurrentSupplier.IsValidCheck('Email','pattern')">Email ID is not proper</span>
+                          [hidden]="CurrentSupplier.IsValidCheck('Email','pattern')">{{ 'PHARMACY.EMAIL_ID_IS_NOT_PROPER' | translate }}</span>
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">IsActive<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'PHARMACY.ISACTIVE' | translate }}<b>:</b></label>
                   <div class="col-md-7">
                     <div class="input-group">
                       <div class="icheck-inline">
@@ -133,7 +130,7 @@
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label class="control-label col-md-4">IsLedgerRequired<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'PHARMACY.ISLEDGERREQUIRED' | translate }}<b>:</b></label>
                   <div class="col-md-7">
                     <div class="input-group">
                       <div class="icheck-inline">
@@ -147,8 +144,8 @@
                 </div>
               </div>
               <div class="all-buttons text-right">
-                <button type="button" id="save" class="btn green btn-success" *ngIf="!update" [disabled]="loading" (click)="Add()">Save</button>
-                <button type="button" id="update" class="btn green btn-success" *ngIf="update" [disabled]="loading" (click)="Update()">Update</button>
+                <button type="button" id="save" class="btn green btn-success" *ngIf="!update" [disabled]="loading" (click)="Add()">{{ 'COMMON.SAVE' | translate }}</button>
+                <button type="button" id="update" class="btn green btn-success" *ngIf="update" [disabled]="loading" (click)="Update()">{{ 'COMMON.UPDATE' | translate }}</button>
               </div>
             </div>
           </form>

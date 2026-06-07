@@ -15,7 +15,7 @@
     }
   }
 </style>
-<input type="button" class="btn btn-primary" (click)="AddDispensary()" value="Add Dispensary" />
+<input type="button" class="btn btn-primary" (click)="AddDispensary()" [value]="'PHARMACY.ADD_DISPENSARY' | translate" />
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
     <danphe-grid [grid-colDefaults]="dispensaryGridColumns" [grid-data]="dispensaryList" (grid-actions)="DispensaryGridActions($event)">
@@ -30,23 +30,23 @@
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
             <h3> <span *ngIf="!update">Add Dispensary</span>
-              <span *ngIf="update">Update Dispensary</span>
+              <span *ngIf="update">{{ 'PHARMACY.UPDATE_DISPENSARY' | translate }}</span>
             </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel"><i class="fa fa-times"></i></a>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
           </div>
           <!--Model Box Body Start-->
           <form [formGroup]="CurrentDispensary.StoreValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-5">Dispensary Name<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'PHARMACY.DISPENSARY_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
-                  <input class="form-control" type="text" maxlength="50" id="dispensaryName" [(ngModel)]="CurrentDispensary.Name" formControlName="Name" value="" placeholder="Enter Dispensary Name" (keyup.enter)="setFocusById('SubCategory')" />
-                  <span class="color-red font-sm" [hidden]="CurrentDispensary.IsValidCheck('Name','required') || !(CurrentDispensary.IsDirty('Name'))">Dispensary name is required</span>
-                  <span class="color-red font-sm" *ngIf="CurrentDispensary.IsDirty('Name')" [hidden]="CurrentDispensary.IsValidCheck('Name','maxlength')"> Length is not proper</span>
+                  <input class="form-control" type="text" maxlength="50" id="dispensaryName" [(ngModel)]="CurrentDispensary.Name" formControlName="Name" value="" [placeholder]="'PHARMACY.ENTER_DISPENSARY_NAME' | translate" (keyup.enter)="setFocusById('SubCategory')" />
+                  <span class="color-red font-sm" [hidden]="CurrentDispensary.IsValidCheck('Name','required') || !(CurrentDispensary.IsDirty('Name'))">{{ 'PHARMACY.DISPENSARY_NAME_IS_REQUIRED' | translate }}</span>
+                  <span class="color-red font-sm" *ngIf="CurrentDispensary.IsDirty('Name')" [hidden]="CurrentDispensary.IsValidCheck('Name','maxlength')"> {{ 'PHARMACY.LENGTH_IS_NOT_PROPER' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label for="Type" class="control-label col-md-5">Dispensary Type <sup>*</sup><b>:</b></label>
+                <label for="Type" class="control-label col-md-5">{{ 'PHARMACY.DISPENSARY_TYPE' | translate }} <sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <select style="width: -webkit-fill-available;" name="SubCategory" id="SubCategory" [(ngModel)]="CurrentDispensary.SubCategory" [ngModelOptions]="{standalone : true}" (change)="OnCategoryChange()">
                     <option *ngFor="let dispensaryType of dispensaryTypes | keyvalue" [value]="dispensaryType.value">
@@ -56,13 +56,13 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Description<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                 <div class="col-md-7">
-                  <input class="form-control" type="text" maxlength="100" id="description" [(ngModel)]="CurrentDispensary.StoreDescription" [ngModelOptions]="{standalone: true}" value="" placeholder="Enter Description" (keyup.enter)="setFocusById('label')" />
+                  <input class="form-control" type="text" maxlength="100" id="description" [(ngModel)]="CurrentDispensary.StoreDescription" [ngModelOptions]="{standalone: true}" value="" [placeholder]="'PHARMACY.ENTER_DESCRIPTION' | translate" (keyup.enter)="setFocusById('label')" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">IsActive<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'PHARMACY.ISACTIVE' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -75,7 +75,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5" for="printHeaderInDotmatrix">Print InvoiceHeader in DotMatrix<strong>:</strong></label>
+                <label class="control-label col-md-5" for="printHeaderInDotmatrix">{{ 'PHARMACY.PRINT_INVOICEHEADER_IN_DOTMATRIX' | translate }}<strong>:</strong></label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -88,7 +88,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Use separate invoice header<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'PHARMACY.USE_SEPARATE_INVOICE_HEADER' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -105,17 +105,17 @@
                 <div class="portlet-title cstm-portlet-title">
                   <div class="caption custom-caption">
                     <h3> <span style="color: white !important;">
-                        <i style="color: white !important;" class="fa fa-gear"></i>Billing Header</span>
+                        <i style="color: white !important;" class="fa fa-gear"></i>{{ 'PHARMACY.BILLING_HEADER' | translate }}</span>
                     </h3>
                   </div>
                 </div>
                 <div class="portlet-body" style="border: 1px solid #a9d4da;">
                   <div class="form-group">
-                    <label class="control-label col-md-5">Label<sup>*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'GRID_HEADERS.LABEL' | translate }}<sup>*</sup><b>:</b></label>
                     <div class="col-md-7">
-                      <input class="form-control" type="text" maxlength="100" id="label" formControlName="StoreLabel" [(ngModel)]="CurrentDispensary.StoreLabel" value="" placeholder="Enter Label" (keyup.enter)="setFocusById('PanNo')" />
-                      <span class="color-red font-sm" [hidden]="CurrentDispensary.IsValidCheck('StoreLabel','required') || !(CurrentDispensary.IsDirty('StoreLabel'))">Dispensary label is required</span>
-                      <span class="color-red font-sm" *ngIf="CurrentDispensary.IsDirty('StoreLabel')" [hidden]="CurrentDispensary.IsValidCheck('StoreLabel','maxlength')"> Length is not proper</span>
+                      <input class="form-control" type="text" maxlength="100" id="label" formControlName="StoreLabel" [(ngModel)]="CurrentDispensary.StoreLabel" value="" [placeholder]="'PHARMACY.ENTER_LABEL' | translate" (keyup.enter)="setFocusById('PanNo')" />
+                      <span class="color-red font-sm" [hidden]="CurrentDispensary.IsValidCheck('StoreLabel','required') || !(CurrentDispensary.IsDirty('StoreLabel'))">{{ 'PHARMACY.DISPENSARY_LABEL_IS_REQUIRED' | translate }}</span>
+                      <span class="color-red font-sm" *ngIf="CurrentDispensary.IsDirty('StoreLabel')" [hidden]="CurrentDispensary.IsValidCheck('StoreLabel','maxlength')"> {{ 'PHARMACY.LENGTH_IS_NOT_PROPER' | translate }}</span>
                     </div>
                   </div>
                   <div class="form-group">
@@ -125,32 +125,32 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Contact Address<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'PHARMACY.CONTACT_ADDRESS' | translate }}<b>:</b></label>
                     <div class="col-md-7">
-                      <input class="form-control" type="text" maxlength="100" id="address" [(ngModel)]="CurrentDispensary.Address" [ngModelOptions]="{standalone: true}" value="" placeholder="Enter Contact Address" (keyup.enter)="setFocusById('contactNumber')" />
+                      <input class="form-control" type="text" maxlength="100" id="address" [(ngModel)]="CurrentDispensary.Address" [ngModelOptions]="{standalone: true}" value="" [placeholder]="'PHARMACY.ENTER_CONTACT_ADDRESS' | translate" (keyup.enter)="setFocusById('contactNumber')" />
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Contact Number<sup>*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'PHARMACY.CONTACT_NUMBER' | translate }}<sup>*</sup><b>:</b></label>
                     <div class="col-md-7">
-                      <input class="form-control" type="text" maxlength="10" id="contactNumber" [(ngModel)]="CurrentDispensary.ContactNo" formControlName="ContactNo" value="" placeholder="Enter Contact number" (keyup.enter)="setFocusById('email')" />
-                      <span class="color-red font-sm" [hidden]="CurrentDispensary.IsValidCheck('ContactNo','required') || !(CurrentDispensary.IsDirty('ContactNo'))">Contact number is required</span>
-                      <span class="color-red font-sm" *ngIf="CurrentDispensary.IsDirty('ContactNo')" [hidden]="CurrentDispensary.IsValidCheck('ContactNo','pattern')"> Contact number must be of 10 digits</span>
+                      <input class="form-control" type="text" maxlength="10" id="contactNumber" [(ngModel)]="CurrentDispensary.ContactNo" formControlName="ContactNo" value="" [placeholder]="'PHARMACY.ENTER_CONTACT_NUMBER' | translate" (keyup.enter)="setFocusById('email')" />
+                      <span class="color-red font-sm" [hidden]="CurrentDispensary.IsValidCheck('ContactNo','required') || !(CurrentDispensary.IsDirty('ContactNo'))">{{ 'PHARMACY.CONTACT_NUMBER_IS_REQUIRED' | translate }}</span>
+                      <span class="color-red font-sm" *ngIf="CurrentDispensary.IsDirty('ContactNo')" [hidden]="CurrentDispensary.IsValidCheck('ContactNo','pattern')"> {{ 'PHARMACY.CONTACT_NUMBER_MUST_BE_OF_10_DIGITS' | translate }}</span>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Email<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'GRID_HEADERS.EMAIL' | translate }}<b>:</b></label>
                     <div class="col-md-7">
-                      <input class="form-control" type="text" maxlength="100" id="email" [(ngModel)]="CurrentDispensary.Email" formControlName="Email" value="" placeholder="Enter Email" (keyup.enter)="setFocusById('btn_Save')" />
-                      <span class="color-red font-sm" *ngIf="CurrentDispensary.IsDirty('Email')" [hidden]="CurrentDispensary.IsValidCheck('Email','pattern')">Email ID is not proper</span>
+                      <input class="form-control" type="text" maxlength="100" id="email" [(ngModel)]="CurrentDispensary.Email" formControlName="Email" value="" [placeholder]="'PHARMACY.ENTER_EMAIL' | translate" (keyup.enter)="setFocusById('btn_Save')" />
+                      <span class="color-red font-sm" *ngIf="CurrentDispensary.IsDirty('Email')" [hidden]="CurrentDispensary.IsValidCheck('Email','pattern')">{{ 'PHARMACY.EMAIL_ID_IS_NOT_PROPER' | translate }}</span>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- Invoice Header Information End -->
               <div class="form-actions">
-                <input type="button" class="btn primary-btn" *ngIf="!update" id="btn_Save" class="btn green btn-success" (click)="Add()" value="Add" />
-                <input type="button" class="btn primary-btn" *ngIf="update" id="btn_Save" class="btn green btn-success" (click)="Update()" value="Update" />
+                <input type="button" class="btn primary-btn" *ngIf="!update" id="btn_Save" class="btn green btn-success" (click)="Add()" [value]="'PHARMACY.ADD' | translate" />
+                <input type="button" class="btn primary-btn" *ngIf="update" id="btn_Save" class="btn green btn-success" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
               </div>
             </div>
           </form>
@@ -169,18 +169,18 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix" style="zoom: 0.9; padding: 5rem;">
-          <a class="btn btn-danger history-del-btn" (click)="onPaymentModesPopUpClose()" title="Close">
+          <a class="btn btn-danger history-del-btn" (click)="onPaymentModesPopUpClose()" [title]="'COMMON.CLOSE' | translate">
             <i class="fa fa-times"></i>
           </a>
-          <h2><u>Available Payment Modes</u></h2>
-          <p>Store Name : <b>{{selectedItem.Name}}</b> </p>
+          <h2><u>{{ 'PHARMACY.AVAILABLE_PAYMENT_MODES' | translate }}</u></h2>
+          <p>{{ 'GRID_HEADERS.STORE_NAME' | translate }} : <b>{{selectedItem.Name}}</b> </p>
           <table class="table table-bordered">
             <tr>
-              <th>Payment Mode</th>
-              <th>Is Remarks Mandatory for Sale</th>
+              <th>{{ 'PHARMACY.PAYMENT_MODE' | translate }}</th>
+              <th>{{ 'PHARMACY.IS_REMARKS_MANDATORY_FOR_SALE' | translate }}</th>
             </tr>
             <tr *ngFor="let paymentModes of selectedItem.AvailablePaymentModes">
-              <td>{{paymentModes.PaymentModeName}} <span *ngIf="paymentModes.PaymentModeName == selectedItem.DefaultPaymentMode">(Default)</span></td>
+              <td>{{paymentModes.PaymentModeName}} <span *ngIf="paymentModes.PaymentModeName == selectedItem.DefaultPaymentMode">{{ 'PHARMACY.DEFAULT' | translate }}</span></td>
               <td>{{paymentModes.IsRemarksMandatory}}</td>
             </tr>
           </table>

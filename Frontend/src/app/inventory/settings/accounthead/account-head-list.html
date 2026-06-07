@@ -1,5 +1,5 @@
 ﻿<div>
-    <input type="button" class="btn primary-btn m1" (click)="AddAccountHead()" value="Add AccountHead" />
+    <input type="button" class="btn primary-btn m1" (click)="AddAccountHead()" [value]="'INVENTORY.ADD_ACCOUNTHEAD' | translate" />
     <accounthead-add [showAddPage]="showAddPage"
                    [selectedAccountHead]="selectedAccountHead"
                    (callback-add)="CallBackAdd($event)"></accounthead-add>

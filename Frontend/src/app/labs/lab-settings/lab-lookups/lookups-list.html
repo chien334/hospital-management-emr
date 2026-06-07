@@ -5,7 +5,7 @@
 </style>
 <div class="wrapper">
   <div class="row">
-    <div class="col-md-2"> <a class="btn blue bordered btn-sm primary-btn m1" name="name" (click)="AddNewLookUpComponent()"> <i class="fa fa-plus"></i>Add New Look-up </a> </div>
+    <div class="col-md-2"> <a class="btn blue bordered btn-sm primary-btn m1" name="name" (click)="AddNewLookUpComponent()"> <i class="fa fa-plus"></i>{{ 'LABS.ADD_NEW_LOOKUP' | translate }} </a> </div>
   </div>
   <danphe-grid [grid-colDefaults]="lookupsGridCol" [grid-data]="lookupsList" (grid-actions)="EditComponent($event)"> </danphe-grid>
   
@@ -16,8 +16,8 @@
         <div class="modelbox-div lab_modal_box">
           <div class="modelbox-header">
             <h4 class="margin-0-vr"> <strong>
-              <ng-container *ngIf="!update">Add Lookup</ng-container>
-              <ng-container *ngIf="update">Update Lookup</ng-container>
+              <ng-container *ngIf="!update">{{ 'LABS.ADD_LOOKUP' | translate }}</ng-container>
+              <ng-container *ngIf="update">{{ 'LABS.UPDATE_LOOKUP' | translate }}</ng-container>
               </strong> </h4>
           </div>
           <div class="modelbox-body">

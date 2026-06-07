@@ -4,30 +4,30 @@
     <div class="col-md-offset-1 col-md-10">
       <div class="modelbox-div">
         <div class="caption lb-caption">
-          <h3 class="margin-0-vr text-warning"> <strong>Lab Tests Orders of  {{this.selectedPatient.Name}}  (Patient Number: {{this.selectedPatient.PatientCode}})</strong> </h3>
+          <h3 class="margin-0-vr text-warning"> <strong>Lab {{ 'LABS.TESTS' | translate }} Orders of  {{this.selectedPatient.Name}}  ({{ 'LABS.PATIENT' | translate }} Number: {{this.selectedPatient.PatientCode}})</strong> </h3>
            <button class="btn btn-danger" (click)="CloseLabRequestsPage()">X</button>
         </div>
         <div class="modelbox-body">
           <div class="flex-container justify-sp-between margin-15-bt font-600">
-            <div>Ward/Bed: {{selectedPatient.BedInformation.Ward}} - {{selectedPatient.BedInformation.BedNumber}}</div>
+            <div>{{ 'LABS.WARD_3' | translate }}/Bed: {{selectedPatient.BedInformation.Ward}} - {{selectedPatient.BedInformation.BedNumber}}</div>
             <div>Admitting Docor: {{selectedPatient.AdmittingDoctorName}}</div>
-            <div>Admitted On: <date-lbl [value]="selectedPatient.AdmittedDate" [show-time]="true"></date-lbl></div>
+            <div>{{ 'LABS.ADMITTED_ON_1' | translate }} <date-lbl [value]="selectedPatient.AdmittedDate" [show-time]="true"></date-lbl></div>
           </div>
           <div *ngIf="labTestList && labTestList.length > 0" class="flex-table-holder">
             <div class="flex-container justify-sp-between table-row tbl-header">
-              <div class="tbl-text"><span class="inline-block">Test Name</span></div>
-              <div class="tbl-text"><span class="inline-block">Order Date Time</span>
-                <b *ngIf="!IsLocalDate">(AD)</b><b *ngIf="IsLocalDate">(BS)</b>
+              <div class="tbl-text"><span class="inline-block">{{ 'LABS.TEST_NAME' | translate }}</span></div>
+              <div class="tbl-text"><span class="inline-block">{{ 'LABS.ORDER_DATE_TIME' | translate }}</span>
+                <b *ngIf="!IsLocalDate">{{ 'LABS.AD' | translate }}</b><b *ngIf="IsLocalDate">{{ 'LABS.BS' | translate }}</b>
                 <div class="tooltip ng-star-inserted" style="color: #0067FF; z-index:inherit;">
                     <span style="display: inline-block;background: #D8DEF1;cursor: pointer;">
                       <i class="fa fa-refresh" (click)="ChangeDateFormat()"></i>
                     </span>
-                    <p class="tooltiptext ttptextdown no-print">Change date format to AD/BS</p>
+                    <p class="tooltiptext ttptextdown no-print">{{ 'LABS.CHANGE_DATE_FORMAT_TO_ADBS' | translate }}</p>
                 </div>
               </div>
-              <div class="tbl-text"><span class="inline-block">OrderStatus</span></div>
-              <div class="tbl-text"><span class="inline-block">Remarks</span></div>
-              <div class="tbl-text"><span class="inline-block">Action</span></div>
+              <div class="tbl-text"><span class="inline-block">{{ 'LABS.ORDERSTATUS' | translate }}</span></div>
+              <div class="tbl-text"><span class="inline-block">{{ 'COMMON.REMARKS' | translate }}</span></div>
+              <div class="tbl-text"><span class="inline-block">{{ 'COMMON.ACTION' | translate }}</span></div>
             </div>
             <div class="flex-table-body-holder">
               <div *ngFor="let test of labTestList; let i = index;" class="flex-container justify-sp-between flex-align-center table-row tbl-body">
@@ -39,8 +39,8 @@
                   <textarea [(ngModel)]="test.CancelRemarks" class="form-control"></textarea>
                   </span></div>
                 <div class="tbl-text" >
-                  <span *ngIf="!test.AllowCancellation">Cannot Cancel</span>
-                  <button *ngIf="test.AllowCancellation" [disabled]="loading" (click)="loading=true;cancelThisTest(test, i)" class="btn btn-danger" style="padding: 3px 10px;">Cancel</button>
+                  <span *ngIf="!test.AllowCancellation">{{ 'LABS.CANNOT_CANCEL' | translate }}</span>
+                  <button *ngIf="test.AllowCancellation" [disabled]="loading" (click)="loading=true;cancelThisTest(test, i)" class="btn btn-danger" style="padding: 3px 10px;">{{ 'COMMON.CANCEL' | translate }}</button>
                 </div>
                 <!--<div class="tbl-text" *ngIf="test.BillingStatus.toLowerCase() == 'provisional' && test.IsReportGenerated"><strong>Report Generated- Cannot Cancel it now!!</strong></div>
                 <div class="tbl-text" *ngIf="test.BillingStatus.toLowerCase() == 'paid' && !test.IsReportGenerated"><strong>Can Cancel Only from Billing</strong></div>
@@ -50,7 +50,7 @@
           </div>
           <div class="margin-15-bt" style="width: 100%;background: white;display: flex;flex-wrap: wrap;">
             <div *ngIf="labTestList && labTestList.length == 0" class="margin-20-vr text-center full-width-flx">
-              <p class="font-600 large-txt">No Test For Current InPatient</p>
+              <p class="font-600 large-txt">{{ 'LABS.NO_TEST_FOR_CURRENT_INPATIENT' | translate }}</p>
             </div>
             <div class="full-width-flx">
               <ward-billitem-request *ngIf="showOrderRequest" [counterId]="labCounterId" [billItems]="labBillItems"

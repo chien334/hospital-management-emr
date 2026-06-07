@@ -14,14 +14,14 @@
       <thead>
         <tr>
           <th *ngIf="!update"></th>
-          <th><b>ComponentName</b></th>
-          <th><b>Unit</b></th>
-          <th><b>ValueType</b></th>
-          <th><b>ControlType</b></th>
-          <th width="35%"><b>Range Description </b></th>
-          <th><b>Method</b></th>
-          <th><b>ValueLookp</b></th>
-          <th><b>Display Name</b></th>
+          <th><b>{{ 'LABS.COMPONENTNAME' | translate }}</b></th>
+          <th><b>{{ 'LABS.UNIT' | translate }}</b></th>
+          <th><b>{{ 'LABS.VALUETYPE' | translate }}</b></th>
+          <th><b>{{ 'LABS.CONTROLTYPE' | translate }}</b></th>
+          <th width="35%"><b>{{ 'LABS.RANGE_DESCRIPTION' | translate }} </b></th>
+          <th><b>{{ 'LABS.METHOD' | translate }}</b></th>
+          <th><b>{{ 'LABS.VALUELOOKP' | translate }}</b></th>
+          <th><b>{{ 'LABS.DISPLAY_NAME' | translate }}</b></th>
           <th *ngIf="!update && lbtstcomponentList.length > 1"></th>
         </tr>
       </thead>
@@ -34,13 +34,13 @@
                    formControlName="Component"
                    required
                    value=""
-                   type="text" id="Component" placeholder="Component Name" />
-              <span class="color-red font-sm" [hidden]="row.IsValidCheck('Component','required') || !(row.IsDirty('Component'))">Enter Component Name</span> </div></td>
+                   type="text" id="Component" [placeholder]="'LABS.COMPONENT_NAME_1' | translate" />
+              <span class="color-red font-sm" [hidden]="row.IsValidCheck('Component','required') || !(row.IsDirty('Component'))">{{ 'LABS.ENTER_COMPONENT_NAME' | translate }}</span> </div></td>
           <td style="width: 90px;"><input class="form-control cstm-form-control "
                  [(ngModel)]="row.Unit"
                  [ngModelOptions]="{standalone: true}"
                  value=""
-                 type="text" id="Unit" placeholder="Unit" /></td>
+                 type="text" id="Unit" [placeholder]="'LABS.UNIT' | translate" /></td>
           <td style="width: 90px;"><select class="form-control cstm-form-control " [(ngModel)]="row.ValueType" [ngModelOptions]="{standalone: true}" id="valuetype" (change)="DDLValChange(i)">
               <option *ngFor="let val of ValueTypeArray" value="{{val.Value}}">{{val.Name}}</option>
             </select></td>
@@ -52,90 +52,90 @@
                     [ngModelOptions]="{standalone: true}"
                     required
                     value=""
-                    type="text" id="RangeDescription" placeholder="Description">
+                    type="text" id="RangeDescription" [placeholder]="'GRID_HEADERS.DESCRIPTION' | translate">
                     </textarea>
             <div>
               <div class="range-holder">
-                <p><strong>Gen. Range</strong></p>
+                <p><strong>{{ 'LABS.GEN_RANGE' | translate }}</strong></p>
                 <div *ngIf="row.ValueType != 'number'" style="width: 80px;">
                   <input [disabled]="row.ValueType != 'number' || row.ControlType == 'Label'" class="form-control cstm-form-control "
                        [(ngModel)]="row.Range"
                        [ngModelOptions]="{standalone: true}"
                        required
                        value=""
-                       type="text" id="Range" placeholder="Range Value" />
+                       type="text" id="Range" [placeholder]="'LABS.RANGE_VALUE' | translate" />
                 </div>
                 <div *ngIf="row.ValueType == 'number'" style="width: 80px;">
                   <div class="num-field">
                     <input [disabled]="row.ControlType == 'Label'" class="form-control cstm-form-control " [(ngModel)]="row.MinValue"
                          [ngModelOptions]="{standalone: true}"
-                         type="number" id="Min" placeholder="Min" />
+                         type="number" id="Min" [placeholder]="'LABS.MIN' | translate" />
                     <input [disabled]="row.ControlType == 'Label'" class="form-control cstm-form-control " [(ngModel)]="row.MaxValue"
                          [ngModelOptions]="{standalone: true}"
-                         type="number" style="margin-top: 10px;" id="Max" placeholder="Max" />
+                         type="number" style="margin-top: 10px;" id="Max" [placeholder]="'LABS.MAX' | translate" />
                   </div>
                 </div>
               </div>
               <div class="range-holder">
-                <p><strong>Male Range</strong></p>
+                <p><strong>{{ 'LABS.MALE_RANGE' | translate }}</strong></p>
                 <div *ngIf="row.ValueType != 'number'" style="width: 80px;">
                   <input [disabled]="row.ValueType != 'number' || row.ControlType == 'Label'" class="form-control cstm-form-control "
                        [(ngModel)]="row.MaleRange"
                        [ngModelOptions]="{standalone: true}"
                        required
                        value=""
-                       type="text" id="Range" placeholder="Range Value" />
+                       type="text" id="Range" [placeholder]="'LABS.RANGE_VALUE' | translate" />
                 </div>
                 <div *ngIf="row.ValueType == 'number'" style="width: 80px;">
                   <div class="num-field">
                     <input [disabled]="row.ControlType == 'Label'" class="form-control cstm-form-control " [(ngModel)]="row.MaleMinValue"
                          [ngModelOptions]="{standalone: true}"
-                         type="number" id="Min" placeholder="Min" />
+                         type="number" id="Min" [placeholder]="'LABS.MIN' | translate" />
                     <input [disabled]="row.ControlType == 'Label'" class="form-control cstm-form-control " [(ngModel)]="row.MaleMaxValue"
                          [ngModelOptions]="{standalone: true}"
-                         type="number" style="margin-top: 10px;" id="Max" placeholder="Max" />
+                         type="number" style="margin-top: 10px;" id="Max" [placeholder]="'LABS.MAX' | translate" />
                   </div>
                 </div>
               </div>
               <div class="range-holder">
-                <p><strong>Female Range</strong></p>
+                <p><strong>{{ 'LABS.FEMALE_RANGE' | translate }}</strong></p>
                 <div *ngIf="row.ValueType != 'number'" style="width: 80px;">
                   <input [disabled]="row.ValueType != 'number' || row.ControlType == 'Label'" class="form-control cstm-form-control "
                        [(ngModel)]="row.FemaleRange"
                        [ngModelOptions]="{standalone: true}"
                        required
                        value=""
-                       type="text" id="Range" placeholder="Range Value" />
+                       type="text" id="Range" [placeholder]="'LABS.RANGE_VALUE' | translate" />
                 </div>
                 <div *ngIf="row.ValueType == 'number'" style="width: 80px;">
                   <div class="num-field">
                     <input [disabled]="row.ControlType == 'Label'" class="form-control cstm-form-control " [(ngModel)]="row.FemaleMinValue"
                          [ngModelOptions]="{standalone: true}"
-                         type="number" id="Min" placeholder="Min" />
+                         type="number" id="Min" [placeholder]="'LABS.MIN' | translate" />
                     <input [disabled]="row.ControlType == 'Label'" class="form-control cstm-form-control " [(ngModel)]="row.FemaleMaxValue"
                          [ngModelOptions]="{standalone: true}"
-                         type="number" style="margin-top: 10px;" id="Max" placeholder="Max" />
+                         type="number" style="margin-top: 10px;" id="Max" [placeholder]="'LABS.MAX' | translate" />
                   </div>
                 </div>
               </div>
               <div class="range-holder">
-                <p><strong>Child Range</strong></p>
+                <p><strong>{{ 'LABS.CHILD_RANGE' | translate }}</strong></p>
                 <div *ngIf="row.ValueType != 'number'" style="width: 80px;">
                   <input [disabled]="row.ValueType != 'number' || row.ControlType == 'Label'" class="form-control cstm-form-control "
                        [(ngModel)]="row.ChildRange"
                        [ngModelOptions]="{standalone: true}"
                        required
                        value=""
-                       type="text" id="Range" placeholder="Range Value" />
+                       type="text" id="Range" [placeholder]="'LABS.RANGE_VALUE' | translate" />
                 </div>
                 <div *ngIf="row.ValueType == 'number'" style="width: 80px;">
                   <div class="num-field">
                     <input [disabled]="row.ControlType == 'Label'" class="form-control cstm-form-control " [(ngModel)]="row.ChildMinValue"
                          [ngModelOptions]="{standalone: true}"
-                         type="number" id="Min" placeholder="Min" />
+                         type="number" id="Min" [placeholder]="'LABS.MIN' | translate" />
                     <input [disabled]="row.ControlType == 'Label'" class="form-control cstm-form-control " [(ngModel)]="row.ChildMaxValue"
                          [ngModelOptions]="{standalone: true}"
-                         type="number" style="margin-top: 10px;" id="Max" placeholder="Max" />
+                         type="number" style="margin-top: 10px;" id="Max" [placeholder]="'LABS.MAX' | translate" />
                   </div>
                 </div>
               </div>
@@ -144,7 +144,7 @@
                  [(ngModel)]="row.Method"
                  [ngModelOptions]="{standalone: true}"
                  value=""
-                 type="text" id="Method" placeholder="Method" /></td>
+                 type="text" id="Method" [placeholder]="'LABS.METHOD' | translate" /></td>
           <td style="width: 120px;"><!-- <input [disabled]="row.ControlType == 'Label'" class="form-control cstm-form-control"
                  [(ngModel)]="row.ValueLookup"
                  [ngModelOptions]="{standalone: true}"
@@ -157,7 +157,7 @@
                  [(ngModel)]="row.LookUp"
                  [list-formatter]="lookUpListFormatter"
                  [source]="lookUpNames"
-                 placeholder="Enter LookUp Name"
+                 [placeholder]="'LABS.ENTER_LOOKUP_NAME' | translate"
                  display-property-name="LookUpName"
                  value-property-name=null
                  (ngModelChange)="LookUpSelected(i)"
@@ -169,7 +169,7 @@
                    [(ngModel)]="row.DisplayName"
                    [ngModelOptions]="{standalone: true}"
                    value=""
-                   type="text" id="Component" placeholder="Component Display Name" />
+                   type="text" id="Component" [placeholder]="'LABS.COMPONENT_DISPLAY_NAME' | translate" />
             </div></td>
           <td *ngIf="!update && lbtstcomponentList.length > 1"><a (click)="DeleteRow(i)" class="btn btn-danger"><i class="fa fa-times no-margin"></i></a></td>
         </tr>
@@ -178,8 +178,8 @@
   </div>
   <div class="modelbox-footer">
     <div class="all-buttons text-right">
-      <button [disabled]="loading" *ngIf="!update" class="btn btn-primary margin-7-hr" (click)="loading=true;AddNewComponents()">Add</button>
-      <button [disabled]="loading" *ngIf="update" class="btn btn-primary margin-7-hr" (click)="loading=true;UpdateComponent()">Update</button>
+      <button [disabled]="loading" *ngIf="!update" class="btn btn-primary margin-7-hr" (click)="loading=true;AddNewComponents()">{{ 'LABS.ADD_1' | translate }}</button>
+      <button [disabled]="loading" *ngIf="update" class="btn btn-primary margin-7-hr" (click)="loading=true;UpdateComponent()">{{ 'COMMON.UPDATE' | translate }}</button>
       <!-- <button [disabled]="loading" class="btn btn-cancel margin-7-hr" (click)="loading=true;Cancel()">Cancel</button> --> 
     </div>
   </div>

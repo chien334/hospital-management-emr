@@ -7,37 +7,37 @@
                 <div class="modelbox-div clearfix">               
                     <div class="caption lb-caption">
                         <h3>
-                            <span *ngIf="!update">Add Mapping</span>
-                            <span *ngIf="update">Update Mapping</span>
+                            <span *ngIf="!update">{{ 'INVENTORY.ADD_MAPPING' | translate }}</span>
+                            <span *ngIf="update">{{ 'INVENTORY.UPDATE_MAPPING' | translate }}</span>
                         </h3>
-                        <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>                  
+                        <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>                  
                     </div>                   
                 <form [formGroup]="CurrentCurrency.CurrencyValidator" class="form-horizontal hm-form">
                         <div class="form-body">                        
                             <div class="form-group">
-                                <label class="control-label col-md-5">Currency Code<sup class="color-red">*</sup><b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'INVENTORY.CURRENCY_CODE' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" maxlength="30" type="text"
                                             [(ngModel)]="CurrentCurrency.CurrencyCode"
                                             formControlName="CurrencyCode"
                                             id="CurrencyCode"
-                                            placeholder="CurrencyCode" />
-                                    <span class="color-red font-sm" [hidden]="CurrentCurrency.IsValidCheck('CurrencyCode','required') || !(CurrentCurrency.IsDirty('CurrencyCode'))">CurrencyCode is required</span>
-                                    <span class="color-red font-sm" *ngIf="CurrentCurrency.IsDirty('CurrencyCode')" [hidden]="CurrentCurrency.IsValidCheck('CurrencyCode','maxlength')"> Length is not proper</span>
+                                            [placeholder]="'INVENTORY.CURRENCYCODE' | translate" />
+                                    <span class="color-red font-sm" [hidden]="CurrentCurrency.IsValidCheck('CurrencyCode','required') || !(CurrentCurrency.IsDirty('CurrencyCode'))">{{ 'INVENTORY.CURRENCYCODE_IS_REQUIRED' | translate }}</span>
+                                    <span class="color-red font-sm" *ngIf="CurrentCurrency.IsDirty('CurrencyCode')" [hidden]="CurrentCurrency.IsValidCheck('CurrencyCode','maxlength')"> {{ 'INVENTORY.LENGTH_IS_NOT_PROPER' | translate }}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Description<b>:</b></label>
+                                <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                                 <div class="col-md-7">
                                     <input class="form-control" maxlength="200" type="text"
                                             [(ngModel)]="CurrentCurrency.Description"
                                             [ngModelOptions]="{standalone: true}"
                                             id="Description"
-                                            placeholder="Description" />
+                                            [placeholder]="'GRID_HEADERS.DESCRIPTION' | translate" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5">Is Active <b>:</b> </label>
+                                <label class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                                 <div class="col-md-7">
                                     <div class="input-group">
                                         <div class="icheck-inline">
@@ -53,8 +53,8 @@
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <input type="button" class="btn primary-btn" *ngIf="!update" (click)="AddCurrency()" value="Add Currency" />
-                                <input type="button" class="btn primary-btn" *ngIf="update" (click)="Update()" value="Update" />
+                                <input type="button" class="btn primary-btn" *ngIf="!update" (click)="AddCurrency()" [value]="'INVENTORY.ADD_CURRENCY' | translate" />
+                                <input type="button" class="btn primary-btn" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
                             </div>                       
                         </div>
                     </form>

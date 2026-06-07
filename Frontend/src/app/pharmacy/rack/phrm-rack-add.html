@@ -5,48 +5,48 @@
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
             <h3> <span>{{ !CurrentRack.RackId ? 'Add Rack' : 'Update ' + CurrentRack.RackNo}}</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">{{ 'PHARMACY.X' | translate }}</a>
           </div>
           <form [formGroup]="CurrentRack.RackValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-5">Store<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.STORE' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <select id="store" class="form-control" [(ngModel)]="selectedStore" formControlName="StoreId" (change)="OnStoreChange()" (keyup.enter)="setFocusById('Rack')">
-                    <option selected disabled [ngValue]="null">--Select Store--</option>
+                    <option selected disabled [ngValue]="null">--{{ 'PHARMACY.SELECT_STORE' | translate }}--</option>
                     <option *ngFor="let store of StoreList" [ngValue]="store">{{store.StoreName}}</option>
                   </select>
-                  <span style="color:red" *ngIf="CurrentRack.IsDirty('StoreId')" [hidden]="CurrentRack.IsValidCheck('StoreId','required')"> Store is required.</span>
+                  <span style="color:red" *ngIf="CurrentRack.IsDirty('StoreId')" [hidden]="CurrentRack.IsValidCheck('StoreId','required')"> {{ 'PHARMACY.STORE_IS_REQUIRED' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Rack No.<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'PHARMACY.RACK_NO' | translate }}<b>:</b></label>
                 <div class="col-md-7">
-                  <input class="form-control" maxlength="30" [(ngModel)]="CurrentRack.RackNo" formControlName="RackNo" (keyup.enter)="(!CurrentRack.RackId || CurrentRack.ParentId != 0)? setFocusById('ParentRack'):setFocusById('description')" type="text" id="Rack" value="" placeholder="Rack Name" />
+                  <input class="form-control" maxlength="30" [(ngModel)]="CurrentRack.RackNo" formControlName="RackNo" (keyup.enter)="(!CurrentRack.RackId || CurrentRack.ParentId != 0)? setFocusById('ParentRack'):setFocusById('description')" type="text" id="Rack" value="" [placeholder]="'PHARMACY.RACK_NAME' | translate" />
                   <br />
-                  <span style="color:red" *ngIf="CurrentRack.IsDirty('RackNo')" [hidden]="CurrentRack.IsValidCheck('RackNo','required, unique')"> Rack Name is required.</span>
+                  <span style="color:red" *ngIf="CurrentRack.IsDirty('RackNo')" [hidden]="CurrentRack.IsValidCheck('RackNo','required, unique')"> {{ 'PHARMACY.RACK_NAME_IS_REQUIRED' | translate }}</span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Parent Rack<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'PHARMACY.PARENT_RACK' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <select id="ParentRack" class="form-control" [(ngModel)]="SelectedParentRack" (change)="AssignParentRack()" [ngModelOptions]="{standalone: true}" (key.enter)="setFocusById('description')">
-                    <option selected disabled [ngValue]="null">--Select Parent Rack--</option>
+                    <option selected disabled [ngValue]="null">--{{ 'PHARMACY.SELECT_PARENT_RACK' | translate }}--</option>
                     <option *ngFor="let parentRack of ParentRackListFiltered" [ngValue]="parentRack">{{ parentRack.RackNo }}</option>
                   </select>
                   <br />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Description<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <textarea id="description" class="form-control" [(ngModel)]="CurrentRack.Description" (keyup.enter)="(!CurrentRack.RackId) ?setFocusById('save'):setFocusById('update')" [ngModelOptions]="{standalone: true}"></textarea>
                 </div>`
               </div>
 
               <div class="all-buttons text-right">
-                <button type="button" id="save" class="btn green btn-success" *ngIf="!CurrentRack.RackId " (click)="AddRack()" [disabled]="loading">Save</button>
-                <button type="button" id="update" class="btn green btn-success" *ngIf="CurrentRack.RackId " (click)="UpdateRack()" [disabled]="loading">Update</button>
+                <button type="button" id="save" class="btn green btn-success" *ngIf="!CurrentRack.RackId " (click)="AddRack()" [disabled]="loading">{{ 'COMMON.SAVE' | translate }}</button>
+                <button type="button" id="update" class="btn green btn-success" *ngIf="CurrentRack.RackId " (click)="UpdateRack()" [disabled]="loading">{{ 'COMMON.UPDATE' | translate }}</button>
               </div>
             </div>
           </form>

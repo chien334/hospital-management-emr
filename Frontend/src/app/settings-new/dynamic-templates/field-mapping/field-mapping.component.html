@@ -40,8 +40,8 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3 style="text-align: center;">Manage Field Mapping of: <b [style.color]="'rgb(0, 0, 255)'">{{TemplateName}}</b></h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3 style="text-align: center;">{{ 'SETTINGS_NEW.MANAGE_FIELD_MAPPING_OF' | translate }} <b [style.color]="'rgb(0, 0, 255)'">{{TemplateName}}</b></h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <div>
             <table class="table-container">
@@ -49,10 +49,10 @@
                 <tr>
                   <th></th>
                   <th>S.N</th>
-                  <th>Field Name</th>
-                  <th>Display Label</th>
-                  <th>Mandatory?</th>
-                  <th>Sequence</th>
+                  <th>{{ 'SETTINGS_NEW.FIELD_NAME' | translate }}</th>
+                  <th>{{ 'SETTINGS_NEW.DISPLAY_LABEL' | translate }}</th>
+                  <th>{{ 'SETTINGS_NEW.MANDATORY' | translate }}</th>
+                  <th>{{ 'SETTINGS_NEW.SEQUENCE' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -86,15 +86,15 @@
                 </tr>
                 <!-- Show a message if no data is available -->
                 <tr *ngIf="TemplateFieldMappings.length === 0">
-                  <td colspan="6" style="text-align: center;">No data available.</td>
+                  <td colspan="6" style="text-align: center;">{{ 'SETTINGS_NEW.NO_DATA_AVAILABLE' | translate }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="panel-footer" style="display: flex; justify-content: flex-end;margin-right: 20px;">
             <button type="button" id="id_btn_field_mapping_save" class="btn green btn-success margin-7-hr" style="margin-right: 20px;"
-                    (click)="Save()">Save</button>
-            <button type="button" id="id_btn_field_mapping_discard" class="btn btn-warning margin-7-hr" (click)="Discard()">Discard</button>
+                    (click)="Save()">{{ 'COMMON.SAVE' | translate }}</button>
+            <button type="button" id="id_btn_field_mapping_discard" class="btn btn-warning margin-7-hr" (click)="Discard()">{{ 'COMMON.DISCARD' | translate }}</button>
           </div>
         </div>
       </div>

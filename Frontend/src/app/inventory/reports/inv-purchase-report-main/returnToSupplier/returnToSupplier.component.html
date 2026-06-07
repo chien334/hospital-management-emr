@@ -1,12 +1,12 @@
 <style>
-  .from-to-date-container {
+  .from-to-{{ 'GRID_HEADERS.DATE' | translate }}-container {
     margin-bottom: 1.5rem;
   }
 </style>
 <div class="row">
   <div class="col-md-6">
     <div class="caption custom-caption no-margin"><i class="fa fa-bar-chart"></i>
-      <span class="caption-subject">Return To Supplier Report</span>
+      <span class="caption-subject">{{ 'INVENTORY.RETURN_TO_SUPPLIER_REPORT' | translate }}</span>
     </div>
   </div>
 </div>
@@ -18,49 +18,49 @@
   </div>
   <div class="col-md-4">
     <div class="form-group row">
-      <label class="control-label col-md-5">Vendor Name<sup>*</sup><b style="float:right;">:</b></label>
+      <label class="control-label col-md-5">{{ 'INVENTORY.VENDOR_NAME' | translate }}<sup>*</sup><b style="float:right;">:</b></label>
       <div class="col-md-6 autocomplete-item">
-        <input id="VendorName" danphe-auto-complete class="form-control" [(ngModel)]="selectedVndr" [source]="VendorList" [list-formatter]="VendorListFormatter" placeholder="Select Vendor Name" display-property-name="VendorName" value-property-name=null (valueChanged)="GetVendorDetails()" (focusout)="GetVendorDetails()" onclick="this.select();" [match-formatted]="true" />
+        <input id="VendorName" danphe-auto-complete class="form-control" [(ngModel)]="selectedVndr" [source]="VendorList" [list-formatter]="VendorListFormatter" [placeholder]="'INVENTORY.SELECT_VENDOR_NAME' | translate" display-property-name="VendorName" value-property-name=null (valueChanged)="GetVendorDetails()" (focusout)="GetVendorDetails()" onclick="this.select();" [match-formatted]="true" />
       </div>
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group row">
-      <label class="control-label col-md-5">Item Name<sup>*</sup><b style="float:right;">:</b></label>
+      <label class="control-label col-md-5">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}<sup>*</sup><b style="float:right;">:</b></label>
       <div class="col-md-6 autocomplete-item">
-        <input id="ItemName" danphe-auto-complete class="form-control" [(ngModel)]="selecteditem" [source]="itemList" [list-formatter]="ItemListFormatter" placeholder="Select Item Name" display-property-name="ItemName" value-property-name=null (valueChanged)="GetItemDetails()" (focusout)="GetItemDetails()" onclick="this.select();" [match-formatted]="true" />
+        <input id="ItemName" danphe-auto-complete class="form-control" [(ngModel)]="selecteditem" [source]="itemList" [list-formatter]="ItemListFormatter" [placeholder]="'INVENTORY.SELECT_ITEM_NAME' | translate" display-property-name="ItemName" value-property-name=null (valueChanged)="GetItemDetails()" (focusout)="GetItemDetails()" onclick="this.select();" [match-formatted]="true" />
       </div>
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group row">
-      <label class="control-label col-md-5">Batch Number<b style="float:right;">:</b></label>
+      <label class="control-label col-md-5">{{ 'INVENTORY.BATCH_NUMBER' | translate }}<b style="float:right;">:</b></label>
       <div class="col-md-6">
-        <input type="text" [(ngModel)]="BatchNumber" [ngModelOptions]="{standalone: true}" placeholder="Enter Batch No" style="width:100%!important;">
+        <input type="text" [(ngModel)]="BatchNumber" [ngModelOptions]="{standalone: true}" [placeholder]="'INVENTORY.ENTER_BATCH_NO' | translate" style="width:100%!important;">
       </div>
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group row">
-      <label class="control-label col-md-5">Good Receipt Number<b style="float:right;">:</b></label>
+      <label class="control-label col-md-5">{{ 'INVENTORY.GOOD_RECEIPT_NUMBER' | translate }}<b style="float:right;">:</b></label>
       <div class="col-md-6">
-        <input type="number" [(ngModel)]="GoodReceiptNumber" [ngModelOptions]="{standalone: true}" placeholder="Enter Good Receipt No" style="width:100%!important;">
+        <input type="number" [(ngModel)]="GoodReceiptNumber" [ngModelOptions]="{standalone: true}" [placeholder]="'INVENTORY.ENTER_GOOD_RECEIPT_NO' | translate" style="width:100%!important;">
       </div>
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group row">
-      <label class="control-label col-md-5">Credit Note Number<b style="float:right;">:</b></label>
+      <label class="control-label col-md-5">{{ 'INVENTORY.CREDIT_NOTE_NUMBER' | translate }}<b style="float:right;">:</b></label>
       <div class="col-md-6">
-        <input type="number" [(ngModel)]="CreditNoteNumber" [ngModelOptions]="{standalone: true}" placeholder="Enter Credit Note No" style="width:100%!important;">
+        <input type="number" [(ngModel)]="CreditNoteNumber" [ngModelOptions]="{standalone: true}" [placeholder]="'INVENTORY.ENTER_CREDIT_NOTE_NO' | translate" style="width:100%!important;">
       </div>
     </div>
   </div>
   <div class="col-md-4">
     <button class="btn green btn-success" type="button" (click)="Load()" [disabled]="loading">
       <i class="fa fa-search"></i>&nbsp;
-      <span *ngIf="!loading">Load</span>
-      <span *ngIf="loading">Loading...</span>
+      <span *ngIf="!loading">{{ 'INVENTORY.LOAD' | translate }}</span>
+      <span *ngIf="loading">{{ 'INVENTORY.LOADING' | translate }}.</span>
     </button>
   </div>
 </div>

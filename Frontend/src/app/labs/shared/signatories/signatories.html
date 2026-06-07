@@ -38,20 +38,19 @@
       <div *ngIf="displayMode !='edit'">--------------------</div>
       <div *ngIf="departmentName=='lab'" class="sg-name">
         <div *ngIf="emp.LabSignature" [innerHTML]="emp.LabSignature"></div>
-        <i *ngIf="emp.LabSignature" class="fa fa-close" (click)="cancel(emp.EmployeeId)"></i> <span *ngIf="!emp.LabSignature" style="color:red;">not
-          found</span>
+        <i *ngIf="emp.LabSignature" class="fa fa-close" (click)="cancel(emp.EmployeeId)"></i> <span *ngIf="!emp.LabSignature" style="color:red;">{{ 'LABS.NOT_FOUND' | translate }}</span>
       </div>
       <div *ngIf="departmentName=='radiology'" class="sg-name">
         <div *ngIf="emp.RadiologySignature" [innerHTML]="emp.RadiologySignature"></div>
         <i *ngIf="emp.RadiologySignature" class="fa fa-close" (click)="cancel(emp.EmployeeId)"></i> <span *ngIf="!emp.RadiologySignature"
-              style="color:red;">not found</span>
+              style="color:red;">{{ 'LABS.NOT_FOUND_1' | translate }}</span>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4" *ngIf="displayMode=='edit'">
       <div class="sig-select">
-        <p> <b>Select Signatories:</b> </p>
+        <p> <b>{{ 'LABS.SELECT_SIGNATORIES' | translate }}</b> </p>
         <angular2-multiselect [data]="allEmpsFormatted"
                               [(ngModel)]="selEmployees"
                               [settings]="dropdownSettings"

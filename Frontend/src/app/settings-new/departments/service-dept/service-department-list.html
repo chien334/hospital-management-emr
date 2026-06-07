@@ -3,7 +3,7 @@
     <span class="caption-subject font-blue bold uppercase">Manage Service Department</span>
 </div>
 <br />-->
-<a *ngIf = "securityService.HasPermission('btn-settings-serv-dept-addnew')" feature="button" class="btn blue bordered" (click)="AddServDepartment()"><i class="fa fa-plus"></i>Add Service Department</a>
+<a *ngIf = "securityService.HasPermission('btn-settings-serv-dept-addnew')" feature="button" class="btn blue bordered" (click)="AddServDepartment()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_SERVICE_DEPARTMENT' | translate }}</a>
 <service-department-add *ngIf="showAddPage"
                         [selectedServDepartment]="selectedServDepartment"
                         (callback-add)="CallBackAdd($event)"></service-department-add>

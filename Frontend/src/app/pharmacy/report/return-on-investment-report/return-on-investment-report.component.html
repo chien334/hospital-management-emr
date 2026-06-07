@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="caption custom-caption" style="float: left;">
         <i class="glyphicon glyphicon-asterisk"></i>
-        <span class="caption-subject">Return On Investment Report</span>
+        <span class="caption-subject">{{ 'PHARMACY.RETURN_ON_INVESTMENT_REPORT' | translate }}</span>
       </div>
     </div>
     <div class="">
@@ -13,8 +13,8 @@
       <div class="col-md-6 col-xs-12">
         <div class="row">
           <button class="btn blue" type="button" (click)="GetReportData()" [disabled]="loading">
-            <span *ngIf="!loading">Show Report</span>
-            <span *ngIf="loading">Loading...</span>
+            <span *ngIf="!loading">{{ 'PHARMACY.SHOW_REPORT' | translate }}</span>
+            <span *ngIf="loading">{{ 'PHARMACY.LOADING' | translate }}</span>
           </button>
         </div>
       </div>
@@ -34,7 +34,7 @@
       <thead>
         <tr>
           <th colspan="2" style="text-align: center;">
-            <span style="font-size:large;"> Report Summary </span>
+            <span style="font-size:large;"> {{ 'PHARMACY.REPORT_SUMMARY' | translate }} </span>
 
           </th>
         </tr>
@@ -43,7 +43,7 @@
         <ng-container>
           <tr>
             <td style="font-weight:bold; color:blue">
-              <span> <b> Total Money Investment </b> </span>
+              <span> <b> {{ 'PHARMACY.TOTAL_MONEY_INVESTMENT' | translate }} </b> </span>
             </td>
             <td>
               <span style="font-size: 2rem;"> {{grandTotal.totalInvestedValue |Currency }}</span>
@@ -51,7 +51,7 @@
           </tr>
           <tr>
             <td style="font-weight:bold; color:blue">
-              <span> <b> Total Sales Value </b> </span>
+              <span> <b> {{ 'PHARMACY.TOTAL_SALES_VALUE' | translate }} </b> </span>
             </td>
             <td>
               <span style="font-size: 2rem;"> {{grandTotal.totalSalesValue | Currency }}</span>
@@ -59,7 +59,7 @@
           </tr>
           <tr>
             <td style="font-weight:bold; color:blue">
-              <span> <b> Total Profit </b> </span>
+              <span> <b> {{ 'PHARMACY.TOTAL_PROFIT' | translate }} </b> </span>
             </td>
             <td>
               <span style="font-size: 2rem;"> {{grandTotal.profit }}</span>
@@ -67,7 +67,7 @@
           </tr>
           <tr>
             <td style="font-weight:bold; color:blue">
-              <span> <b> Total Profit% </b> </span>
+              <span> <b> {{ 'PHARMACY.TOTAL_PROFIT' | translate }} </b> </span>
             </td>
             <td>
               <span style="font-size: 2rem;"> {{grandTotal.profitPer }}</span>
@@ -75,7 +75,7 @@
           </tr>
           <tr>
             <td style="font-weight:bold; color:blue">
-              <span> <b> Total ROI%. </b> </span>
+              <span> <b> {{ 'PHARMACY.TOTAL_ROI' | translate }} </b> </span>
             </td>
             <td>
               <span style="font-size: 2rem;"> {{grandTotal.ROI }}</span>

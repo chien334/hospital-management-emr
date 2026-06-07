@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div>
         <div class="lb-si-title">
-          <h4>Default Signatories for Normal Tests:</h4>
+          <h4>{{ 'LABS.DEFAULT_SIGNATORIES_FOR_NORMAL_TESTS' | translate }}</h4>
         </div>
         <div class="lb-si-div" *ngFor="let doctor of DefaultSignatoriesEmpId; let i= index;">
           <label class="mt-checkbox mt-checkbox-outline" for="{{i}}{{doctor.FirstName}}">
@@ -21,7 +21,7 @@
       </div>
       <div style="padding-top: 20px;">
         <div class="lb-si-title">
-          <h4>Default Histo/Cyto Signatories:</h4>
+          <h4>{{ 'LABS.DEFAULT_HISTOCYTO_SIGNATORIES' | translate }}</h4>
         </div>
         <div class="lb-si-div" *ngFor="let doc of DefaultHistoCytoSignatoriesEmpId; let i= index;">
           <label class="mt-checkbox mt-checkbox-outline" for="{{doc.EmployeeId}}">
@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="col-md-12 text-center">
-      <button class="btn btn-blue primary-btn" (click)="Update()">Update Default Signatories</button>
+      <button class="btn btn-blue primary-btn" (click)="Update()">{{ 'LABS.UPDATE_DEFAULT_SIGNATORIES' | translate }}</button>
     </div>
   </div>
 </div>

@@ -18,24 +18,24 @@
 </style>
 
 <div class="caption custom-caption">
-  <h3><span class="caption-subject">Return To Supplier</span> </h3>
+  <h3><span class="caption-subject">{{ 'PHARMACY.RETURN_TO_SUPPLIER' | translate }}</span> </h3>
 </div>
 <div *ngIf="showReturnSupp">
-  <button class="btn blue" type="button" (click)="BackToReturnSupplier()">Back</button>
+  <button class="btn blue" type="button" (click)="BackToReturnSupplier()">{{ 'COMMON.BACK' | translate }}</button>
 </div>
 <div class="row" *ngIf="!showReturnSupp">
   <form [formGroup]="curtRetSuppModel.ReturnToSupplierValidator" class="form-horizontal hm-form">
     <div class="col-md-3">
       <div class="form-group">
-        <label class="control-label col-md-4 col-sm-3">Supplier<b>:</b></label>
+        <label class="control-label col-md-4 col-sm-3">{{ 'PHARMACY.SUPPLIER' | translate }}<b>:</b></label>
         <div class="col-md-8 col-sm-9">
-          <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)" [ngModelOptions]="{standalone:true}" [(ngModel)]="selSupplier" [source]="supplierList" placeholder="-- Search Supplier --" [list-formatter]="SupplierListFormatter" ngModelOptions="{standalone:true}" display-property-name="SupplierName" value-property-name="null" max-num-list="15" style="width: 100%;" />
+          <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)" [ngModelOptions]="{standalone:true}" [(ngModel)]="selSupplier" [source]="supplierList" [placeholder]="'PHARMACY.SEARCH_SUPPLIER' | translate" [list-formatter]="SupplierListFormatter" ngModelOptions="{standalone:true}" display-property-name="SupplierName" value-property-name="null" max-num-list="15" style="width: 100%;" />
         </div>
       </div>
     </div>
     <div class="col-md-2">
       <div class="form-group">
-        <label class="control-label col-md-5 col-sm-5">GRNo<b>:</b></label>
+        <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.GRNO' | translate }}<b>:</b></label>
         <div class="col-md-7 col-sm-7">
           <input style="width:80px;" class="form-control" value="" [(ngModel)]="currGRDetail.GoodReceiptPrintId" [ngModelOptions]="{standalone:true}" min="1" type="text" value="">
         </div>
@@ -43,7 +43,7 @@
     </div>
     <!-- <div class="col-md-2">
       <div class="form-group">
-        <label class="control-label col-md-6 col-sm-5">Batch No.<b>:</b></label>
+        <label class="control-label col-md-6 col-sm-5">{{ 'PHARMACY.BATCH_NO' | translate }}.<b>:</b></label>
         <div class="col-md-6 col-sm-7">
           <input style="width:80px;" class="form-control" [(ngModel)]="curtRetSuppItemModel.BatchNo" [ngModelOptions]="{standalone:true}" min="1" type="text" value="">
         </div>
@@ -51,7 +51,7 @@
     </div> -->
     <div class="col-md-3">
       <div class="form-group">
-        <label class="control-label col-md-4 col-sm-5">InvoiceNo<b>:</b></label>
+        <label class="control-label col-md-4 col-sm-5">{{ 'PHARMACY.INVOICENO' | translate }}<b>:</b></label>
         <div class="col-md-8 col-sm-7">
           <input style="width:80px;" class="form-control" [(ngModel)]="currGRDetail.InvoiceNo" [ngModelOptions]="{standalone:true}" min="1" type="text" value="">
         </div>
@@ -59,13 +59,13 @@
     </div>
   </form>
   <div class="form-group clearfix">
-    <button class="btn blue" type="button" (click)=" getReturnToSupplier()"> <i class="fa fa-search"></i> Search </button>
+    <button class="btn blue" type="button" (click)=" getReturnToSupplier()"> <i class="fa fa-search"></i> {{ 'PHARMACY.SEARCH' | translate }} </button>
   </div>
 </div>
 <div *ngIf="showReturnSupp">
   <div class="col-md-3">
     <div class="form-group">
-      <label class="control-label col-md-4 col-sm-3">Supplier<b>:</b></label>
+      <label class="control-label col-md-4 col-sm-3">{{ 'PHARMACY.SUPPLIER' | translate }}<b>:</b></label>
       <div class="col-md-8 col-sm-9">
         {{returnFromSupplier.SupplierName}}
       </div>
@@ -73,7 +73,7 @@
   </div>
   <div class="col-md-2">
     <div class="form-group">
-      <label class="control-label col-md-5 col-sm-5">GRNo<b>:</b></label>
+      <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.GRNO' | translate }}<b>:</b></label>
       <div class="col-md-7 col-sm-7">
         {{gdRptNo}}
       </div>
@@ -81,7 +81,7 @@
   </div>
   <div class="col-md-3">
     <div class="form-group">
-      <label class="control-label col-md-4 col-sm-5">InvoiceNo<b>:</b></label>
+      <label class="control-label col-md-4 col-sm-5">{{ 'PHARMACY.INVOICENO' | translate }}<b>:</b></label>
       <div class="col-md-8 col-sm-7">
         {{invoiceno}}
       </div>
@@ -89,10 +89,10 @@
   </div>
   <div>
     <form [formGroup]="curtRetSuppModel.ReturnToSupplierValidator" class="form-horizontal hm-form mb10">
-      <label class="control-label col-md-2 col-sm-5" style="padding-left: 0; margin: 10px 0;">Credit Note No.<sup style="color: red;">*</sup> <b>:</b></label>
+      <label class="control-label col-md-2 col-sm-5" style="padding-left: 0; margin: 10px 0;">{{ 'PHARMACY.CREDIT_NOTE_NO' | translate }}<sup style="color: red;">*</sup> <b>:</b></label>
       <div>
         <input style="width:80px;" class="form-control" [(ngModel)]="curtRetSuppModel.CreditNoteId" min="1" formControlName="CreditNoteId" name="CreditNoteId" type="text" value="">
-        <div style="color:red" *ngIf="curtRetSuppModel.IsDirty('CreditNoteId')" [hidden]="curtRetSuppModel.IsValidCheck('CreditNoteId','required')"> Credit Note Number is Required</div>
+        <div style="color:red" *ngIf="curtRetSuppModel.IsDirty('CreditNoteId')" [hidden]="curtRetSuppModel.IsValidCheck('CreditNoteId','required')"> {{ 'PHARMACY.CREDIT_NOTE_NUMBER_IS_REQUIRED' | translate }}</div>
       </div>
     </form>
   </div>
@@ -104,19 +104,19 @@
         <thead>
           <tr>
             <th><input type="checkbox" (change)="CheckAllOptions()" [(ngModel)]="selectAllItems" /></th>
-            <th><b>Item Name</b></th>
-            <th><b>Batch No</b></th>
-            <th><b>Received Invoiced Qty</b></th>
-            <th><b>Received Free Qty</b></th>
-            <th><b>Current Avl Stk</b></th>
-            <th><b>Purchase Rate</b></th>
-            <th><b>Return Qty</b></th>
-            <th><b>Return Rate</b></th>
-            <th><b>Subtotal</b></th>
-            <th><b>Return Dis Amt</b></th>
-            <th><b>Return VAT Amt</b></th>
-            <th><b>Return CC Amount</b></th>
-            <th>Total Amount</th>
+            <th><b>{{ 'PHARMACY.ITEM_NAME' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.BATCH_NO' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.RECEIVED_INVOICED_QTY' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.RECEIVED_FREE_QTY' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.CURRENT_AVL_STK' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.PURCHASE_RATE' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.RETURN_QTY' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.RETURN_RATE' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.SUBTOTAL' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.RETURN_DIS_AMT' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.RETURN_VAT_AMT' | translate }}</b></th>
+            <th><b>{{ 'PHARMACY.RETURN_CC_AMOUNT' | translate }}</b></th>
+            <th>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -128,7 +128,7 @@
             <td class="autocomplete-item">
               <form [formGroup]="row.ReturnToSupplierItemValidator">
                 <input disabled class="form-control " [(ngModel)]="row.SelectedItem" ngModelOptions="{standalone:true}" placeholder="Item Name" display-property-name="ItemName" value-property-name=null min-chars="0" formControlName="ItemId" max-num-list="20" style="width:200px;font-weight: bold; " />
-                <div style="color:red" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')"> Item is required</div>
+                <div style="color:red" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')"> {{ 'PHARMACY.ITEM_IS_REQUIRED' | translate }}</div>
               </form>
             </td>
             <td>
@@ -149,16 +149,16 @@
             <td>
               <form [formGroup]="row.ReturnToSupplierItemValidator">
                 <input style="width:90px;" class="form-control" min="0" [(ngModel)]="row.Quantity" (keyup.enter)="GoToNextInput('ReturnRate',i)" [ngClass]="row.Quantity > row.AvaliableQuantity  ? 'bg-on' : 'bg-off'" (ngModelChange)="CalculationForSupplierItemReturn(row,i)" id="Quantity{{i}}" formControlName="Quantity" name="Quantity" type="number" onclick="this.select()" (wheel)="coreService.PreventNumberChangeOnScroll($event)">
-                <span class="error-msg" *ngIf="row.AvaliableQuantity<row.Quantity">Quantity Should be less then Available Qty</span>
-                <div style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','required')"> Quantity is required</div>
-                <div style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','positivenum')">Required positive number</div>
+                <span class="error-msg" *ngIf="row.AvaliableQuantity<row.Quantity">{{ 'PHARMACY.QUANTITY_SHOULD_BE_LESS_THEN_AVAILABLE_QTY' | translate }}</span>
+                <div style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','required')"> {{ 'PHARMACY.QUANTITY_IS_REQUIRED' | translate }}</div>
+                <div style="color:red" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','positivenum')">{{ 'PHARMACY.REQUIRED_POSITIVE_NUMBER' | translate }}</div>
               </form>
             </td>
             <td>
               <form [formGroup]="row.ReturnToSupplierItemValidator">
                 <input style="width:90px;" class="form-control" [(ngModel)]="row.ReturnRate" (ngModelChange)="CalculationForSupplierItemReturn(row,i)" formControlName="ReturnRate" (keyup.enter)="GoToNextInput('DiscountedAmount',i)" name="ReturnRate" id="ReturnRate{{i}}" type="number" onclick="this.select()" (wheel)="coreService.PreventNumberChangeOnScroll($event)">
-                <div style="color:red" *ngIf="row.IsDirty('ReturnRate')" [hidden]="row.IsValidCheck('ReturnRate','required')"> Rate is required</div>
-                <div style="color:red" *ngIf="row.IsDirty('ReturnRate')" [hidden]="row.IsValidCheck('ReturnRate','positivenum')">Required positive number</div>
+                <div style="color:red" *ngIf="row.IsDirty('ReturnRate')" [hidden]="row.IsValidCheck('ReturnRate','required')"> {{ 'PHARMACY.RATE_IS_REQUIRED' | translate }}</div>
+                <div style="color:red" *ngIf="row.IsDirty('ReturnRate')" [hidden]="row.IsValidCheck('ReturnRate','positivenum')">{{ 'PHARMACY.REQUIRED_POSITIVE_NUMBER' | translate }}</div>
               </form>
             </td>
             <td>
@@ -167,22 +167,22 @@
             <td>
               <form [formGroup]="row.ReturnToSupplierItemValidator">
                 <input style="width:90px;" class="form-control" [(ngModel)]="row.DiscountedAmount" (ngModelChange)="CalculationForSupplierItemReturn(row,i)" formControlName="DiscountedAmount" (keyup.enter)="GoToNextInput('VATAmount',i)" id="DiscountedAmount{{i}}" name="DiscountedAmount" type="number" onclick="this.select()" (wheel)="coreService.PreventNumberChangeOnScroll($event)">
-                <div style="color:red" *ngIf="row.IsDirty('DiscountedAmount')" [hidden]="row.IsValidCheck('DiscountedAmount','required')"> Amount is required</div>
-                <div style="color:red" *ngIf="row.IsDirty('DiscountedAmount')" [hidden]="row.IsValidCheck('DiscountedAmount','invalidNumber')">Required positive number</div>
+                <div style="color:red" *ngIf="row.IsDirty('DiscountedAmount')" [hidden]="row.IsValidCheck('DiscountedAmount','required')"> {{ 'PHARMACY.AMOUNT_IS_REQUIRED' | translate }}</div>
+                <div style="color:red" *ngIf="row.IsDirty('DiscountedAmount')" [hidden]="row.IsValidCheck('DiscountedAmount','invalidNumber')">{{ 'PHARMACY.REQUIRED_POSITIVE_NUMBER' | translate }}</div>
               </form>
             </td>
             <td>
               <form [formGroup]="row.ReturnToSupplierItemValidator">
                 <input style="width:90px;" class="form-control" [(ngModel)]="row.VATAmount" (ngModelChange)="CalculationForSupplierItemReturn(row,i)" formControlName="VATAmount" (keyup.enter)="GoToNextInput('CCAmount',i)" id="VATAmount{{i}}" name="VATAmount" type="number" onclick="this.select()" (wheel)="coreService.PreventNumberChangeOnScroll($event)">
-                <div style="color:red" *ngIf="row.IsDirty('VATAmount')" [hidden]="row.IsValidCheck('VATAmount','required')"> Amount is required</div>
-                <div style="color:red" *ngIf="row.IsDirty('VATAmount')" [hidden]="row.IsValidCheck('VATAmount','invalidNumber')">Required positive number</div>
+                <div style="color:red" *ngIf="row.IsDirty('VATAmount')" [hidden]="row.IsValidCheck('VATAmount','required')"> {{ 'PHARMACY.AMOUNT_IS_REQUIRED' | translate }}</div>
+                <div style="color:red" *ngIf="row.IsDirty('VATAmount')" [hidden]="row.IsValidCheck('VATAmount','invalidNumber')">{{ 'PHARMACY.REQUIRED_POSITIVE_NUMBER' | translate }}</div>
               </form>
             </td>
             <td>
               <form [formGroup]="row.ReturnToSupplierItemValidator">
                 <input style="width:90px;" class="form-control" [(ngModel)]="row.CCAmount" (ngModelChange)="CalculationForSupplierItemReturn(row,i)" formControlName="CCAmount" (keyup.enter)="GoToNextInput('ReturnQty',i+1)" id="CCAmount{{i}}" name="CCAmount" type="number" onclick="this.select()" (wheel)="coreService.PreventNumberChangeOnScroll($event)">
-                <div style="color:red" *ngIf="row.IsDirty('CCAmount')" [hidden]="row.IsValidCheck('CCAmount','required')"> Amount is required</div>
-                <div style="color:red" *ngIf="row.IsDirty('CCAmount')" [hidden]="row.IsValidCheck('CCAmount','invalidNumber')">Required positive number</div>
+                <div style="color:red" *ngIf="row.IsDirty('CCAmount')" [hidden]="row.IsValidCheck('CCAmount','required')"> {{ 'PHARMACY.AMOUNT_IS_REQUIRED' | translate }}</div>
+                <div style="color:red" *ngIf="row.IsDirty('CCAmount')" [hidden]="row.IsValidCheck('CCAmount','invalidNumber')">{{ 'PHARMACY.REQUIRED_POSITIVE_NUMBER' | translate }}</div>
               </form>
             </td>
             <td>
@@ -195,7 +195,7 @@
     <!-- <div class="mt20 t-wrap">
       <table class="col-sm-offset-8 col-sm-4 total-table">
         <tr>
-          <td>Select Return Date:</td>
+          <td>{{ 'PHARMACY.SELECT_RETURN_DATE' | translate }}:</td>
           <td>
             <form [formGroup]="curtRetSuppModel.ReturnToSupplierValidator">
               <input [(ngModel)]="curtRetSuppModel.ReturnDate" formControlName="ReturnDate" class="form-control" name="ReturnDate" type="date" />
@@ -204,7 +204,7 @@
           </td>
         </tr>
         <tr>
-          <td> SubTotal: </td>
+          <td> {{ 'PHARMACY.SUBTOTAL' | translate }}: </td>
           <td><input class="form-control" disabled [(ngModel)]="curtRetSuppModel.SubTotal" id="subtotal" name="subtotal" type="number"></td>
         </tr>
         <tr *ngIf="!IsitemlevlDis">
@@ -212,7 +212,7 @@
           <td><input class="form-control" [(ngModel)]="curtRetSuppModel.DiscountPercentage" (ngModelChange)="CalculationForPHRMReturnToSupplier()" name="DiscountPercentage" type="number"></td>
         </tr>
         <tr>
-          <td> Dis. Amount: </td>
+          <td> {{ 'PHARMACY.DIS_AMOUNT' | translate }}: </td>
           <td><input class="form-control" disabled (ngModelChange)="CalculationForPHRMReturnToSupplier()" [(ngModel)]="curtRetSuppModel.DiscountAmount" name="DiscountAmount" type="number"></td>
         </tr>
         <tr>
@@ -228,29 +228,29 @@
           </td>
         </tr>
         <tr>
-          <td>Total Amount: </td>
+          <td>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}: </td>
           <td><input class="form-control" disabled (ngModelChange)="CalculationForPHRMReturnToSupplier()" [(ngModel)]="curtRetSuppModel.TotalAmount" name="TotalAmount" type="number"></td>
         </tr>
         <tr>
-          <td>Remarks: </td>
+          <td>{{ 'COMMON.REMARKS' | translate }}: </td>
           <td><input class="form-control" [(ngModel)]="curtRetSuppModel.Remarks" name="Remarks" type="text"></td>
         </tr>
         <tr>
-          <td>Return Status <sup>*</sup><b>:</b></td>
+          <td>{{ 'PHARMACY.RETURN_STATUS' | translate }} <sup>*</sup><b>:</b></td>
           <td>
             <form [formGroup]="curtRetSuppModel.ReturnToSupplierValidator" class="form-horizontal hm-form">
               <select [(ngModel)]="curtRetSuppModel.ReturnStatus" formControlName="ReturnStatus">
-                <option value="1">Breakage</option>
-                <option value="2">Expiry</option>
-                <option value="3">Breakage and Expiry</option>
+                <option value="1">{{ 'PHARMACY.BREAKAGE' | translate }}</option>
+                <option value="2">{{ 'PHARMACY.EXPIRY' | translate }}</option>
+                <option value="3">{{ 'PHARMACY.BREAKAGE_AND_EXPIRY' | translate }}</option>
               </select>
-              <div style="color:red" *ngIf="curtRetSuppModel.IsDirty('ReturnStatus')" [hidden]="curtRetSuppModel.IsValidCheck('ReturnStatus','required')"> Return Status is required</div>
+              <div style="color:red" *ngIf="curtRetSuppModel.IsDirty('ReturnStatus')" [hidden]="curtRetSuppModel.IsValidCheck('ReturnStatus','required')"> {{ 'PHARMACY.RETURN_STATUS_IS_REQUIRED' | translate }}</div>
             </form>
           </td>
 
         </tr>
         <tr class="dot">
-          <td colspan="2" class="text-capitalize">In Words : <b>{{curtRetSuppModel.TotalAmount | NumberInWords}} </b>Only. </td>
+          <td colspan="2" class="text-capitalize">{{ 'PHARMACY.IN_WORDS' | translate }} : <b>{{curtRetSuppModel.TotalAmount | NumberInWords}} </b>{{ 'PHARMACY.ONLY' | translate }} </td>
         </tr>
         <tr></tr>
       </table>
@@ -259,57 +259,57 @@
     <div class="mt20 t-wrap">
       <table class="col-sm-offset-8 col-sm-4 total-table">
         <tr>
-          <td>Select Return Date:</td>
+          <td>{{ 'PHARMACY.SELECT_RETURN_DATE' | translate }}:</td>
           <td>
               <div *ngIf="canUserEnterDate; else DefaultDate">
                 <fiscal-year-calendar [showSingleDatePicker]="true" [showAllFiscalYear]="false" [SingleFiscalYearId]="getCurrentFiscalYearId()" (fiscalYearDate)="OnFiscalYearDateChange($event)"></fiscal-year-calendar>
               </div>
               <ng-template #DefaultDate>
                 <div style="font-size: 12px; padding-top:6px;">
-                  {{curtRetSuppModel.ReturnDate}} A.D.
+                  {{curtRetSuppModel.ReturnDate}} {{ 'PHARMACY.AD' | translate }}
                   {{curtRetSuppModel.ReturnDate | nepaliDate:'format':'YYYY-MM-DD'}} 
                 </div>
               </ng-template>
           </td>
         </tr>
         <tr>
-          <td> SubTotal: </td>
+          <td> {{ 'PHARMACY.SUBTOTAL' | translate }}: </td>
           <td><input type="number" disabled [(ngModel)]="curtRetSuppModel.SubTotal" id="subtotal" name="subtotal" /></td>
         </tr>
         <tr>
-          <td> Dis. Amount: </td>
+          <td> {{ 'PHARMACY.DIS_AMOUNT' | translate }}: </td>
           <td><input type="number" disabled [(ngModel)]="curtRetSuppModel.DiscountAmount" id="DiscountAmount" name="DiscountAmount" /></td>
         </tr>
         <tr>
-          <td>VAT Amount:</td>
+          <td>{{ 'PHARMACY.VAT_AMOUNT' | translate }}:</td>
           <td><input type="number" disabled [(ngModel)]="curtRetSuppModel.VATAmount" id="VATAmount" name="VATAmount" /></td>
         </tr>
         <tr>
-          <td>CC Amount:</td>
+          <td>{{ 'PHARMACY.CC_AMOUNT' | translate }}:</td>
           <td><input type="number" disabled [(ngModel)]="curtRetSuppModel.CCAmount" id="CCAmount" name="CCAmount" /></td>
         </tr>
         <tr>
-          <td>Total Amount: </td>
+          <td>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}: </td>
           <td><input type="number" disabled [(ngModel)]="curtRetSuppModel.TotalAmount" id="TotalAmount" name="TotalAmount" /></td>
         </tr>
         <tr class="dot">
-          <td colspan="2" class="text-capitalize">In Words : <b>{{curtRetSuppModel.TotalAmount | NumberInWords}} </b>Only.
+          <td colspan="2" class="text-capitalize">{{ 'PHARMACY.IN_WORDS' | translate }} : <b>{{curtRetSuppModel.TotalAmount | NumberInWords}} </b>{{ 'PHARMACY.ONLY' | translate }}
           </td>
         </tr>
         <tr>
-          <td>Remarks: </td>
+          <td>{{ 'COMMON.REMARKS' | translate }}: </td>
           <td><input [(ngModel)]="curtRetSuppModel.Remarks" name="Remarks" type="text"></td>
         </tr>
         <tr>
-          <td>Return Status <sup>*</sup><b>:</b></td>
+          <td>{{ 'PHARMACY.RETURN_STATUS' | translate }} <sup>*</sup><b>:</b></td>
           <td>
             <form [formGroup]="curtRetSuppModel.ReturnToSupplierValidator" class="form-horizontal hm-form">
               <select [(ngModel)]="curtRetSuppModel.ReturnStatus" formControlName="ReturnStatus">
-                <option value="1">Breakage</option>
-                <option value="2">Expiry</option>
-                <option value="3">Breakage and Expiry</option>
+                <option value="1">{{ 'PHARMACY.BREAKAGE' | translate }}</option>
+                <option value="2">{{ 'PHARMACY.EXPIRY' | translate }}</option>
+                <option value="3">{{ 'PHARMACY.BREAKAGE_AND_EXPIRY' | translate }}</option>
               </select>
-              <div style="color:red" *ngIf="curtRetSuppModel.IsDirty('ReturnStatus')" [hidden]="curtRetSuppModel.IsValidCheck('ReturnStatus','required')"> Return Status is required</div>
+              <div style="color:red" *ngIf="curtRetSuppModel.IsDirty('ReturnStatus')" [hidden]="curtRetSuppModel.IsValidCheck('ReturnStatus','required')"> {{ 'PHARMACY.RETURN_STATUS_IS_REQUIRED' | translate }}</div>
             </form>
           </td>
         </tr>
@@ -318,9 +318,9 @@
     </div>
   </div>
   <div class="panel-footer text-right">
-    <input type="button" [disabled]="loading" class="btn btn-success" value="Return" (click)="PostReturnToSupplier()" />
+    <input type="button" [disabled]="loading" class="btn btn-success" [value]="'PHARMACY.RETURN' | translate" (click)="PostReturnToSupplier()" />
     <span></span>
-    <input type="button" class="btn btn-danger" (click)="Cancel()" value="Cancel">
+    <input type="button" class="btn btn-danger" (click)="Cancel()" [value]="'COMMON.CANCEL' | translate">
     <span></span>
   </div>
 </div>
@@ -332,14 +332,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" (click)="showDangerBox=false">&times;</button>
-        <h4 class="modal-title">Warning!!!</h4>
+        <h4 class="modal-title">{{ 'PHARMACY.WARNING' | translate }}</h4>
       </div>
       <div class="modal-body">
-        <p>This will remove the items selected. Do you want to proceed?</p>
+        <p>{{ 'PHARMACY.THIS_WILL_REMOVE_THE_ITEMS_SELECTED' | translate }}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="Continue(1)">Yes</button>
-        <button type="button" class="btn btn-default" (click)="Continue(0)">No</button>
+        <button type="button" class="btn btn-default" (click)="Continue(1)">{{ 'COMMON.YES' | translate }}</button>
+        <button type="button" class="btn btn-default" (click)="Continue(0)">{{ 'COMMON.NO' | translate }}</button>
       </div>
     </div>
   </div>

@@ -4,12 +4,12 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span *ngIf="!update">Add Membership</span> <span *ngIf="update">Update Membership</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
+            <h3> <span *ngIf="!update">{{ 'SETTINGS_NEW.ADD_MEMBERSHIP' | translate }}</span> <span *ngIf="update">{{ 'SETTINGS_NEW.UPDATE_MEMBERSHIP' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
           <form [formGroup]="CurrentMembership.MembershipValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-5">Community<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.COMMUNITY' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input danphe-auto-complete class="form-control"
                      id="CommunityName" 
@@ -17,7 +17,7 @@
 									   formControlName="CommunityName"
 									   [(ngModel)]="CurrentMembership.CommunityName"
 									   [source]="communityLists"
-									   placeholder="community"
+									   [placeholder]="'SETTINGS_NEW.COMMUNITY_1' | translate"
 									   value-property-name=null
 									   no-match-found-text=" "
 									   onClick="this.select();"
@@ -27,20 +27,20 @@
 								  <option *ngFor="let community of communityLists" value="{{community}}">{{community}}</option>
 								</select>--> 
                   
-                  <span Class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('CommunityName','required') || !(CurrentMembership.IsDirty('CommunityName'))">enter/select community name</span> </div>
+                  <span Class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('CommunityName','required') || !(CurrentMembership.IsDirty('CommunityName'))">{{ 'SETTINGS_NEW.ENTERSELECT_COMMUNITY_NAME' | translate }}</span> </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Membership Name<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.MEMBERSHIP_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input type="text" name="" required value="" class="form-control" maxlength="40"
 									   [(ngModel)]="CurrentMembership.MembershipTypeName"
 									   formControlName="MembershipTypeName"
-									   id="MembershipTypeName" (keyup.enter)="GoToNextInput('Discount')" placeholder="Membership Name" />
-                  <span Class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('MembershipTypeName','required') || !(CurrentMembership.IsDirty('MembershipTypeName'))">Enter Membership Name</span> </div>
+									   id="MembershipTypeName" (keyup.enter)="GoToNextInput('Discount')" [placeholder]="'SETTINGS_NEW.MEMBERSHIP_NAME' | translate" />
+                  <span Class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('MembershipTypeName','required') || !(CurrentMembership.IsDirty('MembershipTypeName'))">{{ 'SETTINGS_NEW.ENTER_MEMBERSHIP_NAME' | translate }}</span> </div>
               </div>
 
               <div class="form-group">
-                <label class="control-label col-md-5">Discount Applicable <b>:</b> </label>
+                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.DISCOUNT_APPLICABLE' | translate }} <b>:</b> </label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -54,25 +54,25 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Discount %<sup>*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'SETTINGS_NEW.DISCOUNT' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input type="text" name="" required value="" class="form-control" maxlength="3"
 									   [(ngModel)]="CurrentMembership.DiscountPercent"
 									   formControlName="DiscountPercent"
-									   id="Discount" (keyup.enter)="GoToNextInput('savebtn')" placeholder="Discount Percentage" />
-                  <span class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('DiscountPercent', 'required') || !(CurrentMembership.IsDirty('DiscountPercent'))">Enter Discount Percentage</span> <span class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('DiscountPercent', 'min') || !(CurrentMembership.IsDirty('DiscountPercent'))">Discount Percent can't be negative</span> <span class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('DiscountPercent', 'max') || !(CurrentMembership.IsDirty('DiscountPercent'))">Discount Percent can't be more than 100</span> </div>
+									   id="Discount" (keyup.enter)="GoToNextInput('savebtn')" [placeholder]="'SETTINGS_NEW.DISCOUNT_PERCENTAGE' | translate" />
+                  <span class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('DiscountPercent', 'required') || !(CurrentMembership.IsDirty('DiscountPercent'))">{{ 'SETTINGS_NEW.ENTER_DISCOUNT_PERCENTAGE' | translate }}</span> <span class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('DiscountPercent', 'min') || !(CurrentMembership.IsDirty('DiscountPercent'))">{{ 'SETTINGS_NEW.DISCOUNT_PERCENT_CANT_BE_NEGATIVE' | translate }}</span> <span class="color-red font-sm" [hidden]="CurrentMembership.IsValidCheck('DiscountPercent', 'max') || !(CurrentMembership.IsDirty('DiscountPercent'))">{{ 'SETTINGS_NEW.DISCOUNT_PERCENT_CANT_BE_MORE_THAN_100' | translate }}</span> </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Description<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input type="text" name="" value="" class="form-control" maxlength="100"
 									   [(ngModel)]="CurrentMembership.Description"
 									   [ngModelOptions]="{standalone: true}"
-									   id="Description" placeholder="Description" />
+									   id="Description" [placeholder]="'GRID_HEADERS.DESCRIPTION' | translate" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Is Active <b>:</b> </label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -88,8 +88,8 @@
               
             </div>
 			  <div class="panel-footer">
-                <input  id="savebtn"  type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="Add()" value="Add" />
-                <input  id="savebtn"  type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" value="Update" />
+                <input  id="savebtn"  type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="Add()" [value]="'SETTINGS_NEW.ADD' | translate" />
+                <input  id="savebtn"  type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
               </div>
           </form>
         </div>

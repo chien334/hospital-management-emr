@@ -2,7 +2,7 @@
   <div class="form-body">
     <div class="caption lb-caption">
       <i class="fa fa-money"></i>
-      <span class="caption-subject">Consumable Stock Ledger </span>
+      <span class="caption-subject">{{ 'INVENTORY.CONSUMABLE_STOCK_LEDGER' | translate }} </span>
     </div>
     <div class="row">
       <div class="col-md-6">
@@ -10,17 +10,17 @@
       </div>
       <div class="col-md-4">
         <div class="form-group row">
-          <label class="control-label col-md-4">Item Name <sup style="color: red">*</sup><b style="float:right;">:</b></label>
+          <label class="control-label col-md-4">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }} <sup style="color: red">*</sup><b style="float:right;">:</b></label>
           <div class="col-md-6 autocomplete-item">
-            <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange()" placeholder="Select ItemName" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" />
+            <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange()" [placeholder]="'INVENTORY.SELECT_ITEMNAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" />
           </div>
         </div>
       </div>
       <div class="col-md-2 col-xs-12">
         <div class="form-group">
           <button class="btn blue" type="button" (click)="GetReportData()" [disabled]="loading">
-            <span *ngIf="!loading">Show Report</span>
-            <span *ngIf="loading">Loading...</span>
+            <span *ngIf="!loading">{{ 'INVENTORY.SHOW_REPORT' | translate }}</span>
+            <span *ngIf="loading">{{ 'INVENTORY.LOADING' | translate }}.</span>
           </button>
         </div>
       </div>
@@ -127,7 +127,7 @@
       </div>
       <div class="row center-style">
         <div class="col-md-12 col-xs-12" style="display: flex;justify-content: center; margin-top: 10px">
-          <button id="printbtn" class="btn btn-primary btn-sm" (keyup.enter)="print()" (click)="print()"><i class="fa fa-print"></i>Print</button>
+          <button id="printbtn" class="btn btn-primary btn-sm" (keyup.enter)="print()" (click)="print()"><i class="fa fa-print"></i>{{ 'COMMON.PRINT' | translate }}</button>
         </div>
       </div>
     </div>

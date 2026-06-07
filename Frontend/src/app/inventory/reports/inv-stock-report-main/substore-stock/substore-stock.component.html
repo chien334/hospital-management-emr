@@ -7,8 +7,8 @@
 }
 .card {
 	margin: 0px;
-	text-align: center;
-	align-items: center;
+	{{ 'INVENTORY.TEXT' | translate }}-align: center;
+	align-{{ 'INVENTORY.ITEMS' | translate }}: center;
 	justify-content: center;
 	border: 3px solid #dedede;
 	border-radius: 15px !important;
@@ -92,7 +92,7 @@ border-radius: 5px;
 background: rgb(212, 209, 209);
 border-radius: 5px;
 }
-/*filter search*/
+/*filter {{ 'COMMON.SEARCH' | translate }}*/
 .activeFilterBox {
 	background: rgba(24, 29, 31, .07);
 	border-radius: 24px !important;
@@ -113,7 +113,7 @@ border-radius: 5px;
         <div class="card-desc">
           <div class="center-align">{{SubstoreStockReport.InventoryTotal.TotalQuantity}}</div>
         </div>
-        <div class="card-title">Total Stock</div>
+        <div class="card-title">{{ 'INVENTORY.TOTAL_STOCK' | translate }}</div>
         <div class="card-icon"> <i class="fa fa-home fa-2x"></i> </div>
       </div>
     </div>
@@ -122,7 +122,7 @@ border-radius: 5px;
         <div class="card-desc">
           <div class="center-align">{{coreService.currencyUnit}} {{SubstoreStockReport.InventoryTotal.TotalValue | number:'1.0-2'}}</div>
         </div>
-        <div class="card-title">Total Value</div>
+        <div class="card-title">{{ 'INVENTORY.TOTAL_VALUE' | translate }}</div>
         <div class="card-icon"> <i class="fa fa-dollar fa-2x"></i> </div>
       </div>
     </div>
@@ -131,7 +131,7 @@ border-radius: 5px;
         <div class="card-desc">
           <div class="center-align">{{SubstoreStockReport.InventoryTotal.ExpiryQuantity}}</div>
         </div>
-        <div class="card-title">Expiry Stock</div>
+        <div class="card-title">{{ 'INVENTORY.EXPIRY_STOCK' | translate }}</div>
         <div class="card-icon"> <i class="fa fa-warning fa-2x"></i> </div>
       </div>
     </div>
@@ -140,7 +140,7 @@ border-radius: 5px;
         <div class="card-desc">
           <div class="center-align">{{coreService.currencyUnit}} {{SubstoreStockReport.InventoryTotal.ExpiryValue | number:'1.0-2'}}</div>
         </div>
-        <div class="card-title">Expiry Stock Value</div>
+        <div class="card-title">{{ 'INVENTORY.EXPIRY_STOCK_VALUE' | translate }}</div>
         <div class="card-icon"> <i class="fa fa-money fa-2x"></i> </div>
       </div>
     </div>
@@ -150,9 +150,9 @@ border-radius: 5px;
   <div class="row">
     <div class="col-md-12">
       <div class="search-form">
-        <label for="FilterParameter">Filter By:</label>
+        <label for="FilterParameter">{{ 'INVENTORY.FILTER_BY' | translate }}:</label>
         <input class="form-control" *ngIf="FilterParameter == null"
-        danphe-auto-complete [source]="SearchSource" placeholder="Type Here To Search!!!" display-property-name="Name"
+        danphe-auto-complete [source]="SearchSource" [placeholder]="'INVENTORY.TYPE_HERE_TO_SEARCH' | translate" display-property-name="Name"
         [(ngModel)]="FilterParameter" (ngModelChange)="Sort()" [list-formatter]="SearchListFormatter" />
         <span class="activeFilterBox" *ngIf="!!FilterParameter"> <span class="activeFilterText">{{FilterParameter.Name}}</span> <span><a style="margin-left:6px" disabled="loading" (click)="ResetSort()"><span
               class="fa fa-close"></span></a></span> </span> </div>
@@ -163,15 +163,15 @@ border-radius: 5px;
   <div class="col-md-7" *ngIf="SubstoreStockReport != null"> 
     <!--This is for the table related to substore-->
     <div class="portlet light substore_table">
-      <div class="portlet-title"><div class="caption lb-caption no-margin no-padding"> <i class="icon-bar-chart"></i> <span class="caption-subject">Substore Distribution</span> </div></div>
+      <div class="portlet-title"><div class="caption lb-caption no-margin no-padding"> <i class="icon-bar-chart"></i> <span class="caption-subject">{{ 'INVENTORY.SUBSTORE_DISTRIBUTION' | translate }}</span> </div></div>
       <table class="table ss-table">
         <thead class="ss-table-head">
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Stock Quantity</th>
-            <th>Stock Value</th>
-            <th>Consumed/Dispatched</th>
+            <th>{{ 'INVENTORY.ID' | translate }}</th>
+            <th>{{ 'COMMON.NAME' | translate }}</th>
+            <th>{{ 'INVENTORY.STOCK_QUANTITY' | translate }}</th>
+            <th>{{ 'INVENTORY.STOCK_VALUE' | translate }}</th>
+            <th>{{ 'INVENTORY.CONSUMEDDISPATCHED' | translate }}</th>
           </tr>
         </thead>
         <tbody class="ss-table-body">
@@ -187,15 +187,15 @@ border-radius: 5px;
     </div>
     <!--This is for the table related to items-->
     <div class="portlet light substore_table">
-      <div class="portlet-title"><div class="caption lb-caption no-margin no-padding"> <i class="icon-bar-chart"></i> <span class="caption-subject">Item Distribution</span> </div></div>
+      <div class="portlet-title"><div class="caption lb-caption no-margin no-padding"> <i class="icon-bar-chart"></i> <span class="caption-subject">{{ 'INVENTORY.ITEM_DISTRIBUTION' | translate }}</span> </div></div>
       <table class="table ss-table">
         <thead class="ss-table-head">
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Stock Quantity</th>
-            <th>Stock Value</th>
-            <th>Consumed</th>
+            <th>{{ 'INVENTORY.ID' | translate }}</th>
+            <th>{{ 'COMMON.NAME' | translate }}</th>
+            <th>{{ 'INVENTORY.STOCK_QUANTITY' | translate }}</th>
+            <th>{{ 'INVENTORY.STOCK_VALUE' | translate }}</th>
+            <th>{{ 'INVENTORY.CONSUMED' | translate }}</th>
           </tr>
         </thead>
         <tbody class="ss-table-body">

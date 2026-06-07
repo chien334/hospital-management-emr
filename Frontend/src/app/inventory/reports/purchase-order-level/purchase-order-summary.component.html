@@ -1,7 +1,7 @@
 <div class="row">
   <div class="form-body">
     <div class="col-md-12">
-      <div class="caption custom-caption"> <i class="fa fa-shopping-cart"></i> <span class="caption-subject">Purchase Order Report</span> </div>
+      <div class="caption custom-caption"> <i class="fa fa-shopping-cart"></i> <span class="caption-subject">{{ 'INVENTORY.PURCHASE_ORDER_REPORT' | translate }}</span> </div>
       <div class="row">
         <div class="col-md-5">
           <from-to-date-select (on-change)="OnDateRangeChange($event)">
@@ -9,23 +9,23 @@
         </div>
         <div class="col-md-3">
           <div class="form-group row">
-            <label class="control-label col-md-5">Vendor Name<b style="float:right;">:</b></label>
+            <label class="control-label col-md-5">{{ 'INVENTORY.VENDOR_NAME' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-6 autocomplete-item">
-              <input danphe-auto-complete class="form-control" (valueChanged)="onVendorChange()" placeholder="Select Vendor Name" [(ngModel)]="selectedVndr" [list-formatter]="VendorListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="VendorName" value-property-name=null [source]="VendorList" [match-formatted]="true" onclick="this.select();" />
+              <input danphe-auto-complete class="form-control" (valueChanged)="onVendorChange()" [placeholder]="'INVENTORY.SELECT_VENDOR_NAME' | translate" [(ngModel)]="selectedVndr" [list-formatter]="VendorListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="VendorName" value-property-name=null [source]="VendorList" [match-formatted]="true" onclick="this.select();" />
             </div>
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group row">
-            <label class="control-label col-md-5">Item Name<b style="float:right;">:</b></label>
+            <label class="control-label col-md-5">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-6 autocomplete-item">
-              <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange()" placeholder="Select Item Name" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" value-property-name=null [source]="itemList" [match-formatted]="true" onclick="this.select();" />
+              <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange()" [placeholder]="'INVENTORY.SELECT_ITEM_NAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" value-property-name=null [source]="itemList" [match-formatted]="true" onclick="this.select();" />
             </div>
           </div>
         </div>
         <div class="col-md-1">
           <button class="btn blue" type="button" (click)="ShowPurchaseOrderSummery()">
-            <i class="fa fa-search"></i> Report</button>
+            <i class="fa fa-search"></i> {{ 'INVENTORY.REPORT' | translate }}</button>
         </div>
       </div>
     </div>
@@ -35,17 +35,17 @@
 <div class="row">
   <div class="col-md-5">
     <div class="form-group row">
-      <label class="control-label col-md-4">Item Code<b style="float:right;">:</b></label>
+      <label class="control-label col-md-4">{{ 'INVENTORY.ITEM_CODE' | translate }}<b style="float:right;">:</b></label>
       <div class="col-md-6">
-        <input type="text" [(ngModel)]="selectedItemCode" [ngModelOptions]="{standalone: true}" placeholder="Enter Item Code" style="width:100%!important;">
+        <input type="text" [(ngModel)]="selectedItemCode" [ngModelOptions]="{standalone: true}" [placeholder]="'INVENTORY.ENTER_ITEM_CODE' | translate" style="width:100%!important;">
       </div>
     </div>
   </div>
   <div class="col-md-5">
     <div class="form-group row">
-      <label class="control-label col-md-4">Sub-Category<b style="float:right;">:</b></label>
+      <label class="control-label col-md-4">Sub-{{ 'INVENTORY.CATEGORY' | translate }}<b style="float:right;">:</b></label>
       <div class="col-md-6">
-        <input type="text" [(ngModel)]="selectedItemSubCategory" [ngModelOptions]="{standalone: true}" placeholder="Enter Sub-Category" style="width:100%!important;">
+        <input type="text" [(ngModel)]="selectedItemSubCategory" [ngModelOptions]="{standalone: true}" [placeholder]="'INVENTORY.ENTER_SUBCATEGORY' | translate" style="width:100%!important;">
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
       <span>
         <i class="fa fa-times"></i>
         <i class="fa fa-filter fa-2x"></i>
-      </span>Clear Filter
+      </span>{{ 'INVENTORY.CLEAR_FILTER' | translate }}
     </button>
   </div>
 </div>
@@ -65,13 +65,13 @@
       <div class="icheck-inline">
         <label class="mt-radio mt-radio-outline">
           <input name="selectedItemTypeFilter" type="radio" checked="checked" [(ngModel)]="selectedItemTypeFilter" value="All" (change)="filterPODataInClientSide()" style="width:15px;height:15px" />
-          <span></span>All </label>
+          <span></span>{{ 'INVENTORY.ALL' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input name="selectedItemTypeFilter" type="radio" value="Consumables" [(ngModel)]="selectedItemTypeFilter" (change)="filterPODataInClientSide()">
-          <span></span>Consumables </label>
+          <span></span>{{ 'INVENTORY.CONSUMABLES' | translate }} </label>
         <label class="mt-radio mt-radio-outline">
           <input name="selectedItemTypeFilter" type="radio" value="CapitalGoods" [(ngModel)]="selectedItemTypeFilter" (change)="filterPODataInClientSide()">
-          <span></span>Capital Goods </label>
+          <span></span>{{ 'INVENTORY.CAPITAL_GOODS' | translate }} </label>
       </div>
     </div>
   </div>

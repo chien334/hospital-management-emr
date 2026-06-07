@@ -19,11 +19,11 @@
               <div class="row">
                 <div class="row col-md-4">
                   <label style="text-decoration: underline; margin-top: 10px; margin-left:10px; font-size:medium;">
-                    Service Item Settings</label>
+                    {{ 'SETTINGS_NEW.SERVICE_ITEM_SETTINGS' | translate }}</label>
                 </div>
                 <div class="form-group col-md-4">
                   <label class="control-label col-md-5" style="font-size: medium;">
-                    ItemName:
+                    {{ 'SETTINGS_NEW.ITEMNAME_1' | translate }}
                   </label>
                   <div class="control-label col-md-7">
                     <input
@@ -31,14 +31,14 @@
                            type="text" name="itemName"
                            id="id_input_itemName_search"
                            [(ngModel)]="selectedItem" class="form-control" [list-formatter]="ItemListFormatter"
-                           [source]="FilteredServiceItemSettingList" placeholder="ItemName"
+                           [source]="FilteredServiceItemSettingList" [placeholder]="'SETTINGS_NEW.ITEMNAME' | translate"
                            display-property-name="ServiceItemName" value-property-name=null onClick="this.select();"
                            (focusout)="OnItemNameChanged()" max-num-list="15">
                   </div>
                 </div>
                 <div class="control-label col-md-4" style="margin-top: 10px;">
                   <label class="control-label col-md-5" style="font-size: medium;">
-                    Service Department:
+                    {{ 'SETTINGS_NEW.SERVICE_DEPARTMENT_1' | translate }}
                   </label>
                   <div class="control-label col-md-7">
                     <danphe-multiselect [ddl-data]="serviceDepartmentList"
@@ -178,15 +178,15 @@
                       </tr>
                       <tr>
                         <th style="width: 4.5%"> </th>
-                        <th style="width: 10%">Item Code</th>
-                        <th style="width: 15%">Item Name</th>
-                        <th style="width: 12%">Registration Disc %</th>
-                        <th style="width: 10%">OPD Disc %</th>
-                        <th style="width: 10%">IPD Disc %</th>
-                        <th style="width: 12%">Admission Disc %</th>
-                        <th style="width: 5%">Is Copay ?</th>
-                        <th style="width: 7.5%">Copay Cash %</th>
-                        <th style="width: 8%">Copay Credit %</th>
+                        <th style="width: 10%">{{ 'SETTINGS_NEW.ITEM_CODE' | translate }}</th>
+                        <th style="width: 15%">{{ 'SETTINGS_NEW.ITEM_NAME' | translate }}</th>
+                        <th style="width: 12%">{{ 'SETTINGS_NEW.REGISTRATION_DISC' | translate }}</th>
+                        <th style="width: 10%">{{ 'SETTINGS_NEW.OPD_DISC' | translate }}</th>
+                        <th style="width: 10%">{{ 'SETTINGS_NEW.IPD_DISC' | translate }}</th>
+                        <th style="width: 12%">{{ 'SETTINGS_NEW.ADMISSION_DISC' | translate }}</th>
+                        <th style="width: 5%">{{ 'SETTINGS_NEW.IS_COPAY' | translate }}</th>
+                        <th style="width: 7.5%">{{ 'SETTINGS_NEW.COPAY_CASH' | translate }}</th>
+                        <th style="width: 8%">{{ 'SETTINGS_NEW.COPAY_CREDIT' | translate }}</th>
                       </tr>
                       <tr *ngFor="let row of FilteredServiceItemSettingList; let i=index;">
                         <td>
@@ -218,7 +218,7 @@
                           <div>
                             <span
                                   *ngIf="!row.IsValidRegDiscountPercent && row.RegDiscountPercent !== null"
-                                  class="color-red font-sm">Invalid Percent.</span>
+                                  class="color-red font-sm">{{ 'SETTINGS_NEW.INVALID_PERCENT' | translate }}</span>
                           </div>
                         </td>
                         <td>
@@ -231,7 +231,7 @@
                                  onClick="this.select();" [disabled]="!row.itemIsSelected">
                           <div><span
                                   *ngIf="!row.IsValidOpBillDiscountPercent && row.OpBillDiscountPercent !==null"
-                                  class="color-red font-sm">Invalid Percent.</span></div>
+                                  class="color-red font-sm">{{ 'SETTINGS_NEW.INVALID_PERCENT' | translate }}</span></div>
 
                         </td>
                         <td>
@@ -245,7 +245,7 @@
                           <div>
                             <span
                                   *ngIf="!row.IsValidIpBillDiscountPercent && row.IpBillDiscountPercent !==null"
-                                  class="color-red font-sm">Invalid Percent.</span>
+                                  class="color-red font-sm">{{ 'SETTINGS_NEW.INVALID_PERCENT' | translate }}</span>
                           </div>
 
                         </td>
@@ -259,7 +259,7 @@
                                  onClick="this.select();" [disabled]="!row.itemIsSelected">
                           <div><span
                                   *ngIf="!row.IsValidAdmissionDiscountPercent && row.AdmissionDiscountPercent !==null"
-                                  class="color-red font-sm">Invalid Percent.</span></div>
+                                  class="color-red font-sm">{{ 'SETTINGS_NEW.INVALID_PERCENT' | translate }}</span></div>
                         </td>
                         <td>
                           <div style="display: flex; align-items: center;">
@@ -282,7 +282,7 @@
                                  [disabled]="!(row.IsCoPayment && row.itemIsSelected)">
                           <div><span
                                   *ngIf="!(row.IsValidCopayCashPercent) && row.CoPaymentCashPercent !==null"
-                                  class="color-red font-sm">Invalid Percent.</span></div>
+                                  class="color-red font-sm">{{ 'SETTINGS_NEW.INVALID_PERCENT' | translate }}</span></div>
                         </td>
                         <td>
                           <input type="number"
@@ -295,7 +295,7 @@
                                  [disabled]="!(row.IsCoPayment && row.itemIsSelected)">
                           <div><span
                                   *ngIf="!row.IsValidCopayCreditPercent && row.CoPaymentCashPercent !==null"
-                                  class="color-red font-sm">Invalid Percent.</span></div>
+                                  class="color-red font-sm">{{ 'SETTINGS_NEW.INVALID_PERCENT' | translate }}</span></div>
                         </td>
                       </tr>
                     </table>
@@ -308,9 +308,9 @@
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
               <input type="button" id="discard" class="btn orange btn-success margin-7-hr"
-                     (click)="DiscardChanges()" value="Discard" />
+                     (click)="DiscardChanges()" [value]="'COMMON.DISCARD' | translate" />
               <input type="button" id="add" class="btn green btn-success margin-7-hr"
-                     (click)="AddServiceItemSchemeSettings()" [disabled]="isButtonDisabled" value="Save" />
+                     (click)="AddServiceItemSchemeSettings()" [disabled]="isButtonDisabled" [value]="'COMMON.SAVE' | translate" />
 
             </div>
           </div>

@@ -9,12 +9,12 @@
         <div class="modelbox-div clearfix">
           <div>
             <div class="caption lb-caption">
-              <h3><span>Drug List For <b>{{ rackName }}</b></span></h3>
-              <a class="btn btn-danger" (click)="Close()" title="Cancel"><i class="fa fa-times"></i></a>
+              <h3><span>{{ 'PHARMACY.DRUG_LIST_FOR' | translate }} <b>{{ rackName }}</b></span></h3>
+              <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
             </div>
             <div class="col-md-12">
               <div *ngIf="drugList.length===0">
-                <h5>Rack is empty.</h5>
+                <h5>{{ 'PHARMACY.RACK_IS_EMPTY' | translate }}</h5>
               </div>
               <div *ngFor="let drug of drugList; let i = index">
                 <div> {{ drug.ItemName }} </div>

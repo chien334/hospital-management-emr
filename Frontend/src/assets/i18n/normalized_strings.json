@@ -1,0 +1,1341 @@
+{
+  "You are currently in lab To change you can always click here": [
+    "You are currently in {{securityService.getActiveLab()?.LabTypeName}} lab. To\n        change, you can always click here."
+  ],
+  "Active lab": [
+    "Active lab :"
+  ],
+  "External Lab Test List": [
+    "External Lab Test List"
+  ],
+  "Hospital No": [
+    "Hospital No :",
+    "Hospital No",
+    "Hospital No: {{patientinfos.HospitalNumber}}"
+  ],
+  "Enter Hospital Number": [
+    "Enter Hospital Number..."
+  ],
+  "PatientName": [
+    "PatientName :",
+    "PatientName"
+  ],
+  "Enter Patient Name": [
+    "Enter Patient Name..."
+  ],
+  "Search": [
+    "Search"
+  ],
+  "Vendor": [
+    "Vendor :",
+    "Vendor"
+  ],
+  "LabTests": [
+    "LabTests :"
+  ],
+  "External Lab Status": [
+    "External Lab Status :"
+  ],
+  "print page": [
+    "print page"
+  ],
+  "export to excel": [
+    "export to excel"
+  ],
+  "Load": [
+    "Load"
+  ],
+  "Change Vendor": [
+    "Change Vendor"
+  ],
+  "Dispatch": [
+    "Dispatch"
+  ],
+  "Receive Report": [
+    "Receive Report"
+  ],
+  "From BS": [
+    "From: {{FromDate | nepaliDate:'format':'YYYY-MM-DD'}} BS ({{FromDate}})"
+  ],
+  "To BS": [
+    "To: {{ToDate | nepaliDate:'format':'YYYY-MM-DD'}} BS ({{ToDate}})"
+  ],
+  "Outsource Lab Test List Report": [
+    "Outsource Lab Test List Report({{SelectedExternalLabStatus}})"
+  ],
+  "Printed On": [
+    "Printed On:"
+  ],
+  "Test Name": [
+    "Test Name"
+  ],
+  "Vendor Name": [
+    "Vendor Name"
+  ],
+  "Patient": [
+    "Patient"
+  ],
+  "TestName": [
+    "TestName"
+  ],
+  "Choose Vendor": [
+    "Choose Vendor"
+  ],
+  "External Vendor": [
+    "External Vendor:"
+  ],
+  "X": [
+    "X"
+  ],
+  "Add New External Vendor": [
+    "Add New External Vendor"
+  ],
+  "Add Lab External Vendor": [
+    "Add Lab External Vendor"
+  ],
+  "Edit Lab External Vendor": [
+    "Edit Lab External Vendor"
+  ],
+  "Contact Address": [
+    "Contact Address"
+  ],
+  "Vendor Code": [
+    "Vendor Code"
+  ],
+  "Contact Number": [
+    "Contact Number"
+  ],
+  "Add": [
+    "Add"
+  ],
+  "Show Data": [
+    "Show Data"
+  ],
+  "Send To All": [
+    "Send To All"
+  ],
+  "Filter SMS": [
+    "Filter SMS:"
+  ],
+  "Sent": [
+    "Sent"
+  ],
+  "Not Sent": [
+    "Not Sent"
+  ],
+  "Filter Findings": [
+    "Filter Findings:"
+  ],
+  "Positive": [
+    "Positive"
+  ],
+  "Negative": [
+    "Negative"
+  ],
+  "All": [
+    "All"
+  ],
+  "Phone Number": [
+    "Phone Number",
+    "Phone Number:"
+  ],
+  "Sample Coll On": [
+    "Sample Coll. On"
+  ],
+  "Result": [
+    "Result"
+  ],
+  "Shows if Lab Report uploaded or not": [
+    "Shows if Lab Report uploaded or not ?"
+  ],
+  "Uploaded": [
+    "Uploaded ?"
+  ],
+  "Send Sms": [
+    "Send Sms"
+  ],
+  "Pdf Sms": [
+    "Pdf & Sms"
+  ],
+  "Upload Pdf": [
+    "Upload Pdf"
+  ],
+  "SMS Message": [
+    "SMS Message"
+  ],
+  "Message that will be send to is": [
+    "Message that will be send to {{smsDataToSend.PhoneNumber}} is:"
+  ],
+  "Send Message": [
+    "Send Message"
+  ],
+  "Export with SMS": [
+    "Export with SMS"
+  ],
+  "Load Data": [
+    "Load Data"
+  ],
+  "Upload To IMU": [
+    "Upload To IMU"
+  ],
+  "Upload Pending": [
+    "Upload Pending"
+  ],
+  "Upload Completed": [
+    "Upload Completed"
+  ],
+  "Upload Status": [
+    "Upload Status"
+  ],
+  "Lab Test": [
+    "Lab Test"
+  ],
+  "Lab Test Components": [
+    "Lab Test Components"
+  ],
+  "Report Template": [
+    "Report Template",
+    "Report Template:"
+  ],
+  "Default Signatories": [
+    "Default Signatories"
+  ],
+  "Vendors": [
+    "Vendors"
+  ],
+  "Look Ups": [
+    "Look Ups"
+  ],
+  "Lab Categories": [
+    "Lab Categories"
+  ],
+  "Map Government Items": [
+    "Map Government Items"
+  ],
+  "Add New Lab Template": [
+    "Add New Lab Template"
+  ],
+  "Add Lab Report Template": [
+    "Add Lab Report Template"
+  ],
+  "Update Lab Report Template": [
+    "Update Lab Report Template"
+  ],
+  "Report Template Name": [
+    "Report Template Name"
+  ],
+  "Enter Report Template Name": [
+    "Enter Report Template Name"
+  ],
+  "Report Description": [
+    "Report Description"
+  ],
+  "Report Template Short Name": [
+    "Report Template Short Name"
+  ],
+  "Report Template Type": [
+    "Report Template Type"
+  ],
+  "Normal": [
+    "Normal"
+  ],
+  "Word Editor": [
+    "Word Editor"
+  ],
+  "Culture Sensitivity": [
+    "Culture & Sensitivity"
+  ],
+  "Column Settings": [
+    "Column Settings"
+  ],
+  "Select All": [
+    "Select All"
+  ],
+  "Range": [
+    "Range"
+  ],
+  "Method": [
+    "Method"
+  ],
+  "Unit": [
+    "Unit"
+  ],
+  "Header Text": [
+    "Header Text"
+  ],
+  "Header Description": [
+    "Header Description"
+  ],
+  "Footer Text": [
+    "Footer Text"
+  ],
+  "Footer Description": [
+    "Footer Description"
+  ],
+  "Is Default": [
+    "Is Default",
+    "Is Default?"
+  ],
+  "Display Sequence": [
+    "Display Sequence"
+  ],
+  "Add Template": [
+    "Add Template"
+  ],
+  "Add Lab Category": [
+    "Add Lab Category"
+  ],
+  "Update Lab Category": [
+    "Update Lab Category"
+  ],
+  "Category Name": [
+    "Category Name"
+  ],
+  "Add New Lab Category": [
+    "Add New Lab Category"
+  ],
+  "Map New Component": [
+    "Map New Component"
+  ],
+  "Map Lab Components": [
+    "Map Lab Components"
+  ],
+  "Update Mapped Lab Components": [
+    "Update Mapped Lab Components"
+  ],
+  "Gov LabReportItem Name": [
+    "Gov LabReportItem\n                                            Name:"
+  ],
+  "Enter Component Name": [
+    "Enter Component Name"
+  ],
+  "Enter Gov Lab Report Name": [
+    "Enter Gov. Lab Report Name"
+  ],
+  "Lab Test Name": [
+    "Lab Test Name:",
+    "Lab Test Name"
+  ],
+  "Enter Test Name": [
+    "Enter Test Name"
+  ],
+  "Enter Lab Test Name": [
+    "Enter\n                                                Lab Test Name",
+    "Enter\n                      Lab Test Name"
+  ],
+  "Is Active": [
+    "Is Active:"
+  ],
+  "Is Component Based": [
+    "Is Component\n                                            Based:"
+  ],
+  "Component Name": [
+    "Component\n                                            Name:",
+    "Component Name"
+  ],
+  "Enter component name": [
+    "Enter\n                                                component name"
+  ],
+  "Is Result Count": [
+    "Is Result\n                                            Count:"
+  ],
+  "Positive Indicator": [
+    "Positive Indicator:"
+  ],
+  "Module Name": [
+    "Module Name"
+  ],
+  "Look Up Name": [
+    "Look Up Name"
+  ],
+  "Look Up Data": [
+    "Look Up Data"
+  ],
+  "Add Data": [
+    "Add Data"
+  ],
+  "Add New Lookup": [
+    "Add New Look-up"
+  ],
+  "Add Lookup": [
+    "Add Lookup"
+  ],
+  "Update Lookup": [
+    "Update Lookup"
+  ],
+  "Add New Lab Test Component": [
+    "Add New Lab Test Component"
+  ],
+  "Add Components": [
+    "Add Components"
+  ],
+  "Update Component": [
+    "Update Component"
+  ],
+  "ComponentName": [
+    "ComponentName"
+  ],
+  "ValueType": [
+    "ValueType"
+  ],
+  "ControlType": [
+    "ControlType"
+  ],
+  "Range Description": [
+    "Range Description"
+  ],
+  "ValueLookp": [
+    "ValueLookp"
+  ],
+  "Display Name": [
+    "Display Name"
+  ],
+  "Gen Range": [
+    "Gen. Range"
+  ],
+  "Range Value": [
+    "Range Value"
+  ],
+  "Min": [
+    "Min"
+  ],
+  "Max": [
+    "Max"
+  ],
+  "Male Range": [
+    "Male Range"
+  ],
+  "Female Range": [
+    "Female Range"
+  ],
+  "Child Range": [
+    "Child Range"
+  ],
+  "Enter LookUp Name": [
+    "Enter LookUp Name"
+  ],
+  "Component Display Name": [
+    "Component Display Name"
+  ],
+  "Default Signatories for Normal Tests": [
+    "Default Signatories for Normal Tests:"
+  ],
+  "Default HistoCyto Signatories": [
+    "Default Histo/Cyto Signatories:"
+  ],
+  "Update Default Signatories": [
+    "Update Default Signatories"
+  ],
+  "Add New Lab Test": [
+    "Add\n              New Lab Test"
+  ],
+  "Search Filters": [
+    "Search Filters:"
+  ],
+  "Active": [
+    "Active"
+  ],
+  "Inactive": [
+    "Inactive"
+  ],
+  "ALL": [
+    "ALL"
+  ],
+  "Category": [
+    "Category:",
+    "Category"
+  ],
+  "Add Lab Test": [
+    "Add Lab Test"
+  ],
+  "Update Lab Test": [
+    "Update Lab Test"
+  ],
+  "Reporting Name": [
+    "Reporting Name"
+  ],
+  "Lab Test Reporting Name": [
+    "Lab Test Reporting Name"
+  ],
+  "Lab Category": [
+    "Lab Category"
+  ],
+  "Select Lab Category": [
+    "Select Lab Category"
+  ],
+  "Select Specimens": [
+    "Select Specimen(s)"
+  ],
+  "Add New Specimen": [
+    "Add New Specimen"
+  ],
+  "Is SMS Applicable": [
+    "Is SMS Applicable?"
+  ],
+  "Is LIS Applicable": [
+    "Is LIS Applicable?"
+  ],
+  "Is Valid for Reporting": [
+    "Is Valid for Reporting"
+  ],
+  "Tax Applicable": [
+    "Tax Applicable"
+  ],
+  "Is Outsourced Test": [
+    "Is Outsourced Test?"
+  ],
+  "Has Negative Results": [
+    "Has Negative Results"
+  ],
+  "Negative Result Text": [
+    "Negative Result Text"
+  ],
+  "Default Outsource Vendor": [
+    "Default Outsource Vendor"
+  ],
+  "Lab Test Code": [
+    "Lab Test Code"
+  ],
+  "Select Report Template Short Name": [
+    "Select Report Template Short Name"
+  ],
+  "Service Department": [
+    "Service Department"
+  ],
+  "Select Service Department Name": [
+    "Select Service Department Name"
+  ],
+  "Run No Type": [
+    "Run No. Type"
+  ],
+  "Interpretation": [
+    "Interpretation",
+    "Interpretation({{res.TestName}}):"
+  ],
+  "Select Components For this Lab Test": [
+    "Select Components For this Lab Test"
+  ],
+  "Value Type": [
+    "Value Type"
+  ],
+  "Disp Sequence": [
+    "Disp. Sequence"
+  ],
+  "Indent": [
+    "Indent"
+  ],
+  "Group Val": [
+    "Group Val."
+  ],
+  "Sheet": [
+    "Sheet"
+  ],
+  "Select Component": [
+    "Select Component"
+  ],
+  "Create New Component": [
+    "Create New Component ?"
+  ],
+  "Specimen Name": [
+    "Specimen Name"
+  ],
+  "Edit Result": [
+    "Edit Result"
+  ],
+  "Back To Report View": [
+    "Back To Report View"
+  ],
+  "Attention": [
+    "Attention !!!"
+  ],
+  "This Report Is Alredy Uploaded Are You Sure To Upload It Again": [
+    "This Report Is Alredy Uploaded. Are You Sure To Upload It Again ???"
+  ],
+  "Work List": [
+    "Work List"
+  ],
+  "Back To Grid": [
+    "Back To Grid",
+    "Back\n      To Grid"
+  ],
+  "Print Lab Sticker": [
+    "Print Lab Sticker"
+  ],
+  "Reset Run Number": [
+    "Reset Run Number"
+  ],
+  "Print Empty Sheet": [
+    "Print Empty Sheet"
+  ],
+  "Sample Collection Date": [
+    "Sample Collection Date :",
+    "Sample Collection Date"
+  ],
+  "From": [
+    "From: {{fromDate | nepaliDate:'format':'YYYY-MM-DD'}} {{fromDate}}"
+  ],
+  "To": [
+    "To: {{toDate | nepaliDate:'format':'YYYY-MM-DD'}} {{toDate}}",
+    "To"
+  ],
+  "Work List Report": [
+    "Work List Report"
+  ],
+  "Department": [
+    "Department: {{departmentName}}"
+  ],
+  "Collected On": [
+    "Collected On"
+  ],
+  "Run No": [
+    "Run No."
+  ],
+  "BarCode No": [
+    "BarCode No."
+  ],
+  "Tests": [
+    "Tests",
+    "Test(s)"
+  ],
+  "Please wait": [
+    "Please wait."
+  ],
+  "List Requisition": [
+    "List Requisition"
+  ],
+  "Samples Collected List": [
+    "Samples Collected\n        List"
+  ],
+  "Sample Collected List FromDate AD ToDate AD": [
+    "Sample Collected List FromDate :{{fromDate | nepaliDate:'format':'YYYY-MM-DD'}}\n                          (A.D.{{fromDate}}) ToDate :{{toDate | nepaliDate:'format':'YYYY-MM-DD'}} (A.D.{{toDate}})"
+  ],
+  "Specimen": [
+    "Specimen",
+    "Specimen:"
+  ],
+  "DepartmentAssigned": [
+    "DepartmentAssigned"
+  ],
+  "Bar Code": [
+    "Bar Code"
+  ],
+  "Samples Collected On": [
+    "Samples Collected On"
+  ],
+  "Pending Reports": [
+    "Pending Reports"
+  ],
+  "Report Dispatch": [
+    "Report Dispatch"
+  ],
+  "Request Date": [
+    "Request Date:"
+  ],
+  "Search by Hospital No Or Patient Name": [
+    "Search by Hospital No. Or Patient Name"
+  ],
+  "SampleSummaryPage": [
+    "Sample-Summary-Page"
+  ],
+  "Reload": [
+    "Reload"
+  ],
+  "Show QrScan": [
+    "Show Qr-Scan"
+  ],
+  "Hide QrScan": [
+    "Hide Qr-Scan"
+  ],
+  "Search Patient": [
+    "Search Patient :",
+    "-- Search Patient --",
+    "Search Patient"
+  ],
+  "BarCode Number": [
+    "Bar-Code Number :"
+  ],
+  "Run Num": [
+    "Run Num :"
+  ],
+  "ShowDetails": [
+    "ShowDetails"
+  ],
+  "Hospital Number": [
+    "Hospital Number: {{allLabDataByBarCodeNumber.PatientCode}}"
+  ],
+  "Name": [
+    "Name: {{allLabDataByBarCodeNumber.PatientName}}",
+    "Name:"
+  ],
+  "AgeSex": [
+    "Age/Sex: {{allLabDataByBarCodeNumber.AgeSex}}",
+    "Age/Sex:"
+  ],
+  "SampleCollection Date": [
+    "SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}"
+  ],
+  "BarCodeNumber": [
+    "BarCodeNumber: {{allLabDataByBarCodeNumber.BarCodeNumber}}",
+    "BarCodeNumber"
+  ],
+  "Sample Not Collected": [
+    "Sample Not Collected"
+  ],
+  "Requisition Date": [
+    "Requisition Date"
+  ],
+  "Requesting Dept": [
+    "Requesting Dept."
+  ],
+  "Visit Type": [
+    "Visit Type",
+    "Visit Type:"
+  ],
+  "RunNumType": [
+    "RunNumType"
+  ],
+  "View Details": [
+    "View Details"
+  ],
+  "Results Not Added": [
+    "Results Not Added"
+  ],
+  "Run Number": [
+    "Run Number",
+    "{{templateReport.Lookups.VisitType}} Run Number :",
+    "{{templateReport.Lookups.VisitType}} Run Number :\n            {{templateReport.Lookups.SampleCodeFormatted}}",
+    "{{RunNumberType}} ({{visitType}}) Run Number",
+    "{{visitType}} Run Number",
+    "{{visitType}}\n              ({{RunNumberType}}) Run Number:"
+  ],
+  "Add Result": [
+    "Add Result"
+  ],
+  "Reports Pending": [
+    "Reports Pending"
+  ],
+  "Reports Generated": [
+    "Reports Generated"
+  ],
+  "Is Printed": [
+    "Is Printed"
+  ],
+  "Bill Not Paid": [
+    "Bill Not Paid"
+  ],
+  "Preview": [
+    "Preview"
+  ],
+  "Sample No": [
+    "Sample No",
+    "Sample No."
+  ],
+  "Collected By": [
+    "Collected By"
+  ],
+  "Result By": [
+    "Result By"
+  ],
+  "Verified By": [
+    "Verified By"
+  ],
+  "Printed By": [
+    "Printed By"
+  ],
+  "Lab Report of": [
+    "{{j+1}}. Lab Report of\n            {{rep.PatientName}}",
+    "{{j+1}}. Lab Report\n            of\n            {{rep.PatientName}}",
+    "Lab Report of\n              {{patientService.globalPatient.ShortName}}"
+  ],
+  "Not Paid": [
+    "Not Paid"
+  ],
+  "Show Pending Tests of this Patient": [
+    "Show Pending Tests of this Patient ?"
+  ],
+  "Lab Requisitions": [
+    "Lab Requisitions"
+  ],
+  "SNo": [
+    "S.No."
+  ],
+  "Results To Add": [
+    "Results To Add"
+  ],
+  "Sample Collected By": [
+    "Sample Collected By",
+    "Sample Collected By:"
+  ],
+  "Results Added": [
+    "Results Added"
+  ],
+  "Result Added By": [
+    "Result Added By"
+  ],
+  "Send Report as Email": [
+    "Send Report as Email"
+  ],
+  "Send Email": [
+    "Send Email"
+  ],
+  "Enter the email informations": [
+    "Enter the email informations"
+  ],
+  "Email Address is required": [
+    "Email Address is required"
+  ],
+  "Note separate multiple email by semicolon": [
+    "Note: separate multiple email by semicolon (;)"
+  ],
+  "Subject": [
+    "Subject"
+  ],
+  "Subject is required": [
+    "Subject is required"
+  ],
+  "Enter text": [
+    "Enter text"
+  ],
+  "Remark is required": [
+    "Remark is required"
+  ],
+  "pdf": [
+    "{{i+1}}. {{pdf.ImageName}}.pdf"
+  ],
+  "Send": [
+    "Send"
+  ],
+  "Change": [
+    "(Change)",
+    "Change"
+  ],
+  "Ward": [
+    "Ward :",
+    "Ward : {{patientService.globalPatient.WardName}}",
+    "Ward:",
+    "Ward"
+  ],
+  "Under Insurance": [
+    "(Under Insurance)"
+  ],
+  "Prescribed By": [
+    "Prescribed By :",
+    "Prescribed By"
+  ],
+  "Load Machine Result": [
+    "Load Machine Result"
+  ],
+  "Component": [
+    "Component"
+  ],
+  "Value": [
+    "Value"
+  ],
+  "Completed": [
+    "Completed"
+  ],
+  "Send to Vendor": [
+    "Send to Vendor: {{test.VendorDetail.VendorName}}"
+  ],
+  "Requested On": [
+    "Requested On:",
+    "Requested On"
+  ],
+  "CheckUncheck all components of": [
+    "Check/Uncheck all components of: {{test.TestName}}"
+  ],
+  "name is required": [
+    "name is required"
+  ],
+  "enter value": [
+    "enter value"
+  ],
+  "enter text": [
+    "enter text"
+  ],
+  "value is invalid": [
+    "value is invalid"
+  ],
+  "unit": [
+    "unit"
+  ],
+  "range": [
+    "range"
+  ],
+  "Remove this Component": [
+    "Remove this Component"
+  ],
+  "Add New Component to": [
+    "Add New Component to {{test.TestName}}"
+  ],
+  "Select": [
+    "Select"
+  ],
+  "No Growth": [
+    "No Growth:"
+  ],
+  "1 More Isolated Organism": [
+    "+1 More Isolated Organism"
+  ],
+  "Requested On testRequestDate DanpheDateTimeformatYYYYMMDD hhmm A": [
+    "Requested On: {{\n                  test.RequestDate |\n                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}"
+  ],
+  "click to change report template": [
+    "click to change report template"
+  ],
+  "Select different template": [
+    "Select different template ?"
+  ],
+  "search template": [
+    "search template"
+  ],
+  "Alert": [
+    "Alert",
+    "Alert !!!",
+    "Alert !!",
+    "Alert!"
+  ],
+  "Few of the Tests have abnormal values Do you want to proceed": [
+    "Few of the Tests have abnormal values, Do you want to proceed?"
+  ],
+  "Proceed": [
+    "Proceed"
+  ],
+  "Review Values": [
+    "Review Values"
+  ],
+  "Change Run Number": [
+    "Change Run Number"
+  ],
+  "is already used for patient": [
+    "is\n                  already used for patient",
+    "is already used for\n                  patient",
+    "is already used for patient",
+    "is\n                                    already used for patient",
+    "is already used\n                    for patient"
+  ],
+  "Please select another run number": [
+    "Please select another run number."
+  ],
+  "is already used for another test for the same patient": [
+    "is\n                  already used for another test for the same patient",
+    "is already used for another test for the same\n                  patient",
+    "is already used\n                  for another test for the same patient",
+    "is already used for another test for the same\n                                    patient",
+    "is already used for another test for the same\n                    patient",
+    "is\n                    already used for another test for the same patient"
+  ],
+  "Do you want to continue with the same run number": [
+    "Do you want to continue with the same run number?"
+  ],
+  "Continue": [
+    "Continue"
+  ],
+  "Patient No": [
+    "Patient No."
+  ],
+  "ER": [
+    "ER"
+  ],
+  "IP": [
+    "IP"
+  ],
+  "OP": [
+    "OP"
+  ],
+  "Referred By": [
+    "Referred By :"
+  ],
+  "Receiving Date": [
+    "Receiving Date"
+  ],
+  "Lab No": [
+    "Lab No"
+  ],
+  "Findings": [
+    "Finding(s)"
+  ],
+  "No printing option for this type of Tests": [
+    "No printing option for this type of Tests.."
+  ],
+  "Print Sheet": [
+    "Print Sheet"
+  ],
+  "Collect Sample": [
+    "Collect Sample"
+  ],
+  "Please verify the RUN Number and Tests Carefully before Collecting Sample": [
+    "Please verify the RUN Number and\n      Tests Carefully before Collecting Sample"
+  ],
+  "AD": [
+    "(AD)"
+  ],
+  "BS": [
+    "(BS)"
+  ],
+  "Change date format to ADBS": [
+    "Change date format to AD/BS"
+  ],
+  "Select Test": [
+    "Select Test"
+  ],
+  "Is Outsourced": [
+    "Is Outsourced?"
+  ],
+  "Type": [
+    "Type"
+  ],
+  "Government Insurance": [
+    "Government Insurance"
+  ],
+  "Change Test": [
+    "Change Test"
+  ],
+  "Transfer": [
+    "Transfer"
+  ],
+  "Get Latest Run Number": [
+    "Get Latest Run Number"
+  ],
+  "Change Sample Collection Date": [
+    "Change Sample Collection Date"
+  ],
+  "Use Earlier Sample": [
+    "Use Earlier Sample ?["
+  ],
+  "RunNumber BarCodeNumber": [
+    "RunNumber: \n                {{LastSampleCodeOfPat.SampleCodeFormatted}}, BarCodeNumber: {{LastSampleCodeOfPat.BarCodeNumber}}"
+  ],
+  "Please change the run number": [
+    "Please change the run number."
+  ],
+  "Sample Code generated successfully": [
+    "Sample Code generated successfully"
+  ],
+  "Note Resetting the Run Number Causes the Removal of Current Run Number": [
+    "Note: Resetting the Run Number Causes the Removal of Current Run Number"
+  ],
+  "Sample Code": [
+    "Sample Code:"
+  ],
+  "Apply Reset On": [
+    "Apply Reset On"
+  ],
+  "SampleCode of Checked test will Reset": [
+    "SampleCode of Checked test will Reset"
+  ],
+  "Final Reports": [
+    "Final Reports"
+  ],
+  "Reporting Date": [
+    "Reporting Date:",
+    "Reporting Date"
+  ],
+  "Upload To Telemedicine": [
+    "Upload To Telemedicine"
+  ],
+  "Show Header Image": [
+    "Show Header Image"
+  ],
+  "Last Printed By": [
+    "Last Printed By"
+  ],
+  "Print Count": [
+    "Print Count"
+  ],
+  "INS": [
+    "/ (INS)"
+  ],
+  "templateReportLookupsCountrySubDivisionName null templateReportLookupsCountrySubDivisionName templateReportLookupsMunicipalityName null templateReportLookupsMunicipalityName": [
+    ": {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                                        templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                                        {{templateReport.Lookups.MunicipalityName != null?\n                                                        templateReport.Lookups.MunicipalityName + ',' : '' }} {{templateReport.Lookups.Address}}",
+    ":\n                            {{templateReport.Lookups.CountrySubDivisionName != null ?\n                            templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                            {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                            ',' : '' }}\n                            {{templateReport.Lookups.Address}}",
+    ":\n                                {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                                ',' : '' }}\n                                {{templateReport.Lookups.Address}}"
+  ],
+  "Click to Change Prescriber Dr": [
+    "Click to Change Prescriber Dr."
+  ],
+  "Collection Date": [
+    "Collection Date"
+  ],
+  "templateReportLookupsReceivingDate DanpheDateTimeformatYYYYMMDD hhmm A templateReportLookupsReceivingDate nepaliDate": [
+    ":\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            nepaliDate }}",
+    ":\n                              {{templateReport.Lookups.ReceivingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceivingDate |\n                              nepaliDate }}",
+    ":\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  nepaliDate }}"
+  ],
+  "Click to Change Run Number": [
+    "Click to Change Run Number."
+  ],
+  "verificationEnabled templateReportLookupsVerifiedOn DanpheDateTime formatYYYYMMDD hhmm A templateReportLookupsReportingDate DanpheDateTimeformatYYYYMMDD hhmm A verificationEnabled templateReportLookupsVerifiedOn nepaliDate templateReportLookupsReportingDate nepaliDate": [
+    ": {{verificationEnabled ?\n                                                            (templateReport.Lookups.VerifiedOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}"
+  ],
+  "PassPort Number": [
+    "PassPort Number"
+  ],
+  "Show ESignature": [
+    "Show ESignature"
+  ],
+  "Note": [
+    "Note:"
+  ],
+  "Flag": [
+    "Flag"
+  ],
+  "Reference": [
+    "Reference"
+  ],
+  "unchecked test will not be printed": [
+    "unchecked test will not be printed"
+  ],
+  "L": [
+    "L"
+  ],
+  "H": [
+    "H"
+  ],
+  "N": [
+    "N"
+  ],
+  "unchecked Interpretation will not be printed": [
+    "unchecked Interpretation will not be printed"
+  ],
+  "Colony Count": [
+    "Colony Count:"
+  ],
+  "Antibiotics Result": [
+    "Antibiotics Result"
+  ],
+  "Sensitive": [
+    "Sensitive"
+  ],
+  "Intermediate": [
+    "Intermediate"
+  ],
+  "Resistant": [
+    "Resistant"
+  ],
+  "Comments": [
+    "Comments:"
+  ],
+  "Printed By on": [
+    "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
+  ],
+  "Update Signatories": [
+    "Update Signatories {{ templateReport.ReportId ? '' : 'and Print'}}"
+  ],
+  "Verify": [
+    "Verify"
+  ],
+  "Upload To Patient Portal": [
+    "Upload To Patient Portal"
+  ],
+  "Print Preliminary Report": [
+    "Print Preliminary Report"
+  ],
+  "Edit Signatories": [
+    "Edit Signatories"
+  ],
+  "Change Prescriber Doctor": [
+    "Change Prescriber Doctor"
+  ],
+  "Select Prescriber": [
+    "Select Prescriber"
+  ],
+  "Insurance": [
+    "/ (Insurance)"
+  ],
+  "templateReportLookupsDOB DanpheDateTimeage": [
+    ":\n                              {{templateReport.Lookups.DOB |\n                              DanpheDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}",
+    ":\n                                  {{templateReport.Lookups.DOB |\n                                  DanpheDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}"
+  ],
+  "Collection Site": [
+    "Collection Site"
+  ],
+  "Testing Date": [
+    "Testing Date"
+  ],
+  "templateReportLookupsReportingDate DanpheDateTimeformatYYYYMMDD hhmm A templateReportLookupsReportingDate nepaliDate": [
+    ":{{templateReport.Lookups.ReportingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliDate }}",
+    ":{{templateReport.Lookups.ReportingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliDate }}"
+  ],
+  "verificationEnabled templateReportLookupsVerifiedOn DanpheDateTimeformatYYYYMMDD hhmm A templateReportLookupsReportingDate DanpheDateTimeformatYYYYMMDD hhmm A verificationEnabled templateReportLookupsVerifiedOn nepaliDate templateReportLookupsReportingDate nepaliDate": [
+    ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                              (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliDate) }}",
+    ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                                  (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliDate) }}"
+  ],
+  "Contact": [
+    "Contact"
+  ],
+  "Verified On": [
+    "Verified On"
+  ],
+  "Ref Range": [
+    "Ref. Range"
+  ],
+  "Printed By on CurrentDateTime DanpheDateTimeformatYYYYMMDD hhmm A": [
+    "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime |\n              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
+  ],
+  "Prescriber Name": [
+    "Prescriber Name"
+  ],
+  "RN": [
+    "RN: {{patientinfos.SampleCodeFormatted}}"
+  ],
+  "No of copies": [
+    "No. of copies:"
+  ],
+  "Change Labtest": [
+    "Change Labtest"
+  ],
+  "Initially Requested Test": [
+    "Initially Requested Test"
+  ],
+  "Price": [
+    "Price"
+  ],
+  "Change this Labtest with": [
+    "Change this Labtest with"
+  ],
+  "Note You can only change to another test having EQUAL PRICE": [
+    "Note: You can only change to another test having EQUAL PRICE."
+  ],
+  "not found": [
+    "not\n          found",
+    "not found"
+  ],
+  "Select Signatories": [
+    "Select Signatories:"
+  ],
+  "Select Lab Machine": [
+    "Select Lab Machine"
+  ],
+  "Barcode No": [
+    "Barcode No."
+  ],
+  "Machine Component Name": [
+    "Machine Component Name"
+  ],
+  "Machine Unit": [
+    "Machine Unit"
+  ],
+  "Comp Unit": [
+    "Comp. Unit"
+  ],
+  "Danphe Component": [
+    "Danphe Component"
+  ],
+  "Map To": [
+    "Map To"
+  ],
+  "Machine Component": [
+    "Machine Component"
+  ],
+  "Conversion Factor": [
+    "Conversion Factor"
+  ],
+  "Invalid Component": [
+    "Invalid Component",
+    "Invalid\n                                    Component"
+  ],
+  "Click to add new component mapping": [
+    "Click to add new component mapping"
+  ],
+  "Click to remove this component mapping": [
+    "Click to remove this component mapping"
+  ],
+  "Are you sure": [
+    "Are you sure ?"
+  ],
+  "Currently mapped component will be lost Are you sure": [
+    "Currently mapped component will be lost.\n                    Are you sure ?"
+  ],
+  "Add New Mapping": [
+    "Add New Mapping"
+  ],
+  "Add Mapping for Lab Component to Machine Component": [
+    "Add Mapping for Lab Component to Machine Component"
+  ],
+  "Are you sure you want to remove this mapping": [
+    "Are you sure you want to remove this mapping?"
+  ],
+  "Select your Lab Type": [
+    "Select your Lab Type"
+  ],
+  "You do not have permission to enter the Lab": [
+    "You do not have permission to enter the Lab"
+  ],
+  "You are in": [
+    "You are in {{activeLab.LabTypeName}}."
+  ],
+  "Do you want to Change the Lab": [
+    "Do you want to Change the Lab?"
+  ],
+  "Deactivate Lab": [
+    "Deactivate\n                        Lab"
+  ],
+  "Lab Tests Orders of Patient Number": [
+    "Lab Tests Orders of  {{this.selectedPatient.Name}}  (Patient Number: {{this.selectedPatient.PatientCode}})"
+  ],
+  "WardBed": [
+    "Ward/Bed: {{selectedPatient.BedInformation.Ward}} - {{selectedPatient.BedInformation.BedNumber}}"
+  ],
+  "Admitting Docor": [
+    "Admitting Docor: {{selectedPatient.AdmittingDoctorName}}"
+  ],
+  "Admitted On": [
+    "Admitted On:"
+  ],
+  "Order Date Time": [
+    "Order Date Time"
+  ],
+  "OrderStatus": [
+    "OrderStatus"
+  ],
+  "Cannot Cancel": [
+    "Cannot Cancel"
+  ],
+  "No Test For Current InPatient": [
+    "No Test For Current InPatient"
+  ],
+  "SN": [
+    "S.N"
+  ],
+  "ItemName": [
+    "ItemName"
+  ],
+  "Qty": [
+    "Qty"
+  ],
+  "Total": [
+    "Total",
+    "Total : {{billingTransaction.TotalAmount}}"
+  ],
+  "Click to remove this item": [
+    "Click to remove this item"
+  ],
+  "Click to add new item": [
+    "Click to add new item"
+  ],
+  "Enter Item Name": [
+    "Enter Item Name"
+  ],
+  "Duplicate Item not allowed": [
+    "Duplicate Item not allowed"
+  ],
+  "Item Name is required": [
+    "Item Name is required"
+  ],
+  "Enter valid number": [
+    "Enter valid number."
+  ],
+  "In Words": [
+    "In Words :"
+  ],
+  "Only": [
+    "Only."
+  ],
+  "Deposit Balance Amount": [
+    "Deposit Balance Amount :"
+  ],
+  "Patient doesnt have sufficient DEPOSIT BALANCE for Inpatient Billing": [
+    "Patient doesn't have sufficient DEPOSIT BALANCE for Inpatient Billing."
+  ]
+}

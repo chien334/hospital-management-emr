@@ -57,25 +57,25 @@
 <div class="row">
   <div class="col-md-12" style="display: flex; justify-content: space-between;">
     <div>
-      <button type="button" class="btn btn-primary" (click)="OpenGoodReceiptItemAddEditPage()">Add New Good Receipt</button>
+      <button type="button" class="btn btn-primary" (click)="OpenGoodReceiptItemAddEditPage()">{{ 'PHARMACY.ADD_NEW_GOOD_RECEIPT' | translate }}</button>
     </div>
     <div>
       <div class="icheck-inline">
-        List by Status: &nbsp;
+        {{ 'PHARMACY.LIST_BY_STATUS' | translate }}: &nbsp;
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="filterlist()" [(ngModel)]="goodReceiptStatus" name="GRStatus" value="complete"
                  style="width:15px;height:15px" />
-          <span></span>Complete
+          <span></span>{{ 'PHARMACY.COMPLETE' | translate }}
         </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="filterlist()" [(ngModel)]="goodReceiptStatus" name="GRStatus" value="cancelled"
                  style="width:15px;height:15px" />
-          <span></span>Cancelled
+          <span></span>{{ 'PHARMACY.CANCELLED' | translate }}
         </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="filterlist()" [(ngModel)]="goodReceiptStatus" checked name="GRStatus" value="all"
                  style="width:15px;height:15px" />
-          <span></span>All
+          <span></span>{{ 'PHARMACY.ALL' | translate }}
         </label>
       </div>
     </div>
@@ -84,10 +84,10 @@
     <div class="row" style="width: 100%;">
       <div class="col-md-5 col-xs-12">
         <div class="form-group">
-          <label class="control-label col-md-5">Supplier Name<b style="float:right;">:</b></label>
+          <label class="control-label col-md-5">{{ 'PHARMACY.SUPPLIER_NAME' | translate }}<b style="float:right;">:</b></label>
           <div class="col-md-7">
             <input danphe-auto-complete class="form-control " [(ngModel)]="currentSupplier" [source]="supplierList" [list-formatter]="myListFormatter"
-                   placeholder="select supplier" display-property-name="SupplierName" value-property-name="SupplierName" min-chars="0"
+                   [placeholder]="'PHARMACY.SELECT_SUPPLIER' | translate" display-property-name="SupplierName" value-property-name="SupplierName" min-chars="0"
                    max-num-list="20" onClick="this.select();" match-formatted="true" [grid-sort]="'SupplierName'"
                    (valueChanged)="SupplierChange($event)" style="width:260px " />
           </div>
@@ -95,12 +95,12 @@
       </div>
       <div class="col-md-5 col-xs-12">
         <div class="form-group">
-          <label class="control-label col-md-4">Aging Days<b style="float:right;">:</b></label>
+          <label class="control-label col-md-4">{{ 'PHARMACY.AGING_DAYS' | translate }}<b style="float:right;">:</b></label>
           <div class="col-md-8">
-            <input type="text" [(ngModel)]="fromDay" name="" placeholder="From" style="width:100px" class="form-control col-lg-3" />
+            <input type="text" [(ngModel)]="fromDay" name="" [placeholder]="'PHARMACY.FROM' | translate" style="width:100px" class="form-control col-lg-3" />
             <!-- @*<span class="error-msg" *ngIf="fromDay>toDay">From days should not greater than To days</span>*@ -->
             <label class="col-lg-2"> </label>
-            <input type="text" [(ngModel)]="toDay" name="" placeholder="To" style="width:100px" class="form-control col-lg-3">
+            <input type="text" [(ngModel)]="toDay" name="" [placeholder]="'PHARMACY.TO' | translate" style="width:100px" class="form-control col-lg-3">
             <!-- @*<span class="error-msg" *ngIf="fromDay<toDay">To days should not greater than From days</span>*@ -->
 
           </div>
@@ -108,7 +108,7 @@
       </div>
       <div class="col-md-2 col-xs-12">
         <div class="form-group">
-          <button class="btn blue" type="button" (click)="filterlist()"> <i class="fa fa-search"></i> Show Details
+          <button class="btn blue" type="button" (click)="filterlist()"> <i class="fa fa-search"></i> {{ 'PHARMACY.SHOW_DETAILS' | translate }}
           </button>
         </div>
       </div>
@@ -126,7 +126,7 @@
           <thead>
             <tr>
               <th colspan="6" style="text-align: center;">
-                <span style="font-size:large;"> Summary </span>
+                <span style="font-size:large;"> {{ 'PHARMACY.SUMMARY' | translate }} </span>
               </th>
             </tr>
           </thead>
@@ -134,7 +134,7 @@
             <ng-container>
               <tr>
                 <td style="font-weight:bold; color:blue">
-                  <span> <b> Sub Total </b> </span>
+                  <span> <b> {{ 'PHARMACY.SUB_TOTAL' | translate }} </b> </span>
                 </td>
                 <td>
                   <span> {{subTotal | ParseAmount }}</span>
@@ -142,7 +142,7 @@
               </tr>
               <tr>
                 <td style="font-weight:bold; color:blue">
-                  <span> <b> Discount Total </b> </span>
+                  <span> <b> {{ 'PHARMACY.DISCOUNT_TOTAL' | translate }} </b> </span>
                 </td>
                 <td>
                   <span> {{discountTotal | ParseAmount }}</span>
@@ -150,7 +150,7 @@
               </tr>
               <tr>
                 <td style="font-weight:bold; color:blue">
-                  <span> <b> VAT Total </b> </span>
+                  <span> <b> {{ 'PHARMACY.VAT_TOTAL' | translate }} </b> </span>
                 </td>
                 <td>
                   <span> {{vatTotal | ParseAmount }}</span>
@@ -158,7 +158,7 @@
               </tr>
               <tr>
                 <td style="font-weight:bold; color:blue">
-                  <span> <b> Total Amount </b> </span>
+                  <span> <b> {{ 'PHARMACY.TOTAL_AMOUNT' | translate }} </b> </span>
                 </td>
                 <td>
                   <span> {{totalAmount | ParseAmount }}</span>
@@ -194,9 +194,9 @@
           <div class="caption lb-caption mb-0">
             <h3>
               <i class="fa fa-shopping-cart"></i>
-              <span class="caption-subject">Add Good Receipt</span>
+              <span class="caption-subject">{{ 'PHARMACY.ADD_GOOD_RECEIPT' | translate }}</span>
             </h3>
-            <a class="btn btn-danger" (click)="CloseGoodReceiptItemAddEditPage()" title="Cancel"><i class="fa fa-times"></i></a>
+            <a class="btn btn-danger" (click)="CloseGoodReceiptItemAddEditPage()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
           </div>
           <phrm-goods-receipt (call-back-popup-close)="CloseGoodReceiptItemAddEditPage()"></phrm-goods-receipt>
         </div>

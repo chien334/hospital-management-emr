@@ -34,7 +34,7 @@
     <div class="col-md-12">
         <div class="caption">
             <i class="glyphicon glyphicon-asterisk font-red-sunglo"></i>
-            <span class="caption-subject font-blue-sharp bold uppercase">Make Smart Prescription</span>
+            <span class="caption-subject font-blue-sharp bold uppercase">{{ 'PHARMACY.MAKE_SMART_PRESCRIPTION' | translate }}</span>
         </div>
     </div>
 </div>
@@ -45,7 +45,7 @@
             <div class="col-md-4" id="pulsate-regular">
                 <div class="form-group">
                     <label class="control-label col-md-6">
-                        <b>Is Indoor Patient?</b><b class="color-red">  *</b>
+                        <b>{{ 'PHARMACY.IS_INDOOR_PATIENT' | translate }}</b><b class="color-red">  *</b>
                         <b style="float:right">:</b>
                     </label>
                     <div class="col-md-6">
@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group" *ngIf="currPrescription.IsInPatient">
-                    <label class="control-label col-md-4">Select Doctor<b class="color-red">*</b><b style="float:right;">:</b></label>
+                    <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_DOCTOR' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                     <div class="col-md-7">
                         <input class="form-control" danphe-auto-complete
                                [ngClass]="IsWrongProvider==true ? 'bg-on' : 'bg-off'"
@@ -74,23 +74,23 @@
                                [list-formatter]="myDoctorListFormatter"
                                [source]="doctorList"
                                (valueChanged)="ProviderValueChanged()"
-                               placeholder="Enter Text For Search Doctor Name"
+                               [placeholder]="'PHARMACY.ENTER_TEXT_FOR_SEARCH_DOCTOR_NAME' | translate"
                                display-property-name="Value"
                                onClick="this.select();"
                                value-property-name=null
                                max-num-list="10" />
-                        <span class="color-red font-sm" *ngIf="currPrescription.IsDirty('ProviderId')" [hidden]="currPrescription.IsValidCheck('ProviderId','required')">Select Doctor</span>
-                        <span class="color-red" *ngIf="IsWrongProvider==true">Please select appropriate Docotor</span>
+                        <span class="color-red font-sm" *ngIf="currPrescription.IsDirty('ProviderId')" [hidden]="currPrescription.IsValidCheck('ProviderId','required')">{{ 'PHARMACY.SELECT_DOCTOR' | translate }}</span>
+                        <span class="color-red" *ngIf="IsWrongProvider==true">{{ 'PHARMACY.PLEASE_SELECT_APPROPRIATE_DOCOTOR' | translate }}</span>
                     </div>
                 </div>
                 <div class="form-group" *ngIf="!currPrescription.IsInPatient">
-                    <label class="control-label col-md-4">Enter Doctor Name<b class="color-red">  *</b><b style="float:right;">:</b></label>
+                    <label class="control-label col-md-4">{{ 'PHARMACY.ENTER_DOCTOR_NAME' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div class="col-md-7">
                         <input class="form-control" maxlength="60" type="text" formControlName="ProviderFullName" [(ngModel)]="currPrescription.ProviderFullName"
                                required value=""
                                placeholder="Enter Doctor Name" />
-                        <span class="color-red font-sm" *ngIf="currPrescription.IsDirty('ProviderFullName')" [hidden]="currPrescription.IsValidCheck('ProviderFullName','required')">Doctor Name is required</span>
-                        <span class="color-red font-sm" *ngIf="currPrescription.IsDirty('ProviderFullName')" [hidden]="currPrescription.IsValidCheck('ProviderFullName','maxlength')"> Docotr Name must be less than 60 characters</span>
+                        <span class="color-red font-sm" *ngIf="currPrescription.IsDirty('ProviderFullName')" [hidden]="currPrescription.IsValidCheck('ProviderFullName','required')">{{ 'PHARMACY.DOCTOR_NAME_IS_REQUIRED' | translate }}</span>
+                        <span class="color-red font-sm" *ngIf="currPrescription.IsDirty('ProviderFullName')" [hidden]="currPrescription.IsValidCheck('ProviderFullName','maxlength')"> {{ 'PHARMACY.DOCOTR_NAME_MUST_BE_LESS_THAN' | translate }}</span>
                     </div>
                 </div>
             </div>
@@ -104,20 +104,20 @@
                 <thead>
                     <tr class="table-tr-style">
                         <th></th>
-                        <th><b>Medicine Type</b></th>
-                        <th><b>Drug/Medicine Name</b></th>
-                        <th><b>Quantity</b></th>
-                        <th colspan="2"><b>Frequency</b></th>
-                        <th><b>Instruction</b></th>
-                        <th><b>Medicine Start Date</b></th>
-                        <th><b>Day's</b></th>
+                        <th><b>{{ 'PHARMACY.MEDICINE_TYPE' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.DRUGMEDICINE_NAME' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.QUANTITY' | translate }}</b></th>
+                        <th colspan="2"><b>{{ 'PHARMACY.FREQUENCY' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.INSTRUCTION' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.MEDICINE_START_DATE' | translate }}</b></th>
+                        <th><b>{{ 'PHARMACY.DAYS' | translate }}</b></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let row of currPrescriptionItems; let i = index">
                         <td>
-                            <a (click)="DeleteRow(i)"><i class="btn btn-danger fa">X</i></a>
+                            <a (click)="DeleteRow(i)"><i class="btn btn-danger fa">{{ 'PHARMACY.X' | translate }}</i></a>
                         </td>
                         <td>
                             <form [formGroup]="row.PHRMPrescriptionItemsValidator">
@@ -127,7 +127,7 @@
                                         {{itm.ItemTypeName}}
                                     </option>
                                 </select>
-                                <span class="error-msg" *ngIf="row.IsDirty('ItemTypeName')" [hidden]="row.IsValidCheck('ItemTypeName','required')"> Item Type Name is Required</span>
+                                <span class="error-msg" *ngIf="row.IsDirty('ItemTypeName')" [hidden]="row.IsValidCheck('ItemTypeName','required')"> {{ 'PHARMACY.ITEM_TYPE_NAME_IS_REQUIRED' | translate }}</span>
                             </form>
                         </td>
                         <td style="width:250px">
@@ -138,7 +138,7 @@
                                        [(ngModel)]="row.SelectedItem"
                                        [source]="row.ItemListByItemType"
                                        [list-formatter]="myItemListFormatter"
-                                       placeholder="Item Name"
+                                       [placeholder]="'PHARMACY.ITEM_NAME' | translate"
                                        display-property-name="ItemName"
                                        value-property-name=null
                                         onClick="this.select();"
@@ -146,8 +146,8 @@
                                        max-num-list="10"
                                        min-chars="0"
                                        style="width:250px ; " />
-                                <span class="color-red" *ngIf="row.IsWrongItem==true">Please select correct Item</span>
-                                <span class="error-msg" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')"> Item Name is Required</span>
+                                <span class="color-red" *ngIf="row.IsWrongItem==true">{{ 'PHARMACY.PLEASE_SELECT_CORRECT_ITEM' | translate }}</span>
+                                <span class="error-msg" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')"> {{ 'PHARMACY.ITEM_NAME_IS_REQUIRED' | translate }}</span>
 
                             </form>
                         </td>
@@ -156,7 +156,7 @@
                                 <input [(ngModel)]="row.Quantity"
                                        formControlName="Quantity" style="width:80px ; "
                                        min="0" class="form-control" type="number" value="">
-                                <span class="error-msg" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','required')"> Quantity is Required</span>
+                                <span class="error-msg" *ngIf="row.IsDirty('Quantity')" [hidden]="row.IsValidCheck('Quantity','required')"> {{ 'PHARMACY.QUANTITY_IS_REQUIRED' | translate }}</span>
                             </form>
                         </td>
                         <td class="no-padding">
@@ -164,11 +164,11 @@
                                 <div class="icheck-inline">
                                     <label class="mt-checkbox mt-checkbox-outline no-margin">
                                         <input type="checkbox" value="" [(ngModel)]="row.mrng" name="mrng" [ngModelOptions]="{standalone: true}">
-                                        <span></span>MRNG
+                                        <span></span>{{ 'PHARMACY.MRNG' | translate }}
                                     </label>
                                     <label class="mt-checkbox mt-checkbox-outline no-margin">
                                         <input type="checkbox" value="" [(ngModel)]="row.noon" name="noon" [ngModelOptions]="{standalone: true}">
-                                        <span></span>NOON
+                                        <span></span>{{ 'PHARMACY.NOON' | translate }}
                                     </label>
                                 </div>
                             </div>
@@ -178,11 +178,11 @@
                                 <div class="icheck-inline">
                                     <label class="mt-checkbox mt-checkbox-outline no-margin">
                                         <input type="checkbox" value="" [(ngModel)]="row.evng" name="evng" [ngModelOptions]="{standalone: true}">
-                                        <span></span>EVNG
+                                        <span></span>{{ 'PHARMACY.EVNG' | translate }}
                                     </label>
                                     <label class="mt-checkbox mt-checkbox-outline no-margin">
                                         <input type="checkbox" value="" [(ngModel)]="row.night" name="night" [ngModelOptions]="{standalone: true}">
-                                        <span></span>NIGHT
+                                        <span></span>{{ 'PHARMACY.NIGHT' | translate }}
                                     </label>
                                 </div>
                             </div>
@@ -191,14 +191,14 @@
                             <form [formGroup]="row.PHRMPrescriptionItemsValidator">
                                 <textarea [(ngModel)]="row.Notes" formControlName="Notes" style="width: 200px;"
                                           class="form-control" type="text"></textarea>
-                                <span class="error-msg" *ngIf="row.IsDirty('Notes')" [hidden]="row.IsValidCheck('Notes','required')"> Instruction is Required</span>
+                                <span class="error-msg" *ngIf="row.IsDirty('Notes')" [hidden]="row.IsValidCheck('Notes','required')"> {{ 'PHARMACY.INSTRUCTION_IS_REQUIRED' | translate }}</span>
                             </form>
                         </td>
                         <td>
                             <form [formGroup]="row.PHRMPrescriptionItemsValidator">
                                 <input [(ngModel)]="row.StartingDate" style="width:150px " formControlName="StartingDate" class="form-control" type="date" />
-                                <div style="color:red" *ngIf="row.IsDirty('StartingDate')" [hidden]="row.IsValidCheck('StartingDate','required')"> Date is required</div>
-                                <div style="color:red" *ngIf="row.IsDirty('StartingDate')" [hidden]="row.IsValidCheck('StartingDate','wrongDate')"> Date Can't be Past Date</div>
+                                <div style="color:red" *ngIf="row.IsDirty('StartingDate')" [hidden]="row.IsValidCheck('StartingDate','required')"> {{ 'PHARMACY.DATE_IS_REQUIRED' | translate }}</div>
+                                <div style="color:red" *ngIf="row.IsDirty('StartingDate')" [hidden]="row.IsValidCheck('StartingDate','wrongDate')"> {{ 'PHARMACY.DATE_CANT_BE_PAST_DATE' | translate }}</div>
                             </form>
                         </td>
                         <td>
@@ -213,7 +213,7 @@
             <table>
                 <tr>
                     <td class="col-sm-offset-6 col-sm-3"></td>
-                    <td> Note: </td>
+                    <td> {{ 'PHARMACY.NOTE' | translate }}: </td>
                     <td>
                         <textarea [(ngModel)]="currPrescription.Notes" style="width:250px; margin-bottom:10px;" rows="3" [ngModelOptions]="{standalone: true}"
                                   class="form-control" type="text"></textarea>
@@ -223,9 +223,9 @@
                     <td class="col-sm-offset-8 col-sm-2"></td>
                     <td></td>
                     <td>
-                        <input type="button" class="btn btn-success" value="Save" (click)="SavePrescription()" [disabled]="loading" />
+                        <input type="button" class="btn btn-success" [value]="'COMMON.SAVE' | translate" (click)="SavePrescription()" [disabled]="loading" />
                         <span></span>
-                        <input type="button" class="btn btn-danger" (click)="Cancel()" value="Cancel">
+                        <input type="button" class="btn btn-danger" (click)="Cancel()" [value]="'COMMON.CANCEL' | translate">
                         <span></span>
                     </td>
                 </tr>

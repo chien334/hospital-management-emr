@@ -4,10 +4,10 @@
       <div class="col-md-12">
         <div class="caption custom-caption" style="float: left;">
           <i class="glyphicon glyphicon-asterisk"></i>
-          <span class="caption-subject">Bill-wise Sales Report</span>
+          <span class="caption-subject">{{ 'PHARMACY.BILLWISE_SALES_REPORT' | translate }}</span>
         </div>
         <div style="float: right; font-size: 11px;">
-          *Note: Return Sales are not included in this report.
+          *{{ 'PHARMACY.NOTE_RETURN_SALES_ARE_NOT_INCLUDED' | translate }}
         </div>
       </div>
 
@@ -19,9 +19,9 @@
           <div class="row">
             <div class="col-md-8 col-xs-12">
               <div class="form-group row">
-                <label class="control-label col-md-4">Invoice Number<b style="float:right;">:</b></label>
+                <label class="control-label col-md-4">{{ 'PHARMACY.INVOICE_NUMBER' | translate }}<b style="float:right;">:</b></label>
                 <div class="col-md-8">
-                  <input class="form-control" type="number" value="" style="width:250px " [(ngModel)]="InvoiceNumber" placeholder="Enter Invoice Number" />
+                  <input class="form-control" type="number" value="" style="width:250px " [(ngModel)]="InvoiceNumber" [placeholder]="'PHARMACY.ENTER_INVOICE_NUMBER' | translate" />
                 </div>
               </div>
             </div>
@@ -29,8 +29,8 @@
               <div class="form-group">
                 <button class="btn blue" type="button" (click)="GetReportData()" [disabled]="loading">
                   <i class="fa fa-search"></i>&nbsp;
-                  <span *ngIf="!loading">Show Report</span>
-                  <span *ngIf="loading">Loading...</span>
+                  <span *ngIf="!loading">{{ 'PHARMACY.SHOW_REPORT' | translate }}</span>
+                  <span *ngIf="loading">{{ 'PHARMACY.LOADING' | translate }}</span>
                 </button>
               </div>
             </div>
@@ -57,7 +57,7 @@
       <thead>
         <tr>
           <th colspan="8" style="text-align: center;">
-            <span style="font-size:large;"> Summary </span>
+            <span style="font-size:large;"> {{ 'PHARMACY.SUMMARY' | translate }} </span>
           </th>
         </tr>
       </thead>
@@ -65,11 +65,11 @@
         <ng-container>
           <tr>
             <td> </td>
-            <td style="font-weight:bold; color:blue"> SubTotal Amount </td>
-            <td style="font-weight:bold; color:blue"> Discount Amount </td>
-            <td style="font-weight:bold; color:blue"> Total Amount </td>
-            <td style="font-weight:bold; color:blue"> Received Amount </td>
-            <td style="font-weight:bold; color:blue"> Credit Amount </td>
+            <td style="font-weight:bold; color:blue"> {{ 'PHARMACY.SUBTOTAL_AMOUNT' | translate }} </td>
+            <td style="font-weight:bold; color:blue"> {{ 'PHARMACY.DISCOUNT_AMOUNT' | translate }} </td>
+            <td style="font-weight:bold; color:blue"> {{ 'PHARMACY.TOTAL_AMOUNT' | translate }} </td>
+            <td style="font-weight:bold; color:blue"> {{ 'PHARMACY.RECEIVED_AMOUNT' | translate }} </td>
+            <td style="font-weight:bold; color:blue"> {{ 'PHARMACY.CREDIT_AMOUNT' | translate }} </td>
           </tr>
           <tr *ngFor="let store of storeWiseBillingSummary;">
             <td style="font-weight:bold; color:blue">{{store.StoreName}}</td>

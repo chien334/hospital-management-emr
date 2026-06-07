@@ -10,9 +10,9 @@
       <div class="col-md-6 col-md-offset-3">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span *ngIf="!update">Add Minimum Deposit Settings</span> <span *ngIf="update">Update Minimum Deposit Settings</span>
+            <h3> <span *ngIf="!update">{{ 'SETTINGS_NEW.ADD_MINIMUM_DEPOSIT_SETTINGS' | translate }}</span> <span *ngIf="update">{{ 'SETTINGS_NEW.UPDATE_MINIMUM_DEPOSIT_SETTINGS' | translate }}</span>
             </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <div>
             <div class="col-md-12">
@@ -23,13 +23,13 @@
                       <form [formGroup]="MinimumDepositSettings.MinimumDepositSettingsValidator"
                             class="form-horizontal hm-form">
 
-                        <label class="control-label col-md-4">Bed Feature <sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-4">{{ 'SETTINGS_NEW.BED_FEATURE' | translate }} <sup>*</sup><b>:</b></label>
                         <div class="col-md-8">
                           <input style="width: 100%;"
                                  danphe-auto-complete
                                  [source]="bedFeatureList"
                                  [(ngModel)]="selectedBedFeature"
-                                 placeholder="Select Bed Feature"
+                                 [placeholder]="'SETTINGS_NEW.SELECT_BED_FEATURE' | translate"
                                  max-num-list="8" min-chars="0"
                                  display-property-name="BedFeatureName"
                                  [list-formatter]="BedFeatureFormatter"
@@ -37,8 +37,7 @@
                                  formControlName="BedFeatureName" (valueChanged)="BedFeatureEventHandler()"
                                  value-property-name="BedFeatureName">
                           <span class="color-red font-sm"
-                                [hidden]="IsValidCheck('BedFeatureName','required') || !(IsDirty('BedFeatureName'))">Bed
-                            Feature name is required</span>
+                                [hidden]="IsValidCheck('BedFeatureName','required') || !(IsDirty('BedFeatureName'))">{{ 'SETTINGS_NEW.BED_FEATURE' | translate }} name is required</span>
                         </div>
                       </form>
                     </td>
@@ -47,17 +46,17 @@
                     <td>
                       <form [formGroup]="MinimumDepositSettings.MinimumDepositSettingsValidator"
                             class="form-horizontal hm-form">
-                        <label class="control-label col-md-4">Scheme <sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-4">{{ 'COMMON.SCHEME' | translate }} <sup>*</sup><b>:</b></label>
                         <div class="col-md-8">
                           <input style="width: 100%;" danphe-auto-complete [source]="BillSchemeList"
                                  [(ngModel)]="selectedScheme"
-                                 placeholder="Select Scheme" max-num-list="8" min-chars="0"
+                                 [placeholder]="'SETTINGS_NEW.SELECT_SCHEME' | translate" max-num-list="8" min-chars="0"
                                  display-property-name="SchemeName" [list-formatter]="SchemeFormatter"
                                  onclick="select()"
                                  (valueChanged)="SchemeEventHandler()" formControlName="SchemeName"
                                  value-property-name="SchemeName">
                           <span class="color-red font-sm"
-                                [hidden]="IsValidCheck('SchemeName','required') || !(IsDirty('SchemeName'))">Scheme Name is
+                                [hidden]="IsValidCheck('SchemeName','required') || !(IsDirty('SchemeName'))">{{ 'COMMON.SCHEME' | translate }} Name is
                             required</span>
 
                         </div>
@@ -68,19 +67,18 @@
                     <td>
                       <form [formGroup]="MinimumDepositSettings.MinimumDepositSettingsValidator"
                             class="form-horizontal hm-form">
-                        <label class="control-label col-md-4">Deposit Head <sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-4">{{ 'SETTINGS_NEW.DEPOSIT_HEAD' | translate }} <sup>*</sup><b>:</b></label>
                         <div class="col-md-8">
                           <input style="width: 100%;" danphe-auto-complete [source]="DepositHeadList"
                                  [(ngModel)]="selectedDepositHead"
-                                 placeholder="Deposit Head Name" max-num-list="8" min-chars="0"
+                                 [placeholder]="'SETTINGS_NEW.DEPOSIT_HEAD_NAME' | translate" max-num-list="8" min-chars="0"
                                  display-property-name="DepositHeadName" [list-formatter]="DepositHeadFormater"
                                  onclick="select()"
                                  (valueChanged)="DepositHeadEventHandler()" formControlName="DepositHeadName"
                                  stand
                                  value-property-name="DepositHeadName">
                           <span class="color-red font-sm"
-                                [hidden]="IsValidCheck('DepositHeadName','required') || !(IsDirty('DepositHeadName'))">Deposit
-                            Head is required</span>
+                                [hidden]="IsValidCheck('DepositHeadName','required') || !(IsDirty('DepositHeadName'))">{{ 'SETTINGS_NEW.DEPOSIT_HEAD' | translate }} is required</span>
 
                         </div>
                       </form>
@@ -94,14 +92,14 @@
                         <div class="col-md-8">
                           <input class="form-control" minlength="0" type="number" id="id_MinimumChargeAmount"
                                  [(ngModel)]="MinimumDepositSettings.MinimumDepositAmount"
-                                 placeholder="Minimum Deposit Amount"
+                                 [placeholder]="'SETTINGS_NEW.MINIMUM_DEPOSIT_AMOUNT' | translate"
                                  min="0"
                                  onclick="this.select()" (wheel)="coreService.PreventNumberChangeOnScroll($event)"
                                  formControlName="MinimumDepositAmount"
                                  (keyup.enter)="coreService.FocusInputById('id_isOnlyMinimumDepositAmount')" />
                           <span class="color-red font-sm" *ngIf="IsDirty('MinimumDepositAmount')"
                                 [hidden]="IsValidCheck('MinimumDepositAmount','min') && IsValidCheck('MinimumDepositAmount', 'required')">
-                            Amount Cannot be in negative
+                            {{ 'SETTINGS_NEW.AMOUNT_CANNOT_BE_IN_NEGATIVE' | translate }}
                           </span>
                           <br>
                           <span class="color-red font-sm"
@@ -116,7 +114,7 @@
                   <tr>
                     <td>
                       <form [formGroup]="MinimumDepositSettings.MinimumDepositSettingsValidator"
-                            class="form-horizontal hm-form"> <label class="control-label col-md-4">Is Only Minimum Deposit
+                            class="form-horizontal hm-form"> <label class="control-label col-md-4">{{ 'SETTINGS_NEW.IS_ONLY_MINIMUM_DEPOSIT' | translate }}
                           <b>:</b> </label>
                         <div class="col-md-7">
 
@@ -135,9 +133,9 @@
             </div>
           </div>
           <div class="col-md-12 text-right" style="margin-top: 10px;margin-bottom: 10px;">
-            <input type="button" class="btn btn-green" [disabled]="loading" *ngIf="!update" (click)="Save()" value="Save" />
-            <input type="button" class="btn btn-primary" *ngIf="update" (click)="Update()" value="Update" />
-            <input type="button" class="btn btn-warning" *ngIf="!update" (click)="Discard()" value="Discard Changes" />
+            <input type="button" class="btn btn-green" [disabled]="loading" *ngIf="!update" (click)="Save()" [value]="'COMMON.SAVE' | translate" />
+            <input type="button" class="btn btn-primary" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
+            <input type="button" class="btn btn-warning" *ngIf="!update" (click)="Discard()" [value]="'SETTINGS_NEW.DISCARD_CHANGES' | translate" />
           </div>
         </div>
       </div>

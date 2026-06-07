@@ -4,88 +4,88 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span *ngIf="!update">Add SubStore</span> <span *ngIf="update">Update SubStore</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
+            <h3> <span *ngIf="!update">{{ 'SETTINGS_NEW.ADD_SUBSTORE' | translate }}</span> <span *ngIf="update">{{ 'SETTINGS_NEW.UPDATE_SUBSTORE' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
           <form [formGroup]="CurrentStore.StoreValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="control-label col-md-4">SubStore Name<sup>*</sup><b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'SETTINGS_NEW.SUBSTORE_NAME' | translate }}<sup>*</sup><b>:</b></label>
                     <div class="col-md-8">
                       <input class="form-control" maxlength="30" type="text"
                            [(ngModel)]="CurrentStore.Name"
                            formControlName="Name"
                            id="StoreName"
-                           placeholder="SubStore Name"
+                           [placeholder]="'SETTINGS_NEW.SUBSTORE_NAME' | translate"
                            (keyup.enter)="setFocusById('Code')"
                            (keyup.escape)="Close()" />
-                      <span class="color-red font-sm" [hidden]="CurrentStore.IsValidCheck('Name','required') || !(CurrentStore.IsDirty('Name'))">Name is required</span> <span class="color-red font-sm" *ngIf="CurrentStore.IsDirty('Name')" [hidden]="CurrentStore.IsValidCheck('Name','maxlength')"> Length is not proper</span> </div>
+                      <span class="color-red font-sm" [hidden]="CurrentStore.IsValidCheck('Name','required') || !(CurrentStore.IsDirty('Name'))">{{ 'SETTINGS_NEW.NAME_IS_REQUIRED' | translate }}</span> <span class="color-red font-sm" *ngIf="CurrentStore.IsDirty('Name')" [hidden]="CurrentStore.IsValidCheck('Name','maxlength')"> {{ 'SETTINGS_NEW.LENGTH_IS_NOT_PROPER' | translate }}</span> </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-4">Code<b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'GRID_HEADERS.CODE' | translate }}<b>:</b></label>
                     <div class="col-md-8">
                       <input class="form-control" maxlength="10" type="text"
                            [(ngModel)]="CurrentStore.Code"
                            [ngModelOptions]="{standalone:true}"
                            (ngModelChange)="CheckCodeDuplication()"
                            id="Code"
-                           placeholder="SubStore Code"
+                           [placeholder]="'SETTINGS_NEW.SUBSTORE_CODE' | translate"
                            (keyup.enter)="setFocusById('StoreLabel')"  />
-                      <span class="color-red font-sm" *ngIf="isCodeDuplicate" [hidden]="!isCodeDuplicate">Code must be unique.</span> </div>
+                      <span class="color-red font-sm" *ngIf="isCodeDuplicate" [hidden]="!isCodeDuplicate">{{ 'SETTINGS_NEW.CODE_MUST_BE_UNIQUE' | translate }}</span> </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-4">Email<b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'GRID_HEADERS.EMAIL' | translate }}<b>:</b></label>
                     <div class="col-md-8">
                       <input class="form-control" maxlength="30" type="text"
                            [(ngModel)]="CurrentStore.Email"
                            formControlName="Email"
                            id="Email"
-                           placeholder="Email@email.com" 
+                           [placeholder]="'SETTINGS_NEW.EMAILEMAILCOM' | translate" 
                             />
-                      <span class="color-red font-sm" *ngIf="CurrentStore.IsDirty('Email')" [hidden]="CurrentStore.IsValidCheck('Email','pattern')"> Email is not proper</span> </div>
+                      <span class="color-red font-sm" *ngIf="CurrentStore.IsDirty('Email')" [hidden]="CurrentStore.IsValidCheck('Email','pattern')"> {{ 'SETTINGS_NEW.EMAIL_IS_NOT_PROPER' | translate }}</span> </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-4">Contact No<b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'SETTINGS_NEW.CONTACT_NO' | translate }}<b>:</b></label>
                     <div class="col-md-8">
                       <input class="form-control"
                            [(ngModel)]="CurrentStore.ContactNo"
                            maxlength="20"
                            formControlName="ContactNo"
                            type="text" id="ContactNo" value=""
-                           placeholder="Contact No" 
+                           [placeholder]="'SETTINGS_NEW.CONTACT_NO' | translate" 
                             />
-                      <span class="color-red font-sm" [hidden]="CurrentStore.IsValidCheck('ContactNo','pattern') || !(CurrentStore.IsDirty('ContactNo'))">Format is not proper.</span> <span class="color-red font-sm" *ngIf="CurrentStore.IsDirty('ContactNo')" [hidden]="CurrentStore.IsValidCheck('ContactNo','maxlength')"> Length is not proper</span> </div>
+                      <span class="color-red font-sm" [hidden]="CurrentStore.IsValidCheck('ContactNo','pattern') || !(CurrentStore.IsDirty('ContactNo'))">{{ 'SETTINGS_NEW.FORMAT_IS_NOT_PROPER' | translate }}</span> <span class="color-red font-sm" *ngIf="CurrentStore.IsDirty('ContactNo')" [hidden]="CurrentStore.IsValidCheck('ContactNo','maxlength')"> {{ 'SETTINGS_NEW.LENGTH_IS_NOT_PROPER' | translate }}</span> </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-4">Location<b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'SETTINGS_NEW.LOCATION' | translate }}<b>:</b></label>
                     <div class="col-md-8">
                       <input class="form-control"
                            [(ngModel)]="CurrentStore.Address"
                            [ngModelOptions]="{standalone: true}"
                            type="text" id="Address" value=""
-                           placeholder="Location"
+                           [placeholder]="'SETTINGS_NEW.LOCATION' | translate"
                             />
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-4">SubStore Description<b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'SETTINGS_NEW.SUBSTORE_DESCRIPTION' | translate }}<b>:</b></label>
                     <div class="col-md-8">
                       <textarea class="form-control"
                               [(ngModel)]="CurrentStore.StoreDescription"
                               [ngModelOptions]="{standalone: true}"
                               type="text" id="Description" value=""
-                              placeholder="SubStore Description"
+                              [placeholder]="'SETTINGS_NEW.SUBSTORE_DESCRIPTION' | translate"
                               ></textarea>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-4">Label<b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'GRID_HEADERS.LABEL' | translate }}<b>:</b></label>
                     <div class="col-md-8">
                       <input class="form-control" [(ngModel)]="CurrentStore.StoreLabel"
                            [ngModelOptions]="{standalone: true}"
                            type="text" value="" id="StoreLabel"
-                           placeholder="SubStore Label"
+                           [placeholder]="'SETTINGS_NEW.SUBSTORE_LABEL' | translate"
                            (keyup.enter)="setFocusById('MaxVerificationLevel')"  />
                     </div>
                   </div>
@@ -93,9 +93,9 @@
                 <div class="col-md-6"> 
                   <!--VerificationLevel-->
                   <div class="form-group">
-                    <label for="Verification Level" class="contol-label col-md-4">Max Verification Level<b>:</b></label>
+                    <label for="Verification Level" class="contol-label col-md-4">{{ 'SETTINGS_NEW.MAX_VERIFICATION_LEVEL' | translate }}<b>:</b></label>
                     <div class="col-md-8">
-                      <input id="MaxVerificationLevel" type="number" min="0" max="3" maxlength="1" class="form-control" placeholder="Verification Level" onwheel="this.blur()"
+                      <input id="MaxVerificationLevel" type="number" min="0" max="3" maxlength="1" class="form-control" [placeholder]="'GRID_HEADERS.VERIFICATION_LEVEL' | translate" onwheel="this.blur()"
                            [(ngModel)]="CurrentStore.MaxVerificationLevel" (ngModelChange)="InitializeVerifiersArray()"
                            [value]="CurrentStore.MaxVerificationLevel" [ngModelOptions]="{standalone:true}"
                            (keyup.enter)="setFocusById('verifier0')" >
@@ -112,7 +112,7 @@
                              (ngModelChange)="AssignRoleId($event,i)"
                              [source]="RoleList"
                              [list-formatter]="myRoleListFormatter"
-                             placeholder="type to search"
+                             [placeholder]="'SETTINGS_NEW.TYPE_TO_SEARCH' | translate"
                              display-property-name="RoleName"
                              value-property-name=null
                              no-match-found-text=" "
@@ -129,8 +129,8 @@
               </div>
             </div>
             <div class="panel-footer text-center">
-              <input id="AddDepartment" type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddStore()" value="Add Sub Store" />
-              <input id="UpdateDepartment" type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" value="Update" />
+              <input id="AddDepartment" type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddStore()" [value]="'SETTINGS_NEW.ADD_SUB_STORE' | translate" />
+              <input id="UpdateDepartment" type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" />
             </div>
           </form>
         </div>

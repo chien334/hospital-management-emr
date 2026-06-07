@@ -7,32 +7,32 @@
 -->
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
-            <h3> <span *ngIf="!update">Add Item SubCategory</span> <span *ngIf="update">Update Item SubCategory</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
+            <h3> <span *ngIf="!update">{{ 'INVENTORY.ADD_ITEM_SUBCATEGORY' | translate }}</span> <span *ngIf="update">{{ 'INVENTORY.UPDATE_ITEM_SUBCATEGORY' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a> </div>
           <form [formGroup]="currentItemSubCategory.ItemSubCategoryValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label col-md-5">SubCategory Name<sup class="color-red">*</sup><b>:</b></label>
+                <label class="control-label col-md-5">{{ 'INVENTORY.SUBCATEGORY_NAME' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" maxlength="30" type="text"
                          [(ngModel)]="currentItemSubCategory.SubCategoryName"
                          (focusout)="CreateSubCategoryCode()"
                          formControlName="SubCategoryName"
                          id="ItemSubCategoryName"
-                         placeholder="ItemSubCategory Name" 
+                         [placeholder]="'INVENTORY.ITEMSUBCATEGORY_NAME' | translate" 
                          (keyup.enter)="FocusElementById('Category')" />
-                  <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('SubCategoryName','required') || !(currentItemSubCategory.IsDirty('SubCategoryName'))">Name is required</span> <span class="color-red font-sm" *ngIf="currentItemSubCategory.IsDirty('SubCategoryName')" [hidden]="currentItemSubCategory.IsValidCheck('SubCategoryName','maxlength')"> Length is not proper</span> </div>
+                  <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('SubCategoryName','required') || !(currentItemSubCategory.IsDirty('SubCategoryName'))">{{ 'INVENTORY.NAME_IS_REQUIRED' | translate }}</span> <span class="color-red font-sm" *ngIf="currentItemSubCategory.IsDirty('SubCategoryName')" [hidden]="currentItemSubCategory.IsValidCheck('SubCategoryName','maxlength')"> {{ 'INVENTORY.LENGTH_IS_NOT_PROPER' | translate }}</span> </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">SubCategory Code<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'INVENTORY.SUBCATEGORY_CODE' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" maxlength="4" minlength="4" type="text"
                          [(ngModel)]="currentItemSubCategory.Code"
                          formControlName="Code"
                          (focusout)="CreateSubCategoryCode()"
                          id="Code"
-                         placeholder="Code" />
-                  <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('Code','minlength') || !(currentItemSubCategory.IsDirty('Code'))">Code must be 4 digit or left vacant.</span> <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('Code','pattern') || !(currentItemSubCategory.IsDirty('Code'))">Code must be upper case.</span> </div>
+                         [placeholder]="'GRID_HEADERS.CODE' | translate" />
+                  <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('Code','minlength') || !(currentItemSubCategory.IsDirty('Code'))">{{ 'INVENTORY.CODE_MUST_BE_4_DIGIT_OR_LEFT_VACANT' | translate }}.</span> <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('Code','pattern') || !(currentItemSubCategory.IsDirty('Code'))">{{ 'INVENTORY.CODE_MUST_BE_UPPER_CASE' | translate }}.</span> </div>
               </div>
               <!-- <div class="form-group">
                   <label class="control-label col-md-5">Account Head<sup class="color-red">*</sup><b>:</b></label>
@@ -44,61 +44,61 @@
                           placeholder="Account Head">
                       <option *ngFor="let row of accountHeadList" value="{{row.AccountHeadId}}">{{row.AccountHeadName}}</option>
                     </select>
-                    <a *ngIf="!currentItemSubCategory.AccountHeadId" class="fa fa-question" (click)="AddAccountHeadPopUp()" title="Click to add to Account Head"></a> <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('AccountHeadId','required') || !(currentItemSubCategory.IsDirty('AccountHeadId'))">Account Head is required</span> </div></div>
+                    <a *ngIf="!currentItemSubCategory.AccountHeadId" class="fa fa-question" (click)="AddAccountHeadPopUp()" title="Click to add to Account Head"></a> <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('AccountHeadId','required') || !(currentItemSubCategory.IsDirty('AccountHeadId'))">Account Head is {{ 'INVENTORY.REQUIRED' | translate }}</span> </div></div>
                 </div> -->
 
                 <div class="form-group">
-                  <label class="control-label col-md-5"> Accounting Ledger<b>:</b></label>
+                  <label class="control-label col-md-5"> {{ 'INVENTORY.ACCOUNTING_LEDGER' | translate }}<b>:</b></label>
                   <div class="col-md-7">
                     <div class="div-relative">
-                      <select class="form-control" [(ngModel)]="ledgerId" [ngModelOptions]="{standalone:true}" placeholder="Account Ledger" (change)="changeLedger()">
-                        <option value="0">--- Select Ledger ---</option>
+                      <select class="form-control" [(ngModel)]="ledgerId" [ngModelOptions]="{standalone:true}" [placeholder]="'INVENTORY.ACCOUNT_LEDGER' | translate" (change)="changeLedger()">
+                        <option value="0">{{ 'INVENTORY.SELECT_LEDGER' | translate }}</option>
                         <option *ngFor="let row of accountHeadList" value="{{row.LedgerId}}">{{row.LedgerName}}</option>
                       </select>
-                    <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('LedgerId','required') || !(currentItemSubCategory.IsDirty('LedgerId'))">Account ledger is required</span> 
+                    <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('LedgerId','required') || !(currentItemSubCategory.IsDirty('LedgerId'))">{{ 'INVENTORY.ACCOUNT_LEDGER_IS_REQUIRED' | translate }}</span> 
                   </div>
                   <div>
                     <p *ngIf="ledgerId==0"> <i class="fa fa-plus-circle" (click)="AddAccountHeadPopUp()" matTooltip="Click to Create New Ledger"
-                      style="color: blue;cursor: pointer;"> <strong style="color: orange; font-family: 'Quicksand','Open Sans', sans-serif; font-size: 11px; margin-left: 5px; margin-top: 10px; display: inline-block; font-weight: 600;">Create new ledger for SubCategory</strong> </i> </p>
+                      style="color: blue;cursor: pointer;"> <strong style="color: orange; font-family: 'Quicksand','Open Sans', sans-serif; font-size: 11px; margin-left: 5px; margin-top: 10px; display: inline-block; font-weight: 600;">{{ 'INVENTORY.CREATE_NEW_LEDGER_FOR_SUBCATEGORY' | translate }}</strong> </i> </p>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Description<b>:</b></label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                 <div class="col-md-7">
                   <input class="form-control" maxlength="200" type="text"
                          [(ngModel)]="currentItemSubCategory.Description"
                          [ngModelOptions]="{standalone: true}"
                          id="Description"
-                         placeholder="Description" />
+                         [placeholder]="'GRID_HEADERS.DESCRIPTION' | translate" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Category<sup class="color-red">*</sup><b>:</b> </label>
+                <label class="control-label col-md-5">{{ 'INVENTORY.CATEGORY' | translate }}<sup class="color-red">*</sup><b>:</b> </label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
                       <select id="Category" class="form-control" [(ngModel)]="currentItemSubCategory.IsConsumable"
                       formControlName="IsConsumable" (change)="FocusElementById('AddItemSubCategory')"
                       *ngIf="!update">
-                      <option [ngValue]="null">--select--</option>
-                      <option value="true">Consumable</option>
-                      <option value="false">Capital</option>
+                      <option [ngValue]="null">{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
+                      <option value="true">{{ 'INVENTORY.CONSUMABLE' | translate }}</option>
+                      <option value="false">{{ 'INVENTORY.CAPITAL' | translate }}</option>
                     </select>
                     <select id="Category" class="form-control" [(ngModel)]="currentItemSubCategory.IsConsumable"
                       formControlName="IsConsumable" (click)="FocusElementById('AddItemSubCategory')"
                       *ngIf="update">
-                      <option [ngValue]="null">--select--</option>
-                      <option value="true">Consumable</option>
-                      <option value="false">Capital</option>
+                      <option [ngValue]="null">{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
+                      <option value="true">{{ 'INVENTORY.CONSUMABLE' | translate }}</option>
+                      <option value="false">{{ 'INVENTORY.CAPITAL' | translate }}</option>
                     </select>
           
                       <span></span> </div>
-                    <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('IsConsumable','required') || !(currentItemSubCategory.IsDirty('IsConsumable'))">Category is required</span> </div>
+                    <span class="color-red font-sm" [hidden]="currentItemSubCategory.IsValidCheck('IsConsumable','required') || !(currentItemSubCategory.IsDirty('IsConsumable'))">{{ 'INVENTORY.CATEGORY_IS_REQUIRED' | translate }}</span> </div>
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-5">Is Active <b>:</b> </label>
+                <label class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -113,8 +113,8 @@
                 </div>
               </div>
               <div class="form-actions">
-                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddItemSubCategory()" value="Add ItemSubCategory" [disabled]="loading" id="AddItemSubCategory" />
-                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" value="Update" [disabled]="loading" id="AddItemSubCategory"/>
+                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update" (click)="AddItemSubCategory()" [value]="'INVENTORY.ADD_ITEMSUBCATEGORY' | translate" [disabled]="loading" id="AddItemSubCategory" />
+                <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update" (click)="Update()" [value]="'COMMON.UPDATE' | translate" [disabled]="loading" id="AddItemSubCategory"/>
               </div>
             </div>
           </form>

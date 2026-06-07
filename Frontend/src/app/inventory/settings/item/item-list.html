@@ -1,5 +1,5 @@
 <div>
-  <input type="button" class="btn btn-sm primary-btn m1" (click)="AddItem()" value="Add Item" />
+  <input type="button" class="btn btn-sm primary-btn m1" (click)="AddItem()" [value]="'INVENTORY.ADD_ITEM' | translate" />
   <item-add [showAddPage]="showAddPage"
             [selectedItem]="selectedItem"
             (callback-add)="CallBackAdd($event)"></item-add>

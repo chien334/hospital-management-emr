@@ -24,7 +24,7 @@
                                 {{GeneralFieldLabel.Municipality}}</span></h3>
                         <h3 *ngIf="!selectedMunicipality || !selectedMunicipality.MunicipalityId"> <span>Add New
                                 {{GeneralFieldLabel.Municipality}}</span></h3>
-                        <a class="btn btn-danger" (click)="CloseAddUpdatePopUp()" title="Cancel">X</a>
+                        <a class="btn btn-danger" (click)="CloseAddUpdatePopUp()" [title]="'COMMON.CANCEL' | translate">X</a>
                     </div>
 
                     <div class="col-md-12">
@@ -44,7 +44,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="modelbox-div clearfix">
                     <div class="modelbox-header">
-                        <h4 class="margin-0-vr"><strong>Alert !!</strong></h4>
+                        <h4 class="margin-0-vr"><strong>{{ 'SETTINGS_NEW.ALERT' | translate }}</strong></h4>
                     </div>
 
                     <div class="modelbox-body">
@@ -56,11 +56,11 @@
                         <div class="all-buttons text-right">
                             <button type="button" class="btn btn-primary btn-sm margin-7-hr"
                                     (click)="DisabeleEnableMunicipality()">
-                                Proceed
+                                {{ 'SETTINGS_NEW.PROCEED' | translate }}
                             </button>
                             <button type="button" class="btn btn-cancel btn-sm margin-7-hr"
                                     (click)="showDisableAlert=false;">
-                                Close
+                                {{ 'COMMON.CLOSE' | translate }}
                             </button>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 <!--Start Grid List show-->
-<a feature="button" class="btn blue bordered" (click)="NewTemplate()"><i class="fa fa-plus"></i>Add Template</a>
+<a feature="button" class="btn blue bordered" (click)="NewTemplate()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_TEMPLATE' | translate }}</a>
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
     <danphe-grid [grid-colDefaults]="radReportTemplateGridColumns" [grid-data]="radTemplateList" (grid-actions)="TemplateGridActions($event)"
@@ -16,8 +16,8 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
 			<div class="caption custom-caption">
-                    <h3> <span *ngIf="!IsUpdate">Add Template</span> <span *ngIf="IsUpdate">Update Template</span> </h3>
-					   <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+                    <h3> <span *ngIf="!IsUpdate">{{ 'SETTINGS_NEW.ADD_TEMPLATE' | translate }}</span> <span *ngIf="IsUpdate">{{ 'SETTINGS_NEW.UPDATE_TEMPLATE' | translate }}</span> </h3>
+					   <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                   </div>
           <div class="form-body form-horizontal hm-form">
             <div class="row">
@@ -27,36 +27,36 @@
                   <div class="col-md-6 col-xs-12">
                     <form [formGroup]="currentTemplate.RadiologyReportTemplateValidator">
                       <div class="form-group">
-                        <label class="control-label col-md-4">Module Name<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-4">{{ 'SETTINGS_NEW.MODULE_NAME' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-8">
                           <input type="text" value="" class="form-control" maxlength="30" [readonly]="true"
                                                [(ngModel)]="currentTemplate.ModuleName" formControlName="ModuleName" id="ModuleName"
-                                               placeholder="enter module name" />
-                          <span class="color-red font-sm" [hidden]="currentTemplate.IsValidCheck('ModuleName','required') || !(currentTemplate.IsDirty('ModuleName'))">module name required</span> </div>
+                                               [placeholder]="'SETTINGS_NEW.ENTER_MODULE_NAME' | translate" />
+                          <span class="color-red font-sm" [hidden]="currentTemplate.IsValidCheck('ModuleName','required') || !(currentTemplate.IsDirty('ModuleName'))">{{ 'SETTINGS_NEW.MODULE_NAME_REQUIRED' | translate }}</span> </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-4">Template Code<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-4">{{ 'SETTINGS_NEW.TEMPLATE_CODE' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-8">
                           <input type="text" name="TemplateCode" required value="" class="form-control" maxlength="30" [readonly]="update"
                                                [(ngModel)]="currentTemplate.TemplateCode" id="TemplateCode" formControlName="TemplateCode"
-                                               placeholder="enter template code"  (keyup.enter)="FocusElementById('TemplateName')" />
-                          <span class="color-red font-sm" [hidden]="currentTemplate.IsValidCheck('TemplateCode','required') || !(currentTemplate.IsDirty('TemplateCode'))">template code required</span> </div>
+                                               [placeholder]="'SETTINGS_NEW.ENTER_TEMPLATE_CODE' | translate"  (keyup.enter)="FocusElementById('TemplateName')" />
+                          <span class="color-red font-sm" [hidden]="currentTemplate.IsValidCheck('TemplateCode','required') || !(currentTemplate.IsDirty('TemplateCode'))">{{ 'SETTINGS_NEW.TEMPLATE_CODE_REQUIRED' | translate }}</span> </div>
                       </div>
                     </form>
                   </div>
                   <div class="col-md-6 col-xs-12">
                     <form [formGroup]="currentTemplate.RadiologyReportTemplateValidator">
                       <div class="form-group">
-                        <label class="control-label col-md-4">Template Name<sup>*</sup><b>:</b></label>
+                        <label class="control-label col-md-4">{{ 'SETTINGS_NEW.TEMPLATE_NAME' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-8">
                           <input type="text" name="TemplateName" required value="" class="form-control" maxlength="100"
                                                [(ngModel)]="currentTemplate.TemplateName" id="TemplateName" formControlName="TemplateName"
-                                               placeholder="template name" (keyup.enter)="FocusElementById('TemplateContent')"/>
-                          <span class="color-red font-sm" [hidden]="currentTemplate.IsValidCheck('TemplateName','required') || !(currentTemplate.IsDirty('TemplateName'))">template name required</span> </div>
+                                               [placeholder]="'SETTINGS_NEW.TEMPLATE_NAME_1' | translate" (keyup.enter)="FocusElementById('TemplateContent')"/>
+                          <span class="color-red font-sm" [hidden]="currentTemplate.IsValidCheck('TemplateName','required') || !(currentTemplate.IsDirty('TemplateName'))">{{ 'SETTINGS_NEW.TEMPLATE_NAME_REQUIRED' | translate }}</span> </div>
                       </div>
                     </form>
                     <div class="form-group">
-                      <label class="control-label col-md-4">Active<b>:</b> </label>
+                      <label class="control-label col-md-4">{{ 'SETTINGS_NEW.ACTIVE' | translate }}<b>:</b> </label>
                       <div class="col-md-8">
                         <div class="input-group">
                           <div class="icheck-inline">
@@ -71,8 +71,8 @@
                   </div>
                   <div class="col-md-12"><div class="form-group">
                     <div class="col-md-12">
-                      <label class="control-label no-padding">Template Content<b>:</b> </label>
-                      <span class="color-red font-sm" *ngIf="!isValidTemplate">template content required</span> <br />
+                      <label class="control-label no-padding">{{ 'SETTINGS_NEW.TEMPLATE_CONTENT' | translate }}<b>:</b> </label>
+                      <span class="color-red font-sm" *ngIf="!isValidTemplate">{{ 'SETTINGS_NEW.TEMPLATE_CONTENT_REQUIRED' | translate }}</span> <br />
                       <danphe-ckeditor [readonly]="false"
                                                  (get-html-content)="onChangeEditorData($event)"
                                                  [set-html-content]="currentTemplate.TemplateHTML"
@@ -83,9 +83,9 @@
                   </div></div>
                   <div class="col-md-12"><div class="form-group">
                     <div class="col-md-12">
-                      <label class="control-label">Footer Note<b>:</b> </label>
+                      <label class="control-label">{{ 'SETTINGS_NEW.FOOTER_NOTE' | translate }}<b>:</b> </label>
                       <br />
-                      <textarea name="FooterNote" class="form-control" rows="5" [(ngModel)]="currentTemplate.FooterNote" id="FooterNote" placeholder="notes are here"></textarea>
+                      <textarea name="FooterNote" class="form-control" rows="5" [(ngModel)]="currentTemplate.FooterNote" id="FooterNote" [placeholder]="'SETTINGS_NEW.NOTES_ARE_HERE' | translate"></textarea>
                     </div>
                   </div></div>
                   
@@ -95,8 +95,8 @@
             </div>
           </div>
 			<div class="panel-footer">
-                    <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!IsUpdate" (click)="Add()" value="Add" id="Add" />
-                    <input type="button" class="btn green btn-success margin-7-hr" *ngIf="IsUpdate" (click)="Update()" value="Update" id="Add"  />
+                    <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!IsUpdate" (click)="Add()" [value]="'SETTINGS_NEW.ADD' | translate" id="Add" />
+                    <input type="button" class="btn green btn-success margin-7-hr" *ngIf="IsUpdate" (click)="Update()" [value]="'COMMON.UPDATE' | translate" id="Add"  />
                   </div>
         </div>
       </div>

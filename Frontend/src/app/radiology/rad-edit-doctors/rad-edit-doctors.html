@@ -1,11 +1,11 @@
 <div class="wrapper">
   <div class="flex-container flex-align-center margin-15-bt margin-5-tp">
     <div class="flex-1">
-      <div class="caption"> <i class="glyphicon glyphicon-asterisk font-green-turquoise"></i> <span class="caption-subject font-blue-sharp bold uppercase">Edit Doctors</span> </div>
+      <div class="caption"> <i class="glyphicon glyphicon-asterisk font-green-turquoise"></i> <span class="caption-subject font-blue-sharp bold uppercase">{{ 'RADIOLOGY.EDIT_DOCTORS' | translate }}</span> </div>
     </div>
     <div class="flex-1 text-right">
       <div>
-        <b>Filter</b>
+        <b>{{ 'RADIOLOGY.FILTER' | translate }}</b>
         <imaging-type-selector (inputModelChange)="ImagingTypeDropdownOnChange($event)"></imaging-type-selector>
       </div>
     </div>

@@ -26,6 +26,7 @@ BEGIN
 	BEGIN
 
 		IF (@Status = 'all')
+		BEGIN
 			SELECT convert(DATE, PO.PODate) AS [Date]
 				,itm.ItemName
 				,gen.GenericName
@@ -54,9 +55,10 @@ BEGIN
 				,poitm.StandardRate
 				,poitm.ReceivedQuantity
 			ORDER BY convert(DATE, PO.PODate) DESC;
-
+		END
 
 		ELSE IF (@Status = 'active')
+		BEGIN
 			SELECT convert(DATE, PO.PODate) AS [Date]
 				,itm.ItemName
 				,gen.GenericName
@@ -86,9 +88,10 @@ BEGIN
 				,poitm.StandardRate
 				,poitm.ReceivedQuantity
 			ORDER BY convert(DATE, PO.PODate) DESC;
-
+		END
 
 		ELSE IF (@Status = 'complete')
+		BEGIN
 			SELECT convert(DATE, PO.PODate) AS [Date]
 				,itm.ItemName
 				,gen.GenericName
@@ -118,5 +121,6 @@ BEGIN
 				,poitm.StandardRate
 				,poitm.ReceivedQuantity
 			ORDER BY convert(DATE, PO.PODate) DESC;
+		END
 	END
 END

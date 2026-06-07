@@ -11,14 +11,14 @@
             </div>
         </div>-->
         <div class="modelbox-header">
-          <h4><strong>Change Labtest</strong></h4>          
+          <h4><strong>{{ 'LABS.CHANGE_LABTEST' | translate }}</strong></h4>          
         </div>
 
         <div class="modelbox-body">
           <div class="row">
             <div class="col-md-4">
               <div class="test-detail">
-                <p>Initially Requested Test</p>
+                <p>{{ 'LABS.INITIALLY_REQUESTED_TEST' | translate }}</p>
               </div>
             </div>
             <div class="col-md-6">
@@ -32,7 +32,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="test-detail">
-                <p class="margin-15-tp">Price</p>
+                <p class="margin-15-tp">{{ 'LABS.PRICE' | translate }}</p>
               </div>
             </div>
             <div class="col-md-6">
@@ -47,7 +47,7 @@
 
           <div class="row margin-15-tp">
             <div class="col-md-4">
-              <label class="change-tst-description" for="testList">Change this Labtest with </label>
+              <label class="change-tst-description" for="testList">{{ 'LABS.CHANGE_THIS_LABTEST_WITH' | translate }} </label>
             </div>
             <div class="col-md-6">
               <div class="autocomplete-holdr autocomplete-item autocomplete-with-icon">
@@ -58,7 +58,7 @@
                        [(ngModel)]="changedTest"
                        [list-formatter]="ItemsListFormatter"
                        [source]="labBillItems"
-                       placeholder="Enter Test Name"
+                       [placeholder]="'LABS.ENTER_TEST_NAME' | translate"
                        display-property-name="ItemName"
                        value-property-name=null
                        match-formatted="true"
@@ -74,7 +74,7 @@
           <div class="row margin-15-tp">
             <div class="col-md-12">
               <div class="info-note">
-                <small>Note: You can only change to another test having EQUAL PRICE.</small>
+                <small>{{ 'LABS.NOTE_YOU_CAN_ONLY_CHANGE_TO_ANOTHER_TEST_HAVING_EQ' | translate }}</small>
               </div>
             </div>
           </div>
@@ -82,8 +82,8 @@
           </div>
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
-              <button type="button" class="btn btn-primary btn-sm margin-7-hr" [disabled]="loading" (click)="loading=true;ChangeLabTest()">Update</button>
-              <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="Cancel()">Cancel</button>
+              <button type="button" class="btn btn-primary btn-sm margin-7-hr" [disabled]="loading" (click)="loading=true;ChangeLabTest()">{{ 'COMMON.UPDATE' | translate }}</button>
+              <button type="button" class="btn btn-cancel btn-sm margin-7-hr" (click)="Cancel()">{{ 'COMMON.CANCEL' | translate }}</button>
             </div>
           </div>
 

@@ -1,5 +1,5 @@
 ﻿<div>
-    <input type="button" class="btn primary-btn m1" (click)="AddVendor()" value="Add Vendor" />
+    <input type="button" class="btn primary-btn m1" (click)="AddVendor()" [value]="'INVENTORY.ADD_VENDOR' | translate" />
     <vendor-add [showAddPage]="showAddPage"
                  [selectedVendor]="selectedVendor"
                  (callback-add)="CallBackAdd($event)"></vendor-add>

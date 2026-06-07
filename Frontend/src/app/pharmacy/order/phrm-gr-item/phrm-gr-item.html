@@ -4,8 +4,8 @@
       <div class="col-md-6 col-md-offset-3">
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
-            <h3> <span *ngIf="!update">Add GR Item</span> <span *ngIf="update">Update GR Item</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel"><i class="fa fa-times"></i></a>
+            <h3> <span *ngIf="!update">{{ 'PHARMACY.ADD_GR_ITEM' | translate }}</span> <span *ngIf="update">{{ 'PHARMACY.UPDATE_GR_ITEM' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
           </div>
           <!--Model Box Body Start-->
           <form [formGroup]="goodReceiptItem.GoodReceiptItemValidator" class="form-horizontal hm-form">
@@ -15,12 +15,12 @@
 
                   <div class="form-group">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">Generic Name:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.GENERIC_NAME' | translate }}:</label>
                       <div class="col-md-8">
                         <div class="div-relative autocomplete-item">
                           <input danphe-auto-complete class="" [(ngModel)]="selectedGeneneric" [source]="genericList"
                                  [list-formatter]="myGenericNameListFormatter"
-                                 placeholder="Select GenericName" display-property-name="GenericName" value-property-name=null min-chars="1"
+                                 [placeholder]="'PHARMACY.SELECT_GENERICNAME' | translate" display-property-name="GenericName" value-property-name=null min-chars="1"
                                  max-num-list="30"
                                  (valueChanged)="AssignSelectedGenName()" onClick="this.select();" match-formatted="true" [grid-sort]="'GenericName'"
                                  style="width:100%"
@@ -29,10 +29,10 @@
                                  (keyup.enter)="(IsPkgitem == true ) ? SetFocusById('ddl_packing') : SetFocusById('txt_ItemName',300)" />
                           <a style="z-index:initial" *ngIf="!goodReceiptItem || !goodReceiptItem.GenericName || (loading == false) && !update"
                              class="fa fa-question"
-                             (click)="AddGenericPopUp()" title="Unable to find item ? Click to add to Master">
+                             (click)="AddGenericPopUp()" [title]="'PHARMACY.UNABLE_TO_FIND_ITEM_CLICK_TO' | translate">
                             <i class="fa fa-question"></i>
                           </a>
-                          <a *ngIf="loading==true" style="z-index:initial" title="GenericName is loading.">
+                          <a *ngIf="loading==true" style="z-index:initial" [title]="'PHARMACY.GENERICNAME_IS_LOADING' | translate">
                             <i class="fa fa-spinner"></i>
                           </a>
                         </div>
@@ -41,12 +41,12 @@
                   </div>
                   <div class="form-group">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">Item Name<sup>*</sup>:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.ITEM_NAME' | translate }}<sup>*</sup>:</label>
                       <div class="col-md-8">
                         <div class="div-relative autocomplete-item">
                           <input danphe-auto-complete class="" [(ngModel)]="selectedItem" [source]="ItemListFiltered"
                                  [list-formatter]="myItemListFormatter"
-                                 placeholder="Select an Item" display-property-name="ItemName" value-property-name=null [min-chars]="1"
+                                 [placeholder]="'PHARMACY.SELECT_AN_ITEM' | translate" display-property-name="ItemName" value-property-name=null [min-chars]="1"
                                  max-num-list="30" (valueChanged)="AssignSelectedItem()" onClick="this.select();" match-formatted="true"
                                  [grid-sort]="'ItemName'"
                                  style="width:100%" formControlName="ItemName" id="txt_ItemName"
@@ -55,14 +55,14 @@
 
                           <div style="color:red" *ngIf="goodReceiptItem.IsDirty('ItemName')"
                                [hidden]="goodReceiptItem.IsValidCheck('ItemName','required') || goodReceiptItem.IsValidCheck('ItemName','notRegisteredItem')">
-                            Name is required
+                            {{ 'PHARMACY.NAME_IS_REQUIRED' | translate }}
                           </div>
                           <a [attr.disabled]="update?null: true" style="z-index:initial"
                              *ngIf="!goodReceiptItem || !goodReceiptItem.ItemId || (loading == false)&& !update" class="fa fa-question"
-                             (click)="AddItemPopUp(i)" title="Unable to find item ? Click to add to Master">
+                             (click)="AddItemPopUp(i)" [title]="'PHARMACY.UNABLE_TO_FIND_ITEM_CLICK_TO' | translate">
                             <i class="fa fa-question"></i>
                           </a>
-                          <a *ngIf="loading==true" style="z-index:initial" title="Item is loading.">
+                          <a *ngIf="loading==true" style="z-index:initial" [title]="'PHARMACY.ITEM_IS_LOADING' | translate">
                             <i class="fa fa-spinner"></i>
                           </a>
                         </div>
@@ -72,7 +72,7 @@
 
                   <div class="form-group" *ngIf="IsPkgitem">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">Packing<sup>*</sup>:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.PACKING' | translate }}<sup>*</sup>:</label>
                       <div class="col-md-8">
                         <input danphe-auto-complete class="" [(ngModel)]="goodReceiptItem.Packing" [source]="packingtypeList"
                                [list-formatter]="PackingListsFormatter" display-property-name="PackingName" value-property-name=null min-chars="0"
@@ -84,22 +84,22 @@
                   </div>
                   <div class="form-group" *ngIf="!isExpiryNotApplicable">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">BatchNo <sup>*</sup>:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.BATCHNO' | translate }} <sup>*</sup>:</label>
                       <div class="col-md-8">
                         <input class="form-control" type="text" onClick="this.select();" maxlength="50" [(ngModel)]="goodReceiptItem.BatchNo"
                                id="txt_BatchNo" (keyup.enter)="SetFocusById('ExpiryDate')" formControlName="BatchNo" style="width:100%" />
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('BatchNo')"
                              [hidden]="goodReceiptItem.IsValidCheck('BatchNo','required')">
-                          required
+                          {{ 'PHARMACY.REQUIRED' | translate }}
                         </div>
                         <span class="color-red font-sm" *ngIf="goodReceiptItem.IsDirty('BatchNo')"
-                              [hidden]="goodReceiptItem.IsValidCheck('BatchNo','pattern')">Enter Batch No</span>
+                              [hidden]="goodReceiptItem.IsValidCheck('BatchNo','pattern')">{{ 'PHARMACY.ENTER_BATCH_NO' | translate }}</span>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">RackNo:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.RACKNO' | translate }}:</label>
                       <div class="col-md-8">
                         <div class="input-group" style="width: 100%;">
                           <div class="icheck-inline">
@@ -112,18 +112,18 @@
                   </div>
                   <div class="form-group" *ngIf="!isExpiryNotApplicable">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">Exp. Date:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.EXP_DATE' | translate }}:</label>
                       <div class="col-md-8">
                         <input class="form-control" [(ngModel)]="goodReceiptItem.ExpiryDate" id="ExpiryDate" onClick="this.select();"
                                (keyup.enter)="(IsPkgitem) ? SetFocusById('txt_StripQty') : SetFocusById('ItemQTy')" formControlName="ExpiryDate"
                                style="width: 100%;" type="month" />
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('ExpiryDate')"
                              [hidden]="goodReceiptItem.IsValidCheck('ExpiryDate','required')">
-                          Required
+                          {{ 'PHARMACY.REQUIRED' | translate }}
                         </div>
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('ExpiryDate')"
                              [hidden]="goodReceiptItem.IsValidCheck('ExpiryDate','wrongDate')">
-                          Not a valid date
+                          {{ 'PHARMACY.NOT_A_VALID_DATE' | translate }}
                         </div>
                       </div>
                     </div>
@@ -131,26 +131,26 @@
                   <div class="form-group" *ngIf="IsPkgitem">
                     <div class="row no-margin">
                       <!-- This is For Packing Quantity/Strip Quantity -->
-                      <label class="control-label col-md-4">Packing Qty <sup>*</sup>:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.PACKING_QTY' | translate }} <sup>*</sup>:</label>
                       <div class="col-md-8">
                         <input class="form-control" type="number" min="1" [(ngModel)]="goodReceiptItem.StripQty"
                                (ngModelChange)="CalculationForPackingValues()" formControlName="ItemQTy" style="width: 100%;"
                                (keyup.enter)="SetFocusById('txt_StripRate')" name="stripQty" id="txt_StripQty" onClick="this.select();"
-                               onFocus="this.select();" placeholder="Enter Strip quantity" />
+                               onFocus="this.select();" [placeholder]="'PHARMACY.ENTER_STRIP_QUANTITY' | translate" />
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('ItemQTy')"
                              [hidden]="goodReceiptItem.IsValidCheck('ItemQTy','required')">
-                          required (minimum 1)</div>
+                          {{ 'PHARMACY.REQUIRED_MINIMUM_1' | translate }}</div>
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('ItemQTy')"
-                             [hidden]="goodReceiptItem.IsValidCheck('ItemQTy','wrongValue')">required positive qty</div>
+                             [hidden]="goodReceiptItem.IsValidCheck('ItemQTy','wrongValue')">{{ 'PHARMACY.REQUIRED_POSITIVE_QTY' | translate }}</div>
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('ItemQTy')"
-                             [hidden]="goodReceiptItem.IsValidCheck('ItemQTy','wrongDecimalValue')">required whole number
+                             [hidden]="goodReceiptItem.IsValidCheck('ItemQTy','wrongDecimalValue')">{{ 'PHARMACY.REQUIRED_WHOLE_NUMBER' | translate }}
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group" *ngIf="showPendingQty">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">Pending Qty:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.PENDING_QTY' | translate }}:</label>
                       <div class="col-md-8">
                         <input [(ngModel)]="goodReceiptItem.PendingQuantity" [attr.disabled]="true"
                                (ngModelChange)="CalculationForPHRMGoodsReceiptItem()" [ngModelOptions]="{standalone:true}" onFocus="this.select();"
@@ -160,7 +160,7 @@
                   </div>
                   <div class="form-group" *ngIf="!IsPkgitem">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">Item Qty<sup>*</sup>:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.ITEM_QTY' | translate }}<sup>*</sup>:</label>
                       <div class="col-md-8">
                         <input [(ngModel)]="goodReceiptItem.ItemQTy"
                                (ngModelChange)="CalculationForPHRMGoodsReceiptItem()" formControlName="ItemQTy"
@@ -168,22 +168,22 @@
                                onClick="this.select();" (focusout)="CalculationForPHRMGoodsReceiptItem()" id="ItemQTy" onFocus="this.select();"
                                min="0" style="width:80px" name="ReceivedQuantity" type="number" style="width: 100%;">
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('ItemQTy')"
-                             [hidden]="goodReceiptItem.IsValidCheck('ItemQTy','required')">required (minimum 0)
+                             [hidden]="goodReceiptItem.IsValidCheck('ItemQTy','required')">{{ 'PHARMACY.REQUIRED_MINIMUM_0' | translate }}
                         </div>
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('ItemQTy')"
                              [hidden]="goodReceiptItem.IsValidCheck('ItemQTy','wrongValue')">
-                          required positive qty
+                          {{ 'PHARMACY.REQUIRED_POSITIVE_QTY' | translate }}
                         </div>
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('ItemQTy')"
                              [hidden]="goodReceiptItem.IsValidCheck('ItemQTy','wrongDecimalValue')">
-                          required whole number
+                          {{ 'PHARMACY.REQUIRED_WHOLE_NUMBER' | translate }}
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group" *ngIf="showFreeQty">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">Free Qty:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.FREE_QTY' | translate }}:</label>
                       <div class="col-md-8">
                         <div class="input-group" style="width: 100%;">
                           <div class="icheck-inline">
@@ -196,33 +196,33 @@
                                    (keyup.enter)="(IsPkgitem) ? SetFocusById('StripRate') : SetFocusById('GRItemPrice')" onFocus="this.select();"
                                    min="0" style="width: 100%;" id="FreeQuantity" onClick="this.select();" name="FreeQty" type="number">
                             <!-- <div style="color:red" *ngIf="goodReceiptItem.IsDirty('FreeQuantity')"
-                              [hidden]="goodReceiptItem.IsValidCheck('FreeQuantity','required')">required (Minimum 0)
+                              [hidden]="goodReceiptItem.IsValidCheck('FreeQuantity','required')">{{ 'PHARMACY.REQUIRED_MINIMUM_0' | translate }}
                             </div> -->
                             <div style="color:red" *ngIf="goodReceiptItem.IsDirty('FreeQuantity')"
-                                 [hidden]="goodReceiptItem.IsValidCheck('FreeQuantity','required')">required (minimum 0)
+                                 [hidden]="goodReceiptItem.IsValidCheck('FreeQuantity','required')">{{ 'PHARMACY.REQUIRED_MINIMUM_0' | translate }}
                             </div>
                             <div style="color:red" *ngIf="goodReceiptItem.IsDirty('FreeQuantity')"
                                  [hidden]="goodReceiptItem.IsValidCheck('FreeQuantity','wrongValue')">
-                              required positive qty
+                              {{ 'PHARMACY.REQUIRED_POSITIVE_QTY' | translate }}
                             </div>
                             <div style="color:red" *ngIf="goodReceiptItem.IsDirty('FreeQuantity')"
                                  [hidden]="goodReceiptItem.IsValidCheck('FreeQuantity','wrongDecimalValue')">
-                              required whole number
+                              {{ 'PHARMACY.REQUIRED_WHOLE_NUMBER' | translate }}
                             </div>
                             <a *ngIf="!!goodReceiptItem.ItemId" id="itemPriceHistoryTooltip" class="tooltip list-tooltip ">
                               <span class="fa fa-info" style="margin-left:5px;padding: 3px 6px 3px 6px;background-color: #c8c8d2;border-radius: 9px;">
                               </span>
                               <p class="tooltiptext tooltip-list-type ttptextdown no-print"
                                  *ngIf="goodReceiptItem.ItemFreeQuantityHistory.length;else noFreeQuantity">
-                                <span class="tooltip-header">Free Qty History</span>
+                                <span class="tooltip-header">{{ 'PHARMACY.FREE_QTY_HISTORY' | translate }}</span>
                                 <span *ngFor="let itemRate of goodReceiptItem.ItemFreeQuantityHistory">
-                                  Free({{itemRate.FreeQuantity}}) On Purchased({{itemRate.ReceivedQuantity}}) : {{itemRate.SupplierName}} :
+                                  {{ 'PHARMACY.FREE' | translate }}{{itemRate.FreeQuantity}}{{ 'PHARMACY.ON_PURCHASED' | translate }}{{itemRate.ReceivedQuantity}}) : {{itemRate.SupplierName}} :
                                   {{itemRate.GoodReceiptDate | date: 'yyyy-M-d'}}
                                 </span>
                               </p>
                               <ng-template #noFreeQuantity>
                                 <p class="tooltiptext ttptextdown no-print">
-                                  No Free Quantity.
+                                  {{ 'PHARMACY.NO_FREE_QUANTITY' | translate }}
                                 </p>
                               </ng-template>
                             </a>
@@ -233,7 +233,7 @@
                   </div>
                   <div class="form-group" *ngIf="showFreeQty">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">Total Qty:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.TOTAL_QTY' | translate }}:</label>
                       <div class="col-md-8">
                         <div class="input-group" style="width: 100%;">
                           <div class="icheck-inline">
@@ -247,7 +247,7 @@
                   <div class="form-group">
                     <div class="row no-margin">
                       <!-- This is for Strip Rate/Packing Rate -->
-                      <label class="control-label col-md-4">Rate<sup>*</sup>:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.RATE' | translate }}<sup>*</sup>:</label>
                       <div class="col-md-8">
                         <input *ngIf="IsPkgitem" type="number" [(ngModel)]="goodReceiptItem.StripRate" onClick="this.select();"
                                onFocus="this.select();" formControlName="GRItemPrice" style="width: 100%;" (keyup.enter)="SetFocusById('Margin')"
@@ -258,25 +258,25 @@
                                onFocus="this.select();" (ngModelChange)="CalculationForPHRMGoodsReceiptItem()" />
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('GRItemPrice')"
                              [hidden]="goodReceiptItem.IsValidCheck('GRItemPrice','required')">
-                          required (minimum 1)
+                          {{ 'PHARMACY.REQUIRED_MINIMUM_1' | translate }}
                         </div>
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('GRItemPrice')"
                              [hidden]="goodReceiptItem.IsValidCheck('GRItemPrice','wrongValue')">
-                          required positive qty
+                          {{ 'PHARMACY.REQUIRED_POSITIVE_QTY' | translate }}
                         </div>
                         <a *ngIf="!!goodReceiptItem.ItemId" id="itemPriceHistoryTooltip" class="tooltip list-tooltip ">
                           <span class="fa fa-info" style="margin-left:5px;padding: 3px 6px 3px 6px;background-color: #c8c8d2;border-radius: 9px;">
                           </span>
                           <p class="tooltiptext tooltip-list-type ttptextdown no-print"
                              *ngIf="goodReceiptItem.ItemRateHistory.length;else noPriceHistoryMessage">
-                            <span class="tooltip-header">Rate History</span>
+                            <span class="tooltip-header">{{ 'PHARMACY.RATE_HISTORY' | translate }}</span>
                             <span *ngFor="let itemRate of goodReceiptItem.ItemRateHistory">
-                              Rs.{{itemRate.GRItemPrice}}-{{itemRate.SupplierName}}-{{itemRate.GoodReceiptDate | date: 'yyyy-M-d'}}
+                              {{ 'PHARMACY.RS' | translate }}{{itemRate.GRItemPrice}}-{{itemRate.SupplierName}}-{{itemRate.GoodReceiptDate | date: 'yyyy-M-d'}}
                             </span>
                           </p>
                           <ng-template #noPriceHistoryMessage>
                             <p class="tooltiptext ttptextdown no-print">
-                              No price available.
+                              {{ 'PHARMACY.NO_PRICE_AVAILABLE' | translate }}
                             </p>
                           </ng-template>
                         </a>
@@ -285,7 +285,7 @@
                   </div>
                   <div class="form-group">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">Margin%:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.MARGIN' | translate }}:</label>
                       <div class="col-md-8">
                         <input *ngIf="IsPkgitem" class="form-control" type="number" [(ngModel)]="goodReceiptItem.AdjustedMargin" id="Margin"
                                onFocus="this.select();" formControlName="AdjustedMargin" style="width: 100%;" (keyup.enter)="SetFocusById('StripMRP')"
@@ -300,18 +300,18 @@
                                name="AdjustedMargin" min="0" onClick="this.select();" [attr.disabled]="IsGReditAfterModification?true:null">
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('AdjustedMargin')"
                              [hidden]="goodReceiptItem.IsValidCheck('AdjustedMargin','required')">
-                          required (Minimum 0)
+                          {{ 'PHARMACY.REQUIRED_MINIMUM_0' | translate }}
                         </div>
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('AdjustedMargin')"
                              [hidden]="goodReceiptItem.IsValidCheck('AdjustedMargin','wrongValue')">
-                          enter positive value
+                          {{ 'PHARMACY.ENTER_POSITIVE_VALUE' | translate }}
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">SalePrice:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.SALEPRICE' | translate }}:</label>
                       <div class="col-md-8">
                         <input *ngIf="IsPkgitem" [(ngModel)]="goodReceiptItem.StripMRP" (focusout)="OnStripMRPChange()" (keyup)="OnStripMRPChange()"
                                onClick="this.select();" onFocus="this.select();" formControlName="SalePrice" min="0" name="SalePrice" id="StripMRP"
@@ -323,21 +323,20 @@
                                type="number" style="width: 100%;" (keyup.enter)="SetFocusById('MRP')"
                                [attr.disabled]="IsGReditAfterModification?true:null">
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('SalePrice')"
-                             [hidden]="goodReceiptItem.IsValidCheck('SalePrice','required')">required
-                          (Minimum 0)</div>
+                             [hidden]="goodReceiptItem.IsValidCheck('SalePrice','required')">{{ 'PHARMACY.REQUIRED_MINIMUM_0' | translate }}</div>
                         <a *ngIf="!!goodReceiptItem.ItemId" id="itemMRPHistoryTooltip" class="tooltip list-tooltip ">
                           <span class="fa fa-info" style="margin-left:5px;padding: 3px 6px 3px 6px;background-color: #c8c8d2;border-radius: 9px;">
                           </span>
                           <p class="tooltiptext tooltip-list-type ttptextdown no-print"
                              *ngIf="goodReceiptItem.ItemMRPHistory.length;else noMRPHistoryMessage">
-                            <span class="tooltip-header">SalePrice History</span>
+                            <span class="tooltip-header">{{ 'PHARMACY.SALEPRICE_HISTORY' | translate }}</span>
                             <span *ngFor="let itemMRP of goodReceiptItem.ItemMRPHistory">
-                              Rs.{{itemMRP.SalePrice}}-{{itemMRP.SupplierName}}-{{itemMRP.GoodReceiptDate | date: 'yyyy-M-d'}}
+                              {{ 'PHARMACY.RS' | translate }}{{itemMRP.SalePrice}}-{{itemMRP.SupplierName}}-{{itemMRP.GoodReceiptDate | date: 'yyyy-M-d'}}
                             </span>
                           </p>
                           <ng-template #noMRPHistoryMessage>
                             <p class="tooltiptext ttptextdown no-print">
-                              No SalePrice available.
+                              {{ 'PHARMACY.NO_SALEPRICE_AVAILABLE' | translate }}
                             </p>
                           </ng-template>
                         </a>
@@ -346,17 +345,17 @@
                   </div>
                   <div class="form-group">
                     <div class="row no-margin">
-                      <label class="control-label col-md-4">MRP:</label>
+                      <label class="control-label col-md-4">{{ 'PHARMACY.MRP' | translate }}:</label>
                       <div class="col-md-8">
                         <input class="form-control" type="number" [(ngModel)]="goodReceiptItem.MRP" id="MRP" onFocus="this.select();"
                                formControlName="MRP" style="width: 100%;"
                                (keyup.enter)="(showCCCharge) ? SetFocusById('CCCharge') : SetFocusById('VATPercentage')" name="MRP" min="0"
                                onClick="this.select();">
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('MRP')" [hidden]="goodReceiptItem.IsValidCheck('MRP','required')">
-                          required (Minimum 0)
+                          {{ 'PHARMACY.REQUIRED_MINIMUM_0' | translate }}
                         </div>
                         <div style="color:red" *ngIf="goodReceiptItem.IsDirty('MRP')" [hidden]="goodReceiptItem.IsValidCheck('MRP','wrongValue')">
-                          enter positive value
+                          {{ 'PHARMACY.ENTER_POSITIVE_VALUE' | translate }}
                         </div>
                       </div>
                     </div>
@@ -367,7 +366,7 @@
                     <div class="form-group" *ngIf="showCCCharge">
                       <div class="row no-margin">
                         <label class="control-label col-md-4">
-                          CC Charge%:
+                          {{ 'PHARMACY.CC_CHARGE' | translate }}:
                         </label>
                         <div class="col-md-8">
                           <input class="form-control" type="number" min="0" [(ngModel)]="goodReceiptItem.CCCharge" onFocus="this.select();"
@@ -380,7 +379,7 @@
                           </div> -->
                           <div style="color:red" *ngIf="goodReceiptItem.IsDirty('CCCharge')"
                                [hidden]="goodReceiptItem.IsValidCheck('CCCharge','required') && goodReceiptItem.IsValidCheck('CCCharge','min') && goodReceiptItem.IsValidCheck('CCCharge','max')">
-                            CC Charge % Range: 0-100%
+                            {{ 'PHARMACY.CC_CHARGE_RANGE_0100' | translate }}
                           </div>
                         </div>
                       </div>
@@ -388,18 +387,18 @@
                     <div class="form-group" *ngIf="showFreeQty">
                       <div class="row no-margin">
                         <label class="control-label col-md-4">
-                          CC Amt:
+                          {{ 'PHARMACY.CC_AMT' | translate }}:
                         </label>
                         <div class="col-md-8">
                           <input class="form-control" type="number" min="0" style="width: 100%;" [(ngModel)]="goodReceiptItem.CCAmount"
                                  disabled
-                                 [ngModelOptions]="{standalone:true}" name="FreeGoodsAmount" placeholder="Enter re-order quantity" />
+                                 [ngModelOptions]="{standalone:true}" name="FreeGoodsAmount" [placeholder]="'PHARMACY.ENTER_REORDER_QUANTITY' | translate" />
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="row no-margin">
-                        <label class="control-label col-md-4">Sub-Total :</label>
+                        <label class="control-label col-md-4">{{ 'PHARMACY.SUBTOTAL' | translate }} :</label>
                         <div class="col-md-8">
                           <input class="form-control" type="number" [(ngModel)]="goodReceiptItem.SubTotal" [ngModelOptions]="{standalone:true}"
                                  disabled min="0" name="SubTotal" style="width: 100%;" (ngModelChange)="CalculationForPHRMGoodsReceiptItem()"
@@ -410,7 +409,7 @@
                     <div class="form-group" *ngIf="IsitemlevlDis">
                       <div class="row no-margin">
                         <label class="control-label col-md-4">
-                          Discount%:
+                          {{ 'PHARMACY.DISCOUNT' | translate }}:
                         </label>
                         <div class="col-md-8">
                           <input class="form-control" type="number" min="0" formControlName="DiscountPercentage" style="width: 100%;"
@@ -419,14 +418,14 @@
                                  (focusout)="CalculationForPHRMGoodsReceiptItem()" name="DiscountPercent" onClick="this.select();" value="{{0}}" />
                           <div style="color:red" *ngIf="goodReceiptItem.IsDirty('DiscountPercentage')"
                                [hidden]="goodReceiptItem.IsValidCheck('DiscountPercentage','min') && goodReceiptItem.IsValidCheck('DiscountPercentage','max')">
-                            Discount % Range: 0-100%
+                            {{ 'PHARMACY.DISCOUNT_RANGE_0100' | translate }}
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group" *ngIf="IsitemlevlDis">
                       <div class="row no-margin">
-                        <label class="control-label col-md-4">Discount Amt:</label>
+                        <label class="control-label col-md-4">{{ 'PHARMACY.DISCOUNT_AMT' | translate }}:</label>
                         <div class="col-md-8">
                           <div class="input-group" style="width: 100%;">
                             <div class="icheck-inline">
@@ -441,7 +440,7 @@
                     </div>
                     <div class="form-group">
                       <div class="row no-margin">
-                        <label class="control-label col-md-4">VAT%:</label>
+                        <label class="control-label col-md-4">{{ 'PHARMACY.VAT' | translate }}:</label>
                         <div class="col-md-8">
                           <div class="div-relative">
                             <input [(ngModel)]="goodReceiptItem.VATPercentage" formControlName="VATPercentage" id="VATPercentage"
@@ -450,7 +449,7 @@
                                    (ngModelChange)="CalculationForPHRMGoodsReceiptItem()" value="">
                             <div style="color:red" *ngIf="goodReceiptItem.IsDirty('VATPercentage')"
                                  [hidden]="goodReceiptItem.IsValidCheck('VATPercentage','required') && goodReceiptItem.IsValidCheck('VATPercentage','min') && goodReceiptItem.IsValidCheck('VATPercentage','max')">
-                              VAT % Range: 0-100%
+                              {{ 'PHARMACY.VAT_RANGE_0100' | translate }}
                             </div>
                           </div>
                         </div>
@@ -458,7 +457,7 @@
                     </div>
                     <div class="form-group">
                       <div class="row no-margin">
-                        <label class="control-label col-md-4">VAT Amt:</label>
+                        <label class="control-label col-md-4">{{ 'PHARMACY.VAT_AMT' | translate }}:</label>
                         <div class="col-md-8">
                           <input class="form-control" type="number" style="width: 100%;" (ngModelChange)="CalculationForPHRMGoodsReceiptItem()"
                                  [(ngModel)]="goodReceiptItem.VATAmount" [ngModelOptions]="{standalone:true}" value="{{0}}" name="VATAmount" disabled
@@ -468,7 +467,7 @@
                     </div>
                     <div class="form-group">
                       <div class="row no-margin">
-                        <label class="control-label col-md-4">Total Amount:</label>
+                        <label class="control-label col-md-4">{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}:</label>
                         <div class="col-md-8">
                           <input class="form-control" type="number" [(ngModel)]="goodReceiptItem.TotalAmount" [ngModelOptions]="{standalone:true}"
                                  value="{{0}}" disabled min="0" style="width: 100%;" name="TotalAmount" />
@@ -480,11 +479,11 @@
                     <div class="form-actions" style="float: right;">
                       <button *ngIf="!update" type="button" id="btn_Save" class="btn green btn-success" (click)="Save()" (keyup.enter)="Save()"
                               value="Save">
-                        Save</button>
+                        {{ 'COMMON.SAVE' | translate }}</button>
                       <!-- update must have same id, for enter key assignment -->
                       <button *ngIf="update" type="button" id="btn_Save" class="btn green btn-success" (click)="Update()"
-                              (keyup.enter)="Update()">Update</button>
-                      <input type="button" class="btn btn-danger" (click)="Close()" value="Discard" />
+                              (keyup.enter)="Update()">{{ 'COMMON.UPDATE' | translate }}</button>
+                      <input type="button" class="btn btn-danger" (click)="Close()" [value]="'COMMON.DISCARD' | translate" />
 
                     </div>
                   </div>

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="modelbox-div clearfix" style="zoom: 0.9;">
-                    <a class="btn btn-danger history-del-btn" (click)="Close()" title="Cancel">
+                    <a class="btn btn-danger history-del-btn" (click)="Close()" [title]="'COMMON.CANCEL' | translate">
                         <i class="fa fa-times"></i>
                     </a>
                     <!--Model Box Body Start-->
@@ -85,7 +85,7 @@
                                         <td style="border: 1px solid; padding: 5px 2.5px; font-size: 1rem;" colspan="2">{{currentGR.VATAmount}}</td>
                                     </tr>
                                     <tr>
-                                        <td style="border: 1px solid; padding: 5px 2.5px; font-size: 1.3rem;" colspan="8">{{currentGR.TotalAmount | number: "1.0-2" | NumberInWords}} ruppees only.</td>
+                                        <td style="border: 1px solid; padding: 5px 2.5px; font-size: 1.3rem;" colspan="8">{{currentGR.TotalAmount | number: "1.0-2" | NumberInWords}} {{ 'PHARMACY.RUPPEES_ONLY' | translate }}</td>
                                         <td style="border: 1px solid; padding: 5px 2.5px; font-size: 1rem; font-weight: bold; text-align: right;" colspan="4">कुल जम्मा रकम</td>
                                         <td style="border: 1px solid; padding: 5px 2.5px; font-size: 1rem;" colspan="2">{{currentGR.TotalAmount}}</td>
                                     </tr>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div style="margin-bottom: 3rem;line-height: 1.3rem;font-size: 1.3rem;">उपर्युक्तअनुसार दाखिला प्रतिवेदन तयार गर्ने, जाँच गर्ने र स्वीकृत गर्नेः उपर्युक्तअनुसार दाखिला प्रतिवेदन तयार गर्ने, जाँच गर्ने र स्वीकृत गर्नेः
                                     <span *ngIf="currentGR.IsCancel" class="cancelStamp">
-                                        <strong>Cancelled</strong>
+                                        <strong>{{ 'PHARMACY.CANCELLED' | translate }}</strong>
                                     </span>
                                 </div>
                                 <div style="display: flex; justify-content: space-around;font-weight: 500;">
@@ -125,7 +125,7 @@
                         </div>
                     </div>
 
-                    <!-- <p *ngIf="currentGR.IsCancel" class="cancelStamp"><b style="font-size: 22px;">Cancelled</b></p>
+                    <!-- <p *ngIf="currentGR.IsCancel" class="cancelStamp"><b style="font-size: 22px;">{{ 'PHARMACY.CANCELLED' | translate }}</b></p>
           <div class="row" *ngIf="canUserModify  && !currentGR.IsCancel">
             <div class="col-md-12 hidden-in-print" style="margin:10px 0">
               <form [formGroup]="cancelForm" class="form-horizontal hm-form">
@@ -146,13 +146,13 @@
 
                     <p style="text-align:center;z-index: 4;position: relative;">
                         <button class="btn green btn-success" (click)="print()" id="btnPrintRecipt">
-                            <span> <i class="glyphicon glyphicon-print">&nbsp;&nbsp;</i>Print Receipt</span>
+                            <span> <i class="glyphicon glyphicon-print">&nbsp;&nbsp;</i>{{ 'PHARMACY.PRINT_RECEIPT' | translate }}</span>
                         </button>
-                        <button *ngIf="canUserModify  && !currentGR.IsCancel" class="btn  btn-small btn-danger" (click)="cancelGoodsReciept()" title="Cancel Goods Receipt">
+                        <button *ngIf="canUserModify  && !currentGR.IsCancel" class="btn  btn-small btn-danger" (click)="cancelGoodsReciept()" [title]="'PHARMACY.CANCEL_GOODS_RECEIPT' | translate">
                             <span> <i class="fa fa-times">&nbsp;&nbsp;</i>Cancel Goods Receipt</span>
                         </button>
                         <button *ngIf="canUserModify  && !currentGR.IsCancel" id="editGR" (click)="editReceipt()" class="btn  btn-small btn-info">
-                            <span><i class="glyphicon glyphicon-edit">&nbsp;&nbsp;</i>Edit GR</span>
+                            <span><i class="glyphicon glyphicon-edit">&nbsp;&nbsp;</i>{{ 'PHARMACY.EDIT_GR' | translate }}</span>
                         </button>
                     </p>
                     <!--Model Box Body END-->
@@ -167,18 +167,17 @@
             <div class="modelbox-div">
                 <div class="modelbox-header">
                     <h4 class="margin-0-vr text-danger text-center">
-                        <strong><span>!!! Are you sure you want to cancel Good Receipt?</span><span>This can't be reverted after
-                                Cancellation.</span> </strong>
+                        <strong><span>{{ 'PHARMACY.ARE_YOU_SURE_YOU_WANT_TO' | translate }}</span><span>{{ 'PHARMACY.THIS_CANT_BE_REVERTED_AFTER_CANCELLATION' | translate }}</span> </strong>
                     </h4>
                 </div>
                 <div class="modelbox-body">
                     <div>
                         <form [formGroup]="cancelForm" class="form-horizontal hm-form">
-                            Cancel Remarks:&nbsp;<sup>*</sup>
+                            {{ 'PHARMACY.CANCEL_REMARKS' | translate }}:&nbsp;<sup>*</sup>
                             <textarea name="CancelRemarks" id="CancelRemarks" formControlName="CancelRemarks" class="form-control"></textarea>
                             <div *ngIf="cancelForm.get('CancelRemarks').invalid && (cancelForm.get('CancelRemarks').dirty || cancelForm.get('CancelRemarks').touched)" class="error-message">
                                 <div *ngIf="cancelForm.get('CancelRemarks').errors.required">
-                                    Remarks is required for cancelling GR.
+                                    {{ 'PHARMACY.REMARKS_IS_REQUIRED_FOR_CANCELLING_GR' | translate }}
                                 </div>
                             </div>
                         </form>
@@ -187,13 +186,13 @@
                 <div class="modelbox-footer">
                     <div class="all-buttons text-right">
                         <button type="button" class="btn btn-primary btn-sm margin-7-hr" (click)="cancelGR()">
-                            Proceed
+                            {{ 'PHARMACY.PROCEED' | translate }}
                         </button>
                     </div>
                 </div>
                 <div class="close-modelbox">
                     <button class="btn btn-danger" (click)="showConfirmationPopUp=false">
-                        X
+                        {{ 'PHARMACY.X' | translate }}
                     </button>
                 </div>
             </div>

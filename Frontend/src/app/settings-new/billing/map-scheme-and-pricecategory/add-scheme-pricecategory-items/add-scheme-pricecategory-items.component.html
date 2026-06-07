@@ -4,13 +4,13 @@
       <div class="col-md-8 col-md-offset-2">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption" style="margin: 0px">
-            <h3> <span *ngIf="!update">Add </span> <span *ngIf="update">Update </span>Scheme Vs PriceCategory Settings</h3>
-            <a class="btn btn-danger" (click)="CloseAddSchemePricePriceCategoryItemPopUp()" title="Cancel">X</a>
+            <h3> <span *ngIf="!update">{{ 'SETTINGS_NEW.ADD' | translate }} </span> <span *ngIf="update">{{ 'COMMON.UPDATE' | translate }} </span>{{ 'SETTINGS_NEW.SCHEME_VS_PRICECATEGORY_SETTINGS' | translate }}</h3>
+            <a class="btn btn-danger" (click)="CloseAddSchemePricePriceCategoryItemPopUp()" [title]="'COMMON.CANCEL' | translate">X</a>
             <div>
               <div class="row" style="color: black; margin-top: 20px;">
                 <div class="col-md-4" style="padding: 0px 5px 0px 0px !important;">
                   <div class="col-md-4" style="padding: 0px;">
-                    <label>Scheme<b class="color-red"> *</b> :</label>
+                    <label>{{ 'COMMON.SCHEME' | translate }}<b class="color-red"> *</b> :</label>
                   </div>
                   <div class="col-md-8" style="padding: 0px;">
                     <input
@@ -23,12 +23,12 @@
                            value-property-name='SchemeId' max-num-list="30"
                            onClick="this.select();" match-formatted="true"
                            style="text-transform: uppercase;"
-                           placeholder="Scheme">
+                           [placeholder]="'COMMON.SCHEME' | translate">
                   </div>
                 </div>
                 <div class="col-md-5" style="padding: 0px 5px 0px 0px !important;">
                   <div class="col-md-4" style="padding: 0px;">
-                    <label>Price Category<b class="color-red"> *</b> :</label>
+                    <label>{{ 'SETTINGS_NEW.PRICE_CATEGORY_1' | translate }}<b class="color-red"> *</b> :</label>
                   </div>
                   <div class="col-md-8" style="padding: 0px;">
                     <input
@@ -41,12 +41,12 @@
                            value-property-name='PriceCategoryId' max-num-list="30"
                            onClick="this.select();" match-formatted="true"
                            style="text-transform: uppercase;"
-                           placeholder="PriceCategory">
+                           [placeholder]="'SETTINGS_NEW.PRICECATEGORY' | translate">
                   </div>
                 </div>
                 <div class="col-md-2" style="padding: 5px 0px 0px 15px !important;">
                   <input type="checkbox" id="id_IsDefault" [(ngModel)]="SchemePriceCategoryMap.IsDefault" name="reconcile_status_open" checked>
-                  <label for="id_IsDefault" style="margin:0px 15px 0px 5px">IsDefault?</label>
+                  <label for="id_IsDefault" style="margin:0px 15px 0px 5px">{{ 'SETTINGS_NEW.ISDEFAULT_1' | translate }}</label>
                 </div>
                 <div class="col-md-1" style="padding: 0px !important;">
                   <button *ngIf="!update" type="button" class="btn green" style="background-color: white" id="btn-add"
@@ -57,9 +57,9 @@
                   <table class="table table-responsive dispatch-report-table">
                     <thead class="table-header-bg">
                       <tr>
-                        <th scope="col" class="wd-130">SchemeName</th>
-                        <th scope="col" class="wd-270">PriceCategory</th>
-                        <th scope="col" class="wd-80">IsDefault</th>
+                        <th scope="col" class="wd-130">{{ 'SETTINGS_NEW.SCHEMENAME' | translate }}</th>
+                        <th scope="col" class="wd-270">{{ 'SETTINGS_NEW.PRICECATEGORY' | translate }}</th>
+                        <th scope="col" class="wd-80">{{ 'SETTINGS_NEW.ISDEFAULT' | translate }}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -87,7 +87,7 @@
                    (cancel)="HandleCancel()"
                    style="font-weight: bold; float: right;"
                    class="btn green btn-success"
-                   value="Save"
+                   [value]="'COMMON.SAVE' | translate"
                    [disabled]="loading" />
 
             <input DanpheConfirmationDialog
@@ -100,7 +100,7 @@
                    (cancel)="HandleCancel()"
                    style="font-weight: bold; float: right;"
                    class="btn green btn-success"
-                   value="Update"
+                   [value]="'COMMON.UPDATE' | translate"
                    [disabled]="loading" />
 
             <input
@@ -108,7 +108,7 @@
                    type="button"
                    style="background-color: orange; color: white; font-weight: bold; float: right;  margin-right: 10px"
                    class="btn orange btn-success"
-                   value="Discard"
+                   [value]="'COMMON.DISCARD' | translate"
                    (click)="Discard()" />
           </div>
         </div>

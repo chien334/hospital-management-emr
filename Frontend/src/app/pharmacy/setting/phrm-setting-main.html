@@ -6,7 +6,7 @@
     <li *ngFor="let route of validRoutes">
       <a routerLink="{{route.RouterLink}}" [routerLinkActive]="'a-tab-active'">{{route.DisplayName}}<i class="{{route.Css}}"></i></a>
     </li>
-    <li><a [routerLink]="'TermsList/'+TermsApplicationId" [routerLinkActive]="'a-tab-active'">Terms</a></li>
+    <li><a [routerLink]="'TermsList/'+TermsApplicationId" [routerLinkActive]="'a-tab-active'">{{ 'PHARMACY.TERMS' | translate }}</a></li>
     <!--<li>
       <a routerLink="InvoiceHeader/Pharmacy" [routerLinkActive]="'a-tab-active'">Invoice Header</a>
     </li>-->

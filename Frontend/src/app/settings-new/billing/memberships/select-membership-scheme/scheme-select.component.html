@@ -18,7 +18,7 @@
     {{labelsInfo.CommunityLabel}}<sup *ngIf="isMandatory"> *</sup><b>:</b>
     <select class="comm-list" id="Membership" [ngClass]="{'disable-dropdown': dropdownDisabled}" [(ngModel)]="selectedCommunityName"
             (change)="CommunityDropdownOnChange(false)" [disabled]="dropdownDisabled" style="margin-left: 5px;">
-      <option value="null" disabled>--select--</option>
+      <option value="null" disabled>{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
       <option *ngFor="let community of distinctCommunityList" value="{{community}}">{{community}}</option>
     </select>
   </span>
@@ -27,7 +27,7 @@
     {{labelsInfo.SchemeLabel}}<sup *ngIf="isMandatory"> *</sup><b>:</b>
     <select id="Scheme" class="membership-list" [ngClass]="{'disable-dropdown': dropdownDisabled}" [(ngModel)]="selMembershipId"
             (change)="MembershipTypeChange()" [disabled]="dropdownDisabled" style="width: 100%; margin-left: 5px;">
-      <option value="null" disabled>--select--</option>
+      <option value="null" disabled>{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
       <option *ngFor="let membership of filteredMembershipList" value="{{membership.SchemeId}}">
         {{membership.MembershipDisplayName}}</option>
     </select>
@@ -38,7 +38,7 @@
   <span *ngIf="!isMembershipValid">
     <br />
     <span style="margin-top: 0;" [ngClass]="{'val-message': showCommunity}" class="text-left small-info color-red"><i
-         class="fa fa-info-sign"></i>Membership Scheme(s) is Mandatory.
+         class="fa fa-info-sign"></i>{{ 'SETTINGS_NEW.MEMBERSHIP_SCHEMES_IS_MANDATORY' | translate }}
     </span>
   </span>
 

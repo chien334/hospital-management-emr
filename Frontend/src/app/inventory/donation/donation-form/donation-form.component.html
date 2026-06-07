@@ -6,14 +6,14 @@
           <div class="form-group col-md-4">
             <div class="row">
               <label class="control-label col-md-4" style="margin-top: 5px;">
-                Donate to <sup style="color: red">*</sup><b>:</b>
+                {{ 'INVENTORY.DONATE_TO' | translate }} <sup style="color: red">*</sup><b>:</b>
               </label>
               <div class="col-md-8 no-padding no-margin">
                 <div class="div-relative">
-                  <input id="VendorName" danphe-auto-complete class="form-control" [source]="vendorList" [list-formatter]="donationVendorListFormatter" placeholder="Search Vendor Name" display-property-name="VendorName" value-property-name=null max-num-list="20" match-formatted="true" [grid-sort]="'VendorName'" formControlName="VendorName" (ngModelChange)="SelectVendorFromSearchBox($event)" onclick="this.select();" (keyup.enter)="GoToNextInput('donationRefNo',0)" />
+                  <input id="VendorName" danphe-auto-complete class="form-control" [source]="vendorList" [list-formatter]="donationVendorListFormatter" [placeholder]="'INVENTORY.SEARCH_VENDOR_NAME' | translate" display-property-name="VendorName" value-property-name=null max-num-list="20" match-formatted="true" [grid-sort]="'VendorName'" formControlName="VendorName" (ngModelChange)="SelectVendorFromSearchBox($event)" onclick="this.select();" (keyup.enter)="GoToNextInput('donationRefNo',0)" />
                   <div *ngIf="VendorId.invalid && (VendorId.dirty || VendorId.touched)" class="alert alert-danger">
                     <div *ngIf="VendorId.errors.required">
-                      Vendor is required.
+                      {{ 'INVENTORY.VENDOR_IS_REQUIRED' | translate }}.
                     </div>
                   </div>
                 </div>
@@ -23,13 +23,13 @@
           <div class="form-group col-md-4">
             <div class="col-md-12">
               <label class="control-label col-md-5" style="margin-top: 5px;">
-                <b> Donation Reference No <sup style="color: red">*</sup>:</b>
+                <b> {{ 'INVENTORY.DONATION_REFERENCE_NO' | translate }} <sup style="color: red">*</sup>:</b>
               </label>
               <div class="col-md-7">
-                <input type="text" formControlName="DonationReferenceNo" id="donationRefNo" class="form-control" (keyup.enter)="GoToNextInput('itemName0')" placeholder="Enter Donation Ref No">
+                <input type="text" formControlName="DonationReferenceNo" id="donationRefNo" class="form-control" (keyup.enter)="GoToNextInput('itemName0')" [placeholder]="'INVENTORY.ENTER_DONATION_REF_NO' | translate">
                 <div *ngIf="donationForm.get('DonationReferenceNo').invalid && (donationForm.get('DonationReferenceNo').dirty || donationForm.get('DonationReferenceNo').touched)" class="alert alert-danger">
                   <div *ngIf="donationForm.get('DonationReferenceNo').errors.required">
-                    Donation Reference No is required.
+                    {{ 'INVENTORY.DONATION_REFERENCE_NO_IS_REQUIRED' | translate }}.
                   </div>
                 </div>
               </div>
@@ -38,7 +38,7 @@
           <div class="form-group col-md-4">
             <div class="col-md-12">
               <label class="control-label col-md-5" style="margin-top: 5px;">
-                <b> Donation Reference Date <sup style="color: red">*</sup>:</b>
+                <b> {{ 'INVENTORY.DONATION_REFERENCE_DATE' | translate }} <sup style="color: red">*</sup>:</b>
               </label>
               <div class="col-md-7">
                 <danphe-date-picker [(ngModel)]="model.DonationReferenceDate" formControlName="DonationReferenceDate" ngDefaultControl [CalendarTypes]="'np,en'"> </danphe-date-picker>
@@ -52,18 +52,18 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th>Item Category</th>
-                  <th>ItemName</th>
-                  <th>Specification</th>
-                  <th>Item Code</th>
-                  <th>Model No</th>
-                  <th>Unit</th>
-                  <th>Available Qty</th>
-                  <th>Cost Price</th>
-                  <th>Donation Qty</th>
-                  <th>Total Value</th>
-                  <th>GR Date</th>
-                  <th>Remarks</th>
+                  <th>{{ 'INVENTORY.ITEM_CATEGORY' | translate }}</th>
+                  <th>{{ 'INVENTORY.ITEMNAME' | translate }}</th>
+                  <th>{{ 'INVENTORY.SPECIFICATION' | translate }}</th>
+                  <th>{{ 'INVENTORY.ITEM_CODE' | translate }}</th>
+                  <th>{{ 'INVENTORY.MODEL_NO' | translate }}</th>
+                  <th>{{ 'INVENTORY.UNIT' | translate }}</th>
+                  <th>{{ 'INVENTORY.AVAILABLE_QTY' | translate }}</th>
+                  <th>{{ 'INVENTORY.COST_PRICE' | translate }}</th>
+                  <th>{{ 'INVENTORY.DONATION_QTY' | translate }}</th>
+                  <th>{{ 'INVENTORY.TOTAL_VALUE' | translate }}</th>
+                  <th>{{ 'INVENTORY.GR_DATE' | translate }}</th>
+                  <th>{{ 'COMMON.REMARKS' | translate }}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -109,10 +109,10 @@
                     <td>
                       <input formControlName="DonationQuantity" (keyup.enter)="GoToNextInput('Remarks'+i)" name="DonationQuantity" onFocus="this.select();" id="DonationQuantity{{i}}" class="form-control" [attr.disabled]="editMode ?  true : null">
                       <div *ngIf="donationItem.get('DonationQuantity').invalid && (donationItem.get('DonationQuantity').dirty || donationItem.get('DonationQuantity').touched)" class="alert alert-danger">
-                        InValid Qty.
+                        {{ 'INVENTORY.INVALID_QTY' | translate }}.
                       </div>
                       <div *ngIf="donationItem.get('DonationQuantity').dirty" class="error-message" [hidden]="donationItem.get('AvailableQty').value >= donationItem.get('DonationQuantity').value">
-                        Donation Qty cannot be greater than Available Qty.
+                        {{ 'INVENTORY.DONATION_QTY_CANNOT_BE_GREATER_THAN_AVAILABLE_QTY' | translate }}.
                       </div>
                     </td>
                     <td>
@@ -134,14 +134,14 @@
         <div class="panel-footer donationFooter">
           <div class="all-buttons text-right">
             <button type="submit" disabled style="display: none" aria-hidden="true"></button>
-            <button type="submit" class="btn green btn-success margin-7-hr">Confirm</button>
-            <button type="button" class="btn btn-cancel margin-7-hr" (click)="CancelDonation()">Cancel</button>
+            <button type="submit" class="btn green btn-success margin-7-hr">{{ 'INVENTORY.CONFIRM' | translate }}</button>
+            <button type="button" class="btn btn-cancel margin-7-hr" (click)="CancelDonation()">{{ 'COMMON.CANCEL' | translate }}</button>
           </div>
           <div class="col-md-2">
 
           </div>
           <div class="text-left">
-            <label class="lblForDonationTotalAmount">Total Amount:</label>{{donationForm.controls['TotalAmount'].value}}
+            <label class="lblForDonationTotalAmount">{{ 'INVENTORY.TOTAL_AMOUNT' | translate }}:</label>{{donationForm.controls['TotalAmount'].value}}
           </div>
         </div>
       </form>

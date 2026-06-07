@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="modelbox-div clearfix" style="zoom: 0.9;">
-            <a class="btn btn-danger history-del-btn" (click)="Close()" title="Cancel">
+            <a class="btn btn-danger history-del-btn" (click)="Close()" [title]="'COMMON.CANCEL' | translate">
               <i class="fa fa-times"></i>
             </a>
             <!--Model Box Body Start-->
@@ -28,7 +28,7 @@
                     <div style="font-size:1.5rem; font-weight: 700;margin-bottom:5px" *ngIf="!!headerDetail.header4">{{headerDetail.header4}} </div>
                     <div style="font-size:1.5rem; font-weight: 700;margin-bottom:5px">{{headerDetail.hospitalName}}</div>
                     <div style="font-size:1.5rem; font-weight: 700;margin-bottom:5px">{{headerDetail.address}}</div>
-                    <div style="font-size:1.5rem; font-weight: 700;margin-bottom:5px; text-decoration: underline;"> Donation Form</div>
+                    <div style="font-size:1.5rem; font-weight: 700;margin-bottom:5px; text-decoration: underline;"> {{ 'INVENTORY.DONATION_FORM' | translate }}</div>
                   </div>
                   <div style="width: 33%;">
 
@@ -36,20 +36,20 @@
                 </div>
 
                 <div style="margin-bottom:20px;" class="header-div">
-                  <b> Goods have been handed over as per the details of this office.</b>
+                  <b> {{ 'INVENTORY.GOODS_HAVE_BEEN_HANDED_OVER_AS_PER_THE_DETAILS_OF_THIS_OFFICE' | translate }}.</b>
                 </div>
                 <div class="header-div">
                   <div>
 
                     <div style="float:left">
-                      <div><b> Donation Reference No. :</b> {{DonationData.donationDetails.DonationReferenceNo}} </div>
-                      <div><b>Donation Reference Date:</b> {{DonationData.donationDetails.DonationReferenceDate | nepaliDate}} </div>
-                      <div><b>Receiver Supplier Name:</b> {{DonationData.donationDetails.VendorName}} </div>
+                      <div><b> {{ 'INVENTORY.DONATION_REFERENCE_NO' | translate }}:</b> {{DonationData.donationDetails.DonationReferenceNo}} </div>
+                      <div><b>{{ 'INVENTORY.DONATION_REFERENCE_DATE' | translate }}:</b> {{DonationData.donationDetails.DonationReferenceDate | nepaliDate}} </div>
+                      <div><b>{{ 'INVENTORY.RECEIVER_SUPPLIER_NAME' | translate }}:</b> {{DonationData.donationDetails.VendorName}} </div>
                     </div>
                   </div>
                   <div style="float:right;">
-                    <div><b>Donation Date:</b> {{DonationData.donationDetails.DonatedDate | nepaliDate}}</div>
-                    <div><b>Donation No: </b>{{DonationData.donationDetails.DonationNo}} </div>
+                    <div><b>{{ 'INVENTORY.DONATION_DATE' | translate }}:</b> {{DonationData.donationDetails.DonatedDate | nepaliDate}}</div>
+                    <div><b>{{ 'INVENTORY.DONATION_NO' | translate }}: </b>{{DonationData.donationDetails.DonationNo}} </div>
                   </div>
                 </div>
               </div>
@@ -57,18 +57,18 @@
                 <table class="table table-bordered donation-table" style="width: 100%;table-layout: fixed;margin-bottom: 0;border:2px solid;">
                   <thead>
                     <tr class="donation-item-header">
-                      <th>S.N.</th>
-                      <th>Item Category Code</th>
-                      <th>Registered Page No.</th>
-                      <th>Item Name</th>
-                      <th class="break-word-in-print">Specification</th>
-                      <th>Code</th>
-                      <th>Model No.</th>
-                      <th>Unit</th>
+                      <th>{{ 'COMMON.SN' | translate }}.</th>
+                      <th>{{ 'INVENTORY.ITEM_CATEGORY_CODE' | translate }}</th>
+                      <th>{{ 'INVENTORY.REGISTERED_PAGE_NO' | translate }}.</th>
+                      <th>{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}</th>
+                      <th class="break-word-in-print">{{ 'INVENTORY.SPECIFICATION' | translate }}</th>
+                      <th>{{ 'GRID_HEADERS.CODE' | translate }}</th>
+                      <th>{{ 'INVENTORY.MODEL_NO' | translate }}.</th>
+                      <th>{{ 'INVENTORY.UNIT' | translate }}</th>
                       <th>Quantity</th>
-                      <th>Total Value</th>
-                      <th>GRDate</th>
-                      <th>Remarks</th>
+                      <th>{{ 'INVENTORY.TOTAL_VALUE' | translate }}</th>
+                      <th>{{ 'INVENTORY.GRDATE' | translate }}</th>
+                      <th>{{ 'COMMON.REMARKS' | translate }}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -94,47 +94,47 @@
                   <div style="display: flex;justify-content: center; margin-bottom: 2rem;">
                     <div style="display: flex;justify-content: center; width: 100%;">
                       <div style="width:50%">
-                        <div style="text-align: left;font-weight: 700;text-decoration: underline;">To Be Filled By Donor: </div>
+                        <div style="text-align: left;font-weight: 700;text-decoration: underline;">{{ 'INVENTORY.TO_BE_FILLED_BY_DONOR' | translate }}: </div>
                         <div>
                           <div style="display: flex; justify-content:space-around;margin-bottom: 1rem;">
                             <div style="text-align: left;width:50%;">
-                              <div> Submitted By: </div>
-                              <div>Name:</div>
-                              <div>Designation:</div>
-                              <div>Sign:</div>
-                              <div>Date:</div>
+                              <div> {{ 'INVENTORY.SUBMITTED_BY' | translate }}: </div>
+                              <div>{{ 'COMMON.NAME' | translate }}:</div>
+                              <div>{{ 'INVENTORY.DESIGNATION' | translate }}:</div>
+                              <div>{{ 'INVENTORY.SIGN' | translate }}:</div>
+                              <div>{{ 'GRID_HEADERS.DATE' | translate }}:</div>
                             </div>
                             <div style="text-align: left;width:50%;">
-                              <div>Head of Office for handing over goods: </div>
-                              <div>Name:</div>
-                              <div>Designation:</div>
-                              <div>Sign:</div>
-                              <div>Date:</div>
+                              <div>{{ 'INVENTORY.HEAD_OF_OFFICE_FOR_HANDING_OVER_GOODS' | translate }}: </div>
+                              <div>{{ 'COMMON.NAME' | translate }}:</div>
+                              <div>{{ 'INVENTORY.DESIGNATION' | translate }}:</div>
+                              <div>{{ 'INVENTORY.SIGN' | translate }}:</div>
+                              <div>{{ 'GRID_HEADERS.DATE' | translate }}:</div>
                             </div>
                           </div>
-                          <div style="text-align: center; margin-top: 1rem;">Office Stamp: </div>
+                          <div style="text-align: center; margin-top: 1rem;">{{ 'INVENTORY.OFFICE_STAMP' | translate }}: </div>
                         </div>
                       </div>
                       <div style="width: 50%;">
-                        <div style="text-align: left;font-weight: 700;padding-left:2rem;text-decoration: underline;">To Be Filled By Receiver </div>
+                        <div style="text-align: left;font-weight: 700;padding-left:2rem;text-decoration: underline;">{{ 'INVENTORY.TO_BE_FILLED_BY_RECEIVER' | translate }} </div>
                         <div style="padding-left:2rem;">
                           <div style="display: flex; justify-content:space-around;margin-bottom: 1rem;">
                             <div style="text-align: left;width:50%;">
-                              <div> Received By:</div>
-                              <div>Name:</div>
-                              <div>Designation:</div>
-                              <div>Sign:</div>
-                              <div>Date:</div>
+                              <div> {{ 'INVENTORY.RECEIVED_BY' | translate }}:</div>
+                              <div>{{ 'COMMON.NAME' | translate }}:</div>
+                              <div>{{ 'INVENTORY.DESIGNATION' | translate }}:</div>
+                              <div>{{ 'INVENTORY.SIGN' | translate }}:</div>
+                              <div>{{ 'GRID_HEADERS.DATE' | translate }}:</div>
                             </div>
                             <div style="text-align: left;width:50%;">
-                              <div>Head of Office for receiving goods: </div>
-                              <div>Name:</div>
-                              <div>Designation:</div>
-                              <div>Sign:</div>
-                              <div>Date:</div>
+                              <div>{{ 'INVENTORY.HEAD_OF_OFFICE_FOR_RECEIVING_GOODS' | translate }}: </div>
+                              <div>{{ 'COMMON.NAME' | translate }}:</div>
+                              <div>{{ 'INVENTORY.DESIGNATION' | translate }}:</div>
+                              <div>{{ 'INVENTORY.SIGN' | translate }}:</div>
+                              <div>{{ 'GRID_HEADERS.DATE' | translate }}:</div>
                             </div>
                           </div>
-                          <div style="text-align: center; margin-top: 20px;">Office Stamp: </div>
+                          <div style="text-align: center; margin-top: 20px;">{{ 'INVENTORY.OFFICE_STAMP' | translate }}: </div>
                         </div>
                       </div>
                     </div>
@@ -143,9 +143,9 @@
               </div>
             </div>
             <p style="text-align:center;z-index: 4;position: relative;">
-              <button class="btn green btn-success" (click)="Print()" id="btnPrintRecipt"><span> <i class="glyphicon glyphicon-print">&nbsp;&nbsp;</i>Print</span></button>
-              <!-- <button id="editGR" (click)="Edit(DonationData.donationDetails.DonationId)" class="btn  btn-small btn-info"><span><i class="glyphicon glyphicon-edit">&nbsp;&nbsp;</i>Edit</span></button> -->
-              <button class="btn  btn-small btn-danger" (click)="Cancel()" title="Cancel Goods Receipt" data-bs-toggle="modal" data-bs-target="#CancelPopup"><span> <i class="fa fa-times">&nbsp;&nbsp;</i>Cancel Donation</span></button>
+              <button class="btn green btn-success" (click)="Print()" id="btnPrintRecipt"><span> <i class="glyphicon glyphicon-print">&nbsp;&nbsp;</i>{{ 'COMMON.PRINT' | translate }}</span></button>
+              <!-- <button id="editGR" (click)="Edit(DonationData.donationDetails.DonationId)" class="btn  btn-small btn-info"><span><i class="glyphicon glyphicon-edit">&nbsp;&nbsp;</i>{{ 'COMMON.EDIT' | translate }}</span></button> -->
+              <button class="btn  btn-small btn-danger" (click)="Cancel()" [title]="'INVENTORY.CANCEL_GOODS_RECEIPT' | translate" data-bs-toggle="modal" data-bs-target="#CancelPopup"><span> <i class="fa fa-times">&nbsp;&nbsp;</i>{{ 'INVENTORY.CANCEL_DONATION' | translate }}</span></button>
             </p>
 
           </div>
@@ -162,14 +162,14 @@
     <div class="modal-content" *ngIf="showCancelPopUp">
       <div class="modal-header">
         <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
-        <h3 class="modal-title">Warning</h3>
+        <h3 class="modal-title">{{ 'INVENTORY.WARNING' | translate }}</h3>
       </div>
       <div class="modal-body" style="height:16em">
-        <p>Are you sure want to cancel the donation ?</p>
-        <i>If yes, Remarks is mandatory.</i>
+        <p>{{ 'INVENTORY.ARE_YOU_SURE_WANT_TO_CANCEL_THE_DONATION' | translate }}</p>
+        <i>{{ 'INVENTORY.IF_YES_REMARKS_IS_MANDATORY' | translate }}.</i>
         <div class="col-md-12" style="margin-top:15px">
           <div class="col-md-4">
-            <b>Cancel Remarks<i style="color:red">*</i><span class="right">:</span></b>
+            <b>{{ 'INVENTORY.CANCEL_REMARKS' | translate }}<i style="color:red">*</i><span class="right">:</span></b>
           </div>
           <div class="col-md-8">
             <textarea style="height:7em;width:100%;" [(ngModel)]="Remarks" (ngModelChange)="LoadRemarks()" type="text" name="cancelRemarks"></textarea>
@@ -177,8 +177,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default btn btn-danger" data-bs-dismiss="modal" (click)="CancelDonation(DonationData.donationDetails.DonationId)" [disabled]="disableButton">Yes</button>
-        <button type="button" class="btn btn-default btn btn-success" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-default btn btn-danger" data-bs-dismiss="modal" (click)="CancelDonation(DonationData.donationDetails.DonationId)" [disabled]="disableButton">{{ 'COMMON.YES' | translate }}</button>
+        <button type="button" class="btn btn-default btn btn-success" data-bs-dismiss="modal">{{ 'COMMON.NO' | translate }}</button>
       </div>
     </div>
   </div>

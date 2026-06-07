@@ -32,7 +32,7 @@
   /* .itembox {
     background-color: #82919e;
     justify-content: center;
-    align-items: center;
+    align-{{ 'INVENTORY.ITEMS' | translate }}: center;
     padding: 1em;
     margin: 2px;
     border-radius: 6px !important;
@@ -43,7 +43,7 @@
     padding: 0px;
   }
 
-  .info-warning {
+  .info-{{ 'INVENTORY.WARNING' | translate }} {
     background-color: orange !important;
   }
 </style>
@@ -54,52 +54,52 @@
         <div class="modelbox-div clearfix">
           <div class="caption lb-caption">
             <h3>
-              <span *ngIf="!update">Add Vendor</span>
-              <span *ngIf="update">Update Vendor</span>
+              <span *ngIf="!update">{{ 'INVENTORY.ADD_VENDOR' | translate }}</span>
+              <span *ngIf="update">{{ 'INVENTORY.UPDATE_VENDOR' | translate }}</span>
             </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <form [formGroup]="CurrentVendor.VendorsValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="row">
                 <div class="col-md-6 col-xs-6">
                   <div class="form-group">
-                    <label class="control-label col-md-5">Vendor Name<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.VENDOR_NAME' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                       <input class="form-control" maxlength="200" type="text" [(ngModel)]="CurrentVendor.VendorName" formControlName="VendorName"
-                             id="txtVendorName" placeholder="Vendor Name" (focusout)="CreateVendorCode()"
+                             id="txtVendorName" [placeholder]="'INVENTORY.VENDOR_NAME' | translate" (focusout)="CreateVendorCode()"
                              (keyup.enter)="coreService.SetFocusToNextSelectElement('VendorCode')" />
                       <span class="color-red font-sm"
                             [hidden]="CurrentVendor.IsValidCheck('VendorName','required') || !(CurrentVendor.IsDirty('VendorName'))">Vendor
-                        Name is required</span>
+                        {{ 'INVENTORY.NAME_IS_REQUIRED' | translate }}</span>
                       <span class="color-red font-sm" *ngIf="CurrentVendor.IsDirty('VendorName')"
-                            [hidden]="CurrentVendor.IsValidCheck('VendorName','maxlength')"> Length is not proper</span>
+                            [hidden]="CurrentVendor.IsValidCheck('VendorName','maxlength')"> {{ 'INVENTORY.LENGTH_IS_NOT_PROPER' | translate }}</span>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">ContactAddress<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.CONTACTADDRESS' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                       <input class="form-control" type="text" [(ngModel)]="CurrentVendor.ContactAddress"
-                             formControlName="ContactAddress" id="ContactAddress" placeholder="ContactAddress"
+                             formControlName="ContactAddress" id="ContactAddress" [placeholder]="'INVENTORY.CONTACTADDRESS' | translate"
                              (keyup.enter)="FocusElementById('ContactNo')" />
                       <span class="color-red font-sm"
-                            [hidden]="CurrentVendor.IsValidCheck('ContactAddress','required') || !(CurrentVendor.IsDirty('ContactAddress'))">ContactAddress
-                        is required</span>
+                            [hidden]="CurrentVendor.IsValidCheck('ContactAddress','required') || !(CurrentVendor.IsDirty('ContactAddress'))">{{ 'INVENTORY.CONTACTADDRESS' | translate }}
+                        is {{ 'INVENTORY.REQUIRED' | translate }}</span>
                       <span class="color-red font-sm" *ngIf="CurrentVendor.IsDirty('ContactAddress')"
-                            [hidden]="CurrentVendor.IsValidCheck('ContactAddress','maxlength')"> Length is not proper</span>
+                            [hidden]="CurrentVendor.IsValidCheck('ContactAddress','maxlength')"> {{ 'INVENTORY.LENGTH_IS_NOT_PROPER' | translate }}</span>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-5">Contact Number<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.CONTACT_NUMBER' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                       <input class="form-control" maxlength="100" type="text" [(ngModel)]="CurrentVendor.ContactNo" formControlName="ContactNo"
-                             id="ContactNo" placeholder="Contact Number" (keyup.enter)="FocusElementById('txtPanNo')" />
+                             id="ContactNo" [placeholder]="'INVENTORY.CONTACT_NUMBER' | translate" (keyup.enter)="FocusElementById('txtPanNo')" />
                       <span class="color-red font-sm"
-                            [hidden]="CurrentVendor.IsValidCheck('ContactNo','required') || !(CurrentVendor.IsDirty('ContactNo'))">ContactNo
-                        is required</span>
+                            [hidden]="CurrentVendor.IsValidCheck('ContactNo','required') || !(CurrentVendor.IsDirty('ContactNo'))">{{ 'INVENTORY.CONTACTNO' | translate }}
+                        is {{ 'INVENTORY.REQUIRED' | translate }}</span>
                       <span class="color-red font-sm" *ngIf="CurrentVendor.IsDirty('ContactNo')"
-                            [hidden]="CurrentVendor.IsValidCheck('ContactNo','maxlength')"> Must be Under 10 digits</span>
+                            [hidden]="CurrentVendor.IsValidCheck('ContactNo','maxlength')"> {{ 'INVENTORY.MUST_BE_UNDER_10_DIGITS' | translate }}</span>
                     </div>
                   </div>
                   <div class="form-group">
@@ -108,12 +108,12 @@
                       <input class="form-control" maxlength="50" type="text" [(ngModel)]="CurrentVendor.PanNo" formControlName="PanNo" id="txtPanNo"
                              placeholder="{{GeneralFieldLabel.PANNo}}" (keyup.enter)="FocusElementById('AssignItemIdToVendor')" />
                       <span class="color-red font-sm" *ngIf="CurrentVendor.IsDirty('PanNo')"
-                            [hidden]="CurrentVendor.IsValidCheck('PanNo','maxlength')"> Must be of 50 digits</span>
+                            [hidden]="CurrentVendor.IsValidCheck('PanNo','maxlength')"> {{ 'INVENTORY.MUST_BE_OF_50_DIGITS' | translate }}</span>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-5">Vendor Country<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.VENDOR_COUNTRY' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <select id="ddlCountry" class="form-control" [(ngModel)]="CurrentVendor.CountryId" [ngModelOptions]="{standalone: true}">
                         <option *ngFor="let Country of Countries" value="{{Country.CountryId}}">{{Country.CountryName}}
@@ -122,7 +122,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Currency Code<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.CURRENCY_CODE' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                       <div class="div-relative">
                         <select id="ddlCurrency" class="form-control" [(ngModel)]="CurrentVendor.DefaultCurrencyId"
@@ -131,21 +131,21 @@
                           </option>
                         </select>
                         <a *ngIf="!CurrentVendor.DefaultCurrencyId" class="fa fa-question" (click)="AddCurrencyCodePopUp()"
-                           title="Click to add to Currency Code"></a>
+                           [title]="'INVENTORY.CLICK_TO_ADD_TO_CURRENCY_CODE' | translate"></a>
                         <span class="color-red font-sm"
-                              [hidden]="CurrentVendor.IsValidCheck('DefaultCurrencyId','required') || !(CurrentVendor.IsDirty('DefaultCurrencyId'))">Please
-                          Enter Currency Type</span>
-                        <!--<span class="color-red font-sm" *ngIf="!CurrentVendor.IsValidCheck('DefaultCurrencyId')" >Currency Type is required</span>-->
-                        <!--<span class="error-msg" *ngIf="CurrentVendor.IsDirty('DefaultCurrencyId')" [hidden]="CurrentVendor.IsValidCheck('DefaultCurrencyId','required')"> DefaultCurrencyId is required</span>-->
+                              [hidden]="CurrentVendor.IsValidCheck('DefaultCurrencyId','required') || !(CurrentVendor.IsDirty('DefaultCurrencyId'))">{{ 'INVENTORY.PLEASE' | translate }}
+                          {{ 'COMMON.ENTER' | translate }} Currency {{ 'INVENTORY.TYPE' | translate }}</span>
+                        <!--<span class="color-red font-sm" *ngIf="!CurrentVendor.IsValidCheck('DefaultCurrencyId')" >Currency {{ 'INVENTORY.TYPE' | translate }} is {{ 'INVENTORY.REQUIRED' | translate }}</span>-->
+                        <!--<span class="error-msg" *ngIf="CurrentVendor.IsDirty('DefaultCurrencyId')" [hidden]="CurrentVendor.IsValidCheck('DefaultCurrencyId','required')"> DefaultCurrencyId is {{ 'INVENTORY.REQUIRED' | translate }}</span>-->
                       </div>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-5">Bank Details<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.BANK_DETAILS' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <textarea class="form-control" id="BankDetails" maxlength="400" [(ngModel)]="CurrentVendor.BankDetails"
-                                formControlName="BankDetails" placeholder="Bank Details">
+                                formControlName="BankDetails" [placeholder]="'INVENTORY.BANK_DETAILS' | translate">
                       </textarea>
 
                     </div>
@@ -154,69 +154,69 @@
                 </div>
                 <div class="col-md-6 col-xs-6">
                   <div class="form-group">
-                    <label class="control-label col-md-5">Vendor Code<sup class="color-red">*</sup><b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.VENDOR_CODE' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7 div-relative">
                       <!-- Sud:25Sept'21: We're Generating vendor code from backend.. so Disabled Vendor code entry from frontend until further requirement clarity -->
                       <input class="form-control" maxlength="7" minlength="5" [(ngModel)]="CurrentVendor.VendorCode"
-                             formControlName="VendorCode" placeholder="Vendor Code" (focusout)="CreateVendorCode()" id="VendorCode"
+                             formControlName="VendorCode" [placeholder]="'INVENTORY.VENDOR_CODE' | translate" (focusout)="CreateVendorCode()" id="VendorCode"
                              (keyup.enter)="coreService.SetFocusToNextSelectElement('ContactAddress')" />
                       <!-- <i *ngIf="!update" title="This Vendor Code is not final. It may change during SAVE." color=#006687
                          class="fa fa-info-circle info-warning" aria-hidden="true">
                       </i> -->
                       <span class="color-red font-sm" *ngIf="CurrentVendor.IsDirty('PanNo')"
-                            [hidden]="CurrentVendor.IsValidCheck('VendorCode','maxlength')"> Must be of 20 digits</span>
+                            [hidden]="CurrentVendor.IsValidCheck('VendorCode','maxlength')"> {{ 'INVENTORY.MUST_BE_OF_20_DIGITS' | translate }}</span>
                       <span class="color-red font-sm"
                             [hidden]="CurrentVendor.IsValidCheck('VendorCode','required') || !(CurrentVendor.IsDirty('VendorCode'))">
-                        VendorCode is required
+                        {{ 'INVENTORY.VENDORCODE_IS_REQUIRED' | translate }}
                       </span>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Contact Person<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.CONTACT_PERSON' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <input class="form-control" maxlength="200" [(ngModel)]="CurrentVendor.ContactPerson" [ngModelOptions]="{standalone: true}"
-                             placeholder="Contact Person" />
+                             [placeholder]="'INVENTORY.CONTACT_PERSON' | translate" />
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Email<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'GRID_HEADERS.EMAIL' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <input class="form-control" maxlength="100" type="text" [(ngModel)]="CurrentVendor.Email" formControlName="Email" id="Email"
-                             placeholder="Email Address" />
+                             [placeholder]="'INVENTORY.EMAIL_ADDRESS' | translate" />
                       <span class="color-red font-sm" *ngIf="CurrentVendor.IsDirty('Email')"
-                            [hidden]="CurrentVendor.IsValidCheck('Email','pattern')">Email is not proper</span>
+                            [hidden]="CurrentVendor.IsValidCheck('Email','pattern')">{{ 'INVENTORY.EMAIL_IS_NOT_PROPER' | translate }}</span>
                     </div>
                   </div>
                   <div class="form-group" *ngIf="vendorDisplayParameter && vendorDisplayParameter.ShowSARFNo==true">
-                    <label class="control-label col-md-5">SARFNo<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.SARFNO' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <input class="form-control" maxlength="50" type="text" [(ngModel)]="CurrentVendor.SARFNo" formControlName="SARFNo" id="SARFNo"
-                             placeholder="SARF Number" />
+                             [placeholder]="'INVENTORY.SARF_NUMBER' | translate" />
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Credit Period (days)<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.CREDIT_PERIOD_DAYS' | translate }}<b>:</b></label>
                     <div class="col-md-7">
-                      <input type="number" [(ngModel)]="CurrentVendor.CreditPeriod" min="0" placeholder="Credit Period"
+                      <input type="number" [(ngModel)]="CurrentVendor.CreditPeriod" min="0" [placeholder]="'INVENTORY.CREDIT_PERIOD' | translate"
                              formControlName="CreditPeriod" (wheel)="coreService.PreventNumberChangeOnScroll($event)" />
                       <span class="color-red font-sm" *ngIf="CurrentVendor.IsDirty('CreditPeriod')"
-                            [hidden]="CurrentVendor.IsValidCheck('CreditPeriod','pattern')">Credit must be
+                            [hidden]="CurrentVendor.IsValidCheck('CreditPeriod','pattern')">{{ 'INVENTORY.CREDIT_MUST_BE' | translate }}
                         integer.</span>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-5">GovtRegDate<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.GOVTREGDATE' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <!--<input type="text" autocomplete="off" class="nepali-date-cal" />-->
-                      <!-- <input type="date"  [(ngModel)]="CurrentVendor.GovtRegDate" placeholder="GovtRegDate" [ngModelOptions]="{standalone: true}" /> -->
+                      <!-- <input type="date"  [(ngModel)]="CurrentVendor.GovtRegDate" [placeholder]="'INVENTORY.GOVTREGDATE' | translate" [ngModelOptions]="{standalone: true}" /> -->
 
                       <danphe-date-picker [(ngModel)]="CurrentVendor.GovtRegDate" [ngModelOptions]="{standalone: true}" [CalendarTypes]="'np,en'">
                       </danphe-date-picker>
                     </div>
                   </div>
                   <div class="form-group" *ngIf="vendorDisplayParameter && vendorDisplayParameter.ShowIsTDSApplicable==true">
-                    <label class="control-label col-md-5">Is TDS Applicable <b>:</b> </label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.IS_TDS_APPLICABLE' | translate }} <b>:</b> </label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -230,18 +230,18 @@
                   </div>
                   <div class="form-group" *ngIf="vendorDisplayParameter && vendorDisplayParameter.ShowIsTDSApplicable==true">
                     <div>
-                      <label class="control-label col-md-5">Tds(%)<b>:</b></label>
+                      <label class="control-label col-md-5">{{ 'INVENTORY.TDS' | translate }}<b>:</b></label>
                       <div class="col-md-7">
-                        <input type="number" [(ngModel)]="CurrentVendor.Tds" placeholder="Tds(%)" [ngModelOptions]="{standalone: true}"
+                        <input type="number" [(ngModel)]="CurrentVendor.Tds" [placeholder]="'INVENTORY.TDS' | translate" [ngModelOptions]="{standalone: true}"
                                (wheel)="coreService.PreventNumberChangeOnScroll($event)" />
                       </div>
                     </div>
                   </div>
                   <div class="form-group" *ngIf="vendorDisplayParameter && vendorDisplayParameter.ShowDefaultItemSupplied==true">
-                    <label class="control-label col-md-5">Default Item Supplied<b>:</b></label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.DEFAULT_ITEM_SUPPLIED' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <div class="form-group itembox">
-                        <span class="selectedItem" *ngFor="let itm of defaultItemList">{{itm.ItemName}}<span *ngIf="isEditItem" title="Delete Item"
+                        <span class="selectedItem" *ngFor="let itm of defaultItemList">{{itm.ItemName}}<span *ngIf="isEditItem" [title]="'INVENTORY.DELETE_ITEM' | translate"
                                 (click)="deleteItem(itm.ItemId)" class="deleteItem">x</span></span>
                       </div>
                       <div class="div-relative form-group no-margin">
@@ -254,16 +254,16 @@
       </select>-->
                         <div class="m1">
                           <button *ngIf="isEditItem" class="btn green btn-success margin-7-hr" (click)="AssignItemIdToVendor()"><i
-                               class="fa fa-plus"></i>Add</button>
+                               class="fa fa-plus"></i>{{ 'INVENTORY.ADD' | translate }}</button>
                           <button *ngIf="!isEditItem" class="btn green btn-success margin-7-hr" (click)="EditItemId()"><i class="fa fa-edit"></i>
-                            Edit</button>
+                            {{ 'COMMON.EDIT' | translate }}</button>
                         </div>
                       </div>
 
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Is Active <b>:</b> </label>
+                    <label class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }} <b>:</b> </label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">
@@ -276,7 +276,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-5">Receive Donation<b>:</b> </label>
+                    <label class="control-label col-md-5">{{ 'INVENTORY.RECEIVE_DONATION' | translate }}<b>:</b> </label>
                     <div class="col-md-7">
                       <div class="input-group">
                         <div class="icheck-inline">

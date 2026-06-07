@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="caption custom-caption no-margin"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Expiry Item Report</span> </div>
+    <div class="caption custom-caption no-margin"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'INVENTORY.EXPIRY_ITEM_REPORT' | translate }}</span> </div>
   </div>
 </div>
 
@@ -11,10 +11,10 @@
         <table class="table billing-table" style="background-color:initial;margin-bottom:0px;">
           <thead>
             <tr>
-              <th><b class="align">From Date<sup>*</sup></b></th>
-              <th><b class="align">To Date<sup>*</sup></b></th>
-              <th><b class="align">Item Name</b></th>
-              <th><b class="align">Sub Store</b></th>
+              <th><b class="align">{{ 'INVENTORY.FROM_DATE' | translate }}<sup>*</sup></b></th>
+              <th><b class="align">{{ 'INVENTORY.TO_DATE' | translate }}<sup>*</sup></b></th>
+              <th><b class="align">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}</b></th>
+              <th><b class="align">{{ 'INVENTORY.SUB_STORE' | translate }}</b></th>
             </tr>
           </thead>
           <tbody style="background-color: #dde3e9;">
@@ -27,20 +27,20 @@
               </td>
               <td style="width: 250px;">
                 <select name="SelectedItem" id="SelectedItem" [(ngModel)]="ItemId" (ngModelChange)="OnItemChange()" class="form-control">
-                  <option [ngValue]="null" selected>All Items</option>
+                  <option [ngValue]="null" selected>{{ 'INVENTORY.ALL_ITEMS' | translate }}</option>
                   <option *ngFor="let item of ItemList" [ngValue]="item.ItemId">
                     {{item.ItemName}}</option>
                 </select>
               </td>
               <td style="width: 250px;">
                 <select [(ngModel)]="StoreId" class="form-control" (ngModelChange)="OnStoreChange()">
-                  <option [ngValue]="null" selected>All Store</option>
+                  <option [ngValue]="null" selected>{{ 'INVENTORY.ALL_STORE' | translate }}</option>
                   <option *ngFor="let store of subStoreList" [ngValue]="store.StoreId">{{store.Name}}</option>
                 </select>
               </td>
               <td></td>
               <td>
-                <button class="btn btn-primary btn-add-new-row" (click)="GetReportData()">Show Report
+                <button class="btn btn-primary btn-add-new-row" (click)="GetReportData()">{{ 'INVENTORY.SHOW_REPORT' | translate }}
                 </button>
               </td>
             </tr>

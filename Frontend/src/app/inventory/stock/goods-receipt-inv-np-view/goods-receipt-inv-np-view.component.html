@@ -134,7 +134,7 @@
                   </tr>
                   <tr>
                     <td style="border: 1px solid; padding: 5px 2.5px; font-size: 1.3rem;text-transform: capitalize;" colspan="8">
-                      In Words: {{goodsreceiptDetails.TotalAmount | number: "1.0-2" | NumberInWords}} ruppees only.</td>
+                      {{ 'INVENTORY.IN_WORDS' | translate }}: {{goodsreceiptDetails.TotalAmount | number: "1.0-2" | NumberInWords}} ruppees {{ 'INVENTORY.ONLY' | translate }}.</td>
                     <td
                       style="border: 1px solid; padding: 5px 2.5px; font-weight: 700; font-size: 1rem; text-align: right;"
                       colspan="4">कुल जम्मा रकम</td>
@@ -157,7 +157,7 @@
                 <div style="margin-bottom: 3rem;line-height: 1.3rem;font-size: 1.3rem;">
                   उपर्युक्तअनुसार दाखिला प्रतिवेदन तयार गर्ने, जाँच गर्ने र स्वीकृत गर्नेः
                   <span *ngIf="goodsreceiptDetails.IsCancel" class="cancelStamp">
-                    <strong>Cancelled</strong>
+                    <strong>{{ 'INVENTORY.CANCELLED' | translate }}</strong>
                   </span>
                 </div>
                 <div style="display: flex; justify-content: space-around;font-weight: 500;">
@@ -190,14 +190,14 @@
           <div class="col-md-12 text-left" *ngIf="goodsreceiptDetails.GRStatus == 'verified'"
             style="display: flex;flex-direction: column;">
             <div style="margin-bottom:1rem;">
-              <label class="col-md-3" for="ReceivedRemarks">Receiving Remarks<sup
+              <label class="col-md-3" for="ReceivedRemarks">{{ 'INVENTORY.RECEIVING_REMARKS' | translate }}<sup
                   style="color: red;">*</sup>&nbsp;:&nbsp;</label>
               <textarea class="col-md-5" type="text" name="ReceivedRemarks" id="ReceivedRemarks"
                 [(ngModel)]="receivedRemarks" rows="3" cols="20"> </textarea>
             </div>
             <div style="text-align: center;">
               <button class="animated-btn blinking-btn-warning" id="ReceiveButton" (click)="receive()" [disabled]="loading"><i
-                  class="fa fa-check-square-o" aria-hidden="true"></i>Receive</button>
+                  class="fa fa-check-square-o" aria-hidden="true"></i>{{ 'INVENTORY.RECEIVE' | translate }}</button>
             </div>
           </div>
           <!-- Receive Button Feature Ends here -->

@@ -4,8 +4,8 @@
       <div class="modelbox-div lab_modal_box">
         <div class="modelbox-header">
           <h4 class="margin-0-vr"> <strong>
-              <ng-container *ngIf="actionName == 'add'">Add Lab External Vendor</ng-container>
-              <ng-container *ngIf="actionName == 'edit'">Edit Lab External Vendor</ng-container>
+              <ng-container *ngIf="actionName == 'add'">{{ 'LABS.ADD_LAB_EXTERNAL_VENDOR' | translate }}</ng-container>
+              <ng-container *ngIf="actionName == 'edit'">{{ 'LABS.EDIT_LAB_EXTERNAL_VENDOR' | translate }}</ng-container>
             </strong> </h4>
         </div>
         <form class="hm-form">
@@ -14,18 +14,18 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <div class="row">
-                    <label for="vendorName" class="col-md-5 control-label">Vendor Name <sup class="color-red">*</sup><b>:</b></label>
+                    <label for="vendorName" class="col-md-5 control-label">{{ 'LABS.VENDOR_NAME' | translate }} <sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
-                      <input name="vendorName" id="vendorName" class="form-control" type="text" placeholder="Vendor Name"
+                      <input name="vendorName" id="vendorName" class="form-control" type="text" [placeholder]="'LABS.VENDOR_NAME' | translate"
                              [(ngModel)]="newVendor.VendorName" (keyup.enter)="coreService.FocusInputById('vendor_Code')">
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
-                    <label for="contactAdd" class="col-md-5 control-label">Contact Address <b>:</b> </label>
+                    <label for="contactAdd" class="col-md-5 control-label">{{ 'LABS.CONTACT_ADDRESS' | translate }} <b>:</b> </label>
                     <div class="col-md-7">
-                      <textarea name="contatAddress" id="contactAdd" class="form-control" placeholder="Contact Address"
+                      <textarea name="contatAddress" id="contactAdd" class="form-control" [placeholder]="'LABS.CONTACT_ADDRESS' | translate"
                                 [(ngModel)]="newVendor.ContactAddress">
                     </textarea>
                     </div>
@@ -33,10 +33,10 @@
                 </div>
                 <div class="form-group">
                   <div class="row">
-                    <label for="email" class="col-md-5 control-label">Email <b>:</b></label>
+                    <label for="email" class="col-md-5 control-label">{{ 'GRID_HEADERS.EMAIL' | translate }} <b>:</b></label>
                     <div class="col-md-7">
                       <input name="vendorEmail" id="email" class="form-control" type="text" (keyup.enter)="coreService.FocusInputById('vendor_Code')"
-                             placeholder="Email" [(ngModel)]="newVendor.Email">
+                             [placeholder]="'GRID_HEADERS.EMAIL' | translate" [(ngModel)]="newVendor.Email">
                     </div>
                   </div>
                 </div>
@@ -44,18 +44,18 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <div class="row">
-                    <label for="vendorCode" class="col-md-5 control-label">Vendor Code <sup class="color-red">*</sup><b>:</b></label>
+                    <label for="vendorCode" class="col-md-5 control-label">{{ 'LABS.VENDOR_CODE' | translate }} <sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
-                      <input name="vendorCode" id="vendor_Code" class="form-control" type="text" placeholder="Vendor Code"
+                      <input name="vendorCode" id="vendor_Code" class="form-control" type="text" [placeholder]="'LABS.VENDOR_CODE' | translate"
                              [(ngModel)]="newVendor.VendorCode" (keyup.enter)="coreService.FocusInputById('add_vendor')">
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
-                    <label for="contactNum" class="col-md-5 control-label">Contact Number <b>:</b></label>
+                    <label for="contactNum" class="col-md-5 control-label">{{ 'LABS.CONTACT_NUMBER' | translate }} <b>:</b></label>
                     <div class="col-md-7">
-                      <input name="vendorContactNum" id="contactNum" class="form-control" type="text" placeholder="Contact Number"
+                      <input name="vendorContactNum" id="contactNum" class="form-control" type="text" [placeholder]="'LABS.CONTACT_NUMBER' | translate"
                              [(ngModel)]="newVendor.ContactNo" (keyup.enter)="coreService.FocusInputById('add_vendor')">
                     </div>
                   </div>
@@ -106,8 +106,8 @@
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
               <button type="button" class="btn primary-btn btn-sm margin-7-hr" id="add_vendor" (click)="ValidateAndAddUpdateVendor()">
-                <ng-container *ngIf="actionName == 'add'">Add</ng-container>
-                <ng-container *ngIf="actionName == 'edit'">Update</ng-container>
+                <ng-container *ngIf="actionName == 'add'">{{ 'LABS.ADD_1' | translate }}</ng-container>
+                <ng-container *ngIf="actionName == 'edit'">{{ 'COMMON.UPDATE' | translate }}</ng-container>
               </button>
               <!-- <button type="button" class="btn btn-cancel btn-outline btn-sm margin-7-hr" (click)="OnClose()">Close</button> -->
             </div>

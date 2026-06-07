@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="caption custom-caption">
       <i class="fa fa-archive"></i>
-      <span class="caption-subject">Issued Item List Report</span>
+      <span class="caption-subject">{{ 'INVENTORY.ISSUED_ITEM_LIST_REPORT' | translate }}</span>
     </div>
   </div>
   <div class="col-md-12" style="display: flex; justify-content: space-between;">
@@ -11,17 +11,17 @@
     </div>
     <div class="col-md-3">
       <div class="form-group row">
-        <label class="control-label col-md-5">Substore Name<b style="float:right;">:</b></label>
+        <label class="control-label col-md-5">{{ 'INVENTORY.SUBSTORE_NAME' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-6 autocomplete-item">
-          <input danphe-auto-complete class="form-control" (valueChanged)="onSubstoreChange($event)" placeholder="Select Substore Name" [(ngModel)]="selectedSubstore" [list-formatter]="SubstoreListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="Name" value-property-name=StoreId [source]="SubstoreList" [match-formatted]="true" onclick="this.select();" />
+          <input danphe-auto-complete class="form-control" (valueChanged)="onSubstoreChange($event)" [placeholder]="'INVENTORY.SELECT_SUBSTORE_NAME' | translate" [(ngModel)]="selectedSubstore" [list-formatter]="SubstoreListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="Name" value-property-name=StoreId [source]="SubstoreList" [match-formatted]="true" onclick="this.select();" />
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="form-group row">
-        <label class="control-label col-md-4">Item Name <b style="float:right;">:</b></label>
+        <label class="control-label col-md-4">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }} <b style="float:right;">:</b></label>
         <div class="col-md-6 autocomplete-item">
-          <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange($event)" placeholder="Select ItemName" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" />
+          <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange($event)" [placeholder]="'INVENTORY.SELECT_ITEMNAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" />
         </div>
       </div>
     </div>
@@ -30,25 +30,25 @@
     <div class="col-md-3"></div>
     <div class="col-md-3">
       <div class="form-group row">
-        <label class="control-label col-md-5">SubCategory<b style="float:right;">:</b></label>
+        <label class="control-label col-md-5">{{ 'INVENTORY.SUBCATEGORY' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-6 autocomplete-item">
-          <input danphe-auto-complete class="form-control" (valueChanged)="onSubCategoryChange($event)" placeholder="Select SubCategory" [(ngModel)]="selectedSubCategory" [list-formatter]="SubCategoryListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="SubCategoryName" value-property-name=SubCategoryId [source]="SubCategoryList" [match-formatted]="true" onclick="this.select()" />
+          <input danphe-auto-complete class="form-control" (valueChanged)="onSubCategoryChange($event)" [placeholder]="'INVENTORY.SELECT_SUBCATEGORY' | translate" [(ngModel)]="selectedSubCategory" [list-formatter]="SubCategoryListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="SubCategoryName" value-property-name=SubCategoryId [source]="SubCategoryList" [match-formatted]="true" onclick="this.select()" />
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="form-group row">
-        <label class="control-label col-md-5">Employee Name<b style="float:right;">:</b></label>
+        <label class="control-label col-md-5">{{ 'INVENTORY.EMPLOYEE_NAME' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-6 autocomplete-item">
-          <input danphe-auto-complete class="form-control" (valueChanged)="onEmployeeChange($event)" placeholder="Select Employee" [(ngModel)]="selectedEmployee" [list-formatter]="EmployeeListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="FullName" value-property-name=EmployeeId [source]="EmployeeList" [match-formatted]="true" onclick="this.select();" />
+          <input danphe-auto-complete class="form-control" (valueChanged)="onEmployeeChange($event)" [placeholder]="'INVENTORY.SELECT_EMPLOYEE' | translate" [(ngModel)]="selectedEmployee" [list-formatter]="EmployeeListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="FullName" value-property-name=EmployeeId [source]="EmployeeList" [match-formatted]="true" onclick="this.select();" />
         </div>
       </div>
     </div>
     <div class="col-md-3" style="margin-top: 5px !important;">
       <button class="btn blue" type="button" (click)="ShowIssuedItemList()" [disabled]="loading">
         <i class="fa fa-search"></i>&nbsp;
-        <span *ngIf="!loading">Load</span>
-        <span *ngIf="loading">Loading...</span>
+        <span *ngIf="!loading">{{ 'INVENTORY.LOAD' | translate }}</span>
+        <span *ngIf="loading">{{ 'INVENTORY.LOADING' | translate }}.</span>
       </button>
     </div>
   </div>
@@ -67,17 +67,17 @@
       <thead>
         <tr>
           <th colspan="2" style="text-align: center;">
-            <span style="font-size:large;"> Summary </span>
+            <span style="font-size:large;"> {{ 'INVENTORY.SUMMARY' | translate }} </span>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>StoreName</td>
+          <td>{{ 'INVENTORY.STORENAME' | translate }}</td>
           <td>{{SummaryData[0].SubStoreName}}</td>
         </tr>
         <tr>
-          <td>ItemName</td>
+          <td>{{ 'INVENTORY.ITEMNAME' | translate }}</td>
           <td>{{SummaryData[0].ItemName}}</td>
         </tr>
         <tr>

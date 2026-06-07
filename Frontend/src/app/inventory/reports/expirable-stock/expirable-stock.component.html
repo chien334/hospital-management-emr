@@ -2,7 +2,7 @@
   <div class="form-body">
     <div class="caption lb-caption">
       <i class="fa fa-money"></i>
-      <span class="caption-subject">Expirable Stock Ledger </span>
+      <span class="caption-subject">{{ 'INVENTORY.EXPIRABLE_STOCK_LEDGER' | translate }} </span>
     </div>
     <div class="row">
       <div class="col-md-6">
@@ -11,17 +11,17 @@
     </div>
     <div class="row">
       <div class="col-md-4" style="display: flex;justify-content: flex-start;align-items: center;">
-        <div>Category : &nbsp;&nbsp;</div>
+        <div>{{ 'INVENTORY.CATEGORY' | translate }} : &nbsp;&nbsp;</div>
         <div>
           <select [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}" (ngModelChange)="onCategoryChange(selectedCategory)">
-            <option [ngValue]="0">All</option>
+            <option [ngValue]="0">{{ 'INVENTORY.ALL' | translate }}</option>
             <option *ngFor="let cat of categoryList" value="{{cat.ItemCategoryId}}"> {{cat.ItemCategoryName}} </option>
           </select>
         </div>
       </div>
 
       <div class="col-md-8" style="display: flex;justify-content: flex-start; align-items: center;">
-        <div>Sub Category :</div>
+        <div>{{ 'INVENTORY.SUB_CATEGORY' | translate }}:</div>
         <div class="col-md-6">
           <danphe-multiselect [ddl-data]="filteredSubCategoryList" [placeholder-text]="'---Select Subcategory Name---'" [value-property-name]="'SubCategoryId'" (selected-items-list)="onChangeColumnSelection($event)" [display-property-name]="'SubCategoryName'" [single-selection]="false">
           </danphe-multiselect>
@@ -37,7 +37,7 @@
   <div class="portlet-body form ">
     <div class="modelbox-div" style=" margin:25px 50px;">
       <div class="col-md-12">
-        <a style="float:right; position: absolute; top:-26px; right:-26px;" class="btn btn-danger" (click)="close()" title="Cancel">X</a>
+        <a style="float:right; position: absolute; top:-26px; right:-26px;" class="btn btn-danger" (click)="close()" [title]="'COMMON.CANCEL' | translate">X</a>
       </div>
       <div>
         <app-expirable-stock-detail-view [fromDate]="fromDate" [toDate]="toDate" [selectedItemId]="selectedItemId" [fiscalYearId]="fiscalYearId"></app-expirable-stock-detail-view>

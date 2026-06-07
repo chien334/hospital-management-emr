@@ -5,7 +5,7 @@
 
       <!-- <div class="col-md-5 col-xs-12 noPadding">
         <div class="form-group">
-          <label class="control-label col-md-3">From Date<sup>*</sup><b>:</b></label>
+          <label class="control-label col-md-3">From {{ 'GRID_HEADERS.DATE' | translate }}<sup>*</sup><b>:</b></label>
           <div class="col-md-9">
             <danphe-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
             </danphe-date-picker>
@@ -14,7 +14,7 @@
       </div> -->
       <!-- <div class="col-md-5 col-xs-12 noPadding">
         <div class="form-group">
-          <label class="control-label col-md-3">To Date<sup>*</sup><b>:</b></label>
+          <label class="control-label col-md-3">To {{ 'GRID_HEADERS.DATE' | translate }}<sup>*</sup><b>:</b></label>
           <div class="col-md-9">
             <danphe-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
             </danphe-date-picker>
@@ -66,7 +66,7 @@
               <div class="caption" style="color:blue; margin-top:10px;">
               </div>
               <a style="float:right;  margin-top: -11px; margin-right: -31px;" class="btn btn-danger" (click)="Close()"
-                title="Cancel">X</a>
+                [title]="'COMMON.CANCEL' | translate">{{ 'PHARMACY.X' | translate }}</a>
             </div>
             <br />
             <div class="col-md-12" style="margin-right: 24px;">
@@ -79,12 +79,12 @@
                     <div class="col-md-12" style="padding:0px;">
                       <div class="left">
                         <p class="no-margin" style="text-align:left;font-size:11px;">
-                          Hospital No: {{currentPatient.PatientCode}}
+                          {{ 'PHARMACY.HOSPITAL_NO' | translate }}: {{currentPatient.PatientCode}}
                         </p>
                       </div>
                       <div class="right">
                         <p class="no-margin" style="text-align:right;font-size:11px;">
-                          Last Transaction Date:
+                          {{ 'PHARMACY.LAST_TRANSACTION_DATE' | translate }}:
                           {{TransactionDate | date}}
                         </p>
                       </div>
@@ -95,7 +95,7 @@
                       <div class="left" style="width:69%" id="pat-name">
                         <div class="no-margin"
                           style="text-align: left;display: inline-block;float: left;font-size:11px;/*width: 31%;*/">
-                          Patient's Name:&nbsp;
+                          {{ 'PHARMACY.PATIENTS_NAME' | translate }}:&nbsp;
                         </div>
                         <div style="display: inline-block;width: 69%;text-align: left;font-size:11px;">
                           {{currentPatient.ShortName}}
@@ -105,13 +105,13 @@
                     <div class="col-md-12" style="padding:0px;">
                       <div class="left" style="width: 69%;">
                         <p class="no-margin" style="text-align:left;font-size:11px;">
-                          Address:
+                          {{ 'GRID_HEADERS.ADDRESS' | translate }}:
                           {{currentPatient.Address}}, {{currentPatient.CountrySubDivisionName}}
                         </p>
                       </div>
                       <div class="right" style="width:31%">
                         <p class="no-margin" style="text-align:right;font-size:11px;">
-                          Age/Sex :
+                          {{ 'GRID_HEADERS.AGE_SEX' | translate }} :
                           {{currentPatient.DateOfBirth | DanpheDateTime:'age' }}/{{currentPatient.Gender}}
                         </p>
                       </div>
@@ -119,19 +119,19 @@
                     <div class="col-md-12" style="padding:0px;">
                       <div class="left" style="width:50%">
                         <p class="no-margin" style="text-align:left;font-size:11px;">
-                          Contact No: {{currentPatient.PhoneNumber}}
+                          {{ 'PHARMACY.CONTACT_NO' | translate }}: {{currentPatient.PhoneNumber}}
                         </p>
                       </div>
                       <div class="right" style="width:50%" *ngIf="currentPatient.PANNumber">
                         <p class="no-margin" style="text-align:right;font-size:11px;">
-                          Purchaser's {{GeneralFieldLabel.PANNo}}: {{currentPatient.PANNumber}}
+                          {{ 'PHARMACY.PURCHASERS' | translate }} {{GeneralFieldLabel.PANNo}}: {{currentPatient.PANNumber}}
                         </p>
                       </div>
 
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <p style="text-align:center;font-weight:bold;text-decoration:underline;">Return Slip</p>
+                    <p style="text-align:center;font-weight:bold;text-decoration:underline;">{{ 'PHARMACY.RETURN_SLIP' | translate }}</p>
                   </div>
                   <div class="bill-patinfo" style="font-size: 14px;">
 
@@ -140,11 +140,11 @@
                     <div class="clear footer"></div>
                     <table class="bill-itms">
                       <tr>
-                        <th width="30px" class="print-sn"> Sn.</th>
-                        <th width="80px"> Date</th>
-                        <th width="170px" class="print-par">Item Name</th>
-                        <th width="20px" class="text-right print-qty">Quantity</th>
-                        <th width="60px" class="text-right print-amt">Amount</th>
+                        <th width="30px" class="print-sn"> {{ 'PHARMACY.SN' | translate }}</th>
+                        <th width="80px"> {{ 'GRID_HEADERS.DATE' | translate }}</th>
+                        <th width="170px" class="print-par">{{ 'PHARMACY.ITEM_NAME' | translate }}</th>
+                        <th width="20px" class="text-right print-qty">{{ 'PHARMACY.QUANTITY' | translate }}</th>
+                        <th width="60px" class="text-right print-amt">{{ 'PHARMACY.AMOUNT' | translate }}</th>
                       </tr>
 
                       <tr *ngFor="let row of currSaleItemsRetOnly; let i=index">
@@ -158,14 +158,14 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td style="width: 80px;"><strong>Total Amount:</strong></td>
+                        <td style="width: 80px;"><strong>{{ 'PHARMACY.TOTAL_AMOUNT' | translate }}:</strong></td>
                         <td style="float: right;"><strong>{{total | Currency}}</strong></td>
                       </tr>
                       <tr>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td style="width: 80px;"> <strong>Remarks:</strong></td>
+                        <td style="width: 80px;"> <strong>{{ 'COMMON.REMARKS' | translate }}:</strong></td>
                         <td><strong>{{remarks}}</strong></td>
                       </tr>
                     </table>
@@ -178,7 +178,7 @@
               </select-printer>
               <p style="text-align:center; z-index: 4; position: relative;">
                 <button class="btn blue" (click)="print()">
-                  Print
+                  {{ 'COMMON.PRINT' | translate }}
                   <i class="glyphicon glyphicon-print"></i>
                 </button>
               </p>

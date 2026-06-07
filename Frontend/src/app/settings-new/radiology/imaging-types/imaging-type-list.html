@@ -5,7 +5,7 @@
     <span class="caption-subject font-blue bold uppercase">Manage Imaging Type</span>
 </div>
 <br />-->
-<a feature="button" class="btn blue bordered" (click)="AddImgType()"><i class="fa fa-plus"></i>Add Imaging Type</a>
+<a feature="button" class="btn blue bordered" (click)="AddImgType()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_IMAGING_TYPE' | translate }}</a>
 <img-type-add [showAddPage]="showAddPage"
               [selectedImgType]="selectedImgType"
               (callback-add)="CallBackAdd($event)"></img-type-add>

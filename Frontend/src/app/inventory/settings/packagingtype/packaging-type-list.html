@@ -1,5 +1,5 @@
 ﻿<div>
-    <input type="button" class="btn primary-btn m1" (click)="AddPackagingType()" value="Add PackagingType" />
+    <input type="button" class="btn primary-btn m1" (click)="AddPackagingType()" [value]="'INVENTORY.ADD_PACKAGINGTYPE' | translate" />
     <packagingtype-add [showAddPage]="showAddPage"
                       [selectedPackagingType]="selectedPackagingType"
                       (callback-add)="CallBackAdd($event)"></packagingtype-add>

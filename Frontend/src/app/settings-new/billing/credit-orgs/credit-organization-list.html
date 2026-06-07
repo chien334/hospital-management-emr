@@ -1,4 +1,4 @@
-<a feature="button" class="btn blue bordered" (click)="AddCreditOrganization()"><i class="fa fa-plus"></i>New Credit Organization</a>
+<a feature="button" class="btn blue bordered" (click)="AddCreditOrganization()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.NEW_CREDIT_ORGANIZATION' | translate }}</a>
 <credit-organization-add [showAddPage]="showAddPage"
                          [selectedItem]="selectedItem"
                          (callback-add)="CallBackAdd($event)"></credit-organization-add>

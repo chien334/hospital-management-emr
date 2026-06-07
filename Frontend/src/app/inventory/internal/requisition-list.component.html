@@ -1,31 +1,31 @@
 <div class="col-md-12" style="padding:2px 0px">
   <div class="col-md-3">
     <button rbac-permission='{"name":"inventory-direct-dispatch-btn","actionOnInvalid":"hidden"}' class="btn btn-primary" (click)="DirectDispatch()">
-      Direct&nbsp;Dispatch&nbsp;
+      Direct&nbsp;{{ 'INVENTORY.DISPATCH' | translate }}&nbsp;
       <i class="fa fa-mail-reply-all fa-flip-horizontal"></i>
     </button>
   </div>
   <div class="col-md-9">
     <div class="input-group pull-right padding-15-tp">
       <div class="icheck-inline">
-        List by Requisition Status: &nbsp;
+        {{ 'INVENTORY.LIST_BY_REQUISITION_STATUS' | translate }}: &nbsp;
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" checked name="RequisitionStatusFilter" [(ngModel)]="RequisitionStatusFilter" value="pending" style="width:15px;height:15px" />
-          <span></span>Pending
+          <span></span>{{ 'INVENTORY.PENDING' | translate }}
         </label>
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter" [(ngModel)]="RequisitionStatusFilter" value="complete" style="width:15px;height:15px" />
-          <span></span>Complete
+          <span></span>{{ 'INVENTORY.COMPLETE' | translate }}
         </label>
 
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter" [(ngModel)]="RequisitionStatusFilter" value="cancelled" style="width:15px;height:15px" />
-          <span></span>Cancelled
+          <span></span>{{ 'INVENTORY.CANCELLED' | translate }}
         </label>
 
         <label class="mt-radio mt-radio-outline">
           <input type="radio" (change)="LoadRequisitionListByStatus()" name="RequisitionStatusFilter" [(ngModel)]="RequisitionStatusFilter" value="all" style="width:15px;height:15px" />
-          <span></span>All
+          <span></span>{{ 'INVENTORY.ALL' | translate }}
         </label>
       </div>
     </div>
@@ -52,7 +52,7 @@
           <div class="col-md-12 noPrint">
             <div class="caption" style="color:blue; margin-top:10px;">
             </div>
-            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
             <hr />
           </div>
           <danphe-grid [grid-colDefaults]="DispatchListGridColumns" [grid-data]="dispatchList" (grid-actions)="DispatchDetailsGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [NepaliDateInGridParams]="NepaliDateInGridSettingsForDispatchList">
@@ -75,7 +75,7 @@
           <div class="col-md-12 noPrint">
             <div class="caption" style="color:blue; margin-top:10px;">
             </div>
-            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
             <hr />
           </div>
           <danphe-grid [grid-colDefaults]="CancelListGridColumns" [grid-data]="cancelList" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
@@ -98,7 +98,7 @@
           <div class="col-md-12 noPrint">
             <div class="caption" style="color:blue; margin-top:10px;">
             </div>
-            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
             <hr />
           </div>
           <!-- Billing Header Start -->
@@ -115,7 +115,7 @@
                       <span style="font-size:15px;">{{headerDetail.address}}</span><br />
                       <span style="font-size:13px;">{{GeneralFieldLabel.PANNo}}: {{headerDetail.PANno}} , Tel:
                         {{ headerDetail.tel}}</span><br />
-                      <span style="font-size:15px;"><strong> Inventory Unit </strong></span><br />
+                      <span style="font-size:15px;"><strong> {{ 'INVENTORY.INVENTORY_UNIT' | translate }} </strong></span><br />
                     </div>
                   </div>
                   <div style="float: left;">
@@ -128,28 +128,28 @@
                 </div>
                 <div class="clear"></div>
                 <div class="left" style="text-align:left;">
-                  <p>Dispatch Id :<b> {{innerDispatchdetails.DispatchId}}</b></p>
-                  <p>Requisition No:<b> {{innerDispatchdetails.RequisitionId}}</b></p>
+                  <p>{{ 'INVENTORY.DISPATCH_ID' | translate }}:<b> {{innerDispatchdetails.DispatchId}}</b></p>
+                  <p>{{ 'INVENTORY.REQUISITION_NO' | translate }}:<b> {{innerDispatchdetails.RequisitionId}}</b></p>
                 </div>
 
                 <div class="right" style="text-align:right;">
-                  <p>Dispatch Date:<b> {{innerDispatchdetails.CreatedOn | date}}</b></p>
-                  <p>Requisition Date:<b> {{requisitionDate | date}}</b></p>
+                  <p>{{ 'INVENTORY.DISPATCH' | translate }} {{ 'GRID_HEADERS.DATE' | translate }}:<b> {{innerDispatchdetails.CreatedOn | date}}</b></p>
+                  <p>{{ 'INVENTORY.REQUISITION_DATE' | translate }}:<b> {{requisitionDate | date}}</b></p>
                 </div>
                 <div class="clear"></div>
-                <p class="text-center btm-pad border-up-down"><b>DISPATCH DETAILS PRINT</b></p>
+                <p class="text-center btm-pad border-up-down"><b>{{ 'INVENTORY.DISPATCH_DETAILS_PRINT' | translate }}</b></p>
                 <div class="clear"></div>
                 <div class="clear footer"></div>
                 <div class="table-responsive">
                   <table class="table table-striped table-hover" style="background-color:initial;margin-top:10px;width:100%">
                     <thead>
                       <tr style="font-weight: bold;text-align:center">
-                        <td>S.N</td>
-                        <td>Item Code</td>
-                        <td>Item Name</td>
-                        <td>Dispatched Qty.</td>
-                        <td>Rate({{coreService.currencyUnit}})</td>
-                        <td>Amount({{coreService.currencyUnit}})</td>
+                        <td>{{ 'COMMON.SN' | translate }}</td>
+                        <td>{{ 'INVENTORY.ITEM_CODE' | translate }}</td>
+                        <td>{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}</td>
+                        <td>{{ 'INVENTORY.DISPATCHED_QTY' | translate }}.</td>
+                        <td>{{ 'INVENTORY.RATE' | translate }}({{coreService.currencyUnit}})</td>
+                        <td>{{ 'INVENTORY.AMOUNT' | translate }}({{coreService.currencyUnit}})</td>
                       </tr>
                     </thead>
                     <tbody>
@@ -167,7 +167,7 @@
                     <table>
                       <tr></tr>
                       <tr>
-                        <td style="width: 9000px;text-align:right;"><b> Total Amount: </b>{{coreService.currencyUnit}} </td>
+                        <td style="width: 9000px;text-align:right;"><b> {{ 'INVENTORY.TOTAL_AMOUNT' | translate }}: </b>{{coreService.currencyUnit}} </td>
                         <td style="text-align:left;"> {{Sum}}</td>
                         <td style="width:350px;"></td>
                       </tr>
@@ -176,15 +176,15 @@
                 </div>
                 <hr />
                 <div *ngIf="!!dispatchListbyId[0].Remarks" class="col-md-12" style="margin:10px 0;text-align: left;">
-                  <label for="Remarks" class="col-md-2">Remarks <span class="right">:</span></label>
+                  <label for="Remarks" class="col-md-2">{{ 'COMMON.REMARKS' | translate }} <span class="right">:</span></label>
                   <span>{{dispatchListbyId[0].Remarks}}</span>
                 </div>
                 <div class="col-md-12">
-                  <div style="text-align: left" class="col-md-4">Requested
+                  <div style="text-align: left" class="col-md-4">{{ 'INVENTORY.REQUESTED' | translate }}
                     By:&nbsp;<b>{{innerDispatchdetails.CreatedByName}}</b></div>
-                  <div *ngIf="!!dispatchListbyId[0].ReceivedBy" style="text-align: left" class="col-md-4">Received
+                  <div *ngIf="!!dispatchListbyId[0].ReceivedBy" style="text-align: left" class="col-md-4">{{ 'INVENTORY.RECEIVED' | translate }}
                     By:&nbsp;<b>{{dispatchListbyId[0].ReceivedBy}}</b></div>
-                  <div style="text-align: left" class="col-md-4">Dispatched
+                  <div style="text-align: left" class="col-md-4">{{ 'INVENTORY.DISPATCHED' | translate }}
                     By:&nbsp;<b>{{innerDispatchdetails.DispatchedByName}}</b></div>
                 </div>
                 <div class="col-md-12 no-print">
@@ -197,7 +197,7 @@
           <div class="row center-style">
             <div class="col-md-12 col-xs-12 ">
               <a (click)="print()" class="btn btn-default" style="position: absolute;top: -31px; right: 1px;">
-                Print
+                {{ 'COMMON.PRINT' | translate }}
                 <i class="glyphicon glyphicon-print"></i>
               </a><span> </span><span> </span>
             </div>

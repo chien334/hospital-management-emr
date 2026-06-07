@@ -6,8 +6,8 @@
           <div class="caption custom-caption no-margin">
             <h3>
               <span>
-                <ng-container *ngIf="isAddNewBank">Add New Bank</ng-container>
-                <ng-container *ngIf="!isAddNewBank">Edit Bank Details</ng-container>
+                <ng-container *ngIf="isAddNewBank">{{ 'SETTINGS_NEW.ADD_NEW_BANK' | translate }}</ng-container>
+                <ng-container *ngIf="!isAddNewBank">{{ 'SETTINGS_NEW.EDIT_BANK_DETAILS' | translate }}</ng-container>
               </span>
             </h3>
             <a class="btn btn-danger" (click)="close()">X</a>
@@ -15,35 +15,35 @@
           <form [formGroup]="Bank.BanksValidator" class="form-horizontal hm-form">
             <div class="form-body">
               <div class="form-group">
-                <label for="BankName" class="control-label col-md-5">Bank Name<sup>*</sup><b>:</b></label>
+                <label for="BankName" class="control-label col-md-5">{{ 'SETTINGS_NEW.BANK_NAME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
-                  <input id="BankName" class="form-control" type="text" placeholder="Bank Short Name"
+                  <input id="BankName" class="form-control" type="text" [placeholder]="'SETTINGS_NEW.BANK_SHORT_NAME' | translate"
                     formControlName="BankName" [(ngModel)]="Bank.BankName"
                     (keyup.enter)="SetFocusById('BankShortName')">
                   <span class="color-red font-sm margin-15-lft"
-                    [hidden]="!(Bank.IsDirty('BankName') && !Bank.IsValidCheck('BankName','required'))">Bank Name is
+                    [hidden]="!(Bank.IsDirty('BankName') && !Bank.IsValidCheck('BankName','required'))">{{ 'SETTINGS_NEW.BANK_NAME' | translate }} is
                     required</span>
 
                 </div>
               </div>
               <div class="form-group">
-                <label for="BankShortName" class="control-label col-md-5">Bank Short Name <b>:</b></label>
+                <label for="BankShortName" class="control-label col-md-5">{{ 'SETTINGS_NEW.BANK_SHORT_NAME' | translate }} <b>:</b></label>
                 <div class="col-md-7">
-                  <input type="text" id="BankShortName" class="form-control" placeholder="Bank Short Name"
+                  <input type="text" id="BankShortName" class="form-control" [placeholder]="'SETTINGS_NEW.BANK_SHORT_NAME' | translate"
                     [ngModelOptions]="{standalone: true}" [(ngModel)]="Bank.BankShortName"
                     (keyup.enter)="SetFocusById('Description')">
                 </div>
               </div>
               <div class="form-group">
-                <label for="Description" class="control-label col-md-5">Description<b>:</b></label>
+                <label for="Description" class="control-label col-md-5">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                 <div class="col-md-7">
-                  <input id="Description" class="form-control" type="text" placeholder="Description"
+                  <input id="Description" class="form-control" type="text" [placeholder]="'GRID_HEADERS.DESCRIPTION' | translate"
                   [ngModelOptions]="{standalone: true}" [(ngModel)]="Bank.Description"
                   (keyup.enter)="SetFocusById('add')">
                 </div>
               </div>
               <div class="form-group">
-                <label for="isActive" class="control-label col-md-5">Is Active</label>
+                <label for="isActive" class="control-label col-md-5">{{ 'GRID_HEADERS.IS_ACTIVE' | translate }}</label>
                 <div class="col-md-7">
                   <div class="input-group">
                     <div class="icheck-inline">
@@ -51,7 +51,7 @@
                         <input id="isActive" type="checkbox" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="Bank.IsActive" name="chkIsActive" />
                         <span></span>
-                        True
+                        {{ 'SETTINGS_NEW.TRUE' | translate }}
                       </label>
                     </div>
                   </div>
@@ -63,9 +63,9 @@
           <div class="modelbox-footer">
             <div class="all-buttons text-right">
               <input type="button" id="add" *ngIf="isAddNewBank" class="btn green btn-success margin-7-hr" (click)="AddBank()"
-                value="Add" />
+                [value]="'SETTINGS_NEW.ADD' | translate" />
               <input type="button" id="add" *ngIf="!isAddNewBank" class="btn green btn-success margin-7-hr"
-                (click)="UpdateBank()" value="Update" />
+                (click)="UpdateBank()" [value]="'COMMON.UPDATE' | translate" />
               <!-- <button type="button" class="btn btn-danger btn-sm margin-7-hr" (click)="close()">Close</button> -->
             </div>
           </div>

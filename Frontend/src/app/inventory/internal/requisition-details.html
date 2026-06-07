@@ -4,20 +4,20 @@
     margin: 10px 100px;
   }
 
-  .print-border-top {
+  .{{ 'COMMON.PRINT' | translate }}-border-top {
     border-top: dotted 1px;
   }
 
-  .print-border-bottom {
+  .{{ 'COMMON.PRINT' | translate }}-border-bottom {
     border-bottom: dotted 1px;
   }
 
-  .print-border {
+  .{{ 'COMMON.PRINT' | translate }}-border {
     border: dotted 1px;
   }
 
   .center-style {
-    text-align: center;
+    {{ 'INVENTORY.TEXT' | translate }}-align: center;
   }
 
   .border-up-down {
@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
-          <a class="btn btn-danger history-del-btn" (click)="Close()" title="Cancel"><i class="fa fa-close"></i></a>
+          <a class="btn btn-danger history-del-btn" (click)="Close()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-close"></i></a>
           <div class="form-body">
             <div class="col-md-12">
               <app-requisition-np-view *ngIf="showNepaliReceipt; else EnglishReceiptView" [requisition-id]="requisitionId" [module-type]="'inventory-substore'"></app-requisition-np-view>
@@ -47,7 +47,7 @@
                             <span style="font-size:15px;"><strong>{{headerDetail.hospitalName}}</strong></span><br />
                             <span style="font-size:15px;">{{headerDetail.address}}</span><br />
                             <span style="font-size:13px;">{{GeneralFieldLabel.PANNo}}: {{headerDetail.PANno}} , Tel: {{ headerDetail.tel}}</span><br />
-                            <span style="font-size:15px;"><strong> Inventory Unit </strong></span><br />
+                            <span style="font-size:15px;"><strong> {{ 'INVENTORY.INVENTORY_UNIT' | translate }} </strong></span><br />
                           </div>
                         </div>
                         <div style="float: left;">
@@ -60,14 +60,14 @@
                       </div>
                       <div class="clear"></div>
                       <div class="left" style="text-align:left;">
-                        <div>Requisition No:<b> {{requisitionNo}}</b></div>
-                        <p>Request From:<b> {{requestingStoreName}}</b></p>
+                        <div>{{ 'INVENTORY.REQUISITION_NO' | translate }}:<b> {{requisitionNo}}</b></div>
+                        <p>{{ 'INVENTORY.REQUEST_FROM' | translate }}:<b> {{requestingStoreName}}</b></p>
                       </div>
 
                       <div class="right" style="text-align:right;">
-                        <div *ngIf="issueNo != null">Issue No:<b> {{issueNo}}</b></div>
-                        <div *ngIf="dispatchNo != null">Dispatch No:<b> {{dispatchNo}}</b></div>
-                        <p>Requisition Date:
+                        <div *ngIf="issueNo != null">{{ 'INVENTORY.ISSUE_NO' | translate }}:<b> {{issueNo}}</b></div>
+                        <div *ngIf="dispatchNo != null">{{ 'INVENTORY.DISPATCH_NO' | translate }}:<b> {{dispatchNo}}</b></div>
+                        <p>{{ 'INVENTORY.REQUISITION_DATE' | translate }}:
                           <b>
                             {{requisitionDate}}
                           </b>&nbsp;&nbsp;
@@ -75,7 +75,7 @@
                         </p>
                         </div>
                         <div class="clear"></div>
-                        <p class="text-center btm-pad border-up-down"><b> REQUISITION DETAILS PRINT</b></p>
+                        <p class="text-center btm-pad border-up-down"><b> {{ 'INVENTORY.REQUISITION_DETAILS_PRINT' | translate }}</b></p>
                         <div class="clear"></div>
                         <div class="clear footer"></div>
                         <div>
@@ -83,21 +83,21 @@
                             <thead>
                               <tr style="font-weight: bold;text-align:center">
                                 <td class="noPrint"></td>
-                                <td>Item Category</td>
-                                <td>Item Name</td>
-                                <td *ngIf="showSpecification">Specification</td>
-                                <td>Item Code</td>
+                                <td>{{ 'INVENTORY.ITEM_CATEGORY' | translate }}</td>
+                                <td>{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}</td>
+                                <td *ngIf="showSpecification">{{ 'INVENTORY.SPECIFICATION' | translate }}</td>
+                                <td>{{ 'INVENTORY.ITEM_CODE' | translate }}</td>
                                 <td>Quantity</td>
-                                <td>Received Qty.</td>
-                                <td>Pending Qty.</td>
-                                <td>Status</td>
-                                <td>Remarks</td>
+                                <td>{{ 'INVENTORY.RECEIVED_QTY' | translate }}.</td>
+                                <td>{{ 'INVENTORY.PENDING_QTY' | translate }}.</td>
+                                <td>{{ 'COMMON.STATUS' | translate }}</td>
+                                <td>{{ 'COMMON.REMARKS' | translate }}</td>
                               </tr>
                             </thead>
                             <tbody>
                               <tr style="text-align:center" *ngFor="let reqItm of reqItemsDetail.RequisitionItemsInfo">
                                 <td class="noPrint">
-                                  <input *ngIf="reqItm.RequisitionItemStatus=='active' || reqItm.RequisitionItemStatus=='partial'" class="hidden-in-print" title="Cancel this item." type="checkbox" [(ngModel)]="reqItm.IsSelected" style="zoom:1.2" (change)="ShowCancelButtonOnCkboxChange()" />
+                                  <input *ngIf="reqItm.RequisitionItemStatus=='active' || reqItm.RequisitionItemStatus=='partial'" class="hidden-in-print" [title]="'INVENTORY.CANCEL_THIS_ITEM' | translate" type="checkbox" [(ngModel)]="reqItm.IsSelected" style="zoom:1.2" (change)="ShowCancelButtonOnCkboxChange()" />
                                 </td>
                                 <td>{{reqItm.ItemCategory}}</td>
                                 <td>{{reqItm.ItemName}}</td>
@@ -112,9 +112,9 @@
                                   <span class="fa fa-info" style="margin-left:5px;padding: 3px 6px 3px 6px;background-color: #c8c8d2;border-radius: 9px;">
                                   </span>
                                   <p class="tooltiptext ttptextdown hidden-in-print">
-                                    Cancelled&nbsp;By:&nbsp;{{reqItm.CancelledByNamer}} />
-                                    Cancelled&nbsp;On:&nbsp;{{reqItm.CancelOn | date : 'medium'}}<br />
-                                    <em *ngIf="!!reqItm.CancelRemarks">Remarks:&nbsp;{{reqItm.CancelRemarks}}</em>
+                                    {{ 'INVENTORY.CANCELLED' | translate }}&nbsp;By:&nbsp;{{reqItm.CancelledByNamer}} />
+                                    {{ 'INVENTORY.CANCELLED' | translate }}&nbsp;On:&nbsp;{{reqItm.CancelOn | date : 'medium'}}<br />
+                                    <em *ngIf="!!reqItm.CancelRemarks">{{ 'COMMON.REMARKS' | translate }}:&nbsp;{{reqItm.CancelRemarks}}</em>
                                     </p>
                                     </span>
                                     </td>
@@ -124,14 +124,14 @@
                                     </table>
                                     </div>
                                     <div [@enterAnimation] class="col-md-12 hidden-in-print" style="margin:10px 0" *ngIf="showCancelButton == true">
-                                      <label for="cancelRemarks" class="col-md-2">Remarks <sup class="color-red">*</sup> <span class="right">:</span></label>
+                                      <label for="cancelRemarks" class="col-md-2">{{ 'COMMON.REMARKS' | translate }} <sup class="color-red">*</sup> <span class="right">:</span></label>
                                       <textarea class="col-md-10" [(ngModel)]="cancelRemarks" name="cancelRemarks" rows="3"></textarea>
                                     </div>
                                     <hr />
 
                       <div class="row">
                         <div class="col-md-12" style="margin-bottom: 15px; text-align: left;" *ngIf="mainRemarks">
-                          <span>Remarks: </span>
+                          <span>{{ 'COMMON.REMARKS' | translate }}: </span>
                           <span>{{mainRemarks}}</span>
                         </div>
                       </div>
@@ -141,27 +141,27 @@
                         <div class="col-md-12">
                           <div style="display: flex;flex-direction: row;justify-content: space-between;">
                             <div style="margin-bottom:1rem; text-align: left;">
-                              <div><u>Requested By</u>:</div>
+                              <div><u>{{ 'INVENTORY.REQUESTED_BY' | translate }}</u>:</div>
                               <div>{{createdby}}</div>
                               <div>{{requisitionDate | date : 'medium'}}</div>
                               </div>
                               <div style="margin-bottom:1rem; text-align: left;" *ngIf="reqItemsDetail.Verifiers != null">
-                                <div><u>Verified By</u>:</div>
+                                <div><u>{{ 'INVENTORY.VERIFIED_BY' | translate }}</u>:</div>
                                 <div *ngFor="let verifier of reqItemsDetail.Verifiers;let i = index;">
                                   {{i+1}}&nbsp;{{verifier.Name}}&nbsp;({{verifier.Date | date : 'medium'}})&nbsp;
                                   <div>
-                                    <span *ngIf="!!verifier.Remarks "><i>Rem:</i><span [title]="verifier.Remarks">{{verifier.Remarks}}</span></span>
+                                    <span *ngIf="!!verifier.Remarks "><i>{{ 'INVENTORY.REM' | translate }}:</i><span [title]="verifier.Remarks">{{verifier.Remarks}}</span></span>
                                   </div>
                                 </div>
                               </div>
                               <div style="margin-bottom:1rem; text-align: left;" *ngIf="reqItemsDetail.Dispatchers.length > 0">
-                                <div><u>Dispatched By</u>:</div>
+                                <div><u>{{ 'INVENTORY.DISPATCHED_BY' | translate }}</u>:</div>
                                 <div *ngFor="let dispatcher of reqItemsDetail.Dispatchers;let i = index;">
-                                  {{i+1}}&nbsp;{{dispatcher.Name}}&nbsp;({{dispatcher.Date | date : 'medium'}})&nbsp; <div><span *ngIf="!!dispatcher.Remarks "><i>Rem:</i><span [title]="dispatcher.Remarks">{{dispatcher.Remarks}}</span></span></div>
+                                  {{i+1}}&nbsp;{{dispatcher.Name}}&nbsp;({{dispatcher.Date | date : 'medium'}})&nbsp; <div><span *ngIf="!!dispatcher.Remarks "><i>{{ 'INVENTORY.REM' | translate }}:</i><span [title]="dispatcher.Remarks">{{dispatcher.Remarks}}</span></span></div>
                                 </div>
                               </div>
                               <div style="margin-bottom:1rem; text-align: left;" *ngIf="receivedby">
-                                <div><u>Received By</u>:</div>
+                                <div><u>{{ 'INVENTORY.RECEIVED_BY' | translate }}</u>:</div>
                                 <div>{{receivedby}}</div>
                               </div>
                               </div>
@@ -179,7 +179,7 @@
                         <div class="col-md-12 col-xs-12 ">
                           <a (click)="CancelSelectedItems()" class="btn btn-danger" *ngIf="showCancelButton">
                             <!-- *ngIf="!goodsreceiptDetails.IsCancel" -->
-                            Cancel Item(s)
+                            {{ 'INVENTORY.CANCEL_ITEMS' | translate }}
                             <i class="glyphicon glyphicon-floppy-remove"></i>
                           </a><span></span><span></span> &nbsp;
                         </div>
@@ -188,7 +188,7 @@
               </div>
               <div class="col-md-12">
                 <div class="right">
-                  <button id="printButton" class="btn green btn-success margin-7-hr" (click)="print()"><i class="fa fa-print"></i>Print</button>
+                  <button id="printButton" class="btn green btn-success margin-7-hr" (click)="print()"><i class="fa fa-print"></i>{{ 'COMMON.PRINT' | translate }}</button>
                 </div>
               </div>
               </div>

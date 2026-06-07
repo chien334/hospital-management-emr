@@ -1,7 +1,7 @@
 <style>
     .dep-flex {
         display: flex;
-        align-items: center;
+        align-{{ 'INVENTORY.ITEMS' | translate }}: center;
         justify-content: center;
     }
 </style>
@@ -9,16 +9,16 @@
     <div class="form-body">
         <div class="caption lb-caption">
             <i class="fa fa-money"></i>
-            <span class="caption-subject">Supplier Information Report </span>
+            <span class="caption-subject">{{ 'INVENTORY.SUPPLIER_INFORMATION_REPORT' | translate }} </span>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
                   <div class="row">
-                    <label class="control-label col-md-4"><b>Select Inventory<b style="float:right">:</b></b></label>
+                    <label class="control-label col-md-4"><b>{{ 'INVENTORY.SELECT_INVENTORY' | translate }}<b style="float:right">:</b></b></label>
                     <div class="col-md-8">
                       <select [(ngModel)]="selectedInventory"  id="selectInventory" (change)="OnInventoryChange()" style="width:60%!important;" [ngModelOptions]="{standalone: true}">       
-                          <option [ngValue]="null" selected>--select--</option>
+                          <option [ngValue]="null" selected>{{ 'COMMON.SELECT_PLACEHOLDER' | translate }}</option>
                         <option *ngFor="let inv of inventoryList" value="{{inv.StoreId}}"> {{inv.Name}} </option>
                       </select>
                     </div>
@@ -28,8 +28,8 @@
             <div class="col-md-2 col-xs-12">
                 <div class="form-group">
                     <button class="btn blue" type="button" (click)="GetReportData()"[disabled]="loading">
-                        <span *ngIf="!loading">Show Report</span>
-                        <span *ngIf="loading">Loading...</span>
+                        <span *ngIf="!loading">{{ 'INVENTORY.SHOW_REPORT' | translate }}</span>
+                        <span *ngIf="loading">{{ 'INVENTORY.LOADING' | translate }}.</span>
                      </button>
                 </div>
             </div>

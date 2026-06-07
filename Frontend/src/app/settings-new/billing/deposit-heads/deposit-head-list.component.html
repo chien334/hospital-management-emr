@@ -1,4 +1,4 @@
-<a class="btn green btn-success margin-7-hr" feature="button" (click)="ShowAddPage()"><i class="fa fa-plus"></i>Add Deposit Heads</a>
+<a class="btn green btn-success margin-7-hr" feature="button" (click)="ShowAddPage()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_DEPOSIT_HEADS' | translate }}</a>
 
 <div *ngIf="showGrid">
     <danphe-grid [grid-colDefaults]="depositHeadGridColumns"

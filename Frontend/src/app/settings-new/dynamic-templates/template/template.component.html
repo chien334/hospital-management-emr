@@ -1,4 +1,4 @@
-<a feature="button" id="id_btn_template_newTemplate" class="btn blue bordered" (click)="NewTemplate()"><i class="fa fa-plus"></i>Add Template</a>
+<a feature="button" id="id_btn_template_newTemplate" class="btn blue bordered" (click)="NewTemplate()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_TEMPLATE' | translate }}</a>
 <div *ngIf="showGrid" class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
     <danphe-grid [grid-colDefaults]="templateGridColumns" [grid-data]="templateList "
@@ -16,8 +16,8 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="modelbox-div clearfix">
           <div class="caption custom-caption">
-            <h3> <span *ngIf="!IsUpdate">Add Template</span> <span *ngIf="IsUpdate">Update Template</span> </h3>
-            <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
+            <h3> <span *ngIf="!IsUpdate">{{ 'SETTINGS_NEW.ADD_TEMPLATE' | translate }}</span> <span *ngIf="IsUpdate">{{ 'SETTINGS_NEW.UPDATE_TEMPLATE' | translate }}</span> </h3>
+            <a class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
           </div>
           <div class="form-body form-horizontal hm-form">
             <div class="row">
@@ -26,7 +26,7 @@
               <div class="col-md-6 col-xs-12">
                 <form [formGroup]="currentTemplate.DynamicTemplateValidator">
                   <div class="form-group">
-                    <label class="control-label col-md-4">Template Type<sup>*</sup><b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'SETTINGS_NEW.TEMPLATE_TYPE' | translate }}<sup>*</sup><b>:</b></label>
                     <div class="col-md-8">
                       <select id="id_select_template_templateTypeName" class="form-control" formControlName="TemplateTypeId" id="TemplateTypeId"
                               [attr.disabled]="IsUpdate ? true: null">
@@ -39,11 +39,11 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-4">Template Name<sup>*</sup><b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'SETTINGS_NEW.TEMPLATE_NAME' | translate }}<sup>*</sup><b>:</b></label>
                     <div class="col-md-8">
                       <input type="text" name="TemplateName" required value="" class="form-control" maxlength="100"
                              [(ngModel)]="currentTemplate.TemplateName" id="TemplateName" formControlName="TemplateName"
-                             placeholder="template name" (keyup.enter)="FocusElementById('Description')" />
+                             [placeholder]="'SETTINGS_NEW.TEMPLATE_NAME_1' | translate" (keyup.enter)="FocusElementById('Description')" />
                       <span class="color-red font-sm"
                             [hidden]="currentTemplate.IsValidCheck('TemplateName','required') || !(currentTemplate.IsDirty('TemplateName'))">template
                         name required</span>
@@ -51,10 +51,10 @@
                   </div>
                 </form>
                 <div class="form-group">
-                  <label class="control-label col-md-4">Description<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'GRID_HEADERS.DESCRIPTION' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <textarea name="Description" class="form-control" maxlength="100"
-                              [(ngModel)]="currentTemplate.Description" id="Description" placeholder="Enter descriptions here"
+                              [(ngModel)]="currentTemplate.Description" id="Description" [placeholder]="'SETTINGS_NEW.ENTER_DESCRIPTIONS_HERE' | translate"
                               (keyup.enter)="FocusElementById('TemplateCode')">
                       </textarea>
                   </div>
@@ -63,11 +63,11 @@
               <div class="col-md-6 col-xs-12">
                 <form [formGroup]="currentTemplate.DynamicTemplateValidator">
                   <div class="form-group">
-                    <label class="control-label col-md-4">Template Code<sup>*</sup><b>:</b></label>
+                    <label class="control-label col-md-4">{{ 'SETTINGS_NEW.TEMPLATE_CODE' | translate }}<sup>*</sup><b>:</b></label>
                     <div class="col-md-8">
                       <input type="text" id="id_input_template_templateCode" name="TemplateCode" required value="" class="form-control" maxlength="30"
                              [(ngModel)]="currentTemplate.TemplateCode" id="TemplateCode" formControlName="TemplateCode"
-                             placeholder="enter template code" (keyup.enter)="FocusElementById('TemplateContent')"
+                             [placeholder]="'SETTINGS_NEW.ENTER_TEMPLATE_CODE' | translate" (keyup.enter)="FocusElementById('TemplateContent')"
                              [attr.disabled]="IsUpdate ? true: null " />
                       <span class="color-red font-sm"
                             [hidden]="currentTemplate.IsValidCheck('TemplateCode','required') || !(currentTemplate.IsDirty('TemplateCode'))">template
@@ -76,7 +76,7 @@
                   </div>
                 </form>
                 <div class="form-group">
-                  <label class="control-label col-md-4">Default For This Type<b>:</b></label>
+                  <label class="control-label col-md-4">{{ 'SETTINGS_NEW.DEFAULT_FOR_THIS_TYPE' | translate }}<b>:</b></label>
                   <div class="col-md-8">
                     <div class="input-group">
                       <div class="icheck-inline">
@@ -92,8 +92,8 @@
               <div class="col-md-12">
                 <div class="form-group text-center">
                   <div class="col-md-12">
-                    <label class="control-label no-padding" style="font-size: 15px;">Print Format <b>:</b> </label>
-                    <span class="color-red font-sm" *ngIf="!isValidTemplate">print format required</span>
+                    <label class="control-label no-padding" style="font-size: 15px;">{{ 'SETTINGS_NEW.PRINT_FORMAT' | translate }} <b>:</b> </label>
+                    <span class="color-red font-sm" *ngIf="!isValidTemplate">{{ 'SETTINGS_NEW.PRINT_FORMAT_REQUIRED' | translate }}</span>
                     <br>
                     <danphe-ckeditor [readonly]="false" (get-html-content)="onChangeEditorData($event)"
                                      [set-html-content]="currentTemplate.PrintContentHTML" id="TemplateContent"
@@ -107,9 +107,9 @@
           <div class="panel-footer">
             <input type="button" id="id_button_template_addNewTemplate" class="btn green btn-success margin-7-hr" *ngIf="!IsUpdate"
                    (click)="AddNewTemplate()"
-                   value="Add" id="Add" />
+                   [value]="'SETTINGS_NEW.ADD' | translate" id="Add" />
             <input type="button" id="id_button_template_update" class="btn green btn-success margin-7-hr" *ngIf="IsUpdate" (click)="Update()"
-                   value="Update" id="Add" />
+                   [value]="'COMMON.UPDATE' | translate" id="Add" />
           </div>
         </div>
       </div>

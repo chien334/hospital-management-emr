@@ -15,7 +15,7 @@
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="caption-subject">{{ 'PATIENT_CONSUMPTION.NEW_CONSUMPTION_ENTRY' | translate }}</span>
                             </h3>
-                            <a class="btn btn-danger" (click)="ClosePatientConsumptionEntryPage()" title="Cancel"><i class="fa fa-times"></i></a>
+                            <a class="btn btn-danger" (click)="ClosePatientConsumptionEntryPage()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
                         </div>
                         <phrm-patient-consumption-add [CurrentCounterId]="currentCounterId"
                                                       (callback-add)="CallBackAdd($event)"></phrm-patient-consumption-add>
@@ -45,7 +45,7 @@
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="caption-subject">{{ 'PATIENT_CONSUMPTION.CONSUMPTIONS' | translate }}</span>
                             </h3>
-                            <a class="btn btn-danger" (click)="ClosePatientConsumptionList()" title="Cancel"><i class="fa fa-times"></i></a>
+                            <a class="btn btn-danger" (click)="ClosePatientConsumptionList()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-times"></i></a>
                         </div>
 
                         <div class="col-md-12" style="margin-bottom: 15px;">
@@ -62,7 +62,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="modelbox-div clearfix">
-                            <a class="btn btn-danger history-del-btn" (click)="ClosePrintPage()" title="Cancel"><i class="fa fa-close"></i></a>
+                            <a class="btn btn-danger history-del-btn" (click)="ClosePrintPage()" [title]="'COMMON.CANCEL' | translate"><i class="fa fa-close"></i></a>
                             <div class="form-body">
                                 <div class="col-md-12">
                                     <div class="row printStyle print-border">

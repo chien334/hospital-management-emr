@@ -1,6 +1,6 @@
 ﻿
 <div>
-    <input type="button" class="btn primary-btn m1" (click)="showAddTerms()" value="Add Terms & Conditions" />
+    <input type="button" class="btn primary-btn m1" (click)="showAddTerms()" [value]="'INVENTORY.ADD_TERMS_CONDITIONS' | translate" />
     <terms-add [showAddPage]="showAddPage" *ngIf="showAddPage"
                [TermsApplicationId]="TermsApplicationId"
                [selected-list]="selTermslist"

@@ -49,7 +49,7 @@
         *ngIf="allLabRequisitions && allLabRequisitions.length > 0">
         <div class="row">
           <div class="col-md-3">
-            <p class="margin-0-vr"><strong>Patient Name</strong></p>
+            <p class="margin-0-vr"><strong>{{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</strong></p>
             <!--<p><strong>Total number of tests</strong></p>-->
           </div>
           <div class="col-md-9">
@@ -61,11 +61,11 @@
           <table class="table table-bordered table-sticker-det">
             <thead>
               <tr>
-                <th>Test Name</th>
-                <th *ngIf="!fromLabRequisition">Requested On</th>
-                <th *ngIf="!fromLabRequisition">Prescriber Name</th>
-                <th *ngIf="fromLabRequisition">Run Number</th>
-                <th *ngIf="fromLabRequisition">BarCodeNumber</th>
+                <th>{{ 'LABS.TEST_NAME' | translate }}</th>
+                <th *ngIf="!fromLabRequisition">{{ 'LABS.REQUESTED_ON_1' | translate }}</th>
+                <th *ngIf="!fromLabRequisition">{{ 'LABS.PRESCRIBER_NAME' | translate }}</th>
+                <th *ngIf="fromLabRequisition">{{ 'LABS.RUN_NUMBER' | translate }}</th>
+                <th *ngIf="fromLabRequisition">{{ 'LABS.BARCODENUMBER_1' | translate }}</th>
               </tr>
             </thead>
             <tbody>
@@ -88,7 +88,7 @@
           <div class="labBarCodeSticker"
             style="width: 180px;text-align: center;position: relative;display:block;font-family:sans-serif;font-size: 10px;padding: 0px;border: 1px dashed;page-break-after: always">
             <div style="width:100%;display:inline-block; font-size:10px;margin-top: 1px;">
-              Hospital No: {{patientinfos.HospitalNumber}} &nbsp;<span>{{patientinfos.VisitType}}</span>
+              {{ 'LABS.HOSPITAL_NO_1' | translate }}: {{patientinfos.HospitalNumber}} &nbsp;<span>{{patientinfos.VisitType}}</span>
               <br />
               <div style="font-size:10px;">
                 <span style="display: inline-block; ">
@@ -114,7 +114,7 @@
           <div class="text-center">
             <div class="margin-15-tp">
               <div>
-                <label for="numberOfPrint">No. of copies: &nbsp;</label>
+                <label for="numberOfPrint">{{ 'LABS.NO_OF_COPIES' | translate }} &nbsp;</label>
                 <input id="numberOfPrint" type="number" style="padding: 2px 5px 5px 5px;" [(ngModel)]="numberOfPrint"
                   min="0" max="{{printOptionParam.maximumPrintCount ? printOptionParam.maximumPrintCount : 5}}"
                   name="number of barcode print" value="" onwheel="this.blur()"
@@ -133,7 +133,7 @@
                   class="btn green print-btn" id="printBarCOde" style="padding: 3px 15px;"><i
                     class="fa fa-print"></i>&nbsp;Print Sticker</button> -->
                     <button class="btn green btn-success" value="" (click)="print(numberOfPrint)" id="printBarCOde">
-                      <span>Print</span>&nbsp;&nbsp;
+                      <span>{{ 'COMMON.PRINT' | translate }}</span>&nbsp;&nbsp;
                       &nbsp;&nbsp; <i class="glyphicon glyphicon-print"></i>
                     </button>
               </div>

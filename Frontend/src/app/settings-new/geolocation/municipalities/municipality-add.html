@@ -1,32 +1,32 @@
 <form [formGroup]="model.MunicipalityValidator" class="form-horizontal hm-form">
     <div class="form-body">
         <div class="form-group">
-            <label class="control-label col-md-5">Country<sup>*</sup><b>:</b></label>
+            <label class="control-label col-md-5">{{ 'SETTINGS_NEW.COUNTRY' | translate }}<sup>*</sup><b>:</b></label>
             <div class="col-md-7">
                 <select required id="ddlCountry" class="form-control" [(ngModel)]="model.CountryId"
                         (change)="CountryChanged()" formControlName="CountryId">
-                    <option [ngValue]="null">Select</option>
+                    <option [ngValue]="null">{{ 'SETTINGS_NEW.SELECT' | translate }}</option>
                     <option *ngFor="let country of countryList" value={{country.CountryId}}>{{country.CountryName}}
                     </option>
                 </select>
                 <span class="color-red font-sm"
-                      [hidden]="model.IsValidCheck('CountryId','required') || !model.IsDirty('CountryId')">Country
+                      [hidden]="model.IsValidCheck('CountryId','required') || !model.IsDirty('CountryId')">{{ 'SETTINGS_NEW.COUNTRY' | translate }}
                     is required</span>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-5">Country Sub-Division<sup>*</sup><b>:</b></label>
+            <label class="control-label col-md-5">{{ 'SETTINGS_NEW.COUNTRY_SUBDIVISION' | translate }}<sup>*</sup><b>:</b></label>
             <div class="col-md-7">
                 <select required id="ddlCountrySubDivision" class="form-control"
                         [(ngModel)]="model.CountrySubDivisionId" (change)="coreService.FocusInputById('MunicipalityName')"
                         formControlName="SubDivisionId">
-                    <option [ngValue]="null">Select</option>
+                    <option [ngValue]="null">{{ 'SETTINGS_NEW.SELECT' | translate }}</option>
                     <option *ngFor="let subDivision of countrySubDivisionList"
                             value={{subDivision.CountrySubDivisionId}}>{{subDivision.CountrySubDivisionName}}
                     </option>
                 </select>
                 <span class="color-red font-sm"
-                      [hidden]="model.IsValidCheck('SubDivisionId','required') || !(model.IsDirty('SubDivisionId'))">Country
+                      [hidden]="model.IsValidCheck('SubDivisionId','required') || !(model.IsDirty('SubDivisionId'))">{{ 'SETTINGS_NEW.COUNTRY' | translate }}
                     Sub Division is required</span>
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div class="col-md-7">
                 <input class="form-control" maxlength="30" [(ngModel)]="model.MunicipalityName"
                        formControlName="MunicipalityName" required type="text" id="MunicipalityName" value=""
-                       placeholder="Country Sub-Division Name"
+                       [placeholder]="'SETTINGS_NEW.COUNTRY_SUBDIVISION_NAME' | translate"
                        (keyup.enter)="coreService.FocusInputById('txtMunicipalityType')" />
                 <br />
                 <span class="color-red font-sm"
@@ -45,15 +45,15 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-5">Type<b>:</b></label>
+            <label class="control-label col-md-5">{{ 'SETTINGS_NEW.TYPE' | translate }}<b>:</b></label>
             <div class="col-md-7">
                 <select required id="txtMunicipalityType" class="form-control" [(ngModel)]="model.Type"
                         [ngModelOptions]="{standalone: true}" (change)="coreService.FocusInputById('Add')">
-                    <option [ngValue]="null">Select</option>
-                    <option value="Gaunpalika">Gaunpalika</option>
-                    <option value="Metro">Metro</option>
-                    <option value="Nagarpalika">Nagarpalika</option>
-                    <option value="Sub-Metro">Sub-Metro</option>
+                    <option [ngValue]="null">{{ 'SETTINGS_NEW.SELECT' | translate }}</option>
+                    <option value="Gaunpalika">{{ 'SETTINGS_NEW.GAUNPALIKA' | translate }}</option>
+                    <option value="Metro">{{ 'SETTINGS_NEW.METRO' | translate }}</option>
+                    <option value="Nagarpalika">{{ 'SETTINGS_NEW.NAGARPALIKA' | translate }}</option>
+                    <option value="Sub-Metro">{{ 'SETTINGS_NEW.SUBMETRO' | translate }}</option>
                 </select>
                 <!-- <input class="form-control" [(ngModel)]="model.Type" id="txtMunicipalityType"
                     [ngModelOptions]="{standalone: true}" required type="text" value="" placeholder="Municipality Type"
@@ -64,8 +64,8 @@
     </div>
     <div class="panel-footer">
         <input type="button" class="btn green btn-success margin-7-hr" *ngIf="!update"
-               [attr.disable]="coreService.loading" (click)="SaveMunicipality()" value="Add Sub Division" id="Add" />
+               [attr.disable]="coreService.loading" (click)="SaveMunicipality()" [value]="'SETTINGS_NEW.ADD_SUB_DIVISION' | translate" id="Add" />
         <input type="button" class="btn green btn-success margin-7-hr" *ngIf="update"
-               [attr.disable]="coreService.loading" (click)="SaveMunicipality()" value="Update" id="Add" />
+               [attr.disable]="coreService.loading" (click)="SaveMunicipality()" [value]="'COMMON.UPDATE' | translate" id="Add" />
     </div>
 </form>

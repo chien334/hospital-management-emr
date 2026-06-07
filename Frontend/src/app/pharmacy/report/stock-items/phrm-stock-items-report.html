@@ -3,20 +3,20 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-12">
-          <div class="caption custom-caption no-margin"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">Stock Items Report</span> </div>
+          <div class="caption custom-caption no-margin"> <i class="glyphicon glyphicon-asterisk"></i> <span class="caption-subject">{{ 'PHARMACY.STOCK_ITEMS_REPORT' | translate }}</span> </div>
         </div>
         <div class="col-md-12 col-xs-12">
           <div class="row mt10">
             <div class="col-md-4">
               <div class="row">
-                <label class="control-label col-md-4">Select Item<b class="color-red"> *</b><b style="float:right;">:</b></label>
+                <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_ITEM' | translate }}<b class="color-red"> *</b><b style="float:right;">:</b></label>
                 <div class="col-md-8">
                   <div class="form-group no-margin">
                     <input danphe-auto-complete class="form-control"
                                    [(ngModel)]="selectedItem"
                                    [source]="itemList"
                                    [list-formatter]="myItemListFormatter"
-                                   placeholder="--Select Item--"
+                                   [placeholder]="'PHARMACY.SELECT_ITEM' | translate"
                                    display-property-name="ItemName"
                                    value-property-name=null
                                    onClick="this.select();"
@@ -31,20 +31,20 @@
             </div>
             <div class="col-md-4 col-xs-12">
               <div class="row">
-                <label class="control-label col-md-4">Select Location<b style="float:right;">:</b></label>
+                <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_LOCATION' | translate }}<b style="float:right;">:</b></label>
                 <div class="col-md-8">
                   <select style="width:100%;height:32px" [(ngModel)]="selectedLocation">
-                    <option value="1" selected>Dispensary</option>
-                    <option value="2" >Store</option>
-                    <option value="3" >Ward</option>
-                    <option value="0" >All</option>
+                    <option value="1" selected>{{ 'PHARMACY.DISPENSARY' | translate }}</option>
+                    <option value="2" >{{ 'GRID_HEADERS.STORE' | translate }}</option>
+                    <option value="3" >{{ 'PHARMACY.WARD' | translate }}</option>
+                    <option value="0" >{{ 'PHARMACY.ALL' | translate }}</option>
                   </select>
                 </div>                
               </div>
             </div>
             <div class="col-md-4 col-xs-12">
               <div class="form-group">
-                <button class="btn blue" type="button" (click)="GetReportData()"> <i class="fa fa-search"></i> Show Report </button>
+                <button class="btn blue" type="button" (click)="GetReportData()"> <i class="fa fa-search"></i> {{ 'PHARMACY.SHOW_REPORT' | translate }} </button>
               </div>
             </div>
           </div>

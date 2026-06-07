@@ -1,4 +1,4 @@
-<a feature="button" class="btn blue bordered" (click)="AddBillingPackage()"><i class="fa fa-plus"></i>Add Package</a>
+<a feature="button" class="btn blue bordered" (click)="AddBillingPackage()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_PACKAGE' | translate }}</a>
 <div>
   <billingPackage-add *ngIf="showAddPage"
                       [showAddPage]="showAddPage"

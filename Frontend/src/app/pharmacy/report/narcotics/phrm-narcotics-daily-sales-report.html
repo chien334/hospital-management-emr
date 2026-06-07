@@ -3,10 +3,10 @@
         <div class="col-md-12">
             <div class="caption custom-caption" style="float: left;">
                 <i class="glyphicon glyphicon-asterisk"></i>
-                <span class="caption-subject">Narcotics Daily Sales Summary Report</span>
+                <span class="caption-subject">{{ 'PHARMACY.NARCOTICS_DAILY_SALES_SUMMARY_REPORT' | translate }}</span>
             </div>
             <div style="float: right; font-size: 11px;">
-                *Note: Return Sales are not included in this report.
+                *{{ 'PHARMACY.NOTE_RETURN_SALES_ARE_NOT_INCLUDED' | translate }}
             </div>
         </div>
         <div class="">
@@ -17,18 +17,18 @@
 
                 <div class="row">
                     <div class="col-md-8 col-xs-12">
-                        <div class="row"><label class="control-label col-md-4">Select Item<b class="color-red"> *</b><b style="float:right;">:</b></label>
+                        <div class="row"><label class="control-label col-md-4">{{ 'PHARMACY.SELECT_ITEM' | translate }}<b class="color-red"> *</b><b style="float:right;">:</b></label>
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <input danphe-auto-complete class="form-control" [(ngModel)]="selectedItem" [source]="itemList" [list-formatter]="myItemListFormatter" placeholder="--Select Item--" display-property-name="ItemName" value-property-name=null onClick="this.select();" (valueChanged)="onChangeItem($event)" max-num-list="10" (focusout)="CheckProperSelectedItem()" min-chars="0" style="width:100%;" />
+                                    <input danphe-auto-complete class="form-control" [(ngModel)]="selectedItem" [source]="itemList" [list-formatter]="myItemListFormatter" [placeholder]="'PHARMACY.SELECT_ITEM' | translate" display-property-name="ItemName" value-property-name=null onClick="this.select();" (valueChanged)="onChangeItem($event)" max-num-list="10" (focusout)="CheckProperSelectedItem()" min-chars="0" style="width:100%;" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <button class="btn blue" type="button" (click)="GetReportData()" [disabled]="loading">
-                            <span *ngIf="!loading">Show Report</span>
-                            <span *ngIf="loading">Loading...</span>
+                            <span *ngIf="!loading">{{ 'PHARMACY.SHOW_REPORT' | translate }}</span>
+                            <span *ngIf="loading">{{ 'PHARMACY.LOADING' | translate }}</span>
                          </button>
                     </div>
                 </div>

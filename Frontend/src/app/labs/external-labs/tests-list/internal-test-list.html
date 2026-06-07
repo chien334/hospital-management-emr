@@ -18,30 +18,30 @@
     </div>
     <div class="col-md-4">
       <div class="col-md-5">
-        <label>Hospital No :</label>
+        <label>{{ 'LABS.HOSPITAL_NO' | translate }}</label>
       </div>
       <div class="col-md-7">
-        <input type="text" [(ngModel)]="HospitalNo" class="form-control" placeholder="Enter Hospital Number..."
+        <input type="text" [(ngModel)]="HospitalNo" class="form-control" [placeholder]="'LABS.ENTER_HOSPITAL_NUMBER' | translate"
                (keyup.enter)="GetAllTestListForExternalLabs()">
       </div>
     </div>
     <div class="col-md-3">
       <div class="col-md-5">
-        <label>PatientName :</label>
+        <label>{{ 'LABS.PATIENTNAME' | translate }}</label>
       </div>
       <div class="col-md-7">
-        <input type="text" [(ngModel)]="PatientName" class="form-control" placeholder="Enter Patient Name..."
+        <input type="text" [(ngModel)]="PatientName" class="form-control" [placeholder]="'LABS.ENTER_PATIENT_NAME' | translate"
                (keyup.enter)="GetAllTestListForExternalLabs()">
       </div>
     </div>
   </div>
   <div class="row" style="margin-top: 10px;">
     <div class="col-md-2">
-      <input class="form-control" [(ngModel)]="searchString" onclick="this.select();" placeholder="Search">
+      <input class="form-control" [(ngModel)]="searchString" onclick="this.select();" [placeholder]="'LABS.SEARCH_1' | translate">
     </div>
     <div class="col-md-3">
       <div class="col-md-4">
-        <label>Vendor :</label>
+        <label>{{ 'LABS.VENDOR' | translate }}</label>
       </div>
       <div class="col-md-8">
         <select [(ngModel)]="SelectedVendorId" class="form-control" (change)="ClearList()">
@@ -51,7 +51,7 @@
     </div>
     <div class="col-md-4">
       <div class="col-md-3">
-        <label>LabTests :</label>
+        <label>{{ 'LABS.LABTESTS' | translate }}</label>
       </div>
       <div class="col-md-9">
         <div class="control-label" *ngIf="LabTestList && LabTestList.length >0">
@@ -68,7 +68,7 @@
     </div>
     <div class="col-md-3">
       <div class="col-md-4">
-        <label>External Lab Status :</label>
+        <label>{{ 'LABS.EXTERNAL_LAB_STATUS' | translate }}</label>
       </div>
       <div class="col-md-8">
         <select [(ngModel)]="SelectedExternalLabStatus" (change)="ChangeStatus()" class="form-control">
@@ -84,22 +84,22 @@
 
     <div class="col-md-12">
       <div class="form-actions" style="float:right;">
-        <button class="btn green btn-success hidden-print" (click)="Print()" value="Print" title="print page">Print<i
+        <button class="btn green btn-success hidden-print" (click)="Print()" value="Print" [title]="'LABS.PRINT_PAGE' | translate">{{ 'COMMON.PRINT' | translate }}<i
              class="glyphicon glyphicon-print" style="margin-left:10px;"></i></button>
         <button class="btn green btn-success hidden-print" (click)="Export()"
-                value="" title="export to excel">Export<i class="fa fa-file-excel-o"
+                value="" [title]="'LABS.EXPORT_TO_EXCEL' | translate">{{ 'COMMON.EXPORT' | translate }}<i class="fa fa-file-excel-o"
              style="margin-left:10px;"></i></button>
       </div>
 
       <div style="float:right; margin-right:20px;">
         <button class="btn green btn-success" [disabled]="Loading" (click)="GetAllTestListForExternalLabs()">
-          <i class="fa fa-refresh"></i> Load
+          <i class="fa fa-refresh"></i> {{ 'LABS.LOAD' | translate }}
         </button>
       </div>
 
       <div style="float:right; margin-right:20px;">
         <button *ngIf="showVendorSelectButton" class="btn green btn-success" (click)="ShowVendorSelection()">
-          <i class="fa fa-refresh"></i> Change Vendor
+          <i class="fa fa-refresh"></i> {{ 'LABS.CHANGE_VENDOR' | translate }}
         </button>
       </div>
       <div *ngIf="showVendorSelectButton" style="float:right;">
@@ -111,7 +111,7 @@
                 [message]="dispatchConfirmationMessage"
                 (confirm)="ConfirmDispatch()"
                 (cancel)="CancelDispatch()" style="font-weight: bold;margin-right: 10px;" class="btn green btn-success"
-                value="" [disabled]="IsDispatch">Dispatch
+                value="" [disabled]="IsDispatch">{{ 'LABS.DISPATCH' | translate }}
         </button>
       </div>
       <div *ngIf="ShowReceiveButton" style="float:right;">
@@ -123,7 +123,7 @@
                 [message]="receiveConfirmationMessage"
                 (confirm)="ConfirmReceive()"
                 (cancel)="CancelReceive()" style="font-weight: bold;margin-right: 10px;" class="btn green btn-success"
-                value="" [disabled]="IsReceive">Receive Report
+                value="" [disabled]="IsReceive">{{ 'LABS.RECEIVE_REPORT' | translate }}
         </button>
       </div>
     </div>
@@ -142,16 +142,16 @@
                 <div class="row">
                   <div class="col-md-3 headerDate" style="margin-top: 50px;">
                     <span class="text-left">From: {{FromDate | nepaliDate:'format':'YYYY-MM-DD'}} BS ({{FromDate}})
-                    </span><span class="text-left">To: {{ToDate | nepaliDate:'format':'YYYY-MM-DD'}} BS ({{ToDate}})
+                    </span><span class="text-left">{{ 'LABS.TO_1' | translate }}: {{ToDate | nepaliDate:'format':'YYYY-MM-DD'}} BS ({{ToDate}})
                     </span>
                   </div>
                   <div class="col-md-6 headerHospName" style="width: 50%;">
                     <span>{{this.ExternalLabReportStatusHeader.hospitalName}}</span>
                     <span>{{this.ExternalLabReportStatusHeader.address}}</span>
-                    <span> Outsource Lab Test List Report({{SelectedExternalLabStatus}})</span>
+                    <span> Outsource {{ 'LABS.LAB_TEST' | translate }} List Report({{SelectedExternalLabStatus}})</span>
                   </div>
                   <div class="col-md-3 headerPrintDate" style="margin-top: 50px;">
-                    <span class="text-right"> Printed On: <date-lbl [value]="printDate" [show-time]="true"></date-lbl></span>
+                    <span class="text-right"> {{ 'LABS.PRINTED_ON' | translate }} <date-lbl [value]="printDate" [show-time]="true"></date-lbl></span>
                   </div>
                 </div>
               </th>
@@ -160,12 +160,12 @@
 
           <thead>
             <tr class="table-header-bg">
-              <th> S.N. </th>
-              <th> Patient Name</th>
-              <th> Hospital No. </th>
-              <th> Test Name </th>
-              <th> Vendor Name </th>
-              <th> Status </th>
+              <th> {{ 'COMMON.SN' | translate }} </th>
+              <th> {{ 'GRID_HEADERS.PATIENT_NAME' | translate }}</th>
+              <th> {{ 'GRID_HEADERS.HOSPITAL_NO_' | translate }} </th>
+              <th> {{ 'LABS.TEST_NAME' | translate }} </th>
+              <th> {{ 'LABS.VENDOR_NAME' | translate }} </th>
+              <th> {{ 'COMMON.STATUS' | translate }} </th>
               <th *ngIf="!ReceivedReport" class="no-print">
                 <input style="width: 18px; height: 18px;" id="checkbox" type="checkbox" [(ngModel)]="selectAll"
                        (change)="selectAllRows()" [disabled]="patLabInfoList.length <=0 || ReceivedReport">

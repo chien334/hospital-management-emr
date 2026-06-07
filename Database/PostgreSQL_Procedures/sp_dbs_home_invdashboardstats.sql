@@ -2,7 +2,30 @@ CREATE OR REPLACE FUNCTION sp_dbs_home_invdashboardstats(
     p_sourcestoreid INT DEFAULT NULL
 )
 RETURNS TABLE (
-    "TotalPurchaseRequest" DECIMAL
+    "TotalPurchaseRequest" BIGINT,
+    "todaypurchaserequest" BIGINT,
+    "yestardaypurchaserequest" BIGINT,
+    "totalpurchaseorder" BIGINT,
+    "todaypurchaseorder" BIGINT,
+    "yestardaypurchaseorder" BIGINT,
+    "totalgoodsreceipt" BIGINT,
+    "todaygoodsreceipt" BIGINT,
+    "yestardaygoodsreceipt" BIGINT,
+    "totalgoodsarrivalnotification" BIGINT,
+    "todaygoodsarrivalnotification" BIGINT,
+    "yestardaygoodsarrivalnotification" BIGINT,
+    "totalconsumablesrequisition" BIGINT,
+    "todayconsumablesrequisition" BIGINT,
+    "yestardayconsumablesrequisition" BIGINT,
+    "totalcapitalgoodsrequisition" BIGINT,
+    "todaycapitalgoodsrequisition" BIGINT,
+    "yestardaycapitalgoodsrequisition" BIGINT,
+    "totalconsumablesdispatchitems" BIGINT,
+    "todayconsumablesdispatchitems" BIGINT,
+    "yestardayconsumablesdispatchitems" BIGINT,
+    "totalcapitalgoodsdispatchitems" BIGINT,
+    "todaycapitalgoodsdispatchitems" BIGINT,
+    "yestardaycapitalgoodsdispatchitems" BIGINT
 ) AS $$
 BEGIN
     /*
@@ -17,82 +40,79 @@ BEGIN
     
     */
     
-    			 --if ((p_sourcestoreid is not null) )
-    	
-    	RETURN QUERY SELECT * from 
-    	 ( select count(*) AS "TotalPurchaseRequest" from inv_txn_purchaserequest 
-    	where storeid = p_sourcestoreid ) pr,
-    	( select count(*) as "todaypurchaserequest" from inv_txn_purchaserequest where cast(createdon as date) = cast(current_timestamp as date)  and  storeid = p_sourcestoreid ) today_pr,
-    	( select count(*) as "yestardaypurchaserequest" from inv_txn_purchaserequest where cast(createdon as date) = dateadd(day,-1, cast(current_timestamp as date) ) and  storeid = p_sourcestoreid) yestarday_pr,
+    RETURN QUERY SELECT * from 
+    ( select count(*) AS "TotalPurchaseRequest" from "INV_TXN_PurchaseRequest" 
+      where "StoreId" = p_sourcestoreid ) pr,
+    ( select count(*) as "todaypurchaserequest" from "INV_TXN_PurchaseRequest" where "CreatedOn"::date = current_date and "StoreId" = p_sourcestoreid ) today_pr,
+    ( select count(*) as "yestardaypurchaserequest" from "INV_TXN_PurchaseRequest" where "CreatedOn"::date = (current_date - INTERVAL '1 day')::date and "StoreId" = p_sourcestoreid) yestarday_pr,
+
+    ( select count(*) as "totalpurchaseorder" from "INV_TXN_PurchaseOrder"
+      where "StoreId" = p_sourcestoreid) po,
+    ( select count(*) as "todaypurchaseorder" from "INV_TXN_PurchaseOrder" where "CreatedOn"::date = current_date and "StoreId" = p_sourcestoreid ) today_po,
+    ( select count(*) as "yestardaypurchaseorder" from "INV_TXN_PurchaseOrder" where "CreatedOn"::date = (current_date - INTERVAL '1 day')::date and "StoreId" = p_sourcestoreid) yestarday_po,
+
+    ( select count(*) as "totalgoodsreceipt" from "INV_TXN_GoodsReceipt" where "StoreId" = p_sourcestoreid ) gr,
+    ( select count(*) as "todaygoodsreceipt" from "INV_TXN_GoodsReceipt" where "ReceivedOn"::date = current_date and "StoreId" = p_sourcestoreid ) today_gr,
+    ( select count(*) as "yestardaygoodsreceipt" from "INV_TXN_GoodsReceipt" where "ReceivedOn"::date = (current_date - INTERVAL '1 day')::date and "StoreId" = p_sourcestoreid) yestarday_gr,
+
+    ( select count(*) as "totalgoodsarrivalnotification" from "INV_TXN_GoodsReceipt" where "StoreId" = p_sourcestoreid ) gan,
+    ( select count(*) as "todaygoodsarrivalnotification" from "INV_TXN_GoodsReceipt" where "CreatedOn"::date = current_date and "StoreId" = p_sourcestoreid ) today_gan,
+    ( select count(*) as "yestardaygoodsarrivalnotification" from "INV_TXN_GoodsReceipt" where "CreatedOn"::date = (current_date - INTERVAL '1 day')::date and "StoreId" = p_sourcestoreid) yestarday_gan,
     
-        ( select count(*) as "totalpurchaseorder" from inv_txn_purchaseorder
-    	where storeid = p_sourcestoreid) po,
-    	( select count(*) as "todaypurchaseorder" from inv_txn_purchaseorder where cast(createdon as date) = cast(current_timestamp as date) and  storeid = p_sourcestoreid ) today_po,
-    	( select count(*) as "yestardaypurchaseorder" from inv_txn_purchaseorder where cast(createdon as date) = dateadd(day,-1, cast(current_timestamp as date) ) and  storeid = p_sourcestoreid) yestarday_po,
-    
-    	 ( select count(*) as "totalgoodsreceipt" from inv_txn_goodsreceipt where storeid = p_sourcestoreid ) gr,
-    	( select count(*) as "todaygoodsreceipt" from inv_txn_goodsreceipt where cast(receivedon as date) = cast(current_timestamp as date) and  storeid = p_sourcestoreid ) today_gr,
-    	( select count(*) as "yestardaygoodsreceipt" from inv_txn_goodsreceipt where cast(receivedon as date) = dateadd(day,-1, cast(current_timestamp as date) ) and  storeid = p_sourcestoreid) yestarday_gr,
-    
-    	( select count(*) as "totalgoodsarrivalnotification" from inv_txn_goodsreceipt where storeid = p_sourcestoreid ) gan,
-    	( select count(*) as "todaygoodsarrivalnotification" from inv_txn_goodsreceipt where cast(createdon as date) = cast(current_timestamp as date) and  storeid = p_sourcestoreid ) today_gan,
-    	( select count(*) as "yestardaygoodsarrivalnotification" from inv_txn_goodsreceipt where cast(createdon as date) = dateadd(day,-1, cast(current_timestamp as date) ) and  storeid = p_sourcestoreid) yestarday_gan,
-    	( select count(*) as "totalconsumablesrequisition"
-    	from inv_txn_requisition  req
-    	join inv_txn_requisitionitems reqi on req.requisitionid = reqi.requisitionid
-    	join inv_mst_item  item on  reqi.itemid = item.itemid
-    	where item.itemtype = 'Consumables' and req.requesttostoreid= p_sourcestoreid
-    	) req,
-    
-    	( select count(*) as "todayconsumablesrequisition" from inv_txn_requisition  req
-    	join inv_txn_requisitionitems reqi on req.requisitionid = reqi.requisitionid
-    	join inv_mst_item  item on  reqi.itemid = item.itemid
-    	where cast(req.createdon as date) = cast(current_timestamp as date) and item.itemtype = 'Consumables' and req.requesttostoreid= p_sourcestoreid ) today_req,
-    	( select count(*) as "yestardayconsumablesrequisition" from inv_txn_requisition  req
-    	join inv_txn_requisitionitems reqi on req.requisitionid = reqi.requisitionid
-    	join inv_mst_item  item on  reqi.itemid = item.itemid 
-    	where cast(req.createdon as date) = dateadd(day,-1, cast(current_timestamp as date) ) and  item.itemtype = 'Consumables' and req.requesttostoreid= p_sourcestoreid ) yestarday_req,
-    
-    	( select count(*) as "totalcapitalgoodsrequisition"
-    	from inv_txn_requisition  req
-    	join inv_txn_requisitionitems reqi on req.requisitionid = reqi.requisitionid
-    	join inv_mst_item  item on  reqi.itemid = item.itemid
-    	where item.itemtype = 'Capital Goods' and req.requesttostoreid= p_sourcestoreid
-    	) reqcapital,
-    
-    	( select count(*) as "todaycapitalgoodsrequisition" from inv_txn_requisition  req
-    	join inv_txn_requisitionitems reqi on req.requisitionid = reqi.requisitionid
-    	join inv_mst_item  item on  reqi.itemid = item.itemid
-    	where cast(req.createdon as date) = cast(current_timestamp as date) and item.itemtype = 'Capital Goods' and req.requesttostoreid= p_sourcestoreid ) today_reqcapital,
-    	( select count(*) as "yestardaycapitalgoodsrequisition" from inv_txn_requisition  req
-    	join inv_txn_requisitionitems reqi on req.requisitionid = reqi.requisitionid
-    	join inv_mst_item  item on  reqi.itemid = item.itemid 
-    	where cast(req.createdon as date) = dateadd(day,-1, cast(current_timestamp as date) ) and  item.itemtype = 'Capital Goods' and req.requesttostoreid= p_sourcestoreid ) yestarday_reqcapital,
-    
-    	
-    	( select count(*) as "totalconsumablesdispatchitems" from inv_txn_dispatchitems dis
-    		join inv_mst_item item on dis.itemid = item.itemid
-    		where item.itemtype = 'Consumables' and dis.sourcestoreid= p_sourcestoreid
-    	) dis,
-    
-    	( select count(*) as "todayconsumablesdispatchitems" from inv_txn_dispatchitems  dis
-    			join inv_mst_item item on dis.itemid = item.itemid
-    	where cast(dis.createdon as date) = cast(current_timestamp as date) and  item.itemtype = 'Consumables' and dis.sourcestoreid= p_sourcestoreid ) today_dis,
-    	( select count(*) as "yestardayconsumablesdispatchitems" from inv_txn_dispatchitems dis
-    		join inv_mst_item  item on dis.itemid = item.itemid
-    	where cast(dis.createdon as date) = dateadd(day,-1, cast(current_timestamp as date) ) and  item.itemtype = 'Consumables' and dis.sourcestoreid= p_sourcestoreid) yestarday_dis,
-    
-    	
-    	( select count(*) as "totalcapitalgoodsdispatchitems" from inv_txn_dispatchitems dis
-    		join inv_mst_item item on dis.itemid = item.itemid
-    		where item.itemtype = 'Capital Goods' and dis.sourcestoreid= p_sourcestoreid
-    	) discapital,
-    
-    	( select count(*) as "todaycapitalgoodsdispatchitems" from inv_txn_dispatchitems  dis
-    			join inv_mst_item item on dis.itemid = item.itemid
-    	where cast(dis.createdon as date) = cast(current_timestamp as date) and  item.itemtype = 'Capital Goods' and dis.sourcestoreid= p_sourcestoreid ) today_discapital,
-    	( select count(*) as "yestardaycapitalgoodsdispatchitems" from inv_txn_dispatchitems dis
-    		join inv_mst_item  item on dis.itemid = item.itemid
-    	where cast(dis.createdon as date) = dateadd(day,-1, cast(current_timestamp as date) ) and  item.itemtype = 'Capital Goods' and dis.sourcestoreid= p_sourcestoreid) yestarday_discapital;
+    ( select count(*) as "totalconsumablesrequisition"
+      from "INV_TXN_Requisition" req
+      join "INV_TXN_RequisitionItems" reqi on req."RequisitionId" = reqi."RequisitionId"
+      join "INV_MST_Item" item on reqi."ItemId" = item."ItemId"
+      where item."ItemType" = 'Consumables' and req."RequestToStoreId" = p_sourcestoreid
+    ) req,
+
+    ( select count(*) as "todayconsumablesrequisition" from "INV_TXN_Requisition" req
+      join "INV_TXN_RequisitionItems" reqi on req."RequisitionId" = reqi."RequisitionId"
+      join "INV_MST_Item" item on reqi."ItemId" = item."ItemId"
+      where req."CreatedOn"::date = current_date and item."ItemType" = 'Consumables' and req."RequestToStoreId" = p_sourcestoreid ) today_req,
+    ( select count(*) as "yestardayconsumablesrequisition" from "INV_TXN_Requisition" req
+      join "INV_TXN_RequisitionItems" reqi on req."RequisitionId" = reqi."RequisitionId"
+      join "INV_MST_Item" item on reqi."ItemId" = item."ItemId" 
+      where req."CreatedOn"::date = (current_date - INTERVAL '1 day')::date and item."ItemType" = 'Consumables' and req."RequestToStoreId" = p_sourcestoreid ) yestarday_req,
+
+    ( select count(*) as "totalcapitalgoodsrequisition"
+      from "INV_TXN_Requisition" req
+      join "INV_TXN_RequisitionItems" reqi on req."RequisitionId" = reqi."RequisitionId"
+      join "INV_MST_Item" item on reqi."ItemId" = item."ItemId"
+      where item."ItemType" = 'Capital Goods' and req."RequestToStoreId" = p_sourcestoreid
+    ) reqcapital,
+
+    ( select count(*) as "todaycapitalgoodsrequisition" from "INV_TXN_Requisition" req
+      join "INV_TXN_RequisitionItems" reqi on req."RequisitionId" = reqi."RequisitionId"
+      join "INV_MST_Item" item on reqi."ItemId" = item."ItemId"
+      where req."CreatedOn"::date = current_date and item."ItemType" = 'Capital Goods' and req."RequestToStoreId" = p_sourcestoreid ) today_reqcapital,
+    ( select count(*) as "yestardaycapitalgoodsrequisition" from "INV_TXN_Requisition" req
+      join "INV_TXN_RequisitionItems" reqi on req."RequisitionId" = reqi."RequisitionId"
+      join "INV_MST_Item" item on reqi."ItemId" = item."ItemId" 
+      where req."CreatedOn"::date = (current_date - INTERVAL '1 day')::date and item."ItemType" = 'Capital Goods' and req."RequestToStoreId" = p_sourcestoreid ) yestarday_reqcapital,
+
+    ( select count(*) as "totalconsumablesdispatchitems" from "INV_TXN_DispatchItems" dis
+      join "INV_MST_Item" item on dis."ItemId" = item."ItemId"
+      where item."ItemType" = 'Consumables' and dis."SourceStoreId" = p_sourcestoreid
+    ) dis,
+
+    ( select count(*) as "todayconsumablesdispatchitems" from "INV_TXN_DispatchItems" dis
+      join "INV_MST_Item" item on dis."ItemId" = item."ItemId"
+      where dis."CreatedOn"::date = current_date and item."ItemType" = 'Consumables' and dis."SourceStoreId" = p_sourcestoreid ) today_dis,
+    ( select count(*) as "yestardayconsumablesdispatchitems" from "INV_TXN_DispatchItems" dis
+      join "INV_MST_Item" item on dis."ItemId" = item."ItemId"
+      where dis."CreatedOn"::date = (current_date - INTERVAL '1 day')::date and item."ItemType" = 'Consumables' and dis."SourceStoreId" = p_sourcestoreid) yestarday_dis,
+
+    ( select count(*) as "totalcapitalgoodsdispatchitems" from "INV_TXN_DispatchItems" dis
+      join "INV_MST_Item" item on dis."ItemId" = item."ItemId"
+      where item."ItemType" = 'Capital Goods' and dis."SourceStoreId" = p_sourcestoreid
+    ) discapital,
+
+    ( select count(*) as "todaycapitalgoodsdispatchitems" from "INV_TXN_DispatchItems" dis
+      join "INV_MST_Item" item on dis."ItemId" = item."ItemId"
+      where dis."CreatedOn"::date = current_date and item."ItemType" = 'Capital Goods' and dis."SourceStoreId" = p_sourcestoreid ) today_discapital,
+    ( select count(*) as "yestardaycapitalgoodsdispatchitems" from "INV_TXN_DispatchItems" dis
+      join "INV_MST_Item" item on dis."ItemId" = item."ItemId"
+      where dis."CreatedOn"::date = (current_date - INTERVAL '1 day')::date and item."ItemType" = 'Capital Goods' and dis."SourceStoreId" = p_sourcestoreid) yestarday_discapital;
 END;
 $$ LANGUAGE plpgsql;

@@ -29,78 +29,78 @@ BEGIN
     begin
       if(p_dispatchid > 0)
     	then
-    	open ref1 for select req.requisitionno
-    	,ts.name as "targetstorename"
-    	,ss.name as "sourcestorename"
-    	,dis.dispatchno
-    	,req.issueno
-    	,req.requisitiondate
-    	,reqemp.fullname as "requestedbyname"
-    	,disemp.fullname as "dispatchedbyname"
-    	,dis.createdon as "dispatcheddate"
-    	,recemp.fullname as "receivedby"
-    	,dis.receivedon as "receiveddate"
-    	,dis.remarks
-    	,req.isdirectdispatched
-    from inv_txn_dispatch dis
-    inner join inv_txn_requisition req on dis.requisitionid = req.requisitionid
-    inner join phrm_mst_store ts on dis.targetstoreid = ts.storeid
-    inner join phrm_mst_store ss on dis.sourcestoreid = ss.storeid
-    inner join emp_employee reqemp on req.createdby=reqemp.employeeid
-    inner join emp_employee disemp on dis.createdby =disemp.employeeid
-    left join emp_employee recemp on dis.receivedby =recemp.employeeid
-    where dis.dispatchid = p_dispatchid
-    	and dis.requisitionid = p_requisitionid
-    	and dis.fiscalyearid = p_fiscalyearid;
+    	open ref1 for select req."RequisitionNo"
+    	,ts."Name" as "targetstorename"
+    	,ss."Name" as "sourcestorename"
+    	,dis."DispatchNo"
+    	,req."IssueNo"
+    	,req."RequisitionDate"
+    	,reqemp."FullName" as "requestedbyname"
+    	,disemp."FullName" as "dispatchedbyname"
+    	,dis."CreatedOn" as "dispatcheddate"
+    	,recemp."FullName" as "receivedby"
+    	,dis."ReceivedOn" as "receiveddate"
+    	,dis."Remarks"
+    	,req."IsDirectDispatched"
+    from "INV_TXN_Dispatch" dis
+    inner join "INV_TXN_Requisition" req on dis."RequisitionId" = req."RequisitionId"
+    inner join "PHRM_MST_Store" ts on dis."TargetStoreId" = ts."StoreId"
+    inner join "PHRM_MST_Store" ss on dis."SourceStoreId" = ss."StoreId"
+    inner join "EMP_Employee" reqemp on req."CreatedBy" = reqemp."EmployeeId"
+    inner join "EMP_Employee" disemp on dis."CreatedBy" = disemp."EmployeeId"
+    left join "EMP_Employee" recemp on dis."ReceivedBy" = recemp."EmployeeId"
+    where dis."DispatchId" = p_dispatchid
+    	and dis."RequisitionId" = p_requisitionid
+    	and dis."FiscalYearId" = p_fiscalyearid;
         return next ref1;
     
         open ref2 for select
-          ri.requisitionitemid,
-          d.itemid,
-    	  d.specification,
-          i.code,
-          i.itemname,
-          ri.quantity,
-          ri.pendingquantity,
-          ri.receivedquantity,
-          d.dispatchedquantity,
+          ri."RequisitionItemId",
+          d."ItemId",
+    	  d."Specification",
+          i."Code",
+          i."ItemName",
+          ri."Quantity",
+          ri."PendingQuantity",
+          ri."ReceivedQuantity",
+          d."DispatchedQuantity",
           (select 
-            costprice
-          from inv_txn_stocktransaction
-          where transactiontype in ('dispatched-item-to','dispatched-item-from') and referenceno = d.dispatchitemsid limit 1) as costprice,
-          d.dispatchedquantity * (select 
-            costprice
-          from inv_txn_stocktransaction
-          where transactiontype in ('dispatched-item-to','dispatched-item-from') and referenceno = d.dispatchitemsid limit 1 ) as amt,
-          ri.requisitionitemstatus,
-          d.remarks,
-    	  d.itemremarks,
-    	  string_agg(fas.barcodenumber,',')  as "barcodenumber",
-    	  fy.fiscalyearname
+            "CostPrice"
+          from "INV_TXN_StockTransaction"
+          where "TransactionType" in ('dispatched-item-to','dispatched-item-from') and "ReferenceNo" = d."DispatchItemsId" limit 1) as costprice,
+          d."DispatchedQuantity" * (select 
+            "CostPrice"
+          from "INV_TXN_StockTransaction"
+          where "TransactionType" in ('dispatched-item-to','dispatched-item-from') and "ReferenceNo" = d."DispatchItemsId" limit 1 ) as amt,
+          ri."RequisitionItemStatus",
+          d."Remarks",
+    	  d."ItemRemarks",
+    	  string_agg(fas."BarCodeNumber",',')  as "barcodenumber",
+    	  fy."FiscalYearName"
         from
-          inv_txn_dispatchitems d
-          inner join inv_mst_item i on i.itemid = d.itemid
-    	  left join inv_map_dispatchitems_fixedassetstock f on d.dispatchitemsid=f.dispatchitemsid
-    	  left join inv_txn_fixedassetstock fas on f.fixedassetstockid=fas.fixedassetstockid
-          inner join inv_txn_requisitionitems ri on d.requisitionitemid= ri.requisitionitemid 
-          inner join inv_txn_requisition r on r.requisitionid = ri.requisitionid
-    	  inner join inv_cfg_fiscalyears fy on d.fiscalyearid=fy.fiscalyearid
-        where d.dispatchid = p_dispatchid and d.fiscalyearid=p_fiscalyearid and r.requisitionid=p_requisitionid
+          "INV_TXN_DispatchItems" d
+          inner join "INV_MST_Item" i on i."ItemId" = d."ItemId"
+    	  left join "INV_MAP_DispatchItems_FixedAssetStock" f on d."DispatchItemsId"=f."DispatchItemsId"
+    	  left join "INV_TXN_FixedAssetStock" fas on f."FixedAssetStockId"=fas."FixedAssetStockId"
+          inner join "INV_TXN_RequisitionItems" ri on d."RequisitionItemId"= ri."RequisitionItemId" 
+          inner join "INV_TXN_Requisition" r on r."RequisitionId" = ri."RequisitionId"
+    	  inner join "INV_CFG_FiscalYears" fy on d."FiscalYearId"=fy."FiscalYearId"
+        where d."DispatchId" = p_dispatchid and d."FiscalYearId"=p_fiscalyearid and r."RequisitionId"=p_requisitionid
     	group by 
-          ri.requisitionitemid,
-          d.itemid,
-    	  d.specification,
-          i.code,
-          i.itemname,
-          ri.quantity,
-          ri.pendingquantity,
-          ri.receivedquantity,
-          d.dispatchedquantity,
-    	  ri.requisitionitemstatus,
-          d.remarks,
-    	  d.dispatchitemsid,
-    	  d.itemremarks,
-    	  fy.fiscalyearname;
+          ri."RequisitionItemId",
+          d."ItemId",
+    	  d."Specification",
+          i."Code",
+          i."ItemName",
+          ri."Quantity",
+          ri."PendingQuantity",
+          ri."ReceivedQuantity",
+          d."DispatchedQuantity",
+    	  ri."RequisitionItemStatus",
+          d."Remarks",
+    	  d."DispatchItemsId",
+    	  d."ItemRemarks",
+    	  fy."FiscalYearName";
         return next ref2;
       end if;
     end;

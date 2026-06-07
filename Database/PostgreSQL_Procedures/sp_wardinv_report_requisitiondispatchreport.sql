@@ -29,23 +29,23 @@ BEGIN
     4.		rohit/6dec'22							subcategoryname and subcategory fetched to add frontend filter
     */
     
-    	RETURN QUERY SELECT (req.requisitiondate)::date AS "RequisitionDate"
-    		,(disitm.dispatcheddate)::date AS "DispatchDate"
-    		,itm.itemname
-    		,sc.subcategoryname
-    		,sc.subcategoryid
-    		,reqitm.quantity AS "RequestQty"
-    		,reqitm.receivedquantity
-    		,reqitm.pendingquantity
-    		,disitm.dispatchedquantity
-    		,reqitm.remark
-    	from inv_txn_requisitionitems as reqitm
-    	join inv_txn_requisition as req on req.requisitionid = reqitm.requisitionid
-    	left join inv_txn_dispatchitems as disitm on disitm.requisitionitemid = reqitm.requisitionitemid
-    	join inv_mst_item as itm on itm.itemid = reqitm.itemid
-    	inner join inv_mst_itemsubcategory sc on itm.subcategoryid = sc.subcategoryid
-    	where req.requestfromstoreid = p_storeid
-    		and (req.requisitiondate)::date between p_fromdate
-    			and p_todate;
+    RETURN QUERY SELECT 
+        (req."RequisitionDate")::date::timestamp AS "RequisitionDate",
+        (disitm."DispatchedDate")::date::timestamp AS "DispatchDate",
+        itm."ItemName",
+        sc."SubCategoryName",
+        sc."SubCategoryId",
+        COALESCE(reqitm."Quantity", 0)::INT AS "RequestQty",
+        COALESCE(reqitm."ReceivedQuantity", 0)::INT AS "ReceivedQuantity",
+        COALESCE(reqitm."PendingQuantity", 0)::INT AS "PendingQuantity",
+        COALESCE(disitm."DispatchedQuantity", 0)::INT AS "DispatchedQuantity",
+        reqitm."Remark"
+    FROM "INV_TXN_RequisitionItems" AS reqitm
+    JOIN "INV_TXN_Requisition" AS req ON req."RequisitionId" = reqitm."RequisitionId"
+    LEFT JOIN "INV_TXN_DispatchItems" AS disitm ON disitm."RequisitionItemId" = reqitm."RequisitionItemId"
+    JOIN "INV_MST_Item" AS itm ON itm."ItemId" = reqitm."ItemId"
+    INNER JOIN "INV_MST_ItemSubCategory" sc ON itm."SubCategoryId" = sc."SubCategoryId"
+    WHERE req."RequestFromStoreId" = p_storeid
+      AND (req."RequisitionDate")::date BETWEEN (p_fromdate)::date AND (p_todate)::date;
 END;
 $$ LANGUAGE plpgsql;

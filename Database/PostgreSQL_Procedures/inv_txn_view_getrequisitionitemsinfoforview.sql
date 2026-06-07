@@ -25,61 +25,61 @@ BEGIN
     
     
     
-    open ref1 for select reqitm.itemid
-    	,itm.itemname
-    	,itm.code
-    	,reqitm.quantity
-    	,reqitm.itemcategory
-    	,reqitm.specification
-    	,reqitm.receivedquantity
-    	,reqitm.pendingquantity
-    	,reqitm.requisitionitemstatus
-    	,reqitm.remark
-    	,reqitm.receivedquantity as "dispatchedquantity"
-    	,reqitm.requisitionno
-    	,reqitm.issueno
-    	,reqitm.requisitionid
-    	,reqitm.createdon
-    	,reqitm.createdby
-    	,reqemp.fullname as "createdbyname"
-    	,reqitm.requisitionitemid
-    	,reqitm.isactive
-    	,reqitm.cancelon
-    	,reqitm.cancelremarks
+    open ref1 for select reqitm."ItemId"
+    	,itm."ItemName"
+    	,itm."Code"
+    	,reqitm."Quantity"
+    	,reqitm."ItemCategory"
+    	,reqitm."Specification"
+    	,reqitm."ReceivedQuantity"
+    	,reqitm."PendingQuantity"
+    	,reqitm."RequisitionItemStatus"
+    	,reqitm."Remark"
+    	,reqitm."ReceivedQuantity" as "dispatchedquantity"
+    	,reqitm."RequisitionNo"
+    	,reqitm."IssueNo"
+    	,reqitm."RequisitionId"
+    	,reqitm."CreatedOn"
+    	,reqitm."CreatedBy"
+    	,reqemp."FullName" as "createdbyname"
+    	,reqitm."RequisitionItemId"
+    	,reqitm."isActive"
+    	,reqitm."CancelOn"
+    	,reqitm."CancelRemarks"
     	,(
-    		select fullname
-    		from emp_employee
-    		where employeeid = reqitm.cancelby
+    		select "FullName"
+    		from "EMP_Employee"
+    		where "EmployeeId" = reqitm."CancelBy"
     		) as "cancelby"
-    	,null as "receivedby"
+    	,null::text as "receivedby"
     	,-- receive item feature is not yet implemented, correct this later : sud-19feb'20,
     	(
-    		SELECT Remarks
-    		FROM INV_TXN_Requisition
-    		WHERE RequisitionId = p_requisitionid
+    		SELECT "Remarks"
+    		FROM "INV_TXN_Requisition"
+    		WHERE "RequisitionId" = p_requisitionid
     		) AS "Remarks"
-    		,dis.DispatchNo
-    FROM INV_TXN_RequisitionItems reqItm
-    INNER JOIN INV_MST_Item itm ON reqItm.ItemId = itm.ItemId
-    INNER JOIN EMP_Employee reqEmp ON reqItm.CreatedBy = reqEmp.EmployeeId
-    LEFT JOIN LATERAL (select  DispatchNo from INV_TXN_Dispatch WHERE RequisitionId =reqItm.RequisitionId LIMIT 1) dis ON TRUE
-    WHERE reqItm.RequisitionId = p_requisitionid
-    	AND reqItm.RequisitionItemStatus != 'withdrawn';
+    		,dis."DispatchNo"
+    FROM "INV_TXN_RequisitionItems" reqItm
+    INNER JOIN "INV_MST_Item" itm ON reqItm."ItemId" = itm."ItemId"
+    INNER JOIN "EMP_Employee" reqEmp ON reqItm."CreatedBy" = reqEmp."EmployeeId"
+    LEFT JOIN LATERAL (select "DispatchNo" from "INV_TXN_Dispatch" WHERE "RequisitionId" = reqItm."RequisitionId" LIMIT 1) dis ON TRUE
+    WHERE reqItm."RequisitionId" = p_requisitionid
+    	AND reqItm."RequisitionItemStatus" != 'withdrawn';
         RETURN NEXT ref1;
     
-    OPEN ref2 FOR SELECT dispItm.RequisitionItemId
-    	,dispItm.DispatchedQuantity
-    	,dispItm.CreatedOn AS "DispatchedOn"
-    	,dispItm.CreatedBy AS "DispatchedBy"
-    	,emp.FullName AS "DispatchedByName"
-    FROM INV_TXN_DispatchItems dispItm
-    INNER JOIN EMP_Employee emp ON dispItm.CreatedBy = emp.EmployeeId
-    WHERE RequisitionItemId IN (
-    		SELECT RequisitionItemId
-    		FROM INV_TXN_RequisitionItems
-    		WHERE RequisitionId = p_requisitionid
+    OPEN ref2 FOR SELECT dispItm."RequisitionItemId"
+    	,dispItm."DispatchedQuantity"
+    	,dispItm."CreatedOn" AS "DispatchedOn"
+    	,dispItm."CreatedBy" AS "DispatchedBy"
+    	,emp."FullName" AS "DispatchedByName"
+    FROM "INV_TXN_DispatchItems" dispItm
+    INNER JOIN "EMP_Employee" emp ON dispItm."CreatedBy" = emp."EmployeeId"
+    WHERE "RequisitionItemId" IN (
+    		SELECT "RequisitionItemId"
+    		FROM "INV_TXN_RequisitionItems"
+    		WHERE "RequisitionId" = p_requisitionid
     		)
-    ORDER BY dispItm.CreatedOn;
+    ORDER BY dispItm."CreatedOn";
         RETURN NEXT ref2;
     
     --END: ROHIT: 7Sept'23: sp modofied to get dispatchno from the requisition------------------

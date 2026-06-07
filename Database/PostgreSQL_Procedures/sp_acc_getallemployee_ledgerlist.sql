@@ -1,11 +1,3 @@
-/* ***********************************************************************
-FileName: [SP_ACC_GetAllEmployee_LedgerList]  
-CreatedBy/date: Anish/Apr-2020
-Description: To get ledger details for Consultant ledgers from acc-mapping table 
-Change History
-S.No.    UpdatedBy/Date                        Remarks
-1.      Sud/Nagesh:20Jun'20                    HospitalId added for Phrm-Acc Separation
-************************************************************************ */
 CREATE OR REPLACE FUNCTION sp_acc_getallemployee_ledgerlist(
     p_hospitalid INT
 )
@@ -16,14 +8,23 @@ RETURNS TABLE (
     "LedgerCode" VARCHAR,
     "LedgerGroupName" VARCHAR
 ) AS $$
+#variable_conflict use_column
 BEGIN
-    
-      RETURN QUERY SELECT led.ledgerid, consledmap.referenceid AS "EmployeeId",
-      led.ledgername, led.code AS "LedgerCode", ledgrp.ledgergroupname
-      from acc_ledger led, acc_mst_ledgergroup ledgrp, 
-      (select * from acc_ledger_mapping where ledgertype='consultant' and hospitalid=p_hospitalid) consledmap
-      where led.ledgergroupid=ledgrp.ledgergroupid
-        and led.ledgerid=consledmap.ledgerid 
-        and led.hospitalid = p_hospitalid and ledgrp.hospitalid=p_hospitalid;
+    RETURN QUERY 
+    SELECT led."LedgerId", 
+           consledmap."ReferenceId" AS "EmployeeId",
+           led."LedgerName"::VARCHAR, 
+           led."Code"::VARCHAR AS "LedgerCode", 
+           ledgrp."LedgerGroupName"::VARCHAR
+    FROM "ACC_Ledger" led
+    INNER JOIN "ACC_MST_LedgerGroup" ledgrp ON led."LedgerGroupId" = ledgrp."LedgerGroupId"
+    INNER JOIN (
+        SELECT * 
+        FROM "ACC_Ledger_Mapping" 
+        WHERE "LedgerType" = 'consultant' 
+          AND "HospitalId" = p_hospitalid
+    ) consledmap ON led."LedgerId" = consledmap."LedgerId"
+    WHERE led."HospitalId" = p_hospitalid 
+      AND ledgrp."HospitalId" = p_hospitalid;
 END;
 $$ LANGUAGE plpgsql;

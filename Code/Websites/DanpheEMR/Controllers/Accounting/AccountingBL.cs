@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -71,13 +71,13 @@ namespace DanpheEMR.Controllers
             int? maxVNo = (from txn in accountingDBContext.Transactions
                            where txn.HospitalId == currHospitalId && txn.FiscalyearId == fYearId &&
                            txn.VoucherId == voucherId && txn.SectionId == sectionId
-                           select txn.VoucherSerialNo).DefaultIfEmpty(0).Max();
+                           select (int?)txn.VoucherSerialNo).Max() ?? 0;
             var SectionCode = (from sec in accountingDBContext.Section
                                where sec.SectionId == sectionId && sec.HospitalId == currHospitalId
                                select sec.SectionCode).FirstOrDefault();
 
             var newVoucherNo = (maxVNo > 0) ? maxVNo + incrementCounter : 1;
-            var voucherNumberFinal = (SectionCode.Length > 0) ? SectionCode + '-' + voucherCode + '-' + newVoucherNo.ToString() : voucherCode + '-' + newVoucherNo.ToString();
+            var voucherNumberFinal = (!string.IsNullOrEmpty(SectionCode)) ? SectionCode + '-' + voucherCode + '-' + newVoucherNo.ToString() : voucherCode + '-' + newVoucherNo.ToString();
             return voucherNumberFinal;
         }
 
@@ -88,7 +88,7 @@ namespace DanpheEMR.Controllers
                 var incrementCounter = 1;
                 var Tuid = (from txn in accountingDBContext.Transactions
                             where txn.HospitalId == currHospitalId
-                            select txn.TUId).ToList().DefaultIfEmpty(0).Max();
+                            select (int?)txn.TUId).Max() ?? 0;
                 if (Tuid != 0)
                 {
                     Tuid = Tuid + incrementCounter;

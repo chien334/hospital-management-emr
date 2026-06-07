@@ -1216,7 +1216,7 @@ namespace DanpheEMR.AccTransfer
             try
             {
                 var Tuid = (from txn in accountingDBContext.Transactions
-                            select txn.TUId).ToList().DefaultIfEmpty(0).Max();
+                            select (int?)txn.TUId).Max() ?? 0;
                 if (Tuid != null)
                 {
                     Tuid = Tuid + 1;
@@ -1241,7 +1241,7 @@ namespace DanpheEMR.AccTransfer
                 int? sameDayMaxVNo = (from txn in accountingDBContext.Transactions
                                       where txn.HospitalId == currHospitalId && txn.FiscalyearId == FiscalyearId &&
                                       txn.VoucherId == voucherId && txn.SectionId == SectionId && txn.TransactionDate == transactionDate
-                                      select txn.VoucherSerialNo).DefaultIfEmpty(0).Max();
+                                      select (int?)txn.VoucherSerialNo).Max() ?? 0;
 
                 var voucherCode = (from v in accountingDBContext.Vouchers
                                    where v.VoucherId == voucherId
@@ -1261,7 +1261,7 @@ namespace DanpheEMR.AccTransfer
                         int? lastDayMaxVNo = (from txn in accountingDBContext.Transactions
                                               where txn.HospitalId == currHospitalId && txn.FiscalyearId == FiscalyearId &&
                                               txn.VoucherId == voucherId && txn.SectionId == SectionId
-                                              select txn.VoucherSerialNo).DefaultIfEmpty(0).Max();
+                                              select (int?)txn.VoucherSerialNo).Max() ?? 0;
 
                         if (lastDayMaxVNo > 0)
                         {
@@ -1279,7 +1279,7 @@ namespace DanpheEMR.AccTransfer
                     int? lastDayMaxVcNo = (from txn in accountingDBContext.Transactions
                                            where txn.HospitalId == currHospitalId && txn.FiscalyearId == FiscalyearId &&
                                            txn.VoucherId == voucherId && txn.SectionId == SectionId
-                                           select txn.VoucherSerialNo).DefaultIfEmpty(0).Max();
+                                           select (int?)txn.VoucherSerialNo).Max() ?? 0;
                     if (lastDayMaxVcNo > 0)
                     {
                         int? newNo1 = lastDayMaxVcNo + 1;
@@ -9036,7 +9036,7 @@ namespace DanpheEMR.AccTransfer
                                   where fy.FiscalYearId == selFiscalYearId && fy.HospitalId == currHospitalId
                                   select fy).FirstOrDefault();
                 //if selFiscalYear is closed current or any then return this closed fiscal year id
-                if (fiscalYear.IsClosed == true)
+                if (fiscalYear != null && fiscalYear.IsClosed == true)
                 {
                     correctFiscalYearId = fiscalYear.FiscalYearId;
                 }
@@ -9061,15 +9061,16 @@ namespace DanpheEMR.AccTransfer
 
                     //NBB-21 sep 2021-we need to send last opened fiscal year from db 
 
-                 
+
                     var lastOpenedFiscalYear = (from fy in accountingDbContext.FiscalYears
-                                                where fy.HospitalId == currHospitalId && fy.IsClosed == false  && fy.IsActive == true
+                                                where fy.HospitalId == currHospitalId && (fy.IsClosed == false || fy.IsClosed == null) && fy.IsActive == true
                                                select fy).OrderBy(f => f.FiscalYearId).FirstOrDefault();
                     if (lastOpenedFiscalYear != null)
                     {
                         correctFiscalYearId = lastOpenedFiscalYear.FiscalYearId;
                     }
-                    else {
+                    else
+                    {
                         correctFiscalYearId = selFiscalYearId;
                     }
                     //GetFiscalYearIdByDate(accountingDbContext, fiscalYear.StartDate.AddDays(-10), currHospitalId);
@@ -9089,11 +9090,12 @@ namespace DanpheEMR.AccTransfer
         {
             try
             {
-                var accHospital = _accDbContext.CFGParameters.Where(a => a.ParameterGroupName.ToLower() == "accounting" && a.ParameterName.ToLower() == "accprimaryhospitalshortname").FirstOrDefault().ParameterValue;
+                var accHospital = _accDbContext.CFGParameters.Where(a => a.ParameterGroupName.ToLower() == "accounting" && a.ParameterName.ToLower() == "accprimaryhospitalshortname").FirstOrDefault()?.ParameterValue;
+                if (string.IsNullOrEmpty(accHospital)) return 1;
                 var hospId = (from h in _accDbContext.Hospitals
                               where h.HospitalShortName.ToLower() == accHospital.ToLower() && h.IsActive == true
                               select h.HospitalId).FirstOrDefault();
-                return hospId;
+                return hospId > 0 ? hospId : 1;
             }
             catch (Exception ex)
             {

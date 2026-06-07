@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +14,7 @@ namespace DanpheEMR.ServerModel
         [Key]
         public int TransactionId { get; set; }
         public int VoucherId { get; set; }
+        [Column("FiscalYearId")]
         public int FiscalyearId { get; set; }
         public string Remarks { get; set; }
         public DateTime TransactionDate { get; set; }

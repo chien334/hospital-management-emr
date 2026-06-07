@@ -1,4 +1,4 @@
-﻿using DanpheEMR.DalLayer;
+using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
 using DanpheEMR.Security;
 using DanpheEMR.ServerModel;
@@ -95,7 +95,7 @@ namespace DanpheEMR.Services.Utilities
                         new SqlParameter("@FromDate", fromDate),
                         new SqlParameter("@ToDate", toDate),
                     };
-            DataTable dt = DALFunctions.GetDataTableFromStoredProc("[SP_UTL_SchemeRefundTransactions]", paramList, utilitiesDbContext);
+            DataTable dt = DALFunctions.GetDataTableFromStoredProc("SP_UTL_SchemeRefundTransactions", paramList, utilitiesDbContext);
             return dt;
         }
         public object GetSchemeRefundById(UtilitiesDbContext utilitiesDbContext, int receiptNo)

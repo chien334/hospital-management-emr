@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -91,6 +91,10 @@ namespace DanpheEMR.DalLayer
                    .HasOne(a => a.Patient)
                    .WithMany(a => a.Visits)
                     .HasForeignKey(s => s.PatientId);
+            modelBuilder.Entity<VitalsModel>()
+                        .HasOne(a => a.Visit)
+                        .WithMany(a => a.Vitals)
+                        .HasForeignKey(a => a.PatientVisitId);
             modelBuilder.Entity<EmployeeModel>().ToTable("EMP_Employee");
             modelBuilder.Entity<ServiceDepartmentModel>().ToTable("BIL_MST_ServiceDepartment");
             modelBuilder.Entity<BillingTransactionItemModel>().ToTable("BIL_TXN_BillingTransactionItems");

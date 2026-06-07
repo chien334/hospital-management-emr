@@ -25,7 +25,7 @@ namespace DanpheEMR.Services.MarketingReferral
                         new SqlParameter("@FromDate", fromDate),
                         new SqlParameter("@ToDate", toDate),
                     };
-            DataTable dt = DALFunctions.GetDataTableFromStoredProc("[SP_MKT_Transaction_Invoice]", paramList, _MarketingReferralDbContext);
+            DataTable dt = DALFunctions.GetDataTableFromStoredProc("SP_MKT_Transaction_Invoice", paramList, _MarketingReferralDbContext);
             return dt;
         }
         public object GetBillDetails(MarketingReferralDbContext marketingReferralDbContext, int billTransactionId)
@@ -34,7 +34,7 @@ namespace DanpheEMR.Services.MarketingReferral
             List<SqlParameter> paramList = new List<SqlParameter>() {
                         new SqlParameter("@BillingTransactionId", billTransactionId)
                     };
-            DataTable dt = DALFunctions.GetDataTableFromStoredProc("[SP_MKT_Transaction_Bill_Details]", paramList, marketingReferralDbContext);
+            DataTable dt = DALFunctions.GetDataTableFromStoredProc("SP_MKT_Transaction_Bill_Details", paramList, marketingReferralDbContext);
             return dt;
         }
         public object GetMarketingreferralDetailReport(MarketingReferralDbContext marketingReferralDbContext, DateTime fromDate, DateTime toDate, int? referringPartyId)
@@ -45,7 +45,7 @@ namespace DanpheEMR.Services.MarketingReferral
                         new SqlParameter("@ToDate", toDate),
                         new SqlParameter("@ReferringPartyId", referringPartyId)
                     };
-            DataTable dt = DALFunctions.GetDataTableFromStoredProc("[SP_Marketing_Referral_Detail_Report]", paramList, marketingReferralDbContext);
+            DataTable dt = DALFunctions.GetDataTableFromStoredProc("SP_Marketing_Referral_Detail_Report", paramList, marketingReferralDbContext);
             return dt;
         }
         public object GetReferralScheme(MarketingReferralDbContext marketingReferralDbContext)

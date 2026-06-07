@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace DanpheEMR.ServerModel
         public string OxygenDeliveryMethod { get; set; }
         public int? PainScale { get; set; }
         public string BodyPart { get; set; }
+        [ForeignKey("PatientVisitId")]
         public VisitModel Visit { get; set; }
         public string Advice { get; set; }
         public string FreeNotes { get; set; }

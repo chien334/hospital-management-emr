@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -113,19 +113,27 @@ namespace DanpheEMR.Controllers
                                        join bedFeature in _admissionDbContext.BedFeatures on bedMap.BedFeatureId equals bedFeature.BedFeatureId
                                        group new { bedFeature } by new
                                        {
-                                           i
+                                           WardName = i.Ward.WardName,
+                                           WardId = i.Ward.WardId,
+                                           BedCode = i.BedCode,
+                                           BedId = i.BedId,
+                                           BedNumber = i.BedNumber,
+                                           IsActive = i.IsActive,
+                                           IsOccupied = i.IsOccupied,
+                                           CreatedOn = i.CreatedOn,
+                                           CreatedBy = i.CreatedBy
                                        } into g
                                        select new BedDisplayModel
                                        {
-                                           WardName = g.Key.i.Ward.WardName,
-                                           WardId = g.Key.i.Ward.WardId,
-                                           BedCode = g.Key.i.BedCode,
-                                           BedId = g.Key.i.BedId,
-                                           BedNumber = g.Key.i.BedNumber,
-                                           IsActive = g.Key.i.IsActive,
-                                           IsOccupied = g.Key.i.IsOccupied,
-                                           CreatedOn = g.Key.i.CreatedOn,
-                                           CreatedBy = g.Key.i.CreatedBy,
+                                           WardName = g.Key.WardName,
+                                           WardId = g.Key.WardId,
+                                           BedCode = g.Key.BedCode,
+                                           BedId = g.Key.BedId,
+                                           BedNumber = g.Key.BedNumber,
+                                           IsActive = g.Key.IsActive,
+                                           IsOccupied = g.Key.IsOccupied,
+                                           CreatedOn = g.Key.CreatedOn,
+                                           CreatedBy = g.Key.CreatedBy,
                                            BedFeature = g.Select(a =>
                                               new BedFeatureModel()
                                               {

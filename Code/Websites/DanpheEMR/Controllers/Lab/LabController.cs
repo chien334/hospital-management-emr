@@ -2683,7 +2683,7 @@ namespace DanpheEMR.Controllers
 
             //Removed to show all detail regardless of BillingStatus
             //&& (req.BillingStatus.ToLower() == "paid" || req.BillingStatus.ToLower() == "unpaid" || (req.BillingStatus == "provisional" && req.VisitType == "inpatient"))
-            var normalPatients = (from req in _labDbContext.Requisitions.Include("Patient")
+            var normalPatients = (from req in _labDbContext.Requisitions
                                   join pat in _labDbContext.Patients on req.PatientId equals pat.PatientId
                                   //show only paid and unpaid requisitions in the list.
                                   //show only IsActive=True and IsActive=NULL requests, Hide IsActive=False. -- sud: 15Sept'18
@@ -2694,16 +2694,28 @@ namespace DanpheEMR.Controllers
                                   && (req.RunNumberType.ToLower() == ENUM_LabRunNumType.normal) // "normal")
                                   && (req.LabTypeName == selectedLab)
                                   && ((req.CreatedOn).Date >= FromDate && (req.CreatedOn).Date <= ToDate))
-                                  group req by new { req.Patient, req.VisitType, req.WardName, req.HasInsurance } into p
+                                  group req by new { 
+                                      pat.PatientId, 
+                                      pat.FirstName, 
+                                      pat.MiddleName, 
+                                      pat.LastName, 
+                                      pat.PatientCode, 
+                                      pat.DateOfBirth, 
+                                      pat.Gender, 
+                                      pat.PhoneNumber, 
+                                      req.VisitType, 
+                                      req.WardName, 
+                                      req.HasInsurance 
+                                  } into p
                                   select new
                                   {
                                       RequisitionId = (long)0,
-                                      PatientId = p.Key.Patient.PatientId,
-                                      PatientName = p.Key.Patient.FirstName + " " + (string.IsNullOrEmpty(p.Key.Patient.MiddleName) ? "" : p.Key.Patient.MiddleName + " ") + p.Key.Patient.LastName,
-                                      PatientCode = p.Key.Patient.PatientCode,
-                                      DateOfBirth = p.Key.Patient.DateOfBirth,
-                                      Gender = p.Key.Patient.Gender,
-                                      PhoneNumber = p.Key.Patient.PhoneNumber,
+                                      PatientId = p.Key.PatientId,
+                                      PatientName = p.Key.FirstName + " " + (string.IsNullOrEmpty(p.Key.MiddleName) ? "" : p.Key.MiddleName + " ") + p.Key.LastName,
+                                      PatientCode = p.Key.PatientCode,
+                                      DateOfBirth = p.Key.DateOfBirth,
+                                      Gender = p.Key.Gender,
+                                      PhoneNumber = p.Key.PhoneNumber,
                                       LastestRequisitionDate = p.Max(r => r.OrderDateTime),
                                       VisitType = p.Key.VisitType,
                                       RunNumberType = "normal",
@@ -3346,7 +3358,7 @@ namespace DanpheEMR.Controllers
 
             //Removed to show all detail regardless of BillingStatus
             //&& (req.BillingStatus.ToLower() == "paid" || req.BillingStatus.ToLower() == "unpaid" || (req.BillingStatus == "provisional" && req.VisitType == "inpatient"))
-            var normalPatients = (from req in _labDbContext.Requisitions.Include("Patient")
+            var normalPatients = (from req in _labDbContext.Requisitions
                                   join pat in _labDbContext.Patients on req.PatientId equals pat.PatientId
                                   //show only paid and unpaid requisitions in the list.
                                   //show only IsActive=True and IsActive=NULL requests, Hide IsActive=False. -- sud: 15Sept'18
@@ -3356,16 +3368,27 @@ namespace DanpheEMR.Controllers
                                   && (req.BillingStatus.ToLower() != ENUM_BillingStatus.cancel) // "cancel")
                                   && (req.BillingStatus.ToLower() != ENUM_BillingStatus.returned) //"returned") 
                                   && req.RunNumberType.ToLower() == ENUM_LabRunNumType.normal) // "normal")
-                                  group req by new { req.Patient, req.VisitType, req.WardName } into p
+                                  group req by new { 
+                                      pat.PatientId, 
+                                      pat.FirstName, 
+                                      pat.MiddleName, 
+                                      pat.LastName, 
+                                      pat.PatientCode, 
+                                      pat.DateOfBirth, 
+                                      pat.Gender, 
+                                      pat.PhoneNumber, 
+                                      req.VisitType, 
+                                      req.WardName 
+                                  } into p
                                   select new Requisition
                                   {
                                       RequisitionId = (long)0,
-                                      PatientId = p.Key.Patient.PatientId,
-                                      PatientName = p.Key.Patient.FirstName + " " + (string.IsNullOrEmpty(p.Key.Patient.MiddleName) ? "" : p.Key.Patient.MiddleName + " ") + p.Key.Patient.LastName,
-                                      PatientCode = p.Key.Patient.PatientCode,
-                                      DateOfBirth = p.Key.Patient.DateOfBirth,
-                                      Gender = p.Key.Patient.Gender,
-                                      PhoneNumber = p.Key.Patient.PhoneNumber,
+                                      PatientId = p.Key.PatientId,
+                                      PatientName = p.Key.FirstName + " " + (string.IsNullOrEmpty(p.Key.MiddleName) ? "" : p.Key.MiddleName + " ") + p.Key.LastName,
+                                      PatientCode = p.Key.PatientCode,
+                                      DateOfBirth = p.Key.DateOfBirth,
+                                      Gender = p.Key.Gender,
+                                      PhoneNumber = p.Key.PhoneNumber,
                                       LastestRequisitionDate = p.Max(r => r.OrderDateTime),
                                       VisitType = p.Key.VisitType,
                                       RunNumberType = "normal",

@@ -1,4 +1,4 @@
-﻿using DanpheEMR.AccTransfer;
+using DanpheEMR.AccTransfer;
 using DanpheEMR.CommonTypes;
 using DanpheEMR.Controllers.Billing.Shared;
 using DanpheEMR.Core.Configuration;
@@ -2000,7 +2000,7 @@ namespace DanpheEMR.Controllers
                 CostCenterCode = cc.CostCenterCode,
                 CostCenterName = cc.CostCenterName,
                 ParentCostCenterId = cc.ParentCostCenterId,
-                ParentCostCenterName = (_accountingDbContext.CostCenters.Where(parent => parent.CostCenterId == cc.ParentCostCenterId).Select(parent => parent.CostCenterName)),
+                ParentCostCenterName = (_accountingDbContext.CostCenters.Where(parent => parent.CostCenterId == cc.ParentCostCenterId).Select(parent => parent.CostCenterName).FirstOrDefault()),
                 BusinessCenterName = cc.BusinessCenterName,
                 Description = cc.Description,
                 IsDefault = cc.IsDefault,

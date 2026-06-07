@@ -1,72 +1,76 @@
+DROP FUNCTION IF EXISTS sp_mkt_transaction_invoice(date, date);
+DROP FUNCTION IF EXISTS sp_mkt_transaction_invoice(timestamp without time zone, timestamp without time zone);
+
 CREATE OR REPLACE FUNCTION sp_mkt_transaction_invoice(
-    p_fromdate DATE,
-    p_todate DATE
+    p_fromdate timestamp,
+    p_todate timestamp
 )
-RETURNS TABLE (
-    "BillingTransactionId" INT,
-    "CreatedOn" TIMESTAMP,
-    "InvoiceNo" VARCHAR,
-    "PatientCode" VARCHAR,
-    "PatientVisitId" INT,
-    "PatientId" INT,
-    "ShortName" VARCHAR,
-    "FiscalYearId" INT,
-    "InvoiceNoFormatted" VARCHAR,
-    "Age" VARCHAR,
-    "Gender" VARCHAR,
-    "TotalAmount" DECIMAL,
-    "ReturnCashAmount" DECIMAL,
-    "NetAmount" DECIMAL,
-    "ReferralCount" INT
-) AS $$
+RETURNS SETOF refcursor AS $$
+DECLARE
+    ref refcursor := 'ref';
 BEGIN
-    /* 
-    exec "sp_mkt_transaction_invoice" '2023-04-07','2023-08-08'
-    change history
-    s.no.    updatedby/date                        remarks
-    1        bibek/2023-08-08                   created initial script 
-    */
-    
-    RETURN QUERY SELECT 
-    		 bt.billingtransactionid
-    		,bt.createdon
-    		,bt.invoiceno
-    		,pat.patientcode
-    		,pv.patientvisitid
-    		,pat.patientid
-    		,pat.shortname
-    		,bt.fiscalyearid
-    		, concat( fy.fiscalyearformatted, '-', bt.invoicecode,bt.invoiceno) AS "InvoiceNoFormatted"
-    		,concat (pat.age,'/',pat.gender) AS "Age"
-    		,pat.gender
-    		,bt.totalamount
-    		,coalesce(bt.rettotalamount,0) AS "ReturnCashAmount"
-    		,coalesce(bt.totalamount,0) - coalesce(bt.rettotalamount,0) AS "NetAmount"
-    		,count(rc.billingtransactionid) AS "ReferralCount"
-    	    from (select txn.billingtransactionid, txn.createdon, invoiceno, txn.totalamount, ret.rettotalamount, txn.patientid, txn.patientvisitid, txn.fiscalyearid, txn.invoicecode from (
-    				select * from bil_txn_billingtransaction where (createdon)::date between p_fromdate and p_todate) txn
-    				left join (select billingtransactionid, sum(coalesce(totalamount,0)) as "rettotalamount" from bil_txn_invoicereturn
-    				group by billingtransactionid) ret on txn.billingtransactionid = ret.billingtransactionid) bt
-        left join (select * from mkt_txn_referralcommission where isactive = 1) rc on rc.billingtransactionid = bt.billingtransactionid
-    	inner join pat_patient pat on bt.patientid = pat.patientid
-    	inner join pat_patientvisits pv on bt.patientvisitid = pv.patientvisitid
-    	inner join bil_cfg_fiscalyears fy on bt.fiscalyearid= fy.fiscalyearid
-    	
-    	group by bt.billingtransactionid
-    		,bt.createdon
-    		,bt.invoiceno
-    		,pat.patientcode
-    		,pv.patientvisitid
-    		,pat.patientid
-    		,pat.shortname
-    		,pat.age
-    		,pat.gender,
-    		bt.fiscalyearid
-    		,bt.totalamount
-    		,bt.rettotalamount,
-    		bt.invoicecode,
-    		fy.fiscalyearformatted,
-    		invoicenoformatted
-    	order by bt.createdon desc;
+    OPEN ref FOR
+    SELECT 
+         bt."BillingTransactionId"
+        ,bt."CreatedOn"
+        ,bt."InvoiceNo"
+        ,pat."PatientCode"
+        ,pv."PatientVisitId"
+        ,pat."PatientId"
+        ,pat."ShortName"
+        ,bt."FiscalYearId"
+        ,CONCAT(fy."FiscalYearFormatted", '-', bt."InvoiceCode", bt."InvoiceNo") AS "InvoiceNoFormatted"
+        ,CONCAT(pat."Age", '/', pat."Gender") AS "Age"
+        ,pat."Gender"
+        ,bt."TotalAmount"
+        ,COALESCE(bt."RetTotalAmount", 0) AS "ReturnCashAmount"
+        ,COALESCE(bt."TotalAmount", 0) - COALESCE(bt."RetTotalAmount", 0) AS "NetAmount"
+        ,COUNT(rc."BillingTransactionId")::integer AS "ReferralCount"
+    FROM (
+        SELECT 
+            txn."BillingTransactionId", 
+            txn."CreatedOn", 
+            txn."InvoiceNo", 
+            txn."TotalAmount", 
+            ret."RetTotalAmount", 
+            txn."PatientId", 
+            txn."PatientVisitId", 
+            txn."FiscalYearId", 
+            txn."InvoiceCode" 
+        FROM (
+            SELECT * FROM "BIL_TXN_BillingTransaction" 
+            WHERE "CreatedOn"::date BETWEEN p_fromdate::date AND p_todate::date
+        ) txn
+        LEFT JOIN (
+            SELECT "BillingTransactionId", SUM(COALESCE("TotalAmount", 0)) AS "RetTotalAmount" 
+            FROM "BIL_TXN_InvoiceReturn"
+            GROUP BY "BillingTransactionId"
+        ) ret ON txn."BillingTransactionId" = ret."BillingTransactionId"
+    ) bt
+    LEFT JOIN (
+        SELECT * FROM "MKT_TXN_ReferralCommission" 
+        WHERE "IsActive" = true
+    ) rc ON rc."BillingTransactionId" = bt."BillingTransactionId"
+    INNER JOIN "PAT_Patient" pat ON bt."PatientId" = pat."PatientId"
+    INNER JOIN "PAT_PatientVisits" pv ON bt."PatientVisitId" = pv."PatientVisitId"
+    INNER JOIN "BIL_CFG_FiscalYears" fy ON bt."FiscalYearId" = fy."FiscalYearId"
+    GROUP BY 
+         bt."BillingTransactionId"
+        ,bt."CreatedOn"
+        ,bt."InvoiceNo"
+        ,pat."PatientCode"
+        ,pv."PatientVisitId"
+        ,pat."PatientId"
+        ,pat."ShortName"
+        ,pat."Age"
+        ,pat."Gender"
+        ,bt."FiscalYearId"
+        ,bt."TotalAmount"
+        ,bt."RetTotalAmount"
+        ,bt."InvoiceCode"
+        ,fy."FiscalYearFormatted"
+    ORDER BY bt."CreatedOn" DESC;
+
+    RETURN NEXT ref;
 END;
 $$ LANGUAGE plpgsql;

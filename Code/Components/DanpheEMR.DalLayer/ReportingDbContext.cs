@@ -1,4 +1,4 @@
-﻿
+
 using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.ReportingModels;
 using DanpheEMR.ServerModel.SystemAdminModels;
@@ -1316,30 +1316,56 @@ namespace DanpheEMR.DalLayer
         //IRD Invoice Details 
         public List<InvoiceDetailsModel> InvoiceDetails(DateTime FromDate, DateTime ToDate)
         {
-            var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("exec SP_IRD_InvoiceDetails @FromDate,@ToDate",
-                new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)).ToList();
-            return Data.ToList<InvoiceDetailsModel>();
+            bool isPostgres = Database.ProviderName != null && Database.ProviderName.Contains("Npgsql");
+            if (isPostgres)
+            {
+                var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("SELECT * FROM sp_ird_invoicedetails(@FromDate,@ToDate)",
+                    new Npgsql.NpgsqlParameter("@FromDate", FromDate), new Npgsql.NpgsqlParameter("@ToDate", ToDate)).ToList();
+                return Data;
+            }
+            else
+            {
+                var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("exec SP_IRD_InvoiceDetails @FromDate,@ToDate",
+                    new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)).ToList();
+                return Data.ToList<InvoiceDetailsModel>();
+            }
         }
 
         //All IRD Invoice Details 
         public List<InvoiceDetailsModel> GetAllInvoiceDetails(DateTime fromDate, DateTime toDate)
         {
-            //var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate",
-            //    new SqlParameter("@FromDate", fromDate), new SqlParameter("@ToDate", toDate)).ToList();
-            //return Data.ToList<InvoiceDetailsModel>();
-
-            var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate",
-                new SqlParameter("@FromDate", fromDate), new SqlParameter("@ToDate", toDate)).ToList();
-            return Data.ToList<InvoiceDetailsModel>();
+            bool isPostgres = Database.ProviderName != null && Database.ProviderName.Contains("Npgsql");
+            if (isPostgres)
+            {
+                var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("SELECT * FROM sp_all_ird_invoicedetails(@FromDate,@ToDate)",
+                    new Npgsql.NpgsqlParameter("@FromDate", fromDate), new Npgsql.NpgsqlParameter("@ToDate", toDate)).ToList();
+                return Data;
+            }
+            else
+            {
+                var Data = Database.SqlQueryRaw<InvoiceDetailsModel>("exec SP_All_IRD_InvoiceDetails @FromDate,@ToDate",
+                    new SqlParameter("@FromDate", fromDate), new SqlParameter("@ToDate", toDate)).ToList();
+                return Data.ToList<InvoiceDetailsModel>();
+            }
         }
 
 
         // IRD Pharmacy Invoice Details
         public List<PhrmInvoiceDetails> PhrmInvoiceDetails(DateTime FromDate, DateTime ToDate)
         {
-            var Data = Database.SqlQueryRaw<PhrmInvoiceDetails>("exec SP_IRD_PHRM_InvoiceDetails @FromDate,@ToDate",
-                new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)).ToList();
-            return Data.ToList<PhrmInvoiceDetails>();
+            bool isPostgres = Database.ProviderName != null && Database.ProviderName.Contains("Npgsql");
+            if (isPostgres)
+            {
+                var Data = Database.SqlQueryRaw<PhrmInvoiceDetails>("SELECT * FROM sp_ird_phrm_invoicedetails(@FromDate,@ToDate)",
+                    new Npgsql.NpgsqlParameter("@FromDate", FromDate), new Npgsql.NpgsqlParameter("@ToDate", ToDate)).ToList();
+                return Data;
+            }
+            else
+            {
+                var Data = Database.SqlQueryRaw<PhrmInvoiceDetails>("exec SP_IRD_PHRM_InvoiceDetails @FromDate,@ToDate",
+                    new SqlParameter("@FromDate", FromDate), new SqlParameter("@ToDate", ToDate)).ToList();
+                return Data.ToList<PhrmInvoiceDetails>();
+            }
 
         }
 
@@ -1347,12 +1373,25 @@ namespace DanpheEMR.DalLayer
         //IRD - SQL Audit details
         public List<SqlAuditModel> SqlAuditDetails(DateTime FromDate, DateTime ToDate, string LogType)
         {
-            var data = Database.SqlQueryRaw<SqlAuditModel>("exec SP_Danphe_SQLAudit @FromDate,@ToDate,@LogType",
-                 new SqlParameter("@FromDate", FromDate),
-                 new SqlParameter("@ToDate", ToDate),
-                 new SqlParameter("@LogType", LogType)
-                 ).ToList();
-            return data.ToList<SqlAuditModel>();
+            bool isPostgres = Database.ProviderName != null && Database.ProviderName.Contains("Npgsql");
+            if (isPostgres)
+            {
+                var data = Database.SqlQueryRaw<SqlAuditModel>("SELECT * FROM sp_danphe_sqlaudit(@FromDate,@ToDate,@LogType)",
+                     new Npgsql.NpgsqlParameter("@FromDate", FromDate),
+                     new Npgsql.NpgsqlParameter("@ToDate", ToDate),
+                     new Npgsql.NpgsqlParameter("@LogType", LogType)
+                     ).ToList();
+                return data;
+            }
+            else
+            {
+                var data = Database.SqlQueryRaw<SqlAuditModel>("exec SP_Danphe_SQLAudit @FromDate,@ToDate,@LogType",
+                     new SqlParameter("@FromDate", FromDate),
+                     new SqlParameter("@ToDate", ToDate),
+                     new SqlParameter("@LogType", LogType)
+                     ).ToList();
+                return data.ToList<SqlAuditModel>();
+            }
         }
         #endregion
         #region Patient Discharge bill breakup report        
@@ -1369,9 +1408,17 @@ namespace DanpheEMR.DalLayer
         #region AuditTrailList Details        
         public List<AuditTrailModel> AuditTrailList()
         {
-            var data = Database.SqlQueryRaw<AuditTrailModel>("exec SP_Danphe_Audit_List ").ToList();
-
-            return data.ToList<AuditTrailModel>();
+            bool isPostgres = Database.ProviderName != null && Database.ProviderName.Contains("Npgsql");
+            if (isPostgres)
+            {
+                var data = Database.SqlQueryRaw<AuditTrailModel>("SELECT * FROM sp_danphe_audit_list()").ToList();
+                return data;
+            }
+            else
+            {
+                var data = Database.SqlQueryRaw<AuditTrailModel>("exec SP_Danphe_Audit_List ").ToList();
+                return data.ToList<AuditTrailModel>();
+            }
         }
         #endregion
         #region AuditTrail Details        

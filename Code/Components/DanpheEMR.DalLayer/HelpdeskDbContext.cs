@@ -45,7 +45,7 @@ namespace DanpheEMR.DalLayer
         public List<EmployeeInfoModel> GetEmployeeInfo()
 
         {
-            var Data = Database.SqlQueryRaw<EmployeeInfoModel>("SP_Report_HDSK_EmployeeInfo ");
+            var Data = Database.SqlQueryRaw<EmployeeInfoModel>("SELECT * FROM SP_Report_HDSK_EmployeeInfo()");
             return Data.ToList<EmployeeInfoModel>();
         }
         //below two storedprocs needs to be changed, they're not updated after ADT module was updated.--sud:16Aug'17
@@ -114,7 +114,7 @@ namespace DanpheEMR.DalLayer
         }
         public List<WardInformationModel> GetWardInformation()
         {
-            var Data = Database.SqlQueryRaw<WardInformationModel>("SP_ADT_GetBedOccupanciesOfAllWards");
+            var Data = Database.SqlQueryRaw<WardInformationModel>("SELECT * FROM SP_ADT_GetBedOccupanciesOfAllWards()");
             return Data.ToList<WardInformationModel>();
         }
 

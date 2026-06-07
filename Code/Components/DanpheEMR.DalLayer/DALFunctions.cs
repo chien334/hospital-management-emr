@@ -27,7 +27,7 @@ namespace DanpheEMR.DalLayer
             if (isPostgres)
             {
                 cmd.CommandType = CommandType.Text;
-                string funcName = storedProcName.ToLower();
+                string funcName = storedProcName.Replace("[", "").Replace("]", "").ToLower();
 
                 var paramNames = new List<string>();
                 if (ipParams != null && ipParams.Count > 0)

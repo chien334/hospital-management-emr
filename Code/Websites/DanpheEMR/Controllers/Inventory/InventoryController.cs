@@ -629,18 +629,23 @@ namespace DanpheEMR.Controllers
         }
         private object GetReturnVendorItemsDetail(int storeId)
         {
-            var returnVendorItemList = (from vendorItem in _inventoryDbContext.ReturnToVendorItems
-                                        let StoreId = _inventoryDbContext.ReturnToVendor.FirstOrDefault(a => a.ReturnToVendorId == vendorItem.ReturnToVendorId).StoreId
-                                        where StoreId == storeId
-                                        group vendorItem by vendorItem.CreatedOn into vi
-                                        join vendor in _inventoryDbContext.Vendors on vi.FirstOrDefault().VendorId equals vendor.VendorId
-                                        orderby vi.FirstOrDefault().ReturnToVendorItemId descending
+            var vendorItems = (from vi in _inventoryDbContext.ReturnToVendorItems
+                               join rtv in _inventoryDbContext.ReturnToVendor on vi.ReturnToVendorId equals rtv.ReturnToVendorId
+                               where rtv.StoreId == storeId
+                               select vi).ToList();
+
+            var vendors = _inventoryDbContext.Vendors.ToList();
+
+            var returnVendorItemList = (from vi in vendorItems
+                                        group vi by vi.CreatedOn into g
+                                        join vendor in vendors on g.FirstOrDefault().VendorId equals vendor.VendorId
+                                        orderby g.FirstOrDefault().ReturnToVendorItemId descending
                                         select new
                                         {
-                                            CreatedOn = vi.Key,
+                                            CreatedOn = g.Key,
                                             VendorId = vendor.VendorId,
                                             VendorName = vendor.VendorName,
-                                            CreditNoteNo = vi.FirstOrDefault().CreditNoteNo
+                                            CreditNoteNo = g.FirstOrDefault().CreditNoteNo
                                         }).ToList();
 
             return returnVendorItemList;

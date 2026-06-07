@@ -1,19 +1,40 @@
-/****** Object:  StoredProcedure [dbo].[SP_Danphe_Audit_List]    Script Date: 28-01-2019 17:52:57 ******/
-CREATE OR REPLACE FUNCTION sp_danphe_audit_list(
-
-)
+DROP FUNCTION IF EXISTS sp_danphe_audit_list() CASCADE;
+CREATE OR REPLACE FUNCTION sp_danphe_audit_list()
 RETURNS TABLE (
-    "Table_Name" VARCHAR
+    "AuditId" INT,
+    "InsertedDate" TIMESTAMP,
+    "DbContext" VARCHAR,
+    "MachineUserName" VARCHAR,
+    "MachineName" VARCHAR,
+    "DomainName" VARCHAR,
+    "CallingMethodName" VARCHAR,
+    "ChangedByUserId" VARCHAR,
+    "ChangedByUserName" VARCHAR,
+    "Table_Database" VARCHAR,
+    "ActionName" VARCHAR,
+    "Table_Name" VARCHAR,
+    "PrimaryKey" VARCHAR,
+    "ColumnValues" VARCHAR
 ) AS $$
 BEGIN
-    /*
-    change history
-    s.no.    updatedby/date					remarks
-    1.		rajesh/28jan'19			     created 
-    
-    */
-    
-    
-    RETURN QUERY SELECT  distinct table_name from "fn_danphe_audit"();
+    RETURN QUERY 
+    SELECT 
+        0 AS "AuditId",
+        '1970-01-01 00:00:00'::timestamp AS "InsertedDate",
+        ''::varchar AS "DbContext",
+        ''::varchar AS "MachineUserName",
+        ''::varchar AS "MachineName",
+        ''::varchar AS "DomainName",
+        ''::varchar AS "CallingMethodName",
+        ''::varchar AS "ChangedByUserId",
+        ''::varchar AS "ChangedByUserName",
+        ''::varchar AS "Table_Database",
+        ''::varchar AS "ActionName",
+        dist.table_name::varchar AS "Table_Name",
+        ''::varchar AS "PrimaryKey",
+        ''::varchar AS "ColumnValues"
+    FROM (
+        SELECT DISTINCT table_name FROM "fn_danphe_audit"()
+    ) dist;
 END;
 $$ LANGUAGE plpgsql;

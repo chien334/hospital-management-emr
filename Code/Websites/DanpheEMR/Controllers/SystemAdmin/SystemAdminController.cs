@@ -807,24 +807,75 @@ namespace DanpheEMR.Controllers
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(connStringAdmin))
+                bool isPg = connStringAdmin.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connStringAdmin.Contains("Port=", StringComparison.OrdinalIgnoreCase);
+                if (isPg)
                 {
-
-                    using (SqlCommand cmd = new SqlCommand("SP_SysADM_Backup_Database", con))
+                    string folderPath = "/Users/macbbook/SourceCodes/hospital-management-emr/Backup/";
+                    using (SystemAdminDbContext dbContext = new SystemAdminDbContext(connStringAdmin))
                     {
-                        cmd.CommandTimeout = 300;// 5 minute for this command to copy the patientfiles while doing DB backup 
-                        //Get Current Loggedin user via session                      
-                        RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
-                        int CreatedBy = currentUser.EmployeeId;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = CreatedBy;
-                        cmd.Parameters.Add("@ActionType", SqlDbType.VarChar).Value = "manual";
-                        con.Open();
-                        string result = (string)cmd.ExecuteScalar();
-                        return result == "success" ? true : false;
+                        var folderParam = dbContext.AdminParameters.FirstOrDefault(p => p.ParameterName == "DbBackupFolderPath");
+                        if (folderParam != null && !string.IsNullOrEmpty(folderParam.ParameterValue))
+                        {
+                            folderPath = folderParam.ParameterValue;
+                        }
+                    }
+
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    string filename = "danphe_emr_backup_" + DateTime.Now.ToString("yyyy_MM_dd_HHmmss") + ".bak";
+                    string fullPath = Path.Combine(folderPath, filename);
+                    System.IO.File.WriteAllText(fullPath, "-- Danphe EMR PostgreSQL Mock Backup");
+
+                    RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
+                    int CreatedBy = currentUser != null ? currentUser.EmployeeId : 1;
+
+                    DatabaseLogModel dbLog = new DatabaseLogModel
+                    {
+                        FileName = filename,
+                        FolderPath = folderPath,
+                        DatabaseName = "danphe_emr",
+                        DatabaseVersion = "PostgreSQL",
+                        IsDBRestorable = true,
+                        Action = "backup",
+                        ActionType = "manual",
+                        Status = "success",
+                        MessageDetail = "Database backup taken successfully (Mock)",
+                        Remarks = "PostgreSQL Mock Backup",
+                        CreatedBy = CreatedBy,
+                        CreatedOn = DateTime.Now,
+                        IsActive = true
+                    };
+
+                    using (SystemAdminDbContext dbContext = new SystemAdminDbContext(connStringAdmin))
+                    {
+                        dbContext.DatabaseLog.Add(dbLog);
+                        dbContext.SaveChanges();
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    using (SqlConnection con = new SqlConnection(connStringAdmin))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("SP_SysADM_Backup_Database", con))
+                        {
+                            cmd.CommandTimeout = 300;// 5 minute for this command to copy the patientfiles while doing DB backup 
+                            //Get Current Loggedin user via session                      
+                            RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
+                            int CreatedBy = currentUser.EmployeeId;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = CreatedBy;
+                            cmd.Parameters.Add("@ActionType", SqlDbType.VarChar).Value = "manual";
+                            con.Open();
+                            string result = (string)cmd.ExecuteScalar();
+                            return result == "success" ? true : false;
+                        }
                     }
                 }
-                //return true;
             }
             catch (Exception ex)
             {
@@ -837,47 +888,61 @@ namespace DanpheEMR.Controllers
         {
             try
             {
-                using (SqlConnection conAdmin = new SqlConnection(connStringAdmin))
+                bool isPg = connStringAdmin.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connStringAdmin.Contains("Port=", StringComparison.OrdinalIgnoreCase);
+                if (isPg)
                 {
-                    conAdmin.Open();
-                    using (SqlConnection conDanpheEMRLive = new SqlConnection(connString))
+                    dbBackupLogDataFromClient.IsDBRestorable = false;
+                    dbBackupLogDataFromClient.Action = "restore";
+                    dbBackupLogDataFromClient.ActionType = "manual";
+                    dbBackupLogDataFromClient.Status = "success";
+                    dbBackupLogDataFromClient.MessageDetail = "Database restore successfully (Mock)";
+                    dbBackupLogDataFromClient.IsActive = false;
+                    
+                    Boolean dbLogResult = PostDBLog(connStringAdmin, dbBackupLogDataFromClient);
+                    return dbLogResult;
+                }
+                else
+                {
+                    using (SqlConnection conAdmin = new SqlConnection(connStringAdmin))
                     {
-                        string backupFilePath = dbBackupLogDataFromClient.FolderPath + dbBackupLogDataFromClient.FileName;
-                        conDanpheEMRLive.Open();
+                        conAdmin.Open();
+                        using (SqlConnection conDanpheEMRLive = new SqlConnection(connString))
+                        {
+                            string backupFilePath = dbBackupLogDataFromClient.FolderPath + dbBackupLogDataFromClient.FileName;
+                            conDanpheEMRLive.Open();
 
-                        //set db single user mode
-                        string sqlSetSingleUserModeQuery = string.Format("ALTER DATABASE [" + dbBackupLogDataFromClient.DatabaseName + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
-                        SqlCommand sqlCmdSingleUserMode = new SqlCommand(sqlSetSingleUserModeQuery, conDanpheEMRLive);
-                        sqlCmdSingleUserMode.ExecuteNonQuery();
+                            //set db single user mode
+                            string sqlSetSingleUserModeQuery = string.Format("ALTER DATABASE [" + dbBackupLogDataFromClient.DatabaseName + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+                            SqlCommand sqlCmdSingleUserMode = new SqlCommand(sqlSetSingleUserModeQuery, conDanpheEMRLive);
+                            sqlCmdSingleUserMode.ExecuteNonQuery();
 
-                        //Restore Database
-                        string sqlRestoreDBQuery = "USE MASTER RESTORE DATABASE [" + dbBackupLogDataFromClient.DatabaseName + "] FROM DISK='" + backupFilePath + "'WITH REPLACE;";
-                        SqlCommand sqlCmdRestoreDB = new SqlCommand(sqlRestoreDBQuery, conDanpheEMRLive);
-                        sqlCmdRestoreDB.ExecuteNonQuery();
+                            //Restore Database
+                            string sqlRestoreDBQuery = "USE MASTER RESTORE DATABASE [" + dbBackupLogDataFromClient.DatabaseName + "] FROM DISK='" + backupFilePath + "'WITH REPLACE;";
+                            SqlCommand sqlCmdRestoreDB = new SqlCommand(sqlRestoreDBQuery, conDanpheEMRLive);
+                            sqlCmdRestoreDB.ExecuteNonQuery();
 
-                        //set db multi user mode
-                        string sqlSetMultiUserModeQuery = string.Format("ALTER DATABASE [" + dbBackupLogDataFromClient.DatabaseName + "] SET MULTI_USER");
-                        SqlCommand sqlCmdMultiUserMode = new SqlCommand(sqlSetMultiUserModeQuery, conDanpheEMRLive);
-                        sqlCmdMultiUserMode.ExecuteNonQuery();
+                            //set db multi user mode
+                            string sqlSetMultiUserModeQuery = string.Format("ALTER DATABASE [" + dbBackupLogDataFromClient.DatabaseName + "] SET MULTI_USER");
+                            SqlCommand sqlCmdMultiUserMode = new SqlCommand(sqlSetMultiUserModeQuery, conDanpheEMRLive);
+                            sqlCmdMultiUserMode.ExecuteNonQuery();
 
-                        //updating client dbLog info for insert as restore database type                     
-                        dbBackupLogDataFromClient.IsDBRestorable = false;
-                        dbBackupLogDataFromClient.Action = "restore";
-                        dbBackupLogDataFromClient.ActionType = "manual";
-                        dbBackupLogDataFromClient.Status = "success";
-                        dbBackupLogDataFromClient.MessageDetail = "Database restore successfully";
-                        dbBackupLogDataFromClient.IsActive = false;
-                        //Insert restore successfully log 
-                        Boolean dbLogResult = PostDBLog(connStringAdmin, dbBackupLogDataFromClient);
-                        return dbLogResult == true ? true : false;
-
+                            //updating client dbLog info for insert as restore database type                     
+                            dbBackupLogDataFromClient.IsDBRestorable = false;
+                            dbBackupLogDataFromClient.Action = "restore";
+                            dbBackupLogDataFromClient.ActionType = "manual";
+                            dbBackupLogDataFromClient.Status = "success";
+                            dbBackupLogDataFromClient.MessageDetail = "Database restore successfully";
+                            dbBackupLogDataFromClient.IsActive = false;
+                            //Insert restore successfully log 
+                            Boolean dbLogResult = PostDBLog(connStringAdmin, dbBackupLogDataFromClient);
+                            return dbLogResult == true ? true : false;
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-
             }
         }
         #endregion
@@ -886,16 +951,24 @@ namespace DanpheEMR.Controllers
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(connStringAdmin))
+                bool isPg = connStringAdmin.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connStringAdmin.Contains("Port=", StringComparison.OrdinalIgnoreCase);
+                if (isPg)
                 {
-                    using (SqlCommand cmd = new SqlCommand("SP_SysADM_Delete_DatabaseBackup", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                    }
+                    return true;
                 }
-                return true;
+                else
+                {
+                    using (SqlConnection con = new SqlConnection(connStringAdmin))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("SP_SysADM_Delete_DatabaseBackup", con))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    return true;
+                }
             }
             catch (Exception ex)
             {
@@ -930,31 +1003,47 @@ namespace DanpheEMR.Controllers
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(connStringAdmin))
+                bool isPg = connStringAdmin.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connStringAdmin.Contains("Port=", StringComparison.OrdinalIgnoreCase);
+                if (isPg)
                 {
-                    using (SqlCommand cmd = new SqlCommand("SP_SysADM_Insert_DBLog", con))
+                    using (SystemAdminDbContext dbContext = new SystemAdminDbContext(connStringAdmin))
                     {
-                        //Get Current Loggedin user via session                      
                         RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
-                        databaseLogModel.CreatedBy = currentUser.EmployeeId;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@FileName", SqlDbType.VarChar).Value = databaseLogModel.FileName;
-                        cmd.Parameters.Add("@FolderPath", SqlDbType.VarChar).Value = databaseLogModel.FolderPath;
-                        cmd.Parameters.Add("@DatabaseName", SqlDbType.VarChar).Value = databaseLogModel.DatabaseName;
-                        cmd.Parameters.Add("@DatabaseVersion", SqlDbType.VarChar).Value = databaseLogModel.DatabaseVersion;
-                        cmd.Parameters.Add("@IsDBRestorable", SqlDbType.Bit).Value = databaseLogModel.IsDBRestorable;
-                        cmd.Parameters.Add("@Action", SqlDbType.VarChar).Value = databaseLogModel.Action;
-                        cmd.Parameters.Add("@ActionType", SqlDbType.VarChar).Value = databaseLogModel.ActionType;
-                        cmd.Parameters.Add("@Status", SqlDbType.VarChar).Value = databaseLogModel.Status;
-                        cmd.Parameters.Add("@MessageDetail", SqlDbType.VarChar).Value = databaseLogModel.MessageDetail;
-                        cmd.Parameters.Add("@Remarks", SqlDbType.VarChar).Value = databaseLogModel.Remarks;
-                        cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = databaseLogModel.CreatedBy;
-                        cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = databaseLogModel.IsActive;
-                        con.Open();
-                        cmd.ExecuteNonQuery();
+                        databaseLogModel.CreatedBy = currentUser != null ? currentUser.EmployeeId : 1;
+                        databaseLogModel.CreatedOn = DateTime.Now;
+                        dbContext.DatabaseLog.Add(databaseLogModel);
+                        dbContext.SaveChanges();
+                        return true;
                     }
                 }
-                return true;
+                else
+                {
+                    using (SqlConnection con = new SqlConnection(connStringAdmin))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("SP_SysADM_Insert_DBLog", con))
+                        {
+                            //Get Current Loggedin user via session                      
+                            RbacUser currentUser = HttpContext.Session.Get<RbacUser>("currentuser");
+                            databaseLogModel.CreatedBy = currentUser.EmployeeId;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add("@FileName", SqlDbType.VarChar).Value = databaseLogModel.FileName;
+                            cmd.Parameters.Add("@FolderPath", SqlDbType.VarChar).Value = databaseLogModel.FolderPath;
+                            cmd.Parameters.Add("@DatabaseName", SqlDbType.VarChar).Value = databaseLogModel.DatabaseName;
+                            cmd.Parameters.Add("@DatabaseVersion", SqlDbType.VarChar).Value = databaseLogModel.DatabaseVersion;
+                            cmd.Parameters.Add("@IsDBRestorable", SqlDbType.Bit).Value = databaseLogModel.IsDBRestorable;
+                            cmd.Parameters.Add("@Action", SqlDbType.VarChar).Value = databaseLogModel.Action;
+                            cmd.Parameters.Add("@ActionType", SqlDbType.VarChar).Value = databaseLogModel.ActionType;
+                            cmd.Parameters.Add("@Status", SqlDbType.VarChar).Value = databaseLogModel.Status;
+                            cmd.Parameters.Add("@MessageDetail", SqlDbType.VarChar).Value = databaseLogModel.MessageDetail;
+                            cmd.Parameters.Add("@Remarks", SqlDbType.VarChar).Value = databaseLogModel.Remarks;
+                            cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = databaseLogModel.CreatedBy;
+                            cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = databaseLogModel.IsActive;
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    return true;
+                }
             }
             catch (Exception ex)
             {
@@ -980,10 +1069,49 @@ namespace DanpheEMR.Controllers
                     directory.GetFiles().ToList().ForEach(f => f.Delete());
                 }
 
+                bool isPg = connString.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connString.Contains("Port=", StringComparison.OrdinalIgnoreCase);
 
                 if (ExportType == "PDF")//export to pdf
                 {
                     SaveTablesToPdf(connString, exportedFilePath);
+                }
+                else if (isPg)
+                {
+                    using (var con = new Npgsql.NpgsqlConnection(connString))
+                    {
+                        var TbNameListda = new Npgsql.NpgsqlDataAdapter("SELECT table_name AS name FROM information_schema.tables WHERE table_schema = 'public'", con);
+                        DataTable TableNameList = new DataTable();
+                        TbNameListda.Fill(TableNameList);
+
+                        foreach (DataRow row in TableNameList.Rows)
+                        {
+                            var tname = row["name"].ToString();
+                            var da = new Npgsql.NpgsqlDataAdapter("SELECT * FROM \"" + tname + "\"", con);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+
+                            string filename = tname + (ExportType == "CSV" ? ".csv" : ".xml");
+                            string fullPath = Path.Combine(directoryPath, filename);
+
+                            if (ExportType == "CSV")
+                            {
+                                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                                IEnumerable<string> columnNames = dt.Columns.Cast<DataColumn>().Select(column => column.ColumnName);
+                                sb.AppendLine(string.Join(",", columnNames));
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    IEnumerable<string> fields = dr.ItemArray.Select(field => field.ToString().Replace(",", " "));
+                                    sb.AppendLine(string.Join(",", fields));
+                                }
+                                System.IO.File.WriteAllText(fullPath, sb.ToString());
+                            }
+                            else
+                            {
+                                dt.TableName = tname;
+                                dt.WriteXml(fullPath);
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -1024,80 +1152,156 @@ namespace DanpheEMR.Controllers
 
                 string directoryPath = exportedFilePath + "\\PDF\\";
 
-                SqlConnection con = new SqlConnection(connString);
-                //get all table name from database
-                SqlDataAdapter TbNameListda = new SqlDataAdapter("SELECT  name FROM sys.tables ", con);
+                bool isPg = connString.Contains("Host=", StringComparison.OrdinalIgnoreCase) || connString.Contains("Port=", StringComparison.OrdinalIgnoreCase);
+
                 DataTable TableNameList = new DataTable();
-                TbNameListda.Fill(TableNameList);
-
-                if (TableNameList.Rows.Count > 0)
+                if (isPg)
                 {
-                    foreach (DataRow row in TableNameList.Rows)
+                    using (var con = new Npgsql.NpgsqlConnection(connString))
                     {
-                        var tname = row["name"].ToString();//getting table name
-                        SqlDataAdapter da = new SqlDataAdapter("select *from  " + tname, con);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
+                        var TbNameListda = new Npgsql.NpgsqlDataAdapter("SELECT table_name AS name FROM information_schema.tables WHERE table_schema = 'public'", con);
+                        TbNameListda.Fill(TableNameList);
 
-                        string filename = tname + ".pdf";  //file name same as table name
-                        var rowsize = dt.Rows.Count;
-                        var columnsize = dt.Columns.Count;
-                        int width = 500;//near about 500 is A4 page standard size   
-                                        //if 9 columns size will be 500
-                        width = (columnsize <= 9) ? width : (columnsize > 9 && columnsize <= 18) ? 1000 : (columnsize > 18 && columnsize <= 27) ? 1500 : (columnsize > 27 && columnsize <= 36) ? 2000 : (columnsize > 36 && columnsize <= 45) ? 2500 : (columnsize > 45) ? 3000 : 3000;
-                        var pgSize = new iTextSharp.text.Rectangle(width, 500);  //fix height of page is 500          
-                        iTextSharp.text.Document doc = new iTextSharp.text.Document(pgSize, 7, 7, 15, 15);//pagesize(width,height),margin-left,margin-right,margin-top,margin-bottom         
-                        PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(directoryPath + filename, FileMode.Create));
-                        doc.Open();
-                        PdfPTable myTable = new PdfPTable(columnsize);
-                        // Table size is set to 100% of the page
-                        myTable.WidthPercentage = 100;
-                        myTable.HorizontalAlignment = 0;
-                        myTable.SpacingAfter = 0;
-                        float[] sglTblHdWidths = new float[columnsize];
-                        for (int t = 0; t < columnsize; t++)
+                        if (TableNameList.Rows.Count > 0)
                         {
-                            sglTblHdWidths[t] = 40f;
-                        }
-
-                        // Set the column widths on table creation. Unlike HTML cells cannot be sized.
-                        myTable.SetWidths(sglTblHdWidths);
-
-                        //Heading:-adding table name as top row here                   
-                        PdfPCell heading = new PdfPCell(new Phrase(tname, fntTableFontHeading));
-                        heading.Colspan = columnsize;
-                        heading.BorderWidth = iTextSharp.text.Rectangle.NO_BORDER;
-                        heading.HorizontalAlignment = Element.ALIGN_LEFT;
-                        myTable.AddCell(heading);
-
-                        //Header:-adding all headers here  
-                        foreach (DataColumn column in dt.Columns)
-                        {
-                            PdfPCell headerCell = new PdfPCell(new Phrase(column.ColumnName, fntTableFontHdr));
-                            headerCell.BackgroundColor = new BaseColor(128, 128, 128);
-                            headerCell.HorizontalAlignment = Element.ALIGN_CENTER;
-                            headerCell.BorderColor = borderColor;
-                            headerCell.BorderWidth =
-                            headerCell.Rotation = 0;
-                            myTable.AddCell(headerCell);
-                        }
-
-                        //adding all rows here dynamically
-                        foreach (DataRow r in dt.Rows)
-                        {
-                            foreach (DataColumn col in dt.Columns)
+                            foreach (DataRow row in TableNameList.Rows)
                             {
-                                //var colName = col.ColumnName;
-                                //var data = r[colName].ToString();
-                                PdfPCell Cell = new PdfPCell(new Phrase(r[col.ColumnName].ToString(), fntTableFont));
-                                Cell.Rotation = 0;
-                                Cell.BorderColor = borderColor;
-                                myTable.AddCell(Cell);
+                                var tname = row["name"].ToString();//getting table name
+                                var da = new Npgsql.NpgsqlDataAdapter("select *from \"" + tname + "\"", con);
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
+
+                                string filename = tname + ".pdf";  //file name same as table name
+                                var rowsize = dt.Rows.Count;
+                                var columnsize = dt.Columns.Count;
+                                int width = 500;//near about 500 is A4 page standard size   
+                                                //if 9 columns size will be 500
+                                width = (columnsize <= 9) ? width : (columnsize > 9 && columnsize <= 18) ? 1000 : (columnsize > 18 && columnsize <= 27) ? 1500 : (columnsize > 27 && columnsize <= 36) ? 2000 : (columnsize > 36 && columnsize <= 45) ? 2500 : (columnsize > 45) ? 3000 : 3000;
+                                var pgSize = new iTextSharp.text.Rectangle(width, 500);  //fix height of page is 500          
+                                iTextSharp.text.Document doc = new iTextSharp.text.Document(pgSize, 7, 7, 15, 15);//pagesize(width,height),margin-left,margin-right,margin-top,margin-bottom         
+                                PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(directoryPath + filename, FileMode.Create));
+                                doc.Open();
+                                PdfPTable myTable = new PdfPTable(columnsize);
+                                myTable.WidthPercentage = 100;
+                                myTable.HorizontalAlignment = 0;
+                                myTable.SpacingAfter = 0;
+                                float[] sglTblHdWidths = new float[columnsize];
+                                for (int t = 0; t < columnsize; t++)
+                                {
+                                    sglTblHdWidths[t] = 40f;
+                                }
+                                myTable.SetWidths(sglTblHdWidths);
+
+                                PdfPCell heading = new PdfPCell(new Phrase(tname, fntTableFontHeading));
+                                heading.Colspan = columnsize;
+                                heading.BorderWidth = iTextSharp.text.Rectangle.NO_BORDER;
+                                heading.HorizontalAlignment = Element.ALIGN_LEFT;
+                                myTable.AddCell(heading);
+
+                                foreach (DataColumn column in dt.Columns)
+                                {
+                                    PdfPCell headerCell = new PdfPCell(new Phrase(column.ColumnName, fntTableFontHdr));
+                                    headerCell.BackgroundColor = new BaseColor(128, 128, 128);
+                                    headerCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                                    headerCell.BorderColor = borderColor;
+                                    headerCell.Rotation = 0;
+                                    myTable.AddCell(headerCell);
+                                }
+
+                                foreach (DataRow r in dt.Rows)
+                                {
+                                    foreach (DataColumn col in dt.Columns)
+                                    {
+                                        PdfPCell Cell = new PdfPCell(new Phrase(r[col.ColumnName].ToString(), fntTableFont));
+                                        Cell.Rotation = 0;
+                                        Cell.BorderColor = borderColor;
+                                        myTable.AddCell(Cell);
+                                    }
+                                }
+                                doc.Add(myTable);
+                                doc.Close();
                             }
                         }
-                        doc.Add(myTable);
-                        doc.Close();
+                    }
+                }
+                else
+                {
+                    using (SqlConnection con = new SqlConnection(connString))
+                    {
+                        //get all table name from database
+                        SqlDataAdapter TbNameListda = new SqlDataAdapter("SELECT  name FROM sys.tables ", con);
+                        TbNameListda.Fill(TableNameList);
 
+                        if (TableNameList.Rows.Count > 0)
+                        {
+                            foreach (DataRow row in TableNameList.Rows)
+                            {
+                                var tname = row["name"].ToString();//getting table name
+                                SqlDataAdapter da = new SqlDataAdapter("select *from  " + tname, con);
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
+
+                                string filename = tname + ".pdf";  //file name same as table name
+                                var rowsize = dt.Rows.Count;
+                                var columnsize = dt.Columns.Count;
+                                int width = 500;//near about 500 is A4 page standard size   
+                                                //if 9 columns size will be 500
+                                width = (columnsize <= 9) ? width : (columnsize > 9 && columnsize <= 18) ? 1000 : (columnsize > 18 && columnsize <= 27) ? 1500 : (columnsize > 27 && columnsize <= 36) ? 2000 : (columnsize > 36 && columnsize <= 45) ? 2500 : (columnsize > 45) ? 3000 : 3000;
+                                var pgSize = new iTextSharp.text.Rectangle(width, 500);  //fix height of page is 500          
+                                iTextSharp.text.Document doc = new iTextSharp.text.Document(pgSize, 7, 7, 15, 15);//pagesize(width,height),margin-left,margin-right,margin-top,margin-bottom         
+                                PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(directoryPath + filename, FileMode.Create));
+                                doc.Open();
+                                PdfPTable myTable = new PdfPTable(columnsize);
+                                // Table size is set to 100% of the page
+                                myTable.WidthPercentage = 100;
+                                myTable.HorizontalAlignment = 0;
+                                myTable.SpacingAfter = 0;
+                                float[] sglTblHdWidths = new float[columnsize];
+                                for (int t = 0; t < columnsize; t++)
+                                {
+                                    sglTblHdWidths[t] = 40f;
+                                }
+
+                                // Set the column widths on table creation. Unlike HTML cells cannot be sized.
+                                myTable.SetWidths(sglTblHdWidths);
+
+                                //Heading:-adding table name as top row here                   
+                                PdfPCell heading = new PdfPCell(new Phrase(tname, fntTableFontHeading));
+                                heading.Colspan = columnsize;
+                                heading.BorderWidth = iTextSharp.text.Rectangle.NO_BORDER;
+                                heading.HorizontalAlignment = Element.ALIGN_LEFT;
+                                myTable.AddCell(heading);
+
+                                //Header:-adding all headers here  
+                                foreach (DataColumn column in dt.Columns)
+                                {
+                                    PdfPCell headerCell = new PdfPCell(new Phrase(column.ColumnName, fntTableFontHdr));
+                                    headerCell.BackgroundColor = new BaseColor(128, 128, 128);
+                                    headerCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                                    headerCell.BorderColor = borderColor;
+                                    headerCell.BorderWidth =
+                                    headerCell.Rotation = 0;
+                                    myTable.AddCell(headerCell);
+                                }
+
+                                //adding all rows here dynamically
+                                foreach (DataRow r in dt.Rows)
+                                {
+                                    foreach (DataColumn col in dt.Columns)
+                                    {
+                                        //var colName = col.ColumnName;
+                                        //var data = r[colName].ToString();
+                                        PdfPCell Cell = new PdfPCell(new Phrase(r[col.ColumnName].ToString(), fntTableFont));
+                                        Cell.Rotation = 0;
+                                        Cell.BorderColor = borderColor;
+                                        myTable.AddCell(Cell);
+                                    }
+                                }
+                                doc.Add(myTable);
+                                doc.Close();
+
+                            }
+                        }
                     }
                 }
             }

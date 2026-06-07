@@ -1,34 +1,49 @@
-CREATE OR REPLACE FUNCTION sp_bedinformation(
+DROP FUNCTION IF EXISTS sp_bedinformation();
 
-)
+CREATE OR REPLACE FUNCTION sp_bedinformation()
 RETURNS SETOF refcursor AS $$
 DECLARE
     ref1 refcursor := 'cursor1';
     ref2 refcursor := 'cursor2';
 BEGIN
+    OPEN ref1 FOR 
+    SELECT * FROM 
+    	(
+            SELECT COUNT(DISTINCT b."BedID") AS "total" 
+            FROM "ADT_Bed" b 
+            INNER JOIN "ADT_MAP_BedFeaturesMap" map ON map."BedId" = b."BedID" AND b."IsActive" = TRUE
+            INNER JOIN "ADT_MST_Ward" ward ON ward."WardID" = map."WardId" AND ward."IsActive" = TRUE
+            INNER JOIN "ADT_MST_BedFeature" bf ON map."BedFeatureId" = bf."BedFeatureId" AND bf."IsActive" = TRUE
+        ) AS total,
+    	(
+            SELECT COUNT(DISTINCT b."BedID") AS "available" 
+            FROM "ADT_Bed" b
+            INNER JOIN "ADT_MAP_BedFeaturesMap" map ON map."BedId" = b."BedID" AND b."IsActive" = TRUE
+            INNER JOIN "ADT_MST_Ward" ward ON ward."WardID" = map."WardId" AND ward."IsActive" = TRUE
+            INNER JOIN "ADT_MST_BedFeature" bf ON map."BedFeatureId" = bf."BedFeatureId" AND bf."IsActive" = TRUE AND b."IsOccupied" = FALSE
+        ) AS available,
+    	(
+            SELECT COUNT(DISTINCT b."BedID") AS "occupied" 
+            FROM "ADT_Bed" b 
+            INNER JOIN "ADT_MAP_BedFeaturesMap" map ON map."BedId" = b."BedID" AND b."IsActive" = TRUE
+            INNER JOIN "ADT_MST_Ward" ward ON ward."WardID" = map."WardId" AND ward."IsActive" = TRUE
+            INNER JOIN "ADT_MST_BedFeature" bf ON map."BedFeatureId" = bf."BedFeatureId" AND bf."IsActive" = TRUE AND b."IsOccupied" = TRUE
+        ) AS occupied;
+        
+    RETURN NEXT ref1;
     
-    open ref1 for select * from 
-    	(select count(distinct b.bedid) as "total" from adt_bed b 
-    	 inner join	adt_map_bedfeaturesmap map on map.bedid = b.bedid and b.isactive='true'
-    	 inner join adt_mst_ward ward on ward.wardid = map.wardid and ward.isactive='true'
-    	 inner join adt_mst_bedfeature bf on map.bedfeatureid=bf.bedfeatureid and bf.isactive='true') as total,
-    	(select count( distinct b.bedid) as "available" from adt_bed b
-    	 inner join	adt_map_bedfeaturesmap map on map.bedid = b.bedid and b.isactive='true'
-    	 inner join adt_mst_ward ward on ward.wardid = map.wardid and ward.isactive='true'
-    	 inner join adt_mst_bedfeature bf on map.bedfeatureid=bf.bedfeatureid and bf.isactive='true' and b.isoccupied = 'false') as available,
-    	(select count( distinct b.bedid) as "occupied" from adt_bed b 
-    	 inner join	adt_map_bedfeaturesmap map on map.bedid = b.bedid and b.isactive='true'
-    	 inner join adt_mst_ward ward on ward.wardid = map.wardid and ward.isactive='true'
-    	 inner join adt_mst_bedfeature bf on map.bedfeatureid=bf.bedfeatureid and bf.isactive='true' and b.isoccupied = 'true') as occupied;
-        return next ref1;
+    OPEN ref2 FOR 
+    SELECT 
+        b."BedNumber",
+        f."BedFeatureName",
+        f."BedPrice",
+        b."IsOccupied",
+        w."WardName" 
+    FROM "ADT_Bed" b 
+    INNER JOIN "ADT_MST_Ward" w ON b."WardId" = W."WardID" AND w."IsActive" = TRUE
+    INNER JOIN "ADT_MAP_BedFeaturesMap" map ON map."BedId" = b."BedID"
+    INNER JOIN "ADT_MST_BedFeature" f ON f."BedFeatureId" = map."BedFeatureId";
     
-    open ref2 for select b.bednumber,f.bedfeaturename,f.bedprice,b.isoccupied,w.wardname from adt_bed b 
-    inner join
-    adt_mst_ward w on b.wardid = w.wardid and w.isactive='true'
-    inner join
-    adt_map_bedfeaturesmap map on map.bedid = b.bedid
-    inner join
-    adt_mst_bedfeature f on f.bedfeatureid = map.bedfeatureid;
-        return next ref2;
+    RETURN NEXT ref2;
 END;
 $$ LANGUAGE plpgsql;

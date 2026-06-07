@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -185,7 +185,7 @@ namespace DanpheEMR.DalLayer
         {
             try
             {
-                DataTable invGRDT = DALFunctions.GetDataTableFromStoredProc("[SP_ACC_GetINVGoodsReceiptData]", this);
+                DataTable invGRDT = DALFunctions.GetDataTableFromStoredProc("SP_ACC_GetINVGoodsReceiptData", this);
                 return invGRDT;
             }
             catch (Exception ex)

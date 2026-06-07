@@ -1,62 +1,60 @@
+DROP FUNCTION IF EXISTS sp_marketing_referral_detail_report(date, date, integer);
+DROP FUNCTION IF EXISTS sp_marketing_referral_detail_report(timestamp without time zone, timestamp without time zone, integer);
+
 CREATE OR REPLACE FUNCTION sp_marketing_referral_detail_report(
-    p_fromdate DATE DEFAULT NULL,
-    p_todate DATE DEFAULT NULL,
-    p_referringpartyid INT DEFAULT NULL
+    p_fromdate timestamp,
+    p_todate timestamp,
+    p_referringpartyid integer DEFAULT NULL
 )
-RETURNS TABLE (
-    "InvoiceNoFormatted" VARCHAR,
-    "InvoiceDate" TIMESTAMP,
-    "PatientName" VARCHAR,
-    "HospitalNo" VARCHAR,
-    "ReferringPartyName" VARCHAR,
-    "GroupName" VARCHAR,
-    "ReferringOrganizationName" TIMESTAMP,
-    "VehicleNumber" VARCHAR,
-    "ReferralSchemeName" VARCHAR,
-    "InvoiceNetAmount" DECIMAL,
-    "Percentage" VARCHAR,
-    "ReferralAmount" DECIMAL,
-    "Remarks" VARCHAR,
-    "EnteredBy" VARCHAR,
-    "EnteredOn" TIMESTAMP
-) AS $$
+RETURNS SETOF refcursor AS $$
+DECLARE
+    ref refcursor := 'ref';
 BEGIN
-    /* 
-    exec "sp_marketing_referral_detail_report" '2015-01-01', '2023-08-13'
-    change history
-    s.no.    updatedby/date                        remarks
-    1        bibek/2023-08-13                   created initial script 
-    */
-    
-     RETURN QUERY SELECT   
-    	rc.invoicenoformatted,
-        rc.invoicedate AS "InvoiceDate",
-        pat.shortname AS "PatientName",
-        pat.patientcode AS "HospitalNo",
-        rp.referringpartyname,
-        rpg.groupname,
-        ro.referringorganizationname,
-        coalesce(rp.vehiclenumber, '') AS "VehicleNumber",
-        rs.referralschemename,
-        rc.invoicenetamount AS "InvoiceNetAmount",
-        rc.percentage,	
-        rc.referralamount,
-        rc.remarks,
-        emp.fullname AS "EnteredBy",
-        rc.createdon AS "EnteredOn"
-    from (select patientid,invoicenoformatted,invoicedate,invoicenetamount,
-    				percentage,referralamount,remarks,createdby,createdon,referringpartyid,
-    				referralschemeid,fiscalyearid from mkt_txn_referralcommission
-    				where invoicedate between p_fromdate and p_todate and isactive = 1 
-    					and coalesce(p_referringpartyid, referringpartyid) = referringpartyid) rc 
-    inner join pat_patient pat on rc.patientid = pat.patientid
-    inner join mkt_cfg_referringparty rp on rc.referringpartyid = rp.referringpartyid
-    inner join mkt_mst_referringorganization ro on rp.referringorgid = ro.referringorganizationid
-    inner join mkt_mst_referringpartygroup rpg on rp.referringpartygroupid = rpg.referringpartygroupid
-    inner join mkt_mst_referralscheme rs on rc.referralschemeid = rs.referralschemeid
-    inner join bil_cfg_fiscalyears fy on rc.fiscalyearid = fy.fiscalyearid
-    inner join emp_employee emp on rc.createdby = emp.employeeid
-    
-    order by rc.invoicedate desc;
+    OPEN ref FOR
+    SELECT   
+        rc."InvoiceNoFormatted",
+        rc."InvoiceDate" AS "InvoiceDate",
+        pat."ShortName" AS "PatientName",
+        pat."PatientCode" AS "HospitalNo",
+        rp."ReferringPartyName",
+        rpg."GroupName",
+        ro."ReferringOrganizationName",
+        COALESCE(rp."VehicleNumber", '') AS "VehicleNumber",
+        rs."ReferralSchemeName",
+        rc."InvoiceNetAmount" AS "InvoiceNetAmount",
+        rc."Percentage",	
+        rc."ReferralAmount",
+        rc."Remarks",
+        emp."FullName" AS "EnteredBy",
+        rc."CreatedOn" AS "EnteredOn"
+    FROM (
+        SELECT 
+            "PatientId",
+            "InvoiceNoFormatted",
+            "InvoiceDate",
+            "InvoiceNetAmount",
+            "Percentage",
+            "ReferralAmount",
+            "Remarks",
+            "CreatedBy",
+            "CreatedOn",
+            "ReferringPartyId",
+            "ReferralSchemeId",
+            "FiscalYearId" 
+        FROM "MKT_TXN_ReferralCommission"
+        WHERE "InvoiceDate"::date BETWEEN p_fromdate::date AND p_todate::date 
+          AND "IsActive" = true 
+          AND (p_referringpartyid IS NULL OR "ReferringPartyId" = p_referringpartyid)
+    ) rc 
+    INNER JOIN "PAT_Patient" pat ON rc."PatientId" = pat."PatientId"
+    INNER JOIN "MKT_CFG_ReferringParty" rp ON rc."ReferringPartyId" = rp."ReferringPartyId"
+    INNER JOIN "MKT_MST_ReferringOrganization" ro ON rp."ReferringOrgId" = ro."ReferringOrganizationId"
+    INNER JOIN "MKT_MST_ReferringPartyGroup" rpg ON rp."ReferringPartyGroupId" = rpg."ReferringPartyGroupId"
+    INNER JOIN "MKT_MST_ReferralScheme" rs ON rc."ReferralSchemeId" = rs."ReferralSchemeId"
+    INNER JOIN "BIL_CFG_FiscalYears" fy ON rc."FiscalYearId" = fy."FiscalYearId"
+    INNER JOIN "EMP_Employee" emp ON rc."CreatedBy" = emp."EmployeeId"
+    ORDER BY rc."InvoiceDate" DESC;
+
+    RETURN NEXT ref;
 END;
 $$ LANGUAGE plpgsql;

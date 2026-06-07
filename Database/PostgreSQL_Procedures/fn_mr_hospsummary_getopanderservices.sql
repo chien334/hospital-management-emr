@@ -1,3 +1,5 @@
+DROP FUNCTION IF EXISTS public.fn_mr_hospsummary_getopanderservices(DATE, DATE) CASCADE;
+
 CREATE OR REPLACE FUNCTION public.fn_mr_hospsummary_getopanderservices(
     p_fromdate DATE,
     p_todate DATE
@@ -18,23 +20,23 @@ AS $$
 DECLARE
     v_emgdepts_code_csv VARCHAR(200);
 BEGIN
-    SELECT parametervalue INTO v_emgdepts_code_csv 
-    FROM core_cfg_parameters 
-    WHERE parametergroupname = 'GovReports' AND parametername = 'HospSummary_EmergencyDeptsCodeCSV';
+    SELECT "ParameterValue" INTO v_emgdepts_code_csv 
+    FROM "CORE_CFG_Parameters" 
+    WHERE "ParameterGroupName" = 'GovReports' AND "ParameterName" = 'HospSummary_EmergencyDeptsCodeCSV';
 
     RETURN QUERY
     WITH er_depts AS (
-        SELECT departmentid 
-        FROM mst_department 
-        WHERE UPPER(departmentcode) IN (
+        SELECT "DepartmentId" 
+        FROM "MST_Department" 
+        WHERE UPPER("DepartmentCode") IN (
             SELECT UPPER(trim(x)) 
             FROM unnest(string_to_array(COALESCE(v_emgdepts_code_csv, ''), ',')) x
         )
     ),
     opd_depts AS (
-        SELECT departmentid 
-        FROM mst_department 
-        WHERE UPPER(departmentcode) NOT IN (
+        SELECT "DepartmentId" 
+        FROM "MST_Department" 
+        WHERE UPPER("DepartmentCode") NOT IN (
             SELECT UPPER(trim(x)) 
             FROM unnest(string_to_array(COALESCE(v_emgdepts_code_csv, ''), ',')) x
         )
@@ -49,33 +51,33 @@ BEGIN
     ),
     opd_patients AS (
         SELECT 
-            public.getdobagerange(pat.dateofbirth, v.visitdate) AS age_range,
-            SUM(CASE WHEN pat.gender = 'Female' AND LOWER(v.appointmenttype) = 'new' THEN 1 ELSE 0 END) AS new_female,
-            SUM(CASE WHEN pat.gender = 'Male' AND LOWER(v.appointmenttype) = 'new' THEN 1 ELSE 0 END) AS new_male,
-            SUM(CASE WHEN pat.gender = 'Female' AND LOWER(v.appointmenttype) != 'new' THEN 1 ELSE 0 END) AS old_female,
-            SUM(CASE WHEN pat.gender = 'Male' AND LOWER(v.appointmenttype) != 'new' THEN 1 ELSE 0 END) AS old_male
-        FROM pat_patientvisits v
-        INNER JOIN pat_patient pat ON v.patientid = pat.patientid
-        INNER JOIN opd_depts dept ON v.departmentid = dept.departmentid
-        WHERE v.visittype != 'inpatient'
-          AND v.isactive = TRUE
-          AND v.billingstatus != 'returned'
-          AND v.visitdate::DATE BETWEEN p_fromdate AND p_todate
-        GROUP BY public.getdobagerange(pat.dateofbirth, v.visitdate)
+            public.getdobagerange(pat."DateOfBirth", v."VisitDate") AS age_range,
+            SUM(CASE WHEN pat."Gender" = 'Female' AND LOWER(v."AppointmentType") = 'new' THEN 1 ELSE 0 END)::INT AS new_female,
+            SUM(CASE WHEN pat."Gender" = 'Male' AND LOWER(v."AppointmentType") = 'new' THEN 1 ELSE 0 END)::INT AS new_male,
+            SUM(CASE WHEN pat."Gender" = 'Female' AND LOWER(v."AppointmentType") != 'new' THEN 1 ELSE 0 END)::INT AS old_female,
+            SUM(CASE WHEN pat."Gender" = 'Male' AND LOWER(v."AppointmentType") != 'new' THEN 1 ELSE 0 END)::INT AS old_male
+        FROM "PAT_PatientVisits" v
+        INNER JOIN "PAT_Patient" pat ON v."PatientId" = pat."PatientId"
+        INNER JOIN opd_depts dept ON v."DepartmentId" = dept."DepartmentId"
+        WHERE v."VisitType" != 'inpatient'
+          AND v."IsActive" = TRUE
+          AND v."BillingStatus" != 'returned'
+          AND v."VisitDate"::DATE BETWEEN p_fromdate AND p_todate
+        GROUP BY public.getdobagerange(pat."DateOfBirth", v."VisitDate")
     ),
     er_patients AS (
         SELECT 
-            public.getdobagerange(pat.dateofbirth, v.visitdate) AS age_range,
-            SUM(CASE WHEN pat.gender = 'Female' THEN 1 ELSE 0 END) AS er_female,
-            SUM(CASE WHEN pat.gender = 'Male' THEN 1 ELSE 0 END) AS er_male
-        FROM pat_patientvisits v
-        INNER JOIN pat_patient pat ON v.patientid = pat.patientid
-        INNER JOIN er_depts dept ON v.departmentid = dept.departmentid
-        WHERE v.visittype != 'inpatient'
-          AND v.isactive = TRUE
-          AND v.billingstatus != 'returned'
-          AND v.visitdate::DATE BETWEEN p_fromdate AND p_todate
-        GROUP BY public.getdobagerange(pat.dateofbirth, v.visitdate)
+            public.getdobagerange(pat."DateOfBirth", v."VisitDate") AS age_range,
+            SUM(CASE WHEN pat."Gender" = 'Female' THEN 1 ELSE 0 END)::INT AS er_female,
+            SUM(CASE WHEN pat."Gender" = 'Male' THEN 1 ELSE 0 END)::INT AS er_male
+        FROM "PAT_PatientVisits" v
+        INNER JOIN "PAT_Patient" pat ON v."PatientId" = pat."PatientId"
+        INNER JOIN er_depts dept ON v."DepartmentId" = dept."DepartmentId"
+        WHERE v."VisitType" != 'inpatient'
+          AND v."IsActive" = TRUE
+          AND v."BillingStatus" != 'returned'
+          AND v."VisitDate"::DATE BETWEEN p_fromdate AND p_todate
+        GROUP BY public.getdobagerange(pat."DateOfBirth", v."VisitDate")
     )
     SELECT 
         ag.age_range::VARCHAR AS "AgeRange",

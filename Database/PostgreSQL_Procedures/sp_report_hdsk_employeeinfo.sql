@@ -1,27 +1,29 @@
-CREATE OR REPLACE FUNCTION sp_report_hdsk_employeeinfo(
+DROP FUNCTION IF EXISTS sp_report_hdsk_employeeinfo();
 
-)
+CREATE OR REPLACE FUNCTION sp_report_hdsk_employeeinfo()
 RETURNS TABLE (
     "EmployeeName" VARCHAR,
-    "Designation" TIMESTAMP,
+    "Designation" VARCHAR,
     "DepartmentName" VARCHAR,
-    "ContactNumber" TIMESTAMP,
-    "Extension" TIMESTAMP,
-    "SpeedDial" VARCHAR,
+    "ContactNumber" VARCHAR,
+    "Extension" SMALLINT,
+    "SpeedDial" SMALLINT,
     "OfficeHour" VARCHAR,
     "RoomNumber" VARCHAR
 ) AS $$
 BEGIN
-    
-    RETURN QUERY SELECT coalesce(emp.salutation,'')||' '|| emp.firstname|| coalesce(' '||emp.middlename,'')||' '||emp.lastname AS "EmployeeName"
-           ,emrl.employeerolename AS "Designation" 
-    	   , dep.departmentname
-    	   ,emp.contactnumber, emp.extension, emp.speeddial, coalesce(emp.officehour,'0') AS "OfficeHour", emp.roomno AS "RoomNumber"
-    
-    from     emp_employee emp
-             left join emp_employeerole emrl
-    		 on emrl.employeeroleid = emp.employeeroleid 
-    		 inner join mst_department dep 
-    		 on dep.departmentid = emp.departmentid;
+    RETURN QUERY 
+    SELECT 
+        CAST(COALESCE(emp."Salutation", '') || ' ' || emp."FirstName" || COALESCE(' ' || emp."MiddleName", '') || ' ' || emp."LastName" AS VARCHAR) AS "EmployeeName",
+        CAST(emrl."EmployeeRoleName" AS VARCHAR) AS "Designation", 
+        CAST(dep."DepartmentName" AS VARCHAR) AS "DepartmentName",
+        CAST(emp."ContactNumber" AS VARCHAR) AS "ContactNumber", 
+        emp."Extension", 
+        emp."SpeedDial", 
+        CAST(COALESCE(emp."OfficeHour", '0') AS VARCHAR) AS "OfficeHour", 
+        CAST(emp."RoomNo" AS VARCHAR) AS "RoomNumber"
+    FROM "EMP_Employee" emp
+    LEFT JOIN "EMP_EmployeeRole" emrl ON emrl."EmployeeRoleId" = emp."EmployeeRoleId" 
+    INNER JOIN "MST_Department" dep ON dep."DepartmentId" = emp."DepartmentId";
 END;
 $$ LANGUAGE plpgsql;

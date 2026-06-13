@@ -130,9 +130,11 @@ namespace DanpheEMR.Controllers
                             join depositHead in _billingDbContext.DepositHeadModel on dep.DepositHeadId equals depositHead.DepositHeadId
                             join pat in _billingDbContext.Patient on dep.PatientId equals pat.PatientId
                             join vis in _billingDbContext.Visit on dep.PatientVisitId equals vis.PatientVisitId
-                            into grp from visit in grp.DefaultIfEmpty()
+                            into grp
+                            from visit in grp.DefaultIfEmpty()
                             join emp in _billingDbContext.Employee on dep.CreatedBy equals emp.EmployeeId
-                            where pat.PatientId == patientId select new BillingDepositsList_DTO 
+                            where pat.PatientId == patientId
+                            select new BillingDepositsList_DTO
                             {
                                 DepositId = dep.DepositId,
                                 HospitalNo = pat.PatientCode,

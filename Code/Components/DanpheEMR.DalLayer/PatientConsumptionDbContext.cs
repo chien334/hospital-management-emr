@@ -1,4 +1,4 @@
-﻿using DanpheEMR.ServerModel;
+using DanpheEMR.ServerModel;
 using DanpheEMR.ServerModel.BillingModels;
 using DanpheEMR.ServerModel.MasterModels;
 using DanpheEMR.ServerModel.MedicareModels;
@@ -47,7 +47,7 @@ namespace DanpheEMR.DalLayer
             modelBuilder.Entity<PharmacyFiscalYear>().ToTable("PHRM_CFG_FiscalYears");
             modelBuilder.Entity<PatientModel>().ToTable("PAT_Patient");
             modelBuilder.Entity<CountrySubDivisionModel>().ToTable("MST_CountrySubDivision");
-            modelBuilder.Entity<VisitModel>().ToTable("Pat_PatientVisits");
+            modelBuilder.Entity<VisitModel>().ToTable("PAT_PatientVisits");
             modelBuilder.Entity<EmployeeModel>().ToTable("Emp_Employee");
             modelBuilder.Entity<PHRMStoreModel>().ToTable("PHRM_MST_Store");
             modelBuilder.Entity<PHRMInvoiceTransactionModel>().ToTable("PHRM_TXN_Invoice");

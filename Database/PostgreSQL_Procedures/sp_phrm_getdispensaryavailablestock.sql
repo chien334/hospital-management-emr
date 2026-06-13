@@ -1,56 +1,121 @@
 CREATE OR REPLACE FUNCTION sp_phrm_getdispensaryavailablestock(
-    p_dispensaryid INT DEFAULT NULL,
-    p_pricecategoryid INT DEFAULT NULL
+    p_dispensaryid integer,
+    p_pricecategoryid integer DEFAULT NULL
 )
-RETURNS SETOF refcursor AS $$
+RETURNS TABLE (
+    "ItemId" integer,
+    "BatchNo" character varying,
+    "ExpiryDate" timestamp without time zone,
+    "ItemName" character varying,
+    "SalePrice" numeric,
+    "NormalSalePrice" numeric,
+    "Unit" character varying,
+    "CostPrice" numeric,
+    "AvailableQuantity" double precision,
+    "IsActive" boolean,
+    "GenericName" character varying,
+    "GenericId" integer,
+    "IsNarcotic" boolean,
+    "IsVATApplicable" boolean,
+    "SalesVATPercentage" double precision
+) AS $$
 DECLARE
-    ref1 refcursor := 'cursor1';
-    ref2 refcursor := 'cursor2';
-    v_isphrmratedifferent BOOLEAN := FALSE;
+    v_IsPhrmRateDifferent boolean := false;
 BEGIN
-    /*  
-    filename: sp_phrm_getavailablestockbystoreid  
-    createdby/date: rohit / 25apr'23  
-    Description: Get All Available Stock By DispensaryId.
-    Logic Used (IMPORTANT):
-       * When PharmacyRateIsDifferent for Current PriceCategory, Bring the SalePrice from Mapping Table
-       * When PharmacyRate is NOT-DIfferent for current Price Category, bring the SalePrice from StoreStock Table
-       * Additional Field (NormalSalePrice) is required to filter Stock during StockOut in FEFO LOGIC, don't change that.
-      
-    change history  
-    s.no.    updatedby/date                        remarks  
-    1.      rohit/26apr'23						  Initial Script.  
-    */  
-    BEGIN
-    
-    v_isphrmratedifferent := COALESCE((SELECT IsPharmacyRateDifferent from BIL_CFG_PriceCategory where PriceCategoryId=p_pricecategoryid),0);
-    
-    IF (v_isphrmratedifferent=0) 
-    THEN
-       OPEN ref1 FOR SELECT stkMst.ItemId, stkMst.BatchNo, stkMst.ExpiryDate, stkMst.ItemName,
-       stkMst.SalePrice, 
-       --Rohit/Sud:IMPORTANT !!! We need below (NormalSalePrice) for Comparision during StockOut action for Sale, Don't change this
-       stkmst.saleprice as "normalsaleprice", 
-       stkmst.unit, stkmst.costprice,stkmst.availablequantity, stkmst.isactive, stkmst.genericname, stkmst.genericid, 
-       stkmst.isnarcotic, stkmst.isvatapplicable,stkmst.salesvatpercentage
-       from fn_phrm_getdispensaryavailablestock(p_dispensaryid) stkmst;
-        return next ref1;
-    
-    
-    else
-    
-       open ref2 for select stkmst.itemid, stkmst.batchno, stkmst.expirydate, stkmst.itemname,
-       coalesce(pricemap.price, 0) as "saleprice",   -- taking saleprice from map table
-      --rohit/sud:important !!! we need below (normalsaleprice) for comparision during stockout action for sale, don't change this
-       stkmst.saleprice as "normalsaleprice",  
-       stkmst.availablequantity,
-       stkmst.unit, stkmst.costprice, stkmst.isactive, stkmst.genericname, stkmst.genericid, 
-       stkmst.isnarcotic, stkmst.isvatapplicable,stkmst.salesvatpercentage
-       from fn_phrm_getdispensaryavailablestock(p_dispensaryid) stkmst
-         inner join (select * from phrm_map_mstitempricecategory pricemap where pricecategoryid=p_pricecategoryid) pricemap
-    	    on stkmst.itemid=pricemap.itemid;
-        return next ref2;
-    end if;
-    end;
+    IF p_pricecategoryid IS NOT NULL THEN
+        SELECT COALESCE("IsPharmacyRateDifferent", false) INTO v_IsPhrmRateDifferent
+        FROM "BIL_CFG_PriceCategory"
+        WHERE "PriceCategoryId" = p_pricecategoryid;
+    END IF;
+
+    IF NOT v_IsPhrmRateDifferent THEN
+        RETURN QUERY
+        SELECT
+            storeStock."ItemId",
+            mststock."BatchNo",
+            mststock."ExpiryDate",
+            mstitem."ItemName",
+            mststock."SalePrice",
+            mststock."SalePrice" AS "NormalSalePrice",
+            uom."UOMName" AS "Unit",
+            mststock."CostPrice" AS "CostPrice",
+            SUM(storeStock."AvailableQuantity") AS "AvailableQuantity",
+            mstitem."IsActive",
+            g."GenericName",
+            g."GenericId",
+            mstitem."IsNarcotic",
+            mstitem."IsVATApplicable",
+            mstitem."SalesVATPercentage"
+        FROM
+            "PHRM_TXN_StoreStock" storeStock
+            INNER JOIN "PHRM_MST_Item" mstitem ON storeStock."ItemId" = mstitem."ItemId"
+            INNER JOIN "PHRM_MST_Stock" mststock ON storeStock."StockId" = mststock."StockId"
+            INNER JOIN "PHRM_MST_UnitOfMeasurement" uom ON mstitem."UOMId" = uom."UOMId"
+            INNER JOIN "PHRM_MST_Generic" g ON mstitem."GenericId" = g."GenericId"
+        WHERE
+            storeStock."StoreId" = p_dispensaryid 
+            AND storeStock."AvailableQuantity" > 0
+            AND storeStock."IsActive" = true
+            AND mstitem."IsActive" = true
+        GROUP BY
+            storeStock."ItemId",
+            mststock."BatchNo",
+            mststock."ExpiryDate",
+            mstitem."ItemName",
+            mststock."SalePrice",
+            uom."UOMName",
+            mststock."CostPrice",
+            mstitem."IsActive",
+            g."GenericName",
+            g."GenericId",
+            mstitem."IsNarcotic",
+            mstitem."IsVATApplicable",
+            mstitem."SalesVATPercentage";
+    ELSE
+        RETURN QUERY
+        SELECT
+            storeStock."ItemId",
+            mststock."BatchNo",
+            mststock."ExpiryDate",
+            mstitem."ItemName",
+            COALESCE(priceMap."Price", 0) AS "SalePrice",
+            mststock."SalePrice" AS "NormalSalePrice",
+            uom."UOMName" AS "Unit",
+            mststock."CostPrice" AS "CostPrice",
+            SUM(storeStock."AvailableQuantity") AS "AvailableQuantity",
+            mstitem."IsActive",
+            g."GenericName",
+            g."GenericId",
+            mstitem."IsNarcotic",
+            mstitem."IsVATApplicable",
+            mstitem."SalesVATPercentage"
+        FROM
+            "PHRM_TXN_StoreStock" storeStock
+            INNER JOIN "PHRM_MST_Item" mstitem ON storeStock."ItemId" = mstitem."ItemId"
+            INNER JOIN "PHRM_MST_Stock" mststock ON storeStock."StockId" = mststock."StockId"
+            INNER JOIN "PHRM_MST_UnitOfMeasurement" uom ON mstitem."UOMId" = uom."UOMId"
+            INNER JOIN "PHRM_MST_Generic" g ON mstitem."GenericId" = g."GenericId"
+            INNER JOIN "PHRM_MAP_MSTItemPriceCategory" priceMap ON storeStock."ItemId" = priceMap."ItemId" AND priceMap."PriceCategoryId" = p_pricecategoryid
+        WHERE
+            storeStock."StoreId" = p_dispensaryid 
+            AND storeStock."AvailableQuantity" > 0
+            AND storeStock."IsActive" = true
+            AND mstitem."IsActive" = true
+        GROUP BY
+            storeStock."ItemId",
+            mststock."BatchNo",
+            mststock."ExpiryDate",
+            mstitem."ItemName",
+            priceMap."Price",
+            mststock."SalePrice",
+            uom."UOMName",
+            mststock."CostPrice",
+            mstitem."IsActive",
+            g."GenericName",
+            g."GenericId",
+            mstitem."IsNarcotic",
+            mstitem."IsVATApplicable",
+            mstitem."SalesVATPercentage";
+    END IF;
 END;
 $$ LANGUAGE plpgsql;

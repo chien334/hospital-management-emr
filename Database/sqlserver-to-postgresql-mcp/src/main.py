@@ -23,7 +23,8 @@ try:
         convert_limit_to_select_top_tokens,
         convert_pg_into_assignments_tokens,
         convert_pg_temp_tables,
-        convert_pg_control_flow
+        convert_pg_control_flow,
+        convert_pg_casts_to_mssql
     )
 except ImportError as e:
     sys.stderr.write(f"[ERROR] Failed to import modules: {str(e)}\n")
@@ -275,11 +276,7 @@ def main():
                         converted = convert_pg_control_flow(converted)
                         
                         # Apply scalar mappings
-                        converted = re.sub(r'(\([^)]+\)|@?\w+)::date\b', r'CONVERT(DATE, \1)', converted, flags=re.IGNORECASE)
-                        converted = re.sub(r'(\([^)]+\)|@?\w+)::varchar\b', r'CAST(\1 AS VARCHAR)', converted, flags=re.IGNORECASE)
-                        converted = re.sub(r'(\([^)]+\)|@?\w+)::int\b', r'CAST(\1 AS INT)', converted, flags=re.IGNORECASE)
-                        converted = re.sub(r'(\([^)]+\)|@?\w+)::numeric\b', r'CAST(\1 AS NUMERIC)', converted, flags=re.IGNORECASE)
-                        converted = re.sub(r'(\([^)]+\)|@?\w+)::text\b', r'CAST(\1 AS VARCHAR(MAX))', converted, flags=re.IGNORECASE)
+                        converted = convert_pg_casts_to_mssql(converted)
                         converted = re.sub(r'\|\|', '+', converted)
                         converted = re.sub(r'\bnow\(\)', 'GETDATE()', converted, flags=re.IGNORECASE)
                         converted = re.sub(r'\bcurrent_timestamp\b', 'GETDATE()', converted, flags=re.IGNORECASE)

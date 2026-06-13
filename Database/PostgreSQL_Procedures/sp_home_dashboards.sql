@@ -75,10 +75,10 @@ BEGIN
         COALESCE(B.PatientCount, 0)::BIGINT AS "PatientCount"
     FROM 
     (
-        SELECT DISTINCT "MapAreaCode" 
-        FROM "MST_CountrySubDivision"
-        WHERE "CountryId" = (SELECT "CountryId" FROM "MST_Country" WHERE "CountryName" = 'Nepal') 
-          AND "MapAreaCode" IS NOT NULL
+        SELECT DISTINCT csd."MapAreaCode" 
+        FROM "MST_CountrySubDivision" csd
+        WHERE csd."CountryId" = (SELECT "CountryId" FROM "MST_Country" WHERE "CountryName" = 'Nepal') 
+          AND csd."MapAreaCode" IS NOT NULL
     ) A
     LEFT JOIN 
     (

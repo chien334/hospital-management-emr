@@ -4912,6 +4912,40 @@ page-bar-primary ul li a:hover {
     vertical-align: middle !important;
 }
 
+/* Custom pagination icon symbols when empty */
+.ag-theme-fresh .ag-paging-panel [ref="btFirst"]::after,
+.ag-theme-fresh .ag-paging-panel [ref="eBtFirst"]::after,
+.ag-theme-fresh .ag-paging-panel .ag-paging-first-button::after {
+    content: "\f100" !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 14px !important;
+}
+.ag-theme-fresh .ag-paging-panel [ref="btPrevious"]::after,
+.ag-theme-fresh .ag-paging-panel [ref="eBtPrevious"]::after,
+.ag-theme-fresh .ag-paging-panel .ag-paging-previous-button::after {
+    content: "\f104" !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 14px !important;
+}
+.ag-theme-fresh .ag-paging-panel [ref="btNext"]::after,
+.ag-theme-fresh .ag-paging-panel [ref="eBtNext"]::after,
+.ag-theme-fresh .ag-paging-panel .ag-paging-next-button::after {
+    content: "\f105" !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 14px !important;
+}
+.ag-theme-fresh .ag-paging-panel [ref="btLast"]::after,
+.ag-theme-fresh .ag-paging-panel [ref="eBtLast"]::after,
+.ag-theme-fresh .ag-paging-panel .ag-paging-last-button::after {
+    content: "\f101" !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 14px !important;
+}
+.ag-theme-fresh .ag-paging-panel button span:empty,
+.ag-theme-fresh .ag-paging-panel .ag-paging-button span:empty {
+    display: none !important;
+}
+
 .ag-theme-fresh .ag-paging-panel button:hover:not([disabled]),
 .ag-theme-fresh .ag-paging-panel .ag-paging-button:hover:not([disabled]) {
     background-color: #0569ad !important;

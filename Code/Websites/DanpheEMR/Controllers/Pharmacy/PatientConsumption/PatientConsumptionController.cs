@@ -154,46 +154,61 @@ namespace DanpheEMR.Controllers.Pharmacy.PatientConsumption
         }
         private object GetPatientConsumptionList()
         {
-            var patConsumptionList = (from con in _patientConsumptionDbContext.PatientConsumption.Where(a => a.BillingStatus == ENUM_BillingStatus.unpaid)
-                                      join conitm in _patientConsumptionDbContext.PatientConsumptionItem.Where(pci => pci.IsFinalize == false) on con.PatientConsumptionId equals conitm.PatientConsumptionId
-                                      join conretitm in (from patconret in _patientConsumptionDbContext.PatientConsumptionReturnItem
-                                                         group patconret by patconret.PatientConsumptionItemId
-                                                         into patConsumptionReturnGroup
-                                                         select new
-                                                         {
-                                                             PatientConsumptionItemId = patConsumptionReturnGroup.Key,
-                                                             TotalAmount = patConsumptionReturnGroup.Sum(a => a.TotalAmount)
-                                                         }) on conitm.PatientConsumptionItemId equals conretitm.PatientConsumptionItemId into conretitmGroup
-                                      from conretitm in conretitmGroup.DefaultIfEmpty()
-                                      join pat in _patientConsumptionDbContext.Patient on conitm.PatientId equals pat.PatientId
-                                      join patV in _patientConsumptionDbContext.PatientVisits on conitm.PatientVisitId equals patV.PatientVisitId
+            var rawList = (from con in _patientConsumptionDbContext.PatientConsumption.Where(a => a.BillingStatus == ENUM_BillingStatus.unpaid)
+                           join conitm in _patientConsumptionDbContext.PatientConsumptionItem.Where(pci => pci.IsFinalize == false) on con.PatientConsumptionId equals conitm.PatientConsumptionId
+                           join conretitm in (from patconret in _patientConsumptionDbContext.PatientConsumptionReturnItem
+                                              group patconret by patconret.PatientConsumptionItemId
+                                              into patConsumptionReturnGroup
+                                              select new
+                                              {
+                                                  PatientConsumptionItemId = patConsumptionReturnGroup.Key,
+                                                  TotalAmount = patConsumptionReturnGroup.Sum(a => a.TotalAmount)
+                                              }) on conitm.PatientConsumptionItemId equals conretitm.PatientConsumptionItemId into conretitmGroup
+                           from conretitm in conretitmGroup.DefaultIfEmpty()
+                           join pat in _patientConsumptionDbContext.Patient on conitm.PatientId equals pat.PatientId
+                           join patV in _patientConsumptionDbContext.PatientVisits on conitm.PatientVisitId equals patV.PatientVisitId
+                           select new
+                           {
+                               PatientId = pat.PatientId,
+                               PatientCode = pat.PatientCode,
+                               ShortName = pat.ShortName,
+                               Age = pat.Age,
+                               Gender = pat.Gender,
+                               PhoneNumber = pat.PhoneNumber,
+                               Address = pat.Address,
+                               VisitCode = patV.VisitCode,
+                               PatientVisitId = patV.PatientVisitId,
+                               ConItemTotalAmount = conitm.TotalAmount,
+                               ConRetItemTotalAmount = (decimal?)conretitm.TotalAmount,
+                               CreatedOn = conitm.CreatedOn
+                           }).ToList();
 
-                                      group new { conitm, conretitm } by new
-                                      {
-                                          pat.PatientId,
-                                          pat.PatientCode,
-                                          pat.ShortName,
-                                          pat.Age,
-                                          pat.Gender,
-                                          pat.PhoneNumber,
-                                          pat.Address,
-                                          patV.VisitCode,
-                                          patV.PatientVisitId
-                                      } into g
-                                      select new
-                                      {
-                                          PatientId = g.Key.PatientId,
-                                          HospitalNo = g.Key.PatientCode,
-                                          PatientName = g.Key.ShortName,
-                                          Age = g.Key.Age,
-                                          Sex = g.Key.Gender,
-                                          ContactNo = g.Key.PhoneNumber,
-                                          Address = g.Key.Address,
-                                          IpNo = g.Key.VisitCode,
-                                          PatientVisitId = g.Key.PatientVisitId,
-                                          TotalAmount = Math.Floor(g.Sum(x => x.conitm.TotalAmount - (x.conretitm != null ? x.conretitm.TotalAmount : 0))),
-                                          LastConsumptionDate = g.Max(x => x.conitm.CreatedOn)
-                                      }).Where(a => a.TotalAmount > 0).OrderByDescending(a => a.LastConsumptionDate).ToList();
+            var patConsumptionList = rawList.GroupBy(x => new
+            {
+                x.PatientId,
+                x.PatientCode,
+                x.ShortName,
+                x.Age,
+                x.Gender,
+                x.PhoneNumber,
+                x.Address,
+                x.VisitCode,
+                x.PatientVisitId
+            })
+            .Select(g => new
+            {
+                PatientId = g.Key.PatientId,
+                HospitalNo = g.Key.PatientCode,
+                PatientName = g.Key.ShortName,
+                Age = g.Key.Age,
+                Sex = g.Key.Gender,
+                ContactNo = g.Key.PhoneNumber,
+                Address = g.Key.Address,
+                IpNo = g.Key.VisitCode,
+                PatientVisitId = g.Key.PatientVisitId,
+                TotalAmount = Math.Floor(g.Sum(x => x.ConItemTotalAmount - (x.ConRetItemTotalAmount ?? 0))),
+                LastConsumptionDate = g.Max(x => x.CreatedOn)
+            }).Where(a => a.TotalAmount > 0).OrderByDescending(a => a.LastConsumptionDate).ToList();
 
 
             return patConsumptionList;

@@ -3470,6 +3470,163 @@ $$ LANGUAGE plpgsql;"""
             
     return pg_sql, func_name
 
+def convert_identifiers_case_sensitive(sql):
+    tokens = tokenize_sql(sql)
+    n = len(tokens)
+    new_tokens = []
+    
+    ALWAYS_KEYWORDS = {
+        'select', 'insert', 'into', 'update', 'delete', 'where', 'and', 'or', 'not', 
+        'join', 'inner', 'left', 'right', 'full', 'outer', 'on', 'group', 'by', 'order', 
+        'having', 'limit', 'offset', 'union', 'all', 'except', 'intersect', 'create', 
+        'table', 'view', 'procedure', 'function', 'returns', 'declare', 'begin', 'end', 
+        'if', 'else', 'elsif', 'then', 'while', 'loop', 'return', 'next', 'query', 'void', 
+        'setof', 'refcursor', 'as', 'in', 'out', 'default', 'null', 'true', 'false', 
+        'case', 'when', 'then', 'else', 'end', 'cast', 'convert', 'coalesce', 'isnull', 
+        'exec', 'execute', 'exists', 'like', 'ilike', 'between', 'is', 'top', 'distinct', 
+        'merge', 'using', 'matched', 'over', 'partition', 'rows', 'range', 'unbounded', 
+        'preceding', 'following', 'current', 'row', 'sum', 'count', 'avg', 'min', 'max', 
+        'abs', 'round', 'floor', 'ceiling', 'year', 'month', 'day', 'hour', 'minute', 
+        'second', 'extract', 'from', 'temp', 'temporary', 'cross', 'apply', 'language', 
+        'plpgsql', 'raise', 'exception', 'notice', 'warning', 'info', 'log', 'debug',
+        'int', 'integer', 'varchar', 'char', 'text', 'boolean', 'timestamp', 'date',
+        'numeric', 'decimal', 'bit', 'bigint', 'smallint', 'tinyint', 'money', 'float',
+        'double', 'precision', 'real', 'replace', 'trigger', 'each', 'open', 'for'
+    }
+    
+    i = 0
+    while i < n:
+        t_type, t_val = tokens[i]
+        
+        if t_type == 'word':
+            val_lower = t_val.lower()
+            has_upper = any(c.isupper() for c in t_val)
+            
+            is_quoted = False
+            if i > 0 and i + 1 < n:
+                prev_t = tokens[i-1]
+                next_t = tokens[i+1]
+                if (prev_t[0] == 'symbol' and prev_t[1] in ('"', '[') and 
+                    next_t[0] == 'symbol' and next_t[1] in ('"', ']')):
+                    is_quoted = True
+            
+            is_variable_or_temp = (
+                val_lower.startswith('p_') or 
+                val_lower.startswith('v_') or 
+                t_val.startswith('@') or 
+                t_val.startswith('#')
+            )
+            
+            if has_upper and val_lower not in ALWAYS_KEYWORDS and not is_quoted and not is_variable_or_temp:
+                new_tokens.append(('word', f'"{t_val}"'))
+            else:
+                new_tokens.append((t_type, t_val))
+        else:
+            new_tokens.append((t_type, t_val))
+        i += 1
+        
+    return "".join(t[1] for t in new_tokens)
+
+def cast_null_select_expressions(tokens):
+    new_tokens = []
+    n = len(tokens)
+    i = 0
+    while i < n:
+        if tokens[i][0] == 'word' and tokens[i][1].upper() == 'NULL':
+            k = i + 1
+            while k < n and tokens[k][0] in ('space', 'comment'):
+                k += 1
+            
+            has_as = False
+            if k < n and tokens[k][0] == 'word' and tokens[k][1].upper() == 'AS':
+                has_as = True
+                k += 1
+                while k < n and tokens[k][0] in ('space', 'comment'):
+                    k += 1
+            
+            alias_tok = None
+            alias_end = k
+            if k < n:
+                if tokens[k][0] == 'word':
+                    alias_tok = tokens[k][1]
+                    alias_end = k + 1
+                elif tokens[k][0] == 'symbol' and tokens[k][1] in ('"', '['):
+                    if k + 2 < n and tokens[k+1][0] == 'word' and tokens[k+2][0] == 'symbol' and tokens[k+2][1] in ('"', ']'):
+                        alias_tok = tokens[k+1][1]
+                        alias_end = k + 3
+            
+            if alias_tok:
+                col_type = get_col_type(alias_tok)
+                pg_type = 'integer'
+                if col_type == 'INT':
+                    pg_type = 'integer'
+                elif col_type == 'TIMESTAMP':
+                    pg_type = 'timestamp'
+                elif col_type == 'DECIMAL':
+                    pg_type = 'numeric'
+                elif col_type == 'BOOLEAN':
+                    pg_type = 'boolean'
+                elif col_type == 'VARCHAR':
+                    pg_type = 'varchar'
+                
+                new_tokens.append(('word', f'NULL::{pg_type}'))
+                new_tokens.extend(tokens[i+1 : alias_end])
+                i = alias_end
+                continue
+        
+        new_tokens.append(tokens[i])
+        i += 1
+    return new_tokens
+
+def cast_date_variables(sql):
+    tokens = tokenize_sql(sql)
+    n = len(tokens)
+    new_tokens = []
+    
+    i = 0
+    while i < n:
+        t_type, t_val = tokens[i]
+        if t_type == 'word':
+            val_lower = t_val.lower()
+            if (val_lower.startswith('p_') or val_lower.startswith('v_')) and ('date' in val_lower or 'time' in val_lower):
+                has_cast = False
+                k = i + 1
+                while k < n and tokens[k][0] in ('space', 'comment'):
+                    k += 1
+                if k < n and tokens[k][0] == 'symbol' and tokens[k][1] == ':':
+                    if k + 1 < n and tokens[k+1][0] == 'symbol' and tokens[k+1][1] == ':':
+                        has_cast = True
+                
+                is_null_check = False
+                if k < n and tokens[k][0] == 'word' and tokens[k][1].upper() == 'IS':
+                    is_null_check = True
+                
+                if not has_cast and not is_null_check:
+                    new_tokens.append(('word', f'({t_val})::date'))
+                else:
+                    new_tokens.append((t_type, t_val))
+            else:
+                new_tokens.append((t_type, t_val))
+        else:
+            new_tokens.append((t_type, t_val))
+        i += 1
+        
+    return "".join(t[1] for t in new_tokens)
+
+def convert_pg_casts_to_mssql(body_sql):
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::date\b', r'CONVERT(DATE, \1)', body_sql, flags=re.IGNORECASE)
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::varchar\b', r'CAST(\1 AS VARCHAR)', body_sql, flags=re.IGNORECASE)
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::int\b', r'CAST(\1 AS INT)', body_sql, flags=re.IGNORECASE)
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::integer\b', r'CAST(\1 AS INT)', body_sql, flags=re.IGNORECASE)
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::timestamp\b', r'CAST(\1 AS DATETIME)', body_sql, flags=re.IGNORECASE)
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::datetime\b', r'CAST(\1 AS DATETIME)', body_sql, flags=re.IGNORECASE)
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::boolean\b', r'CAST(\1 AS BIT)', body_sql, flags=re.IGNORECASE)
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::bit\b', r'CAST(\1 AS BIT)', body_sql, flags=re.IGNORECASE)
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::numeric\b', r'CAST(\1 AS NUMERIC)', body_sql, flags=re.IGNORECASE)
+    body_sql = re.sub(r'(\([^)]+\)|@?\w+|null)::text\b', r'CAST(\1 AS VARCHAR(MAX))', body_sql, flags=re.IGNORECASE)
+    return body_sql
+
+
 def remove_double_semicolons(sql):
     tokens = tokenize_sql(sql)
     new_tokens = []
@@ -3552,10 +3709,11 @@ def convert_mssql_procedure_to_postgresql(sql):
             string_vars.add(p[1:].lower())
         elif 'INT' in ptype:
             ptype = 'INT'
-        elif 'DATE' in ptype:
-            ptype = 'DATE'
-        elif 'DATETIME' in ptype:
-            ptype = 'TIMESTAMP'
+        elif 'DATE' in ptype or 'DATETIME' in ptype or 'TIMESTAMP' in ptype:
+            # Map SQL Server date/datetime/timestamp parameters to VARCHAR in PostgreSQL
+            # to align with EF Core / Npgsql parameter string bindings
+            ptype = 'VARCHAR'
+            string_vars.add(p[1:].lower())
         elif 'BIT' in ptype or 'BOOLEAN' in ptype:
             ptype = 'BOOLEAN'
             bool_vars.append(p.lower())
@@ -3584,17 +3742,32 @@ def convert_mssql_procedure_to_postgresql(sql):
     new_body_sql, declare_lines, decl_string_vars, temp_tables = extract_declarations_from_body(body_sql)
     string_vars.update(decl_string_vars)
     
+    # Extract local boolean variables from declare_lines
+    for dl in declare_lines:
+        m_bool = re.search(r'\b(\w+)\s+BOOLEAN\b', dl, re.IGNORECASE)
+        if m_bool:
+            bool_vars.append(m_bool.group(1).lower())
+            
+    # Cast NULL select expressions
+    new_body_sql = "".join(t[1] for t in cast_null_select_expressions(tokenize_sql(new_body_sql)))
+    
     # Convert string concatenation (+ to ||)
     new_body_sql = convert_string_concat(new_body_sql, string_vars)
             
     # Boolean conversions in the body
     for bv in bool_vars:
-        new_body_sql = re.sub(re.escape(bv) + r'\s*=\s*1\b', bv + ' = TRUE', new_body_sql, flags=re.IGNORECASE)
-        new_body_sql = re.sub(re.escape(bv) + r'\s*=\s*0\b', bv + ' = FALSE', new_body_sql, flags=re.IGNORECASE)
-        new_body_sql = re.sub(re.escape(bv) + r'\s*<>\s*1\b', bv + ' <> TRUE', new_body_sql, flags=re.IGNORECASE)
-        new_body_sql = re.sub(re.escape(bv) + r'\s*<>\s*0\b', bv + ' <> FALSE', new_body_sql, flags=re.IGNORECASE)
-        new_body_sql = re.sub(re.escape(bv) + r'\s*!=\s*1\b', bv + ' != TRUE', new_body_sql, flags=re.IGNORECASE)
-        new_body_sql = re.sub(re.escape(bv) + r'\s*!=\s*0\b', bv + ' != FALSE', new_body_sql, flags=re.IGNORECASE)
+        new_body_sql = re.sub(r'\b' + re.escape(bv) + r'\s*=\s*1\b', bv + ' = TRUE', new_body_sql, flags=re.IGNORECASE)
+        new_body_sql = re.sub(r'\b' + re.escape(bv) + r'\s*=\s*0\b', bv + ' = FALSE', new_body_sql, flags=re.IGNORECASE)
+        new_body_sql = re.sub(r'\b' + re.escape(bv) + r'\s*<>\s*1\b', bv + ' <> TRUE', new_body_sql, flags=re.IGNORECASE)
+        new_body_sql = re.sub(r'\b' + re.escape(bv) + r'\s*<>\s*0\b', bv + ' <> FALSE', new_body_sql, flags=re.IGNORECASE)
+        new_body_sql = re.sub(r'\b' + re.escape(bv) + r'\s*!=\s*1\b', bv + ' != TRUE', new_body_sql, flags=re.IGNORECASE)
+        new_body_sql = re.sub(r'\b' + re.escape(bv) + r'\s*!=\s*0\b', bv + ' != FALSE', new_body_sql, flags=re.IGNORECASE)
+        new_body_sql = re.sub(
+            r'\b' + re.escape(bv) + r'\s*(:=|=)\s*coalesce\s*\((.*?),\s*0\s*\)',
+            r'\1 COALESCE(\2, FALSE)',
+            new_body_sql,
+            flags=re.IGNORECASE
+        )
         
     # Replace variable references in body and declare_lines
     for p in params_for_replace:
@@ -3615,6 +3788,9 @@ def convert_mssql_procedure_to_postgresql(sql):
         declare_lines = [re.sub(v_pattern, v_name, dl, flags=re.IGNORECASE) for dl in declare_lines]
         
     new_body_sql = re.sub(r'\bSET\s+(v_\w+)\s*=\s*(.*?)\b', r'\1 := \2', new_body_sql, flags=re.IGNORECASE)
+    
+    # Apply date parameter and variable casting
+    new_body_sql = cast_date_variables(new_body_sql)
     
     # Process control flow
     new_body_sql = convert_control_flow(new_body_sql)
@@ -3664,13 +3840,7 @@ def convert_mssql_procedure_to_postgresql(sql):
         if temp_table_sql:
             pg_sql += temp_table_sql
             
-        body_lower = ""
-        parts = re.split(r"('(?:''|[^'])*')", body_trimmed)
-        for i, part in enumerate(parts):
-            if i % 2 == 0:
-                body_lower += part.lower()
-            else:
-                body_lower += part
+        body_lower = body_trimmed
         body_lower = ensure_ends_with_semicolon(body_lower)
         pg_sql += "    " + body_lower.replace('\n', '\n    ')
         pg_sql = pg_sql.rstrip()
@@ -3697,13 +3867,7 @@ def convert_mssql_procedure_to_postgresql(sql):
             flags=re.IGNORECASE
         )
         
-        body_lower = ""
-        parts = re.split(r"('(?:''|[^'])*')", cursor_body)
-        for i, part in enumerate(parts):
-            if i % 2 == 0:
-                body_lower += part.lower()
-            else:
-                body_lower += part
+        body_lower = cursor_body
         body_lower = ensure_ends_with_semicolon(body_lower)
         pg_sql += "    " + body_lower.replace('\n', '\n    ')
         pg_sql = pg_sql.rstrip()
@@ -3722,23 +3886,18 @@ def convert_mssql_procedure_to_postgresql(sql):
             
         pg_sql += "RETURNS TABLE (\n"
         pg_sql += ",\n".join(ret_cols)
-        pg_sql += "\n) AS $$"
+        pg_sql += "\n) AS $$\n"
+        pg_sql += "#variable_conflict use_column\n"
         
         if declare_lines:
-            pg_sql += "\nDECLARE\n"
-            pg_sql += "\n".join(declare_lines)
+            pg_sql += "DECLARE\n"
+            pg_sql += "\n".join(declare_lines) + "\n"
             
-        pg_sql += "\nBEGIN\n"
+        pg_sql += "BEGIN\n"
         if temp_table_sql:
             pg_sql += temp_table_sql
             
-        body_lower = ""
-        parts = re.split(r"('(?:''|[^'])*')", body_trimmed)
-        for i, part in enumerate(parts):
-            if i % 2 == 0:
-                body_lower += part.lower()
-            else:
-                body_lower += part
+        body_lower = body_trimmed
                 
         body_lower = convert_select_to_return_query(body_lower)
         
@@ -3754,6 +3913,7 @@ def convert_mssql_procedure_to_postgresql(sql):
         pg_sql = pg_sql.rstrip()
         pg_sql += "\nEND;\n$$ LANGUAGE plpgsql;"
         
+    pg_sql = convert_identifiers_case_sensitive(pg_sql)
     return remove_double_semicolons(pg_sql)
 
 def convert_pg_variable_names(tokens):
@@ -4054,6 +4214,11 @@ def convert_pg_header(sql):
             continue
         p_toks = convert_pg_variable_names(tokenize_sql(p_str))
         p_str_new = "".join(t[1] for t in p_toks).strip()
+        
+        # Recover DATE/DATETIME parameter types in T-SQL from VARCHAR if parameter represents date/time
+        if any(d in p_str_new.lower() for d in ('date', 'time')) and 'VARCHAR' in p_str_new.upper():
+            p_str_new = re.sub(r'\bVARCHAR\s*(?:\(\s*\d+\s*\))?\b', 'DATETIME', p_str_new, flags=re.IGNORECASE)
+            
         new_params.append(p_str_new)
         
     ret_type_mapped = ret_type_full
@@ -4141,6 +4306,9 @@ def convert_postgresql_to_mssql(sql):
     body_sql = convert_pg_temp_tables(body_sql)
     body_sql = convert_pg_control_flow(body_sql)
     
+    # Strip PL/pgSQL specific variable conflict directives
+    body_sql = re.sub(r'#variable_conflict\s+\w+\s*;?', '', body_sql, flags=re.IGNORECASE)
+    
     body_sql = re.sub(r'\bopen\s+@ref\d+\s+for\s+', '', body_sql, flags=re.IGNORECASE)
     body_sql = re.sub(r'\breturn\s+next\s+@ref\d+\s*;', '', body_sql, flags=re.IGNORECASE)
     body_sql = re.sub(r'\breturn\s+query\s+', '', body_sql, flags=re.IGNORECASE)
@@ -4150,11 +4318,7 @@ def convert_postgresql_to_mssql(sql):
     body_sql = re.sub(r'\bTEXT\b', 'VARCHAR(MAX)', body_sql, flags=re.IGNORECASE)
     body_sql = re.sub(r'\bVARCHAR\b(?!\s*\()', 'VARCHAR(MAX)', body_sql, flags=re.IGNORECASE)
     
-    body_sql = re.sub(r'(\([^)]+\)|@?\w+)::date\b', r'CONVERT(DATE, \1)', body_sql, flags=re.IGNORECASE)
-    body_sql = re.sub(r'(\([^)]+\)|@?\w+)::varchar\b', r'CAST(\1 AS VARCHAR)', body_sql, flags=re.IGNORECASE)
-    body_sql = re.sub(r'(\([^)]+\)|@?\w+)::int\b', r'CAST(\1 AS INT)', body_sql, flags=re.IGNORECASE)
-    body_sql = re.sub(r'(\([^)]+\)|@?\w+)::numeric\b', r'CAST(\1 AS NUMERIC)', body_sql, flags=re.IGNORECASE)
-    body_sql = re.sub(r'(\([^)]+\)|@?\w+)::text\b', r'CAST(\1 AS VARCHAR(MAX))', body_sql, flags=re.IGNORECASE)
+    body_sql = convert_pg_casts_to_mssql(body_sql)
     
     body_sql = re.sub(r'\|\|', '+', body_sql)
     body_sql = re.sub(r'\bnow\(\)', 'GETDATE()', body_sql, flags=re.IGNORECASE)

@@ -1,4 +1,4 @@
-﻿using DanpheEMR.Core.Configuration;
+using DanpheEMR.Core.Configuration;
 using DanpheEMR.DalLayer;
 using DanpheEMR.Enums;
 using DanpheEMR.Security;
@@ -274,11 +274,18 @@ namespace DanpheEMR.Controllers.Pharmacy
         {
             //else if (reqType == "getItemList")
 
-            Func<object> func = () => _pharmacyDbContext.PHRMItemMaster.Where(a => a.IsActive)
-            .Join(_pharmacyDbContext.StoreStocks.Where(a => a.StoreId == dispensaryId).GroupBy(ss => new { ss.ItemId, ss.StoreId }).Select(x => x.FirstOrDefault()),
-            mstitm => mstitm.ItemId,
-            storestk => storestk.ItemId,
-            (mstitm, storestk) => mstitm).ToList();
+            Func<object> func = () =>
+            {
+                var itemIds = _pharmacyDbContext.StoreStocks
+                    .Where(a => a.StoreId == dispensaryId)
+                    .Select(ss => ss.ItemId)
+                    .Distinct()
+                    .ToList();
+
+                return _pharmacyDbContext.PHRMItemMaster
+                    .Where(a => a.IsActive && itemIds.Contains(a.ItemId))
+                    .ToList();
+            };
             return InvokeHttpGetFunction<object>(func);
         }
 

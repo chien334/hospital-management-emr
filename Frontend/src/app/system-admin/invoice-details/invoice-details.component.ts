@@ -1,12 +1,12 @@
 import { Component, Directive, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { SystemAdminBLService } from '../shared/system-admin.bl.service';
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
 import * as moment from 'moment/moment';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { InvoiceDetailsModel } from '../shared/invoice-details.model'
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
 import { CoreService } from "../../core/shared/core.service";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 @Component({
   templateUrl: "../../view/system-admin-view/InvoiceDetails.html" // "/SystemAdminView/InvoiceDetails"
 })

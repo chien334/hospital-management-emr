@@ -6,7 +6,7 @@ import { Visit } from '../shared/visit.model';
 import { VisitBLService } from '../shared/visit.bl.service';
 import { Employee } from '../../employee/shared/employee.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../security/shared/security.service';
 import { VisitService } from '../shared/visit.service';
@@ -14,7 +14,7 @@ import { ENUM_BillingStatus, ENUM_VisitStatus, ENUM_VisitType, ENUM_AppointmentT
 import { CoreService } from '../../core/shared/core.service';
 
 @Component({
-  selector: "danphe-free-referal-visit",
+  selector: "dsf-free-referal-visit",
   templateUrl: "./free-referal-visit.html"
 })
 export class FreeReferalVisitComponent {
@@ -137,7 +137,7 @@ export class FreeReferalVisitComponent {
   
   
       this.visitBLService.PostFreeReferralVisit(refVis)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
   
             this.addreferal.emit({ action: "free-referral", data: res.Results });

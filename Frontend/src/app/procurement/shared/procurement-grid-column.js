@@ -11,11 +11,11 @@ var ProcurementGridColumns = /** @class */ (function () {
     };
     ProcurementGridColumns.GetPOActions = function (params) {
         if (params.data.IsPOCreated) {
-            return "<a danphe-grid-action=\"view\" class=\"grid-action\">\n            View </a>";
+            return "<a dsf-grid-action=\"view\" class=\"grid-action\">\n            View </a>";
         }
         else {
             if (params.data.IsActive == true) {
-                return "<a danphe-grid-action=\"view\" class=\"grid-action\">\n            View </a>\n            <a danphe-grid-action=\"addPO\" class=\"grid-action\">\n            Add Purchase Order </a>";
+                return "<a dsf-grid-action=\"view\" class=\"grid-action\">\n            View </a>\n            <a dsf-grid-action=\"addPO\" class=\"grid-action\">\n            Add Purchase Order </a>";
             }
         }
     };
@@ -25,11 +25,11 @@ var ProcurementGridColumns = /** @class */ (function () {
     };
     ProcurementGridColumns.ShowActionForPOList = function (params) {
         if (params.data.POStatus == "active" || params.data.POStatus == "partial") {
-            var template = "</a>\n                <a danphe-grid-action=\"view\" class=\"grid-action\">\n                View\n             </a>\n\n             <a  danphe-grid-action=\"genReceipt\" class=\"grid-action\">\n                Add Goods Receipt</a>\n             ";
+            var template = "</a>\n                <a dsf-grid-action=\"view\" class=\"grid-action\">\n                View\n             </a>\n\n             <a  dsf-grid-action=\"genReceipt\" class=\"grid-action\">\n                Add Goods Receipt</a>\n             ";
             return template;
         }
         else {
-            var template = "<a danphe-grid-action=\"view\" class=\"grid-action\">\n                View\n             </a> &nbsp;\n             \n             <div class=\"dropdown\" style=\"display:inline-block;\">\n                            <button class=\"dropdown-toggle grid-btnCstm\" type=\"button\" data-toggle=\"dropdown\">...\n                            <span class=\"caret\"></span></button>\n                            <ul class=\"dropdown-menu grid-ddlCstm\">\n                            <li><a danphe-grid-action=\"CreateCopy\" >Create copy from this PO</a></li>\n                            \n                            </ul>\n                        </div>\n             ";
+            var template = "<a dsf-grid-action=\"view\" class=\"grid-action\">\n                View\n             </a> &nbsp;\n             \n             <div class=\"dropdown\" style=\"display:inline-block;\">\n                            <button class=\"dropdown-toggle grid-btnCstm\" type=\"button\" data-toggle=\"dropdown\">...\n                            <span class=\"caret\"></span></button>\n                            <ul class=\"dropdown-menu grid-ddlCstm\">\n                            <li><a dsf-grid-action=\"CreateCopy\" >Create copy from this PO</a></li>\n                            \n                            </ul>\n                        </div>\n             ";
             return template;
         }
     };
@@ -47,11 +47,11 @@ var ProcurementGridColumns = /** @class */ (function () {
     };
     ProcurementGridColumns.ShowActionForRFQList = function (params) {
         if (params.data.Status == "active" || params.data.Status == "partial") {
-            var template = "<a danphe-grid-action=\"View\" class=\"grid-action\">RFQ Details</a>\n             <a danphe-grid-action=\"AttachQuotationDocuments\" class=\"grid-action\">Attach Quo Files</a>\n\n                  <div class=\"dropdown\" style=\"display:inline-block;\">\n                 <button class=\"dropdown-toggle grid-btnCstm\" type=\"button\" data-toggle=\"dropdown\">...\n                 <span class=\"caret\"></span></button>\n                 <ul class=\"dropdown-menu grid-ddlCstm\">\n                     <li><a danphe-grid-action=\"AddQuotationDetails\" class=\"grid-action\">Add Supp Quotation</a></li>\n                    <li><a danphe-grid-action=\"AnalyseQuotation\" class=\"grid-action\">Analyse Quotation</a></li>\n\n                 </ul>\n               </div>";
+            var template = "<a dsf-grid-action=\"View\" class=\"grid-action\">RFQ Details</a>\n             <a dsf-grid-action=\"AttachQuotationDocuments\" class=\"grid-action\">Attach Quo Files</a>\n\n                  <div class=\"dropdown\" style=\"display:inline-block;\">\n                 <button class=\"dropdown-toggle grid-btnCstm\" type=\"button\" data-toggle=\"dropdown\">...\n                 <span class=\"caret\"></span></button>\n                 <ul class=\"dropdown-menu grid-ddlCstm\">\n                     <li><a dsf-grid-action=\"AddQuotationDetails\" class=\"grid-action\">Add Supp Quotation</a></li>\n                    <li><a dsf-grid-action=\"AnalyseQuotation\" class=\"grid-action\">Analyse Quotation</a></li>\n\n                 </ul>\n               </div>";
             return template;
         }
         else {
-            var template = "<a danphe-grid-action=\"View\" class=\"grid-action\">RFQ Details</a>\n          <a danphe-grid-action=\"QuotationList\" class=\"grid-action\">Quotation List</a>\n          <a danphe-grid-action=\"SelectedQuotation\" class=\"grid-action\"> Selected Quotation </a>";
+            var template = "<a dsf-grid-action=\"View\" class=\"grid-action\">RFQ Details</a>\n          <a dsf-grid-action=\"QuotationList\" class=\"grid-action\">Quotation List</a>\n          <a dsf-grid-action=\"SelectedQuotation\" class=\"grid-action\"> Selected Quotation </a>";
             return template;
         }
     };
@@ -119,7 +119,7 @@ var ProcurementGridColumns = /** @class */ (function () {
             headerName: "Action",
             field: "",
             width: 50,
-            template: '<a danphe-grid-action="view" class="grid-action">View</a>',
+            template: '<a dsf-grid-action="view" class="grid-action">View</a>',
         },
     ];
     ProcurementGridColumns.ReqQuotationList = [
@@ -146,7 +146,7 @@ var ProcurementGridColumns = /** @class */ (function () {
         {
             headerName: "Action",
             field: "",
-            template: "<a danphe-grid-action=\"view\" class=\"grid-action\">\n               View\n             </a>",
+            template: "<a dsf-grid-action=\"view\" class=\"grid-action\">\n               View\n             </a>",
         },
     ];
     ProcurementGridColumns.ReturnToVendorList = [
@@ -157,7 +157,7 @@ var ProcurementGridColumns = /** @class */ (function () {
             headerName: "Actions",
             field: "",
             width: 180,
-            template: "\n                 <a danphe-grid-action=\"view\" class=\"grid-action\">\n                    View\n                 </a>",
+            template: "\n                 <a dsf-grid-action=\"view\" class=\"grid-action\">\n                    View\n                 </a>",
         },
     ];
     ProcurementGridColumns.VendorsList = [
@@ -170,7 +170,7 @@ var ProcurementGridColumns = /** @class */ (function () {
             headerName: "Action",
             field: "",
             width: 100,
-            template: '<a danphe-grid-action="view" class="grid-action">View</a>',
+            template: '<a dsf-grid-action="view" class="grid-action">View</a>',
         },
     ];
     return ProcurementGridColumns;

@@ -97,7 +97,7 @@
                                                 <b><u>{{IssuedByDesignation}}</u></b>
                                           </td>
                                           <td *ngIf="!IsPrint">
-                                                <input danphe-auto-complete class="form-control"
+                                                <input dsf-auto-complete class="form-control"
                                                        [(ngModel)]="IssuedSignatory" [source]="providerList"
                                                        [list-formatter]="myListFormatter" placeholder="Issued By"
                                                        display-property-name="FullName" value-property-name=null
@@ -125,7 +125,7 @@
                                                 <b><u>{{CertifiedByDesignation}}</u></b>
                                           </td>
                                           <td *ngIf="!IsPrint">
-                                                <input danphe-auto-complete class="form-control"
+                                                <input dsf-auto-complete class="form-control"
                                                        [(ngModel)]="CertifiedSignatory" [source]="providerList"
                                                        [list-formatter]="myListFormatter" placeholder="Certified By"
                                                        display-property-name="FullName" value-property-name=null

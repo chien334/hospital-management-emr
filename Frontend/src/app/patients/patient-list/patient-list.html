@@ -1,9 +1,9 @@
 <div class="wrapper">
   <div class="row" *ngIf="showPatientList">
     <div class="col-lg-12 col-sm-12" id="patientListGridHolder">
-      <danphe-grid [grid-colDefaults]="patientGridColumns" [grid-data]="patients"
+      <dsf-grid [grid-colDefaults]="patientGridColumns" [grid-data]="patients"
         (grid-actions)="PatientGridActions($event)" (serverSearchText)="serverSearchTxt($event)"
-        [customServerSearch]="enableServerSideSearch"> </danphe-grid>
+        [customServerSearch]="enableServerSideSearch"> </dsf-grid>
     </div>
   </div>
   <div class="row" *ngIf="showPatientHistory">

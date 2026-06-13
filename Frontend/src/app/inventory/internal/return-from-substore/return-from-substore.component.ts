@@ -2,12 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import * as moment from "moment";
 import { PHRMStoreModel } from "../../../pharmacy/shared/phrm-store.model";
 import { ActivateInventoryService } from "../../../shared/activate-inventory/activate-inventory.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { InventoryBLService } from "../../shared/inventory.bl.service";
 import { ReturnItem } from "./return-item.model";
 
@@ -78,8 +78,8 @@ export class ReturnFromSubstoreComponent implements OnInit {
     GetReturnItems(fromDate: string, toDate: string, storeid: number, sourceSubstoreId: number) {
         this.returnedItemList = [];
         this.inventoryBLService.GetReturnItemsFromSubstore(fromDate, toDate, storeid, sourceSubstoreId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponseText.OK && res.Results.length > 0) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponseText.OK && res.Results.length > 0) {
                     this.returnedItemList = res.Results;
                 }
                 else {
@@ -89,8 +89,8 @@ export class ReturnFromSubstoreComponent implements OnInit {
     }
     GetAllSubstores() {
         this.inventoryBLService.GetAllSubStores()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponseText.OK && res.Results.length > 0) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponseText.OK && res.Results.length > 0) {
                     this.substores = res.Results;
                     this.substores.unshift({ StoreId: null, StoreName: 'All' });
                 }

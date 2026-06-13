@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 import { EmpSettingsMainComponent } from './emp-settings-main.component';
 import { EmployeeAddComponent } from './emp-mst/employee-add.component';
@@ -45,7 +45,7 @@ export const empSettingsRoutes: Routes =
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         RouterModule.forChild(empSettingsRoutes)], providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })

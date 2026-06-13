@@ -3,7 +3,7 @@ import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import * as moment from 'moment';
 import { CoreService } from '../../core/shared/core.service';
 import { DLService } from '../../shared/dl.service';
-import { DanpheChartsService } from '../../dashboards/shared/danphe-charts.service';
+import { DsfChartsService } from '../../dashboards/shared/dsf-charts.service';
 import { ActivateInventoryService } from '../../shared/activate-inventory/activate-inventory.service';
 import { CommonFunctions } from '../../shared/common.functions';
 
@@ -24,7 +24,7 @@ export class InventoryDashboardComponent {
   InventoryDashboardStatisticsData: InventoryDashboardStatistics = new InventoryDashboardStatistics();
   totalDispatchValue: number = 0;
   totalStockValue: number = 0;
-  constructor(public danpheCharts: DanpheChartsService, public dlService: DLService, public coreService: CoreService, public changeDetector: ChangeDetectorRef, private _activateInventoryService: ActivateInventoryService) {
+  constructor(public dsfCharts: DsfChartsService, public dlService: DLService, public coreService: CoreService, public changeDetector: ChangeDetectorRef, private _activateInventoryService: ActivateInventoryService) {
     this.FromDate = moment().subtract(7, 'd').format("DD-MM-YYYY");
     this.ToDate = moment().format("DD-MM-YYYY");
     this.showCountryMap = this.coreService.showCountryMapOnLandingPage;
@@ -83,7 +83,7 @@ export class InventoryDashboardComponent {
             return { department: d.Name, consumerstock: d.DispatchedQuantity };
           });
 
-          this.danpheCharts.Inventory_Pie_Catdepartmentwiseconsumeritems("dvdepPieChart", formattedData);
+          this.dsfCharts.Inventory_Pie_Catdepartmentwiseconsumeritems("dvdepPieChart", formattedData);
         }
 
       });
@@ -98,7 +98,7 @@ export class InventoryDashboardComponent {
             return { monthdate: d.TxnDisplayDate, purchasevalue: d.PurchaseValue, goodsReceiptvalue: d.GoodsReceiptValue, goodsarrivalvalue: d.GoodsArrivalValue };
           });
 
-          this.danpheCharts.Inventory_BarV_MonthlyWisePurchaseOrdervsGoodsReceiptValue("dvInvMthPurchaseVsConsumption", formattedData);
+          this.dsfCharts.Inventory_BarV_MonthlyWisePurchaseOrdervsGoodsReceiptValue("dvInvMthPurchaseVsConsumption", formattedData);
         }
 
       });
@@ -113,7 +113,7 @@ export class InventoryDashboardComponent {
             return { subcategoryname: d.SubCategoryName, stock: d.AvailableQuantity };
           });
 
-          this.danpheCharts.Inventory_Pie_subcategorywiseinventorystockvalue("dvsubcategoryPieChart", formattedData);
+          this.dsfCharts.Inventory_Pie_subcategorywiseinventorystockvalue("dvsubcategoryPieChart", formattedData);
         }
 
       });
@@ -147,7 +147,7 @@ export class InventoryDashboardComponent {
           let formattedData = dataToParse.map(d => {
             return { department: d.Name, consumervalue: d.TotalDispatchValue };
           });
-          this.danpheCharts.Inventory_Pie_ChartDepartmentwiseStockAndValue("dvdepPieChart", formattedData);
+          this.dsfCharts.Inventory_Pie_ChartDepartmentwiseStockAndValue("dvdepPieChart", formattedData);
           this.totalDispatchValue = CommonFunctions.parsePhrmAmount(dataToParse.reduce((a, b) => a + b.TotalDispatchValue, 0));
         }
       });
@@ -163,7 +163,7 @@ export class InventoryDashboardComponent {
           let formattedData = dataToParse.map(d => {
             return { subcategoryname: d.SubCategoryName, stockvalue: d.TotalStockValue };
           });
-          this.danpheCharts.Inventory_Pie_SubCategoryWiseStockValue("dvsubcategoryPieChart", formattedData);
+          this.dsfCharts.Inventory_Pie_SubCategoryWiseStockValue("dvsubcategoryPieChart", formattedData);
           this.totalStockValue = CommonFunctions.parsePhrmAmount(dataToParse.reduce((a, b) => a + b.TotalStockValue, 0));
         }
       });
@@ -180,7 +180,7 @@ export class InventoryDashboardComponent {
             return { monthdate: d.TxnDisplayDate, purchasevalue: d.PurchaseValue, goodsReceiptvalue: d.GoodsReceiptValue, dispatchvalue: d.TotalDispatchValue };
           });
 
-          this.danpheCharts.Inventory_MonthlyWiseTransaction("dvInvMthPurchaseVsConsumption", formattedData);
+          this.dsfCharts.Inventory_MonthlyWiseTransaction("dvInvMthPurchaseVsConsumption", formattedData);
         }
 
       });

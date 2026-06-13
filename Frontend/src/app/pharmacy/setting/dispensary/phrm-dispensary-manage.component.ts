@@ -6,7 +6,7 @@ import { DispensaryService } from "../../../dispensary/shared/dispensary.service
 import { Permission } from "../../../security/shared/permission.model";
 import { SecurityService } from '../../../security/shared/security.service';
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { ENUM_DispensaryType } from "../../../shared/shared-enums";
 import PHRMGridColumns from '../../shared/phrm-grid-columns';

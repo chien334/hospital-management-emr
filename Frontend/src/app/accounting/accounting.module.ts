@@ -3,7 +3,7 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { AccountingSettingsModule } from './settings/accounting-settings.module';
 
 import { AccountingBLService } from './shared/accounting.bl.service';
@@ -49,7 +49,7 @@ import { TransferToAccountingComponent } from "./transactions/transfer-to-accoun
 import { VoucherEntryComponent } from './transactions/voucher-entry.component';
 import { VoucherVerificationComponent } from './voucher-verification/voucher-verification.component';
 @NgModule({ declarations: [
-        // START: mumbai-team-june2021-danphe-accounting-cache-change*
+        // START: mumbai-team-june2021-dsf-accounting-cache-change*
         AccountingReportsComponent,
         BalanceSheetReportComponent,
         LedgerReportComponent,
@@ -65,7 +65,7 @@ import { VoucherVerificationComponent } from './voucher-verification/voucher-ver
         DaywiseVoucherDetailsComponent,
         SystemAuditReportComponent,
         GroupStatementReportComponent,
-        // END: mumbai-team-june2021-danphe-accounting-cache-change*
+        // END: mumbai-team-june2021-dsf-accounting-cache-change*
         AccountingComponent,
         TransactionsMainComponent,
         VoucherEntryComponent,
@@ -87,7 +87,7 @@ import { VoucherVerificationComponent } from './voucher-verification/voucher-ver
     bootstrap: [], imports: [CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         AccountingSharedModule,
         AccountingRoutingModule,
         AccountingSettingsModule,

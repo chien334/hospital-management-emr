@@ -6,7 +6,7 @@ import { PatientFilesModel } from "../shared/patient-files.model";
 import { PatientService } from "../shared/patient.service";
 import { Patient } from "../shared/patient.model";
 import { PatientsBLService } from "../shared/patients.bl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import * as _ from 'lodash';
 import { PatientsDLService } from "../shared/patients.dl.service";
 
@@ -76,7 +76,7 @@ export class PatientProfilePicComponent {
 
         this.http.post<any>("/api/Patient/PatientProfilePicture", patFileInfo)
             .map(res => res)
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
                     this.patientFile.FileBase64String = res.Results.FileBase64String;
                     console.log(res.Results);
@@ -91,7 +91,7 @@ export class PatientProfilePicComponent {
     LoadProfilePic() {
         this.http.get<any>("/api/patient/PatientProfilePicture?patientId=" + this.currPatient.PatientId)
             .map(res => res)
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 console.log(res);
 
                 let fileInfo = res.Results;

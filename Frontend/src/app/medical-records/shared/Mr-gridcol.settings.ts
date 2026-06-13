@@ -1,7 +1,7 @@
 //This grid is to show list of Lab Report Templates
 import * as moment from 'moment/moment';
 import { CommonFunctions } from '../../shared/common.functions';
-import { DanpheDateTime } from '../../shared/pipes/danphe-datetime.pipe';
+import { DsfDateTime } from '../../shared/pipes/dsf-datetime.pipe';
 
 export default class MRGridColumnSettings {
   static BirthList = [
@@ -16,7 +16,7 @@ export default class MRGridColumnSettings {
       headerName: "Action",
       field: "",
       width: 120,
-      template: `<a danphe-grid-action="view-birth-certificate" class="grid-action">Certificate</a>`
+      template: `<a dsf-grid-action="view-birth-certificate" class="grid-action">Certificate</a>`
     }
   ];
   static DeathList = [
@@ -28,10 +28,10 @@ export default class MRGridColumnSettings {
       headerName: "Action",
       field: "",
       width: 120,
-      template: `<a danphe-grid-action="view-death-certificate" class="grid-action">Certificate</a>`
+      template: `<a dsf-grid-action="view-death-certificate" class="grid-action">Certificate</a>`
     }
   ];
-  static datTime: DanpheDateTime = new DanpheDateTime();
+  static datTime: DsfDateTime = new DsfDateTime();
 
   static MRDateRenderer(params) {
     var tempdate = MRGridColumnSettings.DateRenderer(
@@ -110,9 +110,9 @@ export default class MRGridColumnSettings {
 
   static OPListActionRenderer(params) {
     if (params.data && params.data.FinalDiagnosisCount && params.data.FinalDiagnosisCount > 0)
-      return `<a danphe-grid-action="add-diagnosis" class="grid-action" style="background-color: #247e58!important;">
+      return `<a dsf-grid-action="add-diagnosis" class="grid-action" style="background-color: #247e58!important;">
       Edit Final Diagnosis</a>`
-    else return `<a danphe-grid-action="add-diagnosis" class="grid-action">Add Final Diagnosis</a>`
+    else return `<a dsf-grid-action="add-diagnosis" class="grid-action">Add Final Diagnosis</a>`
   }
 
   static FinalDiagnosisRenderer(params) {
@@ -159,9 +159,9 @@ export default class MRGridColumnSettings {
   }
   static EmergencyListActionRenderer(params) {
     if (params.data && params.data.FinalDiagnosisCount && params.data.FinalDiagnosisCount > 0)
-      return `<a danphe-grid-action="add-diagnosis" class="grid-action" style="background-color: #247e58!important;">
+      return `<a dsf-grid-action="add-diagnosis" class="grid-action" style="background-color: #247e58!important;">
       Edit Final Diagnosis</a>`
-    else return `<a danphe-grid-action="add-diagnosis" class="grid-action">Add Final Diagnosis</a>`
+    else return `<a dsf-grid-action="add-diagnosis" class="grid-action">Add Final Diagnosis</a>`
   }
 
   static SerialNoGeneratior(params) {
@@ -194,9 +194,9 @@ export default class MRGridColumnSettings {
 
   static IPListActionRenderer(params) {
     if (params.data && params.data.MedicalRecordId > 0)
-      return `<a danphe-grid-action="view-mr" class="grid-action btn btn-primary actionbtn margin-7-hr" style="background-color: #247e58!important;">
+      return `<a dsf-grid-action="view-mr" class="grid-action btn btn-primary actionbtn margin-7-hr" style="background-color: #247e58!important;">
       View MR</a>`
-    else return `<a danphe-grid-action="add-mr" class="grid-action btn btn-primary actionbtn margin-7-hr">Add MR</a>`;
+    else return `<a dsf-grid-action="add-mr" class="grid-action btn btn-primary actionbtn margin-7-hr">Add MR</a>`;
 
   }
 

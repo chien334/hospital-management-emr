@@ -9,7 +9,7 @@ import { PatientBillingContextVM } from "../../../../billing/shared/patient-bill
 import { CoreService } from '../../../../core/shared/core.service';
 import { SecurityService } from "../../../../security/shared/security.service";
 import { CreditOrganization } from "../../../../settings-new/shared/creditOrganization.model";
-import { DanpheHTTPResponse } from "../../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../../shared/common-models";
 import { CommonFunctions } from "../../../../shared/common.functions";
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../../shared/routefrom.service";
@@ -263,7 +263,7 @@ export class GovInsuranceVisitBillingInfoComponent implements OnInit {
           if (enableOldPatOpdPrice) {
 
             this.insuranceBLService.GetPatientVisitList(patId)
-              .subscribe((res: DanpheHTTPResponse) => {
+              .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
                   let patVisitList: Array<any> = res.Results;
                   if (patVisitList && patVisitList.length) {
@@ -641,7 +641,7 @@ export class GovInsuranceVisitBillingInfoComponent implements OnInit {
     }
     if (this.billingTransaction.PatientId) {
       this.insuranceBLService.GetPatientBillingContext(this.billingTransaction.PatientId)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.currBillingContext = res.Results;
             this.insuranceService.Insurance = this.currBillingContext.Insurance;

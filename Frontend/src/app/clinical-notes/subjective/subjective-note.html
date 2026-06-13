@@ -79,7 +79,7 @@
               </tr>
             </thead>
             <tr *ngFor="let allergy of clinicalDetail.Allergies">
-              <td>{{allergy.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td>{{allergy.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
               <td>{{allergy.AllergyType}}</td>
               <td>{{allergy.AllergenAdvRecName}}</td>
               <td>{{allergy.Severity}}</td>
@@ -112,8 +112,8 @@
             </thead>
             <tr *ngFor="let pastMedical of clinicalDetail.PastMedicals">
               <td>{{pastMedical.ICD10Description}}</td>
-              <td>{{pastMedical.OnSetDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-              <td>{{pastMedical.ResolvedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td>{{pastMedical.OnSetDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td>{{pastMedical.ResolvedDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
               <td>{{pastMedical.Note}}</td>
             </tr>
           </table>
@@ -142,8 +142,8 @@
             </thead>
             <tr *ngFor="let surgical of clinicalDetail.SurgicalHistory">
               <td>{{surgical.ICD10Description}}</td>
-              <td>{{surgical.SurgeryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-              <td>{{surgical.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td>{{surgical.SurgeryDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td>{{surgical.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
               <td>{{surgical.Note}}</td>
             </tr>
           </table>
@@ -174,7 +174,7 @@
               </tr>
             </thead>
             <tr *ngFor="let social of clinicalDetail.SocialHistory">
-              <td>{{social.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td>{{social.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
               <td>{{social.SmokingHistory}}</td>
               <td>{{social.AlcoholHistory}}</td>
               <td>{{social.DrugHistory}}</td>
@@ -207,7 +207,7 @@
               </tr>
             </thead>
             <tr *ngFor="let family of clinicalDetail.FamilyHistory">
-              <td>{{family.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td>{{family.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
               <td>{{family.ICD10Description}}</td>
               <td>{{family.Relationship}}</td>
               <td>{{family.Note}}</td>
@@ -240,8 +240,8 @@
               </thead>
               <tr *ngFor="let pastMedical of clinicalDetail.PastMedicals">
                 <td>{{pastMedical.ICD10Description}}</td>
-                <td>{{pastMedical.OnSetDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-                <td>{{pastMedical.ResolvedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{pastMedical.OnSetDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{pastMedical.ResolvedDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                 <td>{{pastMedical.Note}}</td>
               </tr>
             </table>
@@ -272,8 +272,8 @@
               </thead>
               <tr *ngFor="let pastMedical of clinicalDetail.PastMedicals">
                 <td>{{pastMedical.ICD10Description}}</td>
-                <td>{{pastMedical.OnSetDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-                <td>{{pastMedical.ResolvedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{pastMedical.OnSetDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{pastMedical.ResolvedDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                 <td>{{pastMedical.Note}}</td>
               </tr>
             </table>
@@ -304,8 +304,8 @@
               </thead>
               <tr *ngFor="let pastMedical of clinicalDetail.PastMedicals">
                 <td>{{pastMedical.ICD10Description}}</td>
-                <td>{{pastMedical.OnSetDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-                <td>{{pastMedical.ResolvedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{pastMedical.OnSetDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{pastMedical.ResolvedDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                 <td>{{pastMedical.Note}}</td>
               </tr>
             </table>
@@ -335,8 +335,8 @@
               </thead>
               <tr *ngFor="let pastMedical of clinicalDetail.PastMedicals">
                 <td>{{pastMedical.ICD10Description}}</td>
-                <td>{{pastMedical.OnSetDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-                <td>{{pastMedical.ResolvedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{pastMedical.OnSetDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{pastMedical.ResolvedDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                 <td>{{pastMedical.Note}}</td>
               </tr>
             </table>

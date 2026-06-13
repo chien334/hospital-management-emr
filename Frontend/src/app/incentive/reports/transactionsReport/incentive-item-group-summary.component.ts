@@ -4,7 +4,7 @@ import { CoreService } from "../../../core/shared/core.service";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses } from "../../../shared/shared-enums";
 import { IncentiveBLService } from "../../shared/incentive.bl.service";
 
 
@@ -60,7 +60,7 @@ export class INCTV_BIL_IncentiveItemGroupComponent {
     this.dlService.Read("/BillingReports/INCTV_Doc_ItemGroupSummary?FromDate=" + this.FromDate + "&ToDate=" + this.ToDate + "&employeeId=" + this.employeeId + "&IsRefferalOnly=" + this.IsReferralOnly)
       .map(res => res)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           let data = JSON.parse(res.Results.JsonData);
           if (data && data.Table1 && data.Table1[0]) {
             this.allReportData = data.Table1;

@@ -5,7 +5,7 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { ENUM_StockLocations } from "../../../shared/shared-enums";
 import { PhrmRackModel } from '../../shared/rack/phrm-rack.model';
 import { PhrmRackService } from '../../shared/rack/phrm-rack.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import * as moment from 'moment';
 import PHRMReportsGridColumns from '../../shared/phrm-reports-grid-columns';
 import { CoreService } from "../../../core/shared/core.service";

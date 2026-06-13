@@ -7,8 +7,8 @@
 </div>
 <div class="row">
    <div class="col-md-12 col-xs-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="GridColumns" [grid-data]="gridData" (grid-actions)="GridActions($event)">
-      </danphe-grid>
+      <dsf-grid [grid-colDefaults]="GridColumns" [grid-data]="gridData" (grid-actions)="GridActions($event)">
+      </dsf-grid>
    </div>
 </div>
 <div class="popup-static portlet box portlet-fullscreen inv_modal" *ngIf="showEditPage">
@@ -27,7 +27,7 @@
                      <div class="form-group">
                         <label class="control-label col-md-5">{{ 'ACCOUNTING.LEDGER' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-7">
-                           <input danphe-auto-complete class="form-control" [(ngModel)]="selectedLedger"
+                           <input dsf-auto-complete class="form-control" [(ngModel)]="selectedLedger"
                                   [source]="ledgerListAutoComplete" display-property-name="LedgerName" value-property-name=null
                                   [list-formatter]="LedgerListFormatter" max-num-list="15" (focusout)="AssignSelectedLedger()"
                                   [placeholder]="'ACCOUNTING.SELECT_LEDGER' | translate" onclick="this.select()" id="Ledger" style="width: 100%;"
@@ -109,7 +109,7 @@
                                   onclick="this.select()"
                                   id="Ledger_"
                                   style="width: 100%;"
-                                  danphe-auto-complete />
+                                  dsf-auto-complete />
                         </div>
                      </div>
                   </div>
@@ -120,7 +120,7 @@
                      <div class="form-group">
                         <label class="control-label col-md-4">{{ 'ACCOUNTING.LEDGER' | translate }}<b>:</b></label>
                         <div class="col-md-8">
-                           <input danphe-auto-complete class="col-md-11" [(ngModel)]="selectedLedger"
+                           <input dsf-auto-complete class="col-md-11" [(ngModel)]="selectedLedger"
                                   [source]="ledgerListAutoComplete" display-property-name="LedgerName" value-property-name=null
                                   [list-formatter]="LedgerListFormatter" max-num-list="15" (focusout)="AssignSelectedLedger()"
                                   [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" onclick="this.select()" id="Ledger"

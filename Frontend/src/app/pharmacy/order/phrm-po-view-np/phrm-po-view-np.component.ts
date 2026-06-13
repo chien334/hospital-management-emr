@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoreService } from '../../../core/shared/core.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText } from '../../../shared/shared-enums';
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
 import { PHRMPurchaseOrder } from '../../shared/phrm-purchase-order.model';
 import { PHRMSupplierModel } from '../../shared/phrm-supplier.model';
@@ -45,8 +45,8 @@ export class PhrmPoViewNpComponent implements OnInit {
   }
   GetPurchaseOrderDetail() {
     this.pharmacyBLService.GetPHRMPOItemsByPOId(this.purchaseOrderId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.currentPO = res.Results.Order;
           this.currentPO.PHRMPurchaseOrderItems = res.Results.OrderItems;
         }

@@ -25,7 +25,7 @@ import { ImagingItemRequisition } from '../../radiology/shared/imaging-item-requ
 import { SecurityDLService } from "../../security/shared/security.dl.service";
 import { SecurityService } from '../../security/shared/security.service';
 import { CommonFunctions } from '../../shared/common.functions';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 import { RouteFromService } from '../../shared/routefrom.service';
 import { ENUM_AppointmentType, ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_VisitStatus, ENUM_VisitType } from '../../shared/shared-enums';
 import { DischargeDetailBillingVM } from '../ip-billing/shared/discharge-bill.view.models';
@@ -1242,7 +1242,7 @@ export class BillingBLService {
 
 
         //sud:26Aug'19--To Assign Departments to VisitDoctors.
-        let doctorList = DanpheCache.GetData(MasterType.Employee, null);
+        let doctorList = DsfCache.GetData(MasterType.Employee, null);
 
         if (doctorList && doctorList.length > 0) {
           let currDoc = doctorList.find(d => d.EmployeeId == bill.PerformerId);

@@ -4,9 +4,9 @@ import { BedFeature } from '../../../adt/shared/bedfeature.model';
 import { Ward } from '../../../adt/shared/ward.model';
 import { SecurityService } from '../../../security/shared/security.service';
 
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { ServiceDepartment } from "../../shared/service-department.model";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from '../../shared/settings.bl.service';
@@ -72,8 +72,8 @@ export class BedFeatureAddComponent {
     if (this.CurrentBedFeature.IsValidCheck(undefined, undefined)) {
       this.settingsBLService.AddBedFeature(this.CurrentBedFeature)
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Bed Feature Added"]);
               this.CallBackAddUpdate(res.Results);
               this.CurrentBedFeature = new BedFeature();
@@ -100,8 +100,8 @@ export class BedFeatureAddComponent {
     if (this.CurrentBedFeature.IsValidCheck(undefined, undefined)) {
       this.settingsBLService.UpdateBedFeature(this.CurrentBedFeature)
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
               this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Bed Details Updated"]);
               this.CallBackAddUpdate(res.Results.BedFeature);
               this.CurrentBedFeature = new BedFeature();
@@ -133,7 +133,7 @@ export class BedFeatureAddComponent {
 
 
   //   this.settingsBLService.AddBillingItem(billItem)
-  //     .subscribe((res: DanpheHTTPResponse) => {
+  //     .subscribe((res: DsfHTTPResponse) => {
 
   //       if (res.Status == "OK") {
   //         //after posting to billing, we've to send back same bedfeature item to : bedFeature list component.
@@ -183,7 +183,7 @@ export class BedFeatureAddComponent {
     try {
       this.settingsBLService.GetServiceDepartments()
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             if (res.Results.length) {
               this.serviceDepartmentList = res.Results;
               if (this.serviceDepartmentList && this.serviceDepartmentList.length > 0) {

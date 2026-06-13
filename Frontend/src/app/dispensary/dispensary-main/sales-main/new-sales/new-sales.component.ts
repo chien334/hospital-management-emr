@@ -26,11 +26,11 @@ import { CreditOrganization } from '../../../../settings-new/shared/creditOrgani
 import { PriceCategory } from '../../../../settings-new/shared/price.category.model';
 import { GeneralFieldLabels } from "../../../../shared/DTOs/general-field-label.dto";
 import { CallbackService } from '../../../../shared/callback.service';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from '../../../../shared/common.functions';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../shared/routefrom.service';
-import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_ModuleName, ENUM_PriceCategory, ENUM_ServiceBillingContext } from '../../../../shared/shared-enums';
+import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_ModuleName, ENUM_PriceCategory, ENUM_ServiceBillingContext } from '../../../../shared/shared-enums';
 import { DispensaryAvailableStockDetail_DTO } from '../../../shared/DTOs/dispensary-available-stock-detail.dto';
 import { DispensaryService } from '../../../shared/dispensary.service';
 
@@ -278,17 +278,17 @@ export class NewSalesComponent implements OnInit, OnDestroy {
 
   public GetGenericList() {
     this.pharmacyBLService.GetGenericList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.GenericList = res.Results;
           this.FilteredGenericList = res.Results;
         }
       });
   }
 
-  CallBackGetItemTypeList(res: DanpheHTTPResponse) {
+  CallBackGetItemTypeList(res: DsfHTTPResponse) {
     try {
-      if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status == ENUM_DsfHTTPResponses.OK) {
         if (res.Results) {
           this.ItemList = [];
           this.ItemList = res.Results;
@@ -687,10 +687,10 @@ export class NewSalesComponent implements OnInit, OnDestroy {
           this.pharmacyBLService.postInvoiceData(this.currSale)
             .finally(() => this.loading = false)
             .subscribe(res => {
-              if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results != null) {
+              if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results != null) {
                 this.CallBackSaveSale(res);
               }
-              else if (res.Status == ENUM_DanpheHTTPResponses.Failed) {
+              else if (res.Status == ENUM_DsfHTTPResponses.Failed) {
                 this.messageboxService.showMessage(ENUM_MessageBox_Status.Failed, ['There is problem, please try again', res.ErrorMessage.split('exception')[0]]);
                 var itemWithLessAvQtyArray = res.ErrorMessage.split(' ');
                 for (var j = 0; j < this.currSaleItems.length; j++) {
@@ -740,7 +740,7 @@ export class NewSalesComponent implements OnInit, OnDestroy {
   //after invoice is succesfully added this function is called.
   CallBackSaveSale(res) {
     try {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.currSale.InvoiceId = res.Results;
         this.messageboxService.showMessage(ENUM_MessageBox_Status.Success, ["Invoice saved Succesfully. "]);
         this.DeductStockQuantityLocally();
@@ -982,8 +982,8 @@ export class NewSalesComponent implements OnInit, OnDestroy {
     }
     if ($event.PatientId > 0) {
       this.pharmacyBLService.GetPatientByPatId($event.PatientId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.currSale.selectedPatient.PatientId = res.Results.PatientId;
             this.currSale.selectedPatient.PatientCode = res.Results.PatientCode;
             this.currSale.selectedPatient.Gender = res.Results.Gender;
@@ -1109,8 +1109,8 @@ export class NewSalesComponent implements OnInit, OnDestroy {
   LoadPatientInvoiceSummary(patientId: number, SchemeId?: number, PatientVisitId?: number, MemberNo?: string) {
     if (patientId > 0) {
       this.pharmacyBLService.GetPatientSummary(patientId, SchemeId, PatientVisitId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.patSummary = res.Results;
             this.patSummary.CreditAmount = CommonFunctions.parseAmount(this.patSummary.CreditAmount);
             this.patSummary.ProvisionalAmt = CommonFunctions.parseAmount(this.patSummary.ProvisionalAmt);
@@ -1491,8 +1491,8 @@ export class NewSalesComponent implements OnInit, OnDestroy {
       this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ['Please provide {{labelForNMCNo}}.']);
       return;
     }
-    this.pharmacyBLService.UpdateNMCNo(this.currSale.PrescriberId, this.MedicalCertificateNo).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.UpdateNMCNo(this.currSale.PrescriberId, this.MedicalCertificateNo).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.NMCNoAddPopup = false;
         this.EmployeeDetails = res.Results;
         if (this.EmployeeDetails) {
@@ -1516,8 +1516,8 @@ export class NewSalesComponent implements OnInit, OnDestroy {
   }
 
   GetPriceCategories() {
-    this.pharmacyBLService.GetPriceCategories().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetPriceCategories().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.allPriceCategories = [];
         let priceCategory = res.Results;
         this.allPriceCategories = priceCategory.filter(a => a.IsActive == true)
@@ -1677,8 +1677,8 @@ export class NewSalesComponent implements OnInit, OnDestroy {
   }
 
   LoadDefaultScheme() {
-    this.pharmacyBLService.GetDefaultScheme(ENUM_ServiceBillingContext.OpPharmacy).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results && res.Results.length) {
+    this.pharmacyBLService.GetDefaultScheme(ENUM_ServiceBillingContext.OpPharmacy).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results && res.Results.length) {
         let scheme: PharmacySchemePriceCategory_DTO = res.Results.find(s => s.IsSystemDefault);
         if (scheme) {
           this.OnSchemePriceCategoryChanged(scheme);
@@ -1771,8 +1771,8 @@ export class NewSalesComponent implements OnInit, OnDestroy {
       if (check) {
         this.MapInvoiceItemData();
         this.pharmacyBLService.SaveProvisional(this.currSaleItems).finally(() => this.loading = false)
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.ProvisionalInvoice = res.Results;
               this.showProvisionalInvoice = true;
               this.messageboxService.showMessage(ENUM_MessageBox_Status.Success, ['Provisional Save successfully']);

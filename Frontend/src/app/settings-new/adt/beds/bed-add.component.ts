@@ -7,10 +7,10 @@ import { Ward } from '../../../adt/shared/ward.model';
 import { SecurityService } from '../../../security/shared/security.service';
 
 import * as moment from 'moment/moment';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { SettingsBLService } from '../../shared/settings.bl.service';
 @Component({
     selector: "bed-add",
@@ -221,14 +221,14 @@ export class BedAddComponent {
                 // this.CurrentBed.BedNumTo = this.CurrentBed.BedNumber;
                 this.settingsBLService.UpdateBed(this.CurrentBed)
                     .subscribe(
-                        (res: DanpheHTTPResponse) => {
+                        (res: DsfHTTPResponse) => {
                             if (res.Status == 'OK') {
                                 this.showMessageBox("Success", "Bed Details Updated");
                                 this.MapWithBedView(res);
                                 this.MapWithBedFeatureMap(res);
                             }
                             else {
-                                this.showMessageBox(ENUM_DanpheHTTPResponses.Failed, "Could not update Bed and Bed Feature");
+                                this.showMessageBox(ENUM_DsfHTTPResponses.Failed, "Could not update Bed and Bed Feature");
 
                             }
 
@@ -239,7 +239,7 @@ export class BedAddComponent {
                         });
             }
             else {
-                this.showMessageBox(ENUM_DanpheHTTPResponses.Failed, "This Bed Number already exist in the selected Ward.");
+                this.showMessageBox(ENUM_DsfHTTPResponses.Failed, "This Bed Number already exist in the selected Ward.");
             }
         }
     }

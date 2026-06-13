@@ -22,11 +22,11 @@
 
     <div class="row">
         <div class="col-lg-12 col-sm-12">
-            <danphe-grid [grid-colDefaults]="vaccinationPatientReportGridColumns" [grid-data]="reportData"
+            <dsf-grid [grid-colDefaults]="vaccinationPatientReportGridColumns" [grid-data]="reportData"
             [grid-exportOptions]="gridExportOptions"
                 [grid-showExport]="true" (onDateChange)="onDateChange($event)"
                 [date-settings-name]="'common-range-with-today'" [show-CustomDate]="true">
-            </danphe-grid>
+            </dsf-grid>
         </div>
     </div>
 </div>

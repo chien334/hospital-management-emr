@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_CreditModule, ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_CreditModule, ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { ClaimBillReviewDTO } from '../shared/DTOs/ClaimManagement_BillReview_DTO';
 import { BillingCreditBillItem_DTO } from '../shared/DTOs/billing-credit-bill-item.dto';
 import { BillingCreditNote_DTO } from '../shared/DTOs/billing-credit-note.dto';
@@ -86,38 +86,38 @@ export class InsBillPreviewComponent implements OnInit {
 
   public GetBillingCreditNotesByBillingTransactionId(): void {
     this.claimManagementBLService.GetBillingCreditNotesByBillingTransactionId(this.selectedBill.InvoiceRefId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results) {
             this.BillingCreditNotes = res.Results;
             this.isBillingCreditNoteFound = true;
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
         })
   }
 
   public GetPharmacyCreditNotesByInvoiceId(): void {
     this.claimManagementBLService.GetPharmacyCreditNotesByInvoiceId(this.selectedBill.InvoiceRefId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results) {
             this.PharmacyCreditNotes = res.Results;
             this.isPharmacyCreditNoteFound = true;
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
         })
   }
 
   public GetBillingCreditBillItems(BillingTransactionId: number): void {
     this.claimManagementBLService.GetBillingCreditBillItems(BillingTransactionId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results) {
             this.billingCreditBillItems = res.Results;
             this.displayInvoice = false;
@@ -126,15 +126,15 @@ export class InsBillPreviewComponent implements OnInit {
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
         })
   }
 
   public GetPharmacyCreditBillItems(PharmacyInvoiceId: number): void {
     this.claimManagementBLService.GetPharmacyCreditBillItems(PharmacyInvoiceId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results) {
             this.pharmacyCreditBillItems = res.Results;
             this.displayInvoice = false;
@@ -143,7 +143,7 @@ export class InsBillPreviewComponent implements OnInit {
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
         })
   }
@@ -152,8 +152,8 @@ export class InsBillPreviewComponent implements OnInit {
     BillingCreditBillItem.IsClaimable = !(BillingCreditBillItem.IsClaimable);
     BillingCreditBillItem.NetTotalAmount = BillingCreditBillItem.TotalAmount;
     this.claimManagementBLService.UpdateBillingCreditItemClaimableStatus(BillingCreditBillItem)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.selectedBill.NonClaimableAmount = res.Results;
           this.GetBillingCreditBillItems(BillingCreditBillItem.BillingTransactionId);
           this.EditBillItemStatus(this.billingCreditModule);
@@ -163,7 +163,7 @@ export class InsBillPreviewComponent implements OnInit {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Unable to update claimable status of this Bill Item.`]);
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
         }
       );
@@ -173,8 +173,8 @@ export class InsBillPreviewComponent implements OnInit {
     PharmacyCreditBillItem.IsClaimable = !(PharmacyCreditBillItem.IsClaimable);
     PharmacyCreditBillItem.NetTotalAmount = (PharmacyCreditBillItem.TotalAmount);
     this.claimManagementBLService.UpdatePharmacyCreditItemClaimableStatus(PharmacyCreditBillItem)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.selectedBill.NonClaimableAmount = res.Results;
           this.GetPharmacyCreditBillItems(PharmacyCreditBillItem.InvoiceId);
           this.EditBillItemStatus(this.pharmacyCreditModule);
@@ -184,7 +184,7 @@ export class InsBillPreviewComponent implements OnInit {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Unable to update claimable status of this Bill Item.`]);
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
         }
       );

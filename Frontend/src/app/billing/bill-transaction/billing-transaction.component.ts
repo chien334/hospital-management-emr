@@ -23,11 +23,11 @@ import { CreditOrganization } from '../../settings-new/shared/creditOrganization
 import { PriceCategory } from '../../settings-new/shared/price.category.model';
 import { SettingsBLService } from '../../settings-new/shared/settings.bl.service';
 import { ServiceDepartmentVM } from '../../shared/common-masters.model';
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonValidators } from '../../shared/common-validator';
 import { CommonFunctions } from '../../shared/common.functions';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_BillingStatus, ENUM_BillingType, ENUM_BillPaymentMode, ENUM_CurrentBillingFlow, ENUM_DanpheHTTPResponses, ENUM_DanpheHTTPResponseText, ENUM_InvoiceType, ENUM_LabTypes, ENUM_MembershipTypeName, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_PriceCategory, ENUM_ServiceBillingContext, ENUM_ValidatorTypes } from '../../shared/shared-enums';
+import { ENUM_BillingStatus, ENUM_BillingType, ENUM_BillPaymentMode, ENUM_CurrentBillingFlow, ENUM_DsfHTTPResponses, ENUM_DsfHTTPResponseText, ENUM_InvoiceType, ENUM_LabTypes, ENUM_MembershipTypeName, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_PriceCategory, ENUM_ServiceBillingContext, ENUM_ValidatorTypes } from '../../shared/shared-enums';
 import { BillingMasterBlService } from '../shared/billing-master.bl.service';
 import { BillingTransaction, EmployeeCashTransaction } from '../shared/billing-transaction.model';
 import { SchemePriceCategory_DTO } from '../shared/dto/scheme-pricecategory.dto';
@@ -416,8 +416,8 @@ export class BillingTransactionComponent {
 
   public GetPatientVisitList(patientId: number) {
     this.BillingBLService.GetPatientVisitsProviderWise(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results && res.Results.length) {
             this.visitList = res.Results;
             //Default Value for RequestedBy: Assign provider from latest visit
@@ -766,29 +766,29 @@ export class BillingTransactionComponent {
 
     if (!this.DiscountPercentSchemeValid) {
       isFormValid = false;
-      this.messageBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Discount scheme is mandatory. Default is: General(0%)"]);
+      this.messageBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Discount scheme is mandatory. Default is: General(0%)"]);
     }
 
 
     if (this.model.PaymentMode.toLowerCase() === ENUM_BillPaymentMode.credit.toLowerCase() || (this.selectedPriceCategoryObj.IsCoPayment && this.model.CoPayment_PaymentMode.toLowerCase() === ENUM_BillPaymentMode.credit.toLowerCase())) {
       if (!this.model.OrganizationId || this.model.OrganizationId == 0) {
         isFormValid = false;
-        this.messageBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Credit Organization is mandatory for credit bill"]);
+        this.messageBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Credit Organization is mandatory for credit bill"]);
       }
     }
     if (this.IsRemarksMandatory && !this.model.Remarks) {
       isFormValid = false;
-      this.messageBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Remarks is mandatory for this payment mode"]);
+      this.messageBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Remarks is mandatory for this payment mode"]);
     }
 
     if (this.model.BillingTransactionItems.some(a => a.DiscountAmount > a.SubTotal)) {
       isFormValid = false;
-      this.messageBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Item Level Discount is not valid."]);
+      this.messageBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Item Level Discount is not valid."]);
     }
 
     if (this.IsMedicarePatientBilling && !this.CheckMedicarePatientBillingValidations()) {
       isFormValid = false;
-      this.messageBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Credit Amount cannot exceed Credit limit."]);
+      this.messageBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["Credit Amount cannot exceed Credit limit."]);
     }
     //Below logic throws warning Message if CreditAmount exceeds more than the OP Credit limit.
     const OPCreditLimit = this.CurrentPatientPriceCategoryMap ? this.CurrentPatientPriceCategoryMap.OpCreditLimit : 0;
@@ -802,7 +802,7 @@ export class BillingTransactionComponent {
     }
     if (this.isClaimSuccessful) {
       isFormValid = false;
-      this.messageBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["This Visit context is claimed, create a new visit"]);
+      this.messageBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["This Visit context is claimed, create a new visit"]);
 
     }
     return isFormValid;
@@ -858,7 +858,7 @@ export class BillingTransactionComponent {
   BillingTransactions(billTxnItems: Array<BillingTransactionItem>, emergencyItem = null) {
     if (this.isProvisionalBilling == true) {
       this.BillingBLService.ProceedToBillingTransaction(this.model, billTxnItems, "active", "provisional", this.insuranceApplicableFlag, this.currPatVisitContext).subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           let result = res.Results;
           this.provReceiptInputs.PatientId = this.model.PatientId;
           this.provReceiptInputs.ProvFiscalYrId = result[0].ProvisionalFiscalYearId;
@@ -886,7 +886,7 @@ export class BillingTransactionComponent {
         this.model.InvoiceType = ENUM_InvoiceType.outpatient;
       }
       this.BillingBLService.ProceedToBillingTransaction(this.model, billTxnItems, "active", "provisional", this.insuranceApplicableFlag, this.currPatVisitContext).subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.bil_FiscalYrId = res.Results.FiscalYearId;
           this.bil_BilTxnId = res.Results.BillingTransactionId;
           this.bil_InvoiceNo = res.Results.InvoiceNo;
@@ -941,7 +941,7 @@ export class BillingTransactionComponent {
   //   this.BillingBLService.PostBillingTransaction(this.model)
   //     .subscribe(
   //       res => {
-  //         if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+  //         if (res.Status === ENUM_DsfHTTPResponseText.OK) {
   //           console.log(this.model);
   //           ////this.loading = false;//we redirect to some other page on both InvoicePrintedCase or ESC/Close case, so no need to enable the print button for this invoice again.
   //           this.bil_FiscalYrId = res.Results.FiscalYearId;
@@ -969,7 +969,7 @@ export class BillingTransactionComponent {
   //   this.BillingBLService.PostBillingTransactionItems(billTxnItems)
   //     .subscribe(
   //       res => {
-  //         if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+  //         if (res.Status === ENUM_DsfHTTPResponseText.OK) {
   //           let result = res.Results;
   //           this.provReceiptInputs.PatientId = this.model.PatientId;
   //           this.provReceiptInputs.ProvFiscalYrId = result[0].ProvisionalFiscalYearId;
@@ -1404,22 +1404,22 @@ export class BillingTransactionComponent {
       //for (let itm of this.model.BillingTransactionItems) {
       for (let i = 0; i < this.model.BillingTransactionItems.length; i++) {
         if (!this.model.BillingTransactionItems[i].IsValidSelDepartment) {
-          this.messageBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Invalid Department. Please select Department from the list."]);
+          this.messageBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Invalid Department. Please select Department from the list."]);
           this.loading = false;
           return false;
         }
         if (this.model.BillingTransactionItems[i].IsDoctorMandatory && !this.model.BillingTransactionItems[i].PerformerId) {
-          this.messageBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Performer is mandatory for some items"]);
+          this.messageBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Performer is mandatory for some items"]);
           this.loading = false;
           return false;
         }
         if (!this.model.BillingTransactionItems[i].IsvalidSelPerformerDr) {
-          this.messageBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Invalid Assigned To Dr. Name. Please select doctor from the list."]);
+          this.messageBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Invalid Assigned To Dr. Name. Please select doctor from the list."]);
           this.loading = false;
           return false;
         }
         if (!this.model.BillingTransactionItems[i].IsValidSelItemName) {
-          this.messageBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Invalid Item Name. Please select Item from the list."]);
+          this.messageBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Invalid Item Name. Please select Item from the list."]);
           this.loading = false;
           return false;
         }
@@ -1428,7 +1428,7 @@ export class BillingTransactionComponent {
         if (integrationName == "LAB" && this.LabTypeName == 'er-lab') {
           var aaa = this.model.BillingTransactionItems[i].ItemList.find(a => a.ItemId == this.selectedItems[i].ItemId && a.ServiceDepartmentId == this.selectedItems[i].ServiceDepartmentId)
           if (!aaa || !aaa.IsErLabApplicable) {
-            this.messageBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Some items are not found in " + this.LabTypeName + ". "]);
+            this.messageBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Some items are not found in " + this.LabTypeName + ". "]);
             this.loading = false;
             return false;
           }
@@ -1559,7 +1559,7 @@ export class BillingTransactionComponent {
   LoadPatientPastBillSummary(patientId: number) {
     this.BillingBLService.GetPatientPastBillSummary(patientId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
 
           this.patBillHistory = res.Results;
           this.patBillHistory.ProvisionalAmt = CommonFunctions.parseAmount(this.patBillHistory.ProvisionalAmt, 3);
@@ -1612,8 +1612,8 @@ export class BillingTransactionComponent {
     //we get billing context from earlier invoice incase of copy from earlier invoice.
     if (this.currentBillingFlow !== ENUM_CurrentBillingFlow.BillReturn) {//&& this.currentVisitType != "inpatient"
       this.BillingBLService.GetPatientBillingContext(this.patientService.globalPatient.PatientId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             if (res.Results) {
               this.currBillingContext = res.Results;
               const currentPatientPriceCategoryMap = this.currBillingContext.PatientSchemeMap;
@@ -1658,7 +1658,7 @@ export class BillingTransactionComponent {
     if (patientId && visitId) {
       this.BillingBLService.GetDataOfInPatient(patientId, visitId)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
             this.currPatVisitContext = res.Results;
             if (this.currPatVisitContext.ClaimCode) {
               this.isClaimed(this.currPatVisitContext.ClaimCode, this.currPatVisitContext.PatientId);
@@ -1679,15 +1679,15 @@ export class BillingTransactionComponent {
   isClaimSuccessful = false;
   isClaimed(LatestClaimCode: number, PatientId: number): void {
     this.BillingBLService.IsClaimed(LatestClaimCode, PatientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results === true) {
             this.isClaimSuccessful = true;
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
-          this.messageBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Unable to check for pending claims"]);
+        (err: DsfHTTPResponse) => {
+          this.messageBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["Unable to check for pending claims"]);
         }
       );
   }
@@ -1923,8 +1923,8 @@ export class BillingTransactionComponent {
         //* fetch from mapping table
 
         this.BillingBLService.LoadItemsPriceByPriceCategory(selectedPriceCategoryId).subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
               this.BilcfgItemsVsPriceCategoryMap = res.Results;
               this.FilterItemsByPriceCategoryAndAssignPrice(this.priceCategory);
             }
@@ -2835,8 +2835,8 @@ export class BillingTransactionComponent {
 
   //* This method is responsible to fetch the MedicareMemberDetail
   GetMedicareMemberDetail(patientId: number): void {
-    this.BillingBLService.GetMedicareMemberDetail(patientId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.BillingBLService.GetMedicareMemberDetail(patientId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         const medicareMemberDetail = res.Results;
         if (medicareMemberDetail && medicareMemberDetail.MedicareMemberId) {
           this.IsMedicarePatientBilling = true;
@@ -2846,7 +2846,7 @@ export class BillingTransactionComponent {
         }
       }
     }, err => {
-      this.messageBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Could not fetch medicare member detail"]);
+      this.messageBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["Could not fetch medicare member detail"]);
     });
   }
 
@@ -2931,8 +2931,8 @@ export class BillingTransactionComponent {
   GetServiceItems(serviceBillingContext: string, schemeId: number, priceCategoryId: number) {
     this.billingMasterBlService.GetServiceItems(serviceBillingContext, schemeId, priceCategoryId)
       .finally(() => console.log("ServiceItem API responded."))
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
           this.ServiceItems = res.Results;
           this.AssignServiceItemsToBillingTransactionItemList(this.ServiceItems);
         } else {
@@ -2949,8 +2949,8 @@ export class BillingTransactionComponent {
   GetServiceItemSchemeSetting(serviceBillingContext: string, schemeId: number, priceCategoryId: number) {
     this.billingMasterBlService.GetServiceItemSchemeSetting(serviceBillingContext, schemeId)
       .finally(() => console.log("ServiceItemsSchemeSetting API responded."))
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length > 0) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length > 0) {
           this.ServiceItemSchemeSettings = res.Results;
         } else {
           console.log("This scheme and context does not have Settings mapped");

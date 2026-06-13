@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InventoryService } from '../../../inventory/shared/inventory.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import ProcurementGridColumns from '../../../procurement/shared/procurement-grid-column';
 import { ReturnToVendorItem } from '../return-to-vendor-items.model';

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { PHRMPrescription } from "../../pharmacy/shared/phrm-prescription.model";
 import * as _ from 'lodash';
 
@@ -34,7 +34,7 @@ export class OrdersDLService {
         let data = JSON.stringify(tempPrescription);
 
 
-        return this.http.post<DanpheHTTPResponse>(`/api/PharmacyPrescription/NewPrescription`, data, this.optionsJson);
+        return this.http.post<DsfHTTPResponse>(`/api/PharmacyPrescription/NewPrescription`, data, this.optionsJson);
     }
 
 }

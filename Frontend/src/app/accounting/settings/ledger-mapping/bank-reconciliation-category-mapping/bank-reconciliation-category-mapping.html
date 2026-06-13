@@ -41,13 +41,13 @@
                             </label>
                         </td>
                         <td>
-                            <input danphe-auto-complete class="form-control" [(ngModel)]="selectedLedger[i]"
+                            <input dsf-auto-complete class="form-control" [(ngModel)]="selectedLedger[i]"
                                    [source]="sourceLedgerList" [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" display-property-name="LedgerName"
                                    value-property-name=LedgerId (focusout)="AssignSelectedLedger(i)"
                                    [list-formatter]="LedgerListFormatter" max-num-list="15"
                                    onclick="this.select()" id="Ledger_{{i+1}}" style="width: 100%;" [disabled]="!led.IsSelected" />
                         </td>
-                        <td><input danphe-auto-complete class="form-control" [(ngModel)]="selectedSubLedger[i]"
+                        <td><input dsf-auto-complete class="form-control" [(ngModel)]="selectedSubLedger[i]"
                                    [source]="ledgerWiseSubLedger[i]" [placeholder]="'ACCOUNTING.SUB_LEDGER_NAME_HEADER' | translate" display-property-name="SubLedgerName"
                                    value-property-name=null (valueChanged)="AssignSelectedSubLedger(i)"
                                    [list-formatter]="SubLedgerListFormatter" max-num-list="15"

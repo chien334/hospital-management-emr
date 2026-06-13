@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../../../core/shared/core.service';
 import { Employee } from '../../../employee/shared/employee.model';
 import { SettingsBLService } from '../../shared/settings.bl.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { CFGParameterModel } from '../../shared/cfg-parameter.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 
@@ -43,7 +43,7 @@ export class RadDefSignatoriesComponent implements OnInit {
   public LoadAllRadEmployees() {
 
     this.settingsBlService.GetRadSignatoryEmps()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allRadSignatoryEmpList = res.Results;
           this.BindEmployeeListToCheckbox();
@@ -88,7 +88,7 @@ export class RadDefSignatoriesComponent implements OnInit {
       paramToUpdate.ParameterValue = paramValueStr;
 
       this.settingsBlService.UpdateParameterValue(paramToUpdate)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.msgBoxServ.showMessage("success", ["Default Signatories updated successfully"]);
           }

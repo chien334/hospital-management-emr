@@ -31,7 +31,7 @@
               <td><a (click)="DeleteRow(i)"><i class="btn btn-danger fa fa-times"></i></a></td>
               <td>
                 <form [formGroup]="row.WriteOffItemValidator" class="autocomplete-item">
-                  <input danphe-auto-complete class="form-control" id="{{'breakageitem'+i}}"
+                  <input dsf-auto-complete class="form-control" id="{{'breakageitem'+i}}"
                     [(ngModel)]="row.SelectedItem" (keyup.enter)="OnPressedEnterKeyInItemField(i)"
                     [source]="stockDetailsList" [list-formatter]="myItemListFormatter" [placeholder]="'PHARMACY.SELECT_MEDICINE' | translate"
                     display-property-name="ItemName" value-property-name=null onClick="this.select();"
@@ -77,9 +77,9 @@
             <tr>
               <td>{{ 'PHARMACY.SELECT_BREAKAGE_DATE' | translate }}:<sup>*</sup></td>
               <td>
-                <danphe-date-picker [(ngModel)]="curtWriteOffModel.WriteOffDate" ngDefaultControl
+                <dsf-date-picker [(ngModel)]="curtWriteOffModel.WriteOffDate" ngDefaultControl
                   [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
-                </danphe-date-picker>
+                </dsf-date-picker>
               </td>
             </tr>
             <tr>

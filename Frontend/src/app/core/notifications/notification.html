@@ -87,7 +87,7 @@
                             <input type="checkbox" [(ngModel)]="curtnote.IsSelected" class="notific-chkbx" name="notChkboxGrp" (change)="NotificationCheckBoxChanged(curtnote)" />
 
                             <i>
-                                <span class="time notific-time">{{curtnote.CreatedOn | DanpheDateTime:'timename'}}</span>
+                                <span class="time notific-time">{{curtnote.CreatedOn | DsfDateTime:'timename'}}</span>
                                 <span class="details">
                                     <span class="label label-sm label-icon label-success">
                                         <i class="icon-bell"></i>

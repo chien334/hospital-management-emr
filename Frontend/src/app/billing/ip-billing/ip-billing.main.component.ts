@@ -4,10 +4,10 @@ import { Router } from "@angular/router";
 import { PatientService } from '../../patients/shared/patient.service';
 import { SecurityService } from "../../security/shared/security.service";
 import { CallbackService } from "../../shared/callback.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { DLService } from "../../shared/dl.service";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 
@@ -45,7 +45,7 @@ export class IpBillMainComponent {
   LoadInpatientList() {
     this.dlService.Read("/api/IpBilling/AdmittedPatients")
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allInpatList = res.Results;
           //ward/bed search wasnot working from grid so combining the columns as one to fill the grid data..

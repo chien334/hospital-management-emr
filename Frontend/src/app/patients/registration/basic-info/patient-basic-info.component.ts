@@ -12,7 +12,7 @@ import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto
 import { NepaliCalendarService } from '../../../shared/calendar/np/nepali-calendar.service';
 import { NepaliDate } from '../../../shared/calendar/np/nepali-dates';
 import { CommonFunctions } from "../../../shared/common.functions";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { MembershipType } from "../../shared/membership-type.model"; //remove this or merge to one type with membership. 
 @Component({
@@ -116,7 +116,7 @@ export class PatientBasicInfoComponent implements IRouteGuard {
 
   GetCountry() {
 
-    this.Countries = DanpheCache.GetData(MasterType.Country, null)
+    this.Countries = DsfCache.GetData(MasterType.Country, null)
 
   }
 

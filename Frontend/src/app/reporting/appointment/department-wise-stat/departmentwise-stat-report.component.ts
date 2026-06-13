@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { Department } from '../../../settings-new/shared/department.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { DepartmentwiseStatReport_DTO } from '../../shared/depertment-wise-stat-report.dto';
 import { DynamicReport } from '../../shared/dynamic-report.model';
 import { ReportingService } from '../../shared/reporting-service';
@@ -50,8 +50,8 @@ export class RPT_APPT_DepartmentwiseStatReportComponent {
     }
     GetDepartments() {
         this.dlService.GetDepartment()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK)
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK)
                     this.departmentList = res.Results;
             });
     }
@@ -75,7 +75,7 @@ export class RPT_APPT_DepartmentwiseStatReportComponent {
 
             this.dlService.Read("/Reporting/DepartmentWiseStatReport?FromDate="
                 + this.selectedDepartmentwiseStatParameter.fromDate + "&ToDate=" + this.selectedDepartmentwiseStatParameter.toDate + "&DepartmentId=" + this.deptId + "&gender=" + this.selGenderName)
-                .map((res: DanpheHTTPResponse) => res)
+                .map((res: DsfHTTPResponse) => res)
                 .subscribe(res => this.Success(res),
                     res => this.Error(res));
         }
@@ -89,7 +89,7 @@ export class RPT_APPT_DepartmentwiseStatReportComponent {
     }
 
     Success(res) {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.DepartmentWiseStatReportData = null;
             this.DepartmentWiseStatReportData = res.Results;
             this.SummaryCalculation();

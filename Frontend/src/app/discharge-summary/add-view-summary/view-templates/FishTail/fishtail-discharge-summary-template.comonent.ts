@@ -49,10 +49,10 @@ export class FishTailDischargeSummaryViewTemplateComponent {
         popupWinindow.document.open();
 
         let documentContent = "<html><head>";
-        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
         documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
-        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/Danphe_ui_style.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/Dsf_ui_style.css"/>';
         documentContent += `<style>
         .img-responsive{ position: static;left: 2px;top: 10px;}
         .qr-code{position: absolute; left: 1001px;top: 9px;}

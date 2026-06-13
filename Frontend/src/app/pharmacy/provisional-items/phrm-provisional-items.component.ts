@@ -3,7 +3,7 @@ import { Component, ChangeDetectorRef } from "@angular/core"
 import PHRMGridColumns from '../shared/phrm-grid-columns';
 import { PharmacyService } from "../shared/pharmacy.service"
 import { MessageboxService } from "../../shared/messagebox/messagebox.service"
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { Router } from '@angular/router';
 import { PharmacyBLService } from "../shared/pharmacy.bl.service"
 import { PHRMInvoiceItemsModel } from "../shared/phrm-invoice-items.model"
@@ -15,7 +15,7 @@ import * as moment from 'moment/moment';
 import { Patient } from "../../patients/shared/patient.model";
 import { PatientService } from "../../patients/shared/patient.service";
 import { PatientsBLService } from "../../patients/shared/patients.bl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 
 @Component({
 
@@ -73,7 +73,7 @@ export class PHRMProvisionalItems {
         if (selectedPatientData) {
            
             this.patientBlService.GetPatientById(selectedPatientData.PatientId)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     this.patient = res.Results;
                     var globalPatient = this.patientService.getGlobal();
                     globalPatient.PatientId = this.patient.PatientId;

@@ -42,7 +42,7 @@
       <tbody>
         <tr *ngFor="let row of reportData;let i=index">
           <td style="text-align:center">{{i+1}}</td>
-          <td>{{row.Date | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+          <td>{{row.Date | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
           <td>{{row.PerformerName}}</td>
           <td>{{row.PrescriberName}}</td>
           <td>{{row.PatientCode}}</td>

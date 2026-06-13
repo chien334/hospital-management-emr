@@ -190,11 +190,11 @@ export default class LabGridColumnSettings {
       field: "",
       width: 200,
       cellRenderer: LabGridColumnSettings.VerifyRenderer,
-      //   template: `<a danphe-grid-action="ViewDetails" class="grid-action">
+      //   template: `<a dsf-grid-action="ViewDetails" class="grid-action">
       //   View Details
       //   </a>
-      //  <a danphe-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>
-      //  <a danphe-grid-action="Verify" class="grid-action">
+      //  <a dsf-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>
+      //  <a dsf-grid-action="Verify" class="grid-action">
       //   Verify
       //   </a>
       //  `
@@ -257,7 +257,7 @@ export default class LabGridColumnSettings {
         LabGridColumnSettings.LabReportTemplateActionsTemplateWithPermission,
       // template:
       //   `
-      //        <a danphe-grid-action="edit" class="grid-action">
+      //        <a dsf-grid-action="edit" class="grid-action">
       //           Edit
       //        </a>`
     },
@@ -296,7 +296,7 @@ export default class LabGridColumnSettings {
       field: "",
       width: 60,
       template: `
-             <a danphe-grid-action="edit" class="grid-action">
+             <a dsf-grid-action="edit" class="grid-action">
                 Edit
              </a>`,
     },
@@ -312,7 +312,7 @@ export default class LabGridColumnSettings {
       field: "",
       width: 50,
       template: `
-             <a danphe-grid-action="edit" class="grid-action">
+             <a dsf-grid-action="edit" class="grid-action">
                 Edit
              </a>`,
     },
@@ -345,7 +345,7 @@ export default class LabGridColumnSettings {
         LabGridColumnSettings.LabCategoryActionsTemplateWithPermissions,
       // template:
       //   `
-      //        <a danphe-grid-action="edit" class="grid-action">
+      //        <a dsf-grid-action="edit" class="grid-action">
       //           Edit
       //        </a>`
     },
@@ -394,11 +394,11 @@ export default class LabGridColumnSettings {
     let reportMapId = params.data.ReportMapId;
     let template = "";
     if (reportMapId > 0) {
-      return (template = `<a danphe-grid-action="edit" class="grid-action">
+      return (template = `<a dsf-grid-action="edit" class="grid-action">
                 Edit
              </a>`);
     } else {
-      return (template = `<a danphe-grid-action="add" class="grid-action">
+      return (template = `<a dsf-grid-action="add" class="grid-action">
                 Add
              </a>`);
     }
@@ -432,17 +432,17 @@ export default class LabGridColumnSettings {
   static VerifyRenderer(params) {
     let verification = params.data.verificationEnabled;
     if (verification) {
-      return `<a danphe-grid-action="ViewDetails" class="grid-action">
+      return `<a dsf-grid-action="ViewDetails" class="grid-action">
                  View Details
             </a>
-                <a danphe-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>
-                <a danphe-grid-action="verify" class="grid-action">Verify</a>
+                <a dsf-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>
+                <a dsf-grid-action="verify" class="grid-action">Verify</a>
                 `;
     } else {
-      return `<a danphe-grid-action="ViewDetails" class="grid-action">
+      return `<a dsf-grid-action="ViewDetails" class="grid-action">
                  View Details
             </a>
-                <a danphe-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>
+                <a dsf-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>
                 `;
     }
   }
@@ -479,7 +479,7 @@ export default class LabGridColumnSettings {
           "btn-lab-requisition-view"
         )
       ) {
-        return `<a danphe-grid-action="ViewDetails" class="grid-action">
+        return `<a dsf-grid-action="ViewDetails" class="grid-action">
                 View Details
              </a>`;
       }
@@ -526,7 +526,7 @@ export default class LabGridColumnSettings {
           "btn-final-reports-view"
         )
       ) {
-        template += `<a danphe-grid-action="ViewDetails" class="grid-action">
+        template += `<a dsf-grid-action="ViewDetails" class="grid-action">
                         View Details
                     </a>`;
       }
@@ -536,7 +536,7 @@ export default class LabGridColumnSettings {
           "btn-final-reports-print"
         )
       ) {
-        template += `<a danphe-grid-action="Print" class="grid-action">
+        template += `<a dsf-grid-action="Print" class="grid-action">
                         Print
                     </a>`;
       }
@@ -576,7 +576,7 @@ export default class LabGridColumnSettings {
           "btn-labsettings-test-edit"
         )
       ) {
-        template += `<a danphe-grid-action="edit" class="grid-action">
+        template += `<a dsf-grid-action="edit" class="grid-action">
             Edit
          </a>`;
       }
@@ -585,7 +585,7 @@ export default class LabGridColumnSettings {
           "btn-labsettings-test-activate"
         )
       ) {
-        template += `<a danphe-grid-action="activateDeactivateLabTest" class="grid-action">
+        template += `<a dsf-grid-action="activateDeactivateLabTest" class="grid-action">
           Deactivate
         </a>`;
       }
@@ -598,7 +598,7 @@ export default class LabGridColumnSettings {
           "btn-labsettings-test-activate"
         )
       ) {
-        return (template += `<a danphe-grid-action="activateDeactivateLabTest" class="grid-action">
+        return (template += `<a dsf-grid-action="activateDeactivateLabTest" class="grid-action">
           Activate
         </a>`);
       }
@@ -614,7 +614,7 @@ export default class LabGridColumnSettings {
           "btn-labsettings-category-edit"
         )
       ) {
-        template += `<a danphe-grid-action="edit" class="grid-action">
+        template += `<a dsf-grid-action="edit" class="grid-action">
             Edit
          </a>`;
       }
@@ -623,7 +623,7 @@ export default class LabGridColumnSettings {
           "btn-labsettings-category-activate"
         )
       ) {
-        template += `<a danphe-grid-action="activateDeactivateLabTest" class="grid-action">
+        template += `<a dsf-grid-action="activateDeactivateLabTest" class="grid-action">
           Deactivate
         </a>`;
       }
@@ -636,7 +636,7 @@ export default class LabGridColumnSettings {
           "btn-labsettings-category-activate"
         )
       ) {
-        return (template += `<a danphe-grid-action="activateDeactivateLabTest" class="grid-action">
+        return (template += `<a dsf-grid-action="activateDeactivateLabTest" class="grid-action">
           Activate
         </a>`);
       }
@@ -652,7 +652,7 @@ export default class LabGridColumnSettings {
           "btn-labsettings-report-template-edit"
         )
       ) {
-        template += `<a danphe-grid-action="edit" class="grid-action">
+        template += `<a dsf-grid-action="edit" class="grid-action">
             Edit
          </a>`;
       }
@@ -661,7 +661,7 @@ export default class LabGridColumnSettings {
           "btn-labsettings-report-template-activate"
         )
       ) {
-        template += `<a danphe-grid-action="activateDeactivateLabTest" class="grid-action">
+        template += `<a dsf-grid-action="activateDeactivateLabTest" class="grid-action">
           Deactivate
         </a>`;
       }
@@ -674,7 +674,7 @@ export default class LabGridColumnSettings {
           "btn-labsettings-report-template-activate"
         )
       ) {
-        return (template += `<a danphe-grid-action="activateDeactivateLabTest" class="grid-action">
+        return (template += `<a dsf-grid-action="activateDeactivateLabTest" class="grid-action">
           Activate
         </a>`);
       }
@@ -695,7 +695,7 @@ export default class LabGridColumnSettings {
             "btn-labsettings-vendors-edit"
           )
         ) {
-          template += `<a danphe-grid-action="edit" class="grid-action">
+          template += `<a dsf-grid-action="edit" class="grid-action">
               Edit
            </a>`;
         }
@@ -704,7 +704,7 @@ export default class LabGridColumnSettings {
             "btn-labsettings-vendors-activate"
           )
         ) {
-          template += `<a danphe-grid-action="activateDeactivateLabTest" class="grid-action">
+          template += `<a dsf-grid-action="activateDeactivateLabTest" class="grid-action">
             Deactivate
           </a>`;
         }
@@ -717,7 +717,7 @@ export default class LabGridColumnSettings {
             "btn-labsettings-vendors-activate"
           )
         ) {
-          return (template += `<a danphe-grid-action="activateDeactivateLabTest" class="grid-action">
+          return (template += `<a dsf-grid-action="activateDeactivateLabTest" class="grid-action">
             Activate
           </a>`);
         }
@@ -737,7 +737,7 @@ export default class LabGridColumnSettings {
         "btn-add-results-addresult"
       )
     ) {
-      template += `<a danphe-grid-action="addresult" class="grid-action">
+      template += `<a dsf-grid-action="addresult" class="grid-action">
                       Add Result
                   </a> `;
     }
@@ -747,7 +747,7 @@ export default class LabGridColumnSettings {
         "btn-add-results-sticker"
       )
     ) {
-      template += `<a danphe-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>`;
+      template += `<a dsf-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>`;
     }
 
     template += `<div class="dropdown" style="display:inline-block;">
@@ -758,13 +758,13 @@ export default class LabGridColumnSettings {
     if (
       LabGridColumnSettings.securityServ.HasPermission("btn-add-results-undo")
     ) {
-      template += `<li><a danphe-grid-action="undo">Undo</a></li>`;
+      template += `<li><a dsf-grid-action="undo">Undo</a></li>`;
     }
 
     if (
       LabGridColumnSettings.securityServ.HasPermission("btn-add-results-print")
     ) {
-      template += `<li><a danphe-grid-action="print-empty-sheet">Print Sheet</a></li>`;
+      template += `<li><a dsf-grid-action="print-empty-sheet">Print Sheet</a></li>`;
     }
 
     template += `</ul></div>`;

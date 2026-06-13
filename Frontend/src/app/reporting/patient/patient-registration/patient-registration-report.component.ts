@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import * as moment from 'moment/moment';
 import { Patient } from "../../../patients/shared/patient.model";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { DynamicReport } from "../../shared/dynamic-report.model";
@@ -70,7 +70,7 @@ export class RPT_PAT_PatientRegistrationReportComponent {
   }
   GetCountry() {
 
-    this.Countries = DanpheCache.GetData(MasterType.Country, null)
+    this.Countries = DsfCache.GetData(MasterType.Country, null)
 
   }
 

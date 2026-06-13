@@ -40,7 +40,7 @@
                             </label>
                         </td>
                         <td>
-                            <input danphe-auto-complete class="form-control"
+                            <input dsf-auto-complete class="form-control"
                                    [source]="sourceLedgerList" [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" display-property-name="LedgerName"
                                    value-property-name=LedgerId [(ngModel)]="selectedLedger[i]"
                                    [list-formatter]="LedgerListFormatter" max-num-list="15" (focusout)="AssignSelectedLedger(i)"

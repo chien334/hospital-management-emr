@@ -9,11 +9,11 @@ import { Patient } from '../../../../patients/shared/patient.model';
 import { PatientService } from '../../../../patients/shared/patient.service';
 import { SecurityService } from '../../../../security/shared/security.service';
 import { CallbackService } from '../../../../shared/callback.service';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from "../../../../shared/common.functions";
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../shared/routefrom.service';
-import { ENUM_DanpheHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_VisitType } from '../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_VisitType } from '../../../../shared/shared-enums';
 import { GovInsuranceService } from '../../shared/ins-service';
 import { GovInsuranceBlService } from '../../shared/insurance.bl.service';
 
@@ -179,7 +179,7 @@ export class GovInsuranceVisitMainComponent {
     this.insuranceService.PatientTodaysVisitList = [];
     var followup: boolean = true;
     this.insuranceBLService.GetPatientVisits_Today(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.insuranceService.PatientTodaysVisitList = res.Results;
         }
@@ -556,8 +556,8 @@ export class GovInsuranceVisitMainComponent {
     this.quickVisit.BillingTransaction.InvoiceType = ENUM_InvoiceType.outpatient;
     this.insuranceBLService.PostVisitToDB(this.quickVisit)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
 
             //this.CallBackCreateVisit(res);
             const result = JSON.parse(res.Results);

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DanpheEMR.TestingPlayGroundConsole.ADT.Models
+namespace DsfEMR.TestingPlayGroundConsole.ADT.Models
 {
   
-    static class Enum_DanpheBedFeatureIds
+    static class Enum_DsfBedFeatureIds
     {
         //these comes from LPH: BedFeatureIds
         public static int ICU = 3;

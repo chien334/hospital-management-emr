@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CoreService } from '../../../core/shared/core.service';
 import { ENUM_PrintingType, PrinterSettingsModel } from '../../../settings-new/printers/printer-settings.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { DietHistoryDTO } from '../../shared/dto/patient-diet-history.dto';
 import { NursingBLService } from '../../shared/nursing.bl.service';
 
@@ -56,8 +56,8 @@ export class DietSheetPatientHistoryComponent implements OnInit {
     }
 
     public GetPatientDietHistory() {
-        this.nursingBLService.GetPatientDietHistory(this.selectedIpd.PatientVisitId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.nursingBLService.GetPatientDietHistory(this.selectedIpd.PatientVisitId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.patientDietHistory = res.Results;
                 this.showPatientDietHistoryPage = true;
                 if (this.patientDietHistory) {

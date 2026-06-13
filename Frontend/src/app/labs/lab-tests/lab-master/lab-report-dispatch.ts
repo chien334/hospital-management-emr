@@ -10,7 +10,7 @@ import { CommonFunctions } from "../../../shared/common.functions";
 import { LabPendingResultVM } from "../../shared/lab-view.models";
 import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { LabTestFinalReportModel, LabTestsInFinalReportModel } from '../../shared/lab-finalreport.VM';
 import { LabReportVM } from "../../reports/lab-report-vm";
 import { LabComponentModel } from '../../shared/lab-component-json.model';
@@ -76,7 +76,7 @@ export class LabReportDispatchComponent {
         this.reportListFiltered = [];
         this.showSelectedPatTestDetail = false;
         this.labBLService.GetPatientListForReportDispatch(this.fromDate, this.toDate, this.catIdList)
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
             if (res.Status == "OK") {
               this.loading = false;
               this.reportList = res.Results;

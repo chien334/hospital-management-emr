@@ -28,7 +28,7 @@
 <input type="button" class="btn primary-btn m1" (click)="CreateRequestForQuotation()" value=" Request For Quotation" />
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="ReqForQuotationGridColumns" [grid-data]="ReqForQuotationList" (grid-actions)="ReqForQuotationGridAction($event)"></danphe-grid>
+    <dsf-grid [grid-colDefaults]="ReqForQuotationGridColumns" [grid-data]="ReqForQuotationList" (grid-actions)="ReqForQuotationGridAction($event)"></dsf-grid>
   </div>
 </div>
 
@@ -75,7 +75,7 @@
                       <td>{{row.ItemName}}</td>
                       <td>{{row.Quantity}}</td>
                       <td>{{row.Description}}</td>
-                      <td>{{row.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                      <td>{{row.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -123,7 +123,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3">SupplierName<b class="color-red">*</b><b style="float:right;">:</b></label>
                   <div class="col-md-6">
-                    <input danphe-auto-complete class="form-control col-md-11"
+                    <input dsf-auto-complete class="form-control col-md-11"
                            [(ngModel)]="quotationfiles.SelectedItem"
                            [source]="VendorList"
                            [list-formatter]="myVendorListFormatter"
@@ -202,10 +202,10 @@
               <b>  Requested By:</b> <span> {{RFQList.RequestedBy}} </span>
             </div>
             <div class="col-md-4">
-              <b> Quotaion Opening Date:</b> <span> {{RFQList.RequestedOn | DanpheDateTime:'format':'DD-MM-YYYY'}} </span>
+              <b> Quotaion Opening Date:</b> <span> {{RFQList.RequestedOn | DsfDateTime:'format':'DD-MM-YYYY'}} </span>
             </div>
             <div class="col-md-4">
-              <b> Quotaion Closing Date:</b> <span> {{RFQList.RequestedCloseOn | DanpheDateTime:'format':'DD-MM-YYYY'}}</span>
+              <b> Quotaion Closing Date:</b> <span> {{RFQList.RequestedCloseOn | DsfDateTime:'format':'DD-MM-YYYY'}}</span>
             </div>
           </div>
           <div class="panel-body">
@@ -288,8 +288,8 @@
                       <p>Created By:<b> {{RFQList.RequestedBy}}</b></p>
                     </div>
                     <div class="right" style="text-align:right;">
-                      <p>RFQ Date:<b> {{RFQList.RequestedOn |  DanpheDateTime:'format':'YYYY-MM-DD'}}</b></p>
-                      <p>RFQ Close Date:<b> {{RFQList.RequestedCloseOn  |  DanpheDateTime:'format':'YYYY-MM-DD'}}</b></p>
+                      <p>RFQ Date:<b> {{RFQList.RequestedOn |  DsfDateTime:'format':'YYYY-MM-DD'}}</b></p>
+                      <p>RFQ Close Date:<b> {{RFQList.RequestedCloseOn  |  DsfDateTime:'format':'YYYY-MM-DD'}}</b></p>
                       <p>Order Status: <b>{{RFQList.Status}}</b></p>
                     </div>
                     <div class="clear"></div>
@@ -311,7 +311,7 @@
                             <td>{{row.ItemName}}</td>
                             <td>{{row.Quantity}}</td>
                             <td>{{row.Description}}</td>
-                            <td>{{row.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                            <td>{{row.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -381,7 +381,7 @@
                       <p>Supplier Name:<b> {{getQuotationBystatus.VendorName}}</b></p>                    
                     </div>
                     <div class="right" style="text-align:right;">
-                      <p>Quotation Date:<b> {{getQuotationBystatus.CreatedOn |  DanpheDateTime:'format':'YYYY-MM-DD'}}</b></p>
+                      <p>Quotation Date:<b> {{getQuotationBystatus.CreatedOn |  DsfDateTime:'format':'YYYY-MM-DD'}}</b></p>
                        <p>Quotation Status: <b>{{getQuotationBystatus.Status}}</b></p>
                     </div>
                     <div class="clear"></div>
@@ -403,7 +403,7 @@
                             <td>{{row.ItemName}}</td>
                             <td>{{row.Price}}</td>
                             <td>{{row.Description}}</td>
-                            <td>{{row.UpLoadedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                            <td>{{row.UpLoadedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                           </tr>
                         </tbody>
                       </table>

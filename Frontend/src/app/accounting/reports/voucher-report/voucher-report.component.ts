@@ -3,9 +3,9 @@ import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { SettingsBLService } from "../../../settings-new/shared/settings.bl.service";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../shared/routefrom.service";
 import { SectionModel } from "../../settings/shared/section.model";
@@ -82,17 +82,17 @@ export class VoucherReportComponent {
         this.calType = calendarTypeObject.AccountingModule;
     }
     public GetFiscalYearList() {
-        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-            this.fiscalyearList = this.accountingService.accCacheData.FiscalYearList;//mumbai-team-june2021-danphe-accounting-cache-change
-            this.fiscalyearList = this.fiscalyearList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+            this.fiscalyearList = this.accountingService.accCacheData.FiscalYearList;//mumbai-team-june2021-dsf-accounting-cache-change
+            this.fiscalyearList = this.fiscalyearList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 
     GetVoucher() {
         try {
-            if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-                this.voucherList = this.accountingService.accCacheData.VoucherType;//mumbai-team-june2021-danphe-accounting-cache-change
-                this.voucherList = this.voucherList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+            if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+                this.voucherList = this.accountingService.accCacheData.VoucherType;//mumbai-team-june2021-dsf-accounting-cache-change
+                this.voucherList = this.voucherList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
                 this.selVoucher.VoucherId = -1;
                 this.AssignVoucher();
             }
@@ -204,13 +204,13 @@ export class VoucherReportComponent {
                     if (sectionApplication != null || sectionApplication != undefined) {
                         this.permissions = this.securityService.UserPermissions.filter(p => p.ApplicationId == sectionApplication.ApplicationId);
                     }
-                    let sList = this.accountingService.accCacheData.Sections; //mumbai-team-june2021-danphe-accounting-cache-change
+                    let sList = this.accountingService.accCacheData.Sections; //mumbai-team-june2021-dsf-accounting-cache-change
                     sList.forEach(s => {
                         let sname = s.SectionName.toLowerCase();
                         let pp = this.permissions.filter(f => f.PermissionName.includes(sname))[0];
                         if (pp != null || pp != undefined) {
                             this.sectionList.push(s);
-                            this.sectionList = this.sectionList.slice(); //mumbai-team-june2021-danphe-accounting-cache-change
+                            this.sectionList = this.sectionList.slice(); //mumbai-team-june2021-dsf-accounting-cache-change
                         }
                     })
                     let defSection = this.sectionList.find(s => s.IsDefault == true);

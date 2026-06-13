@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { SharedModule } from '../../shared/shared.module';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { ParameterListComponent } from './parameters/parameter-list.component';
 import { ParameterEditComponent } from './parameters/parameter-edit.component';
 
@@ -25,7 +25,7 @@ export const coreSettingsRoutes =
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         RouterModule.forChild(coreSettingsRoutes)], providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })

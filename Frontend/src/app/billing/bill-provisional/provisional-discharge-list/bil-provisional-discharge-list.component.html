@@ -1,9 +1,9 @@
 <div class="wrapper" *ngIf="!ShowProvisionalItems">
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="ProvisionalDischargeListCols" [grid-data]="ProvisionalDischargeList"
+      <dsf-grid [grid-colDefaults]="ProvisionalDischargeListCols" [grid-data]="ProvisionalDischargeList"
                    (grid-actions)="ProvisionalDischargeListGridAction($event)"
-                   [NepaliDateInGridParams]="NepaliDateInGridSettings"> </danphe-grid>
+                   [NepaliDateInGridParams]="NepaliDateInGridSettings"> </dsf-grid>
     </div>
   </div>
 </div>

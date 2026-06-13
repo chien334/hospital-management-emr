@@ -3,7 +3,7 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 import { SupplierLedgerService } from '../supplier-ledger.service';

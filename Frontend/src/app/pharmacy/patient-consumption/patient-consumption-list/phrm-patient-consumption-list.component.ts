@@ -3,12 +3,12 @@ import { Router } from "@angular/router";
 import { DispensaryService } from "../../../dispensary/shared/dispensary.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { CallbackService } from "../../../shared/callback.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponses } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PharmacyPatientConsumptionInfo_DTO } from "../shared/phrm-patient-consumption-info.dto";
 import { PHRMPatientConsumption_DTO } from "../shared/phrm-patient-consumption.dto";
@@ -88,16 +88,16 @@ export class PHRMPatientConsumptionListComponent {
         this.ShowPatientConsumptionAdd = false;
     }
     GetPatientConsumptionList() {
-        this.pharmacyBLService.GetPatientConsumptions().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetPatientConsumptions().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.PatientConsumptions = res.Results;
             }
             else {
-                this.messageboxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get patient consumption list']);
+                this.messageboxService.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get patient consumption list']);
             }
         },
             err => {
-                this.messageboxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get patient consumption list']);
+                this.messageboxService.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get patient consumption list']);
             }
         );
     }
@@ -127,16 +127,16 @@ export class PHRMPatientConsumptionListComponent {
     }
 
     GetConsumptionsOfPatient(PatientId: number, PatientVisitId: number) {
-        this.pharmacyBLService.GetPatientConsumptionsOfPatient(PatientId, PatientVisitId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetPatientConsumptionsOfPatient(PatientId, PatientVisitId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.PatientConsumptionList = res.Results;
             }
             else {
-                this.messageboxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get patient consumption list']);
+                this.messageboxService.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get patient consumption list']);
             }
         },
             err => {
-                this.messageboxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get patient consumption list']);
+                this.messageboxService.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get patient consumption list']);
             })
     }
 
@@ -154,16 +154,16 @@ export class PHRMPatientConsumptionListComponent {
         }
     }
     GetPatientConsumptionInfo(PatientConsumptionId: number) {
-        this.pharmacyBLService.GetPatientConsumptionInfo(PatientConsumptionId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetPatientConsumptionInfo(PatientConsumptionId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.PatientConsumptionInfo = res.Results;
             }
             else {
-                this.messageboxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get consumption information']);
+                this.messageboxService.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get consumption information']);
             }
         },
             err => {
-                this.messageboxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get consumption information']);
+                this.messageboxService.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get consumption information']);
             })
     }
 

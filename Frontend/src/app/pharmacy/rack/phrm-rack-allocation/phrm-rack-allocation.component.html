@@ -16,7 +16,7 @@
         <tr *ngFor="let StoreRackAllocationDetail of StoreRackAllocationDetails | ItemListFilter: searchTerm  | slice:pageIndex*pageSize:(pageIndex+1)*pageSize;index as i">
           <td><b>{{StoreRackAllocationDetail.ItemName}}</b></td>
           <td style=" text-align:center" *ngFor="let rackData of StoreRackAllocationDetail.StoreRackAllocationDatas; index as j">
-            <input danphe-auto-complete class="form-control" id="rack" [(ngModel)]="rackData.selectedRack" [source]="rackData.StoreWiseFilterRackList" [placeholder]="'PHARMACY.SELECT_RACK' | translate" [list-formatter]="RackListFormatter" display-property-name="RackNo" value-property-name="null" (valueChanged)="OnRackChange(rackData.selectedRack,StoreRackAllocationDetail.ItemId,rackData.previouslySelectedRack,i,j)" [grid-sort]="'RackNo'" [match-formatted]="true" max-num-list="10" [min-chars]="1" onClick="this.select();" />
+            <input dsf-auto-complete class="form-control" id="rack" [(ngModel)]="rackData.selectedRack" [source]="rackData.StoreWiseFilterRackList" [placeholder]="'PHARMACY.SELECT_RACK' | translate" [list-formatter]="RackListFormatter" display-property-name="RackNo" value-property-name="null" (valueChanged)="OnRackChange(rackData.selectedRack,StoreRackAllocationDetail.ItemId,rackData.previouslySelectedRack,i,j)" [grid-sort]="'RackNo'" [match-formatted]="true" max-num-list="10" [min-chars]="1" onClick="this.select();" />
           </td>
           <td><button type="button" class="btn btn-success" [disabled]="loading" (click)="Save(i)">{{ 'COMMON.SAVE' | translate }}</button></td>
         </tr>
@@ -29,7 +29,7 @@
 </div>
 <div class="popup-static portlet box portlet-fullscreen" *ngIf="loadingScreen">
   <div class="portlet-body form" style="background-color:white">
-    <div class="danphe-loading-image" style="display: block;padding-left: 49%;padding-top: 15%;" id='danpheLoading'>
+    <div class="dsf-loading-image" style="display: block;padding-left: 49%;padding-top: 15%;" id='dsfLoading'>
       <img style="margin-top: 60px;width: 120px; height: 120px;" src="../../../../../themes/theme-default/images/loading-child.gif" alt="" />
       <p style="font-size: 24px;color: #fff;"><b>{{ 'PHARMACY.LOADINGPLEASE_WAIT' | translate }}</b></p>
     </div>

@@ -30,8 +30,8 @@
       <div class="form-group row clearfix">
         <label class="control-label col-md-4">Request Date<sup class="color-red"> *</sup><b>:</b></label>
         <div class="col-md-8">
-          <danphe-date-picker [(ngModel)]="ReqForQuotation.RequestedOn" formControlName="RequestedOn" [CalendarTypes]="'en,np'" ngDefaultControl>
-          </danphe-date-picker>
+          <dsf-date-picker [(ngModel)]="ReqForQuotation.RequestedOn" formControlName="RequestedOn" [CalendarTypes]="'en,np'" ngDefaultControl>
+          </dsf-date-picker>
           <span class="color-red font-sm" [hidden]="ReqForQuotation.IsValidCheck('RequestedOn','required') || !(ReqForQuotation.IsDirty('RequestedOn'))">Date is required</span>
         </div>
       </div>
@@ -40,8 +40,8 @@
       <div class="form-group row clearfix">
         <label class="control-label col-md-4">Request Close Date<sup class="color-red">*</sup><b>:</b></label>
         <div class="col-md-8">
-          <danphe-date-picker [(ngModel)]="ReqForQuotation.RequestedCloseOn" formControlName="RequestedCloseOn" [CalendarTypes]="'en,np'" [allow-future-date]="true" ngDefaultControl>
-          </danphe-date-picker>
+          <dsf-date-picker [(ngModel)]="ReqForQuotation.RequestedCloseOn" formControlName="RequestedCloseOn" [CalendarTypes]="'en,np'" [allow-future-date]="true" ngDefaultControl>
+          </dsf-date-picker>
           <span class="color-red font-sm" [hidden]="ReqForQuotation.IsValidCheck('RequestedCloseOn','required') || !(ReqForQuotation.IsDirty('RequestedCloseOn'))">Date is required</span>
           <br />
         </div>
@@ -55,8 +55,8 @@
     <label class="control-label col-md-4">Select Vendor<sup class="color-red">*</sup><b>:</b></label>
     <div class="col-md-8">
       <!-- <form [formGroup]="ReqForQuotation.ReqForQuotationVendors.ReqForQuotationVendorValidator"> -->
-      <danphe-multiselect [ddl-data]="vendorList" [placeholder-text]="'---Select Vendor---'" [value-property-name]="'VendorId'" (selected-items-list)="onChange($event)" [display-property-name]="'VendorName'" [show-limit]="'5'" [single-selection]="false">
-      </danphe-multiselect>
+      <dsf-multiselect [ddl-data]="vendorList" [placeholder-text]="'---Select Vendor---'" [value-property-name]="'VendorId'" (selected-items-list)="onChange($event)" [display-property-name]="'VendorName'" [show-limit]="'5'" [single-selection]="false">
+      </dsf-multiselect>
       <!-- </form> -->
       <span class="color-red" *ngIf="checkSelectedVendor==true">Please select Supplier</span>
     </div>
@@ -84,7 +84,7 @@
           <td style="width:1%;"><a (click)="DeleteRow(i)"><i class="btn btn-danger fa fa-times"></i></a></td>
           <td>
             <form [formGroup]="row.ReqForQuotationItemValidator">
-              <input id="itemName{{i}}" (keyup.enter)="OnPressedEnterKeyInItemField(i)" danphe-auto-complete class="form-control col-md-11" [(ngModel)]="row.SelectedItem" [source]="ItemList" [list-formatter]="myListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null (valueChanged)="SelectItemFromSearchBox(row.SelectedItem,i)" min-chars="1" max-num-list="20" match-formatted="true" formControlName="ItemId" onclick="this.select();" no-match-found-text="click ? to add new item" style="width: 250px;" />
+              <input id="itemName{{i}}" (keyup.enter)="OnPressedEnterKeyInItemField(i)" dsf-auto-complete class="form-control col-md-11" [(ngModel)]="row.SelectedItem" [source]="ItemList" [list-formatter]="myListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null (valueChanged)="SelectItemFromSearchBox(row.SelectedItem,i)" min-chars="1" max-num-list="20" match-formatted="true" formControlName="ItemId" onclick="this.select();" no-match-found-text="click ? to add new item" style="width: 250px;" />
               <span style="color:red" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')"> Item is required</span>
             </form>
           </td>

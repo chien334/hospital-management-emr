@@ -30,7 +30,7 @@
 
   <div class="row" *ngIf="showGrid">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid
+      <dsf-grid
         *ngIf="showGrid"
         [grid-colDefaults]="hivTestReportColumns"
         [grid-data]="filteredHivTestReportData"
@@ -40,7 +40,7 @@
         [report-for]="'lab'"
         [grid-date-range]="dateRange"
       >
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
 </div>

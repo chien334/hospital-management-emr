@@ -5,7 +5,7 @@ import { EmergencyPatientModel } from '../shared/emergency-patient.model';
 import { CommonFunctions } from '../../shared/common.functions';
 import { EmergencyBLService } from '../shared/emergency.bl.service';
 import { EmergencyDLService } from '../shared/emergency.dl.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { PatientService } from '../../patients/shared/patient.service';
 import * as moment from 'moment/moment';
 import { VisitService } from '../../appointments/shared/visit.service';
@@ -106,7 +106,7 @@ export class ViewERDischargeSummaryComponent {
         popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
         popupWinindow.document.open();
         let documentContent = '<html><head>';
-        documentContent += '<link href="../../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+        documentContent += '<link href="../../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
         documentContent += '<style> th, td {border: 1px solid black;padding: 0px 7px;}.no-border th, .no-border td {border: none !important;}.equal-width td {width: 50%;vertical-align: top;}p.discharg-hd {font-weight: 700;text-decoration: underline;margin-bottom: 5px;margin-top: 5px;}textarea {width: 100%;}</style>';
         documentContent += '<body onload="window.print()">' + printContents + '</body></html>';
 

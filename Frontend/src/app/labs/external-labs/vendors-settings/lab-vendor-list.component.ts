@@ -2,13 +2,13 @@
 //import LabGridColumnSettings from '../../../shared/lab-gridcol-settings';
 //import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { LabSettingsBLService } from '../../lab-settings/shared/lab-settings.bl.service';
 import LabGridColumnSettings from '../../shared/lab-gridcol-settings';
 import { LabVendorsModel } from './lab-vendors.model';
 //import { LabSettingsBLService } from '../../shared/lab-settings.bl.service';
-//import { DanpheHTTPResponse } from '../../../../shared/common-models';
+//import { DsfHTTPResponse } from '../../../../shared/common-models';
 //import LabGridColumnSettings from '../../shared/lab-gridcol-settings';
 
 @Component({
@@ -40,7 +40,7 @@ export class LabVendorListComponent {
 
     LoadAllLabVendors() {
         this.labSettingBlService.GetLabVendors()
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
                     this.allLabs = res.Results;
                     this.defaultVendor = this.allLabs.find(val => val.IsDefault == true);

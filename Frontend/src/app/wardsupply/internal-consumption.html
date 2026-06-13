@@ -27,7 +27,7 @@
               <td><a (click)="DeleteRow(i)"><i class="btn btn-xs btn-danger fa fa-times"></i></a></td>
               <td style="width:200px" class="autocomplete-item">
                 <form [formGroup]="row.InternalConsumptionItemsValidator">
-                  <input danphe-auto-complete class="form-control" [(ngModel)]="row.SelectedItem" formControlName="ItemName" [source]="pharmacyStockDetailsList" [list-formatter]="ItemListFormatter" [placeholder]="'WARD_SUPPLY.SELECT_ITEM_PLACEHOLDER' | translate" display-property-name="ItemName" value-property-name=null (valueChanged)="onChangeItem($event,i)" onClick="this.select();" max-num-list="20" min-chars="0" style="width:250px;" id="{{'item-box' + i}}" [grid-sort]="'ItemName'" match-formatted="true" />
+                  <input dsf-auto-complete class="form-control" [(ngModel)]="row.SelectedItem" formControlName="ItemName" [source]="pharmacyStockDetailsList" [list-formatter]="ItemListFormatter" [placeholder]="'WARD_SUPPLY.SELECT_ITEM_PLACEHOLDER' | translate" display-property-name="ItemName" value-property-name=null (valueChanged)="onChangeItem($event,i)" onClick="this.select();" max-num-list="20" min-chars="0" style="width:250px;" id="{{'item-box' + i}}" [grid-sort]="'ItemName'" match-formatted="true" />
 
                   <span class="color-red font-sm" *ngIf="row.IsDirty('ItemName')" [hidden]="row.IsValid('ItemName','required')">{{ 'WARD_SUPPLY.SELECT_ITEM_VALIDATION' | translate }}</span>
                 </form>

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 import { CoreService } from '../../../core/shared/core.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { RPT_BIL_DailyMISReportModel } from './daily-mis-report.model';
 import { CommonFunctions } from '../../../shared/common.functions';
 
@@ -223,8 +223,8 @@ export class RPT_BIL_DailyMISReportComponent {
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     let documentContent = "<html><head>";
-    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DanphePrintStyle.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DsfPrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head><style> .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th { padding: 0px 0px 0px 5px !important; } </style>';
     documentContent += '<body onload="window.print()">' + printContents + '</body></html>'

@@ -3,7 +3,7 @@ import { PHRMPackingTypeModel } from "../../shared/phrm-packing-type.model";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import PHRMGridColumns from "../../shared/phrm-grid-columns";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 @Component({
     selector: 'packingtype-list',

@@ -79,7 +79,7 @@ export class LISMachineResultComponent {
         }
     }
 
-    SaveMachineDataToDanphe() {
+    SaveMachineDataToDsf() {
         this.coreService.loading = true;
         let dataToPost = this.allResults.reduce(function (acc, currVal) {
             currVal.Data.forEach(elm => {

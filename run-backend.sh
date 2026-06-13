@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to run the DanpheEMR backend locally.
+# Script to run the DsfEMR backend locally.
 
 # Exit immediately if a command exits with a non-zero status
 set -e
@@ -8,7 +8,7 @@ set -e
 cd "$(dirname "$0")"
 
 echo "======================================================="
-echo "   Starting DanpheEMR Backend                         "
+echo "   Starting DsfEMR Backend                         "
 echo "   Target URL: http://localhost:5000                  "
 echo "======================================================="
 
@@ -22,4 +22,4 @@ fi
 export ASPNETCORE_ENVIRONMENT=Development
 
 # Run the .NET Web App
-dotnet run --project Code/Websites/DanpheEMR/DanpheEMR.csproj --urls "http://localhost:5000"
+dotnet run --project Code/Websites/DsfEMR/DsfEMR.csproj --urls "http://localhost:5000"

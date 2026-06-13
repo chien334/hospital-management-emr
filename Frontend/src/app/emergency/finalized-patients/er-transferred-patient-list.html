@@ -59,6 +59,6 @@
 </div>
 
 <div class="transferred-patient-grid" *ngIf="showGridList">
-    <danphe-grid [grid-colDefaults]="ERTransferredPatientGridCol" [grid-data]="filteredData" (grid-actions)="EditAction($event)">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="ERTransferredPatientGridCol" [grid-data]="filteredData" (grid-actions)="EditAction($event)">
+    </dsf-grid>
 </div>

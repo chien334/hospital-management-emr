@@ -3,10 +3,10 @@ import * as moment from 'moment/moment';
 import { CoreService } from "../../core/shared/core.service";
 import { SecurityService } from "../../security/shared/security.service";
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { DLService } from "../../shared/dl.service";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { IncentiveFractionItemsModel } from "../shared/incentive-fraction-item.model";
 import { IncentiveTransactionItemsVM } from "../shared/incentive-transaction-items-vm";
 import { IncentiveBLService } from "../shared/incentive.bl.service";
@@ -77,8 +77,8 @@ export class IncentiveTxnInvoiceListComponent {
     //sud:12Feb'20-employeeid is not needed for this api, make necessaray changs in api and in StoredProcedure of this.
     this.dlService.Read(`/api/Incentive/TransactionInvoices?fromDate=${this.fromDate}&toDate=${this.toDate}`)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.allInvoiceInfoList = res.Results;
           this.SetFocusOnInvoiceListSearchBox();
         }
@@ -96,8 +96,8 @@ export class IncentiveTxnInvoiceListComponent {
     //sud:12Feb'20-employeeid is not needed for this api, make necessaray changs in api and in StoredProcedure of this.
     this.dlService.Read(`/api/Incentive/TransactionInvoiceItems?BillingTransactionId=${this.billingtransactionId}`)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.allTxnInvoiceItemList = res.Results.TxnItems;
           this.allFractionsListOfInvoice = res.Results.FractionItems;
 
@@ -133,7 +133,7 @@ export class IncentiveTxnInvoiceListComponent {
   LoadAllDocList() {
     this.incentiveBLService.GetIncentiveApplicableDocterList()
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let doclist: Array<any> = res.Results;
           this.allEmpList = doclist.map(a => {
@@ -253,7 +253,7 @@ export class IncentiveTxnInvoiceListComponent {
 
   //LoadEmpProfileMap() {
   //  this.incentiveBLService.GetEmpIncentiveInfo()
-  //    .subscribe((res: DanpheHTTPResponse) => {
+  //    .subscribe((res: DsfHTTPResponse) => {
   //      if (res.Status == "OK") {
   //        this.EmpProfMap_All = res.Results;
   //      }
@@ -287,7 +287,7 @@ export class IncentiveTxnInvoiceListComponent {
   public GetEmpIncentiveInfo() {
     this.incentiveBLService.GetEmpIncentiveInfo()
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.EmpIncentiveInfo = res.Results;
         }

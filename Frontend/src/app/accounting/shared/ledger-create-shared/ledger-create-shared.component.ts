@@ -133,14 +133,14 @@ export class LedgerCreateSharedComponent {
 
   // get ledger groups list
   GetLedgerGroup() {
-    if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-      this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups);//mumbai-team-june2021-danphe-accounting-cache-change
+    if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+      this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups);//mumbai-team-june2021-dsf-accounting-cache-change
     }
   }
   CallBackLedgerGroup(res) {
     this.sourceLedGroupList = new Array<LedgerModel>();
-    this.sourceLedGroupList = res;//mumbai-team-june2021-danphe-accounting-cache-change
-    this.sourceLedGroupList = this.sourceLedGroupList.slice(); //mumbai-team-june2021-danphe-accounting-cache-change
+    this.sourceLedGroupList = res;//mumbai-team-june2021-dsf-accounting-cache-change
+    this.sourceLedGroupList = this.sourceLedGroupList.slice(); //mumbai-team-june2021-dsf-accounting-cache-change
     this.ledgergroupList = [];
   }
   onledgerGroupChange() {

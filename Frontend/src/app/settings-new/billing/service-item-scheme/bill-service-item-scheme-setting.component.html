@@ -27,7 +27,7 @@
                   </label>
                   <div class="control-label col-md-7">
                     <input
-                           danphe-auto-complete
+                           dsf-auto-complete
                            type="text" name="itemName"
                            id="id_input_itemName_search"
                            [(ngModel)]="selectedItem" class="form-control" [list-formatter]="ItemListFormatter"
@@ -41,13 +41,13 @@
                     {{ 'SETTINGS_NEW.SERVICE_DEPARTMENT_1' | translate }}
                   </label>
                   <div class="control-label col-md-7">
-                    <danphe-multiselect [ddl-data]="serviceDepartmentList"
+                    <dsf-multiselect [ddl-data]="serviceDepartmentList"
                                         [placeholder-text]="'--Select Department--'"
                                         [value-property-name]="'ServiceDepartmentId'"
                                         (selected-items-list)="AssignDefaultDepartment($event)"
                                         [display-property-name]="'ServiceDepartmentName'"
                                         [single-selection]="false">
-                    </danphe-multiselect>
+                    </dsf-multiselect>
                   </div>
                 </div>
               </div>

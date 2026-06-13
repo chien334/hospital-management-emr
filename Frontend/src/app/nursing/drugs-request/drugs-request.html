@@ -41,7 +41,7 @@
                         <tr *ngFor="let row of currSaleItems; let i = index">
 
                             <td style="width:160px" class="autocomplete-item">
-                                <input *ngIf="row.enableItmSearch" danphe-auto-complete class="form-control"
+                                <input *ngIf="row.enableItmSearch" dsf-auto-complete class="form-control"
                                        [(ngModel)]="row.selectedItem"
                                        [source]="ItemListForSale"
                                        [list-formatter]="myItemListFormatter"

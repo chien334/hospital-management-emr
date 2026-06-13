@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
 import { DispensaryService } from "../../../dispensary/shared/dispensary.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMStoreModel } from "../../shared/phrm-store.model";
 import { PHRMPatientConsumptionItem } from "../shared/phrm-patient-consumption-item.model";
@@ -108,8 +108,8 @@ export class PHRMReturnPatientConsumptionComponent {
 
         this.pharmacyBLService.SavePatientConsumptionReturn(this.PatientConsumption.PatientConsumptionItems)
             .finally(() => this.loading = false)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.PatientConsumptionReturnReceiptNo = res.Results;
                     this.showPrintPage = true;
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Return Successfully']);
@@ -158,8 +158,8 @@ export class PHRMReturnPatientConsumptionComponent {
 
     GetDefaultStore() {
         if (this.WardId) {
-            this.pharmacyBLService.GetWardSubStoreMapDetails(this.WardId).subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            this.pharmacyBLService.GetWardSubStoreMapDetails(this.WardId).subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.WardSubStoreMapList = res.Results;
                     let WardDefaultSubStore = this.WardSubStoreMapList.find(a => a.IsDefault === true);
                     this.SelectedStore = WardDefaultSubStore;

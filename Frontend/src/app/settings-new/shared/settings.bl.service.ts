@@ -40,7 +40,7 @@ import { IntakeOutputParameterListModel } from '../../clinical/shared/intake-out
 import { LabTest } from "../../labs/shared/lab-test.model";
 import { PHRMStoreModel } from '../../pharmacy/shared/phrm-store.model';
 import { RadiologyReportTemplate } from "../../radiology/shared/radiology-report-template.model";
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { SchemeVsPriceCategoryModel } from '../billing/map-scheme-and-pricecategory/shared/MapSchemeVsPriceCategory.model';
 import { BillServiceItemModel, BillServiceItemsPriceCategoryMap } from '../billing/shared/bill-service-item.model';
 import { BillServiceItemSchemeSetting_DTO } from '../billing/shared/dto/bill-service-item-scheme-setting.dto';
@@ -1124,13 +1124,13 @@ export class SettingsBLService {
     return this.settingsDLService.UpdateSubstoreMapData(nursingWardSupply)
       .map(res => { return res });
   }
-  public GetBillingSchmes(): Observable<DanpheHTTPResponse> {
+  public GetBillingSchmes(): Observable<DsfHTTPResponse> {
     return this.settingsDLService.GetBillingSchmes()
       .map(res => {
         return res;
       });
   }
-  public GetAutoBillingItemsList(): Observable<DanpheHTTPResponse> {
+  public GetAutoBillingItemsList(): Observable<DsfHTTPResponse> {
     return this.settingsDLService.GetAutoBillingItemsList()
       .map(res => {
         return res;

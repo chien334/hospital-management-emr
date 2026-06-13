@@ -51,7 +51,7 @@
             <td>
               <span>
                 {{ 'GRID_HEADERS.DATE' | translate }}:
-                {{selTxnItem.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                {{selTxnItem.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}}
                 <i>{{selTxnItem.TransactionDate | nepaliDate:'format':'YYYY-MM-DD'}} </i>
               </span>
             </td>
@@ -84,7 +84,7 @@
               <label for="id_referral_chkbox_inctv" style="vertical-align: middle;">{{ 'INCENTIVE.REFERRAL_Q' | translate }}</label>
             </td>
             <td>
-              <input type="text" name="referralEmployee" id="id_referral_employee_inctv" danphe-auto-complete
+              <input type="text" name="referralEmployee" id="id_referral_employee_inctv" dsf-auto-complete
                      [(ngModel)]="ReferralEmployee" [list-formatter]="EmployeeListFormatter" [source]="allEmpList"
                      [placeholder]="'INCENTIVE.REFERRAL_NAME_PLACEHOLDER' | translate" display-property-name="FullName" value-property-name=null
                      onclick="this.select()" [disabled]="!EnableDisableReferral" max-num-list="10"
@@ -136,7 +136,7 @@
                   </select>
                 </td>
                 <td>
-                  <input danphe-auto-complete [(ngModel)]="frcItm.DocObj" [list-formatter]="EmployeeListFormatter"
+                  <input dsf-auto-complete [(ngModel)]="frcItm.DocObj" [list-formatter]="EmployeeListFormatter"
                          [source]="allEmpList" [placeholder]="'INCENTIVE.SEARCH_DOCTOR_NAME' | translate" display-property-name="FullName"
                          value-property-name=null onclick="this.select()"
                          [disabled]="frcItm.IsRemoved || frcItm.IsTransferToAcc" max-num-list="10"

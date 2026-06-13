@@ -4,7 +4,7 @@ import { AccountingService } from "../../../../accounting/shared/accounting.serv
 import { CoreService } from "../../../../core/shared/core.service";
 import { SecurityService } from "../../../../security/shared/security.service";
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
-import { ENUM_ACC_ADDLedgerLedgerType, ENUM_DanpheHTTPResponseText, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
+import { ENUM_ACC_ADDLedgerLedgerType, ENUM_DsfHTTPResponseText, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
 import { SubLedger_DTO } from "../../../transactions/shared/DTOs/subledger-dto";
 import { AccountingSettingsBLService } from "../../shared/accounting-settings.bl.service";
 import { CostCenterModel } from "../../shared/cost-center.model";
@@ -98,15 +98,15 @@ export class InventorySubcategoryLedgerMappingComponent {
     }
 
     public getCoaList() {
-        if (!!this.accountingService.accCacheData.COA && this.accountingService.accCacheData.COA.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-            this.AllCostOfAccountingList = this.accountingService.accCacheData.COA; //mumbai-team-june2021-danphe-accounting-cache-change
-            this.AllCostOfAccountingList = this.AllCostOfAccountingList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.COA && this.accountingService.accCacheData.COA.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+            this.AllCostOfAccountingList = this.accountingService.accCacheData.COA; //mumbai-team-june2021-dsf-accounting-cache-change
+            this.AllCostOfAccountingList = this.AllCostOfAccountingList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
     public getPrimaryGroupList() {
-        if (!!this.accountingService.accCacheData.PrimaryGroup && this.accountingService.accCacheData.PrimaryGroup.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.PrimaryGroupList = this.accountingService.accCacheData.PrimaryGroup;//mumbai-team-june2021-danphe-accounting-cache-change
-            this.PrimaryGroupList = this.PrimaryGroupList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.PrimaryGroup && this.accountingService.accCacheData.PrimaryGroup.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.PrimaryGroupList = this.accountingService.accCacheData.PrimaryGroup;//mumbai-team-june2021-dsf-accounting-cache-change
+            this.PrimaryGroupList = this.PrimaryGroupList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
     public Getledgers() {
@@ -137,8 +137,8 @@ export class InventorySubcategoryLedgerMappingComponent {
 
     }
     GetLedgerGroup() {
-        if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-            this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups);//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+            this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups);//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 
@@ -176,7 +176,7 @@ export class InventorySubcategoryLedgerMappingComponent {
                 this.accountingSettingsBLService.AddLedgerList(this.NewledgerList)
                     .subscribe(
                         res => {
-                            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Ledgers Added"]);
                                 this.CallBackAddLedger(res);
                                 //this.GetProvisionalLedgerCode();
@@ -199,18 +199,18 @@ export class InventorySubcategoryLedgerMappingComponent {
 
     //after adding Ledger is succesfully added  then this function is called.
     CallBackAddLedger(res) {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results != null) {
-            res.Results.forEach(ledger => {//mumbai-team-june2021-danphe-accounting-cache-change
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results != null) {
+            res.Results.forEach(ledger => {//mumbai-team-june2021-dsf-accounting-cache-change
                 ledger.PrimaryGroup = this.CurrentLedger.PrimaryGroup;
                 ledger.COA = this.CurrentLedger.COA;
                 ledger.LedgerGroupId = this.CurrentLedger.LedgerGroupId;
                 ledger.LedgerGroupName = this.CurrentLedger.LedgerGroupName;
                 this.getLedgerList();
                 this.SourceLedgerList.push(ledger);
-                this.accountingService.accCacheData.LedgersALL.push(ledger);//mumbai-team-june2021-danphe-accounting-cache-change
+                this.accountingService.accCacheData.LedgersALL.push(ledger);//mumbai-team-june2021-dsf-accounting-cache-change
             });
         }
-        else if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results === null) {
+        else if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results === null) {
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Notice, ["Ledger under LedgerGroup already exist.Please deactivate the previous ledger to add a new one with same name"]);
         }
         else {
@@ -313,9 +313,9 @@ export class InventorySubcategoryLedgerMappingComponent {
         }
     }
     public getLedgerList() {
-        if (!!this.accountingService.accCacheData.LedgersALL && this.accountingService.accCacheData.LedgersALL.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.SourceLedgerList = this.accountingService.accCacheData.LedgersALL;//mumbai-team-june2021-danphe-accounting-cache-change
-            this.SourceLedgerList = this.SourceLedgerList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.LedgersALL && this.accountingService.accCacheData.LedgersALL.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.SourceLedgerList = this.accountingService.accCacheData.LedgersALL;//mumbai-team-june2021-dsf-accounting-cache-change
+            this.SourceLedgerList = this.SourceLedgerList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
     LedgerGroupListFormatter(data: any): string {
@@ -366,7 +366,7 @@ export class InventorySubcategoryLedgerMappingComponent {
     GetLedgerMapping() {
         this.accountingBLService.GetLedgerMappingDetails()
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.LedgerMappingList = res.Results;
                 }
             });
@@ -566,7 +566,7 @@ export class InventorySubcategoryLedgerMappingComponent {
     getInventorySubcategorylist() {
         this.accountingSettingsBLService.GetInvSubcategoryList()
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.InventorySubCategoryLedgerList = new Array<LedgerModel>();
                     let data = res.Results;
                     data.forEach((emp, index) => {
@@ -630,7 +630,7 @@ export class InventorySubcategoryLedgerMappingComponent {
         try {
             this.accountingSettingsBLService.GetProvisionalLedgerCode()
                 .subscribe(res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.ProvisionalLedgerCode = parseInt(res.Results);
                     }
                     else {

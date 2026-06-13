@@ -13,14 +13,14 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Membership<b style="float:right">:</b></label>
                                 <div class="col-md-8">
-                                    <danphe-multiselect *ngIf="Memberships.length > 0" [ddl-data]="Memberships"
+                                    <dsf-multiselect *ngIf="Memberships.length > 0" [ddl-data]="Memberships"
                                         [pre-selected]="preSelectedMemberships"
                                         [placeholder-text]="'--Select Memberships --'"
                                         [value-property-name]="'MembershipTypeId'"
                                         (selected-items-list)="MembershipsChanged($event)"
                                         [display-property-name]="'MembershipTypeName'" [single-selection]="false"
                                     >
-                                    </danphe-multiselect>
+                                    </dsf-multiselect>
                                 </div>
                             </div>
                         </div>
@@ -28,11 +28,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Rank<b style="float:right">:</b></label>
                                 <div class="col-md-8">
-                                    <danphe-multiselect *ngIf="Ranks.length > 0" [ddl-data]="Ranks"
+                                    <dsf-multiselect *ngIf="Ranks.length > 0" [ddl-data]="Ranks"
                                         [pre-selected]="preSelectedRanks" [placeholder-text]="'--Select Ranks --'"
                                         [value-property-name]="'RankId'" (selected-items-list)="RanksChanged($event)"
                                         [display-property-name]="'RankName'" [single-selection]="false" >
-                                    </danphe-multiselect>
+                                    </dsf-multiselect>
                                 </div>
                             </div>
                         </div>
@@ -46,12 +46,12 @@
 
                 <div class="row">
                     <div class="col-lg-12 col-sm-12">
-                        <danphe-grid [grid-colDefaults]="RankMembershipWiseDischargePatientReportGridColumns"
+                        <dsf-grid [grid-colDefaults]="RankMembershipWiseDischargePatientReportGridColumns"
                             [grid-data]="RankMembershipWiseDischargePatientReportData"
                             [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="pharmacy"
                             [show-header]="true" [filter-parameters]="filterParameters" [grid-date-range]="dateRange"
                             [NepaliDateInGridParams] ="NepaliDateInGridSettings">
-                        </danphe-grid>
+                        </dsf-grid>
                     </div>
                 </div>
             </div>

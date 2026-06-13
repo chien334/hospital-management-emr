@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 import { BillingBLService } from '../../shared/billing.bl.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { BillingService } from '../../shared/billing.service';
 import * as moment from 'moment/moment';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { DanpheLoadingInterceptor } from '../../../shared/danphe-loader-intercepter/danphe-loading.services';
+import { DsfLoadingInterceptor } from '../../../shared/dsf-loader-intercepter/dsf-loading.services';
 import { CoreService } from '../../../core/shared/core.service';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { RouteFromService } from '../../../shared/routefrom.service';
 
 @Component({
   templateUrl: './duplicate-credit-note-list.html',
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: DanpheLoadingInterceptor,
+    useClass: DsfLoadingInterceptor,
     multi: true,
   }]
 })

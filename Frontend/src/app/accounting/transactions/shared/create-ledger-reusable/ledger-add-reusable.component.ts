@@ -79,15 +79,15 @@ export class LedgersAddReusableComponent {
 
 
     GetLedgerGroup() {
-        if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups)//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups)//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 
     CallBackLedgerGroup(res) {
         this.sourceLedGroupList = new Array<LedgerModel>();
-        this.sourceLedGroupList = res; //mumbai-team-june2021-danphe-accounting-cache-change
-        this.sourceLedGroupList = this.sourceLedGroupList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        this.sourceLedGroupList = res; //mumbai-team-june2021-dsf-accounting-cache-change
+        this.sourceLedGroupList = this.sourceLedGroupList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         this.ledgergroupList = this.sourceLedGroupList;
         this.coaList = [];
         this.ledgerList = new Array<LedgerModel>();
@@ -258,9 +258,9 @@ export class LedgersAddReusableComponent {
         }
     }
     public getLedgerList() {
-        if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length>0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.sourceLedgerList = this.accountingService.accCacheData.Ledgers;//mumbai-team-june2021-danphe-accounting-cache-change
-            this.sourceLedgerList = this.sourceLedgerList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length>0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.sourceLedgerList = this.accountingService.accCacheData.Ledgers;//mumbai-team-june2021-dsf-accounting-cache-change
+            this.sourceLedgerList = this.sourceLedgerList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
     LedgerGroupListFormatter(data: any): string {
@@ -405,15 +405,15 @@ export class LedgersAddReusableComponent {
         }
     }
     public getCoaList() {
-        if(!!this.accountingService.accCacheData.COA && this.accountingService.accCacheData.COA.length>0){//mumbai-team-june2021-danphe-accounting-cache-change
-          this.allcoaList = this.accountingService.accCacheData.COA;//mumbai-team-june2021-danphe-accounting-cache-change
-          this.allcoaList = this.allcoaList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if(!!this.accountingService.accCacheData.COA && this.accountingService.accCacheData.COA.length>0){//mumbai-team-june2021-dsf-accounting-cache-change
+          this.allcoaList = this.accountingService.accCacheData.COA;//mumbai-team-june2021-dsf-accounting-cache-change
+          this.allcoaList = this.allcoaList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
       }
     public getPrimaryGroupList() {
-        if(!!this.accountingService.accCacheData.PrimaryGroup && this.accountingService.accCacheData.PrimaryGroup.length>0){//mumbai-team-june2021-danphe-accounting-cache-change
-          this.primaryGroupList = this.accountingService.accCacheData.PrimaryGroup;//mumbai-team-june2021-danphe-accounting-cache-change
-          this.primaryGroupList = this.primaryGroupList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if(!!this.accountingService.accCacheData.PrimaryGroup && this.accountingService.accCacheData.PrimaryGroup.length>0){//mumbai-team-june2021-dsf-accounting-cache-change
+          this.primaryGroupList = this.accountingService.accCacheData.PrimaryGroup;//mumbai-team-june2021-dsf-accounting-cache-change
+          this.primaryGroupList = this.primaryGroupList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 }

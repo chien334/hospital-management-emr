@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
 import { DepositHead_DTO } from "../../../billing/shared/dto/deposit-head.dto";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
 
@@ -84,7 +84,7 @@ export class DepositHeadListComponent {
         this.settingsBLService.ActivateDeactivateDepositHeadStatus(depositHeadData.depositHeadId)
             .subscribe(
                 res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.GetDepositHead();
                         let responseMessage = res.Results.IsActive ? "Deposit Head is now Activated." : "Deposit Head is now Deactivated.";
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [responseMessage]);
@@ -104,8 +104,8 @@ export class DepositHeadListComponent {
     GetDepositHead() {
         this.settingsBLService
             .GetDepositHead()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.depositHeadList = res.Results;
                     this.showGrid = true;
 

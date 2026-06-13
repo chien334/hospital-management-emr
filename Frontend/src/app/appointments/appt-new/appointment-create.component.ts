@@ -10,9 +10,9 @@ import { PatientService } from "../../patients/shared/patient.service";
 import { CallbackService } from '../../shared/callback.service';
 import { RouteFromService } from '../../shared/routefrom.service';
 import { Patient } from "../../patients/shared/patient.model";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CoreBLService } from "../../core/shared/core.bl.service";
 import { APIsByType } from "../../shared/search.service";
 import { VisitService } from "../shared/visit.service";
@@ -201,7 +201,7 @@ export class AppointmentCreateComponent {
 
   getDepts() {
     this.visitBLService.GetDepartment()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.ApptApplicableDepartmentList = res.Results;
           this.visitService.ApptApplicableDepartmentList = this.coreService.Masters.Departments.filter(d => d.IsAppointmentApplicable == true && d.IsActive == true).map(d => {
@@ -217,7 +217,7 @@ export class AppointmentCreateComponent {
 
   getDocts() {
     this.visitBLService.GetVisitDoctors()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.ApptApplicableDoctorsList = res.Results;
         }
@@ -389,7 +389,7 @@ export class AppointmentCreateComponent {
       this.CurrentAppointment.CreatedOn = moment().format('YYYY-MM-DD HH:mm:ss');
 
       this.appointmentBLService.CheckForClashingAppointment(this.CurrentAppointment.PatientId, this.CurrentAppointment.AppointmentDate, this.CurrentAppointment.PerformerId)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             let isClashingAppointment: boolean = res.Results;
 
@@ -399,7 +399,7 @@ export class AppointmentCreateComponent {
             }
             else {
               this.appointmentBLService.AddAppointment(this.CurrentAppointment)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                   if (res.Status == "OK") {
                     this.loading = false;
                     this.selectedDoctor = null;
@@ -417,7 +417,7 @@ export class AppointmentCreateComponent {
           }
           else {
             this.appointmentBLService.AddAppointment(this.CurrentAppointment)
-              .subscribe((res: DanpheHTTPResponse) => {
+              .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
                   this.loading = false;
                   this.showApptPanel = false;
@@ -447,7 +447,7 @@ export class AppointmentCreateComponent {
       && this.CurrentAppointment.IsValidSelDepartment
       && this.CurrentAppointment.IsValidSelProvider) {
       this.appointmentBLService.CheckForClashingAppointment(this.CurrentAppointment.PatientId, this.CurrentAppointment.AppointmentDate, this.CurrentAppointment.PerformerId)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             let isClashingAppointment: boolean = res.Results;
 

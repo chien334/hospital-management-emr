@@ -1,12 +1,12 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from "@angular/core";
 
 import * as moment from "moment";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import {
-  ENUM_DanpheHTTPResponses,
+  ENUM_DsfHTTPResponses,
   ENUM_DateTimeFormat,
   ENUM_MessageBox_Status,
 } from "../../../shared/shared-enums";
@@ -60,8 +60,8 @@ export class SchemeRefundListComponent implements OnInit, AfterViewInit {
     this.utilitiesBlService
       .GetSchemeRefund(this.fromDate, this.toDate)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.SchemeRefundList = res.Results;
             this.loading = false;
           } else {

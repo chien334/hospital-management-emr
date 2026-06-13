@@ -4,11 +4,11 @@ import { Employee } from "../../employee/shared/employee.model";
 import { PatientService } from "../../patients/shared/patient.service";
 import { SecurityService } from "../../security/shared/security.service";
 import { Department } from "../../settings-new/shared/department.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { ConsultationRequestGridDTO } from "../shared/dto/consultation-request-grid.dto";
 import { NursingService } from "../shared/nursing-service";
 import { NursingBLService } from "../shared/nursing.bl.service";
@@ -58,8 +58,8 @@ export class ConsultationRequestsComponent implements OnInit {
 
     public async GetDepartmentList() {
         try {
-            const res: DanpheHTTPResponse = await this._nursingBLService.GetAllApptDepartment().toPromise();
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            const res: DsfHTTPResponse = await this._nursingBLService.GetAllApptDepartment().toPromise();
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.DepartmentList = res.Results;
                 this._nursingService.SetDepartmentList(this.DepartmentList);
             } else {
@@ -76,8 +76,8 @@ export class ConsultationRequestsComponent implements OnInit {
 
     public async GetDoctorList() {
         try {
-            const res: DanpheHTTPResponse = await this._nursingBLService.GetAllAppointmentApplicableDoctor().toPromise();
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            const res: DsfHTTPResponse = await this._nursingBLService.GetAllAppointmentApplicableDoctor().toPromise();
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.DoctorList = res.Results;
                 this._nursingService.SetDoctorList(this.DoctorList);
             } else {
@@ -95,8 +95,8 @@ export class ConsultationRequestsComponent implements OnInit {
     public GetConsultationRequestsByPatientVisitId(PatientVisitId: number): void {
         this._nursingBLService
             .GetConsultationRequestsByPatientVisitId(PatientVisitId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.ConsultationRequestList = res.Results;
                 } else {
                     this._messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, ["Failed to get Consultation Request List.",]);

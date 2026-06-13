@@ -7,7 +7,7 @@ import * as moment from 'moment/moment';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { NepaliDate } from '../../../shared/calendar/np/nepali-dates';
 import { NepaliCalendarService } from '../../../shared/calendar/np/nepali-calendar.service';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: "./total-revenue-from-lab.html"

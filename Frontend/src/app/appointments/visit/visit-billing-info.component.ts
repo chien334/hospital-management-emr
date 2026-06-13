@@ -12,11 +12,11 @@ import { ServiceItemSchemeSetting_DTO } from "../../billing/shared/dto/service-i
 import { CoreService } from '../../core/shared/core.service';
 import { SecurityService } from "../../security/shared/security.service";
 import { CreditOrganization } from "../../settings-new/shared/creditOrganization.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_AdditionalServiceItemGroups, ENUM_AppointmentType, ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_BillingType, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_PriceCategory, ENUM_ServiceBillingContext, ENUM_VisitType } from "../../shared/shared-enums";
+import { ENUM_AdditionalServiceItemGroups, ENUM_AppointmentType, ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_BillingType, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_PriceCategory, ENUM_ServiceBillingContext, ENUM_VisitType } from "../../shared/shared-enums";
 import { AppointmentService } from "../shared/appointment.service";
 import { FreeVisitSettings_DTO } from "../shared/dto/free-visit-settings.dto";
 import { VisitBLService } from "../shared/visit.bl.service";
@@ -361,8 +361,8 @@ export class VisitBillingInfoComponent implements OnInit {
           if (enableOldPatOpdPrice) {
 
             this._visitBLService.GetPatientVisitList(patId)
-              .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+              .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                   let patVisitList: Array<any> = res.Results;
                   if (patVisitList && patVisitList.length) {
                     this.IsOldPatientOpd = true;
@@ -1011,8 +1011,8 @@ export class VisitBillingInfoComponent implements OnInit {
   //* Krishna, 17thMarch'23 This will make a call to API to fetch only serviceItemSchemeSetting not the item iteself.
   public GetServiceItemSchemeSetting(serviceBillingContext: string, schemeId: number): void {
     this._billingMasterBlService.GetServiceItemSchemeSetting(serviceBillingContext, schemeId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
           this.ServiceItemSchemeSettings = res.Results;
           //this.MapServiceItemSchemeSettingsToServiceItems(this.ServiceItemSchemeSettings);
         } else {
@@ -1043,15 +1043,15 @@ export class VisitBillingInfoComponent implements OnInit {
 
   public GetVisitAdditionalServiceItems(): void {
     this._billingMasterBlService.GetVisitAdditionalServiceItems(ENUM_AdditionalServiceItemGroups.VisitAdditionalItems)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results && res.Results.length > 0) {
             this.VisitAdditionalServiceItems = res.Results
             this.FilterVisitAdditionalServiceItems(this.RegistrationSchemeDto.PriceCategoryId);
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this._messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error: ${err.ErrorMessage}`]);
         }
       );

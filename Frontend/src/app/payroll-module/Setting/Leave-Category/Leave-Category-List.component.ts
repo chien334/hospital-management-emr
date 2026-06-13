@@ -3,9 +3,9 @@ import { RouterModule } from "@angular/router";
 import { PayrollSettingBLService } from  '../shared/PayrollSettingBLService';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment';
-import  GridColumnSettings  from '../../../shared/danphe-grid/grid-column-settings.constant';
+import  GridColumnSettings  from '../../../shared/dsf-grid/grid-column-settings.constant';
 import {  LeaveCategories } from '../../Shared/Payroll-Leave-Category.model';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 @Component({
   selector: 'Leave-Category',

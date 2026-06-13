@@ -1,13 +1,13 @@
 ﻿import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Renderer2 } from "@angular/core";
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMCompanyModel } from "../../shared/phrm-company.model";
 
@@ -55,8 +55,8 @@ export class PHRMCompanyManageComponent implements OnInit {
     }
     public getCompanyList() {
         this.pharmacyBLService.GetCompanyList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                     this.companyList = res.Results;
                 }
                 else {
@@ -117,8 +117,8 @@ export class PHRMCompanyManageComponent implements OnInit {
             this.CurrentCompany.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.AddCompany(this.CurrentCompany)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Company Added."]);
                             this.CallBackAddUpdate(res)
                             this.CurrentCompany = new PHRMCompanyModel();
@@ -142,8 +142,8 @@ export class PHRMCompanyManageComponent implements OnInit {
             this.CurrentCompany.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.UpdateCompany(this.CurrentCompany)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Company Details Updated.']);
                             this.CallBackAddUpdate(res)
                             this.CurrentCompany = new PHRMCompanyModel();
@@ -159,7 +159,7 @@ export class PHRMCompanyManageComponent implements OnInit {
     }
 
     CallBackAddUpdate(res) {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
             var company: any = {};
             company.CompanyId = res.Results.CompanyId;
             company.CompanyName = res.Results.CompanyName;
@@ -173,7 +173,7 @@ export class PHRMCompanyManageComponent implements OnInit {
             this.CallBackAdd(company);
         }
         else {
-            this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ['some error ' + res.ErrorMessage]);
+            this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ['some error ' + res.ErrorMessage]);
         }
     }
 
@@ -195,8 +195,8 @@ export class PHRMCompanyManageComponent implements OnInit {
                 currCompany.IsActive = status;
                 this.pharmacyBLService.UpdateCompany(currCompany)
                     .subscribe(
-                        (res: DanpheHTTPResponse) => {
-                            if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                        (res: DsfHTTPResponse) => {
+                            if (res.Status == ENUM_DsfHTTPResponses.OK) {
                                 let responseMessage = res.Results.IsActive ? "Company is now activated." : "Company is now Deactivated.";
                                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [responseMessage]);
                                 this.getCompanyList();

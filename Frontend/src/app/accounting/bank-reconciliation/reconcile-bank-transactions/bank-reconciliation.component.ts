@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { CoreService } from '../../../core/shared/core.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_ACC_VoucherCode, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_ACC_VoucherCode, ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { AccountingReportsBLService } from '../../reports/shared/accounting-reports.bl.service';
 import { BankReconciliationAdditionalTransaction_DTO } from '../../settings/shared/dto/bank-reconciliation-additional-txn.dto';
 import { LedgerModel } from '../../settings/shared/ledger.model';
@@ -133,7 +133,7 @@ export class BankReconciliationComponent implements OnInit {
         let num = this.FilterReconcileData();
         this.accReportBLService.GetBankReconcillationReport(Number(this.selLedger.LedgerId), this.fromDate, this.toDate, this.fiscalYearId, this.selectedVoucher.VoucherId, num)
           .subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
               this.openingBalance.ReconcileOpening = res.Results.ReconcileOpening[0].ReconcileOpeningBalance;
               this.ledgerResult = this.originalLedgerResult = res.Results.TransactionData;
               if (this.ledgerResult.length <= 0) {
@@ -327,7 +327,7 @@ export class BankReconciliationComponent implements OnInit {
     try {
       this.accReportBLService.GetReconciliationCategory()
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.bankReconcCategory = res.Results;
             this.bankReconcCategory.forEach(con => {
               con.IsSelected = false;
@@ -456,7 +456,7 @@ export class BankReconciliationComponent implements OnInit {
         }
         this.accReportBLService.PostReconciliation(postData)
           .subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.closesavePopup();
               this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Bank Reconciliation Is Saved.']);
               this.bank_Opening_Balance = 0;
@@ -489,7 +489,7 @@ export class BankReconciliationComponent implements OnInit {
 
       this.accBLService.GetTransactionbyVoucher(txn.VoucherNumber, txn.SectionId, txn.FiscalYearId)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.txnItems = res.Results.txnList;
             this.selectedTxn = this.ledgerResult[i];
             this.selectedTxn.BankBalance = +this.ledgerResult[i].BankBalance;
@@ -592,7 +592,7 @@ export class BankReconciliationComponent implements OnInit {
     let bank = this.bankHistory[i];
     this.accReportBLService.GetReconciliationHistory(bank.VoucherNumber, bank.SectionId, bank.FiscalYearId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
 
           this.txnHistory = res.Results;
           if (this.txnHistory.length > 0) {

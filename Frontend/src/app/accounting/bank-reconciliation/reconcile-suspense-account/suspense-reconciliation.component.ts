@@ -4,12 +4,12 @@ import * as _ from 'lodash';
 import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { CommonFunctions } from "../../../shared/common.functions";
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
-import { ENUM_ACC_PaymentMode, ENUM_ACC_RouteFrom, ENUM_ACC_VoucherCode, ENUM_CalanderType, ENUM_DanpheHTTPResponseText, ENUM_Data_Type, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_ACC_PaymentMode, ENUM_ACC_RouteFrom, ENUM_ACC_VoucherCode, ENUM_CalanderType, ENUM_DsfHTTPResponseText, ENUM_Data_Type, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { AccountingSettingsBLService } from '../../settings/shared/accounting-settings.bl.service';
 import { CostCenterModel } from '../../settings/shared/cost-center.model';
 import { FiscalYearModel } from "../../settings/shared/fiscalyear.model";
@@ -101,11 +101,11 @@ export class SuspenseAccountReconciliationComponent {
         this.GetVoucherHead();
         this.GetFiscalYearList();
         this.GetLedgerList();
-        if (!!this.accountingService.accCacheData.CodeDetails && this.accountingService.accCacheData.CodeDetails.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.coreService.SetCodeDetails(this.accountingService.accCacheData.CodeDetails);//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.CodeDetails && this.accountingService.accCacheData.CodeDetails.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.coreService.SetCodeDetails(this.accountingService.accCacheData.CodeDetails);//mumbai-team-june2021-dsf-accounting-cache-change
         }
-        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.coreService.SetFiscalYearList(this.accountingService.accCacheData.FiscalYearList);//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.coreService.SetFiscalYearList(this.accountingService.accCacheData.FiscalYearList);//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 
@@ -287,7 +287,7 @@ export class SuspenseAccountReconciliationComponent {
             this.suspenseAccountReconciliationTransaction.Transaction = this.transaction;
             this.accountingBLService.PostSuspenseAccTransaction(this.suspenseAccountReconciliationTransaction).
                 subscribe(res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.HideSavebtn = false;
                         this.Reset();
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Voucher is successfully Saved."]);
@@ -736,7 +736,7 @@ export class SuspenseAccountReconciliationComponent {
         }
         this.accountingBLService.GettempVoucherNumber(voucherId, sectionId, transactionDate)
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.TempVoucherNumber = res.Results;
                 }
                 else {
@@ -773,7 +773,7 @@ export class SuspenseAccountReconciliationComponent {
 
     public async UpdateLedgers() {
         try {
-            DanpheCache.clearDanpheCacheByType(MasterType.LedgersAll);
+            DsfCache.clearDsfCacheByType(MasterType.LedgersAll);
             await this.accountingService.RefreshAccCacheData();
         }
         catch (ex) {
@@ -952,8 +952,8 @@ export class SuspenseAccountReconciliationComponent {
             this.Cancel();
             this.suspenseAccountRefVoucherDetail = new Array<SuspenseAccountReconciliationDetail_DTO>();
             this.accountingBLService.GetSuspenaseAccountReconciliationDetail(this.selectedBankLedger.LedgerId, this.suspenseAccountLedger.LedgerId)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results && res.Results.length > 0) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results && res.Results.length > 0) {
                         this.suspenseAccountRefVoucherDetail = res.Results;
                         this.ChangeFocus('suspenseAccount_reconciliation_referenceVoucherNumber');
                     }
@@ -961,7 +961,7 @@ export class SuspenseAccountReconciliationComponent {
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Notice, [`No need to reconcile ${this.suspenseAccountLedger.LedgerName} for selected bank.`]);
                     }
                 },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Error: ${err.ErrorMessage}`]);
                     }
                 );

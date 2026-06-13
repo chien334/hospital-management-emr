@@ -9,7 +9,7 @@
             </from-to-date-select>
           </div>
           <div class="col-md-2" *ngIf="allcategories && preSelectedData">
-            <danphe-multiselect
+            <dsf-multiselect
             [ddl-data]="serviceDepartmentsList"
             [pre-selected]="preSelectedData"
             [placeholder-text]="'INCENTIVE.SELECT_SERVICE_DEPTS' | translate"
@@ -17,7 +17,7 @@
             (selected-items-list)="ServiceDepartmentOnChange($event)"
             [display-property-name]="'ServiceDepartmentName'"
             [single-selection]="false"> 
-            </danphe-multiselect>
+            </dsf-multiselect>
           </div>
 
           <div class="col-md-2">

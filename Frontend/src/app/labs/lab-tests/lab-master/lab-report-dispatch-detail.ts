@@ -10,8 +10,8 @@ import { CommonFunctions } from "../../../shared/common.functions";
 import { LabPendingResultVM } from "../../shared/lab-view.models";
 import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { LabTestFinalReportModel, LabTestsInFinalReportModel } from '../../shared/lab-finalreport.VM';
 import { LabTestRequisition } from "../../shared/lab-requisition.model";
 import { LabReportVM } from "../../reports/lab-report-vm";
@@ -121,7 +121,7 @@ public test:string=null
     //= this.labBLService.GetFinalReportsInReportDispatchByPatId(this.patientId, this.fromDate, this.toDate, this.catagoryList);
 
     this.reportListSubscription = this.labBLService.GetFinalReportsInReportDispatchByPatId(this.patientId, this.fromDate, this.toDate, this.catagoryList)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK" && res.Results) {
           this.reportSelected = res.Results;
           this.AssignEmployeeNamesToRespectiveField();
@@ -136,7 +136,7 @@ public test:string=null
   }
 
   public AssignEmployeeNamesToRespectiveField() {
-    this.allEmployeeList = DanpheCache.GetData(MasterType.Employee, null);
+    this.allEmployeeList = DsfCache.GetData(MasterType.Employee, null);
     this.reportSelected.forEach(report => {
       report['SelectAll'] = false;
       report.Tests.forEach(tst => {
@@ -194,7 +194,7 @@ public test:string=null
 
   public LoadLabReports() {
     this.labBLService.GetReportFromListOfReqIdList(this.requisitionIdList)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK" && res.Results) {
           this.templateReport = res.Results;
           this.MapSequence();
@@ -488,7 +488,7 @@ public test:string=null
     var documentContent = "<html><head>";
     documentContent +=
       `<link href="../../../../../../assets-dph/external/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanpheStyle.css" />` +
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfStyle.css" />` +
       `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/LabReportPrint-format2.css" /></head>`;
 
     /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';

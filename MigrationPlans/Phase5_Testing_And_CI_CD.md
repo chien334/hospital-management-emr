@@ -9,7 +9,7 @@ This final phase focuses on end-to-end verification, containerizing both separat
 Once the components are decoupled and upgraded, we must run verification tests.
 
 ### A. Backend Web API Unit/Integration Tests:
-Create a testing project `DanpheEMR.Tests` to assert connection, database context operations, and authentication logic.
+Create a testing project `DsfEMR.Tests` to assert connection, database context operations, and authentication logic.
 ```csharp
 [Fact]
 public async Task GetPatients_WithoutToken_ReturnsUnauthorized()
@@ -38,23 +38,23 @@ We will containerize the backend and frontend separately to run on any cross-pla
 # Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["Code/Websites/DanpheEMR/DanpheEMR.csproj", "Code/Websites/DanpheEMR/"]
-COPY ["Code/Components/DanpheEMR.DalLayer/DanpheEMR.DalLayer.csproj", "Code/Components/DanpheEMR.DalLayer/"]
+COPY ["Code/Websites/DsfEMR/DsfEMR.csproj", "Code/Websites/DsfEMR/"]
+COPY ["Code/Components/DsfEMR.DalLayer/DsfEMR.DalLayer.csproj", "Code/Components/DsfEMR.DalLayer/"]
 # Copy other projects...
-RUN dotnet restore "Code/Websites/DanpheEMR/DanpheEMR.csproj"
+RUN dotnet restore "Code/Websites/DsfEMR/DsfEMR.csproj"
 COPY . .
-WORKDIR "/src/Code/Websites/DanpheEMR"
-RUN dotnet build "DanpheEMR.csproj" -c Release -o /app/build
+WORKDIR "/src/Code/Websites/DsfEMR"
+RUN dotnet build "DsfEMR.csproj" -c Release -o /app/build
 
 # Publish Stage
 FROM build AS publish
-RUN dotnet publish "DanpheEMR.csproj" -c Release -o /app/publish
+RUN dotnet publish "DsfEMR.csproj" -c Release -o /app/publish
 
 # Runtime Stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DanpheEMR.dll"]
+ENTRYPOINT ["dotnet", "DsfEMR.dll"]
 ```
 
 ### B. Frontend Angular `Dockerfile` (`/Dockerfile.frontend`):
@@ -69,7 +69,7 @@ RUN npm run build --configuration=production
 
 # Nginx Stage to Serve Static Assets
 FROM nginx:alpine
-COPY --from=build /app/dist/danphe-app /usr/share/nginx/html
+COPY --from=build /app/dist/dsf-app /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
@@ -99,11 +99,11 @@ jobs:
         with:
           dotnet-version: '8.0.x'
       - name: Restore dependencies
-        run: dotnet restore Code/Solutions/DanpheEMR.sln
+        run: dotnet restore Code/Solutions/DsfEMR.sln
       - name: Build
-        run: dotnet build Code/Solutions/DanpheEMR.sln --no-restore
+        run: dotnet build Code/Solutions/DsfEMR.sln --no-restore
       - name: Run Tests
-        run: dotnet test Code/Solutions/DanpheEMR.sln
+        run: dotnet test Code/Solutions/DsfEMR.sln
 
   frontend-ci:
     runs-on: ubuntu-latest

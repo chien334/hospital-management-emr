@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_ModuleName } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_ModuleName } from "../../shared/shared-enums";
 import { BillingBLService } from "../shared/billing.bl.service";
 
 @Component({
@@ -51,8 +51,8 @@ export class BillSettlementInvoiceDetail {
       if (this.InvoiceOf !== ENUM_ModuleName.Pharmacy) {
 
         this.billingBLService.GetSettlementSingleInvoicePreview(this.BillingTransactionId).subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.InvoiceDetail = res.Results.InvoiceInfo;
               this.InvoiceItems = res.Results.InvoiceItems;
               this.CreditNotes = res.Results.CreditNotes;
@@ -68,8 +68,8 @@ export class BillSettlementInvoiceDetail {
           });
       } else {
         this.billingBLService.GetSettlementSingleInvoicePreviewForPharmacy(this.BillingTransactionId).subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.InvoiceDetail = res.Results.InvoiceInfo;
               this.InvoiceItems = res.Results.InvoiceItems;
               this.InvoiceItems.forEach(a => a.Price = a.SalePrice);

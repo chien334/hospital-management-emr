@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from "@angular/core";
 import { ImagingItem } from '../../../radiology/shared/imaging-item.model';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { SettingsService } from '../../shared/settings-service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 
 @Component({

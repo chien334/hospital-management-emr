@@ -19,7 +19,7 @@
                                  </span>
                                  <span>
                                      <i class="fa fa-h-sign"></i>&nbsp;{{ 'VACCINATION.DATE_OF_BIRTH' | translate }} : {{patientDetail.DateOfBirth |
-                                     DanpheDateTime:'format':'YYYY-MM-DD'}}
+                                     DsfDateTime:'format':'YYYY-MM-DD'}}
                                  </span>
                                  <span>
                                      <i class="fa fa-h-sign"></i>&nbsp;{{ 'GRID_HEADERS.ADDRESS' | translate }} : <b>{{patientDetail.Address}}</b>
@@ -89,10 +89,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-8">
-                                    <danphe-date-picker [(ngModel)]="patientVaccineDetail.VaccineDate"
+                                    <dsf-date-picker [(ngModel)]="patientVaccineDetail.VaccineDate"
                                         [ngModelOptions]="{standalone: true}" [showTime]="true"
                                         [CalendarTypes]="'en,np'">
-                                    </danphe-date-picker>
+                                    </dsf-date-picker>
                                 </div>
                             </div>
                         </div>
@@ -188,10 +188,10 @@
     color: #f3f3f3;">{{ 'VACCINATION.VACCINES_LIST_TAKEN_BY' | translate }} {{patientDetail.ShortName}}</p>
     </div>
     <div class="col-md-12">
-        <danphe-grid [grid-colDefaults]="patientVaccListGridColumns" [grid-data]="vaccinesListOfPat"
+        <dsf-grid [grid-colDefaults]="patientVaccListGridColumns" [grid-data]="vaccinesListOfPat"
             [supressPagination]="true" [resizeColumnToFit]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings"
             (grid-actions)="PatVaccinationListGridActions($event)">
-        </danphe-grid>
+        </dsf-grid>
     </div>
 </div>
 

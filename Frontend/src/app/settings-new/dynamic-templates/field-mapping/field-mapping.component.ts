@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CoreService } from '../../../core/shared/core.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { TemplateFieldMapping_DTO } from '../shared/template-field-mapping.dto';
 import { TemplateFieldMappingModel } from '../shared/template-field-mapping.model';
@@ -40,8 +40,8 @@ export class FieldMappingComponent implements OnInit {
   }
   GetFieldMasterByTemplateId(templateId: number) {
     this.settingsBLService.GetFieldMasterByTemplateId(templateId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.TemplateFieldMappings = res.Results;
         }
       });
@@ -64,8 +64,8 @@ export class FieldMappingComponent implements OnInit {
   AddUpdateFieldMapping(selectedFields: TemplateFieldMapping_DTO[]) {
     try {
       this.settingsBLService.AddUpdateFieldMapping(selectedFields)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["FieldMappings is Saved."]);
             this.Close();
           }

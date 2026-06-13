@@ -9,7 +9,7 @@ import { CoreService } from "../../core/shared/core.service"
 import * as moment from 'moment/moment';
 import { Requisition } from '../shared/requisition.model';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { CommonFunctions } from '../../shared/common.functions';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { VerificationActor } from '../../verification/inventory/requisition-details/inventory-requisition-details.component';
@@ -119,7 +119,7 @@ export class RequisitionDetailsComponent implements OnInit {
     this.requestingQRCodeInfo = `Requisition No: ` + this.requisitionNo + `Request From : ` + this.requestingStoreName;
   }
 
-  ShowRequisitionDetails(res: DanpheHTTPResponse) {
+  ShowRequisitionDetails(res: DsfHTTPResponse) {
     if (res.Status == "OK") {
       this.reqItemsDetail = res.Results;
       if (this.reqItemsDetail && this.reqItemsDetail.RequisitionItemsInfo && this.reqItemsDetail.RequisitionItemsInfo.length > 0) {

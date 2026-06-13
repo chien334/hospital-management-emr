@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CoreService } from "../../core/shared/core.service";
 import { SecurityService } from '../../security/shared/security.service';
-import { SettingsGridColumnSettings } from "../../shared/danphe-grid/settings-grid-column-settings";
+import { SettingsGridColumnSettings } from "../../shared/dsf-grid/settings-grid-column-settings";
 
 
 @Injectable()

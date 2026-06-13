@@ -155,7 +155,7 @@
             {{pat.ContactNo}}
           </td>
           <td class="wd-110">
-            {{pat.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD'}}
+            {{pat.VisitDateTime | DsfDateTime:'format':'YYYY-MM-DD'}}
           </td>
           <td class="action-btns">
 
@@ -185,8 +185,8 @@
     </tbody>
   </table>
 
-  <!--<danphe-grid [grid-colDefaults]="TriagedERPatientGridCol" [grid-data]="TriagedERPatients" (grid-actions)="EditAction($event)">
-  </danphe-grid>-->
+  <!--<dsf-grid [grid-colDefaults]="TriagedERPatientGridCol" [grid-data]="TriagedERPatients" (grid-actions)="EditAction($event)">
+  </dsf-grid>-->
   <div *ngIf="ShowUploadConsent.upload_files" class="popup-static portlet box portlet-fullscreen custom_modal">
     <div class="portlet-body form">
       <div class="row">

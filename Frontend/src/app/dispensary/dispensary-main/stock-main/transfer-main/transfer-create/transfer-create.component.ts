@@ -5,9 +5,9 @@ import { PharmacyBLService } from '../../../../../pharmacy/shared/pharmacy.bl.se
 import { PharmacyService } from '../../../../../pharmacy/shared/pharmacy.service';
 import { PHRMStoreModel } from '../../../../../pharmacy/shared/phrm-store.model';
 import { SecurityService } from '../../../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../../shared/common-models';
 import { MessageboxService } from '../../../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses } from '../../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses } from '../../../../../shared/shared-enums';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { DispensaryService } from '../../../../shared/dispensary.service';
 import { StockTransferModel } from '../transfer.model';
@@ -188,8 +188,8 @@ export class TransferCreateComponent implements OnInit {
 
   GetRackByItemId(ItemId: number, StoreId: number, index: number): void {
     this.pharmacyBLService.GetRackNoByItemIdAndStoreId(ItemId, StoreId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.transferItems[index].RackNo = res.Results;
         }
       });

@@ -22,7 +22,7 @@
                 <thead>
                     <tr>
                         <th>
-                            {{ 'LABS.DANPHE_COMPONENT' | translate }}
+                            {{ 'LABS.DSF_COMPONENT' | translate }}
                         </th>
                         <th class="text-center">{{ 'LABS.MAP_TO' | translate }}</th>
                         <th>{{ 'LABS.MACHINE_COMPONENT' | translate }}</th>
@@ -35,8 +35,8 @@
                         [ngClass]="compMappingArrayTemp[i].IsDuplicate ? 'bg-yell':''">
 
                         <td>
-                            <div><input id="ddlDphComp{{i}}" [(ngModel)]="comp.DanpheComponent" class="form-control"
-                                    danphe-auto-complete (keyup.enter)="coreService.FocusInputById('ddlLisComp'+i, 100)"
+                            <div><input id="ddlDphComp{{i}}" [(ngModel)]="comp.DsfComponent" class="form-control"
+                                    dsf-auto-complete (keyup.enter)="coreService.FocusInputById('ddlLisComp'+i, 100)"
                                     [source]="notMappedDataList" [list-formatter]="ComponentListFormatter"
                                     onClick="this.select();" display-property-name="ComponentName"
                                     (valueChanged)="ComponentSelected(i,'dph')" type="text">
@@ -51,7 +51,7 @@
 
                         <td>
                             <div><input id="ddlLisComp{{i}}" (keyup.enter)="moveCursorToFirstItemOfNextRow(i)"
-                                    danphe-auto-complete [list-formatter]="LisComponentListFormatter"
+                                    dsf-auto-complete [list-formatter]="LisComponentListFormatter"
                                     [source]="allMasterDataFiltered" display-property-name="ComponentName"
                                     (valueChanged)="ComponentSelected(i,'lis')" onClick="this.select();"
                                     [(ngModel)]="comp.LISComponent" class="form-control" type="text">

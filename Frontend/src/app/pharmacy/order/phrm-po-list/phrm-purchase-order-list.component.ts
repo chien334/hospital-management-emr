@@ -2,11 +2,11 @@ import { ChangeDetectorRef, Component } from "@angular/core";
 import { Router } from '@angular/router';
 import * as moment from "moment";
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_PHRMPurchaseOrderStatus } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_PHRMPurchaseOrderStatus } from "../../../shared/shared-enums";
 import { PharmacyPurchaseOrderVerifierSignatoty_DTO } from "../../shared/dtos/pharmacy-purchase-order-verifier-signatory.dto";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PharmacyService } from "../../shared/pharmacy.service";
@@ -99,8 +99,8 @@ export class PHRMPurchaseOrderListComponent {
         }
 
         this.pharmacyBLService.GetPHRMPurchaseOrderList(Status, this.fromDate, this.toDate)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.PHRMPurchaseOrderList = res.Results
                     this.PHRMPurchaseOrderList = this.PHRMPurchaseOrderList.slice();
                 } else {
@@ -159,8 +159,8 @@ export class PHRMPurchaseOrderListComponent {
         }
         else {
             this.pharmacyBLService.GetPHRMPOItemsByPOId(purchaseOrderId)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status == ENUM_DsfHTTPResponses.OK) {
                         this.PHRMPOItemsList = res.Results.OrderItems;
                         this.PHRMPO = res.Results.Order;
                         this.Verifiers = res.Results.Signatories;

@@ -15,7 +15,7 @@ import { StockComponent } from './stock.component';
 import { PharmacyBLService } from "../pharmacy/shared/pharmacy.bl.service"
 import { PharmacyDLService } from "../pharmacy/shared/pharmacy.dl.service"
 import { PharmacyService } from '../pharmacy/shared/pharmacy.service';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module'
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module'
 import { ConsumptionListComponent } from './consumption-list.component';
 import { PharmacyTransferComponent } from './pharmacy-transfer.component';
 import { WardReportComponent } from './reports/reports.component';
@@ -109,7 +109,7 @@ import { PHRMSubStoreRequisitionAddComponent } from './phrm-substore-requisition
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule], providers: [
+        DsfAutoCompleteModule], providers: [
         WardSupplyBLService,
         WardSupplyDLService,
         PharmacyBLService,

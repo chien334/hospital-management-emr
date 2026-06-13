@@ -219,7 +219,7 @@
                                     <td colspan="6" style="text-align: right;">
                                         <p class="c_paragraphs" style="margin-bottom: 0px !important;"><strong>{{ 'PHARMACY.TRANSACTION_DATE' | translate }}:</strong>
                                             {{receipt.ReceiptDate |
-                                            DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
+                                            DsfDateTime:'format':'YYYY-MM-DD'}}</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -230,7 +230,7 @@
                                     <td colspan="6" style="text-align: right;">
                                         <p class="c_paragraphs" style="margin-bottom: 0px !important;"><strong>{{ 'PHARMACY.INVOICE_DATE' | translate }}:</strong>
                                             {{receipt.ReceiptDate |
-                                            DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
+                                            DsfDateTime:'format':'YYYY-MM-DD'}}</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -251,7 +251,7 @@
                                     <td colspan="6" style="text-align: right;">
                                         <p class="c_paragraphs" style="margin-bottom: 0px !important;"> <strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}
                                                 :</strong>{{receipt.PatientInfo.DateOfBirth |
-                                            DanpheDateTime:'age'
+                                            DsfDateTime:'age'
                                             }}/{{receipt.PatientInfo.Gender}}</p>
                                     </td>
                                 </tr>
@@ -393,7 +393,7 @@
                         </td>
                         <td colspan="6" style="padding: 0 10px !important; vertical-align: top; text-align: right;" style="color:black!important;">
                             <p class="c_paragraphs" style="text-align: right;"><strong>{{ 'COMMON.TIME' | translate }}: </strong>{{receipt.ReceiptDate |
-                                DanpheDateTime:'format':'HH:mm'}}</p>
+                                DsfDateTime:'format':'HH:mm'}}</p>
                         </td>
                     </tr>
                     <tr>

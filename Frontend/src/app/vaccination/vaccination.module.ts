@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from "../shared/shared.module";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { MaternityRoutingModule } from './vaccination-routing.module';
 import { VaccinationMainComponent } from './vaccination-main.component';
 import { VaccinationPatientListComponent } from './patient-list/vaccination-patient-list.component';
@@ -40,6 +40,6 @@ import { PatientVaccinationAppointmentDetailsReportComponent } from './reports/v
         CommonModule,
         AngularMultiSelectModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SettingsSharedModule], providers: [VaccinationService, VaccinationBLService, VaccinationDLService] })
 export class VaccinationModule { }

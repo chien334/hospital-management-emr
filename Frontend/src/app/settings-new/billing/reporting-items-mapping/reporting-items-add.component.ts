@@ -4,7 +4,7 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { SecurityService } from '../../../security/shared/security.service';
 import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { SettingsService } from "../../shared/settings-service";
 import { ReportingItemsModel } from "../../shared/reporting-items.model";
 import { DynamicReportNameModel } from "../../shared/dynamic-report-names.model";
@@ -107,7 +107,7 @@ export class ReportingItemsAddComponent {
             this.loading = true;
             this.settingsBLService.AddReportingItem(this.currentReportingItem)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
+                    (res: DsfHTTPResponse) => {
                         if (res.Status == 'OK') {
                             this.showMessageBox("success", "Reporting Item Added");
                             this.CallBackAddUpdate(res.Results);
@@ -127,7 +127,7 @@ export class ReportingItemsAddComponent {
         this.loading = true;
         this.settingsBLService.UpdateReportingItem(this.currentReportingItem)
           .subscribe(
-            (res: DanpheHTTPResponse) => {
+            (res: DsfHTTPResponse) => {
 
               if (res.Status == "OK") {
                 this.showMessageBox("success", "Reporting Item Updated");

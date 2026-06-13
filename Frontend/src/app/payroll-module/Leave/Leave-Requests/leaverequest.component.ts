@@ -3,8 +3,8 @@ import { PayrollBLService } from "../../Shared/payroll.bl.service";
 import { CoreService } from "../../../core/shared/core.service";
 import { MessageboxService } from "./../../../shared/messagebox/messagebox.service";
 import * as moment from 'moment';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { Employee } from "../../../employee/shared/employee.model";
 import { EmployeeLeaveModel } from "../../Shared/Payroll-Employee-Leave.model";
 

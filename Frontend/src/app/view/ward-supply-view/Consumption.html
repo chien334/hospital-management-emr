@@ -16,7 +16,7 @@
     <div class="col-md-4">
       <label style="display:inline-block;">{{ 'WARD_SUPPLY.SEARCH_PATIENT' | translate }}:</label>
       <div class="autocomplete-item" style="display:inline-block;">
-        <input danphe-auto-complete class="form-control"
+        <input dsf-auto-complete class="form-control"
                [(ngModel)]="SelectedPatient"
                [source]="PatientRefinedList"
                [list-formatter]="PatientListFormatter"
@@ -78,7 +78,7 @@
           <tr *ngFor="let row of SelecetdItemList; let i = index">
             <td><a (click)="DeleteRow(i)"><i class="btn btn-danger fa" style="float:left;padding: 2px 8px !important;">X</i></a></td>
             <td style="width:200px" class="autocomplete-item"><form [formGroup]="row.ConsumptionValidator">
-                <input danphe-auto-complete class="form-control"
+                <input dsf-auto-complete class="form-control"
                        [(ngModel)]="row.SelectedItem"
                        [source]="ItemTypeListWithItems"
                        [list-formatter]="ItemListFormatter"

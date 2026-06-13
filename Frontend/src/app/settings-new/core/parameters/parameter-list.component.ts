@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from "@angular/core";
 import { Department } from '../../shared/department.model';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { SettingsService } from '../../shared/settings-service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { CFGParameterModel, MappedObj } from "../../shared/cfg-parameter.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { SecurityService } from "../../../security/shared/security.service";

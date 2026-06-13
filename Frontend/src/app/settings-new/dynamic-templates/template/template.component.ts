@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses } from '../../../shared/shared-enums';
 import { SettingsService } from '../../shared/settings-service';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { Template_DTO } from '../shared/template-dto';
@@ -47,8 +47,8 @@ export class TemplateComponent {
   }
   GetTemplateList() {
     this.settingsBLService.GetTemplateList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.templateList = res.Results;
           this.showGrid = true;
         }
@@ -106,8 +106,8 @@ export class TemplateComponent {
   GetDynTemplateDataById(templateId: number) {
     try {
       this.settingsBLService.GetDynTemplateDataById(templateId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.currentTemplate = Object.assign(this.currentTemplate, res.Results);
             this.currentTemplate.DynamicTemplateValidator.controls['TemplateTypeId'].setValue(this.currentTemplate.TemplateTypeId);
             let localTemplateData = { TemplateId: templateId, Template: this.currentTemplate };
@@ -115,12 +115,12 @@ export class TemplateComponent {
             this.GetTemplateType();
           }
           else {
-            this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Record not found"]);
+            this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Record not found"]);
           }
 
         },
           err => {
-            this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Check log for error message."]);
+            this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Check log for error message."]);
             this.logError(err.ErrorMessage);
           });
     } catch (exception) {
@@ -143,13 +143,13 @@ export class TemplateComponent {
 
       if (proceed) {
         this.settingsBLService.UpdateTemplateSettings(currTemplate.TemplateId)
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
-              this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.OK, ['template Status updated successfully']);
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
+              this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.OK, ['template Status updated successfully']);
               this.GetTemplateList();
             }
             else {
-              this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Something wrong, Please Try again..!']);
+              this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ['Something wrong, Please Try again..!']);
             }
           },
             err => {
@@ -161,7 +161,7 @@ export class TemplateComponent {
 
   logError(err: any) {
     console.error(err);
-    this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, [err]);
+    this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, [err]);
   }
 
   NewTemplate() {
@@ -190,7 +190,7 @@ export class TemplateComponent {
   ShowCatchErrMessage(exception) {
     if (exception) {
       let ex: Error = exception;
-      this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Check error in Console log !"]);
+      this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Check error in Console log !"]);
       console.error(ex);
     }
   }
@@ -228,8 +228,8 @@ export class TemplateComponent {
 
   GetTemplateType() {
     this.settingsBLService.GetTemplateType()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.templateTypeList = res.Results;
         }
       })
@@ -250,9 +250,9 @@ export class TemplateComponent {
         this.currentTemplate.TemplateTypeId = this.currentTemplate.DynamicTemplateValidator.get('TemplateTypeId').value;
         this.currentTemplate.IsActive = true;
         this.settingsBLService.AddNewTemplate(this.currentTemplate)
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status = ENUM_DanpheHTTPResponses.OK) {
-              this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.OK, ["Template Saved."]);
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status = ENUM_DsfHTTPResponses.OK) {
+              this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.OK, ["Template Saved."]);
               this.CallBackAddUpdate(res, "add");
               this.GetTemplateList();
             }
@@ -269,8 +269,8 @@ export class TemplateComponent {
       //if valid then call the BL service to do put request.
       if (this.IsValidModelCheck()) {
         this.settingsBLService.UpdateDynTemplate(this.currentTemplate)
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.msgBoxServ.showMessage("Success", ["Template Updated."]);
               this.CallBackAddUpdate(res, "update");
               this.GetTemplateList();
@@ -286,7 +286,7 @@ export class TemplateComponent {
   //callback after add and update template data
   CallBackAddUpdate(res, action) {
     try {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         let dynTemplate = new Template();
         this.isValidTemplate = true;
         dynTemplate = Object.assign(dynTemplate, res.Results);
@@ -309,7 +309,7 @@ export class TemplateComponent {
         }
       }
       else {
-        this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Check log for details"]);
+        this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Check log for details"]);
         this.logError(res.ErrorMessage);
       }
     } catch (exception) {

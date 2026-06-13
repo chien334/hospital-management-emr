@@ -3,12 +3,12 @@ import { FormControlName } from '@angular/forms';
 import * as moment from 'moment/moment';
 import { PHRMReportsModel } from "../../shared/phrm-reports-model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import PHRMReportsGridColumns from "../../shared/phrm-reports-grid-columns";
 import { DLService } from "../../../shared/dl.service"
 import {ReportingService} from "../../../reporting/shared/reporting-service"
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 @Component({
     selector: "my-app",
     templateUrl: "./phrm-counterwise-collection-report.html"

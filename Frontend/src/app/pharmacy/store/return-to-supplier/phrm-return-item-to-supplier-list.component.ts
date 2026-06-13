@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { PHRMReturnToSupplierModel } from "../../shared/phrm-return-to-supplier.model";
 import { PHRMReturnToSupplierItemModel } from "../../shared/phrm-return-to-supplier-items.model"
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service"
@@ -8,7 +8,7 @@ import { MessageboxService } from "../../../shared/messagebox/messagebox.service
 import * as moment from 'moment/moment';
 import { PHRMSupplierModel } from "../../shared/phrm-supplier.model";
 import { CoreService } from "../../../core/shared/core.service";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { ActivatedRoute } from "@angular/router";
 import { PharmacyService } from "../../shared/pharmacy.service";
 import { SecurityService } from "../../../security/shared/security.service";

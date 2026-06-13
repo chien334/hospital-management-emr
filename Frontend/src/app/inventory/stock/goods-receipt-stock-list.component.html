@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="goodsreceiptGridColumns"
+      <dsf-grid [grid-colDefaults]="goodsreceiptGridColumns"
                    [grid-data]="grListfiltered"
                    [rangeType]="dateRange"
                    (onDateChange)="onDateChange($event)"
@@ -9,7 +9,7 @@
                    [NepaliDateInGridParams]="NepaliDateInGridSettings"
                    [grid-exportOptions]="GetGridExportOptions()" 
                    [grid-showExport]="true">
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
   

@@ -1,7 +1,7 @@
 ﻿import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from "@angular/core";
 
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { SchedulingBLService } from '../shared/scheduling.bl.service';
 import { ShiftsMasterModel } from '../shared/shifts-master.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';

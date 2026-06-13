@@ -5,8 +5,8 @@ import { PatientService } from '../../../patients/shared/patient.service';
 import { PatientsBLService } from '../../../patients/shared/patients.bl.service';
 import { CountrySubdivision } from '../../../settings-new/shared/country-subdivision.model';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { GovInsurancePatientVM } from '../shared/gov-ins-patient.view-model';
 import { GovInsuranceBLService } from '../shared/gov-ins.bl.service';
@@ -61,8 +61,8 @@ export class INSPatientRegistrationComponent {
 
   Initialize() {
     this.GetInsuranceProviderList();
-    this.Country_All = DanpheCache.GetData(MasterType.Country, null);
-    this.districts_All = DanpheCache.GetData(MasterType.SubDivision, null);
+    this.Country_All = DsfCache.GetData(MasterType.Country, null);
+    this.districts_All = DsfCache.GetData(MasterType.SubDivision, null);
 
 
     if (this.coreService.Masters.UniqueDataList && this.coreService.Masters.UniqueDataList.UniqueAddressList) {
@@ -193,7 +193,7 @@ export class INSPatientRegistrationComponent {
   RegisterNewPatient() {
     this.ConcatinateAgeAndUnit();//to get: 20Y, 45Y, etc from 20 and Years (of UI)
     this.govInsBlService.PostGovInsPatient(this.insPatient)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log(res.Results);
           this.insPatientOnClose.emit({ action: "new-pat-added", data: res.Results });
@@ -268,7 +268,7 @@ export class INSPatientRegistrationComponent {
       this.ConcatinateAgeAndUnit();//to get: 20Y, 45Y, etc from 20 and Years (of UI)
 
       this.govInsBlService.UpdateGovInsPatient(this.insPatient)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.msgBoxServ.showMessage("success", ["Patient Information Updated successfully."]);
             //console.log(res.Results);

@@ -24,7 +24,7 @@
                                     <div class="row">
                                         <label for="LabComponentName" class="contorl-label col-md-4">{{ 'LABS.GOV_LABREPORTITEM_NAME' | translate }}</label>
                                         <div class="col-md-8 drpdown">
-                                            <input class="form-control" danphe-auto-complete
+                                            <input class="form-control" dsf-auto-complete
                                                 [ngModelOptions]="{standalone: true}"
                                                 [(ngModel)]="selectedGovReportItem"
                                                 [list-formatter]="govReportItemsListFormatter" [source]="allgovitems"
@@ -55,7 +55,7 @@
                                         <label for="LabTestName" class="contorl-label col-md-4">{{ 'LABS.LAB_TEST_NAME' | translate }}</label>
 
                                         <div class="col-md-8">
-                                            <input class="form-control" danphe-auto-complete
+                                            <input class="form-control" dsf-auto-complete
                                                 [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTest"
                                                 [list-formatter]="myListFormatter" [source]="labtestitems"
                                                 [placeholder]="'LABS.ENTER_TEST_NAME' | translate" display-property-name="LabTestName"
@@ -67,7 +67,7 @@
 
 
                                         <!--<div class="col-md-8">
-                                        <input danphe-auto-complete [(ngModel)]="MappedComponent.LabItemId" placeholder="Select Lab Test Name"
+                                        <input dsf-auto-complete [(ngModel)]="MappedComponent.LabItemId" placeholder="Select Lab Test Name"
                                             display-property-name="Lab Test Name" 
                                         />
                                         <select class="form-control" [(ngModel)]="MappedComponent.LabItemId" formControlName="LabItemId"> 
@@ -118,7 +118,7 @@
                                     <div class="row" *ngIf="MappedComponent.IsComponentBased">
                                         <label for="ComponentName" class="contorl-label col-md-4">{{ 'LABS.COMPONENT_NAME' | translate }}</label>
                                         <div class="col-md-8 drpdown">
-                                            <input class="form-control drpdown" danphe-auto-complete
+                                            <input class="form-control drpdown" dsf-auto-complete
                                                 [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedComponent"
                                                 [list-formatter]="componentListFormatter"
                                                 [source]="labTestComponentItems" [placeholder]="'LABS.ENTER_COMPONENT_NAME' | translate"

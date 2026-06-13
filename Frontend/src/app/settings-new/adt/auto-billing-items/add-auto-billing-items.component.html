@@ -14,7 +14,7 @@
                 <label class="control-label col-md-4">{{ 'SETTINGS_NEW.BED_FEATURE' | translate }} <sup>*</sup><b>:</b></label>
                 <div class="col-md-8">
                   <input style="width: 100%;"
-                         danphe-auto-complete
+                         dsf-auto-complete
                          [source]="BedFeatureList"
                          [(ngModel)]="BedFeatureObj"
                          [placeholder]="'SETTINGS_NEW.SELECT_BED_FEATURE' | translate"
@@ -33,7 +33,7 @@
               <div class="form-group">
                 <label class="control-label col-md-4">{{ 'COMMON.SCHEME' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-8">
-                  <input danphe-auto-complete id="id_Scheme" name="schemename" class="form-control"
+                  <input dsf-auto-complete id="id_Scheme" name="schemename" class="form-control"
                          [(ngModel)]="SchemeObj"
                          [list-formatter]="SchemeListFormatter" [source]="SchemeList"
                          (keyup.enter)="SetFocusById('id_ServiceItem')"
@@ -52,7 +52,7 @@
               <div class="form-group">
                 <label class="control-label col-md-4">{{ 'SETTINGS_NEW.SERVICE_ITEM' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-8">
-                  <input danphe-auto-complete id="id_ServiceItem" name="ServiceItem" class="form-control"
+                  <input dsf-auto-complete id="id_ServiceItem" name="ServiceItem" class="form-control"
                          [(ngModel)]="ServiceItemObj"
                          [list-formatter]="ServiceItemFormatter" [source]="ServiceItemList"
                          (keyup.enter)="SetFocusById('id_MinimumChargeAmount')"

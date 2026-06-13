@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import * as moment from "moment";
 import { DispensaryService } from "../../../dispensary/shared/dispensary.service";
 import { CommonFunctions } from "../../../shared/common.functions";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";

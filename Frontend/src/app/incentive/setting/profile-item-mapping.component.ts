@@ -4,10 +4,10 @@ import * as moment from 'moment/moment';
 import { CoreService } from '../../core/shared/core.service';
 import { SecurityService } from '../../security/shared/security.service';
 import { PriceCategory } from '../../settings-new/shared/price.category.model';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { CommonFunctions } from '../../shared/common.functions';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { IncentiveBLService } from '../shared/incentive.bl.service';
 import { INCTVGridColumnSettings } from '../shared/inctv-grid-column-settings';
 import { ProfileItemMapModel } from '../shared/profile-item-map.model';
@@ -134,8 +134,8 @@ export class ProfileItemMapComponent {
 
   getProfileItemsDetails() {
     try {
-      this.incBLservice.GetProfileItemsMapping(this.selectedProfileId).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      this.incBLservice.GetProfileItemsMapping(this.selectedProfileId).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.currentProfile = new ProfileModel();
           let profile = res.Results;
           if (profile) {
@@ -600,8 +600,8 @@ export class ProfileItemMapComponent {
   }
   GetServiceItemsByPriceCategoryId(priceCategoryId: number): void {
     this.incBLservice.GetItemsForIncentive(priceCategoryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.DiscardItem();
           const serviceItems = res.Results;
           this.GetDeptsForSearchDDL(serviceItems);

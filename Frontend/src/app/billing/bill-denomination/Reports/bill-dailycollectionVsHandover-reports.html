@@ -24,12 +24,12 @@
     </div>
 </div>
 <div class="col-md-12" *ngIf="DailyCollectionVsHandoverReportList && DailyCollectionVsHandoverReportList.length">
-    <danphe-grid [grid-colDefaults]="DailyCollectionVsHandoverReportGridColumns"
+    <dsf-grid [grid-colDefaults]="DailyCollectionVsHandoverReportGridColumns"
         [grid-data]="DailyCollectionVsHandoverReportList" [NepaliDateInGridParams]="NepaliDateInGridSettings"
         [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [grid-footer-content]="footer"
         [report-for]="billing" (grid-actions)="DailyCollectionVsHandoverListGridActions($event)"
         [grid-date-range]="dateRange">
-    </danphe-grid>
+    </dsf-grid>
 </div>
 <br>
 <br>
@@ -92,11 +92,11 @@
                     </div>
                     <div class="form-horizontal hm-form">
                         <div class="form-body">
-                            <danphe-grid [grid-colDefaults]="HandoverDetailReportGridColumns"
+                            <dsf-grid [grid-colDefaults]="HandoverDetailReportGridColumns"
                                 [grid-data]="HandoverDetailReportList" [supressPagination]="true"
                                 [NepaliDateInGridParams]="NepaliDateInGridSettingsForHandoverDetail"
                                 [grid-exportOptions]="HandoverDetailgridExportOptions" [grid-showExport]="true">
-                            </danphe-grid>
+                            </dsf-grid>
                         </div>
                         <!-- <div class="panel-footer">
                             <div class="row clearfix">

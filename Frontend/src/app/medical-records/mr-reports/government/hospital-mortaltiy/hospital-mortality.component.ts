@@ -101,9 +101,9 @@ export class HospitalMortalityComponent {
     popupWindow = window.open('', '_blank', 'width=600,heigth=800,scrollbars=no, menubar=no,toolbar=no, location=no,status=no,titlebar=no');
     popupWindow.document.open();
     popupWindow.document.write(`<html><head>
-    <link rel="stylesheet" type="text/css" href="../../../assets-dph/external/global/plugins/bootstrap/css/theme-default/Danphe_ui_style.css" />
-    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/Danphe_ui_style.css" />
-    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanphePrintStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../../assets-dph/external/global/plugins/bootstrap/css/theme-default/Dsf_ui_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/Dsf_ui_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfPrintStyle.css" />
     </head>
     <style type="text/css">.dv-table-wrapper{max-height: inherit !important; overflow: auto !important;} .Selected {border-collapse: collapse;}  .no-print{display: none;} @media print{@page {size: landscape}}</style>
     <body>`

@@ -14,22 +14,22 @@
   <div class="row">
     <div class="col-lg-12 col-sm-12">
       <!-- sud:11Aug'19here we have to show either of two grids: one with server side search, another with date filter-->
-      <!--<danphe-grid *ngIf="!enableDateFilter" [grid-colDefaults]="editDoctorGridColumns" [grid-data]="editDoctorModels" (grid-actions)="EditDoctorGridActions($event)"
+      <!--<dsf-grid *ngIf="!enableDateFilter" [grid-colDefaults]="editDoctorGridColumns" [grid-data]="editDoctorModels" (grid-actions)="EditDoctorGridActions($event)"
                [show-print-button]="false" (serverSearchText)="serverSearchTxt($event)"
                [customServerSearch]="enableServerSideSearch" [NepaliDateInGridParams]="NepaliDateInGridSettings">
      [show-ServerSideSearch]="true" [api-type]="patGirdDataApi"
-  </danphe-grid>-->
-      <!--<danphe-grid [grid-colDefaults]="imgReportsListGridColumns" [grid-data]="allImagingFilteredReports"
+  </dsf-grid>-->
+      <!--<dsf-grid [grid-colDefaults]="imgReportsListGridColumns" [grid-data]="allImagingFilteredReports"
                    [rangeType]="dateRange" (onDateChange)="onDateChange($event)" [date-range-options]="'1W,1M,3M'"
-                   [show-CustomDate]="true" [show-print-button]="false" (grid-actions)="ImagingReportListGridActions($event)"> </danphe-grid>-->
+                   [show-CustomDate]="true" [show-print-button]="false" (grid-actions)="ImagingReportListGridActions($event)"> </dsf-grid>-->
 
-      <danphe-grid [grid-colDefaults]="editDoctorGridColumns" [grid-data]="allImagingFilteredItems" (grid-actions)="EditDoctorGridActions($event)"
+      <dsf-grid [grid-colDefaults]="editDoctorGridColumns" [grid-data]="allImagingFilteredItems" (grid-actions)="EditDoctorGridActions($event)"
                    [show-ServerSideSearch]="false" [show-CustomDate]="true" [rangeType]="dateRange" [date-range-options]="'1W,1M,3M'"
                    [show-print-button]="true" (onDateChange)="SearchItemByDate($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings"
                    [grid-showExport]="true"
                    [grid-exportOptions]="GetGridExportOptions()">
                     
-      </danphe-grid>
+      </dsf-grid>
     </div>
     <rad-edit-doctor *ngIf="showEditDoctorPage"
                         [editDoctor]="currentEditDocotorModel"

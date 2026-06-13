@@ -22,7 +22,7 @@ import { NursingDLService } from "./nursing.dl.service";
 import { Observable, Subject } from "rxjs";
 import { NotesModel } from "../../clinical-notes/shared/notes.model";
 import { ClinicalDLService } from "../../clinical/shared/clinical.dl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { DrugsRequisitonModel } from "../shared/drugs-requsition.model";
 import { DietType } from "./diet-type.model";
 import { ConsultationRequestModel } from "./consultation-request.model";
@@ -529,37 +529,37 @@ export class NursingBLService {
     })
     }
 
-    public GetConsultationRequestsByPatientVisitId(PatientVisitId: number): Observable<DanpheHTTPResponse> {
+    public GetConsultationRequestsByPatientVisitId(PatientVisitId: number): Observable<DsfHTTPResponse> {
         return this.nursingDLService.GetConsultationRequestsByPatientVisitId(PatientVisitId).map((responseData) => {
             return responseData;
         });
     }
 
-    public GetPatientDetailsByPatientVisitIdForConsultationRequest(PatientVisitId: number): Observable<DanpheHTTPResponse> {
+    public GetPatientDetailsByPatientVisitIdForConsultationRequest(PatientVisitId: number): Observable<DsfHTTPResponse> {
         return this.nursingDLService.GetPatientDetailsByPatientVisitIdForConsultationRequest(PatientVisitId).map((responseData) => {
             return responseData;
         });
     }
 
-    public GetAllApptDepartment(): Observable<DanpheHTTPResponse> {
+    public GetAllApptDepartment(): Observable<DsfHTTPResponse> {
         return this.nursingDLService.GetAllApptDepartment().map((responseData) => {
             return responseData;
         });
     }
 
-    public GetAllAppointmentApplicableDoctor(): Observable<DanpheHTTPResponse> {
+    public GetAllAppointmentApplicableDoctor(): Observable<DsfHTTPResponse> {
         return this.nursingDLService.GetAllAppointmentApplicableDoctor().map((responseData) => {
             return responseData;
         });
     }
 
-    public AddNewConsultationRequest(newConsultationRequest: ConsultationRequestModel): Observable<DanpheHTTPResponse> {
+    public AddNewConsultationRequest(newConsultationRequest: ConsultationRequestModel): Observable<DsfHTTPResponse> {
         return this.nursingDLService.AddNewConsultationRequest(newConsultationRequest).map((responseData) => {
             return responseData;
         })
     }
 
-    public ResponseConsultationRequest(responseConsultationRequest: ConsultationRequestModel): Observable<DanpheHTTPResponse> {
+    public ResponseConsultationRequest(responseConsultationRequest: ConsultationRequestModel): Observable<DsfHTTPResponse> {
         return this.nursingDLService.ResponseConsultationRequest(responseConsultationRequest).map((responseData) => {
             return responseData;
         })

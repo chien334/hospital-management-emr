@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import { ENUM_DanpheHTTPResponses } from "../../shared/shared-enums";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import { ENUM_DsfHTTPResponses } from "../../shared/shared-enums";
 import { BillingMasterDlService } from "./billing-master.dl.service";
 import { BillingAdditionalServiceItem_DTO } from "./dto/bill-additional-service-item.dto";
 import { Currency_DTO } from "./dto/other-currency.dto";
@@ -48,15 +48,15 @@ export class BillingMasterBlService {
 
   FetchServiceItemsBasedOnCurrentVisitSchemeAndPriceCategory(serviceBillingContext: string, schemeId: number, priceCategoryId: number) {
     this.PriceCategoryId = priceCategoryId;
-    this.billingMasterDlService.GetServiceItems(serviceBillingContext, schemeId, priceCategoryId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.billingMasterDlService.GetServiceItems(serviceBillingContext, schemeId, priceCategoryId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.ServiceItems = res.Results;
       }
     });
   }
   FetchAdditionalServiceItems(groupName: string, priceCategoryId: number) {
-    this.billingMasterDlService.GetAdditionalServiceItems(groupName, priceCategoryId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.billingMasterDlService.GetAdditionalServiceItems(groupName, priceCategoryId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.AdditionalServiceItems = res.Results;
       }
     });

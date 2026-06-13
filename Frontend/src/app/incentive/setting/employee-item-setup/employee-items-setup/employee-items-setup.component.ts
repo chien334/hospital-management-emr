@@ -4,10 +4,10 @@ import * as moment from 'moment/moment';
 import { CoreService } from '../../../../core/shared/core.service';
 import { SecurityService } from '../../../../security/shared/security.service';
 import { PriceCategory } from '../../../../settings-new/shared/price.category.model';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from '../../../../shared/common.functions';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
 import { EmployeeBillItemsMapModel } from '../../../shared/employee-billItems-map.model';
 import { EmployeeIncentiveInfoModel } from '../../../shared/employee-incentiveInfo.model';
 import { IncentiveBLService } from '../../../shared/incentive.bl.service';
@@ -131,8 +131,8 @@ export class EmployeeItemsSetupComponent {
   GetEmployeeBillItemsList(empId) {
     try {
       this.incentiveBLService.GetEmployeeBillItemsList(empId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             var employeeIncentiveInfo = res.Results;
             this.EmployeePreviousBillItems = employeeIncentiveInfo.EmployeeBillItemsMap;
             this.currentEmployeeIncentiveInfo = employeeIncentiveInfo;
@@ -357,8 +357,8 @@ export class EmployeeItemsSetupComponent {
 
 
       this.incentiveBLService.SaveEmployeeBillItemsMap(this.currentEmployeeIncentiveInfo)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.GetEmployeeBillItemsList(res.Results.EmployeeId);
             this.ItemsSetup = new EmployeeIncentiveSetupVM();
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Employee BillItems Map is successfully saved!!']);
@@ -601,7 +601,7 @@ export class EmployeeItemsSetupComponent {
         this.currentEmployeeIncentiveInfo.CreatedOn = moment().format('YYYY-MM-DD');
         this.incentiveBLService.SaveEmployeeBillItemsMap(this.currentEmployeeIncentiveInfo)
           .subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.NewEmployeeIncentiveInfo = false;
               this.update = true;//after this part, it will be treated as update.
               //this.changeDetector.detectChanges();
@@ -650,7 +650,7 @@ export class EmployeeItemsSetupComponent {
   public GetBillItemProfileMap(profileId) {
     this.incentiveBLService.GetProfileItemsMapping(profileId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           let profile = res.Results;
 
           this.currentEmployeeIncentiveInfo.EmployeeBillItemsMap = [];//clear billitems map on profile changed.
@@ -754,7 +754,7 @@ export class EmployeeItemsSetupComponent {
     this.selProfileForAttach = data;
     this.incentiveBLService.GetProfileItemsMapping(this.selProfileForAttach.ProfileId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           let profile = res.Results;
 
           this.currentEmployeeIncentiveInfo.EmployeeBillItemsMap = [];//clear billitems map on profile changed.
@@ -840,8 +840,8 @@ export class EmployeeItemsSetupComponent {
   }
   GetServiceItemsByPriceCategoryId(priceCategoryId: number): void {
     this.incentiveBLService.GetItemsForIncentive(priceCategoryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.DiscardItem();
           const serviceItems = res.Results;
           this.GetDepartmentsForSearchDDL(serviceItems);

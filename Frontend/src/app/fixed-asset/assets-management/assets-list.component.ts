@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 import { SecurityService } from "../../security/shared/security.service";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
 import { Router, Data } from "@angular/router";
 import { FixedAssetStockModel } from "../shared/fixed-asset-stock.model";
 import * as moment from "moment";
-import { NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { SettingsBLService } from "../../settings-new/shared/settings.bl.service";
 import { FixedAssetBLService } from "../shared/fixed-asset.bl.service";
 
@@ -82,7 +82,7 @@ export class AssetsManagementListComponent {
         this.EditAsset = true;
         break;
       }
-      // <a danphe-grid-action="notify-damage" class="grid-action" style="background-color: #696969!important;"> Notify Damage </a>
+      // <a dsf-grid-action="notify-damage" class="grid-action" style="background-color: #696969!important;"> Notify Damage </a>
 
       // case "notify-damage": {
       //     this.NotifyDamage($event.Data);

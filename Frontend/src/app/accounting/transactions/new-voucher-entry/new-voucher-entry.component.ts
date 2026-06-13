@@ -32,12 +32,12 @@ import * as _ from 'lodash';
 import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { CommonFunctions } from "../../../shared/common.functions";
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
-import { ENUM_ACC_DrCr, ENUM_ACC_PaymentMode, ENUM_ACC_RouteFrom, ENUM_ACC_VoucherCode, ENUM_CalanderType, ENUM_DanpheHTTPResponseText, ENUM_Data_Type, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_ACC_DrCr, ENUM_ACC_PaymentMode, ENUM_ACC_RouteFrom, ENUM_ACC_VoucherCode, ENUM_CalanderType, ENUM_DsfHTTPResponseText, ENUM_Data_Type, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { AccountingSettingsBLService } from '../../settings/shared/accounting-settings.bl.service';
 import { CostCenterModel } from '../../settings/shared/cost-center.model';
 import { FiscalYearModel } from "../../settings/shared/fiscalyear.model";
@@ -153,11 +153,11 @@ export class VoucherEntryNewComponent {
         if (routeFromService.RouteFrom === ENUM_ACC_RouteFrom.VoucherReportCopy || routeFromService.RouteFrom === ENUM_ACC_RouteFrom.VoucherVerify || routeFromService.RouteFrom === ENUM_ACC_RouteFrom.EditVoucher) {
             this.AssignSelectedTransaction();
         }
-        if (!!this.accountingService.accCacheData.CodeDetails && this.accountingService.accCacheData.CodeDetails.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.coreService.SetCodeDetails(this.accountingService.accCacheData.CodeDetails);//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.CodeDetails && this.accountingService.accCacheData.CodeDetails.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.coreService.SetCodeDetails(this.accountingService.accCacheData.CodeDetails);//mumbai-team-june2021-dsf-accounting-cache-change
         }
-        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.coreService.SetFiscalYearList(this.accountingService.accCacheData.FiscalYearList);//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.coreService.SetFiscalYearList(this.accountingService.accCacheData.FiscalYearList);//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 
@@ -238,7 +238,7 @@ export class VoucherEntryNewComponent {
     }
     UpdateVoucherChequeNoandPayeeName() {
         try {
-            if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
+            if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
                 if ((this.voucherTypeList.find(v => v.VoucherId == this.selVoucherTypeId).ShowPayeeName) == true) {
                     this.showPayeeName = true;
                 } else {
@@ -258,9 +258,9 @@ export class VoucherEntryNewComponent {
 
     GetVoucher() {
         try {
-            if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-                this.voucherTypeList = this.accountingService.accCacheData.VoucherType;//mumbai-team-june2021-danphe-accounting-cache-change
-                this.voucherTypeList = this.voucherTypeList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+            if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+                this.voucherTypeList = this.accountingService.accCacheData.VoucherType;//mumbai-team-june2021-dsf-accounting-cache-change
+                this.voucherTypeList = this.voucherTypeList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
                 //JV (Journal Voucher) should always be there, so we can be 100% sure that this shouldn't crash.
                 this.selVoucherTypeId = this.voucherTypeList.find(v => v.VoucherCode == "JV").VoucherId;
                 this.UpdateVoucherChequeNoandPayeeName();
@@ -272,9 +272,9 @@ export class VoucherEntryNewComponent {
     }
     GetVoucherHead() {
         try {
-            if (!!this.accountingService.accCacheData.VoucherHead && this.accountingService.accCacheData.VoucherHead.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-                this.voucherHeadList = this.accountingService.accCacheData.VoucherHead;//mumbai-team-june2021-danphe-accounting-cache-change
-                this.voucherHeadList = this.voucherHeadList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+            if (!!this.accountingService.accCacheData.VoucherHead && this.accountingService.accCacheData.VoucherHead.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+                this.voucherHeadList = this.accountingService.accCacheData.VoucherHead;//mumbai-team-june2021-dsf-accounting-cache-change
+                this.voucherHeadList = this.voucherHeadList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
             }
         } catch (ex) {
             this.ShowCatchErrMessage(ex);
@@ -282,9 +282,9 @@ export class VoucherEntryNewComponent {
     }
 
     GetFiscalYearList() {
-        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.fiscalYearList = this.securityService.AccHospitalInfo.FiscalYearList; //mumbai-team-june2021-danphe-accounting-cache-change
-            this.fiscalYearList = this.fiscalYearList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.fiscalYearList = this.securityService.AccHospitalInfo.FiscalYearList; //mumbai-team-june2021-dsf-accounting-cache-change
+            this.fiscalYearList = this.fiscalYearList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
         this.currFiscalYear = new FiscalYearModel();
         this.currFiscalYear = this.securityService.AccHospitalInfo.CurrFiscalYear;
@@ -316,9 +316,9 @@ export class VoucherEntryNewComponent {
     //get all Ledger
     GetLedgerList() {
         try {
-            if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-                this.allLedgerList = this.accountingService.accCacheData.Ledgers.filter(x => x.IsActive != false);//mumbai-team-june2021-danphe-accounting-cache-change          
-                this.allLedgerList = this.allLedgerList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+            if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+                this.allLedgerList = this.accountingService.accCacheData.Ledgers.filter(x => x.IsActive != false);//mumbai-team-june2021-dsf-accounting-cache-change          
+                this.allLedgerList = this.allLedgerList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
                 this.allLedgerList.forEach(a => {
                     if (a.ClosingBalance > 0) {
                         a.ClosingBalwithDrCr = "Dr" + a.ClosingBalance;
@@ -418,7 +418,7 @@ export class VoucherEntryNewComponent {
             }
             this.accountingBLService.PostToTransaction(this.transaction).
                 subscribe(res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.HideSavebtn = false;
                         this.Reset();
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Voucher is successfully Saved."]);
@@ -859,7 +859,7 @@ export class VoucherEntryNewComponent {
                 this.GettempVoucherNumber(this.transaction.VoucherId, this.sectionId, this.TransactionDate);
             }
             else { //set to old one if user chooses 'NO' from confirmbox.
-                this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-danphe-accounting-cache-change
+                this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-dsf-accounting-cache-change
                 this.selVoucherTypeId = oldVoucherTypeId;//detect change should be above this else it won't work.. :(
             }
         }
@@ -984,7 +984,7 @@ export class VoucherEntryNewComponent {
         }
         this.accountingBLService.GettempVoucherNumber(voucherId, sectionId, transactionDate)
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.TempVoucherNumber = res.Results;
                 }
                 else {
@@ -1024,7 +1024,7 @@ export class VoucherEntryNewComponent {
 
     public async UpdateLedgers() {
         try {
-            DanpheCache.clearDanpheCacheByType(MasterType.LedgersAll);
+            DsfCache.clearDsfCacheByType(MasterType.LedgersAll);
             await this.accountingService.RefreshAccCacheData();
         }
         catch (ex) {
@@ -1375,13 +1375,13 @@ export class VoucherEntryNewComponent {
     }
 
     public GetSubLedger() {
-        this.accountingSettingBlService.GetSubLedger().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.accountingSettingBlService.GetSubLedger().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.subLedgerMaster = res.Results;
                 this.subLedgerMaster = this.subLedgerMaster.filter(a => a.IsActive === true);
             }
         },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Unable to get subLedger list."]);
             });
     }
@@ -1446,8 +1446,8 @@ export class VoucherEntryNewComponent {
                 this.HideSavebtn = false;
                 this.Cancel();
             })
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.ViewTransactionDetails(res.Results);
                     this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [`Voucher is successfully verified.`]);
                     this.Cancel();
@@ -1459,7 +1459,7 @@ export class VoucherEntryNewComponent {
                     this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Unable to verify the voucher.`]);
                 }
             },
-                (err: DanpheHTTPResponse) => {
+                (err: DsfHTTPResponse) => {
                     this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
                 }
             );
@@ -1531,7 +1531,7 @@ export class VoucherEntryNewComponent {
                 this.accountingBLService
                     .PutToTransaction(this.transaction)
                     .subscribe((res) => {
-                        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                             this.HideSavebtn = false;
                             this.Reset();
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Voucher is successfully update."]);

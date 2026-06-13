@@ -6,8 +6,8 @@ import { PHRMStoreModel } from '../../pharmacy/shared/phrm-store.model';
 import { SecurityBLService } from '../../security/shared/security.bl.service';
 import { SecurityService } from '../../security/shared/security.service';
 import { ActivateInventoryService } from '../../shared/activate-inventory/activate-inventory.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class ProcurementComponent implements OnInit {
   selectedInventory: any;
   showInventoryInfo: boolean;
   constructor(public securityService: SecurityService, public msgBox: MessageboxService, public securityBlService: SecurityBLService, public inventoryService: InventoryService, public inventoryBLService: InventoryBLService, private _activateInventoryService: ActivateInventoryService, public router: Router) {
-    DanpheCache.GetData(MasterType.AllMasters, null);
+    DsfCache.GetData(MasterType.AllMasters, null);
     //get the chld routes of Inventory from valid routes available for this user.
     this.validRoutes = this.securityService.GetChildRoutes("ProcurementMain");
     this.primaryNavItems = this.validRoutes.filter(a => a.IsSecondaryNavInDropdown == null || a.IsSecondaryNavInDropdown == 0);
@@ -44,7 +44,7 @@ export class ProcurementComponent implements OnInit {
     this.securityService.SetModuleName('inventory');
     if (!(this.securityService.INVHospitalInfo.CurrFiscalYear.FiscalYearId > 0)) {//if information not there then get and set
       this.securityBlService.GetINVHospitalInfo()
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == 'OK') {
             this.securityService.SetINVHospitalInfo(res.Results);
           }
@@ -57,7 +57,7 @@ export class ProcurementComponent implements OnInit {
   //we have to load all billing items into service variable, which will be used across this module. 
   public LoadAllVendors() {
     this.inventoryBLService.GetVendorList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log("vendor list is loaded successfully (inventory-main).");
           this.inventoryService.LoadAllVendorList(res.Results);
@@ -71,7 +71,7 @@ export class ProcurementComponent implements OnInit {
   }
   public LoadAllInventoryItems() {
     this.inventoryBLService.GetItemListByStoreId(this.selectedInventory.StoreId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log("item list is loaded successfully (inventory-main).");
           this.inventoryService.LoadAllItemList(res.Results);

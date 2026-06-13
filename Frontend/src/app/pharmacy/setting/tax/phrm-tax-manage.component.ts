@@ -1,13 +1,13 @@
 ﻿import { ChangeDetectorRef, Component } from "@angular/core";
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMTAXModel } from "../../shared/phrm-tax.model";
 
@@ -34,8 +34,8 @@ export class PHRMTAXManageComponent {
     }
     public getTAXList() {
         this.pharmacyBLService.GetTAXList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                     this.taxList = res.Results;
                 }
                 else {
@@ -81,8 +81,8 @@ export class PHRMTAXManageComponent {
             this.currentTAX.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.AddTAX(this.currentTAX)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["TAX Details Added."]);
                             this.CallBackAddUpdate(res);
                             this.currentTAX = new PHRMTAXModel();
@@ -106,8 +106,8 @@ export class PHRMTAXManageComponent {
             this.currentTAX.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.UpdateTAX(this.currentTAX)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['TAX Details Updated.']);
                             this.CallBackAddUpdate(res)
                             this.currentTAX = new PHRMTAXModel();

@@ -5,9 +5,9 @@ import { InventoryReportsBLService } from "../../shared/inventory-reports.bl.ser
 import { InventoryReportsDLService } from "../../shared/inventory-reports.dl.service";
 import * as moment from "moment/moment";
 import { CancelledPOandGRReport } from "../../shared/cancelled-poandgr-report.model";
-import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { IGridFilterParameter } from "../../../../shared/danphe-grid/grid-filter-parameter.interface";
+import { GridEmitModel } from "../../../../shared/dsf-grid/grid-emit.model";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { IGridFilterParameter } from "../../../../shared/dsf-grid/grid-filter-parameter.interface";
 
 @Component({
   templateUrl: "./CancelledPOandGR.html",

@@ -11,8 +11,8 @@
                     <div class="form-group">
                         <label class="control-label col-md-3">{{ 'INVENTORY.FROM_DATE' | translate }}<sup class="color-red"> *</sup><b class="float:right;">:</b></label>
                         <div class="col-md-9">
-                            <danphe-date-picker [(ngModel)]="CurrentGREvaluationReport.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone:true}">
-                            </danphe-date-picker>
+                            <dsf-date-picker [(ngModel)]="CurrentGREvaluationReport.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone:true}">
+                            </dsf-date-picker>
                         </div>
                     </div>
                 </div>
@@ -20,8 +20,8 @@
                     <div class="form-group">
                         <label class="control-label col-md-3">{{ 'INVENTORY.TO_DATE' | translate }}<sup class="color-red"> *</sup><b class="float:right;">:</b></label>
                         <div class="col-md-9">
-                            <danphe-date-picker [(ngModel)]="CurrentGREvaluationReport.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone:true}">
-                            </danphe-date-picker>
+                            <dsf-date-picker [(ngModel)]="CurrentGREvaluationReport.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone:true}">
+                            </dsf-date-picker>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
     </form>
 </div>
 <div class="" *ngIf="GREvaluationData.length>0">
-    <danphe-grid *ngIf="showGrid" [grid-colDefaults]="GREvaluationColumns" [grid-data]="GREvaluationData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
+    <dsf-grid *ngIf="showGrid" [grid-colDefaults]="GREvaluationColumns" [grid-data]="GREvaluationData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
 
-    </danphe-grid>
+    </dsf-grid>
 </div>

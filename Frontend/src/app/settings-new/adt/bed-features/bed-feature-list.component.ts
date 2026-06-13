@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
 import { BedFeature } from "../../../adt/shared/bedfeature.model";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { ENUM_DanpheHTTPResponses } from "../../../shared/shared-enums";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { ENUM_DsfHTTPResponses } from "../../../shared/shared-enums";
 import { SettingsService } from '../../shared/settings-service';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 
@@ -27,7 +27,7 @@ export class BedFeatureListComponent {
   public getBedFeature(): void {
     this.settingsBLService.GetBedFeatureList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.bedFeatureList = res.Results;
           this.showGrid = true;
         }

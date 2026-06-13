@@ -59,7 +59,7 @@
           <tbody>
             <tr *ngFor="let row of reportData;let i=index">
               <td style="text-align:center">{{i+1}}</td>
-              <td style="width: 7%;">{{row.Date | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td style="width: 7%;">{{row.Date | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
               <td>{{row.PatientCode}}</td>
               <td>{{row.PatientName}}</td>
               <td>{{row.InvoiceNumber}}</td>
@@ -117,10 +117,10 @@
             </tr>
             <tr *ngFor="let row of deptrow.reportData;let i=index">
               <td style="text-align:center">{{i+1}}</td>
-              <td style="width: 7%;" *ngIf="!isDateFormatBS">{{row.Date | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td style="width: 7%;" *ngIf="!isDateFormatBS">{{row.Date | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
               <td style="width: 7%;" *ngIf="isDateFormatBS">{{row.Date  | nepaliDate:'format':'YYYY-MM-DD'}}</td>
 
-              <!-- <td style="width: 6%;" >{{row.Date | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <!-- <td style="width: 6%;" >{{row.Date | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
 						  <td style="width: 6%;" *ngIf="isDateFormatBS">{{row.TransactionDate | nepaliDate:'format':'YYYY-MM-DD'}}</td> -->
 
               <td>{{row.PatientCode}}</td>

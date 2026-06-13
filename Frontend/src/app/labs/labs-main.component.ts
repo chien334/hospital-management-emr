@@ -43,14 +43,14 @@ export class LabsMainComponent {
     if (allLabStickerFolderDetail) {
       folderDetailObj = JSON.parse(allLabStickerFolderDetail.ParameterValue);
       if (folderDetailObj.length > 1) {
-        if (localStorage.getItem('Danphe_LAB_Default_PrinterName')) {
-          this.labService.defaultPrinterName = localStorage.getItem('Danphe_LAB_Default_PrinterName');
+        if (localStorage.getItem('Dsf_LAB_Default_PrinterName')) {
+          this.labService.defaultPrinterName = localStorage.getItem('Dsf_LAB_Default_PrinterName');
         } else {
           this.labService.defaultPrinterName = null;
         }
       } else {
-        if (localStorage.getItem('Danphe_LAB_Default_PrinterName')) {
-          localStorage.removeItem('Danphe_LAB_Default_PrinterName');
+        if (localStorage.getItem('Dsf_LAB_Default_PrinterName')) {
+          localStorage.removeItem('Dsf_LAB_Default_PrinterName');
         }
         this.labService.defaultPrinterName = folderDetailObj[0].Name;
       }

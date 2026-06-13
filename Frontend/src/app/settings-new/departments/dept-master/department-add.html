@@ -139,7 +139,7 @@
                           <span></span>{{ 'SETTINGS_NEW.OPD_NEW_PATIENT' | translate }}</label>
                         <b *ngIf="OpdNewService.IsServiceEnabled" class="color-red">*</b>
                       </td>
-                      <td class="col-md-3"><input class="form-control" danphe-auto-complete [disabled]="!OpdNewService.IsServiceEnabled"
+                      <td class="col-md-3"><input class="form-control" dsf-auto-complete [disabled]="!OpdNewService.IsServiceEnabled"
                                [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOpdNewServiceItem"
                                onClick="this.select();" (focusout)="NewPatientServiceItemChanged(selectedOpdNewServiceItem)"
                                [list-formatter]="myItemListFormatter" [source]="opdServiceItems" [placeholder]="'SETTINGS_NEW.ENTER_TEXT' | translate"
@@ -158,7 +158,7 @@
                           <span></span>{{ 'SETTINGS_NEW.OPD_FOLLOWUP_PATIENT' | translate }}</label>
                         <b *ngIf="OpdFollowupService.IsServiceEnabled" class="color-red">*</b>
                       </td>
-                      <td class="col-md-3"><input class="form-control" danphe-auto-complete [disabled]="!OpdFollowupService.IsServiceEnabled"
+                      <td class="col-md-3"><input class="form-control" dsf-auto-complete [disabled]="!OpdFollowupService.IsServiceEnabled"
                                [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOpdFollowupServiceItem"
                                onClick="this.select();" (focusout)="FollowupServiceItemChanged(selectedOpdFollowupServiceItem)"
                                [list-formatter]="myItemListFormatter" [source]="opdServiceItems" [placeholder]="'SETTINGS_NEW.ENTER_TEXT' | translate"
@@ -177,7 +177,7 @@
                           <span></span>{{ 'SETTINGS_NEW.OPD_OLD_PATIENT' | translate }}</label>
                         <b *ngIf="OpdOldService.IsServiceEnabled" class="color-red">*</b>
                       </td>
-                      <td class="col-md-3"><input class="form-control" danphe-auto-complete [disabled]="!OpdOldService.IsServiceEnabled"
+                      <td class="col-md-3"><input class="form-control" dsf-auto-complete [disabled]="!OpdOldService.IsServiceEnabled"
                                [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedOpdOldServiceItem"
                                onClick="this.select();" (focusout)="OldPatientServiceItemChanged(selectedOpdOldServiceItem)"
                                [list-formatter]="myItemListFormatter" [source]="opdServiceItems" [placeholder]="'SETTINGS_NEW.ENTER_TEXT' | translate"

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../../../core/shared/core.service';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
-import { SettingsGridColumnSettings } from '../../../shared/danphe-grid/settings-grid-column-settings';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
+import { SettingsGridColumnSettings } from '../../../shared/dsf-grid/settings-grid-column-settings';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { SchemeVsPriceCategoryDTO } from './shared/MapSchemeVsPriceCategory.dto';
 
@@ -71,8 +71,8 @@ export class MapSchemeAndPriceCategoryComponent implements OnInit {
 
   public GetSchemePriceCategoryMappedItems() {
     this.settingsBLService.GetSchemePriceCategoryMappedItems().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.SchemePriceCategoryList = res.Results;
         } else {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, [
@@ -90,8 +90,8 @@ export class MapSchemeAndPriceCategoryComponent implements OnInit {
     Status = !Status;
     this.settingsBLService.ActivateDeactivateSchemePriceCategoryMapItem(PriceCategorySchemeMapId, Status)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [
               `${Status ? 'Activated' : 'Deactivated'} Successfully`,
             ]);

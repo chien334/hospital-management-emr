@@ -4,7 +4,7 @@ import { DynamicTemplateService } from "../shared/dynamic-template-service";
 
 
 @Component({
-    selector: "danphe-json-table",
+    selector: "dsf-json-table",
     templateUrl: "./json-table.html"
 })
 export class JsonTableComponent {

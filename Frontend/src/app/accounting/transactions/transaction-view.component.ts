@@ -444,7 +444,7 @@ export class TransactionViewComponent {
       //popupWinindow.document.open();
 
       //let documentContent = "<html><head>";
-      //// documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
+      //// documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
       //// documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/PrintStyle.css"/>';
       //documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/PrintStyle.css"/>';
       //documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
@@ -578,12 +578,12 @@ export class TransactionViewComponent {
     // }
     try {
       // var secId = parseInt(localStorage.getItem("SectionId"));
-      // this.fiscalYId = this.fiscalYearId;//mumbai-team-june2021-danphe-accounting-cache-change
-      // this.changeDetector.detectChanges();//mumbai-team-june2021-danphe-accounting-cache-change
+      // this.fiscalYId = this.fiscalYearId;//mumbai-team-june2021-dsf-accounting-cache-change
+      // this.changeDetector.detectChanges();//mumbai-team-june2021-dsf-accounting-cache-change
       // this.editvoucherNumber = null;
       // this.changeDetector.detectChanges();
       // this.editvoucherNumber = this.voucherNumber;
-      // this.changeDetector.detectChanges();//mumbai-team-june2021-danphe-accounting-cache-change
+      // this.changeDetector.detectChanges();//mumbai-team-june2021-dsf-accounting-cache-change
       //this.accountingService.VoucherNumber = this.voucherNumber;
       // this.router.navigate(['/Accounting/Transaction/EditVoucher']);
       // this.showeditPage = true;
@@ -727,7 +727,7 @@ export class TransactionViewComponent {
           this.IsReverse = false;
           this.viewTxn = true;
           this.msgBoxServ.showMessage("success", ["Reverse voucher saved"]);
-          this.Close();//mumbai-team-june2021-danphe-accounting-cache-change
+          this.Close();//mumbai-team-june2021-dsf-accounting-cache-change
           this.GetTxnbyVoucher(res.Results.VoucherNumber);
         }
         else {

@@ -10,8 +10,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-5">From Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div class="col-md-7">                   
-                        <danphe-date-picker [(ngModel)]="phrmReports.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="phrmReports.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
+                        </dsf-date-picker>
                     </div>
                 </div>
             </div> --> 
@@ -19,8 +19,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-4">To Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div class="col-md-8">                     
-                        <danphe-date-picker [(ngModel)]="phrmReports.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="phrmReports.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
+                        </dsf-date-picker>
                     </div>
                 </div>
             </div> -->
@@ -35,9 +35,9 @@
 </div>
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="PHRMUserReportColumn"
+    <dsf-grid [grid-colDefaults]="PHRMUserReportColumn"
                      [grid-data]="PHRMUserReportData"
                      [NepaliDateInGridParams]="NepaliDateInGridSettings"
-                     [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="pharmacy"> </danphe-grid>
+                     [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="pharmacy"> </dsf-grid>
   </div>
 </div>

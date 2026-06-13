@@ -5,7 +5,7 @@ import { PharmacyBLService } from "../../../../pharmacy/shared/pharmacy.bl.servi
 import PHRMGridColumns from "../../../../pharmacy/shared/phrm-grid-columns";
 import { PHRMStoreModel } from "../../../../pharmacy/shared/phrm-store.model";
 import { CommonFunctions } from "../../../../shared/common.functions";
-import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../../shared/dsf-grid/grid-emit.model";
 import { DLService } from "../../../../shared/dl.service";
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
 import { DispensaryService } from "../../../shared/dispensary.service";

@@ -11,10 +11,10 @@ import { CallbackService } from '../../shared/callback.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../shared/routefrom.service';
 
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { BillItemRequisition } from "../shared/bill-item-requisition.model";
 import { BillingTransactionItem } from "../shared/billing-transaction-item.model";
 
@@ -55,7 +55,7 @@ export class BillOrderRequestComponent {
     }
     PayForSingleDept(details) {
         this.BillingBLService.GetPendingRequisitionsByDepartment(details.Patient.PatientId, details.ServiceDepatmentId)
-            .subscribe((response: DanpheHTTPResponse) => {
+            .subscribe((response: DsfHTTPResponse) => {
                 if (response.Status == "OK" && response.Results.length) {
                     this.patientService.setGlobal(details.Patient);
                     this.patientService.getGlobal().CountrySubDivisionName = details.Patient.CountrySubDivision;
@@ -71,7 +71,7 @@ export class BillOrderRequestComponent {
     PayForAllDept(details) {
 
         this.BillingBLService.GetDoctorOrdersFromAllDepartments(details.Patient.PatientId)
-            .subscribe((response: DanpheHTTPResponse) => {
+            .subscribe((response: DsfHTTPResponse) => {
                 if (response.Status == "OK" && response.Results.length) {
                     this.patientService.setGlobal(details.Patient);
                     this.patientService.getGlobal().CountrySubDivisionName = details.Patient.CountrySubDivision;

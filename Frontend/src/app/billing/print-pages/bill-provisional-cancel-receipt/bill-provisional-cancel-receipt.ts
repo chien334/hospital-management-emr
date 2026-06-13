@@ -5,7 +5,7 @@ import { CoreService } from "../../../core/shared/core.service";
 import { PrinterSettingsModel } from "../../../settings-new/printers/printer-settings.model";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText } from "../../../shared/shared-enums";
 import { BillingBLService } from "../../shared/billing.bl.service";
 
 @Component({
@@ -81,7 +81,7 @@ export class BIL_Print_ProvisionalCancellationReceiptComponent {
   GetDetailfForCancellationReceipt(PatientId, provisionalReturnItemId) {
     this.billingBLService.GetDetailForCancellationReceipt(PatientId, provisionalReturnItemId).subscribe(
       res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.ProvisionalDetails = res.Results;
 
           this.CalculateTotalAmounts(this.ProvisionalDetails);

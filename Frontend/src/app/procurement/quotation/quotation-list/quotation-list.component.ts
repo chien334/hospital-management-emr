@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InventoryService } from '../../../inventory/shared/inventory.service';
 import { SecurityService } from '../../../security/shared/security.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import ProcurementGridColumns from '../../shared/procurement-grid-column';
 import { QuotationBLService } from '../quotation.bl.service';
@@ -114,8 +114,8 @@ export class QuotationListComponent implements OnInit {
     popupWinindow.document.open();
 
     let documentContent = "<html><head>";
-    //  documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-    // documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+    //  documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+    // documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/PrintStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head>';

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DepartmentSettingsModule } from '../../../settings-new/departments/dept-settings.module';
 import { EmpSettingsModule } from '../../../settings-new/employee/emp-settings.module';
-import { DanpheAutoCompleteModule } from '../../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../../shared/dsf-autocomplete';
 import { SharedModule } from '../../../shared/shared.module';
 import { MedicareBLService } from '../shared/medicare.bl.service';
 import { MedicareDLService } from '../shared/medicare.dl.service';
@@ -24,7 +24,7 @@ import { MedicareMemberComponent } from './member/medicare-member.component';
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         EmpSettingsModule,
         DepartmentSettingsModule,
         MedicareRegistrationRoutingModule], providers: [

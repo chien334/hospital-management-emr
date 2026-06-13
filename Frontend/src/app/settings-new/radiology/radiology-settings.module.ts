@@ -11,7 +11,7 @@ import { ImagingItemAddComponent } from './items/imaging-item-add.component';
 import { ImagingItemListComponent } from './items/imaging-item-list.component';
 import { RadiologyReportTemplateComponent } from './report-templates/radiology-report-template.component';
 import { SharedModule } from '../../shared/shared.module';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { RadDefSignatoriesComponent } from './def-signatories/rad-def-signatories.component';
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
 
@@ -43,7 +43,7 @@ export const radSettingsRoutes: Routes =
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         RouterModule.forChild(radSettingsRoutes)], providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })

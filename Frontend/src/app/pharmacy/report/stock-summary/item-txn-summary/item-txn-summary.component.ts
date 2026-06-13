@@ -4,8 +4,8 @@ import { MessageboxService } from '../../../../shared/messagebox/messagebox.serv
 import { ItemTxnSummaryReportModel } from './item-txn-summary-report-model';
 import * as moment from 'moment';
 import PHRMReportsGridColumns from '../../../shared/phrm-reports-grid-columns';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
 import { CoreService } from '../../../../core/shared/core.service';
 import { CFGParameterModel } from '../../../../settings-new/shared/cfg-parameter.model';
 import { SalesReturnComponent } from '../../../../dispensary/dispensary-main/sales-main/sales-return/sales-return.component';

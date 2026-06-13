@@ -25,11 +25,11 @@ export default class DispensaryGridColumns {
       field: "",
       width: 320,
       template:
-        `<a danphe-grid-action="sale" class="grid-action">
+        `<a dsf-grid-action="sale" class="grid-action">
                 Sale
             </a>
             &nbsp;
-            <a *ngIf= "IsCurrentDispensaryInsurace == false" danphe-grid-action="deposit" class="grid-action" >
+            <a *ngIf= "IsCurrentDispensaryInsurace == false" dsf-grid-action="deposit" class="grid-action" >
                 Deposit
             </a>`
     }
@@ -49,7 +49,7 @@ export default class DispensaryGridColumns {
       field: "",
       width: 320,
       template:
-        `<a danphe-grid-action="sale" class="grid-action">
+        `<a dsf-grid-action="sale" class="grid-action">
                 Sale
             </a>
           `
@@ -79,7 +79,7 @@ export default class DispensaryGridColumns {
       field: "",
       width: 200,
       template:
-        `<a danphe-grid-action="view" class="grid-action">
+        `<a dsf-grid-action="view" class="grid-action">
                 View Availability
              </a>
             `
@@ -214,21 +214,21 @@ export default class DispensaryGridColumns {
   }
   static SettlementAction(params) {
     if (params.data.DepositBalance > 0 || params.data.BilStatus == 'unpaid') {
-      let template = `<a danphe-grid-action="showDetails" class="grid-action">
+      let template = `<a dsf-grid-action="showDetails" class="grid-action">
                         Show Details
                         </a>
                         `
         ;
       return template;
     } else {
-      let template = `<a danphe-grid-action="print" class="grid-action">
+      let template = `<a dsf-grid-action="print" class="grid-action">
                                   Print
                                   </a>`;
       return template;
     }
   }
   static PHRMDuplicatePrintSettlementAction(params) {
-    let template = `<a danphe-grid-action="print" class="grid-action">
+    let template = `<a dsf-grid-action="print" class="grid-action">
                                   Print
                                   </a>`;
     return template;
@@ -248,13 +248,13 @@ export default class DispensaryGridColumns {
 
   static IncomingStockListAction(params) {
     if (params.data.CanUserReceiveStock) {
-      return `<a danphe-grid-action="receiveStock" title="Receive Items" 
+      return `<a dsf-grid-action="receiveStock" title="Receive Items" 
       class="grid-action ${(params.data.CanUserReceiveStock) ? "animated-btn blinking-btn-warning grid-action" : ""}">
         Receive Items
       </a>`;
     }
     else {
-      return `<a danphe-grid-action="receiveStock" title="Receive Items" 
+      return `<a dsf-grid-action="receiveStock" title="Receive Items" 
       class="grid-action">
         View Details
       </a>`
@@ -314,7 +314,7 @@ export default class DispensaryGridColumns {
     { headerName: "VAT Amount", field: "VATAmount", width: 100 },
     { headerName: "Total Amount", field: "TotalAmount", width: 100 },
     { headerName: "Remarks", field: "Remarks", width: 100 },
-    { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' },
+    { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' },
   ]
   static ReturnDateRenderer(params) {
     let date: string = params.data.WriteOffDate;
@@ -344,16 +344,16 @@ export default class DispensaryGridColumns {
   }
   static ShowActionForRequisitionList(params) {
     let template =
-      `<a danphe-grid-action="view" class="grid-action">
+      `<a dsf-grid-action="view" class="grid-action">
         View
       </a>`;
     if (['partial', 'complete'].includes(params.data.RequisitionStatus) && params.data.IsReceiveFeatureEnabed == true) {
       template += `
-        <a danphe-grid-action="receiveDispatchedItems" title="Receive Dispatched Items" 
+        <a dsf-grid-action="receiveDispatchedItems" title="Receive Dispatched Items" 
         class="grid-action ${(params.data.IsNewDispatchAvailable) ? "animated-btn blinking-btn-warning grid-action" : ""}">
           Receive Items
         </a>
-        <a danphe-grid-action="dispatchList" class="grid-action">
+        <a dsf-grid-action="dispatchList" class="grid-action">
           Dispatch List
         </a>`;
     }
@@ -373,7 +373,7 @@ export default class DispensaryGridColumns {
       headerName: "Action",
       field: "",
       width: 120,
-      template: `<a danphe-grid-action="view" class="grid-action">
+      template: `<a dsf-grid-action="view" class="grid-action">
                View
              </a>`,
     },
@@ -394,7 +394,7 @@ export default class DispensaryGridColumns {
     { headerName: "Patient Type", field: "PatientType", width: 120 },
     {
       headerName: "Actions", field: "", width: 200,
-      template: `<a danphe-grid-action="view" class="grid-action"> Print </a>`,
+      template: `<a dsf-grid-action="view" class="grid-action"> Print </a>`,
     }
   ]
   //pharmacy - sale invoice list details grid column setting
@@ -411,7 +411,7 @@ export default class DispensaryGridColumns {
     { headerName: "Patient Type", field: "PatientType", width: 120 },
     {
       headerName: "Actions", field: "", width: 200,
-      template: `<a danphe-grid-action="view" class="grid-action"> Print </a>`,
+      template: `<a dsf-grid-action="view" class="grid-action"> Print </a>`,
     }
   ]
   //this rederer add PH before number 
@@ -428,7 +428,7 @@ export default class DispensaryGridColumns {
   }
   static ShowActionForPHRMSaleList(params) {
     let template =
-      `<a danphe-grid-action="view" class="grid-action">
+      `<a dsf-grid-action="view" class="grid-action">
             Print
          </a>`
     return template;
@@ -452,7 +452,7 @@ export default class DispensaryGridColumns {
       pinned: true,
       width: 200,
       template:
-        ` <a danphe-grid-action="view" class="grid-action">
+        ` <a dsf-grid-action="view" class="grid-action">
                         Print
                      </a>`
     }

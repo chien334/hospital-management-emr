@@ -7,8 +7,8 @@ import { FiscalYearModel } from '../shared/fiscalyear.model';
 import * as moment from 'moment/moment';
 import { CoreService } from '../../../core/shared/core.service';
 import { SecurityService } from "../../../security/shared/security.service";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { AccountingService } from "../../shared/accounting.service";
 @Component({

@@ -1,8 +1,8 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';// this is 
-//import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-//import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
+//import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+//import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
 import { BillingBLService } from '../../shared/billing.bl.service';
 import { BillingService } from '../../shared/billing.service';
 import { Patient } from "../../../patients/shared/patient.model";
@@ -163,7 +163,7 @@ export class InsurancePatientListComponent {
 
 
 
-  //sud:24Jul'19-- Below is a server side search implemented in danphe-autocomplete.
+  //sud:24Jul'19-- Below is a server side search implemented in dsf-autocomplete.
   //the api should be in format: apiName?reqType=reqTypeValue&paramname=:xxx  -> here   :xxx will be replaced by the word typed in the dropdown.
   //Pls do not change it.
   SearchPatientsByKey(keyword: any) {

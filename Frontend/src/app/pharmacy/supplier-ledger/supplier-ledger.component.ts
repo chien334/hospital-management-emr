@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import PHRMGridColumns from '../shared/phrm-grid-columns';
 import { SupplierLedgerService } from './supplier-ledger.service';

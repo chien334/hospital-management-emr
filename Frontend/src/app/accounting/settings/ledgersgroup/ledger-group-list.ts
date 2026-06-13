@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 import { ledgerGroupModel } from '../shared/ledgerGroup.model';
@@ -32,9 +32,9 @@ export class LedgerGroupListComponent {
         this.getLedgerGroupList();
     }
     public getLedgerGroupList() {
-            if(!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length>0){//mumbai-team-june2021-danphe-accounting-cache-change
-                this.ledgerGroupList = this.accountingService.accCacheData.LedgerGroups;//mumbai-team-june2021-danphe-accounting-cache-change
-                this.ledgerGroupList = this.ledgerGroupList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+            if(!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length>0){//mumbai-team-june2021-dsf-accounting-cache-change
+                this.ledgerGroupList = this.accountingService.accCacheData.LedgerGroups;//mumbai-team-june2021-dsf-accounting-cache-change
+                this.ledgerGroupList = this.ledgerGroupList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
                 this.showGrid = true;
                 this.showLedgerGroupList = true;
             }
@@ -47,7 +47,7 @@ export class LedgerGroupListComponent {
     }
 
     CallBackAdd($event) {
-      this.getLedgerGroupList();//mumbai-team-june2021-danphe-accounting-cache-change
+      this.getLedgerGroupList();//mumbai-team-june2021-dsf-accounting-cache-change
         this.showAddPage = false;
         this.selectedLedgerGroup = null;
         this.index = null;
@@ -57,7 +57,7 @@ export class LedgerGroupListComponent {
             case "activateDeactivateBasedOnStatus": {
                 if ($event.Data != null) {
                     this.selectedLedgerGroup = null;
-                    this.index = $event.RowIndex;//mumbai-team-june2021-danphe-accounting-cache-change
+                    this.index = $event.RowIndex;//mumbai-team-june2021-dsf-accounting-cache-change
                     this.selectedLedgerGroup = $event.Data;
                     this.ActivateDeactivateLedgerStatus(this.selectedLedgerGroup);
                     this.showLedgerGroupList = true;

@@ -3,7 +3,7 @@ import { Option, Question } from "../shared/dnamic-template-models";
 import { DynamicTemplateService } from "../shared/dynamic-template-service";
 
 @Component({
-    selector: "danphe-qtn-hrc",
+    selector: "dsf-qtn-hrc",
     templateUrl: "./question-hrc.html"
 })
 //this class renders all its questions in hierarchical manner.

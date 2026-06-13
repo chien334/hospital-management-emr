@@ -3,7 +3,7 @@ import { NgModule, NgZone } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //custom pipes
-import { DanpheDateTime } from "./pipes/danphe-datetime.pipe";
+import { DsfDateTime } from "./pipes/dsf-datetime.pipe";
 
 import { LoadingComponent } from "./loading.component";
 import { CapitalFirstLetter } from "./pipes/capital-first-letter.pipe";
@@ -15,16 +15,16 @@ import { ParseAmount } from "./pipes/parse-amount.pipe";
 //import { Ng2TabModule } from 'ng2-tab';
 
 import { AgGridModule } from "ag-grid-angular";
-import { DanpheGridComponent } from "./danphe-grid/danphe-grid.component";
+import { DsfGridComponent } from "./dsf-grid/dsf-grid.component";
 
 import { ResetPatientcontextGuard } from "../shared/reset-patientcontext-guard";
 import { NepaliCalendarModule } from "./calendar/np/nepali-calendar.module";
 import { AmChartsService } from "@amcharts/amcharts3-angular";
 
 
-import { DanpheChartsService } from "../dashboards/shared/danphe-charts.service";
+import { DsfChartsService } from "../dashboards/shared/dsf-charts.service";
 
-import { QRCodeModule } from "./danphe-qrcode/qr-code.module";
+import { QRCodeModule } from "./dsf-qrcode/qr-code.module";
 import { PrintStickerComponent } from "../appointments/opd-sticker/opd-sticker-print.component";
 import { NotificationComponent } from "../core/notifications/notification.component";
 import { CustomerHeaderComponent } from "../shared/customer-header/customer-header.component";
@@ -34,7 +34,7 @@ import { LabTestsAddResultComponent } from "../labs/lab-tests/lab-add-result/lab
 import { LabTestsViewReportComponent } from "../labs/lab-tests/lab-final-reports/lab-tests-view-report.component";
 import { LabTestsResults } from "../labs/lab-tests/lab-tests-results.component";
 import { ViewReportComponent } from "../radiology/shared/report/view-report.component";
-import { DanpheMultiSelectComponent } from "../shared/danphe-multiselect/danphe-multiselect.component";
+import { DsfMultiSelectComponent } from "../shared/dsf-multiselect/dsf-multiselect.component";
 
 import { RouterModule } from "@angular/router";
 import { BillingBLService } from "../billing/shared/billing.bl.service";
@@ -48,13 +48,13 @@ import { ImagingDLService } from "../radiology/shared/imaging.dl.service";
 import { CustomDateComponent } from "./custom-date/custom-date.component";
 
 import { CKEditorModule } from "ng2-ckeditor";
-import { DanpheCkEditorComponent } from "../shared/danphe-ckeditor/danphe-ckeditor.component";
+import { DsfCkEditorComponent } from "../shared/dsf-ckeditor/dsf-ckeditor.component";
 
 import { LightboxModule } from "ngx-lightbox";
 import { DoctorsBLService } from "../doctors/shared/doctors.bl.service";
 import { DoctorsDLService } from "../doctors/shared/doctors.dl.service";
 import { RadiologyService } from "../radiology/shared/radiology-service";
-import { DatePickerComponent } from "./danphe-datepicker/danphe-datepicker.component";
+import { DatePickerComponent } from "./dsf-datepicker/dsf-datepicker.component";
 
 import { PatientBillHistoryComponent } from "../billing/bill-history/patient-bill-history";
 
@@ -75,13 +75,13 @@ import { PatientUploadFilesComponent } from "../patients/patient-upload-files/pa
 import { EmergencyStickerComponent } from "./emergency-sticker/emergency-sticker.component";
 import { PrintHeaderComponent } from "./print-header/print-header";
 
-//sud:30Sept'18--to replace ng-autocomplete with danphe-autocomplete
+//sud:30Sept'18--to replace ng-autocomplete with dsf-autocomplete
 import { RbacPermissionDirective } from "../security/shared/rbac-permission.directive";
-import { DanpheAutoCompleteModule } from "../shared/danphe-autocomplete/danphe-auto-complete.module";
+import { DsfAutoCompleteModule } from "../shared/dsf-autocomplete/dsf-auto-complete.module";
 
 import { BillingHeaderComponent } from "../shared/billing-header/billing-header.component";
 //import { DepositReceiptComponent } from "../billing/print-pages/deposit-slip/deposit-receipt.component";
-import { DanpheBarCodeComponent } from "./bar-code/danphe-bar-code.component";
+import { DsfBarCodeComponent } from "./bar-code/dsf-bar-code.component";
 
 import { VisitSticker_Generic_Single_Component } from "./visit-generic-stickers/visit-gen-sticker-single.component";
 import { VisitSticker_Generic_PrintComponent } from "./visit-generic-stickers/visit-generic-stickers-print.component";
@@ -92,10 +92,10 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { TranslateModule } from "@ngx-translate/core";
 import { DrugsRequestComponent } from "../nursing/drugs-request/drugs-request.component";
-import { DicomMainModule } from "./danphe-dicom-viewer/dicom-main.module";
-import { DicomService } from "./danphe-dicom-viewer/shared/dicom.service";
-import { LoaderComponent } from "./danphe-loader-intercepter/danphe-loader";
-import { DanpheLoadingInterceptor } from "./danphe-loader-intercepter/danphe-loading.services";
+import { DicomMainModule } from "./dsf-dicom-viewer/dicom-main.module";
+import { DicomService } from "./dsf-dicom-viewer/shared/dicom.service";
+import { LoaderComponent } from "./dsf-loader-intercepter/dsf-loader";
+import { DsfLoadingInterceptor } from "./dsf-loader-intercepter/dsf-loading.services";
 import { BooleanParameterPipe } from "./pipes/boolean-parameter.pipe";
 import { SearchFilterPipe } from "./pipes/data-filter.pipe";
 import { SearchService } from "./search.service";
@@ -124,9 +124,9 @@ import { PHRMPackingTypeAddComponent } from "../pharmacy/setting/packing-type/ph
 import { PHRMPackingTypeListComponent } from "../pharmacy/setting/packing-type/phrm-packing-type-list.component";
 import { PHRMUnitOfMeasurementManageComponent } from "../pharmacy/setting/uom/phrm-uom-manage.component";
 import { EnglishCalendarComponent } from "./calendar/en-calendar/en-calendar.component";
-import { DanpheDateChangeComponent } from "./danphe-date-change.component";
-import { DanpheDateRangeSelectComponent } from "./danphe-date-range-select/danphe-date-range-select.component";
-import { InlineEditComponent } from "./danphe-inline-edit/inline-edit.component";
+import { DsfDateChangeComponent } from "./dsf-date-change.component";
+import { DsfDateRangeSelectComponent } from "./dsf-date-range-select/dsf-date-range-select.component";
+import { InlineEditComponent } from "./dsf-inline-edit/inline-edit.component";
 import { DateLabelComponent } from "./date-controls/date-label/date-label.component";
 import { FiscalYearCalendarComponent } from "./date-controls/fiscal-year-calendar/fiscal-year-calendar.component";
 import { FromToDateSelectComponent } from "./date-controls/from-to-date/from-to-date-select.component";
@@ -134,7 +134,7 @@ import { AddInvoiceHeaderComponent } from "./invoice-header/add-invoice-header.c
 import { InvoiceHeaderListComponent } from "./invoice-header/invoice-header-list.component";
 import { SelectInvoiceHeaderComponent } from "./invoice-header/select-invoice-header.component";
 import { ShowInvoiceHeaderComponent } from "./invoice-header/show-invoice-header.component";
-import { DanphePrintComponent } from "./print-service/print.component";
+import { DsfPrintComponent } from "./print-service/print.component";
 import { ResetNursingContextGuard } from "./reser-nursingcontext-guard";
 import { ResetEmergencyContextGuard } from "./reset-emergencycontext-guard";
 //import { PdfViewerModule } from 'ng2-pdf-viewer'; //rusha:30May'21--commented until proper solution is found.
@@ -152,8 +152,8 @@ import { PharmacyReceiptComponent } from "../pharmacy/receipt/pharmacy-receipt.c
 import { PhrmInvoiceViewComponent } from "../pharmacy/sale/invoice-view/phrm-invoice-view.component";
 import { PHRMUpdateMRPComponent } from "../pharmacy/setting/mrp/phrm-update-mrp.component";
 import { MunicipalitySelectComponent } from "./address-controls/municipality-select.component";
-import { DanpheConfirmationDialogComponent } from "./danphe-confirmation-dialog/danphe-confirmation-dialog.component";
-import { DanpheConfirmationDirective } from "./danphe-confirmation-dialog/danphe-confirmation.directive";
+import { DsfConfirmationDialogComponent } from "./dsf-confirmation-dialog/dsf-confirmation-dialog.component";
+import { DsfConfirmationDirective } from "./dsf-confirmation-dialog/dsf-confirmation.directive";
 import { DndDirective } from "./dnd.directive";
 import { InventoryFieldCustomizationService } from "./inventory-field-customization.service";
 import { DispatchNpViewComponent } from './nepali-receipt-views/dispatch-np-view/dispatch-np-view.component';
@@ -162,7 +162,7 @@ import { Pagination } from "./pagination/pagination.component";
 import { GRChargesPipe } from "./pipes/gr-charges.pipe";
 import { ItemListFilterPipe } from "./pipes/list-filter.pipe";
 import { PaymentDetailsPipe } from "./pipes/payment-details.pipe";
-import { DanphePrintNewComponent } from "./print-service/print-new.component";
+import { DsfPrintNewComponent } from "./print-service/print-new.component";
 import { ProgressBarComponent } from "./progress-bar/progress-bar.component";
 import { StickerComponent } from "./stickers/registration-sticker.component";
 import { authInterceptorProviders } from "./token-interceptor/token-interceptor.service";
@@ -176,7 +176,7 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         ResetDoctorcontextGuard,
         ResetNursingContextGuard,
         ResetEmergencyContextGuard,
-        DanpheChartsService,
+        DsfChartsService,
         LabTestResultService,
         LabsBLService,
         LabsDLService,
@@ -198,7 +198,7 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         LoaderComponent,
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: DanpheLoadingInterceptor,
+            useClass: DsfLoadingInterceptor,
             multi: true,
         },
         LabService,
@@ -217,7 +217,7 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         RouterModule,
         AgGridModule,
         NepaliCalendarModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         LightboxModule,
         QRCodeModule,
         AngularMultiSelectModule,
@@ -233,14 +233,14 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         //PdfViewerModule,
     ],
     declarations: [
-        DanpheDateTime,
+        DsfDateTime,
         HasValuePipe,
         LoadingComponent,
         NumberInWordsPipe,
         ParseAmount,
         Currency,
         CapitalFirstLetter,
-        DanpheGridComponent,
+        DsfGridComponent,
         CustomerHeaderComponent,
         PrintStickerComponent,
         NotificationComponent,
@@ -250,9 +250,9 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         PostReportComponent,
         ViewReportComponent,
         LabTestsAddResultComponent,
-        DanpheMultiSelectComponent,
+        DsfMultiSelectComponent,
         DatePickerComponent,
-        DanpheCkEditorComponent,
+        DsfCkEditorComponent,
         PatientBillHistoryComponent,
         LabTestsResults,
         QrReaderComponent,
@@ -266,7 +266,7 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         BillingHeaderComponent,
         //DepositReceiptComponent,
         RbacPermissionDirective,
-        DanpheBarCodeComponent,
+        DsfBarCodeComponent,
         VisitSticker_Generic_Single_Component,
         VisitSticker_Generic_PrintComponent,
         DrugsRequestComponent,
@@ -282,9 +282,9 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         DischargeSummaryViewComponent,
         TrackInventoryRequisitionComponent,
         InlineEditComponent,
-        DanpheDateRangeSelectComponent,
-        DanphePrintComponent,
-        DanpheDateChangeComponent,
+        DsfDateRangeSelectComponent,
+        DsfPrintComponent,
+        DsfDateChangeComponent,
         TermsListComponent,
         TermsAddComponent,
         PatientOverviewMainComponent,
@@ -323,14 +323,14 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         StickerComponent,
         PharmacyInvoicePrintComponent,
         PharmacyCreditNotePrintComponent,
-        DanpheConfirmationDialogComponent,
-        DanpheConfirmationDirective,
-        DanphePrintNewComponent,
+        DsfConfirmationDialogComponent,
+        DsfConfirmationDirective,
+        DsfPrintNewComponent,
         PharmacyProvisionalInvoicePrintComponent,
         PharmacyProvisionalReturnInvoicePrintComponent
     ],
     exports: [
-        DanpheDateTime,
+        DsfDateTime,
         CommonModule,
         FormsModule,
         HasValuePipe,
@@ -343,7 +343,7 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         CapitalFirstLetter,
         ParseAmount,
         Currency,
-        DanpheGridComponent,
+        DsfGridComponent,
         NepaliCalendarModule,
         CustomerHeaderComponent,
         PrintStickerComponent,
@@ -354,9 +354,9 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         LabTestsAddResultComponent,
         PostReportComponent,
         ViewReportComponent,
-        DanpheMultiSelectComponent,
+        DsfMultiSelectComponent,
         DatePickerComponent,
-        DanpheCkEditorComponent,
+        DsfCkEditorComponent,
         PatientBillHistoryComponent,
         QRCodeModule,
         LabTestsResults,
@@ -372,7 +372,7 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         //DepositReceiptComponent,
         RbacPermissionDirective,
         //NgxBarcodeModule,
-        DanpheBarCodeComponent,
+        DsfBarCodeComponent,
         VisitSticker_Generic_Single_Component,
         VisitSticker_Generic_PrintComponent,
         DrugsRequestComponent,
@@ -387,9 +387,9 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         OldDischargeSummaryViewComponent,
         TrackInventoryRequisitionComponent,
         InlineEditComponent,
-        DanpheDateRangeSelectComponent,
-        DanphePrintComponent,
-        DanpheDateChangeComponent,
+        DsfDateRangeSelectComponent,
+        DsfPrintComponent,
+        DsfDateChangeComponent,
         TermsListComponent,
         TermsAddComponent,
         PatientOverviewMainComponent,
@@ -428,9 +428,9 @@ import { authInterceptorProviders } from "./token-interceptor/token-interceptor.
         StickerComponent,
         PharmacyInvoicePrintComponent,
         PharmacyCreditNotePrintComponent,
-        DanpheConfirmationDialogComponent,
-        DanpheConfirmationDirective,
-        DanphePrintNewComponent,
+        DsfConfirmationDialogComponent,
+        DsfConfirmationDirective,
+        DsfPrintNewComponent,
         PharmacyProvisionalInvoicePrintComponent,
         PharmacyProvisionalReturnInvoicePrintComponent
     ]

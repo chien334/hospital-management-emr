@@ -63,7 +63,7 @@
     <tbody>
       <tr *ngFor="let data of allTests; let i=index;">
         <!-- <td>{{i+1}}</td> -->
-        <td *ngIf="!IsLocalDate" style="width: 120px;">{{data.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD  HH:mm'}}</td>
+        <td *ngIf="!IsLocalDate" style="width: 120px;">{{data.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD  HH:mm'}}</td>
         <td *ngIf="IsLocalDate" style="width: 120px;">{{data.CreatedOn | nepaliDate:'format':'YYYY-MM-DD  hh:mm'}}</td>
         <td>{{data.ItemName}}</td>
         <td>{{data.InvoiceNumber}}</td>

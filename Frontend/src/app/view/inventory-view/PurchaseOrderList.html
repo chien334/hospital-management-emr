@@ -22,24 +22,24 @@
 </div>
 <div class="row" *ngIf="!showVendorwise">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid
+    <dsf-grid
                  [grid-colDefaults]="purchaseOrdersGridColumns"
                  [grid-data]="poListfiltered"
                  (grid-actions)="PurchaseOrderGridAction($event)"
                  [rangeType]="dateRange"
                  (onDateChange)="onDateChange($event)"
-                 [show-CustomDate]="true"></danphe-grid>
+                 [show-CustomDate]="true"></dsf-grid>
   </div>
 </div>
 <div class="row" *ngIf="showVendorwise">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid
+    <dsf-grid
       [grid-colDefaults]="polistVendorwiseGridColumns"
       [grid-data]="polistVendorwise"
       (grid-actions)="povendorGridAction($event)"
       [rangeType]="dateRange"
       (onDateChange)="onDateChange($event)"
-      [show-CustomDate]="true"></danphe-grid>
+      [show-CustomDate]="true"></dsf-grid>
   </div>
 </div>
 

@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 //Security Service for Loading Child Route from Security Service
 import { CoreService } from '../core/shared/core.service';
 import { SecurityService } from "../security/shared/security.service";
-import { DanpheHTTPResponse } from '../shared/common-models';
+import { DsfHTTPResponse } from '../shared/common-models';
 import { QrService } from '../shared/qr-code/qr-service';
-import { ENUM_DanpheHTTPResponses } from '../shared/shared-enums';
+import { ENUM_DsfHTTPResponses } from '../shared/shared-enums';
 import { BillingMasterBlService } from './shared/billing-master.bl.service';
 import { BillingBLService } from './shared/billing.bl.service';
 import { BillingService } from './shared/billing.service';
@@ -58,8 +58,8 @@ export class BillingMainComponent {
   //we have to load all billing items into service variable, which will be used across this module.
   public LoadAllBillingItems(): void {
     this.billingBlService.GetBillItemList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           console.log("bill item prices are loaded successfully (billing-main).");
           this.billingService.LoadAllBillItemsPriceList(res.Results);
         }
@@ -72,8 +72,8 @@ export class BillingMainComponent {
   //sud:30Apr'20--For reusability..//getting doctors list and set to the global variable.
   public LoadAllDoctorsList(): void {
     this.billingBlService.GetDoctorsList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           console.log("doctors list are loaded successfully (billing-main).");
           this.billingService.SetAllDoctorList(res.Results);
         }
@@ -86,8 +86,8 @@ export class BillingMainComponent {
   //sud:30Apr'20--For reusability.. //getting employeelist  and set to the global variable.
   public LoadAllEmployeeList(): void {
     this.billingBlService.GetActiveEmployeesList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           console.log("Employee list are loaded successfully (billing-main).");
           this.billingService.SetAllEmployeeList(res.Results);
         }
@@ -100,8 +100,8 @@ export class BillingMainComponent {
   //getting credit organization list and set to the global variable.
   public GetOrganizationList(): void {
     this.billingBlService.GetOrganizationList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           console.log("CreditOrganization list are loaded successfully (billing-main).");
           this.billingService.SetAllCreditOrgList(res.Results);
         }
@@ -113,8 +113,8 @@ export class BillingMainComponent {
 
   public GetCurrenciesList(): void {
     this.billingMasterBlService.GetCurrencies()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           console.log("Currency list are loaded successfully (billing-main).");
           this.billingMasterBlService.Currencies = res.Results;
         }

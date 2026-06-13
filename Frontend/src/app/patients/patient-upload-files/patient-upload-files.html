@@ -44,7 +44,7 @@ img:hover {
         <td>{{doc.FileType}}</td>
         <!--<td>{{doc.FileName}}</td>--> 
         <!--<td>{{doc.FileExtention}}</td>-->
-        <td>{{doc.UploadedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+        <td>{{doc.UploadedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
         <td>{{doc.UploadedBy}}</td>
         <td>{{doc.Description}}</td>
         <td><button class="button button1" (click)="openImage(doc.PatientFileId)">{{ 'PATIENT_OVERVIEW.VIEW' | translate }}</button></td>
@@ -68,7 +68,7 @@ img:hover {
                   {{ 'PATIENT_OVERVIEW.PHONE_NO' | translate }}: &nbsp; <span> {{selectedPatient.PhoneNumber}} </span> </div>
               </div>
               <div class="row" style="margin-bottom: 10px;">
-                <div class="col-md-6"> <span *ngIf="selectedPatient.DateOfBirth"> {{ 'PATIENT_OVERVIEW.DOB' | translate }} : {{selectedPatient.DateOfBirth | DanpheDateTime:'format':'YYYY-MM-DD'}} </span>&nbsp;&nbsp;&nbsp; </div>
+                <div class="col-md-6"> <span *ngIf="selectedPatient.DateOfBirth"> {{ 'PATIENT_OVERVIEW.DOB' | translate }} : {{selectedPatient.DateOfBirth | DsfDateTime:'format':'YYYY-MM-DD'}} </span>&nbsp;&nbsp;&nbsp; </div>
                 <div class="col-md-6"> <span *ngIf="selectedPatient.Age">{{ 'PATIENT_OVERVIEW.AGE' | translate }} : {{selectedPatient.Age}} </span>&nbsp;&nbsp;&nbsp; <span> {{ 'PATIENT_OVERVIEW.GENDER' | translate }} : {{selectedPatient.Gender}} </span>&nbsp;&nbsp;&nbsp; </div>
               </div>
               <hr />

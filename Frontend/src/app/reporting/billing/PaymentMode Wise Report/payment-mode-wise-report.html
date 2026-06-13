@@ -58,7 +58,7 @@
                         <label class="control-label col-md-2">User<b style="float:right;">:</b></label>
                         <div class="col-md-7">
 
-                            <input danphe-auto-complete class="form-control" [(ngModel)]="selUser" [source]="userList"
+                            <input dsf-auto-complete class="form-control" [(ngModel)]="selUser" [source]="userList"
                                 [list-formatter]="UserListFormatter" placeholder="Enter User Name"
                                 display-property-name="EmployeeName" value-property-name="EmployeeId"
                                 onclick="this.select();" [ngModelOptions]="{standalone: true}"
@@ -72,10 +72,10 @@
 
     <div class="row">
         <div class="col-lg-12 col-sm-12" *ngIf="showReport">
-            <danphe-grid [grid-colDefaults]="DigitalPaymentReportColumns" [grid-data]="reportData"
+            <dsf-grid [grid-colDefaults]="DigitalPaymentReportColumns" [grid-data]="reportData"
                 [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"
                 [NepaliDateInGridParams]="NepaliDateInGridSettings" [report-for]="'billing'"
-                [grid-date-range]="dateRange" [grid-footer-content]="footerContent"> </danphe-grid>
+                [grid-date-range]="dateRange" [grid-footer-content]="footerContent"> </dsf-grid>
         </div>
     </div>
     <div class="row" style="padding-bottom: 20px;">

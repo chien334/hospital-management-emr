@@ -57,7 +57,7 @@
                         <label class="control-label col-md-5">{{ 'PHARMACY.USER' | translate }}<b style="float:right;">:</b></label>
                         <div class="col-md-7">
 
-                            <input danphe-auto-complete class="form-control" [(ngModel)]="selUser" [source]="userList" [list-formatter]="UserListFormatter" [placeholder]="'PHARMACY.ENTER_USER_NAME' | translate" display-property-name="EmployeeName" value-property-name="EmployeeId" onclick="this.select();" [ngModelOptions]="{standalone: true}" (focusout)="userChanged()" />
+                            <input dsf-auto-complete class="form-control" [(ngModel)]="selUser" [source]="userList" [list-formatter]="UserListFormatter" [placeholder]="'PHARMACY.ENTER_USER_NAME' | translate" display-property-name="EmployeeName" value-property-name="EmployeeId" onclick="this.select();" [ngModelOptions]="{standalone: true}" (focusout)="userChanged()" />
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-6">{{ 'PHARMACY.DISPENSARY' | translate }}<b style="float:right;">:</b></label>
                         <div class="col-md-6">
-                            <input danphe-auto-complete [(ngModel)]="selectedDispensary" class="form-control" [list-formatter]="DispensaryListFormatter" [source]="dispensaryList" [placeholder]="'PHARMACY.ENTER_DISPENSARY_NAME' | translate" display-property-name="Name" value-property-name=null onclick="this.select();" id="dispensary" (valueChanged)="OnDispensaryChange()" max-num-list="10" [ngModelOptions]="{standalone: true}" />
+                            <input dsf-auto-complete [(ngModel)]="selectedDispensary" class="form-control" [list-formatter]="DispensaryListFormatter" [source]="dispensaryList" [placeholder]="'PHARMACY.ENTER_DISPENSARY_NAME' | translate" display-property-name="Name" value-property-name=null onclick="this.select();" id="dispensary" (valueChanged)="OnDispensaryChange()" max-num-list="10" [ngModelOptions]="{standalone: true}" />
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
 
     <div class="row">
         <div class="col-lg-12 col-sm-12" *ngIf="showReport">
-            <danphe-grid [grid-colDefaults]="MultiplePaymentModeReportColumns" [grid-data]="reportData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings" [report-for]="'pharmacy'" [grid-date-range]="dateRange" [grid-footer-content]="footerContent" [show-header]="true"> </danphe-grid>
+            <dsf-grid [grid-colDefaults]="MultiplePaymentModeReportColumns" [grid-data]="reportData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings" [report-for]="'pharmacy'" [grid-date-range]="dateRange" [grid-footer-content]="footerContent" [show-header]="true"> </dsf-grid>
         </div>
     </div>
     <div class="row" style="padding-bottom: 20px;">

@@ -1,5 +1,5 @@
 /*
-  Note: This is a replica of ServerDto: ServiceItemDetails_DTO -> inside DanpheEMR.Services.Billing.DTO
+  Note: This is a replica of ServerDto: ServiceItemDetails_DTO -> inside DsfEMR.Services.Billing.DTO
 
   Created: 16Mar'23--Sud
 */

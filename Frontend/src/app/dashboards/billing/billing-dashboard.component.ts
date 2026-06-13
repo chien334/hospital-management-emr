@@ -1,10 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core'
 import * as moment from 'moment/moment';
 import { DLService } from "../../shared/dl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { Chart } from 'chart.js';
 import { BillingBLService } from '../../billing/shared/billing.bl.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DateTimeFormat } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DateTimeFormat } from '../../shared/shared-enums';
 
 
 @Component({
@@ -79,8 +79,8 @@ export class BillingDashboardComponent {
   }
 
   loadBillingDashboardMembershipWisePatientInvoiceCount(): void {
-    this.billingBlService.GetBillingDashboardMembershipWisePatientInvoice(this.fromDate, this.toDate).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.billingBlService.GetBillingDashboardMembershipWisePatientInvoice(this.fromDate, this.toDate).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.membershipWisePatientInvoiceCount = res.Results;
         this.generateRandomColors(this.membershipWisePatientInvoiceCount);
         this.createMembershipWisePatientPie();
@@ -91,8 +91,8 @@ export class BillingDashboardComponent {
   }
 
   loadBillingDashboardRankWisePatientInvoiceCount(): void {
-    this.billingBlService.GetBillingDashboardRankWisePatientInvoice(this.fromDate, this.toDate).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.billingBlService.GetBillingDashboardRankWisePatientInvoice(this.fromDate, this.toDate).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.rankWisePatientInvoiceCount = res.Results;
         this.createRankWisePatientInvoiceBarChart();
       }

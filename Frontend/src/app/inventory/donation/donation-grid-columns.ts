@@ -1,5 +1,5 @@
 
-import { DanpheDateTime } from '../../shared/pipes/danphe-datetime.pipe';
+import { DsfDateTime } from '../../shared/pipes/dsf-datetime.pipe';
 
 export default class DonationGridColumnSettings {
   static DonationList = [
@@ -21,12 +21,12 @@ export default class DonationGridColumnSettings {
   ];
   static DonationActionList() {
     let template = ` 
-                <a danphe-grid-action="view" class="grid-action">
+                <a dsf-grid-action="view" class="grid-action">
                   View
                 </a>`;
     return template;
   }
-  static datTime: DanpheDateTime = new DanpheDateTime();
+  static datTime: DsfDateTime = new DsfDateTime();
 
 
 

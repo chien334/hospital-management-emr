@@ -1,8 +1,8 @@
 ﻿<input type="button" class="btn btn-primary" (click)="AddCompany()" [value]="'PHARMACY.ADD_COMPANY' | translate" />
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="companyGridColumns" [grid-data]="companyList"
-      (grid-actions)="CompanyGridActions($event)"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="companyGridColumns" [grid-data]="companyList"
+      (grid-actions)="CompanyGridActions($event)"> </dsf-grid>
   </div>
 </div>
 <!--Model Box Starting Here-->

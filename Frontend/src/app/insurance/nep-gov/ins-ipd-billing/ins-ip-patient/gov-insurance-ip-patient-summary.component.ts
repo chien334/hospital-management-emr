@@ -11,9 +11,9 @@ import { SecurityService } from '../../../../security/shared/security.service';
 import { CreditOrganization } from '../../../../settings-new/shared/creditOrganization.model';
 import { GeneralFieldLabels } from '../../../../shared/DTOs/general-field-label.dto';
 import { NepaliCalendarService } from "../../../../shared/calendar/np/nepali-calendar.service";
-import { CancelStatusHoldingModel, DanpheHTTPResponse } from '../../../../shared/common-models';
+import { CancelStatusHoldingModel, DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from '../../../../shared/common.functions';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { DLService } from '../../../../shared/dl.service';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { ENUM_InvoiceType, ENUM_OrderStatus } from '../../../../shared/shared-enums';
@@ -244,7 +244,7 @@ export class GovInsurancePatientIpSummaryComponent {
   LoadPatientBillingSummary(patientId: number, patientVisitId: number) {
     this.dlService.Read("/api/GovInsurance/PatientPendingItems?patientId=" + this.patientId + "&ipVisitId=" + this.ipVisitId)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK" && res.Results) {
           this.admissionInfo = res.Results.AdmissionInfo;
           //console.log(this.admissionInfo)
@@ -301,7 +301,7 @@ export class GovInsurancePatientIpSummaryComponent {
     this.showCreditBillAlert = false;
     this.dlService.Read("/api/GovInsurance/CheckCreditBill?patientId=" + this.patientId)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.hasPreviousCredit = res.Results;
         }
@@ -675,7 +675,7 @@ export class GovInsurancePatientIpSummaryComponent {
   UpdateBedDuration() {
     if (this.autoBedBillParam.DoAutoAddBedItem) {
       this.insuranceBlService.UpdateBedDurationBillTxn(this.ipVisitId)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             console.log("ADT Bill Items Quantity updated.");
             this.LoadPatientBillingSummary(this.patientId, this.ipVisitId);
@@ -691,7 +691,7 @@ export class GovInsurancePatientIpSummaryComponent {
   PostBillingTransaction() {
     this.MapBillingTransaction();
     this.insuranceBlService.PostIpBillingTransaction(this.billingTransaction)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.bil_BilTxnId = this.billingTransaction.BillingTransactionId = res.Results.BillingTransactionId;
           //this.DischargePatient();
@@ -723,7 +723,7 @@ export class GovInsurancePatientIpSummaryComponent {
     this.dischargeDetail.PatientId = this.patientId;
     this.dischargeDetail.ProcedureType = this.admissionInfo.ProcedureType;
     this.insuranceBlService.DischargePatient(this.dischargeDetail)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
 
           this.bil_InvoiceNo = invoiceNo;
@@ -1012,7 +1012,7 @@ export class GovInsurancePatientIpSummaryComponent {
         "DischargeFrom": "insurance"
       };
       this.insuranceBlService.DischargePatientWithZeroItem(data)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.showCancelAdmissionAlert = false;
             this.loading = false;

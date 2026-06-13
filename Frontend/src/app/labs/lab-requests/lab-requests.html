@@ -22,7 +22,7 @@ table.billing-table tr td {
             <div class="col-md-12" *ngIf="showpatientsearch">
               <label class="control-label col-md-2">{{ 'LABS.SEARCH_PATIENT_2' | translate }}<b class="color-red"> *</b><b style="float:right;">:</b></label>
               <div class="col-md-4">
-                <input danphe-auto-complete class="form-control"
+                <input dsf-auto-complete class="form-control"
                                    [(ngModel)]="selectedPatient"
                                    [source]="inpatientList"
                                    [list-formatter]="patientListFormatter"
@@ -84,7 +84,7 @@ table.billing-table tr td {
                       <td style="padding: 7px 0px 0px 0px;"><label class="form-control cstm-form-control" style="text-align:center">{{i+1}}</label></td>
                       <td style="padding: 7px 0px 0px 0px;"><a class="btn btn-success delBtn" (click)="AddNewBillTxnItemRow(i)" [title]="'LABS.CLICK_TO_ADD_NEW_ITEM' | translate"><i class="fa fa-plus"></i></a></td>
                       <td><form [formGroup]="row.BillingTransactionItemValidator" class="bill-itemname">
-                          <input (keyup.enter)="AddNewBillTxnItemRow(i)" class="form-control cstm-form-control" danphe-auto-complete title="{{row.ItemName}}" autocomplete="off"
+                          <input (keyup.enter)="AddNewBillTxnItemRow(i)" class="form-control cstm-form-control" dsf-auto-complete title="{{row.ItemName}}" autocomplete="off"
                                                        formControlName="ItemName"
                                                        [ngClass]="{'border-red': row.IsDirty('ItemName') && !row.IsValidCheck('ItemName','required'), 'border-red': !row.IsValidSelItemName}"
                                                        [(ngModel)]="selectedItems[i]"

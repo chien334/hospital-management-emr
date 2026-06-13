@@ -16,7 +16,7 @@ import { LabsDLService } from '../labs/shared/labs.dl.service';
 import { PatientsBLService } from '../patients/shared/patients.bl.service';
 import { PatientsDLService } from '../patients/shared/patients.dl.service';
 import { ImagingDLService } from '../radiology/shared/imaging.dl.service';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { SharedModule } from '../shared/shared.module';
 import { AdmissionReserveComponent } from './admission/adm-reserve/admission-reserve.component';
 import { AdmissionSlipComponent } from './admission/admission-slip/admission-slip.component';
@@ -43,7 +43,7 @@ import { TransferComponent } from './transfer/transfer.component';
         ReactiveFormsModule,
         FormsModule, SharedModule,
         DischargeSummaryModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         RegistrationSchemeSharedModule,
         BillingSharedModule], providers: [
         ADT_DLService,

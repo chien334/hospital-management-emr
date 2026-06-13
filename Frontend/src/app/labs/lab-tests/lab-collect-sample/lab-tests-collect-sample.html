@@ -50,7 +50,7 @@
           </thead>
           <tbody>
             <tr class="align-vertical-middle" *ngFor="let requ of patientTestCSVs;let i = index">
-              <td *ngIf="!IsLocalDate">{{requ.OrderDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
+              <td *ngIf="!IsLocalDate">{{requ.OrderDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
               <td *ngIf="IsLocalDate">{{requ.OrderDateTime | nepaliDate:'format':'YYYY-MM-DD hh:mm A'}}</td>
               <td>{{requ.PrescriberName}}</td>
               <!--below td is for insurance flag-->
@@ -289,8 +289,8 @@
           </div>
           <div class="modelbox-body">
             <div class="datepicker-holder">
-              <danphe-date-picker [(ngModel)]="sampleCreatedOn" ngDefaultControl [CalendarTypes]="'np'">
-              </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="sampleCreatedOn" ngDefaultControl [CalendarTypes]="'np'">
+              </dsf-date-picker>
             </div>
           </div>
           <div class="modelbox-footer">

@@ -7,7 +7,7 @@ import { CreditOrganization } from '../../pharmacy/shared/pharmacy-credit-organi
 import { PharmacyBLService } from '../../pharmacy/shared/pharmacy.bl.service';
 import { PHRMStoreModel } from '../../pharmacy/shared/phrm-store.model';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { DispensaryService } from '../shared/dispensary.service';
 
@@ -74,7 +74,7 @@ export class DispensaryMainComponent implements OnInit {
   //getting credit organization list and set to the global variable.
   public GetOrganizationList() {
     this.billingBlService.GetOrganizationList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == 'OK') {
           console.log("CreditOrganization list are loaded successfully (billing-main).");
           this.billingService.SetAllCreditOrgList(res.Results);

@@ -5,13 +5,13 @@ import { Visit } from '../../../appointments/shared/visit.model';
 import { Patient } from "../../../patients/shared/patient.model";
 import { PatientService } from "../../../patients/shared/patient.service";
 import * as moment from 'moment/moment';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { VisitBLService } from "../../../appointments/shared/visit.bl.service";
 import { CoreService } from "../../../core/shared/core.service";
 import { Department } from "../../../settings-new/shared/department.model";
 import { NotesModel } from "../../shared/notes.model";
 import { PatientClinicalDetail } from "../../../clinical/shared/patient-clinical-details.vmodel";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 import { ICD10 } from "../../../clinical/shared/icd10.model";
 import { NoteTemplateBLService } from "../../shared/note-template.bl.service";
 import { AssessmentAndPlanModel, DiagnosisOrderVM } from "../../shared/assessment-and-plan.model";
@@ -84,7 +84,7 @@ export class EmergencyNoteComponent {
 
   getDepts() {
     this.visitBLService.GetDepartment()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.ApptApplicableDepartmentList = res.Results;
           this.visitService.ApptApplicableDepartmentList = this.coreService.Masters.Departments.filter(d => d.IsAppointmentApplicable == true && d.IsActive == true).map(d => {
@@ -99,7 +99,7 @@ export class EmergencyNoteComponent {
   }
 
   public GetICDList() {
-    this.ICD10List = DanpheCache.GetData(MasterType.ICD, null);
+    this.ICD10List = DsfCache.GetData(MasterType.ICD, null);
     //this.problemsBLService.GetICDList()
     //  .subscribe(res => {
     //    if (res.Status == "OK") {

@@ -4,10 +4,10 @@
      (click)="showDeathRecordWindow= true"><span
         class="glyphicon glyphicon-plus"> </span> {{ 'MEDICAL_RECORDS.ADD_DEATH_CERTIFICATE' | translate }}</a>
     <p>{{ 'MEDICAL_RECORDS.FILTER_BY_DEATH_DATE' | translate }}</p>
-    <danphe-grid [grid-colDefaults]="gridColumns" [grid-data]="deathList" (grid-actions)="GridActions($event)"
+    <dsf-grid [grid-colDefaults]="gridColumns" [grid-data]="deathList" (grid-actions)="GridActions($event)"
       [rangeType]="dateRange" (onDateChange)="onDateChange($event)" [show-CustomDate]="true"
       [NepaliDateInGridParams]="NepaliDateInGridSettings" [show-print-button]="false">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 

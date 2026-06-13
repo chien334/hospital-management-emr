@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { UntypedFormGroup } from "@angular/forms";
 import { AdtBedFeatureSchemePriceCategoryMap_DTO } from "../../../adt/shared/DTOs/adt-bedfeature-scheme-pricecategory-map.dto";
 import { BedFeature } from "../../../adt/shared/bedfeature.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { BillingSchemeModel } from "../../shared/bill-scheme.model";
 import { PriceCategory } from "../../shared/price.category.model";
 import { SettingsBLService } from "../../shared/settings.bl.service";
@@ -69,8 +69,8 @@ export class BedFeatureSchemePriceCategoryAddComponent {
     GetPriceCategories() {
         this.settingsBLService.GetPriceCategory()
             .subscribe(
-                (res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                (res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.PriceCategoryList = res.Results
                     }
                     else {
@@ -200,7 +200,7 @@ export class BedFeatureSchemePriceCategoryAddComponent {
             this.settingsBLService.UpdateBedFeatureSchemePriceCategory(this.BedFeatureSchemePriceCategoryToUpdate)
                 .finally(() => this.loading = false)
                 .subscribe(res => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Updated Successfully']);
                         this.Close();
                     } else {
@@ -240,7 +240,7 @@ export class BedFeatureSchemePriceCategoryAddComponent {
         });
         this.settingsBLService.SaveBedFeatureSchemePriceCategory(this.BedFeatureSchemePriceCategoryList).finally(() => this.loading = false)
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Saved Successfully']);
                     this.Close();
 

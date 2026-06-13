@@ -51,27 +51,27 @@ export class GovINSGridColumnSettings {
     let templateHtml = "";
     let patient = params.data;
     templateHtml += `
-             <a danphe-grid-action="insurance-billing" class="grid-action">Insurance Billing</a>
-             <a danphe-grid-action="new-visit" class="grid-action">New Visit</a> 
+             <a dsf-grid-action="insurance-billing" class="grid-action">Insurance Billing</a>
+             <a dsf-grid-action="new-visit" class="grid-action">New Visit</a> 
              <div class="dropdown" style="display:inline-block;">
                  <button class="dropdown-toggle grid-btnCstm" type="button" data-toggle="dropdown">...
                  <span class="caret"></span></button>
                  <ul class="dropdown-menu grid-ddlCstm">
-                   <li><a danphe-grid-action="update-ins-balance">Update Balance</a></li>
-                   <li><a danphe-grid-action="balance-history">Ins Balance History</a> </li>
+                   <li><a dsf-grid-action="update-ins-balance">Update Balance</a></li>
+                   <li><a dsf-grid-action="balance-history">Ins Balance History</a> </li>
                  </ul>
                 </div>`;
 
 
-    // let template = `<a danphe-grid-action="edit" class="grid-action">Edit</a>
-    //          <a danphe-grid-action="showHistory" class="grid-action">History</a>
+    // let template = `<a dsf-grid-action="edit" class="grid-action">Edit</a>
+    //          <a dsf-grid-action="showHistory" class="grid-action">History</a>
     //             <div class="dropdown" style="display:inline-block;">
     //              <button class="dropdown-toggle grid-btnCstm" type="button" data-toggle="dropdown">...
     //              <span class="caret"></span></button>
     //              <ul class="dropdown-menu grid-ddlCstm">
-    //                <li><a danphe-grid-action="uploadfiles" >Upload Files</a></li>
-    //                <li><a danphe-grid-action="showHealthCard" >Health Card</a></li>
-    //                <li><a danphe-grid-action="showNeighbourCard" >Visitor Card</a></li>
+    //                <li><a dsf-grid-action="uploadfiles" >Upload Files</a></li>
+    //                <li><a dsf-grid-action="showHealthCard" >Health Card</a></li>
+    //                <li><a dsf-grid-action="showNeighbourCard" >Visitor Card</a></li>
     //              </ul>
     //             </div>`,
 
@@ -151,11 +151,11 @@ export class GovINSGridColumnSettings {
 
       if (moment(todaysdate).diff(visitdate) > 0) {
 
-        templateHtml += `<a danphe-grid-action="followup" class="grid-action">
+        templateHtml += `<a dsf-grid-action="followup" class="grid-action">
                                 followup </a>`;
       }
     }
-    templateHtml += `<a danphe-grid-action="printsticker" class="grid-action" title="Print OPD-Sticker">
+    templateHtml += `<a dsf-grid-action="printsticker" class="grid-action" title="Print OPD-Sticker">
                                <i class="glyphicon glyphicon-print" ></i>&nbsp;sticker </a>`;
 
     return templateHtml;
@@ -176,7 +176,7 @@ export class GovINSGridColumnSettings {
       field: "",
       width: 70,
       template:
-        `<a danphe-grid-action="edit" class="grid-action fa fa-pencil" title="click to edit this item">
+        `<a dsf-grid-action="edit" class="grid-action fa fa-pencil" title="click to edit this item">
                Edit
              </a>
           `,

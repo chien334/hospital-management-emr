@@ -40,7 +40,7 @@
                       </div>
                       <div class="right">
                         <p class="no-margin" style="text-align:right">Date: {{receipt.BillingDate |
-                          DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</p>
+                          DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</p>
                       </div>
                     </div>
                     <div class="clear"></div>
@@ -54,7 +54,7 @@
                       </div>
                       <div class="right" style="width:31%">
                         <p class="no-margin" style="text-align:right"> Age/Sex : {{receipt.Patient.DateOfBirth |
-                          DanpheDateTime:'age' }}/{{receipt.Patient.Gender}}</p>
+                          DsfDateTime:'age' }}/{{receipt.Patient.Gender}}</p>
                       </div>
                     </div>
                     <div class="col-md-12" style="padding:0px;">

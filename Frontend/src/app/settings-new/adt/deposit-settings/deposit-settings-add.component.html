@@ -26,7 +26,7 @@
                         <label class="control-label col-md-4">{{ 'SETTINGS_NEW.BED_FEATURE' | translate }} <sup>*</sup><b>:</b></label>
                         <div class="col-md-8">
                           <input style="width: 100%;"
-                                 danphe-auto-complete
+                                 dsf-auto-complete
                                  [source]="bedFeatureList"
                                  [(ngModel)]="selectedBedFeature"
                                  [placeholder]="'SETTINGS_NEW.SELECT_BED_FEATURE' | translate"
@@ -48,7 +48,7 @@
                             class="form-horizontal hm-form">
                         <label class="control-label col-md-4">{{ 'COMMON.SCHEME' | translate }} <sup>*</sup><b>:</b></label>
                         <div class="col-md-8">
-                          <input style="width: 100%;" danphe-auto-complete [source]="BillSchemeList"
+                          <input style="width: 100%;" dsf-auto-complete [source]="BillSchemeList"
                                  [(ngModel)]="selectedScheme"
                                  [placeholder]="'SETTINGS_NEW.SELECT_SCHEME' | translate" max-num-list="8" min-chars="0"
                                  display-property-name="SchemeName" [list-formatter]="SchemeFormatter"
@@ -69,7 +69,7 @@
                             class="form-horizontal hm-form">
                         <label class="control-label col-md-4">{{ 'SETTINGS_NEW.DEPOSIT_HEAD' | translate }} <sup>*</sup><b>:</b></label>
                         <div class="col-md-8">
-                          <input style="width: 100%;" danphe-auto-complete [source]="DepositHeadList"
+                          <input style="width: 100%;" dsf-auto-complete [source]="DepositHeadList"
                                  [(ngModel)]="selectedDepositHead"
                                  [placeholder]="'SETTINGS_NEW.DEPOSIT_HEAD_NAME' | translate" max-num-list="8" min-chars="0"
                                  display-property-name="DepositHeadName" [list-formatter]="DepositHeadFormater"

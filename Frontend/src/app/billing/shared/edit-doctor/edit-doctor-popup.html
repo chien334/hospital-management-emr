@@ -4,7 +4,7 @@
 }
 </style>
 
-<div class="popup-static portlet box portlet-fullscreen inv_modal danphe-refer-visit">
+<div class="popup-static portlet box portlet-fullscreen inv_modal dsf-refer-visit">
   <div class="portlet-body form"><!--*ngIf="showEditDoctorPage"-->
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
@@ -39,7 +39,7 @@
             <tr class="mg">
               <td> Change Performer Doctor : </td>
               <td><div style="width:200px;">
-                  <input danphe-auto-complete
+                  <input dsf-auto-complete
                  [(ngModel)]="newPerformer"
                  [list-formatter]="DoctorListFormatter"
                  [source]="doctorList"
@@ -53,7 +53,7 @@
             <tr>
               <td> Change Prescriber Doctor: </td>
               <td><div style="width:200px;">
-                  <input danphe-auto-complete
+                  <input dsf-auto-complete
                  [(ngModel)]="newPrescriber"
                  [list-formatter]="DoctorListFormatter"
                  [source]="doctorList"

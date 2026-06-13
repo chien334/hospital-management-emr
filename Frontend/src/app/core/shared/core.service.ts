@@ -6,17 +6,17 @@ import { GovernmentItems } from "../../../app/labs/shared/lab-government-items.m
 import { BillingMembershipTypeVsPriceCategoryMapping } from "../../billing/shared/billing-membershipTypeVsPriceCategoryMapping.model";
 import { Employee } from "../../employee/shared/employee.model";
 import { LabTypesModel } from "../../labs/lab-selection/lab-type-selection.component";
-import { DanpheRoute } from "../../security/shared/danphe-route.model";
+import { DsfRoute } from "../../security/shared/dsf-route.model";
 import { BillingScheme_DTO } from "../../settings-new/billing/shared/dto/billing-scheme.dto";
 import { PrinterSettingsModel } from "../../settings-new/printers/printer-settings.model";
 import { CFGParameterModel } from "../../settings-new/shared/cfg-parameter.model";
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
 import { CodeDetailsModel } from "../../shared/code-details.model";
 import { CommonMaster } from "../../shared/common-masters.model";
-import { DanpheAppSettings, DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfAppSettings, DsfHTTPResponse } from "../../shared/common-models";
 import { GeneralFieldLabels } from "../../shared/DTOs/general-field-label.dto";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses } from "../../shared/shared-enums";
 import { CoreBLService } from "./core.bl.service";
 
 
@@ -32,7 +32,7 @@ export class CoreService {
   public LookUps: Array<LookupsModel> = new Array<LookupsModel>();
   public loading: boolean = false;
 
-  public AppSettings: DanpheAppSettings = null; //sud:25Dec'18
+  public AppSettings: DsfAppSettings = null; //sud:25Dec'18
   public CodeDetails: Array<CodeDetailsModel> = new Array<CodeDetailsModel>(); //for accounting codes..
   public accFiscalYearList: Array<any> = new Array<any>();
   //sud:28Jan'20 // to cache referrer list for External-Referral component.
@@ -42,7 +42,7 @@ export class CoreService {
   //TAX PARAMETER
   public taxLabel: string = "";
   public currencyUnit: string = "";
-  public currSelectedSecRoute: DanpheRoute = null;
+  public currSelectedSecRoute: DsfRoute = null;
   accountingSettingsBLService: any;
   public DatePreference: string = "np";
   public labTypes: Array<LabTypesModel>;
@@ -62,14 +62,14 @@ export class CoreService {
   public paymentPages: Array<any>;
   public membershipTypeVsPriceCategoryMapping = new Array<BillingMembershipTypeVsPriceCategoryMapping>();
 
-  //START: Danphe App Level Configuration/preference variables here
+  //START: Dsf App Level Configuration/preference variables here
   //By : NageshBB/MenkaChaugule On: 29 July 2021
   //Description: Please add all variable for project level configuration or preferences
   //We will use variables for whole project */
   public showCalendarADBSButton: boolean = true;
   public showLocalNameFormControl: boolean = true;
   public showCountryMapOnLandingPage: boolean = true;
-  //END: Danphe App Level Configuration/preference variables here
+  //END: Dsf App Level Configuration/preference variables here
 
   public allGovItems: Array<GovernmentItems> = new Array<GovernmentItems>();
   public SameDependentIdApplicableCount: number = 0;
@@ -2342,8 +2342,8 @@ export class CoreService {
   }
 
   public GetMembershipTypeVsPriceCategoryMapping() {
-    this.coreBlService.GetMembershipTypeVsPriceCategoryMapping().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.coreBlService.GetMembershipTypeVsPriceCategoryMapping().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.membershipTypeVsPriceCategoryMapping = res.Results;
       }
     });
@@ -2463,8 +2463,8 @@ export class CoreService {
   }
 
   public GetSchemeList(billingContext: string) {
-    this.coreBlService.GetBillingSchemesDtoList(billingContext).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.coreBlService.GetBillingSchemesDtoList(billingContext).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.setSchemeList(res.Results);
       }
     });

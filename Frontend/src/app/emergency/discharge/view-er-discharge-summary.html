@@ -188,7 +188,7 @@
                             <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='discharged'">{{ 'EMERGENCY.DISCHARGE' | translate }}</span>
                             <span *ngIf="ERpatientSummary.EmergencyPatient.FinalizedStatus=='death'">{{ 'EMERGENCY.DEATH' | translate }}</span>
                         </td>
-                        <td colspan="1">{{ 'COMMON.TIME' | translate }}: {{DischargeSummary.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
+                        <td colspan="1">{{ 'COMMON.TIME' | translate }}: {{DischargeSummary.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
                     </tr>
                     <tr class="equal-width">
                         <td colspan="1">{{ 'EMERGENCY.DOCTOR_NAME' | translate }}:&nbsp; {{DischargeSummary.DoctorName}}</td>

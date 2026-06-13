@@ -1,7 +1,7 @@
 <input type="button" class="btn btn-primary" (click)="AddCategory()" [value]="'PHARMACY.ADD_SALES_CATEGORY' | translate" />
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="salesDetailsGridColumns" [grid-data]="salescategory" (grid-actions)="SalesDetailsGridActions($event)"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="salesDetailsGridColumns" [grid-data]="salescategory" (grid-actions)="SalesDetailsGridActions($event)"> </dsf-grid>
   </div>
 </div>
 <div class="popup-static portlet box portlet-fullscreen inv_modal" *ngIf="showCategoryAddPage">

@@ -4,7 +4,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   selector: 'app-print-page',
   template: ''
 })
-export class DanphePrintComponent implements OnInit {
+export class DsfPrintComponent implements OnInit {
 
   public printData: any;
   constructor() { }
@@ -32,7 +32,7 @@ export class DanphePrintComponent implements OnInit {
     let documentContent = "<html><head>";
     documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/PrintStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css" />';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css" />';
     documentContent += '</head>';
     documentContent += '<body onload="window.print()">' + contents + '</body></html>'
     var htmlToPrint = '' + '<style type="text/css">' + '.table_data {' + 'border-spacing:0px' + '}' + '</style>';

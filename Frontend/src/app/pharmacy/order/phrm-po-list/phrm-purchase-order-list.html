@@ -159,7 +159,7 @@
         </div>
       </div>
     </div>
-    <danphe-grid [grid-colDefaults]="PHRMpurchaseOrdersGridColumns" [grid-data]="PHRMPurchaseOrderList" [rangeType]="dateRange" [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings" (onDateChange)="onDateChange($event)" (grid-actions)="PHRMPurchaseOrderGridAction($event)"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="PHRMpurchaseOrdersGridColumns" [grid-data]="PHRMPurchaseOrderList" [rangeType]="dateRange" [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings" (onDateChange)="onDateChange($event)" (grid-actions)="PHRMPurchaseOrderGridAction($event)"> </dsf-grid>
   </div>
 </div>
 <div class="popup-static portlet box portlet-fullscreen custom_modal" *ngIf="showPurchaseOrderAddEditPage">

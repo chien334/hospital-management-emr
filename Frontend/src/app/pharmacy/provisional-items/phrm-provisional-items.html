@@ -50,7 +50,7 @@
                                    <tr *ngFor="let row of PHRMProItemsList">
                                        <td title={{row.ItemName}}>
 
-                                           <input danphe-auto-complete class="form-control"
+                                           <input dsf-auto-complete class="form-control"
                                                   [(ngModel)]="row.ItemName"
                                                   [source]="row.ItemName"
                                                   [list-formatter]="myItemListFormatter"
@@ -67,7 +67,7 @@
                                                   disabled />
                                        </td>
                                        <td>
-                                           <input danphe-auto-complete class="form-control"
+                                           <input dsf-auto-complete class="form-control"
                                                   [(ngModel)]="row.Quantity"
                                                   [source]="row.Quantity"
                                                   value-property-name=null
@@ -98,8 +98,8 @@
 </div>
 
 <div *ngIf="showProItemList">
-    <danphe-grid [grid-colDefaults]="PHRMProvisionalItemsGridColumns"
+    <dsf-grid [grid-colDefaults]="PHRMProvisionalItemsGridColumns"
                                  [grid-data]="PHRMProvisionalItemsList"
                                  (grid-actions)="PHRMProvisionalItemsGridAction($event)">
-     </danphe-grid>
+     </dsf-grid>
 </div>

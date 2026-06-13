@@ -72,7 +72,7 @@
             Search Patients :
           </div>
           <div class="col-md-9">
-            <input danphe-auto-complete id="srch_PatientList" class="form-control searchtbx" [(ngModel)]="PatientObj"
+            <input dsf-auto-complete id="srch_PatientList" class="form-control searchtbx" [(ngModel)]="PatientObj"
                    [list-formatter]="patientListFormatter" [source]="patientSearchAsync.bind(this)"
                    [path-to-data]="'Results'" placeholder="Search by Patient No, {{GeneralFieldLabel.NSHINo}} No, Patient Name"
                    display-property-name="ShortName" value-property-name=null (ngModelChange)="patientInfoChanged()"
@@ -133,7 +133,7 @@
                       {{claim.ClaimCode}}
                     </td>
                     <td style="border: 1px solid #000;font-family: 'Verdana'; padding: 7px; font-size: 12px;">
-                      {{claim.ClaimCodeFirstGeneratedOn| DanpheDateTime:'format':'YYYY-MM-DD'}}&nbsp;
+                      {{claim.ClaimCodeFirstGeneratedOn| DsfDateTime:'format':'YYYY-MM-DD'}}&nbsp;
                       ({{claim.ClaimCodeFirstGeneratedOn| nepaliDate:'format':'YYYY-MM-DD'}} BS)</td>
                     <td style="border: 1px solid #000;font-family: 'Verdana'; padding: 7px; font-size: 12px;">
                       <button class="btn green btn-success" (click)="loadSingleClaimDetails(claim)"

@@ -342,7 +342,7 @@ export default class PHRMReportsGridColumns {
 
   ]
   static GetItemAction(params) {
-    return `<a danphe-grid-action="itemTxnDetail">
+    return `<a dsf-grid-action="itemTxnDetail">
                ${params.data.ItemName}
              </a>`;
   }
@@ -359,7 +359,7 @@ export default class PHRMReportsGridColumns {
     { headerName: "User", field: "UserName", width: 100 }
   ]
   static ItemTxnReferenceNoRenderer(params) {
-    return `<a danphe-grid-action="showPrintPopUp">
+    return `<a dsf-grid-action="showPrintPopUp">
                 ${params.data.ReferenceNoPrefix}${params.data.ReferencePrintNo ? params.data.ReferencePrintNo : ''}
             </a>`;
   };

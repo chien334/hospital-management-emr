@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 
 @Injectable()
 export class SterilizationEndpoint {
@@ -11,16 +11,16 @@ export class SterilizationEndpoint {
   constructor(private _http: HttpClient) {
     this.baseUrl = '/api/CSSDSterilization';
   }
-  getAllPendingCSSDTransactions(fromDate, toDate): Observable<DanpheHTTPResponse> {
+  getAllPendingCSSDTransactions(fromDate, toDate): Observable<DsfHTTPResponse> {
     return this._http.get<any>(`${this.baseUrl}/GetAllPendingCSSDTransactions?FromDate=${fromDate}&ToDate=${toDate}`);
   }
-  getAllFinalizedCSSDTransactions(fromDate, toDate): Observable<DanpheHTTPResponse> {
+  getAllFinalizedCSSDTransactions(fromDate, toDate): Observable<DsfHTTPResponse> {
     return this._http.get<any>(`${this.baseUrl}/GetAllFinalizedCSSDTransactions?FromDate=${fromDate}&ToDate=${toDate}`);
   }
-  disinfectCSSDItem(cssdTxnId, disinfectantName, disinfectionRemarks): Observable<DanpheHTTPResponse> {
+  disinfectCSSDItem(cssdTxnId, disinfectantName, disinfectionRemarks): Observable<DsfHTTPResponse> {
     return this._http.put<any>(`${this.baseUrl}/DisinfectCSSDItem?CssdTxnId=${cssdTxnId}&DisinfectantName=${disinfectantName}&DisinfectionRemarks=${disinfectionRemarks}`, this.option);
   }
-  dispatchCSSDItem(cssdTxnId, dispatchRemarks): Observable<DanpheHTTPResponse> {
+  dispatchCSSDItem(cssdTxnId, dispatchRemarks): Observable<DsfHTTPResponse> {
     return this._http.put<any>(`${this.baseUrl}/DispatchCSSDItem?CssdTxnId=${cssdTxnId}&DispatchRemarks=${dispatchRemarks}`, this.option);
   }
 

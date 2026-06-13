@@ -6,7 +6,7 @@
         <div class="row"><label class="control-label col-md-3">{{ 'WARD_SUPPLY.SELECT_ITEM' | translate }}<sup>*</sup><b style="float:right;">:</b></label>
         <div class="col-md-9">
           <div class="form-group">
-            <input danphe-auto-complete class="form-control"
+            <input dsf-auto-complete class="form-control"
                    [(ngModel)]="selectedItem"
                    [source]="itemList"
                    [list-formatter]="myItemListFormatter"
@@ -34,11 +34,11 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="WardStockReportColumns"
+      <dsf-grid [grid-colDefaults]="WardStockReportColumns"
                  [grid-data]="WardStockReportData"
                  [grid-exportOptions]="gridExportOptions"
                  [grid-showExportNew]="true"
-                 (grid-onExport)="OnGridExport($event)"> </danphe-grid>
+                 (grid-onExport)="OnGridExport($event)"> </dsf-grid>
     </div>
   </div>
   <div class="row">

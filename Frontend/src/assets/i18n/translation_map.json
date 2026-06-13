@@ -896,8 +896,8 @@
     "vietnamese": "Tuổi/Giới tính:{{allLabDataByBarCodeNumber.AgeSex}}"
   },
   "SAMPLECOLLECTION_DATE": {
-    "english": "SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}",
-    "vietnamese": "Ngày thu thập mẫu:{{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}"
+    "english": "SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DsfDateTime:'format':'YYYY-MM-DD'}}",
+    "vietnamese": "Ngày thu thập mẫu:{{allLabDataByBarCodeNumber.SampleCollectedOn  | DsfDateTime:'format':'YYYY-MM-DD'}}"
   },
   "BARCODENUMBER": {
     "english": "BarCodeNumber: {{allLabDataByBarCodeNumber.BarCodeNumber}}",
@@ -1183,9 +1183,9 @@
     "english": "Ward : {{patientService.globalPatient.WardName}}",
     "vietnamese": "Phường :{{patientService.globalPatient.WardName}}"
   },
-  "REQUESTED_ON_TESTREQUESTDATE_DANPHEDATETIMEFORMATY": {
-    "english": "Requested On: {{\n                  test.RequestDate |\n                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}",
-    "vietnamese": "Đã yêu cầu vào: {{\n                  test.RequestDate |\n                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}"
+  "REQUESTED_ON_TESTREQUESTDATE_DSFDATETIMEFORMATY": {
+    "english": "Requested On: {{\n                  test.RequestDate |\n                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}",
+    "vietnamese": "Đã yêu cầu vào: {{\n                  test.RequestDate |\n                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}"
   },
   "REPORT_TEMPLATE_1": {
     "english": "Report Template:",
@@ -1479,9 +1479,9 @@
     "english": "Collection Date",
     "vietnamese": "Ngày thu thập"
   },
-  "TEMPLATEREPORTLOOKUPSRECEIVINGDATE_DANPHEDATETIMEF": {
-    "english": ":\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            nepaliDate }}",
-    "vietnamese": ":\n                                                            {{templateReport.Lookups.ReceiveDate |\n                                                            DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceiveDate |\n                                                            nepaliNgày }}"
+  "TEMPLATEREPORTLOOKUPSRECEIVINGDATE_DSFDATETIMEF": {
+    "english": ":\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            nepaliDate }}",
+    "vietnamese": ":\n                                                            {{templateReport.Lookups.ReceiveDate |\n                                                            DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceiveDate |\n                                                            nepaliNgày }}"
   },
   "CLICK_TO_CHANGE_RUN_NUMBER": {
     "english": "Click to Change Run Number.",
@@ -1492,8 +1492,8 @@
     "vietnamese": "Ngày báo cáo"
   },
   "VERIFICATIONENABLED_TEMPLATEREPORTLOOKUPSVERIFIEDO": {
-    "english": ": {{verificationEnabled ?\n                                                            (templateReport.Lookups.VerifiedOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}",
-    "vietnamese": ": {{xác minhĐã bật ?\n                                                            (templateReport.Lookups. VerifyOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}"
+    "english": ": {{verificationEnabled ?\n                                                            (templateReport.Lookups.VerifiedOn | DsfDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}",
+    "vietnamese": ": {{xác minhĐã bật ?\n                                                            (templateReport.Lookups. VerifyOn | DsfDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}"
   },
   "PASSPORT_NUMBER": {
     "english": "PassPort Number",
@@ -1568,8 +1568,8 @@
     "vietnamese": "Bình luận:"
   },
   "PRINTED_BY_ON": {
-    "english": "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}",
-    "vietnamese": "Được in bởi:{{CreatedByUser.FullName}}trên{{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
+    "english": "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}",
+    "vietnamese": "Được in bởi:{{CreatedByUser.FullName}}trên{{CurrentDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
   },
   "UPDATE_SIGNATORIES": {
     "english": "Update Signatories {{ templateReport.ReportId ? '' : 'and Print'}}",
@@ -1615,13 +1615,13 @@
     "english": ":\n                            {{templateReport.Lookups.CountrySubDivisionName != null ?\n                            templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                            {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                            ',' : '' }}\n                            {{templateReport.Lookups.Address}}",
     "vietnamese": ":\n                            {{templateReport.Lookups.CountrySubDivisionName != null ?\n                            templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                            {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                            ',' : '' }}{{templateReport.Lookups.Address}}"
   },
-  "TEMPLATEREPORTLOOKUPSDOB_DANPHEDATETIMEAGE": {
-    "english": ":\n                              {{templateReport.Lookups.DOB |\n                              DanpheDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}",
-    "vietnamese": ":\n                              {{templateReport.Lookups.DOB |\n                              DanpheDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}"
+  "TEMPLATEREPORTLOOKUPSDOB_DSFDATETIMEAGE": {
+    "english": ":\n                              {{templateReport.Lookups.DOB |\n                              DsfDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}",
+    "vietnamese": ":\n                              {{templateReport.Lookups.DOB |\n                              DsfDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}"
   },
-  "TEMPLATEREPORTLOOKUPSRECEIVINGDATE_DANPHEDATETIMEF_1": {
-    "english": ":\n                              {{templateReport.Lookups.ReceivingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceivingDate |\n                              nepaliDate }}",
-    "vietnamese": ":\n                              {{templateReport.Lookups.ReceiveDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceiveDate |\n                              nepaliNgày }}"
+  "TEMPLATEREPORTLOOKUPSRECEIVINGDATE_DSFDATETIMEF_1": {
+    "english": ":\n                              {{templateReport.Lookups.ReceivingDate |\n                              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceivingDate |\n                              nepaliDate }}",
+    "vietnamese": ":\n                              {{templateReport.Lookups.ReceiveDate |\n                              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceiveDate |\n                              nepaliNgày }}"
   },
   "COLLECTION_SITE": {
     "english": "Collection Site",
@@ -1631,37 +1631,37 @@
     "english": "Testing Date",
     "vietnamese": "Ngày kiểm tra"
   },
-  "TEMPLATEREPORTLOOKUPSREPORTINGDATE_DANPHEDATETIMEF": {
-    "english": ":{{templateReport.Lookups.ReportingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliDate }}",
-    "vietnamese": ":{{templateReport.Lookups.ReportingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliNgày }}"
+  "TEMPLATEREPORTLOOKUPSREPORTINGDATE_DSFDATETIMEF": {
+    "english": ":{{templateReport.Lookups.ReportingDate |\n                              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliDate }}",
+    "vietnamese": ":{{templateReport.Lookups.ReportingDate |\n                              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliNgày }}"
   },
   "VERIFICATIONENABLED_TEMPLATEREPORTLOOKUPSVERIFIEDO_1": {
-    "english": ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                              (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliDate) }}",
-    "vietnamese": ":{{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'):\n                              (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliNgày) }}"
+    "english": ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                              (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliDate) }}",
+    "vietnamese": ":{{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'):\n                              (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliNgày) }}"
   },
   "TEMPLATEREPORTLOOKUPSCOUNTRYSUBDIVISIONNAME_NULL_T_2": {
     "english": ":\n                                {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                                ',' : '' }}\n                                {{templateReport.Lookups.Address}}",
     "vietnamese": ":\n                                {{templateReport.Lookups.CountrySubDivisionName != null ?\n                                templateReport.Lookups.CountrySubDivisionName + ',' : '' }}\n                                {{templateReport.Lookups.MunicipalityName != null? templateReport.Lookups.MunicipalityName +\n                                ',' : '' }}{{templateReport.Lookups.Address}}"
   },
-  "TEMPLATEREPORTLOOKUPSDOB_DANPHEDATETIMEAGE_1": {
-    "english": ":\n                                  {{templateReport.Lookups.DOB |\n                                  DanpheDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}",
-    "vietnamese": ":\n                                  {{templateReport.Lookups.DOB |\n                                  DanpheDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}"
+  "TEMPLATEREPORTLOOKUPSDOB_DSFDATETIMEAGE_1": {
+    "english": ":\n                                  {{templateReport.Lookups.DOB |\n                                  DsfDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}",
+    "vietnamese": ":\n                                  {{templateReport.Lookups.DOB |\n                                  DsfDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}"
   },
   "CONTACT": {
     "english": "Contact",
     "vietnamese": "Liên hệ"
   },
-  "TEMPLATEREPORTLOOKUPSRECEIVINGDATE_DANPHEDATETIMEF_2": {
-    "english": ":\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  nepaliDate }}",
-    "vietnamese": ":\n                                  {{templateReport.Lookups.ReceiveDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceiveDate |\n                                  nepaliNgày }}"
+  "TEMPLATEREPORTLOOKUPSRECEIVINGDATE_DSFDATETIMEF_2": {
+    "english": ":\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  nepaliDate }}",
+    "vietnamese": ":\n                                  {{templateReport.Lookups.ReceiveDate |\n                                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceiveDate |\n                                  nepaliNgày }}"
   },
-  "TEMPLATEREPORTLOOKUPSREPORTINGDATE_DANPHEDATETIMEF_1": {
-    "english": ":{{templateReport.Lookups.ReportingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliDate }}",
-    "vietnamese": ":{{templateReport.Lookups.ReportingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliNgày }}"
+  "TEMPLATEREPORTLOOKUPSREPORTINGDATE_DSFDATETIMEF_1": {
+    "english": ":{{templateReport.Lookups.ReportingDate |\n                                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliDate }}",
+    "vietnamese": ":{{templateReport.Lookups.ReportingDate |\n                                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliNgày }}"
   },
   "VERIFICATIONENABLED_TEMPLATEREPORTLOOKUPSVERIFIEDO_2": {
-    "english": ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                                  (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliDate) }}",
-    "vietnamese": ":{{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'):\n                                  (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliNgày) }}"
+    "english": ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                                  (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliDate) }}",
+    "vietnamese": ":{{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'):\n                                  (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ xác minhĐã bật ? (templateReport.Lookups. VerifyOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliNgày) }}"
   },
   "WARD_3": {
     "english": "Ward",
@@ -1675,9 +1675,9 @@
     "english": "Ref. Range",
     "vietnamese": "Tham chiếu Phạm vi"
   },
-  "PRINTED_BY_ON_CURRENTDATETIME_DANPHEDATETIMEFORMAT": {
-    "english": "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime |\n              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}",
-    "vietnamese": "Được in bởi:{{CreatedByUser.FullName}}vào {{CurrentDateTime |\n              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
+  "PRINTED_BY_ON_CURRENTDATETIME_DSFDATETIMEFORMAT": {
+    "english": "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime |\n              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}",
+    "vietnamese": "Được in bởi:{{CreatedByUser.FullName}}vào {{CurrentDateTime |\n              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
   },
   "IS_ALREADY_USED_FOR_PATIENT_4": {
     "english": "is already used\n                    for patient",
@@ -1767,9 +1767,9 @@
     "english": "Comp. Unit",
     "vietnamese": "Comp. Đơn vị"
   },
-  "DANPHE_COMPONENT": {
-    "english": "Danphe Component",
-    "vietnamese": "Hợp phần Danphe"
+  "DSF_COMPONENT": {
+    "english": "Dsf Component",
+    "vietnamese": "Hợp phần Dsf"
   },
   "MAP_TO": {
     "english": "Map To",

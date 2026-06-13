@@ -6,7 +6,7 @@ import { SecurityService } from '../../security/shared/security.service';
 import { NepaliCalendarService } from '../../shared/calendar/np/nepali-calendar.service';
 import { CodeDetailsModel } from '../../shared/code-details.model';
 import { CommonFunctions } from '../../shared/common.functions';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { ENUM_ACC_ReportName, ENUM_ACC_ReportStaticName, ENUM_DateTimeFormat } from '../../shared/shared-enums';
 import { AccCacheDataVM } from './acc-view-models';
@@ -17,7 +17,7 @@ export class AccountingService {
   public CodeData: Array<CodeDetailsModel> = new Array<CodeDetailsModel>();
   public VoucherNumber: string = null;
   public IsEditVoucher: boolean = false;
-  public accCacheData: AccCacheDataVM = new AccCacheDataVM();//mumbai-team-june2021-danphe-accounting-cache-change
+  public accCacheData: AccCacheDataVM = new AccCacheDataVM();//mumbai-team-june2021-dsf-accounting-cache-change
   public paramData = null;
   public paramExportToExcelData = null;
   public headerDetail: any;
@@ -46,9 +46,9 @@ export class AccountingService {
 
   }
 
-  public getnamebyCode(code) {//mumbai-team-june2021-danphe-accounting-cache-change
+  public getnamebyCode(code) {//mumbai-team-june2021-dsf-accounting-cache-change
     try {
-      var codeList = this.accCacheData.CodeDetails.filter(a => a.Code == code);//mumbai-team-june2021-danphe-accounting-cache-change
+      var codeList = this.accCacheData.CodeDetails.filter(a => a.Code == code);//mumbai-team-june2021-dsf-accounting-cache-change
       if (codeList.length > 0) {
         let name = codeList.find(a => a.Code == code).Name;
         let type = codeList.find(a => a.Code == code).Description;
@@ -87,38 +87,38 @@ export class AccountingService {
       throw Exception;
     }
 
-    // return (codeList.length > 0) ? codeList.find(a => a.Code == code).Name : "";//mumbai-team-june2021-danphe-accounting-cache-change
+    // return (codeList.length > 0) ? codeList.find(a => a.Code == code).Name : "";//mumbai-team-june2021-dsf-accounting-cache-change
   }
 
-  //mumbai-team-june2021-danphe-accounting-cache-change
-  public clearAccCacheDataFromDanpheCache() {
-    DanpheCache.clearDanpheCacheByType(MasterType.Ledgers);
-    DanpheCache.clearDanpheCacheByType(MasterType.VoucherHead);
-    DanpheCache.clearDanpheCacheByType(MasterType.VoucherType);
-    DanpheCache.clearDanpheCacheByType(MasterType.LedgerGroups);
-    DanpheCache.clearDanpheCacheByType(MasterType.CodeDetails);
-    DanpheCache.clearDanpheCacheByType(MasterType.PrimaryGroup);
-    DanpheCache.clearDanpheCacheByType(MasterType.COA);
-    DanpheCache.clearDanpheCacheByType(MasterType.LedgersAll);
-    DanpheCache.clearDanpheCacheByType(MasterType.SubLedgerAll);
-    DanpheCache.clearDanpheCacheByType(MasterType.CostCenters);
+  //mumbai-team-june2021-dsf-accounting-cache-change
+  public clearAccCacheDataFromDsfCache() {
+    DsfCache.clearDsfCacheByType(MasterType.Ledgers);
+    DsfCache.clearDsfCacheByType(MasterType.VoucherHead);
+    DsfCache.clearDsfCacheByType(MasterType.VoucherType);
+    DsfCache.clearDsfCacheByType(MasterType.LedgerGroups);
+    DsfCache.clearDsfCacheByType(MasterType.CodeDetails);
+    DsfCache.clearDsfCacheByType(MasterType.PrimaryGroup);
+    DsfCache.clearDsfCacheByType(MasterType.COA);
+    DsfCache.clearDsfCacheByType(MasterType.LedgersAll);
+    DsfCache.clearDsfCacheByType(MasterType.SubLedgerAll);
+    DsfCache.clearDsfCacheByType(MasterType.CostCenters);
   }
 
-  //mumbai-team-june2021-danphe-accounting-cache-change
+  //mumbai-team-june2021-dsf-accounting-cache-change
   public async getAccCacheData() {
     this.accCacheData = new AccCacheDataVM();
     this.accCacheData.FiscalYearList = this.securityService.AccHospitalInfo.FiscalYearList;
     this.accCacheData.Sections = this.securityService.AccHospitalInfo.SectionList;
-    this.accCacheData.Ledgers = await DanpheCache.GetAccCacheData(MasterType.Ledgers, null);
-    this.accCacheData.VoucherHead = await DanpheCache.GetAccCacheData(MasterType.VoucherHead, null);
-    this.accCacheData.VoucherType = await DanpheCache.GetAccCacheData(MasterType.VoucherType, null);
-    this.accCacheData.LedgerGroups = await DanpheCache.GetAccCacheData(MasterType.LedgerGroups, null);
-    this.accCacheData.CodeDetails = await DanpheCache.GetAccCacheData(MasterType.CodeDetails, null);
-    this.accCacheData.PrimaryGroup = await DanpheCache.GetAccCacheData(MasterType.PrimaryGroup, null);
-    this.accCacheData.COA = await DanpheCache.GetAccCacheData(MasterType.COA, null);
-    this.accCacheData.LedgersALL = await DanpheCache.GetAccCacheData(MasterType.LedgersAll, null);
-    this.accCacheData.SubLedgerAll = await DanpheCache.GetAccCacheData(MasterType.SubLedgerAll, null);
-    this.accCacheData.CostCenters = await DanpheCache.GetAccCacheData(MasterType.CostCenters, null);
+    this.accCacheData.Ledgers = await DsfCache.GetAccCacheData(MasterType.Ledgers, null);
+    this.accCacheData.VoucherHead = await DsfCache.GetAccCacheData(MasterType.VoucherHead, null);
+    this.accCacheData.VoucherType = await DsfCache.GetAccCacheData(MasterType.VoucherType, null);
+    this.accCacheData.LedgerGroups = await DsfCache.GetAccCacheData(MasterType.LedgerGroups, null);
+    this.accCacheData.CodeDetails = await DsfCache.GetAccCacheData(MasterType.CodeDetails, null);
+    this.accCacheData.PrimaryGroup = await DsfCache.GetAccCacheData(MasterType.PrimaryGroup, null);
+    this.accCacheData.COA = await DsfCache.GetAccCacheData(MasterType.COA, null);
+    this.accCacheData.LedgersALL = await DsfCache.GetAccCacheData(MasterType.LedgersAll, null);
+    this.accCacheData.SubLedgerAll = await DsfCache.GetAccCacheData(MasterType.SubLedgerAll, null);
+    this.accCacheData.CostCenters = await DsfCache.GetAccCacheData(MasterType.CostCenters, null);
     return this.accCacheData;
   }
 
@@ -330,14 +330,14 @@ export class AccountingService {
     popupWinindow = window.open(
       "",
       "_blank",
-      "width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no,danphe-date-change=no "
+      "width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no,dsf-date-change=no "
     );
     popupWinindow.document.open();
     let documentContent = "<html><head>";
     documentContent +=
       '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent +=
-      '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default//DanpheStyle.css"/>';
+      '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default//DsfStyle.css"/>';
     documentContent += "</head>";
     if (this.paramData) {
       this.printTitle = this.paramData.HeaderTitle;

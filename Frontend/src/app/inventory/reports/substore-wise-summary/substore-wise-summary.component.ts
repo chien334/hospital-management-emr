@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { ReportingService } from '../../../reporting/shared/reporting-service';
 import { ActivateInventoryService } from '../../../shared/activate-inventory/activate-inventory.service';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { ENUM_StoreCategory } from '../../../shared/shared-enums';
 import { InventoryReportsBLService } from '../shared/inventory-reports.bl.service';

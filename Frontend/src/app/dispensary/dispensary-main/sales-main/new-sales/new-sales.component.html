@@ -8,14 +8,14 @@
                    class="color-red">*</sup></label>
             <div class="col-md-8">
               <div class="autocomplete-item">
-                <input *ngIf="IsCurrentDispensaryInsurace; else normalPatientSearch" id="patient-search" autocomplete="off" danphe-auto-complete
+                <input *ngIf="IsCurrentDispensaryInsurace; else normalPatientSearch" id="patient-search" autocomplete="off" dsf-auto-complete
                        class="form-control" [(ngModel)]="searchPatient" [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
                        [list-formatter]="insurancePatientListFormatter" [placeholder]="'DISPENSARY.SALE.SEARCH_PATIENT' | translate"
                        display-property-name="ShortName" (valueChanged)="onClickPatient($event)" value-property-name=null onClick="this.select();"
                        max-num-list="20" min-chars="{{PatientSearchMinCharacterCount}}" match-formatted="true"
                        (keyup.enter)="onPressedEnterKeyInPatientField()" [grid-sort]="'ShortName'" />
                 <ng-template #normalPatientSearch>
-                  <input autocomplete="off" danphe-auto-complete class="form-control" id="patient-search" [(ngModel)]="searchPatient"
+                  <input autocomplete="off" dsf-auto-complete class="form-control" id="patient-search" [(ngModel)]="searchPatient"
                          [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'" [list-formatter]="patientListFormatter"
                          [placeholder]="'DISPENSARY.SALE.SEARCH_PATIENT' | translate" display-property-name="ShortName" (valueChanged)="onClickPatient($event)"
                          value-property-name=null onClick="this.select();" max-num-list="20" min-chars="{{PatientSearchMinCharacterCount}}"
@@ -129,7 +129,7 @@
           <tbody>
             <tr>
               <td>
-                <input danphe-auto-complete class=" form-control" id="generic" [(ngModel)]="invoiceItem.selectedGeneneric"
+                <input dsf-auto-complete class=" form-control" id="generic" [(ngModel)]="invoiceItem.selectedGeneneric"
                        [source]="FilteredGenericList" [list-formatter]="phrmGenericListFormatter" [placeholder]="'DISPENSARY.SALE.SELECT_GENERIC_PLACEHOLDER' | translate"
                        display-property-name="GenericName" value-property-name=null onClick="this.select();"
                        (valueChanged)="AssignSelectedGenName(invoiceItem)" min-chars="1" [grid-sort]="'GenericName'" match-formatted="true"
@@ -138,7 +138,7 @@
 
               <td [ngClass]="{'alert alert-warning':invoiceItem.IsDuplicate,'autocomplete-item':true}" style="width:200px">
                 <form [formGroup]="invoiceItem.InvoiceItemsValidator" *ngIf="invoiceItem.enableItmSearch">
-                  <input *ngIf="IsCurrentDispensaryInsurace; else normalItemSearch" danphe-auto-complete class="form-control"
+                  <input *ngIf="IsCurrentDispensaryInsurace; else normalItemSearch" dsf-auto-complete class="form-control"
                          [(ngModel)]="invoiceItem.selectedItem" formControlName="ItemName" [source]="ItemListWithCategoryFiltered"
                          [list-formatter]="insuranceItemListFormatter" [placeholder]="'DISPENSARY.SALE.SELECT_MEDICINE_PLACEHOLDER' | translate" display-property-name="ItemName"
                          value-property-name=null onClick="this.select();" (valueChanged)="onItemSelect($event)" max-num-list="100"
@@ -146,7 +146,7 @@
                          match-formatted="true" (keyup.enter)="coreService.FocusInputById('qty')" autocomplete="off"
                          [ngClass]="{'border-red': invoiceItem.IsDirty('ItemName')}" />
                   <ng-template #normalItemSearch>
-                    <input danphe-auto-complete class="form-control" [(ngModel)]="invoiceItem.selectedItem" formControlName="ItemName"
+                    <input dsf-auto-complete class="form-control" [(ngModel)]="invoiceItem.selectedItem" formControlName="ItemName"
                            [source]="ItemListWithCategoryFiltered" [list-formatter]="phrmItemListFormatter" [placeholder]="'DISPENSARY.SALE.SELECT_MEDICINE_PLACEHOLDER' | translate"
                            display-property-name="ItemName" value-property-name=null onClick="this.select();" (valueChanged)="onItemSelect($event)"
                            max-num-list="100" [min-chars]="invoiceItem.ItemFieldMinChars" style="width:250px;" id="item-box" [grid-sort]="'ItemName'"
@@ -423,11 +423,11 @@
           </tr>
         </table>
         <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
-          <input DanpheConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()"
+          <input DsfConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()"
                  (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" title="ALT + P" [disabled]="loading"
                  [value]="'DISPENSARY.SALE.PRINT_INVOICE' | translate">
           <span></span>&nbsp;&nbsp;&nbsp;
-          <input *ngIf="SchemePriceCategory.AllowProvisionalBilling && currentPatient.PatientId >0" DanpheConfirmationDialog type="submit"
+          <input *ngIf="SchemePriceCategory.AllowProvisionalBilling && currentPatient.PatientId >0" DsfConfirmationDialog type="submit"
                  [title]="confirmationTitle" [message]="confirmationMessageForProvisional" (confirm)="handleProvisionalSaleConfirm()"
                  (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" [disabled]="loading" [value]="'DISPENSARY.SALE.PROVISIONAL_SLIP' | translate">
           <button class="btn btn-danger" [disabled]="loading" (click)="Cancel()">

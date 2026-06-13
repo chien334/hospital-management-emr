@@ -9,7 +9,7 @@ import { RadiologyReportTemplate } from '../../../radiology/shared/radiology-rep
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 import { SettingsService } from "../../shared/settings-service";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 @Component({
   selector: "rad-report-remplate",

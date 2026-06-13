@@ -8,8 +8,8 @@ import { MaternitypatientPaymentModel } from './maternity-patient-payment.model'
 import { Patient } from '../../../patients/shared/patient.model';
 import { CallbackService } from '../../../shared/callback.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DanpheCache } from '../../../shared/danphe-cache-service-utility/cache-services';
-import { MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache } from '../../../shared/dsf-cache-service-utility/cache-services';
+import { MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { MaternityService } from '../../shared/maternity.service';
 
 @Component({
@@ -49,7 +49,7 @@ export class MaternityPatientPaymentComponent{
 
     GetBillingCounterForMaternity() {
         let allBilCntrs: Array<any>;
-        allBilCntrs = DanpheCache.GetData(MasterType.BillingCounter, null);
+        allBilCntrs = DsfCache.GetData(MasterType.BillingCounter, null);
         let counter = allBilCntrs.find(cnt => cnt.CounterType == "MATERNITY");
         if (counter) {
             this.paymentModelObj.CounterId = counter.CounterId;

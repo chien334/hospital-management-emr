@@ -32,7 +32,7 @@
                                     Invoice No: {{ InvoiceDetail.InvoiceCode}}{{ InvoiceDetail.InvoiceNo}}
                                 </td>
                                 <td>
-                                    <!-- Invoice Date: {{ InvoiceDetail.InvoiceDate | DanpheDateTime:'format':'YYYY-MM-DD'}} ({{InvoiceDetail.InvoiceDate | nepaliDate}}) -->
+                                    <!-- Invoice Date: {{ InvoiceDetail.InvoiceDate | DsfDateTime:'format':'YYYY-MM-DD'}} ({{InvoiceDetail.InvoiceDate | nepaliDate}}) -->
                                     Invoice Date: <date-lbl *ngIf = "InvoiceDetail && InvoiceDetail.InvoiceDate" [value]="InvoiceDetail.InvoiceDate" [show-time]="false"></date-lbl>
                                 </td>
                             </tr>

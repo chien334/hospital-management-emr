@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as _ from 'lodash';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { InsuranceClaimPayment } from '../../shared/DTOs/ClaimManagement_ClaimPayment_DTO';
 import { InsurancePendingClaim } from '../../shared/DTOs/ClaimManagement_PendingClaims_DTO';
 import { ClaimManagementBLService } from '../../shared/claim-management.bl.service';
@@ -42,8 +42,8 @@ export class ViewPaymentComponent implements OnInit {
 
   public GetEarlierPayments(): void {
     this.claimManagementBLService.GetInsurancePayments(this.claimDetail.ClaimSubmissionId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results && res.Results.length > 0) {
             this.insurancePayments = res.Results;
             let payments = _.cloneDeep(this.insurancePayments);
@@ -58,7 +58,7 @@ export class ViewPaymentComponent implements OnInit {
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
         }
       );
@@ -70,8 +70,8 @@ export class ViewPaymentComponent implements OnInit {
         this.PopUpCloseEmitter.emit();
         this.loading = false;
       })
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results) {
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Claim is successfully concluded.`]);
           }
@@ -80,7 +80,7 @@ export class ViewPaymentComponent implements OnInit {
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
         }
       );
@@ -92,8 +92,8 @@ export class ViewPaymentComponent implements OnInit {
         this.PopUpCloseEmitter.emit();
         this.loading = false;
       })
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results) {
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Claim is successfully reverted back to claim scrubbing.`]);
           }
@@ -105,7 +105,7 @@ export class ViewPaymentComponent implements OnInit {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [res.ErrorMessage]);
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
         }
       );

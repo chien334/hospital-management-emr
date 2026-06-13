@@ -82,7 +82,7 @@
           <a href="#">
 
             <img src="../../../themes/theme-default/images/hospitals-logo/hospital-logo-landingpage.png" alt="logo"
-                 class="logo-default" style="width:120px;margin-top:8px; filter: brightness(0) invert(1);" title="Go to DanpheEMR-Home" />
+                 class="logo-default" style="width:120px;margin-top:8px; filter: brightness(0) invert(1);" title="Go to DsfEMR-Home" />
           </a>
           <div class="menu-toggler sidebar-toggler">
             <span></span>
@@ -113,7 +113,7 @@
 
           <b class="header-sm">
             <span *ngIf="PatService.globalPatient.DateOfBirth != null && PatService.globalPatient.PatientCode != null">
-              <i class="fa fa-male"></i>Age/Sex : {{PatService.globalPatient.DateOfBirth | DanpheDateTime:'age' }}
+              <i class="fa fa-male"></i>Age/Sex : {{PatService.globalPatient.DateOfBirth | DsfDateTime:'age' }}
             </span>
             <span *ngIf="PatService.globalPatient.DateOfBirth != null && PatService.globalPatient.PatientCode != null">
               /
@@ -312,11 +312,11 @@
       <div class="page-content-wrapper">
 
         <!-- BEGIN CONTENT BODY -->
-        <!-- <danphe-loading [loading]="loading"></danphe-loading> -->
+        <!-- <dsf-loading [loading]="loading"></dsf-loading> -->
         <!-- 4-3-2019 changed by Vikas -->
-        <danphe-loader [loadingScreen]="loadingScreen"></danphe-loader>
-        <!--Vikas: danphe-loader added for loading display until http request process do not finished-->
-        <danphe-msgbox></danphe-msgbox>
+        <dsf-loader [loadingScreen]="loadingScreen"></dsf-loader>
+        <!--Vikas: dsf-loader added for loading display until http request process do not finished-->
+        <dsf-msgbox></dsf-msgbox>
         <div [ngClass]="navService.showSideNav ? 'page-content':'cstm-pg-content' ">
 
           <div *ngIf="coreService.loading" class="child-loader">

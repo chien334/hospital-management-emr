@@ -60,7 +60,7 @@
 <!-- <div *ngIf="showsectionList"> <a class="btn blue bordered" style="background-color:#337ab7;" name="name" (click)="AddSection()"> <span class="glyphicon glyphicon-plus"></span>Create Section </a> </div> -->
 <div class="row" *ngIf="showsectionList">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="sectionGridColumns" [grid-data]="sectionList"
-    (grid-actions)="SectionGridActions($event)"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="sectionGridColumns" [grid-data]="sectionList"
+    (grid-actions)="SectionGridActions($event)"> </dsf-grid>
   </div>
 </div>

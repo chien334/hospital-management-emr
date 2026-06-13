@@ -3,11 +3,11 @@ import * as moment from "moment";
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_DateFormat, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_DateFormat, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { AccountingSettingsBLService } from "../../settings/shared/accounting-settings.bl.service";
 import { LedgerModel } from "../../settings/shared/ledger.model";
 import { SubLedgerModel } from "../../settings/shared/sub-ledger.model";
@@ -81,12 +81,12 @@ export class SubLedgerReportComponent {
 
     public GetSubLedgerList(): void {
         this.accountingSettingsBLService.GetSubLedger()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.subLedgerList = res.Results;
                 }
             },
-                (err: DanpheHTTPResponse) => {
+                (err: DsfHTTPResponse) => {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error Occurred Detail:${err.ErrorMessage}`]);
                 })
     }
@@ -115,14 +115,14 @@ export class SubLedgerReportComponent {
 
             this.accRptBLService.GetSubLedgerReport(postData)
                 .finally(() => { this.loading = false; })
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.openingData = res.Results.OpeningData;
                         this.subLedgerTxnList = res.Results.TransactionData;
                         this.CalculateSubLedgerBalance();
                     }
                 },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error Occurred Detail:${err.ErrorMessage}`]);
                     })
         }
@@ -348,7 +348,7 @@ export class SubLedgerReportComponent {
             documentContent +=
                 `<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>`;
             documentContent +=
-                `<link rel="stylesheet" type="text/css" href="../../../themes/theme-default//DanpheStyle.css"/>`;
+                `<link rel="stylesheet" type="text/css" href="../../../themes/theme-default//DsfStyle.css"/>`;
             documentContent += `</head>`;
             if (this.accountingService.paramData) {
                 this.printTitle = this.accountingService.paramData.HeaderTitle;

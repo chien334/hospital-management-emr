@@ -9,7 +9,7 @@ import { InventoryService } from '../../../inventory/shared/inventory.service';
 //import { VendorMaster } from "../shared/vendor-master.model";
 import { CoreBLService } from "../../../core/shared/core.bl.service";
 import { CoreService } from '../../../core/shared/core.service';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { WardSupplyBLService } from '../../shared/wardsupply.bl.service';
 import * as moment from 'moment/moment';
 import { WardSupplyAssetRequisitionItemsModel } from '../../shared/wardsupply-asset-requisitionItems.model';

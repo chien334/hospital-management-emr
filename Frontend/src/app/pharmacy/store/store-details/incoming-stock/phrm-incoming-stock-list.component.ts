@@ -1,8 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import DispensaryGridColumns from '../../../../dispensary/shared/dispensary-grid.column';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { PharmacyBLService } from '../../../shared/pharmacy.bl.service';
 

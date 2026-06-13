@@ -34,11 +34,11 @@
           <div class="editor-content">
             <div class="row">
               <div class="col-md-12 col-xs-12 col-sm-12" style="min-height:460px;">
-                <danphe-ckeditor *ngIf="showCKeditor"
+                <dsf-ckeditor *ngIf="showCKeditor"
                                  [readonly]="false"
                                  (get-html-content)="onChangeEditorData($event)"
                                  [set-html-content]="freeText.FreeText">
-                </danphe-ckeditor>
+                </dsf-ckeditor>
                 <!--(get-shortcut)="onShortCutPressed($event)"    // shortcut feature not used currently-->
               </div>
             </div>

@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">{{ 'INVENTORY.TEXT' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                                 <div class="col-md-9">
-                                    <danphe-ckeditor id="txt" [readonly]="false" (get-html-content)="onChangeEditorData($event)" (keyup.enter)="setFocusById('type')" [set-html-content]="CurrentTermsModel.Text"></danphe-ckeditor>
+                                    <dsf-ckeditor id="txt" [readonly]="false" (get-html-content)="onChangeEditorData($event)" (keyup.enter)="setFocusById('type')" [set-html-content]="CurrentTermsModel.Text"></dsf-ckeditor>
                                     <span class="color-red font-sm" [hidden]="CurrentTermsModel.IsValidCheck('Text','required') || !(CurrentTermsModel.IsDirty('Text'))">{{ 'INVENTORY.TEXT_IS_REQUIRED' | translate }}</span>
 
                                 </div>

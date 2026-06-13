@@ -7,10 +7,10 @@ import { PharmacyBLService } from '../../../../pharmacy/shared/pharmacy.bl.servi
 import { PharmacyService } from '../../../../pharmacy/shared/pharmacy.service';
 import { PHRMPrescriptionItem } from '../../../../pharmacy/shared/phrm-prescription-item.model';
 import { PHRMPrescription } from '../../../../pharmacy/shared/phrm-prescription.model';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../shared/routefrom.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
 import DispensaryGridColumns from '../../../shared/dispensary-grid.column';
 
 @Component({
@@ -98,7 +98,7 @@ export class PrescriptionListComponent implements OnInit {
   Dispatch() {
     this.pharmacyBLService.UpdatePrescriptionItemStatus(this.currentPrescription.PatientId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Prescription Item is dispatched"]);
           this.isShowPrescriptionDetail = false;
           this.LoadPrescriptions();

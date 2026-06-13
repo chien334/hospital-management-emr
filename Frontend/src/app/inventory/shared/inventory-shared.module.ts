@@ -14,7 +14,7 @@ import { PackagingTypeAddComponent } from '../settings/packagingtype/packaging-t
 import { UnitOfMeasurementAddComponent } from '../settings/unitofmeasurement/unit-of-measurement-add.component';
 import { CompanyAddComponent } from '../settings/company/company-add.component';
 import { ItemSubCategoryAddComponent } from '../settings/itemsubcategory/item-subcategory-add.component';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { AccountingSharedModule } from '../../accounting/shared/accounting-shared.module';
 @NgModule({
   providers: [
@@ -24,7 +24,7 @@ import { AccountingSharedModule } from '../../accounting/shared/accounting-share
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    DanpheAutoCompleteModule,  
+    DsfAutoCompleteModule,  
     AccountingSharedModule ],
   declarations: [
     ItemAddComponent,

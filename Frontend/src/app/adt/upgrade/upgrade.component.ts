@@ -10,7 +10,7 @@ import { BillingTransactionItem } from '../../billing/shared/billing-transaction
 import { Department } from '../../settings-new/shared/department.model';
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
 import { NepaliDate } from "../../shared/calendar/np/nepali-dates";
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { CommonFunctions } from '../../shared/common.functions';
 import { ENUM_BillingStatus, ENUM_BillingType, ENUM_VisitType } from '../../shared/shared-enums';
 import { Bed } from '../shared/bed.model';
@@ -19,7 +19,7 @@ import { PatientBedInfo } from '../shared/patient-bed-info.model';
 import { Ward } from '../shared/ward.model';
 
 @Component({
-  selector: "danphe-bed-upgrade",
+  selector: "dsf-bed-upgrade",
   templateUrl: "./upgrade.html"
 })
 export class UpgradeComponent {
@@ -147,7 +147,7 @@ export class UpgradeComponent {
   //sud: 20Jun'18
   LoadDepartments() {
     this.admissionBLService.GetDepartments()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         this.allDepartments = res.Results;
       });
   }
@@ -228,7 +228,7 @@ export class UpgradeComponent {
   //load bedcharge item and loads bedfeatureId (against patientId and patientVisitId)
   public LoadBedBilTxnItem() {
     this.admissionBLService.GetBedChargeBilItem(this.selectedBedInfo.PatientId, this.selectedBedInfo.PatientVisitId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.existingBedFeatures = res.Results;
         }

@@ -11,7 +11,7 @@ import * as moment from 'moment/moment';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { CoreService } from "../../../core/shared/core.service";
 import { IntegrationName } from "../../shared/integration-name.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 
 @Component({
@@ -244,7 +244,7 @@ export class ServiceDepartmentAddComponent {
   }
 
   //after adding department is succesfully added  then this function is called.
-  CallBackAddUpdateSrvDept(res: DanpheHTTPResponse) {
+  CallBackAddUpdateSrvDept(res: DsfHTTPResponse) {
     if (res.Status == "OK") {
       //mapping accordint to the grid model
 

@@ -3,10 +3,10 @@ import { ReportingService } from "../../../reporting/shared/reporting-service";
 import { RPT_BIL_DepositBalanceModel } from "./deposit-balance.model";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import * as moment from 'moment/moment';
-import { NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: "./deposit-balance.html"

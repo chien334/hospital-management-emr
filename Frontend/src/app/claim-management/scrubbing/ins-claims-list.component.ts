@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { DsfHTTPResponse } from '../../shared/common-models';
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { InsurancePendingClaim } from '../shared/DTOs/ClaimManagement_PendingClaims_DTO';
 import { ClaimManagementBLService } from '../shared/claim-management.bl.service';
 import { ClaimManagementService } from '../shared/claim-management.service';
@@ -41,8 +41,8 @@ export class InsuranceClaimsListComponent {
 
   public GetPendingClaims(): void {
     this.claimManagementBLService.GetClaimSubmissionPendingList(this.creditOrganizationId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results && res.Results.length > 0) {
             let claimSubmissionPendingListFiltered = new Array<InsurancePendingClaim>();
             claimSubmissionPendingListFiltered = res.Results.filter(item => item.TotalBillAmount !== 0);
@@ -54,7 +54,7 @@ export class InsuranceClaimsListComponent {
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
         })
   }

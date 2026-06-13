@@ -2,10 +2,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Rend
 
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMCategoryModel } from "../../shared/phrm-category.model";
 import { PHRMGenericModel } from '../../shared/phrm-generic.model';
@@ -54,8 +54,8 @@ export class PHRMGenericManageComponent implements OnInit {
     }
     GetGenericList() {
         this.pharmacyBLService.GetGenericList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                     this.genericList = res.Results;
                 }
                 else {
@@ -74,8 +74,8 @@ export class PHRMGenericManageComponent implements OnInit {
         if (this.currentGeneric.IsValidCheck(undefined, undefined)) {
             this.currentGeneric.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.AddGenericName(this.currentGeneric)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status == ENUM_DsfHTTPResponses.OK) {
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Generic Name"]);
                         this.CallBackAddToGrid(res);
                         this.currentGeneric = new PHRMGenericModel();
@@ -95,8 +95,8 @@ export class PHRMGenericManageComponent implements OnInit {
         if (this.currentGeneric.IsValidCheck(undefined, undefined)) {
             this.currentGeneric.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.UpdateGenericName(this.currentGeneric)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status == ENUM_DsfHTTPResponses.OK) {
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Generic Name is Updated"]);
                         this.CallBackAddToGrid(res);
                         this.currentGeneric = new PHRMGenericModel();
@@ -123,8 +123,8 @@ export class PHRMGenericManageComponent implements OnInit {
 
     public getCategoryList() {
         this.pharmacyBLService.GetCategoryList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                     this.categoryList = res.Results;
                 }
                 else {
@@ -198,7 +198,7 @@ export class PHRMGenericManageComponent implements OnInit {
         this.index = null;
     }
     CallBackAddUpdate(res) {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
             var generic: any = {};
             generic.GenericId = res.Results.GenericId;
             generic.GenericName = res.Results.GenericName;

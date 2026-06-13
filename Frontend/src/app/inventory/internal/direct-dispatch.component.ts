@@ -9,7 +9,7 @@ import { ActivateInventoryService } from '../../shared/activate-inventory/activa
 import { InventoryFieldCustomizationService } from '../../shared/inventory-field-customization.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../shared/routefrom.service';
-import { ENUM_DanpheHTTPResponses, ENUM_GRItemCategory, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_GRItemCategory, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { WardSupplyBLService } from '../../wardsupply/shared/wardsupply.bl.service';
 import { DispatchItems, IDispatchableAsset, MAP_Dispatch_FixedAsset } from '../shared/dispatch-items.model';
 import { Dispatch } from '../shared/dispatch.model';
@@ -257,7 +257,7 @@ export class DirectDispatchComponent implements OnDestroy {
       this.inventoryBLService.PostDirectDispatch(this.dispatch, this.fromRoute.RouteFrom).
         finally(() => this.loading = false).
         subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             let result = res.Results;
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Notice, ["Requisition is Generated and Saved"]);
             this.changeDetectorRef.detectChanges();

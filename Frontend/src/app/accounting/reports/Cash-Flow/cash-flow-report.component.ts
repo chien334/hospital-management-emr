@@ -3,7 +3,7 @@ import * as moment from 'moment/moment';
 import { CoreService } from '../../../core/shared/core.service';
 import { CommonFunctions } from '../../../shared/common.functions';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { FiscalYearModel } from '../../settings/shared/fiscalyear.model';
 import { AccountingService } from '../../shared/accounting.service';
 import { AccountingReportsBLService } from "../shared/accounting-reports.bl.service";
@@ -71,7 +71,7 @@ export class CashFlowReportComponent {
             try {
                 this.accReportBLService.GetCashFlowReportData(this.fromDate, this.toDate, this.fiscalYearId)
                     .subscribe(res => {
-                        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                             this.btndisabled = false;
                             this.OpeningData = res.Results.OpeningData;
                             this.cashflowData = res.Results.TxnData;
@@ -177,9 +177,9 @@ export class CashFlowReportComponent {
     }
 
     loadFiscalYearList() {
-        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.fiscalYears = this.accountingService.accCacheData.FiscalYearList;//mumbai-team-june2021-danphe-accounting-cache-change
-            this.fiscalYears = this.fiscalYears.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.fiscalYears = this.accountingService.accCacheData.FiscalYearList;//mumbai-team-june2021-dsf-accounting-cache-change
+            this.fiscalYears = this.fiscalYears.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 

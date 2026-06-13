@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from "@angu
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 import { DLService } from "../../shared/dl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { IncentiveTransactionItemsVM } from "../shared/incentive-transaction-items-vm";
 import { SecurityService } from "../../security/shared/security.service";
 import { IncentiveService } from "../shared/incentive-service";
@@ -53,7 +53,7 @@ export class IncentiveTxnItemsListComponent {
     }
     this.dlService.Read(`/api/Incentive/TransactionItems?fromDate=${this.fromDate}&toDate=${this.toDate}&employeeId=${empIdToSend}`)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
 
 
@@ -86,7 +86,7 @@ export class IncentiveTxnItemsListComponent {
   LoadAllDocList() {
     this.incentiveBLService.GetIncentiveApplicableDocterList()
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let doclist: Array<any> = res.Results;
           this.allEmpList = doclist.map(a => {

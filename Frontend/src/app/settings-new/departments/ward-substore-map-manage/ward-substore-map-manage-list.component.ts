@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses } from "../../../shared/shared-enums";
 import { NursingWardSubStoresMapModel } from "../../shared/nur-ward-substore-map.model";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
@@ -39,12 +39,12 @@ export class WardSubstoreMapManageListComponent {
     }
     public getSubstoreWardMapList() {
         this.settingsBLService.GetSubstoreWardMap()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.substoreWardMapList = res.Results;
                 }
                 else {
-                    this.msgBox.showMessage(ENUM_DanpheHTTPResponses.Failed, ["No data"]);
+                    this.msgBox.showMessage(ENUM_DsfHTTPResponses.Failed, ["No data"]);
                 }
             });
     }

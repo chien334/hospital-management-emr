@@ -6,12 +6,12 @@ import {
   Output,
 } from "@angular/core";
 import * as _ from "lodash";
-import { DanpheHTTPResponse } from "../../../../../src/app/shared/common-models";
+import { DsfHTTPResponse } from "../../../../../src/app/shared/common-models";
 import { ServiceDepartment } from "../../../billing/shared/service-department.model";
 import { CoreService } from "../../../core/shared/core.service";
 import { SettingsBLService } from "../../../settings-new/shared/settings.bl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { LabVendorsModel } from "../../external-labs/vendors-settings/lab-vendors.model";
 import { LabCategoryModel } from "../../shared/lab-category.model";
 import { LabComponentModel } from "../../shared/lab-component-json.model";
@@ -129,8 +129,8 @@ export class AddLabTestComponent {
   public GetAllSpecimenList(): void {
     this.labSettingBlService
       .GetAllSpecimenList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.specimens = res.Results;
           if (this.update) {
             this.specimenList = new Array<any>();
@@ -155,8 +155,8 @@ export class AddLabTestComponent {
   public GetAllLabCategory(): void {
     this.labSettingBlService
       .GetAllLabCategory()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.allCategories = res.Results;
           // this.selectedCategory = this.allCategories.find(
           //   (cat) => cat.IsDefault == true
@@ -178,8 +178,8 @@ export class AddLabTestComponent {
   public GetAllComponentList(): void {
     this.labSettingBlService
       .GetAllLabTestComponents()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.allLabTestComponentList = res.Results;
         } else {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, ["Cannot Get the List of Lab Test Components",]);
@@ -189,7 +189,7 @@ export class AddLabTestComponent {
 
   public GetAllLookUpNames(): void {
     this.labSettingBlService.GetAllLabLookUpNames().subscribe((res) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.LookUpNames = res.Results;
       } else {
         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, ["Cannot Get the LookUp Name list for Lab Test Components",]);
@@ -200,7 +200,7 @@ export class AddLabTestComponent {
   public GetSrvDeptList(): void {
     this.settingsBLService.GetServiceDepartments().subscribe(
       (res) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             //this.srvdeptList = res.Results;
             var allDepartmentList = res.Results;
@@ -224,8 +224,8 @@ export class AddLabTestComponent {
 
   GetAllLabVendorList() {
     this.labSettingBlService.GetLabVendors()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           let allVendorList = res.Results;
           this.ExternalVendorList = allVendorList.filter(vendor => vendor.IsExternal === true);
         } else {
@@ -233,7 +233,7 @@ export class AddLabTestComponent {
           this.ExternalVendorList = new Array<LabVendorsModel>();
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           console.log(err.ErrorMessage);
         });
   }
@@ -292,7 +292,7 @@ export class AddLabTestComponent {
   public setDefaultTemplate(): void {
     this.labSettingBlService.GetAllReportTemplates().subscribe(
       (res) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.labReportList = res.Results;
 
           if (!this.update) {
@@ -356,7 +356,7 @@ export class AddLabTestComponent {
                 .PostNewLabTest(this.labTest)
                 .finally(() => { this.loading = false; })
                 .subscribe((res) => {
-                  if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                  if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.CallBackAddUpdate(res);
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["New LabTest Added"]);
                   } else {
@@ -389,7 +389,7 @@ export class AddLabTestComponent {
       this.labSettingBlService
         .PostNewLabSpecimen(this.newSpecimenName)
         .subscribe((res) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["New Specimen Added"]);
             this.showNewSpAdd = false;
             this.specimens.push({
@@ -435,7 +435,7 @@ export class AddLabTestComponent {
                 .UpdateNewLabTest(this.labTest)
                 .finally(() => { this.loading = false })
                 .subscribe((res) => {
-                  if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                  if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.CallBackAddUpdate(res);
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["LabTest Updated."]);
                   } else {
@@ -614,7 +614,7 @@ export class AddLabTestComponent {
 
   public CallBackAddUpdate(res): void {
     this.labTest = new LabTest();
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       this.sendDataBack.emit({ labtest: res.Results });
     } else {
       this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, ["Check log for details"]);

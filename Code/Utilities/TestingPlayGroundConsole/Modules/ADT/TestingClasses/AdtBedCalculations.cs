@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using DanpheEMR.ServerModel;
+using DsfEMR.ServerModel;
 using System.Linq;
-using DanpheEMR.TestingPlayGroundConsole.ADT.Models;
-using DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders;
+using DsfEMR.TestingPlayGroundConsole.ADT.Models;
+using DsfEMR.TestingPlayGroundConsole.ADT.MockDataProviders;
 
-namespace DanpheEMR.TestingPlayGroundConsole.TestingClasses
+namespace DsfEMR.TestingPlayGroundConsole.TestingClasses
 {
     static class AdtBedCalculations
     {

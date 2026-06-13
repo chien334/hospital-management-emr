@@ -6,7 +6,7 @@ import { ServiceDepartmentVM } from "../../../shared/common-masters.model";
 import { CoreService } from "../../../core/shared/core.service";
 import { BillingBLService } from "../../shared/billing.bl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { PatientBillingContextVM } from "../../shared/patient-billing-context-vm";
 import { BillingTransactionItem } from "../../shared/billing-transaction-item.model";
 import { CommonFunctions } from "../../../shared/common.functions";
@@ -135,7 +135,7 @@ export class InsuranceBillItemRequest {
   //start: get: master and patient data
   LoadPatientBillingContext(patientId) {
     this.billingBLService.GetPatientBillingContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.currBillingContext = res.Results;
           this.billingService.BillingType = this.currBillingContext.BillingType;

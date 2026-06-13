@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { IRouteGuard } from '../../../shared/route-guard.interface';
 import { Guarantor } from "../../shared/guarantor.model";
@@ -148,7 +148,7 @@ export class GuarantorComponent implements IRouteGuard {
         }
     }
     GetCountry() {
-        this.Countries = DanpheCache.GetData(MasterType.Country, null);
+        this.Countries = DsfCache.GetData(MasterType.Country, null);
 
         // this.patientBLService.GetCountries()
         // .subscribe(res => {

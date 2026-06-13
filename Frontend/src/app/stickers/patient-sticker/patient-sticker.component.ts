@@ -10,7 +10,7 @@ import { ENUM_PrintingType, PrinterSettingsModel } from "../../settings-new/prin
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import { ENUM_Country, ENUM_DanpheHTTPResponseText, ENUM_DateTimeFormat, ENUM_MembershipTypeName, ENUM_PriceCategory } from "../../shared/shared-enums";
+import { ENUM_Country, ENUM_DsfHTTPResponseText, ENUM_DateTimeFormat, ENUM_MembershipTypeName, ENUM_PriceCategory } from "../../shared/shared-enums";
 import { PatientSticketViewModel } from "./patient-sticker.model";
 
 
@@ -86,7 +86,7 @@ export class PatientStickerComponent {
 
     this.hospitalCode = (this.hospitalCode && this.hospitalCode.trim().length > 0) ? this.hospitalCode : "allhosp";
 
-    this.printerName = localStorage.getItem('Danphe_OPD_Default_PrinterName');
+    this.printerName = localStorage.getItem('Dsf_OPD_Default_PrinterName');
     var allStickerFolderDetail = this.coreService.Parameters.find(a => a.ParameterGroupName.toLowerCase() === 'reg-sticker' && a.ParameterName === 'StickerPrinterSettings');
     if (allStickerFolderDetail) {
       this.allPrinterName = JSON.parse(allStickerFolderDetail.ParameterValue);
@@ -118,7 +118,7 @@ export class PatientStickerComponent {
         res => this.Error(res));
   }
   CallBackStickerOnly(res: any) {
-    if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length !== 0) {
+    if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length !== 0) {
       this.PatientStickerDetails = { ...res.Results[0] };
       this.PatientStickerDetails.MunicipalityName = ((res.Results[0].MunicipalityName !== null) || (res.Results[0].MunicipalityName !== "")) ? res.Results[0].MunicipalityName : "";
       this.PatientStickerDetails.CountrySubDivisionName = ((res.Results[0].CountrySubDivisionName !== null || res.Results[0].CountrySubDivisionName !== "")) ? res.Results[0].CountrySubDivisionName : "";
@@ -182,7 +182,7 @@ export class PatientStickerComponent {
         margin: 8px 15px 0 0;
       }
       </style>`;
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanphePrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfPrintStyle.css"/>';
     /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head>';
     documentContent += '<body>' + printContents + '</body></html>'
@@ -252,7 +252,7 @@ export class PatientStickerComponent {
     this.showLoading = true;
     this.http.post<any>("/api/Billing/saveHTMLfile?PrinterName=" + PrinterName + "&FilePath=" + filePath, printableHTML, this.options)
       .map(res => res).subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.timerFunction();
         }
         else {

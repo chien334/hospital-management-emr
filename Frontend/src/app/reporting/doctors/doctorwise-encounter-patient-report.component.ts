@@ -7,7 +7,7 @@ import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 import { RPT_BIL_DoctorReport } from '../billing/doc-report/doctor-report.model';
 import { CommonFunctions } from '../../shared/common.functions';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: "./docwise-encounter-patient-report.html"

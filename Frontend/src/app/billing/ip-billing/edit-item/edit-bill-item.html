@@ -35,7 +35,7 @@
                 <tr>
                   <td>
                     <date-lbl [value]="itemToEdit.CreatedOn" [show-time]="true"></date-lbl>
-                    <!-- {{itemToEdit.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                    <!-- {{itemToEdit.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                   </td>
                   <td>
                     <div style="width: 200px;">{{itemToEdit.ItemName}}</div>
@@ -64,7 +64,7 @@
 
                   <td><label>Performer:</label>
                     <div *ngIf="doctorList && doctorList.length>0" class="display-inline">
-                      <input class="form-control cstm-form-control" danphe-auto-complete
+                      <input class="form-control cstm-form-control" dsf-auto-complete
                              [(ngModel)]="selectedPerformer" [source]="docDDLSource"
                              [list-formatter]="PerformerDocList" placeholder="Enter Name"
                              display-property-name="FullName" value-property-name=null match-formatted="true"
@@ -75,7 +75,7 @@
                   <td>
                     <label for="">Prescriber:</label>
                     <div class="display-inline">
-                      <input class="form-control cstm-form-control" danphe-auto-complete [(ngModel)]="prescriber"
+                      <input class="form-control cstm-form-control" dsf-auto-complete [(ngModel)]="prescriber"
                              [source]="docDDLSource" [list-formatter]="PerformerDocList" placeholder="Enter Name"
                              display-property-name="FullName" value-property-name=null match-formatted="true"
                              (focusout)="AssignSelectedPrscriberDoctor()" onClick="this.select();" max-num-list="10"
@@ -157,7 +157,7 @@
                 <div class="col-md-12 main-info" style="padding:0px;">
                   <div class="right">
                     <p class="no-margin" style="text-align:right;padding-right: 10px"> Date:
-                      {{itemToEdit.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}} </p>
+                      {{itemToEdit.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}} </p>
                   </div>
                 </div>
                 <div class="clear footer"></div>

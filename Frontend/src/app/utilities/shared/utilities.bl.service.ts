@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { CoreDLService } from "../../core/shared/core.dl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { ChangeVisitScheme_DTO } from "./DTOs/change-visit-scheme.dto";
 import { OrganizationDeposit_DTO } from "./DTOs/organization-deposit.dto";
 import { ProcessConfirmationUserCredentials_DTO } from "./DTOs/process-confirmation-userCredentials.dto";
@@ -14,7 +14,7 @@ export class UtilitiesBLService {
 
   }
 
-  public GetBillingSchmes(): Observable<DanpheHTTPResponse> {
+  public GetBillingSchmes(): Observable<DsfHTTPResponse> {
     return this.utilitiesDLSerivce.GetBillingSchemes()
       .map(res => {
         return res;
@@ -42,26 +42,26 @@ export class UtilitiesBLService {
   }
 
 
-  public SaveSchemeRefund(schemeRefundDTO: SchemeRefund_DTO): Observable<DanpheHTTPResponse> {
+  public SaveSchemeRefund(schemeRefundDTO: SchemeRefund_DTO): Observable<DsfHTTPResponse> {
     return this.utilitiesDLSerivce.SaveSchemeRefund(schemeRefundDTO)
       .map(res => {
         return res;
       });
   }
-  public SaveChangedVisitScheme(changeVisitScheme_DTO: ChangeVisitScheme_DTO): Observable<DanpheHTTPResponse> {
+  public SaveChangedVisitScheme(changeVisitScheme_DTO: ChangeVisitScheme_DTO): Observable<DsfHTTPResponse> {
     return this.utilitiesDLSerivce.SaveChangedVisitScheme(changeVisitScheme_DTO)
       .map(res => {
         return res;
       });
   }
 
-  public GetSchemeRefund(fromDate, toDate): Observable<DanpheHTTPResponse> {
+  public GetSchemeRefund(fromDate, toDate): Observable<DsfHTTPResponse> {
     return this.utilitiesDLSerivce.GetSchemeRefund(fromDate, toDate)
       .map(res => {
         return res;
       });
   }
-  public GetSchemeRefundById(receiptNo: number): Observable<DanpheHTTPResponse> {
+  public GetSchemeRefundById(receiptNo: number): Observable<DsfHTTPResponse> {
     return this.utilitiesDLSerivce.GetSchemeRefundById(receiptNo)
       .map(res => {
         return res;
@@ -100,7 +100,7 @@ export class UtilitiesBLService {
     return this.utilitiesDLSerivce.GetDepositDetails(depositId)
       .map(res => res);
   }
-  public GetPatientSchemeRefunds(patientId): Observable<DanpheHTTPResponse> {
+  public GetPatientSchemeRefunds(patientId): Observable<DsfHTTPResponse> {
     return this.utilitiesDLSerivce.GetPatientSchemeRefunds(patientId)
       .map(res => {
         return res;

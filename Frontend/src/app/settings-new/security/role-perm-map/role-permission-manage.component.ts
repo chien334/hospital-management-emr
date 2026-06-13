@@ -7,7 +7,7 @@ import { SettingsBLService } from '../../shared/settings.bl.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 @Component({
   selector: 'permission-manage',
   templateUrl: "./role-permission-manage.html"
@@ -165,7 +165,7 @@ export class RolePermissionManageComponent {
   Submit() {
     //var addList: Array<RolePermissionMap>;
     this.settingsBLService.AddRolePermissions(this.selectedRolePermissionList, this.roleId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.msgBoxServ.showMessage("success", ["Added and Updated RolePermissions"]);
           this.callbackManageRole.emit();

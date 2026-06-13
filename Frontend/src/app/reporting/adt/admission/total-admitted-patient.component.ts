@@ -5,7 +5,7 @@ import { RPT_ADT_TotalAdmittedPatientModel } from "../../shared/total-admitted-p
 import { DLService } from "../../../shared/dl.service";
 import { HttpClient } from "@angular/common/http";
 import * as moment from "moment/moment";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 
 @Component({
   templateUrl: "./total-admitted-patient.html",

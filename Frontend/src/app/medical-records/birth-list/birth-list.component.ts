@@ -10,8 +10,8 @@ import { CoreService } from '../../core/shared/core.service';
 import { HttpClient } from '@angular/common/http';
 import { BabyBirthDetails } from '../../adt/shared/baby-birth-details.model';
 import MRGridColumnSettings from '../shared/Mr-gridcol.settings';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: "./birth-list.html"

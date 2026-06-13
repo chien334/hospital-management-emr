@@ -12,7 +12,7 @@ import { CallbackService } from '../../shared/callback.service';
 
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { CoreService } from "../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { BillingMasterBlService } from "../shared/billing-master.bl.service";
@@ -20,7 +20,7 @@ import { EmployeeCashTransaction } from "../shared/billing-transaction.model";
 import { BillingDepositList_DTO } from "../shared/dto/bill-deposit-list.dto";
 import { DepositHead_DTO } from "../shared/dto/deposit-head.dto";
 import { PatientBillingContextVM } from "../shared/patient-billing-context-vm";
-import { ENUM_BillDepositType, ENUM_BillPaymentMode, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_VisitType } from "./../../shared/shared-enums";
+import { ENUM_BillDepositType, ENUM_BillPaymentMode, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_VisitType } from "./../../shared/shared-enums";
 
 @Component({
   selector: 'billing-deposit',
@@ -153,8 +153,8 @@ export class BillingDepositComponent {
     return data["ReceiptNo"];
   }
   GetPatientDepositsList(patientId: number) {
-    this.billingBLService.GetPatientDepositsList(patientId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this.billingBLService.GetPatientDepositsList(patientId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.depositLists = res.Results;
         if (this.depositLists && this.depositLists.length) {
           this.FilteredDepositLists = this.depositLists.filter(d => d.TransactionType === ENUM_BillDepositType.Deposit && d.IsDepositRefundedUsingDepositReceiptNo === false);
@@ -167,7 +167,7 @@ export class BillingDepositComponent {
   }
   GetPatientDeposit(patientId: number): void {
     this.billingBLService.GetDepositFromPatient(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           if (res.Results.length)
             this.CalculateDepositBalance(res);
@@ -182,8 +182,8 @@ export class BillingDepositComponent {
   GetDepositHead() {
     this.billingBLService
       .GetDepositHead()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.depositHeadList = res.Results;
           const defaultDepositHead = this.depositHeadList.find(f => f.IsDefault === true);
           if (defaultDepositHead) {
@@ -273,7 +273,7 @@ export class BillingDepositComponent {
                 if (this.showReceiptInput) {
                   _showReceipt = true;
                 }
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                   this.depositRefundUsingDepositReceiptNumber = false;
                   if (this.deposit.TransactionType === ENUM_BillDepositType.Deposit) {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Deposit of " + this.coreService.currencyUnit + this.deposit.InAmount + " added successfully."]);
@@ -343,7 +343,7 @@ export class BillingDepositComponent {
   //added: ashim: 08Aug2018 : To get patientVisitId and assign to deposit transaction.
   LoadPatientBillingContext() {
     this.billingBLService.GetPatientBillingContext(this.patientService.globalPatient.PatientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.currBillingContext = res.Results;
           this.deposit.PatientVisitId = this.currBillingContext.PatientVisitId;

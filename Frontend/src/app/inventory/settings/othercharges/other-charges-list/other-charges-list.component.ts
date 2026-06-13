@@ -2,9 +2,9 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import ProcurementGridColumns from '../../../../procurement/shared/procurement-grid-column';
-import GridColumnSettings from '../../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import GridColumnSettings from '../../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { OtherChargesService } from '../other-charges.service';
 

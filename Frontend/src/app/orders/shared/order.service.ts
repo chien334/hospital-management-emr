@@ -6,7 +6,7 @@ import { ImagingItem } from "../../radiology/shared/imaging-item.model";
 import { ImagingType } from "../../radiology/shared/imaging-type.model";
 import { PHRMPrescriptionItem } from "../../pharmacy/shared/phrm-prescription-item.model";
 import * as _ from 'lodash';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { PHRMItemMasterModel } from '../../pharmacy/shared/phrm-item-master.model';
 import { OrderItemsVM } from './orders-vms';
 import { LabTestRequisition } from '../../labs/shared/lab-requisition.model';
@@ -45,7 +45,7 @@ export class OrderService {
         if (!this.allLabtests || this.allLabtests.length == 0) {
             this.http.get<any>("/api/Lab/LabTests", this.options)
                 .map(res => { return res })
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         //this.allLabTests = res.Results;
                         this.allLabtests = res.Results;
@@ -63,7 +63,7 @@ export class OrderService {
         if (!this.allImagingItems || this.allImagingItems.length == 0) {
             this.http.get<any>("/api/Radiology/ImagingItems", this.options)
                 .map(res => { return res })
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         this.allImagingItems = res.Results;
                     }
@@ -80,7 +80,7 @@ export class OrderService {
 
             this.http.get<any>('/api/PharmacySettings/Items', this.options)
                 .map(res => res)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         this.allMedicationItems = res.Results;
                     }
@@ -95,7 +95,7 @@ export class OrderService {
 
             this.http.get<any>('/api/PharmacySettings/Generics', this.options)
                 .map(res => res)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         this.allGenericItems = res.Results;
                     }
@@ -108,7 +108,7 @@ export class OrderService {
 
             this.http.get<any>('/api/Orders/BillingItems', this.options)
                 .map(res => res)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         this.allOtherItems = res.Results;
                     }

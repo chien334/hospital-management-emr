@@ -11,9 +11,9 @@ import { CoreService } from "../../../core/shared/core.service";
 import { LabsBLService } from "../../../labs/shared/labs.bl.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { ServiceDepartmentVM } from "../../../shared/common-masters.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_BillingStatus, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_VisitType } from "../../../shared/shared-enums";
+import { ENUM_BillingStatus, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_VisitType } from "../../../shared/shared-enums";
 
 
 @Component({
@@ -85,8 +85,8 @@ export class WardBillItemRequestComponent {
     if (this.PatientId && this.VisitId) {
       this._billingBLService
         .GetDataOfInPatient(this.PatientId, this.VisitId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.CurrentPatientVisitContext = res.Results;
           } else {
             this._messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, ["Problem! Cannot get the Current Visit Context ! "], res.ErrorMessage);
@@ -266,7 +266,7 @@ export class WardBillItemRequestComponent {
     const billingTransaction = _.cloneDeep(this.BillingTransaction);
     const billingTransactionItems = _.cloneDeep(this.BillingTransaction.BillingTransactionItems);
     this._billingBLService.ProceedToBillingTransaction(billingTransaction, billingTransactionItems, "active", "provisional", false, this.CurrentPatientVisitContext).subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.ResetAllRowData();
         this.loading = false;
         //check if we can send back the response data so that page below don't have to do server call again.
@@ -292,8 +292,8 @@ export class WardBillItemRequestComponent {
     });
     this._billingBLService
       .PostDepartmentOrders(this.BillingTransaction.BillingTransactionItems, "active", "provisional", false, this.CurrentPatientVisitContext)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.PostToBillingTransaction();
         } else {
           this.loading = false;
@@ -306,8 +306,8 @@ export class WardBillItemRequestComponent {
   PostToBillingTransaction(): void {
     this._billingBLService
       .PostBillingTransactionItems(this.BillingTransaction.BillingTransactionItems)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.ResetAllRowData();
           this.loading = false;
           //check if we can send back the response data so that page below don't have to do server call again.
@@ -325,8 +325,8 @@ export class WardBillItemRequestComponent {
   LoadPatientBillingContext(patientId): void {
     this._billingBLService
       .GetPatientBillingContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.CurrentBillingContext = res.Results;
 
           if (!this.BillingType || this.BillingType.trim() === "") {
@@ -339,8 +339,8 @@ export class WardBillItemRequestComponent {
 
   GetPatientVisitList(patientId: number): void {
     this._labBLService.GetPatientVisitsProviderWise(patientId).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.VisitList = res.Results;
             //assign doctor of latest visit as requestedby by default to the first billing item.
@@ -363,8 +363,8 @@ export class WardBillItemRequestComponent {
 
   GetDoctorsList(): void {
     this._billingBLService.GetDoctorsList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.DoctorsList = res.Results;
             let Obj = new Object();

@@ -24,7 +24,7 @@
   <div class="tabbable-custom">
     <div class="tab-content">
 
-      <danphe-grid [grid-colDefaults]="OPFavoritePatientGridColumns" [grid-data]="FavoritePatients" (grid-actions)="DocAppointmentGridActions($event)"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="OPFavoritePatientGridColumns" [grid-data]="FavoritePatients" (grid-actions)="DocAppointmentGridActions($event)"> </dsf-grid>
 
     </div>
   </div>
@@ -33,7 +33,7 @@
 <div class="collapse" id="Collapse2">
   <div class="tabbable-custom">
     <div class="tab-content">
-      <danphe-grid [grid-colDefaults]="OPFollowUpPatientGridColumns" [grid-data]="FollowUpPatients" (grid-actions)="DocAppointmentGridActions($event)"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="OPFollowUpPatientGridColumns" [grid-data]="FollowUpPatients" (grid-actions)="DocAppointmentGridActions($event)"> </dsf-grid>
 
     </div>
   </div>
@@ -78,8 +78,8 @@
             </table>
           </div>
         </div>
-        <danphe-cust-date (onDateChange)="onDateChange($event)" [rangeType]="dateRange"></danphe-cust-date>
-        <danphe-grid [grid-colDefaults]="DoctorOPNewPatientGridColumns" [grid-data]="filteredVisitList" (grid-actions)="DocAppointmentGridActions($event)"> </danphe-grid>
+        <dsf-cust-date (onDateChange)="onDateChange($event)" [rangeType]="dateRange"></dsf-cust-date>
+        <dsf-grid [grid-colDefaults]="DoctorOPNewPatientGridColumns" [grid-data]="filteredVisitList" (grid-actions)="DocAppointmentGridActions($event)"> </dsf-grid>
 
       </div>
     </div>

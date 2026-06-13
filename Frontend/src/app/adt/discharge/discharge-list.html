@@ -49,9 +49,9 @@
   <div *ngIf="showDischargedList">
     <div class="row">
       <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="dischargedListGridColumns" [grid-data]="dischargedList" (grid-actions)="DischargedListGridActions($event)"
+        <dsf-grid [grid-colDefaults]="dischargedListGridColumns" [grid-data]="dischargedList" (grid-actions)="DischargedListGridActions($event)"
                      (onDateChange)="onDateChange($event)"
-                     [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </danphe-grid>
+                     [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </dsf-grid>
       </div>
     </div>
   </div>
@@ -143,7 +143,7 @@
             </tr>
             <tr>
               <td>Hospital No: {{selectedDischarge.PatientCode}}</td>
-              <td> Age/Sex :{{selectedDischarge.DateOfBirth | DanpheDateTime:'age'}} / {{selectedDischarge.Gender}} </td>
+              <td> Age/Sex :{{selectedDischarge.DateOfBirth | DsfDateTime:'age'}} / {{selectedDischarge.Gender}} </td>
             </tr>
           </table>
           <div class="text-center">
@@ -155,7 +155,7 @@
           <table class="table">
             <tr>
               <td>Admission Date:</td>
-              <td> {{selectedDischarge.AdmittedDate | DanpheDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.AdmittedDate |
+              <td> {{selectedDischarge.AdmittedDate | DsfDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.AdmittedDate |
                 nepaliDate:'format':'YYYY-MM-DD'}} </td>
             </tr>
             <tr>
@@ -163,7 +163,7 @@
               <td>
                 <span>
 
-                  {{selectedDischarge.DischargedDate | DanpheDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.DischargedDate |
+                  {{selectedDischarge.DischargedDate | DsfDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.DischargedDate |
                   nepaliDate:'format':'YYYY-MM-DD'}}
                 </span>
               </td>

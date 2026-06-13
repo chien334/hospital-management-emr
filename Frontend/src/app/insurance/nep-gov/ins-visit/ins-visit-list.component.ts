@@ -8,7 +8,7 @@ import { PatientService } from '../../../patients/shared/patient.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
 import { CallbackService } from '../../../shared/callback.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { SearchService } from '../../../shared/search.service';
 import { VisitGenericStickerModel } from '../../../shared/visit-generic-stickers/visit-generic-sticker.model';

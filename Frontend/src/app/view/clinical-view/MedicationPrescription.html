@@ -41,7 +41,7 @@
         <div *ngIf="ordServ.medicationList" style="width: 100%;float:left;">
             <div *ngIf="!searchByGeneric" style="float: left; width: auto;">
                 <input class="searchtbx"
-                       danphe-auto-complete
+                       dsf-auto-complete
                        [(ngModel)]="selMed"
                        [source]="ordServ.medicationList"
                        [list-formatter]="myListFormatter"
@@ -57,7 +57,7 @@
 
             <div *ngIf="searchByGeneric" style="float: left; width: auto;">
                 <input class="searchtbx"
-                       danphe-auto-complete
+                       dsf-auto-complete
                        [(ngModel)]="selGenericMed"
                        [source]="genericMedList"
                        placeholder="genric name"

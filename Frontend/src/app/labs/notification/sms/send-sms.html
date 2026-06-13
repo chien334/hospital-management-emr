@@ -134,10 +134,10 @@
                                   </td> -->
                                 <td colspan="2">{{test.PatientCode}}</td>
                                 <td colspan="3">{{test.PatientName}}</td>
-                                <td colspan="2">{{test.DateOfBirth | DanpheDateTime:'age'}}/{{test.Gender}}</td>
+                                <td colspan="2">{{test.DateOfBirth | DsfDateTime:'age'}}/{{test.Gender}}</td>
                                 <td colspan="2">{{test.PhoneNumber}}</td>
                                 <td colspan="2">{{test.LabTestName}}</td>
-                                <td colspan="3">{{test.SampleCollectedOnDateTime | DanpheDateTime:'format':'YYYY-MM-DD
+                                <td colspan="3">{{test.SampleCollectedOnDateTime | DsfDateTime:'format':'YYYY-MM-DD
                                     hh:mm A'}}</td>
                                 <td colspan="2">{{test.Result}}</td>
                                 <td colspan="2">{{test.IsFileUploaded ? 'Yes' : 'No'}}</td>
@@ -214,10 +214,10 @@
                         <button class="btn btn-danger pull-right" [disabled]="loading" (click)="Close()">X</button>
                     </div>
                     <div class="modelbox-body">
-                        <danphe-lab-results *ngIf="showReport" [showReport]="showReport" [hidePrintButton]="true"
+                        <dsf-lab-results *ngIf="showReport" [showReport]="showReport" [hidePrintButton]="true"
                             [requisitionIdList]="requisitionIdList" [printReportFromGrid]="false"
                             (callbackAddUpdate)="CallBackBackToGrid($event)">
-                        </danphe-lab-results>
+                        </dsf-lab-results>
                     </div>
 
                 </div>

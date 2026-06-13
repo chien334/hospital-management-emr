@@ -5,9 +5,9 @@ import { PatientService } from '../../../patients/shared/patient.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { User } from '../../../security/shared/user.model';
 import { ENUM_PrintingType } from '../../../settings-new/printers/printer-settings.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { OrganizationDeposit_DTO } from '../../shared/DTOs/organization-deposit.dto';
 import { UtilitiesBLService } from "../../shared/utilities.bl.service";
 
@@ -59,8 +59,8 @@ export class PrintOrganizationDepositComponent implements OnInit {
   }
   GetDepositDetails() {
     if (this.depositId) {
-      this.utilitiesBlService.GetDepositDetails(this.depositId).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      this.utilitiesBlService.GetDepositDetails(this.depositId).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.organizationDeposit = res.Results;
         }
       });

@@ -2,8 +2,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import LabGridColumnSettings from '../../shared/lab-gridcol-settings';
 import { LabSettingsBLService } from '../shared/lab-settings.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { LabCategoryModel } from '../../shared/lab-category.model';
 import { SecurityService } from '../../../security/shared/security.service';
 
@@ -29,7 +29,7 @@ export class LabCategoryComponent {
 
   public GetAllLabCategory() {
     this.labSettingBlServ.GetAllLabCategory()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allCategories = res.Results;
         }

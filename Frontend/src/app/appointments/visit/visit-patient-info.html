@@ -56,9 +56,9 @@
                 </div>
               </div>
               <div class="col" *ngIf="patient.IsDobVerified">
-                <danphe-date-picker [(ngModel)]="patient.DateOfBirth" ngDefaultControl [CalendarTypes]="calendarType"
+                <dsf-date-picker [(ngModel)]="patient.DateOfBirth" ngDefaultControl [CalendarTypes]="calendarType"
                                     formControlName="DateOfBirth" (ngModelChange)="CalculateAge()" [year-settings]="'DateOfBirth'">
-                </danphe-date-picker>
+                </dsf-date-picker>
                 <span class="color-red font-sm" *ngIf="patient.IsDirty('DateOfBirth')"
                       [hidden]="patient.IsValidCheck('DateOfBirth','required')">DateOfBirth is required.</span> <span
                       class="color-red font-sm" *ngIf="patient.IsDirty('DateOfBirth')"
@@ -169,7 +169,7 @@
                   Country is required.</span>
               </div>
               <div class="col" *ngIf="patient.CountryName === CountryNepal">
-                <input danphe-auto-complete id="ddlCountrySubdivision" class="form-control" formControlName="CountrySubDivisionId"
+                <input dsf-auto-complete id="ddlCountrySubdivision" class="form-control" formControlName="CountrySubDivisionId"
                        [(ngModel)]="countrySubDivision" [list-formatter]="districtListFormatter" [source]="countrySubDivisions"
                        placeholder="{{GeneralFieldLabel.DistrictState}}" display-property-name="CountrySubDivisionName"
                        value-property-name=null (focusout)="AssignSelectedDistrict()" onClick="this.select();" match-formatted="true"
@@ -179,7 +179,7 @@
                       [hidden]="patient.IsValidCheck('CountrySubDivisionId','required')"> {{GeneralFieldLabel.DistrictState}} is required.</span>
               </div>
               <div class="col" *ngIf="patient.CountryName !== CountryNepal">
-                <input danphe-auto-complete id="ddlCountrySubdivision" class="form-control" formControlName="CountrySubDivisionId"
+                <input dsf-auto-complete id="ddlCountrySubdivision" class="form-control" formControlName="CountrySubDivisionId"
                        [(ngModel)]="countrySubDivision" [list-formatter]="districtListFormatter" [source]="countrySubDivisions"
                        placeholder="Province" display-property-name="CountrySubDivisionName"
                        value-property-name=null (focusout)="AssignSelectedDistrict()" onClick="this.select();" match-formatted="true"
@@ -209,7 +209,7 @@
                                     Please enter valid Ward number.</span> -->
               </div>
               <div class="col">
-                <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
+                <input dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
                        [(ngModel)]="patient.Address"
                        [source]="olderAddressList" placeholder="Address" display-property-name="PatAddress"
                        value-property-name=null
@@ -220,7 +220,7 @@
                        (keyup.enter)="SetFocusTenderOrRemarks()" />
               </div>
               <div class="col" *ngIf="patient.CountryId != defaultCountry.CountryId">
-                <input danphe-auto-complete class="form-control" style="height: 30px !important;font-size: 0.95em !important" maxlength="15"
+                <input dsf-auto-complete class="form-control" style="height: 30px !important;font-size: 0.95em !important" maxlength="15"
                        type="text"
                        [(ngModel)]="patient.PassportNumber" formControlName="PassportNumber" placeholder="Passport Number" />
               </div>

@@ -87,9 +87,9 @@ export class RPT_LAB_CategoryWiseItemCountComponent {
     popupWinindow.document.open();
     let documentContent = "<html><head>";
     documentContent +=
-      '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DanphePrintStyle.css"/>';
+      '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DsfPrintStyle.css"/>';
     documentContent +=
-      '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css"/>';
+      '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css"/>';
     documentContent +=
       '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += `</head><style> .non-printable { visibility: hidden; }.cat-tbl thead tr th,

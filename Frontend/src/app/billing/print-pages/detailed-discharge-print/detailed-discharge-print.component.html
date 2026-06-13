@@ -138,16 +138,16 @@
                       {{InvoiceInfo.InvoiceNumFormatted}}</strong>
                   </p>
                   <p class="c_paragraphs" style="margin: 3px 0;" *ngIf="IsDischarged && !IsProvisionalDischarge">
-                    Invoice Date:<strong> {{InvoiceInfo.TransactionDate | DanpheDateTime: 'format':'YYYY-MM-DD'}}</strong>
+                    Invoice Date:<strong> {{InvoiceInfo.TransactionDate | DsfDateTime: 'format':'YYYY-MM-DD'}}</strong>
                   </p>
                   <p class="c_paragraphs" style="margin: 3px 0;" *ngIf="IsDischarged && !IsProvisionalDischarge">
                     <strong> {{InvoiceInfo.TransactionDate | nepaliDate: 'format':'YYYY-MM-DD'}} </strong>
                   </p>
                   <p class="c_paragraphs" style="margin: 3px 0;">
-                    Admission Date:<strong> {{AdmissionInfo.AdmissionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</strong></p>
+                    Admission Date:<strong> {{AdmissionInfo.AdmissionDate | DsfDateTime:'format':'YYYY-MM-DD'}}</strong></p>
                   <p class="c_paragraphs" style="margin: 3px 0;" *ngIf="!IsDischarged">Discharge Date:<strong> C </strong></p>
                   <p class="c_paragraphs" style="margin: 3px 0;" *ngIf="IsDischarged">
-                    Discharge Date:<strong> {{AdmissionInfo.DischargeDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                    Discharge Date:<strong> {{AdmissionInfo.DischargeDate | DsfDateTime:'format':'YYYY-MM-DD'}}
                     </strong></p>
                   <p class="c_paragraphs" style="margin: 3px 0;" *ngIf="PatientDetail.SchemeName">
                     Type:<strong> {{ PatientDetail.SchemeName }} </strong>
@@ -236,7 +236,7 @@
           <th style="padding: 5px 0px; width: 10%">Total</th>
         </tr>
         <tr *ngFor="let itm of ConsumableCharges; let i = index;">
-          <td style="padding: 5px 0px; width: 20%">{{ itm.BillDate | DanpheDateTime:'format':'YYYY-MM-DD' }}</td>
+          <td style="padding: 5px 0px; width: 20%">{{ itm.BillDate | DsfDateTime:'format':'YYYY-MM-DD' }}</td>
           <td style="padding: 5px 0px; width: 10%">{{ itm.ItemCode }}</td>
           <td style="padding: 5px 0px; width:  20%">{{itm.ItemName}}</td>
           <td style="padding: 5px 0px; width: 15%">{{itm.Quantity}}</td>
@@ -272,7 +272,7 @@
           <th style="padding: 5px 0px; width: 10%">Total</th>
         </tr>
         <tr *ngFor="let itm of ProcedureCharges; let i = index;">
-          <td style="padding: 5px 0px; width: 20%">{{ itm.BillDate | DanpheDateTime:'format':'YYYY-MM-DD' }}</td>
+          <td style="padding: 5px 0px; width: 20%">{{ itm.BillDate | DsfDateTime:'format':'YYYY-MM-DD' }}</td>
           <td style="padding: 5px 0px; width: 10%">{{ itm.ItemCode }}</td>
           <td style="padding: 5px 0px; width:  20%">{{itm.ItemName}}</td>
           <td style="padding: 5px 0px; width: 15%">{{itm.Quantity}}</td>
@@ -308,7 +308,7 @@
           <th style="padding: 5px 0px; width: 10%">Total</th>
         </tr>
         <tr *ngFor="let itm of OperationCharges; let i = index;">
-          <td style="padding: 5px 0px; width: 20%">{{ itm.BillDate | DanpheDateTime:'format':'YYYY-MM-DD' }}</td>
+          <td style="padding: 5px 0px; width: 20%">{{ itm.BillDate | DsfDateTime:'format':'YYYY-MM-DD' }}</td>
           <td style="padding: 5px 0px; width: 10%">{{ itm.ItemCode }}</td>
           <td style="padding: 5px 0px; width:  20%">{{itm.ItemName}}</td>
           <td style="padding: 5px 0px; width: 15%">{{itm.Quantity}}</td>
@@ -344,7 +344,7 @@
           <th style="padding: 5px 0px; width: 10%">Total</th>
         </tr>
         <tr *ngFor="let itm of OtherCharges; let i = index;">
-          <td style="padding: 5px 0px; width: 20%">{{ itm.BillDate | DanpheDateTime:'format':'YYYY-MM-DD' }}</td>
+          <td style="padding: 5px 0px; width: 20%">{{ itm.BillDate | DsfDateTime:'format':'YYYY-MM-DD' }}</td>
           <td style="padding: 5px 0px; width: 10%">{{ itm.ItemCode }}</td>
           <td style="padding: 5px 0px; width:  20%">{{itm.ItemName}}</td>
           <td style="padding: 5px 0px; width: 15%">{{itm.Quantity}}</td>

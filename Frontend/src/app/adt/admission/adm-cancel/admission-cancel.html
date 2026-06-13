@@ -10,7 +10,7 @@
           </tr>
           <tr>
             <td>Hospital No: {{admissionInfo.PatientCode}}</td>
-            <td> Age/Sex :{{admissionInfo.DateOfBirth | DanpheDateTime:'age'}} / {{admissionInfo.Gender}} </td>
+            <td> Age/Sex :{{admissionInfo.DateOfBirth | DsfDateTime:'age'}} / {{admissionInfo.Gender}} </td>
           </tr>
           <tr>
             <td>Ward Name: {{admissionInfo.WardName}}</td>
@@ -34,7 +34,7 @@
           </tr>
           <tr>
             <td>Cancelled On:</td>
-            <td><danphe-date-picker [(ngModel)]="admissionCancel.CancelledOn" ngDefaultControl [CalendarTypes]="calType"> </danphe-date-picker></td>
+            <td><dsf-date-picker [(ngModel)]="admissionCancel.CancelledOn" ngDefaultControl [CalendarTypes]="calType"> </dsf-date-picker></td>
           </tr>
         </table>
         <div> Remarks <b style="color:red">*</b>:

@@ -2,8 +2,8 @@
 @using System.Collections.Generic;
 @using System.Linq;
 @using System.Text;
-@using DanpheEMR.ServerModel;
-@using DanpheEMR.DalLayer;*@-->
+@using DsfEMR.ServerModel;
+@using DsfEMR.DalLayer;*@-->
 <style>
   .billCreditTable thead tr th,
   .billCreditTable tbody tr td {
@@ -14,10 +14,10 @@
 <div class="wrapper">
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="ProvisionalItemsGridColumns" [grid-data]="provisionalItemList"
+      <dsf-grid [grid-colDefaults]="ProvisionalItemsGridColumns" [grid-data]="provisionalItemList"
                    [show-CustomDate]="true" (grid-actions)="CancelGridActions($event)" [rangeType]="dateRange"
                    (onDateChange)="onGridDateChange($event)" [date-range-options]="'1W,1M,3M'"
-                   [NepaliDateInGridParams]="NepaliDateInGridSettings"> </danphe-grid>
+                   [NepaliDateInGridParams]="NepaliDateInGridSettings"> </dsf-grid>
     </div>
   </div>
 </div>

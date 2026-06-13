@@ -110,10 +110,10 @@
                             </form>
                         </td>
                         <td *ngIf="row.IsFixedAsset && showBarcode">
-                            <danphe-multiselect [ddl-data]="row.BarCodeList" [placeholder-text]="'---Select BarCodeNumber---'"
+                            <dsf-multiselect [ddl-data]="row.BarCodeList" [placeholder-text]="'---Select BarCodeNumber---'"
                                                 [value-property-name]="'StockId'" (selected-items-list)="onBarcodeChanged($event, i)"
                                                 [display-property-name]="'BarCodeNumber'" [show-limit]="'100'" [single-selection]="false">
-                            </danphe-multiselect>
+                            </dsf-multiselect>
                         </td>
                         <!-- <td>
                             <textarea name="ItemRemarks" id="itemRemarks{{i}}" class="form-control" cols="15" rows="1" [(ngModel)]="row.ItemRemarks"></textarea>

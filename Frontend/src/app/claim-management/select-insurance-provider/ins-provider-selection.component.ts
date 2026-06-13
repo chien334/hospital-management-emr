@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { ENUM_MessageBox_Status, ENUM_Scheme_ApiIntegrationNames } from '../../shared/shared-enums';
 import { CreditOrganization_DTO } from '../shared/DTOs/credit-organization.dto';
@@ -32,7 +32,7 @@ export class InsuranceProviderSelectionComponent {
   public GetInsuranceApplicableCreditOrganizations(): void {
     try {
       this.claimManagementBLService.GetInsuranceApplicableCreditOrganizations()
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
 
           if (res.Results && res.Results.length) {
             this.CreditOrganization = res.Results;

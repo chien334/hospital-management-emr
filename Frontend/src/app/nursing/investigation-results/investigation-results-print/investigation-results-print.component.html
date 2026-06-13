@@ -127,13 +127,13 @@
                                             <tr>
                                                 <td colspan="5" style="text-align: left;">
                                                     <p class="c_paragraphs" style="margin: 3px 0;">
-                                                        {{ 'NURSING.AGE_SEX' | translate }}:<strong>{{PatService.globalPatient.DateOfBirth | DanpheDateTime:'age' }} /
+                                                        {{ 'NURSING.AGE_SEX' | translate }}:<strong>{{PatService.globalPatient.DateOfBirth | DsfDateTime:'age' }} /
                                                             {{PatService.globalPatient.Gender}}</strong></p>
                                                 </td>
                                                 <td colspan="5" style="text-align: right;">
                                                     <p class="c_paragraphs" style="margin: 3px 0;">
                                                         {{ 'NURSING.DOA' | translate }}:<strong>{{PatService.globalPatient.AdmittedDate |
-                                                            DanpheDateTime:'format':'YYYY-MM-DD'}}</strong></p>
+                                                            DsfDateTime:'format':'YYYY-MM-DD'}}</strong></p>
                                                 </td>
                                             </tr>
                                         </table>

@@ -30,7 +30,7 @@
               <div class="form-group">
                 <label class="control-label col-md-5">{{ 'SECURITY.SELECT_EMPLOYEE' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
-                  <input id="EmployeeId" (keyup.enter)="GoToNextInput('UserName')" danphe-auto-complete
+                  <input id="EmployeeId" (keyup.enter)="GoToNextInput('UserName')" dsf-auto-complete
                            [(ngModel)]="selEmployee"
                            [source]="empList"
                            [placeholder]="'SECURITY.EMPLOYEE_NAME_PLACEHOLDER' | translate"

@@ -118,7 +118,7 @@
                 </td>
                 <td colspan="4" style="text-align: right;">
                   <p class="c_paragraphs" style="margin-bottom: 0px;">Transaction Date:<strong> {{invoice.InvoiceInfo.TransactionDate |
-                      DanpheDateTime:'format':'YYYY-MM-DD'}}</strong></p>
+                      DsfDateTime:'format':'YYYY-MM-DD'}}</strong></p>
                 </td>
               </tr>
               <tr>
@@ -127,7 +127,7 @@
                 </td>
                 <td colspan="4" style="text-align: right;">
                   <p class="c_paragraphs" style="margin-bottom: 0px;">Invoice Date:
-                    <strong>{{invoice.InvoiceInfo.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</strong>
+                    <strong>{{invoice.InvoiceInfo.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}}</strong>
                   </p>
                 </td>
               </tr>
@@ -318,7 +318,7 @@
           </td>
           <td colspan="6" style="padding: 5px !important; vertical-align: top; text-align: right;">
             <p class="c_paragraphs" style="margin: 0px;"><strong>Time:
-              </strong>{{invoice.InvoiceInfo.TransactionDate | DanpheDateTime:'format':'hh:mm A'}}</p>
+              </strong>{{invoice.InvoiceInfo.TransactionDate | DsfDateTime:'format':'hh:mm A'}}</p>
           </td>
         </tr>
         <tr>

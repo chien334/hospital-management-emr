@@ -5,10 +5,10 @@
 <br />
 <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="empWHGridColumns"
+        <dsf-grid [grid-colDefaults]="empWHGridColumns"
                      [grid-data]="workingHoursList"
                      (grid-actions)="WorkingHrsGridActions($event)">
-        </danphe-grid>
+        </dsf-grid>
     </div>
 </div>
 <div class="popup-static portlet box portlet-fullscreen" *ngIf="showEmpWHUpdatePage">

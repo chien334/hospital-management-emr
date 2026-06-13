@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import * as _ from 'lodash';
 import { SecurityService } from "../../security/shared/security.service";
 import { BanksModel } from "../../settings-new/shared/banks.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { InsuranceClaimPayment } from "../shared/DTOs/ClaimManagement_ClaimPayment_DTO";
 import { InsurancePendingClaim } from "../shared/DTOs/ClaimManagement_PendingClaims_DTO";
 import { ClaimManagementBLService } from "../shared/claim-management.bl.service";
@@ -53,8 +53,8 @@ export class NewInsurancePaymentComponent {
     public GetEarlierPayments(): void {
         this.isPaymentUpdate = false;
         this.claimManagementBlService.GetInsurancePayments(this.claimDetail.ClaimSubmissionId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.insurancePayments = res.Results;
                         let payments = _.cloneDeep(this.insurancePayments);
@@ -70,7 +70,7 @@ export class NewInsurancePaymentComponent {
                     this.newPaymentDetail.ReceivedAmount = this.totalPendingAmount;
                 }
             },
-                (err: DanpheHTTPResponse) => {
+                (err: DsfHTTPResponse) => {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
                 }
             );
@@ -78,8 +78,8 @@ export class NewInsurancePaymentComponent {
 
     public GetBankList(): void {
         this.claimManagementBlService.GetBankList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.bankList = res.Results;
                     }
@@ -88,7 +88,7 @@ export class NewInsurancePaymentComponent {
                     }
                 }
             },
-                (err: DanpheHTTPResponse) => {
+                (err: DsfHTTPResponse) => {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
                 }
             );
@@ -114,8 +114,8 @@ export class NewInsurancePaymentComponent {
                         this.selectedBank = "";
                         this.GetEarlierPayments();
                     })
-                    .subscribe((res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    .subscribe((res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                             if (res.Results) {
                                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Claim Payment is successfully saved.`]);
                             }
@@ -124,7 +124,7 @@ export class NewInsurancePaymentComponent {
                             }
                         }
                     },
-                        (err: DanpheHTTPResponse) => {
+                        (err: DsfHTTPResponse) => {
                             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
                         }
                     );
@@ -160,8 +160,8 @@ export class NewInsurancePaymentComponent {
                         this.selectedBank = "";
                         this.GetEarlierPayments();
                     })
-                    .subscribe((res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    .subscribe((res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                             if (res.Results) {
                                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Claim Payment is successfully Updated.`]);
                             }
@@ -170,7 +170,7 @@ export class NewInsurancePaymentComponent {
                             }
                         }
                     },
-                        (err: DanpheHTTPResponse) => {
+                        (err: DsfHTTPResponse) => {
                             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error : ${err.ErrorMessage}`]);
                         }
                     );

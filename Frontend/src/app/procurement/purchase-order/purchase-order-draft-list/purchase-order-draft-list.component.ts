@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { InventoryBLService } from '../../../inventory/shared/inventory.bl.service';
 import { InventoryService } from '../../../inventory/shared/inventory.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import ProcurementGridColumns from '../../shared/procurement-grid-column';
 import { ProcurementBLService } from '../../shared/procurement.bl.service';
 import { PurchaseOrderDraft } from '../purchase-order-draft.model';
@@ -48,7 +48,7 @@ export class PurchaseOrderDraftListComponent implements OnInit {
         this.procBLService.GetPurchaseOrderDraftList(this.status).finally(() => {
             this.loading = false;
         }).subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length > 0) {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length > 0) {
                 this.purchaseOrderDraftList = res.Results;
             }
             else {
@@ -127,7 +127,7 @@ export class PurchaseOrderDraftListComponent implements OnInit {
         }
     }
     ShowPurchaseOrderDetails(res) {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.purchaseorderDraft = res.Results.poDraftDetails;
             if (this.purchaseorderDraft.Status === "InProgress") {
                 this.purchaseorderDraft.IsModificationAllowed = true;
@@ -158,7 +158,7 @@ export class PurchaseOrderDraftListComponent implements OnInit {
         this.procBLService.PostDiscardPurchaseOrderDraft(PoFraftId, this.purchaseorderDraft.DiscardRemarks)
             .subscribe(
                 res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.CloseDiscardPopUP();
                         this.LoadPODraftListByStatus();
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Purchase Order Draft Discarded`]);

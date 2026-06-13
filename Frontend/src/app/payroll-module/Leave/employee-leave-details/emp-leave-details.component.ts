@@ -145,7 +145,7 @@ export class EmployeeLeaveComponent{
                         headerName: "Actions",
                         field: "",
                         template:
-                            `<a danphe-grid-action="view" class="grid-action"><i class="fa fa-eye"></i> View </a>`  
+                            `<a dsf-grid-action="view" class="grid-action"><i class="fa fa-eye"></i> View </a>`  
             }
             this.columnDefinitions.push(mappedColumn)  ;
             //Remove duplicate columns

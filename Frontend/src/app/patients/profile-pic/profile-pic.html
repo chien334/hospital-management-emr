@@ -8,5 +8,5 @@
     <br />
     <img *ngIf="!patientFile.FileBase64String" alt="Avatar" height="200" width="200" src="/themes/theme-default/images/NO_Image.png"> <img *ngIf="patientFile.FileBase64String" [src]="'data:image/jpeg;base64,'+patientFile.FileBase64String" style="width:300px;height:300px;" /> </div>
   <br />
-  <danphe-photo-cropper *ngIf="openPhotoCropper" [ipImage]="currImageBase64" [action-type]="actionType" (onCropSuccess)="OnCropSuccess($event)" (onCropperClose)="OnCropperClosed($event)"></danphe-photo-cropper>
+  <dsf-photo-cropper *ngIf="openPhotoCropper" [ipImage]="currImageBase64" [action-type]="actionType" (onCropSuccess)="OnCropSuccess($event)" (onCropperClose)="OnCropperClosed($event)"></dsf-photo-cropper>
 </div>

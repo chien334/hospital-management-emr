@@ -31,7 +31,7 @@ import * as jsPDF from 'jspdf';
 import * as _ from 'lodash';
 import { CoreService } from '../../core/shared/core.service';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { CommonFunctions } from '../../shared/common.functions';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../shared/routefrom.service';
@@ -42,7 +42,7 @@ import { LabsBLService } from '../shared/labs.bl.service';
 
 
 @Component({
-  selector: 'danphe-lab-results',
+  selector: 'dsf-lab-results',
   templateUrl: "./lab-tests-results.html"
 
 })
@@ -126,7 +126,7 @@ export class LabTestsResults {
     this.labReportFormat = this.coreService.GetLabReportFormat();
     this.resEditParam = this.coreService.ShowEditResultButtonInLabFinalReport();
     this.LabHeaderSetting = this.coreService.GetLabReportHeaderSetting();
-    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DanpheConfigurationForTeleMedicine").ParameterValue;
+    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DsfConfigurationForTeleMedicine").ParameterValue;
     this.TeleMedicineConfiguration = JSON.parse(TeleMedicineConfig);
     this.Login.PhoneNumber = this.TeleMedicineConfiguration.PhoneNumber;
     this.Login.Password = this.TeleMedicineConfiguration.Password;
@@ -169,7 +169,7 @@ export class LabTestsResults {
     //remove hardcoded id: 1 from below and pass correct one.
     //or pass list of requisitionIds as per necessity
     this.labBLService.GetReportFromReqIdList(this.requisitionIdList)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK" && res.Results) {
           this.templateReport = res.Results;
           this.enableResultEdit = !(this.templateReport && this.templateReport.ReportId && (this.templateReport.ReportId > 0)) || this.resEditParam;

@@ -111,7 +111,7 @@ export class PHRMSalesBookComponent {
         var printContents = document.getElementById("dvReport").innerHTML;
         popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
         popupWinindow.document.open();
-        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
         popupWinindow.document.close();
     }
     GetBillingHeaderParameter() {

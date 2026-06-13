@@ -6,7 +6,7 @@ import { BillingTransaction } from '../../billing/shared/billing-transaction.mod
 import { Router } from '@angular/router';
 import { PatientService } from '../../patients/shared/patient.service';
 import { Subscription } from 'rxjs';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../security/shared/security.service';
 import { RouteFromService } from '../../shared/routefrom.service';
@@ -97,7 +97,7 @@ export class VaccinationFollowupAddComponent {
 
 
     this.vaccBlService.PostFollowupVisit(this.followupVisitObj)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.msgBoxServ.showMessage("success", ["Followup created successfully."]);
           console.log(res.Results);

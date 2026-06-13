@@ -12,7 +12,7 @@ import { PHRMStoreModel } from '../../../../../pharmacy/shared/phrm-store.model'
 import { SecurityService } from '../../../../../security/shared/security.service';
 import { GeneralFieldLabels } from '../../../../../shared/DTOs/general-field-label.dto';
 import { MessageboxService } from '../../../../../shared/messagebox/messagebox.service';
-import { ENUM_BillPaymentMode, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../../../shared/shared-enums';
+import { ENUM_BillPaymentMode, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../../../shared/shared-enums';
 import { DispensaryService } from '../../../../shared/dispensary.service';
 
 @Component({
@@ -241,7 +241,7 @@ export class ManualSalesReturnComponent implements OnInit {
       this.isRequestLoading = true;
       this.salesReturn.CreatedOn = moment().format('YYYY-MM-DD');
       this.pharmacyBLService.postManualReturn(this.salesReturn).finally(() => this.isRequestLoading = false).subscribe(res => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           this._msgBox.showMessage(ENUM_MessageBox_Status.Success, ["Returned Successfully."]);
           this.InvoiceReturnId = res.Results;
           this.showReturnReceipt = true;

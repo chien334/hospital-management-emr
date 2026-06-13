@@ -2,16 +2,16 @@ import { Component, ChangeDetectorRef, Input, Output, EventEmitter } from '@angu
 import { HttpClient } from '@angular/common/http';
 import { WardStockModel } from './shared/ward-stock.model'
 import WARDGridColumns from './shared/ward-grid-cloumns';
-import { GridEmitModel } from "../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../shared/dsf-grid/grid-emit.model";
 import { WardSupplyBLService } from "./shared/wardsupply.bl.service";
 import { MessageboxService } from "../shared/messagebox/messagebox.service";
 import * as moment from 'moment/moment'
 import { DLService } from "../shared/dl.service";
 import { WardModel } from "./shared/ward.model";
 import { Router } from '@angular/router';
-import { DanpheCache, MasterType } from '../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../shared/dsf-cache-service-utility/cache-services';
 import { SecurityService } from '../security/shared/security.service';
-import { DanpheHTTPResponse } from '../shared/common-models';
+import { DsfHTTPResponse } from '../shared/common-models';
 
 
 @Component({
@@ -71,7 +71,7 @@ export class StockComponent {
   public getPharmacyItemsStockDetailsList() {
     try {
       this.wardSupplyBLService.GetPHRMSubStoreAvailableStockByStoreId(this.CurrentStoreId)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status === "OK") {
             if (res.Results.length) {
               this.stockDetailsList = [];

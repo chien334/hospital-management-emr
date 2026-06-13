@@ -113,7 +113,7 @@ export class LISMappingAddComponent {
                     renderedData.IsValidComponent = true;
                     renderedData.IsValidLISComponent = true;
                     renderedData.ConversionFactor = this.existingMapping.ConversionFactor;
-                    renderedData.DanpheComponent = this.notMappedDataList.find(d => d.ComponentId == this.existingMapping.ComponentId);
+                    renderedData.DsfComponent = this.notMappedDataList.find(d => d.ComponentId == this.existingMapping.ComponentId);
                     renderedData.LISComponent = this.allMasterData.find(d => d.LISComponentMasterId == this.existingMapping.LISComponentId);
                     this.compMappingArrayTemp.push(renderedData);
                 }
@@ -127,8 +127,8 @@ export class LISMappingAddComponent {
 
     Save() {
         let isDataValid = true;
-        //get those rows that have either Danphe Component or LIS Component or both
-        this.compMappingArrayTemp = this.compMappingArrayTemp.filter(d => (d.DanpheComponent && d.DanpheComponent.ComponentId) || (d.LISComponent && d.LISComponent.LISComponentMasterId));
+        //get those rows that have either Dsf Component or LIS Component or both
+        this.compMappingArrayTemp = this.compMappingArrayTemp.filter(d => (d.DsfComponent && d.DsfComponent.ComponentId) || (d.LISComponent && d.LISComponent.LISComponentMasterId));
         //if there is not such row i.e.all rows have empty field, then, remove all and add fresh new row
         if (!this.compMappingArrayTemp.length) {
             isDataValid = false;
@@ -142,7 +142,7 @@ export class LISMappingAddComponent {
                 isDataValid = false;
                 return;
             }
-            let validComp = d.DanpheComponent && (typeof d.DanpheComponent == "object") && d.DanpheComponent.ComponentId;
+            let validComp = d.DsfComponent && (typeof d.DsfComponent == "object") && d.DsfComponent.ComponentId;
             let validLisComp = d.LISComponent && (typeof d.LISComponent == "object") && d.LISComponent.LISComponentMasterId;
             if (((!validComp && validLisComp) || (!validLisComp && validComp)) || ((this.compMappingArrayTemp.length == 1) && (!validComp && !validLisComp))) {
                 isDataValid = false;
@@ -155,7 +155,7 @@ export class LISMappingAddComponent {
             let data = this.compMappingArrayTemp.filter(d => d.IsValidComponent && d.IsValidLISComponent).map(dt => {
                 let newObj = new LabToLisComponentMap();
                 if (this.isEdit) { newObj.LISComponentMapId = this.selectedMapId; }
-                newObj.ComponentId = dt.DanpheComponent.ComponentId;
+                newObj.ComponentId = dt.DsfComponent.ComponentId;
                 newObj.LISComponentId = dt.LISComponent.LISComponentMasterId;
                 newObj.ConversionFactor = dt.ConversionFactor;
                 newObj.MachineId = this.selectedMachineId;
@@ -185,10 +185,10 @@ export class LISMappingAddComponent {
         let mappedElem = {};
         let allDupIds = [];
         this.compMappingArrayTemp.forEach(v => {
-            if (v.DanpheComponent && (typeof (v.DanpheComponent) == 'object') && v.DanpheComponent.ComponentId) {
-                if (v.DanpheComponent.ComponentId in mappedElem) {
-                    mappedElem[v.DanpheComponent.ComponentId]++;
-                } else { mappedElem[v.DanpheComponent.ComponentId] = 1; }
+            if (v.DsfComponent && (typeof (v.DsfComponent) == 'object') && v.DsfComponent.ComponentId) {
+                if (v.DsfComponent.ComponentId in mappedElem) {
+                    mappedElem[v.DsfComponent.ComponentId]++;
+                } else { mappedElem[v.DsfComponent.ComponentId] = 1; }
             }
         });
         for (var prop in mappedElem) {
@@ -196,7 +196,7 @@ export class LISMappingAddComponent {
         }
         this.compMappingArrayTemp.forEach(m => {
             m.IsDuplicate = false;
-            if (m.DanpheComponent && allDupIds.includes(m.DanpheComponent.ComponentId)) {
+            if (m.DsfComponent && allDupIds.includes(m.DsfComponent.ComponentId)) {
                 m.IsDuplicate = true;
             }
         });
@@ -204,7 +204,7 @@ export class LISMappingAddComponent {
 
 
     public MachineChanged() {
-        let allValidCompMap = this.compMappingArrayTemp.filter(c => c.DanpheComponent && c.LISComponent && c.DanpheComponent.ComponentId && c.LISComponent.LISComponentMasterId);
+        let allValidCompMap = this.compMappingArrayTemp.filter(c => c.DsfComponent && c.LISComponent && c.DsfComponent.ComponentId && c.LISComponent.LISComponentMasterId);
         //if any mapping is inserted
         if (this.compMappingArrayTemp && allValidCompMap && allValidCompMap.length > 1) {
             this.showMachineChangeAlert = true;

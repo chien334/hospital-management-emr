@@ -60,7 +60,7 @@ export class GovInpatientOutcomeReportComponent {
   //   var printContents = document.getElementById("printpage").innerHTML;
   //   popupWindow = window.open('', '_blank', 'width=800,heigth=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
   //   popupWindow.document.open();
-  //   popupWindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css" /></head><style type="text/css">.Selected {border-collapse: collapse; border-spacing: 5px; border: 1px solid black;padding: 5px;}</style><body onload="window.print()">' + printContents + '</body></html>');
+  //   popupWindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css" /></head><style type="text/css">.Selected {border-collapse: collapse; border-spacing: 5px; border: 1px solid black;padding: 5px;}</style><body onload="window.print()">' + printContents + '</body></html>');
   //   popupWindow.document.close();
   // }
 
@@ -137,9 +137,9 @@ export class GovInpatientOutcomeReportComponent {
     popupWindow = window.open('', '_blank', 'width=800,heigth=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWindow.document.open();
     popupWindow.document.write(`<html><head>
-      <link rel="stylesheet" type="text/css" href="../../../assets-dph/external/global/plugins/bootstrap/css/theme-default/Danphe_ui_style.css" />
-      <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/Danphe_ui_style.css" />
-      <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanphePrintStyle.css" />
+      <link rel="stylesheet" type="text/css" href="../../../assets-dph/external/global/plugins/bootstrap/css/theme-default/Dsf_ui_style.css" />
+      <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/Dsf_ui_style.css" />
+      <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfPrintStyle.css" />
       </head>
       <style type="text/css">
         .Selected {border-collapse: collapse;} 

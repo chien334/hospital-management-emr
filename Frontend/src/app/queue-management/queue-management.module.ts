@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from "../shared/shared.module";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
 import { QueueManagementRoutingModule } from './queue-management-routing.module';
 import { QueueManagementMainComponent } from './queue-management-main-component';
@@ -23,6 +23,6 @@ import { QueueManagementBLService } from './shared/Qmgnt.bl.service';
         CommonModule,
         AngularMultiSelectModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SettingsSharedModule], providers: [QueueManagementService, QueueManagementDLService, QueueManagementBLService] })
 export class QueueManagementModule { }

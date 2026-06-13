@@ -80,8 +80,8 @@
             <div class="form-group">
               <label class="control-label col-md-4 left" style="padding-top: 1px;">Date Of Birth<b>:</b></label>
               <div class="col-md-8 datepicker-wrap">
-                <danphe-date-picker [(ngModel)]="model.DateOfBirth" ngDefaultControl [CalendarTypes]="calType"
-                                    formControlName="DateOfBirth" [year-settings]="'DateOfBirth'"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="model.DateOfBirth" ngDefaultControl [CalendarTypes]="calType"
+                                    formControlName="DateOfBirth" [year-settings]="'DateOfBirth'"> </dsf-date-picker>
                 <span class="error-msg" *ngIf="model.IsDirty('DateOfBirth')"
                       [hidden]="model.IsValidCheck('DateOfBirth','required')"> Date Of Birth is required</span> <span
                       class="error-msg" *ngIf="model.IsDirty('DateOfBirth')"
@@ -172,7 +172,7 @@
             <div class="form-group">
               <label class="control-label col-md-4">{{GeneralFieldLabel.DistrictState}}<sup>*</sup><b>:</b></label>
               <div class="col-md-8">
-                <input danphe-auto-complete class="form-control" formControlName="CountrySubDivisionId" id="ddlDistrict"
+                <input dsf-auto-complete class="form-control" formControlName="CountrySubDivisionId" id="ddlDistrict"
                        [(ngModel)]="selDistrict" [list-formatter]="myListFormatter" [source]="CountrySubDivisionList"
                        placeholder="Enter {{GeneralFieldLabel.DistrictState}}" (keyup.enter)="GoToNextInput('Address')"
                        display-property-name="Value" value-property-name=null (focusout)="DistrictChanged()"
@@ -211,7 +211,7 @@
       value="" (focusout)="capitalizeFirstLetter('Address')"
       placeholder="Address" /> -->
 
-                <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}" id="Address"
+                <input dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}" id="Address"
                        [(ngModel)]="model.Address" [source]="olderAddressList" placeholder="Address"
                        (keyup.enter)="GoToNextInput('regPatientSubmitBtn')"
                        display-property-name="PatAddress" value-property-name=null no-match-found-text=" "

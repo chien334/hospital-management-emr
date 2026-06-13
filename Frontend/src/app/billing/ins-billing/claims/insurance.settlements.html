@@ -28,11 +28,11 @@
             <div *ngIf="showSelector" class="col-md-10 col-xs-12" style="margin-top: -10px;">
               <div class="col-md-5">
                 <label style="margin:7px">From Date<b>:</b></label>
-                <danphe-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl > </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl > </dsf-date-picker>
               </div>
               <div class="col-md-5">
                 <label style="margin:7px">To Date<b>:</b></label>
-                <danphe-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl > </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl > </dsf-date-picker>
               </div>
               <div class="col-md-2" style="padding-top:20px;">
                 <input style="width:100px;height:30px;font-weight:bold;" type="button" class="blue btn" value="Load" (click)="GetUnclaimedBills()" />
@@ -77,7 +77,7 @@
                        ng-checked="set.IsInsuranceClaimed"
                        (change)="SelectInvoiceChkOnChange(set)"
                        title="Select" /></td>
-                <td>{{set.BillingDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{set.BillingDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                 <td>{{set.FiscalYear}}</td>
                 <td>{{set.InvoiceNo}}</td>
                 <td>{{set.PatientFName}} {{set.PatientMName}} {{set.PatientLName}}</td>

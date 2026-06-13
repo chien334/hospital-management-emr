@@ -12,8 +12,8 @@
                   <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
                   <hr />
                 </div>
-                <danphe-grid [grid-colDefaults]="DispatchListGridColumns" [grid-data]="dispatchList" (grid-actions)="DispatchDetailsGridAction($event)" [NepaliDateInGridParams]="DispatchNepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
-                </danphe-grid>
+                <dsf-grid [grid-colDefaults]="DispatchListGridColumns" [grid-data]="dispatchList" (grid-actions)="DispatchDetailsGridAction($event)" [NepaliDateInGridParams]="DispatchNepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
+                </dsf-grid>
                 <hr />
               </div>
             </div>

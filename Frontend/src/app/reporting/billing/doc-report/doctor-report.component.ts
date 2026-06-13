@@ -4,10 +4,10 @@ import { DLService } from "../../../shared/dl.service"
 import { HttpClient } from '@angular/common/http';
 import { ReportingService } from "../../shared/reporting-service";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import * as moment from 'moment/moment';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 @Component({
   templateUrl: "./doctor-report.html"
 })

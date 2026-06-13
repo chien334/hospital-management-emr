@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs-compat';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { ENUM_DanpheHTTPResponses } from '../../shared/shared-enums';
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { ENUM_DsfHTTPResponses } from '../../shared/shared-enums';
 import { CreditOrganization_DTO } from './DTOs/credit-organization.dto';
 import { ClaimManagementBLService } from './claim-management.bl.service';
 
@@ -55,8 +55,8 @@ export class ClaimManagementService {
 
   public async getRespectiveApiIntegrationName(OrganizationId: number): Promise<string> {
     return new Promise<string>((resolve, reject) => {
-      this.claimManagementBLService.GetApiIntegrationNameByOrganizationId(OrganizationId).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      this.claimManagementBLService.GetApiIntegrationNameByOrganizationId(OrganizationId).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           resolve(res.Results.ApiIntegrationName);
         } else {
           reject(new Error("Failed to get API integration name"));

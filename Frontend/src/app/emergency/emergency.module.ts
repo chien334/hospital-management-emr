@@ -23,7 +23,7 @@ import { PatientsBLService } from '../patients/shared/patients.bl.service';
 import { PatientsDLService } from '../patients/shared/patients.dl.service';
 import { PharmacyBLService } from '../pharmacy/shared/pharmacy.bl.service';
 import { PharmacyDLService } from '../pharmacy/shared/pharmacy.dl.service';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { SharedModule } from "../shared/shared.module";
 import { ERWardBillingComponent } from './ER-ward-billing/er-wardbilling.component';
 import { BedInformationsComponent } from './bed-informations/bed-informations.component';
@@ -82,7 +82,7 @@ import { ERTriagePatientListComponent } from './triage/er-triage-patient-list.co
         AngularMultiSelectModule,
         SharedModule,
         DischargeSummaryModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         BillingSharedModule,
         ADTSharedModule,
         ClinicalSharedModule,

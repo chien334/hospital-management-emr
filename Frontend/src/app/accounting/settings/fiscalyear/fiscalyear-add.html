@@ -28,18 +28,18 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4 left" style="padding-top: 1px;">{{ 'ACCOUNTING.START_YEAR' | translate }}<b style="float:right;">:</b></label>
                                     <div class="col-md-8">
-                                        <danphe-date-picker [(ngModel)]="currentFiscalYear.StartDate" (ngModelChange)="selectProperFiscalYearName()"
+                                        <dsf-date-picker [(ngModel)]="currentFiscalYear.StartDate" (ngModelChange)="selectProperFiscalYearName()"
                                                             formControlName="StartDate" ngDefaultControl [CalendarTypes]="calType">
-                                        </danphe-date-picker>
+                                        </dsf-date-picker>
                                         <span class="color-red font-sm" [hidden]="currentFiscalYear.IsValidCheck('StartDate','required') || !(currentFiscalYear.IsDirty('StartDate'))">{{ 'ACCOUNTING.START_DATE_REQUIRED' | translate }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4 left" style="padding-top: 1px;">{{ 'ACCOUNTING.END_YEAR' | translate }}<b style="float:right;">:</b></label>
                                     <div class="col-md-8">
-                                        <danphe-date-picker [(ngModel)]="currentFiscalYear.EndDate" (ngModelChange)="selectProperFiscalYearName()" formControlName="EndDate"
+                                        <dsf-date-picker [(ngModel)]="currentFiscalYear.EndDate" (ngModelChange)="selectProperFiscalYearName()" formControlName="EndDate"
                                                             ngDefaultControl [CalendarTypes]="calType">
-                                        </danphe-date-picker>
+                                        </dsf-date-picker>
                                         <span class="color-red font-sm" [hidden]="currentFiscalYear.IsValidCheck('EndDate','required') || !(currentFiscalYear.IsDirty('EndDate'))">{{ 'ACCOUNTING.END_DATE_REQUIRED' | translate }}</span>
                                     </div>
                                 </div>

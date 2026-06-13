@@ -3,7 +3,7 @@
     <tr>
       <td> {{ 'GRID_HEADERS.HOSPITAL_NO_' | translate }}: <b> {{patAndVisInfo.PatientCode}} </b></td>
       <td> {{ 'GRID_HEADERS.PATIENT_NAME' | translate }}: <b> {{patAndVisInfo.PatientName}}</b></td>
-      <td> {{ 'GRID_HEADERS.AGE_SEX' | translate }}: <b>{{patAndVisInfo.DateOfBirth | DanpheDateTime:'age'}}/{{patAndVisInfo.Gender | slice:0:1}}</b>
+      <td> {{ 'GRID_HEADERS.AGE_SEX' | translate }}: <b>{{patAndVisInfo.DateOfBirth | DsfDateTime:'age'}}/{{patAndVisInfo.Gender | slice:0:1}}</b>
       </td>
       <td>
         {{ 'VACCINATION.VACC_REG_NO' | translate }}: <b> {{patAndVisInfo.VaccinationRegNo}}</b>

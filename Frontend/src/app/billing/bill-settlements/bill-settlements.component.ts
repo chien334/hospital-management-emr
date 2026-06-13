@@ -9,17 +9,17 @@ import { BillingService } from '../shared/billing.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { BillingTransactionItem } from "../shared/billing-transaction-item.model";
 import { EmployeeCashTransaction } from '../shared/billing-transaction.model';
-//to add danphe-grid in credit-details page:sudarshan 26Mar'17
+//to add dsf-grid in credit-details page:sudarshan 26Mar'17
 import { CoreService } from '../../core/shared/core.service';
 import { SecurityService } from '../../security/shared/security.service';
 import { CreditOrganization } from '../../settings-new/shared/creditOrganization.model';
 import { CallbackService } from '../../shared/callback.service';
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { RouteFromService } from '../../shared/routefrom.service';
-import { ENUM_DanpheHTTPResponses, ENUM_ModuleName } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_ModuleName } from '../../shared/shared-enums';
 import { BillSettlementModel } from "../shared/bill-settlement.model";
 import { PatientCreditInvoices_DTO } from '../shared/dto/bill-credit-invoice-details.dto';
 import { BillNewSettlement_DTO } from '../shared/dto/bill-new-settlement.dto';
@@ -145,8 +145,8 @@ export class BillSettlementsComponent {
   GetBillsForSettlement(organizationId: number) {
     this.allPendingSettlements = [];
     this.billingBLService.GetPendingBillsForSettlement(organizationId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.allPendingSettlements = res.Results;
           if (this.FromBillingPage && this.allPendingSettlements) {
             this.PatientDetailForSettlement = this.allPendingSettlements.find(a => a.PatientId == this.PatientIdForSettlement);
@@ -188,7 +188,7 @@ export class BillSettlementsComponent {
     patient.PhoneNumber = row.PhoneNumber;
 
     this.billingBLService.GetBillingInfoOfPatientForSettlement(patient.PatientId, this.OrganizationId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.patCrInvoicDetails = res.Results.CreditInvoiceInfo;
           this.PatientInfo = res.Results.PatientInfo;
@@ -426,8 +426,8 @@ export class BillSettlementsComponent {
       let settlementToPost = this.GetSettlementInvoiceFormatted();
 
       this.billingBLService.PostSettlementInvoice(settlementToPost)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.settlementToDisplay = res.Results;
             this.showReceipt = true;
             this.showActionPanel = false;

@@ -5,7 +5,7 @@ import { PatientService } from '../../../patients/shared/patient.service';
 import { PatientsBLService } from '../../../patients/shared/patients.bl.service';
 import { CountrySubdivision } from '../../../settings-new/shared/country-subdivision.model';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
 import { PHRMPatient } from '../../shared/phrm-patient.model';
@@ -110,8 +110,8 @@ export class PhrmOutpatientAddComponent {
   }
 
   public GetMasterData() {
-    this.countryList = DanpheCache.GetData(MasterType.Country, null);
-    this.districtList = DanpheCache.GetData(MasterType.SubDivision, null);
+    this.countryList = DsfCache.GetData(MasterType.Country, null);
+    this.districtList = DsfCache.GetData(MasterType.SubDivision, null);
     if (this.coreService.Masters.UniqueDataList && this.coreService.Masters.UniqueDataList.UniqueAddressList) {
       this.olderAddressList = this.coreService.Masters.UniqueDataList.UniqueAddressList;
     }

@@ -24,7 +24,7 @@
               <div class="form-group">
                 <label class="control-label col-md-4">Department<sup class="color-red"> *</sup></label>
                 <div class="col-md-8">
-                  <input id="txtDepartment" class="form-control" danphe-auto-complete
+                  <input id="txtDepartment" class="form-control" dsf-auto-complete
                     [ngClass]="!visit.IsValidSelDepartment? 'bg-on' : 'bg-off'" [(ngModel)]="selectedDepartment"
                     [list-formatter]="myDepartmentListFormatter" [source]="departmentList" formControlName="Department"
                     placeholder="Department Name" display-property-name="DepartmentName" onClick="this.select();"
@@ -41,7 +41,7 @@
                 <label class="control-label col-md-4">Doctor<sup class="color-red" *ngIf="showDocMandatory">
                     *</sup></label>
                 <div class="col-md-8">
-                  <input class="form-control" danphe-auto-complete
+                  <input class="form-control" dsf-auto-complete
                     [ngClass]="!visit.IsValidSelProvider? 'bg-on' : 'bg-off'" formControlName="Doctor"
                     [(ngModel)]="selectedDoctor" [list-formatter]="DocListFormatter" [source]="filteredDocList"
                     placeholder="Doctor's Name" display-property-name="PerformerName" (focusout)="AssignSelectedDoctor()"

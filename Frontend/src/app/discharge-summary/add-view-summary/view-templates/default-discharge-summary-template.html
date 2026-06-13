@@ -71,7 +71,7 @@
                         <h1 class="panel-heading">
                             <i class="fa fa-user"></i>{{dsVM?.selectedADT?.Name}} ({{dsVM?.selectedADT?.PatientCode}})
                             <!--<label>
-                {{dsVM?.selectedADT?.DOB | DanpheDateTime:'age'}}/{{dsVM?.selectedADT?.Gender}}
+                {{dsVM?.selectedADT?.DOB | DsfDateTime:'age'}}/{{dsVM?.selectedADT?.Gender}}
               </label>-->
                         </h1>
                     </div>
@@ -79,7 +79,7 @@
                         <p class="patient-hdr-label"><strong>Patient Name</strong>: {{dsVM?.selectedADT?.Name}}</p>
                         <p class="patient-hdr-label"><strong>Hospital No.</strong>: {{dsVM?.selectedADT?.PatientCode}}</p>
                         <p class="patient-hdr-label"><b>InPatient No</b>: {{dsVM.VisitCode}}</p>
-                        <p class="patient-hdr-label"><b>Age</b>: {{dsVM?.selectedADT?.DOB | DanpheDateTime:'age'}}/{{dsVM?.selectedADT?.Gender}}
+                        <p class="patient-hdr-label"><b>Age</b>: {{dsVM?.selectedADT?.DOB | DsfDateTime:'age'}}/{{dsVM?.selectedADT?.Gender}}
                         </p>
                         <p class="patient-hdr-label"><b>Address</b>: {{dsVM?.selectedADT?.Address}}</p>
                         <p class="patient-hdr-label"><b>Contact No</b>: {{dsVM?.selectedADT?.PhoneNumber}}</p>
@@ -95,11 +95,11 @@
                             </b>: {{dsVM?.selectedADT?.BedInformation.BedNumber}}
                         </p>
                         <p class="patient-hdr-label">
-                            <b>Admitted On</b>: {{dsVM?.selectedADT?.AdmittedDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp;
+                            <b>Admitted On</b>: {{dsVM?.selectedADT?.AdmittedDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp;
                             <strong>{{dsVM?.selectedADT?.AdmittedDate | nepaliDate}}</strong>
                         </p>
                         <p class="patient-hdr-label">
-                            <b>Discharged On</b>: {{dsVM?.selectedADT?.DischargedDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp;
+                            <b>Discharged On</b>: {{dsVM?.selectedADT?.DischargedDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp;
                             <strong>{{dsVM?.selectedADT?.DischargedDate | nepaliDate}}</strong>
                         </p>
                     </div>

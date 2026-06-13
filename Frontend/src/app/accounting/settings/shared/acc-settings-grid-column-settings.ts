@@ -30,17 +30,17 @@ export default class AccSettingsGridColumnSettings {
 
     static BillingLedgerMapingActions_CellRenderer(params) {
         let template = `
-            <a danphe-grid-action="map" class="grid-action">Map</a>
+            <a dsf-grid-action="map" class="grid-action">Map</a>
         `;
 
         if (params.data.LedgerCode) {
             if (params.data.IsActive == true) {
                 template += `
-                    <a danphe-grid-action="activateDeactivateBillingLedgerMapping" class="grid-action">Disable</a>
+                    <a dsf-grid-action="activateDeactivateBillingLedgerMapping" class="grid-action">Disable</a>
                 `;
             } else {
                 template += `
-                    <a danphe-grid-action="activateDeactivateBillingLedgerMapping" class="grid-action">Enable</a>
+                    <a dsf-grid-action="activateDeactivateBillingLedgerMapping" class="grid-action">Enable</a>
                 `;
             }
         }

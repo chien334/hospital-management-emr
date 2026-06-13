@@ -2,8 +2,8 @@
 <input type="button" class="btn btn-primary" (click)="sendSMS()" [value]="'PHARMACY.SEND_SMS' | translate" style="visibility: hidden;" />
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="categoryGridColumns" [grid-data]="categoryList" (grid-actions)="CategoryGridActions($event)">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="categoryGridColumns" [grid-data]="categoryList" (grid-actions)="CategoryGridActions($event)">
+    </dsf-grid>
   </div>
 </div>
 

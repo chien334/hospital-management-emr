@@ -75,7 +75,7 @@
                   <p>Deposit Receipt No:</p>
                 </div>
                 <div class="col-md-8">
-                  <input danphe-auto-complete type="text" autocomplete="off" name="deposit_receiptNo" id="id_deposit_refund_deposit_receiptNo"
+                  <input dsf-auto-complete type="text" autocomplete="off" name="deposit_receiptNo" id="id_deposit_refund_deposit_receiptNo"
                          class="form-control pd-managed" placeholder="Deposit Receipt No" display-property-name="ReceiptNo"
                          [(ngModel)]="SelectedDeposit" [list-formatter]="FilteredDepositListFormatter" [source]="FilteredDepositLists"
                          value-property-name=null max-num-list="30" onClick="this.select();" [min-chars]="1" match-formatted="true"
@@ -169,7 +169,7 @@
                            [disabled]="loading"
                            *ngIf="!isAddDepositFrmBillTxn"
                            value="{{deposit.TransactionType == 'Deposit' ? 'Add Deposit' : 'Return Deposit' }} and Print" /> -->
-                    <input DanpheConfirmationDialog
+                    <input DsfConfirmationDialog
                            *ngIf="!isAddDepositFrmBillTxn"
                            id="btnAddDepositAndPrint"
                            type="submit"
@@ -185,7 +185,7 @@
                            [style.float]="isAddDepositFrmBillTxn ? 'none' : 'left'"
                            (click)="SubmitBillingDeposit(false)" [disabled]="loading"
                            value="{{deposit.TransactionType == 'Deposit' ? 'Add Deposit' : 'Return Deposit' }}" /> -->
-                    <input DanpheConfirmationDialog
+                    <input DsfConfirmationDialog
                            [style.float]="isAddDepositFrmBillTxn ? 'none' : 'left'"
                            id="btnAddDeposit"
                            type="submit"
@@ -266,7 +266,7 @@
                 <td *ngIf="isAddDepositFrmBillTxn" [ngClass]="{'refund-using-receiptNo': deposit.IsDepositRefundedUsingDepositReceiptNo}">
                   {{deposit.InPatientNo}}</td>
                 <td [ngClass]="{'refund-using-receiptNo': deposit.IsDepositRefundedUsingDepositReceiptNo}">{{deposit.ReceiptDate |
-                  DanpheDateTime:'format':'YYYY-MM-DD HH:mm' }}</td>
+                  DsfDateTime:'format':'YYYY-MM-DD HH:mm' }}</td>
                 <td [ngClass]="{'refund-using-receiptNo': deposit.IsDepositRefundedUsingDepositReceiptNo}">{{deposit.ReceiptNo}}</td>
                 <td [ngClass]="{'refund-using-receiptNo': deposit.IsDepositRefundedUsingDepositReceiptNo}">{{deposit.Amount}}</td>
                 <td [ngClass]="{'refund-using-receiptNo': deposit.IsDepositRefundedUsingDepositReceiptNo}">{{deposit.TransactionType}}</td>

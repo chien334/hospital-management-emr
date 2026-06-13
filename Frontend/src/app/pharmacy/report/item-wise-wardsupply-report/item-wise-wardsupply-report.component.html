@@ -11,7 +11,7 @@
         <div class="col-md-7 text-right">
             <label>{{ 'PHARMACY.WARD' | translate }}:</label>
             <div style="display: inline-block;">
-                <input danphe-auto-complete class="form-control"
+                <input dsf-auto-complete class="form-control"
                        [(ngModel)]="SelectedWard" [source]="SubStoreList"
                        [list-formatter]="SubStoreFormatter"
                        [placeholder]="'PHARMACY.SELECT_WARD' | translate"
@@ -25,7 +25,7 @@
             </div>
             <label style="margin-left:10px">{{ 'PHARMACY.ITEM' | translate }}:</label>
             <div style="display: inline-block;">
-                <input danphe-auto-complete class="form-control"
+                <input dsf-auto-complete class="form-control"
                        [(ngModel)]="SelectedItem"
                        [source]="ItemList"
                        [list-formatter]="ItemListFormatter"
@@ -53,7 +53,7 @@
 </div>
 <div class="row" *ngIf="!IsSummaryViewMode">
     <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="ItemWiseWardSupplyReportColumns"
+        <dsf-grid [grid-colDefaults]="ItemWiseWardSupplyReportColumns"
                      [grid-data]="ItemWiseWardSupplyData"
                      [NepaliDateInGridParams]="NepaliDateInGridSettings"
                      [grid-date-range]="dateRange"
@@ -61,7 +61,7 @@
                      [report-for]="'pharmacy'"
                      [grid-showExport]="true"
                      [filter-parameters]="FilterParameters"
-                     [show-header]="true"> </danphe-grid>
+                     [show-header]="true"> </dsf-grid>
     </div>
 </div>
 <div class="row" *ngIf="IsSummaryViewMode && ItemWiseWardSupplySummaryData.length">

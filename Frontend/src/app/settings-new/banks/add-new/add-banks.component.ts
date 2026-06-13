@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef, Renderer2 } from "@angular/core";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { BanksModel } from "../../shared/banks.model";
 
@@ -61,7 +61,7 @@ export class AddBanksComponent {
     if (this.Bank.IsValidCheck(undefined, undefined)) {
 
       this.settingsBlService.AddBank(this.Bank)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.callbackAdd.emit({ action: "add", data: res.Results });
             this.Bank = new BanksModel();
@@ -89,7 +89,7 @@ export class AddBanksComponent {
     if (this.Bank.IsValidCheck(undefined, undefined)) {
 
       this.settingsBlService.UpdateBank(this.Bank)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
 
           if (res.Status == "OK") {
             this.callbackAdd.emit({ action: "edit", data: res.Results });

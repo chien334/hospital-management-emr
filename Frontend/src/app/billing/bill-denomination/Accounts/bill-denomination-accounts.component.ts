@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
-import { NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { CoreService } from "../../../core/shared/core.service";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";

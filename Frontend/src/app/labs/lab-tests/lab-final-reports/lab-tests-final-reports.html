@@ -42,16 +42,16 @@
 
   <div class="row" *ngIf="showGrid">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="gridColumns" [grid-data]="reportList" (grid-actions)="GridActions($event)"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="gridColumns" [grid-data]="reportList" (grid-actions)="GridActions($event)"> </dsf-grid>
     </div>
   </div>
   <div *ngIf="!showGrid" style="margin-top:5px;">
     <button class="btn primary-btn pull-left margin-7-rt" (click)="BackToGrid();"> <i class="fa fa-arrow-left"></i> {{ 'LABS.BACK_TO_GRID_1' | translate }} </button>
-    <danphe-lab-results [showReport]="showReport" [showAddEditResult]="showAddEditResult"
+    <dsf-lab-results [showReport]="showReport" [showAddEditResult]="showAddEditResult"
       [printReportFromGrid]="printReportFromGrid" [requisitionIdList]="requisitionIdList" [TeleMedicineUploadForm] = "TeleMedicineUploadForm" [showUplaodToTeleMedicine] = "true"
       [verificationRequired]="verificationRequired" (callbackAddUpdate)="CallBackBackToGrid($event)" (callbackUpdateUploadStatus)="UpdateUploadStatus($event)"
       (callbackUpdatePrintStatus) = "UpdatePrintStatusLocally($event)">
-    </danphe-lab-results>
+    </dsf-lab-results>
   </div>
 
   <div class="popup-static portlet box portlet-fullscreen custom_modal" *ngIf="showReportUpload">
@@ -66,10 +66,10 @@
                         <button class="btn btn-danger pull-right" [disabled]="loading" (click)="Close()">X</button>
                     </div>
                     <div class="modelbox-body">
-                        <danphe-lab-results *ngIf="showReportUpload" [showReport]="showReportUpload" [hidePrintButton]="true"
+                        <dsf-lab-results *ngIf="showReportUpload" [showReport]="showReportUpload" [hidePrintButton]="true"
                             [requisitionIdList]="requisitionIdList" [printReportFromGrid]="false"
                             (callbackAddUpdate)="CallBackBackToGrid($event)">
-                        </danphe-lab-results>
+                        </dsf-lab-results>
                     </div>
 
                 </div>

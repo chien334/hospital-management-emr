@@ -27,7 +27,7 @@
                   {{selectedPatientDetails.Age}}/{{selectedPatientDetails.Gender}}</p>
                 <p class="patient-hdr-label"><b>{{ 'PATIENT.ADDRESS' | translate }}</b>: &nbsp;{{selectedPatientDetails.Address}}</p>
                 <p class="patient-hdr-label"><b>{{ 'MEDICAL_RECORDS.VISIT_DATE' | translate }}</b>: &nbsp;{{selectedPatientDetails.VisitDate |
-                  DanpheDateTime:'format':'YYYY-MM-DD' }} </p>
+                  DsfDateTime:'format':'YYYY-MM-DD' }} </p>
                 <p *ngIf="selectedPatientDetails.VisitType" class="patient-hdr-label"> <b>{{ 'MEDICAL_RECORDS.VISIT_TYPE' | translate }}</b>: &nbsp; {{selectedPatientDetails.VisitType}} </p>
                 <p class="patient-hdr-label"><b>{{ 'MEDICAL_RECORDS.CONTACT_NO' | translate }}</b>: &nbsp;{{selectedPatientDetails.PhoneNumber}}
                 <p class="patient-hdr-label"><b>{{ 'COMMON.DEPARTMENT' | translate }}</b>: &nbsp;{{selectedPatientDetails.DepartmentName}}
@@ -55,7 +55,7 @@
                 </label>
                 <div class="col-md-7">
                   <!-- <div class="form-group" style="padding:10px;"> -->
-                  <input danphe-auto-complete autocomplete="off" class="form-control" [(ngModel)]="diagnosis" [source]="icdDiagnosisFilteredList" [list-formatter]="DignosisFormatter" [placeholder]="IcdVersionDisplayName" display-property-name="EMER_DiseaseGroupName" value-property-name="ICDCode" (valueChanged)="MakeDiagnosisList()" min-chars="0" max-num-list="10" [ngModelOptions]="{standalone: true}" />
+                  <input dsf-auto-complete autocomplete="off" class="form-control" [(ngModel)]="diagnosis" [source]="icdDiagnosisFilteredList" [list-formatter]="DignosisFormatter" [placeholder]="IcdVersionDisplayName" display-property-name="EMER_DiseaseGroupName" value-property-name="ICDCode" (valueChanged)="MakeDiagnosisList()" min-chars="0" max-num-list="10" [ngModelOptions]="{standalone: true}" />
                 </div>
               </div>
             </div>

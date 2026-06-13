@@ -10,7 +10,7 @@ import { CoreService } from '../../core/shared/core.service';
 import { FinalDiagnosisModel } from '../../medical-records/outpatient-list/final-diagnosis/final-diagnosis.model';
 import { MR_BLService } from '../../medical-records/shared/mr.bl.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { NursingOpdCheckOut_DTO } from '../shared/dto/nursing-opd-checkout.dto';
 import { NewReferalDepartment_DTO } from '../shared/dto/nursing-opd-referal-department.dto';
 import { NursingBLService } from '../shared/nursing.bl.service';
@@ -101,7 +101,7 @@ export class NursingOpdChekoutComponent implements OnInit {
   public GetICDList() {
     this.mrBLService.GetICDList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.ICD10MainList = res.Results;
         }
         else {
@@ -194,7 +194,7 @@ export class NursingOpdChekoutComponent implements OnInit {
   // GetProviderList() {
   //   this.admissionDLService.GetProviderList().subscribe(
   //     res => {
-  //       if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+  //       if (res.Status === ENUM_DsfHTTPResponses.OK) {
   //         this.doctorList = res.Results.filter(doctor => doctor.EmployeeId > 0);
   //         this.filteredDocList = this.doctorList;
   //         this.AssignSelectedDoctor();
@@ -323,7 +323,7 @@ export class NursingOpdChekoutComponent implements OnInit {
 
     this.nursingBLService.PostNursingCheckOutDetails(this.nursingOpdCheckout)
       .subscribe((res) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.selectedDiagnosis = [];
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Checkout Successfully']);
           this.showValidationMessage = false;
@@ -343,7 +343,7 @@ export class NursingOpdChekoutComponent implements OnInit {
     this.toDate = moment().format('YYYY-MM-DD');
     this.nursingBLService.GetOPDList(this.fromDate, this.toDate)  //this.fromDate, this.toDate
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.opdList = res.Results;
           let opdTriaged = [];
           let opdNotTriaged = [];

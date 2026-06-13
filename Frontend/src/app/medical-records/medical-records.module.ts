@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ADT_DLService } from '../adt/shared/adt.dl.service';
 import { ReportingService } from '../reporting/shared/reporting-service';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { DLService } from '../shared/dl.service';
 import { SharedModule } from "../shared/shared.module";
 import { AddBirthDetailsSharedComponent } from './add-birth-details-shared/add-birth-details-shared.component';
@@ -76,7 +76,7 @@ import { MR_DLService } from './shared/mr.dl.service';
         FormsModule,
         CommonModule,
         SharedModule,
-        DanpheAutoCompleteModule], providers: [
+        DsfAutoCompleteModule], providers: [
         MR_BLService,
         MR_DLService,
         ADT_DLService,

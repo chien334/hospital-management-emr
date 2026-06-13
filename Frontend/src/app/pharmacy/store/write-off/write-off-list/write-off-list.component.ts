@@ -3,12 +3,12 @@ import { PharmacyBLService } from '../../../../pharmacy/shared/pharmacy.bl.servi
 import { PHRMStoreModel } from '../../../../pharmacy/shared/phrm-store.model';
 import { PHRMWriteOffItemModel } from '../../../../pharmacy/shared/phrm-write-off-items.model';
 import { PHRMWriteOffModel } from '../../../../pharmacy/shared/phrm-write-off.model';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import DispensaryGridColumns from '../../../../dispensary/shared/dispensary-grid.column';
 import { DispensaryService } from '../../../../dispensary/shared/dispensary.service';
 import { Router } from '@angular/router';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { CoreService } from "../../../../core/shared/core.service";
 
 @Component({

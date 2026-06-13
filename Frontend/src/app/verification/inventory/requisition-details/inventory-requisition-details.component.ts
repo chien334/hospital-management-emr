@@ -4,10 +4,10 @@ import { CoreService } from "../../../core/shared/core.service";
 import { RequisitionItems } from "../../../inventory/shared/requisition-items.model";
 import { Requisition } from "../../../inventory/shared/requisition.model";
 import { SecurityService } from "../../../security/shared/security.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { VerificationBLService } from "../../shared/verification.bl.service";
 import { VerificationService } from "../../shared/verification.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
@@ -52,8 +52,8 @@ export class VER_INV_RequisitionDetailsComponent implements OnInit, OnDestroy {
   private GetInventoryRequisitionDetails() {
     this.verificationBLService
       .GetInventoryRequisitionDetails(this.Requisition.RequisitionId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.RequisitionVM = res.Results;
           this.CopyRequisitionItemsQuantity();
         }

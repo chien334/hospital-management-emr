@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NavigationService } from '../shared/navigation-service';
 
 @Component({
-  selector: 'danphe-login',
+  selector: 'dsf-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

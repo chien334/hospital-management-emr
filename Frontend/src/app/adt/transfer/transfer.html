@@ -28,7 +28,7 @@
                       Requesting Department <b class="color-red"> * </b><b style="float: right;">&nbsp;:&nbsp; </b>
                     </td>
                     <td>
-                      <input danphe-auto-complete class="form-control cstm-form-control"
+                      <input dsf-auto-complete class="form-control cstm-form-control"
                              formControlName="RequestingDeptId" id="DepartmentName"
                              [ngClass]="{'border-red': newBedInfo.IsDirty('RequestingDeptId') && !newBedInfo.IsValidCheck('RequestingDeptId','required') && !newBedInfo.IsValidReqDepartment }"
                              [(ngModel)]="selectedReqDept" [source]="allDepartments" placeholder="Enter Department Name"
@@ -56,7 +56,7 @@
                       Secondary Doctor: <b class="color-red"> </b><b style="float: right;">&nbsp;:&nbsp; </b>
                     </td>
                     <td style="padding-top: 10px;">
-                      <input danphe-auto-complete class="form-control cstm-form-control" [(ngModel)]="selectedDoctor"
+                      <input dsf-auto-complete class="form-control cstm-form-control" [(ngModel)]="selectedDoctor"
                              [ngModelOptions]="{standalone: true}" [source]="filteredDocList" id="SecondaryDoctorName"
                              placeholder="Enter Secondary Doctor Name" display-property-name="PerformerName"
                              [list-formatter]="DocListFormatter" (valueChanged)="AssignSelectedDoctor()"
@@ -141,13 +141,13 @@
                       Transfer Date <b style="float: right;">&nbsp;:&nbsp;</b>
                     </td>
                     <td style="padding-top: 10px;">
-                      <danphe-date-picker [(ngModel)]="newBedInfo.StartedOn" (ngModelChange)="compareDate()"
+                      <dsf-date-picker [(ngModel)]="newBedInfo.StartedOn" (ngModelChange)="compareDate()"
                                           [ngModelOptions]="{standalone: true}" [showTime]="true" [CalendarTypes]="'en,np'">
-                      </danphe-date-picker>
+                      </dsf-date-picker>
                       <span class="color-red font-sm" *ngIf="!validDate">Enter Valid Date.</span><br />
                       <span class="color-red font-sm" *ngIf="!validDate">
                         {{this.selectedBedInfo.BedInformation.Action}} Date was
-                        {{this.selectedBedInfo.BedInformation.StartedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}.
+                        {{this.selectedBedInfo.BedInformation.StartedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}.
                       </span>
                     </td>
                   </tr>
@@ -235,7 +235,7 @@
                       </p>
                       <p>
                         <b>Age/Sex</b>&nbsp;:{{selectedBedInfo.DateOfBirth |
-                        DanpheDateTime:'age'}}/{{selectedBedInfo.Gender}}
+                        DsfDateTime:'age'}}/{{selectedBedInfo.Gender}}
                       </p>
                       <p>
                         <b>Address/Contact No</b>&nbsp;:
@@ -244,7 +244,7 @@
                       </p>
                       <p>
                         <b>Admission Date </b>&nbsp;:
-                        {{selectedBedInfo.AdmittedDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm A'}}
+                        {{selectedBedInfo.AdmittedDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm A'}}
                       </p>
                     </div>
                   </div>
@@ -257,7 +257,7 @@
                       <div style="float: left;">
                         <p><b>Transferred Status</b></p>
                         <p>
-                          <b>Started On </b>&nbsp;:&nbsp;{{StartedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm A'}}
+                          <b>Started On </b>&nbsp;:&nbsp;{{StartedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm A'}}
                         </p>
                         <p><b>Department</b>&nbsp;: {{selectedDept}}</p>
                         <p>
@@ -269,7 +269,7 @@
                         <p><b>Previous Status</b></p>
                         <p>
                           <b>Started On</b>&nbsp;:&nbsp;{{selectedBedInfo.BedInformation.StartedOn |
-                          DanpheDateTime:'format':'YYYY-MM-DD HH:mm A'}}
+                          DsfDateTime:'format':'YYYY-MM-DD HH:mm A'}}
                         </p>
                         <p>
                           <b>Department</b>&nbsp;:

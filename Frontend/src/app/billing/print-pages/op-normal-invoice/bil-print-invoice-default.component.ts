@@ -9,7 +9,7 @@ import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calend
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../shared/routefrom.service";
-import { ENUM_Country, ENUM_DanpheHTTPResponseText, ENUM_MembershipTypeName, ENUM_PriceCategory } from "../../../shared/shared-enums";
+import { ENUM_Country, ENUM_DsfHTTPResponseText, ENUM_MembershipTypeName, ENUM_PriceCategory } from "../../../shared/shared-enums";
 import { BillingBLService } from "../../shared/billing.bl.service";
 import { BillingService } from "../../shared/billing.service";
 import { BilPrint_VM } from "../../shared/invoice-print-vms";
@@ -415,7 +415,7 @@ export class Bil_Print_Invoice_DefaultComponent {
     let printCount = this.invoice.InvoiceInfo.PrintCount + 1;
     this.billingBLService.PutPrintCount(printCount, this.invoice.InvoiceInfo.BillingTransactionId) //Yubraj: 13th August'19--sending BillingTransactionId instead of ReceiptNo
       .subscribe(res => {
-        if (res.Status !== ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status !== ENUM_DsfHTTPResponseText.OK) {
           //if OK then do nothing.
           console.log("Failed to Update Print Count");
         }

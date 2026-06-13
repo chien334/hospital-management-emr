@@ -19,10 +19,10 @@ BEGIN
 	
 	declare @json varchar(max) = (select ParameterValue FROM CORE_CFG_Parameters
 	WHERE ParameterGroupName = 'LAB' AND ParameterName = 'LabIMUenabledTests')
-	SELECT  @TestCSV = STRING_AGG(ImuTestList.DanpheLabTestName,',') FROM OPENJSON(@json) 
+	SELECT  @TestCSV = STRING_AGG(ImuTestList.DsfLabTestName,',') FROM OPENJSON(@json) 
 		WITH 
 		(
-		    DanpheLabTestName VARCHAR(100)
+		    DsfLabTestName VARCHAR(100)
 		) AS ImuTestList 
 
 	SELECT TOP(1)  @VerificationParameter = ParameterValue FROM CORE_CFG_Parameters

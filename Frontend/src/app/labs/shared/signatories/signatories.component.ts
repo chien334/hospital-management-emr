@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { LabsBLService } from "../labs.bl.service";
 
 @Component({
-  selector: "danphe-signatories",
+  selector: "dsf-signatories",
   templateUrl: "./signatories.html",
 })
 export class SignatoriesComponent {
@@ -61,7 +61,7 @@ export class SignatoriesComponent {
         this.options
       )
       .map((res) => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Results) {
           this.allEmployees = res.Results;
           this.allEmployees.sort(function (a, b) {

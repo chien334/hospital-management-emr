@@ -28,7 +28,7 @@
           <tr *ngFor="let info of patWardList;let i=index;">
             <td width="190px">
               <!-- <label *ngIf="!showDatePicker[i]" align="left">
-                {{info.StartedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm A'}}
+                {{info.StartedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm A'}}
               </label> -->
               <span *ngIf="info.StartedOn">
                 <date-lbl [value]="info.StartedOn" [show-time]="true"></date-lbl>
@@ -48,7 +48,7 @@
                 <date-lbl [value]="info.EndedOn" [show-time]="true"></date-lbl>
               </span>
               <!-- <label *ngIf="!showDatePicker[i] && info.EndedOn!=null" align="left"> {{info.EndedOn |
-                DanpheDateTime:'format':'YYYY-MM-DD HH:mm A'}} </label>
+                DsfDateTime:'format':'YYYY-MM-DD HH:mm A'}} </label>
               <label *ngIf="showDatePicker[i] && info.EndedOn!=null" align="left">
                 <input formControlName="EndedOn" type="datetime-local" [(ngModel)]="info.EndedOn" style="width:90%" />
               </label>

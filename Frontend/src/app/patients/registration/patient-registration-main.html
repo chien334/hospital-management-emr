@@ -76,7 +76,7 @@
                                         <td> <span *ngIf="!patient['NumberExists']">{{patient.PhoneNumber}}</span>
                                           <mark *ngIf="patient['NumberExists']">{{patient.PhoneNumber}}</mark>
                                         </td>
-                                        <td> {{patient.DateOfBirth | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                                        <td> {{patient.DateOfBirth | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                                         <td> {{patient.Address}}</td>
                                         <td style="text-align:right;">
                                             <button type="button" class="btn blue btn-sm" style="margin-left:10px;" name="patientselect"

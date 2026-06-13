@@ -15,10 +15,10 @@ import { CoreService } from '../../../../../src/app/core/shared/core.service';
 
 
 @Component({
-  selector: "danphe-post-report",
+  selector: "dsf-post-report",
   templateUrl: "./post-report.html"
   //,
-  //styleUrls: ['themes/theme-default/DanpheStyle.css']
+  //styleUrls: ['themes/theme-default/DsfStyle.css']
 
 })
 export class PostReportComponent {

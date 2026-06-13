@@ -7,7 +7,7 @@ import { SecurityService } from "../../security/shared/security.service";
 import { CountrySubdivision } from '../../settings-new/shared/country-subdivision.model';
 import { GeneralFieldLabels } from "../../shared/DTOs/general-field-label.dto";
 import { CommonFunctions } from '../../shared/common.functions';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { VaccinationPatient } from '../shared/vaccination-patient.model';
 import { VaccinationBLService } from '../shared/vaccination.bl.service';
@@ -88,8 +88,8 @@ export class VaccinationPatientRegistrationComponent {
     //Code added to enable Enter Key selection and focus on next html tag in SELECT htm tag: ends
 
     ngOnInit() {
-        this.Country_All = DanpheCache.GetData(MasterType.Country, null);
-        this.districts_All = DanpheCache.GetData(MasterType.SubDivision, null);
+        this.Country_All = DsfCache.GetData(MasterType.Country, null);
+        this.districts_All = DsfCache.GetData(MasterType.SubDivision, null);
         if (this.patientId > 0) {
             this.IsEditMode = true;
             this.GetPatientForEdit(this.patientId);

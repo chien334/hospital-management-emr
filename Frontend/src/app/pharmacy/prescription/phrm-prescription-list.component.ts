@@ -5,7 +5,7 @@ import { PharmacyBLService } from "../shared/pharmacy.bl.service";
 
 import { Patient } from "../../patients/shared/patient.model";
 import { PatientService } from "../../patients/shared/patient.service";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from "../../shared/routefrom.service";
 import { PharmacyService } from "../shared/pharmacy.service";

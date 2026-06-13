@@ -9,13 +9,13 @@
 
   }
 
-  .danphe-tab-wrapper .ipd-title {
+  .dsf-tab-wrapper .ipd-title {
     padding-bottom: 0;
     position: relative;
 
   }
 
-  .danphe-tab-wrapper .ipd-title .btn {
+  .dsf-tab-wrapper .ipd-title .btn {
     background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
     border: 1px solid #8c8c8e !important;
     color: #696969;
@@ -27,14 +27,14 @@
     /* border-left: none;*/
   }
 
-  .danphe-tab-wrapper .ipd-title .btn-primary {
+  .dsf-tab-wrapper .ipd-title .btn-primary {
     background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
     border: 1px solid #5c79bf !important;
     border-bottom: none !important;
     color: #fff;
   }
 
-  .danphe-tab-wrapper .ipd-title:before {
+  .dsf-tab-wrapper .ipd-title:before {
     content: "";
     width: 100%;
     height: 5px;
@@ -50,7 +50,7 @@
   }
 </style>
 <!--Start : Title Tabs of Admitted Patient and Discharged Patient-->
-<div class="danphe-tab-wrapper">
+<div class="dsf-tab-wrapper">
   <!--
 	<ul class="nav nav-tabs">
       <li role="presentation" class=""><a class="btn btn-default"
@@ -80,17 +80,17 @@
       <div class="tabbable-custom">
         <div class="tab-content">
           <!--Start:Search and Date contorls
-          <danphe-cust-date (onDateChange)="onDateChangeDischargedList($event)" [rangeType]="dateRangeDischargedList"></danphe-cust-date>
+          <dsf-cust-date (onDateChange)="onDateChangeDischargedList($event)" [rangeType]="dateRangeDischargedList"></dsf-cust-date>
           <br>
           End:Search and Date contorls -->
 
           <div>
             <div class="row">
               <div class="col-lg-12 col-sm-12">
-                <danphe-grid [grid-colDefaults]="dischargedListGridColumns" [grid-data]="dischargedList"
+                <dsf-grid [grid-colDefaults]="dischargedListGridColumns" [grid-data]="dischargedList"
                              (grid-actions)="DischargedListGridActions($event)"
                              [show-CustomDate]="true" (onDateChange)="onDateChangeDischargedList($event)" [rangeType]="dateRangeDischargedList"
-                             [NepaliDateInGridParams]="NepaliDateInGridSettings"> </danphe-grid>
+                             [NepaliDateInGridParams]="NepaliDateInGridSettings"> </dsf-grid>
               </div>
             </div>
           </div>
@@ -101,16 +101,16 @@
       <div class="tabbable-custom">
         <div class="tab-content">
           <!--Start:Search and Date contorls
-          <danphe-cust-date (onDateChange)="onDateChangeAdmittedList($event)" [rangeType]="dateRangeAdmittedList"></danphe-cust-date>
+          <dsf-cust-date (onDateChange)="onDateChangeAdmittedList($event)" [rangeType]="dateRangeAdmittedList"></dsf-cust-date>
           <br>
           End:Search and Date contorls -->
 
           <div>
             <div class="row">
               <div class="col-lg-12 col-sm-12">
-                <danphe-grid [grid-colDefaults]="dischargeSummaryAdmittedListGridColumns" [grid-data]="dischargeSummaryAdmittedList"
+                <dsf-grid [grid-colDefaults]="dischargeSummaryAdmittedListGridColumns" [grid-data]="dischargeSummaryAdmittedList"
                              (grid-actions)="DischargeSummaryAdmittedListGridActions($event)"
-                             [NepaliDateInGridParams]="NepaliDateForAdmittedPatientsInGridSettings"> </danphe-grid>
+                             [NepaliDateInGridParams]="NepaliDateForAdmittedPatientsInGridSettings"> </dsf-grid>
               </div>
             </div>
           </div>
@@ -190,7 +190,7 @@
             </tr>
             <tr>
               <td>{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}: {{selectedDischarge.PatientCode}}</td>
-              <td> {{ 'NURSING.AGE_SEX' | translate }}: {{selectedDischarge.DateOfBirth | DanpheDateTime:'age'}} / {{selectedDischarge.Gender}} </td>
+              <td> {{ 'NURSING.AGE_SEX' | translate }}: {{selectedDischarge.DateOfBirth | DsfDateTime:'age'}} / {{selectedDischarge.Gender}} </td>
             </tr>
           </table>
           <div class="text-center"> <strong style="text-align:center;color:red">{{ 'NURSING.ARE_YOU_SURE_CANCEL_DISCHARGE' | translate }}</strong><br />
@@ -201,12 +201,12 @@
           <table class="table">
             <tr>
               <td>{{ 'NURSING.ADMISSION_DATE' | translate }}:</td>
-              <td> {{selectedDischarge.AdmittedDate | DanpheDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.AdmittedDate |
+              <td> {{selectedDischarge.AdmittedDate | DsfDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.AdmittedDate |
                 nepaliDate:'format':'YYYY-MM-DD'}} </td>
             </tr>
             <tr>
               <td> {{ 'NURSING.DISCHARGE_DATE' | translate }}:</td>
-              <td><span> {{selectedDischarge.DischargedDate | DanpheDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.DischargedDate |
+              <td><span> {{selectedDischarge.DischargedDate | DsfDateTime:'format':'YYYY-MM-DD'}} A.D {{selectedDischarge.DischargedDate |
                   nepaliDate:'format':'YYYY-MM-DD'}} </span></td>
             </tr>
             <!--<tr>

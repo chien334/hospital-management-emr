@@ -57,7 +57,7 @@ var VerificationGridColumns = /** @class */ (function () {
             headerName: "Action",
             field: "",
             width: 120,
-            template: "<a danphe-grid-action=\"view\" class=\"grid-action\">\n            View\n         </a>"
+            template: "<a dsf-grid-action=\"view\" class=\"grid-action\">\n            View\n         </a>"
         }
     ];
     VerificationGridColumns.PurchaseRequestList = [
@@ -80,7 +80,7 @@ var VerificationGridColumns = /** @class */ (function () {
             headerName: "Action",
             field: "",
             width: 120,
-            template: "<a danphe-grid-action=\"view\" class=\"grid-action\">\n            View\n         </a>"
+            template: "<a dsf-grid-action=\"view\" class=\"grid-action\">\n            View\n         </a>"
         }
     ];
     VerificationGridColumns.PurchaseOrderList = [
@@ -103,7 +103,7 @@ var VerificationGridColumns = /** @class */ (function () {
             headerName: "Action",
             field: "",
             width: 120,
-            template: "<a danphe-grid-action=\"verify\" class=\"grid-action\">\n            Verify\n         </a>"
+            template: "<a dsf-grid-action=\"verify\" class=\"grid-action\">\n            Verify\n         </a>"
         }
     ];
     VerificationGridColumns.GRList = [
@@ -128,7 +128,7 @@ var VerificationGridColumns = /** @class */ (function () {
             headerName: "Action",
             field: "",
             width: 120,
-            template: "<a danphe-grid-action=\"verify\" class=\"grid-action\">\n            Verify\n         </a>"
+            template: "<a dsf-grid-action=\"verify\" class=\"grid-action\">\n            Verify\n         </a>"
         }
     ];
     return VerificationGridColumns;

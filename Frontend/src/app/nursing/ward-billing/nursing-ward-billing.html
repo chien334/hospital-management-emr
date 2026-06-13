@@ -63,10 +63,10 @@
 </div> -->
 
 <div class="col-md-12">
-  <danphe-grid [grid-colDefaults]="nursingWardBillingColumns" [NepaliDateInGridParams]="NepaliDateInGridSettings"
+  <dsf-grid [grid-colDefaults]="nursingWardBillingColumns" [NepaliDateInGridParams]="NepaliDateInGridSettings"
                [grid-data]="provisionalItemsDetails" (grid-actions)="NursingWardBillingGridActions($event)" [show-print-button]="false"
                [supressPagination]="true" [resizeColumnToFit]="true">
-  </danphe-grid>
+  </dsf-grid>
 </div>
 
 <div class="popup-static portlet box portlet-fullscreen" *ngIf="showConfirmationBox">

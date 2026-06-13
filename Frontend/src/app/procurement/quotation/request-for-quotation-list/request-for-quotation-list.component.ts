@@ -6,13 +6,13 @@ import { GoodReceiptService } from '../../goods-receipt/good-receipt.service';
 import { InventoryService } from '../../../inventory/shared/inventory.service';
 import { VendorMaster } from '../../../inventory/shared/vendor-master.model';
 import { SecurityService } from '../../../security/shared/security.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import ProcurementGridColumns from '../../shared/procurement-grid-column';
 import { QuotationUpLoadFileModel } from '../quotation-upload-file.model';
 import { QuotationBLService } from '../quotation.bl.service';
 import { RequestForQuotationModel } from '../request-for-quotaion.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
 
 @Component({
@@ -328,8 +328,8 @@ export class RequestForQuotationListComponent implements OnInit {
     popupWinindow = window.open('', '_blank', 'width=800,heigth=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     popupWinindow.document.write(`<html><head><link rel="stylesheet" type="text/css" href="../../../themes/theme-default/ReceiptList.css" /></head><body onload="window.print()">` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanpheStyle.css" />` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanphePrintStyle.css" />` + printContents +
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfStyle.css" />` +
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfPrintStyle.css" />` + printContents +
       `</body></html>`);
     popupWinindow.document.close();
   }
@@ -340,8 +340,8 @@ export class RequestForQuotationListComponent implements OnInit {
     popupWinindow = window.open('', '_blank', 'width=800,heigth=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     popupWinindow.document.write(`<html><head><link rel="stylesheet" type="text/css" href="../../../themes/theme-default/ReceiptList.css" /></head><body onload="window.print()">` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanpheStyle.css" />` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanphePrintStyle.css" />` + printContents +
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfStyle.css" />` +
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfPrintStyle.css" />` + printContents +
       `</body></html>`);
     popupWinindow.document.close();
   }

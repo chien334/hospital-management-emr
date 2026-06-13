@@ -3,10 +3,10 @@ import * as _ from 'lodash';
 import { Observable, forkJoin, of } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { AdditionalServiceItem_DTO } from "../../shared/DTOs/additional-service-item.dto";
 import { AdditionalServiceItemModel } from "../../shared/additional-service-item.model";
 import { PriceCategory } from "../../shared/price.category.model";
@@ -81,7 +81,7 @@ export class AdditionalServiceItemsComponent {
     getAdditionalServiceItems() {
         this.settingsBLService.GetAdditionalServiceItems()
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.additionalServiceItemList = res.Results;
                     this.showGrid = true;
                 }
@@ -102,7 +102,7 @@ export class AdditionalServiceItemsComponent {
         return isValid;
     }
     AssignPriceCategory(res) {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.priceCategoryList = res.Results;
         }
         else {
@@ -113,7 +113,7 @@ export class AdditionalServiceItemsComponent {
     }
 
     AssignServiceItemList(res) {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.serviceItemList = res.Results;
         }
         else {
@@ -202,7 +202,7 @@ export class AdditionalServiceItemsComponent {
         this.settingsBLService.ActivateDeactivateAdditionalServiceItemStatus(serviceItemData.additionalServiceItemId, serviceItemData.isActive)
             .subscribe(
                 res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.getAdditionalServiceItems();
                         let responseMessage = res.Results.IsActive ? "Additional Service Item is now Activated." : "Additional Service Item is now Deactivated.";
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [responseMessage]);
@@ -239,8 +239,8 @@ export class AdditionalServiceItemsComponent {
                 this.settingsBLService.AddAdditionalServiceItems(additionalServiceItem).finally(() => {
                     this.loading = false;
                 }).subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Item Added Successfully']);
                             this.getAdditionalServiceItems();
                             this.valueReset();
@@ -291,8 +291,8 @@ export class AdditionalServiceItemsComponent {
                     this.loading = false;
                 })
                     .subscribe(
-                        (res: DanpheHTTPResponse) => {
-                            if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                        (res: DsfHTTPResponse) => {
+                            if (res.Status == ENUM_DsfHTTPResponses.OK) {
                                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Item Updated Successfully']);
                                 this.getAdditionalServiceItems();
                                 this.valueReset();

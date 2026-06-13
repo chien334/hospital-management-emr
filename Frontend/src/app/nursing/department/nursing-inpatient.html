@@ -18,7 +18,7 @@
     margin-left: 15px;
   }
 </style>
-<div class="danphe-tab-wrapper top-tab-header">
+<div class="dsf-tab-wrapper top-tab-header">
   <div class="row clearfix">
     <div class="col-md-6 col-xs-4">
       <ul class="nav nav-tabs">
@@ -83,26 +83,26 @@
 <div class="clearfix"></div>
 <div class="row">
   <div class="col-md-12">
-    <danphe-grid *ngIf="showInPatGrid && showFavPatGrid" [grid-colDefaults]="nurFavPatGidColumnSettings" [grid-data]="FavoritePatients"
+    <dsf-grid *ngIf="showInPatGrid && showFavPatGrid" [grid-colDefaults]="nurFavPatGidColumnSettings" [grid-data]="FavoritePatients"
                  [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="NurIPDListGridActions($event)">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 
 
 <div class="row">
   <div class="col-md-12">
-    <danphe-grid *ngIf="showInPatGrid && showAllPatGrid" [grid-colDefaults]="nurIPDGridColumnSettings" [grid-data]="ipdList"
+    <dsf-grid *ngIf="showInPatGrid && showAllPatGrid" [grid-colDefaults]="nurIPDGridColumnSettings" [grid-data]="ipdList"
                  [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="NurIPDListGridActions($event)">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <danphe-grid *ngIf="showPatientConsumptionGrid" [grid-colDefaults]="patientConsumptionGridColumns" [grid-data]="PatientConsumptions"
+    <dsf-grid *ngIf="showPatientConsumptionGrid" [grid-colDefaults]="patientConsumptionGridColumns" [grid-data]="PatientConsumptions"
                  (grid-actions)="PatientConsumptionGridActions($event)">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 <div class="row">
@@ -118,9 +118,9 @@
 </div>
 
 <div class="row">
-  <danphe-bed-transfer *ngIf="showTransferPage" [selectedBedInfo]="selectedBedInfo" (transfer)="TransferUpgrade($event)" [currentModule]="'nursing'"
+  <dsf-bed-transfer *ngIf="showTransferPage" [selectedBedInfo]="selectedBedInfo" (transfer)="TransferUpgrade($event)" [currentModule]="'nursing'"
                        [all-Departments]="allDepartments">
-  </danphe-bed-transfer>
+  </dsf-bed-transfer>
 </div>
 
 <div class="popup-static portlet box portlet-fullscreen" *ngIf="showWardBilling">
@@ -239,8 +239,8 @@
           </div>
 
           <div class="col-md-12" style="margin-bottom: 15px;">
-            <danphe-grid [grid-colDefaults]="patientConsumptionListColumn" [grid-data]="PatientConsumptionList"
-                         (grid-actions)="PatientConsumptionListGridActions($event)"></danphe-grid>
+            <dsf-grid [grid-colDefaults]="patientConsumptionListColumn" [grid-data]="PatientConsumptionList"
+                         (grid-actions)="PatientConsumptionListGridActions($event)"></dsf-grid>
           </div>
         </div>
       </div>

@@ -14,14 +14,14 @@ import { BillingScheme_DTO } from '../../../settings-new/billing/shared/dto/bill
 import { CreditOrganization } from '../../../settings-new/shared/creditOrganization.model';
 import { PriceCategory } from '../../../settings-new/shared/price.category.model';
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
-import { CancelStatusHoldingModel, DanpheHTTPResponse } from '../../../shared/common-models';
+import { CancelStatusHoldingModel, DsfHTTPResponse } from '../../../shared/common-models';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
-import { ENUM_AdditionalServiceItemGroups, ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_CancellationService, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_InvoiceType, ENUM_MembershipTypeName, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_Scheme_ApiIntegrationNames, ENUM_ServiceBillingContext } from '../../../shared/shared-enums';
+import { ENUM_AdditionalServiceItemGroups, ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_CancellationService, ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_InvoiceType, ENUM_MembershipTypeName, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_Scheme_ApiIntegrationNames, ENUM_ServiceBillingContext } from '../../../shared/shared-enums';
 import { BillingDeposit } from '../../shared/billing-deposit.model';
 import { BillingInvoiceBlService } from '../../shared/billing-invoice.bl.service';
 import { BillingMasterBlService } from '../../shared/billing-master.bl.service';
@@ -382,7 +382,7 @@ export class PatientIpSummaryComponent {
     this.ipBillingDiscountModel.ProvisionalDiscPercent = this.model.DiscountPercent;
     this.billingBLService.UpdateDiscount(this.ipBillingDiscountModel).subscribe(
       res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
           //this.getPatientDetails(); //!Krishna, 2ndApril'23, Commented for now, Need to check its impact and why it called here.
           console.log(res.Results);
         } else {
@@ -440,8 +440,8 @@ export class PatientIpSummaryComponent {
 
   // //* This method is responsible to fetch the MedicareMemberDetail
   // GetMedicareMemberDetail(patientId: number): void {
-  //   this.billingBLService.GetMedicareMemberDetail(patientId).subscribe((res: DanpheHTTPResponse) => {
-  //     if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+  //   this.billingBLService.GetMedicareMemberDetail(patientId).subscribe((res: DsfHTTPResponse) => {
+  //     if (res.Status === ENUM_DsfHTTPResponses.OK) {
   //       const medicareMemberDetail = res.Results;
   //       if (medicareMemberDetail && medicareMemberDetail.MedicareMemberId) {
   //         this.IsMedicarePatientBilling = true;
@@ -451,7 +451,7 @@ export class PatientIpSummaryComponent {
   //       }
   //     }
   //   }, err => {
-  //     this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Could not fetch medicare member detail"]);
+  //     this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Could not fetch medicare member detail"]);
   //   });
   // }
 
@@ -488,8 +488,8 @@ export class PatientIpSummaryComponent {
   LoadPriceCategoryServiceItems() {
     if (this.SchemePriceCategory.SchemeId && this.SchemePriceCategory.PriceCategoryId) {
       this.billingMasterBlService.GetServiceItems(ENUM_ServiceBillingContext.IpBilling, this.SchemePriceCategory.SchemeId, this.SchemePriceCategory.PriceCategoryId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
             this.PriceCategoryServiceItems = res.Results;
             this.allItemslist = this.PriceCategoryServiceItems;
             this.billingMasterBlService.ServiceItemsForIp = res.Results;
@@ -563,8 +563,8 @@ export class PatientIpSummaryComponent {
 
   GetPatientCurrentPatientSchemeMap(patientId: number, patientVisitId: number) {
     this.patientBLServie.GetPatientCurrentSchemeMap(patientId, patientVisitId).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.PatientSchemeMap = res.Results;
         }
       },
@@ -575,8 +575,8 @@ export class PatientIpSummaryComponent {
 
   getPatientDetails() {
     this.patientBLServie.GetPatientById(this.patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
           this.patientInfo = res.Results;
           this.patService.globalPatient = res.Results;
           const schemePriceCategoryObj = res.Results.Visits.map(a => {
@@ -607,8 +607,8 @@ export class PatientIpSummaryComponent {
   LoadPatientBillingSummary(patientId: number, patientVisitId: number) {
     this.dlService.Read("/api/IpBilling/InpatientPendingBillItems?patientId=" + this.patientId + "&ipVisitId=" + this.ipVisitId)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
           this.admissionInfo = res.Results.AdmissionInfo;
           //console.log(this.admissionInfo)
           this.admissionInfo.AdmittedOn = this.admissionInfo.AdmittedOn;
@@ -693,8 +693,8 @@ export class PatientIpSummaryComponent {
     this.showCreditBillAlert = false;
     this.dlService.Read("/api/Billing/CheckCreditBill?patientId=" + this.patientId)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.hasPreviousCredit = res.Results;
           if (this.hasPreviousCredit) {
             this.LoadCreditInformationOfPatient(patientId);
@@ -706,8 +706,8 @@ export class PatientIpSummaryComponent {
   LoadCreditInformationOfPatient(patientId: number) {
     this.dlService.Read("/api/Billing/PatientCreditInfo?patientId=" + this.patientId)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.CreditTotal = res.Results;
         }
       });
@@ -726,8 +726,8 @@ export class PatientIpSummaryComponent {
 
   GetPharmacyPendingAmount() {
     this.billingBLService.GetPharmacyPendingAmount(this.patientId, this.ipVisitId).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           let PharmacyPendingAmounts = res.Results;
           if (PharmacyPendingAmounts) {
             this.PharmacyPendingAmount.ProvisionalAmount = PharmacyPendingAmounts.ProvisionalAmt;
@@ -825,11 +825,11 @@ export class PatientIpSummaryComponent {
       }
 
       if (this.model.PayType.toLowerCase() === ENUM_BillPaymentMode.credit.toLowerCase() && !this.model.OrganizationId || this.model.OrganizationId === 0) {
-        this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed.toLowerCase(), ["Credit Organization is mandatory for credit bill"]);
+        this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed.toLowerCase(), ["Credit Organization is mandatory for credit bill"]);
         return;
       }
       else if ((this.model.PayType.toLowerCase() === ENUM_BillPaymentMode.credit.toLowerCase() || this.model.DiscountPercent > 0) && !this.model.Remarks) {
-        this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed.toLowerCase(), [" Remarks is mandatory."]);
+        this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed.toLowerCase(), [" Remarks is mandatory."]);
         return;
       }
       else {
@@ -912,8 +912,8 @@ export class PatientIpSummaryComponent {
         "DischargeFrom": "billing"
       };
       this.billingBLService.DischargePatientWithZeroItem(data)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.showCancelAdmissionAlert = false;
             if ((res.Results.DepositId > 0)) {
               this.deposit = res.Results;
@@ -1292,7 +1292,7 @@ export class PatientIpSummaryComponent {
       this.billingBLService.UpdateProcedure(admissionPatId, ProcedureType)
         .subscribe(
           res => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
               this.msgBoxServ.showMessage("success", ["Procedure Type Updated Successfully."]);
               this.loading = false;
             }
@@ -1329,8 +1329,8 @@ export class PatientIpSummaryComponent {
     //if (this.autoBedBillParam.DoAutoAddBedItem) {
     // this.billingBLService.UpdateBedDurationBillTxn(this.bedDurationDetails)
     this.billingBLService.UpdateBedDurationBillTxn(this.ipVisitId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           console.log("ADT Bill Items Quantity updated.");
           this.LoadPatientBillingSummary(this.patientId, this.ipVisitId);
         }
@@ -1361,14 +1361,14 @@ export class PatientIpSummaryComponent {
     }
 
     if (this.ipBillingTxnVM.billingTransactionModel.PaymentMode.toLowerCase() === ENUM_BillPaymentMode.credit.toLowerCase() && (!this.ipBillingTxnVM.billingTransactionModel.OrganizationId || this.ipBillingTxnVM.billingTransactionModel.OrganizationId === 0)) {
-      this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed.toLowerCase(), ["Credit Organization is mandatory for credit"]);
+      this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed.toLowerCase(), ["Credit Organization is mandatory for credit"]);
       this.loading = false;
       return;
     }
 
     this.billingBLService.PostIpBillTransactionAndDischarge(this.ipBillingTxnVM, this.pharmacyPendingBillItems, this.PharmacyTotal)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           //sud:15Sept'21--using similar variable in all pages..
           //this.bil_BilTxnId = this.billingTransaction.BillingTransactionId = res.Results.BillingTransactionId;
           //this.DischargePatient(res.Results.InvoiceNo, res.Results.FiscalYearId);
@@ -1414,8 +1414,8 @@ export class PatientIpSummaryComponent {
     this.dischargeDetail.PatientId = this.patientId;
     this.dischargeDetail.ProcedureType = this.admissionInfo.ProcedureType;
     this.billingBLService.DischargePatient(this.dischargeDetail)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.bil_InvoiceNo = invoiceNo;
           this.bil_FiscalYrId = fiscYrId;
           this.showDischargeBill = true;
@@ -2062,8 +2062,8 @@ export class PatientIpSummaryComponent {
 
   LoadAdditionalServiceItems(priceCategoryId: number): void {
     this.billingMasterBlService.GetAdditionalServiceItems(ENUM_AdditionalServiceItemGroups.Anaesthesia, priceCategoryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
           this.billingMasterBlService.AdditionalServiceItems = res.Results;
         }
       }, err => {
@@ -2073,7 +2073,7 @@ export class PatientIpSummaryComponent {
   GetDetailForInpatientsCancelledItems(patientId: number, patientVisitId: number): void {
     this.billingBLService.GetDetailForIpCancellationItems(patientId, patientVisitId).subscribe(
       res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.CancelledItemDetails = res.Results;
           this.CancelledItemDetails.map(a => a.CancellationReceiptNo = ENUM_CancellationService.PRC + "/" + a.CancellationReceiptNo)
           this.CancelledItemDetails.map(a => a.ReferenceProvisionalReceiptNo = ENUM_CancellationService.PR + "/" + a.ReferenceProvisionalReceiptNo)
@@ -2129,8 +2129,8 @@ export class PatientIpSummaryComponent {
       }
 
       this.loading = true;
-      this.billingBLService.PostProvisionalDischarge(provisionalDischarge).finally(() => this.loading = false).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+      this.billingBLService.PostProvisionalDischarge(provisionalDischarge).finally(() => this.loading = false).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [res.Results]);
           this.ShowProvisionalDischargeConfirmation = false;
           this.IsProvisionalDischarge = true;

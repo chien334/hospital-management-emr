@@ -4,10 +4,10 @@ import * as moment from "moment";
 import { CoreService } from "../../../core/shared/core.service";
 import { Employee } from "../../../employee/shared/employee.model";
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { IntegrationName } from "../../shared/integration-name.model";
 import { ServiceDepartment } from '../../shared/service-department.model';
 import { SettingsService } from "../../shared/settings-service";
@@ -54,7 +54,7 @@ export class BillServiceItemComponent {
     this.GetSrvDeptList();
     this.GetPriceGategories();
 
-    this.allEmployeeList = DanpheCache.GetData(MasterType.Employee, null);
+    this.allEmployeeList = DsfCache.GetData(MasterType.Employee, null);
     this.docterList = this.allEmployeeList.filter(a => a.IsAppointmentApplicable == true);
     this.GoToNextInput("ServiceDepartmentName");
 
@@ -110,8 +110,8 @@ export class BillServiceItemComponent {
   GetBilCfgItemsVsPriceCategory(ServiceItemId: number) {
     if (ServiceItemId) {
       this.settingsBLService.GetServiceItemsVsPriceCategory(ServiceItemId).subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status == ENUM_DsfHTTPResponses.OK) {
             console.log(this.BillItemsPriceCatMap);
             let billItemsPriceCategoryMapFromServer: Array<BillServiceItemsPriceCategoryMap> = res.Results;
             this.BillItemsPriceCatMap.map(a => {
@@ -135,7 +135,7 @@ export class BillServiceItemComponent {
             console.log(res);
           }
         },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           console.log(err);
         }
       );
@@ -169,7 +169,7 @@ export class BillServiceItemComponent {
     try {
       this.settingsBLService.GetServiceDepartments()
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             if (res.Results.length) {
               this.srvdeptList = res.Results;
 
@@ -214,8 +214,8 @@ export class BillServiceItemComponent {
       this.CurrentBillingItem.DefaultDoctorList = this.defaultDoctorList ? this.defaultDoctorList : null;
       this.settingsBLService.AddServiceItems(this.CurrentBillingItem)
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status == ENUM_DsfHTTPResponses.OK) {
               this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Item Added Successfully']);
               this.CurrentBillingItem = new BillServiceItemModel();
             }
@@ -249,14 +249,14 @@ export class BillServiceItemComponent {
       rowToAdd.ServiceItemId = this.CurrentBillingItem.ServiceItemId;
       rowToAdd.ServiceDepartmentId = this.CurrentBillingItem.ServiceDepartmentId;
       this.settingsBLService.AddBillServiceItemsPriceCategoryMap(rowToAdd).subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status == ENUM_DsfHTTPResponses.OK) {
             this.BillItemsPriceCatMap[index].PriceCategoryServiceItemMapId = res.Results.PriceCategoryMapId;
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Successfully added BillServiceItemsPriceCategoryMap!']);
             this.changeDetector.detectChanges();
           }
         },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Cannot Add BillServiceItemsPriceCategoryMap!"]);
           console.log(err.ErrorMessage);
         }
@@ -271,14 +271,14 @@ export class BillServiceItemComponent {
     if (rowToUpdate) {
       rowToUpdate.IsActive = rowToUpdate.IsSelected;
       this.settingsBLService.UpdateBillServiceItemsPriceCategoryMap(rowToUpdate).subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Successfully Updated BillServiceItemsPriceCategoryMap!']);
             this.changeDetector.detectChanges();
 
           }
         },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Cannot Update BillServiceItemsPriceCategoryMap!"]);
           console.log(err.ErrorMessage);
         }
@@ -355,9 +355,9 @@ export class BillServiceItemComponent {
       this.CurrentBillingItem.DefaultDoctorList = this.defaultDoctorList ? this.defaultDoctorList : null;
       this.settingsBLService.UpdateServiceItem(this.CurrentBillingItem)
         .subscribe(
-          (res: DanpheHTTPResponse) => {
+          (res: DsfHTTPResponse) => {
 
-            if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status == ENUM_DsfHTTPResponses.OK) {
               this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Service Item Details Updated']);
             }
             else {

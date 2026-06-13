@@ -52,8 +52,8 @@
     </div>
   </div>
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="inventoryStockGridColumns" [grid-data]="filterSubstoreStockList" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" (grid-actions)="StockDetailsGridAction($event)">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="inventoryStockGridColumns" [grid-data]="filterSubstoreStockList" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" (grid-actions)="StockDetailsGridAction($event)">
+    </dsf-grid>
   </div>
 </div>
 
@@ -172,7 +172,7 @@
 </div>
 <div class="popup-static portlet box portlet-fullscreen" *ngIf="loadingScreen">
   <div class="portlet-body form" style="background-color:white">
-    <div class="danphe-loading-image" style="display: block;padding-left: 49%;padding-top: 15%;" id='danpheLoading'>
+    <div class="dsf-loading-image" style="display: block;padding-left: 49%;padding-top: 15%;" id='dsfLoading'>
       <img style="margin-top: 60px;width: 120px; height: 120px;" src="../../../../../themes/theme-default/images/loading-child.gif" alt="" />
       <p style="font-size: 24px;color: #fff;"><b>{{ 'WARD_SUPPLY.PROCESSING_PLEASE_WAIT' | translate }}</b></p>
     </div>

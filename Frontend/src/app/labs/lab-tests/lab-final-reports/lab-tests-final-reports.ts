@@ -1,10 +1,10 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { LabsBLService } from '../../shared/labs.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import * as moment from 'moment/moment';
 import LabGridColumnSettings from '../../shared/lab-gridcol-settings';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { PatientService } from '../../../patients/shared/patient.service';
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from '../../../security/shared/security.service';
@@ -78,14 +78,14 @@ export class LabTestsFinalReports implements AfterViewInit {
     let parameterData = this.coreService.Parameters.find(p => p.ParameterGroupName == "Common" && p.ParameterName == "ServerSideSearchComponent").ParameterValue;
     var data = JSON.parse(parameterData);
     this.enableServerSideSearch = data["LaboratoryFinalReports"];
-    let TeleMedicineConfig = this.coreService.Parameters.find(p =>p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DanpheConfigurationForTeleMedicine").ParameterValue;
+    let TeleMedicineConfig = this.coreService.Parameters.find(p =>p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DsfConfigurationForTeleMedicine").ParameterValue;
     this.IsTeleMedicineEnabled = JSON.parse(JSON.parse(TeleMedicineConfig).IsTeleMedicineEnabled);
   }
 
   GetPendingReportList(frmdate, todate, searchtxt = '', categoryList) {
     this.reportList = [];
     this.loading=true;
-    this.labBLService.GetPatientListInLabFinalReports(frmdate, todate, categoryList).subscribe((res: DanpheHTTPResponse) => {
+    this.labBLService.GetPatientListInLabFinalReports(frmdate, todate, categoryList).subscribe((res: DsfHTTPResponse) => {
       if (res.Status == 'OK') {
         this.reportList = res.Results;
         this.reportList.forEach((a)=>{

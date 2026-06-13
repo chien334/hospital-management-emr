@@ -4,9 +4,9 @@
 </button>
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="profileGridColumns" [grid-data]="profileList"
+    <dsf-grid [grid-colDefaults]="profileGridColumns" [grid-data]="profileList"
                  (grid-actions)="ProfileGridActions($event)" [show-print-button]="showPrintBtnOnGrid">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 
@@ -98,7 +98,7 @@
                   <!--<div class="form-group" *ngIf="showProfleDD && !update">
                     <label class="control-label col-md-4">Select Profile<b>:</b> </label>
                     <div class="col-md-8">
-                      <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
+                      <input dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
                              [(ngModel)]="selProfileForAttach" [list-formatter]="profileListFormatter" [source]="profileList"
                              placeholder="Enter Profile Name" display-property-name="ProfileName" value-property-name=null
                              (focusout)="profileChanged()" onClick="this.select();" max-num-list="10" />

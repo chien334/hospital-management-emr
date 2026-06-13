@@ -19,7 +19,7 @@
                 <div class="form-group row">
                     <label class="control-label col-md-4">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }} <sup>*</sup><b style="float:right;">:</b></label>
                     <div class="col-md-6 autocomplete-item">
-                        <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange()" (focusout)="onItemChange()" [placeholder]="'INVENTORY.SELECT_ITEMNAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" onclick="this.select()" />
+                        <input dsf-auto-complete class="form-control" (valueChanged)="onItemChange()" (focusout)="onItemChange()" [placeholder]="'INVENTORY.SELECT_ITEMNAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" onclick="this.select()" />
                     </div>
                 </div>
             </div>
@@ -35,8 +35,8 @@
 
         <div class="row">
             <div class="col-lg-12 col-sm-12">
-                <danphe-grid [grid-colDefaults]="DetailStockLedgerColumn" [grid-data]="DetailStockLedgerData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="'inventory'" [report-title]="'Detail Stock Ledger'" [show-header]="true" [filter-parameters]="FilterParameters">
-                </danphe-grid>
+                <dsf-grid [grid-colDefaults]="DetailStockLedgerColumn" [grid-data]="DetailStockLedgerData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="'inventory'" [report-title]="'Detail Stock Ledger'" [show-header]="true" [filter-parameters]="FilterParameters">
+                </dsf-grid>
             </div>
         </div>
     </div>

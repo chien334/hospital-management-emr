@@ -3,11 +3,11 @@ import * as moment from "moment";
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { IGridFilterParameter } from "../../../shared/danphe-grid/grid-filter-parameter.interface";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { IGridFilterParameter } from "../../../shared/dsf-grid/grid-filter-parameter.interface";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import PHRMReportsGridColumns from "../../shared/phrm-reports-grid-columns";
 
@@ -65,8 +65,8 @@ export class ItemWiseWardSupplyReportComponent {
 
     public GetOnlyItemNameList(): void {
         this.pharmacyBLService.getOnlyItemNameList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.ItemList = res.Results;
                 }
                 else {
@@ -92,8 +92,8 @@ export class ItemWiseWardSupplyReportComponent {
         }
     }
     GetSubStores(): void {
-        this.pharmacyBLService.GetSubStores().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetSubStores().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.SubStoreList = res.Results;
             }
             else {
@@ -125,8 +125,8 @@ export class ItemWiseWardSupplyReportComponent {
             { DisplayName: "WardName:", Value: this.WardName == undefined || null ? 'All' : this.WardName },
             { DisplayName: "DateRange:", Value: this.dateRange },
         ];
-        this.pharmacyBLService.GetItemWiseWardSupplyReport(this.FromDate, this.ToDate, this.WardId, this.ItemId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetItemWiseWardSupplyReport(this.FromDate, this.ToDate, this.WardId, this.ItemId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.ItemWiseWardSupplyData = res.Results.ItemWiseWardSupplyDetails;
                 this.ItemWiseWardSupplySummaryData = res.Results.ItemWiseWardSupplySummary;
                 if (this.ItemWiseWardSupplySummaryData && this.ItemWiseWardSupplySummaryData.length) {
@@ -159,8 +159,8 @@ export class ItemWiseWardSupplyReportComponent {
         popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
         popupWinindow.document.open();
         let documentContent = "<html><head>";
-        documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
         documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
         documentContent += '</head>';
         documentContent += '<body onload="window.print()">' + printContents + '</body></html>'

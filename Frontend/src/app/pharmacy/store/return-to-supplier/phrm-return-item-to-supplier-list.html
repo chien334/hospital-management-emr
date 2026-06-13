@@ -27,7 +27,7 @@
 </style>
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="returnToSupplierListGridColumns" [rangeType]="dateRange" (onDateChange)="onGridDateChange($event)" [date-range-options]="'1W,1M,3M'" [grid-data]="returnItemToSupplierList" [NepaliDateInGridParams]="NepaliDateInGridSettings" [show-CustomDate]="true" (grid-actions)="ReturnToSupplierGridAction($event)"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="returnToSupplierListGridColumns" [rangeType]="dateRange" (onDateChange)="onGridDateChange($event)" [date-range-options]="'1W,1M,3M'" [grid-data]="returnItemToSupplierList" [NepaliDateInGridParams]="NepaliDateInGridSettings" [show-CustomDate]="true" (grid-actions)="ReturnToSupplierGridAction($event)"> </dsf-grid>
   </div>
 </div>
 <div class="popup-static portlet box portlet-fullscreen custom_modal" *ngIf="showRetSuppItemsbyRetSuppID">
@@ -155,7 +155,7 @@
                     {{ 'PHARMACY.USER' | translate }}: {{userName}}
                   </div>
                   <div class="col-md-6 right text-right">
-                    {{ 'COMMON.TIME' | translate }}: {{time | DanpheDateTime:'format':'HH:mm'}}
+                    {{ 'COMMON.TIME' | translate }}: {{time | DsfDateTime:'format':'HH:mm'}}
                   </div>
                 </div>
               </div>

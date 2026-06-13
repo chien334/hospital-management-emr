@@ -176,7 +176,7 @@
                                     <td style="padding: 5px 0px; width: 20%;">{{item.ShortName}}</td>
                                     <td style="padding: 5px 0px; ">{{item.AgeSex}}</td>
                                     <td *ngIf="!IsLocalDate" style="width: 120px; width: 10%;">{{item.AdmissionDate |
-                                        DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+                                        DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
                                     <td *ngIf="IsLocalDate" style="width: 120px; width: 10%;">{{item.AdmissionDate|nepaliDate:'format':'YYYY-MM-DD
                                         hh:mm'}}</td>
                                     <td style="padding: 5px 0px; text-align: center;">{{item.BedNumber}}</td>

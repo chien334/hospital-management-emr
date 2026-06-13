@@ -34,43 +34,43 @@ export default class EmergencyGridColumnSettings {
       field: "",
       width: 230,
       template:
-        `<a danphe-grid-action="edit" class="grid-action">Edit</a> 
-                 <a danphe-grid-action="undo-triage" class="grid-action">Undo Triage</a> 
+        `<a dsf-grid-action="edit" class="grid-action">Edit</a> 
+                 <a dsf-grid-action="undo-triage" class="grid-action">Undo Triage</a> 
                  
-                 <a danphe-grid-action="show-assign-doctor" class="grid-action">Assign Doctor</a>
-                 <a danphe-grid-action="order" class="grid-action">Order</a>     
+                 <a dsf-grid-action="show-assign-doctor" class="grid-action">Assign Doctor</a>
+                 <a dsf-grid-action="order" class="grid-action">Order</a>     
                  
                  <div class= "dropdown" style="display:inline-block;">
                     <button class="dropdown-toggle grid-btnCstm ER-grid-btnCstm" type="button" data-toggle="dropdown">Outcome...
                         <span class="caret"> </span>
                     </button>
                     <ul class="dropdown-menu grid-ddlCstm er-grid-ddlCstm">
-                    <li><a danphe-grid-action="admitted" class="grid-action">Admit</a></li>
-                    <li><a danphe-grid-action="transferred" class="grid-action">Transfer</a></li>
-                    <li><a danphe-grid-action="discharged" class="grid-action">Discharge</a></li>
-                    <li><a danphe-grid-action="lama" class="grid-action">LAMA</a></li>
-                    <li><a danphe-grid-action="death" class="grid-action">Death</a></li>
-                    <li><a danphe-grid-action="dor" class="grid-action">DOR</a></li>  
-                    <li><a danphe-grid-action="dor" class="grid-action">Upload Consent</a></li>  
+                    <li><a dsf-grid-action="admitted" class="grid-action">Admit</a></li>
+                    <li><a dsf-grid-action="transferred" class="grid-action">Transfer</a></li>
+                    <li><a dsf-grid-action="discharged" class="grid-action">Discharge</a></li>
+                    <li><a dsf-grid-action="lama" class="grid-action">LAMA</a></li>
+                    <li><a dsf-grid-action="death" class="grid-action">Death</a></li>
+                    <li><a dsf-grid-action="dor" class="grid-action">DOR</a></li>  
+                    <li><a dsf-grid-action="dor" class="grid-action">Upload Consent</a></li>  
                     </ul> 
                 </div> 
                 `
     }
-    //<a danphe-grid-action="view" class="grid-action"><i class="fa fa-eye"></i> View</a>
-    // <a danphe-grid-action="edit" class="grid-action">Edit</a> 
-    // <a danphe-grid-action="undo-triage" class="grid-action">Undo Triage</a> 
-    //  <a danphe-grid-action="view" class="grid-action"><i class="fa fa-eye"></i> View</a>
-    //     <a danphe-grid-action="show-assign-doctor" class="grid-action">Assign Doctor</a>
-    //     <a danphe-grid-action="order" class="grid-action">Order</a>
+    //<a dsf-grid-action="view" class="grid-action"><i class="fa fa-eye"></i> View</a>
+    // <a dsf-grid-action="edit" class="grid-action">Edit</a> 
+    // <a dsf-grid-action="undo-triage" class="grid-action">Undo Triage</a> 
+    //  <a dsf-grid-action="view" class="grid-action"><i class="fa fa-eye"></i> View</a>
+    //     <a dsf-grid-action="show-assign-doctor" class="grid-action">Assign Doctor</a>
+    //     <a dsf-grid-action="order" class="grid-action">Order</a>
     //     <div class= "dropdown" style="display:inline-block;">
     //         <button class="dropdown-toggle grid-btnCstm ER-grid-btnCstm" style = "background-color: #3598dc;" type="button" data-toggle="dropdown">Outcome...
     //             <span class="caret"> </span></button>
     //         <ul class="dropdown-menu grid-ddlCstm er-grid-ddlCstm">
-    //             <li><a danphe-grid-action="admitted" class="er-grid-action">Admit</a></li>
-    //             <li><a danphe-grid-action="transferred" class="er-grid-action">Transfer</a></li>
-    //             <li><a danphe-grid-action="discharged" class="er-grid-action">Discharge</a></li>  
-    //             <li><a danphe-grid-action="lama" class="er-grid-action">LAMA</a></li>
-    //             <li><a danphe-grid-action="death" class="er-grid-action">Death</a></li>
+    //             <li><a dsf-grid-action="admitted" class="er-grid-action">Admit</a></li>
+    //             <li><a dsf-grid-action="transferred" class="er-grid-action">Transfer</a></li>
+    //             <li><a dsf-grid-action="discharged" class="er-grid-action">Discharge</a></li>  
+    //             <li><a dsf-grid-action="lama" class="er-grid-action">LAMA</a></li>
+    //             <li><a dsf-grid-action="death" class="er-grid-action">Death</a></li>
     //         </ul>
     //     </div>
   ]
@@ -166,32 +166,32 @@ export default class EmergencyGridColumnSettings {
   static Action(params) {
     if (params.data.ERDischargeSummaryId) {
       return `
-             <i danphe-grid-action="patientoverview" class="fa fa-tv grid-action" style="padding: 3px;" title= "overview"></i>
-             <a danphe-grid-action="edit" class="grid-action">
+             <i dsf-grid-action="patientoverview" class="fa fa-tv grid-action" style="padding: 3px;" title= "overview"></i>
+             <a dsf-grid-action="edit" class="grid-action">
                 Edit
              </a>
-             <a danphe-grid-action="order" class="grid-action">
+             <a dsf-grid-action="order" class="grid-action">
                 Order
              </a>
-             <a danphe-grid-action="add-vitals" class="grid-action">
+             <a dsf-grid-action="add-vitals" class="grid-action">
                 Add Vitals
              </a>
-            <a danphe-grid-action="dischargesummary" class="grid-action">
+            <a dsf-grid-action="dischargesummary" class="grid-action">
                             View Summary  
              </a>`
     } else {
       return `
-            <i danphe-grid-action="patientoverview" class="fa fa-tv grid-action" style="padding: 3px;" title= "overview"></i>
-            <a danphe-grid-action="edit" class="grid-action">
+            <i dsf-grid-action="patientoverview" class="fa fa-tv grid-action" style="padding: 3px;" title= "overview"></i>
+            <a dsf-grid-action="edit" class="grid-action">
                 Edit
              </a>
-             <a danphe-grid-action="order" class="grid-action">
+             <a dsf-grid-action="order" class="grid-action">
                 Order
              </a>
-             <a danphe-grid-action="add-vitals" class="grid-action">
+             <a dsf-grid-action="add-vitals" class="grid-action">
                 Add Vitals
              </a>
-            <a danphe-grid-action="dischargesummary" class="grid-action">
+            <a dsf-grid-action="dischargesummary" class="grid-action">
                             Add Summary  
              </a>`
     }
@@ -233,72 +233,72 @@ export default class EmergencyGridColumnSettings {
     if (Boolean(params.data.IsAddVitalBeforeTriage) === true && params.data.vitals !== null
       && params.data.uploadedfiles !== null) {
       let template = `
-        <a danphe-grid-action="edit" class="grid-action">
+        <a dsf-grid-action="edit" class="grid-action">
           Edit
         </a>
-        <a danphe-grid-action="triage" class="grid-action">
+        <a dsf-grid-action="triage" class="grid-action">
           Triage
         </a>
-        <a danphe-grid-action="add-vitals" class="grid-action">
+        <a dsf-grid-action="add-vitals" class="grid-action">
             Add Vitals
          </a>
-         <a danphe-grid-action="consent" class="grid-action">
+         <a dsf-grid-action="consent" class="grid-action">
            View Consent
          </a>`;
       return template;
     } else if (Boolean(params.data.IsAddVitalBeforeTriage) === false && params.data.uploadedfiles !== null) {
-      let template = `<a danphe-grid-action="edit" class="grid-action">
+      let template = `<a dsf-grid-action="edit" class="grid-action">
             Edit
          </a>
-         <a danphe-grid-action="triage" class="grid-action">
+         <a dsf-grid-action="triage" class="grid-action">
           Triage
         </a>
-         <a danphe-grid-action="add-vitals" class="grid-action">
+         <a dsf-grid-action="add-vitals" class="grid-action">
             Add Vitals
          </a>
-         <a danphe-grid-action="consent" class="grid-action">
+         <a dsf-grid-action="consent" class="grid-action">
         View Consent
          </a>`;
       return template;
     }
     else if (Boolean(params.data.IsAddVitalBeforeTriage) === true && params.data.uploadedfiles !== null) {
-      let template = `<a danphe-grid-action="edit" class="grid-action">
+      let template = `<a dsf-grid-action="edit" class="grid-action">
             Edit
          </a>
          
-         <a danphe-grid-action="add-vitals" class="grid-action">
+         <a dsf-grid-action="add-vitals" class="grid-action">
             Add Vitals
          </a>
-         <a danphe-grid-action="consent" class="grid-action">
+         <a dsf-grid-action="consent" class="grid-action">
          View Consent
          </a>`;
       return template;
     }
     else if (Boolean(params.data.IsAddVitalBeforeTriage) === true) {
       let template = `
-        <a danphe-grid-action="edit" class="grid-action">
+        <a dsf-grid-action="edit" class="grid-action">
           Edit
         </a>
-        <a danphe-grid-action="triage" class="grid-action">
+        <a dsf-grid-action="triage" class="grid-action">
           Triage
         </a>
-        <a danphe-grid-action="add-vitals" class="grid-action">
+        <a dsf-grid-action="add-vitals" class="grid-action">
             Add Vitals
          </a>
-         <a danphe-grid-action="consent" class="grid-action">
+         <a dsf-grid-action="consent" class="grid-action">
          Upload Consent
          </a>`;
       return template;
     }
     else if (Boolean(params.data.IsAddVitalBeforeTriage) === true) {
       let template = `
-        <a danphe-grid-action="edit" class="grid-action">
+        <a dsf-grid-action="edit" class="grid-action">
           Edit
         </a>
-        <a danphe-grid-action="triage" class="grid-action">
+        <a dsf-grid-action="triage" class="grid-action">
           Triage
         </a>
-        <a danphe-grid-action="add-vitals" class="grid-action">
+        <a dsf-grid-action="add-vitals" class="grid-action">
             Add Vitals
          </a>`;
       return template;

@@ -12,7 +12,7 @@
         <div class="form-group row">
           <label class="control-label col-md-4">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }} <sup style="color: red">*</sup><b style="float:right;">:</b></label>
           <div class="col-md-6 autocomplete-item">
-            <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange()" [placeholder]="'INVENTORY.SELECT_ITEMNAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" />
+            <input dsf-auto-complete class="form-control" (valueChanged)="onItemChange()" [placeholder]="'INVENTORY.SELECT_ITEMNAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" />
           </div>
         </div>
       </div>

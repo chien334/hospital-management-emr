@@ -6,8 +6,8 @@ import { LoginToTelemed } from '../../../labs/shared/labMasterData.model';
 import { LabsBLService } from '../../../labs/shared/labs.bl.service';
 import { Patient } from '../../../patients/shared/patient.model';
 import { PatientService } from '../../../patients/shared/patient.service';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
 import { AppointmentBLService } from '../../shared/appointment.bl.service';
@@ -64,7 +64,7 @@ export class OnlineAppointmentPendingListComponent {
   };
 
   getParameterAndLogin() {
-    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DanpheConfigurationForTeleMedicine").ParameterValue;
+    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DsfConfigurationForTeleMedicine").ParameterValue;
     this.teleMedicineConfiguration = JSON.parse(TeleMedicineConfig);
     this.Login.PhoneNumber = this.teleMedicineConfiguration.PhoneNumber;
     this.Login.Password = this.teleMedicineConfiguration.Password;

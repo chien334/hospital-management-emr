@@ -4,7 +4,7 @@ import { CoreService } from "../../core/shared/core.service";
 import { InventoryFieldCustomizationService } from '../../shared/inventory-field-customization.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponses } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses } from '../../shared/shared-enums';
 import { RequisitionDispatchItem_DTO } from '../shared/dtos/requisition-dispatch-item.dto';
 import { RequisitionDispatch_DTO } from '../shared/dtos/requisition-dispatch.dto';
 import { InventoryBLService } from "../shared/inventory.bl.service";
@@ -81,7 +81,7 @@ export class DispatchReceiptDetailsComponent implements OnInit {
         this.showNepaliReceipt = (receipt == "true");
     }
     ShowRequisitionDetails(res) {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
             this.setFocusById('printBtn');
             this.requisitionDispatch = res.Results.RequisitionDispatch;
             this.requisitionItemsDetails = res.Results.RequisitionDispatchItems;

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { SecurityService } from '../../security/shared/security.service';
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
 
 @Injectable()
 export class MarketingReferralService {

@@ -18,7 +18,7 @@ table, th, td {
                 <div class="form-group row">
                   <label class="control-label col-md-4">Select User<b style="float:right;">:</b></label>
                   <div class="col-md-8">
-                    <input class="form-control" danphe-auto-complete
+                    <input class="form-control" dsf-auto-complete
                          [(ngModel)]="selUser"
                          [ngModelOptions]="{standalone: true}"
                          [list-formatter]="UserListFormatter"
@@ -41,7 +41,7 @@ table, th, td {
         <div class="form-group">
           <label class="control-label col-md-3">From Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
           <div class="col-md-9">
-            <danphe-date-picker [(ngModel)]="userObjModel.fromDate" ngDefaultControl [CalendarTypes]="calType" formControlName="fromDate"> </danphe-date-picker>
+            <dsf-date-picker [(ngModel)]="userObjModel.fromDate" ngDefaultControl [CalendarTypes]="calType" formControlName="fromDate"> </dsf-date-picker>
             <span class="color-red font-sm" *ngIf="userObjModel.IsDirty('fromDate')" [hidden]="userObjModel.IsValidCheck('fromDate','required')"> From Date is required</span><br />
             <span class="color-red font-sm" *ngIf="userObjModel.IsDirty('fromDate')" [hidden]="userObjModel.IsValidCheck('fromDate','wrongDate')"> Enter Valid Date</span> </div>
         </div>
@@ -50,7 +50,7 @@ table, th, td {
         <div class="form-group">
           <label class="control-label col-md-3">To Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
           <div class="col-md-9">
-            <danphe-date-picker [(ngModel)]="userObjModel.toDate" ngDefaultControl [CalendarTypes]="calType" formControlName="toDate"> </danphe-date-picker>
+            <dsf-date-picker [(ngModel)]="userObjModel.toDate" ngDefaultControl [CalendarTypes]="calType" formControlName="toDate"> </dsf-date-picker>
             <span class="color-red font-sm" *ngIf="userObjModel.IsDirty('toDate')" [hidden]="userObjModel.IsValidCheck('toDate','required')"> To Date is required</span><br />
             <span class="color-red font-sm" *ngIf="userObjModel.IsDirty('toDate')" [hidden]="userObjModel.IsValidCheck('toDate','wrongDate')"> Can't select future date</span> </div>
         </div>

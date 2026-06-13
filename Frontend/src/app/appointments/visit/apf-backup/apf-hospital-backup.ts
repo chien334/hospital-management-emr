@@ -1,6 +1,6 @@
 // PostRank(Rank: string) {
 //     this.visitBLService.PostRank(Rank).subscribe(res => {
-//         if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+//         if (res.Status === ENUM_DsfHTTPResponseText.OK) {
 //             this.RankList.push(res.Results);
 //             this.visitService.SetAllRank(this.RankList);
 //             this.selectedRank = res.Results;
@@ -88,8 +88,8 @@
 //   public listOfPatientIdsUsingSameDependentId: Array<number> = Array<number>();
 //   public ListDependentIds() {
 //     this.visitBLService.GetDependentIdDetail(this.patient.DependentId)
-//         .subscribe((res: DanpheHTTPResponse) => {
-//             if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+//         .subscribe((res: DsfHTTPResponse) => {
+//             if (res.Status === ENUM_DsfHTTPResponseText.OK) {
 //                 const result = res.Results;
 
 //                 this.listOfPatientsUsingDependents = result.patientsUnderDependents;
@@ -122,7 +122,7 @@
 
 //     this.visitBLService.UpdateDependentId(this.listOfPatientsUsingDependents[index].DependentId, this.listOfPatientsUsingDependents[index].PatientId)
 //         .subscribe(res => {
-//             if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+//             if (res.Status === ENUM_DsfHTTPResponseText.OK) {
 //                 this.msgBoxServ.showMessage("success", ["DependentId is Updated."]);
 //                 this.showDependentIdPopup = false;
 

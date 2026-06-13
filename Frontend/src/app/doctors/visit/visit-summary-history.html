@@ -18,7 +18,7 @@
             </tr>
             <tr *ngFor="let vis of visitList;">
                 <td style="padding:0px">
-                    {{vis.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}
+                    {{vis.VisitDateTime | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}
                 </td>
                 <td>{{vis.PatientVisitCode}}</td>
                 <td style="padding:0px">

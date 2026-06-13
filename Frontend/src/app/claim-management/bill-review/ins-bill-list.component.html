@@ -67,7 +67,7 @@
             <button class="btn orange btn-success form-control" (click)="OpenSetClaimCodePopUp()"><b>{{ 'CLAIMMANAGEMENT.SET_CLAIM_CODE' | translate }}</b></button>
           </div>
           <div class="col-md-2">
-            <input DanpheConfirmationDialog
+            <input DsfConfirmationDialog
                    id="btnSetClaimable"
                    type="submit"
                    [title]="confirmationTitle"
@@ -77,7 +77,7 @@
                    [value]="'CLAIMMANAGEMENT.SET_NON_CLAIMABLE' | translate" [disabled]="loading" />
           </div>
           <div class="col-md-2">
-            <input DanpheConfirmationDialog
+            <input DsfConfirmationDialog
                    id="btnSetClaimable"
                    type="submit"
                    [title]="confirmationTitle"
@@ -89,7 +89,7 @@
                    [value]="'CLAIMMANAGEMENT.SET_CLAIMABLE' | translate" [disabled]="loading" />
           </div>
           <div class="col-md-3">
-            <input DanpheConfirmationDialog
+            <input DsfConfirmationDialog
                    id="btnSendForClaimScrubbing"
                    type="submit"
                    [title]="confirmationTitle"

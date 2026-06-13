@@ -89,7 +89,7 @@
             <option value="null">-- Select Vendor --</option>
             <option *ngFor="let vendor of VendorList" value="{{vendor.VendorId}}">{{vendor.VendorName}}</option>
           </select> -->
-                <input danphe-auto-complete class="form-control" [(ngModel)]="selectedVndr" [source]="VendorList" [list-formatter]="myVendorListFormatter" placeholder="Vendor Name" display-property-name="VendorName" value-property-name=null (valueChanged)="GetVendorDetails()" [ngModelOptions]="{standalone: true}" (focusout)="GetVendorDetails()" onclick="this.select();" no-match-found-text="click ? to add new item" />
+                <input dsf-auto-complete class="form-control" [(ngModel)]="selectedVndr" [source]="VendorList" [list-formatter]="myVendorListFormatter" placeholder="Vendor Name" display-property-name="VendorName" value-property-name=null (valueChanged)="GetVendorDetails()" [ngModelOptions]="{standalone: true}" (focusout)="GetVendorDetails()" onclick="this.select();" no-match-found-text="click ? to add new item" />
                 <span style="color:red" *ngIf="currentPO.IsDirty('VendorId')" [hidden]="currentPO.IsValidCheck('VendorId','required')"> Vendor is required</span>
                 <a *ngIf="!currentPO.VendorId" class="fa fa-question col-md-1" (click)="AddSupplierPopUp()" title="Unable to find Supplier? Click to add to Master"></a>
               </div>
@@ -104,8 +104,8 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3">PO Date<b>: </b></label>
             <div class="col-md-9 col-sm-9">
-              <danphe-date-picker name="PoDate" [(ngModel)]="currentPO.PoDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'np,en'">
-              </danphe-date-picker>
+              <dsf-date-picker name="PoDate" [(ngModel)]="currentPO.PoDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'np,en'">
+              </dsf-date-picker>
               <br />
             </div>
           </div>
@@ -149,7 +149,7 @@
             <td>
               <div class="div-relative">
                 <form [formGroup]="row.PurchaseOrderItemValidator">
-                  <input danphe-auto-complete class="form-control " autocomplete="off" id="poItemName{{i}}" style="width: 350px;" [(ngModel)]="row.SelectedItem" [source]="ItemList" [list-formatter]="myListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null (valueChanged)="SelectItemFromSearchBox(row.SelectedItem,i)" max-num-list="10" formControlName="ItemId" onclick="this.select();" (keyup.enter)="GoToNextInput('ipqty'+i)" no-match-found-text="click ? to add new item" />
+                  <input dsf-auto-complete class="form-control " autocomplete="off" id="poItemName{{i}}" style="width: 350px;" [(ngModel)]="row.SelectedItem" [source]="ItemList" [list-formatter]="myListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null (valueChanged)="SelectItemFromSearchBox(row.SelectedItem,i)" max-num-list="10" formControlName="ItemId" onclick="this.select();" (keyup.enter)="GoToNextInput('ipqty'+i)" no-match-found-text="click ? to add new item" />
                   <div style="color:red" *ngIf="row.IsDirty('ItemId')" [hidden]="row.IsValidCheck('ItemId','required')">
                     Item is required</div>
                 </form>
@@ -215,7 +215,7 @@
                       </label>
                     </div>
                     <div class="col-md-6">
-                      <input danphe-auto-complete class="form-control " autocomplete="off" [source]="VerifierList" [(ngModel)]="verifier" [list-formatter]="VerifierListFormatter" placeholder="Select Verifier" display-property-name="Name" max-num-list="10" (valueChanged)="AssignVerifier($event,i)" />
+                      <input dsf-auto-complete class="form-control " autocomplete="off" [source]="VerifierList" [(ngModel)]="verifier" [list-formatter]="VerifierListFormatter" placeholder="Select Verifier" display-property-name="Name" max-num-list="10" (valueChanged)="AssignVerifier($event,i)" />
                     </div>
                     <div class="col-md-1">
                       <button title="Add Verifier" class="btn btn-sm btn-primary" (click)="AddVerifier()" [disabled]="CheckIfAddVerifierAllowed()"><i class="glyphicon glyphicon-plus"></i></button>

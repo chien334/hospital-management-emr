@@ -4,9 +4,9 @@ import { Observable } from 'rxjs-compat';
 import { CoreService } from '../../../../core/shared/core.service';
 import { InsuranceProviderModel } from '../../../../patients/shared/insurance-provider.model';
 import { Department } from '../../../../settings-new/shared/department.model';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DateTimeFormat, ENUM_MessageBox_Status, ENUM_Relation } from '../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DateTimeFormat, ENUM_MessageBox_Status, ENUM_Relation } from '../../../../shared/shared-enums';
 import { MedicarePatient_DTO } from '../../shared/dto/mecicare-patient-dto';
 import { Medicare_EmployeeDesignation_DTO } from '../../shared/dto/medicare-employee-designation.dto';
 import { MedicalCareType, MedicareInstitute, MedicareMemberModel } from '../../shared/medicare-member.model';
@@ -71,8 +71,8 @@ export class MedicareMemberComponent {
   }
   public GetAllDepartments(): void {
     this.medicareBlService.GetAllDepartment().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.departmentsList = res.Results;
         }
       }
@@ -134,8 +134,8 @@ export class MedicareMemberComponent {
   }
   public GetAllDesignations(): void {
     this.medicareBlService.GetAllDesignations().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.designationList = res.Results;
         }
       }
@@ -143,8 +143,8 @@ export class MedicareMemberComponent {
   }
   public GetAllMedicareTypes(): void {
     this.medicareBlService.GetAllMedicareTypes().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicalCareTypeList = res.Results;
         }
       }
@@ -153,8 +153,8 @@ export class MedicareMemberComponent {
 
   public GetMedicarePatients(): void {
     this.medicareBlService.GetMedicarePatientList().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicarePatientList = res.Results;
         }
         else {
@@ -168,8 +168,8 @@ export class MedicareMemberComponent {
 
   GetAllMedicareInstitutes(): void {
     this.medicareBlService.GetAllMedicareInstitutes().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicareInstituteList = res.Results;
         }
       }
@@ -177,8 +177,8 @@ export class MedicareMemberComponent {
   }
   GetAllInsuranceProvidersList(): void {
     this.medicareBlService.GetAllInsuranceProviderList().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.insuranceProvidersList = res.Results;
         }
       }
@@ -186,8 +186,8 @@ export class MedicareMemberComponent {
   }
   GetMemberDetailsByPatientId(patientId: number): void {
     this.medicareBlService.GetMedicareMemberDetailByPatientId(patientId).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           const memberDetail = res.Results;
 
           this.disableBtn = false;
@@ -212,7 +212,7 @@ export class MedicareMemberComponent {
           this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, ['Unable to get member details Check Console']);
         }
       },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Something went wrong! ${err.ErrorMessage}`]);
       }
     )
@@ -231,8 +231,8 @@ export class MedicareMemberComponent {
           this.medicareBlService.PutMedicareMemberDetails(this.memberDetails)
             .finally(() => this.disableBtn = false)
             .subscribe(
-              (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+              (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                   this.disableBtn = true;
                   this.ResetVariables();
                   this.msgBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Member Details has been Updated Successfully']);
@@ -248,8 +248,8 @@ export class MedicareMemberComponent {
           this.medicareBlService.PostMedicareMemberDetails(this.memberDetails)
             .finally(() => this.disableBtn = false)
             .subscribe(
-              (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+              (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                   this.disableBtn = true;
                   this.ResetVariables();
                   this.msgBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Member has been added Successfully']);
@@ -260,13 +260,13 @@ export class MedicareMemberComponent {
                   this.msgBoxService.showMessage(ENUM_MessageBox_Status.Failed, ['Something went wrong!, Could not add a member']);
                 }
               },
-              (err: DanpheHTTPResponse) => {
+              (err: DsfHTTPResponse) => {
                 this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, [`something went wrong. ${err.ErrorMessage}`]);
               }
             );
         }
       } else {
-        this.msgBoxService.showMessage(ENUM_DanpheHTTPResponseText.Failed, ['Validation error!']);
+        this.msgBoxService.showMessage(ENUM_DsfHTTPResponseText.Failed, ['Validation error!']);
       }
     }
     else {

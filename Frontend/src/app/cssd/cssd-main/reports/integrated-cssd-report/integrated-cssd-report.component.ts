@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { SettingsBLService } from '../../../../settings-new/shared/settings.bl.service';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import CSSDGridColumns from '../../../shared/cssd-grid-columns';
 import { CssdReportEndpointService } from '../cssd-report.endpoint';

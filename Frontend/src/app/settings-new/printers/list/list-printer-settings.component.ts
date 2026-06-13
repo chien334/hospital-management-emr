@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
@@ -37,7 +37,7 @@ export class ListPrinterSettingsComponent {
   public LoadPrinterSettingList() {
     this.settingsBlService.GetPrinterSettingList()
       .subscribe(
-        (res: DanpheHTTPResponse) => {
+        (res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.PrinterSettingDetails = res.Results;
           }
@@ -93,7 +93,7 @@ export class ListPrinterSettingsComponent {
 
   UpdatePrinterSetting() {
     this.settingsBlService.UpdatePrinterSetting(this.selectedPrintersetting)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.selectedPrintersetting = new PrinterSettingsModel();
           this.LoadPrinterSettingList();

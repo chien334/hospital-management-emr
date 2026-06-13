@@ -12,7 +12,7 @@ import { PHRMStoreModel } from "../../../pharmacy/shared/phrm-store.model";
 import { Role } from "../../../security/shared/role.model";
 import { StoreVerificationMapModel } from "../../shared/store-role-map.model";
 import { trigger, transition, style, animate } from "@angular/animations";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 
 
 
@@ -203,7 +203,7 @@ export class SubstoreAddComponent {
   }
 
   //after adding department is succesfully added  then this function is called.
-  CallBackAddSubstore(res: DanpheHTTPResponse) {
+  CallBackAddSubstore(res: DsfHTTPResponse) {
     if (res.Status == "OK") {
       this.showMessageBox("Success", "Task Completed Succesfully.");
       for (let store of this.completeStoreList) {

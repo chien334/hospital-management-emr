@@ -236,8 +236,8 @@
 				  </div>
               </div>
               <div class="form-group" *ngIf="rptTemplate.TemplateType == 'html'">                
-                  <danphe-ckeditor [readonly]="isReadOnly" (get-html-content)="onChangeEditorData($event)" [set-html-content]="rptTemplate.TemplateHTML"> 
-                  </danphe-ckeditor>               
+                  <dsf-ckeditor [readonly]="isReadOnly" (get-html-content)="onChangeEditorData($event)" [set-html-content]="rptTemplate.TemplateHTML"> 
+                  </dsf-ckeditor>               
               </div>
             </form>         
         </div>

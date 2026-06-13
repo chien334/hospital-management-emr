@@ -20,25 +20,25 @@
                         </from-to-date-select>
                     </div>
                     <div class="col-md-2">
-                        <danphe-multiselect *ngIf="allMemberships.length > 0"  [ddl-data]="allMemberships" [pre-selected]="preSelectedMemberships"
+                        <dsf-multiselect *ngIf="allMemberships.length > 0"  [ddl-data]="allMemberships" [pre-selected]="preSelectedMemberships"
                             [placeholder-text]="'--Select Memberships --'" [value-property-name]="'MembershipTypeId'"
                             (selected-items-list)="MembershipsChanged($event)"
                             [display-property-name]="'MembershipTypeName'" [single-selection]="false">
-                        </danphe-multiselect>
+                        </dsf-multiselect>
                     </div>
                     <div class="col-md-2">
-                        <danphe-multiselect  *ngIf="allRanks.length > 0" [ddl-data]="allRanks" [pre-selected]="preSelectedRanks"
+                        <dsf-multiselect  *ngIf="allRanks.length > 0" [ddl-data]="allRanks" [pre-selected]="preSelectedRanks"
                             [placeholder-text]="'--Select Ranks --'" [value-property-name]="'RankName'"
                             (selected-items-list)="RanksChanged($event)" [display-property-name]="'Rank'"
                             [single-selection]="false">
-                        </danphe-multiselect>
+                        </dsf-multiselect>
                     </div>
                     <div class="col-md-2">
-                        <danphe-multiselect *ngIf="allUsers.length > 0" [ddl-data]="allUsers" [pre-selected]="preSelectedUsers"
+                        <dsf-multiselect *ngIf="allUsers.length > 0" [ddl-data]="allUsers" [pre-selected]="preSelectedUsers"
                             [placeholder-text]="'--Select Users --'" [value-property-name]="'EmployeeId'"
                             (selected-items-list)="UserChanged($event)" [display-property-name]="'UserName'"
                             [single-selection]="false">
-                        </danphe-multiselect>
+                        </dsf-multiselect>
                     </div>
                     <div class="col-md-2 col-xs-12">
                         <div class="col-md-2 col-xs-12">
@@ -56,10 +56,10 @@
     </div>
     <div class="row">
         <div class="col-lg-12 col-sm-12" *ngIf="SchemeDetailInvoiceReport && SchemeDetailInvoiceReport.length">
-            <danphe-grid [grid-colDefaults]="SchemeDetailInvoiceReportGridColumns"
+            <dsf-grid [grid-colDefaults]="SchemeDetailInvoiceReportGridColumns"
                 [grid-data]="SchemeDetailInvoiceReport" [NepaliDateInGridParams]="NepaliDateInGridSettings"
                 [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [grid-footer-content]="footerContent"
-                [report-for]="'billing'" [grid-date-range]="dateRange"> </danphe-grid>
+                [report-for]="'billing'" [grid-date-range]="dateRange"> </dsf-grid>
         </div>
     </div>
 

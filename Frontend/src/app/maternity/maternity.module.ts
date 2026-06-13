@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from "../shared/shared.module";
 import { AngularMultiSelectModule } from "angular2-multiselect-dropdown";
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { MaternityMainComponent } from './maternity-main.component';
 import { MaternityRoutingModule } from './maternity-routing.module';
 import { MaternityPatientListComponent } from './patient-list/maternity-patient-list.component';
@@ -37,6 +37,6 @@ import { MaternitySharedModule } from './shared/maternity-shared-module';
         CommonModule,
         AngularMultiSelectModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         MaternitySharedModule], providers: [MaternityBLService, MaternityDLService, MaternityService] })
 export class MaternityModule { }

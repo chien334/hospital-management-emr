@@ -8,7 +8,7 @@ import { PatientClinicalInfoModel } from "../../clinical/shared/patient-clinical
 import { FinalDiagnosisModel } from "../../medical-records/outpatient-list/final-diagnosis/final-diagnosis.model";
 import { MR_BLService } from "../../medical-records/shared/mr.bl.service";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { NursingOpdCheckIn_DTO } from "../shared/dto/nursing-opd-checkin.dto";
 import { PerformerDetails_DTO } from "../shared/dto/performer-details.dto";
 import { NursingBLService } from "../shared/nursing.bl.service";
@@ -100,7 +100,7 @@ export class NursingOpdCheckinComponent implements OnInit {
   GetProviderList() {
     this.admissionDLService.GetProviderList().subscribe(
       res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.providerList = res.Results;
 
         }
@@ -139,7 +139,7 @@ export class NursingOpdCheckinComponent implements OnInit {
   public GetICDList() {
     this.mrBLService.GetICDList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.ICD10MainList = res.Results;
         }
         else {
@@ -186,7 +186,7 @@ export class NursingOpdCheckinComponent implements OnInit {
     if (this.selectedVisit.PerformerId != null) {
       this.nursingBLService.PostNursingCheckinDetails(this.nursingOpdCheckIn)
         .subscribe((res) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.chiefComplaints = new Array<PatientClinicalInfoModel>();
             this.selectedDiagnosis = []
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Nursing CheckIn Added Successfully']);

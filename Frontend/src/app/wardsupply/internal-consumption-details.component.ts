@@ -7,8 +7,8 @@ import { CoreService } from '../core/shared/core.service';
 import { SecurityService } from '../security/shared/security.service';
 import { WardConsumptionModel } from './shared/ward-consumption.model';
 import { CommonFunctions } from '../shared/common.functions';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../shared/shared-enums';
-import { DanpheHTTPResponse } from '../shared/common-models';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../shared/shared-enums';
+import { DsfHTTPResponse } from '../shared/common-models';
 import { GeneralFieldLabels } from '../shared/DTOs/general-field-label.dto';
 @Component({
     selector: 'consumption-receipt',
@@ -103,8 +103,8 @@ export class InternalConsumptionDetailsComponent {
 
     GetInternalConsumptionItemDetails() {
         this.wardSupplyBLService.GetInternalConsumptionDetails(this.consumptionId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.consumptionLists = res.Results;
                     this.consumptionListCopy = JSON.parse(JSON.stringify(this.consumptionLists));
                     this.DepartmentName = this.consumptionLists[0].Department;
@@ -148,7 +148,7 @@ export class InternalConsumptionDetailsComponent {
         let wardId = data.WardId != undefined ? data.WardId : parseInt(data.WardName);
         this.wardSupplyBLService.GetConsumptionItemList(patientId, wardId, this.CurrentStoreId)
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.consumptionLists = res.Results;
                     this.consumptionListCopy = JSON.parse(JSON.stringify(this.consumptionLists));
                     this.Dates = this.consumptionLists[0].CreatedOn;
@@ -222,11 +222,11 @@ export class InternalConsumptionDetailsComponent {
                     this.loading = false;
                 })
                 .subscribe(res => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results != null) {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results != null) {
                         this.msgBoxService.showMessage(ENUM_MessageBox_Status.Success, [' Intrenal Consumption completed']);
                         this.consumptionListCopy = JSON.parse(JSON.stringify(this.consumptionLists));
                     }
-                    else if (res.Status == ENUM_DanpheHTTPResponses.Failed) {
+                    else if (res.Status == ENUM_DsfHTTPResponses.Failed) {
                         this.msgBoxService.showMessage(ENUM_MessageBox_Status.Failed, ['There is problem, please try again']);
                         this.consumptionLists = JSON.parse(JSON.stringify(this.consumptionListCopy));
                     }
@@ -264,11 +264,11 @@ export class InternalConsumptionDetailsComponent {
                     this.loading = false;
                 })
                 .subscribe(res => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results != null) {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results != null) {
                         this.msgBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Consumption completed']);
                         this.consumptionListCopy = JSON.parse(JSON.stringify(this.consumptionLists));
                     }
-                    else if (res.Status == ENUM_DanpheHTTPResponses.Failed) {
+                    else if (res.Status == ENUM_DsfHTTPResponses.Failed) {
                         this.consumptionLists = JSON.parse(JSON.stringify(this.consumptionListCopy));
                         this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, ['There is problem, please try again']);
                     }

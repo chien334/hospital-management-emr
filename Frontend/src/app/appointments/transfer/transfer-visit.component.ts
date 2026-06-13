@@ -6,7 +6,7 @@ import { Employee } from '../../employee/shared/employee.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 
 @Component({
-    selector: "danphe-transfer-visit",
+    selector: "dsf-transfer-visit",
     templateUrl: "./transfer-visit.html"
 })
 export class TransferVisitComponent {

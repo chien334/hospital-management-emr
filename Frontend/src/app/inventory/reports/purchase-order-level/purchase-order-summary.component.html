@@ -11,7 +11,7 @@
           <div class="form-group row">
             <label class="control-label col-md-5">{{ 'INVENTORY.VENDOR_NAME' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-6 autocomplete-item">
-              <input danphe-auto-complete class="form-control" (valueChanged)="onVendorChange()" [placeholder]="'INVENTORY.SELECT_VENDOR_NAME' | translate" [(ngModel)]="selectedVndr" [list-formatter]="VendorListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="VendorName" value-property-name=null [source]="VendorList" [match-formatted]="true" onclick="this.select();" />
+              <input dsf-auto-complete class="form-control" (valueChanged)="onVendorChange()" [placeholder]="'INVENTORY.SELECT_VENDOR_NAME' | translate" [(ngModel)]="selectedVndr" [list-formatter]="VendorListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="VendorName" value-property-name=null [source]="VendorList" [match-formatted]="true" onclick="this.select();" />
             </div>
           </div>
         </div>
@@ -19,7 +19,7 @@
           <div class="form-group row">
             <label class="control-label col-md-5">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-6 autocomplete-item">
-              <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange()" [placeholder]="'INVENTORY.SELECT_ITEM_NAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" value-property-name=null [source]="itemList" [match-formatted]="true" onclick="this.select();" />
+              <input dsf-auto-complete class="form-control" (valueChanged)="onItemChange()" [placeholder]="'INVENTORY.SELECT_ITEM_NAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" value-property-name=null [source]="itemList" [match-formatted]="true" onclick="this.select();" />
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@
 
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="PurchaseOrderReportColumns" 
+    <dsf-grid [grid-colDefaults]="PurchaseOrderReportColumns" 
                  [grid-data]="filteredPurchaseOrderReportData" 
                  [grid-exportOptions]="gridExportOptions" 
                  [grid-showExport]="true" 
@@ -88,6 +88,6 @@
                  [show-header]="true" 
                  [filter-parameters]="FilterParameters" 
                  [NepaliDateInGridParams]="NepaliDateInGridSettings">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>

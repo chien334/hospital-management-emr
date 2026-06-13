@@ -26,7 +26,7 @@ def try_compile(sql_code, func_name=None):
         sql_code = drop_cmd + sql_code
         
     container = os.environ.get('PG_CONTAINER', 'pg-emr')
-    db = os.environ.get('PG_DB', 'danphe_emr')
+    db = os.environ.get('PG_DB', 'dsf_emr')
     user = os.environ.get('PG_USER', 'postgres')
     rtk_path = os.environ.get('RTK_PATH', '/Users/macbbook/.local/bin/rtk')
     
@@ -2876,7 +2876,7 @@ RETURNS TABLE (
     "TABLE_NAME" VARCHAR
 ) AS $$
 BEGIN
-    RETURN QUERY SELECT 'danphe_emr'::VARCHAR, 'public'::VARCHAR, 'ACC_Ledger'::VARCHAR;
+    RETURN QUERY SELECT 'dsf_emr'::VARCHAR, 'public'::VARCHAR, 'ACC_Ledger'::VARCHAR;
 END;
 $$ LANGUAGE plpgsql;"""
         return stub_code, 'sp_exportdbtoxml'

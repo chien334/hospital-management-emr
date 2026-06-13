@@ -7,7 +7,7 @@
                        style="float:right;">:</b></label>
                 <div class="col-md-12">
                     <div class="row autocomplete-item" *ngIf="ICD10List && ICD10List.length>0">
-                        <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" formControlName="ICD10Code"
+                        <input dsf-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" formControlName="ICD10Code"
                                [list-formatter]="ICDListFormatter" placeholder="{{icdVersionDisplayName}}" display-property-name="ICD10Description"
                                value-property-name=null (valueChanged)="AssignSelectedICD()" onClick="this.select();" match-formatted="true"
                                [grid-sort]="'ICD10Description'" max-num-list="20" />

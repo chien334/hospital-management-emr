@@ -20,8 +20,8 @@
               <div class="form-group">
                 <label class="control-label col-md-3">{{ 'ACCOUNTING.TRANSACTION_DATE' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-8">
-                  <!-- <danphe-date-picker [(ngModel)]="transaction.TransactionDate" ngDefaultControl
-                    [CalendarTypes]="calType"> </danphe-date-picker>
+                  <!-- <dsf-date-picker [(ngModel)]="transaction.TransactionDate" ngDefaultControl
+                    [CalendarTypes]="calType"> </dsf-date-picker>
                      -->
                  <fiscal-year-calendar [showSingleDatePicker]="true" [showAllFiscalYear]="false" (fiscalYearDate)="selectDate($event)"> </fiscal-year-calendar>
                 </div>

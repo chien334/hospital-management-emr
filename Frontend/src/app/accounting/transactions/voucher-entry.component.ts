@@ -131,11 +131,11 @@ export class VoucherEntryComponent {
   //   if (routeFromService.RouteFrom === ENUM_ACC_RouteFrom.VoucherReportCopy || routeFromService.RouteFrom === ENUM_ACC_RouteFrom.VoucherVerify) {
   //     this.CallBackCopyVoucher();
   //   }
-  //   if (!!this.accountingService.accCacheData.CodeDetails && this.accountingService.accCacheData.CodeDetails.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-  //     this.coreService.SetCodeDetails(this.accountingService.accCacheData.CodeDetails);//mumbai-team-june2021-danphe-accounting-cache-change
+  //   if (!!this.accountingService.accCacheData.CodeDetails && this.accountingService.accCacheData.CodeDetails.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+  //     this.coreService.SetCodeDetails(this.accountingService.accCacheData.CodeDetails);//mumbai-team-june2021-dsf-accounting-cache-change
   //   }
-  //   if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-  //     this.coreService.SetFiscalYearList(this.accountingService.accCacheData.FiscalYearList);//mumbai-team-june2021-danphe-accounting-cache-change
+  //   if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+  //     this.coreService.SetFiscalYearList(this.accountingService.accCacheData.FiscalYearList);//mumbai-team-june2021-dsf-accounting-cache-change
   //   }
   // }
 
@@ -218,7 +218,7 @@ export class VoucherEntryComponent {
   // }
   // UpdateVoucherChequeNoandPayeeName() {
   //   try {
-  //     if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
+  //     if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
   //       if ((this.voucherTypeList.find(v => v.VoucherId == this.selVoucherTypeId).ShowPayeeName) == true) {
   //         this.showPayeeName = true;
   //       } else {
@@ -238,9 +238,9 @@ export class VoucherEntryComponent {
 
   // GetVoucher() {
   //   try {
-  //     if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.voucherTypeList = this.accountingService.accCacheData.VoucherType;//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.voucherTypeList = this.voucherTypeList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+  //     if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.voucherTypeList = this.accountingService.accCacheData.VoucherType;//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.voucherTypeList = this.voucherTypeList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
   //       //JV (Journal Voucher) should always be there, so we can be 100% sure that this shouldn't crash.
   //       this.selVoucherTypeId = this.voucherTypeList.find(v => v.VoucherCode == "JV").VoucherId;
   //       this.UpdateVoucherChequeNoandPayeeName();
@@ -252,9 +252,9 @@ export class VoucherEntryComponent {
   // }
   // GetVoucherHead() {
   //   try {
-  //     if (!!this.accountingService.accCacheData.VoucherHead && this.accountingService.accCacheData.VoucherHead.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.voucherHeadList = this.accountingService.accCacheData.VoucherHead;//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.voucherHeadList = this.voucherHeadList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+  //     if (!!this.accountingService.accCacheData.VoucherHead && this.accountingService.accCacheData.VoucherHead.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.voucherHeadList = this.accountingService.accCacheData.VoucherHead;//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.voucherHeadList = this.voucherHeadList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
   //     }
   //   } catch (ex) {
   //     this.ShowCatchErrMessage(ex);
@@ -262,9 +262,9 @@ export class VoucherEntryComponent {
   // }
 
   // GetFiscalYearList() {
-  //   if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-  //     this.fiscalYearList = this.securityService.AccHospitalInfo.FiscalYearList; //mumbai-team-june2021-danphe-accounting-cache-change
-  //     this.fiscalYearList = this.fiscalYearList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+  //   if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+  //     this.fiscalYearList = this.securityService.AccHospitalInfo.FiscalYearList; //mumbai-team-june2021-dsf-accounting-cache-change
+  //     this.fiscalYearList = this.fiscalYearList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
   //   }
   //   this.currFiscalYear = new FiscalYearModel();
   //   this.currFiscalYear = this.securityService.AccHospitalInfo.CurrFiscalYear;
@@ -298,9 +298,9 @@ export class VoucherEntryComponent {
   // //get all Ledger
   // GetLedgerList() {
   //   try {
-  //     if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.allLedgerList = this.accountingService.accCacheData.Ledgers.filter(x => x.IsActive != false);//mumbai-team-june2021-danphe-accounting-cache-change          
-  //       this.allLedgerList = this.allLedgerList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+  //     if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.allLedgerList = this.accountingService.accCacheData.Ledgers.filter(x => x.IsActive != false);//mumbai-team-june2021-dsf-accounting-cache-change          
+  //       this.allLedgerList = this.allLedgerList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
   //       this.allLedgerList.forEach(a => {
   //         if (a.ClosingBalance > 0) {
   //           a.ClosingBalwithDrCr = "Dr" + a.ClosingBalance;
@@ -582,7 +582,7 @@ export class VoucherEntryComponent {
   // ViewTransactionDetails(resultdata) {
   //   try {
   //     localStorage.setItem("SectionId", this.sectionId.toString());
-  //     //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-danphe-accounting-cache-change
+  //     //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-dsf-accounting-cache-change
   //     this.voucherNumber = resultdata.VoucherNumber;
   //     this.fiscalYId = resultdata.FiscalyearId;    //pass fsYid with voucher number 
   //     this.showVoucherPopup = true;
@@ -616,7 +616,7 @@ export class VoucherEntryComponent {
   //           let extItemIndex = this.transaction.TransactionItems.findIndex(a => a.LedgerId == this.selLedgerArr[index].LedgerId);
   //           if (extItem && extItemIndex != index) {
   //             this.msgBoxServ.showMessage("failed", ["Voucher for " + this.selLedgerArr[index].LedgerName + " already entered."]);
-  //             //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-danphe-accounting-cache-change
+  //             //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-dsf-accounting-cache-change
   //             this.selLedgerArr[index] = null;
   //             this.transaction.TransactionItems[index].ChartOfAccountName = "";
   //             this.transaction.TransactionItems[index].Code = "";
@@ -712,7 +712,7 @@ export class VoucherEntryComponent {
 
   // public Reset() {
   //   try {
-  //     //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-danphe-accounting-cache-change
+  //     //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-dsf-accounting-cache-change
   //     this.transaction = new TransactionModel();
   //     this.selectedCostCenter = new CostCenterModel();
   //     this.selLedgerArr = [];
@@ -765,7 +765,7 @@ export class VoucherEntryComponent {
   //   let check = confirm("Do you want to create new Ledger?");
   //   if (check) {
   //     this.showAddNewLedgerPage = false;
-  //     //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-danphe-accounting-cache-change
+  //     //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-dsf-accounting-cache-change
   //     this.showAddNewLedgerPage = true;
   //   }
   // }
@@ -873,7 +873,7 @@ export class VoucherEntryComponent {
   //       this.GettempVoucherNumber(this.transaction.VoucherId, this.sectionId, this.TransactionDate);
   //     }
   //     else { //set to old one if user chooses 'NO' from confirmbox.
-  //       this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-danphe-accounting-cache-change
+  //       this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-dsf-accounting-cache-change
   //       this.selVoucherTypeId = oldVoucherTypeId;//detect change should be above this else it won't work.. :(
   //     }
   //   }
@@ -991,7 +991,7 @@ export class VoucherEntryComponent {
   //     //this.AssignSelectedLedger(this.curIndex);
   //   }
 
-  //   //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-danphe-accounting-cache-change
+  //   //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-dsf-accounting-cache-change
   //   this.showAddNewLedgerPage = false;
 
   // }
@@ -1002,7 +1002,7 @@ export class VoucherEntryComponent {
   //   if (defaultCostCenter) {
   //     this.extraTransactionItemForPaymentOrReceiptVoucher.CostCenterId = defaultCostCenter.CostCenterId;
   //   }
-  //   //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-danphe-accounting-cache-change
+  //   //this.changeDetectorRef.detectChanges(); //mumbai-team-june2021-dsf-accounting-cache-change
   //   // if (this.costCenterList && this.costCenterList.length > 0) {
   //   // this.selectedCostCenter = new CostCenterModel();
   //   // const costCenterNotApplicableId = -1;
@@ -1068,7 +1068,7 @@ export class VoucherEntryComponent {
 
   // public async UpdateLedgers() {
   //   try {
-  //     DanpheCache.clearDanpheCacheByType(MasterType.LedgersAll);
+  //     DsfCache.clearDsfCacheByType(MasterType.LedgersAll);
   //     await this.accountingService.RefreshAccCacheData();
   //   }
   //   catch (ex) {
@@ -1511,13 +1511,13 @@ export class VoucherEntryComponent {
   // }
 
   // public GetSubLedger() {
-  //   this.accountingSettingBlService.GetSubLedger().subscribe((res: DanpheHTTPResponse) => {
-  //     if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+  //   this.accountingSettingBlService.GetSubLedger().subscribe((res: DsfHTTPResponse) => {
+  //     if (res.Status === ENUM_DsfHTTPResponseText.OK) {
   //       this.subLedgerMaster = res.Results;
   //       this.subLedgerMaster = this.subLedgerMaster.filter(a => a.IsActive === true);
   //     }
   //   },
-  //     (err: DanpheHTTPResponse) => {
+  //     (err: DsfHTTPResponse) => {
   //       this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Unable to get subLedger list."]);
   //     });
   // }
@@ -1595,15 +1595,15 @@ export class VoucherEntryComponent {
   //       this.HideSavebtn = false;
   //       this.Cancel();
   //     })
-  //     .subscribe((res: DanpheHTTPResponse) => {
-  //       if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+  //     .subscribe((res: DsfHTTPResponse) => {
+  //       if (res.Status === ENUM_DsfHTTPResponseText.OK) {
   //         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [`Voucher is successfully verified.`]);
   //       }
   //       else {
   //         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Unable to verify the voucer.`]);
   //       }
   //     },
-  //       (err: DanpheHTTPResponse) => {
+  //       (err: DsfHTTPResponse) => {
   //         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
   //       }
   //     );

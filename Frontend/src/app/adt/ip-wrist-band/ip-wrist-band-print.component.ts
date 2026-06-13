@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { IPWristBandViewModel } from "./ip-wrist-band-info.model";
 import { ADT_BLService } from "../shared/adt.bl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import html2canvas from 'html2canvas';
 import { PrinterSettingsModel, ENUM_PrintingType } from "../../settings-new/printers/printer-settings.model";
 @Component({
@@ -121,7 +121,7 @@ export class IPWristBandPrintComponent {
         popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
         popupWinindow.document.open();
         let documentContent = '<html><head>';
-        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
         /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
         documentContent += '</head>';
         documentContent += '<body onload="window.print()" style="margin:8px 0px 0px 280px !important;">' + printContents + '</body></html>'
@@ -215,7 +215,7 @@ export class IPWristBandPrintComponent {
     //sud:7Jan'19 -- to send image of the html content to server for server side printing
     public SendHtmlContentToServer() {
         let printContents = document.getElementById("wristband-print-page").outerHTML;
-        var printableHTML = '<html><head><link rel="stylesheet" type="text/css" href="DanpheStyle.css" />';
+        var printableHTML = '<html><head><link rel="stylesheet" type="text/css" href="DsfStyle.css" />';
         printableHTML += '<meta http-equiv="X-UA-Compatible" content="IE= edge"/></head>';
         printableHTML += '<body style="margin:8px 0px 0px 280px !important;">' + printContents + '</body></html>';
         let printerName = this.LoadPrinterSetting();
@@ -232,7 +232,7 @@ export class IPWristBandPrintComponent {
         this.showLoading = true;
 
         this.admissionBlService.SaveWristBandHtmlFile(printerName, folderPath, printableHTML)
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
                     this.timerFunction();
                     console.log("wristband printed successfully..");

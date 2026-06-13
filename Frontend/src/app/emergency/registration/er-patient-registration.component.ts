@@ -9,10 +9,10 @@ import { SsfPatient_DTO } from '../../insurance/ssf/shared/service/ssf.service';
 import { Patient } from '../../patients/shared/patient.model';
 import { PatientService } from '../../patients/shared/patient.service';
 import { GeneralFieldLabels } from '../../shared/DTOs/general-field-label.dto';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { CommonFunctions } from '../../shared/common.functions';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_Scheme_ApiIntegrationNames, ENUM_ServiceBillingContext } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_Scheme_ApiIntegrationNames, ENUM_ServiceBillingContext } from '../../shared/shared-enums';
 import { ModeOfArrivalModel } from '../shared/ModeOfArrival.model';
 import { EmergencyPatientCases } from '../shared/emergency-patient-cases.model';
 import { EmergencyPatientModel } from '../shared/emergency-patient.model';
@@ -295,8 +295,8 @@ export class ERPatientRegistrationComponent {
 
   GetERPatNumAndModeOfArrival(): void {
     this._emergencyBLService.GetERNumAndModeOfArrData()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           //assign the unique patientNumber
           this.ERPatientNumber = res.Results.LatestERPatientNumber;
           this.ModeOfArrivalList = res.Results.AllModeOfArrival;
@@ -349,8 +349,8 @@ export class ERPatientRegistrationComponent {
       }
       if (this.ERPatient.IsValid(undefined, undefined) && this.ERPatient.EthnicGroup) {
         this._emergencyBLService.PostERPatient(this.ERPatient, this.selectionFromExistingPatient)
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.sendERPatientData.emit({ submit: true, ERPatient: res.Results });
               this.selectionFromExistingPatient = false;
               this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['New Emergency Patient Added']);
@@ -366,7 +366,7 @@ export class ERPatientRegistrationComponent {
       }
       else {
         this.loading = false;
-        this._messageBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["One or more validation error occurred"]);
+        this._messageBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["One or more validation error occurred"]);
       }
     }
   }
@@ -391,8 +391,8 @@ export class ERPatientRegistrationComponent {
       }
       if (this.ERPatient.IsValid(undefined, undefined)) {
         this._emergencyBLService.UpdateERPatient(this.ERPatient)
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.sendERPatientData.emit({ submit: true, ERPatient: res.Results });
               this.loading = false;
               this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Emergency Patient Updated']);
@@ -427,8 +427,8 @@ export class ERPatientRegistrationComponent {
       if (!this.addNewUnknownERPatient && !this.selectionFromExistingPatient) {
         this._emergencyBLService.GetMatchingPatientInER(this.ERPatient.FirstName.trim(), this.ERPatient.LastName.trim(),
           this.ERPatient.DateOfBirth.trim(), this.ERPatient.ContactNo.trim())
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
               if (this.ERPatient.PatientId && this.update) {
                 this.matchingPatientList = res.Results.filter(r => (r.PatientId != this.ERPatient.PatientId));
                 if (this.matchingPatientList && this.matchingPatientList.length) {
@@ -515,8 +515,8 @@ export class ERPatientRegistrationComponent {
   //Gets the list of all the countries
   LoadCountryList(): void {
     this._emergencyBLService.GetAllCountries()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.Countries = res.Results;
           this.ERPatient.CountryId = this.GetCountryParameter();
           this.ERPatient.PatientCases.BitingCountry = this.GetCountryParameter();
@@ -544,8 +544,8 @@ export class ERPatientRegistrationComponent {
   GetCountrySubDivision(): void {
     var countryId = this.ERPatient.CountryId;
     this._emergencyBLService.GetCountrySubDivision(countryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length) {
           this.CountrySubDivisionList = [];
           res.Results.forEach(a => {
             this.CountrySubDivisionList.push({

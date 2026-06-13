@@ -21,8 +21,8 @@
                     <div class="form-group col-md-6">
                         <label class="control-label"><b>Received Date: </b></label>
                         <div class="pull-right">
-                            <danphe-date-picker [(ngModel)]="goodsReceipt.GoodsReceiptDate" ngDefaultControl [CalendarTypes]="'np'" formControlName="GoodsReceiptDate">
-                            </danphe-date-picker>
+                            <dsf-date-picker [(ngModel)]="goodsReceipt.GoodsReceiptDate" ngDefaultControl [CalendarTypes]="'np'" formControlName="GoodsReceiptDate">
+                            </dsf-date-picker>
                             <div style="color:red" *ngIf="goodsReceipt.IsDirty('GoodsReceiptDate')" [hidden]="goodsReceipt.IsValidCheck('GoodsReceiptDate','required')"> Goods Receipt Date is required</div>
                             <div style="color:red" *ngIf="goodsReceipt.IsDirty('GoodsReceiptDate')" [hidden]="goodsReceipt.IsValidCheck('GoodsReceiptDate','wrongDate')"> Enter Valid Date</div>
                             <br />

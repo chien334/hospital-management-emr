@@ -36,8 +36,8 @@ table thead tr th:first-child {
             <button *ngIf="qrService.show" (click)="HideQrScanner()" class="btn btn-danger" id="showQrScan">{{ 'LABS.HIDE_QRSCAN' | translate }}</button>
           </div>
           <div class="col-md-9">
-            <danphe-qr-reader *ngIf="qrService.show" [department]="'lab'" (on-ReadFailed)="ReadFailed($event)"
-                            (on-success)="GetAllDataByHospitalNumber($event)"> </danphe-qr-reader>
+            <dsf-qr-reader *ngIf="qrService.show" [department]="'lab'" (on-ReadFailed)="ReadFailed($event)"
+                            (on-success)="GetAllDataByHospitalNumber($event)"> </dsf-qr-reader>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@ table thead tr th:first-child {
           <div class="col-md-4 col-sm-4">
             <div class="search-wrap"><strong>{{ 'LABS.SEARCH_PATIENT' | translate }} </strong>
               <div class="autocomplete-item">
-                <input danphe-auto-complete class="form-control round-input" aria-label="search"
+                <input dsf-auto-complete class="form-control round-input" aria-label="search"
 				   [(ngModel)]="patientToSearch"
 				   [source]="allPatientList"
 				   [list-formatter]="patientListFormatter"
@@ -81,22 +81,22 @@ table thead tr th:first-child {
     </div>
   </div>
   <div *ngIf="showLabResult">
-    <danphe-lab-results [showReport]="showReport"
+    <dsf-lab-results [showReport]="showReport"
                         [showAddEditResult]="showAddEdit"
                         [requisitionIdList]="labReqIdList"
-                        [verificationRequired]="verificationRequired"></danphe-lab-results>
+                        [verificationRequired]="verificationRequired"></dsf-lab-results>
   </div>
   <div *ngIf="showPendingReportDetail" class="allPendingReports">
-    <danphe-lab-results [showReport]="showPendingReportDetail"
+    <dsf-lab-results [showReport]="showPendingReportDetail"
                         [showAddEditResult]="showAddEditPendingReportDetail"
                         [requisitionIdList]="pendingReportReqIdList"
-                        [verificationRequired]="verificationRequired"></danphe-lab-results>
+                        [verificationRequired]="verificationRequired"></dsf-lab-results>
   </div>
   <div *ngIf="showFinalReportDetail" class="allFinalReports">
-    <danphe-lab-results [showReport]="showFinalReportDetail"
+    <dsf-lab-results [showReport]="showFinalReportDetail"
                         [showAddEditResult]="showAddEditFinalReportDetail"
                         [requisitionIdList]="finalReportReqIdList"
-                        [verificationRequired]="verificationRequired"></danphe-lab-results>
+                        [verificationRequired]="verificationRequired"></dsf-lab-results>
   </div>
   
   <!--<div *ngIf="loading" class="row">
@@ -117,7 +117,7 @@ table thead tr th:first-child {
                 <td>{{ 'GRID_HEADERS.HOSPITAL_NUMBER' | translate }}: {{allLabDataByBarCodeNumber.PatientCode}}</td>
                 <td>{{ 'LABS.NAME_2' | translate }} {{allLabDataByBarCodeNumber.PatientName}}</td>
                 <td>{{ 'LABS.AGESEX_1' | translate }} {{allLabDataByBarCodeNumber.AgeSex}}</td>
-                <td>SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                 <td>{{ 'LABS.BARCODENUMBER_1' | translate }}: {{allLabDataByBarCodeNumber.BarCodeNumber}}</td>
               </tr>
             </table>
@@ -151,7 +151,7 @@ table thead tr th:first-child {
               </thead>
               <tbody>
                 <tr *ngFor="let requisition of allLabDataByBarCodeNumber.LabRequisitions">
-                  <td>{{requisition.LastestRequisitionDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm'}}</td>
+                  <td>{{requisition.LastestRequisitionDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm'}}</td>
                   <td>{{requisition.PatientCode}}</td>
                   <td>{{requisition.PatientName}}</td>
                   <td>{{requisition.AgeSexFormatted}}</td>
@@ -192,7 +192,7 @@ table thead tr th:first-child {
                   <td>{{resToAdd.LabTestCSV}}</td>
                   <td>{{resToAdd.TemplateName}}</td>
                   <td>{{resToAdd.SampleCodeFormatted}}</td>
-                  <td *ngIf="showDetailTestsByRunNumber">{{resToAdd.SampleDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                  <td *ngIf="showDetailTestsByRunNumber">{{resToAdd.SampleDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                   <td>{{resToAdd.VisitType}}</td>
                   <td>{{resToAdd.WardName}}</td>
                   <td><button class="grid-action" (click)="GetReportDetail(resToAdd,1)">{{ 'LABS.ADD_RESULT' | translate }}</button></td>
@@ -227,7 +227,7 @@ table thead tr th:first-child {
                   <td *ngIf="showDetailTestsByRunNumber">{{resToAdd.PatientName}}</td>
                   <td>{{resToAdd.LabTestCSV}}</td>
                   <td>{{resToAdd.SampleCodeFormatted}}</td>
-                  <td *ngIf="showDetailTestsByRunNumber">{{resToAdd.SampleDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                  <td *ngIf="showDetailTestsByRunNumber">{{resToAdd.SampleDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                   <td>{{resToAdd.VisitType}}</td>
                   <td>{{resToAdd.WardName}}</td>
                   <td><button (click)="GetCurrentPendingReportDetail(resToAdd)" class="grid-action">{{ 'LABS.VIEW_DETAILS' | translate }}</button></td>
@@ -263,7 +263,7 @@ table thead tr th:first-child {
                   <td *ngIf="showDetailTestsByRunNumber">{{finalReport.PatientName}}</td>
                   <td>{{finalReport.LabTestCSV}}</td>
                   <td>{{finalReport.SampleCodeFormatted}}</td>
-                  <td *ngIf="showDetailTestsByRunNumber">{{finalReport.SampleDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                  <td *ngIf="showDetailTestsByRunNumber">{{finalReport.SampleDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                   <td>{{finalReport.VisitType}}</td>
                   <td>{{finalReport.WardName}}</td>
                   <td><b style="color: green;" *ngIf="finalReport.IsPrinted">{{ 'COMMON.YES' | translate }}</b><b style="color: red;" *ngIf="!finalReport.IsPrinted">{{ 'COMMON.NO' | translate }}</b></td>

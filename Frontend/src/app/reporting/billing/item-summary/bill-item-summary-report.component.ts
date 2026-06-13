@@ -4,8 +4,8 @@ import { MessageboxService } from "../../../shared/messagebox/messagebox.service
 import { DLService } from "../../../shared/dl.service";
 import { CoreService } from "../../../core/shared/core.service";
 import { CommonFunctions } from "../../../shared/common.functions";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
 
 
 @Component({

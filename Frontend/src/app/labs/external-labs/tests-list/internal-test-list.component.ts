@@ -2,10 +2,10 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { CoreService } from '../../../core/shared/core.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { CommonFunctions } from '../../../shared/common.functions';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_ExternalLab_SampleStatus, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_ExternalLab_SampleStatus, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { ExternalLabStatus_DTO } from '../../shared/DTOs/external-lab-sample-satatus.dto';
 import { LabTest } from '../../shared/lab-test.model';
 import { PatLabInfoVM } from '../../shared/labTestListWithVendors.model';
@@ -91,7 +91,7 @@ export class InternalTestListComponent {
                this.Loading = false;
             })
             .subscribe(res => {
-               if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+               if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                   if (res.Results && res.Results.length > 0) {
                      this.patLabInfoList = res.Results;
                      this.ReceivedReport = this.patLabInfoList.every(a => a.ExternalLabSampleStatus === ENUM_ExternalLab_SampleStatus.ReportReceived)
@@ -186,8 +186,8 @@ export class InternalTestListComponent {
 
    LoadAllVendors() {
       this.labBLService.GetLabVendors()
-         .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+         .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                if (res.Results && res.Results.length > 0) {
                   this.VendorList = res.Results;
                   this.VendorList = this.VendorList.filter(vendor => vendor.IsExternal === true);
@@ -202,8 +202,8 @@ export class InternalTestListComponent {
 
    GetOutSourceTestList() {
       this.labBLService.GetOutsourceApplicableTests()
-         .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+         .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                if (res.Results && res.Results.length > 0) {
                   this.LabTestList = res.Results;
                   this.LabTestCSV = [];
@@ -253,8 +253,8 @@ export class InternalTestListComponent {
       this.ExternalLabDataStatus.SelectedExternalLabStatusType = ENUM_ExternalLab_SampleStatus.SampleDispatched;
       this.labBLService.UpdateExternalLabStatus(this.ExternalLabDataStatus)
          .subscribe(
-            (res: DanpheHTTPResponse) => {
-               if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            (res: DsfHTTPResponse) => {
+               if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                   this.msgBox.showMessage(ENUM_MessageBox_Status.Success, ['External Lab Sample Is Dispatched to   ' + this.SelectedVendorName.VendorName + ' ']);
                   this.ExternalLabDataStatus.SelectedExternalLabStatusType = ENUM_ExternalLab_SampleStatus.SampleDispatched;
                   this.GetAllTestListForExternalLabs();
@@ -268,7 +268,7 @@ export class InternalTestListComponent {
                   this.IsDispatch = true;
                }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                this.msgBox.showMessage(ENUM_MessageBox_Status.Error, [err.ErrorMessage]);
                this.IsDispatch = true;
             });
@@ -285,8 +285,8 @@ export class InternalTestListComponent {
       this.ExternalLabDataStatus.SelectedExternalLabStatusType = ENUM_ExternalLab_SampleStatus.ReportReceived;
       this.labBLService.UpdateExternalLabStatus(this.ExternalLabDataStatus)
          .subscribe(
-            (res: DanpheHTTPResponse) => {
-               if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            (res: DsfHTTPResponse) => {
+               if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                   this.msgBox.showMessage(ENUM_MessageBox_Status.Success, ['External Lab Report Is Received from   ' + this.SelectedVendorName.VendorName + ' ']);
                   this.ExternalLabDataStatus.SelectedExternalLabStatusType = ENUM_ExternalLab_SampleStatus.ReportReceived;
                   this.GetAllTestListForExternalLabs();
@@ -300,7 +300,7 @@ export class InternalTestListComponent {
                   this.IsReceive = false;
                }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                this.msgBox.showMessage(ENUM_MessageBox_Status.Error, [err.ErrorMessage]);
                this.IsReceive = false;
             });
@@ -362,7 +362,7 @@ export class InternalTestListComponent {
                              }</style>`;
 
 
-         documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanphePrintStyle.css" /></head>`;
+         documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfPrintStyle.css" /></head>`;
 
          documentContent += '<body class="lab-rpt4moz" onload="window.print()">' + printContents + '</body></html>';
          popupWinindow.document.write(documentContent);

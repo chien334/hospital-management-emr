@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
 import { CoreService } from "../../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../../shared/common-models";
-import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../../shared/common-models";
+import { GridEmitModel } from "../../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
-import { ENUM_ACC_ADDLedgerLedgerType, ENUM_BillingType, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
+import { ENUM_ACC_ADDLedgerLedgerType, ENUM_BillingType, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
 import { AccountingBLService } from "../../../shared/accounting.bl.service";
 import { AccountingService } from "../../../shared/accounting.service";
 import { SubLedger_DTO } from "../../../transactions/shared/DTOs/subledger-dto";
@@ -210,7 +210,7 @@ export class BillingLedgerMappingComponent {
   getBillingItemsList() {
     this.accountingSettingsBLService.GetBillingItemsList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.allBillingsledgerList = this.filteredBillingLedgerList = res.Results;
           this.filterBillintType();
         }
@@ -314,8 +314,8 @@ export class BillingLedgerMappingComponent {
         selectedData.IsActive = status;
         this.accountingSettingsBLService.UpdateBillingLedgerMappingStatus(selectedData.BillLedgerMappingId, status)
           .subscribe(
-            (res: DanpheHTTPResponse) => {
-              if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+              if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 let responseMessage = res.Results.IsActive ? " Ledger is now Activated." : "Ledger is now Deactivated.";
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [responseMessage]);
                 this.getBillingItemsList()
@@ -353,7 +353,7 @@ export class BillingLedgerMappingComponent {
       if (this.subLedgerAndCostCenterSetting.EnableSubLedger ? this.newLedgerMapping.SubLedgerId > 0 : true) {
         this.accountingBLService.SaveBillingLedgerMapping(this.newLedgerMapping).subscribe
           (res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Ledger Added"]);
               this.getBillingItemsList();
               this.Close();
@@ -377,7 +377,7 @@ export class BillingLedgerMappingComponent {
       if (this.subLedgerAndCostCenterSetting.EnableSubLedger ? this.newLedgerMapping.SubLedgerId > 0 : true) {
         this.accountingBLService.UpdateBillLedgerMapping(this.newLedgerMapping).subscribe
           (res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Ledger Updated"]);
               this.getBillingItemsList();
               this.Close();

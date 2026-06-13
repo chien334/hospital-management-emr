@@ -8,8 +8,8 @@
       </div>
       <div class="row" style="background: #eaeaea;padding: 5px; margin: 5px;">
         <div class="col-md-4" *ngIf="showStoreList">
-          <danphe-multiselect [ddl-data]="storeList" [placeholder-text]="'---Select Item---'" [pre-selected]="preSelectedStores" [value-property-name]="'StoreId'" (selected-items-list)="onChange($event)" [display-property-name]="'Name'" [single-selection]="false">
-          </danphe-multiselect>
+          <dsf-multiselect [ddl-data]="storeList" [placeholder-text]="'---Select Item---'" [pre-selected]="preSelectedStores" [value-property-name]="'StoreId'" (selected-items-list)="onChange($event)" [display-property-name]="'Name'" [single-selection]="false">
+          </dsf-multiselect>
         </div>
         <div class="col-md-2">
           <button class="btn blue" type="button" (click)="ShowStockLevelReport()" [disabled]="loading" style="height: 40px;">
@@ -50,8 +50,8 @@
 
 <div class="row">
   <div class="col-lg-12 col-sm-12" *ngIf="filteredStockLevelReport.length>0">
-    <danphe-grid [grid-colDefaults]="StockLevelReportColumns" [grid-data]="filteredStockLevelReport" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [show-header]="true" [report-for]="'inventory'" [report-title]="'Current Stock Level Report'" [filter-parameters]="FilterParameters" (grid-actions)="StockLevelGridAction($event)">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="StockLevelReportColumns" [grid-data]="filteredStockLevelReport" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [show-header]="true" [report-for]="'inventory'" [report-title]="'Current Stock Level Report'" [filter-parameters]="FilterParameters" (grid-actions)="StockLevelGridAction($event)">
+    </dsf-grid>
   </div>
 
   <!-- START: Summary -->
@@ -148,7 +148,7 @@
                             <tr *ngFor="let gr of grdetails">
                               <td> {{gr.StoreName}} </td>
                               <td> {{gr.GoodsReceiptNo}} </td>
-                              <td> {{gr.GoodsReceiptDate | DanpheDateTime:'format':'YYYY-MM-DD' }} </td>
+                              <td> {{gr.GoodsReceiptDate | DsfDateTime:'format':'YYYY-MM-DD' }} </td>
                               <td> {{gr.Quantity}} </td>
                               <td> {{gr.AvailableQuantity}} </td>
                               <td> {{gr.Price}} </td>

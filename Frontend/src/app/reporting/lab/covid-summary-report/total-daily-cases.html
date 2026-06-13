@@ -19,7 +19,7 @@
         <div class="col-md-8">
           <!-- <input class="form-control" value="" [(ngModel)]="districtName" [ngModelOptions]="{standalone: true}"
             placeholder="Enter District Name" /> (valueChanged)="AssignSelectedDistrict()" -->
-          <input id="ddlCountrySubdivision" class="form-control" danphe-auto-complete
+          <input id="ddlCountrySubdivision" class="form-control" dsf-auto-complete
                  [ngModelOptions]="{standalone: true}" [(ngModel)]="countrySubDivision"
                  [list-formatter]="districtListFormatter" [source]="countrySubDivisions" placeholder="{{GeneralFieldLabel.DistrictState}}"
                  display-property-name="CountrySubDivisionName" value-property-name=null [min-chars]="1"
@@ -76,10 +76,10 @@
 
   <div class="row" *ngIf="showGrid">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid *ngIf="showGrid" [grid-colDefaults]="totalDailyCovidCasesReportColumns"
+      <dsf-grid *ngIf="showGrid" [grid-colDefaults]="totalDailyCovidCasesReportColumns"
                    [grid-data]="FilltedDailyCovidCasesReportData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"
                    [NepaliDateInGridParams]="NepaliDateInGridSettings" [report-for]="'lab'" [grid-date-range]="dateRange"
-                   [grid-footer-content]="footer"> </danphe-grid>
+                   [grid-footer-content]="footer"> </dsf-grid>
     </div>
   </div>
 

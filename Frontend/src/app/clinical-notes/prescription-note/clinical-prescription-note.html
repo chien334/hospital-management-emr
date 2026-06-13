@@ -77,7 +77,7 @@
     <div class="row form-group">
       <div class="col-md-4">{{ 'CLINICAL.DIAGNOSIS_ICD_CODE' | translate: { IcdVersionDisplayName: IcdVersionDisplayName } }}</div>
       <div class="col-md-8">
-        <input danphe-auto-complete [(ngModel)]="diagnosis" class="form-control cstm-field-ip" [source]="ICD10List"
+        <input dsf-auto-complete [(ngModel)]="diagnosis" class="form-control cstm-field-ip" [source]="ICD10List"
                [list-formatter]="ICDListFormatter" min-chars="0" onclick="this.select();" display-property-name="ICD10Description" max-num-list="8"
                value-property-name="ICD10Id" (valueChanged)="SelectDiagnosis()">
       </div>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="input-group srchTbx" style="width: 100%;">
-                    <input danphe-auto-complete class="form-control round-input" aria-label="search" [(ngModel)]="selOrdItem" [source]="ordItemsFiltered" [list-formatter]="orderItemsListFormatter" placeholder="search order items" display-property-name="ItemName" max-num-list="20" match-formatted="false" (valueChanged)="OrderItemValueChanged()" id="acOrderItem" onClick="this.select();" />
+                    <input dsf-auto-complete class="form-control round-input" aria-label="search" [(ngModel)]="selOrdItem" [source]="ordItemsFiltered" [list-formatter]="orderItemsListFormatter" placeholder="search order items" display-property-name="ItemName" max-num-list="20" match-formatted="false" (valueChanged)="OrderItemValueChanged()" id="acOrderItem" onClick="this.select();" />
 
                   </div>
                 </div>

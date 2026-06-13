@@ -36,10 +36,10 @@
         </div>
 
         <div class="row">
-            <danphe-grid [grid-colDefaults]="INVSupplierInformationReportColumns"
+            <dsf-grid [grid-colDefaults]="INVSupplierInformationReportColumns"
             [grid-data]="INVSupplierInformationReportData"
             [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" (grid-onExport)="OnGridExport($event)" [report-for]="'inventory'" [report-title]="'Supplier Information Report'" [show-header]="true" [filter-parameters]="FilterParameters">
-</danphe-grid>
+</dsf-grid>
         </div>
     </div>
 </form>

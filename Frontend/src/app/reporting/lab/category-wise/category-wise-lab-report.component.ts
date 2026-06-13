@@ -6,8 +6,8 @@ import { DLService } from "../../../shared/dl.service"
 import * as moment from 'moment/moment';
 import { NepaliDate } from '../../../shared/calendar/np/nepali-dates';
 import { NepaliCalendarService } from '../../../shared/calendar/np/nepali-calendar.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 @Component({
   templateUrl: "./category-wise-lab-report.html"
@@ -93,7 +93,7 @@ export class RPT_LAB_CategoryWiseLabReportComponent {
     }
 
     // This is the result for the Dynamic Query (included just for the reference )
-    // Success(res: DanpheHTTPResponse) {
+    // Success(res: DsfHTTPResponse) {
     //     if (res.Status == "OK" && res.Results.JsonData) {
     //         if (res.Results) {
     //             this.dynamicColumns = JSON.parse(res.Results.Schema).map(a => { return a.ColumnName });

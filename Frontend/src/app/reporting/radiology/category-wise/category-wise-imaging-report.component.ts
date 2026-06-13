@@ -6,7 +6,7 @@ import { DynamicReport } from "../../shared/dynamic-report.model"
 import { DLService } from "../../../shared/dl.service"
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment/moment';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 @Component({
   templateUrl: "./category-wise-imaging-report.html"
 })

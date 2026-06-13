@@ -1,9 +1,9 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 import { ExternalReferralModel } from '../../shared/external-referral.model';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 
 
@@ -32,7 +32,7 @@ export class ListExternalReferralComponent {
   public LoadExtRefList() {
     this.settingsBlService.GetExtReferrerList()
       .subscribe(
-        (res: DanpheHTTPResponse) => {
+        (res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.extRefList = res.Results;
           }

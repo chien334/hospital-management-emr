@@ -99,13 +99,13 @@
         <div class="col-md-10 col-md-offset-1">
           <div class="modelbox-div clearfix">
             <div class="caption custom-caption">
-              <h3 style="color: #000;"> <span> Admitted Patient Summary from {{fromDate | DanpheDateTime:'format':'YYYY-MM-DD' }} <i>{{fromDate | nepaliDate}}</i> to
-                {{toDate | DanpheDateTime:'format':'YYYY-MM-DD'}} <i>{{toDate | nepaliDate}}</i> </span> </h3>
+              <h3 style="color: #000;"> <span> Admitted Patient Summary from {{fromDate | DsfDateTime:'format':'YYYY-MM-DD' }} <i>{{fromDate | nepaliDate}}</i> to
+                {{toDate | DsfDateTime:'format':'YYYY-MM-DD'}} <i>{{toDate | nepaliDate}}</i> </span> </h3>
             </div>
             <div class="modelbox-body">
-              <danphe-grid [grid-colDefaults]="TotalAdmittedPatientColumns" [grid-data]="TotalAdmittedPatientData"
+              <dsf-grid [grid-colDefaults]="TotalAdmittedPatientColumns" [grid-data]="TotalAdmittedPatientData"
                 [grid-exportOptions]="gridExportOptionsAdmitted" [grid-showExport]="true"
-                [NepaliDateInGridParams]="NepaliDateInAdmittedGridSettings"> </danphe-grid>
+                [NepaliDateInGridParams]="NepaliDateInAdmittedGridSettings"> </dsf-grid>
             </div>
             <div class="close-modelbox"> <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
           </div>
@@ -120,13 +120,13 @@
           <div class="modelbox-div clearfix">
             <div class="caption custom-caption">
               <h3 style="color: #000;"> <span> Discharged Patient Summary from
-                {{fromDate |DanpheDateTime:'format':'YYYY-MM-DD'}}<i>{{fromDate | nepaliDate}}</i> to
-                {{toDate | DanpheDateTime:'format':'YYYY-MM-DD'}} <i>{{toDate | nepaliDate}}</i> </span> </h3>
+                {{fromDate |DsfDateTime:'format':'YYYY-MM-DD'}}<i>{{fromDate | nepaliDate}}</i> to
+                {{toDate | DsfDateTime:'format':'YYYY-MM-DD'}} <i>{{toDate | nepaliDate}}</i> </span> </h3>
             </div>
             <div class="modelbox-body">
-              <danphe-grid [grid-colDefaults]="DischargedPatientColumns" [grid-data]="DischargedPatientData"
+              <dsf-grid [grid-colDefaults]="DischargedPatientColumns" [grid-data]="DischargedPatientData"
                 [grid-exportOptions]="gridExportOptionsDischarged" [grid-showExport]="true"
-                [NepaliDateInGridParams]="NepaliDateInDischargedGridSettings"> </danphe-grid>
+                [NepaliDateInGridParams]="NepaliDateInDischargedGridSettings"> </dsf-grid>
             </div>
             <div class="close-modelbox"> <a class="btn btn-danger" (click)="Close()" title="Cancel">X</a> </div>
           </div>

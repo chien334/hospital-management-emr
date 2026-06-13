@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
 import { SecurityService } from "../../security/shared/security.service";
 import { Visit } from "../../appointments/shared/visit.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { VisitService } from "../../appointments/shared/visit.service";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { NoteTemplateBLService } from "../shared/note-template.bl.service";
 import { NotesModel } from "../shared/notes.model";
 import { trigger, transition, style, animate } from "@angular/animations";
@@ -17,7 +17,7 @@ import { Vitals } from "../../clinical/shared/vitals.model";
 import { PatientService } from "../../patients/shared/patient.service";
 import { Allergy } from "../../clinical/shared/allergy.model";
 import { ADT_BLService } from "../../adt/shared/adt.bl.service";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { GeneralFieldLabels } from "../../../app/shared/DTOs/general-field-label.dto";
 
 @Component({

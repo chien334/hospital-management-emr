@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from '@angular/router';
 
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import * as moment from "moment";
 import { CoreService } from "../../../core/shared/core.service";
@@ -11,11 +11,11 @@ import { InventoryService } from '../../../inventory/shared/inventory.service';
 import { Requisition } from "../../../inventory/shared/requisition.model";
 import { PHRMStoreModel } from "../../../pharmacy/shared/phrm-store.model";
 import { SecurityService } from "../../../security/shared/security.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { WardSupplyBLService } from "../../shared/wardsupply.bl.service";
 import { InventoryWardItem_DTO } from "./shared/inventory-wardd-item.dto";
 
@@ -130,8 +130,8 @@ export class InventoryRequisitionListComponent {
 
   LoadDeptwiseList(): void {
     this.wardsupplyBLService.GetSubstoreRequistionList(this.fromDate, this.toDate, this.CurrentStoreId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.RequisitionGridData = res.Results;
           var isReceiveItemsEnabled = this.CheckIfItemReceiveEnabled();
           this.RequisitionGridData.forEach(req => req.isReceiveItemsEnabled = isReceiveItemsEnabled)
@@ -237,8 +237,8 @@ export class InventoryRequisitionListComponent {
 
   LoadItemList(): void {
     this.InventoryBLService.GetItemList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results && res.Results.length) {
             this.ItemList = [];
             this.ItemList = res.Results;

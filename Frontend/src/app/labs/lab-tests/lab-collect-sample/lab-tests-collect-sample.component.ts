@@ -8,7 +8,7 @@ import { PatientService } from '../../../patients/shared/patient.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_ExternalLab_SampleStatus } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_ExternalLab_SampleStatus } from "../../../shared/shared-enums";
 import { LabSticker } from "../../shared/lab-sticker.model";
 import { PatientLabSample } from '../../shared/lab-view.models';
 import { LabTestResultService } from '../../shared/lab.service';
@@ -214,7 +214,7 @@ export class LabTestsCollectSampleComponent {
 
   //int his converting the testname into csv(comma separated values) using join and .map
   CallBackPatientTestCSVs(res): void {
-    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
       if (res.Results.length != 0) {
         res.Results.forEach(res => {
           var labTest: PatientLabSample = new PatientLabSample();

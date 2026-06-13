@@ -9,7 +9,7 @@ import { HttpResponse } from '@angular/common/http';
 import VaccinationGridColumnSettings from '../shared/vaccination.grid.settings';
 import { VaccinationBLService } from '../shared/vaccination.bl.service';
 import { VaccinationPatient } from '../shared/vaccination-patient.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { VaccPatientWithVisitInfoVM } from '../shared/vacc-patwithvisit-info-vm';
 
 

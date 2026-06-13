@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { InventoryService } from '../../../inventory/shared/inventory.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import ProcurementGridColumns from '../../shared/procurement-grid-column';
 import { ProcurementBLService } from '../../shared/procurement.bl.service';
 import { PurchaseOrder } from '../purchase-order.model';
@@ -83,8 +83,8 @@ export class PurchaseOrderListComponent implements OnInit {
     }
     this.showVendorwise = false;
     this.procBLService.GetPurchaseOrderList(this.fromDate, this.toDate, Status)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.purchaseOrderList = res.Results;
           this.purchaseOrderList.forEach(PO => {
             PO.PoDate = moment(PO.PoDate).format("YYYY-MM-DD");

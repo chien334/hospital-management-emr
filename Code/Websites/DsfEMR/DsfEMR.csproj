@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <NoWarn>$(NoWarn);CA2200;SYSLIB0021;NU1701;NU1903;CS1998;CS8618;CS8600;CS8602;CS8603;CS8604;CS8625;CS8601;CS8629;CS8605;CS8619;CS8620</NoWarn>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AssemblyName>DsfEMR</AssemblyName>
+    <RootNamespace>DsfEMR</RootNamespace>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.1" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.67.0.3309" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.67.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="EPPlus" Version="4.5.3.3" />
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="3.7.12" />
+    <PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="24.2.7" />
+    <PackageReference Include="Audit.NET" Version="21.0.1" />
+    <PackageReference Include="Audit.WebApi.Core" Version="21.0.1" />
+    <PackageReference Include="Audit.NET.SqlServer" Version="21.0.1" />
+    <PackageReference Include="Audit.NET.PostgreSQL" Version="21.0.1" />
+    <PackageReference Include="SendGrid" Version="9.28.1" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Components\DsfEMR.AccTransfer\DsfEMR.AccTransfer.csproj" />
+    <ProjectReference Include="..\..\Components\DsfEMR.Core\DsfEMR.Core.csproj" />
+    <ProjectReference Include="..\..\Components\DsfEMR.DalLayer\DsfEMR.DalLayer.csproj" />
+    <ProjectReference Include="..\..\Components\DsfEMR.Security\DsfEMR.Security.csproj" />
+    <ProjectReference Include="..\..\Components\DsfEMR.ServerModel\DsfEMR.ServerModel.csproj" />
+    <ProjectReference Include="..\..\Components\DsfEMR.Sync\DsfEMR.Sync.csproj" />
+  </ItemGroup>
+</Project>

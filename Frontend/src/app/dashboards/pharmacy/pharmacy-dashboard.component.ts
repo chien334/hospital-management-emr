@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Chart } from 'chart.js';
 import { PharmacyBLService } from '../../pharmacy/shared/pharmacy.bl.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { ENUM_DanpheHTTPResponseText } from '../../shared/shared-enums';
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { ENUM_DsfHTTPResponseText } from '../../shared/shared-enums';
 import { BarchartModel, CardCalculationModel, DateRange, MedicineSaleModel, MembershipwiseMedicineSaleModel } from '../shared/pharmacy-dashboard.model';
 
 
@@ -133,8 +133,8 @@ export class PharmacyDashboardComponent {
   }
 
   GetPharmacyDashboardCardSummaryCalculation(FromDate: string, ToDate: string) {
-    this.pharmacyBLService.GetPharmacyDashboardCardSummaryCalculation(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.pharmacyBLService.GetPharmacyDashboardCardSummaryCalculation(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.SalesData = res.Results.Sales;
         this.SalesDifferenceRate = ((this.SalesData[4].TotalAmount - this.SalesData[3].TotalAmount) / this.SalesData[3].TotalAmount) * 100;
         if (Math.abs(this.SalesDifferenceRate) === Infinity) {
@@ -157,8 +157,8 @@ export class PharmacyDashboardComponent {
   }
 
   GetPharmacyDashboardSubstoreWiseDispatchValue(FromDate: string, ToDate: string) {
-    this.pharmacyBLService.GetPharmacyDashboardSubstoreWiseDispatchValue(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.pharmacyBLService.GetPharmacyDashboardSubstoreWiseDispatchValue(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.BarchartModel = new BarchartModel();
         this.BarchartModel.Names = res.Results.map(a => a.Name);
         this.BarchartModel.DispatchValues = res.Results.map(a => a.TotalDispatchValue);
@@ -168,8 +168,8 @@ export class PharmacyDashboardComponent {
     })
   }
   GetPharmacyDashboardMembershipWiseMedicineSale(FromDate: string, ToDate: string) {
-    this.pharmacyBLService.GetPharmacyDashboardMembershipWiseMedicineSale(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.pharmacyBLService.GetPharmacyDashboardMembershipWiseMedicineSale(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.MembershipwiseMedicineSales = [];
         this.MembershipwiseMedicineSales = res.Results;
       }
@@ -177,8 +177,8 @@ export class PharmacyDashboardComponent {
   }
 
   GetPharmacyDashboardMostSoldMedicine(FromDate: string, ToDate: string) {
-    this.pharmacyBLService.GetPharmacyDashboardMostSoldMedicine(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.pharmacyBLService.GetPharmacyDashboardMostSoldMedicine(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.MedicineSolds = [];
         this.MedicineSolds = res.Results;
       }

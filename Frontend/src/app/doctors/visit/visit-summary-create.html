@@ -48,7 +48,7 @@
                             {{i+1}}.
                         </div>
                         <div class="col-md-11 col-lg-11" style="padding: 0px;">
-                            <danphe-qtn-hrc ngDefaultControl [(question)]="qnr.ChildQuestions[i]" [dataSets]="definedDataSets"></danphe-qtn-hrc>
+                            <dsf-qtn-hrc ngDefaultControl [(question)]="qnr.ChildQuestions[i]" [dataSets]="definedDataSets"></dsf-qtn-hrc>
                         </div>
 
                     </div>
@@ -90,7 +90,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let visit of visitList">
-                                <td>{{visit.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+                                <td>{{visit.VisitDateTime | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
                                 <td>{{visit.PatientVisitCode}}</td>
                                 <td>
                                     <i class="btn blue fa-align-right" (click)="SelectVisit(visit)">Load from this visit</i>

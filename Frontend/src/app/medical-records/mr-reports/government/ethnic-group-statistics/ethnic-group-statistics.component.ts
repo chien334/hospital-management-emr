@@ -4,10 +4,10 @@ import { CoreService } from '../../../../core/shared/core.service';
 import { SecurityService } from '../../../../security/shared/security.service';
 import { GeneralFieldLabels } from '../../../../shared/DTOs/general-field-label.dto';
 import { NepaliCalendarService } from '../../../../shared/calendar/np/nepali-calendar.service';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from '../../../../shared/common.functions';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
 import { EthnicGroupStatisticsInpatient_DTO, EthnicGroupStatisticsOutpatient_DTO } from '../../../shared/ethnic-group-statics-data.model';
 import { MR_BLService } from '../../../shared/mr.bl.service';
 
@@ -48,8 +48,8 @@ export class EthnicGroupStatisticsReportComponent {
 
   public GetEthnicGroupStatisticsData() {
     this.displayReport = false;
-    this.medicalRecordsBLService.GetEthnicGroupStatisticsData(this.fromDate, this.toDate).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.medicalRecordsBLService.GetEthnicGroupStatisticsData(this.fromDate, this.toDate).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         if (res.Results) {
           this.displayReport = true;
           this.InPatientEthnicGroupStaticsData = res.Results.InPatientEthnicGroupStatisticsReports;
@@ -79,9 +79,9 @@ export class EthnicGroupStatisticsReportComponent {
     popupWindow = window.open('', '_blank', 'width=600,heigth=800,scrollbars=no, menubar=no,toolbar=no, location=no,status=no,titlebar=no');
     popupWindow.document.open();
     popupWindow.document.write(`<html><head>
-    <link rel="stylesheet" type="text/css" href="../../../assets-dph/external/global/plugins/bootstrap/css/theme-default/Danphe_ui_style.css" />
-    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/Danphe_ui_style.css" />
-    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanphePrintStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../../assets-dph/external/global/plugins/bootstrap/css/theme-default/Dsf_ui_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/Dsf_ui_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfPrintStyle.css" />
     </head>
     <style type="text/css">.dv-table-wrapper{max-height: inherit !important; overflow: auto !important;} .Selected {border-collapse: collapse;}  .no-print{display: none;} @media print{@page {size: landscape}}</style>
     <body>`

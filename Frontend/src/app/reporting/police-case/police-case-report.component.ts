@@ -4,7 +4,7 @@ import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { DLService } from "../../shared/dl.service";
 import { ReportingService } from "../shared/reporting-service";
 import * as moment from "moment/moment";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
 
 @Component({
     selector: 'police-case',

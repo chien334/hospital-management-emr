@@ -9,10 +9,10 @@ import * as moment from 'moment/moment';
 import { SecurityService } from "../../security/shared/security.service";
 import { BillingBLService } from "../../billing/shared/billing.bl.service";
 import { BillingService } from "../../billing/shared/billing.service";
-import { DanpheHTTPResponse, CancelStatusHoldingModel } from "../../shared/common-models";
+import { DsfHTTPResponse, CancelStatusHoldingModel } from "../../shared/common-models";
 import { PatientBillingContextVM } from "../../billing/shared/patient-billing-context-vm";
 import { InPatientLabTest } from "../shared/InpatientLabTest";
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { CoreService } from "../../core/shared/core.service";
 import { ENUM_OrderStatusNumber } from "../../shared/shared-enums";
 import { forkJoin } from "rxjs";
@@ -136,13 +136,13 @@ export class LabRequestsListComponent {
 
   GetBillingCounterForLab() {
     let allBilCntrs: Array<any>;
-    allBilCntrs = DanpheCache.GetData(MasterType.BillingCounter, null);
+    allBilCntrs = DsfCache.GetData(MasterType.BillingCounter, null);
     let counter = allBilCntrs.filter(cnt => cnt.CounterType == "LAB");
     if (counter) {
       this.labCounterId = counter.find(cntr => cntr.CounterId).CounterId;
     }
     // this.billingBLService.GetAllBillingCounters()
-    //     .subscribe((res: DanpheHTTPResponse) => {
+    //     .subscribe((res: DsfHTTPResponse) => {
     //         if (res.Status == "OK") {
     //             let allBilCntrs: Array<any> = res.Results;
     //             let labCntr = allBilCntrs.find(cnt => cnt.CounterType == "LAB");

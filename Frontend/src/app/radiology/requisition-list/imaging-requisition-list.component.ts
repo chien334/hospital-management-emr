@@ -1,8 +1,8 @@
 import { Component, ViewChild, ChangeDetectorRef } from "@angular/core";
 import { Router } from '@angular/router';
 
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
 
 import { PatientService } from '../../patients/shared/patient.service';
 import { VisitService } from '../../appointments/shared/visit.service';
@@ -18,7 +18,7 @@ import { CoreService } from "../../core/shared/core.service";
 //otherwise angular removes some css property from the DOM. 
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImagingType } from "../shared/imaging-type.model";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { SecurityService } from "../../security/shared/security.service";
 import { FilmTypeModel } from "../shared/imaging-film-type-model";
 import { FilmTypeValidatorModel } from "../shared/imaging-filmtype-validator-model";

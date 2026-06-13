@@ -2,9 +2,9 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from "@angu
 
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { CreditOrganization } from "../../shared/creditOrganization.model";
 import { SettingsBLService } from '../../shared/settings.bl.service';
 @Component({
@@ -57,8 +57,8 @@ export class CreditOrganizationAddComponent {
         if (this.CurrentCreditOrganization.IsValidCheck(undefined, undefined)) {
             this.settingsBLService.AddCreditOrganization(this.CurrentCreditOrganization)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Credit Organization Detail Added."]);
                             this.CallBackAddUpdate(res)
                             this.CurrentCreditOrganization = new CreditOrganization();
@@ -84,8 +84,8 @@ export class CreditOrganizationAddComponent {
         if (this.CurrentCreditOrganization.IsValidCheck(undefined, undefined)) {
             this.settingsBLService.UpdateCreditOrganization(this.CurrentCreditOrganization)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Credit Organization Detail Updated."]);
                             this.CallBackAddUpdate(res)
                             this.CurrentCreditOrganization = new CreditOrganization();

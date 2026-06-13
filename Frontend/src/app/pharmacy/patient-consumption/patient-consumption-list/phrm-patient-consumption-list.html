@@ -25,8 +25,8 @@
         </div>
     </div>
     <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="patientConsumptionGridColumns" [grid-data]="PatientConsumptions"
-                     (grid-actions)="PatientConsumptionGridActions($event)"></danphe-grid>
+        <dsf-grid [grid-colDefaults]="patientConsumptionGridColumns" [grid-data]="PatientConsumptions"
+                     (grid-actions)="PatientConsumptionGridActions($event)"></dsf-grid>
     </div>
     <phrm-finalize-consumption-wrapper *ngIf="showFinalizeWrapper" (callback-add)="CallBackAdd($event)"
                                        (callback-popup-close)="CallBackPopupClose($event)"
@@ -49,8 +49,8 @@
                         </div>
 
                         <div class="col-md-12" style="margin-bottom: 15px;">
-                            <danphe-grid [grid-colDefaults]="patientConsumptionListColumn" [grid-data]="PatientConsumptionList"
-                                         (grid-actions)="PatientConsumptionListGridActions($event)"></danphe-grid>
+                            <dsf-grid [grid-colDefaults]="patientConsumptionListColumn" [grid-data]="PatientConsumptionList"
+                                         (grid-actions)="PatientConsumptionListGridActions($event)"></dsf-grid>
                         </div>
                     </div>
                 </div>

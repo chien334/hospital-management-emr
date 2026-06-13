@@ -5,7 +5,7 @@ import { WARDInventoryStockModel } from '../../shared/ward-inventory-stock.model
 import WARDGridColumns from '../../shared/ward-grid-cloumns';
 import { Router } from '@angular/router';
 import * as moment from 'moment/moment'
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { SecurityService } from '../../../security/shared/security.service';
 import { PHRMStoreModel } from '../../../pharmacy/shared/phrm-store.model';
 import { wardsupplyService } from '../../shared/wardsupply.service';

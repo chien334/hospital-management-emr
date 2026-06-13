@@ -4,7 +4,7 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import MaternityGridColumnSettings from '../../shared/maternity.grid.settings';
 import { MaternityBLService } from '../../shared/maternity.bl.service';
 import * as moment from 'moment/moment';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { SettingsBLService } from '../../../settings-new/shared/settings.bl.service';
 import { CommonFunctions } from '../../../shared/common.functions';
 

@@ -72,8 +72,8 @@
              *ngIf="!showAddRequisitionPage && ItemListForReq.length!=0" />
     </div>
     <div class="col-md-12" *ngIf="!showAddRequisitionPage">
-      <danphe-grid [grid-colDefaults]="PHRMWardRequisitionGridColumns" [grid-data]="RequisitionGridDataFiltered"
-                   (grid-actions)="PHRMWardRequestListGridAction($event)"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="PHRMWardRequisitionGridColumns" [grid-data]="RequisitionGridDataFiltered"
+                   (grid-actions)="PHRMWardRequestListGridAction($event)"> </dsf-grid>
     </div>
   </div>
 
@@ -93,9 +93,9 @@
               <div class="panel-body">
                 <div class="col-md-12">
                   <div>
-                    <danphe-date-picker [(ngModel)]="requisition.RequisitionDate" ngDefaultControl [CalendarTypes]="'np,en'"
+                    <dsf-date-picker [(ngModel)]="requisition.RequisitionDate" ngDefaultControl [CalendarTypes]="'np,en'"
                                         [ngModelOptions]="{standalone:true}">
-                    </danphe-date-picker>
+                    </dsf-date-picker>
                   </div>
                   <table class="table table-responsive table-striped table-hover inv_table table-bordered">
                     <thead>
@@ -114,7 +114,7 @@
                         <td><a (click)="DeleteRow(i)"><i class="btn btn-danger fa fa-times"></i></a></td>
                         <td>
                           <form [formGroup]="row.RequisitionItemValidator">
-                            <input danphe-auto-complete class="form-control" id="itemName{{i}}" [(ngModel)]="row.SelectedItem"
+                            <input dsf-auto-complete class="form-control" id="itemName{{i}}" [(ngModel)]="row.SelectedItem"
                                    [source]="ItemListForReq" [list-formatter]="itemListFormatter" [placeholder]="'WARD_SUPPLY.ITEM_NAME' | translate"
                                    display-property-name="ItemName" value-property-name=null onclick="this.select();"
                                    (ngModelChange)="OnItemSelected(row.SelectedItem,i)" min-chars="1" max-num-list="10" [grid-sort]="'ItemName'"
@@ -161,7 +161,7 @@
                                   </label>
                                 </div>
                                 <div class="col-md-6">
-                                  <input danphe-auto-complete class="form-control " autocomplete="off" [source]="VerifierList"
+                                  <input dsf-auto-complete class="form-control " autocomplete="off" [source]="VerifierList"
                                          [(ngModel)]="verifier" [list-formatter]="VerifierListFormatter" [placeholder]="'WARD_SUPPLY.SELECT_VERIFIER' | translate"
                                          display-property-name="Name" max-num-list="10" (valueChanged)="AssignVerifier($event,i)" />
                                 </div>

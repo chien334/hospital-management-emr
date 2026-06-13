@@ -25,7 +25,7 @@
   left: -15px !important;
 }
 
-danphe-auto-complete {
+dsf-auto-complete {
   font-family: "Source Sans Pro";
   font-size: 0.95em;
   font-weight: bold;
@@ -249,7 +249,7 @@ td {
 }
 
 
-#id_op_billing_danpheLoading h3 {
+#id_op_billing_dsfLoading h3 {
   text-align: center;
   margin: 10px 20px 0 0;
   font-size: 18px;

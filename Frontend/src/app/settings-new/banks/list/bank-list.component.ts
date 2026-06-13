@@ -1,8 +1,8 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { BanksModel } from "../../shared/banks.model";
 
@@ -30,7 +30,7 @@ export class BankListComponent {
   public LoadBankList() {
     this.settingsBlService.GetBankList()
       .subscribe(
-        (res: DanpheHTTPResponse) => {
+        (res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.BankList = res.Results;
           }

@@ -10,7 +10,7 @@ import { TransactionModel } from "./shared/transaction.model";
 import { SecurityService } from "../../security/shared/security.service";
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
 import { CoreService } from '../../core/shared/core.service';
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { AccountingService } from "../shared/accounting.service";
 @Component({
     templateUrl: './account-closure.html',
@@ -48,10 +48,10 @@ export class AccountClosureComponent {
       }
     getActiveFiscalYear() {
         try {
-            if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-                if (this.accountingService.accCacheData.FiscalYearList.length) {//mumbai-team-june2021-danphe-accounting-cache-change
-                    this.FiscalYearList = this.accountingService.accCacheData.FiscalYearList;//mumbai-team-june2021-danphe-accounting-cache-change
-                    this.FiscalYearList = this.FiscalYearList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+            if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+                if (this.accountingService.accCacheData.FiscalYearList.length) {//mumbai-team-june2021-dsf-accounting-cache-change
+                    this.FiscalYearList = this.accountingService.accCacheData.FiscalYearList;//mumbai-team-june2021-dsf-accounting-cache-change
+                    this.FiscalYearList = this.FiscalYearList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
                     var today = new Date();
                     var currentData = moment(today).format('YYYY-MM-DD');
                     var currfiscyear = this.FiscalYearList.filter(f => f.FiscalYearId == this.securityService.AccHospitalInfo.CurrFiscalYear.FiscalYearId);
@@ -67,8 +67,8 @@ export class AccountClosureComponent {
                             this.disablebtn = true;
                         }
                     }
-                    if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-                        this.coreService.SetFiscalYearList(this.accountingService.accCacheData.FiscalYearList);//mumbai-team-june2021-danphe-accounting-cache-change
+                    if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+                        this.coreService.SetFiscalYearList(this.accountingService.accCacheData.FiscalYearList);//mumbai-team-june2021-dsf-accounting-cache-change
                     }
                 }
             }
@@ -81,7 +81,7 @@ export class AccountClosureComponent {
         
         if (tenantId) {
             this.accBLService.ActivateAccountingTenant(tenantId)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         this.securityService.SetAccHospitalInfo(res.Results);
                           this.coreService.GetFiscalYearList().subscribe(res => {      

@@ -58,7 +58,7 @@ var GoodsReceipt = /** @class */ (function () {
         this.ModifiedOn = null;
         var _formBuilder = new forms_1.FormBuilder();
         this.GoodsReceiptValidator = _formBuilder.group({
-            //sanjit: 2Apr'20: GoodsReceiptDate somehow throws validation error when use with danphe-date-picker, so it is commented. 
+            //sanjit: 2Apr'20: GoodsReceiptDate somehow throws validation error when use with dsf-date-picker, so it is commented. 
             // 'GoodsReceiptDate': ['', Validators.compose([Validators.required])],
             'BillNo': ['', forms_1.Validators.compose([forms_1.Validators.required])],
             'VendorId': ['', forms_1.Validators.compose([forms_1.Validators.required])],

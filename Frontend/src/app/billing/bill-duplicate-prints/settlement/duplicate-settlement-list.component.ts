@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { BillingBLService } from '../../shared/billing.bl.service';
 import { BillingDeposit } from "../../shared/billing-deposit.model";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { BillSettlementModel } from "../../shared/bill-settlement.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: './duplicate-settlement-list.html'
@@ -46,7 +46,7 @@ export class BIL_DuplicatePrint_SettlementListComponent {
           // let settlmntId = $event.Data.SettlementId;
 
           // this.billingBLService.GetSettlementInfoBySettlmentId(settlmntId)
-          //   .subscribe((res: DanpheHTTPResponse) => {
+          //   .subscribe((res: DsfHTTPResponse) => {
 
           //     this.settlementInfo = res.Results;
           //     this.settlementInfo.Patient.CountrySubDivisionName = this.settlementInfo.Patient.CountrySubDivision.CountrySubDivisionName;

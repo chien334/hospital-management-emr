@@ -150,10 +150,10 @@
                       <td><i class="fa fa-arrow-circle-o-right "></i><b>Disch. Date :</b>&nbsp;&nbsp; </td>
                       <td>
 
-                        <danphe-date-picker [(ngModel)]="dischargeDetail.DischargeDate"
+                        <dsf-date-picker [(ngModel)]="dischargeDetail.DischargeDate"
                                             (ngModelChange)="CalculateTotalDays()" [ngModelOptions]="{standalone: true}" [showTime]="true"
                                             [CalendarTypes]="'en,np'">
-                        </danphe-date-picker>
+                        </dsf-date-picker>
                         <label class="color-red font-sm" *ngIf="!validDischargeDate">
                           Please enter Valid Discharge Date.
                         </label>
@@ -190,23 +190,23 @@
                 </div>
               </div>
               <div class="col-md-12 mb10">
-                <danphe-grid [grid-colDefaults]="IPBillItemGridCol" [grid-data]="patAllPendingItems"
+                <dsf-grid [grid-colDefaults]="IPBillItemGridCol" [grid-data]="patAllPendingItems"
                              (grid-actions)="IPBillItemGridActions($event)" [show-print-button]="false" [supressPagination]="true"
-                             [resizeColumnToFit]="false" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </danphe-grid>
+                             [resizeColumnToFit]="false" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </dsf-grid>
               </div>
               <div class="col-md-12 mb10" *ngIf="patAllCancelledItems && patAllCancelledItems.length">
                 <label style="font-weight: 700;">Cancelled Services:</label>
-                <danphe-grid [grid-colDefaults]="CancelledServicesGridCol" [grid-data]="patAllCancelledItems"
+                <dsf-grid [grid-colDefaults]="CancelledServicesGridCol" [grid-data]="patAllCancelledItems"
                              [show-print-button]="false" [supressPagination]="true"
-                             [resizeColumnToFit]="false"> </danphe-grid>
+                             [resizeColumnToFit]="false"> </dsf-grid>
               </div>
 
 
               <div class="col-md-12 mb10" *ngIf="pharmacyPendingBillItems.length">
                 <label style="font-weight: 700;">PHARMACY ITEMS</label>
-                <danphe-grid [grid-colDefaults]="IPPharmacyBillItemGridCol" [grid-data]="pharmacyPendingBillItems" [show-print-button]="false"
+                <dsf-grid [grid-colDefaults]="IPPharmacyBillItemGridCol" [grid-data]="pharmacyPendingBillItems" [show-print-button]="false"
                              [supressPagination]="true" [resizeColumnToFit]="false" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-                </danphe-grid>
+                </dsf-grid>
               </div>
 
               <!-- <label style="font-weight: 700;">Cancelled Services:</label>
@@ -228,7 +228,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let itm of CancelledItemDetails">
-                      <td> {{itm.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}} </td>
+                      <td> {{itm.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}} </td>
                       <td> PRC/{{itm.CancellationReceiptNo}}</td>
                       <td> PR/{{itm.ReferenceProvisionalReceiptNo}}</td>
                       <td> {{itm.DepartmentName}}</td>
@@ -567,7 +567,7 @@
             </tr>
             <tr>
               <td>Hospital No: {{admissionInfo.PatientNo}}</td>
-              <td> Age/Sex :{{admissionInfo.DateOfBirth | DanpheDateTime:'age'}} / {{admissionInfo.Gender}} </td>
+              <td> Age/Sex :{{admissionInfo.DateOfBirth | DsfDateTime:'age'}} / {{admissionInfo.Gender}} </td>
             </tr>
           </table>
           <div class="text-center">
@@ -597,7 +597,7 @@
           <table class="table">
             <tr>
               <td>Admission Date:</td>
-              <!--<td> {{admissionInfo.AdmittedOn | DanpheDateTime:'format':'YYYY-MM-DD hhA'}} </td>-->
+              <!--<td> {{admissionInfo.AdmittedOn | DsfDateTime:'format':'YYYY-MM-DD hhA'}} </td>-->
               <td>
                 <b>
                   <date-lbl [value]="admissionInfo.AdmittedOn" [show-time]="true"></date-lbl>
@@ -609,9 +609,9 @@
               <td>
                 <date-lbl [value]="dischargeDetail.DischargeDate" [show-time]="true"></date-lbl>
                 <!-- <label>{{dischargeDetail.DischargeDate | date:'long'}}</label> -->
-                <!-- <danphe-date-picker [(ngModel)]="dischargeDetail.DischargeDate" [ngModelOptions]="{standalone: true}"
+                <!-- <dsf-date-picker [(ngModel)]="dischargeDetail.DischargeDate" [ngModelOptions]="{standalone: true}"
                   [showTime]="true" [CalendarTypes]="'en,np'" (ngModelChange)="CalculateTotalDays()">
-                </danphe-date-picker>
+                </dsf-date-picker>
                 <label class="color-red font-sm" *ngIf="!validDischargeDate">
                   Please enter Valid Discharge Date.
                 </label> -->
@@ -662,7 +662,7 @@
             </tr>
             <tr>
               <td>Hospital No: {{admissionInfo.PatientNo}}</td>
-              <td> Age/Sex :{{admissionInfo.DateOfBirth | DanpheDateTime:'age'}} / {{admissionInfo.Gender}} </td>
+              <td> Age/Sex :{{admissionInfo.DateOfBirth | DsfDateTime:'age'}} / {{admissionInfo.Gender}} </td>
             </tr>
           </table>
           <div class="text-center">

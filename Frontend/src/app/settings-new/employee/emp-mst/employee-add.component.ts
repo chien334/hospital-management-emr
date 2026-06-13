@@ -8,10 +8,10 @@ import { EmployeeType } from "../../../employee/shared/employee-type.model";
 import { Employee } from "../../../employee/shared/employee.model";
 import { SecurityService } from '../../../security/shared/security.service';
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { OPDServiceDetails_DTO } from "../../shared/DTOs/opd-service-details.dto";
 import { OPDServiceItem_DTO } from "../../shared/DTOs/opd-service-item.dto";
 import { Department } from '../../shared/department.model';
@@ -105,8 +105,8 @@ export class EmployeeAddComponent {
 
   public GetEmpRoleList(): void {
     this.settingsBLService.GetEmployeeRoleList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.empRoleList = res.Results;
             CommonFunctions.SortArrayOfObjects(this.empRoleList, "EmployeeRoleName");//this sorts the empRoleList by EmployeeRoleName.
@@ -124,8 +124,8 @@ export class EmployeeAddComponent {
 
   public GetEmpTypeList(): void {
     this.settingsBLService.GetEmployeeTypeList(true)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.empTypeList = res.Results;
           }
@@ -142,8 +142,8 @@ export class EmployeeAddComponent {
 
   public GetDepartmentList(): void {
     this.settingsBLService.GetDepartments()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.deptList = res.Results;
             CommonFunctions.SortArrayOfObjects(this.deptList, "DepartmentName");//this sorts the departmentlist by DepartmentName.
@@ -231,7 +231,7 @@ export class EmployeeAddComponent {
       this.settingsBLService.AddEmployee(this.CurrentEmployee)
         .subscribe(
           res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Employee Added."]);
               this.CallBackAddUpdate(res)
               this.CurrentEmployee = new Employee();
@@ -316,8 +316,8 @@ export class EmployeeAddComponent {
   }
 
 
-  public CallBackAddUpdate(res: DanpheHTTPResponse): void {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+  public CallBackAddUpdate(res: DsfHTTPResponse): void {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       let employee: Employee = new Employee();
       employee.EmployeeId = res.Results.EmployeeId;
       employee.Salutation = res.Results.Salutation;
@@ -395,8 +395,8 @@ export class EmployeeAddComponent {
   //Start: Employee Digital Signature Section
   public GetSignatoryImage(employeeId: number): void {
     this.settingsBLService.GetSignatoryImage(employeeId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results) {
             this.CurrentEmployee.SignatoryImageBase64 = res.Results;
           }
@@ -457,8 +457,8 @@ export class EmployeeAddComponent {
   public GetOPDServiceItems(): void {
     try {
       this.settingsBLService.GetOPDServiceItems()
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results && res.Results.length) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results && res.Results.length) {
             this.opdServiceItems = res.Results;
             if (this.opdServiceItems && this.update) {
               this.AssignSelectedOpdServiceItems();

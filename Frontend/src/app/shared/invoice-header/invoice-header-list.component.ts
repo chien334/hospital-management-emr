@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Lightbox } from "ngx-lightbox";
 import { CoreService } from '../../core/shared/core.service';
 import { GeneralFieldLabels } from '../DTOs/general-field-label.dto';
-import GridColumnSettings from '../danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from '../danphe-grid/grid-emit.model';
+import GridColumnSettings from '../dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from '../dsf-grid/grid-emit.model';
 import { InvoiceHeaderModel } from '../invoice-header.model';
 import { MessageboxService } from '../messagebox/messagebox.service';
 

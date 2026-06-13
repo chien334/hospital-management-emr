@@ -88,7 +88,7 @@
                           </b>
                        </td>
                        <td style="padding-top:10px;">
-                          <input class="form-control" danphe-auto-complete title="{{HandoverTransactionAccount.BankName}}"
+                          <input class="form-control" dsf-auto-complete title="{{HandoverTransactionAccount.BankName}}"
                           autocomplete="off" formControlName="BankName" [(ngModel)]="BankName"
                           [list-formatter]="BankListFormatter" [source]="Banklist" placeholder="Enter Bank Name"
                           [min-chars]="1" display-property-name="BankName" value-property-name=null match-formatted="true"
@@ -106,9 +106,9 @@
                           &nbsp;:&nbsp; </b>
                        </td>
                        <td style="padding-top:10px;">
-                          <danphe-date-picker [(ngModel)]="HandoverTransactionAccount.VoucherDate"
+                          <dsf-date-picker [(ngModel)]="HandoverTransactionAccount.VoucherDate"
                           [ngModelOptions]="{standalone: true}" [showTime]="false" [CalendarTypes]="'en,np'">
-                          </danphe-date-picker>
+                          </dsf-date-picker>
                        </td>
                     </tr>
                     <tr *ngIf="BankHandoverSettings.ShowVoucherNumber">
@@ -187,7 +187,7 @@
                           </b>
                        </td>
                        <td style="padding-top:10px;">
-                          <input class="form-control" danphe-auto-complete
+                          <input class="form-control" dsf-auto-complete
                           autocomplete="off" [(ngModel)]="selectedHandOverToUser" [ngModelOptions]="{standalone: true}"
                           [list-formatter]="UserListFormatter" [source]="userlist" placeholder="Select User To Be Handovered"
                           display-property-name="ShortName" value-property-name=null 
@@ -382,9 +382,9 @@
             {{PendingReceiveAmount| number : "1.2-2" | NumberInWords}}
             </b>Only.</span> )
             <hr/>
-               <danphe-grid [grid-colDefaults]="PendingIncomingHandoverGridColumns" [grid-data]="PendingIncomingHandoverList"
+               <dsf-grid [grid-colDefaults]="PendingIncomingHandoverGridColumns" [grid-data]="PendingIncomingHandoverList"
                   (grid-actions)="PendingIncomingHandoverListGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings" [show-print-button]="false" >
-               </danphe-grid>
+               </dsf-grid>
            </div>
  
          </div>
@@ -419,9 +419,9 @@
             {{PendingOutgoingUser| number : "1.2-2" | NumberInWords}}
             </b>Only.</span> )
             <hr/>
-               <danphe-grid [grid-colDefaults]="PendingOutgoingUserHandoverGridColumns" [grid-data]="PendingOutgoingUserHandoverList"
+               <dsf-grid [grid-colDefaults]="PendingOutgoingUserHandoverGridColumns" [grid-data]="PendingOutgoingUserHandoverList"
                    [NepaliDateInGridParams]="NepaliDateInGridSettings" [show-print-button]="false" >
-                </danphe-grid>
+                </dsf-grid>
            </div>
  
          </div>
@@ -456,9 +456,9 @@
             {{PendingOutgoingAccount| number : "1.2-2" | NumberInWords}}
             </b>Only.</span> )
             <hr/>
-               <danphe-grid [grid-colDefaults]="PendingOutgoingAccountHandoverGridColumns" [grid-data]="PendingOutgoingAccountHandoverList"
+               <dsf-grid [grid-colDefaults]="PendingOutgoingAccountHandoverGridColumns" [grid-data]="PendingOutgoingAccountHandoverList"
                    [NepaliDateInGridParams]="NepaliDateInGridSettings" [show-print-button]="false" >
-               </danphe-grid>
+               </dsf-grid>
            </div>
  
          </div>

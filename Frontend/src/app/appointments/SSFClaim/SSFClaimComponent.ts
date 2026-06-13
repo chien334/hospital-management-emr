@@ -12,11 +12,11 @@ import { Category, ClaimBillablePeriod, ClaimCategory, ClaimCoding, ClaimDiagnos
 import { PatientService } from "../../patients/shared/patient.service";
 import { GeneralFieldLabels } from "../../shared/DTOs/general-field-label.dto";
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_ClaimCategory, ENUM_ClaimExtensionUrl, ENUM_ClaimResourceType, ENUM_DanpheHTTPResponses, ENUM_DefaultICDCode, ENUM_FileSizeUnits, ENUM_ICDCoding, ENUM_MessageBox_Status, ENUM_SSFSchemeTypeSubProduct, ENUM_ValidFileFormats } from "../../shared/shared-enums";
+import { ENUM_ClaimCategory, ENUM_ClaimExtensionUrl, ENUM_ClaimResourceType, ENUM_DsfHTTPResponses, ENUM_DefaultICDCode, ENUM_FileSizeUnits, ENUM_ICDCoding, ENUM_MessageBox_Status, ENUM_SSFSchemeTypeSubProduct, ENUM_ValidFileFormats } from "../../shared/shared-enums";
 import { VisitBLService } from "../shared/visit.bl.service";
 
 @Component({
@@ -466,8 +466,8 @@ export class SSFClaimComponent {
   }
 
   GetSSFInvoiceDetail() {
-    this.visitBlService.GetSSFInvoiceDetail(this.fromDate, this.toDate, this.patientType).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.visitBlService.GetSSFInvoiceDetail(this.fromDate, this.toDate, this.patientType).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.invoice = res.Results;
         this.InvoiceItemList = this.invoice.InvoiceItems;
         this.PatientWiseClaimList = [];
@@ -617,15 +617,15 @@ export class SSFClaimComponent {
       this.PrepareClaimRoot();
       console.log(this.ClaimRoot.supportingInfo);
       this.visitBlService.SubmitClaim(this.ClaimRoot).subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.msgBox.showMessage(ENUM_MessageBox_Status.Success, ["SSF Claim Successfully Submitted."]);
           }
           else {
             this.msgBox.showMessage(ENUM_MessageBox_Status.Error, ["Sorry, Unable to Submit Claim."]);
           }
         },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           this.msgBox.showMessage(ENUM_MessageBox_Status.Error, ["Something went wrong please try again."]);
         },
         () => {

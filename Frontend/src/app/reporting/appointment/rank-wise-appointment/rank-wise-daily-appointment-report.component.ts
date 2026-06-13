@@ -4,13 +4,13 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { RPT_APPT_RankwiseDailyAppointmentReportModel } from "./rank-wise-appointment-report.model"
 import { DLService } from "../../../shared/dl.service"
 import * as moment from 'moment/moment';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MembershipType } from "../../../patients/shared/membership-type.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import * as _ from 'lodash';
-import { IGridFilterParameter } from "../../../shared/danphe-grid/grid-filter-parameter.interface";
+import { IGridFilterParameter } from "../../../shared/dsf-grid/grid-filter-parameter.interface";
 
 @Component({
   templateUrl: "./rank-wise-daily-appointment-report.html"
@@ -54,8 +54,8 @@ export class RPT_APPT_RankwiseDailyAppointmentReportComponent {
   }
 
   public LoadRanks(): void {
-    this.dlService.GetRank().subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.dlService.GetRank().subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             let ranks = [];
             ranks = res.Results;
             ranks.forEach(x => {
@@ -76,8 +76,8 @@ export class RPT_APPT_RankwiseDailyAppointmentReportComponent {
 
   public LoadMembershipList(): void {
     this.dlService.GetAllMembershipType()
-        .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 let membershipList = [];
                 membershipList = res.Results;
                 membershipList.forEach(p => {
@@ -143,10 +143,10 @@ setFilterParamters(): void{
     this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [err.ErrorMessage]);
 }
   Success(res): void {
-    if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length > 0) {
+    if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length > 0) {
         this.RankwiseDailyAppointmentReportData = res.Results;
       }
-      else if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length === 0){
+      else if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length === 0){
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Notice, ['Data is Not Available Between Selected Parameters...Try Different']);
       }
     else {

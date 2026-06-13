@@ -69,7 +69,7 @@ var WARDGridColumns = /** @class */ (function () {
             headerName: "Action",
             field: "",
             width: 150,
-            template: "<a danphe-grid-action=\"breakage-stock\" class=\"grid-action\"> Breakage </a>"
+            template: "<a dsf-grid-action=\"breakage-stock\" class=\"grid-action\"> Breakage </a>"
         }
     ];
     WARDGridColumns.InternalConsumptionList = [
@@ -85,7 +85,7 @@ var WARDGridColumns = /** @class */ (function () {
         { headerName: "Department Name", field: "DepartmentName", width: 150 },
         { headerName: "Consumed By", field: "ConsumedBy", width: 150 },
         { headerName: "Remark", field: "Remark", width: 150 },
-        { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' }
+        { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' }
     ];
     WARDGridColumns.WARDInventoryStockDetailsList = [
         { headerName: "Item Name", field: "ItemName", width: 150 },
@@ -99,14 +99,14 @@ var WARDGridColumns = /** @class */ (function () {
         { headerName: "PhoneNumber", field: "PhoneNumber", width: 150 },
         { headerName: "Ward Name", field: "WardName", width: 100 },
         { headerName: "Quantity", field: "Quantity", width: 80 },
-        { headerName: "Action", field: "", width: 100, template: "<a danphe-grid-action=\"view\" class=\"grid-action\">View</a> <a danphe-grid-action=\"showDetails\" class=\"grid-action\">Show Details</a>" }
+        { headerName: "Action", field: "", width: 100, template: "<a dsf-grid-action=\"view\" class=\"grid-action\">View</a> <a dsf-grid-action=\"showDetails\" class=\"grid-action\">Show Details</a>" }
     ];
     // all pending or completed ward request list.  
     WARDGridColumns.WARDRequestList = [
         { headerName: "Requested By", field: "CreatedBy", width: 150 },
         { headerName: "Date", field: "Date", width: 100, cellRenderer: WARDGridColumns.DateOnlyRenderer },
         { headerName: "Status", field: "Status", width: 100 },
-        { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' },
+        { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' },
     ];
     // Ward-Inventory Consumption List
     WARDGridColumns.InventoryConsumptionList = [
@@ -115,7 +115,7 @@ var WARDGridColumns = /** @class */ (function () {
         { headerName: "Consumed Qty", field: "Quantity", width: 100 },
         { headerName: "Entered By", field: "UsedBy", width: 150 },
         { headerName: "Remarks", field: "Remark", width: 150 }
-        //{ headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' }
+        //{ headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' }
     ];
     // Ward Supply Report
     //Ward Stock Report

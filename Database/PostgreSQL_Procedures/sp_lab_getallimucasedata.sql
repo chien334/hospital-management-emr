@@ -38,8 +38,8 @@ BEGIN
     	
     	
     	
-    	select string_agg(imutestlist.danphelabtestname,',') into v_testcsv from json_to_recordset(v_json::json) as imutestlist(
-    		    danphelabtestname varchar(100)
+    	select string_agg(imutestlist.dsflabtestname,',') into v_testcsv from json_to_recordset(v_json::json) as imutestlist(
+    		    dsflabtestname varchar(100)
     		); 
     
     	select parametervalue into v_verificationparameter from core_cfg_parameters

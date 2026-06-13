@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { IntakeOutputParameterListModel } from "../../../clinical/shared/intake-output-parameterlist.model";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { IntakeOutputVariableModel } from "../../../shared/intake-output-variable.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
 
@@ -41,7 +41,7 @@ export class IntakeOutputTypeListComponent {
     GetClinicalIntakeOutputParameterList() {
         this.settingBlServ.GetIntakeOutputTypeListForGrid()
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
 
                     this.IntakeOutputTypeListForGrid = res.Results;
                     this.intakeOutputData = this.IntakeOutputTypeListForGrid.map(item => {
@@ -102,7 +102,7 @@ export class IntakeOutputTypeListComponent {
         this.settingBlServ.ActivateDeactivateVariableStatus(selectedIntakeOutputData)
             .subscribe(
                 res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.GetClinicalIntakeOutputParameterList();
                         let responseMessage = res.Results.IsActive ? "Variable is now Activated." : "Variable is now Deactivated.";
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [responseMessage]);

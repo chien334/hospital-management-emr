@@ -15,7 +15,7 @@
         Search Patients :
       </div>
       <div class="col-md-9">
-        <input danphe-auto-complete class="form-control searchtbx"
+        <input dsf-auto-complete class="form-control searchtbx"
           [(ngModel)]="searchText" 
           [list-formatter]="PatientListFormatter"
           [source]="PatientSearchAsync.bind(this)"
@@ -44,7 +44,7 @@
         <div class="col-md-7">
           <input
           class="form-control"
-          danphe-auto-complete
+          dsf-auto-complete
           [(ngModel)]="department"
           [ngModelOptions]="{standalone: true}"
           [list-formatter]="DepartmentListFormatter"
@@ -66,7 +66,7 @@
         <div class="col-md-7">
           <input
           class="form-control"
-          danphe-auto-complete
+          dsf-auto-complete
           [(ngModel)]="ward"
           [ngModelOptions]="{standalone: true}"
           [list-formatter]="WardListFormatter"
@@ -88,7 +88,7 @@
         <div class="col-md-7">
           <input
           class="form-control"
-          danphe-auto-complete
+          dsf-auto-complete
           [(ngModel)]="bedFeature"
           [ngModelOptions]="{standalone: true}"
           [list-formatter]="BedFeatureListFormatter"
@@ -129,11 +129,11 @@
   <br>
 	<div class="row" *ngIf="showGrid">
 		<div class="col-lg-12 col-sm-12">
-			<danphe-grid [grid-colDefaults]="TotalAdmittedPatientColumns" 
+			<dsf-grid [grid-colDefaults]="TotalAdmittedPatientColumns" 
       [grid-data]="TotalPatientData"
       [grid-exportOptions]="gridExportOptions"
       [grid-showExport]="true" 
-      [NepaliDateInGridParams]="NepaliDateInGridSettings"> </danphe-grid>
+      [NepaliDateInGridParams]="NepaliDateInGridSettings"> </dsf-grid>
 		</div>
 	</div>
   <div *ngIf="showSummary" style="margin-bottom: 25px; width: 100%; float: left;"  id="summaryFooter">

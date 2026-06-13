@@ -1,13 +1,13 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { PHRMInvoiceItemsModel } from '../../shared/phrm-invoice-items.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { PHRMPatient } from '../../shared/phrm-patient.model';
 import * as moment from 'moment/moment';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { PrinterSettingsModel } from '../../../settings-new/printers/printer-settings.model';
 import { CommonFunctions } from '../../../shared/common.functions';
 import { CoreService } from '../../../core/shared/core.service';
@@ -118,7 +118,7 @@ export class PHRMProvisionalReturnComponent {
     }
     GetAllProvisionalReturnDuplicatePrint(PatientId) {
         this.pharmacyBLService.GetAllProvisionalReturnDuplicatePrint(PatientId)
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 this.CallBackupdaeInvoice(res);
             });
     }
@@ -162,8 +162,8 @@ export class PHRMProvisionalReturnComponent {
     //     var printContents = document.getElementById("printpage").innerHTML;
     //     popupWinindow = window.open('', '_blank', 'width=1600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     //     popupWinindow.document.open();
-    //     //popupWinindow.document.write('<html><head><link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
-    //     popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+    //     //popupWinindow.document.write('<html><head><link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+    //     popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
 
     //     popupWinindow.document.close();
     //     this.showSaleItemsPopup = false;

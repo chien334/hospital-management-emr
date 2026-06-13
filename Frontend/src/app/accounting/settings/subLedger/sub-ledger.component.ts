@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { AccountingService } from '../../shared/accounting.service';
 import { AccountingSettingsBLService } from "../shared/accounting-settings.bl.service";
 import { LedgerModel } from "../shared/ledger.model";
@@ -45,8 +45,8 @@ export class SubLedgerComponent {
         this.coreService.loading = true;
         this.accountingSettingsBLService.GetSubLedger()
             .finally(() => { this.coreService.loading = false; })
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.gridData = this.subLedgerList = res.Results;
                     let ledgerlist = this.accountingService.accCacheData.LedgersALL;
                     this.gridData.forEach(data => {
@@ -60,7 +60,7 @@ export class SubLedgerComponent {
                     this.messabeBoxService.showMessage(ENUM_MessageBox_Status.Error, ["Unable to get subledger list."]);
                 }
             },
-                (err: DanpheHTTPResponse) => {
+                (err: DsfHTTPResponse) => {
                     this.messabeBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Unable to get subledger list. ${err.ErrorMessage}`])
                 });
     }
@@ -99,8 +99,8 @@ export class SubLedgerComponent {
             }
             case "activate/deactivate": {
                 this.subLedger = { ...$event.Data };
-                this.accountingSettingsBLService.ActivateDeactiveSubLedger(this.subLedger).subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                this.accountingSettingsBLService.ActivateDeactiveSubLedger(this.subLedger).subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.getSubLedger();
                     }
                 });
@@ -148,8 +148,8 @@ export class SubLedgerComponent {
             if (ledgerValidation) {
                 this.accountingSettingsBLService.AddSubLedger(this.newSubLedgerList)
                     .subscribe(
-                        (res: DanpheHTTPResponse) => {
-                            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                        (res: DsfHTTPResponse) => {
+                            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                                 this.subLedger = new SubLedgerModel();
                                 this.getSubLedger();
                                 this.showAddPage = false;
@@ -159,7 +159,7 @@ export class SubLedgerComponent {
                                 this.messabeBoxService.showMessage(ENUM_MessageBox_Status.Error, ["Unable to save subLedger."]);
                             }
                         },
-                        (err: DanpheHTTPResponse) => {
+                        (err: DsfHTTPResponse) => {
                             this.messabeBoxService.showMessage(ENUM_MessageBox_Status.Error, [err.ErrorMessage]);
                         });
             }
@@ -174,8 +174,8 @@ export class SubLedgerComponent {
         if (this.subLedger.LedgerId > 0 && this.subLedger.SubLedgerName) {
             this.accountingSettingsBLService.UpdateSubLedger(this.subLedger)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                             this.subLedger = new SubLedgerModel();
                             this.getSubLedger();
                             this.showEditPage = false;
@@ -185,7 +185,7 @@ export class SubLedgerComponent {
                             this.messabeBoxService.showMessage(ENUM_MessageBox_Status.Error, ["Unable to update subLedger."]);
                         }
                     },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.messabeBoxService.showMessage(ENUM_MessageBox_Status.Error, [err.ErrorMessage]);
                     });
         }

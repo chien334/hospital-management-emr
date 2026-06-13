@@ -86,9 +86,9 @@ export class GovLaboratoryServicesReportComponent {
     popupWindow = window.open('', '_blank', 'width=1000,heigth=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWindow.document.open();
     popupWindow.document.write(`<html><head>
-    <link rel="stylesheet" type="text/css" href="../../../assets-dph/external/global/plugins/bootstrap/css/theme-default/Danphe_ui_style.css" />
-    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/Danphe_ui_style.css" />
-    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanphePrintStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../../../assets-dph/external/global/plugins/bootstrap/css/theme-default/Dsf_ui_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/Dsf_ui_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfPrintStyle.css" />
     </head>
     <style type="text/css">.Selected {border-collapse: collapse;} .no-print{display: none;} @media print{@page {size: landscape}}</style>
     <body>`

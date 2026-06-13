@@ -43,7 +43,7 @@ import { PharmacyBLService } from "../pharmacy/shared/pharmacy.bl.service";
 import { PharmacyDLService } from "../pharmacy/shared/pharmacy.dl.service";
 import { PharmacyService } from "../pharmacy/shared/pharmacy.service";
 import { SettingsSharedModule } from "../settings-new/settings-shared.module";
-import { DanpheAutoCompleteModule } from "../shared/danphe-autocomplete/danphe-auto-complete.module";
+import { DsfAutoCompleteModule } from "../shared/dsf-autocomplete/dsf-auto-complete.module";
 import { NursingOpdCheckinComponent } from "./check-in/nursing-opd-checkin.component";
 import { NursingOpdChekoutComponent } from './check-out/nursing-opd-chekout.component';
 import { ConsultationRequestViewPrintComponent } from "./consultation-requests/consultation-request-view-print/consultation-request-view-print.component";
@@ -101,7 +101,7 @@ import { NursingIPRequestComponent } from "./ward-billing/nursing-ip-request.com
     //  Ng2AutoCompleteModule,
     NursingRoutingModule,
     SharedModule,
-    DanpheAutoCompleteModule,
+    DsfAutoCompleteModule,
     BillingSharedModule,
     ClinicalSharedModule,
     DoctorSharedModule,

@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CoreBLService } from "../../../core/shared/core.bl.service";
 import { CoreService } from "../../../core/shared/core.service";
 import { PriceCategory } from "../../../settings-new/shared/price.category.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses } from "../../../shared/shared-enums";
 
 @Component({
   selector: "price-category-select",
@@ -82,8 +82,8 @@ export class SelectPriceCategoryComponent {
 
 
   public LoadPriceCategoriesFromServer(): void {
-    this.coreBlService.GetPriceCategories().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+    this.coreBlService.GetPriceCategories().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status == ENUM_DsfHTTPResponses.OK) {
         this.allPriceCategories = res.Results;
         this.enabledPriceCategories = this.allPriceCategories.filter(pc => pc.IsActive === true);
         this.InitializePriceCategoryId();

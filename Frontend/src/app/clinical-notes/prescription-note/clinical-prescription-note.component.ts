@@ -6,8 +6,8 @@ import { ClinicalPrescriptionNotesModel } from '../shared/clinical-prescription-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OrderItemsVM } from '../../orders/shared/orders-vms';
 import { CommonFunctions } from '../../shared/common.functions';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { ICD10 } from '../../clinical/shared/icd10.model';
 import { CoreService } from '../../core/shared/core.service';
 import { ENUM_MessageBox_Status } from '../../shared/shared-enums';
@@ -78,7 +78,7 @@ export class ClinicalPrescriptionNoteComponent {
 
   LoadAllOrderItems() {
     this.http.get<any>('/api/Orders/OrderItems', this.options).map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allOrdItems = res.Results.filter(d => d.PreferenceType.toLowerCase() != 'medication');
 

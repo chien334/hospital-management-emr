@@ -9,9 +9,9 @@ import { PHRMInvoiceModel } from '../../../../pharmacy/shared/phrm-invoice.model
 import { PHRMStoreModel } from '../../../../pharmacy/shared/phrm-store.model';
 import { SecurityService } from '../../../../security/shared/security.service';
 import { CallbackService } from '../../../../shared/callback.service';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from '../../../../shared/common.functions';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../shared/routefrom.service';
 import DispensaryGridColumns from '../../../shared/dispensary-grid.column';

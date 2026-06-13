@@ -11,7 +11,7 @@ import { CoreService } from "../../../../core/shared/core.service";
 import { Patient } from "../../../../patients/shared/patient.model";
 import { SecurityService } from "../../../../security/shared/security.service";
 import { ServiceDepartmentVM } from "../../../../shared/common-masters.model";
-import { DanpheHTTPResponse } from "../../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../../shared/common-models";
 import { CommonFunctions } from '../../../../shared/common.functions';
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
 import { ENUM_BillingStatus, ENUM_OrderStatus } from "../../../../shared/shared-enums";
@@ -403,7 +403,7 @@ export class GovInsuranceIpBillItemRequest implements OnInit {
   //start: get: master and patient data
   LoadPatientBillingContext(patientId) {
     this.insuranceBlService.GetPatientBillingContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.currBillingContext = res.Results;
           this.insuranceService.BillingType = this.currBillingContext.BillingType;

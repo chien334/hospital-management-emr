@@ -11,7 +11,7 @@ import { ActiveMedical } from "../shared/active-medical.model";
 import { ICD10 } from '../shared/icd10.model';
 import * as moment from 'moment/moment';
 import { PastMedical } from "../shared/past-medical.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CoreService } from "../../core/shared/core.service";
 
 @Component({
@@ -206,7 +206,7 @@ export class MedicalProblemListComponent {
             currentProblem.Note = _past.Note;
             currentProblem.PatientId = _past.PatientId;
             this.problemsBLService.SetAsActive(_past)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         currentProblem.IsResolved = res.Results.IsResolved;
                         currentProblem.PatientProblemId = res.Results.PatientProblemId;

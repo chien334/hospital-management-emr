@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as _ from 'lodash';
 import { UploadedFile } from '../../shared/DTOs/uploaded-files-DTO';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status, ENUM_ValidFileFormats } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status, ENUM_ValidFileFormats } from '../../shared/shared-enums';
 import { ClaimBillReviewDTO } from '../shared/DTOs/ClaimManagement_BillReview_DTO';
 import { InsurancePendingClaim } from '../shared/DTOs/ClaimManagement_PendingClaims_DTO';
 import { SubmittedClaimDTO } from '../shared/DTOs/ClaimManagement_SubmittedClaim_DTO';
@@ -53,8 +53,8 @@ export class InsuranceClaimScrubbingComponent {
 
     public GetInvoiceByClaimSubmissionId(claimSubmissionId: number): void {
         this.claimManagementBlService.GetInvoicesByClaimSubmissionId(claimSubmissionId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     if (res.Results) {
                         this.invoiceList = res.Results;
                         this.nonClaimableAmount = 0;
@@ -74,7 +74,7 @@ export class InsuranceClaimScrubbingComponent {
                     }
                 }
             },
-                (err: DanpheHTTPResponse) => {
+                (err: DsfHTTPResponse) => {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
                 }
             );
@@ -82,12 +82,12 @@ export class InsuranceClaimScrubbingComponent {
 
     public GetDocumentsByClaimCode(claimCode: number): void {
         this.claimManagementBlService.GetDocumentsByClaimCode(claimCode)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.uploadedDocuments = res.Results;
                 }
             },
-                (err: DanpheHTTPResponse) => {
+                (err: DsfHTTPResponse) => {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
                 }
             );
@@ -125,13 +125,13 @@ export class InsuranceClaimScrubbingComponent {
         }
         else if (file.FileId > 0) {
             this.claimManagementBlService.GetDocumentForPreviewByFileId(file.FileId)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.selectedDocument = res.Results;
                         this.DocumentPreview(this.selectedDocument);
                     }
                 },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
                     }
                 );
@@ -154,8 +154,8 @@ export class InsuranceClaimScrubbingComponent {
             if (isValid) {
                 this.claimManagementBlService.SubmitClaim(this.claimForSubmission)
                     .finally(() => { this.loading = false; })
-                    .subscribe((res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    .subscribe((res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Insurance claim successfully submitted.`]);
                             this.CloseClaimScrubbingPopUp();
                         }
@@ -163,7 +163,7 @@ export class InsuranceClaimScrubbingComponent {
                             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Unable to submit claim.`]);
                         }
                     },
-                        (err: DanpheHTTPResponse) => {
+                        (err: DsfHTTPResponse) => {
                             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
                         }
                     );
@@ -181,8 +181,8 @@ export class InsuranceClaimScrubbingComponent {
 
     public SetInvoiceClaimable(index: number): void {
         this.claimManagementBlService.UpdateClaimableStatusOfClaimedInvoice(this.invoiceList[index], true)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.GetInvoiceByClaimSubmissionId(this.claimDetail.ClaimSubmissionId);
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Invoice is successfully updated as Claimable.`]);
                 }
@@ -190,7 +190,7 @@ export class InsuranceClaimScrubbingComponent {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Unable to update claimable status of this invoice.`]);
                 }
             },
-                (err: DanpheHTTPResponse) => {
+                (err: DsfHTTPResponse) => {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
                 }
             );
@@ -198,8 +198,8 @@ export class InsuranceClaimScrubbingComponent {
 
     public SetInvoiceNonClaimable(index: number): void {
         this.claimManagementBlService.UpdateClaimableStatusOfClaimedInvoice(this.invoiceList[index], false)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.GetInvoiceByClaimSubmissionId(this.claimDetail.ClaimSubmissionId);
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Invoice is successfully updated as Non-Claimable.`]);
                 }
@@ -207,7 +207,7 @@ export class InsuranceClaimScrubbingComponent {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Unable to update claimable status of this invoice.`]);
                 }
             },
-                (err: DanpheHTTPResponse) => {
+                (err: DsfHTTPResponse) => {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
                 }
             );
@@ -216,8 +216,8 @@ export class InsuranceClaimScrubbingComponent {
     public RevertInvoiceBackToBillReview(): void {
         if (this.selectedInvoiceIndex >= 0) {
             this.claimManagementBlService.RevertInvoiceBackToBillReview(this.invoiceList[this.selectedInvoiceIndex])
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Invoice is successfully reverted back to bill review page.`]);
                         this.GetInvoiceByClaimSubmissionId(this.claimDetail.ClaimSubmissionId);;
                     }
@@ -225,7 +225,7 @@ export class InsuranceClaimScrubbingComponent {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Unable to update revert invoice to bill review.`]);
                     }
                 },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
                     }
                 );
@@ -245,8 +245,8 @@ export class InsuranceClaimScrubbingComponent {
         if (isValid) {
             this.claimManagementBlService.SaveClaimAsDraft(this.claimForSubmission)
                 .finally(() => { this.loading = false; })
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Insurance claim successfully Saved As Draft.`]);
                         this.GetDocumentsByClaimCode(this.claimDetail.ClaimCode);
                     }
@@ -254,7 +254,7 @@ export class InsuranceClaimScrubbingComponent {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Unable to save claim in draft.`]);
                     }
                 },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Exception: ${err.ErrorMessage}`]);
                     }
                 );

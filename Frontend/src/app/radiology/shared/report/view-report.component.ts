@@ -7,7 +7,7 @@ import * as moment from 'moment/moment';
 import { CoreService } from '../../../../../src/app/core/shared/core.service';
 import { Patient } from '../../../patients/shared/patient.model';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DicomService } from '../../../shared/danphe-dicom-viewer/shared/dicom.service';
+import { DicomService } from '../../../shared/dsf-dicom-viewer/shared/dicom.service';
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { ImagingReportViewModel } from '../../shared/imaging-item-report.model';
@@ -21,7 +21,7 @@ import { CoreCFGEmailSettingsModel } from '../CoreCFGEmailSettings.model';
 import { ImageAttachmentModel, RadEmailModel } from '../rad-email.model';
 
 @Component({
-  selector: "danphe-view-imaging-report",
+  selector: "dsf-view-imaging-report",
   templateUrl: "./view-report.html",
   styleUrls: ['./rad-view-report.style.css']
 })
@@ -232,8 +232,8 @@ export class ViewReportComponent {
   PrintReportHTML() {
     var printContents = document.getElementById("printpage").innerHTML;
     let documentContent = "<html><head>";
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head><style>.no-print{display: none;} .patient-hdr-label{margin: 2px 0;}</style>';
     documentContent += '<body>' + printContents + '</body></html>'

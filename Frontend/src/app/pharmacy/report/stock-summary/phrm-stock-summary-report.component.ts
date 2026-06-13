@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import * as moment from 'moment/moment';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { PHRMStockSummaryReportModel } from '../../shared/Phrm-Stock-summary-report-model';
@@ -347,7 +347,7 @@ export class PHRMStockSummaryReportComponent {
         }
     }
     GetItemAction(params) {
-        return `<a danphe-grid-action="itemTxnDetail">
+        return `<a dsf-grid-action="itemTxnDetail">
                    ${params.data.ItemName}
                  </a>`;
     }

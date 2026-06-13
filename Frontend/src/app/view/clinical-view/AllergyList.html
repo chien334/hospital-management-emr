@@ -47,7 +47,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr *ngFor="let alrg of allergieLists;let i=index">
-                                                    <td>{{alrg.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+                                                    <td>{{alrg.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
                                                     <td>{{alrg.AllergenAdvRecName}}</td>
                                                     <td>{{alrg.Severity}}</td>
                                                     <td>{{alrg.Reaction}}</td>

@@ -6,7 +6,7 @@ import { SecurityService } from "../../security/shared/security.service";
 import { SettingsBLService } from '../../settings-new/shared/settings.bl.service';
 import { CommonFunctions } from '../../shared/common.functions';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { CostCenterModel } from '../settings/shared/cost-center.model';
 import { FiscalYearModel } from '../settings/shared/fiscalyear.model';
 import { LedgerModel } from '../settings/shared/ledger.model';
@@ -146,19 +146,19 @@ export class TransferToAccountingComponent {
   GetSection() {
     this.settingsBLService.GetApplicationList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.applicationList = res.Results;
           let sectionApplication = this.applicationList.filter(a => a.ApplicationCode == "ACC-Section" && a.ApplicationName == "Accounts-Sections")[0];
           if (sectionApplication != null || sectionApplication != undefined) {
             this.permissions = this.securityService.UserPermissions.filter(p => p.ApplicationId == sectionApplication.ApplicationId);
           }
-          let sList = this.accountingService.accCacheData.Sections.filter(sec => sec.SectionId != 4); // 4 is Manual_Voucher (FIXED for DanpheEMR) //mumbai-team-june2021-danphe-accounting-cache-change
+          let sList = this.accountingService.accCacheData.Sections.filter(sec => sec.SectionId != 4); // 4 is Manual_Voucher (FIXED for DsfEMR) //mumbai-team-june2021-dsf-accounting-cache-change
           sList.forEach(s => {
             let sname = s.SectionName.toLowerCase();
             let pp = this.permissions.filter(f => f.PermissionName.includes(sname))[0];
             if (pp != null || pp != undefined) {
               this.sectionList.push(s);
-              this.sectionList = this.sectionList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+              this.sectionList = this.sectionList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
             }
           })
           let defSection = this.sectionList.find(s => s.IsDefault == true);
@@ -175,8 +175,8 @@ export class TransferToAccountingComponent {
   }
   public GetVoucherList() {
     try {
-      if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-        this.voucherList = this.accountingService.accCacheData.VoucherType//mumbai-team-june2021-danphe-accounting-cache-change
+      if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+        this.voucherList = this.accountingService.accCacheData.VoucherType//mumbai-team-june2021-dsf-accounting-cache-change
       }
     }
     catch (exception) {
@@ -185,9 +185,9 @@ export class TransferToAccountingComponent {
   }
   public GetLedgerGroupList() {
     try {
-      if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-        this.ledgerGroupList = new Array<ledgerGroupModel>();//mumbai-team-june2021-danphe-accounting-cache-change
-        this.ledgerGroupList = this.accountingService.accCacheData.LedgerGroups//mumbai-team-june2021-danphe-accounting-cache-change
+      if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+        this.ledgerGroupList = new Array<ledgerGroupModel>();//mumbai-team-june2021-dsf-accounting-cache-change
+        this.ledgerGroupList = this.accountingService.accCacheData.LedgerGroups//mumbai-team-june2021-dsf-accounting-cache-change
       }
     } catch (ex) {
       this.ShowCatchErrMessage(ex);
@@ -218,8 +218,8 @@ export class TransferToAccountingComponent {
   }
   GetCostCenterList() {
     try {
-      if (!!this.accountingService.accCacheData.CostCenters && this.accountingService.accCacheData.CostCenters.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-        this.costCenterList = this.accountingService.accCacheData.CostCenters;//mumbai-team-june2021-danphe-accounting-cache-change
+      if (!!this.accountingService.accCacheData.CostCenters && this.accountingService.accCacheData.CostCenters.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+        this.costCenterList = this.accountingService.accCacheData.CostCenters;//mumbai-team-june2021-dsf-accounting-cache-change
         if (this.costCenterList && this.costCenterList.length > 0) {
           var defaultCostCenter = this.costCenterList.filter(cc => cc.IsDefault === true);
           if (defaultCostCenter.length > 0) {
@@ -237,7 +237,7 @@ export class TransferToAccountingComponent {
     try {
       this.accountingBLService.GetLedgerMappingDetails()
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.ledgerMappingDetail = res.Results;
           }
         });
@@ -337,7 +337,7 @@ export class TransferToAccountingComponent {
       let unselectedItems = this.itemList.filter(a => a.IsSelected != true);
       this.accountingBLService.PostTxnListToACC(this.postData)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results != null) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results != null) {
             this.loading = false;
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['record transfered to accounting']);
             this.itemList = new Array<any>();
@@ -345,7 +345,7 @@ export class TransferToAccountingComponent {
             this.saveDataPopup = false;
             this.Clear();
           }
-          else if (res.Status === ENUM_DanpheHTTPResponseText.Failed) {
+          else if (res.Status === ENUM_DsfHTTPResponseText.Failed) {
             this.loading = false;
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ['There is problem, please try again']);
           }
@@ -441,7 +441,7 @@ export class TransferToAccountingComponent {
       this.pendingtxnList = new Array<any>();
       this.accountingBLService.LoadTxnDates(this.fromDate, this.toDate, this.sectionId)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             if (res.Results.length > 0) {
               this.pendingtxnList = res.Results.sort((a, b) => {
                 return moment(moment(a.TransactionDate).format(ENUM_DateTimeFormat.Year_Month_Day)).diff(moment(b.TransactionDate).format(ENUM_DateTimeFormat.Year_Month_Day));
@@ -533,8 +533,8 @@ export class TransferToAccountingComponent {
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     let documentContent = "<html><head>";
-    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head>';
     documentContent += '<body onload="window.print()">' + printContents + '</body></html>'
@@ -560,7 +560,7 @@ export class TransferToAccountingComponent {
         this.accountingBLService.GetInventoryItemsForTransferToACC(this.selectedDate, this.fiscalYearId)
           .finally(() => { this.coreService.loading = false; })
           .subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               if (res.Results.data !== 0 && res.Results.data.length > 0) {
                 this.changeDetectorRef.detectChanges();
                 this.itemList = res.Results.data;
@@ -600,7 +600,7 @@ export class TransferToAccountingComponent {
         this.accountingBLService.GetBilTxnItemsForTransferToACC(this.selectedDate, this.fiscalYearId)
           .finally(() => { this.coreService.loading = false; })
           .subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               if (res.Results.data !== 0 && res.Results.data.length > 0) {
                 this.changeDetectorRef.detectChanges();
                 this.itemList = res.Results.data;
@@ -646,7 +646,7 @@ export class TransferToAccountingComponent {
         this.accountingBLService.GetPharmItemsForTransferToACC(this.selectedDate, this.fiscalYearId)
           .finally(() => { this.coreService.loading = false; })
           .subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               if (res.Results.data !== 0 && res.Results.data.length > 0) {
                 this.changeDetectorRef.detectChanges();
                 this.itemList = res.Results.data;
@@ -664,7 +664,7 @@ export class TransferToAccountingComponent {
                 this.loadingScreen = false;
               }
             }
-            // else if (res.Status === ENUM_DanpheHTTPResponses.Failed && res.Results.length > 0) {
+            // else if (res.Status === ENUM_DsfHTTPResponses.Failed && res.Results.length > 0) {
             //   this.unavailableLedgerList = res.Results;
             //   this.showunavailableList = true;
             //   this.loadingScreen = false;
@@ -683,7 +683,7 @@ export class TransferToAccountingComponent {
         this.accountingBLService.GetIncentivesForTransferToACC(this.selectedDate, this.fiscalYearId)
           .finally(() => { this.coreService.loading = false; })
           .subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               if (res.Results.data !== 0 && res.Results.data.length > 0) {
                 this.changeDetectorRef.detectChanges();
                 this.itemList = res.Results.data;
@@ -716,9 +716,9 @@ export class TransferToAccountingComponent {
 
   public GetTransferData(itemList: Array<any>) {
     try {
-      if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length) {//mumbai-team-june2021-danphe-accounting-cache-change
+      if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length) {//mumbai-team-june2021-dsf-accounting-cache-change
         this.ledgerList = new Array<LedgerModel>();
-        this.ledgerList = this.accountingService.accCacheData.LedgersALL;//mumbai-team-june2021-danphe-accounting-cache-change
+        this.ledgerList = this.accountingService.accCacheData.LedgersALL;//mumbai-team-june2021-dsf-accounting-cache-change
         if (itemList.length > 0) {
           itemList.forEach(a => {
             a.TransactionDate = moment(a.TransactionDate).format(ENUM_DateTimeFormat.Year_Month_Day);
@@ -850,7 +850,7 @@ export class TransferToAccountingComponent {
               .subscribe(res => {
                 //if (res.Status == "OK") {
                 //  this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['record transfered to accounting']);
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                   this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['record transfered to accounting']);
                   //this.spliceDateList(this.selectedDate);
                   //this.Clear();

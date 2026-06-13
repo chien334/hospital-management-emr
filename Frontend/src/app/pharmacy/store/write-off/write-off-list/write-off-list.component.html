@@ -4,8 +4,8 @@
 </div>
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="writeOffListGridColumns" [grid-data]="writeOffList" (grid-actions)="WriteOffGridAction($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="writeOffListGridColumns" [grid-data]="writeOffList" (grid-actions)="WriteOffGridAction($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings">
+    </dsf-grid>
   </div>
 </div>
 <!--@*Model Popup Window*@-->
@@ -29,7 +29,7 @@
                 <div class="table-responsive">
                   <div class="left">
                     <p class="no-margin" style="text-align:left;">
-                      <strong>{{ 'PHARMACY.WRITEOFF_DATE' | translate }}: {{WriteOffdata.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</strong>
+                      <strong>{{ 'PHARMACY.WRITEOFF_DATE' | translate }}: {{WriteOffdata.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</strong>
                     </p>
                   </div><br>
                   <div class="left">
@@ -114,7 +114,7 @@
                       {{ 'PHARMACY.USER' | translate }} : {{WriteOffdata.UserName}}
                     </div>
                     <div class="right" style="">
-                      {{ 'COMMON.TIME' | translate }}: {{WriteOffdata.CreatedOn | DanpheDateTime:'format':'HH:mm'}}
+                      {{ 'COMMON.TIME' | translate }}: {{WriteOffdata.CreatedOn | DsfDateTime:'format':'HH:mm'}}
                     </div>
                   </div>
 

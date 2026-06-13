@@ -96,9 +96,9 @@
                         <label class="control-label col-md-5 col-md-offset-1">{{ 'FIXED_ASSETS.WARRANTY_EXPIRY_DATE' | translate }}
                           <sup>*</sup><b>:</b></label>
                         <div class="col-md-5">
-                          <danphe-date-picker [CalendarTypes]="'np,en'" formControlName="WarrantyExpiryDate"
+                          <dsf-date-picker [CalendarTypes]="'np,en'" formControlName="WarrantyExpiryDate"
                             [(ngModel)]="selAssetForEdit.WarrantyExpiryDate" [allow-future-date]="true"
-                            style="width:100px;"></danphe-date-picker>
+                            style="width:100px;"></dsf-date-picker>
                         </div>
                       </div>
                     </div>
@@ -112,7 +112,7 @@
                       <div class="row">
                         <label class="control-label col-md-5 col-md-offset-1"> {{ 'FIXED_ASSETS.LOCATION_CITY_BRANCH' | translate }}<sup>*</sup><b>:</b></label>
                         <div class="col-md-5">
-                          <input danphe-auto-complete class="form-control" [(ngModel)]="selectedAssetLocation"
+                          <input dsf-auto-complete class="form-control" [(ngModel)]="selectedAssetLocation"
                             [source]="fixedassetlocations" [placeholder]="'FIXED_ASSETS.LOCATION_NAME' | translate" max-num-list="10"
                             formControlName="AssetsLocation" display-property-name="LocationName"
                             value-property-name="LocationName" [list-formatter]="myListFormatter" />
@@ -179,7 +179,7 @@
                         <div class="row">
                           <label class="control-label col-md-5 col-md-offset-1"> {{ 'FIXED_ASSETS.SUBSTORE' | translate }} <sup>*</sup><b>:</b></label>
                           <div class="col-md-5">
-                            <input danphe-auto-complete class="form-control" [(ngModel)]="selectedSubstore"
+                            <input dsf-auto-complete class="form-control" [(ngModel)]="selectedSubstore"
                               [source]="substoreList" (focusout)="SelectStoreFromSearchBox()"
                               [placeholder]="'FIXED_ASSETS.SELECT_SUBSTORE' | translate" max-num-list="10" formControlName="StoreId"
                               display-property-name="Name" value-property-name="StoreId"
@@ -194,7 +194,7 @@
                         <div class="row">
                           <label class="control-label col-md-5 col-md-offset-1"> {{ 'FIXED_ASSETS.ASSET_HOLDER' | translate }} <b>:</b></label>
                           <div class="col-md-5">
-                            <input danphe-auto-complete class="form-control" [(ngModel)]="selectedAssetHolder"
+                            <input dsf-auto-complete class="form-control" [(ngModel)]="selectedAssetHolder"
                               [source]="employeeList" (focusout)="SelectEmployeeFromSearchBox()"
                               [placeholder]="'FIXED_ASSETS.SELECT_ASSET_HOLDER_NAME' | translate" max-num-list="10" formControlName="AssetHolderId"
                               display-property-name="FullName" value-property-name="EmployeeId"

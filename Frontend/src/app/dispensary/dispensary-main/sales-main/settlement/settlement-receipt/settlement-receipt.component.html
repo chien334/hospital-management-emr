@@ -27,7 +27,7 @@
                   </div>
                   <div class="right">
                     <p class="no-margin" style="text-align:right">
-                      Date: {{SettlementInfo.SettlementDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                      Date: {{SettlementInfo.SettlementDate | DsfDateTime:'format':'YYYY-MM-DD'}}
                       {{localDate}}
                     </p>
                   </div>
@@ -38,7 +38,7 @@
 
                   </div>
                   <div class="right" style="width:31%">
-                    <p class="no-margin" style="text-align:right"> Age/Sex : {{PatientInfo.DateOfBirth | DanpheDateTime:'age'
+                    <p class="no-margin" style="text-align:right"> Age/Sex : {{PatientInfo.DateOfBirth | DsfDateTime:'age'
                       }}/{{PatientInfo.Gender}}</p>
                   </div>
                 </div>
@@ -87,7 +87,7 @@
               {{i+1}}
             </td>
             <td>
-              {{txn.CreateOn | DanpheDateTime:'format':'YYYY-MM-DD'}}
+              {{txn.CreateOn | DsfDateTime:'format':'YYYY-MM-DD'}}
             </td>
             <td>
               {{txn.InvoiceCode}}{{txn.InvoicePrintId}}
@@ -165,7 +165,7 @@
                       <td> {{i+1}} </td>
                       <td> Sales </td>
                       <td> {{ txn.ReceiptNo }} </td>
-                      <td> {{txn.ReceiptDate | DanpheDateTime:'format':'YYYY-MM-DD'}} </td>
+                      <td> {{txn.ReceiptDate | DsfDateTime:'format':'YYYY-MM-DD'}} </td>
                       <td> {{txn.Amount | number : "1.4-4" }} </td>
                     </tr>
                     <tr *ngIf="SalesInfo && SalesInfo.length">
@@ -186,7 +186,7 @@
                       <td> {{i+1}} </td>
                       <td> Sales Return </td>
                       <td> {{ ret.ReceiptNo }} </td>
-                      <td> {{ret.ReceiptDate | DanpheDateTime:'format':'YYYY-MM-DD'}} </td>
+                      <td> {{ret.ReceiptDate | DsfDateTime:'format':'YYYY-MM-DD'}} </td>
                       <td> {{ret.Amount | number : "1.4-4" }} </td>
                     </tr>
                     <tr *ngIf="SalesReturnInfo && SalesReturnInfo.length">
@@ -228,7 +228,7 @@
                       <td> {{i+1}} </td>
                       <td> {{ dep.TransactionType}} </td>
                       <td> {{ dep.ReceiptNo }} </td>
-                      <td> {{dep.ReceiptDate | DanpheDateTime:'format':'YYYY-MM-DD'}} </td>
+                      <td> {{dep.ReceiptDate | DsfDateTime:'format':'YYYY-MM-DD'}} </td>
                       <td> {{dep.DepositAmount | number : "1.4-4"}} </td>
                     </tr>
                   </table>
@@ -245,7 +245,7 @@
                       <td> {{i+1}} </td>
                       <td> Cash Discount Return </td>
                       <td> {{ row.ReceiptNo }} </td>
-                      <td> {{row.ReceiptDate | DanpheDateTime:'format':'YYYY-MM-DD'}} </td>
+                      <td> {{row.ReceiptDate | DsfDateTime:'format':'YYYY-MM-DD'}} </td>
                       <td> {{row.CashDiscountReceived | number : "1.4-4"}} </td>
                     </tr>
                   </table>
@@ -262,7 +262,7 @@
                   <div class="left">
                     <p class="no-margin" style="text-align:left">Processed By</p>
                     <p class="no-margin" style="text-align:left">{{SettlementInfo.BillingUser}}</p>
-                    <p style="text-align:left">Time: {{SettlementInfo.SettlementDate | DanpheDateTime:'format':'HH:mm'}}</p>
+                    <p style="text-align:left">Time: {{SettlementInfo.SettlementDate | DsfDateTime:'format':'HH:mm'}}</p>
                   </div>
                   <div class="right" style="width:50%;">
                     <p class="no-margin" style="text-align:left">Acknowledged By</p>

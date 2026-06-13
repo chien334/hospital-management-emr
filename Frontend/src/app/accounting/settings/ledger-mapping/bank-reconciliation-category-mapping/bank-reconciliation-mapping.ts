@@ -2,9 +2,9 @@
 import { Component } from "@angular/core";
 import { AccountingService } from "../../../../accounting/shared/accounting.service";
 import { SubLedger_DTO } from "../../../../accounting/transactions/shared/DTOs/subledger-dto";
-import { DanpheHTTPResponse } from "../../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../../shared/common-models";
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
-import { ENUM_ACC_DrCr, ENUM_DanpheHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
+import { ENUM_ACC_DrCr, ENUM_DsfHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
 import { BankReconciliationCategory } from "../../../bank-reconciliation/reconcile-bank-transactions/bank-reconciliation.model";
 import { AccountingSettingsBLService } from "../../shared/accounting-settings.bl.service";
 import { LedgerModel } from "../../shared/ledger.model";
@@ -51,14 +51,14 @@ export class BankReconciliationCategoryLedgerMappingComponent {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Warning, ["Please select Ledger or Sub-Ledger from the list."]);
             } else {
                 this.accountingSettingsBLService.UpdateBankReconciliationCategory(selectedBankReconciliationData).subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status = ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status = ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Bank Reconciliation Category is successfully mapped to the ledger."]);
                         } else {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, ["Unable to map selected Ledger."]);
                         }
                     },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, [err.ErrorMessage]);
                     },
                     () => {
@@ -122,8 +122,8 @@ export class BankReconciliationCategoryLedgerMappingComponent {
 
     getBankReconciliationCategory() {
         this.accountingSettingsBLService.GetBankReconciliationCategory()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.bankReconciliationCategoryModeLedgerList = new Array<BankReconciliationCategory>();
                     this.bankReconciliationCategoryModeLedgerList = res.Results;
                     this.bankReconciliationCategoryModeLedgerList = this.bankReconciliationCategoryModeLedgerList.map(obj => ({ ...obj, IsClearable: (obj.MappedLedgerId == null && obj.SubLedgerId == null) ? true : false }));

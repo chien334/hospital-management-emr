@@ -132,14 +132,14 @@
 <!--Show SummaryView End-->
 <!--Show DischargeSummaryAdd Start-->
 <div *ngIf="showDischargeSummary" tabindex="1" [@enterAnimation]>
-    <form [formGroup]="CurrentDischargeSummary.DischargeSummaryValidator" class="form-horizontal danphe_horizontal_form">
+    <form [formGroup]="CurrentDischargeSummary.DischargeSummaryValidator" class="form-horizontal dsf_horizontal_form">
         <div class="form-body no-padding">
             <div *ngIf="!fromClinical">
                 <div class="left-panel">
                     <div class="">
                         <h1 class="panel-heading">
                             <i class="fa fa-user"></i>{{selectedDischarge?.Name}}
-                            <label>{{selectedDischarge?.DateOfBirth | DanpheDateTime:'age'
+                            <label>{{selectedDischarge?.DateOfBirth | DsfDateTime:'age'
                                 }}/{{selectedDischarge?.Gender}}</label>
                             <span>({{selectedDischarge?.PatientCode}})</span>
                         </h1>
@@ -181,7 +181,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="patient-hdr-label">
-                                    <b> Admitted On </b>&nbsp;:&nbsp;{{selectedDischarge?.AdmittedDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp;
+                                    <b> Admitted On </b>&nbsp;:&nbsp;{{selectedDischarge?.AdmittedDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp;
                                     <strong>{{selectedDischarge?.AdmittedDate | nepaliDate}}</strong>
                                 </p>
                             </div>
@@ -197,7 +197,7 @@
                             </div>
                             <div class="col-md-4">
                                 <p class="patient-hdr-label">
-                                    <b> Discharged On </b> &nbsp;:&nbsp;{{selectedDischarge?.DischargedDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} AD &nbsp;
+                                    <b> Discharged On </b> &nbsp;:&nbsp;{{selectedDischarge?.DischargedDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} AD &nbsp;
                                     <strong>{{selectedDischarge?.DischargedDate | nepaliDate}}</strong>
                                 </p>
                             </div>
@@ -294,14 +294,14 @@
                           value="{{emp.EmployeeId}}">
                       {{emp.Salutation}}.{{emp.FirstName}} {{emp.MiddleName}} {{emp.LastName}}
                   </option></select><span class="color-red" *ngIf="CurrentDischargeSummary.IsDirty('ConsultantId')" [hidden]="CurrentDischargeSummary.IsValidCheck('ConsultantId','required')">Consultant is required</span></div></div>-->
-                                <!-- <div class="form-group"><label class="control-label col-md-12">Consultant<b class="color-red"> *</b><b style="float: right">:</b></label></div><div class="form-group col-md-12" *ngFor="let cons of consultants;let i=index"><div class="col-md-8"><input danphe-auto-complete class="form-control" [(ngModel)]="consultant" [source]="providerList" [list-formatter]="myListFormatter" (focusout)="focusOut()" placeholder="Consultant name" display-property-name="FullName" value-property-name="null" (valueChanged)="loadConsultant()" min-chars="0" max-num-list="10" formControlName="ConsultantId" /><span class="color-red" *ngIf="CurrentDischargeSummary.IsDirty('ConsultantId')" [hidden]="CurrentDischargeSummary.IsValidCheck('ConsultantId','required')">Consultant is
+                                <!-- <div class="form-group"><label class="control-label col-md-12">Consultant<b class="color-red"> *</b><b style="float: right">:</b></label></div><div class="form-group col-md-12" *ngFor="let cons of consultants;let i=index"><div class="col-md-8"><input dsf-auto-complete class="form-control" [(ngModel)]="consultant" [source]="providerList" [list-formatter]="myListFormatter" (focusout)="focusOut()" placeholder="Consultant name" display-property-name="FullName" value-property-name="null" (valueChanged)="loadConsultant()" min-chars="0" max-num-list="10" formControlName="ConsultantId" /><span class="color-red" *ngIf="CurrentDischargeSummary.IsDirty('ConsultantId')" [hidden]="CurrentDischargeSummary.IsValidCheck('ConsultantId','required')">Consultant is
                       required</span></div><div class="col-md-1" style="margin-right: 10px;"><input type="button" style="height: 25px; width: 25px; padding: 2px;" class="btn btn-info btn-sm" title="Add new Medicine" (click)="AddConsultant(i)" value="+" /></div><div class="col-md-1"><input type="button" style="border-radius: 1px; height: 25px; width: 25px; padding: 2px;" title="Delete Medicine" class="btn btn-danger btn-sm" (click)="RemoveMedicine(i,0)" value="X" /></div></div> -->
                                 <div class="form-group">
                                     <label class="control-label col-md-5">Consultant <b class="color-red"> *</b>
                                         <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
-                                        <input danphe-auto-complete class="form-control" [(ngModel)]="consultant" [source]="providerList"
+                                        <input dsf-auto-complete class="form-control" [(ngModel)]="consultant" [source]="providerList"
                                                [list-formatter]="myListFormatter" (focusout)="focusOut();AddConsultant()"
                                                placeholder="Consultant name" display-property-name="FullName" value-property-name="null"
                                                (valueChanged)="loadConsultant()" min-chars="0" max-num-list="10"
@@ -321,7 +321,7 @@
                                         <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
-                                        <input danphe-auto-complete class="form-control" (focusout)="focusOut()" [(ngModel)]="drIncharge"
+                                        <input dsf-auto-complete class="form-control" (focusout)="focusOut()" [(ngModel)]="drIncharge"
                                                [source]="providerList" [list-formatter]="myListFormatter" placeholder="Doctor Incharge name"
                                                display-property-name="FullName" value-property-name="null" (valueChanged)="loadDrIncharge()"
                                                (focusout)="validateDrIncharge()" min-chars="0" max-num-list="10" formControlName="DoctorInchargeId" />
@@ -339,7 +339,7 @@
                                     <label class="control-label col-md-5">Anesthetists <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
-                                        <input danphe-auto-complete class="form-control" [(ngModel)]="anasthetists" [source]="AnasthetistsList"
+                                        <input dsf-auto-complete class="form-control" [(ngModel)]="anasthetists" [source]="AnasthetistsList"
                                                [list-formatter]="ListFormatter" placeholder="Anasthetists name" display-property-name="FullName"
                                                value-property-name="null" (valueChanged)="loadAnasthetists()" (focusout)="focusOut()" min-chars="0"
                                                max-num-list="10" [ngModelOptions]="{standalone: true}" />
@@ -349,7 +349,7 @@
                                     <label class="control-label col-md-5">Resident Dr <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
-                                        <input danphe-auto-complete class="form-control" [(ngModel)]="residenceDr" [source]="providerList"
+                                        <input dsf-auto-complete class="form-control" [(ngModel)]="residenceDr" [source]="providerList"
                                                [list-formatter]="myListFormatter" placeholder="Residence Dr name" display-property-name="FullName"
                                                value-property-name="null" (valueChanged)="loadResidenceDr()" (focusout)="focusOut()" min-chars="0"
                                                max-num-list="10" [ngModelOptions]="{standalone: true}" />
@@ -373,7 +373,7 @@
                                     </label>
                                     <div class="col-md-7">
                                         <!-- <div class="form-group" style="padding:10px;"> -->
-                                        <input danphe-auto-complete autocomplete="off" class="form-control" [(ngModel)]="diagnosis"
+                                        <input dsf-auto-complete autocomplete="off" class="form-control" [(ngModel)]="diagnosis"
                                                [source]="icd10List" [list-formatter]="DignosisFormatter" (focusout)="focusOut();MakeDiagnosisList();"
                                                placeholder="Select {{icdVersionDisplay}}(s)" display-property-name="icd11Description"
                                                value-property-name="ICD10Id" (valueChanged)="loadICDs();" min-chars="0" max-num-list="10"
@@ -397,7 +397,7 @@
                                     </label>
                                     <div class="col-md-7">
                                         <!-- <div class="form-group" style="padding:10px;"> -->
-                                        <input danphe-auto-complete autocomplete="off" class="form-control" [(ngModel)]="provisonalDiagnosis"
+                                        <input dsf-auto-complete autocomplete="off" class="form-control" [(ngModel)]="provisonalDiagnosis"
                                                [source]="icd10List" [list-formatter]="DignosisFormatter"
                                                (focusout)="focusOut();MakeProvisonalDiagnosisList();"
                                                placeholder="Select {{icdVersionDisplay}}(s) for provisonal diagnosis"
@@ -715,7 +715,7 @@
                                     <label class="control-label col-md-5">CheckedBy <b style="float: right">:</b>
                                     </label>
                                     <div class="col-md-7">
-                                        <input danphe-auto-complete class="form-control" [(ngModel)]="CheckedBy" [source]="UserList"
+                                        <input dsf-auto-complete class="form-control" [(ngModel)]="CheckedBy" [source]="UserList"
                                                [list-formatter]="userListFormatter" placeholder="Checked by name" display-property-name="EmployeeName"
                                                value-property-name="null" (valueChanged)="CheckedByChanged()" (focusout)="focusOut()" min-chars="0"
                                                max-num-list="10" [ngModelOptions]="{standalone: true}" />
@@ -773,7 +773,7 @@
                                                         </table>
                                                     </td>
                                                     <td>
-                                                        <input autocomplete="off" danphe-auto-complete class="form-control" [(ngModel)]="labtest"
+                                                        <input autocomplete="off" dsf-auto-complete class="form-control" [(ngModel)]="labtest"
                                                                [source]="LabTestList" [list-formatter]="labTestFormatter" placeholder="Add New Test"
                                                                onClick="this.select();" display-property-name="LabTestName"
                                                                value-property-name="LabTestId" (focusout)="loadlabTest()" min-chars="0"

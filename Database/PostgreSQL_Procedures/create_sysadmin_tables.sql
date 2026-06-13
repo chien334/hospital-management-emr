@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS "SysAdmin_Parameters" (
     "ValueLookUpList" TEXT
 );
 
-CREATE TABLE IF NOT EXISTS "Danphe_CookieAuthInfo" (
+CREATE TABLE IF NOT EXISTS "Dsf_CookieAuthInfo" (
     "AuthId" SERIAL PRIMARY KEY,
     "Selector" BIGINT,
     "HashedToken" VARCHAR(500),

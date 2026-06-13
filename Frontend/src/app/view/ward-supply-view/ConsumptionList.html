@@ -225,10 +225,10 @@ transform: translateY(15px);
     </div>
     <div class="row" *ngIf="showComsumptionList">
       <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="consumptionListDetailsGridColumns"
+        <dsf-grid [grid-colDefaults]="consumptionListDetailsGridColumns"
           [grid-data]="consumptionListDetails"
           (grid-actions)="ConsumptionListGridAction($event)">
-        </danphe-grid>
+        </dsf-grid>
       </div>
     </div>
     <div class="popup-static portlet box portlet-fullscreen" *ngIf="showConsumpList">

@@ -9,10 +9,10 @@ import { SecurityService } from '../../../security/shared/security.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
 import { CallbackService } from '../../../shared/callback.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { BillingTransactionItem } from '../../../billing/shared/billing-transaction-item.model';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { CommonFunctions } from '../../../shared/common.functions';
 import { PatientBillingContextVM } from '../../../billing/shared/patient-billing-context-vm';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
@@ -128,7 +128,7 @@ export class PHRMCreditBillsComponent implements OnInit {
     //gets summary of all patients
     GetUnpaidTotalBills() {
         // this.pharmacyBLService.GetAllCreditSummary()
-        //     .subscribe((res: DanpheHTTPResponse) => {
+        //     .subscribe((res: DsfHTTPResponse) => {
         //         this.patientService
         //         this.provisionalBillsSummary = res.Results;
         //     });
@@ -141,7 +141,7 @@ export class PHRMCreditBillsComponent implements OnInit {
     GetPatientProvisionalItems(patientId: number, PatientVisitId?: number) {
 
         this.pharmacyBLService.GetPatientCreditItems(patientId, this.storeId, PatientVisitId)
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
                     this.allCreditItems = res.Results;
                     this.currSaleItems = this.allCreditItems;
@@ -353,7 +353,7 @@ export class PHRMCreditBillsComponent implements OnInit {
 
     //LoadPatientBillingContext(patientId) {
     //    this.billingBLService.GetPatientBillingContext(patientId)
-    //        .subscribe((res: DanpheHTTPResponse) => {
+    //        .subscribe((res: DsfHTTPResponse) => {
     //            if (res.Status == "OK") {
     //                this.currBillingContext = res.Results;
     //                this.billingService.BillingType = this.currBillingContext.BillingType;
@@ -734,8 +734,8 @@ export class PHRMCreditBillsComponent implements OnInit {
         var printContents = document.getElementById("printpage").innerHTML;
         popupWinindow = window.open('', '_blank', 'width=1600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
         popupWinindow.document.open();
-        //popupWinindow.document.write('<html><head><link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
-        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+        //popupWinindow.document.write('<html><head><link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
 
         popupWinindow.document.close();
         this.showSaleItemsPopup = false;

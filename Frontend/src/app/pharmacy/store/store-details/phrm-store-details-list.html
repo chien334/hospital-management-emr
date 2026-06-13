@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="stockDetailsGridColumns" [grid-data]="stockList" (grid-actions)="StockDetailsGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="stockDetailsGridColumns" [grid-data]="stockList" (grid-actions)="StockDetailsGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </dsf-grid>
   </div>
 </div>
 
@@ -166,7 +166,7 @@
           <div> <span class="error-msg" *ngIf="selectedItem.UpdatedQty<0"> {{ 'PHARMACY.QUANTITY_IS_NOT_VALID' | translate }} </span> <span class="error-msg" *ngIf="selectedItem.Quantity<selectedItem.UpdatedQty"> {{ 'PHARMACY.TRANSFER_QTY_SHOULD_BE_LESS_THAN' | translate }} </span> </div>
           <div class="bold col-md-6">{{ 'PHARMACY.DISPENSARY_NAME' | translate }}:</div>
           <div class="col-md-6">
-            <input danphe-auto-complete class="form-control col-md-6" [(ngModel)]="currentDispensary" [source]="dispensaryList" [list-formatter]="myDispensaryListFormatter" [placeholder]="'PHARMACY.SELECT_DISPENSARY' | translate" display-property-name="Name" value-property-name="DispensaryId" min-chars="0" max-num-list="20" onClick="this.select();" match-formatted="true" [grid-sort]="'Name'" [ngModelOptions]="{standalone: true}" />
+            <input dsf-auto-complete class="form-control col-md-6" [(ngModel)]="currentDispensary" [source]="dispensaryList" [list-formatter]="myDispensaryListFormatter" [placeholder]="'PHARMACY.SELECT_DISPENSARY' | translate" display-property-name="Name" value-property-name="DispensaryId" min-chars="0" max-num-list="20" onClick="this.select();" match-formatted="true" [grid-sort]="'Name'" [ngModelOptions]="{standalone: true}" />
           </div>
 
         </div>
@@ -203,8 +203,8 @@
               <div class="col-md-12">
                 <div class="row clearfix">
                   <div id="stock-barcode" class="text-center bar-code-wrapper">
-                    <danphe-bar-code [barcode-number]="selectedStockBarcodeNumber">
-                    </danphe-bar-code>
+                    <dsf-bar-code [barcode-number]="selectedStockBarcodeNumber">
+                    </dsf-bar-code>
                   </div>
                 </div>
               </div>

@@ -4,7 +4,7 @@ import { SecurityService } from '../../../../security/shared/security.service';
 import { ReportingItemBillingItemMappingModel } from "../../../../settings-new/shared/reporting-items-bill-item-mapping.model";
 import { ReportingItemsModel } from "../../../../settings-new/shared/reporting-items.model";
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
 import { ReportingItemServiceItemMapping_DTO } from "../../../shared/DTOs/reporting-item-service-item-mapping.dto";
 import { SettingsBLService } from '../../../shared/settings.bl.service';
 
@@ -44,7 +44,7 @@ export class ReportingItemAndBillItemMapComponent {
   GetBillingItemList() {
     this.settingsBLService.GetBillingItemList(false)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.billingItemList = res.Results;
           this.GetReportingItemBillItemList(this.reportingItemsId);
         } else {
@@ -60,7 +60,7 @@ export class ReportingItemAndBillItemMapComponent {
   GetReportingItemBillItemList(reportingItemId: number) {
     this.settingsBLService.GetReportingItemBillItemList(reportingItemId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.existingReportingItemBillItemList = res.Results;
           this.SelectExistingFromList();
 
@@ -179,7 +179,7 @@ export class ReportingItemAndBillItemMapComponent {
       if (addList.length) {
         this.settingsBLService.AddReportingItemsAndBillItemMapping(addList)
           .subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               if (this.existingModifiedReportingItemBillItemInList.length) {
                 this.Update();
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Added and Updated"]);
@@ -208,7 +208,7 @@ export class ReportingItemAndBillItemMapComponent {
   Update() {
     this.settingsBLService.UpdateReportingItemAndBillItemMapping(this.existingModifiedReportingItemBillItemInList)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.callbackManage.emit();
         }
         else {

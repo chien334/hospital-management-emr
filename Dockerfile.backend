@@ -3,27 +3,27 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy Solution and Csproj files
-COPY ["Code/Solutions/DanpheEMR.sln", "Code/Solutions/"]
-COPY ["Code/Websites/DanpheEMR/DanpheEMR.csproj", "Code/Websites/DanpheEMR/"]
-COPY ["Code/Components/DanpheEMR.DalLayer/DanpheEMR.DalLayer.csproj", "Code/Components/DanpheEMR.DalLayer/"]
-COPY ["Code/Components/DanpheEMR.ServerModel/DanpheEMR.ServerModel.csproj", "Code/Components/DanpheEMR.ServerModel/"]
-COPY ["Code/Components/DanpheEMR.Security/DanpheEMR.Security.csproj", "Code/Components/DanpheEMR.Security/"]
-COPY ["Code/Components/DanpheEMR.Core/DanpheEMR.Core.csproj", "Code/Components/DanpheEMR.Core/"]
-COPY ["Code/Components/DanpheEMR.Sync/DanpheEMR.Sync.csproj", "Code/Components/DanpheEMR.Sync/"]
-COPY ["Code/Components/DanpheEMR.Jobs/DanpheEMR.Jobs.csproj", "Code/Components/DanpheEMR.Jobs/"]
-COPY ["Code/Components/DanpheEMR.AccTransfer/DanpheEMR.AccTransfer.csproj", "Code/Components/DanpheEMR.AccTransfer/"]
-COPY ["Code/Utilities/TestingPlayGroundConsole/DanpheEMR.TestingPlayGroundConsole.csproj", "Code/Utilities/TestingPlayGroundConsole/"]
-COPY ["Code/Utilities/DanpheEMR.Tests/DanpheEMR.Tests.csproj", "Code/Utilities/DanpheEMR.Tests/"]
+COPY ["Code/Solutions/DsfEMR.sln", "Code/Solutions/"]
+COPY ["Code/Websites/DsfEMR/DsfEMR.csproj", "Code/Websites/DsfEMR/"]
+COPY ["Code/Components/DsfEMR.DalLayer/DsfEMR.DalLayer.csproj", "Code/Components/DsfEMR.DalLayer/"]
+COPY ["Code/Components/DsfEMR.ServerModel/DsfEMR.ServerModel.csproj", "Code/Components/DsfEMR.ServerModel/"]
+COPY ["Code/Components/DsfEMR.Security/DsfEMR.Security.csproj", "Code/Components/DsfEMR.Security/"]
+COPY ["Code/Components/DsfEMR.Core/DsfEMR.Core.csproj", "Code/Components/DsfEMR.Core/"]
+COPY ["Code/Components/DsfEMR.Sync/DsfEMR.Sync.csproj", "Code/Components/DsfEMR.Sync/"]
+COPY ["Code/Components/DsfEMR.Jobs/DsfEMR.Jobs.csproj", "Code/Components/DsfEMR.Jobs/"]
+COPY ["Code/Components/DsfEMR.AccTransfer/DsfEMR.AccTransfer.csproj", "Code/Components/DsfEMR.AccTransfer/"]
+COPY ["Code/Utilities/TestingPlayGroundConsole/DsfEMR.TestingPlayGroundConsole.csproj", "Code/Utilities/TestingPlayGroundConsole/"]
+COPY ["Code/Utilities/DsfEMR.Tests/DsfEMR.Tests.csproj", "Code/Utilities/DsfEMR.Tests/"]
 
 # Restore Nuget Packages
-RUN dotnet restore "Code/Solutions/DanpheEMR.sln"
+RUN dotnet restore "Code/Solutions/DsfEMR.sln"
 
 # Copy full source
 COPY . .
 
 # Build and Publish EMR Web Project
-WORKDIR "/src/Code/Websites/DanpheEMR"
-RUN dotnet publish "DanpheEMR.csproj" -c Release -o /app/publish
+WORKDIR "/src/Code/Websites/DsfEMR"
+RUN dotnet publish "DsfEMR.csproj" -c Release -o /app/publish
 
 # Runtime Stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
@@ -31,4 +31,4 @@ WORKDIR /app
 COPY --from=build /app/publish .
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://*:8080
-ENTRYPOINT ["dotnet", "DanpheEMR.dll"]
+ENTRYPOINT ["dotnet", "DsfEMR.dll"]

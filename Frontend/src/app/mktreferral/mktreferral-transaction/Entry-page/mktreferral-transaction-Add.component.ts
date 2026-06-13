@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import * as _ from 'lodash';
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { ReferralCommission_DTO } from "../../Shared/DTOs/referral-commission.dto";
 import { ReferralParty_DTO } from "../../Shared/DTOs/referral-party.dto";
 import { ReferralScheme_DTO } from "../../Shared/DTOs/referral-scheme.dto";
@@ -216,8 +216,8 @@ export class MarketingReferralAddTransactionComponent {
                 this.mktReferralBLService
                     .SaveNewReferral(this.referralCommissionObj)
                     .subscribe(
-                        (res: DanpheHTTPResponse) => {
-                            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                        (res: DsfHTTPResponse) => {
+                            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                                 if (res.Results) {
                                     this.messageBoxService.showMessage(
                                         ENUM_MessageBox_Status.Success,
@@ -235,7 +235,7 @@ export class MarketingReferralAddTransactionComponent {
                                 this.loading = false;
                             }
                         },
-                        (err: DanpheHTTPResponse) => {
+                        (err: DsfHTTPResponse) => {
                             this.loading = false;
                             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [
                                 `Error: ${err.ErrorMessage}`,
@@ -257,8 +257,8 @@ export class MarketingReferralAddTransactionComponent {
 
     DeleteReferralCommission(ReferralCommissionId: number) {
         this.mktReferralBLService.DeleteReferralCommission(ReferralCommissionId).subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
 
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Commission Deleted Successfully']);
                     let index = this.alreadyAddedCommissionList.findIndex(a => a.ReferralCommissionId === ReferralCommissionId);
@@ -271,7 +271,7 @@ export class MarketingReferralAddTransactionComponent {
                     ]);
                 }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [
                     `Error: ${err.ErrorMessage}`,
                 ]);
@@ -281,8 +281,8 @@ export class MarketingReferralAddTransactionComponent {
 
     GetBillDetails(BillingTransactionId: number) {
         this.mktReferralBLService.GetBillDetails(this.selectedRowData.BillingTransactionId).subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.billDetails = res.Results;
                     } else {
@@ -294,7 +294,7 @@ export class MarketingReferralAddTransactionComponent {
                     ]);
                 }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [
                     `Error: ${err.ErrorMessage}`,
                 ]);
@@ -303,8 +303,8 @@ export class MarketingReferralAddTransactionComponent {
     }
     GetReferralScheme() {
         this.mktReferralBLService.GetReferralScheme().subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.referralSchemeList = res.Results;
                     } else {
@@ -316,7 +316,7 @@ export class MarketingReferralAddTransactionComponent {
                     ]);
                 }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [
                     `Error: ${err.ErrorMessage}`,
                 ]);
@@ -325,8 +325,8 @@ export class MarketingReferralAddTransactionComponent {
     }
     GetReferringParty() {
         this.mktReferralBLService.GetReferringParty().subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.referringPartyList = res.Results.filter(p => p.IsActive === true);
                     } else {
@@ -338,7 +338,7 @@ export class MarketingReferralAddTransactionComponent {
                     ]);
                 }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [
                     `Error: ${err.ErrorMessage}`,
                 ]);
@@ -347,8 +347,8 @@ export class MarketingReferralAddTransactionComponent {
     }
     GetAlreadyAddedCommission(BillingTransactionId: number) {
         this.mktReferralBLService.GetAlreadyAddedCommission(this.selectedRowData.BillingTransactionId).subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.alreadyAddedCommission = res.Results;
                         this.alreadyAddedCommissionList = this.alreadyAddedCommission;
@@ -359,7 +359,7 @@ export class MarketingReferralAddTransactionComponent {
                     ]);
                 }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [
                     `Error: ${err.ErrorMessage}`,
                 ]);

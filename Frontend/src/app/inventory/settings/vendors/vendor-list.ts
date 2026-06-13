@@ -4,8 +4,8 @@ import { ChangeDetectorRef, Component } from "@angular/core";
 import { InventorySettingBLService } from "../shared/inventory-settings.bl.service";
 import { VendorsModel } from '../shared/vendors.model';
 
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import { CoreService } from "../../../core/shared/core.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";

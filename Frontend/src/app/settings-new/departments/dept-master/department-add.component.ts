@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { OPDServiceDetails_DTO } from "../../shared/DTOs/opd-service-details.dto";
 import { OPDServiceItem_DTO } from "../../shared/DTOs/opd-service-item.dto";
 import { Department } from '../../shared/department.model';
@@ -77,8 +77,8 @@ export class DepartmentAddComponent {
   }
   public GetDepartments(): void {
     this.settingsBLService.GetDepartments()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.deptList = res.Results;
             CommonFunctions.SortArrayOfObjects(this.deptList, "DepartmentName");//this sorts the departmentlist by DepartmentName.
@@ -119,8 +119,8 @@ export class DepartmentAddComponent {
     if (this.CurrentDepartment.IsValidCheck(undefined, undefined) && this.isServiceItemsDetailsValid) {
       this.settingsBLService.AddDepartment(this.CurrentDepartment)
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.showMessageBox(ENUM_MessageBox_Status.Success, "Department Added");
               this.CurrentDepartment = new Department();
               this.CallBackAddDepartment(res);
@@ -157,8 +157,8 @@ export class DepartmentAddComponent {
       }
       this.settingsBLService.UpdateDepartment(this.CurrentDepartment)
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
               let dept = this.coreService.Masters.Departments.find(dept => dept.DepartmentId === res.Results.DepartmentId);
               if (dept) {
                 dept = Object.assign(dept, res.Results)
@@ -199,8 +199,8 @@ export class DepartmentAddComponent {
   }
 
   //after adding department is successfully added  then this function is called.
-  public CallBackAddDepartment(res: DanpheHTTPResponse): void {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+  public CallBackAddDepartment(res: DsfHTTPResponse): void {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       for (let dept of this.completeDeptList) {
         if (dept.DepartmentId === res.Results.ParentDepartmentId) {
           res.Results.ParentDepartmentName = dept.DepartmentName;
@@ -319,8 +319,8 @@ export class DepartmentAddComponent {
   public GetOPDServiceItems(): void {
     try {
       this.settingsBLService.GetOPDServiceItems()
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results && res.Results.length) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results && res.Results.length) {
             this.opdServiceItems = res.Results;
             if (this.opdServiceItems && this.update) {
               this.AssignSelectedOpdServiceItems();

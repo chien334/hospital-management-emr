@@ -10,7 +10,7 @@ import { ReportingService } from '../../../reporting/shared/reporting-service';
 import { SharedModule } from '../../../shared/shared.module';
 import { GovInsuranceDLService } from '../shared/gov-ins.dl.service';
 import { GovInsuranceBLService } from '../shared/gov-ins.bl.service';
-import { DanpheAutoCompleteModule } from '../../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../../shared/dsf-autocomplete';
 
 
 export const InsBillingReportsRoutes =
@@ -33,7 +33,7 @@ export const InsBillingReportsRoutes =
         ReactiveFormsModule,
         RouterModule.forChild(InsBillingReportsRoutes),
         FormsModule,
-        DanpheAutoCompleteModule], providers: [
+        DsfAutoCompleteModule], providers: [
         GovInsuranceDLService,
         GovInsuranceBLService,
         ReportingService

@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { ENUM_DanpheHTTPResponses } from "../../../shared/shared-enums";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { ENUM_DsfHTTPResponses } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMPatientConsumption } from "../shared/phrm-patient-consumption.model";
 
@@ -23,8 +23,8 @@ export class PHRMPatientConsumptionFinalizeComponent {
         this.GetPatientConsumptionFinalizeList();
     }
     GetPatientConsumptionFinalizeList() {
-        this.pharmacyBLService.GetFinalizePatientConsumptions().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetFinalizePatientConsumptions().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.patientConsumptions = res.Results;
             }
         });
@@ -45,8 +45,8 @@ export class PHRMPatientConsumptionFinalizeComponent {
         this.ShowFinalizePrintPage = false;
     }
     GetPatientConsumptionFinalizeInvoice(InvoicePrintNo: number) {
-        this.pharmacyBLService.GetPatientConsumptionFinalizeInvoice(InvoicePrintNo).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetPatientConsumptionFinalizeInvoice(InvoicePrintNo).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.IsFinalizeInvoice = true;
                 this.PatientConsumption = res.Results.PatientConsumption;
                 this.PatientConsumption.PatientConsumptionItems = res.Results.PatientConsumptionItems;

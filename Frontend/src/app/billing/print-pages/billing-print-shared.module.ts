@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BillingBLService } from '../shared/billing.bl.service';
 import { BillingDLService } from '../shared/billing.dl.service';
 
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 import { DepositReceiptComponent } from './deposit-slip/bil-print-deposit-slip.component';
 import { BIL_Print_Invoice_Discharge_Component } from './ip-discharge-invoice/bil-print-invoice-discharge.component';
@@ -37,7 +37,7 @@ import { Bil_Print_Invoice_DefaultComponent } from './op-normal-invoice/bil-prin
     CommonModule,
     RouterModule,
     SharedModule,
-    DanpheAutoCompleteModule,
+    DsfAutoCompleteModule,
     SettingsSharedModule,
     ADTSharedModule
   ],

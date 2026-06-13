@@ -2,10 +2,10 @@ import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { CoreService } from "../../../core/shared/core.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { ReferringOrganization_DTO } from "../../Shared/DTOs/referral-organization.dto";
 import { ReferralPartyGroup_DTO } from "../../Shared/DTOs/referral-party-group.dto";
 import { ReferralParty_DTO } from "../../Shared/DTOs/referral-party.dto";
@@ -84,8 +84,8 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
 
     GetReferringOrganization() {
         this.mktReferralBLService.GetReferringOrganization().subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.referringOrganizationList = res.Results.filter(org => org.IsActive === true);
                     } else {
@@ -97,7 +97,7 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
                     ]);
                 }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [
                     `Error: ${err.ErrorMessage}`,
                 ]);
@@ -179,8 +179,8 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
         if (window.confirm(message)) {
             this.mktReferralBLService
                 .ActivateDeactivateParty(selectedItem)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.GetReferringParty();
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Party Status updated successfully']);
                     } else {
@@ -201,8 +201,8 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
             this.mktReferralBLService
                 .SaveReferringParty(this.referringPartyObj)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponses.OK) {
                             if (res.Results) {
                                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [`Successfully saved Referring Party.`]);
                                 this.loading = false;
@@ -214,7 +214,7 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Error: ${res.ErrorMessage}`,]);
                         }
                     },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.loading = false;
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Error: ${err.ErrorMessage}`,]);
                     }
@@ -239,8 +239,8 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
             this.mktReferralBLService
                 .UpdateReferringParty(this.referringPartyObj)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [`Party Details Updated Successfully`]);
                             this.loading = false;
                             this.GetReferringParty();
@@ -250,7 +250,7 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Failed to Update`]);
                         }
                     },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.loading = false;
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Error: ${err.ErrorMessage}`,]);
                     }
@@ -260,8 +260,8 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
     }
     GetReferringParty() {
         this.mktReferralBLService.GetReferringParty().subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.referringPartyList = res.Results;
                     } else {
@@ -273,7 +273,7 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
                     ]);
                 }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [
                     `Error: ${err.ErrorMessage}`,
                 ]);
@@ -282,8 +282,8 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
     }
     GetReferringPartyGroup() {
         this.mktReferralBLService.GetReferringPartyGroup().subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.referringPartyGroupList = res.Results;
                     } else {
@@ -295,7 +295,7 @@ export class MarketingReferralReferringPartyComponent implements OnInit {
                     ]);
                 }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [
                     `Error: ${err.ErrorMessage}`,
                 ]);

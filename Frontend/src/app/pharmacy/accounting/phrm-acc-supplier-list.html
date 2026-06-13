@@ -7,8 +7,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-5">From {{ 'GRID_HEADERS.DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div class="col-md-7">
-                        <danphe-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'">
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'">
+                        </dsf-date-picker>
                     </div>
                 </div>
 
@@ -17,8 +17,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-4">To {{ 'GRID_HEADERS.DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div class="col-md-7">
-                        <danphe-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'">
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'">
+                        </dsf-date-picker>
                     </div>
                 </div>
 
@@ -49,8 +49,8 @@
       </div>
     </div>
 
-    <danphe-grid [grid-colDefaults]="goodsreceiptsGridColumns" [grid-data]="newGoodsReceiptList" (grid-actions)="GoodsReceiptGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="goodsreceiptsGridColumns" [grid-data]="newGoodsReceiptList" (grid-actions)="GoodsReceiptGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
+    </dsf-grid>
     <div style="float:right">
       <table>
         <tr></tr>
@@ -347,7 +347,7 @@
                 <div>{{ 'PHARMACY.SUPPLIERNAME' | translate }} : &nbsp;</div>
                 <div>{{griForCurrentSupplier[0].SupplierName}}</div>
               </div>
-              <danphe-grid [grid-colDefaults]="accsuppliersGridColumns" [grid-data]="griForCurrentSupplier" (grid-actions)="GRSupplierGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [filter-parameters]="FilterParameters" [show-header]="true" [report-for]="'pharmacy'" [report-title]="'Pharmacy GoodReceipt A/C Report'" [grid-footer-content]="footerContent"> </danphe-grid>
+              <dsf-grid [grid-colDefaults]="accsuppliersGridColumns" [grid-data]="griForCurrentSupplier" (grid-actions)="GRSupplierGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [filter-parameters]="FilterParameters" [show-header]="true" [report-for]="'pharmacy'" [report-title]="'Pharmacy GoodReceipt A/C Report'" [grid-footer-content]="footerContent"> </dsf-grid>
               <div style="display: flex;justify-content: space-around;margin-top: 20px;" id="PharmacySupplierAccountSummary">
                 <table class="table table-bordered">
                   <tr>

@@ -13,7 +13,7 @@ import { HlpDskEmployeeInfoComponent } from "./employeeinfo/employee-info.compon
 import { HlpDskWardInfoComponent } from "./wardinfo/ward-info.component";
 import { HlpDskBedInfoComponent } from "./bedinfo/bed-info.component";
 //import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { SharedModule } from "../shared/shared.module";
 import { HlpDskQueueInfoComponent } from './queueinformation/queue-info.componet';
 @NgModule({ declarations: [
@@ -27,7 +27,7 @@ import { HlpDskQueueInfoComponent } from './queueinformation/queue-info.componet
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SharedModule], providers: [
         HelpDeskBLService,
         HelpDeskDLService,

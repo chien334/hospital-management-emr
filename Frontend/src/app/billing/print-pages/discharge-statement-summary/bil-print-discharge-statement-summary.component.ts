@@ -4,10 +4,10 @@ import { CoreService } from '../../../core/shared/core.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { PrinterSettingsModel } from '../../../settings-new/printers/printer-settings.model';
 import { NepaliCalendarService } from '../../../shared/calendar/np/nepali-calendar.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_Country, ENUM_DanpheHTTPResponses } from '../../../shared/shared-enums';
+import { ENUM_Country, ENUM_DsfHTTPResponses } from '../../../shared/shared-enums';
 import { BillingTransactionItem } from '../../shared/billing-transaction-item.model';
 import { BillingBLService } from '../../shared/billing.bl.service';
 import { BillingService } from '../../shared/billing.service';
@@ -141,8 +141,8 @@ export class Bil_Print_DischargeStatementSummaryComponent implements OnInit {
   }
 
   GetDischargeSummaryInfo() {
-    this.billingBLService.GetDischrageStatementSummary(this.patientId, this.patientVisitId, this.DischargeStatementId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.billingBLService.GetDischrageStatementSummary(this.patientId, this.patientVisitId, this.DischargeStatementId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.dischargeBill.AdmissionDetail = res.Results.AdmissionInfo;
         this.dischargeBill.PatientDetail = res.Results.PatientDetail;
         this.dischargeBill.DepositDetails = res.Results.DepositInfo;

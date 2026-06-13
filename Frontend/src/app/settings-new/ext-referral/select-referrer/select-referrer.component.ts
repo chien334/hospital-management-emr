@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from "@angular/core";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { SettingsBLService } from "../../shared/settings.bl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { Employee } from "../../../employee/shared/employee.model";
@@ -67,7 +67,7 @@ export class SelectReferrerComponent {
     }
     else {
       this.settingsBlService.GetAllReferrerList()
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           //console.log(res);
 
           if (res.Status == 'OK') {

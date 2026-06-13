@@ -5,7 +5,7 @@ import { NepaliCalendarService } from "../../..//shared/calendar/np/nepali-calen
 import { CoreService } from "../../../core/shared/core.service";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_Data_Type, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_Data_Type, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { CashBankBookModel, DateWiseCashBookModel } from "../../settings/shared/cash-bank-book-model";
 import { LedgerModel } from "../../settings/shared/ledger.model";
 import { ledgerGroupModel } from "../../settings/shared/ledgerGroup.model";
@@ -171,7 +171,7 @@ export class CashBankBookReportComponent {
     if (this.CheckSelLedger() && this.checkDateValidation()) {
       this.accReportBLService.GetCashBankBookReport(this.fromDate, this.toDate, this.fiscalYearId, this.selectedLedgerLists)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
             this.OpeningData = res.Results.OpeningData;
             this.TransactionData = res.Results.TransactionData;
             this.ProcessTransactionData();
@@ -317,11 +317,11 @@ export class CashBankBookReportComponent {
       );
       popupWinindow.document.open();
       let documentContent = "<html><head>";
-      //documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default//DanphePrintStyle.css"/>';
+      //documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default//DsfPrintStyle.css"/>';
       documentContent +=
         '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
       documentContent +=
-        '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default//DanpheStyle.css"/>';
+        '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default//DsfStyle.css"/>';
       documentContent += "</head>";
       if (this.accountingService.paramData) {
         this.printTitle = this.accountingService.paramData.HeaderTitle;

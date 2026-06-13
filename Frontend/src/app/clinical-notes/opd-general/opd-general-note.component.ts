@@ -554,7 +554,7 @@ export class OPDGeneralNoteComponenet {
     var printContents = document.getElementById("notePrintBlock").innerHTML;
     popupWinindow = window.open('', '_blank', 'width=1600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
-    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' +
+    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' +
       `<style>
                 .each-card {padding: 0px 10px 10px 0px;}
                 .each-card h3 {margin: 0;font-size: 18px;font-weight: 700;}

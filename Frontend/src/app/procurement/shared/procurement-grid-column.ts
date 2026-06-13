@@ -26,14 +26,14 @@ export default class ProcurementGridColumns {
 
   static GetPOActions(params) {
     if (params.data.IsPOCreated && params.data.RequestStatus == 'complete') {
-      return `<a danphe-grid-action="view" class="grid-action">
+      return `<a dsf-grid-action="view" class="grid-action">
             View </a>`
     }
     else {
       if (params.data.IsActive == true && (params.data.RequestStatus == 'active' || params.data.RequestStatus == 'pending' || params.data.RequestStatus == 'partial')) {
-        return `<a danphe-grid-action="view" class="grid-action">
+        return `<a dsf-grid-action="view" class="grid-action">
             View </a>
-            <a danphe-grid-action="addPO" class="grid-action">
+            <a dsf-grid-action="addPO" class="grid-action">
             Add Purchase Order </a>`
       }
     }
@@ -57,7 +57,7 @@ export default class ProcurementGridColumns {
 
   static ShowActionForExpirableStockList(params) {
     let template = `
-                <a danphe-grid-action="view" class="grid-action">
+                <a dsf-grid-action="view" class="grid-action">
                 View Details
                 </a>
              `;
@@ -89,16 +89,16 @@ export default class ProcurementGridColumns {
   static ShowActionForPOList(params) {
     if (params.data.POStatus == "active" || params.data.POStatus == "partial") {
       let template = `</a>
-                <a danphe-grid-action="view" class="grid-action">
+                <a dsf-grid-action="view" class="grid-action">
                 View
              </a>
 
-             <a  danphe-grid-action="genReceipt" class="grid-action">
+             <a  dsf-grid-action="genReceipt" class="grid-action">
                 Add Good Arrival Notification</a>
              `;
       return template;
     } else {
-      let template = `<a danphe-grid-action="view" class="grid-action">
+      let template = `<a dsf-grid-action="view" class="grid-action">
                 View
              </a> &nbsp;
              
@@ -106,7 +106,7 @@ export default class ProcurementGridColumns {
                             <button class="dropdown-toggle grid-btnCstm" type="button" data-toggle="dropdown">...
                             <span class="caret"></span></button>
                             <ul class="dropdown-menu grid-ddlCstm">
-                            <li><a danphe-grid-action="CreateCopy" >Create copy from this PO</a></li>
+                            <li><a dsf-grid-action="CreateCopy" >Create copy from this PO</a></li>
                             
                             </ul>
                         </div>
@@ -143,9 +143,9 @@ export default class ProcurementGridColumns {
     return moment(date).format("YYYY-MM-DD");
   }
   static GRActionRenderer(params) {
-    let template = `<a danphe-grid-action="view" class="grid-action">View</a>`;
+    let template = `<a dsf-grid-action="view" class="grid-action">View</a>`;
     if (params.data.IsDonation) {
-      template += `<a danphe-grid-action="show-donation-detail" class="grid-action">Donation Detail</a>`;
+      template += `<a dsf-grid-action="show-donation-detail" class="grid-action">Donation Detail</a>`;
     }
     return template;
   }
@@ -170,27 +170,27 @@ export default class ProcurementGridColumns {
   static ShowActionForRFQList(params) {
     if (params.data.Status == "active" || params.data.Status == "partial") {
       if (params.data.QuotationId == null) {
-        let template = `<a danphe-grid-action="View" class="grid-action">RFQ Details</a>
-      <a danphe-grid-action="AttachQuotationDocuments" class="grid-action">Attach Files</a>
-      <a danphe-grid-action="AddQuotationDetails" class="grid-action">Add Vendor Quot.</a>
-      <a danphe-grid-action="AnalyseQuotation" class="grid-action">Analyse Quotation</a>
+        let template = `<a dsf-grid-action="View" class="grid-action">RFQ Details</a>
+      <a dsf-grid-action="AttachQuotationDocuments" class="grid-action">Attach Files</a>
+      <a dsf-grid-action="AddQuotationDetails" class="grid-action">Add Vendor Quot.</a>
+      <a dsf-grid-action="AnalyseQuotation" class="grid-action">Analyse Quotation</a>
              `;
         return template;
       }
       else {
-        let template = `<a danphe-grid-action="View" class="grid-action">RFQ Details</a>
-      <a danphe-grid-action="AttachQuotationDocuments" class="grid-action">Attach Files</a>
-      <a danphe-grid-action="AddQuotationDetails" class="grid-action">Update Vendor Quot.</a>
-      <a danphe-grid-action="AnalyseQuotation" class="grid-action">Analyse Quotation</a>
+        let template = `<a dsf-grid-action="View" class="grid-action">RFQ Details</a>
+      <a dsf-grid-action="AttachQuotationDocuments" class="grid-action">Attach Files</a>
+      <a dsf-grid-action="AddQuotationDetails" class="grid-action">Update Vendor Quot.</a>
+      <a dsf-grid-action="AnalyseQuotation" class="grid-action">Analyse Quotation</a>
              `;
         return template;
       }
 
     } else {
-      let template = `<a danphe-grid-action="View" class="grid-action">RFQ Details</a>
-          <a danphe-grid-action="QuotationList" class="grid-action">Quotation List</a>
-          <a danphe-grid-action="SelectedQuotation" class="grid-action"> Order Letter </a>
-          <a danphe-grid-action="addPO" class="grid-action" style="display:none"> Add PO </a>`;
+      let template = `<a dsf-grid-action="View" class="grid-action">RFQ Details</a>
+          <a dsf-grid-action="QuotationList" class="grid-action">Quotation List</a>
+          <a dsf-grid-action="SelectedQuotation" class="grid-action"> Order Letter </a>
+          <a dsf-grid-action="addPO" class="grid-action" style="display:none"> Add PO </a>`;
       return template;
     }
   }
@@ -207,7 +207,7 @@ export default class ProcurementGridColumns {
     {
       headerName: "Action",
       field: "",
-      template: `<a danphe-grid-action="view" class="grid-action">
+      template: `<a dsf-grid-action="view" class="grid-action">
                View
              </a>`,
     },
@@ -222,7 +222,7 @@ export default class ProcurementGridColumns {
       field: "",
       width: 180,
       template: `
-                 <a danphe-grid-action="view" class="grid-action">
+                 <a dsf-grid-action="view" class="grid-action">
                     View
                  </a>`,
     },
@@ -238,7 +238,7 @@ export default class ProcurementGridColumns {
       headerName: "Action",
       field: "",
       width: 100,
-      template: '<a danphe-grid-action="view" class="grid-action">View</a>',
+      template: '<a dsf-grid-action="view" class="grid-action">View</a>',
     },
   ];
   static OtherChargesList = [
@@ -249,7 +249,7 @@ export default class ProcurementGridColumns {
       headerName: "Actions",
       field: "",
       width: 100,
-      template: '<a danphe-grid-action="edit" class="grid-action">Edit</a>',
+      template: '<a dsf-grid-action="edit" class="grid-action">Edit</a>',
     },
   ];
   static PODraftList = [
@@ -275,7 +275,7 @@ export default class ProcurementGridColumns {
     let template = ``;
     if (params.data.Status !== "Discarded") {
       template += `</a>
-                <a danphe-grid-action="review" class="grid-action">
+                <a dsf-grid-action="review" class="grid-action">
                 Review/Edit
              </a>&nbsp;
              `;
@@ -284,17 +284,17 @@ export default class ProcurementGridColumns {
 
 
     template += `</a>
-                <a danphe-grid-action="view" class="grid-action">
+                <a dsf-grid-action="view" class="grid-action">
                 View/Print
              </a>&nbsp;
              `;
     if (params.data.Status !== "Discarded") {
 
-      template += `<a danphe-grid-action="CopyToPo" class="grid-action">
+      template += `<a dsf-grid-action="CopyToPo" class="grid-action">
                 Copy To PO
              </a> &nbsp;
              `;
-      template += `<a danphe-grid-action="DiscardDraft" class="grid-action">
+      template += `<a dsf-grid-action="DiscardDraft" class="grid-action">
                 Discard Draft
              </a> &nbsp;
              `;

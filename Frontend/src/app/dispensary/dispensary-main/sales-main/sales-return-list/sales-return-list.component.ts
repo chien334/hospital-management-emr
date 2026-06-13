@@ -13,8 +13,8 @@ import { SecurityService } from '../../../../security/shared/security.service';
 import { GeneralFieldLabels } from '../../../../shared/DTOs/general-field-label.dto';
 import { NepaliCalendarService } from '../../../../shared/calendar/np/nepali-calendar.service';
 import { CommonFunctions } from '../../../../shared/common.functions';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { DispensaryService } from '../../../shared/dispensary.service';
 

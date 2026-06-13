@@ -32,18 +32,18 @@
 
     </div>
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="admittedListGridColumns" [grid-data]="admittedList"
+      <dsf-grid [grid-colDefaults]="admittedListGridColumns" [grid-data]="admittedList"
                    (grid-actions)="AdmittedListGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
-  <danphe-bed-transfer *ngIf="showTransferPage" [selectedBedInfo]="selectedBedInfo" (transfer)="TransferUpgrade($event)"
+  <dsf-bed-transfer *ngIf="showTransferPage" [selectedBedInfo]="selectedBedInfo" (transfer)="TransferUpgrade($event)"
                        [all-Departments]="allDepartments">
-  </danphe-bed-transfer>
+  </dsf-bed-transfer>
 
-  <danphe-bed-upgrade [showUpgradePage]="showUpgradePage" [selectedBedInfo]="selectedBedInfo"
+  <dsf-bed-upgrade [showUpgradePage]="showUpgradePage" [selectedBedInfo]="selectedBedInfo"
                       [similarBedFeatures]="similarBedFeatures" (upgrade)="TransferUpgrade($event)">
-  </danphe-bed-upgrade>
+  </dsf-bed-upgrade>
 
   <!--@*Don't display wristband while inside admission sticker in Admitted-List : Bug#39 ADT*@-->
   <!-- <admission-sticker [patientVisitId]="patientVisitId" [showSticker]="showSticker"
@@ -161,7 +161,7 @@
                     <span class="color-red font-sm" *ngIf="!validDate">{{this.selectedAdmission.BedInformation.Action}}
                       Date was
                       {{this.selectedAdmission.BedInformation.StartedOn |
-                      DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</span>
+                      DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</span>
                   </div>
                   <label class="control-label col-md-1">
                     <b>(BS)</b> <b style="float: right;">:</b></label>

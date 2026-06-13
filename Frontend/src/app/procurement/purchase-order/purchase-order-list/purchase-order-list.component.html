@@ -51,7 +51,7 @@
     </div>
     <div class="row" *ngIf="!showVendorwise">
       <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="purchaseOrdersGridColumns"
+        <dsf-grid [grid-colDefaults]="purchaseOrdersGridColumns"
                      [grid-data]="poListfiltered"
                      (grid-actions)="PurchaseOrderGridAction($event)"
                      [rangeType]="dateRange"
@@ -59,7 +59,7 @@
                      [NepaliDateInGridParams]="NepaliDateInGridSettings"
                      [show-CustomDate]="true"
                      [grid-exportOptions]="getGridExportOptions()"
-                     [grid-showExport]="true"></danphe-grid>
+                     [grid-showExport]="true"></dsf-grid>
       </div>
     </div>
   </div>

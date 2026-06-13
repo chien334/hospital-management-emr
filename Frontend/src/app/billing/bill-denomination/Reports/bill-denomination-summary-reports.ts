@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 import * as moment from 'moment/moment';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CoreService } from "../../../core/shared/core.service";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
@@ -97,7 +97,7 @@ export class BillingDenominationSummaryReportComponent {
   SetCurrentFiscalYear() {
     //We may do this in client side itself since we already have list of all fiscal years with us. [Part of optimization.]
     this.billingBLService.GetCurrentFiscalYear()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let fiscYr: BillingFiscalYear = res.Results;
           if (fiscYr) {

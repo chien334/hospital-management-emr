@@ -4,8 +4,8 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { RPT_ADT_DiagnosisWisePatientReportModel } from "./diagnosis-wise-patient-report.model"
 import { DLService } from "../../../shared/dl.service"
 import * as moment from 'moment/moment';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: "./diagnosis-wise-patient-report.html"

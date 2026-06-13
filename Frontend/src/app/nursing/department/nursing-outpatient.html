@@ -12,16 +12,16 @@
     margin: 15px auto;
   }
 
-  .danphe-tab-wrapper .nav-tabs>li.active>a,
-  .danphe-tab-wrapper .nav-tabs>li.active>a:focus,
-  .danphe-tab-wrapper .nav-tabs>li.active>a:hover {
+  .dsf-tab-wrapper .nav-tabs>li.active>a,
+  .dsf-tab-wrapper .nav-tabs>li.active>a:focus,
+  .dsf-tab-wrapper .nav-tabs>li.active>a:hover {
     background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
     border: 1px solid #5c79bf;
     border-bottom: none;
     color: #fff;
   }
 
-  .danphe-tab-wrapper .nav-tabs>li>a {
+  .dsf-tab-wrapper .nav-tabs>li>a {
     background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
     border: 1px solid #8c8c8e;
     color: #696969;
@@ -34,16 +34,16 @@
     /*    border-left: none;*/
   }
 
-  .danphe-tab-wrapper .nav-tabs>li:first-child a {}
+  .dsf-tab-wrapper .nav-tabs>li:first-child a {}
 
-  .danphe-tab-wrapper .nav-tabs {
+  .dsf-tab-wrapper .nav-tabs {
     border-bottom: 1px solid #49a0ca;
     position: relative
   }
 
-  .danphe-tab-wrapper .nav-tabs li {}
+  .dsf-tab-wrapper .nav-tabs li {}
 
-  .danphe-tab-wrapper .nav-tabs:before {
+  .dsf-tab-wrapper .nav-tabs:before {
     content: "";
     width: 100%;
     height: 5px;
@@ -57,14 +57,14 @@
     border-left: 1px solid #446ea0;
   }
 
-  .danphe-tab-wrapper table {
+  .dsf-tab-wrapper table {
     /*		margin: 15px 0;*/
     background-color: #ffffff;
     border-radius: 4px !important;
     overflow: hidden;
   }
 
-  .danphe-tab-wrapper table thead tr th {
+  .dsf-tab-wrapper table thead tr th {
     position: sticky;
     top: 0;
     left: 0;
@@ -74,7 +74,7 @@
     font-size: 12px;
   }
 
-  .danphe-tab-wrapper .tab-pane {
+  .dsf-tab-wrapper .tab-pane {
     padding: 15px 0;
   }
 
@@ -98,7 +98,7 @@
         <div class="row">
           <label class="control-label col-md-3">From Date<sup> *</sup><b style="float:right;">:</b></label>
           <div class="col-md-9">
-            <danphe-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'np,en'"> </danphe-date-picker>
+            <dsf-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'np,en'"> </dsf-date-picker>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@
         <div class="row">
           <label class="control-label col-md-3">To Date <sup> *</sup><b style="float:right;">:</b></label>
           <div class="col-md-9">
-            <danphe-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'np,en'"> </danphe-date-picker>
+            <dsf-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'np,en'"> </dsf-date-picker>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@
 
 
 
-  <div class="danphe-tab-wrapper">
+  <div class="dsf-tab-wrapper">
     <!--<ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#today" aria-controls="today" role="tab" data-bs-toggle="tab">Today</a></li>
       <li role="presentation" class=""><a href="#pastDays" aria-controls="pastDays" role="tab" data-bs-toggle="tab">Past Days</a></li>
@@ -132,9 +132,9 @@
       <div *ngIf="(currentTab=='today')">
         <div class="tab-content">
           <!-- <div role="tabpanel" class="tab-pane" id="taken">
-            <danphe-grid [grid-colDefaults]="nurOPDGridColumnSettings" [grid-data]="opdListOne"
+            <dsf-grid [grid-colDefaults]="nurOPDGridColumnSettings" [grid-data]="opdListOne"
                          (grid-actions)="NurOPDListGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-            </danphe-grid>
+            </dsf-grid>
           </div> -->
 
           <div role="tabpanel" class="tab-pane active" id="pending" style="padding: 0;">
@@ -149,7 +149,7 @@
                 <div style="display:flex; justify-content: flex-end; gap: 0 15px; align-items: center;">
                   <label style="width: 70px; display: inline-block;"
                          for="department">{{ 'NURSING.DEPARTMENT' | translate }}:</label>
-                  <input class="form-control" danphe-auto-complete
+                  <input class="form-control" dsf-auto-complete
                          [(ngModel)]="selectedDepartment"
                          (ngModelChange)="selectedDepartment"
                          [list-formatter]="myDepartmentListFormatter"
@@ -210,7 +210,7 @@
                                  [(ngModel)]="row.IsSelected">
                         </td>
                         <td class="wd-80">{{i+1}}</td>
-                        <td class="wd-130">{{row.VisitTime | DanpheDateTime:'format-time':'hh:mm A'}}</td>
+                        <td class="wd-130">{{row.VisitTime | DsfDateTime:'format-time':'hh:mm A'}}</td>
                         <td class="wd-270">{{row.PatientCode}}</td>
                         <td class="wd-80">{{row.ShortName}}</td>
                         <td class="wd-80">{{row.Age}}/{{row.Gender[0]}}</td>
@@ -249,20 +249,20 @@
 
 
         <div>
-          <danphe-grid *ngIf="showAllData" [grid-colDefaults]="nurOPDGridColumnSettings" [grid-data]="opdListPastDays"
+          <dsf-grid *ngIf="showAllData" [grid-colDefaults]="nurOPDGridColumnSettings" [grid-data]="opdListPastDays"
                        (grid-actions)="NurOPDListGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings"
                        [rangeType]="dateRange" (onDateChange)="onGridDateChange($event)" [date-range-options]="'1W,1M,3M'"
-                       [show-CustomDate]="true"> </danphe-grid>
-          <danphe-grid *ngIf="showTriagedData" [grid-colDefaults]="nurOPDGridColumnSettings"
+                       [show-CustomDate]="true"> </dsf-grid>
+          <dsf-grid *ngIf="showTriagedData" [grid-colDefaults]="nurOPDGridColumnSettings"
                        [grid-data]="opdListOnePastDays" (grid-actions)="NurOPDListGridActions($event)"
                        [NepaliDateInGridParams]="NepaliDateInGridSettings" [rangeType]="dateRange"
                        (onDateChange)="onGridDateChange($event)" [date-range-options]="'1W,1M,3M'" [show-CustomDate]="true">
-          </danphe-grid>
-          <danphe-grid *ngIf="showNotTriagedData" [grid-colDefaults]="nurOPDGridColumnSettings"
+          </dsf-grid>
+          <dsf-grid *ngIf="showNotTriagedData" [grid-colDefaults]="nurOPDGridColumnSettings"
                        [grid-data]="opdListZeroPastDays" (grid-actions)="NurOPDListGridActions($event)"
                        [NepaliDateInGridParams]="NepaliDateInGridSettings" [rangeType]="dateRange"
                        (onDateChange)="onGridDateChange($event)" [date-range-options]="'1W,1M,3M'" [show-CustomDate]="true">
-          </danphe-grid>
+          </dsf-grid>
         </div>
 
       </div>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { SecurityBLService } from '../security/shared/security.bl.service';
 import { SecurityService } from "../security/shared/security.service";
-import { DanpheHTTPResponse } from '../shared/common-models';
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses } from '../shared/shared-enums';
+import { DsfHTTPResponse } from '../shared/common-models';
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses } from '../shared/shared-enums';
 import { PharmacyBLService } from './shared/pharmacy.bl.service';
 import { PharmacyService } from './shared/pharmacy.service';
 
@@ -31,7 +31,7 @@ export class PharmacyMainComponent {
     this.securityService.SetModuleName('inventory');
     if (!(this.securityService.INVHospitalInfo.CurrFiscalYear.FiscalYearId > 0)) {//if information not there then get and set
       this.securityBLService.GetINVHospitalInfo()
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == 'OK') {
             this.securityService.SetINVHospitalInfo(res.Results);
           }
@@ -65,8 +65,8 @@ export class PharmacyMainComponent {
 
   public LoadAllFiscalYears() {
     this.pharmacyBLService.GetFiscalYearList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponseText.OK) {
           this.pharmacyService.LoadAllFiscalYearList(res.Results);
         }
         else {
@@ -78,7 +78,7 @@ export class PharmacyMainComponent {
   public loadFreeQuantityHistory() {
     this.pharmacyBLService.getItemFreeQuantityHistory()
       .subscribe(res => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+        if (res.Status == ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
           this.pharmacyService.setItemFreeQuantityHistory(res.Results);
         }
       }, err => {
@@ -88,8 +88,8 @@ export class PharmacyMainComponent {
 
 
   public GetStores() {
-    this.pharmacyBLService.GetStores().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetStores().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status == ENUM_DsfHTTPResponses.OK) {
         this.pharmacyService.setStores(res.Results);
       }
     }, err => {

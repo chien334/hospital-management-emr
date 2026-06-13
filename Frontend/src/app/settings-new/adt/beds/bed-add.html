@@ -64,7 +64,7 @@
                       <span [ngClass]="feature.IsSelected ? 'bg-on' : 'bg-off'"></span> {{feature.BedFeatureName}}
                     </label> <br *ngIf="i%3==0 && i!=0" />
                   </div> -->
-                  <input style="width: 100%;" danphe-auto-complete [source]="bedFeatureList" [(ngModel)]="selectedBedFeature"
+                  <input style="width: 100%;" dsf-auto-complete [source]="bedFeatureList" [(ngModel)]="selectedBedFeature"
                          [placeholder]="'SETTINGS_NEW.SELECT_BED_FEATURE' | translate" max-num-list="8" min-chars="0" display-property-name="BedFeatureName"
                          [list-formatter]="BedFeatureFormatter" onclick="select()" (valueChanged)="BedFeatureEventHandler()"
                          [ngModelOptions]="{standalone:true}" value-property-name="BedFeatureId">

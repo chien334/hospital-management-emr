@@ -9,7 +9,7 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { DLService } from "../../../shared/dl.service"
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment/moment';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 @Component({
   templateUrl: "./patient-bill-history.html"
 

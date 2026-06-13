@@ -86,7 +86,7 @@
         <div class="form-group">
           <label class="control-label col-md-5">{{ 'PHARMACY.SUPPLIER_NAME' | translate }}<b style="float:right;">:</b></label>
           <div class="col-md-7">
-            <input danphe-auto-complete class="form-control " [(ngModel)]="currentSupplier" [source]="supplierList" [list-formatter]="myListFormatter"
+            <input dsf-auto-complete class="form-control " [(ngModel)]="currentSupplier" [source]="supplierList" [list-formatter]="myListFormatter"
                    [placeholder]="'PHARMACY.SELECT_SUPPLIER' | translate" display-property-name="SupplierName" value-property-name="SupplierName" min-chars="0"
                    max-num-list="20" onClick="this.select();" match-formatted="true" [grid-sort]="'SupplierName'"
                    (valueChanged)="SupplierChange($event)" style="width:260px " />
@@ -113,12 +113,12 @@
         </div>
       </div>
     </div>
-    <danphe-grid [grid-colDefaults]="goodsreceiptsGridColumns" [grid-data]="newGoodsReceiptList" [rangeType]="dateRange" [show-CustomDate]="true"
+    <dsf-grid [grid-colDefaults]="goodsreceiptsGridColumns" [grid-data]="newGoodsReceiptList" [rangeType]="dateRange" [show-CustomDate]="true"
                  [NepaliDateInGridParams]="NepaliDateInGridSettings" (onDateChange)="onDateChange($event)"
                  (grid-actions)="GoodsReceiptGridAction($event)" [grid-exportOptions]="_gridExportOptions" [grid-showExport]="true"
                  [show-header]="true" [report-for]="'pharmacy'" [filter-parameters]="FilterParameters" [grid-footer-content]="footerContent"
                  [report-title]="'GRN Book'">
-    </danphe-grid>
+    </dsf-grid>
     <!-- START: Summary -->
     <div class="col-lg-12 col-sm-12 col-md-6" style="margin-bottom: 10px !important; display: flex;justify-content: center;">
       <div class="table-responsive table-wrapper" id="print_summary">

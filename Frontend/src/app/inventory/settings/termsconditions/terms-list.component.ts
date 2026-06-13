@@ -1,8 +1,8 @@
 ﻿import { Component, ChangeDetectorRef, Input } from '@angular/core';
 import { TermsConditionsMasterModel } from '../../shared/terms-conditions-master.model';
 import { InventorySettingBLService } from "../shared/inventory-settings.bl.service";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { ENUM_TermsApplication } from '../../../shared/shared-enums';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';

@@ -211,8 +211,8 @@
                       <!--<input type="text" autocomplete="off" class="nepali-date-cal" />-->
                       <!-- <input type="date"  [(ngModel)]="CurrentVendor.GovtRegDate" [placeholder]="'INVENTORY.GOVTREGDATE' | translate" [ngModelOptions]="{standalone: true}" /> -->
 
-                      <danphe-date-picker [(ngModel)]="CurrentVendor.GovtRegDate" [ngModelOptions]="{standalone: true}" [CalendarTypes]="'np,en'">
-                      </danphe-date-picker>
+                      <dsf-date-picker [(ngModel)]="CurrentVendor.GovtRegDate" [ngModelOptions]="{standalone: true}" [CalendarTypes]="'np,en'">
+                      </dsf-date-picker>
                     </div>
                   </div>
                   <div class="form-group" *ngIf="vendorDisplayParameter && vendorDisplayParameter.ShowIsTDSApplicable==true">
@@ -245,7 +245,7 @@
                                 (click)="deleteItem(itm.ItemId)" class="deleteItem">x</span></span>
                       </div>
                       <div class="div-relative form-group no-margin">
-                        <input danphe-auto-complete class="form-control" *ngIf="isEditItem" [(ngModel)]="selectedItem" [source]="filteredItemList"
+                        <input dsf-auto-complete class="form-control" *ngIf="isEditItem" [(ngModel)]="selectedItem" [source]="filteredItemList"
                                [list-formatter]="myListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null
                                max-num-list="10" [ngModelOptions]="{standalone:true}" onclick="this.select();" />
                         <!--(valueChanged)="AssignItemIdToVendor()"-->

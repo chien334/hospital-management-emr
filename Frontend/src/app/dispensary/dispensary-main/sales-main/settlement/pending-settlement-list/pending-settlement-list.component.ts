@@ -13,12 +13,12 @@ import { PHRMInvoiceModel } from "../../../../../pharmacy/shared/phrm-invoice.mo
 import { PHRMStoreModel } from "../../../../../pharmacy/shared/phrm-store.model";
 import { SecurityService } from "../../../../../security/shared/security.service";
 import { CallbackService } from "../../../../../shared/callback.service";
-import { DanpheHTTPResponse } from "../../../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../../../shared/common-models";
 import { CommonFunctions } from "../../../../../shared/common.functions";
-import { GridEmitModel } from "../../../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_ModuleName } from "../../../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_ModuleName } from "../../../../../shared/shared-enums";
 import DispensaryGridColumns from "../../../../shared/dispensary-grid.column";
 import { DispensaryService } from "../../../../shared/dispensary.service";
 
@@ -121,7 +121,7 @@ export class PendingPHRMSettlementListComponent {
   GetBillsForSettlement(OrganizationId) {
     this.allPHRMPendingSettlements = [];
     this.pharmacyBLService.GetPHRMPendingBillsForSettlement(this.currentActiveDispensary.StoreId, OrganizationId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allPHRMPendingSettlements = res.Results;
           this.filteredPHRMPendingSettlements = this.allPHRMPendingSettlements;
@@ -170,8 +170,8 @@ export class PendingPHRMSettlementListComponent {
     patient.PhoneNumber = row.PhoneNumber;
 
     this.pharmacyBLService.GetCreditInvoicesByPatient(patient.PatientId, this.OrganizationId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           this.patCrInvoicDetails = res.Results.CreditInvoiceInfo;
           this.PatientInfo = res.Results.PatientInfo;
           this.DepositInfo = res.Results.DepositInfo;
@@ -313,7 +313,7 @@ export class PendingPHRMSettlementListComponent {
       let setlmntToPost = this.GetSettlementInvoiceFormatted();
 
       this.pharmacyBLService.PostSettlementInvoice(setlmntToPost)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
 
           this.setlmntToDisplay = res.Results;
           this.SettlementId = this.setlmntToDisplay.SettlementId;
@@ -506,7 +506,7 @@ export class PendingPHRMSettlementListComponent {
 
   GetUnPaidSettlementsDetails(row) {
     this.pharmacyBLService.GetCreditInvoicesByPatient(row.PatientId, this.OrganizationId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.patCrInvoicDetails = res.Results.CreditInvoiceInfo;
           this.patientService.globalPatient = res.Results.PatientInfo;

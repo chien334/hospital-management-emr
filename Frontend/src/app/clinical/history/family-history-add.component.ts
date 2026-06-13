@@ -3,7 +3,7 @@ import { PatientService } from "../../patients/shared/patient.service";
 import { HistoryBLService } from '../shared/history.bl.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { FamilyHistory } from "../shared/family-history.model";
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { CoreService } from "../../core/shared/core.service";
 @Component({
     selector: "family-history-add",
@@ -67,7 +67,7 @@ export class FamilyHistoryAddComponent {
     }
 
     public GetICDList() {
-        this.ICD10List = DanpheCache.GetData(MasterType.ICD, null);
+        this.ICD10List = DsfCache.GetData(MasterType.ICD, null);
         // this.historyBLService.GetICDList()
         // .subscribe(res => {
         // if (res.Status == "OK") {

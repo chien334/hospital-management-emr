@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
 
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
 import { DispensaryRequisitionService } from "../../../dispensary/dispensary-main/stock-main/requisition/dispensary-requisition.service";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";

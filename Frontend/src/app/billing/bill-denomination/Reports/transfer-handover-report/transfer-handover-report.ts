@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 import * as moment from 'moment/moment';
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
-import { NepaliDateInGridColumnDetail } from "../../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { NepaliDateInGridParams } from "../../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail } from "../../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams } from "../../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { BillingGridColumnSettings } from "../../../shared/billing-grid-columns";
 import { BillingBLService } from "../../../shared/billing.bl.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_DateTimeFormat, ENUM_HandOver_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_DateTimeFormat, ENUM_HandOver_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
 
 @Component({
   templateUrl: "./transfer-handover-report.html"
@@ -40,7 +40,7 @@ export class TransferHandoverReportComponent {
       this.billingBLService.GetTransferHandoverReceivedReport(this.FromDate, this.ToDate,this.status,this.handoverType)
         .subscribe(
           res => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
               this.HandOverReportList = res.Results;
             }
             else {

@@ -12,9 +12,9 @@
       <div class="form-group col-md-12" style="    display: flex">
         <label class="control-label"><b>Requisition Date: </b></label>
         <div class="pull-right col-md-8">
-          <danphe-date-picker [(ngModel)]="requisition.RequisitionDate" ngDefaultControl [CalendarTypes]="'np,en'"
+          <dsf-date-picker [(ngModel)]="requisition.RequisitionDate" ngDefaultControl [CalendarTypes]="'np,en'"
             [ngModelOptions]="{standalone:true}">
-          </danphe-date-picker>
+          </dsf-date-picker>
           <br />
         </div>
       </div>
@@ -39,7 +39,7 @@
             <td style="width: 50px"><a (click)="DeleteRow(i)"><i class="btn btn-danger fa fa-times"></i></a></td>
             <td style="width: 170px">
               <form [formGroup]="row.RequisitionItemValidator">
-                <input danphe-auto-complete class="form-control" id="itemName{{i}}" [(ngModel)]="row.SelectedItem"
+                <input dsf-auto-complete class="form-control" id="itemName{{i}}" [(ngModel)]="row.SelectedItem"
                   [source]="ItemList" [list-formatter]="itemListFormatter" placeholder="Item Name"
                   display-property-name="ItemName" value-property-name=null onclick="this.select();"
                   (ngModelChange)="OnItemSelected(row.SelectedItem,i)" min-chars="1" max-num-list="10" [grid-sort]="'ItemName'" match-formatted="true"

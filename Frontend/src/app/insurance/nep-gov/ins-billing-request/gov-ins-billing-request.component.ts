@@ -15,7 +15,7 @@ import { SecurityService } from "../../../security/shared/security.service";
 import { CreditOrganization } from "../../../settings-new/shared/creditOrganization.model";
 import { CallbackService } from "../../../shared/callback.service";
 import { ServiceDepartmentVM } from "../../../shared/common-masters.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
@@ -1415,7 +1415,7 @@ export class GovInsBillingRequestComponent {
     //we get billing context from earlier invoice incase of copy from earlier invoice.
     if (this.currentBillingFlow != "BillReturn") {
       this.insuranceBLService.GetPatientBillingContext(this.patientService.globalPatient.PatientId)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.currBillingContext = res.Results;
 

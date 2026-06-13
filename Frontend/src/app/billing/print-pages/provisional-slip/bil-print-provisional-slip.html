@@ -151,7 +151,7 @@
         <tr *ngFor="let row of ProvisionalSlipDetails.ItemsList; let i=index">
           <td style="padding: 5px 5px;  width: 5%">{{i+1}}</td>
           <td style="padding: 5px 5px;  width: 5%">PR/{{ row.ProvisionalReceiptNo}}</td>
-          <td style="padding: 5px 5px;  width: 5%">{{row.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+          <td style="padding: 5px 5px;  width: 5%">{{row.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
           <td colspan="4" style="padding: 5px 5px; width: 60%">{{row.ItemName}} <span *ngIf="row.AssignedToDrName!=null && ShowProviderName">
               ({{row.AssignedToDrName}})</span></td>
           <td style="padding: 5px 5px;  width: 5%">{{row.Quantity}}</td>

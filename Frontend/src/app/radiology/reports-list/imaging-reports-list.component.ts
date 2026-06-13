@@ -1,8 +1,8 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 import { Router } from '@angular/router';
 
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
 
 import { VisitService } from '../../appointments/shared/visit.service';
 import { PatientService } from '../../patients/shared/patient.service';
@@ -15,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ImagingType } from "../shared/imaging-type.model";
 import * as moment from 'moment/moment';
 import { CoreService } from "../../../../src/app/core/shared/core.service";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
 
 
 @Component({

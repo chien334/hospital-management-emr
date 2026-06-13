@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, Renderer2 } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { ExternalReferralModel } from "../../shared/external-referral.model";
 import { SettingsService } from "../../shared/settings-service";
@@ -66,7 +66,7 @@ export class AddExternalReferralComponent {
     if (this.externalRef.IsValidCheck(undefined, undefined)) {
 
       this.settingsBlService.AddExtReferrer(this.externalRef)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
 
           if (res.Status == "OK") {
             this.callbackAdd.emit({ action: "add", data: res.Results });
@@ -97,7 +97,7 @@ export class AddExternalReferralComponent {
     if (this.externalRef.IsValidCheck(undefined, undefined)) {
 
       this.settingsBlService.UpdateExtReferrer(this.externalRef)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
 
           if (res.Status == "OK") {
             this.callbackAdd.emit({ action: "edit", data: res.Results });

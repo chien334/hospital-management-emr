@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { SharedModule } from "../../shared/shared.module";
 import { VoucherEntryNewComponent } from '../transactions/new-voucher-entry/new-voucher-entry.component';
 import { LedgerGroupAddReusableComponent } from '../transactions/shared/create-ledger-group-reusable/ledger-group-add-reusable.component';
@@ -16,13 +16,13 @@ import { LedgerCreateSharedComponent } from './ledger-create-shared/ledger-creat
 
 @NgModule({
   providers: [AccountingBLService, AccountingDLService,
-    AccountingService //mumbai-team-june2021-danphe-accounting-cache-change
+    AccountingService //mumbai-team-june2021-dsf-accounting-cache-change
   ],
   imports: [
     SharedModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule, DanpheAutoCompleteModule
+    ReactiveFormsModule, DsfAutoCompleteModule
   ],
   declarations: [
     TransactionViewComponent, LedgerCreateSharedComponent, VoucherEditComponent, fiscalyearlogSharedComponent, VoucherEntryNewComponent, LedgersAddReusableComponent, LedgerGroupAddReusableComponent

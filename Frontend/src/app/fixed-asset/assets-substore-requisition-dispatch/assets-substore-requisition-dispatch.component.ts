@@ -2,14 +2,14 @@ import {Component} from "@angular/core";
 import { Router } from '@angular/router';
 import { ActivateInventoryService } from "../../shared/activate-inventory/activate-inventory.service";
 import { PHRMStoreModel } from "../../pharmacy/shared/phrm-store.model";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { WardSupplyAssetRequisitionModel } from "../../wardsupply/shared/wardsupply-asset-requisition.model";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { InventoryService } from "../../inventory/shared/inventory.service";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
 import * as moment from "moment";
 import { FixedAssetBLService } from "../shared/fixed-asset.bl.service";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 //swapnil-2-april-2021
 import { DispatchItemDto,AvailableStockDto, RequisitionForDispatchModel, RequisitionItemDto } from "./assets-substore-requisition-dispatch-model";
 import { FixedAssetDispatchItems } from "../shared/fixed-asset-dispatch-items.model";

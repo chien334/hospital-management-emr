@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import * as moment from "moment";
 import { CoreService } from "../../../core/shared/core.service";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { InpatientOutstandingReport_DTO } from "../../shared/inpatient-outstanding-report.dto";
 import { ReportingService } from "../../shared/reporting-service";
 
@@ -44,7 +44,7 @@ export class RPT_ADT_InPatientOutstandingReport {
             );
     }
     Success(res) {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
             this.InpatientOutstandingReportList = res.Results;
         }
     }

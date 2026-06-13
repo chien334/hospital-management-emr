@@ -108,7 +108,7 @@
                       <tr>
                         <td>
                           <div class="form-group autocomplete-item">
-                            <input danphe-auto-complete type="text" class="form-control" id="id_billing_serviceItemName"
+                            <input dsf-auto-complete type="text" class="form-control" id="id_billing_serviceItemName"
                                    autocomplete="off" display-property-name="ItemName"
                                    [list-formatter]="ItemsListFormatter"
                                    (valueChanged)="AssignSelectedInvoiceItem()"
@@ -176,7 +176,7 @@
 
                         <td>
                           <div class="form-group">
-                            <input danphe-auto-complete autocomplete="off" type="text" class="form-control" id="id_billing_performer"
+                            <input dsf-auto-complete autocomplete="off" type="text" class="form-control" id="id_billing_performer"
                                    [source]="doctorList" display-property-name="FullName"
                                    [list-formatter]="billingInvoiceBlService.PerformerListFormatter" value-property-name=null
                                    match-formatted="true" max-num-list="10" [(ngModel)]="SelectedPerformer"
@@ -282,7 +282,7 @@
           <hr>
           <div class="panel-footer" style="display: flex; justify-content: flex-end;">
             <input
-                   DanpheConfirmationDialog
+                   DsfConfirmationDialog
                    id="btn_save_billing_package"
                    type="submit"
                    *ngIf="!isUpdate"
@@ -296,7 +296,7 @@
                    value=" Save" />
 
             <input
-                   DanpheConfirmationDialog
+                   DsfConfirmationDialog
                    id="btn_update_billing_package"
                    type="submit"
                    *ngIf="isUpdate"

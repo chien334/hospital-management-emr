@@ -3,7 +3,7 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
@@ -57,7 +57,7 @@ export const adtSettingsRoutes: Routes =
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         RouterModule.forChild(adtSettingsRoutes)], providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })

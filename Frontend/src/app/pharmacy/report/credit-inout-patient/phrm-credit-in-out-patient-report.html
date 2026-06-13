@@ -12,8 +12,8 @@
           <div class="form-group">
             <label class="control-label col-md-4">From Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
             <div class="col-md-8">
-              <danphe-date-picker [(ngModel)]="phrmReports.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
-              </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="phrmReports.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
+              </dsf-date-picker>
             </div>
           </div>
         </div> -->
@@ -21,8 +21,8 @@
           <div class="form-group">
             <label class="control-label col-md-4">To Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
             <div class="col-md-8">
-              <danphe-date-picker [(ngModel)]="phrmReports.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
-              </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="phrmReports.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}">
+              </dsf-date-picker>
             </div>
           </div>
         </div> -->
@@ -43,7 +43,7 @@
             <label class="control-label col-md-5">Patient Name<b style="float:right;">:</b></label>
             <div class="col-md-7">
 
-                <input danphe-auto-complete class="form-control "
+                <input dsf-auto-complete class="form-control "
                        [(ngModel)]="selectedPat"
                        [source]="PHRMPatient"
                        [list-formatter]="myListFormatter"
@@ -80,12 +80,12 @@
 
 <div class="row">
     <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="PHRMCreditInOutPatReportColumns"
+        <dsf-grid [grid-colDefaults]="PHRMCreditInOutPatReportColumns"
                      [grid-data]="PHRMCreditInOutPatReportData"
                      [grid-exportOptions]="gridExportOptions"
                      [grid-showExportNew]="true" 
                      [NepaliDateInGridParams]="NepaliDateInGridSettings"
                      (grid-onExport)="OnGridExport($event)">
-        </danphe-grid>
+        </dsf-grid>
     </div>
 </div>

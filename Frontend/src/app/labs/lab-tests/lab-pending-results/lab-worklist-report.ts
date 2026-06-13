@@ -14,9 +14,9 @@ import * as _ from 'lodash';
 import { LabSticker } from "../../shared/lab-sticker.model";
 import { CoreService } from "../../../core/shared/core.service";
 import { LabReportVM, ReportLookup } from "../../reports/lab-report-vm";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { LabCategoryModel } from "../../shared/lab-category.model";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 
 @Component({
   selector: 'lab-worklist',
@@ -84,8 +84,8 @@ export class LabWorkListReportComponent {
     this.loading = true;
     this.labBLService.GetLabWorkListData(frmdate, todate, categoryIdList)
       .finally(() => { this.loading = false; })
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.pendingResultData = res.Results;
           this.changeDetector.detectChanges();
           if (this.pendingResultData && this.pendingResultData) {
@@ -100,7 +100,7 @@ export class LabWorkListReportComponent {
           console.log(res.ErrorMessage);
         }
       },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, ["failed to get worklist.. please check log for details."]);
         console.log(err.ErrorMessage);
       });
@@ -186,7 +186,7 @@ export class LabWorkListReportComponent {
                           }</style>`;
 
 
-    documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanphePrintStyle.css" /></head>`;
+    documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfPrintStyle.css" /></head>`;
 
     documentContent += '<body class="lab-rpt4moz" onload="window.print()">' + printContents + '</body></html>';
     popupWinindow.document.write(documentContent);

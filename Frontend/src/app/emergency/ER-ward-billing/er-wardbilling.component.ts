@@ -11,11 +11,11 @@ import { Patient } from '../../patients/shared/patient.model';
 import { PatientService } from '../../patients/shared/patient.service';
 import { PHRMDrugsOrderListModel } from '../../pharmacy/shared/pharmacy-drug-order-list.model';
 import { PharmacyBLService } from '../../pharmacy/shared/pharmacy.bl.service';
-import { CancelStatusHoldingModel, DanpheHTTPResponse } from '../../shared/common-models';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { CancelStatusHoldingModel, DsfHTTPResponse } from '../../shared/common-models';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from '../../shared/shared-enums';
 import { EmergencyPatientModel } from '../shared/emergency-patient.model';
 import { EmergencyBLService } from '../shared/emergency.bl.service';
 
@@ -149,7 +149,7 @@ export class ERWardBillingComponent {
 
   GetActionList(params): string {
     if (params.data.AllowCancellation) {
-      return `<a danphe-grid-action="cancel" class="grid-action btn btn-danger">
+      return `<a dsf-grid-action="cancel" class="grid-action btn btn-danger">
               Cancel
            </a>`;
     } else {
@@ -159,8 +159,8 @@ export class ERWardBillingComponent {
 
   LoadPHRMOrdersOfERPatient(patientId: number, visitId: number): void {
     this._pharmacyBLService.GetAllDrugOrderOfERPatient(patientId, visitId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.PHRMOrdersList = res.Results;
           this.PHRMOrdersList = this.PHRMOrdersList.slice();
         } else {
@@ -176,8 +176,8 @@ export class ERWardBillingComponent {
 
   GetServiceItems(serviceBillingContext: string, schemeId: number, priceCategoryId: number): void {
     this._billingMasterBLService.GetServiceItems(serviceBillingContext, schemeId, priceCategoryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.AllBillItems = res.Results;
             this._changeDetector.detectChanges();
@@ -198,7 +198,7 @@ export class ERWardBillingComponent {
   GetPatientProvisionalItems(patientId: number, patientVisitId: number): void {
     let module = 'emergency';
     this._billingBLService.GetInPatientProvisionalItemList(patientId, patientVisitId, module)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         //  this.provisionalItemsDetails = res.Results.CreditItems;
         //  this.showAddNewItem = false;
         //  this.showOrderRequest = false;
@@ -210,7 +210,7 @@ export class ERWardBillingComponent {
         //  this.provisionalItemsDetails.sort(function (b, a) { return a.BillingTransactionItemId - b.BillingTransactionItemId });
         //});
 
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results) {
             if (this.IsCancelRuleEnabled) {
               res.Results.BillItems.forEach(val => {
@@ -246,13 +246,13 @@ export class ERWardBillingComponent {
   GetBillingCounterForEmergency(): void {
     //client side caching.
     let allBillingCounters: Array<any>;
-    allBillingCounters = DanpheCache.GetData(MasterType.BillingCounter, null);
+    allBillingCounters = DsfCache.GetData(MasterType.BillingCounter, null);
     let erCounter = allBillingCounters.filter(cnt => cnt.CounterType === "EMERGENCY");
     if (erCounter) {
       this.EmergencyCounterId = erCounter.find(counter => counter.CounterId).CounterId;   //As of now, we haven't implemented counter activation in Emergency Module. So taking CounterId from the Database. 'Sanjeev'
     }
     // this.billingBLService.GetAllBillingCounters()
-    //     .subscribe((res: DanpheHTTPResponse) => {
+    //     .subscribe((res: DsfHTTPResponse) => {
     //         if (res.Status == "OK") {
     //             let allBilCntrs: Array<any> = res.Results;
     //             let counter = allBilCntrs.find(cnt => cnt.CounterType == "EMERGENCY");
@@ -291,8 +291,8 @@ export class ERWardBillingComponent {
           billTransactionItem.ItemIntegrationName = billTransactionItem.IntegrationName;
           if (billTransactionItem.IntegrationName.toLowerCase() === 'radiology') {
             this._emergencyBLService.CancelRadRequest(billTransactionItem)
-              .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+              .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                   this.ProvisionalItemsDetails.splice(index, 1);
                   this.ProvisionalItemsDetails.slice();
                   this._changeDetector.detectChanges();
@@ -317,8 +317,8 @@ export class ERWardBillingComponent {
             // ERLabItem.CancelledOn = moment().format('YYYY-MM-DD HH:mm');
 
             this._emergencyBLService.CancelItemRequest(billTransactionItem)
-              .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+              .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                   this.ProvisionalItemsDetails.splice(index, 1);
                   this.ProvisionalItemsDetails.slice();
                   this._changeDetector.detectChanges();
@@ -334,8 +334,8 @@ export class ERWardBillingComponent {
           }
           else {
             this._emergencyBLService.CancelBillRequest(billTransactionItem)
-              .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+              .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                   this.ProvisionalItemsDetails.splice(index, 1);
                   this.ProvisionalItemsDetails.slice();
                   this._changeDetector.detectChanges();

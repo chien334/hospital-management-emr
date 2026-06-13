@@ -3,8 +3,8 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { AppointmentBLService } from '../../shared/appointment.bl.service';
 import { CoreService } from '../../../core/shared/core.service';
 import { LoginToTelemed } from '../../../labs/shared/labMasterData.model';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import * as moment from 'moment';
 @Component({
   templateUrl: "./online-appt-completed.html"
@@ -40,7 +40,7 @@ export class OnlineAppointmentCompletedListComponent {
   }
 
   getParameter(){
-    let TeleMedicineConfig = this.coreService.Parameters.find(p =>p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DanpheConfigurationForTeleMedicine").ParameterValue;
+    let TeleMedicineConfig = this.coreService.Parameters.find(p =>p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DsfConfigurationForTeleMedicine").ParameterValue;
     this.teleMedicineConfiguration = JSON.parse(TeleMedicineConfig);
   } 
 

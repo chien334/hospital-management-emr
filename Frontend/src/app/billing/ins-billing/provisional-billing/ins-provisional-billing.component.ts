@@ -5,10 +5,10 @@ import { Patient } from "../../../patients/shared/patient.model";
 import { PatientService } from "../../../patients/shared/patient.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { CallbackService } from "../../../shared/callback.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../shared/routefrom.service";
 import { ENUM_BillingStatus } from "../../../shared/shared-enums";
@@ -128,7 +128,7 @@ export class INSProvisionalBillingComponent {
 
   GetDoctorsList() {
     this.billingBLService.GetDoctorsList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         console.log(res);
         if (res.Status == "OK") {
           this.doctorsList = res.Results;
@@ -142,7 +142,7 @@ export class INSProvisionalBillingComponent {
 
   GetInsuranceUnpaidTotalBills() {
     this.billingBLService.GetUnpaidInsuranceTotalBills()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.InsuranceProvisionalBillsSummary = res.Results;
         }
@@ -190,7 +190,7 @@ export class INSProvisionalBillingComponent {
 
   LoadPatientBillingContext(patientId) {
     this.billingBLService.GetPatientBillingContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.currBillingContext = res.Results;
           this.billingService.BillingType = this.currBillingContext.BillingType;
@@ -252,7 +252,7 @@ export class INSProvisionalBillingComponent {
       this.billingTransaction.TransactionType = "outpatient"; //For Insurance patient we are sending hard-coded transactionType as 'outpatient'
 
       this.billingBLService.PayProvisional(this.billingTransaction)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.CallBackPostBillTxn(res.Results);
           }

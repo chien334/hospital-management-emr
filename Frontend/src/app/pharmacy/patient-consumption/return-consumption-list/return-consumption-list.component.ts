@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
 import { PHRMPatientConsumption } from '../shared/phrm-patient-consumption.model';
 import { ReturnPatientConsumptionDTO } from '../shared/return-patient-consumption-dto.model';
@@ -49,8 +49,8 @@ export class ReturnConsumptionListComponent {
   }
 
   GetPatientConsumptionReturnList() {
-    this.pharmacyBLService.GetPatientConsumptionReturnList().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.pharmacyBLService.GetPatientConsumptionReturnList().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.PatientConsumptionReturnList = res.Results;
       }
       else {

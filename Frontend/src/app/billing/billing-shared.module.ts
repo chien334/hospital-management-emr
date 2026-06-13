@@ -15,7 +15,7 @@ import { BillingPackageSelectComponent } from './bill-package/billing-package-se
 import { EditBillItemDocPriceComponent } from './update-doc-price/update-item-doc-pricecategory.component';
 
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { SharedModule } from '../shared/shared.module';
 import { BillEditProvisionalItemsComponent } from './bill-provisional/edit-items/bill-edit-provisional-items.component';
 import { BillPastTestListComponent } from './bill-transaction/billing-transaction-past-item.component';
@@ -52,7 +52,7 @@ import { WardBillItemRequestComponent } from './shared/ward-bill-item-request/wa
     CommonModule,
     RouterModule,
     SharedModule,
-    DanpheAutoCompleteModule,
+    DsfAutoCompleteModule,
     SettingsSharedModule
   ],
 

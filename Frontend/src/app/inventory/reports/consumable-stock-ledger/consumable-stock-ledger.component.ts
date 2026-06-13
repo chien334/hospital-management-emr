@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccHospitalInfoVM } from '../../../accounting/shared/acc-view-models';
 import { CoreService } from '../../../core/shared/core.service';
 import { ActivateInventoryService } from '../../../shared/activate-inventory/activate-inventory.service';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { ItemModel } from '../../settings/shared/item.model';
 import { ConsumableStockModel } from '../shared/consumable-stock.model';

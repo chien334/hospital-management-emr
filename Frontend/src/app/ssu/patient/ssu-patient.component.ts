@@ -12,7 +12,7 @@ import { GeneralFieldLabels } from "../../shared/DTOs/general-field-label.dto";
 import { NepaliCalendarService } from '../../shared/calendar/np/nepali-calendar.service';
 import { NepaliDate } from '../../shared/calendar/np/nepali-dates';
 import { CommonFunctions } from "../../shared/common.functions";
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { SsuPatientVM } from "../shared/ssu-patient.view-model";
 import { SSU_BLService } from "../shared/ssu.bl.service";
@@ -112,7 +112,7 @@ export class SSU_PatientComponent {
 
   GetCountry() {
 
-    this.Countries = DanpheCache.GetData(MasterType.Country, null);
+    this.Countries = DsfCache.GetData(MasterType.Country, null);
 
   }
 

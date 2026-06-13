@@ -10,14 +10,14 @@ import { Patient } from "../../patients/shared/patient.model";
 import { PatientService } from "../../patients/shared/patient.service";
 import { CancelStatusHoldingModel } from "../../shared/common-models";
 import {
-  DanpheCache,
+  DsfCache,
   MasterType,
-} from "../../shared/danphe-cache-service-utility/cache-services";
+} from "../../shared/dsf-cache-service-utility/cache-services";
 import {
   NepaliDateInGridColumnDetail,
   NepaliDateInGridParams,
-} from "../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+} from "../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { NursingBLService } from "../shared/nursing.bl.service";
 
@@ -201,7 +201,7 @@ export class NursingWardBillingComponent {
 
   GetActionList(params) {
     if (params.data.AllowCancellation) {
-      return `<a danphe-grid-action="cancel" class="grid-action btn btn-danger">
+      return `<a dsf-grid-action="cancel" class="grid-action btn btn-danger">
               Cancel
            </a>`;
     } else {
@@ -233,7 +233,7 @@ export class NursingWardBillingComponent {
 
   GetBillingCounterForNursing() {
     let allBilCntrs: Array<any>;
-    allBilCntrs = DanpheCache.GetData(MasterType.BillingCounter, null);
+    allBilCntrs = DsfCache.GetData(MasterType.BillingCounter, null);
     let nursingCounter = allBilCntrs.filter(
       (cnt) => cnt.CounterType == "NURSING"
     );
@@ -243,7 +243,7 @@ export class NursingWardBillingComponent {
       ).CounterId;
     }
     // this.billingBLService.GetAllBillingCounters()
-    //     .subscribe((res: DanpheHTTPResponse) => {
+    //     .subscribe((res: DsfHTTPResponse) => {
     //         if (res.Status == "OK") {
     //             let allBilCntrs: Array<any> = res.Results;
     //             let nursingCounter = allBilCntrs.find(cnt => cnt.CounterType == "NURSING");

@@ -32,7 +32,7 @@
     <!-- <div class="display-inline">
       <label class="display-inline">Requested by Dr:</label>
       &nbsp;&nbsp;
-      <input [disabled]="disableTextBox" class="display-inline form-control cstm-form-control" danphe-auto-complete
+      <input [disabled]="disableTextBox" class="display-inline form-control cstm-form-control" dsf-auto-complete
              [ngModelOptions]="{standalone: true}" [(ngModel)]="currentRequestedByDoctor" [source]="doctorsList"
              [list-formatter]="AssignedToDocListFormatter" placeholder="Enter Name"
              display-property-name="FullName" value-property-name=null match-formatted="true"
@@ -93,7 +93,7 @@
                        style="text-align:center">{{i+1}}</label></td>
               <td>
                 <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
-                  <input class="form-control cstm-form-control" danphe-auto-complete
+                  <input class="form-control cstm-form-control" dsf-auto-complete
                          title="{{row.ServiceDepartmentName}}" formControlName="ServiceDepartmentId"
                          [ngClass]="{'border-red': row.IsDirty('ServiceDepartmentId') && !row.IsValidCheck('ServiceDepartmentId','required'), 'border-red': !row.IsValidSelDepartment }"
                          [(ngModel)]="selectedServDepts[i]" [list-formatter]="ServiceDeptListFormatter"
@@ -121,7 +121,7 @@
 
               <!-- <td><form [formGroup]="row.BillingTransactionItemValidator" class="bill-itemname">
                   <input [disabled]="disableTextBox" class="form-control cstm-form-control"
-                         danphe-auto-complete formControlName="ProviderId"
+                         dsf-auto-complete formControlName="ProviderId"
                          [ngClass]="{'border-red': row.IsDirty('ProviderId') && !row.IsValidCheck('ProviderId','required'), 'border-red': !row.IsValidSelAssignedToDr }"
                          [(ngModel)]="selectedAssignedToDr[i]" [source]="doctorsList"
                          [list-formatter]="AssignedToDocListFormatter" placeholder="Enter Name"
@@ -136,7 +136,7 @@
               </td>
               <td style="width:400px" [ngClass]="{'duplication-item':row.IsDoubleEntry_Now || row.IsDoubleEntry_Past}">
                 <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
-                  <input class="form-control cstm-form-control" danphe-auto-complete title="{{row.ItemName}}"
+                  <input class="form-control cstm-form-control" dsf-auto-complete title="{{row.ItemName}}"
                          autocomplete="off" formControlName="ItemName"
                          [ngClass]="{'border-red': row.IsDirty('ItemName') && !row.IsValidCheck('ItemName','required'), 'border-red': !row.IsValidSelItemName}"
                          [(ngModel)]="selectedItems[i]" [list-formatter]="ItemsListFormatter" [source]="row.ItemList"

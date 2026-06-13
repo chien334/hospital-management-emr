@@ -18,7 +18,7 @@
                       <label class="control-label col-md-4">{{ 'PHARMACY.GENERIC_NAME' | translate }}:</label>
                       <div class="col-md-8">
                         <div class="div-relative autocomplete-item">
-                          <input danphe-auto-complete class="" [(ngModel)]="selectedGeneneric" [source]="genericList"
+                          <input dsf-auto-complete class="" [(ngModel)]="selectedGeneneric" [source]="genericList"
                                  [list-formatter]="myGenericNameListFormatter"
                                  [placeholder]="'PHARMACY.SELECT_GENERICNAME' | translate" display-property-name="GenericName" value-property-name=null min-chars="1"
                                  max-num-list="30"
@@ -44,7 +44,7 @@
                       <label class="control-label col-md-4">{{ 'PHARMACY.ITEM_NAME' | translate }}<sup>*</sup>:</label>
                       <div class="col-md-8">
                         <div class="div-relative autocomplete-item">
-                          <input danphe-auto-complete class="" [(ngModel)]="selectedItem" [source]="ItemListFiltered"
+                          <input dsf-auto-complete class="" [(ngModel)]="selectedItem" [source]="ItemListFiltered"
                                  [list-formatter]="myItemListFormatter"
                                  [placeholder]="'PHARMACY.SELECT_AN_ITEM' | translate" display-property-name="ItemName" value-property-name=null [min-chars]="1"
                                  max-num-list="30" (valueChanged)="AssignSelectedItem()" onClick="this.select();" match-formatted="true"
@@ -74,7 +74,7 @@
                     <div class="row no-margin">
                       <label class="control-label col-md-4">{{ 'PHARMACY.PACKING' | translate }}<sup>*</sup>:</label>
                       <div class="col-md-8">
-                        <input danphe-auto-complete class="" [(ngModel)]="goodReceiptItem.Packing" [source]="packingtypeList"
+                        <input dsf-auto-complete class="" [(ngModel)]="goodReceiptItem.Packing" [source]="packingtypeList"
                                [list-formatter]="PackingListsFormatter" display-property-name="PackingName" value-property-name=null min-chars="0"
                                max-num-list="30" (valueChanged)="AssignPackingQty()" onClick="this.select();" match-formatted="true"
                                [ngModelOptions]="{standalone:true}" id="ddl_packing" (keyup.enter)="SetFocusById('txt_BatchNo')"

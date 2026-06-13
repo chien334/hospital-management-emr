@@ -236,8 +236,8 @@ export class RPT_BIL_DepartmentRevenueReportComponent {
         popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
         popupWinindow.document.open();
         let documentContent = "<html><head>";
-        documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
         documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
         documentContent += '<style> table { border-collapse: collapse; border-color: black; } th { color:black; }</style>';
         documentContent += '</head>';

@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AgGridModule } from "ag-grid-angular";
-import { DanpheAutoCompleteModule } from "../shared/danphe-autocomplete/danphe-auto-complete.module";
+import { DsfAutoCompleteModule } from "../shared/dsf-autocomplete/dsf-auto-complete.module";
 import { DLService } from "../shared/dl.service";
 import { SharedModule } from "../shared/shared.module";
 import { ReportingRoutingModule } from "./reporting-routing.module";
@@ -217,7 +217,7 @@ import { RPT_RAD_TotalRevenueFromRadiologyComponent } from "./radiology/revenue/
         FormsModule,
         AgGridModule,
         SharedModule,
-        DanpheAutoCompleteModule], providers: [
+        DsfAutoCompleteModule], providers: [
         DLService,
         ReportingService,
         VisitDLService,

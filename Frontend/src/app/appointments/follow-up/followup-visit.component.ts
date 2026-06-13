@@ -7,17 +7,17 @@ import { BillingService } from '../../billing/shared/billing.service';
 import { PatientService } from '../../patients/shared/patient.service';
 import { PatientsDLService } from '../../patients/shared/patients.dl.service';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../shared/routefrom.service';
-import { ENUM_AppointmentType, ENUM_BillingStatus, ENUM_BillingType, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_VisitType } from '../../shared/shared-enums';
+import { ENUM_AppointmentType, ENUM_BillingStatus, ENUM_BillingType, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_VisitType } from '../../shared/shared-enums';
 import { ListVisitsVM, QuickVisitVM } from '../shared/quick-visit-view.model';
 import { VisitBLService } from '../shared/visit.bl.service';
 import { Visit } from '../shared/visit.model';
 import { VisitService } from '../shared/visit.service';
 
 @Component({
-  selector: "danphe-followup-visit",
+  selector: "dsf-followup-visit",
   templateUrl: "./followup-visit.html",
   host: { '(window:keydown)': 'hotkeys($event)' }
 })
@@ -103,7 +103,7 @@ export class FollowUpVisitComponent {
     let patientId = this.parentVisit.PatientId;
     this.visitBLService.GetPatientById(patientId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.parentVisit.Patient = res.Results;
         }
       });
@@ -205,8 +205,8 @@ export class FollowUpVisitComponent {
   public PostFreeFollowup(): void {
     this.loading = true;//disables FollowUp button
     this.visitBLService.PostFreeFollowupVisit(this.newVisitForChangeDoctor, this.parentVisit.PatientVisitId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Followup created successfully."]);
           this.ResetVisitContext();
           this.followupCompleted.emit({ action: "free-followup", data: res.Results });
@@ -251,8 +251,8 @@ export class FollowUpVisitComponent {
     });
 
     this.visitBLService.PostPaidFollowupVisit(qckVisit_Fwup)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           let fwupVisit = this.GetFormattedForPaidFollowup(res.Results);
           this.PaidFollowUpInvoiceDetails(res);
 
@@ -374,8 +374,8 @@ export class FollowUpVisitComponent {
     this.visitService.PatientTodaysVisitList = [];
 
     this.visitBLService.GetPatientVisits_Today(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.visitService.PatientTodaysVisitList = res.Results;
         }
         else {

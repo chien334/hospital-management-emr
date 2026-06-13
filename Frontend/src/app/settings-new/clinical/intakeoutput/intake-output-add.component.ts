@@ -3,7 +3,7 @@ import * as moment from 'moment/moment';
 import { IntakeOutputParameterListModel } from "../../../clinical/shared/intake-output-parameterlist.model";
 import { IntakeOutputVariableModel } from "../../../shared/intake-output-variable.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { SettingsBLService } from "../../shared/settings.bl.service";
 
 
@@ -42,7 +42,7 @@ export class IntakeOutputAddComponent implements OnInit {
     GetClinicalIntakeOutputParameterList() {
         this.settingBlServ.GetIntakeOutputTypeList()
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.IntakeOutputTypeList = res.Results;
                     if (this.IsUpdate) {
                         this.CurrentIntakeOutput.IntakeOutputId = this.RowData.IntakeOutputId;
@@ -89,7 +89,7 @@ export class IntakeOutputAddComponent implements OnInit {
             this.CurrentIntakeOutput.CreatedOn = moment().format("YYYY-MM-DD HH:mm:ss");
             this.settingBlServ.AddIntakeOutputVariable(this.CurrentIntakeOutput)
                 .subscribe(res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Intake/Output variable Added`]);
                         this.callbackAdd.emit(res);
                     } else {
@@ -116,7 +116,7 @@ export class IntakeOutputAddComponent implements OnInit {
             this.CurrentIntakeOutput.CreatedOn = moment().format("YYYY-MM-DD HH:mm:ss");
             this.settingBlServ.UpdateIntakeOutputVariable(this.CurrentIntakeOutput)
                 .subscribe(res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Intake/Output variable Updated`]);
                         this.callbackAdd.emit(res);
                     } else {

@@ -11,7 +11,7 @@ using System.Management;
 using System.Configuration;
 using System.IO;
 
-namespace DanpheEMR.Utilities.ServerSidePrinter
+namespace DsfEMR.Utilities.ServerSidePrinter
 {
     public partial class LoadPrinter : Form
     {

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import * as _ from 'lodash';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
-import { ENUM_BillPaymentMode, ENUM_DanpheHTTPResponseText } from "../../../shared/shared-enums";
+import { ENUM_BillPaymentMode, ENUM_DsfHTTPResponseText } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMPatientConsumption } from "../shared/phrm-patient-consumption.model";
 
@@ -48,8 +48,8 @@ export class PHRMFinalizeConsumptionWrapperComponent {
 
     public GetPatientConsumption(PatientId: number, PatientVisitId: number): void {
         this.pharmacyBLService.GetPatientConsumption(PatientId, PatientVisitId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.PatientConsumption = res.Results.PatientConsumption;
                     this.PatientConsumption.PaymentMode = ENUM_BillPaymentMode.cash;
                     this.PatientConsumption.PatientConsumptionItems = res.Results.PatientConsumptionItems;

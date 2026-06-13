@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
 import { Patient } from "../../../patients/shared/patient.model";
 import { PatientService } from "../../../patients/shared/patient.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_ProvisionalBillingContext } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_ProvisionalBillingContext } from "../../../shared/shared-enums";
 import { BillingBLService } from "../../shared/billing.bl.service";
 import { ProvisionalDischargeList_DTO } from "../../shared/dto/bill-provisional-discharge-list.dto";
 
@@ -36,8 +36,8 @@ export class BilProvisionalDischargeListComponent {
   }
 
   private GetProvisionalDischargeList(): void {
-    this._billingBlService.GetProvisionalDischargeList().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this._billingBlService.GetProvisionalDischargeList().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.ProvisionalDischargeList = res.Results;
       } else {
         this._msgBoxService.showMessage(ENUM_MessageBox_Status.Failed, [`Cannot fetch Provisional Discharge List`]);

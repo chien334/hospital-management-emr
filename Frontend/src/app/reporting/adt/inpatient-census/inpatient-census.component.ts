@@ -10,7 +10,7 @@ import { ReportDateModel } from "../../shared/report-date.model";
 import {
   NepaliDateInGridParams,
   NepaliDateInGridColumnDetail,
-} from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+} from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 
 @Component({
   templateUrl: "./inpatient-census.html",
@@ -180,9 +180,9 @@ export class RPT_ADT_InpatientCensusComponent {
 
       let documentContent = "<html><head>";
       documentContent +=
-        '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
+        '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
       documentContent +=
-        '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+        '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
       documentContent +=
         '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
       documentContent += "</head>";

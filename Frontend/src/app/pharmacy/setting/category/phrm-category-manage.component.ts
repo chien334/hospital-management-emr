@@ -1,13 +1,13 @@
 ﻿import { ChangeDetectorRef, Component, OnInit, Renderer2 } from "@angular/core";
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMCategoryModel } from "../../shared/phrm-category.model";
 
@@ -57,7 +57,7 @@ export class PHRMCategoryManageComponent implements OnInit {
     public getCategoryList() {
         this.pharmacyBLService.GetCategoryList()
             .subscribe(res => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                     this.categoryList = res.Results;
                 }
                 else {
@@ -109,8 +109,8 @@ export class PHRMCategoryManageComponent implements OnInit {
         let text = 'Hello my friend';
         this.pharmacyBLService.sendSMS(text)
             .subscribe(
-                (res: DanpheHTTPResponse) => {
-                    if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                (res: DsfHTTPResponse) => {
+                    if (res.Status == ENUM_DsfHTTPResponses.OK) {
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["SMS sent."]);
 
                     }
@@ -132,8 +132,8 @@ export class PHRMCategoryManageComponent implements OnInit {
             this.CurrentCategory.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.AddCategory(this.CurrentCategory)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Category Added."]);
                             this.CallBackAddUpdate(res)
                             this.CurrentCategory = new PHRMCategoryModel();
@@ -158,7 +158,7 @@ export class PHRMCategoryManageComponent implements OnInit {
             this.pharmacyBLService.UpdateCategory(this.CurrentCategory)
                 .subscribe(
                     res => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Category Details Updated.']);
                             this.CallBackAddUpdate(res)
                             this.CurrentCategory = new PHRMCategoryModel();
@@ -174,7 +174,7 @@ export class PHRMCategoryManageComponent implements OnInit {
     }
 
     CallBackAddUpdate(res) {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
             var category: any = {};
             category.CategoryId = res.Results.CategoryId;
             category.CategoryName = res.Results.CategoryName;
@@ -206,8 +206,8 @@ export class PHRMCategoryManageComponent implements OnInit {
                 currCategory.IsActive = status;
                 this.pharmacyBLService.UpdateCategory(currCategory)
                     .subscribe(
-                        (res: DanpheHTTPResponse) => {
-                            if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                        (res: DsfHTTPResponse) => {
+                            if (res.Status == ENUM_DsfHTTPResponses.OK) {
                                 let responseMessage = res.Results.IsActive ? "Category is now activated." : "Category is now Deactivated.";
                                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [responseMessage]);
                                 this.getCategoryList();

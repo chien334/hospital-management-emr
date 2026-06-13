@@ -1,4 +1,4 @@
-﻿namespace DanpheEMR.Utilities.ServerSidePrinter
+﻿namespace DsfEMR.Utilities.ServerSidePrinter
 {
     partial class LoadPrinter
     {

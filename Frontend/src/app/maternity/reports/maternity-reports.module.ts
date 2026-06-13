@@ -3,7 +3,7 @@ import { Routes, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 import { ReportingService } from '../../reporting/shared/reporting-service';
 import { MaternityReportsMatAllowanceComponent } from './maternity-allowance-report/mat-allowance-report.component';
@@ -20,7 +20,7 @@ import { MaternitySharedModule } from '../shared/maternity-shared-module';
     bootstrap: [MaternityReportsComponent], imports: [CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SharedModule,
         MaternityReportsRoutingModule,
         MaternitySharedModule], providers: [

@@ -208,11 +208,11 @@
                                                     <label class="control-label col-md-5">{{ 'SETTINGS_NEW.VALID_FROM' | translate }}
                                                         <sup>*</sup><b>:</b></label>
                                                     <div class="col-md-6">
-                                                        <danphe-date-picker [(ngModel)]="billScheme.ValidFromDate"
+                                                        <dsf-date-picker [(ngModel)]="billScheme.ValidFromDate"
                                                                             ngDefaultControl [CalendarTypes]="'en,np'"
                                                                             [allow-future-date]="false"
                                                                             [ngModelOptions]=" {standalone: true}">
-                                                        </danphe-date-picker>
+                                                        </dsf-date-picker>
                                                         <!-- <span class="color-red font-sm"
                                                         *ngIf="billScheme.IsDirty('ValidFrom')"
                                                         [hidden]="billScheme.IsValidCheck('ValidFrom','required')">
@@ -226,10 +226,10 @@
                                                     <label class="control-label col-md-5">Valid
                                                         To<sup>*</sup><b>:</b></label>
                                                     <div class="col-md-6">
-                                                        <danphe-date-picker [(ngModel)]="billScheme.ValidToDate"
+                                                        <dsf-date-picker [(ngModel)]="billScheme.ValidToDate"
                                                                             ngDefaultControl [ngModelOptions]="{standalone: true}"
                                                                             [CalendarTypes]="'en,np'" [allow-future-date]="true">
-                                                        </danphe-date-picker>
+                                                        </dsf-date-picker>
                                                         <!-- <span class="color-red font-sm"
                                                         *ngIf="billScheme.IsDirty('ValidTo')"
                                                         [hidden]="billScheme.IsValidCheck('ValidTo','required')">

@@ -3,10 +3,10 @@ import { Router } from "@angular/router";
 import { CoreService } from "../../../core/shared/core.service";
 import { Patient } from "../../../patients/shared/patient.model";
 import { PatientService } from "../../../patients/shared/patient.service";
-import { CancelStatusHoldingModel, DanpheHTTPResponse } from "../../../shared/common-models";
+import { CancelStatusHoldingModel, DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_IntegrationNames, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_ProvisionalBillingContext, ENUM_ServiceBillingContext } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_IntegrationNames, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_ProvisionalBillingContext, ENUM_ServiceBillingContext } from "../../../shared/shared-enums";
 import { BillingMasterBlService } from "../../shared/billing-master.bl.service";
 import { BillingTransactionItem } from "../../shared/billing-transaction-item.model";
 import { BillingBLService } from "../../shared/billing.bl.service";
@@ -154,8 +154,8 @@ export class ProvisionalItemsViewDetailsComponent {
 
   GetServiceItemsBySchemeIdAndPriceCategoryId(serviceBillingContext: string, schemeId: number, priceCategoryId: number): void {
     this._billingMasterBlService.GetServiceItems(serviceBillingContext, schemeId, priceCategoryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
           this.ServiceItems = res.Results;
           this._billingMasterBlService.ServiceItemsForProvisionalClearance = res.Results;
           if (this.SelectedProvisionalContext.ProvisionalBillingContext !== ENUM_ProvisionalBillingContext.Outpatient) {
@@ -175,8 +175,8 @@ export class ProvisionalItemsViewDetailsComponent {
   }
   GetProvisionalDischargeItems(patientId: number, schemeId: number, patientVisitId: number): void {
     this._billingBlService.GetProvisionalDischargeItems(patientId, schemeId, patientVisitId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results) {
             if (res.Results.Patient) {
               res.Results.Patient.CountrySubDivisionName = res.Results.Patient.CountrySubDivision.CountrySubDivisionName
@@ -200,8 +200,8 @@ export class ProvisionalItemsViewDetailsComponent {
 
   GetOutpatientPatientProvisionalItems(patientId: number, schemeId: number, printProvisional: boolean = false): void {
     this._billingBlService.GetProvisionalItemsByPatientId(patientId, schemeId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results) {
             this.patientService.globalPatient = res.Results.Patient;
             this.PatientProvisionalItems = res.Results.ProvisionalItems;
@@ -473,8 +473,8 @@ export class ProvisionalItemsViewDetailsComponent {
   DiscardAll(): void {
     if (this.DiscardProvisionalItems) {
       if (this.DiscardProvisionalItems.DiscardRemarks && this.DiscardProvisionalItems.DiscardRemarks.trim().length > 0) {
-        this._billingBlService.DiscardProvisionalItems(this.DiscardProvisionalItems).subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+        this._billingBlService.DiscardProvisionalItems(this.DiscardProvisionalItems).subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
             this._msgBoxService.showMessage(ENUM_MessageBox_Status.Success, [res.Results]);
             this.DiscardAllConfirmation = false;
             this.BackToGrid();

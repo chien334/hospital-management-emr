@@ -26,10 +26,10 @@ export class OTGridColumnSettings {
       headerName: "Actions",
       field: "",
       width: 500,
-      template: `<a danphe-grid-action="edit" class="grid-action">Edit</a>
+      template: `<a dsf-grid-action="edit" class="grid-action">Edit</a>
                 `,
-                // <a danphe-grid-action="reschedule" class="grid-action">Reschedule</a>
-                // <a danphe-grid-action="cancel" class="grid-action">Cancel</a>
+                // <a dsf-grid-action="reschedule" class="grid-action">Reschedule</a>
+                // <a dsf-grid-action="cancel" class="grid-action">Cancel</a>
     }
 
   ]

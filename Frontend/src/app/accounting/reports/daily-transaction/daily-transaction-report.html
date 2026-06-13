@@ -44,8 +44,8 @@
                 <div class="form-group">
                     <label class="control-label"> <b> To Date</b> <b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div>
-                        <danphe-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+                        </dsf-date-picker>
                     </div>
                 </div>
             </div> -->
@@ -59,8 +59,8 @@
     </div>
   </div>
   <div class="row" *ngIf="showReportData">
-    <danphe-grid [grid-colDefaults]="dailyTxnGridColumns" [grid-data]="dailyTxnList" [grid-exportOptions]="gridExportOptions" 
-    [grid-showExport]="true" (grid-onExport)="OnGridExport($event)" (grid-actions)="gridAction($event)" [report-for]="'accounting'" [grid-date-range]="dateRange"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="dailyTxnGridColumns" [grid-data]="dailyTxnList" [grid-exportOptions]="gridExportOptions" 
+    [grid-showExport]="true" (grid-onExport)="OnGridExport($event)" (grid-actions)="gridAction($event)" [report-for]="'accounting'" [grid-date-range]="dateRange"> </dsf-grid>
   </div>
 </div>
 <!--For Export to excel-->
@@ -76,7 +76,7 @@
       </tr>
       <tr *ngFor="let row of dailyTxnList">
         <td>{{row.VoucherNumber}}</td>
-        <td>{{row.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+        <td>{{row.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
         <td>{{row.LedgerName}}</td>
         <td>{{row.DrAmount | Currency:'4'}}</td>
         <td>{{row.CrAmount | Currency:'4'}}</td>
@@ -103,7 +103,7 @@
         [header-title]="'ACCOUNTING.TRANSACTION_DETAILS' | translate">
     </customer-header>
         <div class="col-md-12" id="printpage"> <span>{{ 'ACCOUNTING.VOUCHER_NO_COLON' | translate }} <b>{{selectedTxn.VoucherNumber}}</b></span><br />
-          <span>{{ 'ACCOUNTING.DATE_COLON' | translate }} <b>{{selectedTxn.TransactionDate  | DanpheDateTime:'format':'YYYY-MM-DD'}}</b></span>
+          <span>{{ 'ACCOUNTING.DATE_COLON' | translate }} <b>{{selectedTxn.TransactionDate  | DsfDateTime:'format':'YYYY-MM-DD'}}</b></span>
           <div class="table-responsive" *ngIf="selectedTxn.SectionId=='1'">
             <table class="table table-striped table-hover" style="background-color:initial;margin-top:10px">
               <thead>

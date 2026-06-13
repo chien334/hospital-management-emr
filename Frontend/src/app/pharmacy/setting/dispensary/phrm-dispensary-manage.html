@@ -18,8 +18,8 @@
 <input type="button" class="btn btn-primary" (click)="AddDispensary()" [value]="'PHARMACY.ADD_DISPENSARY' | translate" />
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="dispensaryGridColumns" [grid-data]="dispensaryList" (grid-actions)="DispensaryGridActions($event)">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="dispensaryGridColumns" [grid-data]="dispensaryList" (grid-actions)="DispensaryGridActions($event)">
+    </dsf-grid>
   </div>
 </div>
 <!--Model Box Starting Here-->

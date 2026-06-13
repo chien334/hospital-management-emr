@@ -9,7 +9,7 @@ import * as _ from 'lodash';
 import { Subscription } from "rxjs/Rx";
 import { ServiceDepartment } from '../../../billing/shared/service-department.model';
 import { SettingsBLService } from '../../../settings-new/shared/settings.bl.service';
-import { DanpheHTTPResponse } from '../../../../../src/app/shared/common-models';
+import { DsfHTTPResponse } from '../../../../../src/app/shared/common-models';
 import { LabTestComponentMap } from '../shared/lab-test-component-map.model';
 import { CoreCFGLookUp } from '../shared/coreCFGLookUp.model';
 import { LabCategoryModel } from '../../shared/lab-category.model';

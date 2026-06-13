@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, Output, Renderer2 } from "@angular/core";
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 
 import * as _ from 'lodash';
@@ -8,9 +8,9 @@ import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from '../../../security/shared/security.service';
 import { CFGParameterModel } from "../../../settings-new/shared/cfg-parameter.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_StockLocations } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_StockLocations } from "../../../shared/shared-enums";
 import { Store } from "../../rack/phrm-rack.component";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMCompanyModel } from "../../shared/phrm-company.model";
@@ -148,8 +148,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
     return this.RackList.filter(r => r.StoreId == this.StoreList[i].StoreId || r.StoreId == null);
   }
   public GetLocationList(): void {
-    this.pharmacyBLService.GetAllPharmacyStore().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetAllPharmacyStore().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.StoreList = []
         this.StoreList = res.Results;
       }
@@ -168,8 +168,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
 
   public GetPackingTypeList() {
     this.pharmacyBLService.GetPackingTypeList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           this.packingtypeList = res.Results;
         }
         else {
@@ -180,8 +180,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
   }
   public getGenericList() {
     this.pharmacyBLService.GetGenericList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           this.genericList = res.Results;
         }
       });
@@ -197,8 +197,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
   }
   public getItemList() {
     this.pharmacyBLService.GetItemList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           let ItemList = res.Results;
 
           ItemList.forEach(i => {
@@ -223,8 +223,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
 
   public getSuppliers() {
     this.pharmacyBLService.GetSupplierList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.supplierList = res.Results;
           }
@@ -239,8 +239,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
   }
   public getCompanies() {
     this.pharmacyBLService.GetCompanyList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.companyList = res.Results;
           }
@@ -255,8 +255,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
   }
   public getSalesCategoryList() {
     this.pharmacyBLService.GetSalesCategoryList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           this.salesCategoryList = res.Results;
         }
         else {
@@ -269,8 +269,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
   }
   public getItemTypes() {
     this.pharmacyBLService.GetItemTypeListManage()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.itemtypeList = res.Results;
           }
@@ -285,8 +285,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
   }
   public getUOMs() {
     this.pharmacyBLService.GetUnitOfMeasurementList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.uomList = res.Results;
           }
@@ -441,8 +441,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
           this.pharmacyBLService.AddItem(this.CurrentItem)
             .finally(() => { this.ClearItemData() })
             .subscribe(
-              (res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+              (res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                   this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Item Added."]);
                   this.CallBackAddUpdate(res)
                   this.CurrentItem = new PHRMItemMasterModel();
@@ -487,8 +487,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
         this.pharmacyBLService.UpdateItem(this.CurrentItem)
           .finally(() => { this.ClearItemData() })
           .subscribe(
-            (res: DanpheHTTPResponse) => {
-              if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+              if (res.Status == ENUM_DsfHTTPResponses.OK) {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Item  Details Updated.']);
                 this.CallBackAddUpdate(res);
                 this.CurrentItem = new PHRMItemMasterModel();
@@ -512,7 +512,7 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
     return true;
   }
   CallBackAddUpdate(res) {
-    if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status == ENUM_DsfHTTPResponses.OK) {
       var item: any = {};
       item = { ...res.Results }
       let newCompany = this.companyList.find(c => c.CompanyId == res.Results.CompanyId);
@@ -566,8 +566,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
         currItem.IsActive = status;
         this.pharmacyBLService.UpdateItem(currItem)
           .subscribe(
-            (res: DanpheHTTPResponse) => {
-              if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+              if (res.Status == ENUM_DsfHTTPResponses.OK) {
                 let responseMessage = res.Results.IsActive ? "Item is now activated." : "Item is now Deactivated.";
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [responseMessage]);
                 this.getItemList();
@@ -760,8 +760,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
     let itemId = this.selectedItemId;
     this.pharmacyBLService.addtoRack(itemId, this.rackId, this.CurrentItem.StoreRackId)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status == ENUM_DsfHTTPResponses.OK) {
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Item added to Rack.']);
             const selectedItem = this.itemList.find(item => item.ItemId == itemId);
             selectedItem.RackNo = (this.rackId) ? this.DispensaryRackList.find(rack => rack.RackId == this.rackId).RackNo : '';
@@ -808,8 +808,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
   saveCCcharges() {
     this.pharmacyBLService.AddCCcharge(this.paramerter)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status == ENUM_DsfHTTPResponses.OK) {
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Item Type Details Updated.']);
             this.Closecccharcge();
             this.coreService.InitializeParameters().subscribe(res => {
@@ -828,7 +828,7 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
   }
 
   public CallBackLoadParameters(res) {
-    if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status == ENUM_DsfHTTPResponses.OK) {
       this.coreService.Parameters = res.Results;
     }
     else {
@@ -956,8 +956,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
         ItemsPriceCategory.PriceCategoryMapId = 0;
         this.pharmacyBLService.AddPriceCategory(ItemsPriceCategory).finally(() => {
           this.CurrentItem.PHRM_MAP_MstItemsPriceCategories[index].loading = false;
-        }).subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        }).subscribe((res: DsfHTTPResponse) => {
+          if (res.Status == ENUM_DsfHTTPResponses.OK) {
             this.itemList[this.index].PHRM_MAP_MstItemsPriceCategories.push(res.Results);
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Price Category Added Successfully."]);
           }
@@ -978,8 +978,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
         this.CurrentItem.PHRM_MAP_MstItemsPriceCategories[index].loading = true;
         this.pharmacyBLService.UpdatePriceCategory(ItemsPriceCategory).finally(() => {
           this.CurrentItem.PHRM_MAP_MstItemsPriceCategories[index].loading = false;
-        }).subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        }).subscribe((res: DsfHTTPResponse) => {
+          if (res.Status == ENUM_DsfHTTPResponses.OK) {
             this.itemList[this.index].PHRM_MAP_MstItemsPriceCategories[index] = res.Results;
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Price Category Updated Successfully"]);
           }
@@ -1008,16 +1008,16 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
     return valid;
   }
   GetAllRackList() {
-    this.pharmacyBLService.GetAllRackList().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetAllRackList().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.RackListForAllocation = res.Results;
       }
     });
   }
   GetAllocatedRackData(ItemId: number) {
     this.pharmacyBLService.GetItemRackAllocationData(ItemId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.RackData = [];
           this.RackData = res.Results;
 
@@ -1064,8 +1064,8 @@ export class PHRMItemMasterManageComponent implements OnDestroy {
         this.loading = false;
         this.itemList = this.itemList.slice();
         this.ClearItemData();
-      }).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      }).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           let rackData = '';
           rackData = res.Results.map((r) => {
             return r.RackNo

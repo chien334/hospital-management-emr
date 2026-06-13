@@ -15,13 +15,13 @@
                 ><b style="float: right;">:</b></label
               >
               <div class="col-md-9">
-                <danphe-date-picker
+                <dsf-date-picker
                   [(ngModel)]="currentdischargepatient.fromDate"
                   ngDefaultControl
                   [CalendarTypes]="'np'"
                   formControlName="fromDate"
                 >
-                </danphe-date-picker>
+                </dsf-date-picker>
                 <span
                   class="color-red font-sm"
                   *ngIf="currentdischargepatient.IsDirty('fromDate')"
@@ -46,13 +46,13 @@
                 ><b style="float: right;">:</b></label
               >
               <div class="col-md-9">
-                <danphe-date-picker
+                <dsf-date-picker
                   [(ngModel)]="currentdischargepatient.toDate"
                   ngDefaultControl
                   [CalendarTypes]="'np'"
                   formControlName="toDate"
                 >
-                </danphe-date-picker>
+                </dsf-date-picker>
                 <span
                   class="color-red font-sm"
                   *ngIf="currentdischargepatient.IsDirty('toDate')"
@@ -91,13 +91,13 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12" *ngIf="DischargedPatientData.length>0">
-      <danphe-grid [grid-colDefaults]="DischargedPatientColumns"
+      <dsf-grid [grid-colDefaults]="DischargedPatientColumns"
                    [grid-data]="DischargedPatientData"
                    [grid-exportOptions]="gridExportOptions"
                    [grid-showExport]="true"
                    (grid-actions)="DischargeBillGridActions($event)"
                    [NepaliDateInGridParams]="NepaliDateInGridSettings">
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
   <discharge-bill-breakup-report [showDischargeBillBreakup]="showDischargeBillBreakup"

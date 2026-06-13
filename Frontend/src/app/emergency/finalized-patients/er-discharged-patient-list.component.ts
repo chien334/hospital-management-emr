@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { VisitService } from '../../appointments/shared/visit.service';
 import { CoreService } from '../../core/shared/core.service';
 import { PatientService } from '../../patients/shared/patient.service';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import EmergencyGridColumnSettings from '../shared/emergency-gridcol-settings';
 import { EmergencyPatientModel } from '../shared/emergency-patient.model';

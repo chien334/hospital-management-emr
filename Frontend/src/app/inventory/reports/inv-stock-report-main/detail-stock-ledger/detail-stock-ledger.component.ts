@@ -9,7 +9,7 @@ import { DetailStockLedger } from "../../../shared/detail-stock-ledger.model";
 import { InventoryBLService } from "../../../shared/inventory.bl.service";
 import { InventoryReportsBLService } from "../../shared/inventory-reports.bl.service";
 import { InventoryReportsDLService } from "../../shared/inventory-reports.dl.service";
-import { IGridFilterParameter } from "../../../../shared/danphe-grid/grid-filter-parameter.interface";
+import { IGridFilterParameter } from "../../../../shared/dsf-grid/grid-filter-parameter.interface";
 
 
 

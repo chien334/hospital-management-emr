@@ -9,8 +9,8 @@ import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { MedicalRecordsMasterDataVM } from '../shared/DischargeMasterData.model';
 import { MR_BLService } from '../shared/mr.bl.service';
 import { Employee } from '../../employee/shared/employee.model';
-import { MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
-import { DanpheCache } from '../../shared/danphe-cache-service-utility/cache-services';
+import { MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
+import { DsfCache } from '../../shared/dsf-cache-service-utility/cache-services';
 
 @Component({
     selector: 'add-birth-details-shared',
@@ -67,7 +67,7 @@ export class AddBirthDetailsSharedComponent {
 
     ngOnInit() {
 
-        this.providerList = DanpheCache.GetData(MasterType.Employee, null);
+        this.providerList = DsfCache.GetData(MasterType.Employee, null);
         this.GetBirthType();
         if (this.MotherPatientId && this.MotherPatientId > 0) {
             this.GetBabyDetailsListByMotherPatientId();

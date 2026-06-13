@@ -10,7 +10,7 @@ import { LabsDLService } from '../labs/shared/labs.dl.service';
 import { PatientsBLService } from '../patients/shared/patients.bl.service';
 import { PatientsDLService } from '../patients/shared/patients.dl.service';
 import { ImagingDLService } from '../radiology/shared/imaging.dl.service';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { SharedModule } from "../shared/shared.module";
 import { DischargeSummaryComponent } from './discharge-summary.component';
 import { DischargeSummaryBLService } from './shared/discharge-summary.bl.service';
@@ -26,7 +26,7 @@ import { DeathCertificateComponent } from "./shared/generate-certificate/generat
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule], providers: [
+        DsfAutoCompleteModule], providers: [
         DischargeSummaryBLService,
         DischargeSummaryDLService,
         VisitDLService,

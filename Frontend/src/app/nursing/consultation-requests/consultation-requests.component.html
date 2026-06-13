@@ -9,13 +9,13 @@
             <span class="glyphicon glyphicon-plus"></span> {{ 'NURSING.NEW_REQUEST' | translate }}
         </button>
     </div>
-    <danphe-grid
+    <dsf-grid
                  [grid-colDefaults]="ConsultationRequestGridColumns"
                  [grid-data]="ConsultationRequestList"
                  (grid-actions)="ConsultationRequestGridActions($event)"
                  [NepaliDateInGridParams]="NepaliDateInGridSettings"
                  [show-print-button]="false">
-    </danphe-grid>
+    </dsf-grid>
 
     <new-request
                  *ngIf="ShowAddNewRequestPopup"

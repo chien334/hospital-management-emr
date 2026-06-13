@@ -16,9 +16,9 @@
             <label class="control-label col-md-4">From Date<b class="color-red"> *</b><b
                 style="float:right;">:</b></label>
             <div class="col-md-8">
-              <danphe-date-picker [(ngModel)]="curDocReportMain.fromDate" ngDefaultControl [CalendarTypes]="calType"
+              <dsf-date-picker [(ngModel)]="curDocReportMain.fromDate" ngDefaultControl [CalendarTypes]="calType"
                 formControlName="fromDate">
-              </danphe-date-picker>
+              </dsf-date-picker>
               <span class="color-red font-sm" *ngIf="curDocReportMain.IsDirty('fromDate')"
                 [hidden]="curDocReportMain.IsValidCheck('fromDate','required')"> From Date is required</span><br />
               <span class="color-red font-sm" *ngIf="curDocReportMain.IsDirty('fromDate')"
@@ -31,9 +31,9 @@
             <label class="control-label col-md-4">To Date<b class="color-red"> *</b><b
                 style="float:right;">:</b></label>
             <div class="col-md-8">
-              <danphe-date-picker [(ngModel)]="curDocReportMain.toDate" ngDefaultControl [CalendarTypes]="calType"
+              <dsf-date-picker [(ngModel)]="curDocReportMain.toDate" ngDefaultControl [CalendarTypes]="calType"
                 formControlName="toDate">
-              </danphe-date-picker>
+              </dsf-date-picker>
               <span class="color-red font-sm" *ngIf="curDocReportMain.IsDirty('toDate')"
                 [hidden]="curDocReportMain.IsValidCheck('toDate','required')"> To Date is required</span><br />
               <span class="color-red font-sm" *ngIf="curDocReportMain.IsDirty('toDate')"
@@ -132,9 +132,9 @@
     </div>
     <div class="clearfix"></div>
     <div class="col-md-12">
-      <danphe-grid [grid-colDefaults]="PaymentReportGridColumns" [grid-data]="allReportData"
+      <dsf-grid [grid-colDefaults]="PaymentReportGridColumns" [grid-data]="allReportData"
         (grid-actions)="PaymentReportGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
 </div>
@@ -169,7 +169,7 @@
                               </span><br />
                               <span style="float:right">
                                 &nbsp;
-                                {{paymentDetails.PaymentDate | DanpheDateTime:'format':'YYYY-MM-DD'}} AD
+                                {{paymentDetails.PaymentDate | DsfDateTime:'format':'YYYY-MM-DD'}} AD
                               </span>
                             </td>
                           </tr>

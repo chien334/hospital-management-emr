@@ -10,13 +10,13 @@
               <div class="col-md-6">
                 <label class="control-label"> From <b class="color-red"> *</b> :</label>
                 <div class="date-with-label">
-                  <danphe-date-picker [(ngModel)]="FromDate" ngDefaultControl [CalendarTypes]="'np,en'" (ngModelChange)="DateValidCheck()"> </danphe-date-picker>
+                  <dsf-date-picker [(ngModel)]="FromDate" ngDefaultControl [CalendarTypes]="'np,en'" (ngModelChange)="DateValidCheck()"> </dsf-date-picker>
                   <span class="color-red font-sm" [hidden]="IsDateValid"> Enter Valid Date</span> </div>
               </div>
               <div class="col-md-6">
                 <label class="control-label"> To <b class="color-red"> *</b> :</label>
                 <div class="date-with-label">
-                  <danphe-date-picker [(ngModel)]="ToDate" ngDefaultControl [CalendarTypes]="'np,en'" (ngModelChange)="DateValidCheck()"> </danphe-date-picker>
+                  <dsf-date-picker [(ngModel)]="ToDate" ngDefaultControl [CalendarTypes]="'np,en'" (ngModelChange)="DateValidCheck()"> </dsf-date-picker>
                   <span class="color-red font-sm" [hidden]="IsDateValid"> Enter Valid Date</span> </div>
               </div>
             </div>
@@ -43,9 +43,9 @@
   <ng-container *ngIf="showReport">
     <div class="row">
       <div class="col-md-12">
-        <danphe-grid [grid-colDefaults]="ItemSummaryReportGridCol" [grid-data]="allReportData"
+        <dsf-grid [grid-colDefaults]="ItemSummaryReportGridCol" [grid-data]="allReportData"
           [grid-exportOptions]="GetGridExportOptions()" [grid-showExport]="true" [show-print-button]="true"
-          [report-for]="billing" [grid-date-range]="dateRange" [grid-footer-content]="footerContent"> </danphe-grid>
+          [report-for]="billing" [grid-date-range]="dateRange" [grid-footer-content]="footerContent"> </dsf-grid>
       </div>
     </div>
   </ng-container>

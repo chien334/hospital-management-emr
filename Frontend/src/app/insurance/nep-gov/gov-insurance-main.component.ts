@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../../core/shared/core.service';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { RouteFromService } from '../../shared/routefrom.service';
 import { GovInsuranceService } from './shared/ins-service';
 import { GovInsuranceBlService } from './shared/insurance.bl.service';
@@ -40,7 +40,7 @@ export class InsuranceComponent implements OnInit {
 
     if (this.insuranceService.DocFollowupPrices && this.insuranceService.DocFollowupPrices.length == 0) {
       this.insuranceBlService.GetDoctorFollowupItems()
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.insuranceService.DocFollowupPrices = res.Results;
           }
@@ -48,21 +48,21 @@ export class InsuranceComponent implements OnInit {
     }
 
     this.insuranceBlService.GetDepartmentFollowupItems()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.insuranceService.DeptFollowupPrices = res.Results;
         }
       });
 
     this.insuranceBlService.GetDoctorOpdPrices()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.insuranceService.DocOpdPrices = res.Results;
         }
       });
 
     this.insuranceBlService.GetDepartmentOpdItems()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.insuranceService.DeptOpdPrices = res.Results;
         }
@@ -70,21 +70,21 @@ export class InsuranceComponent implements OnInit {
 
     //sud: 31Jul'19-For Old Patient Opd
     this.insuranceBlService.GetDepartmentOldPatientPrices()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.insuranceService.DeptOpdPrice_OldPatient = res.Results;
         }
       });
     //sud: 31Jul'19-For Old Patient Opd
     this.insuranceBlService.GetDoctorOldPatientPrices()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.insuranceService.DocOpdPrice_OldPatient = res.Results;
         }
       });
 
     this.insuranceBlService.GetDepartment()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.insuranceService.ApptApplicableDepartmentList = res.Results;
           this.insuranceService.ApptApplicableDepartmentList = this.coreService.Masters.Departments.filter(d => d.IsAppointmentApplicable == true && d.IsActive == true).map(d => {
@@ -108,7 +108,7 @@ export class InsuranceComponent implements OnInit {
 
     //check if we can get employee data also from pre-loaded masters.
     this.insuranceBlService.GetVisitDoctors()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.insuranceService.ApptApplicableDoctorsList = res.Results;
         }
@@ -117,7 +117,7 @@ export class InsuranceComponent implements OnInit {
   //we have to load all billing items into service variable, which will be used across this module. 
   public LoadAllBillingItems() {
     this.insuranceBlService.GetBillItemList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log("bill item prices are loaded successfully (Insurance-main).");
           this.insuranceService.LoadAllBillItemsPriceList(res.Results);

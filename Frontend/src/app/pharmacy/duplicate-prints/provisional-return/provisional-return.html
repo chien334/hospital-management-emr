@@ -7,8 +7,8 @@
         <div class="form-group">
           <label class="control-label col-md-3">From {{ 'GRID_HEADERS.DATE' | translate }}<sup>*</sup><b>:</b></label>
           <div class="col-md-9">
-            <danphe-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
-            </danphe-date-picker>
+            <dsf-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
+            </dsf-date-picker>
           </div>
         </div>
       </div> -->
@@ -16,8 +16,8 @@
         <div class="form-group">
           <label class="control-label col-md-3">To {{ 'GRID_HEADERS.DATE' | translate }}<sup>*</sup><b>:</b></label>
           <div class="col-md-9">
-            <danphe-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
-            </danphe-date-picker>
+            <dsf-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
+            </dsf-date-picker>
           </div>
         </div>
       </div> -->
@@ -34,11 +34,11 @@
 
     <div class="row">
       <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="ProvisionalReturnListGrid" [grid-data]="provisionalBillFiltered"
+        <dsf-grid [grid-colDefaults]="ProvisionalReturnListGrid" [grid-data]="provisionalBillFiltered"
           [rangeType]="dateRange" [date-range-options]="'1W,1M,3M'" [NepaliDateInGridParams]="NepaliDateInGridSettings"
           (onDateChange)="onGridDateChange($event)" (grid-actions)="CreditBillGridActions($event)"
           [show-CustomDate]="true">
-        </danphe-grid>
+        </dsf-grid>
       </div>
     </div>
   </div>
@@ -112,7 +112,7 @@
                       <div class="right" style="width:31%">
                         <p class="no-margin" style="text-align:right;font-size:11px;">
                           {{ 'GRID_HEADERS.AGE_SEX' | translate }} :
-                          {{currentPatient.DateOfBirth | DanpheDateTime:'age' }}/{{currentPatient.Gender}}
+                          {{currentPatient.DateOfBirth | DsfDateTime:'age' }}/{{currentPatient.Gender}}
                         </p>
                       </div>
                     </div>

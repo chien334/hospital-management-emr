@@ -58,8 +58,8 @@
               </tr>
             </thead>
             <tr *ngFor="let row of provisionalItemsDetails;let i = index">
-              <!--<td style="font-size: 12px;font-weight: bold;">{{row.RequisitionDate | DanpheDateTime:'format':'YY/MM/DD HH:mm'}}</td>-->
-              <td *ngIf="!IsLocalDate" style="width: 120px; font-size: 12px;font-weight: bold;">{{row.RequisitionDate | DanpheDateTime:'format':'YYYY-MM-DD  HH:mm'}}</td>
+              <!--<td style="font-size: 12px;font-weight: bold;">{{row.RequisitionDate | DsfDateTime:'format':'YY/MM/DD HH:mm'}}</td>-->
+              <td *ngIf="!IsLocalDate" style="width: 120px; font-size: 12px;font-weight: bold;">{{row.RequisitionDate | DsfDateTime:'format':'YYYY-MM-DD  HH:mm'}}</td>
               <td *ngIf="IsLocalDate" style="width: 120px; font-size: 12px;font-weight: bold;">{{row.RequisitionDate? (row.RequisitionDate | nepaliDate:'format':'YYYY-MM-DD  hh:mm'): ''}}</td>
               <td>{{row.ServiceDepartmentName}}</td>
               <td><div>{{row.ItemName}}</div>

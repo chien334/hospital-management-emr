@@ -152,7 +152,7 @@ border-radius: 5px;
       <div class="search-form">
         <label for="FilterParameter">{{ 'INVENTORY.FILTER_BY' | translate }}:</label>
         <input class="form-control" *ngIf="FilterParameter == null"
-        danphe-auto-complete [source]="SearchSource" [placeholder]="'INVENTORY.TYPE_HERE_TO_SEARCH' | translate" display-property-name="Name"
+        dsf-auto-complete [source]="SearchSource" [placeholder]="'INVENTORY.TYPE_HERE_TO_SEARCH' | translate" display-property-name="Name"
         [(ngModel)]="FilterParameter" (ngModelChange)="Sort()" [list-formatter]="SearchListFormatter" />
         <span class="activeFilterBox" *ngIf="!!FilterParameter"> <span class="activeFilterText">{{FilterParameter.Name}}</span> <span><a style="margin-left:6px" disabled="loading" (click)="ResetSort()"><span
               class="fa fa-close"></span></a></span> </span> </div>

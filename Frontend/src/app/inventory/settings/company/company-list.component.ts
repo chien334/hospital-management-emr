@@ -1,10 +1,10 @@
 import { Component, ChangeDetectorRef } from '@angular/core'
 import { CompanyModel } from '../../settings/shared/company/company.model';
 import { CompanyService } from '../../settings/shared/company/company.service';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 
 
 @Component({

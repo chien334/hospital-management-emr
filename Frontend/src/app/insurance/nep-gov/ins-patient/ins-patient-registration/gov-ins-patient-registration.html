@@ -241,7 +241,7 @@
                             {{GeneralFieldLabel.DistrictState}}<b class="color-red"> *</b><b style="float:right;">:</b>
                           </label>
                           <div class="col-md-7">
-                            <input class="form-control" danphe-auto-complete formControlName="CountrySubDivisionId"
+                            <input class="form-control" dsf-auto-complete formControlName="CountrySubDivisionId"
                                    [(ngModel)]="selectedDistrict" [list-formatter]="districtListFormatter"
                                    [source]="districts_Filtered" placeholder="{{GeneralFieldLabel.DistrictState}}" id="district"
                                    (keyup.enter)="showMunicipality? setFocusById('municipality') : setFocusById('address')"
@@ -268,7 +268,7 @@
                           <div class="col-md-1"> </div>
                           <label class="control-label col-md-4">Address<b style="float:right;">:</b></label>
                           <div class="col-md-7">
-                            <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
+                            <input dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
                                    id="address" [(ngModel)]="insPatient.Address" [source]="olderAddressList"
                                    placeholder="Address" display-property-name="PatAddress" value-property-name=null
                                    no-match-found-text=" " onClick="this.select();" min-chars="2"

@@ -8,7 +8,7 @@
             <div class="form-group">
               <label class="control-label col-md-3">From Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
               <div class="col-md-9">
-                <danphe-date-picker [(ngModel)]="currentDrPatReport.fromDate" ngDefaultControl [CalendarTypes]="calType" formControlName="fromDate"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="currentDrPatReport.fromDate" ngDefaultControl [CalendarTypes]="calType" formControlName="fromDate"> </dsf-date-picker>
                 <span class="color-red font-sm" *ngIf="currentDrPatReport.IsDirty('fromDate')" [hidden]="currentDrPatReport.IsValidCheck('fromDate','required')"> From Date is required</span><br />
                 <span class="color-red font-sm" *ngIf="currentDrPatReport.IsDirty('fromDate')" [hidden]="currentDrPatReport.IsValidCheck('fromDate','wrongDate')"> Enter Valid Date</span> </div>
             </div>
@@ -17,7 +17,7 @@
             <div class="form-group">
               <label class="control-label col-md-3">To Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
               <div class="col-md-9">
-                <danphe-date-picker [(ngModel)]="currentDrPatReport.toDate" ngDefaultControl [CalendarTypes]="calType" formControlName="toDate"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="currentDrPatReport.toDate" ngDefaultControl [CalendarTypes]="calType" formControlName="toDate"> </dsf-date-picker>
                 <span class="color-red font-sm" *ngIf="currentDrPatReport.IsDirty('toDate')" [hidden]="currentDrPatReport.IsValidCheck('toDate','required')"> To Date is required</span><br />
                 <span class="color-red font-sm" *ngIf="currentDrPatReport.IsDirty('toDate')" [hidden]="currentDrPatReport.IsValidCheck('toDate','wrongDate')"> Can't select future date</span> </div>
             </div>

@@ -3,12 +3,12 @@ import { QrService } from "./qr-service";
 import { CommonFunctions } from "../common.functions";
 import { PatientsDLService } from "../../patients/shared/patients.dl.service";
 import { DLService } from "../dl.service";
-import { DanpheHTTPResponse } from "../common-models";
+import { DsfHTTPResponse } from "../common-models";
 import { Patient } from "../../patients/shared/patient.model";
 import { ReturnToVendorComponent } from "../../inventory/reports/return-to-vendor/return-to-vendor-report.component";
 
 @Component({
-  selector: 'danphe-qr-reader',
+  selector: 'dsf-qr-reader',
   templateUrl: "./qr-reader.html",
 })
 export class QrReaderComponent {
@@ -42,7 +42,7 @@ export class QrReaderComponent {
       if (this.department == 'billing') {
         this.dlService.Read("/api/Patient/PatientByCode?patientCode=" + patCodeFormatted)
           .map(res => res)
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
             if (res.Status == "OK" && res.Results && res.Results.PatientId) {
               this.invalidPatientCode = false;
               let pat: Patient = res.Results;

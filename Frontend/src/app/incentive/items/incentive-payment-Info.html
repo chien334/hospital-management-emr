@@ -32,8 +32,8 @@
             <!-- <div class="col-md-6">
               <label class="control-label"> From <b class="color-red"> *</b> :</label>
               <div class="date-with-label">
-                <danphe-date-picker [(ngModel)]="FromDate" ngDefaultControl [CalendarTypes]="calType" (ngModelChange)="DateValidCheck()">
-                </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="FromDate" ngDefaultControl [CalendarTypes]="calType" (ngModelChange)="DateValidCheck()">
+                </dsf-date-picker>
                 <span class="color-red font-sm" [hidden]="IsDateValid"> Enter Valid Date</span>
 
               </div>
@@ -42,8 +42,8 @@
 
               <label class="control-label"> To <b class="color-red"> *</b> :</label>
               <div class="date-with-label">
-                <danphe-date-picker [(ngModel)]="ToDate" ngDefaultControl [CalendarTypes]="calType" (ngModelChange)="DateValidCheck()">
-                </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="ToDate" ngDefaultControl [CalendarTypes]="calType" (ngModelChange)="DateValidCheck()">
+                </dsf-date-picker>
                 <span class="color-red font-sm" [hidden]="IsDateValid"> Enter Valid Date</span>
               </div>
             </div> -->
@@ -59,7 +59,7 @@
                     <i *ngIf="Doc.IsExternal">(External)</i><i *ngIf="!Doc.IsExternal">(Internal)</i>
                   </option>
                 </select>-->
-                <input danphe-auto-complete [(ngModel)]="DocObj" [list-formatter]="EmployeeListFormatter"
+                <input dsf-auto-complete [(ngModel)]="DocObj" [list-formatter]="EmployeeListFormatter"
                   [source]="allDocterList" [placeholder]="'INCENTIVE.SEARCH_DOCTOR_NAME' | translate" display-property-name="FullName"
                   value-property-name=null onclick="this.select()" [ngModelOptions]="{standalone: true}"
                   max-num-list="10" (ngModelChange)="ChangeDocter(DocObj)" />
@@ -134,7 +134,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let row of allReportData;let i=index">
-                    <td width="8%">{{row.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                    <td width="8%">{{row.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                     <td width="15%">{{row.InvoiceNoFormatted}}</td>
                     <td width="18%">{{row.PatientName}}</td>
                     <td width="19%">{{row.ItemName}}</td>
@@ -179,7 +179,7 @@
           <div class="row">
             <div class="col-md-4 cstm-amt-label">{{ 'INCENTIVE.PAYMENT_FROM' | translate }}: <span style="color: red;">*</span></div>
             <div class="col-md-8">
-              <input class="form-control cstm-form-control" danphe-auto-complete [(ngModel)]="selectedLedger"
+              <input class="form-control cstm-form-control" dsf-auto-complete [(ngModel)]="selectedLedger"
                 [source]="allLedgerList" [placeholder]="'INCENTIVE.LEDGER_NAME_PLACEHOLDER' | translate" display-property-name="LedgerName"
                 value-property-name="LedgerName" [list-formatter]="LedgerListFormatter" max-num-list="15"
                 [grid-sort]="'LedgerName'" onClick="this.select();" />

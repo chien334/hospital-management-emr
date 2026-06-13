@@ -1,7 +1,7 @@
-using DanpheEMR.TestingPlayGroundConsole.TestingClasses;
+using DsfEMR.TestingPlayGroundConsole.TestingClasses;
 using System;
 
-namespace DanpheEMR.TestingPlayGroundConsole
+namespace DsfEMR.TestingPlayGroundConsole
 {
     class Program
     {

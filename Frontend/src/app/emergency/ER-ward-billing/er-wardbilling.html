@@ -36,7 +36,7 @@
                       <tr>
                         <td><strong>{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}</strong> &nbsp;{{SelectedPatient.PatientCode}}</td>
                         <td><strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</strong>&nbsp;{{SelectedPatient.Age}}/{{SelectedPatient.Gender}}</td>
-                        <td><strong>{{ 'GRID_HEADERS.DATE_TIME' | translate }}</strong>&nbsp;{{SelectedPatient.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
+                        <td><strong>{{ 'GRID_HEADERS.DATE_TIME' | translate }}</strong>&nbsp;{{SelectedPatient.VisitDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}
                         </td>
                         <td *ngIf="SelectedPatient && SelectedPatient.Case"><strong>{{ 'EMERGENCY.CASE' | translate }}</strong>&nbsp;{{SelectedPatient.Case}}</td>
                       </tr>
@@ -70,9 +70,9 @@
 
 
                 <div *ngIf="ProvisionalItemsDetails && ProvisionalItemsDetails.length > 0" class="table-responsive">
-                  <danphe-grid [grid-colDefaults]="ERPatientWardBillGridCol" [grid-data]="ProvisionalItemsDetails"
+                  <dsf-grid [grid-colDefaults]="ERPatientWardBillGridCol" [grid-data]="ProvisionalItemsDetails"
                                [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="ERWardItemListAction($event)">
-                  </danphe-grid>
+                  </dsf-grid>
                 </div>
 
               </div>
@@ -93,7 +93,7 @@
                       <tr>
                         <td><strong>{{ 'EMERGENCY.HOSPITAL_NUMBER' | translate }}</strong> &nbsp;{{SelectedPatient.PatientCode}}</td>
                         <td><strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</strong>&nbsp;{{SelectedPatient.Age}}/{{SelectedPatient.Gender}}</td>
-                        <td><strong>{{ 'GRID_HEADERS.DATE_TIME' | translate }}</strong>&nbsp;{{SelectedPatient.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
+                        <td><strong>{{ 'GRID_HEADERS.DATE_TIME' | translate }}</strong>&nbsp;{{SelectedPatient.VisitDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}
                         </td>
                         <td *ngIf="SelectedPatient && SelectedPatient.Case"><strong>{{ 'EMERGENCY.CASE' | translate }}</strong>&nbsp;{{SelectedPatient.Case}}</td>
                       </tr>
@@ -113,7 +113,7 @@
                       </thead>
 
                       <tr *ngFor="let row of PHRMOrdersList;let i = index">
-                        <td style="font-size: 12px;font-weight: bold;">{{row.RequestedOn | DanpheDateTime:'format':'YY/MM/DD'}}</td>
+                        <td style="font-size: 12px;font-weight: bold;">{{row.RequestedOn | DsfDateTime:'format':'YY/MM/DD'}}</td>
                         <td>{{row.ItemName}}</td>
                         <td>{{row.Status}}</td>
                         <td>{{row.Quantity}}</td>

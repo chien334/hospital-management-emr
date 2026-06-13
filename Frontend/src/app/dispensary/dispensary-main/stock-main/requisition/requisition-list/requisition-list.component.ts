@@ -8,8 +8,8 @@ import { PHRMStoreDispatchItems } from '../../../../../pharmacy/shared/phrm-stor
 import { PHRMStoreRequisitionItems } from '../../../../../pharmacy/shared/phrm-store-requisition-items.model';
 import { PHRMStoreRequisition } from '../../../../../pharmacy/shared/phrm-store-requisition.model';
 import { PHRMStoreModel } from '../../../../../pharmacy/shared/phrm-store.model';
-import { GridEmitModel } from '../../../../../shared/danphe-grid/grid-emit.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from '../../../../../shared/dsf-grid/grid-emit.model';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../../shared/routefrom.service';
 import DispensaryGridColumns from '../../../../shared/dispensary-grid.column';

@@ -45,9 +45,9 @@
 </div>
 <div class="row" *ngIf="showRequisitionList">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="SubstoreAssetRequisitionGridColumns" [grid-data]="RequisitionGridDataFiltered"
+    <dsf-grid [grid-colDefaults]="SubstoreAssetRequisitionGridColumns" [grid-data]="RequisitionGridDataFiltered"
       [show-CustomDate]="true" [rangeType]="dateRange" [NepaliDateInGridParams]="NepaliDateInGridSettings"
-      (grid-actions)="RequisitionGridAction($event)" (onDateChange)="onDateChange($event)"> </danphe-grid>
+      (grid-actions)="RequisitionGridAction($event)" (onDateChange)="onDateChange($event)"> </dsf-grid>
   </div>
 </div>
 

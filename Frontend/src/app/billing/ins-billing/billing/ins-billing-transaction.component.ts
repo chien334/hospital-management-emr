@@ -15,7 +15,7 @@ import { CurrentVisitContextVM } from '../../../appointments/shared/current-visi
 import { CoreService } from "../../../core/shared/core.service";
 import { CreditOrganization } from '../../../settings-new/shared/creditOrganization.model';
 import { ServiceDepartmentVM } from '../../../shared/common-masters.model';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from '../../../shared/common.functions';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_PriceCategory, ENUM_VisitType } from '../../../shared/shared-enums';
@@ -1565,7 +1565,7 @@ export class INSBillingTransactionComponent {
     //we get billing context from earlier invoice incase of copy from earlier invoice.
     if (this.currentBillingFlow != "BillReturn" && this.currentVisitType != "inpatient") {
       this.BillingBLService.GetPatientBillingContext(this.patientService.globalPatient.PatientId)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.currBillingContext = res.Results;
 

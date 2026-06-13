@@ -12,7 +12,7 @@ import { CoreService } from '../../core/shared/core.service';
 import { FinalDiagnosisModel } from '../../medical-records/outpatient-list/final-diagnosis/final-diagnosis.model';
 import { MR_BLService } from '../../medical-records/shared/mr.bl.service';
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import { ENUM_AppointmentType, ENUM_BillingStatus, ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status, ENUM_VisitStatus, ENUM_VisitType } from '../../shared/shared-enums';
+import { ENUM_AppointmentType, ENUM_BillingStatus, ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status, ENUM_VisitStatus, ENUM_VisitType } from '../../shared/shared-enums';
 import { NursingOPDFreeReferral_DTO } from '../shared/dto/nursing-opd-free-referral.dto';
 import { NewReferalDepartment_DTO as NewReferralDepartment_DTO } from '../shared/dto/nursing-opd-referal-department.dto';
 import { PerformerDetails_DTO } from '../shared/dto/performer-details.dto';
@@ -119,7 +119,7 @@ export class NursingOpdFreeReferralComponent implements OnInit {
   public GetICDList() {
     this.mrBLService.GetICDList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.ICD10MainList = res.Results;
         }
         else {
@@ -217,7 +217,7 @@ export class NursingOpdFreeReferralComponent implements OnInit {
   GetProviderList() {
     this.admissionDLService.GetProviderList().subscribe(
       res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.doctorList = res.Results.filter(doctor => doctor.EmployeeId > 0);
           this.filteredDocList = this.doctorList;
           this.AssignSelectedDoctor();
@@ -371,7 +371,7 @@ export class NursingOpdFreeReferralComponent implements OnInit {
     } else {
       this.nursingBLService.PostfreeReferalDetails(this.referDoctorDepartment)
         .subscribe((res) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.selectedDiagnosis = [];
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Referred Successfully']);
             this.freeReferValidator.reset();
@@ -407,7 +407,7 @@ export class NursingOpdFreeReferralComponent implements OnInit {
     this.toDate = moment().format('YYYY-MM-DD');
     this.nursingBLService.GetOPDList(this.fromDate, this.toDate)  //this.fromDate, this.toDate
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.opdList = res.Results;
           let opdTriaged = [];
           let opdNotTriaged = [];

@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import * as moment from 'moment';
 import { SecurityService } from '../../security/shared/security.service';
 import { User } from '../../security/shared/user.model';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_DateFormats, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_DateFormats, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { ClaimDetails_DTO } from '../shared/DTOs/claim-preview-detail.dto';
 import { ClaimManagementBLService } from '../shared/claim-management.bl.service';
 
@@ -65,8 +65,8 @@ export class InsuranceClaimsPreviewComponent {
 
     public async GetClaimDetailsForPreview(claimSubmissionId: number): Promise<void> {
         try {
-            const res: DanpheHTTPResponse = await this.claimManagementBlService.ClaimDetailsForPreview(claimSubmissionId).toPromise();
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            const res: DsfHTTPResponse = await this.claimManagementBlService.ClaimDetailsForPreview(claimSubmissionId).toPromise();
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 if (res.Results) {
                     this.claimDetails = res.Results;
                     if (this.ClaimedAmount > 0) {

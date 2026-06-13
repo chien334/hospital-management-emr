@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MedicareMemberModel } from './medicare-member.model';
 
 @Injectable()
@@ -12,27 +12,27 @@ export class MedicareDLService {
     }
 
     public GetAllDepartments() {
-        return this.http.get<DanpheHTTPResponse>("/api/Medicare/Departments");
+        return this.http.get<DsfHTTPResponse>("/api/Medicare/Departments");
     }
 
     public GetAllDesignations() {
-        return this.http.get<DanpheHTTPResponse>("/api/Medicare/Designations");
+        return this.http.get<DsfHTTPResponse>("/api/Medicare/Designations");
     }
     public GetAllMedicareTypes() {
-        return this.http.get<DanpheHTTPResponse>("/api/Medicare/MedicareTypes");
+        return this.http.get<DsfHTTPResponse>("/api/Medicare/MedicareTypes");
     }
     public GetAllMedicareInstitutes() {
-        return this.http.get<DanpheHTTPResponse>("/api/Medicare/MedicareInstitutes");
+        return this.http.get<DsfHTTPResponse>("/api/Medicare/MedicareInstitutes");
     }
     public GetAllInsuranceProviderList() {
-        return this.http.get<DanpheHTTPResponse>("/api/Medicare/InsuranceProviders");
+        return this.http.get<DsfHTTPResponse>("/api/Medicare/InsuranceProviders");
     }
 
     public PostMedicareMemberDetails(medicareMemberDetail: MedicareMemberModel) {
-        return this.http.post<DanpheHTTPResponse>("/api/Medicare/MedicareMemberDetails", medicareMemberDetail);
+        return this.http.post<DsfHTTPResponse>("/api/Medicare/MedicareMemberDetails", medicareMemberDetail);
     }
     public PostMedicareDependentDetails(data: MedicareMemberModel) {
-        return this.http.post<DanpheHTTPResponse>("/api/Medicare/MedicareMemberDetails", data);
+        return this.http.post<DsfHTTPResponse>("/api/Medicare/MedicareMemberDetails", data);
     }
     public GetMedicareMemberDetailByPatientId(patientId: number) {
         return this.http.get(`/api/Medicare/MedicareMemberByPatientId?PatientId=${patientId}`, this.options);
@@ -45,10 +45,10 @@ export class MedicareDLService {
     }
 
     public PutMedicareDetails(medicareDetail: MedicareMemberModel) {
-        return this.http.put<DanpheHTTPResponse>("/api/Medicare/MedicareMemberDetails", medicareDetail);
+        return this.http.put<DsfHTTPResponse>("/api/Medicare/MedicareMemberDetails", medicareDetail);
     }
     public GetMedicarePatients() {
-        return this.http.get<DanpheHTTPResponse>("/api/Medicare/MedicarePatientList");
+        return this.http.get<DsfHTTPResponse>("/api/Medicare/MedicarePatientList");
     }
 
 }

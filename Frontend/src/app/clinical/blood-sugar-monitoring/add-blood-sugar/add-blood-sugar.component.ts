@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
-import { DanpheHTTPResponse } from '../../../../../src/app/shared/common-models';
+import { DsfHTTPResponse } from '../../../../../src/app/shared/common-models';
 import { VisitService } from '../../../appointments/shared/visit.service';
 import { CoreService } from '../../../core/shared/core.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { BloodSugarMonitoring } from '../../shared/blood-sugar-monitoring.model';
 import { IOAllergyVitalsBLService } from '../../shared/io-allergy-vitals.bl.service';
 import { PatientInfoDTO } from '../../shared/patient-info.dto';
@@ -49,8 +49,8 @@ export class AddBloodSugarComponent implements OnInit {
 
     public GetPatientAdmissionInfo(): void {
         this.ioAllergyVitalsBLService.GetPatientAdmissionInfo(this.patientVisitId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.PatientInfo = res.Results;
                 }
                 else {
@@ -77,8 +77,8 @@ export class AddBloodSugarComponent implements OnInit {
         this.CurrentBloodSugar.CreatedOn = moment().format("YYYY-MM-DD HH:mm:ss");
         this.CurrentBloodSugar.EntryDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
         this.ioAllergyVitalsBLService.PostBloodSugar(this.CurrentBloodSugar)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.loading = false;
                     this.CallBackAddInputOutput();
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Added Successfully"]);

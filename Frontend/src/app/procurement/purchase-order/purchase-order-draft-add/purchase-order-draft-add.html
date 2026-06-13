@@ -126,7 +126,7 @@
                                                     <div class="po-form--control">
                                                         <label class="control-label">Vendor<b>:</b></label>
                                                         <div class="div-relative" style="display:inline-block">
-                                                            <input id="VendorName" danphe-auto-complete [(ngModel)]="selectedVndr"
+                                                            <input id="VendorName" dsf-auto-complete [(ngModel)]="selectedVndr"
                                                                    [source]="VendorList"
                                                                    [list-formatter]="VendorListFormatter" placeholder="Vendor Name"
                                                                    display-property-name="VendorName"
@@ -231,7 +231,7 @@
                                                     </td>
                                                     <td [ngClass]="{'alert alert-warning':row.isItemDuplicate}">
                                                         <div class="div-relative">
-                                                            <input danphe-auto-complete class="form-control " autocomplete="off" id="poItemName{{i}}"
+                                                            <input dsf-auto-complete class="form-control " autocomplete="off" id="poItemName{{i}}"
                                                                    [grid-sort]="'ItemName'" style="width: 300px;" [(ngModel)]="row.SelectedItem"
                                                                    [source]="filteredItemList" match-formatted="true"
                                                                    [list-formatter]="ItemListFormatter"

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { PHRMStoreModel } from '../pharmacy/shared/phrm-store.model';
 import { SecurityService } from '../security/shared/security.service';
 import { ActivateInventoryService } from '../shared/activate-inventory/activate-inventory.service';
-import { DanpheHTTPResponse } from '../shared/common-models';
+import { DsfHTTPResponse } from '../shared/common-models';
 import { FixedAssetBLService } from './shared/fixed-asset.bl.service';
 import { FixedAssetService } from './shared/fixed-asset.service';
 import { SecurityBLService } from '../security/shared/security.bl.service';
@@ -33,7 +33,7 @@ export class FixedAssetsMainComponent {
     this.securityService.SetModuleName('inventory');
     if (!(this.securityService.INVHospitalInfo.CurrFiscalYear.FiscalYearId > 0)) {//if information not there then get and set
       this.securityBlService.GetINVHospitalInfo()
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == 'OK') {
             this.securityService.SetINVHospitalInfo(res.Results);
           }

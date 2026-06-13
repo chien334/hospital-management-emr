@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
 import { DispensaryService } from "../../../dispensary/shared/dispensary.service";
 import { PrinterSettingsModel } from "../../../settings-new/printers/printer-settings.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PharmacyPatientConsumptionReturnInfo_DTO } from "../shared/phrm-patient-consumption-return-info.dto.";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
@@ -96,8 +96,8 @@ export class ConsumptionReturnReceiptComponent {
 
 
   public GetPatientConsumptionReturnInfo(ConsumptionReturnReceiptNo: number) {
-    this.pharmacyBLService.GetPatientConsumptionReturnInfo(ConsumptionReturnReceiptNo).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.pharmacyBLService.GetPatientConsumptionReturnInfo(ConsumptionReturnReceiptNo).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.receipt = res.Results;
         this.UpdateItemDisplayName(this.showGenericName, this.showItemName, this.LeadingSeparator, this.showGenNameAfterItemName);
       }

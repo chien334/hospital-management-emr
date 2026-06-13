@@ -23,14 +23,14 @@ import { PatientNeighbourCardComponent } from './neighbour-card/patient-neighbou
 
 ////////for grid implementation
 //import { AgGridModule } from 'ag-grid-angular/main';
-//import { PatientGridComponent } from '../shared/danphe-grid/danphe-grid.component';
+//import { PatientGridComponent } from '../shared/dsf-grid/dsf-grid.component';
 import { SharedModule } from "../shared/shared.module";
 
 // import { PatientsDashboardComponent } from "../dashboards/patients/patientsdashboard.component";
-import { QRCodeModule } from '../shared/danphe-qrcode/qr-code.module';
+import { QRCodeModule } from '../shared/dsf-qrcode/qr-code.module';
 
 
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { PatientSharedModule } from './patient-shared.module';
 import { PatientDuplicateWarningBox } from './duplicate-warning/patient-duplicate-warning-box.component';
 
@@ -86,7 +86,7 @@ import { PatientsDashboardComponent } from '../dashboards/patients/patients-dash
         ///  Ng2AutoCompleteModule,
         //WebcamModule,
         //ImageCropperModule
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         PatientSharedModule,
         SettingsSharedModule,
         StickerSharedModule], providers: [PatientDeactivateGuard,

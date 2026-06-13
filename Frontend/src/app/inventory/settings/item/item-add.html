@@ -260,7 +260,7 @@
                       <label class="control-label col-md-4 col-sm-4">{{ 'INVENTORY.VENDOR_NAME' | translate }}<b>: </b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
-                          <input danphe-auto-complete class="form-control" [placeholder]="'INVENTORY.SELECT_VENDOR' | translate" [placeholder]="'INVENTORY.VENDOR_NAME' | translate" [list-formatter]="VendorListFormatter" display-property-name="VendorName" [source]="vendorList" [(ngModel)]="selectedVendor" [ngModelOptions]="{standalone:true}" (focusout)="AssignSelectedVendor()" />
+                          <input dsf-auto-complete class="form-control" [placeholder]="'INVENTORY.SELECT_VENDOR' | translate" [placeholder]="'INVENTORY.VENDOR_NAME' | translate" [list-formatter]="VendorListFormatter" display-property-name="VendorName" [source]="vendorList" [(ngModel)]="selectedVendor" [ngModelOptions]="{standalone:true}" (focusout)="AssignSelectedVendor()" />
                           <br />
                         </div>
                       </div>
@@ -271,7 +271,7 @@
                       <label class="control-label col-md-4">{{ 'INVENTORY.MAINTENANCE_OWNER' | translate }}<b>:</b></label>
                       <div class="col-md-8">
                         <div class="div-relative">
-                          <input danphe-auto-complete class="form-control" [placeholder]="'INVENTORY.ASSIGN_ROLE' | translate" [list-formatter]="RoleAutocompleteFormatter" display-property-name="RoleName" [source]="roleList" [(ngModel)]="selectedMaintenanceOwner" [ngModelOptions]="{standalone:true}" (focusout)="AssignMaintenanceOwner()" />
+                          <input dsf-auto-complete class="form-control" [placeholder]="'INVENTORY.ASSIGN_ROLE' | translate" [list-formatter]="RoleAutocompleteFormatter" display-property-name="RoleName" [source]="roleList" [(ngModel)]="selectedMaintenanceOwner" [ngModelOptions]="{standalone:true}" (focusout)="AssignMaintenanceOwner()" />
                         </div>
                       </div>
                     </div>

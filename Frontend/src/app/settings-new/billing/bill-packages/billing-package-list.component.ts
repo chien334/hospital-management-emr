@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { SettingsService } from '../../shared/settings-service';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { BillingPackageForGrid_DTO } from "../shared/dto/bill-package-for-grid.dto";
@@ -32,7 +32,7 @@ export class BillingPackageListComponent {
   public GetBillingPackageList(): void {
     this.settingsBLService.GetBillingPackageList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.billingPackageList = res.Results;
           this.showGrid = true;
         }
@@ -77,7 +77,7 @@ export class BillingPackageListComponent {
     this.settingsBLService.ActivateDeactivateBillingPackage(BillingPackageId)
       .subscribe(
         res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             let isActive: boolean = res.Results;
             this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [isActive ? "Activated Successfully" : "Deactivated Successfully"]);
             this.GetBillingPackageList();

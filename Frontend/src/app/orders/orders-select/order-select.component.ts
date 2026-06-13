@@ -6,7 +6,7 @@ import { PatientOrderListModel } from "../../clinical/shared/order-list.model";
 import { DoctorsBLService } from "../../doctors/shared/doctors.bl.service";
 import { PatientService } from "../../patients/shared/patient.service";
 import { SecurityService } from "../../security/shared/security.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../shared/routefrom.service";
@@ -91,7 +91,7 @@ export class SelectOrderComponent {
 
   LoadAllOrderItems() {
     this.http.get<any>('/api/Orders/OrderItems', this.options).map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allOrdItems = res.Results;
           this.allOrdItems.forEach(itm => {

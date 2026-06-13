@@ -90,7 +90,7 @@
                                 <b><u>{{IssuedSignatory.LongSignature}}</u></b></p>
                         </div>
                         <div *ngIf="isEditmode" class="flex-container">
-                            <input danphe-auto-complete class="form-control" [(ngModel)]="IssuedSignatory" [source]="providerList" [list-formatter]="myListFormatter" [placeholder]="'MEDICAL_RECORDS.ISSUED_BY_PLACEHOLDER' | translate" display-property-name="FullName" value-property-name=null (valueChanged)="OnChangeIssuedSignatory()"
+                            <input dsf-auto-complete class="form-control" [(ngModel)]="IssuedSignatory" [source]="providerList" [list-formatter]="myListFormatter" [placeholder]="'MEDICAL_RECORDS.ISSUED_BY_PLACEHOLDER' | translate" display-property-name="FullName" value-property-name=null (valueChanged)="OnChangeIssuedSignatory()"
                                 min-chars="0" max-num-list="10" [ngModelOptions]="{standalone: true}" />
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                                 <b><u>{{CertifiedSignatory.LongSignature}}</u></b></p>
                         </div>
                         <div *ngIf="isEditmode" class="flex-container">
-                            <input danphe-auto-complete class="form-control" [(ngModel)]="CertifiedSignatory" [source]="providerList" [list-formatter]="myListFormatter" [placeholder]="'MEDICAL_RECORDS.CERTIFIED_BY_PLACEHOLDER' | translate" display-property-name="FullName" value-property-name=null (valueChanged)="OnChangeCertifiedSignatory()"
+                            <input dsf-auto-complete class="form-control" [(ngModel)]="CertifiedSignatory" [source]="providerList" [list-formatter]="myListFormatter" [placeholder]="'MEDICAL_RECORDS.CERTIFIED_BY_PLACEHOLDER' | translate" display-property-name="FullName" value-property-name=null (valueChanged)="OnChangeCertifiedSignatory()"
                                 min-chars="0" max-num-list="10" [ngModelOptions]="{standalone: true}" />
                         </div>
                     </div>

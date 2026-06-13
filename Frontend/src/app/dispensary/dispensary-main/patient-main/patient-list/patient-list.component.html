@@ -5,9 +5,9 @@
         <!-- <div>   -- Hid this button since its already available on sale page ---
             <a class="btn blue bordered mb10" name="name" value=""  (click)="RegisterNewPatient()"><span class="fa fa-plus"> </span> New Outdoor Patient</a>
         </div> -->
-        <danphe-grid [grid-colDefaults]="patientGridColumns" [grid-data]="patients" (grid-actions)="PatientGridActions($event)"
+        <dsf-grid [grid-colDefaults]="patientGridColumns" [grid-data]="patients" (grid-actions)="PatientGridActions($event)"
         (serverSearchText)="serverSearchTxt($event)"
         [customServerSearch]="enableServerSideSearch">
-        </danphe-grid>
+        </dsf-grid>
     </div>
 </div>

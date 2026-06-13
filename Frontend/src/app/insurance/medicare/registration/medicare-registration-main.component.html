@@ -38,14 +38,14 @@
       <label class="control-label col-md-5" style="margin-top: 10px;">
         Category:</label>
       <div class="control-label col-md-7" *ngIf="categoryList && categoryList.length >0">
-        <danphe-multiselect [ddl-data]="categoryList"
+        <dsf-multiselect [ddl-data]="categoryList"
                             [placeholder-text]="'--Select Category--'"
                             [value-property-name]="'MedicareTypeId'"
                             [pre-selected]="selectedCategoryList"
                             (selected-items-list)="AssignCategories($event)"
                             [display-property-name]="'MedicareTypeName'"
                             [single-selection]="false">
-        </danphe-multiselect>
+        </dsf-multiselect>
       </div>
     </div>
   </div>
@@ -53,10 +53,10 @@
 
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="medicarePatientGridColumns" [grid-data]="medicarePatientsList"
+    <dsf-grid [grid-colDefaults]="medicarePatientGridColumns" [grid-data]="medicarePatientsList"
                  [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"
                  (grid-actions)="MedicarePatientsGridAction($event)">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 <app-dependent *ngIf="showAddDependentPage"

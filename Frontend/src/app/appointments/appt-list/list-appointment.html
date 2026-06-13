@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label class="control-label">Doctor <sup class="color-red">*</sup></label>
                 <div>
-                    <input class="form-control" danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)" [(ngModel)]="selDoctor" [source]="selectedDoctor" placeholder="Doctor Name" ngModelOptions="{standalone:true}" display-property-name="PerformerName"
+                    <input class="form-control" dsf-auto-complete onClick="this.setSelectionRange(0, this.value.length)" [(ngModel)]="selDoctor" [source]="selectedDoctor" placeholder="Doctor Name" ngModelOptions="{standalone:true}" display-property-name="PerformerName"
                         value-property-name="PerformerName" (valueChanged)="AssignSelectedDoctor()" [list-formatter]="DocListFormatter" max-num-list="15" (focusout)="providerChanged()" style="width:100%;height:32px;" />
                 </div>
             </div>
@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label class="control-label">From Date<sup class="color-red">*</sup></label>
                 <div>
-                    <danphe-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'" [allow-future-date]="true"> </danphe-date-picker>
+                    <dsf-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'" [allow-future-date]="true"> </dsf-date-picker>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label class="control-label">To Date<sup class="color-red">*</sup></label>
                 <div>
-                    <danphe-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'" [allow-future-date]="true"> </danphe-date-picker>
+                    <dsf-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'" [allow-future-date]="true"> </dsf-date-picker>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <div class="caption lb-caption"> <i class="fa fa-calendar-check-o"></i>
                 <!--@*<span class="caption-subject font-blue-sharp bold uppercase">Upcoming Appointments </span>*@-->
                 <span class="caption-subject">Upcoming Appointments </span> </div>
-            <danphe-grid [grid-colDefaults]="appointmentGridColumns" [grid-data]="afterDateFormat" (grid-actions)="AppointmentGridActions($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </danphe-grid>
+            <dsf-grid [grid-colDefaults]="appointmentGridColumns" [grid-data]="afterDateFormat" (grid-actions)="AppointmentGridActions($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </dsf-grid>
         </div>
         <div *ngIf="showSummary" style="margin : 25px; width: 100%; float: left;" id="summaryFooter">
             <div *ngIf="afterDateFormat.length>0">

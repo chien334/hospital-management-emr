@@ -2,7 +2,7 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
 import { SettingsBLService } from '../../shared/settings.bl.service';
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { SettingsService } from '../../shared/settings-service';
 
 import { Employee } from "../../../employee/shared/employee.model";
@@ -29,7 +29,7 @@ export class EmployeeListComponent {
     this.getEmpList();
   }
   public getEmpList() {
-    // this.employeeList = DanpheCache.GetData(MasterType.Employee,null);
+    // this.employeeList = DsfCache.GetData(MasterType.Employee,null);
     //  this.showGrid = true;
     this.settingsBLService.GetEmployeeList()
       .subscribe(res => {

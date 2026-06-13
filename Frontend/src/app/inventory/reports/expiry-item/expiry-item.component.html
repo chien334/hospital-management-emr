@@ -20,10 +20,10 @@
           <tbody style="background-color: #dde3e9;">
             <tr>
               <td style="width: 200px;">
-                <danphe-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'"> </dsf-date-picker>
               </td>
               <td style="width: 200px;">
-                <danphe-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'" [allow-future-date]="true"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'" [allow-future-date]="true"> </dsf-date-picker>
               </td>
               <td style="width: 250px;">
                 <select name="SelectedItem" id="SelectedItem" [(ngModel)]="ItemId" (ngModelChange)="OnItemChange()" class="form-control">
@@ -48,8 +48,8 @@
         </table>
       </div>
       <div>
-        <danphe-grid [grid-colDefaults]="expiryItemGridColumns" [grid-data]="expiryItemData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="'inventory'" (onDateChange)="OnDateRangeChange($event)" [report-title]="'Expiry Item Report'" [report-for]="'inventory'" [show-header]="true" [filter-parameters]="FilterParameters" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-        </danphe-grid>
+        <dsf-grid [grid-colDefaults]="expiryItemGridColumns" [grid-data]="expiryItemData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="'inventory'" (onDateChange)="OnDateRangeChange($event)" [report-title]="'Expiry Item Report'" [report-for]="'inventory'" [show-header]="true" [filter-parameters]="FilterParameters" [NepaliDateInGridParams]="NepaliDateInGridSettings">
+        </dsf-grid>
       </div>
     </div>
   </div>

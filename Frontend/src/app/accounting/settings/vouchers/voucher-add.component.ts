@@ -74,7 +74,7 @@ export class VouchersAddComponent {
                     this.showMessageBox("success", "Voucher Added");
                     this.CurrentVoucher = new VoucherModel();
                     this.CallBackAddVoucher(res)
-                    this.accountingService.clearAccCacheDataFromDanpheCache();
+                    this.accountingService.clearAccCacheDataFromDsfCache();
                     this.accountingService.getAccCacheData();
                 },
                 err => {

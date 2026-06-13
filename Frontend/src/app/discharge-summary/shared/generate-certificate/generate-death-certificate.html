@@ -40,7 +40,7 @@
                                      placeholder="DeathDate" name="DeathDate" /> time <u><b> <input type="time" max="100" [(ngModel)]="DeathTime"
                                                  style="width:100px;"
                                                  placeholder="DeathTime" name="DeathTime" /></b></u> (24 hours) at the age of <b>
-                                    {{selectedPatient.DateOfBirth | DanpheDateTime:'age' }}</b> (day/month/year). His/her cause of death was <input
+                                    {{selectedPatient.DateOfBirth | DsfDateTime:'age' }}</b> (day/month/year). His/her cause of death was <input
                                      type="text" style="width: 150px;" rows="1" maxlength="200" [(ngModel)]="DeathCause" placeholder="Death Cause" />
                         </div>
                         <div *ngIf="IsPrint">
@@ -53,7 +53,7 @@
                               <u><b>{{PatientAddress.Zip}}</b></u>
                               and inpatient/emergency number <u></u> expired on BS <u> </u> (AD MM//DD/YYYY) time <u><b>
                                           {{CurrentCertificate.DeathTime}}</b></u>
-                              (24 hours) at the age of <b>{{selectedPatient.DateOfBirth | DanpheDateTime:'age' }}</b> (day/month/year). His/her cause
+                              (24 hours) at the age of <b>{{selectedPatient.DateOfBirth | DsfDateTime:'age' }}</b> (day/month/year). His/her cause
                               of death was <u><b>{{CurrentCertificate.DeathCause}}</b></u>
 
                         </div>
@@ -72,7 +72,7 @@
                                                 NMC No : <span *ngIf="!MNC">______________________</span><b><u>{{MNC}}</u></b>
                                           </td>
                                           <td class="hidden-print" *ngIf="!IsPrint">
-                                                <input danphe-auto-complete class="form-control"
+                                                <input dsf-auto-complete class="form-control"
                                                        [(ngModel)]="CertifiedSignatory" [source]="providerList"
                                                        [list-formatter]="myListFormatter" placeholder="Issued By"
                                                        display-property-name="FullName" value-property-name=null

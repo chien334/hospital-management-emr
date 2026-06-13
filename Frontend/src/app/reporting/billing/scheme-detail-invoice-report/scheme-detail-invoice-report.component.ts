@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import * as moment from "moment";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status, ENUM_TypesOfBillingForReport } from "../../../shared/shared-enums";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status, ENUM_TypesOfBillingForReport } from "../../../shared/shared-enums";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { DLService } from "../../../shared/dl.service";
 import { SchemeDetailInvoiceReport } from "./scheme-detail-invoice-report.model";
 import { ReportingService } from "../../shared/reporting-service";
@@ -73,8 +73,8 @@ export class RPT_BIL_SchemeDetailInvoiceReportComponent {
     }
 
     public LoadRanks(): void {
-        this.billingBLService.GetRank().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.billingBLService.GetRank().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 let ranks = [];
                 ranks = res.Results;
                 ranks.forEach(x => {
@@ -95,8 +95,8 @@ export class RPT_BIL_SchemeDetailInvoiceReportComponent {
 
     public LoadMembershipList(): void {
         this.settingsBLService.GetMembershipType()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     let membershipList = [];
                     membershipList = res.Results;
                     membershipList.forEach(p => {
@@ -114,7 +114,7 @@ export class RPT_BIL_SchemeDetailInvoiceReportComponent {
     LoadUser(): void {
         this.settingsBLService.GetUserList()
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     let usersList = [];
                     usersList = res.Results;
                     CommonFunctions.SortArrayOfObjects(usersList, "EmployeeName");
@@ -136,19 +136,19 @@ export class RPT_BIL_SchemeDetailInvoiceReportComponent {
         this.loading = true;
         this.SchemeDetailInvoiceReport = [];
         this.dlService.Read(`/BillingReports/BillingSchemeDetailInvoiceReport?fromDate=${this.fromDate}&toDate=${this.toDate}&memberships=${this.memberships}&ranks=${this.ranks}&users=${this.users}`)
-            .map((res: DanpheHTTPResponse) => res)
+            .map((res: DsfHTTPResponse) => res)
             .finally(() => { this.loading = false })//re-enable button after response comes back.
             .subscribe(res => this.Success(res),
                 res => this.Error(res));
     }
 
     Success(res): void {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length > 0) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length > 0) {
             this.SchemeDetailInvoiceReport = res.Results;
             this.CalculateSummary();
             this.footerContent = document.getElementById("id_div_summary_scheme_detail_invoice_report").innerHTML;
         }
-        else if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length === 0)
+        else if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length === 0)
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Notice, ['Data is Not Available Between Selected Parameters...Try Different']);
         else
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, [res.ErrorMessage]);

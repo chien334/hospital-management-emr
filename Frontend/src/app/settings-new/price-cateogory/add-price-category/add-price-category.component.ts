@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef, Renderer2 } from "@angular/core";
 import { SettingsBLService } from "../../shared/settings.bl.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { PriceCategory } from "../../shared/price.category.model";
 import * as moment from "moment";
 import { CreditOrganization } from "../model/credit-organiztion.model";
 import { PaymentMode } from "../model/payment-mode.model";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 
 @Component({
     selector: "add-price-category",
@@ -75,8 +75,8 @@ export class AddPriceCategoryComponent {
         if (this.priceCategory.IsValidCheck(undefined, undefined)) {
             this.settingsBlService.AddPriceCategory(this.priceCategory)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponseText.OK) {
                             this.callbackAdd.emit({ action: "add", data: res.Results });
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Price Category Added"]);
 
@@ -127,8 +127,8 @@ export class AddPriceCategoryComponent {
     // }
     UpdatePriceCategory() {
         this.settingsBlService.UpdatePriceCategory(this.priceCategory)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponseText.OK) {
                     this.callbackAdd.emit({ action: "edit", data: res.Results });
                     this.priceCategory = new PriceCategory();
                     this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Updated."]);

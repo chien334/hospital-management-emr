@@ -6,7 +6,7 @@ import { InventoryReportsBLService } from '../../shared/inventory-reports.bl.ser
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment';
 import { IGetRowsParams } from 'ag-grid-community';
-import { IGridFilterParameter } from '../../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../../../shared/dsf-grid/grid-filter-parameter.interface';
 
 @Component({
   templateUrl: './supplier-wise-stock-report.html'

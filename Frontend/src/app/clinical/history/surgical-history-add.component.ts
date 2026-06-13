@@ -2,10 +2,10 @@
 import * as moment from 'moment/moment';
 import { CoreService } from "../../core/shared/core.service";
 import { PatientService } from "../../patients/shared/patient.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { HistoryBLService } from '../shared/history.bl.service';
 import { SurgicalHistory } from "../shared/surgical-history.model";
 
@@ -73,7 +73,7 @@ export class SurgicalHistoryAddComponent {
     }
 
     public GetICDList() {
-        this.ICD10List = DanpheCache.GetData(MasterType.ICD, null);
+        this.ICD10List = DsfCache.GetData(MasterType.ICD, null);
         // this.historyBLService.GetICDList()
         // .subscribe(res => {
         // if (res.Status == "OK") {
@@ -122,8 +122,8 @@ export class SurgicalHistoryAddComponent {
         this.CurrentSurgicalHistory.PatientId = this.patientServ.getGlobal().PatientId;
         this.loading = false;
         this.historyBLService.PostSurgicalHistory(this.CurrentSurgicalHistory)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     if (res.Results) {
                         this.CurrentSurgicalHistory.SurgicalHistoryId = res.Results.SurgicalHistoryId;
                         this.CurrentSurgicalHistory.CreatedOn = res.Results.CreatedOn;

@@ -47,7 +47,7 @@
                                               </td>
                                               <td>
                                                 <form [formGroup]="itm.EmployeeLeaveValidator">
-                                                  <input danphe-auto-complete
+                                                  <input dsf-auto-complete
                                                          [(ngModel)]="selLeave[i]"
                                                          [source]="leaveList"
                                                          placeholder="{{ 'PAYROLL.LEAVE' | translate }}"
@@ -69,7 +69,7 @@
                                               </td>
                                               <td>
                                                   <form [formGroup]="itm.EmployeeLeaveValidator">
-                                                      <input danphe-auto-complete
+                                                      <input dsf-auto-complete
                                                              [(ngModel)]="RequestedEmployee[i]"
                                                              [source]="RequestedEmployeeList"
                                                              placeholder="{{ 'PAYROLL.SELECT_EMPLOYEE' | translate }}"

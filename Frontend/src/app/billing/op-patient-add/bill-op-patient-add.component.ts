@@ -4,10 +4,10 @@ import { CoreService } from '../../core/shared/core.service';
 import { PatientService } from '../../patients/shared/patient.service';
 import { CountrySubdivision } from '../../settings-new/shared/country-subdivision.model';
 import { GeneralFieldLabels } from '../../shared/DTOs/general-field-label.dto';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { BillingBLService } from '../shared/billing.bl.service';
 import { BillingOpPatientVM } from './bill-op-patientVM';
 
@@ -71,8 +71,8 @@ export class BillOutpatientAddComponent {
   }
 
   Initialize(): void {
-    this.Country_All = DanpheCache.GetData(MasterType.Country, null);
-    this.Districts_All = DanpheCache.GetData(MasterType.SubDivision, null);
+    this.Country_All = DsfCache.GetData(MasterType.Country, null);
+    this.Districts_All = DsfCache.GetData(MasterType.SubDivision, null);
     if (this.coreService.Masters.UniqueDataList && this.coreService.Masters.UniqueDataList.UniqueAddressList) {
       this.OlderAddressList = this.coreService.Masters.UniqueDataList.UniqueAddressList;
     }
@@ -132,8 +132,8 @@ export class BillOutpatientAddComponent {
     if (!this.NewPatient.PatientId) {
       let age = this.NewPatient.Age + this.NewPatient.AgeUnit;
       this._billingBLService.GetExistedMatchingPatientList(this.NewPatient.FirstName, this.NewPatient.LastName, this.NewPatient.PhoneNumber, age, this.NewPatient.Gender)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length) {
             this.MatchedPatientList = res.Results;
             this.ShowExistingPatientListPage = true;
             this.loading = false;
@@ -154,8 +154,8 @@ export class BillOutpatientAddComponent {
   RegisterNewPatient(): void {
     this.ConcatenateAgeAndUnit();
     this._billingBLService.AddNewOutpatienPatient(this.NewPatient)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.loading = false;
           if (this.GoToBilling) {
             this.CallBackAddClose.emit({ action: "register-and-billing", data: res.Results, close: true });

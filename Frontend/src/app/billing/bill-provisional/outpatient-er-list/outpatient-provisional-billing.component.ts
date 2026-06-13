@@ -9,15 +9,15 @@ import { BillingReceiptModel } from '../../shared/billing-receipt.model';
 import { BillingTransactionItem } from "../../shared/billing-transaction-item.model";
 import { BillingBLService } from '../../shared/billing.bl.service';
 import { BillingService } from '../../shared/billing.service';
-//to add danphe-grid in credit-details page:sudarshan 26Mar'17
+//to add dsf-grid in credit-details page:sudarshan 26Mar'17
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from '../../../security/shared/security.service';
 import { CallbackService } from '../../../shared/callback.service';
-import { CancelStatusHoldingModel, DanpheHTTPResponse } from "../../../shared/common-models";
+import { CancelStatusHoldingModel, DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from '../../../shared/common.functions';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { RouteFromService } from '../../../shared/routefrom.service';
 import { ENUM_BillingType, ENUM_MessageBox_Status, ENUM_ProvisionalBillingContext } from '../../../shared/shared-enums';
 import { PatientBillingContextVM } from '../../shared/patient-billing-context-vm';
@@ -206,7 +206,7 @@ export class OutpatientProvisionalBillingComponent {
 
   GetUnpaidTotalBills() {
     this.billingBLService.GetUnpaidTotalBills()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.provisionalBillsSummary = res.Results;
         }
@@ -220,7 +220,7 @@ export class OutpatientProvisionalBillingComponent {
 
   GetPatientProvisionalItems(patientId: number, schemeId: number, printProvisional: boolean = false) {
     this.billingBLService.GetProvisionalItemsByPatientId(patientId, schemeId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
 
         if (res.Status == "OK") {
 
@@ -431,7 +431,7 @@ export class OutpatientProvisionalBillingComponent {
           return txnItm;
         });
         this.billingBLService.CancelMultipleTxnItems(txnItemsToCancel)
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
             let results = res;
             if (res.Status == "OK") {
               this.cancelledItemDetails = res.Results;
@@ -499,7 +499,7 @@ export class OutpatientProvisionalBillingComponent {
   }
   LoadPatientBillingContext(patientId) {
     this.billingBLService.GetPatientBillingContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.currBillingContext = res.Results;
           this.billingService.BillingType = this.currBillingContext.BillingType;

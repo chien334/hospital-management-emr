@@ -19,7 +19,7 @@
             </label>
           </div>
           <div class="col-md-10">
-            <input danphe-auto-complete id="id_patient_number"
+            <input dsf-auto-complete id="id_patient_number"
                    class="form-control searchtbx w-100" [(ngModel)]="selectedPatient"
                    [list-formatter]="PatientListFormatter"
                    (keyup.enter)="GoToNextInput('inpatientnumber')"
@@ -199,7 +199,7 @@
             </label>
           </div>
           <div class="col-md-7">
-            <input danphe-auto-complete id="refundscheme" name="refundscheme" class="form-control"
+            <input dsf-auto-complete id="refundscheme" name="refundscheme" class="form-control"
                    [(ngModel)]="selectedScheme"
                    [list-formatter]="'SchemeName'" [source]="billingSchemes"
                    (keyup.enter)="GoToNextInput('pricecategory')"
@@ -221,7 +221,7 @@
             </label>
           </div>
           <div class="col-md-7">
-            <input danphe-auto-complete id="pricecategory" name="pricecategory" class="form-control"
+            <input dsf-auto-complete id="pricecategory" name="pricecategory" class="form-control"
                    [(ngModel)]="selectedPriceCategory"
                    [list-formatter]="'PriceCategoryName'" [source]="priceCategoryList"
                    (keyup.enter)="GoToNextInput('remarks')"
@@ -270,7 +270,7 @@
                             (click)="SaveSchemePriceCategory()">
                         Save
                     </button> -->
-          <input DanpheConfirmationDialog
+          <input DsfConfirmationDialog
                  id="btn_changeSchemePricecategory_saveChange"
                  type="submit"
                  [title]="confirmationTitle"

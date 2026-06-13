@@ -2,7 +2,7 @@
 import * as moment from 'moment/moment';
 
 @Component({
-    selector: "danphe-cust-date",
+    selector: "dsf-cust-date",
     templateUrl: "./custom-date.html"
 })
 export class CustomDateComponent {

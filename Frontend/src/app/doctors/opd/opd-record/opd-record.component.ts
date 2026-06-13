@@ -9,9 +9,9 @@ import { Patient } from '../../../patients/shared/patient.model';
 import { PatientService } from '../../../patients/shared/patient.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { CallbackService } from '../../../shared/callback.service';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
 import { DoctorsBLService } from '../../shared/doctors.bl.service';
@@ -107,7 +107,7 @@ export class OpdRecordComponent implements OnDestroy {
   }
 
   GetICDList() {
-    var icd = DanpheCache.GetData(MasterType.ICD, null);
+    var icd = DsfCache.GetData(MasterType.ICD, null);
   }
 
   GetDepartMent() {

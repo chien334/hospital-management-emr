@@ -22,10 +22,10 @@ import { LabsBLService } from "../../labs/shared/labs.bl.service";
 import { Patient } from "../../patients/shared/patient.model";
 import { SecurityService } from "../../security/shared/security.service";
 import { ServiceDepartmentVM } from "../../shared/common-masters.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { DLService } from "../../shared/dl.service";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import { ENUM_BillingStatus, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_ServiceBillingContext, ENUM_VisitType } from "../../shared/shared-enums";
+import { ENUM_BillingStatus, ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_ServiceBillingContext, ENUM_VisitType } from "../../shared/shared-enums";
 import { NursingBLService } from "../shared/nursing.bl.service";
 import { SchemePriceCategoryCustomType } from "../../billing/shared/custom-data-types/billing-custom-data-types";
 
@@ -157,8 +157,8 @@ export class NursingIPRequestComponent implements OnChanges {
     if (this.patientId && this.visitId) {
       this.billingBLService
         .GetDataOfInPatient(this.patientId, this.visitId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
             this.currPatVisitContext = res.Results;
             this.SchemePriCeCategoryFromVisit.SchemeId = this.currPatVisitContext.SchemeId;
             this.SchemePriCeCategoryFromVisit.PriceCategoryId = this.currPatVisitContext.PriceCategoryId;
@@ -423,7 +423,7 @@ export class NursingIPRequestComponent implements OnChanges {
 
   PostProvisionalDepartmentRequisition() {
     this.billingBLService.ProceedToBillingTransaction(this.billingTransaction, this.billingTransaction.BillingTransactionItems, "active", "provisional", false, this.currPatVisitContext).subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.ResetAllRowData();
         this.loading = false;
         this.msgBoxServ.showMessage("success", ["Items Requested"]);
@@ -463,7 +463,7 @@ export class NursingIPRequestComponent implements OnChanges {
   public LoadPatientBillingContext(patientId) {
     this.billingBLService
       .GetPatientBillingContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.currBillingContext = res.Results;
 
@@ -1201,7 +1201,7 @@ export class NursingIPRequestComponent implements OnChanges {
   }
 
   public GetAllDepartmentsList() {
-    this.nursingBLService.GetAllDepartmentsList().subscribe((res: DanpheHTTPResponse) => {
+    this.nursingBLService.GetAllDepartmentsList().subscribe((res: DsfHTTPResponse) => {
       if (res.Status = "OK") {
         // var departmentsListTemp = res.Results;
         // departmentsListTemp.forEach(d => {
@@ -1217,8 +1217,8 @@ export class NursingIPRequestComponent implements OnChanges {
   }
 
   public GetBillingSummaryForPatient() {
-    this.nursingBLService.GetBillingSummaryForPatient(this.patientId, this.visitId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status = ENUM_DanpheHTTPResponseText.OK) {
+    this.nursingBLService.GetBillingSummaryForPatient(this.patientId, this.visitId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status = ENUM_DsfHTTPResponseText.OK) {
         this.BillingDetails = res.Results;
         this.BillingDetails.RemainingBalanceAmount = (this.BillingDetails.TotalDepositAmount - this.BillingDetails.TotalPendingBillAmount);
       }
@@ -1238,8 +1238,8 @@ export class NursingIPRequestComponent implements OnChanges {
   }
 
   GetServiceItems(schemeId: number, priceCategoryId: number): void {
-    this.billingMasterBlService.GetServiceItems(ENUM_ServiceBillingContext.IpBilling, schemeId, priceCategoryId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this.billingMasterBlService.GetServiceItems(ENUM_ServiceBillingContext.IpBilling, schemeId, priceCategoryId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.ServiceItems = res.Results;
         this.billItems = this.ServiceItems;
         this.InitiateComponent();

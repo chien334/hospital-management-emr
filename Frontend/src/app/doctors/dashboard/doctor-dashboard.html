@@ -75,19 +75,19 @@
           <h4><b>Previous Appointment List</b></h4>
           <!-- <div class="col-md-5">
               <label class="control-label col-md-3" style="margin:7px">From Date<b style="float:right;">:</b></label>
-              <danphe-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'" (ngModelChange)="onDateChange()">
-                  </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'" (ngModelChange)="onDateChange()">
+                  </dsf-date-picker>
            </div>
           <div class="col-md-5">
               <label class="control-label col-md-3" style="margin:7px">To Date<b style="float:right;">:</b></label>
-              <danphe-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'" (ngModelChange)="onDateChange()">
-                  </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'" (ngModelChange)="onDateChange()">
+                  </dsf-date-picker>
           </div> -->
-          <danphe-cust-date (onDateChange)="onDateChange($event)" [rangeType]="dateRange"></danphe-cust-date>
+          <dsf-cust-date (onDateChange)="onDateChange($event)" [rangeType]="dateRange"></dsf-cust-date>
           <br>
           <br>
         </div>
-        <danphe-grid *ngIf="visitList.length" [grid-colDefaults]="docAppointmentGridColumns" [grid-data]="visitList" (grid-actions)="DocAppointmentGridActions($event)"> </danphe-grid>
+        <dsf-grid *ngIf="visitList.length" [grid-colDefaults]="docAppointmentGridColumns" [grid-data]="visitList" (grid-actions)="DocAppointmentGridActions($event)"> </dsf-grid>
         <h5 *ngIf="!visitList.length">no records found</h5>
       </div>
       
@@ -95,10 +95,10 @@
           <doctor-summary></doctor-summary>
       </div>
       <div class="tab-pane" id="allvisitlist" style="display:none;">
-          <danphe-cust-date (onDateChange)="onDateChangeDept($event)" [rangeType]="dateRange"></danphe-cust-date>
+          <dsf-cust-date (onDateChange)="onDateChangeDept($event)" [rangeType]="dateRange"></dsf-cust-date>
           <br />
-          <danphe-grid *ngIf="DeptVisitList.length" [grid-colDefaults]="docDeptAppointmentGridColumns" [grid-data]="DeptVisitList" (grid-actions)="DocDeptAppointmentGridActions($event)">
-          </danphe-grid>
+          <dsf-grid *ngIf="DeptVisitList.length" [grid-colDefaults]="docDeptAppointmentGridColumns" [grid-data]="DeptVisitList" (grid-actions)="DocDeptAppointmentGridActions($event)">
+          </dsf-grid>
           <h5 *ngIf="!DeptVisitList.length">no records found</h5>
       </div> --> 
     </div>

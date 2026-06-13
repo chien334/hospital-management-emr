@@ -9,11 +9,11 @@ import { MR_BLService } from '../shared/mr.bl.service';
 import { CoreService } from '../../core/shared/core.service';
 import { HttpClient } from '@angular/common/http';
 import MRGridColumnSettings from '../shared/Mr-gridcol.settings';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 import { ADT_DLService } from '../../adt/shared/adt.dl.service';
 import { MedicalRecordService } from '../shared/medical-record.service';
 import { FinalDiagnosisModel } from './final-diagnosis/final-diagnosis.model';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
 
 
 

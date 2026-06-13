@@ -4,12 +4,12 @@
 
     <!--Outer Grid-->
 
-    <danphe-grid [grid-colDefaults]="vendorsGridColumns"
+    <dsf-grid [grid-colDefaults]="vendorsGridColumns"
                  [grid-data]="filterGoodsReceiptList"
                  (grid-actions)="VendorsGridAction($event)"
                  [grid-exportOptions]="gridExportOptions"
                  [grid-showExport]="true">
-    </danphe-grid>
+    </dsf-grid>
 
     <!--Inner Grid-->
     <div class="popup-static portlet box portlet-fullscreen" *ngIf="showListofVendor">
@@ -26,12 +26,12 @@
                 <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" title="Cancel">X</a>
                 <hr />
               </div>
-              <danphe-grid [grid-colDefaults]="vendorsGridColumns"
+              <dsf-grid [grid-colDefaults]="vendorsGridColumns"
                            [grid-data]="griForCurrentVendor"
                            (grid-actions)="VendorGridAction($event)"
                            [grid-exportOptions]="gridExportOptions"
                            [grid-showExport]="true">
-              </danphe-grid>
+              </dsf-grid>
               <hr />
               <div style="float:right">
                 <table>

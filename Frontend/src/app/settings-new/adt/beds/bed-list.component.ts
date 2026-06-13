@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { SettingsService } from '../../shared/settings-service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { Bed } from '../../../adt/shared/bed.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 

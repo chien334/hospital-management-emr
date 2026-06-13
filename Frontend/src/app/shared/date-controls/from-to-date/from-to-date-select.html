@@ -129,20 +129,20 @@
                 From:
             </td>
             <td>
-                <danphe-date-picker *ngIf="showDatePicker" [(ngModel)]="enDate_from" (ngModelChange)="EngCalendarOnDateChange_From()" [isFromToDateSelect]="true" [showTime]="showTimeField" [CalendarTypes]="calendarType"> </danphe-date-picker>
-                <!--<danphe-date-picker *ngIf="showNpCalendar" [(ngModel)]="enDate_from"
+                <dsf-date-picker *ngIf="showDatePicker" [(ngModel)]="enDate_from" (ngModelChange)="EngCalendarOnDateChange_From()" [isFromToDateSelect]="true" [showTime]="showTimeField" [CalendarTypes]="calendarType"> </dsf-date-picker>
+                <!--<dsf-date-picker *ngIf="showNpCalendar" [(ngModel)]="enDate_from"
                    (ngModelChange)="NepCalendarOnDateChange_From($event)"
-                   [CalendarTypes]="'np'"> </danphe-date-picker>-->
+                   [CalendarTypes]="'np'"> </dsf-date-picker>-->
             </td>
 
             <td class="lbl-from-to">
                 To:
             </td>
             <td>
-                <danphe-date-picker *ngIf="showDatePicker" [(ngModel)]="enDate_to" [showTime]="showTimeField" (ngModelChange)="EngCalendarOnDateChange_To()" [isFromToDateSelect]="true" [CalendarTypes]="calendarType"> </danphe-date-picker>
-                <!--<danphe-date-picker *ngIf="showNpCalendar" [(ngModel)]="enDate_to"
+                <dsf-date-picker *ngIf="showDatePicker" [(ngModel)]="enDate_to" [showTime]="showTimeField" (ngModelChange)="EngCalendarOnDateChange_To()" [isFromToDateSelect]="true" [CalendarTypes]="calendarType"> </dsf-date-picker>
+                <!--<dsf-date-picker *ngIf="showNpCalendar" [(ngModel)]="enDate_to"
                       (ngModelChange)="NepCalendarOnDateChange_To($event)"
-                      [CalendarTypes]="'np'"> </danphe-date-picker>-->
+                      [CalendarTypes]="'np'"> </dsf-date-picker>-->
 
             </td>
             <td style="padding-left: 5px;" *ngIf="enableFavourite">

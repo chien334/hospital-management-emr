@@ -11,7 +11,7 @@ import { NepaliCalendarService } from '../../shared/calendar/np/nepali-calendar.
 import { BillingService } from "../../billing/shared/billing.service";
 import { Subscription } from "rxjs";
 import { ENUM_PrintingType, PrinterSettingsModel } from "../../settings-new/printers/printer-settings.model";
-import { ENUM_Country, ENUM_DanpheHTTPResponses, ENUM_DanpheHTTPResponseText, ENUM_MembershipTypeName } from "../../shared/shared-enums";
+import { ENUM_Country, ENUM_DsfHTTPResponses, ENUM_DsfHTTPResponseText, ENUM_MembershipTypeName } from "../../shared/shared-enums";
 import { VisitService } from "../../appointments/shared/visit.service";
 
 @Component({
@@ -110,7 +110,7 @@ export class EchsStickerComponent {
     }
 
     this.EnableShowTicketPrice = this.GetEnableShowTicketPrice();
-    this.printerName = localStorage.getItem('Danphe_OPD_Default_PrinterName');
+    this.printerName = localStorage.getItem('Dsf_OPD_Default_PrinterName');
     var allStickerFolderDetail = this.coreService.Parameters.find(a => a.ParameterGroupName.toLowerCase() === 'reg-sticker' && a.ParameterName === 'StickerPrinterSettings');
     if (allStickerFolderDetail) {
       this.allPrinterName = JSON.parse(allStickerFolderDetail.ParameterValue);
@@ -159,7 +159,7 @@ export class EchsStickerComponent {
         res => this.Error(res));
   }
   CallBackStickerOnly(res) {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length !== 0) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length !== 0) {
 
       this.EchsStickerDetails = {...res.Results[0]};
       this.EchsStickerDetails.CountrySubDivisionName = res.Results[0].District;
@@ -219,7 +219,7 @@ export class EchsStickerComponent {
       margin: 8px 15px 0 0;
     }
     </style>`;
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanphePrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfPrintStyle.css"/>';
     /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head>';
     documentContent += '<body>' + printContents + '</body></html>'
@@ -291,7 +291,7 @@ export class EchsStickerComponent {
     this.showLoading = true;
     this.http.post<any>("/api/Billing/saveHTMLfile?PrinterName=" + PrinterName + "&FilePath=" + filePath, printableHTML, this.options)
       .map(res => res).subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.timerFunction();
         }
         else {

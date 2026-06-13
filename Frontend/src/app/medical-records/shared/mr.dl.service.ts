@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { CoreService } from "../../core/shared/core.service";
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 
 @Injectable()
@@ -164,7 +164,7 @@ export class MR_DLService {
     return this.http.get<any>(`/api/MedicalRecords/DischargedPatients?fromDate=${fromDate}&toDate=${toDate}`);
   }
   public GetEthnicGroupStatisticsData(fromDate: string, toDate: string) {
-    return this.http.get<DanpheHTTPResponse>(`/api/MedicalRecords/EthnicGroupStatisticsReports?fromDate=${fromDate}&toDate=${toDate}`);
+    return this.http.get<DsfHTTPResponse>(`/api/MedicalRecords/EthnicGroupStatisticsReports?fromDate=${fromDate}&toDate=${toDate}`);
   }
 
 }

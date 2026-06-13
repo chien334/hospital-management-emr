@@ -4,7 +4,7 @@ import { InventoryReportsBLService } from '../shared/inventory-reports.bl.servic
 import { InventoryReportsDLService } from '../shared/inventory-reports.dl.service';
 import { ReportingService } from "../../../reporting/shared/reporting-service";
 import * as moment from 'moment/moment';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
 import { CoreService } from "../../../core/shared/core.service";
@@ -13,7 +13,7 @@ import { InventoryBLService } from "../../shared/inventory.bl.service";
 import { InventoryService } from "../../shared/inventory.service";
 import { PurchaseRequestModel } from "../../shared/purchase-request.model";
 import { ItemModel } from "../../settings/shared/item.model";
-import { IGridFilterParameter } from "../../../shared/danphe-grid/grid-filter-parameter.interface";
+import { IGridFilterParameter } from "../../../shared/dsf-grid/grid-filter-parameter.interface";
 import { ItemTxnSummaryReportModel } from "../../../pharmacy/report/stock-summary/item-txn-summary/item-txn-summary-report-model";
 @Component({
   templateUrl: './inv-purchase-items-summary.html'
@@ -178,8 +178,8 @@ export class INVPurchaseItemsSummeryReport {
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     let documentContent = "<html><head>";
-    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head>';
     documentContent += '<body onload="window.print()">' + printContents + '</body></html>'

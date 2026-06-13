@@ -3,7 +3,7 @@ import { Chart } from 'chart.js';
 import { CoreService } from '../../core/shared/core.service';
 import { LabsBLService } from '../../labs/shared/labs.bl.service';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { DLService } from '../../shared/dl.service';
 import { labReqDetails, LabSummaryDashboardVM, NormalAbnormalLabModel } from './labDashboardVM.model';
 
@@ -94,7 +94,7 @@ export class LabDashboardComponent {
     }
     GetAllLabTests() {
         this.labBlService.GetAllLabTests().subscribe(
-            (res: DanpheHTTPResponse) => {
+            (res: DsfHTTPResponse) => {
                 if (res.Status = "Ok") {
                     this.allLabTests = res.Results;
                 }

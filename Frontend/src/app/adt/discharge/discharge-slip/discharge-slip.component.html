@@ -56,14 +56,14 @@
         <div style="width:50%; display:flex;">
           <span>Admitted On&nbsp;:&nbsp;</span>
           <div style="font-weight: bold; display:flex;">
-            <span>{{dischargeSlipDetails.AdmittedOn | DanpheDateTime:'format':dateTimeFormat}}</span>
+            <span>{{dischargeSlipDetails.AdmittedOn | DsfDateTime:'format':dateTimeFormat}}</span>
           </div>
         </div>
         <div style="width:50%; display:flex; justify-content: flex-end;">
           <div style="display:flex;">
             <span>Discharged On&nbsp;:&nbsp;</span>
             <div style="font-weight: bold; display:flex;">
-              <span>{{dischargeSlipDetails.DischargedOn | DanpheDateTime:'format':dateTimeFormat}}</span>
+              <span>{{dischargeSlipDetails.DischargedOn | DsfDateTime:'format':dateTimeFormat}}</span>
             </div>
           </div>
         </div>

@@ -80,9 +80,9 @@
                     <div class="row">
                       <label class="control-label col-md-5"> {{ 'FIXED_ASSETS.INSURANCE_START_DATE' | translate }}<sup>*</sup><b> :</b></label>
                       <div class="col-md-7">
-                        <danphe-date-picker ngDefaultControl [CalendarTypes]="'np,en'"
+                        <dsf-date-picker ngDefaultControl [CalendarTypes]="'np,en'"
                           formControlName="InsuranceStartDate" [(ngModel)]="assetInsurance.InsuranceStartDate" [allow-future-date]="true"
-                          style="width:100px;"></danphe-date-picker>
+                          style="width:100px;"></dsf-date-picker>
                         <span Class="color-red font-sm"
                           [hidden]="assetInsurance.IsValidCheck('InsuranceStartDate','required') || !(assetInsurance.IsDirty('InsuranceStartDate'))">
                           {{ 'FIXED_ASSETS.INSURANCE_START_DATE_REQUIRED' | translate }}</span>
@@ -93,9 +93,9 @@
                     <div class="row">
                       <label class="control-label col-md-5"> {{ 'FIXED_ASSETS.INSURANCE_END_DATE' | translate }} <sup>*</sup> <b>:</b></label>
                       <div class="col-md-7">
-                        <danphe-date-picker ngDefaultControl [CalendarTypes]="'np,en'" [allow-future-date]="true"
+                        <dsf-date-picker ngDefaultControl [CalendarTypes]="'np,en'" [allow-future-date]="true"
                           formControlName="InsuranceEndDate" [(ngModel)]="assetInsurance.InsuranceEndDate"
-                          style="width:100px;"></danphe-date-picker>
+                          style="width:100px;"></dsf-date-picker>
                         <span Class="color-red font-sm"
                           [hidden]="assetInsurance.IsValidCheck('InsuranceEndDate','required') || !(assetInsurance.IsDirty('InsuranceEndDate'))">
                           {{ 'FIXED_ASSETS.INSURANCE_END_DATE_REQUIRED' | translate }}</span>

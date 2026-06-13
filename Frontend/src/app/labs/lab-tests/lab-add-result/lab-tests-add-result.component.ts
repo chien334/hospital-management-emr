@@ -27,10 +27,10 @@ import * as moment from "moment/moment";
 import { NepaliCalendarService } from "../../../../../src/app/shared/calendar/np/nepali-calendar.service";
 import { CoreService, LookupsModel } from "../../../core/shared/core.service";
 import { PatientService } from "../../../patients/shared/patient.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { LabReportVM, ReportLookup } from "../../reports/lab-report-vm";
 import { AutoCalculationConfig } from "../../shared/DTOs/auto-calculation-DTO";
 import { MachineResult_DTO } from "../../shared/DTOs/machine-result.dto";
@@ -44,7 +44,7 @@ import {
 import { LabsBLService } from "../../shared/labs.bl.service";
 
 @Component({
-  selector: "danphe-lab-add-result",
+  selector: "dsf-lab-add-result",
   templateUrl: "./lab-tests-add-result.html",
   styleUrls: ["./lab-tests-add-result.style.css"],
   host: { '(window:keydown)': 'hotkeys($event)' }
@@ -152,8 +152,8 @@ export class LabTestsAddResultComponent {
     if (this.barcodeNumber > 0) {
       this.labBLService.GetAllMachineResultByBarcodeNumber(this.barcodeNumber)
         .finally(() => { this.loading = false; })
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             if (res.Results && res.Results.length > 0) {
               this.machineResult = res.Results;
               this.MapMachineData();
@@ -164,7 +164,7 @@ export class LabTestsAddResultComponent {
 
           }
         },
-          (err: DanpheHTTPResponse) => {
+          (err: DsfHTTPResponse) => {
             console.log(err.ErrorMessage);
           });
     }
@@ -1225,14 +1225,14 @@ export class LabTestsAddResultComponent {
   PostComponent(components) {
     this.labBLService
       .PostComponent(components, this.cultureSpecimen)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.coreService.loading = this.loading = false;
           this.CallBackAddUpdate();
           if (this.showMachineResultLoadButton && this.lisResultIdList.length > 0) {
             this.labBLService.UpdateMachineDataSyncStatus(this.lisResultIdList)
               .finally(() => { this.lisResultIdList = [] })
-              .subscribe((res: DanpheHTTPResponse) => {
+              .subscribe((res: DsfHTTPResponse) => {
                 console.log(`machine result sync status updated.`);
               });
           }

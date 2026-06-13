@@ -12,13 +12,13 @@ import { CommonFunctions } from "../../../shared/common.functions";
 import * as moment from 'moment/moment';
 import { BillingFiscalYear } from '../../../billing/shared/billing-fiscalyear.model';
 import { BillingBLService } from '../../../billing/shared/billing.bl.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { PHRMGoodsReceiptModel } from '../../shared/phrm-goods-receipt.model';
 import { PharmacyService } from '../../shared/pharmacy.service';
 import { CoreService } from '../../../core/shared/core.service';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 
 @Component({
@@ -709,7 +709,7 @@ export class PHRMReturnItemsToSupplierComponent {
         //We may do this in client side itself since we already have list of all fiscal years with us. [Part of optimization.]
 
         this.BillingBLService.GetCurrentFiscalYear()
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
                     //let fiscYr: BillingFiscalYear = ;
                     if (res.Results) {

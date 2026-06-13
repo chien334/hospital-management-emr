@@ -18,7 +18,7 @@ export class AccountingComponent {
   nepStartDate: string;
   nepEndDate: string;
   nepFiscalYear: any;
-  public loading:boolean=false; //mumbai-team-june2021-danphe-accounting-cache-change
+  public loading:boolean=false; //mumbai-team-june2021-dsf-accounting-cache-change
   public primaryNavItems: Array<any> = null;
   public secondaryNavItems: Array<any> = null;
   public changeActivatedHospital: boolean = false;
@@ -36,7 +36,7 @@ export class AccountingComponent {
   ngOnInit() {
   }
 
-  public async LoadActiveHospital() { //mumbai-team-june2021-danphe-accounting-cache-change
+  public async LoadActiveHospital() { //mumbai-team-june2021-dsf-accounting-cache-change
     this.securityService.SetModuleName('accounting');
     let activeHospitalInfo = this.securityService.AccHospitalInfo;
     if (activeHospitalInfo && activeHospitalInfo.ActiveHospitalId>0) {
@@ -45,9 +45,9 @@ export class AccountingComponent {
       //   moment(f.StartDate) <= moment(activeHospitalInfo.TodaysDate) && moment(activeHospitalInfo.TodaysDate) <= moment(f.EndDate)
       // );
       //activeHospitalInfo.CurrFiscalYear = ;
-      this.loading = true; //mumbai-team-june2021-danphe-accounting-cache-change
-      await this.accountingService.getAccCacheData(); //mumbai-team-june2021-danphe-accounting-cache-change
-      this.loading = false; //mumbai-team-june2021-danphe-accounting-cache-change
+      this.loading = true; //mumbai-team-june2021-dsf-accounting-cache-change
+      await this.accountingService.getAccCacheData(); //mumbai-team-june2021-dsf-accounting-cache-change
+      this.loading = false; //mumbai-team-june2021-dsf-accounting-cache-change
       this._router.navigate(['/Accounting/Transaction/VoucherEntry']);
     }
     else {

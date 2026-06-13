@@ -27,9 +27,9 @@ import { PHRMGenericModel } from '../../pharmacy/shared/phrm-generic.model';
 import { PHRMItemMasterModel } from '../../pharmacy/shared/phrm-item-master.model';
 import { PHRMPrescriptionItem } from '../../pharmacy/shared/phrm-prescription-item.model';
 import { PHRMPrescription } from '../../pharmacy/shared/phrm-prescription.model';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
-import { ENUM_BillingStatus, ENUM_BillingType, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_VisitType } from '../../shared/shared-enums';
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
+import { ENUM_BillingStatus, ENUM_BillingType, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_VisitType } from '../../shared/shared-enums';
 import { OrderItemsVM, OrderResponse } from '../shared/orders-vms';
 import { OrdersBLService } from '../shared/orders.bl.service';
 
@@ -133,7 +133,7 @@ export class OrderRequisitionsComponent {
 
   LoadCounters() {
     let allCounters: Array<BillingCounter>;
-    allCounters = DanpheCache.GetData(MasterType.BillingCounter, null);
+    allCounters = DsfCache.GetData(MasterType.BillingCounter, null);
     if (allCounters && allCounters.length) {
       this.CounterList = allCounters.filter(cnt => cnt.CounterType == null || cnt.CounterType == "BILLING");
       this.SelectedCounterId = this.CounterList[0].CounterId;
@@ -206,8 +206,8 @@ export class OrderRequisitionsComponent {
 
         let prescription: PHRMPrescription = this.SetPrescriptionDetails();
         this.orderBLService.PostPharmacyPrescription(prescription)
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.OrderResponse.medication.isReqCompleted = true;
               this.OrderResponse.medication.status = res.Status;
               this.DisplayRequStatus(this.OrderResponse);
@@ -283,7 +283,7 @@ export class OrderRequisitionsComponent {
     const billingTransaction = _.cloneDeep(this.billingTransaction);
     const billingTransactionItems = _.cloneDeep(this.billingTransaction.BillingTransactionItems);
     this.billingBLService.ProceedToBillingTransaction(billingTransaction, billingTransactionItems, "active", "provisional", false, this.currPatVisitContext).subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.OrderResponse.Lab.isReqCompleted = true;
         this.OrderResponse.Lab.status = res.Status;
         this.OrderResponse.Imaging.isReqCompleted = true;

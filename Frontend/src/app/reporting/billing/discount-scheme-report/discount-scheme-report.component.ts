@@ -4,10 +4,10 @@ import { CoreService } from '../../../core/shared/core.service';
 import { ReportingService } from "../../../reporting/shared/reporting-service";
 import { SettingsBLService } from '../../../settings-new/shared/settings.bl.service';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { DiscountSchemeReport_DTO } from '../../shared/discount-scheme-report.dto';
 
 @Component({
@@ -59,7 +59,7 @@ export class RPT_BIL_DiscountSchemeReportComponent {
   }
 
   public Success(res): void {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       let data = res.Results;
       if (data.length > 0) {
         this.DiscountSchemeGridData = data;
@@ -102,7 +102,7 @@ export class RPT_BIL_DiscountSchemeReportComponent {
   public LoadSchemeList(): void {
     this._settingsBLService.GetSchemeList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.SchemeList = res.Results;
           CommonFunctions.SortArrayOfObjects(this.SchemeList, "SchemeName");
         }

@@ -62,7 +62,7 @@
             <div class="form-group row">
               <label class="control-label col-md-4">{{ 'PHARMACY.USER' | translate }}:</label>
               <div class="col-md-8">
-                <input danphe-auto-complete [(ngModel)]="selectedUser" class="form-control" [list-formatter]="UserListFormatter" [source]="userList"
+                <input dsf-auto-complete [(ngModel)]="selectedUser" class="form-control" [list-formatter]="UserListFormatter" [source]="userList"
                        [placeholder]="'PHARMACY.ENTER_USER_NAME' | translate" display-property-name="EmployeeName" value-property-name=null onclick="this.select();" id="user"
                        (valueChanged)="OnUserChange()" max-num-list="10" [ngModelOptions]="{standalone: true}" />
               </div>
@@ -83,9 +83,9 @@
 </div>
 <div class="row" style="margin-bottom:1rem;">
   <div class="">
-    <danphe-grid [grid-colDefaults]="InsBimaColumn" [grid-data]="InsBimaData" [grid-exportOptions]="gridExportOptions"
+    <dsf-grid [grid-colDefaults]="InsBimaColumn" [grid-data]="InsBimaData" [grid-exportOptions]="gridExportOptions"
                  [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-showExport]="true" [grid-footer-content]="footerContent"
-                 [grid-date-range]="dateRange" [report-for]="pharmacy"> </danphe-grid>
+                 [grid-date-range]="dateRange" [report-for]="pharmacy"> </dsf-grid>
   </div>
 
   <!-- Summary -->

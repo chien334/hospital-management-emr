@@ -22,11 +22,11 @@
                 <div class="form-group">
                   <label class="control-label col-md-4">Membership :</label>
                   <div class="col-md-6">
-                    <danphe-multiselect *ngIf="allMemberships.length > 0"  [ddl-data]="allMemberships" [pre-selected]="preSelectedMemberships"
+                    <dsf-multiselect *ngIf="allMemberships.length > 0"  [ddl-data]="allMemberships" [pre-selected]="preSelectedMemberships"
                         [placeholder-text]="'--Select Memberships --'" [value-property-name]="'MembershipTypeId'"
                         (selected-items-list)="MembershipsChanged($event)"
                         [display-property-name]="'MembershipTypeName'" [single-selection]="false">
-                    </danphe-multiselect>
+                    </dsf-multiselect>
                   </div>
                 </div>
               </div>
@@ -34,11 +34,11 @@
                 <div class="form-group">
                   <label class="control-label col-md-4">Rank :</label>
                   <div class="col-md-6">
-                    <danphe-multiselect  *ngIf="allRanks.length > 0" [ddl-data]="allRanks" [pre-selected]="preSelectedRanks"
+                    <dsf-multiselect  *ngIf="allRanks.length > 0" [ddl-data]="allRanks" [pre-selected]="preSelectedRanks"
                         [placeholder-text]="'--Select Ranks --'" [value-property-name]="'RankName'"
                         (selected-items-list)="RanksChanged($event)" [display-property-name]="'Rank'"
                         [single-selection]="false">
-                    </danphe-multiselect>
+                    </dsf-multiselect>
                   </div>
                 </div>
               </div>
@@ -69,13 +69,13 @@
     </div>
     <div class="row">
       <div class="col-lg-12 col-sm-12" *ngIf="RankwiseDailyAppointmentReportData.length>0">
-        <danphe-grid [grid-colDefaults]="RankwiseDailyAppointmentReportColumns" 
+        <dsf-grid [grid-colDefaults]="RankwiseDailyAppointmentReportColumns" 
                     [grid-data]="RankwiseDailyAppointmentReportData" 
                     [grid-exportOptions]="gridExportOptions" 
                     [grid-showExport]="true" [show-header]="true" 
                     [report-title]="'Rankwise Daily Appointment Report'" (grid-onExport)="OnGridExport($event)" 
                     [NepaliDateInGridParams]="NepaliDateInGridSettings"  [filter-parameters]="filterParameters" [report-for]="'pharmacy'"> 
-        </danphe-grid>
+        </dsf-grid>
       </div>
     </div>
   </div>

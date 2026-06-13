@@ -5,7 +5,7 @@ import * as moment from 'moment/moment';
 import { CommonFunctions } from '../../shared/common.functions';
 import { CoreService } from "../../core/shared/core.service";
 import { Patient } from "../../patients/shared/patient.model";
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { HttpClient } from '@angular/common/http';
 import * as html2canvas from 'html2canvas';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -71,7 +71,7 @@ export class PatientNeighbourCard_Backup_Component implements OnInit {
     LoadProfilePic() {
         this.http.get<any>("/api/patient/PatientProfilePicture?patientId=" + this.selectedPat.PatientId)
             .map(res => res)
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 console.log(res);
                 let fileInfo = res.Results;
                 if (fileInfo) {
@@ -108,7 +108,7 @@ export class PatientNeighbourCard_Backup_Component implements OnInit {
         var printContents = document.getElementById("cardFrontside").innerHTML;
         popupWinindow = window.open('', '_blank', 'width=1600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
         popupWinindow.document.open();
-        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css" /><style>@media print { @page { size: 258mm 162.29mm; padding: 0; margin: 0; color: #fff; } } .sngl-row{padding: 14px 0px;font-family: "Open Sans",sans-serif;} .parm-val{font-family: "Open Sans",sans-serif;} .allwith-bg {font-size: 24px; line-height: 16px;color: #000;white-space: nowrap;} .parm-nam{color: #000;} .card-background{position: relative !important; overflow:hidden;}</style></head><body style="margin: 0 !important;"  onload="window.print()">' + printContents + '</body></html>');
+        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css" /><style>@media print { @page { size: 258mm 162.29mm; padding: 0; margin: 0; color: #fff; } } .sngl-row{padding: 14px 0px;font-family: "Open Sans",sans-serif;} .parm-val{font-family: "Open Sans",sans-serif;} .allwith-bg {font-size: 24px; line-height: 16px;color: #000;white-space: nowrap;} .parm-nam{color: #000;} .card-background{position: relative !important; overflow:hidden;}</style></head><body style="margin: 0 !important;"  onload="window.print()">' + printContents + '</body></html>');
         popupWinindow.document.close();
         this.showCard = false;
         document.getElementById("frontSide").style.display = "none";

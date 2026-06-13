@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { CoreService } from '../../core/shared/core.service';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { ProvisionalDischarge_DTO } from '../ip-billing/shared/dto/provisional-discharge.dto';
 import { BillItemRequisition } from './bill-item-requisition.model';
 import { BillingDeposit } from './billing-deposit.model';
@@ -189,7 +189,7 @@ export class BillingDLService {
   }
 
   public GetDoctorsList() {
-    return this.http.get<DanpheHTTPResponse>("/api/Billing/ListDoctors", this.options);
+    return this.http.get<DsfHTTPResponse>("/api/Billing/ListDoctors", this.options);
   }
 
   //billing-package
@@ -224,7 +224,7 @@ export class BillingDLService {
   }
 
   public GetTransferHandoverReceivedReport(fromDate: string, toDate: string, status: string, handoverType: string) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Billing/TransferHandoverReport?fromDate=${fromDate}&toDate=${toDate}&status=${status}&handoverType=${handoverType}`, this.options);
+    return this.http.get<DsfHTTPResponse>(`/api/Billing/TransferHandoverReport?fromDate=${fromDate}&toDate=${toDate}&status=${status}&handoverType=${handoverType}`, this.options);
   }
 
   public GetDailyCollectionVsHandoverReport(fromDate, toDate) {
@@ -484,15 +484,15 @@ export class BillingDLService {
   }
 
   public GetPendingIncomingHandOver() {
-    return this.http.get<DanpheHTTPResponse>(`/api/Billing/PendingIncomingUserHandover`, this.options);
+    return this.http.get<DsfHTTPResponse>(`/api/Billing/PendingIncomingUserHandover`, this.options);
   }
 
   public GetPendingOutgoingHandOver(handOverType: string) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Billing/PendingOutgoingHandover?handOverType=${handOverType}`, this.options);
+    return this.http.get<DsfHTTPResponse>(`/api/Billing/PendingOutgoingHandover?handOverType=${handOverType}`, this.options);
   }
 
   public UpdateHandOverStatus(handOverTransactionId: number) {
-    return this.http.put<DanpheHTTPResponse>(`/api/Billing/HandoverStatus?handOverTransactionId=${handOverTransactionId}`, this.options);
+    return this.http.put<DsfHTTPResponse>(`/api/Billing/HandoverStatus?handOverTransactionId=${handOverTransactionId}`, this.options);
   }
 
   public UpdateHandoverTransactionDetails(handoverTransaction: HandOverTransactionModel) {
@@ -509,7 +509,7 @@ export class BillingDLService {
     return this.http.get<any>("/api/BillingDeposit/PatientDeposits?patientId=" + patientId, this.options);
   }
   public GetDepositHead() {
-    return this.http.get<DanpheHTTPResponse>("/api/BillingDeposit/GetDepositHead", this.options);
+    return this.http.get<DsfHTTPResponse>("/api/BillingDeposit/GetDepositHead", this.options);
   }
 
   public PutDepositPrintCount(depositId: number) {
@@ -554,10 +554,10 @@ export class BillingDLService {
     }
   }
   public GetDetailForCancellationReceipt(patientId: number, provisionalReturnItemId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Billing/BillCancellationReceipt?patientId=${patientId}&provisionalReturnItemId=${provisionalReturnItemId}`);
+    return this.http.get<DsfHTTPResponse>(`/api/Billing/BillCancellationReceipt?patientId=${patientId}&provisionalReturnItemId=${provisionalReturnItemId}`);
   }
   public GetDetailForIpCancellationItems(patientId: number, patientVisitId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Billing/InpatientsCancelledItems?patientId=${patientId}&patientVisitId=${patientVisitId}`);
+    return this.http.get<DsfHTTPResponse>(`/api/Billing/InpatientsCancelledItems?patientId=${patientId}&patientVisitId=${patientVisitId}`);
   }
 
   public GetInsuranceProvisionalInfoForPrint(patientId: number, provFiscalYrId: number, provReceiptNo: number, visitType: string) {
@@ -731,19 +731,19 @@ export class BillingDLService {
     return this.http.get<any>("/api/BillingDeposit/PatientDepositsList?patientId=" + patientId, this.options);
   }
   public PostProvisionalDischarge(provisionalDischarge: ProvisionalDischarge_DTO) {
-    return this.http.post<DanpheHTTPResponse>("/api/ProvisionalDischarge/Discharge", provisionalDischarge, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>("/api/ProvisionalDischarge/Discharge", provisionalDischarge, this.jsonOptions);
   }
   public GetProvisionalDischargeList() {
-    return this.http.get<DanpheHTTPResponse>("/api/ProvisionalDischarge/ProvisionalDischargeList", this.jsonOptions);
+    return this.http.get<DsfHTTPResponse>("/api/ProvisionalDischarge/ProvisionalDischargeList", this.jsonOptions);
   }
   public GetProvisionalDischargeItems(patientId: number, schemeId: number, patientVisitId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/ProvisionalDischarge/ProvisionalDischargeItems?patientId=${patientId}&schemeId=${schemeId}&patientVisitId=${patientVisitId}`, this.jsonOptions);
+    return this.http.get<DsfHTTPResponse>(`/api/ProvisionalDischarge/ProvisionalDischargeItems?patientId=${patientId}&schemeId=${schemeId}&patientVisitId=${patientVisitId}`, this.jsonOptions);
   }
   public GetPatientVisitContextForProvisionalPayment(patientId: number, patientVisitId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Visit/PatientVisitContextForProvisionalPayment?patientId=${patientId}&patientVisitId=${patientVisitId}`, this.jsonOptions);
+    return this.http.get<DsfHTTPResponse>(`/api/Visit/PatientVisitContextForProvisionalPayment?patientId=${patientId}&patientVisitId=${patientVisitId}`, this.jsonOptions);
   }
   public DiscardProvisionalItems(discardProvisionalItems: DiscardProvisionalItems_DTO) {
-    return this.http.put<DanpheHTTPResponse>(`/api/ProvisionalDischarge/DiscardAllItems`, discardProvisionalItems, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/ProvisionalDischarge/DiscardAllItems`, discardProvisionalItems, this.jsonOptions);
   }
   public PayProvisionalForProvisionalDischarge(billTxnModel) {
     let data = JSON.stringify(billTxnModel);

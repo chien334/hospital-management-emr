@@ -4,7 +4,7 @@ import { RPT_BIL_DoctorReferralModel } from "./doctor-referral.model"
 import { DLService } from "../../../shared/dl.service"
 import { HttpClient } from '@angular/common/http';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import * as moment from 'moment/moment';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { ENUM_DanpheHTTPResponses } from '../../shared/shared-enums';
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { ENUM_DsfHTTPResponses } from '../../shared/shared-enums';
 import { DietSheetDTO } from '../shared/dto/diet-sheet.dto';
 import { DietTypeDTO } from '../shared/dto/diet-type.dto';
 import { NursingBLService } from '../shared/nursing.bl.service';
@@ -35,8 +35,8 @@ export class DietSheetComponent implements OnInit {
 
     }
     public GetAllDietTypes() {
-        this.nursingBLService.GetAllDietTypes().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.nursingBLService.GetAllDietTypes().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 res.Results
             }
         })
@@ -49,8 +49,8 @@ export class DietSheetComponent implements OnInit {
 
     public GetAllInpatientListWithDietDetail() {
         let wardId = this.securityService.getActiveWard().WardId;
-        this.nursingBLService.GetAllInpatientListWithDietDetail(wardId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+        this.nursingBLService.GetAllInpatientListWithDietDetail(wardId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
                 this.ipdList = res.Results;
                 this.resultCount = res.Results.length;
                 this.ipdListView = this.ipdList;

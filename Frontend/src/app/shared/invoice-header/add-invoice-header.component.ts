@@ -9,7 +9,7 @@ import { GeneralFieldLabels } from "../DTOs/general-field-label.dto";
 import { DLService } from "../dl.service";
 import { InvoiceHeaderModel } from "../invoice-header.model";
 import { MessageboxService } from "../messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../shared-enums";
 @Component({
   selector: 'add-invoice-header',
   templateUrl: './add-invoice-header.html'
@@ -165,12 +165,12 @@ export class AddInvoiceHeaderComponent implements OnInit {
       this._http.post<any>("/api/PharmacySettings/InvoiceHeader", formToPost)
         .subscribe(
           res => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
               this.Close();
               this.msgBoxSrv.showMessage(ENUM_MessageBox_Status.Success, ['Image is Uploded']);
               this.SendCallBack(res);
             }
-            else if (res.Status === ENUM_DanpheHTTPResponseText.Failed) {
+            else if (res.Status === ENUM_DsfHTTPResponseText.Failed) {
               this.msgBoxSrv.showMessage(ENUM_MessageBox_Status.Error, ['Failed']);
               this.loading = false;
             }

@@ -5,7 +5,7 @@ import { CoreService } from '../../../core/shared/core.service';
 import { PatientService } from '../../../patients/shared/patient.service';
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
 import { NepaliDate } from "../../../shared/calendar/np/nepali-dates";
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { AdmissionCancelVM, AdmissionInfoVM } from "../../shared/admission.view.model";
@@ -64,7 +64,7 @@ export class AdmissionCancelComponent {
   LoadCancelPatientInfo(patientId: number, patientVisitId: number) {
     this.dlService.Read("/api/Admission/AdmissionInfo?patientId=" + this.patientId + "&ipVisitId=" + this.ipVisitId)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK" && res.Results) {
           this.admissionInfo = new AdmissionInfoVM();
           this.admissionInfo = res.Results;

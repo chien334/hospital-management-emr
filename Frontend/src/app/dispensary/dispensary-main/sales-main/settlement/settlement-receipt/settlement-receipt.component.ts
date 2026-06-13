@@ -4,7 +4,7 @@ import { PharmacyBLService } from '../../../../../pharmacy/shared/pharmacy.bl.se
 import { PharmacyService } from '../../../../../pharmacy/shared/pharmacy.service';
 import { SecurityService } from '../../../../../security/shared/security.service';
 import { NepaliCalendarService } from '../../../../../shared/calendar/np/nepali-calendar.service';
-import { DanpheHTTPResponse } from '../../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../../shared/common-models';
 import { CommonFunctions } from '../../../../../shared/common.functions';
 import { MessageboxService } from '../../../../../shared/messagebox/messagebox.service';
 
@@ -87,7 +87,7 @@ export class SettlementReceiptComponent implements OnInit {
 
   GetSettlementReceiptDetails() {
     this.pharmacyBLService.GetPHRMSettlementDuplicateDetails(this.settlementId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         this.setlmntToDisplay = res.Results;
         this.PatientInfo = this.setlmntToDisplay.PatientInfo;
         this.SettlementInfo = this.setlmntToDisplay.SettlementInfo;
@@ -145,7 +145,7 @@ export class SettlementReceiptComponent implements OnInit {
     var printContents = document.getElementById("printpage").innerHTML;
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
-    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
     popupWinindow.document.close();
     this.pharmacyBLService.UpdateSettlementPrintCount(this.SettlementInfo.SettlementId)
       .subscribe(res => {

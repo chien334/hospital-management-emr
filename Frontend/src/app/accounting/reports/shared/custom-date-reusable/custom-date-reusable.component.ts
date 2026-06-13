@@ -5,7 +5,7 @@ import { FiscalYearModel } from "../../../settings/shared/fiscalyear.model";
 import { CoreService } from '../../../../core/shared/core.service';
 import { AccountingService } from '../../../shared/accounting.service';
 @Component({
-    selector: "danphe-cust-date-reusable",
+    selector: "dsf-cust-date-reusable",
     templateUrl: "./custom-date-reusable.html"
 })
 export class CustomDateReusableComponent {
@@ -149,9 +149,9 @@ export class CustomDateReusableComponent {
     this.event.emit({ fromDate: this.fromDate, toDate: this.toDate,fiscalYearId:this.fiscalYearId  });
 	}
   GetFiscalYear() {
-    if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-      this.fiscalYearList = this.accountingService.accCacheData.FiscalYearList; //mumbai-team-june2021-danphe-accounting-cache-change
-      this.fiscalYearList = this.fiscalYearList.slice(); //mumbai-team-june2021-danphe-accounting-cache-change
+    if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+      this.fiscalYearList = this.accountingService.accCacheData.FiscalYearList; //mumbai-team-june2021-dsf-accounting-cache-change
+      this.fiscalYearList = this.fiscalYearList.slice(); //mumbai-team-june2021-dsf-accounting-cache-change
       this.currentFiscalYear = this.fiscalYearList.find(x => x.IsActive == true);
     }
   }

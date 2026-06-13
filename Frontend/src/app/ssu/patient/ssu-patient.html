@@ -171,7 +171,7 @@
                         <div *ngIf="model.CountryId == 1" class="form-group">
                           <label class="control-label col-md-4">{{GeneralFieldLabel.DistrictState}}<sup>*</sup><b>:</b></label>
                           <div class="col-md-8">
-                            <input id="state" danphe-auto-complete class="form-control" formControlName="CountrySubDivisionId"
+                            <input id="state" dsf-auto-complete class="form-control" formControlName="CountrySubDivisionId"
                                    [(ngModel)]="selDistrict" [list-formatter]="myListFormatter"
                                    [source]="CountrySubDivisionList" placeholder="Enter {{GeneralFieldLabel.DistrictState}}"
                                    display-property-name="Value" value-property-name=null (focusout)="DistrictChanged()"
@@ -198,7 +198,7 @@
                         <div class="form-group">
                           <label class="control-label col-md-4">Address<b>:</b></label>
                           <div class="col-md-8">
-                            <input id="address" danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
+                            <input id="address" dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
                                    [(ngModel)]="model.Address" [source]="olderAddressList" placeholder="Address"
                                    display-property-name="PatAddress" value-property-name=null no-match-found-text=" "
                                    onClick="this.select();" min-chars="2" style="text-transform: capitalize;"

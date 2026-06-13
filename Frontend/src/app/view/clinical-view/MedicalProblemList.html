@@ -35,7 +35,7 @@
                                                 <td style="width: 40%;"><i *ngIf="add.PrincipleProblem==true" title="Principle Problem"
                                                        class="fa fa-star"
                                                        style="color: #599acd;font-size: 16px;"></i>({{add.ICD10Code}}){{add.ICD10Description}}</td>
-                                                <td style="width: 15%;">{{add.OnSetDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                                                <td style="width: 15%;">{{add.OnSetDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                                                 <td style="width: 25%;" class="text">
                                                     <div class="text">
                                                         <span>{{add.Note}}</span>
@@ -89,8 +89,8 @@
                                                 <td><i *ngIf="pastMed.PrincipleProblem==true" title="Principle Problem" class="fa fa-star"
                                                        style="color: #599acd;font-size: 16px;"></i>({{pastMed.ICD10Code}}){{pastMed.ICD10Description}}
                                                 </td>
-                                                <td>{{pastMed.OnSetDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-                                                <td>{{pastMed.ResolvedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                                                <td>{{pastMed.OnSetDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
+                                                <td>{{pastMed.ResolvedDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                                                 <td><a style="cursor:pointer" (click)="SetAsActive(pastMed)">Set as Active</a></td>
                                             </tr>
 

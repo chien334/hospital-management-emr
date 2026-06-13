@@ -6,7 +6,7 @@ import { PharmacyBLService } from '../../../../pharmacy/shared/pharmacy.bl.servi
 import PHRMReportsGridColumns from '../../../../pharmacy/shared/phrm-reports-grid-columns';
 import { PHRMReportsModel } from '../../../../pharmacy/shared/phrm-reports-model';
 import { PHRMStoreModel } from '../../../../pharmacy/shared/phrm-store.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { DispensaryService } from '../../../shared/dispensary.service';
 import { DispensaryReportModel } from '../dispensary-reports.model';

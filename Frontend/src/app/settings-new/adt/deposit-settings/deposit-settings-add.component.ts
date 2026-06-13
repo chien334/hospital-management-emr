@@ -3,7 +3,7 @@ import { BedFeature } from "../../../adt/shared/bedfeature.model";
 import { DepositHead_DTO } from "../../../billing/shared/dto/deposit-head.dto";
 import { CoreService } from "../../../core/shared/core.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { MinimumDepositAmount_DTO } from "../../shared/DTOs/minimum-deposit-amount.dto";
 import { BillingSchemeModel } from "../../shared/bill-scheme.model";
 import { MinimumDepositSettingsModel } from "../../shared/minimum-deposit-settings";
@@ -150,7 +150,7 @@ export class DepositSettingsAddComponent {
                 this.SettingDepositAmount.IsOnlyMinimumDeposit = this.MinimumDepositSettings.IsOnlyMinimumDeposit;
                 this.settingsBLService.SaveMinimumDepositAmount(this.SettingDepositAmount).finally(() => this.loading = false)
                     .subscribe(res => {
-                        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                        if (res.Status === ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Saved Successfully']);
                             this.callBackAdd.emit(true);
                         }
@@ -202,7 +202,7 @@ export class DepositSettingsAddComponent {
         this.settingsBLService.UpdateSettingDepositAmount(this.SettingDepositAmountToUpdate)
             .finally(() => this.loading = false)
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     // Display success message and emit the callback if the update is successful
                     this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Updated Successfully']);
                     this.callBackUpdate.emit(true);

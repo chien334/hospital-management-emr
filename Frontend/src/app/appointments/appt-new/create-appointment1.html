@@ -72,10 +72,10 @@ div.col-md-3 {
 </div>
 <div class="row" *ngIf="!showApptPanel">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="AppointmentpatientGridColumns" [grid-data]="patients"
+    <dsf-grid [grid-colDefaults]="AppointmentpatientGridColumns" [grid-data]="patients"
                    (grid-actions)="AppointmentPatientGridActions($event)"
                    (serverSearchText)="serverSearchTxt($event)"
-                   [customServerSearch]="enableServerSideSearch"> </danphe-grid>
+                   [customServerSearch]="enableServerSideSearch"> </dsf-grid>
     <!-- [show-ServerSideSearch]="true"
       [api-type]="patGirdDataApi" --> 
   </div>
@@ -213,7 +213,7 @@ div.col-md-3 {
 					<div class="form-group row">
                   <label class="control-label col-md-5">Department<b>:</b></label>
                   <div class="col-md-7">
-                    <input class="form-control" danphe-auto-complete
+                    <input class="form-control" dsf-auto-complete
                            [ngClass]="!CurrentAppointment.IsValidSelDepartment? 'bg-on' : 'bg-off'"
                            [(ngModel)]="selectedDepartment"
                            [list-formatter]="myDepartmentListFormatter"
@@ -233,7 +233,7 @@ div.col-md-3 {
 					<div class="form-group row">
                   <label class="control-label col-md-5">Doctor<b>:</b></label>
                   <div class="col-md-7">
-                    <input class="form-control" danphe-auto-complete
+                    <input class="form-control" dsf-auto-complete
                            [ngClass]="!CurrentAppointment.IsValidSelProvider? 'bg-on' : 'bg-off'"
                            [ngModelOptions]="{standalone: true}"
                            [(ngModel)]="selectedDoctor"
@@ -275,7 +275,7 @@ div.col-md-3 {
                           <td align="center"> {{i+1}}. </td>
                           <td align="left"> {{apt.PatientName}} </td>
                           <td align="left"> {{apt.Time}} </td>
-                          <td align="left"> {{apt.Date | DanpheDateTime:'format':'YYYY-MM-DD'}} </td>
+                          <td align="left"> {{apt.Date | DsfDateTime:'format':'YYYY-MM-DD'}} </td>
                           <td align="left"> {{apt.PhoneNumber}} </td>
                           <td align="left"> {{apt.CreatedByName}} </td>
                           <td align="left"> {{apt.ModifiedByName}} </td>

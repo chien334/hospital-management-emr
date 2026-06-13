@@ -5,7 +5,7 @@ import { CoreService } from '../../core/shared/core.service';
 import { PHRMStoreModel } from '../../pharmacy/shared/phrm-store.model';
 import { SecurityService } from '../../security/shared/security.service';
 import { ActivateInventoryService } from '../../shared/activate-inventory/activate-inventory.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { InventoryFieldCustomizationService } from '../../shared/inventory-field-customization.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from "../../shared/routefrom.service";
@@ -153,7 +153,7 @@ export class DispatchItemsComponent {
           });
           this.InventoryBLService.PostToDispatchItems(this.Dispatch)
             .subscribe(
-              (res: DanpheHTTPResponse) => {
+              (res: DsfHTTPResponse) => {
                 this.loading = false;
 
                 if (res.Status == "OK") {

@@ -5,9 +5,9 @@
 
 <div *ngIf="showAllRxnList" class="row">
     <div class="col-md-12 col-xs-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="reactionGridColumns" [grid-data]="reactionList" (grid-actions)="ReactionGridActions($event)"
+        <dsf-grid [grid-colDefaults]="reactionGridColumns" [grid-data]="reactionList" (grid-actions)="ReactionGridActions($event)"
                      [show-print-button]="false">
-        </danphe-grid>
+        </dsf-grid>
     </div>
 </div>
 
@@ -21,7 +21,7 @@
 
         <div *ngIf="showCountryList" class="row">
             <div class="col-md-12 col-xs-12 col-sm-12">
-                <danphe-grid [grid-colDefaults]="countryGridColumns" [grid-data]="countryList" (grid-actions)="CountryGridActions($event)">
-                </danphe-grid>
+                <dsf-grid [grid-colDefaults]="countryGridColumns" [grid-data]="countryList" (grid-actions)="CountryGridActions($event)">
+                </dsf-grid>
             </div>
         </div>-->

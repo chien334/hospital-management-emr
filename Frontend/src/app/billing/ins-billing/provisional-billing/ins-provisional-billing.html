@@ -36,7 +36,7 @@
 <div class="wrapper">
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="creditBillGridColumns" [grid-data]="InsuranceProvisionalBillsSummary" (grid-actions)="CreditBillGridActions($event)" [hidden]="!showAllPatient"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="creditBillGridColumns" [grid-data]="InsuranceProvisionalBillsSummary" (grid-actions)="CreditBillGridActions($event)" [hidden]="!showAllPatient"> </dsf-grid>
     </div>
   </div>
   <div class="row" [hidden]="showAllPatient">
@@ -49,7 +49,7 @@
     <div class="col-md-12" style="padding-bottom:10px;">
       <div class="col-md-4" style="padding-left:0px;padding-right:0px;text-align:right;"> Search from already added items: </div>
       <div class="col-md-4">
-        <input danphe-auto-complete class="form-control cstm-form-control"
+        <input dsf-auto-complete class="form-control cstm-form-control"
              [(ngModel)]="selItem"
              [source]="uniqueItemNames"
              placeholder="Enter ItemName"
@@ -84,7 +84,7 @@
           <tr *ngFor="let row of filteredPendingItems;let i = index"> 
             <!--<tr *ngFor="let row of filteredPendingItems;let i = index" (dblclick)="EditItemBtnOnClick(i,row)">-->
             <td>{{i+1}}</td>
-            <td style="font-size: 12px;font-weight: bold;">{{row.RequisitionDate | DanpheDateTime:'format':'YY/MM/DD HH:mm'}}</td>
+            <td style="font-size: 12px;font-weight: bold;">{{row.RequisitionDate | DsfDateTime:'format':'YY/MM/DD HH:mm'}}</td>
             <td>{{row.ServiceDepartment.ServiceDepartmentName}}</td>
             <td><div>{{row.ItemName}}</div>
               <div *ngIf="row.ProviderId"> <span style="font-size: 12px;font-weight: bold;"> ({{row.ProviderName}}) </span> </div></td>
@@ -120,7 +120,7 @@
       </table>
       
       <!--start: sud: 21Jul'19--For Insurance Transaction Date-->
-      <div *ngIf="allowInsTxnDate" style="margin-bottom: 15px;border-top: 1px solid;padding-top: 10px;"> <span> Insurance Date:</span> <span style="font-weight:bold;"> {{insTxnDate | DanpheDateTime:'format':'YYYY-MM-DD'}} </span> <br />
+      <div *ngIf="allowInsTxnDate" style="margin-bottom: 15px;border-top: 1px solid;padding-top: 10px;"> <span> Insurance Date:</span> <span style="font-weight:bold;"> {{insTxnDate | DsfDateTime:'format':'YYYY-MM-DD'}} </span> <br />
         <a (click)="ShowCalendar()">Change ?</a> </div>
       <!--end: sud: 21Jul'19--For Insurance Transaction Date-->
       
@@ -182,7 +182,7 @@
           </div>
           <div class="modelbox-body">
             <div class="datepicker-holder">
-              <danphe-date-picker [(ngModel)]="insTxnCalendarDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}"> </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="insTxnCalendarDate" ngDefaultControl [CalendarTypes]="'en,np'" [ngModelOptions]="{standalone: true}"> </dsf-date-picker>
             </div>
           </div>
           <div class="modelbox-footer">

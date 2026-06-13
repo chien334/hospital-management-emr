@@ -7,14 +7,14 @@ import { ReportingService } from '../../../reporting/shared/reporting-service';
 import { SettingsBLService } from '../../../settings-new/shared/settings.bl.service';
 import { ActivateInventoryService } from '../../../shared/activate-inventory/activate-inventory.service';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { ItemModel } from '../../settings/shared/item.model';
 import { InventoryBLService } from '../../shared/inventory.bl.service';
 import { InventoryReportsBLService } from '../shared/inventory-reports.bl.service';
 import { IssuedItemViewModel } from './issued-item-view-model';
-import { ENUM_DanpheHTTPResponses } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses } from '../../../shared/shared-enums';
 
 @Component({
   selector: 'app-issued-item-list',
@@ -205,7 +205,7 @@ export class IssuedItemListComponent implements OnInit {
     this.inventoryReportBLService.IssuedItemListReport(this.FromDate, this.ToDate, this.FiscalYearId, this.ItemId, this.SubStoreId, this.MainStoreId, this.EmployeeId, this.SubCategoryId).finally(() => {
       this.loading = false;
     }).subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.IssuedItemListData = new Array<IssuedItemViewModel>();
         if (res.Results.length > 0) {
           this.IssuedItemListData = res.Results;

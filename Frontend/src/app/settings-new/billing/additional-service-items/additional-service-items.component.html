@@ -1,11 +1,11 @@
 <a class="btn green btn-success margin-7-hr" feature="button" (click)="ShowAddPage()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADDITIONAL_SERVICE_ITEM' | translate }}</a>
 
 <div *ngIf="showGrid">
-    <danphe-grid [grid-colDefaults]="additionalServiceItemGridColumns"
+    <dsf-grid [grid-colDefaults]="additionalServiceItemGridColumns"
                  [grid-data]="additionalServiceItemList"
                  (grid-actions)="AdditionalServiceItemGridActions($event)"
                  [show-print-button]="false">
-    </danphe-grid>
+    </dsf-grid>
 </div>
 
 <div class="popup-static portlet box portlet-fullscreen custom_modal" *ngIf="ShowServiceItemAddPage">
@@ -35,7 +35,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-5">{{ 'SETTINGS_NEW.PRICE_CATEGORY_1' | translate }}<sup>*</sup><b>:</b></label>
                                 <div class="col-md-7">
-                                    <input danphe-auto-complete class="form-control" [(ngModel)]="selectedPriceCategory"
+                                    <input dsf-auto-complete class="form-control" [(ngModel)]="selectedPriceCategory"
                                            [source]="priceCategoryList" [placeholder]="'SETTINGS_NEW.PRICECATEGORY' | translate" display-property-name="PriceCategoryName"
                                            value-property-name="PriceCategoryName"
                                            (valueChanged)="AssignSelectedPriceCategory($event)"
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-5">{{ 'SETTINGS_NEW.SERVICE_ITEM' | translate }}<sup>*</sup><b>:</b></label>
                                 <div class="col-md-7">
-                                    <input danphe-auto-complete class="form-control"
+                                    <input dsf-auto-complete class="form-control"
                                            [source]="serviceItemList" [placeholder]="'SETTINGS_NEW.SERVICEITEM' | translate" display-property-name="ItemName"
                                            [(ngModel)]="selectedServiceItem"
                                            (valueChanged)="AssignSelectedServiceItem($event)"

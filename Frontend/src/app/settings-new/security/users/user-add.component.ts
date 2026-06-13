@@ -5,7 +5,7 @@ import { User } from "../../../security/shared/user.model";
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 import { CommonFunctions } from "../../../shared/common.functions";
 
 @Component({
@@ -64,7 +64,7 @@ export class UserAddComponent {
 
   ///geting Emp list for DropDown Employee selection 
   public GetEmpList() {
-    //this.empList = DanpheCache.GetData(MasterType.Employee,null);
+    //this.empList = DsfCache.GetData(MasterType.Employee,null);
     this.settingsBLService.GetEmployeeList()
       .subscribe(res => {
         if (res.Status == 'OK') {

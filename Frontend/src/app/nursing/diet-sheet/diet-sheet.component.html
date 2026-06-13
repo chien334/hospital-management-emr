@@ -64,7 +64,7 @@
                         <td>{{item.ShortName}}</td>
                         <td>{{item.AgeSex}}</td>
                         <td *ngIf="!IsLocalDate" style="width: 120px;">{{item.AdmissionDate |
-                            DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+                            DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
                         <td *ngIf="IsLocalDate" style="width: 120px;">{{item.AdmissionDate|
                             nepaliDate:'format':'YYYY-MM-DD hh:mm'}}</td>
 
@@ -79,7 +79,7 @@
                                 <button class="btn green btn-success ml-2" (click)="AddNewDietPlan(item)" [attr.title]="'NURSING.EDIT_DIET' | translate"><i
                                        class='fa fa-pencil'></i></button>
                                 <button class="btn green btn-success" (click)="PatientDietHistory(item)">
-                                    <a danphe-grid-action="contract" class="grid-action-icon" [attr.title]="'NURSING.DIET_HISTORY' | translate"><i
+                                    <a dsf-grid-action="contract" class="grid-action-icon" [attr.title]="'NURSING.DIET_HISTORY' | translate"><i
                                            class="fa fa-file-text"></i></a></button>
                             </div>
                         </td>

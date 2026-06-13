@@ -141,9 +141,9 @@ export class LedgerReportComponent {
   }
 
   public GetLedgers() {
-    if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-      this.ledgerList = this.accountingService.accCacheData.Ledgers; //mumbai-team-june2021-danphe-accounting-cache-change
-      this.ledgerList = this.ledgerList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+    if (!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+      this.ledgerList = this.accountingService.accCacheData.Ledgers; //mumbai-team-june2021-dsf-accounting-cache-change
+      this.ledgerList = this.ledgerList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
       this.filteredLedgerList = this.ledgerList;
     }
   }
@@ -489,11 +489,11 @@ export class LedgerReportComponent {
       );
       popupWinindow.document.open();
       let documentContent = "<html><head>";
-      //documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default//DanphePrintStyle.css"/>';
+      //documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default//DsfPrintStyle.css"/>';
       documentContent +=
         '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
       documentContent +=
-        '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default//DanpheStyle.css"/>';
+        '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default//DsfStyle.css"/>';
       documentContent += "</head>";
       if (this.accountingService.paramData) {
         this.printTitle = this.accountingService.paramData.HeaderTitle;

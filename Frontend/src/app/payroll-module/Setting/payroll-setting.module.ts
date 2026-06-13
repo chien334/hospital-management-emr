@@ -9,7 +9,7 @@ import { PayrollSettingBLService } from '../Setting/shared/PayrollSettingBLServi
 import { PayrollSettingDLService } from  '../Setting/shared/PayrollSettingDLService';
 import { WeekendHolidayPolicyComponent } from './Weekend-Holiday-Policy/weekend-holiday.component';
 import { LeaveCategoryListComponent } from './Leave-Category/Leave-Category-List.component';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AddLeaveCategoryComponent} from './Leave-Category/Add-Leave-Category.component';
 
@@ -22,7 +22,7 @@ import { AddLeaveCategoryComponent} from './Leave-Category/Add-Leave-Category.co
         ReactiveFormsModule,
         FormsModule,
         PayrollSettingsRoutingModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SharedModule,
     ],
     declarations: [

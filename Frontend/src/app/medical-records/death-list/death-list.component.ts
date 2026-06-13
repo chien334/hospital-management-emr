@@ -9,9 +9,9 @@ import { MR_BLService } from '../shared/mr.bl.service';
 import { CoreService } from '../../core/shared/core.service';
 import { HttpClient } from '@angular/common/http';
 import MRGridColumnSettings from '../shared/Mr-gridcol.settings';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 import { DeathDetails } from '../../adt/shared/death.detail.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: "./death-list.html"

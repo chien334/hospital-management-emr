@@ -6,7 +6,7 @@ import { ADT_DLService } from "../adt/shared/adt.dl.service";
 import { AppointmentDLService } from "../appointments/shared/appointment.dl.service";
 import { VisitDLService } from "../appointments/shared/visit.dl.service";
 import { BillingSharedModule } from "../billing/billing-shared.module";
-import { DanpheAutoCompleteModule } from "../shared/danphe-autocomplete";
+import { DsfAutoCompleteModule } from "../shared/dsf-autocomplete";
 import { SharedModule } from "../shared/shared.module";
 import { SchemeRefundPrintComponent } from './Print/scheme-refund-print.component';
 import { ChangeBillingCounterComponent } from './change-billing-counter/change-billing-counter.component';
@@ -36,7 +36,7 @@ import { UtilitiesRoutingModule } from "./utilities-routing.module";
         FormsModule,
         CommonModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         BillingSharedModule,
         UtilitiesSharedModule], providers: [
         UtilitiesBLService,

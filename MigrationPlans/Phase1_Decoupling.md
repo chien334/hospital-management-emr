@@ -6,14 +6,14 @@ This phase focuses on extracting the embedded Angular application and converting
 
 ## 1. Extracting the Frontend SPA
 
-Currently, the Angular 7 application sits in `Code/Websites/DanpheEMR/wwwroot/DanpheApp`. We will move it to the root of the workspace.
+Currently, the Angular 7 application sits in `Code/Websites/DsfEMR/wwwroot/DsfApp`. We will move it to the root of the workspace.
 
 ### Steps:
 1. Create a root directory named `/Frontend`.
-2. Move all contents of `/Code/Websites/DanpheEMR/wwwroot/DanpheApp/*` to `/Frontend`.
+2. Move all contents of `/Code/Websites/DsfEMR/wwwroot/DsfApp/*` to `/Frontend`.
 3. In `/Frontend/angular.json`, update the `outputPath` configuration:
    ```json
-   "outputPath": "dist/danphe-app"
+   "outputPath": "dist/dsf-app"
    ```
 4. Verify the frontend builds independently:
    ```bash
@@ -26,21 +26,21 @@ Currently, the Angular 7 application sits in `Code/Websites/DanpheEMR/wwwroot/Da
 
 ## 2. Converting Backend Projects to SDK-Style (.NET 8.0)
 
-All library projects (`Code/Components/*`) and the main Web project (`Code/Websites/DanpheEMR`) currently use old MSBuild formats and target `.NET Framework 4.6.1`. We will convert them to SDK-Style targeting `net8.0`.
+All library projects (`Code/Components/*`) and the main Web project (`Code/Websites/DsfEMR`) currently use old MSBuild formats and target `.NET Framework 4.6.1`. We will convert them to SDK-Style targeting `net8.0`.
 
 ### Migration Steps per Project:
 1. **Backup**: Ensure a clean git branch is checked out before modifying `.csproj` files.
 2. **Convert Project Files**: Replace the contents of each `.csproj` with the modern, simplified SDK-style XML.
 
-#### Example Component Project (`DanpheEMR.DalLayer.csproj`):
+#### Example Component Project (`DsfEMR.DalLayer.csproj`):
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>DanpheEMR.DalLayer</AssemblyName>
-    <RootNamespace>DanpheEMR.DalLayer</RootNamespace>
+    <AssemblyName>DsfEMR.DalLayer</AssemblyName>
+    <RootNamespace>DsfEMR.DalLayer</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -49,9 +49,9 @@ All library projects (`Code/Components/*`) and the main Web project (`Code/Websi
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DanpheEMR.Core\DanpheEMR.Core.csproj" />
-    <ProjectReference Include="..\DanpheEMR.Security\DanpheEMR.Security.csproj" />
-    <ProjectReference Include="..\DanpheEMR.ServerModel\DanpheEMR.ServerModel.csproj" />
+    <ProjectReference Include="..\DsfEMR.Core\DsfEMR.Core.csproj" />
+    <ProjectReference Include="..\DsfEMR.Security\DsfEMR.Security.csproj" />
+    <ProjectReference Include="..\DsfEMR.ServerModel\DsfEMR.ServerModel.csproj" />
   </ItemGroup>
 </Project>
 ```
@@ -64,7 +64,7 @@ All library projects (`Code/Components/*`) and the main Web project (`Code/Websi
 
 ## 3. Detaching static file serving from Web API
 
-The main project `DanpheEMR` will be stripped of MVC View and static asset hosting configurations.
+The main project `DsfEMR` will be stripped of MVC View and static asset hosting configurations.
 
 ### Program.cs Actions:
 - Remove static file middleware calls like `app.UseStaticFiles()` and `app.UseDefaultFiles()`.

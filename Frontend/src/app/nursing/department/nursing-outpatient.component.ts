@@ -10,13 +10,13 @@ import { CoreService } from '../../core/shared/core.service';
 import { PatientService } from "../../patients/shared/patient.service";
 import { SecurityService } from '../../security/shared/security.service';
 import { Department } from '../../settings-new/shared/department.model';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { NursingBLService } from "../shared/nursing.bl.service";
 
 @Component({
@@ -159,8 +159,8 @@ export class NursingOutPatientComponent {
   GetDepartments() {
     this.visitBLService.GetDepartment()
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK)
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK)
             this.departmentList = res.Results;
           this.selectedDepartment = new Department();
         });
@@ -172,20 +172,20 @@ export class NursingOutPatientComponent {
     let currPat = params.data;
 
     if (currPat.IsTriaged == 1) {
-      template = '<a danphe-grid-action="opd-triage" class="grid-action">Edit Triage</a>';
+      template = '<a dsf-grid-action="opd-triage" class="grid-action">Edit Triage</a>';
     } else {
-      template = '<a danphe-grid-action="opd-triage" class="grid-action">Add Triage</a>';
+      template = '<a dsf-grid-action="opd-triage" class="grid-action">Add Triage</a>';
     }
     if (NursingOutPatientComponent.serv.HasPermission("nursing-op-summary-view")) {
-      template += '<i danphe-grid-action="patient-overview" class="fa fa-tv grid-action" style="padding: 3px;" title="overview"> </i>';
+      template += '<i dsf-grid-action="patient-overview" class="fa fa-tv grid-action" style="padding: 3px;" title="overview"> </i>';
     }
 
     if (NursingOutPatientComponent.serv.HasPermission("nursing-op-clinical-view")) {
-      template += `<a danphe-grid-action="clinical" class="grid-action">Clinical</a>`;
+      template += `<a dsf-grid-action="clinical" class="grid-action">Clinical</a>`;
     }
 
     if (NursingOutPatientComponent.serv.HasPermission("nursing-op-fileupload-view")) {
-      template += ' <i danphe-grid-action="upload-files" class="fa fa-upload grid-action" style="padding: 3px;" title="upload files"> </i>';
+      template += ' <i dsf-grid-action="upload-files" class="fa fa-upload grid-action" style="padding: 3px;" title="upload files"> </i>';
     }
     return template;
   }
@@ -226,7 +226,7 @@ export class NursingOutPatientComponent {
     this.toDate = moment().format('YYYY-MM-DD');
     this.nursingBLService.GetOPDList(this.fromDate, this.toDate)  //this.fromDate, this.toDate
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.opdList = res.Results;
           let opdTriaged = [];
           let opdNotTriaged = [];

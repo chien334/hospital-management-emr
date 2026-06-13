@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AccountingBLService } from '../shared/accounting.bl.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import * as moment from 'moment/moment';
 import { CoreService } from '../../core/shared/core.service';
 import { AccountingService } from '../shared/accounting.service';
@@ -19,7 +19,7 @@ import { AccountingService } from '../shared/accounting.service';
 export class ActivateAccountingHospitalComponent {
     public allHospitalsPermissions: any;
     public totalNumOfPermissions: number = 0;
-    public loading:boolean=false; //mumbai-team-june2021-danphe-accounting-cache-change
+    public loading:boolean=false; //mumbai-team-june2021-dsf-accounting-cache-change
     @Input() public changeRequest: boolean = false;
     @Output("actionEmitter") dataEmitter: EventEmitter<object> = new EventEmitter<object>();
     public singleTenantPermissionAssigned: any;
@@ -91,29 +91,29 @@ export class ActivateAccountingHospitalComponent {
     }
 
     AssignAccountingTenant(tenantId) {
-        this.loading=true; //mumbai-team-june2021-danphe-accounting-cache-change
-        let isClearAccCacheData = (this.securityServ.AccHospitalInfo.ActiveHospitalId == tenantId) ? false : true; //mumbai-team-june2021-danphe-accounting-cache-change
+        this.loading=true; //mumbai-team-june2021-dsf-accounting-cache-change
+        let isClearAccCacheData = (this.securityServ.AccHospitalInfo.ActiveHospitalId == tenantId) ? false : true; //mumbai-team-june2021-dsf-accounting-cache-change
         let hosp = this.allHospitalsPermissions.find(h => h.HospitalId == tenantId);
         if (hosp) {
             this.accBLService.ActivateAccountingTenant(tenantId)
-                .subscribe(async (res: DanpheHTTPResponse) => {
+                .subscribe(async (res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
-                        if(isClearAccCacheData==true){ //mumbai-team-june2021-danphe-accounting-cache-change
-                            this.accservice.clearAccCacheDataFromDanpheCache();//mumbai-team-june2021-danphe-accounting-cache-change
+                        if(isClearAccCacheData==true){ //mumbai-team-june2021-dsf-accounting-cache-change
+                            this.accservice.clearAccCacheDataFromDsfCache();//mumbai-team-june2021-dsf-accounting-cache-change
                         }
                         this.securityServ.SetAccHospitalInfo(res.Results);
-                        await this.accservice.getAccCacheData().then(res=>{ //mumbai-team-june2021-danphe-accounting-cache-change
-                            this.loading= false;//mumbai-team-june2021-danphe-accounting-cache-change
+                        await this.accservice.getAccCacheData().then(res=>{ //mumbai-team-june2021-dsf-accounting-cache-change
+                            this.loading= false;//mumbai-team-june2021-dsf-accounting-cache-change
                         })
                         let curr_AccHospInfo = this.securityServ.AccHospitalInfo;
                         curr_AccHospInfo.HospitalLongName = hosp.HospitalLongName;
                         curr_AccHospInfo.HospitalShortName = hosp.HospitalShortName;
                         curr_AccHospInfo.TotalHospitalPermissionCount = this.totalNumOfPermissions;  
-                        if (!!this.accservice.accCacheData.CodeDetails && this.accservice.accCacheData.CodeDetails.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-                            this.coreService.SetCodeDetails(this.accservice.accCacheData.CodeDetails); //mumbai-team-june2021-danphe-accounting-cache-change
+                        if (!!this.accservice.accCacheData.CodeDetails && this.accservice.accCacheData.CodeDetails.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+                            this.coreService.SetCodeDetails(this.accservice.accCacheData.CodeDetails); //mumbai-team-june2021-dsf-accounting-cache-change
                         }
-                        if (!!this.accservice.accCacheData.FiscalYearList && this.accservice.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-                            this.coreService.SetFiscalYearList(this.accservice.accCacheData.FiscalYearList); //mumbai-team-june2021-danphe-accounting-cache-change
+                        if (!!this.accservice.accCacheData.FiscalYearList && this.accservice.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+                            this.coreService.SetFiscalYearList(this.accservice.accCacheData.FiscalYearList); //mumbai-team-june2021-dsf-accounting-cache-change
                         }               
                         // let curFiscYr = curr_AccHospInfo.FiscalYearList.find(f =>
                         //     moment(f.StartDate) <= moment() && moment() <= moment(f.EndDate)

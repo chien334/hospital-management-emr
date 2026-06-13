@@ -16,10 +16,10 @@
       </div>
     </div>
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="patientGridColumns" [grid-data]="filteredPatientList" (grid-actions)="AdmissionGridActions($event)"
+      <dsf-grid [grid-colDefaults]="patientGridColumns" [grid-data]="filteredPatientList" (grid-actions)="AdmissionGridActions($event)"
         (serverSearchText)="serverSearchTxt($event)"
         [customServerSearch]="enableServerSideSearch"
-        > </danphe-grid>
+        > </dsf-grid>
       <!-- [show-ServerSideSearch]="true"
         [api-type]="patGirdDataApi" --> 
     </div>

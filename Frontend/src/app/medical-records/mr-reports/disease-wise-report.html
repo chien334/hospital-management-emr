@@ -18,8 +18,8 @@
           <div class="form-group">
             <label class="control-label col-md-3">{{ 'COMMON.FROM_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
             <div class="col-md-9">
-              <danphe-date-picker [(ngModel)]="currentdiagnosiswisepatient.fromDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="fromDate">
-              </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="currentdiagnosiswisepatient.fromDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="fromDate">
+              </dsf-date-picker>
 
 
               <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('fromDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('fromDate','required')">{{ 'COMMON.FROM_DATE_IS_REQUIRED' | translate }}</span><br />
@@ -33,8 +33,8 @@
           <div class="form-group">
             <label class="control-label col-md-3">{{ 'COMMON.TO_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
             <div class="col-md-9">
-              <danphe-date-picker [(ngModel)]="currentdiagnosiswisepatient.toDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="toDate">
-              </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="currentdiagnosiswisepatient.toDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="toDate">
+              </dsf-date-picker>
               <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('toDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('toDate','required')">{{ 'COMMON.TO_DATE_IS_REQUIRED' | translate }}</span><br />
               <span class="color-red font-sm" *ngIf="currentdiagnosiswisepatient.IsDirty('toDate')" [hidden]="currentdiagnosiswisepatient.IsValidCheck('toDate','wrongDate')">{{ 'COMMON.CANT_SELECT_FUTURE_DATE' | translate }}</span>
 
@@ -47,7 +47,7 @@
             <label class="control-label col-md-5">{{ 'MEDICAL_RECORDS.DIAGNOSIS_NAME' | translate }}<b style="float:right;">:</b></label>
             <div class="col-md-7">
 
-              <input class="form-control" danphe-auto-complete
+              <input class="form-control" dsf-auto-complete
                      [(ngModel)]="selDiagnosis"
                      [ngModelOptions]="{standalone: true}"
                      [list-formatter]="myListFormatter"
@@ -80,10 +80,10 @@
 
 <div class="row">
   <div class="col-lg-12 col-sm-12" *ngIf="DiagnosisWisePatientReportData.length>0">
-    <danphe-grid [grid-colDefaults]="DiagnosisWisePatientReportColumns"
+    <dsf-grid [grid-colDefaults]="DiagnosisWisePatientReportColumns"
                  [grid-data]="DiagnosisWisePatientReportData"
                  [grid-exportOptions]="gridExportOptions" [grid-showExportNew]="true" (grid-onExport)="OnGridExport($event)">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 

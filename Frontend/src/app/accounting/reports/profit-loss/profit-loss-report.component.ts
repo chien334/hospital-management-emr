@@ -7,7 +7,7 @@ import { FiscalYearModel } from '../../settings/shared/fiscalyear.model';
 import { AccountingReportsBLService } from "../shared/accounting-reports.bl.service";
 
 import * as _ from 'lodash';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { AccountingService } from "../../shared/accounting.service";
 
 @Component({
@@ -70,7 +70,7 @@ export class ProfitLossReportComponent {
     this.btndisabled = true;
     if (this.checkDateValidation()) {
       this.accReportBLServ.GetProfitLossReport(this.fromDate, this.toDate, this.fiscalYearId).subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.btndisabled = false;
           let data = res.Results;
           this.RevenueData = data.find(a => a.PrimaryGroup == this.accountingService.getnamebyCode("001"));  //  "Revenue"

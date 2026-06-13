@@ -1,5 +1,5 @@
 import * as moment from 'moment/moment';
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
 export default class WARDGridColumns {
 
   static WARDStockDetailsList = [
@@ -13,7 +13,7 @@ export default class WARDGridColumns {
     //   headerName: "Action",
     //   field: "",
     //   width: 150,
-    //   template: `<a danphe-grid-action="breakage-stock" class="grid-action"> Breakage </a>`
+    //   template: `<a dsf-grid-action="breakage-stock" class="grid-action"> Breakage </a>`
     // }
 
   ]
@@ -36,7 +36,7 @@ export default class WARDGridColumns {
     { headerName: "SubStoreName", field: "SubStoreName", width: 150 },
     { headerName: "Consumed By", field: "ConsumedBy", width: 150 },
     { headerName: "Remark", field: "Remark", width: 150 },
-    { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' }
+    { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' }
   ]
 
   static WARDInventoryStockDetailsList = [
@@ -61,7 +61,7 @@ export default class WARDGridColumns {
     { headerName: "PhoneNumber", field: "PhoneNumber", width: 150 },
     { headerName: "Ward Name", field: "WardName", width: 100 },
     { headerName: "Quantity", field: "Quantity", width: 80 },
-    { headerName: "Action", field: "", width: 100, template: `<a danphe-grid-action="view" class="grid-action">View</a> <a danphe-grid-action="showDetails" class="grid-action">Show Details</a>` }
+    { headerName: "Action", field: "", width: 100, template: `<a dsf-grid-action="view" class="grid-action">View</a> <a dsf-grid-action="showDetails" class="grid-action">Show Details</a>` }
 
   ]
 
@@ -72,19 +72,19 @@ export default class WARDGridColumns {
     { headerName: "Requested By", field: "CreatedBy", width: 150 },
     { headerName: "Date", field: "Date", width: 100, cellRenderer: WARDGridColumns.DateOnlyRenderer },
     { headerName: "Status", field: "Status", width: 100 },
-    // { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' },
+    // { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' },
     { headerName: "Action", field: "", width: 100, cellRenderer: WARDGridColumns.ShowActionForRequisitionList },
   ]
 
 
   static ShowActionForRequisitionList(params) {
     let template =
-      `<a danphe-grid-action="view" class="grid-action">
+      `<a dsf-grid-action="view" class="grid-action">
         View
       </a>`;
     if (['partial', 'complete'].includes(params.data.Status)) {
       template += `
-        <a danphe-grid-action="receiveDispatchedItems" title="Receive Dispatched Items" 
+        <a dsf-grid-action="receiveDispatchedItems" title="Receive Dispatched Items" 
         class="grid-action ${(params.data.IsNewDispatchAvailable) ? "animated-btn blinking-btn-warning grid-action" : ""}">
           Receive Items
         </a>`;
@@ -99,7 +99,7 @@ export default class WARDGridColumns {
     { headerName: "Unit", field: "Unit", width: 100 },
     { headerName: "Entered By", field: "UsedBy", width: 150 },
     { headerName: "Remarks", field: "Remark", width: 150 }
-    //{ headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' }
+    //{ headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' }
 
   ]
   static QuantityColorWarningRenderer(params) {
@@ -312,11 +312,11 @@ export default class WARDGridColumns {
     }
   }
   static AssetStockActionRenderer(params) {
-    let template = `<a danphe-grid-action="print-barcode" class="grid-action-icon fixed-asset-action fa fa-barcode" title="Print Barcode"></a>`;
+    let template = `<a dsf-grid-action="print-barcode" class="grid-action-icon fixed-asset-action fa fa-barcode" title="Print Barcode"></a>`;
     if (params.data.CssdStatus == 'pending')
       template += `<span class="grid-action-icon fixed-asset-action fa fa-exchange dark" title="Already Sent To CSSD"></span>`;
     else if (params.data.IsCssdApplicable != null)
-      template += `<a danphe-grid-action="send-to-cssd" class="grid-action-icon fixed-asset-action fa fa-exchange" title="Send To CSSD"></a>`;
+      template += `<a dsf-grid-action="send-to-cssd" class="grid-action-icon fixed-asset-action fa fa-exchange" title="Send To CSSD"></a>`;
     return template;
   }
 
@@ -337,11 +337,11 @@ export default class WARDGridColumns {
       field: "",
       width: 200,
       template:
-        `<a danphe-grid-action="view" class="grid-action">
+        `<a dsf-grid-action="view" class="grid-action">
         View
       </a>
-      <a danphe-grid-action="dispatchList" class="grid-action"> Dispatch List</a> 
-      <a danphe-grid-action="receiveItems" class="grid-action"> Receive Items</a> `
+      <a dsf-grid-action="dispatchList" class="grid-action"> Dispatch List</a> 
+      <a dsf-grid-action="receiveItems" class="grid-action"> Receive Items</a> `
 
     }
   ]
@@ -363,7 +363,7 @@ export default class WARDGridColumns {
       field: "",
       width: 200,
       template:
-        `<a danphe-grid-action="view" class="grid-action">
+        `<a dsf-grid-action="view" class="grid-action">
       View
     </a>`
     }
@@ -379,7 +379,7 @@ export default class WARDGridColumns {
     { headerName: "Consumption Date", field: "ConsumptionDate", width: 100 },
     { headerName: "Entered By", field: "EnteredBy", width: 150 },
     { headerName: "Remarks", field: "Remarks", width: 150 },
-    { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View Receipt</a>' }
+    { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View Receipt</a>' }
 
   ]
   static ReqDispatchList = [
@@ -400,7 +400,7 @@ export default class WARDGridColumns {
       headerName: "Action",
       field: "",
       width: 120,
-      template: `<a danphe-grid-action="view" class="grid-action">
+      template: `<a dsf-grid-action="view" class="grid-action">
                View
              </a>`,
     },

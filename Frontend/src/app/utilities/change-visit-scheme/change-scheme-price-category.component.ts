@@ -5,10 +5,10 @@ import { PatientLatestVisitContext_DTO } from "../../appointments/shared/dto/pat
 import { Patient_DTO } from '../../claim-management/shared/DTOs/patient.dto';
 import { BillingScheme_DTO } from "../../settings-new/billing/shared/dto/billing-scheme.dto";
 import { PriceCategory_DTO } from '../../settings-new/shared/DTOs/price-category.dto';
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import {
-    ENUM_DanpheHTTPResponses,
+    ENUM_DsfHTTPResponses,
     ENUM_Data_Type,
     ENUM_MessageBox_Status,
     ENUM_VisitType
@@ -60,8 +60,8 @@ export class ChangeSchemePriceCategoryComponent implements OnInit {
 
     public GetBillingSchems() {
         this.utilitiesBlService.GetBillingSchmes().subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.billingSchemes = res.Results;
 
                 } else {
@@ -70,7 +70,7 @@ export class ChangeSchemePriceCategoryComponent implements OnInit {
                     ]);
                 }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [
                     `Error: ${err.ErrorMessage}`,
                 ]);
@@ -81,8 +81,8 @@ export class ChangeSchemePriceCategoryComponent implements OnInit {
     public GetPriceCategoires() {
         this.utilitiesBlService.GetPriceCategory()
             .subscribe(
-                (res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                (res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.priceCategoryList = res.Results
                         this.loading = false;
                     }
@@ -120,8 +120,8 @@ export class ChangeSchemePriceCategoryComponent implements OnInit {
     // };
     public AllPatientSearchLastVisitContext(patientId: number) {
         this.utilitiesBlService.PatientLastVisitContext(patientId).subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.searchedPatientList = res.Results;
                     if (this.searchedPatientList) {
                         this.schemeVisitSchemeObject.PatientVisitId = this.searchedPatientList[0].PatientVisitId;
@@ -221,8 +221,8 @@ export class ChangeSchemePriceCategoryComponent implements OnInit {
             this.utilitiesBlService
                 .SaveChangedVisitScheme(this.schemeVisitSchemeObject)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponses.OK) {
                             if (res.Results) {
                                 this.msgBoxServ.showMessage(
                                     ENUM_MessageBox_Status.Success,
@@ -244,7 +244,7 @@ export class ChangeSchemePriceCategoryComponent implements OnInit {
                             this.loading = false;
                         }
                     },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [
                             `Error: ${err.ErrorMessage}`,
                         ]);

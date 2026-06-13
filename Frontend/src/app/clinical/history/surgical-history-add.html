@@ -30,7 +30,7 @@
       <div class="row">
         <label class="control-label col-md-3">Search Problem<sup class="color-red">*</sup><b>:</b></label>
         <div class="autocomplete-item col-md-9" *ngIf="ICD10List && ICD10List.length>0">
-          <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" formControlName="ICD10Code" [list-formatter]="ICDListFormatter" placeholder="{{IcdVersionDisplayName}}" display-property-name="ICD10Description" value-property-name=null (valueChanged)="AssignSelectedICD()" onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" />
+          <input dsf-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" formControlName="ICD10Code" [list-formatter]="ICDListFormatter" placeholder="{{IcdVersionDisplayName}}" display-property-name="ICD10Description" value-property-name=null (valueChanged)="AssignSelectedICD()" onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" />
           <span class="color-red font-sm" *ngIf="CurrentSurgicalHistory.IsDirty('ICD10Code')" [hidden]="CurrentSurgicalHistory.IsValidCheck('ICD10Code','required')">
             Select {{IcdVersionDisplayName}} Code
           </span>
@@ -38,7 +38,7 @@
       </div>
 
       <!--<div class="col-md-8">
-          <input danphe-auto-complete class="form-control"
+          <input dsf-auto-complete class="form-control"
                  [(ngModel)]="icd10Selected"
                  formControlName="ICD10Code"
                  required

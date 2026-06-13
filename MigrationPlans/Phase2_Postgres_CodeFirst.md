@@ -12,7 +12,7 @@ Since the database structure was managed outside of the code, we first generate 
 1. Ensure the MS SQL database is active.
 2. Run the Entity Framework Core CLI scaffold command:
    ```bash
-   dotnet ef dbcontext scaffold "Server=YOUR_SQL_SERVER;Database=DanpheEMR;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -d --context-dir Contexts --no-onconfiguring
+   dotnet ef dbcontext scaffold "Server=YOUR_SQL_SERVER;Database=DsfEMR;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -d --context-dir Contexts --no-onconfiguring
    ```
 3. Extract mapping configurations into clean separate classes (`IEntityTypeConfiguration<T>`) to keep Entity classes as clean POCO (Plain Old CLR Object) files:
    ```csharp
@@ -34,7 +34,7 @@ Since the database structure was managed outside of the code, we first generate 
 PostgreSQL treats unquoted identifiers as lowercase, which causes queries to fail if mappings are PascalCase. We will configure snake_case mapping globally.
 
 ### Configuration in DbContext:
-In each DbContext file (`DanpheEMR.DalLayer`), configure the dynamic converter in `OnModelCreating`:
+In each DbContext file (`DsfEMR.DalLayer`), configure the dynamic converter in `OnModelCreating`:
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
@@ -72,11 +72,11 @@ Once the entities are ported, we bootstrap the new PostgreSQL database using EF 
    ```
 2. Generate the initial migrations:
    ```bash
-   dotnet ef migrations add InitialPostgresSchema --project Code/Components/DanpheEMR.DalLayer --startup-project Code/Websites/DanpheEMR
+   dotnet ef migrations add InitialPostgresSchema --project Code/Components/DsfEMR.DalLayer --startup-project Code/Websites/DsfEMR
    ```
 3. Apply the schema directly to PostgreSQL:
    ```bash
-   dotnet ef database update --project Code/Components/DanpheEMR.DalLayer --startup-project Code/Websites/DanpheEMR
+   dotnet ef database update --project Code/Components/DsfEMR.DalLayer --startup-project Code/Websites/DsfEMR
    ```
 
 ---

@@ -39,9 +39,9 @@ import { SecurityService } from "../../../../../src/app/security/shared/security
 import { CoreService } from "../../../core/shared/core.service";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
 import {
-  DanpheCache,
+  DsfCache,
   MasterType,
-} from "../../../shared/danphe-cache-service-utility/cache-services";
+} from "../../../shared/dsf-cache-service-utility/cache-services";
 import { ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { LabTestComponent } from "../../shared/lab-component.model";
 import {
@@ -51,7 +51,7 @@ import {
 import { LabService } from "../../shared/lab.service";
 
 @Component({
-  selector: "danphe-lab-view-report",
+  selector: "dsf-lab-view-report",
   templateUrl: "./lab-tests-view-report.html",
   styleUrls: ["./lab-tests-view-report.style.css"],
 })
@@ -177,7 +177,7 @@ export class LabTestsViewReportComponent {
     this.GetDoctorsList();
     this.CreatedByUser = this.securityService.GetLoggedInUser().Employee;
 
-    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DanpheConfigurationForTeleMedicine").ParameterValue;
+    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DsfConfigurationForTeleMedicine").ParameterValue;
     this.IsTeleMedicineEnabled = JSON.parse(JSON.parse(TeleMedicineConfig).IsTeleMedicineEnabled);
     this.allValues = this.coreService.GetAllParametersDataForLabReport();
     if (this.allValues) {
@@ -264,7 +264,7 @@ export class LabTestsViewReportComponent {
 
   @Input("templateReport")
   public set tempReport(_templateReport: LabReportVM) {
-    this.allEmployeeList = DanpheCache.GetData(MasterType.Employee, null);
+    this.allEmployeeList = DsfCache.GetData(MasterType.Employee, null);
     this.isCultureRptLoaded = true; //reset value at beginning: sud: 3sept'18
 
     if (_templateReport) {
@@ -787,8 +787,8 @@ export class LabTestsViewReportComponent {
     var documentContent = "<html><head>";
     documentContent +=
       `<link href="../../../../../../assets-dph/external/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanpheStyle.css" />` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanphePrintStyle.css" /></head>`;
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfStyle.css" />` +
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfPrintStyle.css" /></head>`;
 
     documentContent +=
       '<body class="lab-rpt4moz">' + printContents + "</body></html>";

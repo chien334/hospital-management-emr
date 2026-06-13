@@ -4,13 +4,13 @@ import { PharmacyBLService } from '../../../../pharmacy/shared/pharmacy.bl.servi
 import { PHRMInvoiceItemsModel } from '../../../../pharmacy/shared/phrm-invoice-items.model';
 import { PHRMPatient } from '../../../../pharmacy/shared/phrm-patient.model';
 import { PHRMStoreModel } from '../../../../pharmacy/shared/phrm-store.model';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import DispensaryGridColumns from '../../../shared/dispensary-grid.column';
 import { DispensaryService } from '../../../shared/dispensary.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
 
 @Component({
   selector: 'app-provisional-return',
@@ -100,8 +100,8 @@ export class ProvisionalReturnComponent implements OnInit {
   }
 
   GetProvisionalReturns(FromDate: string, ToDate: string, StoreId: number) {
-    this.pharmacyBLService.GetProvisionalReturns(FromDate, ToDate, StoreId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetProvisionalReturns(FromDate, ToDate, StoreId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.ProvisionalReturnData = res.Results;
       }
       else {

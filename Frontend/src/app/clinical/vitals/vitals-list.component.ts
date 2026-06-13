@@ -224,7 +224,7 @@ export class VitalsListComponent {
     );
     popupWinindow.document.open();
     popupWinindow.document.write(
-      '<html><head><link href="../../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' +
+      '<html><head><link href="../../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' +
         printContents +
         "</body></html>"
     );

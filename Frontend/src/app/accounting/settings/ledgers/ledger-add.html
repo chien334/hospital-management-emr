@@ -88,7 +88,7 @@
                 <label class="control-label no-padding col-md-3">{{ 'ACCOUNTING.LEDGER_GROUP_NAME' | translate }}<sup>*</sup><b>:</b> </label>
                 <div class="col-md-8">
                   <div class="div-relative">
-                    <input danphe-auto-complete class="col-md-11" [(ngModel)]="CurrentLedger.LedgerGroupName"
+                    <input dsf-auto-complete class="col-md-11" [(ngModel)]="CurrentLedger.LedgerGroupName"
                            [source]="ledgergroupList" [placeholder]="'ACCOUNTING.LEDGER_GROUP_NAME' | translate" display-property-name="LedgerGroupName"
                            value-property-name="LedgerGroupName" (valueChanged)="AssignSelectedLedgerGroup()"
                            [list-formatter]="LedgerGroupListFormatter" max-num-list="20" onclick="this.select()"
@@ -131,7 +131,7 @@
                   <td>
                     <form [formGroup]="itm.LedgerValidator">
                       <div>
-                        <input danphe-auto-complete [(ngModel)]="itm.LedgerName" [source]="ledgerList"
+                        <input dsf-auto-complete [(ngModel)]="itm.LedgerName" [source]="ledgerList"
                                [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" display-property-name="LedgerName" value-property-name="LedgerName"
                                (focusout)="CheckDuplicateLedger(i)" [list-formatter]="LedgerListFormatter"
                                max-num-list="10" onclick="this.select()" style="background-color: azure;"

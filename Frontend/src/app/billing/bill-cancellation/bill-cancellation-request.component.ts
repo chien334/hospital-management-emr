@@ -5,12 +5,12 @@ import { Patient } from "../../patients/shared/patient.model";
 import { PatientService } from '../../patients/shared/patient.service';
 import { SecurityService } from '../../security/shared/security.service';
 import { CallbackService } from '../../shared/callback.service';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../shared/routefrom.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { BillingBLService } from '../shared/billing.bl.service';
 import { BillingService } from '../shared/billing.service';
 import { BillingProvisionalCancellation_DTO } from "../shared/dto/bill-provisional-cancellation.dto";
@@ -111,7 +111,7 @@ export class BillCancellationRequestComponent {
           billTransactionItem.ItemIntegrationName = billTransactionItem.IntegrationName;
           if (billTransactionItem.ItemIntegrationName && billTransactionItem.ItemIntegrationName.toLowerCase() == "radiology") {
             this.BillingBLService.CancelBillRequest(billTransactionItem).subscribe((res) => {
-              if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+              if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
                 this.provisionalItemList.splice(index, 1);
                 this.provisionalItemList.slice();
                 this.mesageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["The selected item has been canceled."]);
@@ -127,7 +127,7 @@ export class BillCancellationRequestComponent {
             });
           } else if (billTransactionItem.ItemIntegrationName && billTransactionItem.ItemIntegrationName.toLowerCase() == "lab") {
             this.BillingBLService.CancelBillRequest(billTransactionItem).subscribe((res) => {
-              if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+              if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.provisionalItemList.splice(index, 1);
                 this.provisionalItemList.slice();
                 this.mesageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["The selected item has been canceled."]);
@@ -142,7 +142,7 @@ export class BillCancellationRequestComponent {
             });
           } else {
             this.BillingBLService.CancelBillRequest(billTransactionItem).subscribe((res) => {
-              if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+              if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.ReturnedData = res.Results;
                 this.provisionalItemList.splice(index, 1);
                 this.provisionalItemList.slice();

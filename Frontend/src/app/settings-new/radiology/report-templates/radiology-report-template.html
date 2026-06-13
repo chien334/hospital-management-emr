@@ -2,8 +2,8 @@
 <a feature="button" class="btn blue bordered" (click)="NewTemplate()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_TEMPLATE' | translate }}</a>
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="radReportTemplateGridColumns" [grid-data]="radTemplateList" (grid-actions)="TemplateGridActions($event)"
-                     [show-print-button]="false"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="radReportTemplateGridColumns" [grid-data]="radTemplateList" (grid-actions)="TemplateGridActions($event)"
+                     [show-print-button]="false"> </dsf-grid>
   </div>
 </div>
 <!--End Grid List show--> 
@@ -73,12 +73,12 @@
                     <div class="col-md-12">
                       <label class="control-label no-padding">{{ 'SETTINGS_NEW.TEMPLATE_CONTENT' | translate }}<b>:</b> </label>
                       <span class="color-red font-sm" *ngIf="!isValidTemplate">{{ 'SETTINGS_NEW.TEMPLATE_CONTENT_REQUIRED' | translate }}</span> <br />
-                      <danphe-ckeditor [readonly]="false"
+                      <dsf-ckeditor [readonly]="false"
                                                  (get-html-content)="onChangeEditorData($event)"
                                                  [set-html-content]="currentTemplate.TemplateHTML"
                                                  id="TemplateContent"
                                                  (keyup.enter)="FocusElementById('Add')"
-                                                 > </danphe-ckeditor>
+                                                 > </dsf-ckeditor>
                     </div>
                   </div></div>
                   <div class="col-md-12"><div class="form-group">

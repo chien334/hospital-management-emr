@@ -5,10 +5,10 @@ import { CoreService } from '../../core/shared/core.service';
 import { PharmacyBLService } from '../../pharmacy/shared/pharmacy.bl.service';
 import { PharmacyService } from '../../pharmacy/shared/pharmacy.service';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { PHRMSubStoreItemMasterModel } from '../shared/phrm-substore-item-master.model';
 import { PHRMSubStoreRequisitionItems } from '../shared/phrm-substore-requisition-items.model';
 import { PHRMSubStoreRequisition } from '../shared/phrm-substore-requisition.model';
@@ -169,7 +169,7 @@ export class PHRMSubStoreRequisitionAddComponent implements OnInit {
       this.wardsupplyBLService.AddRequisition(this.requisition)
         .finally(() => this.loading = false)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Requisition is Generated and Saved"]);
             this.GetRequisitionDetailView(res.Results);
             this.requisition = new PHRMSubStoreRequisition();
@@ -190,7 +190,7 @@ export class PHRMSubStoreRequisitionAddComponent implements OnInit {
   }
   GetRequisitionDetailView(requisitionId): void {
     this.wardsupplyBLService.GetRequisitionDetailView(requisitionId).subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.requisitionToView = res.Results.requisition;
         this.showAddRequisitionPage = false;
         this.showRequisitionDetails = true;
@@ -247,7 +247,7 @@ export class PHRMSubStoreRequisitionAddComponent implements OnInit {
   }
 
   CallBackGetItemTypeList(res): void {
-    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
       if (res.Results) {
         this.ItemListForReq = res.Results;
 
@@ -293,7 +293,7 @@ export class PHRMSubStoreRequisitionAddComponent implements OnInit {
     var Status = "pending,partial,active,complete";
     this.wardsupplyBLService.GetWardRequisitionList(Status, this.CurrentStoreId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.RequisitionGridData = res.Results;
           this.LoadRequisitionListByStatus()
         } else {
@@ -358,8 +358,8 @@ export class PHRMSubStoreRequisitionAddComponent implements OnInit {
     let cancelledRequisitionItemIds: number[] = selectedRequisitionItems.map(s => s.RequisitionItemId);
     let cancelRequisitionItemDto: CancellSubStoreRequisitionDTO = new CancellSubStoreRequisitionDTO(requisitionId, cancelledRequisitionItemIds, this.cancelRemarks);
     this.wardsupplyBLService.CancelRequisitionItem(cancelRequisitionItemDto).
-      subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Requisition is Cancel and Saved"]);
           this.Close();
         }
@@ -377,8 +377,8 @@ export class PHRMSubStoreRequisitionAddComponent implements OnInit {
   DispatchList: [];
   showDispatchedItemReceivePage: boolean = false;
   GetDispatchedItemToReceive(RequisionId): void {
-    this.wardsupplyBLService.GetDispatchedItemToReceive(RequisionId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+    this.wardsupplyBLService.GetDispatchedItemToReceive(RequisionId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status == ENUM_DsfHTTPResponseText.OK) {
         this.PHRMSubStoreRequisitionDispatchToReceive = res.Results;
         this.showDispatchedItemReceivePage = true;
       }
@@ -388,7 +388,7 @@ export class PHRMSubStoreRequisitionAddComponent implements OnInit {
   ReceivedDispatchedItem(DispatchId: number, Remarks: string): void {
     this.loading = true;
     this.wardsupplyBLService.ReceiveDispatchedItem(DispatchId, Remarks).finally(() => { this.loading = false }).subscribe(res => {
-      if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+      if (res.Status == ENUM_DsfHTTPResponseText.OK) {
         this.GetDispatchedItemToReceive(this.requisitionId);
       }
     })
@@ -485,8 +485,8 @@ export class PHRMSubStoreRequisitionAddComponent implements OnInit {
 
   public LoadVerifiersForRequisition() {
     this.wardsupplyBLService.GetVerifiers()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.VerifierList = res.Results;
           this.SetDefaultVerifier();
         }

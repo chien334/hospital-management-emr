@@ -53,7 +53,7 @@
                               <td>{{ 'PATIENT_OVERVIEW.RECORDED_ON' | translate }}</td>
                               <td *ngFor="let vitals of vitalsList">
                                 <strong>
-                                  <!-- {{vitals.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'
+                                  <!-- {{vitals.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'
          }} ({{vitals.CreatedOn | nepaliDate }}) -->
                                   <date-lbl [value]="vitals.CreatedOn" [show-time]="true"></date-lbl>
                                 </strong>

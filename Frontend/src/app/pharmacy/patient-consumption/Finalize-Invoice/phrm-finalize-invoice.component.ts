@@ -3,11 +3,11 @@ import * as moment from "moment";
 import { CoreBLService } from "../../../core/shared/core.bl.service";
 import { CoreService } from "../../../core/shared/core.service";
 import { PaymentModes } from "../../../settings-new/shared/PaymentMode";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../shared/routefrom.service";
-import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_EmpCashTransactionType, ENUM_MessageBox_Status, ENUM_ModuleName, ENUM_Scheme_FieldSettingParamNames } from "../../../shared/shared-enums";
+import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_EmpCashTransactionType, ENUM_MessageBox_Status, ENUM_ModuleName, ENUM_Scheme_FieldSettingParamNames } from "../../../shared/shared-enums";
 import { PHRMEmployeeCashTransaction } from "../../shared/pharmacy-employee-cash-transaction";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMPatientConsumptionItem } from "../shared/phrm-patient-consumption-item.model";
@@ -62,8 +62,8 @@ export class PHRMFinalizeInvoiceComponent {
 
     private GetPatientDetails(PatientId: number) {
         this.pharmacyBLService.GetPatientByPatId(PatientId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.GetSchemeDetails(res.Results.SchemeId)
                 }
             }
@@ -100,8 +100,8 @@ export class PHRMFinalizeInvoiceComponent {
             this.loading = true;
             this.pharmacyBLService.PostPatientConsumptionInvoiceItems(this.PatientConsumptionData)
                 .finally(() => this.loading = false)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.CallBackSaveSale(res);
                     }
                     else {
@@ -122,7 +122,7 @@ export class PHRMFinalizeInvoiceComponent {
     }
     CallBackSaveSale(res) {
         try {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.showSaleInvoice = true;
                 this.InvoiceId = res.Results;
                 this.messageboxService.showMessage(ENUM_MessageBox_Status.Success, ["Succesfully Finalized "]);
@@ -236,8 +236,8 @@ export class PHRMFinalizeInvoiceComponent {
     }
 
     GetSchemeDetails(SchemeId: number) {
-        this.pharmacyBLService.GetPharmacyIpBillingScheme(SchemeId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetPharmacyIpBillingScheme(SchemeId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.SchemePriceCategory = res.Results;
                 this.PatientConsumptionData.IsCoPayment = this.SchemePriceCategory.IsCoPayment;
                 this.PatientConsumptionData.Copayment_CashPercent = this.SchemePriceCategory.CoPaymentCashPercent;
@@ -420,8 +420,8 @@ export class PHRMFinalizeInvoiceComponent {
     LoadPatientInvoiceSummary(patientId: number, SchemeId?: number, PatientVisitId?: number) {
         if (patientId > 0) {
             this.pharmacyBLService.GetPatientSummary(patientId, SchemeId, PatientVisitId)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.patSummary = res.Results;
                         this.patSummary.CreditAmount = CommonFunctions.parseAmount(this.patSummary.CreditAmount);
                         this.patSummary.ProvisionalAmt = CommonFunctions.parseAmount(this.patSummary.ProvisionalAmt);

@@ -10,7 +10,7 @@ import { CommonFunctions } from '../../shared/common.functions';
 import { PatientService } from '../../patients/shared/patient.service';
 import { VaccinationBLService } from '../shared/vaccination.bl.service';
 import VaccinationGridColumnSettings from '../shared/vaccination.grid.settings';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { PatientVaccineDetailModel } from '../shared/patient-vaccine-detail.model';
 import { BillingFiscalYear } from '../../billing/shared/billing-fiscalyear.model';
 

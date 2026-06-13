@@ -3,9 +3,9 @@ import { CoreService } from "../../../core/shared/core.service";
 import { DispensaryService } from "../../../dispensary/shared/dispensary.service";
 import { PrinterSettingsModel } from "../../../settings-new/printers/printer-settings.model";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PharmacyInvoicePrint_DTO } from "./pharmacy-invoice-print.dto";
 
@@ -122,8 +122,8 @@ export class PharmacyInvoicePrintComponent {
 
 
     GetInvoiceInfo(InvoiceId) {
-        this.pharmacyBLService.GetInvoiceReceiptByInvoiceId(InvoiceId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetInvoiceReceiptByInvoiceId(InvoiceId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.receipt = res.Results;
                 this.UpdateItemDisplayName(this.showGenericName, this.showItemName, this.LeadingSeparator, this.showGenNameAfterItemName);
             }
@@ -193,8 +193,8 @@ export class PharmacyInvoicePrintComponent {
     callBackBillPrint($event) {
         let printCount = this.receipt.PrintCount + 1;
         let invoiceId = this.receipt.InvoiceId;
-        this.pharmacyBLService.PutPrintCount(printCount, invoiceId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.PutPrintCount(printCount, invoiceId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.receipt.PrintCount = printCount;
             }
         });

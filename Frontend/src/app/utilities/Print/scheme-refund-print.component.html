@@ -141,7 +141,7 @@
     <table style="width: 800px; margin: 0 auto;" cellspacing="0" cellpadding="0">
       <tr>
         <td colspan="3" width="25%">
-          <img src="\themes\theme-default\images\office-logo-new.png" alt="Danphe Logo" height="70px" width="180px">
+          <img src="\themes\theme-default\images\office-logo-new.png" alt="Dsf Logo" height="70px" width="180px">
         </td>
         <td colspan="6" width="50%">
           <h3 class="c_name" style="text-align: center;"><strong>{{headerDetail.CustomerName}}</strong></h3>
@@ -167,7 +167,7 @@
                 <p class="c_paragraphs"><strong>{{ 'UTILITIES.RECEIPT_NO' | translate }}:</strong> {{schemePrintDetails.FiscalYear}} {{'SCR'}}-{{schemePrintDetails.ReceiptNo}}</p>
               </td>
               <td colspan="6" style="text-align: right;">
-                <p class="c_paragraphs"><strong>{{ 'COMMON.DATE' | translate }}:</strong> {{schemePrintDetails.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}} {{localDate}}
+                <p class="c_paragraphs"><strong>{{ 'COMMON.DATE' | translate }}:</strong> {{schemePrintDetails.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}} {{localDate}}
                 </p>
               </td>
             </tr>
@@ -222,7 +222,7 @@
       <tr style="border-top: 1px solid #ccc;">
         <td colspan="12" style="padding: 10px; text-align: left;">
           <p class="c_paragraphs"><span>{{ 'UTILITIES.REFUNDED_BY' | translate }}</span> {{CurrentUser.UserName}}
-            {{ 'UTILITIES.ON' | translate }} {{DateTimeNow | DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
+            {{ 'UTILITIES.ON' | translate }} {{DateTimeNow | DsfDateTime:'format':'YYYY-MM-DD'}}</p>
         </td>
       </tr>
     </table>

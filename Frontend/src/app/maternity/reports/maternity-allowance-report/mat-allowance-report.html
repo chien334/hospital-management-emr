@@ -47,7 +47,7 @@
                     <div class="col-md-8">
                          <input
                          class="form-control"
-                         danphe-auto-complete
+                         dsf-auto-complete
                          [(ngModel)]="user"
                          [ngModelOptions]="{standalone: true}"
                          [list-formatter]="UserListFormatter"
@@ -76,10 +76,10 @@
     <div class="row">
       <div class="col-lg-12 col-sm-12">
         <customer-header style="display:none;padding:0px" id="headerForPrint" [header-title]="'MATERNITY.ALLOWANCE_REPORT_TITLE' | translate"></customer-header>
-        <danphe-grid [grid-colDefaults]="matRptAllowanceGridColumns" [grid-data]="matRptAllowanceGridReportData"
+        <dsf-grid [grid-colDefaults]="matRptAllowanceGridColumns" [grid-data]="matRptAllowanceGridReportData"
           [grid-showExport]="true" *ngIf="IsSummaryViewMode" [grid-footer-content]="footerContent"  [grid-exportOptions]="gridExportOptions"
           [grid-date-range]="dateRange" [report-for]="'MRReport'"  (grid-actions)="MaternityAllowanceGridActions($event)"> 
-        </danphe-grid>
+        </dsf-grid>
       </div>
     </div>
      <div class="row" *ngIf="IsSummaryViewMode">

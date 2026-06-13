@@ -54,14 +54,14 @@
         </div>
 
     <div class="row">
-       <danphe-grid *ngIf="showeditvoucherlog" [grid-colDefaults]="editvoucherGridColumns" [grid-data]="logsResults" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-        </danphe-grid> 
+       <dsf-grid *ngIf="showeditvoucherlog" [grid-colDefaults]="editvoucherGridColumns" [grid-data]="logsResults" [NepaliDateInGridParams]="NepaliDateInGridSettings">
+        </dsf-grid> 
 
-        <danphe-grid *ngIf="showbackdateEntrylog" [grid-colDefaults]="backDateEntryGridColumns" [grid-data]="logsResults" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-        </danphe-grid> 
+        <dsf-grid *ngIf="showbackdateEntrylog" [grid-colDefaults]="backDateEntryGridColumns" [grid-data]="logsResults" [NepaliDateInGridParams]="NepaliDateInGridSettings">
+        </dsf-grid> 
 
-        <danphe-grid *ngIf="showeditvoucherreversallog" [grid-colDefaults]="voucherReversalGridColumns" [grid-data]="logsResults" [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="ReverseTransactionGridActions($event)"  >
-        </danphe-grid> 
+        <dsf-grid *ngIf="showeditvoucherreversallog" [grid-colDefaults]="voucherReversalGridColumns" [grid-data]="logsResults" [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="ReverseTransactionGridActions($event)"  >
+        </dsf-grid> 
     </div>
       
 

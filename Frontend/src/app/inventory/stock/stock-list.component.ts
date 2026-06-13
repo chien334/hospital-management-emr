@@ -1,18 +1,18 @@
 import { Component, ChangeDetectorRef, ElementRef, ViewChild } from "@angular/core";
 import { Router } from '@angular/router';
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant"
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant"
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { StockModel } from "../shared/stock.model";
 import { InventoryService } from "../shared/inventory.service";
 import { InventoryBLService } from "../shared/inventory.bl.service";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { SecurityService } from "../../security/shared/security.service";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { ActivateInventoryService } from "../../shared/activate-inventory/activate-inventory.service";
 import { CoreService } from "../../core/shared/core.service";
 import { AsyncValidator } from "@angular/forms";
 import * as moment from "moment";
-import { IGridFilterParameter } from "../../shared/danphe-grid/grid-filter-parameter.interface";
+import { IGridFilterParameter } from "../../shared/dsf-grid/grid-filter-parameter.interface";
 @Component({
   templateUrl: "./stock-list.component.html"
 })

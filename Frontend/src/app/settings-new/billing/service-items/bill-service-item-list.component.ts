@@ -2,11 +2,11 @@ import { ChangeDetectorRef, Component } from "@angular/core";
 import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { SettingsGridColumnSettings } from "../../../shared/danphe-grid/settings-grid-column-settings";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { SettingsGridColumnSettings } from "../../../shared/dsf-grid/settings-grid-column-settings";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { IntegrationName } from "../../shared/integration-name.model";
 import { SettingsService } from '../../shared/settings-service';
 import { SettingsBLService } from '../../shared/settings.bl.service';
@@ -54,7 +54,7 @@ export class BillServiceItemListComponent {
   public getServiceItemList() {
     this.settingsBLService.GetServiceItemList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.serviceItemList = res.Results;
           this.showGrid = true;
         }
@@ -140,9 +140,9 @@ export class BillServiceItemListComponent {
         currBillItem.IsActive = status;
         this.settingsBLService.ActivateDeactivateServiceItem(currBillItem)
           .subscribe(
-            (res: DanpheHTTPResponse) => {
+            (res: DsfHTTPResponse) => {
 
-              if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+              if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [' Service Item Status updated successfully']);
                 let billItemUpdated = { item: currBillItem };
                 this.CallBackAdd(billItemUpdated);
@@ -183,8 +183,8 @@ export class BillServiceItemListComponent {
 
   IntegrationNameList() {
     this.settingsBLService.GetIntegrationNameList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.integrationNameList = res.Results;
           }
@@ -203,7 +203,7 @@ export class BillServiceItemListComponent {
 
     this.settingsBLService.GetServiceCategories()
       .subscribe(res => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.ServiceCategoryList = res.Results;
           }

@@ -109,7 +109,7 @@
                     <label class="control-label col-md-5" style="margin-top: 10px;">{{ 'NURSING.EXCHANGED_DEPARTMENT' | translate }}<b><sup class="color-red">
                           *</sup>&nbsp;:</b></label>
                     <div class="col-md-7" style="padding: 0 !important;">
-                      <input id="txt_ExchangedDepartment" class="form-control" danphe-auto-complete autocomplete="off"
+                      <input id="txt_ExchangedDepartment" class="form-control" dsf-auto-complete autocomplete="off"
                              [(ngModel)]="SelectedDepartment"
                              [list-formatter]="DepartmentListFormatter"
                              [source]="DepartmentList"
@@ -136,7 +136,7 @@
                           *</sup>&nbsp;:</b></label>
                     <div class="col-md-7" style="">
                       <input class="form-control"
-                             id="txt_ExchangedDoctor" danphe-auto-complete autocomplete="off"
+                             id="txt_ExchangedDoctor" dsf-auto-complete autocomplete="off"
                              (focusout)="AssignSelectedDoctor()"
                              [(ngModel)]="SelectedDoctor"
                              [list-formatter]="DocListFormatter"

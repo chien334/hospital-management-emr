@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core'
 import { RouterOutlet, RouterModule, Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import WARDGridColumns from '../../shared/ward-grid-cloumns';
 import { WardSupplyBLService } from "../../shared/wardsupply.bl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
@@ -10,7 +10,7 @@ import * as moment from 'moment/moment'
 import { DLService } from "../../../shared/dl.service";
 import { WardInventoryConsumptionModel } from '../../shared/ward-inventory-consumption.model';
 import { SecurityService } from '../../../security/shared/security.service';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { wardsupplyService } from '../../shared/wardsupply.service';
 @Component({
   templateUrl: "./inventory-ward-consumption-list.html"   //"/WardSupplyView/ConsumptionList"

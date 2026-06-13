@@ -10,7 +10,7 @@ import { CoreService } from '../../core/shared/core.service';
 import { HttpClient } from '@angular/common/http';
 import { MedicalRecordsMasterDataVM, OperationTypeModel, DeathTypeModel, DischargeConditionTypeModel, DeliveryTypeModel, DischargeTypeModel } from '../shared/DischargeMasterData.model';
 import { Employee } from '../../employee/shared/employee.model';
-import { MasterType, DanpheCache } from '../../shared/danphe-cache-service-utility/cache-services';
+import { MasterType, DsfCache } from '../../shared/dsf-cache-service-utility/cache-services';
 import { MedicalRecordsSummary, MRSelectTypeName } from '../shared/medical-records.model';
 import { BabyBirthDetails } from '../../adt/shared/baby-birth-details.model';
 import { DeathDetails } from '../../adt/shared/death.detail.model';
@@ -50,7 +50,7 @@ export class ViewMedicalRecordComponent {
     this.patientId = this.patientDetail.PatientId;
     this.medicalRecordId = this.patientDetail.MedicalRecordId;
 
-    this.AllDoctors = DanpheCache.GetData(MasterType.Employee, null);
+    this.AllDoctors = DsfCache.GetData(MasterType.Employee, null);
     if (this.medicalRecordId) {
       this.GetPatientMRDetail();
     }
@@ -151,8 +151,8 @@ export class ViewMedicalRecordComponent {
     popupWinindow.document.open();
     var documentContent = '<html><head>';
     documentContent += `<link href="../../../../../assets-dph/external/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />`
-      + `<link rel="stylesheet" type="text/css" href="../../../../../themes/theme-default/DanpheStyle.css" />`
-      + `<link rel="stylesheet" type="text/css" href="../../../../../themes/theme-default/DanphePrintStyle.css" /></head>`;
+      + `<link rel="stylesheet" type="text/css" href="../../../../../themes/theme-default/DsfStyle.css" />`
+      + `<link rel="stylesheet" type="text/css" href="../../../../../themes/theme-default/DsfPrintStyle.css" /></head>`;
 
 
     documentContent += '<body class="medical-record-body" onload="window.print()">' + printContents + '</body></html>';

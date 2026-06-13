@@ -55,14 +55,14 @@
       </div>
       <div class="col-md-9">
         <div class="control-label" *ngIf="LabTestList && LabTestList.length >0">
-          <danphe-multiselect [ddl-data]="LabTestList"
+          <dsf-multiselect [ddl-data]="LabTestList"
                               [placeholder-text]="'--Select lab tests--'"
                               [value-property-name]="'LabTestId'"
                               [pre-selected]="LabTestList"
                               (selected-items-list)="AssignTestList($event)"
                               [display-property-name]="'LabTestName'"
                               [single-selection]="false">
-          </danphe-multiselect>
+          </dsf-multiselect>
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@
       </div>
       <div *ngIf="showVendorSelectButton" style="float:right;">
         <button
-                DanpheConfirmationDialog
+                DsfConfirmationDialog
                 id="btn_printInvoice1"
                 type="submit"
                 [title]="dispatchConfirmationTitle"
@@ -116,7 +116,7 @@
       </div>
       <div *ngIf="ShowReceiveButton" style="float:right;">
         <button
-                DanpheConfirmationDialog
+                DsfConfirmationDialog
                 id="btn_printInvoice1"
                 type="submit"
                 [title]="receiveConfirmationTitle"

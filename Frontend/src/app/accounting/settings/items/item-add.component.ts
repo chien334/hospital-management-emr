@@ -59,15 +59,15 @@ export class ItemsAddComponent {
     }
 
     GetLedger() {
-        if(!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length>0){//mumbai-team-june2021-danphe-accounting-cache-change
-            this.CallBackLedger(this.accountingService.accCacheData.Ledgers);//mumbai-team-june2021-danphe-accounting-cache-change
+        if(!!this.accountingService.accCacheData.Ledgers && this.accountingService.accCacheData.Ledgers.length>0){//mumbai-team-june2021-dsf-accounting-cache-change
+            this.CallBackLedger(this.accountingService.accCacheData.Ledgers);//mumbai-team-june2021-dsf-accounting-cache-change
           }
 
     }
 
     CallBackLedger(res) {
-        this.ledger = res;//mumbai-team-june2021-danphe-accounting-cache-change
-        this.ledger = this.ledger.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        this.ledger = res;//mumbai-team-june2021-dsf-accounting-cache-change
+        this.ledger = this.ledger.slice();//mumbai-team-june2021-dsf-accounting-cache-change
 
     }
     //adding new Item

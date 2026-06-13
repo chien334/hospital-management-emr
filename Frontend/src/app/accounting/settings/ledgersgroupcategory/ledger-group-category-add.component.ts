@@ -43,14 +43,14 @@ export class LedgerGroupCategoryAddComponent {
     }
 
     GetAllChartOfAccount() {
-        if (!!this.accountingService.accCacheData.COA && this.accountingService.accCacheData.COA.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.CallBackChartOfAccountList(this.accountingService.accCacheData.COA)//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.COA && this.accountingService.accCacheData.COA.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.CallBackChartOfAccountList(this.accountingService.accCacheData.COA)//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 
     CallBackChartOfAccountList(res) {
-        this.tempChartOfAccounts = res;//mumbai-team-june2021-danphe-accounting-cache-change
-        this.tempChartOfAccounts = this.tempChartOfAccounts.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        this.tempChartOfAccounts = res;//mumbai-team-june2021-dsf-accounting-cache-change
+        this.tempChartOfAccounts = this.tempChartOfAccounts.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         this.chartOfAccounts = [];
         for (var i = 0; i < this.tempChartOfAccounts.length; i++) {
             if (this.tempChartOfAccounts[i].IsActive) {

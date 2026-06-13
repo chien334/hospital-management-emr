@@ -10,8 +10,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.FROM_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div class="col-md-9">
-                        <danphe-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
+                        </dsf-date-picker>
                     </div>
                 </div>
             </div>
@@ -19,8 +19,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.TO_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div class="col-md-9">
-                        <danphe-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl [CalendarTypes]="'en,np'">
+                        </dsf-date-picker>
                     </div>
                 </div>
             </div>
@@ -56,10 +56,10 @@
 <hr />
 <div class="row">
     <div class="col-md-12 col-xs-12">
-        <danphe-grid [grid-colDefaults]="databaseAuditLogGridColumns" [grid-data]="databaseAuditLogData"
+        <dsf-grid [grid-colDefaults]="databaseAuditLogGridColumns" [grid-data]="databaseAuditLogData"
                      [grid-exportOptions]="gridExportOptions"
                      [grid-showExport]="true">
-        </danphe-grid>
+        </dsf-grid>
 
     </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { CoreService } from "../../core/shared/core.service";
 import { Department } from "../../settings-new/shared/department.model";
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { AdmittingDocInfoVM } from '../shared/admission.view.model';
 import { ADT_BLService } from '../shared/adt.bl.service';
@@ -67,7 +67,7 @@ export class ChangeDoctorComponent implements OnInit {
         if (this.IsValid(undefined, undefined) && this.IsValidSelPerformer) {
             this.newAdmittingInfo.PatientVisitId = this.admittedPatDrInfo.PatientVisitId;
             this.admissionBLService.ChangeAdmittingDoc(this.newAdmittingInfo)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         this.msgBoxServ.showMessage("success", ["Doctor changed successfully."]);
                         this.closeChangeDocEmitter.emit({ newAdmittingInfo: res.Results });

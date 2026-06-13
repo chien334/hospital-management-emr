@@ -15,13 +15,13 @@
                 ><b style="float: right;">:</b></label
               >
               <div class="col-md-9">
-                <danphe-date-picker
+                <dsf-date-picker
                   [(ngModel)]="currentdiagnosiswisepatient.fromDate"
                   ngDefaultControl
                   [CalendarTypes]="'np'"
                   formControlName="fromDate"
                 >
-                </danphe-date-picker>
+                </dsf-date-picker>
                 <span
                   class="color-red font-sm"
                   *ngIf="currentdiagnosiswisepatient.IsDirty('fromDate')"
@@ -46,13 +46,13 @@
                 ><b style="float: right;">:</b></label
               >
               <div class="col-md-9">
-                <danphe-date-picker
+                <dsf-date-picker
                   [(ngModel)]="currentdiagnosiswisepatient.toDate"
                   ngDefaultControl
                   [CalendarTypes]="'np'"
                   formControlName="toDate"
                 >
-                </danphe-date-picker>
+                </dsf-date-picker>
                 <span
                   class="color-red font-sm"
                   *ngIf="currentdiagnosiswisepatient.IsDirty('toDate')"
@@ -82,7 +82,7 @@
                 <div class="col-md-7">
                   <input
                   class="form-control"
-                  danphe-auto-complete
+                  dsf-auto-complete
                   [(ngModel)]="selDiagnosis"
                   [ngModelOptions]="{standalone: true}"
                   [list-formatter]="myListFormatter"
@@ -113,14 +113,14 @@
       class="col-lg-12 col-sm-12"
       *ngIf="DiagnosisWisePatientReportData.length>0"
     >
-      <danphe-grid
+      <dsf-grid
         [grid-colDefaults]="DiagnosisWisePatientReportColumns"
         [grid-data]="DiagnosisWisePatientReportData"
         [grid-exportOptions]="gridExportOptions"
         [grid-showExportNew]="true"
         (grid-onExport)="OnGridExport($event)"
         [NepaliDateInGridParams]="NepaliDateInGridSettings"
-      > </danphe-grid>
+      > </dsf-grid>
     </div>
   </div>
 </div>

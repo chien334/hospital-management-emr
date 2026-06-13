@@ -17,8 +17,8 @@
 </div>
 <div class="row" *ngIf="showStockList">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="stockDetailsGridColumns" [grid-data]="stockDetailsList" [resizeColumnToFit]="true"
-                 (grid-actions)="StockDetailsGridAction($event)"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="stockDetailsGridColumns" [grid-data]="stockDetailsList" [resizeColumnToFit]="true"
+                 (grid-actions)="StockDetailsGridAction($event)"> </dsf-grid>
   </div>
   <div class="right"><strong> {{ 'DISPENSARY.STOCK.TOTAL_STOCK_VALUE' | translate }} </strong> {{coreService.currencyUnit}} {{ totalstockvalue | number: '1.0-2' }}</div>
 </div>

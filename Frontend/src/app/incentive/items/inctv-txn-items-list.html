@@ -7,15 +7,15 @@
             <div style="float: left;line-height: 27px;margin-right: 8px;">
               {{ 'INCENTIVE.FROM' | translate }}:
             </div>
-            <danphe-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="calType">
-            </danphe-date-picker>
+            <dsf-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="calType">
+            </dsf-date-picker>
           </div>
           <div class="col-md-6">
             <div style="float: left;line-height: 27px;margin-right: 8px;">
               {{ 'INCENTIVE.TO' | translate }}:
             </div>
-            <danphe-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="calType">
-            </danphe-date-picker>
+            <dsf-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="calType">
+            </dsf-date-picker>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@
             <td>
               <input type="checkbox" [(ngModel)]="itm.IsSelected" style="zoom:1.2" (change)="ShowSaveButtonOnCkboxChange()" />
             </td>
-            <td>{{itm.TransactionDate | DanpheDateTime:'format':'YYYY/MM/DD HH:mm'}}</td>
+            <td>{{itm.TransactionDate | DsfDateTime:'format':'YYYY/MM/DD HH:mm'}}</td>
             <td>{{itm.PatientName}}</td>
             <td>{{itm.PatientCode}}</td>
             <td>{{itm.InvoiceNo}}</td>

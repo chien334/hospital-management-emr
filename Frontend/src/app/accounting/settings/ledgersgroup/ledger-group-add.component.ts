@@ -67,15 +67,15 @@ export class LedgerGroupAddComponent {
     }
 
     GetLedgerGroupsDetails() {
-        if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-            this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups);//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+            this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups);//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 
     CallBackLedgerGroup(res) {
         this.sourceLedGroupList = new Array<ledgerGroupModel>();
-        this.sourceLedGroupList = res;//mumbai-team-june2021-danphe-accounting-cache-change
-        this.sourceLedGroupList = this.sourceLedGroupList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        this.sourceLedGroupList = res;//mumbai-team-june2021-dsf-accounting-cache-change
+        this.sourceLedGroupList = this.sourceLedGroupList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         //this.primaryGroupList = [];
         this.coaList = [];
         // this.primaryGroupList = Array.from([new Set(this.sourceLedGroupList.map(i => i.PrimaryGroup))][0]);
@@ -134,8 +134,8 @@ export class LedgerGroupAddComponent {
                             this.msgBoxServ.showMessage("success", ["Ledger Group Updated"]);
                             //this.CurrentLedgerGroup
                             // remove the element which was edited
-                            let index = this.accountingService.accCacheData.Ledgers.findIndex(x => x.LedgerGroupId == this.CurrentLedgerGroup.LedgerGroupId)//mumbai-team-june2021-danphe-accounting-cache-change
-                            this.accountingService.accCacheData.LedgerGroups.splice(index, 1); //mumbai-team-june2021-danphe-accounting-cache-change
+                            let index = this.accountingService.accCacheData.Ledgers.findIndex(x => x.LedgerGroupId == this.CurrentLedgerGroup.LedgerGroupId)//mumbai-team-june2021-dsf-accounting-cache-change
+                            this.accountingService.accCacheData.LedgerGroups.splice(index, 1); //mumbai-team-june2021-dsf-accounting-cache-change
                             this.CallBackAddLedgerGroup(res);
                             this.CurrentLedgerGroup = new ledgerGroupModel();
                             this.loading = false;
@@ -165,11 +165,11 @@ export class LedgerGroupAddComponent {
     CallBackAddLedgerGroup(res) {
         if (res.Status == "OK" && res.Results != null) {
             let currentLedger = new ledgerGroupModel();
-            let tempLedgerGroupObj = res.Results;//mumbai-team-june2021-danphe-accounting-cache-change
-            currentLedger = Object.assign(currentLedger, res.Results);//mumbai-team-june2021-danphe-accounting-cache-change
-            tempLedgerGroupObj.PrimaryGroup = currentLedger.PrimaryGroup = this.CurrentLedgerGroup.PrimaryGroup;//mumbai-team-june2021-danphe-accounting-cache-change
-            tempLedgerGroupObj.COA = currentLedger.COA = this.CurrentLedgerGroup.COA;//mumbai-team-june2021-danphe-accounting-cache-change
-            this.accountingService.accCacheData.LedgerGroups.push(tempLedgerGroupObj);//mumbai-team-june2021-danphe-accounting-cache-change
+            let tempLedgerGroupObj = res.Results;//mumbai-team-june2021-dsf-accounting-cache-change
+            currentLedger = Object.assign(currentLedger, res.Results);//mumbai-team-june2021-dsf-accounting-cache-change
+            tempLedgerGroupObj.PrimaryGroup = currentLedger.PrimaryGroup = this.CurrentLedgerGroup.PrimaryGroup;//mumbai-team-june2021-dsf-accounting-cache-change
+            tempLedgerGroupObj.COA = currentLedger.COA = this.CurrentLedgerGroup.COA;//mumbai-team-june2021-dsf-accounting-cache-change
+            this.accountingService.accCacheData.LedgerGroups.push(tempLedgerGroupObj);//mumbai-team-june2021-dsf-accounting-cache-change
             this.callbackAdd.emit({ currentLedger });
         }
         else {
@@ -214,15 +214,15 @@ export class LedgerGroupAddComponent {
         }
     }
     public getCoaList() {
-        if (!!this.accountingService.accCacheData.COA && this.accountingService.accCacheData.COA.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.allcoaList = this.accountingService.accCacheData.COA;//mumbai-team-june2021-danphe-accounting-cache-change
-            this.allcoaList = this.allcoaList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.COA && this.accountingService.accCacheData.COA.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.allcoaList = this.accountingService.accCacheData.COA;//mumbai-team-june2021-dsf-accounting-cache-change
+            this.allcoaList = this.allcoaList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
     public getPrimaryGroupList() {
-        if (!!this.accountingService.accCacheData.PrimaryGroup && this.accountingService.accCacheData.PrimaryGroup.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-            this.primaryGroupList = this.accountingService.accCacheData.PrimaryGroup;//mumbai-team-june2021-danphe-accounting-cache-change
-            this.primaryGroupList = this.primaryGroupList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if (!!this.accountingService.accCacheData.PrimaryGroup && this.accountingService.accCacheData.PrimaryGroup.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+            this.primaryGroupList = this.accountingService.accCacheData.PrimaryGroup;//mumbai-team-june2021-dsf-accounting-cache-change
+            this.primaryGroupList = this.primaryGroupList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
         }
     }
 }

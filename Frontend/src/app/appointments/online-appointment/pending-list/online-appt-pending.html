@@ -27,7 +27,7 @@
         <div class="form-group">
           <label class="control-label col-md-4">Department :</label>
           <div class="col-md-8">
-            <input id="txtDepartment" class="form-control" danphe-auto-complete
+            <input id="txtDepartment" class="form-control" dsf-auto-complete
               [(ngModel)]="selectedDepartment"
               [list-formatter]="myDepartmentListFormatter" [source]="departmentList"
               placeholder="Department Name" display-property-name="DepartmentName" onClick="this.select();"
@@ -40,7 +40,7 @@
         <div class="form-group" *ngIf="showDoctor">
           <label class="control-label col-md-4">Doctor :</label>
           <div class="col-md-8">
-            <input class="form-control" id="doctorName" danphe-auto-complete
+            <input class="form-control" id="doctorName" dsf-auto-complete
               [(ngModel)]="selectedDoctor" [list-formatter]="DocListFormatter" [source]="doctorList"
               placeholder="Doctor's Name" display-property-name="ProviderName" (focusout) ="filterData()"
               onClick="this.select();" max-num-list="10"/>
@@ -51,12 +51,12 @@
     <br>
     <div class="row">
       <div class="col-md-12">
-        <danphe-grid [grid-colDefaults]="onlineAppointmentGridColumns"
+        <dsf-grid [grid-colDefaults]="onlineAppointmentGridColumns"
          [grid-data]="onlineAppointmentListFiltered"
          [grid-exportOptions]="gridExportOptions"
          [NepaliDateInGridParams]="NepaliDateInGridSettings"
          (grid-actions)="OnlineAppointmentGridActions($event)"
-         [grid-showExport]="true"> </danphe-grid>
+         [grid-showExport]="true"> </dsf-grid>
       </div>
     </div>
     <div class="row">

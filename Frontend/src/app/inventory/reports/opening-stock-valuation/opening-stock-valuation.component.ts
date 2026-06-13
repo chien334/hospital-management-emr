@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { ReportingService } from '../../../reporting/shared/reporting-service';
 import { ActivateInventoryService } from '../../../shared/activate-inventory/activate-inventory.service';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { InventoryBLService } from '../../shared/inventory.bl.service';
 import { InventoryReportsBLService } from '../shared/inventory-reports.bl.service';

@@ -122,7 +122,7 @@
                     <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 5px;" class="row">
                         <label class="control-label col-md-5 col-sm-5">{{ 'PHARMACY.SUPPLIER' | translate }}:<sup style="color:red">*</sup></label>
                         <div class="col-md-7 col-sm-7">
-                            <input danphe-auto-complete class="form-control left" id="SupplierName" formControlName="SupplierId" [(ngModel)]="SelectedSupplier" [source]="supplierList" [list-formatter]="SupplierListFormatter" [placeholder]="'PHARMACY.SELECT_SUPPLIER' | translate" display-property-name="SupplierName" value-property-name=null min-chars="1" max-num-list="20" onClick="this.select();" (keyup.enter)="SetFocusById('PODate')" match-formatted="true" [grid-sort]="'SupplierName'" (valueChanged)="OnSupplierChanged()" />
+                            <input dsf-auto-complete class="form-control left" id="SupplierName" formControlName="SupplierId" [(ngModel)]="SelectedSupplier" [source]="supplierList" [list-formatter]="SupplierListFormatter" [placeholder]="'PHARMACY.SELECT_SUPPLIER' | translate" display-property-name="SupplierName" value-property-name=null min-chars="1" max-num-list="20" onClick="this.select();" (keyup.enter)="SetFocusById('PODate')" match-formatted="true" [grid-sort]="'SupplierName'" (valueChanged)="OnSupplierChanged()" />
                             <span style="color:red" *ngIf="currentPO.IsDirty('SupplierId')" [hidden]="currentPO.IsValidCheck('SupplierId','required')">
                                 {{ 'PHARMACY.SUPPLIER_IS_REQUIRED' | translate }}
                             </span>
@@ -224,12 +224,12 @@
                     <tr>
                         <td>
                             <div>
-                                <input danphe-auto-complete id="GenericName" class="form-control" [(ngModel)]="SelectedGeneric" [source]="FilteredGenericList" [list-formatter]="GenericListFormatter" [placeholder]="'PHARMACY.GENERICNAME' | translate" display-property-name="GenericName" value-property-name=null min-chars="1" max-num-list="20" (valueChanged)="OnGenericNameChange()" onClick="this.select();" (keyup.enter)="coreService.FocusInputById('ItemName')" match-formatted="true" [grid-sort]="'GenericName'" />
+                                <input dsf-auto-complete id="GenericName" class="form-control" [(ngModel)]="SelectedGeneric" [source]="FilteredGenericList" [list-formatter]="GenericListFormatter" [placeholder]="'PHARMACY.GENERICNAME' | translate" display-property-name="GenericName" value-property-name=null min-chars="1" max-num-list="20" (valueChanged)="OnGenericNameChange()" onClick="this.select();" (keyup.enter)="coreService.FocusInputById('ItemName')" match-formatted="true" [grid-sort]="'GenericName'" />
                             </div>
                         </td>
                         <td>
                             <form [formGroup]="purchaseOrderItem.PurchaseOrderItemValidator">
-                                <input danphe-auto-complete id="ItemName" class="form-control" [(ngModel)]="SelectedItem" [source]="FilteredItemList" [list-formatter]="ItemListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null min-chars="1" max-num-list="20" (valueChanged)="OnItemSelected()" [ngModelOptions]="{standalone: true}" onClick="this.select();" (keyup.enter)="SelectedItem? coreService.FocusInputById('QuantityAt'): coreService.FocusInputById('main-remark')" match-formatted="true" [grid-sort]="'ItemName'" [ngClass]="{'border-red': purchaseOrderItem.IsDirty('ItemId')}" />
+                                <input dsf-auto-complete id="ItemName" class="form-control" [(ngModel)]="SelectedItem" [source]="FilteredItemList" [list-formatter]="ItemListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null min-chars="1" max-num-list="20" (valueChanged)="OnItemSelected()" [ngModelOptions]="{standalone: true}" onClick="this.select();" (keyup.enter)="SelectedItem? coreService.FocusInputById('QuantityAt'): coreService.FocusInputById('main-remark')" match-formatted="true" [grid-sort]="'ItemName'" [ngClass]="{'border-red': purchaseOrderItem.IsDirty('ItemId')}" />
                             </form>
 
                         </td>
@@ -400,7 +400,7 @@
                         </div>
                     </div>
                     <div>
-                        <danphe-ckeditor [readonly]="false" (get-html-content)="onChangeEditorData($event)" [set-html-content]="currentPO.TermsConditions" panel-height="240px"></danphe-ckeditor>
+                        <dsf-ckeditor [readonly]="false" (get-html-content)="onChangeEditorData($event)" [set-html-content]="currentPO.TermsConditions" panel-height="240px"></dsf-ckeditor>
                     </div>
                 </div>
                 <div class="col-md-6 text-center" style="padding: 0;">
@@ -422,7 +422,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input danphe-auto-complete class="form-control " autocomplete="off" [source]="VerifierList" [(ngModel)]="verifier" [list-formatter]="VerifierListFormatter" [placeholder]="'PHARMACY.SELECT_VERIFIER' | translate" display-property-name="Name" max-num-list="10" (valueChanged)="AssignVerifier($event,i)" />
+                                                <input dsf-auto-complete class="form-control " autocomplete="off" [source]="VerifierList" [(ngModel)]="verifier" [list-formatter]="VerifierListFormatter" [placeholder]="'PHARMACY.SELECT_VERIFIER' | translate" display-property-name="Name" max-num-list="10" (valueChanged)="AssignVerifier($event,i)" />
                                             </div>
                                             <div class="col-md-1">
                                                 <button [title]="'PHARMACY.ADD_VERIFIER' | translate" class="btn btn-sm btn-primary" (click)="AddVerifier()" [disabled]="CheckIfAddVerifierAllowed()"><i class="glyphicon glyphicon-plus"></i></button>
@@ -529,8 +529,8 @@
         </div>
         <div class="text-right mt20 mb20">
             <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
-                <input *ngIf="!editPO" DanpheConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()" (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" [title]="'PHARMACY.ALT_P' | translate" [disabled]="loading" [value]="'PHARMACY.PRINT_ORDER' | translate" id="btn-print">
-                <input *ngIf="editPO" DanpheConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()" (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" [title]="'PHARMACY.ALT_P' | translate" [disabled]="loading" [value]="'PHARMACY.UPDATE_ORDER' | translate" id="btn-update">
+                <input *ngIf="!editPO" DsfConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()" (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" [title]="'PHARMACY.ALT_P' | translate" [disabled]="loading" [value]="'PHARMACY.PRINT_ORDER' | translate" id="btn-print">
+                <input *ngIf="editPO" DsfConfirmationDialog type="submit" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="handleConfirm()" (cancel)="handleCancel()" #printInvoice class="btn green btn-success tooltip" [title]="'PHARMACY.ALT_P' | translate" [disabled]="loading" [value]="'PHARMACY.UPDATE_ORDER' | translate" id="btn-update">
                 <span></span>
                 <button type="button" class="btn btn-danger" (click)="DiscardPurchaseOrder()" id="btn-discard">{{ 'COMMON.DISCARD' | translate }}</button>
                 <span></span>

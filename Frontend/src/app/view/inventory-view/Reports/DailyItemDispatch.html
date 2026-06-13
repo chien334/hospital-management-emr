@@ -15,8 +15,8 @@
               
               <!-- <span class="color-red font-sm" *ngIf="CurrentItemDispatch.IsDirty('FromDate')" [hidden]="CurrentItemDispatch.IsValidCheck('FromDate','required')"> From Date is required</span>
                             <span class="color-red font-sm" *ngIf="CurrentItemDispatch.IsDirty('FromDate')" [hidden]="CurrentItemDispatch.IsValidCheck('FromDate','wrongDate')"> Enter Valid Date</span> -->
-              <danphe-date-picker [(ngModel)]="CurrentItemDispatch.FromDate" ngDefaultControl [CalendarTypes]="'en,np'"
-              [ngModelOptions]="{standalone: true}"> </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="CurrentItemDispatch.FromDate" ngDefaultControl [CalendarTypes]="'en,np'"
+              [ngModelOptions]="{standalone: true}"> </dsf-date-picker>
             </div>
           </div>
         </div>
@@ -28,8 +28,8 @@
                                formControlName="ToDate" placeholder="DD-MM-YYYY" /> --> 
               <!-- <span class="color-red font-sm" *ngIf="CurrentItemDispatch.IsDirty('ToDate')" [hidden]="CurrentItemDispatch.IsValidCheck('ToDate','required')"> From Date is required</span>
                         <span class="color-red font-sm" *ngIf="CurrentItemDispatch.IsDirty('ToDate')" [hidden]="CurrentItemDispatch.IsValidCheck('ToDate','wrongDate')"> Can't select future date</span> -->
-              <danphe-date-picker [(ngModel)]="CurrentItemDispatch.ToDate" ngDefaultControl [CalendarTypes]="'en,np'"
-              [ngModelOptions]="{standalone: true}"> </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="CurrentItemDispatch.ToDate" ngDefaultControl [CalendarTypes]="'en,np'"
+              [ngModelOptions]="{standalone: true}"> </dsf-date-picker>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
           <div class="form-group row clearfix">
             <label class="control-label col-md-4">Store Name<b>:</b></label>
             <div class="col-md-8">
-              <input danphe-auto-complete class="form-control " [(ngModel)]="CurrentItemDispatch.SelectedStore"
+              <input dsf-auto-complete class="form-control " [(ngModel)]="CurrentItemDispatch.SelectedStore"
                 [source]="StoreList" [list-formatter]="myListFormatter" placeholder="Store Name"
                 display-property-name="StoreName" value-property-name=null max-num-list="10"
                 [ngModelOptions]="{standalone: true}"
@@ -56,10 +56,10 @@
 </div>
 <div class="">
   <div class="" *ngIf="DailyItemDispatchReportData.length >= 0">
-    <danphe-grid [grid-colDefaults]="DailyItemDispatchReportColumns" 
+    <dsf-grid [grid-colDefaults]="DailyItemDispatchReportColumns" 
     [grid-data]="DailyItemDispatchReportData"
     [grid-exportOptions]="gridExportOptions"
-    [grid-showExport]="true"> </danphe-grid>
+    [grid-showExport]="true"> </dsf-grid>
   </div>
 </div>
 <div class="col-md-12" *ngIf="DailyItemDispatchReportData.length > 0">

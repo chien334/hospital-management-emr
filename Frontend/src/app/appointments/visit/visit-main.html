@@ -71,7 +71,7 @@
         <div class="text-right" style="margin-bottom:20px;" *ngIf="visitService.appointmentType=='New'">
           <!-- <input id="btnPrintInvoice" type="button" class="btn green btn-success" value="Print Invoice"
                  [disabled]="loading" (click)="loading=true; CheckExistingPatientsAndSubmit()" /> -->
-          <input DanpheConfirmationDialog
+          <input DsfConfirmationDialog
                  *ngIf="visitService.appointmentType=='New'"
                  id="btnPrintInvoice"
                  type="submit"

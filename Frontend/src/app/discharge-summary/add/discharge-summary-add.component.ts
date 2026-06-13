@@ -17,10 +17,10 @@ import { Employee } from '../../employee/shared/employee.model';
 import { LabTest } from '../../labs/shared/lab-test.model';
 import { SecurityService } from '../../security/shared/security.service';
 import { SettingsBLService } from "../../settings-new/shared/settings.bl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_Data_Type, ENUM_DischargeType, ENUM_Genders, ENUM_MessageBox_Status, ENUM_RecoveredDischargeConditions } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_Data_Type, ENUM_DischargeType, ENUM_Genders, ENUM_MessageBox_Status, ENUM_RecoveredDischargeConditions } from "../../shared/shared-enums";
 import { DischargeSummaryBLService } from '../shared/discharge-summary.bl.service';
 import { DischargeSummaryFieldSettingsVM } from "../view-model/discharge-summary-field-setting-VM.model";
 
@@ -237,8 +237,8 @@ export class DischargeSummaryAddComponent {
 
   public GetDischargeType() {
     this.dischargeSummaryBLService.GetDischargeType()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.dischargeTypeList = res.Results;
         } else {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [res.ErrorMessage]);
@@ -251,8 +251,8 @@ export class DischargeSummaryAddComponent {
   }
   public GetProviderList() {
     this.dischargeSummaryBLService.GetProviderList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.providerList = res.Results;
         } else {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [res.ErrorMessage]);
@@ -265,8 +265,8 @@ export class DischargeSummaryAddComponent {
   }
   public GetDeathType() {
     this.dischargeSummaryBLService.GetDeathType()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.deathTypeList = res.Results;
         } else {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [res.ErrorMessage]);
@@ -276,8 +276,8 @@ export class DischargeSummaryAddComponent {
   }
   public GetAnasthetistsEmpList() {
     this.dischargeSummaryBLService.GetAnasthetistsEmpList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.AnasthetistsList = res.Results;
         }
         else {
@@ -293,8 +293,8 @@ export class DischargeSummaryAddComponent {
 
   public GetICDList() {
     this.dischargeSummaryBLService.GetICDList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.icd10List = res.Results;
           // this.icd10List.forEach(a=>{
           //     this.icdsID.push(a.ICD10Id);
@@ -311,8 +311,8 @@ export class DischargeSummaryAddComponent {
   }
   public GetLabResults() {
     this.dischargeSummaryBLService.GetLabReportByVisitId(this.selectedDischarge.PatientVisitId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.labResults = res.Results;
         } else {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [res.ErrorMessage]);
@@ -325,8 +325,8 @@ export class DischargeSummaryAddComponent {
   }
   public GetAllTests() {
     this.dischargeSummaryBLService.GetAllTests()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.LabTestList = res.Results;
         } else {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [res.ErrorMessage]);
@@ -341,8 +341,8 @@ export class DischargeSummaryAddComponent {
 
   public GetDischargeConditions() {
     this.dischargeSummaryBLService.GetDischargeConditions()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.dischargeCondition = res.Results;
         } else {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [res.ErrorMessage]);
@@ -355,8 +355,8 @@ export class DischargeSummaryAddComponent {
   }
   private GetDeliveryTypes() {
     this.dischargeSummaryBLService.GetDeliveryType()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.deliveryTypeList = res.Results;
         } else {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [res.ErrorMessage]);
@@ -415,7 +415,7 @@ export class DischargeSummaryAddComponent {
 
 
 
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       this.labRequests = res.Results;
 
       // this.AssignLabTests();
@@ -499,8 +499,8 @@ export class DischargeSummaryAddComponent {
 
   GetMedicationFrequency() {
     this.dischargeSummaryBLService.GetMedicationFrequency()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.medicationFrequency = res.Results;
         }
         else {
@@ -521,7 +521,7 @@ export class DischargeSummaryAddComponent {
     //       this.msgBoxServ.showMessage("error", ['Failed to get imaging results.. please check log for details.'], err.ErrorMessage);
     //     });
 
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       if (res.Results.length)
         this.imagingResults = res.Results;
     } else {
@@ -604,7 +604,7 @@ export class DischargeSummaryAddComponent {
   }
   //discharge summary
   GetDischargeSummary(res) {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       if (res.Results) {
         this.CurrentDischargeSummary = new DischargeSummary();
         this.CurrentDischargeSummary = Object.assign(this.CurrentDischargeSummary, res.Results.DischargeSummary);
@@ -807,14 +807,14 @@ export class DischargeSummaryAddComponent {
     this.CurrentDischargeSummary.IsSubmitted = false;
     this.CurrentDischargeSummary.DischargeSummaryTemplateId = this.selectedTemplateObj.TemplateId;
     this.dischargeSummaryBLService.PostDischargeSummary(this.CurrentDischargeSummary)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Discharge Summary Saved"]);
           this.showDischargeSummary = false;
           this.showSummaryView = true;
           this.update = true;
           this.CurrentDischargeSummary.DischargeSummaryId = res.Results.DischargeSummaryId;
-          this.sendData.emit({ Status: ENUM_DanpheHTTPResponses.OK });
+          this.sendData.emit({ Status: ENUM_DsfHTTPResponses.OK });
           let callBackSummaryData: DischargeSummary = res.Results;
           this.CallBackAddUpdate(callBackSummaryData);
 
@@ -844,8 +844,8 @@ export class DischargeSummaryAddComponent {
     this.CurrentDischargeSummary.DischargeSummaryTemplateId = this.selectedTemplateObj.TemplateId;
     this.dischargeSummaryBLService.UpdateDischargeSummary(this.CurrentDischargeSummary)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Discharge Summary Updated"]);
             let UpdatedDischargeSummary: DischargeSummary = res.Results;
             this.showDischargeSummary = false;
@@ -1496,8 +1496,8 @@ export class DischargeSummaryAddComponent {
   // Krishna, 17th,May'22, Fishtail Specific Changes
   GetUsers() {
     this.settingsBLService.GetUserList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.UserList = res.Results;
           CommonFunctions.SortArrayOfObjects(this.UserList, "EmployeeName");
         }
@@ -1517,8 +1517,8 @@ export class DischargeSummaryAddComponent {
   }
   GetDischargeSummaryTemplates(TemplateTypeName: string) {
     this.dischargeSummaryBLService.GetDischargeSummaryTemplates(TemplateTypeName)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.dischargeSummaryTemplates = res.Results;
           if (this.dischargeSummaryTemplates.length && this.dischargeSummaryTemplates.find(a => a.IsDefault === true)) {
             this.selectedTemplateObj = this.dischargeSummaryTemplates.find(a => a.IsDefault === true);
@@ -1543,8 +1543,8 @@ export class DischargeSummaryAddComponent {
   }
 
   LoadTemplateFields(TemplateId: number) {
-    this.dischargeSummaryBLService.LoadTemplateFields(TemplateId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.dischargeSummaryBLService.LoadTemplateFields(TemplateId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.selectedTemplateFileds = res.Results;
         this.SelectedTemplateFiledsTransformData();
       }

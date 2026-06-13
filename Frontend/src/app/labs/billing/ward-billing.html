@@ -10,7 +10,7 @@
         <!--[showLabRequestsList]="showLabRequestsList"-->
         <lab-requests-list *ngIf="showLabRequestsList" [selecteditems]="selecteditems" (callback-wardlist)="RouteToList($event)"></lab-requests-list>
       </div>
-      <danphe-grid [grid-colDefaults]="WardGridColumns" [grid-data]="inpatientList" (grid-actions)="LabGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="WardGridColumns" [grid-data]="inpatientList" (grid-actions)="LabGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </dsf-grid>
     </div>
   </div>
 </div>

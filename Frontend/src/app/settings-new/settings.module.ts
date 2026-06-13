@@ -15,7 +15,7 @@ import { SettingsDLService } from './shared/settings.dl.service';
 import { TaxManageComponent } from "./tax/tax-manage.component";
 //import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { DynTemplateModule } from '../core/dyn-templates/dyn-templates.module';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { SharedModule } from "../shared/shared.module";
 import { DynamicTemplateModule } from './dynamic-templates/dynamic-template.module';
 
@@ -35,7 +35,7 @@ import { DynamicTemplateModule } from './dynamic-templates/dynamic-template.modu
         ReactiveFormsModule,
         FormsModule,
         SettingsRoutingModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SharedModule,
         DynTemplateModule,
         DynamicTemplateModule], providers: [

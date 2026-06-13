@@ -5,7 +5,7 @@ import { EmergencyPatientModel } from '../shared/emergency-patient.model';
 import { CommonFunctions } from '../../shared/common.functions';
 import { EmergencyBLService } from '../shared/emergency.bl.service';
 import { EmergencyDLService } from '../shared/emergency.dl.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { PatientService } from '../../patients/shared/patient.service';
 import * as moment from 'moment/moment';
 import { VisitService } from '../../appointments/shared/visit.service';
@@ -180,7 +180,7 @@ export class AddERDischargeSummaryComponent {
         this.ArrangeDataFormatting();
         if (this.loading) {
             this.emergencyBLService.PostERDischargeSummary(this.DischargeSummary)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         this.msgBoxServ.showMessage('success', ["Discharge Summary of " + this.ERpatientSummary.EmergencyPatient.FullName + "successfully added"]);
                         this.callBackToMain.emit({ submit: true, action: 'add', dischargeSummary: res.Results });
@@ -198,7 +198,7 @@ export class AddERDischargeSummaryComponent {
         this.ArrangeDataFormatting();
         if (this.loading) {
             this.emergencyBLService.UpdateERDischargeSummary(this.DischargeSummary)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         this.msgBoxServ.showMessage('success', ["Discharge Summary of " + this.ERpatientSummary.EmergencyPatient.FullName + "successfully Updated"]);
                         this.callBackToMain.emit({ submit: true, action: 'update', dischargeSummary: res.Results });

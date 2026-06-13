@@ -14,8 +14,8 @@
                         <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.FROM_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                         <div class="col-md-9">
 
-                            <danphe-date-picker [(ngModel)]="CurrentAudit.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="FromDate">
-                            </danphe-date-picker>
+                            <dsf-date-picker [(ngModel)]="CurrentAudit.FromDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="FromDate">
+                            </dsf-date-picker>
 
 
                             <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('FromDate')" [hidden]="CurrentAudit.IsValid('FromDate','required')"> {{ 'SYSTEM_ADMIN.FROM_DATE_REQUIRED' | translate }}</span><br />
@@ -28,8 +28,8 @@
                         <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.TO_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                         <div class="col-md-9">
 
-                            <danphe-date-picker [(ngModel)]="CurrentAudit.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="ToDate" >
-                            </danphe-date-picker>
+                            <dsf-date-picker [(ngModel)]="CurrentAudit.ToDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="ToDate" >
+                            </dsf-date-picker>
                             <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('ToDate')" [hidden]="CurrentAudit.IsValid('ToDate','required')"> {{ 'SYSTEM_ADMIN.TO_DATE_REQUIRED' | translate }}</span><br />
                             <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('ToDate')" [hidden]="CurrentAudit.IsValid('ToDate','wrongDate')"> {{ 'SYSTEM_ADMIN.CANT_SELECT_FUTURE_DATE' | translate }}</span>
                         </div>
@@ -40,7 +40,7 @@
                         <label style="display:inline-block;">{{ 'SYSTEM_ADMIN.USERNAME_COLON' | translate }}</label>
                         <div class=" autocomplete-item" style="display:inline-block;">
 
-                            <input danphe-auto-complete class="form-control "
+                            <input dsf-auto-complete class="form-control "
                                    [(ngModel)]="auditUserName"
                                    [source]="userNameList"
                                    [list-formatter]="userNameFormatter"
@@ -62,7 +62,7 @@
                         <label style="display:inline-block;">{{ 'SYSTEM_ADMIN.TABLENAME_COLON' | translate }}</label>
                         <div class=" autocomplete-item" style="display:inline-block;">
 
-                            <input danphe-auto-complete class="form-control "
+                            <input dsf-auto-complete class="form-control "
                                    [(ngModel)]="auditTableName"
                                    [source]="tableNameList"
                                    [list-formatter]="tableNameFormatter"
@@ -95,10 +95,10 @@
 </div>
 <div class="row">
     <div class="col-md-12 col-xs-12">
-        <danphe-grid [grid-colDefaults]="auditTrailGridColumns" [grid-data]="auditTrailData"
+        <dsf-grid [grid-colDefaults]="auditTrailGridColumns" [grid-data]="auditTrailData"
                      [grid-exportOptions]="gridExportOptions"
                      [grid-showExport]="true">
-        </danphe-grid>
+        </dsf-grid>
 
     </div>
 </div>

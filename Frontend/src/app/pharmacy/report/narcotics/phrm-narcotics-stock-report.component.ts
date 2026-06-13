@@ -3,7 +3,7 @@ import { PHRMReportsModel } from "../../shared/phrm-reports-model"
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 import * as moment from 'moment/moment';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 
 @Component({

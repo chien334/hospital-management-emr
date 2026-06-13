@@ -6,7 +6,7 @@ import { CoreService } from '../../../core/shared/core.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import LabLISGridColumnSettings from '../shared/lis-grid-col.settings';
 import { LabLISBLService } from '../shared/lis.bl.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { LabToLisComponentMapTemp } from '../shared/lis-comp-mapping.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 

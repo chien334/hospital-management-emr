@@ -6,12 +6,12 @@ import { ReportingService } from "../../shared/reporting-service";
 import {
   NepaliDateInGridColumnDetail,
   NepaliDateInGridParams,
-} from "../../../../app/shared/danphe-grid/NepaliColGridSettingsModel";
+} from "../../../../app/shared/dsf-grid/NepaliColGridSettingsModel";
 import * as moment from "moment";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
 import { LabTest } from "../../../labs/shared/lab-test.model";
 import { LabCategoryModel } from "../../../labs/shared/lab-category.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { forkJoin, Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
 

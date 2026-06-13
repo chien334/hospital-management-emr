@@ -5,9 +5,9 @@ import { BillingService } from '../billing/shared/billing.service';
 import { CoreService } from '../core/shared/core.service';
 import { SecurityService } from "../security/shared/security.service";
 import { CallbackService } from '../shared/callback.service';
-import { DanpheHTTPResponse } from '../shared/common-models';
-import { DanpheCache, MasterType } from '../shared/danphe-cache-service-utility/cache-services';
-import { ENUM_DanpheHTTPResponses } from '../shared/shared-enums';
+import { DsfHTTPResponse } from '../shared/common-models';
+import { DsfCache, MasterType } from '../shared/dsf-cache-service-utility/cache-services';
+import { ENUM_DsfHTTPResponses } from '../shared/shared-enums';
 import { VisitBLService } from './shared/visit.bl.service';
 import { VisitService } from './shared/visit.service';
 
@@ -28,7 +28,7 @@ export class AppointmentsMainComponent {
     public billingBlService: BillingBLService,
     public billingService: BillingService,) {
 
-    DanpheCache.GetData(MasterType.AllMasters, null);//sud:25June'19--Dunno what this is doing here..
+    DsfCache.GetData(MasterType.AllMasters, null);//sud:25June'19--Dunno what this is doing here..
     // get the chld routes of Appointment from valid routes available for this user.
     this.validRoutes = this.securityService.GetChildRoutes("Appointment");
     this.primaryNavItems = this.validRoutes.filter(a => a.IsSecondaryNavInDropdown === null || a.IsSecondaryNavInDropdown === 0);
@@ -45,7 +45,7 @@ export class AppointmentsMainComponent {
 
     if (this.visitService.DocFollowupPrices && this.visitService.DocFollowupPrices.length == 0) {
       this.visitBLService.GetDoctorFollowupItems()
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.visitService.DocFollowupPrices = res.Results;
           }
@@ -53,21 +53,21 @@ export class AppointmentsMainComponent {
     }
 
     this.visitBLService.GetDepartmentFollowupItems()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.DeptFollowupPrices = res.Results;
         }
       });
 
     this.visitBLService.GetDoctorOpdPrices()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.DocOpdPrices = res.Results;
         }
       });
 
     this.visitBLService.GetDepartmentOpdItems()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.DeptOpdPrices = res.Results;
         }
@@ -75,27 +75,27 @@ export class AppointmentsMainComponent {
 
     //sud: 31Jul'19-For Old Patient Opd
     this.visitBLService.GetDepartmentOldPatientPrices()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.DeptOpdPrice_OldPatient = res.Results;
         }
       });
     //sud: 31Jul'19-For Old Patient Opd
     this.visitBLService.GetDoctorOldPatientPrices()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.DocOpdPrice_OldPatient = res.Results;
         }
       });
 
     this.visitBLService.GetDoctorReferralPatientPrices()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.DocOpdPrice_Referral = res.Results;
         }
       });
     this.visitBLService.GetDepartment()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.ApptApplicableDepartmentList = res.Results;
           console.log("Department list loaded successfully");
@@ -120,7 +120,7 @@ export class AppointmentsMainComponent {
 
     //check if we can get employee data also from pre-loaded masters.
     this.visitBLService.GetVisitDoctors()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.ApptApplicableDoctorsList = res.Results;
         }
@@ -130,7 +130,7 @@ export class AppointmentsMainComponent {
   //we have to load all billing items into service variable, which will be used across this module.
   public LoadAllBillingItems() {
     this.visitBLService.GetBillItemList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log("bill item prices are loaded successfully (appointment-main).");
           this.visitService.LoadAllBillItemsPriceList(res.Results);
@@ -143,7 +143,7 @@ export class AppointmentsMainComponent {
 
   public GetOrganizationList() {
     this.billingBlService.GetOrganizationList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == 'OK') {
           console.log("CreditOrganization list are loaded successfully (billing-main).");
           this.billingService.SetAllCreditOrgList(res.Results);
@@ -169,8 +169,8 @@ export class AppointmentsMainComponent {
   }
 
   public LoadBilCFGItemsVsPriceCategoryMap(): void {
-    this.billingBlService.LoadBilCfgItemsVsPriceCategoryMapping().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.billingBlService.LoadBilCfgItemsVsPriceCategoryMapping().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.billingService.SetBilCfgItemsVsPriceCategoryMapping(res.Results);
       }
     }, err => {

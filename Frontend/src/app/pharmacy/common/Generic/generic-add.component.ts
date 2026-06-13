@@ -1,6 +1,6 @@
 ﻿import { Component, ChangeDetectorRef } from "@angular/core";
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service"
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { SecurityService } from '../../../security/shared/security.service';

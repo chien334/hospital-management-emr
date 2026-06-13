@@ -31,8 +31,8 @@
                 <div class="form-group">
                     <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.FROM_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div>
-                        <danphe-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+                        </dsf-date-picker>
                     </div>
                 </div>
             </div>
@@ -40,8 +40,8 @@
                 <div class="form-group">
                     <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.TO_DATE' | translate }}<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div>
-                        <danphe-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+                        </dsf-date-picker>
                     </div>
                 </div>
             </div>
@@ -65,8 +65,8 @@
         </div>
        
         <div class="row">
-            <danphe-grid [grid-colDefaults]="txnGridColumns" [grid-data]="txnList" (grid-actions)="TransactionGridActions($event)">
-            </danphe-grid>
+            <dsf-grid [grid-colDefaults]="txnGridColumns" [grid-data]="txnList" (grid-actions)="TransactionGridActions($event)">
+            </dsf-grid>
         </div>
        
     </div>

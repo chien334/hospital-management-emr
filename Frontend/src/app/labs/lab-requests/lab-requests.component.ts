@@ -9,13 +9,13 @@ import * as moment from 'moment/moment';
 import { SecurityService } from "../../security/shared/security.service";
 import { BillingBLService } from "../../billing/shared/billing.bl.service";
 import { BillingService } from "../../billing/shared/billing.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { PatientBillingContextVM } from "../../billing/shared/patient-billing-context-vm";
 import { InPatientVM } from "../shared/InPatientVM";
 import { LabRequestsListComponent } from "../lab-requests/lab-request-list"
 import { CurrentVisitContextVM } from "../../appointments/shared/current-visit-context.model";
 import { ADT_BLService } from "../../adt/shared/adt.bl.service";
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { ENUM_BillingStatus, ENUM_VisitType, ENUM_BillingType } from "../../shared/shared-enums";
 import { CoreService } from "../../core/shared/core.service";
 @Component({
@@ -68,13 +68,13 @@ export class LabRequestsComponent implements OnInit {
 
   GetBillingCounterForLab() {
     let allBilCntrs: Array<any>;
-    allBilCntrs = DanpheCache.GetData(MasterType.BillingCounter, null);
+    allBilCntrs = DsfCache.GetData(MasterType.BillingCounter, null);
     let labCntr = allBilCntrs.filter(cnt => cnt.CounterType == "LAB");
     if (labCntr) {
       this.billingCounterId = labCntr.find(cntr => cntr.CounterId).CounterId;
     }
     // this.billingBLService.GetAllBillingCounters()
-    //     .subscribe((res: DanpheHTTPResponse) => {
+    //     .subscribe((res: DsfHTTPResponse) => {
     //         if (res.Status == "OK") {
     //             let allBilCntrs: Array<any> = res.Results;
     //             let labCntr = allBilCntrs.find(cnt => cnt.CounterType == "LAB");
@@ -560,7 +560,7 @@ export class LabRequestsComponent implements OnInit {
   }
   LoadPatientBillingContext(patientId) {
     this.billingBLService.GetPatientBillingContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.currBillingContext = res.Results;
           this.billingService.BillingType = this.currBillingContext.BillingType;

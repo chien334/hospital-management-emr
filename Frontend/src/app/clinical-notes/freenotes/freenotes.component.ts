@@ -7,7 +7,7 @@ import { Patient } from "../../patients/shared/patient.model";
 import { PatientService } from "../../patients/shared/patient.service";
 import * as moment from 'moment/moment';
 import { VisitBLService } from "../../appointments/shared/visit.bl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { DoctorsBLService } from "../../doctors/shared/doctors.bl.service";
 import { RouteFromService } from "../../shared/routefrom.service";
 import { SecurityService } from "../../security/shared/security.service";
@@ -407,7 +407,7 @@ export class FreeNotesComponent implements OnInit, OnDestroy {
 
   GetDoctorList() {
     this.visitBLService.GetVisitDoctors()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.ApptApplicableDoctorsList = res.Results;
           this.DoctorList = res.Results;

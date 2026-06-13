@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BillingSharedModule } from '../../billing/billing-shared.module';
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 import { ServiceDepartmentAddComponent } from '../departments/service-dept/service-department-add.component';
 import { ServiceDepartmentListComponent } from '../departments/service-dept/service-department-list';
@@ -78,7 +78,7 @@ export const billSettingsRoutes: Routes =
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         BillingSharedModule,
         RouterModule.forChild(billSettingsRoutes)], providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }

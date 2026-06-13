@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { LabSettingsBLService } from '../../lab-settings/shared/lab-settings.bl.service';
 import { LabVendorsModel } from './lab-vendors.model';
@@ -90,7 +90,7 @@ export class LabVendorAddComponent {
 
       if (this.newVendor.VendorName && this.newVendor.VendorName.trim() != '') {
         this.labSettingBLService.AddLabVendor(this.newVendor)
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
             if (res.Status == "OK") {
               this.msgBox.showMessage('Success', ['Success,' + res.Results.VendorName + ' added successfully.'])
               let vendorFromServer = res.Results;
@@ -110,7 +110,7 @@ export class LabVendorAddComponent {
     else if (this.actionName == "edit") {
       if (this.newVendor.VendorName && this.newVendor.VendorName.trim() != '') {
         this.labSettingBLService.UpdateLabVendor(this.newVendor)
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
 
             if (res.Status == "OK") {
               this.msgBox.showMessage('Success', ['Success,' + res.Results.VendorName + ' Updated successfully.'])

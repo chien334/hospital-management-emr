@@ -3,9 +3,9 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { BillingBLService } from "../../shared/billing.bl.service";
 import { BilPrint_VM } from "../../shared/invoice-print-vms";
 
@@ -84,8 +84,8 @@ export class Bil_Print_InvoiceMain_Component implements OnInit {
   LoadInvoiceForPrint(invoiceNo: number, fiscalYrId, billingTxnId) {
     this.billingBlService
       .GetInvoiceDetailsForDuplicatePrint(invoiceNo, fiscalYrId, billingTxnId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.invoiceInfoObj = res.Results;
           this.isInvoiceFound =
             this.invoiceInfoObj && this.invoiceInfoObj.IsInvoiceFound;
@@ -105,8 +105,8 @@ export class Bil_Print_InvoiceMain_Component implements OnInit {
   }
 
   GetDischargeStatementInfo(PatientId: number, DischargeStatementId: number, PatientVisitId: number) {
-    this.billingBlService.GetDischrageStatement(PatientId, DischargeStatementId, PatientVisitId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.billingBlService.GetDischrageStatement(PatientId, DischargeStatementId, PatientVisitId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.invoiceInfoObj = res.Results;
         if (this.invoiceInfoObj.InvoiceInfo.TransactionDate === null) {
           this.invoiceInfoObj.InvoiceInfo.TransactionDate = this.invoiceInfoObj.VisitInfo.DischargeDate;

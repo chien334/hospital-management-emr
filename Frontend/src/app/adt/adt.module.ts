@@ -37,7 +37,7 @@ import { BillingPrintSharedModule } from '../billing/print-pages/billing-print-s
 import { ClinicalSharedModule } from '../clinical/clinical-shared-module';
 import { DischargeSummaryModule } from '../discharge-summary/discharge-summary.module';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { ADTSharedModule } from './adt-shared.module';
 import { IPWristBandPrintComponent } from './ip-wrist-band/ip-wrist-band-print.component';
 import { PatientBedHistory } from './patient-bed-history/patient-bed-history.component';
@@ -65,7 +65,7 @@ import { AdmissionSelectPatientCanActivateGuard } from './shared/admission-selec
         ReactiveFormsModule,
         AgGridModule,
         FormsModule, SharedModule, ADTSharedModule, DischargeSummaryModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         ClinicalSharedModule,
         SettingsSharedModule,
         BillingPrintSharedModule,

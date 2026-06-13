@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { PharmacyBLService } from '../../../pharmacy/shared/pharmacy.bl.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { CallbackService } from '../../../shared/callback.service';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 
 @Component({
@@ -36,7 +36,7 @@ export class ActivateCounterComponent implements OnInit {
   }
 
   LoadCounter(): void {
-    this.counterlist = DanpheCache.GetData(MasterType.PhrmCounter, null);
+    this.counterlist = DsfCache.GetData(MasterType.PhrmCounter, null);
     this.disable = true;
   }
   ActivateCounter(counter): void {

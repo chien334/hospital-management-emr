@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { SchemeSelectComponent } from './billing/memberships/select-membership-scheme/scheme-select.component';
 import { AddExternalReferralComponent } from './ext-referral/add-new/add-ext-referral.component';
 import { SelectReferrerComponent } from './ext-referral/select-referrer/select-referrer.component';
@@ -26,7 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     CommonModule,
     RouterModule,
-    DanpheAutoCompleteModule,
+    DsfAutoCompleteModule,
     TranslateModule,
   ],
 
@@ -48,7 +48,7 @@ import { TranslateModule } from '@ngx-translate/core';
     SchemeSelectComponent,
     PrinterSelectComponent,
     AddPrinterSettingsComponent,
-    DanpheAutoCompleteModule,
+    DsfAutoCompleteModule,
     TranslateModule,
 
     //ListPrinterSettingsComponent

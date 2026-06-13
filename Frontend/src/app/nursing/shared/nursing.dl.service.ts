@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ImagingItemRequisition } from "../../radiology/shared/imaging-item-requisition.model";
 import { DietType } from "./diet-type.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { ConsultationRequestModel } from "./consultation-request.model";
 
 @Injectable()
@@ -225,28 +225,28 @@ export class NursingDLService {
     return this.http.post<any>("/api/Clinical/AddPatientDietType", diet, this.jsonOptions);
     }
 
-    public GetConsultationRequestsByPatientVisitId(PatientVisitId: number): Observable<DanpheHTTPResponse> {
-        return this.http.get<DanpheHTTPResponse>(`/api/Clinical/ConsultationRequestsByPatientVisitId?PatientVisitId=${PatientVisitId}`, this.options);
+    public GetConsultationRequestsByPatientVisitId(PatientVisitId: number): Observable<DsfHTTPResponse> {
+        return this.http.get<DsfHTTPResponse>(`/api/Clinical/ConsultationRequestsByPatientVisitId?PatientVisitId=${PatientVisitId}`, this.options);
     }
 
-    public GetPatientDetailsByPatientVisitIdForConsultationRequest(PatientVisitId: number): Observable<DanpheHTTPResponse> {
-        return this.http.get<DanpheHTTPResponse>(`/api/Clinical/PatientDetailsByPatientVisitIdForConsultationRequest?PatientVisitId=${PatientVisitId}`, this.options);
+    public GetPatientDetailsByPatientVisitIdForConsultationRequest(PatientVisitId: number): Observable<DsfHTTPResponse> {
+        return this.http.get<DsfHTTPResponse>(`/api/Clinical/PatientDetailsByPatientVisitIdForConsultationRequest?PatientVisitId=${PatientVisitId}`, this.options);
     }
 
-    public GetAllApptDepartment(): Observable<DanpheHTTPResponse> {
-        return this.http.get<DanpheHTTPResponse>(`/api/Clinical/GetAllApptDepartment`);
+    public GetAllApptDepartment(): Observable<DsfHTTPResponse> {
+        return this.http.get<DsfHTTPResponse>(`/api/Clinical/GetAllApptDepartment`);
     }
 
-    public GetAllAppointmentApplicableDoctor(): Observable<DanpheHTTPResponse> {
-        return this.http.get<DanpheHTTPResponse>(`/api/Clinical/GetAllAppointmentApplicableDoctor`);
+    public GetAllAppointmentApplicableDoctor(): Observable<DsfHTTPResponse> {
+        return this.http.get<DsfHTTPResponse>(`/api/Clinical/GetAllAppointmentApplicableDoctor`);
     }
 
-    public AddNewConsultationRequest(newConsultationRequest: ConsultationRequestModel): Observable<DanpheHTTPResponse> {
-        return this.http.post<DanpheHTTPResponse>(`/api/Clinical/AddNewConsultationRequest`, newConsultationRequest, this.optionJson);
+    public AddNewConsultationRequest(newConsultationRequest: ConsultationRequestModel): Observable<DsfHTTPResponse> {
+        return this.http.post<DsfHTTPResponse>(`/api/Clinical/AddNewConsultationRequest`, newConsultationRequest, this.optionJson);
     }
 
-    public ResponseConsultationRequest(responseConsultationRequest: ConsultationRequestModel): Observable<DanpheHTTPResponse> {
-        return this.http.put<DanpheHTTPResponse>(`/api/Clinical/ResponseConsultationRequest`, responseConsultationRequest, this.optionJson);
+    public ResponseConsultationRequest(responseConsultationRequest: ConsultationRequestModel): Observable<DsfHTTPResponse> {
+        return this.http.put<DsfHTTPResponse>(`/api/Clinical/ResponseConsultationRequest`, responseConsultationRequest, this.optionJson);
     }
   public GetInvestigationResults(FromDate, ToDate, patientId, patientVisitId) {
     return this.http.get<any>(`/api/Nursing/InvestigationResults?fromDate=${FromDate}&toDate=${ToDate}&patientId=${patientId}&patientVisitId=${patientVisitId}`, this.options)

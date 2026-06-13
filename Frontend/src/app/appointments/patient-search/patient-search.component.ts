@@ -6,8 +6,8 @@ import { AppointmentService } from '../../appointments/shared/appointment.servic
 import { CoreService } from '../../core/shared/core.service';
 import { Patient } from "../../patients/shared/patient.model";
 import { PatientService } from '../../patients/shared/patient.service';
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { APIsByType } from '../../shared/search.service';
 import { APFPatientData } from '../shared/APFPatientData.model';

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef, Renderer2 } from "@angular/core";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { PrinterSettingsModel } from "../printer-settings.model";
 import { CoreService } from "../../../core/shared/core.service";
@@ -73,7 +73,7 @@ export class AddPrinterSettingsComponent {
       //this.CheckValidation();
       if (this.CheckValidation()) {
         this.settingsBlService.AddPrinterSetting(this.PrinterSettings)
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
             if (res.Status == "OK") {
               this.callbackAdd.emit({ action: "add", data: res.Results });
               this.PrinterSettings = new PrinterSettingsModel();
@@ -108,7 +108,7 @@ export class AddPrinterSettingsComponent {
       //this.CheckValidation();
       if (this.CheckValidation()) {
         this.settingsBlService.UpdatePrinterSetting(this.PrinterSettings)
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
             if (res.Status == "OK") {
               this.callbackAdd.emit({ action: "edit", data: res.Results });
               this.PrinterSettings = new PrinterSettingsModel();

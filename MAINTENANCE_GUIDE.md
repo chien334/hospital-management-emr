@@ -1,6 +1,6 @@
-# DanpheEMR: Architectural Maintenance Guide & Dependency Directory
+# DsfEMR: Architectural Maintenance Guide & Dependency Directory
 
-This document serves as the authoritative technical reference for maintaining, extending, and debugging the Danphe EMR application. It details the system architecture, PostgreSQL database mapping standards, modern UI styling overrides, and language localization systems.
+This document serves as the authoritative technical reference for maintaining, extending, and debugging the Dsf EMR application. It details the system architecture, PostgreSQL database mapping standards, modern UI styling overrides, and language localization systems.
 
 ---
 
@@ -100,9 +100,9 @@ services.Configure<Microsoft.AspNetCore.Builder.IISServerOptions>(options =>
 ### B. Newtonsoft Response Serialization
 To avoid circular references and nested empty array results `[]` when System.Text.Json encounters NewtonSoft structures (like `JObject` or `JArray`), all MVC controllers inherit `FormatResponse` from `CommonController` which serializes payloads explicitly and returns a `ContentResult`:
 ```csharp
-protected ActionResult FormatResponse<T>(DanpheHTTPResponse<T> responseData)
+protected ActionResult FormatResponse<T>(DsfHTTPResponse<T> responseData)
 {
-    string jsonStr = DanpheJSONConvert.SerializeObject(responseData, true);
+    string jsonStr = DsfJSONConvert.SerializeObject(responseData, true);
     return Content(jsonStr, "application/json");
 }
 ```
@@ -124,7 +124,7 @@ const authReq = req.clone({
 
 ### B. Database-Backed Route Localization
 The EMR sidebar menu loads dynamically from the `"RBAC_RouteConfig"` table. The database contains localized displayName columns (e.g., `DisplayName_vi`).
-When an API request arrives with `Accept-Language: vi`, the [SecurityController.cs](file:///Users/macbbook/SourceCodes/hospital-management-emr/Code/Websites/DanpheEMR/Controllers/Security/SecurityController.cs) runs a recursive localized mapper:
+When an API request arrives with `Accept-Language: vi`, the [SecurityController.cs](file:///Users/macbbook/SourceCodes/hospital-management-emr/Code/Websites/DsfEMR/Controllers/Security/SecurityController.cs) runs a recursive localized mapper:
 ```csharp
 if (lang == "vi" && !string.IsNullOrEmpty(route.DisplayName_vi))
 {
@@ -141,7 +141,7 @@ Modern ag-Grid versions (v28+) dropped the `-panel` suffix from inner pagination
 
 The robust horizontal layout overrides are implemented in:
 * [grid-style-new.css](file:///Users/macbbook/SourceCodes/hospital-management-emr/Frontend/src/themes/theme-default/grid-style-new.css)
-* [DanpheStyle.css](file:///Users/macbbook/SourceCodes/hospital-management-emr/Frontend/src/themes/theme-default/DanpheStyle.css)
+* [DsfStyle.css](file:///Users/macbbook/SourceCodes/hospital-management-emr/Frontend/src/themes/theme-default/DsfStyle.css)
 * [grid-style.css](file:///Users/macbbook/SourceCodes/hospital-management-emr/Frontend/src/themes/theme-default/grid-style.css)
 
 ### Unified CSS Rules Rulebook
@@ -218,8 +218,8 @@ The robust horizontal layout overrides are implemented in:
 
 ## 6. Static Asset Links Directory (`wwwroot` Serving)
 At development and build time, the backend ASP.NET Core views depend on styles located in `Frontend/src/`. To avoid manual file copies, the backend directories are linked directly via filesystem symlinks:
-* `/Code/Websites/DanpheEMR/wwwroot/themes` ──► `/Frontend/src/themes`
-* `/Code/Websites/DanpheEMR/wwwroot/assets` ──► `/Frontend/src/assets`
-* `/Code/Websites/DanpheEMR/wwwroot/assets-dph` ──► `/Frontend/src/assets-dph`
+* `/Code/Websites/DsfEMR/wwwroot/themes` ──► `/Frontend/src/themes`
+* `/Code/Websites/DsfEMR/wwwroot/assets` ──► `/Frontend/src/assets`
+* `/Code/Websites/DsfEMR/wwwroot/assets-dph` ──► `/Frontend/src/assets-dph`
 
 *Note: In production IIS, these are mapped as Virtual Directories matching the same names.*

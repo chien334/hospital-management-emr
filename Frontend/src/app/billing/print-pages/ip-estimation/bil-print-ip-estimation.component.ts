@@ -4,11 +4,11 @@ import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { ENUM_PrintingType, PrinterSettingsModel } from "../../../settings-new/printers/printer-settings.model";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_Country, ENUM_DanpheHTTPResponseText, ENUM_MembershipTypeName } from "../../../shared/shared-enums";
+import { ENUM_Country, ENUM_DsfHTTPResponseText, ENUM_MembershipTypeName } from "../../../shared/shared-enums";
 import { DischargeBillVM } from "../../ip-billing/shared/discharge-bill.view.models";
 import { BillingTransactionItem } from "../../shared/billing-transaction-item.model";
 import { BillingBLService } from "../../shared/billing.bl.service";
@@ -144,8 +144,8 @@ export class BIL_Print_IP_Estimation {
   public ResultFromServer: any; //will give a type later;
   public GetEstimateBillDetails() {
     this.billingBLService.GetEstimateBillDetails(this.patientId, this.ipVisitId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
           this.ResultFromServer = res.Results;
           this.dischargeBill.PatientDetail = res.Results.PatientDetail;
           this.dischargeBill.AdmissionDetail = res.Results.AdmissionInfo;
@@ -209,8 +209,8 @@ export class BIL_Print_IP_Estimation {
   }
   // public GetADTNDepositDetails() {
   //   this.billingBLService.GetAdditionalInfoForDischarge(this.ipVisitId, null)
-  //     .subscribe((res: DanpheHTTPResponse) => {
-  //       if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+  //     .subscribe((res: DsfHTTPResponse) => {
+  //       if (res.Status === ENUM_DsfHTTPResponseText.OK) {
   //         this.dischargeBill.AdmissionDetail = res.Results.AdmissionInfo;
   //         //this.dischargeBill.DepositDetails = res.Results.DepositInfo;
   //         this.dischargeBill.BillingTransactionDetail = res.Results.BillingTxnDetail;
@@ -249,8 +249,8 @@ export class BIL_Print_IP_Estimation {
 
   // public GetDischargeBill() {
   //   this.billingBLService.GetBillItemsForIPReceipt(this.patientId, null, null)
-  //     .subscribe((res: DanpheHTTPResponse) => {
-  //       if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+  //     .subscribe((res: DsfHTTPResponse) => {
+  //       if (res.Status === ENUM_DsfHTTPResponseText.OK) {
   //         this.billItems = res.Results;
   //         //this.GroupItems();
   //       }
@@ -501,8 +501,8 @@ export class BIL_Print_IP_Estimation {
   LoadPatientBillingSummary(patientId: number, patientVisitId: number) {
     this.dlService.Read("/api/IpBilling/InpatientPendingBillItems?patientId=" + this.patientId + "&ipVisitId=" + this.ipVisitId)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
           // this.admissionInfo = res.Results.AdmissionInfo;
           // this.admissionInfo.AdmittedOn = this.admissionInfo.AdmittedOn;
           // this.admissionInfo.DischargedOn = moment(this.admissionInfo.DischargedOn).format('YYYY-MM-DDTHH:mm:ss');

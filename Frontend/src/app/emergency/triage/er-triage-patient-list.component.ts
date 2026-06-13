@@ -4,9 +4,9 @@ import * as moment from 'moment';
 import { VisitService } from '../../appointments/shared/visit.service';
 import { CoreService } from '../../core/shared/core.service';
 import { PatientService } from '../../patients/shared/patient.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import EmergencyGridColumnSettings from '../shared/emergency-gridcol-settings';
 import { EmergencyPatientModel } from '../shared/emergency-patient.model';
 import { EmergencyBLService } from '../shared/emergency.bl.service';
@@ -64,8 +64,8 @@ export class ERTriagePatientListComponent {
 
   GetDoctorsList(): void {
     this._emergencyBLService.GetDoctorsList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.DoctorsList = res.Results;
           }
@@ -83,8 +83,8 @@ export class ERTriagePatientListComponent {
   GetERTriagedPatientList(): void {
     let id = this.CaseIdList ? this.CaseIdList : null;
     this._emergencyBLService.GetAllTriagedPatients(id[0])
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length > 0) {
             res.Results.forEach(element => {
               let jsonPatientCases = JSON.parse(element.PatientCases);
@@ -227,8 +227,8 @@ export class ERTriagePatientListComponent {
     var undoTriage = window.confirm("Are You Sure You want to undo this triage ?");
     if (undoTriage) {
       this._emergencyBLService.UndoTriageOfERPatient(selectedPat)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             let itmIndex = this.TriagedERPatients.findIndex(tst => tst.ERPatientId === selectedPat.ERPatientId);
             this.TriagedERPatients.splice(itmIndex, 1);
             this.TriagedERPatients = this.TriagedERPatients.slice();

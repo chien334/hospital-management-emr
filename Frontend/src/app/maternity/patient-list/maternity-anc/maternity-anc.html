@@ -19,7 +19,7 @@
                 </span>
                 <span>
                   <i class="fa fa-h-sign"></i>&nbsp;{{ 'PATIENT.BIRTH_DATE' | translate }} : {{patientDetail.DateOfBirth |
-                  DanpheDateTime:'format':'YYYY-MM-DD'}}
+                  DsfDateTime:'format':'YYYY-MM-DD'}}
                 </span>
               </div>
               <div>
@@ -37,9 +37,9 @@
               <div class="row">
                 <label class="control-label col-md-4">{{ 'GRID_HEADERS.DATE_TIME' | translate }}<b>:</b></label>
                 <div class="col-md-8">
-                  <danphe-date-picker [(ngModel)]="addUpdateANCData.ANCDateTime" [ngModelOptions]="{standalone: true}"
+                  <dsf-date-picker [(ngModel)]="addUpdateANCData.ANCDateTime" [ngModelOptions]="{standalone: true}"
                     [showTime]="true" [CalendarTypes]="'en,np'">
-                  </danphe-date-picker>
+                  </dsf-date-picker>
                 </div>
               </div>
             </div>
@@ -177,7 +177,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let anc of patientANCList">
-            <td>{{anc.ANCDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
+            <td>{{anc.ANCDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
             <td>{{anc.VisitNumber}}</td>
             <td>{{anc.ANCPlace}}</td>
             <td>{{anc.PregnancyPeriodInWeeks}}</td>

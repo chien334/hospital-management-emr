@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, Renderer2 } from '@angular/core'
 import { BillingTransactionItem } from '../shared/billing-transaction-item.model';
 import { BillingBLService } from '../shared/billing.bl.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { CommonFunctions } from '../../shared/common.functions';
 

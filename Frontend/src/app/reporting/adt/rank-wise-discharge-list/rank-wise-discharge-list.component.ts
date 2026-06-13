@@ -3,10 +3,10 @@ import * as moment from 'moment';
 import { DLService } from "../../../shared/dl.service";
 import { ReportingService } from '../../shared/reporting-service';
 import * as _ from 'lodash';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { ENUM_MessageBox_Status } from '../../../shared/shared-enums';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 @Component({
   selector: 'app-rankwisedischargelist',
   templateUrl: './rank-wise-discharge-list.component.html',

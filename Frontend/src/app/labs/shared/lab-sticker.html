@@ -71,7 +71,7 @@
             <tbody>
               <tr *ngFor="let req of allLabRequisitions;">
                 <td>{{req.LabTestName}}</td>
-                <td *ngIf="!fromLabRequisition">{{req.OrderDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
+                <td *ngIf="!fromLabRequisition">{{req.OrderDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}
                 </td>
                 <td *ngIf="!fromLabRequisition">{{req.PrescriberName}}</td>
                 <td *ngIf="fromLabRequisition">{{patientinfos.SampleCodeFormatted}}</td>
@@ -98,15 +98,15 @@
               </div>
             </div>
             <div style="width:100%;">
-              <!--<danphe-bar-code [barcode-number]="patientinfos.BarCodeNumber" [width]="1.5" [height]="25" [barcode-margin]="3" [text-margin]="0">
-            </danphe-bar-code>-->
-              <danphe-bar-code [barcode-number]="patientinfos.BarCodeNumber" [width]="1.4" [height]="20"
+              <!--<dsf-bar-code [barcode-number]="patientinfos.BarCodeNumber" [width]="1.5" [height]="25" [barcode-margin]="3" [text-margin]="0">
+            </dsf-bar-code>-->
+              <dsf-bar-code [barcode-number]="patientinfos.BarCodeNumber" [width]="1.4" [height]="20"
                 [font-size]="11" [barcode-margin]="1" [text-margin]="0">
-              </danphe-bar-code>
+              </dsf-bar-code>
             </div>
             <div style="margin-top: 1px;font-size:10px;"  *ngFor="let req of allLabRequisitions.slice(0, 1);">
               <span style="font-weight: bold;">RN: {{patientinfos.SampleCodeFormatted}}</span>
-              &nbsp; | &nbsp;<span style="font-size: 10px;">{{req.SampleCollectedOnDateTime  | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</span>
+              &nbsp; | &nbsp;<span style="font-size: 10px;">{{req.SampleCollectedOnDateTime  | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}</span>
             </div>
           </div>
         </div>

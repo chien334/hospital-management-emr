@@ -4,7 +4,7 @@ import { MessageboxService } from "../../../shared/messagebox/messagebox.service
 import { DLService } from "../../../shared/dl.service";
 import { CoreService } from "../../../core/shared/core.service";
 import { CommonFunctions } from "../../../shared/common.functions";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
 
 @Component({
@@ -62,7 +62,7 @@ export class RPT_BIL_IncentiveReportSummaryComponent {
   public loadDocSummary() {
     this.dlService.Read("/BillingReports/INCTV_DocterSummary?FromDate=" + this.FromDate + "&ToDate=" + this.ToDate +"&IsRefferalOnly="+ this.IsReferralOnly)
       .map(res => res)
-      .subscribe((res:DanpheHTTPResponse) => {
+      .subscribe((res:DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let data = JSON.parse(res.Results.JsonData);
           if (data.length > 0) {

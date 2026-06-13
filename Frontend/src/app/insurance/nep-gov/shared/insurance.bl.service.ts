@@ -16,7 +16,7 @@ import { Patient } from "../../../patients/shared/patient.model";
 import { PatientsDLService } from "../../../patients/shared/patients.dl.service";
 import { ImagingItemRequisition } from "../../../radiology/shared/imaging-item-requisition.model";
 import { SecurityService } from "../../../security/shared/security.service";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 import { ENUM_AppointmentType, ENUM_BillingStatus, ENUM_VisitStatus, ENUM_VisitType } from "../../../shared/shared-enums";
 import { DischargeDetailBillingVM } from "../ins-ipd-billing/shared/discharge-bill.view.models";
 import { GovInsurancePatientVM } from "./gov-ins-patient.view-model";
@@ -848,7 +848,7 @@ export class GovInsuranceBlService {
 
 
         //sud:26Aug'19--To Assign Departments to VisitDoctors.
-        let doctorList = DanpheCache.GetData(MasterType.Employee, null);
+        let doctorList = DsfCache.GetData(MasterType.Employee, null);
 
         if (doctorList && doctorList.length > 0) {
           let currDoc = doctorList.find(d => d.EmployeeId == bill.PerformerId);

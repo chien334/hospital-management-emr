@@ -5,9 +5,9 @@ import { ReportingService } from '../../../../reporting/shared/reporting-service
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { PHRMStoreModel } from '../../../../pharmacy/shared/phrm-store.model';
 import { WardSupplyBLService } from '../../../../wardsupply/shared/wardsupply.bl.service';
-import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../../shared/dsf-grid/grid-emit.model";
 import { DLService } from '../../../../shared/dl.service';
-import { IGridFilterParameter } from '../../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../../../shared/dsf-grid/grid-filter-parameter.interface';
 @Component({
     templateUrl: "./supplier-information-report-component.html"
 })

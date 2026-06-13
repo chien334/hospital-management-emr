@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angu
 import * as _ from 'lodash';
 import { LabSettingsBLService } from '../shared/lab-settings.bl.service';
 import { MessageboxService } from '../../../../../src/app/shared/messagebox/messagebox.service';
-import { DanpheHTTPResponse } from '../../../../../src/app/shared/common-models';
+import { DsfHTTPResponse } from '../../../../../src/app/shared/common-models';
 import { CoreCFGLookUp } from '../shared/coreCFGLookUp.model';
 
 @Component({
@@ -64,7 +64,7 @@ export class AddLookUpComponent {
     if (this.loading && this.lookUpData[0]!="") {
       this.labLookUpComponent.LookupDataJson = JSON.stringify(this.lookUpData);
       this.labSettingBlServ.PostLabLookUp(this.labLookUpComponent)
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
             if (res.Status == "OK") {
               this.sendDataBack.emit({ LookUp: res.Results, success: true });
               this.msgBoxServ.showMessage("success", ["Labtest component posted successfully!"]);
@@ -87,7 +87,7 @@ export class AddLookUpComponent {
     if (this.loading && this.lookUpData[0] != "") {
       this.labLookUpComponent.LookupDataJson = JSON.stringify(this.lookUpData);
       this.labSettingBlServ.UpdateLabLookUpComponent(this.labLookUpComponent)
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
             if (res.Status == "OK") {
               this.sendDataBack.emit({ lookup: this.labLookUpComponent, success: true });
               this.msgBoxServ.showMessage("success", [this.labLookUpComponent.LookUpName + "Labtest component Updated successfully!"]);

@@ -4,7 +4,7 @@ import { SettingsBLService } from '../../shared/settings.bl.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { Country } from '../../shared/country.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 @Component({
   selector: "subdivision-add",
   templateUrl: "./country-subdivision-add.html",
@@ -35,7 +35,7 @@ export class CountrySubdivisionAddComponent {
   }
 
   public GetSubdivisions() {
-    this.subDivisionList = DanpheCache.GetData(MasterType.SubDivision, null)
+    this.subDivisionList = DsfCache.GetData(MasterType.SubDivision, null)
     this.completeSubdivisionList = this.subDivisionList;
 
 
@@ -59,7 +59,7 @@ export class CountrySubdivisionAddComponent {
   }
 
   public GetCountryList() {
-    this.countryList = DanpheCache.GetData(MasterType.Country, null);
+    this.countryList = DsfCache.GetData(MasterType.Country, null);
 
     // this.settingsBLService.GetCountries()
     // .subscribe(res => {

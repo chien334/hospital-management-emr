@@ -7,10 +7,10 @@ import { DispensaryService } from "../../../dispensary/shared/dispensary.service
 import { PHRMPackingTypeModel } from '../../../pharmacy/shared/phrm-packing-type.model';
 import { SecurityService } from "../../../security/shared/security.service";
 import { CallbackService } from '../../../shared/callback.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_BillPaymentMode, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_BillPaymentMode, ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyItem_DTO } from "../../shared/dtos/pharmacy-item.dto";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PharmacyService } from "../../shared/pharmacy.service";
@@ -212,8 +212,8 @@ export class PHRMGoodsReceiptComponent {
         this.CheckForPoOrGrEditMode();
       })
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.itemList = res.Results;
               this.itemLst = this.itemList;
             } else {
@@ -351,8 +351,8 @@ export class PHRMGoodsReceiptComponent {
       this.IsPOorder = false;
     } else {
       this.pharmacyBLService.GetPHRMPOItemsForGR(PurchaseOrderId).subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results !== null) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results !== null) {
             this.IsPOorder = true;
             this.SetFocusById("InvoiceId");
             this.goodsReceiptVM.purchaseOrder = res.Results.OrderForGR;
@@ -977,8 +977,8 @@ export class PHRMGoodsReceiptComponent {
   }
   loadMRPHistory() {
     this.pharmacyBLService.getMRPHistory()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length > 0) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length > 0) {
           this.pharmacyService.setMRPHistory(res.Results);
         }
       }, err => {

@@ -101,11 +101,11 @@
                             <p class="tooltiptext ttptextdown no-print">{{ 'RADIOLOGY.SWITCH_LANGUAGE_OF_PATIENT_NAME' | translate }}</p>
                           </div>
                         </div>
-                        <div class="rad-hdr-flex-col">{{ 'RADIOLOGY.REP_DATE' | translate }} <b> {{report.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}
+                        <div class="rad-hdr-flex-col">{{ 'RADIOLOGY.REP_DATE' | translate }} <b> {{report.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}
                             {{report.CreatedOn | nepaliDate }}</b></div>
                       </div>
                       <div class="flex-container justify-sp-between flex-align-center">
-                        <div class="rad-hdr-flex-col">{{ 'GRID_HEADERS.AGE_SEX' | translate }} <b>{{report.DateOfBirth | DanpheDateTime:'age' }}/{{report.Gender}}</b></div>
+                        <div class="rad-hdr-flex-col">{{ 'GRID_HEADERS.AGE_SEX' | translate }} <b>{{report.DateOfBirth | DsfDateTime:'age' }}/{{report.Gender}}</b></div>
                         <div class="rad-hdr-flex-col">{{ 'RADIOLOGY.PRESCRIBER_NAME' | translate }} <b> {{report.PrescriberName}}</b>
                           <div *ngIf="!showEmailDataBox" id="toolbox" class="tooltip no-print"
                                style="padding: 0px 5px;color: #006687;z-index: inherit;"> <span (click)="OpenChangeDocPopup()"
@@ -121,7 +121,7 @@
                                   *ngIf="report.Muncipality">,</span>{{report.CountrySubDivision}}/{{report.PhoneNumber}}</b></div>
                         <div class="rad-hdr-flex-col" *ngIf="report.RadiologyNo">{{ 'RADIOLOGY.MRICTXRAY_NO_1' | translate }} <b> {{report.RadiologyNo}} </b> </div>
                         <div class="rad-hdr-flex-col" *ngIf="report.BillingDate">{{ 'GRID_HEADERS.DATE' | translate }}
-                          <b> {{report.BillingDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} {{report.BillingDate | nepaliDate }}
+                          <b> {{report.BillingDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} {{report.BillingDate | nepaliDate }}
                           </b>
                         </div>
                         <div *ngIf="report.Indication" class="rad-hdr-flex-col"> {{ 'RADIOLOGY.INDICATION_2' | translate }} <b> {{report.Indication}}</b></div>
@@ -189,12 +189,12 @@
 
     <!--We need only one button ('print') of Post-Report when it's opened from this page.  [showStudyList]="showStudylist"-->
 
-    <danphe-post-report *ngIf="showEditReportWindow"
+    <dsf-post-report *ngIf="showEditReportWindow"
                         [showreport]="showEditReportWindow"
                         [report]="reportToEdit"
                         [patient]="currentPatient"
                         [buttonsList]="['submit']"
-                        (add-report)="UpdatePatientReport($event)"></danphe-post-report>
+                        (add-report)="UpdatePatientReport($event)"></dsf-post-report>
   </div>
 
   <!-- <div *ngIf="showStudy"> -->

@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BillingSharedModule } from '../../billing/billing-shared.module';
 import { SettingsSharedModule } from '../../settings-new/settings-shared.module';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 import { InsuranceComponent } from './gov-insurance-main.component';
 import { GovInsuranceRoutingModule } from './gov-insurance-routing.module';
@@ -70,7 +70,7 @@ import { GovInsStickerComponent } from './shared/sticker/ins-sticker-print.compo
         GovInsuranceRoutingModule,
         ReactiveFormsModule,
         FormsModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SharedModule,
         SettingsSharedModule,
         BillingSharedModule,

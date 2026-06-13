@@ -7,7 +7,7 @@ import { MaternityBLService } from '../shared/maternity.bl.service';
 import { MaternityPatientListModel, MaternityPatientVM } from '../shared/maternity.model';
 import * as moment from 'moment/moment';
 import MaternityGridColumnSettings from '../shared/maternity.grid.settings';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 import { PatientInfoVM } from './maternity-patient-add/patient-detailsVM';
 import { HttpResponse } from '@angular/common/http';
 

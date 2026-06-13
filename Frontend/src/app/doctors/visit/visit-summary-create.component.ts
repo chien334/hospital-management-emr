@@ -10,7 +10,7 @@ import { DynamicTemplateService } from "../../core/dyn-templates/shared/dynamic-
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { Visit } from "../../appointments/shared/visit.model";
 import { Template, Option, SelectedAnswer, Question } from "../../core/dyn-templates/shared/dnamic-template-models";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 
 
 @Component({
@@ -91,7 +91,7 @@ export class VisitSummaryCreateComponent {
     public GetPatientVisitList() {
         let url = "/api/Visit/VisitsSignedByDoctor?patientId=" + this.selectedPatient.PatientId;
         this.dlService.Read(url).map(res => res).subscribe(res => {
-            if (res.Status == ENUM_DanpheHTTPResponseText.OK && res.Results.length) {
+            if (res.Status == ENUM_DsfHTTPResponseText.OK && res.Results.length) {
                 this.visitList = res.Results;
                 if (this.currentVisitId) {
                     //remove current visit from visitList.
@@ -112,7 +112,7 @@ export class VisitSummaryCreateComponent {
     public GetPatientData(visitId: number) {
         let url = "/api/VisitSummary/VisitDetails?visitId=" + visitId;
         this.dlService.Read(url).map(res => res).subscribe(res => {
-            if (res.Status == ENUM_DanpheHTTPResponseText.OK && res.Results) {
+            if (res.Status == ENUM_DsfHTTPResponseText.OK && res.Results) {
                 if (!this.loadInQnairLevel) {
                     this.existingAnswers = this.dynTempService.MapWithSelectedAnswer(this.template.TemplateId, res.Results);
                     if (this.existingAnswers.length)
@@ -186,7 +186,7 @@ export class VisitSummaryCreateComponent {
         let dsmCodes = [];
         this.dlService.Read(url).map(res => res).subscribe(res => {
 
-            if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status == ENUM_DsfHTTPResponseText.OK) {
                 dsmCodes = res.Results;
                 let dsmListFormatted = dsmCodes.map(dsm => {
                     return { id: dsm.Code, value: dsm.Disorder };
@@ -250,7 +250,7 @@ export class VisitSummaryCreateComponent {
     public PostPatientData(patDataJson) {
         let url = "/api/VisitSummary/VisitDetils";
         this.dlService.Add(patDataJson, url).map(res => res).subscribe(res => {
-            if (res.Status == ENUM_DanpheHTTPResponseText.OK && res.Results.length) {
+            if (res.Status == ENUM_DsfHTTPResponseText.OK && res.Results.length) {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Data added succesfully"]);
                 this.CallBackAddUpdate(res.Results);
             }
@@ -259,7 +259,7 @@ export class VisitSummaryCreateComponent {
     public UpdatePatientData(patDataJson) {
         let url = "/api/VisitSummary/VisitDetails";
         this.dlService.Update(patDataJson, url).map(res => res).subscribe(res => {
-            if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status == ENUM_DsfHTTPResponseText.OK) {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Data updated succesfully"]);
                 this.CallBackAddUpdate(res.Results);
             }
@@ -275,7 +275,7 @@ export class VisitSummaryCreateComponent {
     public UpdateIsSignedStatus() {
         let url = "/api/Visit/UpdateSignedStatus?visitId=" + this.currentVisitId;
         this.dlService.Update(null, url).map(res => res).subscribe(res => {
-            if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status == ENUM_DsfHTTPResponseText.OK) {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Data submitted succesfully"]);
                 this.router.navigate(['/Doctors/PatientOverviewMain/VisitSummary/SummaryHistory']);
             }

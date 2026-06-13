@@ -2,9 +2,9 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Rend
 
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { CreditOrganization } from '../../shared/pharmacy-credit-organizations.model';
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
 @Component({
@@ -59,7 +59,7 @@ export class PHRMCreditOrganizationsComponent implements OnInit {
             this.CurrentCreditOrganization.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.AddCreditOrganization(this.CurrentCreditOrganization)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
+                    (res: DsfHTTPResponse) => {
                         this.showMessageBox(ENUM_MessageBox_Status.Success, "Organization Detail Added.");
                         this.CallBackAddUpdate(res)
                         this.CurrentCreditOrganization = new CreditOrganization();
@@ -80,7 +80,7 @@ export class PHRMCreditOrganizationsComponent implements OnInit {
             this.CurrentCreditOrganization.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.UpdateCreditOrganization(this.CurrentCreditOrganization)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
+                    (res: DsfHTTPResponse) => {
                         this.showMessageBox(ENUM_MessageBox_Status.Success, "Organization Detail Updated.");
                         this.CallBackAddUpdate(res)
                         this.CurrentCreditOrganization = new CreditOrganization();
@@ -92,7 +92,7 @@ export class PHRMCreditOrganizationsComponent implements OnInit {
         }
     }
     CallBackAddUpdate(res) {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
             this.callbackAdd.emit({ creditOrganization: res.Results });
         }
         else {

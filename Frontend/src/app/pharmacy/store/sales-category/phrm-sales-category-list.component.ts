@@ -1,15 +1,15 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 
 import { Router } from '@angular/router';
 import * as moment from "moment";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyService } from "../../shared/pharmacy.service";
 import { PHRMSalesCategoryModel } from "../../shared/phrm-sales-category.model";
 @Component({
@@ -40,8 +40,8 @@ export class PHRMSalesDetailsListComponent {
   PostSalesCategoryDetails() {
     this.CurrentCategory.CreatedOn = moment().format('YYYY-MM-DD');
     this.pharmacyBLService.PostSalesCategoryDetails(this.CurrentCategory)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           this.salescategory.push(res.Results);
           this.salescategory = this.salescategory.slice();
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Sales Category added."]);
@@ -54,8 +54,8 @@ export class PHRMSalesDetailsListComponent {
   }
   public getSalesCategoryList() {
     this.pharmacyBLService.GetSalesCategoryList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
           this.salescategory = res.Results;
         }
         else {

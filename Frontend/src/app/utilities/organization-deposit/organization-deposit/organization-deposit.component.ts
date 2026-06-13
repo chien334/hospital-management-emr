@@ -8,9 +8,9 @@ import { CoreService } from "../../../core/shared/core.service";
 import { PatientService } from '../../../patients/shared/patient.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { CreditOrganization } from '../../../settings-new/shared/creditOrganization.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_ACC_PaymentMode, ENUM_BillDepositType, ENUM_BillPaymentMode, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_ACC_PaymentMode, ENUM_BillDepositType, ENUM_BillPaymentMode, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { OrganizationDeposit_DTO } from '../../shared/DTOs/organization-deposit.dto';
 import { UtilitiesBLService } from "../../shared/utilities.bl.service";
 
@@ -100,7 +100,7 @@ export class OrganizationDepositComponent implements OnInit {
   public getCreditOrganizationList(searchText: string) {
     if (searchText.trim().length < 3) {
       this.utilitiesBlService.GetCreditOrganizationList(searchText).subscribe((res) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results && res.Results.length > 0) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results && res.Results.length > 0) {
           const creditOrganizations = res.Results;
           this.creditOrganizationsList = creditOrganizations.filter(a => a.IsActive === true);
 
@@ -138,8 +138,8 @@ export class OrganizationDepositComponent implements OnInit {
   GetOrganizationDepositBalance(OrganizationId: number) {
     this.organizationDeposit.DepositBalance = 0;
     this.utilitiesBlService.GetOrganizationDepositBalance(OrganizationId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.organizationDeposit.DepositBalance = res.Results;
 
         } else {
@@ -154,8 +154,8 @@ export class OrganizationDepositComponent implements OnInit {
   GetDepositHead() {
     this.utilitiesBlService
       .GetDepositHead()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.depositHeadList = res.Results;
           const defaultDepositHead = this.depositHeadList.find(f => f.IsDefault === true);
           if (defaultDepositHead) {
@@ -204,7 +204,7 @@ export class OrganizationDepositComponent implements OnInit {
   LoadPatientPastBillSummary(patientId: number) {
     this.utilitiesBlService.GetPatientPastBillSummary(patientId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
 
           this.patBillHistory = res.Results;
           this.organizationDeposit.DepositBalance = res.Results.DepositBalance;
@@ -277,7 +277,7 @@ export class OrganizationDepositComponent implements OnInit {
                 // if (this.showReceiptInput) {
                 //   _showReceipt = true;
                 // }
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                   this.depositId = res.Results;
                   this.formSubmitted = false;
                   this.isDepositAdded = true;
@@ -360,8 +360,8 @@ export class OrganizationDepositComponent implements OnInit {
   }
   public onDepositSaved(depositId: number) {
     this.depositId = depositId;
-    this.utilitiesBlService.GetDepositDetails(depositId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.utilitiesBlService.GetDepositDetails(depositId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.organizationDepositDetails = res.Results;
       } else {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, [

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, Renderer2, OnInit } from '@angular/core'
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { DLService } from '../../shared/dl.service';
 import * as moment from 'moment/moment';
 import { CoreService } from '../../core/shared/core.service';

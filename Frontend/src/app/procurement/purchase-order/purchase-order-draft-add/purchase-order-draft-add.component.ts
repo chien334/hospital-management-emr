@@ -9,10 +9,10 @@ import { ItemMaster } from '../../../inventory/shared/item-master.model';
 import { VendorMaster } from '../../../inventory/shared/vendor-master.model';
 import { SecurityService } from '../../../security/shared/security.service';
 import { ActivateInventoryService } from '../../../shared/activate-inventory/activate-inventory.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { InventoryFieldCustomizationService } from '../../../shared/inventory-field-customization.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_GRItemCategory, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_GRItemCategory, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { ProcurementBLService } from '../../shared/procurement.bl.service';
 import { PurchaseOrderDraftItem } from '../purchase-order-draft-item.model';
 import { PurchaseOrderDraft } from '../purchase-order-draft.model';
@@ -245,7 +245,7 @@ export class PurchaseOrderDraftAddComponent {
             this.procurementBLService.PostToPurchaseOrderDraft(this.currentPOD).finally(() => {
                 this.loading = false;
             }).subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results != null) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results != null) {
                     this.ResetForm();
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Purchase Order Draft Saved successfully"]);
                     this.callbackClose.emit(true);
@@ -375,7 +375,7 @@ export class PurchaseOrderDraftAddComponent {
     }
 
     ShowPurchaseOrderDraftDetails(res) {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             let currentPOD = new PurchaseOrderDraft();
             this.currentPOD = Object.assign(currentPOD, res.Results.poDraftDetails);
             let currentPOItems = new Array<PurchaseOrderDraftItem>();
@@ -447,8 +447,8 @@ export class PurchaseOrderDraftAddComponent {
 
             this.procurementBLService.UpdatePurchaseOrderDraft(this.currentPOD).finally(() => {
                 this.loading = false;
-            }).subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results != null) {
+            }).subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results != null) {
                     this.currentPOD = new PurchaseOrderDraft();
                     this.currentPOD.PurchaseOrderDraftItems = [];
                     this.selectedVndr = null;

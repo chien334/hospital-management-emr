@@ -4,11 +4,11 @@ import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
 import { PatientService } from '../../../patients/shared/patient.service';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import LabGridColumnSettings from '../../shared/lab-gridcol-settings';
 import { LabSticker } from '../../shared/lab-sticker.model';
 import { LabService } from '../../shared/lab.service';
@@ -88,8 +88,8 @@ export class LabTestsPendingReports {
     this.reportList = [];
     this.labBLService.GetLabTestPendingReports(frmdate, todate, categoryList)
       .finally(() => { this.loading = false })//re-enable button after response comes back.
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.reportList = res.Results;
           this.reportList.forEach(result => {
             let testNameCSV: string;
@@ -245,7 +245,7 @@ export class LabTestsPendingReports {
   VerifyTestsDirectlyFromList() {
     this.labBLService.VerifyAllLabTestsDirectly(this.requisitionIdList)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.GetPendingReportList(this.fromDate, this.toDate, this.catIdList);
           if (this.routeAfterVerification && this.routeAfterVerification.trim() && this.routeAfterVerification.trim().length > 0) {
             let route = '/Lab/' + this.routeAfterVerification;
@@ -366,18 +366,18 @@ export class LabPendingReportColumnSettings {
   public VerifyRenderer() {
     let template = "";
     if (LabPendingReportColumnSettings.securityServ.HasPermission("btn-pending-reports-view")) {
-      template += `<a danphe-grid-action="ViewDetails" class="grid-action">
+      template += `<a dsf-grid-action="ViewDetails" class="grid-action">
                  View Details
             </a>`
     }
 
     if (LabPendingReportColumnSettings.securityServ.HasPermission("btn-pending-reports-sticker")) {
-      template += `<a danphe-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>
+      template += `<a dsf-grid-action="labsticker" class="grid-action"><i class="glyphicon glyphicon-print"></i> Sticker</a>
         `
     }
 
     if (this.IsVerificatioStepEnabled && this.HasVerificationStepEnabled) {
-      template = template + `<a danphe-grid-action="verify" class="grid-action">Verify</a>`;
+      template = template + `<a dsf-grid-action="verify" class="grid-action">Verify</a>`;
     }
 
     return template;

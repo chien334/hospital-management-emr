@@ -1,17 +1,17 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { GoodsReceipt } from "../../../shared/goods-receipt.model";
 import { InventoryReportsBLService } from "../../shared/inventory-reports.bl.service";
 import { ReportingService } from "../../../../reporting/shared/reporting-service";
 import * as moment from 'moment/moment';
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
-import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../../shared/dsf-grid/grid-emit.model";
 import { CommonFunctions } from "../../../../shared/common.functions";
 import { NepaliCalendarService } from "../../../../shared/calendar/np/nepali-calendar.service";
 import { CoreService } from "../../../../core/shared/core.service";
 import { VendorMaster } from "../../../shared/vendor-master.model";
 import { InventoryService } from "../../../shared/inventory.service";
-import { IGridFilterParameter } from "../../../../shared/danphe-grid/grid-filter-parameter.interface";
+import { IGridFilterParameter } from "../../../../shared/dsf-grid/grid-filter-parameter.interface";
 
 
 @Component({
@@ -140,8 +140,8 @@ export class PurchaseSummaryComponent {
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     let documentContent = "<html><head>";
-    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head>';
     documentContent += '<body onload="window.print()">' + printContents + '</body></html>'

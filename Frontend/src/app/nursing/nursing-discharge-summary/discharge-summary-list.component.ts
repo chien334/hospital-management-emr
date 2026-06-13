@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment/moment';
 import { CoreService } from '../../core/shared/core.service';
 import { SecurityService } from '../../security/shared/security.service';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 //import { ADTGridColumnSettings } from '../shared/adt-grid-column-settings';
 //import { DischargeCancel } from '../shared/dischage-cancel.model';
 import { CallbackService } from '../../shared/callback.service';
@@ -19,7 +19,7 @@ import { AdmissionModel } from '../../adt/shared/admission.model';
 import { ADTGridColumnSettings } from '../../adt/shared/adt-grid-column-settings';
 import { ADT_BLService } from '../../adt/shared/adt.bl.service';
 import { DischargeCancel } from '../../adt/shared/dischage-cancel.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: "./discharge-summary-list.html"

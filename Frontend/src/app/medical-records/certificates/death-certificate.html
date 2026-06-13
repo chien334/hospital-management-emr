@@ -86,7 +86,7 @@
                 <b><u>{{CertifiedSignatory.LongSignature}}</u></b></p>
             </div>
             <div *ngIf="!isFinalCertificate" class="flex-container">
-              <input danphe-auto-complete class="form-control" [(ngModel)]="CertifiedSignatory" [source]="providerList"
+              <input dsf-auto-complete class="form-control" [(ngModel)]="CertifiedSignatory" [source]="providerList"
                      [list-formatter]="myListFormatter" [placeholder]="'MEDICAL_RECORDS.CERTIFIED_BY_PLACEHOLDER' | translate" display-property-name="FullName" value-property-name=null
                      (valueChanged)="OnChangeCertifiedSignatory()" min-chars="0" max-num-list="10" [ngModelOptions]="{standalone: true}" />
             </div>

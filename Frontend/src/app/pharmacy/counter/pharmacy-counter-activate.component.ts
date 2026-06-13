@@ -8,7 +8,7 @@ import { PharmacyBLService } from '../shared/pharmacy.bl.service';
 //import { BillingCounter } from '../shared/billing-counter.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { CallbackService } from '../../shared/callback.service';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 @Component({
     templateUrl: "./pharmacy-counter-activate.html"
 })
@@ -43,7 +43,7 @@ export class PharmacyCounterActivateComponent {
 
     LoadCounter(): void {
 
-        this.counterlist =DanpheCache.GetData(MasterType.PhrmCounter,null);
+        this.counterlist =DsfCache.GetData(MasterType.PhrmCounter,null);
         this.disable = true;
 
         // this.pharmacyBLService.GetAllPharmacyCounters()

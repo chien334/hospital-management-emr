@@ -3,7 +3,7 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 import { ClinicalSettingsMainComponent } from './clinical-settings-main.component';
 import { ICD10GroupListComponent } from './icd10-groups/icd10-group-list.component';
@@ -31,7 +31,7 @@ export const clnSettingsRoutes =
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         RouterModule.forChild(clnSettingsRoutes)], providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })

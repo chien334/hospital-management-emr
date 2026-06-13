@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import * as _ from 'lodash';
 import { CoreService } from "../../../core/shared/core.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { VerificationBLService } from "../../shared/verification.bl.service";
 import { PharmacySubStoreRequisitionItemVerification_DTO } from "../shared/pharmacy-substore-requisition-item-verification.dto";
 import { PharmacySubStoreRequisitionVerification_DTO } from "../shared/pharmacy-substore-requisition-verification.dto";
@@ -48,8 +48,8 @@ export class PharmacyVerificationRequisitionComponent {
     }
 
     GetRequisitionInfo(RequisitionId: number): void {
-        this.verificationBLService.GetPharmacyRequisitionInfo(RequisitionId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.verificationBLService.GetPharmacyRequisitionInfo(RequisitionId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.Requisition = res.Results.Requisition;
                 this.Requisition.RequisitionItems = res.Results.RequisitionItems;
                 this.Requisition.VerifierList = res.Results.VerifierList;
@@ -130,8 +130,8 @@ export class PharmacyVerificationRequisitionComponent {
                 return this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, ["Please Provide valid entry."]);
             }
             this.verificationBLService.ApprovePharmacyRequisition(this.Requisition).finally(() => this.loading = false)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Requisition has been successfully approved."]);
                         this.callBackPopupClose.emit();
                     }
@@ -152,8 +152,8 @@ export class PharmacyVerificationRequisitionComponent {
     RejectRequisition() {
         this.verificationBLService.RejectPharmacyRequisition(this.Requisition.RequisitionId, this.CurrentVerificationLevel, this.CurrentVerificationLevelCount, this.MaxVerificationLevel, this.Requisition.VerificationRemarks)
             .finally(() => this.loading = false)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Requisition has been successfully rejected."]);
                     this.callBackPopupClose.emit();
                 }

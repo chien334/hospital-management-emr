@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { DietType } from '../shared/diet-type.model';
 import { DietTypeDTO } from '../shared/dto/diet-type.dto';
 import { NursingBLService } from '../shared/nursing.bl.service';
@@ -44,9 +44,9 @@ export class AddPatientDietComponent implements OnInit {
 
     }
     public GetAllDietTypes() {
-        this.nursingBLService.GetAllDietTypes().subscribe((res: DanpheHTTPResponse) => {
+        this.nursingBLService.GetAllDietTypes().subscribe((res: DsfHTTPResponse) => {
 
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.dietTypes = res.Results
             }
         })
@@ -67,8 +67,8 @@ export class AddPatientDietComponent implements OnInit {
         this.diet.WardId = this.selectedIpd.WardId;
         this.diet.CreatedBy = this.securityService.GetLoggedInUser().UserId;
         if (this.diet.DietTypeId !== null) {
-            this.nursingBLService.AddPatientDietType(this.diet).subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            this.nursingBLService.AddPatientDietType(this.diet).subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Patient new Diet Added Successfully"]);
                     this.CloseAddDietPopUp();
                 }

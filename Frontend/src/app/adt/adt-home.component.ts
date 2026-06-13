@@ -11,7 +11,7 @@ import * as moment from 'moment/moment';
 import { selectedbed } from './shared/selectedbed.model';
 import { Vitals } from "../clinical/shared/vitals.model";
 import { ADT_BLService } from './shared/adt.bl.service';
-import { DanpheHTTPResponse } from '../shared/common-models';
+import { DsfHTTPResponse } from '../shared/common-models';
 
 @Component({
     templateUrl: "./adt-home.html"
@@ -101,8 +101,8 @@ export class AdtHomeComponent {
         popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
         popupWinindow.document.open();
         let documentContent = "<html><head>";
-        documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
         documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
         documentContent += '</head>';
         documentContent += '<body onload="window.print()">' + printContents + '</body></html>'
@@ -222,7 +222,7 @@ export class AdtHomeComponent {
     public allDepartments: Array<any> = [];
     public LoadDepartments() {
         this.admissionBLService.GetDepartments()
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 this.allDepartments = res.Results;
             });
     }

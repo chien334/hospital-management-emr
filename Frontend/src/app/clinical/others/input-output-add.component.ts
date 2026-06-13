@@ -1,7 +1,7 @@
 ﻿import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from "@angular/core";
 import { VisitService } from '../../appointments/shared/visit.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_IntakeOutputType, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_IntakeOutputType, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { InputOutput } from "../shared/input-output.model";
 import { IntakeOutputParameterListModel } from "../shared/intake-output-parameterlist.model";
 import { IOAllergyVitalsBLService } from '../shared/io-allergy-vitals.bl.service';
@@ -154,7 +154,7 @@ export class InputOutputAddComponent {
         this.CurrentInputOutput.PatientVisitId = this.visitService.getGlobal().PatientVisitId;
         this.ioAllergyVitalsBLService.PostInputOutput(this.CurrentInputOutput)
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.loading = false;
                     this.ClearInputs();
                     this.CallBackAddInputOutput(res.Results);
@@ -172,7 +172,7 @@ export class InputOutputAddComponent {
         this.ioAllergyVitalsBLService.PutInputOutput(this.CurrentInputOutput)
             .subscribe(
                 res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.loading = false;
                         this.CallBackAddInputOutput(res.Results);
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["updated successfully"]);
@@ -203,7 +203,7 @@ export class InputOutputAddComponent {
     GetClinicalIntakeOutputParameterList() {
         this.ioAllergyVitalsBLService.GetClinicalIntakeOutputParameterList()
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.ClinicalIntakeOutputParamList = res.Results;
                     this.ClinicalIntakeListForParent = this.ClinicalIntakeOutputParamList.filter(a => a.ParameterMainId == -1 && a.ParameterType === ENUM_IntakeOutputType.Intake);
                     this.ClinicalIntakeListForChild = this.ClinicalIntakeOutputParamList.filter(a => a.ParameterMainId !== -1 && a.ParameterType === ENUM_IntakeOutputType.Intake);

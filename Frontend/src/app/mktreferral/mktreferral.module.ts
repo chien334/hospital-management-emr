@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { SharedModule } from '../shared/shared.module';
 import { MarketingReferralBLService } from './Shared/marketingreferral.bl.service';
 import { MarketingReferralDLService } from './Shared/marketingreferral.dl.service';
@@ -31,7 +31,7 @@ import { MarketingReferralDetailReportsComponent } from './reports/mktreferral-r
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule], providers: [
+        DsfAutoCompleteModule], providers: [
         MarketingReferralService,
         MarketingReferralBLService,
         MarketingReferralDLService] })

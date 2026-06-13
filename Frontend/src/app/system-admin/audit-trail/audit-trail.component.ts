@@ -1,14 +1,14 @@
 import { Component, Directive, ViewChild } from '@angular/core';
 import { SystemAdminBLService } from '../shared/system-admin.bl.service';
 
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
 import * as moment from 'moment/moment';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { CoreService } from "../../core/shared/core.service";
 import { AuditTrailModel } from "../shared/audit-trail-model";
 import { RbacUser } from "../shared/rabac-user";
 import { LoginInformationModel } from '../shared/login-information.model';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 
 @Component({

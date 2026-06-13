@@ -1,9 +1,9 @@
 ﻿import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { VisitService } from '../../appointments/shared/visit.service';
 import { SecurityService } from "../../security/shared/security.service";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_IntakeOutputType } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_IntakeOutputType } from "../../shared/shared-enums";
 import { InputOutput } from "../shared/input-output.model";
 import { IOAllergyVitalsBLService } from '../shared/io-allergy-vitals.bl.service';
 
@@ -49,7 +49,7 @@ export class InputOutputListComponent implements OnInit {
         let patientVisitId = this.visitService.getGlobal().PatientVisitId;
         this.ioAllergyVitalsBLService.GetPatientInputOutputList(patientVisitId, this.fromDate, this.toDate)
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.inputoutputLists = res.Results.ioList;
                     const ioList = this.inputoutputLists;
                     let balance = 0;

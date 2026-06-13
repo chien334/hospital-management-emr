@@ -18,7 +18,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-md-2">{{ 'SETTINGS_NEW.WARD' | translate }}<sup>*</sup><b>:</b></label>
                                                     <div class="col-md-6">
-                                                        <input danphe-auto-complete class="form-control"
+                                                        <input dsf-auto-complete class="form-control"
                                                                [placeholder]="'SETTINGS_NEW.SELECT_WARD' | translate" min-chars="0" [(ngModel)]="selectedWard"
                                                                [source]="wardList" [ngModelOptions]="{standalone: true}"
                                                                [list-formatter]="wardListFormatter" display-property-name="WardName"
@@ -33,7 +33,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-4">{{ 'SETTINGS_NEW.SUBSTORE' | translate }}<sup>*</sup><b>:</b></label>
                                                 <div class="col-md-8">
-                                                    <input danphe-auto-complete class="form-control"
+                                                    <input dsf-auto-complete class="form-control"
                                                            [placeholder]="'SETTINGS_NEW.SELECT_WARD' | translate" min-chars="0" [(ngModel)]="selectedStore"
                                                            [source]="subStoreList" [ngModelOptions]="{standalone: true}"
                                                            [list-formatter]="storeListFormatter" display-property-name="Name"

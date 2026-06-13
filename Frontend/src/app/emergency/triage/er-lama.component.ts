@@ -5,7 +5,7 @@ import { EmergencyPatientModel } from '../shared/emergency-patient.model';
 import { CommonFunctions } from '../../shared/common.functions';
 import { EmergencyBLService } from '../shared/emergency.bl.service';
 import { EmergencyDLService } from '../shared/emergency.dl.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { PatientService } from '../../patients/shared/patient.service';
 import * as moment from 'moment/moment';
 
@@ -45,7 +45,7 @@ export class ERLamaComponent {
             if (this.ERPatient.FinalizedRemarks && this.ERPatient.FinalizedRemarks.trim() != "") {
                 this.ERPatient.FinalizedRemarks = this.ERPatient.FinalizedRemarks.trim();
                 this.emergencyBLService.PutLamaOfERPatient(this.ERPatient, actionString)
-                    .subscribe((res: DanpheHTTPResponse) => {
+                    .subscribe((res: DsfHTTPResponse) => {
                         if (res.Status == "OK") {
                             this.sendERPatientData.emit({ submit: true, callBackFrom: 'lama', ERPatient: res.Results });
                             this.msgBoxServ.showMessage("success", [this.ERPatient.FullName + 'is successfully' + res.Results.FinalizedStatus]);

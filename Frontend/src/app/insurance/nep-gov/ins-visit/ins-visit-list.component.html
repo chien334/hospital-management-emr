@@ -10,9 +10,9 @@
     <div class="warning_div">
       <p>* Followup is valid upto {{maxLastVisitDays}} days of last visit with same doctor</p>
     </div>
-    <danphe-grid [grid-colDefaults]="insVisitGridColumns" [grid-data]="insVisits"
+    <dsf-grid [grid-colDefaults]="insVisitGridColumns" [grid-data]="insVisits"
       (grid-actions)="InsVisitGridActions($event)" (serverSearchText)="serverSearchTxt($event)"
-      [customServerSearch]="enableServerSideSearch"> </danphe-grid>
+      [customServerSearch]="enableServerSideSearch"> </dsf-grid>
   </div>
 </div>
 
@@ -40,5 +40,5 @@
 <!--End: Sticker Print Popup-->
 
 
-<ins-danphe-followup-visit *ngIf="showFollowupPage" [parent-visit]="selectedVisit"
-  (on-followup-add)="FollowupPopupOnClose($event)"></ins-danphe-followup-visit>
+<ins-dsf-followup-visit *ngIf="showFollowupPage" [parent-visit]="selectedVisit"
+  (on-followup-add)="FollowupPopupOnClose($event)"></ins-dsf-followup-visit>

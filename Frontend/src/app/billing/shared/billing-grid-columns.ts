@@ -47,7 +47,7 @@ export class BillingGridColumnSettings {
       headerName: "Action",
       field: "",
       width: 120,
-      template: ` <a danphe-grid-action="handover-receive" class="grid-action">
+      template: ` <a dsf-grid-action="handover-receive" class="grid-action">
                   Receive </a> `,
     }
   ]
@@ -63,7 +63,7 @@ export class BillingGridColumnSettings {
       headerName: "Action",
       field: "",
       width: 120,
-      template: ` <a danphe-grid-action="handover-receive" class="grid-action">
+      template: ` <a dsf-grid-action="handover-receive" class="grid-action">
                   Receive </a> `,
     }
   ]
@@ -134,7 +134,7 @@ export class BillingGridColumnSettings {
       headerName: "Action",
       field: "",
       width: 120,
-      template: ` <a danphe-grid-action="view-detail" class="grid-action">
+      template: ` <a dsf-grid-action="view-detail" class="grid-action">
       View Handover Detail </a> `,
     }
   ] 
@@ -173,9 +173,9 @@ export class BillingGridColumnSettings {
     let templateHtml = "";
     let patient = params.data;
     templateHtml += `
-             <a danphe-grid-action="insurance-billing" class="grid-action">
+             <a dsf-grid-action="insurance-billing" class="grid-action">
                          Insurance Billing</a>
-             <a danphe-grid-action="update-ins-balance" class="grid-action">
+             <a dsf-grid-action="update-ins-balance" class="grid-action">
                          Update Balance</a>
              `;
     return templateHtml;

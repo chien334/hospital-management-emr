@@ -197,7 +197,7 @@
                 border-right: 3px solid #cfcfcf;">
             <div class="col-md-12" style="margin-top: 15px;" *ngIf="showSelectMother">
                 <label for="srch_PatientList" class="col-md-3" style="font-weight: 600;font-size: medium;"> {{ 'MEDICAL_RECORDS.SELECT_MOTHER' | translate }}<sup>*</sup>:</label>
-                <input danphe-auto-complete id="srch_PatientList" class="form-control searchtbx"
+                <input dsf-auto-complete id="srch_PatientList" class="form-control searchtbx"
                     [(ngModel)]="SelectedPatient" [list-formatter]="PatientListFormatter"
                     [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
                     [placeholder]="'MEDICAL_RECORDS.SEARCH_BY_HOSPITAL_NO_PATIENT_NAME' | translate" display-property-name="ShortName"
@@ -301,9 +301,9 @@
 
             </div>
             <div class="col-md-4">
-                <danphe-date-picker formControlName="BirthDate" [(ngModel)]="BirthDetail.BirthDate"
+                <dsf-date-picker formControlName="BirthDate" [(ngModel)]="BirthDetail.BirthDate"
                     [CalendarTypes]="'en,np'">
-                </danphe-date-picker>
+                </dsf-date-picker>
                 <!--<input id="birthDate" formControlName="BirthDate" [(ngModel)]="BirthDetail.BirthDate" type="date" class="cstm-field-ip" />-->
                 <span class="color-red font-sm" *ngIf="BirthDetail.IsDirty('BirthDate')"
                     [hidden]="BirthDetail.IsValidCheck('BirthDate','required')">{{ 'MEDICAL_RECORDS.ENTER_BIRTH_DATE' | translate }}</span>
@@ -358,7 +358,7 @@
             <div class="col-md-5"><label for="certNum" class="control-label lbl-text">{{ 'MEDICAL_RECORDS.ISSUED_BY' | translate }}
                 </label></div>
             <div class="col-md-5">
-                <input danphe-auto-complete class="form-control" [source]="providerList"
+                <input dsf-auto-complete class="form-control" [source]="providerList"
                     [list-formatter]="myListFormatter" [placeholder]="'MEDICAL_RECORDS.ISSUED_BY_PLACEHOLDER' | translate" display-property-name="FullName"
                     value-property-name=null (valueChanged)="OnChangeIssuedSignatory()" min-chars="0"
                     [(ngModel)]="IssuedSignatory" max-num-list="10" [ngModelOptions]="{standalone: true}" />
@@ -375,7 +375,7 @@
                 </label>
             </div>
             <div class="col-md-5">
-                <input danphe-auto-complete class="form-control" [(ngModel)]="CertifiedSignatory"
+                <input dsf-auto-complete class="form-control" [(ngModel)]="CertifiedSignatory"
                     [source]="providerList" [list-formatter]="myListFormatter" [placeholder]="'MEDICAL_RECORDS.CERTIFIED_BY_PLACEHOLDER' | translate"
                     display-property-name="FullName" value-property-name=null
                     (valueChanged)="OnChangeCertifiedSignatory()" min-chars="0" max-num-list="10"

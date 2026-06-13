@@ -5,11 +5,11 @@ import { BillingSubSchemeModel } from "../../../billing/shared/bill-sub-scheme.m
 import { BillingSubScheme_DTO } from "../../../billing/shared/dto/bill-subscheme.dto";
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import {
-  ENUM_DanpheHTTPResponseText,
-  ENUM_DanpheHTTPResponses,
+  ENUM_DsfHTTPResponseText,
+  ENUM_DsfHTTPResponses,
   ENUM_MessageBox_Status,
 } from "../../../shared/shared-enums";
 import { CreditOrganization } from "../../price-cateogory/model/credit-organiztion.model";
@@ -107,8 +107,8 @@ export class BillSchemeComponent {
 
   GetSchemeBySchemeId(BillSchemeId: number) {
     this.settingsBLService.GetBillingSchemeById(BillSchemeId).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.billScheme = Object.assign({}, this.billScheme, res.Results);
           this.selectedCreditOrganization = this.CreditOrganizations.find(
             (a) =>
@@ -169,8 +169,8 @@ export class BillSchemeComponent {
     this.settingsBLService.PostBillScheme(this.billScheme)
       .finally(() => { this.loading = false; })
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status == ENUM_DsfHTTPResponseText.OK) {
             this.callbackAdd.emit({ action: "add", data: res.Results });
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [
               "Billing Scheme  Added",
@@ -208,8 +208,8 @@ export class BillSchemeComponent {
     }
     this.settingsBLService
       .UpdateBillScheme(this.billScheme)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponseText.OK) {
           this.callbackAdd.emit({ action: "edit", data: res.Results });
           this.billScheme = new BillingSchemeModel();
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [
@@ -245,8 +245,8 @@ export class BillSchemeComponent {
   GetPriceCategory() {
     this.settingsBLService
       .GetPriceCategory()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.priceCategoryList = res.Results;
         } else {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, [
@@ -325,8 +325,8 @@ export class BillSchemeComponent {
 
   public GetBillingSubSchemesBySchemeId(SchemeId: number): void {
     this.settingsBLService.GetBillingSubSchemesBySchemeId(SchemeId).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.billScheme.BillingSubSchemes = res.Results;
         }
         else[
@@ -342,8 +342,8 @@ export class BillSchemeComponent {
   public ActivateDeactivateSubScheme(SubSchemeId: number): void {
     this.settingsBLService.ActivateDeactivateSubScheme(SubSchemeId)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.GetBillingSubSchemesBySchemeId(this.billScheme.SchemeId);
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [
               `SubScheme ${res.Results ? 'Activated' : 'Deactivated'} Successfully.`,

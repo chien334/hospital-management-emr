@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="patientConsumptionFinalizeGridColumns" [grid-data]="patientConsumptions"
-                     (grid-actions)="FinalizeConsumptionGridActions($event)"></danphe-grid>
+        <dsf-grid [grid-colDefaults]="patientConsumptionFinalizeGridColumns" [grid-data]="patientConsumptions"
+                     (grid-actions)="FinalizeConsumptionGridActions($event)"></dsf-grid>
     </div>
     <div class="popup-static portlet box portlet-fullscreen custom_modal" *ngIf="ShowFinalizePrintPage">
         <div class="portlet-body form">

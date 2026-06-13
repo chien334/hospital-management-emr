@@ -6,11 +6,11 @@ import { InventoryReportsDLService } from '../../shared/inventory-reports.dl.ser
 import { ReportingService } from "../../../../reporting/shared/reporting-service";
 import { InventoryBLService } from '../../../shared/inventory.bl.service';
 import { PHRMStoreModel } from '../../../../pharmacy/shared/phrm-store.model';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
 import { CommonFunctions } from '../../../../shared/common.functions';
 import { ActivateInventoryService } from '../../../../shared/activate-inventory/activate-inventory.service';
 import * as moment from 'moment/moment';
-import { IGridFilterParameter } from '../../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../../../shared/dsf-grid/grid-filter-parameter.interface';
 @Component({
   //selector: 'my-app',
   templateUrl: "./stock-level.component.html"

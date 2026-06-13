@@ -34,7 +34,7 @@ import { BillingPrintSharedModule } from '../billing/print-pages/billing-print-s
 import { InsuranceSharedModule } from '../insurance/shared/insurance-shared.module';
 import { PatientSharedModule } from '../patients/patient-shared.module';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { SharedModule } from "../shared/shared.module";
 import { StickerSharedModule } from '../stickers/stickers-shared-module';
 import { SSFClaimComponent } from './SSFClaim/SSFClaimComponent';
@@ -72,7 +72,7 @@ import { VisitPatientInfoComponent } from './visit/visit-patient-info.component'
         ReactiveFormsModule,
         FormsModule,
         //AgGridModule.forRoot(),
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SharedModule,
         PatientSharedModule,
         SettingsSharedModule,

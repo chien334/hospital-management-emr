@@ -6,7 +6,7 @@ import { PatientService } from '../../patients/shared/patient.service';
 
 import { CommonFunctions } from '../../shared/common.functions';
 
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { Patient } from "../../patients/shared/patient.model";
 
 import { BillingService } from "../shared/billing.service";
@@ -95,7 +95,7 @@ export class PatientBillHistoryComponent {
   }
   LoadPatientPastBillSummary(patientId: number) {
     this.billingBLService.GetPatientPastBillSummary(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.patBillHistory = res.Results;
           //provisional amount should exclude itmes those are listed for payment in current window.
@@ -126,7 +126,7 @@ export class PatientBillHistoryComponent {
     this.returnedPatBillHistoryDetail = [];
     this.insuranceBillDetail = [];
     this.billingBLService.GetPatientBillHistoryDetail(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.patBillHistoryDetail = res.Results;
           //provisional amount should exclude itmes those are listed for payment in current window.
@@ -191,7 +191,7 @@ export class PatientBillHistoryComponent {
     var printContents = document.getElementById("printpage").innerHTML;
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
-    popupWinindow.document.write('<html><head><link href="../../assets-dph/external/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+    popupWinindow.document.write('<html><head><link href="../../assets-dph/external/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
     popupWinindow.document.close();
   }
 

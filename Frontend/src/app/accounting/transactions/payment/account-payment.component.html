@@ -79,7 +79,7 @@
           </td>
           <td *ngIf='!OtherSectionFlag'>
             <form class="bill-itemname" *ngIf="InvSectionFlag">
-              <input id="srch_itemName" class="form-control cstm-form-control" danphe-auto-complete title=""
+              <input id="srch_itemName" class="form-control cstm-form-control" dsf-auto-complete title=""
                      autocomplete="off" [(ngModel)]="SelectedVendor" [list-formatter]="vendorOrSupplierListFormatter"
                      [source]="VendorList" placeholder="{{ 'ACCOUNTING.ENTER_VENDOR_NAME' | translate }}" display-property-name="VendorName"
                      value-property-name=null match-formatted="true" [ngModelOptions]="{standalone: true}"
@@ -107,7 +107,7 @@
             </form>
             <form class="bill-itemname" *ngIf="PhrmSectionFlag">
               <div class="autocomplete-item">
-                <input id="srch_itemName" class="form-control cstm-form-control" danphe-auto-complete title=""
+                <input id="srch_itemName" class="form-control cstm-form-control" dsf-auto-complete title=""
                        autocomplete="off" [(ngModel)]="SelectedSupplier" [list-formatter]="vendorOrSupplierListFormatter"
                        [source]="SupplierList" placeholder="{{ 'ACCOUNTING.ENTER_SUPPLIER_NAME' | translate }}" display-property-name="SupplierName"
                        value-property-name=null match-formatted="true" [ngModelOptions]="{standalone: true}"
@@ -149,9 +149,9 @@
           <td></td>
           <td *ngIf='!OtherSectionFlag'>
             <form>
-              <danphe-date-picker [(ngModel)]="SelectedDate" ngDefaultControl [CalendarTypes]="'np,en'"
+              <dsf-date-picker [(ngModel)]="SelectedDate" ngDefaultControl [CalendarTypes]="'np,en'"
                                   [ngModelOptions]="{standalone:true}">
-              </danphe-date-picker>
+              </dsf-date-picker>
             </form>
           </td>
           <td *ngIf='!OtherSectionFlag'>
@@ -163,12 +163,12 @@
     </table>
   </div>
   <div *ngIf='!OtherSectionFlag'>
-    <danphe-grid [grid-colDefaults]="SetupInvGridColumns" [grid-data]="GrList"
+    <dsf-grid [grid-colDefaults]="SetupInvGridColumns" [grid-data]="GrList"
                  (grid-actions)="gRListGridActions($event)" *ngIf="InvSectionFlag">
-    </danphe-grid>
-    <danphe-grid [grid-colDefaults]="SetupPhrmGridColumns" [grid-data]="GrList"
+    </dsf-grid>
+    <dsf-grid [grid-colDefaults]="SetupPhrmGridColumns" [grid-data]="GrList"
                  (grid-actions)="gRListGridActions($event)" *ngIf="PhrmSectionFlag">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 <div class="popup-static portlet box portlet-fullscreen inv_modal" *ngIf="ShowPaymentPopup">
@@ -281,7 +281,7 @@
                     <label class="control-label col-md-5">{{ 'ACCOUNTING.GR_DATE' | translate }}<b>:</b></label>
                     <div class="col-md-7">
                       <label class="form-control no-border"><b>(AD)</b>{{Payment.GrDate |
-                        DanpheDateTime:'format':'YYYY-MM-DD'}}&nbsp; {{Payment.GrDate |
+                        DsfDateTime:'format':'YYYY-MM-DD'}}&nbsp; {{Payment.GrDate |
                         nepaliDate:'format':'YYYY-MM-DD'}}</label>
                     </div>
                   </div>
@@ -302,7 +302,7 @@
                     <label class="control-label col-md-5">{{ 'ACCOUNTING.PAYMENT_FROM' | translate }}({{ 'ACCOUNTING.LEDGER' | translate }})<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                       <div>
-                        <input class="form-control" danphe-auto-complete [source]="FilteredLedgerList" placeholder="{{ 'ACCOUNTING.LEDGER_NAME' | translate }}"
+                        <input class="form-control" dsf-auto-complete [source]="FilteredLedgerList" placeholder="{{ 'ACCOUNTING.LEDGER_NAME' | translate }}"
                                display-property-name="LedgerName" formControlName="PaymentFrom"
                                value-property-name="LedgerName" [list-formatter]="LedgerListFormatter"
                                [(ngModel)]="SelectedLedger" (ngModelChange)="AssignSelectedLedger($event)"
@@ -317,7 +317,7 @@
                   <div class="form-group" *ngIf="this.SubLedgerAndCostCenterSetting.EnableSubLedger">
                     <label class="control-label col-md-5">{{ 'ACCOUNTING.SUB_LEDGER' | translate }}<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
-                      <input class="form-control" danphe-auto-complete [source]="SubLedgerList" placeholder="{{ 'ACCOUNTING.SUB_LEDGER_NAME' | translate }}"
+                      <input class="form-control" dsf-auto-complete [source]="SubLedgerList" placeholder="{{ 'ACCOUNTING.SUB_LEDGER_NAME' | translate }}"
                              display-property-name="SubLedgerName" [ngModelOptions]="{standalone: true}"
                              value-property-name="SubLedgerName" [list-formatter]="SubLedgerListFormatter"
                              [(ngModel)]="SelectedSubLedger" (ngModelChange)="AssignSelectedSubLedger($event)"

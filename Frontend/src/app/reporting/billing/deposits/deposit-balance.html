@@ -11,10 +11,10 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12" *ngIf="DepositBalanceData.length>0">
-      <danphe-grid [grid-colDefaults]="DepositBalanceColumns" [grid-data]="DepositBalanceData"
+      <dsf-grid [grid-colDefaults]="DepositBalanceColumns" [grid-data]="DepositBalanceData"
         [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="'billing'"
         [NepaliDateInGridParams]="NepaliDateInGridSettings">
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
 </div>

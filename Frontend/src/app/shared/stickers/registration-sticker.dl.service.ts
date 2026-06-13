@@ -1,7 +1,7 @@
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DanpheHTTPResponse } from '../common-models';
+import { DsfHTTPResponse } from '../common-models';
 @Injectable(
     {
         providedIn: 'root'
@@ -19,6 +19,6 @@ export class StickerDLService {
         this.http = _http;
     }
     public GetRegistrationStickerSettingsAndData(PatientVisitId: number) {
-        return this.http.get<DanpheHTTPResponse>(`/api/Stickers/RegistrationStickerSettingsAndData?PatientVisitId=${PatientVisitId}`, this.options);
+        return this.http.get<DsfHTTPResponse>(`/api/Stickers/RegistrationStickerSettingsAndData?PatientVisitId=${PatientVisitId}`, this.options);
     }
 }

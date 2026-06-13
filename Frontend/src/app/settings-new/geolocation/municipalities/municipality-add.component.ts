@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CoreService } from '../../../core/shared/core.service';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { Municipality } from '../../shared/country-subdivision.model';
 import { SettingsService } from '../../shared/settings-service';
@@ -48,11 +48,11 @@ export class MunicipalityAddComponent {
     }
 
     GetCountryList() {
-        this.countryList = DanpheCache.GetData(MasterType.Country, null);
+        this.countryList = DsfCache.GetData(MasterType.Country, null);
     }
 
     GetCountrySubdivisionList() {
-        this.allSubDivisionListMaster = DanpheCache.GetData(MasterType.SubDivision, null);
+        this.allSubDivisionListMaster = DsfCache.GetData(MasterType.SubDivision, null);
     }
 
     CountryChanged(changeSubDivId = true) {

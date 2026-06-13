@@ -111,10 +111,10 @@
                                 <strong>{{ (editMode ? 'FIXED_ASSETS.EDIT_SERVICE_FORM' : 'FIXED_ASSETS.ADD_SERVICE_FORM') | translate }}</strong></p>
                             <div class="form-group">
                                 <label class="control-label">{{ 'FIXED_ASSETS.SERVICE_DATE' | translate }}<sup>*</sup><b>:</b></label>
-                                <danphe-date-picker formControlName="ServiceDate" ngDefaultControl
+                                <dsf-date-picker formControlName="ServiceDate" ngDefaultControl
                                 [allow-future-date]="true"
                                     [CalendarTypes]="'np,en'" [(ngModel)]="assetService.ServiceDate"
-                                    style="width:100px;"></danphe-date-picker>
+                                    style="width:100px;"></dsf-date-picker>
                                     &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceDate','required') || !(assetService.IsDirty('ServiceDate'))">{{ 'FIXED_ASSETS.SERVICE_DATE_REQUIRED' | translate }}</span>
 
                                 <!-- [ngModelOptions]="{standalone:true}" -->
@@ -129,9 +129,9 @@
                             </div>
                             <div class="form-group" *ngIf="editMode">
                                 <label class="control-label">{{ 'FIXED_ASSETS.SERVICE_COMPLETE_DATE' | translate }}<sup>*</sup><b>:</b></label>
-                                <danphe-date-picker ngDefaultControl
+                                <dsf-date-picker ngDefaultControl
                                     [CalendarTypes]="'np,en'"  [allow-future-date]="true" [(ngModel)]="assetService.ServiceCompleteDate"
-                                    style="width:100px;" formControlName="ServiceCompleteDate"></danphe-date-picker>
+                                    style="width:100px;" formControlName="ServiceCompleteDate"></dsf-date-picker>
                                     &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm" [hidden]="assetService.IsValidCheck('ServiceCompleteDate','required') || !(assetService.IsDirty('ServiceCompleteDate'))">{{ 'FIXED_ASSETS.SERVICE_COMPLETE_DATE_REQUIRED' | translate }}</span>
 
                                 <!-- [ngModelOptions]="{standalone:true}" -->

@@ -34,7 +34,7 @@
   <div class="col" *ngIf="ReturnBy==='hospitalno'">
     <div class="inputfield-wrap">
       <label>Store <span style="color:red;">*</span>:</label>
-      <input danphe-auto-complete [(ngModel)]="selectedDispensary" class="form-control" [list-formatter]="DispensaryListFormatter"
+      <input dsf-auto-complete [(ngModel)]="selectedDispensary" class="form-control" [list-formatter]="DispensaryListFormatter"
              [source]="dispensaryList" placeholder="Enter Dispensary Name" display-property-name="Name" value-property-name=null
              onclick="this.select();" id="dispensary" (valueChanged)="OnDispensaryChange()" max-num-list="10"
              [ngModelOptions]="{standalone: true}" />
@@ -42,7 +42,7 @@
     <!-- <div class="row">
       <div class="col-md-4 text-right">Store <span style="color:red;">*</span>:</div>
       <div class="col-md-8">
-        <input danphe-auto-complete [(ngModel)]="selectedDispensary" class="form-control" [list-formatter]="DispensaryListFormatter"
+        <input dsf-auto-complete [(ngModel)]="selectedDispensary" class="form-control" [list-formatter]="DispensaryListFormatter"
                [source]="dispensaryList" placeholder="Enter Dispensary Name" display-property-name="Name" value-property-name=null
                onclick="this.select();" id="dispensary" (valueChanged)="OnDispensaryChange()" max-num-list="10"
                [ngModelOptions]="{standalone: true}" />

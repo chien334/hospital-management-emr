@@ -10,7 +10,7 @@ import "rxjs/Rx";
 import { Observable } from "rxjs/Observable";
 
 import LabGridColumnSettings from "../../shared/lab-gridcol-settings";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import { PatientService } from "../../../patients/shared/patient.service";
 import { LabsBLService } from "../../shared/labs.bl.service";
@@ -23,7 +23,7 @@ import { CoreService } from "../../../core/shared/core.service";
 import {
   NepaliDateInGridParams,
   NepaliDateInGridColumnDetail,
-} from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+} from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import * as moment from 'moment/moment';
 import { SecurityService } from "../../../security/shared/security.service";
 
@@ -233,7 +233,7 @@ export class LabListRequisitionComponent {
                           `;
 
 
-    documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanphePrintStyle.css" /></head>`;
+    documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfPrintStyle.css" /></head>`;
 
     documentContent += '<body class="lab-rpt4moz" onload="window.print()">' + printContents + '</body></html>';
     popupWinindow.document.write(documentContent);

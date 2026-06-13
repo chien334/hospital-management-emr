@@ -35,7 +35,7 @@
   <div>
     <div class="row">
       <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="deptwiseGridColumns" [grid-data]="RequisitionGridDataFiltered" [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings" (onDateChange)="onDateChange($event)" (grid-actions)="DeptGridAction($event)" [date-settings-name]="'billing-reports'"></danphe-grid>
+        <dsf-grid [grid-colDefaults]="deptwiseGridColumns" [grid-data]="RequisitionGridDataFiltered" [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings" (onDateChange)="onDateChange($event)" (grid-actions)="DeptGridAction($event)" [date-settings-name]="'billing-reports'"></dsf-grid>
       </div>
     </div>
   </div>
@@ -55,8 +55,8 @@
             <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
             <hr />
           </div>
-          <danphe-grid [grid-colDefaults]="DispatchListGridColumns" [grid-data]="dispatchList" (grid-actions)="DispatchDetailsGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [NepaliDateInGridParams]="NepaliDateInGridSettingsForDispatchList">
-          </danphe-grid>
+          <dsf-grid [grid-colDefaults]="DispatchListGridColumns" [grid-data]="dispatchList" (grid-actions)="DispatchDetailsGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [NepaliDateInGridParams]="NepaliDateInGridSettingsForDispatchList">
+          </dsf-grid>
           <hr />
         </div>
       </div>
@@ -78,8 +78,8 @@
             <a style="float:right;  margin-top:-13px;" class="btn btn-danger" (click)="Close()" [title]="'COMMON.CANCEL' | translate">X</a>
             <hr />
           </div>
-          <danphe-grid [grid-colDefaults]="CancelListGridColumns" [grid-data]="cancelList" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
-          </danphe-grid>
+          <dsf-grid [grid-colDefaults]="CancelListGridColumns" [grid-data]="cancelList" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
+          </dsf-grid>
           <hr />
         </div>
       </div>

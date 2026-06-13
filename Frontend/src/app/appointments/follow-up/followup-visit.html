@@ -6,15 +6,15 @@
           <div class="caption lb-caption">
             <h3> <span>Followup Visit </span> </h3>
             <a class="btn btn-danger" (click)="Close()" ><i class="fa fa-times"></i></a> </div>
-          <div class="danphe-followup-visit">
+          <div class="dsf-followup-visit">
             <table class="table table-striped table-bordered table-hover">
               <tr>
                 <td> Hospital No: <b> {{parentVisit.PatientCode}} </b></td>
                 <td> Patient Name: <b> {{parentVisit.ShortName}}</b></td>
-                <td> Age Sex: <b>{{parentVisit.DateOfBirth  | DanpheDateTime:'age'}}/{{parentVisit.Gender | slice:0:1}}</b></td>
+                <td> Age Sex: <b>{{parentVisit.DateOfBirth  | DsfDateTime:'age'}}/{{parentVisit.Gender | slice:0:1}}</b></td>
               </tr>
               <tr>
-                <td> Last Visit Date: <b>{{parentVisit.VisitDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</b></td>
+                <td> Last Visit Date: <b>{{parentVisit.VisitDate | DsfDateTime:'format':'YYYY-MM-DD'}}</b></td>
                 <td> Department : <b> {{parentVisit.DepartmentName}}</b></td>
                 <td> Doctor : <b>{{parentVisit.PerformerName}}</b></td>
               </tr>

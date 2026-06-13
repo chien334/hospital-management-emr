@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DanpheHTTPResponse } from '../../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../../shared/common-models';
 import { MessageboxService } from '../../../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../../../shared/shared-enums';
 import { DispensaryRequisitionService } from '../dispensary-requisition.service';
 
 @Component({
@@ -26,8 +26,8 @@ export class ReceiveDispatchedStockComponent implements OnInit {
     if (RequisitionId > 0) {
       this.loading = true;
       this.dispensaryRequisitionService.GetRequisitionDispatchToReceive(RequisitionId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.RequisitionDispatchToReceive = res.Results;
             this.loading = false;
           }
@@ -45,8 +45,8 @@ export class ReceiveDispatchedStockComponent implements OnInit {
   ReceiveDispatchById(dispatchId: number, receivedRemarks: string) {
     this.loading = true;
     this.dispensaryRequisitionService.ReceiveDispatchedItems(dispatchId, receivedRemarks)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Items Received Successfully.", "Stock updated."]);
           this.LoadDispatchListByRequisitionId();
         }

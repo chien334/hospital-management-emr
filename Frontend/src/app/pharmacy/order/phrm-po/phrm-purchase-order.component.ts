@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { CoreService } from '../../../core/shared/core.service';
 import { TermsConditionsMasterModel } from '../../../inventory/shared/terms-conditions-master.model';
-import { DanpheRoute } from '../../../security/shared/danphe-route.model';
+import { DsfRoute } from '../../../security/shared/dsf-route.model';
 import { SecurityService } from "../../../security/shared/security.service";
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { CommonFunctions } from '../../../shared/common.functions';
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status, ENUM_PHRMPurchaseOrderStatus, ENUM_TermsApplication } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status, ENUM_PHRMPurchaseOrderStatus, ENUM_TermsApplication } from '../../../shared/shared-enums';
 import { PharmacyPOVerifier } from '../../shared/pharmacy-po-verifier.model';
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PharmacyService } from '../../shared/pharmacy.service';
@@ -39,7 +39,7 @@ export class PHRMPurchaseOrderComponent {
     public index: number = 0;
     public checkIsItemPresent: boolean = false;
     loading: boolean = false;
-    validRoutes: DanpheRoute[] = [];
+    validRoutes: DsfRoute[] = [];
     editPO: boolean = false;
     selectedPO: PHRMPurchaseOrder;
     IsVerificationActivated: boolean = false;
@@ -93,8 +93,8 @@ export class PHRMPurchaseOrderComponent {
     }
     findPurchaseOrder(PurchaseOrderId: number) {
         this.pharmacyBLService.GetPHRMPOItemsByPOId(PurchaseOrderId).subscribe({
-            next: (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            next: (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.currentPO = Object.assign(new PHRMPurchaseOrder(), res.Results.Order);
                     this.SelectedSupplier = this.currentPO.SupplierName;
                     this.currentPO.PurchaseOrderValidator.controls['DeliveryDays'].setValue(this.currentPO.DeliveryDays);
@@ -202,8 +202,8 @@ export class PHRMPurchaseOrderComponent {
 
     LoadGenerics() {
         this.pharmacyBLService.GetGenericList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.GenericList = res.Results;
                     this.FilteredGenericList = res.Results;
                 }
@@ -485,8 +485,8 @@ export class PHRMPurchaseOrderComponent {
             this.currentPO.PHRMPurchaseOrderItems.forEach(item => item.CreatedOn = moment().format('YYYY-MM-DD')); // Since CreatedOn is not null in Model.
 
             this.pharmacyBLService.UpdatePurchaseOrder(this.currentPO).
-                subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.msgserv.showMessage("success", ["Purchase Order Updated Successfully!"]);
                         this.callBackClosePopup.emit(res.Results);
                     }
@@ -572,8 +572,8 @@ export class PHRMPurchaseOrderComponent {
         }
     }
     GetVerifiers() {
-        this.pharmacyBLService.GetVerifiers().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.pharmacyBLService.GetVerifiers().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.VerifierList = res.Results;
                 this.SetDefaultVerifier();
             }

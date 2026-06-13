@@ -67,7 +67,7 @@
                 <div class="form-group" *ngIf="currPrescription.IsInPatient">
                     <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_DOCTOR' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                     <div class="col-md-7">
-                        <input class="form-control" danphe-auto-complete
+                        <input class="form-control" dsf-auto-complete
                                [ngClass]="IsWrongProvider==true ? 'bg-on' : 'bg-off'"
                                formControlName="ProviderId"
                                [(ngModel)]="selProvider"
@@ -132,7 +132,7 @@
                         </td>
                         <td style="width:250px">
                             <form [formGroup]="row.PHRMPrescriptionItemsValidator">
-                                <input danphe-auto-complete class="form-control"
+                                <input dsf-auto-complete class="form-control"
                                        [ngClass]="IsWrongItem==true ? 'bg-on' : 'bg-off'"
                                        formControlName="ItemId"
                                        [(ngModel)]="row.SelectedItem"

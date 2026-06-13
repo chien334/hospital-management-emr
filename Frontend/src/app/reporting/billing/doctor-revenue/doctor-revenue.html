@@ -9,7 +9,7 @@
             <div class="form-group">
               <label class="control-label col-md-3">From Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
               <div class="col-md-9">
-                <danphe-date-picker [(ngModel)]="currentdoctorrevenuereport.fromDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="fromDate"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="currentdoctorrevenuereport.fromDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="fromDate"> </dsf-date-picker>
                 <span class="color-red font-sm" *ngIf="currentdoctorrevenuereport.IsDirty('fromDate')" [hidden]="currentdoctorrevenuereport.IsValidCheck('fromDate','required')"> From Date is required</span><br />
                 <span class="color-red font-sm" *ngIf="currentdoctorrevenuereport.IsDirty('fromDate')" [hidden]="currentdoctorrevenuereport.IsValidCheck('fromDate','wrongDate')"> Enter Valid Date</span> </div>
             </div>
@@ -18,7 +18,7 @@
             <div class="form-group">
               <label class="control-label col-md-3">To Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
               <div class="col-md-9">
-                <danphe-date-picker [(ngModel)]="currentdoctorrevenuereport.toDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="toDate"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="currentdoctorrevenuereport.toDate" ngDefaultControl [CalendarTypes]="'en,np'" formControlName="toDate"> </dsf-date-picker>
                 <span class="color-red font-sm" *ngIf="currentdoctorrevenuereport.IsDirty('toDate')" [hidden]="currentdoctorrevenuereport.IsValidCheck('toDate','required')"> To Date is required</span><br />
                 <span class="color-red font-sm" *ngIf="currentdoctorrevenuereport.IsDirty('toDate')" [hidden]="currentdoctorrevenuereport.IsValidCheck('toDate','wrongDate')"> Can't select future date</span> </div>
             </div>
@@ -33,7 +33,7 @@
                   <div class="form-group">
                     <label class="control-label col-md-5">Doctor Name<b style="float:right;">:</b></label>
                     <div class="col-md-7">
-                      <input class="form-control" danphe-auto-complete
+                      <input class="form-control" dsf-auto-complete
 						   [(ngModel)]="selPerformer"
 						   [ngModelOptions]="{standalone: true}"
 						   [list-formatter]="myListFormatter"
@@ -60,10 +60,10 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12" *ngIf="DoctorRevenueData.length>0">
-      <danphe-grid [grid-colDefaults]="DoctorRevenueColumns"
+      <dsf-grid [grid-colDefaults]="DoctorRevenueColumns"
                    [grid-data]="DoctorRevenueData"
                    [grid-exportOptions]="gridExportOptions" [grid-showExportNew]="true" (grid-onExport)="OnGridExport($event)"
-                   > </danphe-grid>
+                   > </dsf-grid>
     </div>
   </div>
 </div>

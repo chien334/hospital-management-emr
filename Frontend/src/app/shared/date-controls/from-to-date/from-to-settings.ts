@@ -6,7 +6,7 @@
  we can later move these to parameters if it's required differently for different hospitals.
  for now pls keep adding 'else-if' conditions.
 
- * Usage: in DanpheGrid with custome-date=true, and from-to-date-select component. mostly in reports.
+ * Usage: in DsfGrid with custome-date=true, and from-to-date-select component. mostly in reports.
 
  IMPORTANT: Think of this file as 'grid-column-settings'
 */

@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { IncentiveRoutingModule } from './incentive-routing.module';
 import { IncentiveDLService } from './shared/incentive.dl.service';
 import { IncentiveBLService } from './shared/incentive.bl.service';
@@ -76,7 +76,7 @@ import { RPT_BIL_IncentiveReferralSummaryReportMainComponent } from './reports/R
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         AccountingSharedModule], providers: [
         IncentiveBLService,
         IncentiveDLService,

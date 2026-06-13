@@ -7,7 +7,7 @@ import { LabsBLService } from './labs.bl.service';
 import { Router } from '@angular/router';
 import { CoreService } from '../../core/shared/core.service';
 import { ENUM_PrintingType, PrinterSettingsModel } from '../../settings-new/printers/printer-settings.model';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { LabService } from './lab.service';
 
 @Component({
@@ -114,7 +114,7 @@ export class LabStickerComponent {
       popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
       popupWinindow.document.open();
       let documentContent = '<html><head>';
-      documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+      documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
       documentContent += '<style>@media print {@page { size: 2 in 1 in;}} .labBarCodeSticker{border: none !important;marging-top: 10px;} .lbl-rotate {height: 20px;width: 70px;transform: translateX(25%) translateY(-50%) rotate(90deg);font-weight: bold;float: right;font-size: 14px;line-height: 0.8;position: absolute;right: 0;top: 50%;z-index: 2;text-align: center;}</style></head>';
       documentContent += '<body style="margin: 0;">';
       for (let index = 0; index < numberOfPrint; index++) {
@@ -147,7 +147,7 @@ export class LabStickerComponent {
     else {
 
       let printContents = document.getElementById("LabSticker").innerHTML;
-      var printableHTML = '<html><head><link rel="stylesheet" type="text/css" href="DanpheStyle.css" />';
+      var printableHTML = '<html><head><link rel="stylesheet" type="text/css" href="DsfStyle.css" />';
 
       printableHTML += '<meta http-equiv="X-UA-Compatible" content="IE= edge"/>';
       printableHTML += '<style>@media print {@page { size: 2 in 1 in;}} .labBarCodeSticker{border: none !important;} .lbl-rotate {height: 20px;width: 70px;transform: translateX(25%) translateY(-50%) rotate(90deg);font-weight: bold;float: right;font-size: 14px;line-height: 0.8;position: absolute;right: 0;top: 50%;z-index: 2;text-align: center;}</style></head>';
@@ -163,7 +163,7 @@ export class LabStickerComponent {
       //below code sends the sticker content to server, it'll there create a file and store to the required location.
       //from there our printer application will send the file to required printer. 
       this.labBLService.SaveLabStickersHTML(this.printerName, filePath, printableHTML, numberOfPrint)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           console.log("lab sticker printed successfully.. ");
           this.loading = false;
           // this.sendDataBack.emit({ exit: true });
@@ -206,10 +206,10 @@ export class LabStickerComponent {
 
   public ChangePrinterLocationName() {
     if (this.printerNameSelected) {
-      if (localStorage.getItem('Danphe_LAB_Default_PrinterName')) {
-        localStorage.removeItem('Danphe_LAB_Default_PrinterName');
+      if (localStorage.getItem('Dsf_LAB_Default_PrinterName')) {
+        localStorage.removeItem('Dsf_LAB_Default_PrinterName');
       }
-      localStorage.setItem('Danphe_LAB_Default_PrinterName', this.printerNameSelected);
+      localStorage.setItem('Dsf_LAB_Default_PrinterName', this.printerNameSelected);
       this.labService.defaultPrinterName = this.printerNameSelected;
       this.printerName = this.printerNameSelected;
       this.showStickerChange = false;

@@ -21,8 +21,8 @@
                     <label class="control-label" style="margin-left: 5px;">{{ 'ACCOUNTING.SELECT_FISCAL_YEAR' | translate }}<b class="color-red"> *</b><b
                            style="float:right;">:</b></label>
                     <div>
-                        <!-- <danphe-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
-                        </danphe-date-picker> -->
+                        <!-- <dsf-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+                        </dsf-date-picker> -->
 
                         <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true" (fiscalYearDate)="selectDate($event)">
                         </fiscal-year-calendar>
@@ -33,8 +33,8 @@
                 <div class="form-group">
                     <label class="control-label" style="margin-left: 5px;">To Date<b class="color-red">  *</b><b style="float:right;">:</b></label>
                     <div>
-                        <danphe-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="toDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+                        </dsf-date-picker>
                     </div>
                 </div>
             </div> -->
@@ -72,10 +72,10 @@
         </div>
 
         <div class="row">
-            <danphe-grid [grid-colDefaults]="txnGridColumns" [grid-data]="txnList" (grid-actions)="TransactionGridActions($event)"
+            <dsf-grid [grid-colDefaults]="txnGridColumns" [grid-data]="txnList" (grid-actions)="TransactionGridActions($event)"
                          [grid-exportOptions]="gridExportOptions"
                          [grid-showExport]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-            </danphe-grid>
+            </dsf-grid>
         </div>
 
 

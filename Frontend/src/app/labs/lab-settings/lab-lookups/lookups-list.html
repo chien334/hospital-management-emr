@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-md-2"> <a class="btn blue bordered btn-sm primary-btn m1" name="name" (click)="AddNewLookUpComponent()"> <i class="fa fa-plus"></i>{{ 'LABS.ADD_NEW_LOOKUP' | translate }} </a> </div>
   </div>
-  <danphe-grid [grid-colDefaults]="lookupsGridCol" [grid-data]="lookupsList" (grid-actions)="EditComponent($event)"> </danphe-grid>
+  <dsf-grid [grid-colDefaults]="lookupsGridCol" [grid-data]="lookupsList" (grid-actions)="EditComponent($event)"> </dsf-grid>
   
   <!--Model Box Starting Here-->
   <div class="popup-static portlet box portlet-fullscreen" *ngIf="showAddLookupsComponent">

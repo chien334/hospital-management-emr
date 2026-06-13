@@ -55,7 +55,7 @@
                                 <tr>
                                     <td>{{ 'PATIENT_OVERVIEW.RECORDED_ON' | translate }}</td>
                                     <td *ngFor="let vitals of vitalsList">
-                                        <strong>{{vitals.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD
+                                        <strong>{{vitals.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD
                                             HH:mm'}}</strong>
                                     </td>
                                 </tr>
@@ -140,7 +140,7 @@
         <div class="form-group cstm-form-group">
             <label class="control-label cstm-control-label col-md-4">{{ 'PATIENT_OVERVIEW.ADDED_ON' | translate }}:</label>
             <div class="col-md-8">
-                <danphe-date-picker [(ngModel)]="CurrentVital.VitalsTakenOn" [showTime]="true"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="CurrentVital.VitalsTakenOn" [showTime]="true"> </dsf-date-picker>
             </div>
         </div>
 

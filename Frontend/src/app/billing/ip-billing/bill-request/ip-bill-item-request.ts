@@ -14,10 +14,10 @@ import { Patient } from "../../../patients/shared/patient.model";
 import { SecurityService } from "../../../security/shared/security.service";
 import { PriceCategory } from "../../../settings-new/shared/price.category.model";
 import { ServiceDepartmentVM } from "../../../shared/common-masters.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from '../../../shared/common.functions';
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_BillingStatus, ENUM_DanpheHTTPResponses, ENUM_LabTypes, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_PriceCategory } from "../../../shared/shared-enums";
+import { ENUM_BillingStatus, ENUM_DsfHTTPResponses, ENUM_LabTypes, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_PriceCategory } from "../../../shared/shared-enums";
 import { BillingInvoiceBlService } from "../../shared/billing-invoice.bl.service";
 import { BillingMasterBlService } from "../../shared/billing-master.bl.service";
 import { BillingAdditionalServiceItem_DTO } from "../../shared/dto/bill-additional-service-item.dto";
@@ -207,8 +207,8 @@ export class IpBillItemRequest implements OnInit {
 
   GetServicePackages(): void {
     this._billingMasterBlService.GetServicePackages(this.SchemePriceCategoryObj.SchemeId, this.SchemePriceCategoryObj.PriceCategoryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length > 0) {
             this.ServicePackages = res.Results;
             this.setFocusById('search_packages');
@@ -368,8 +368,8 @@ export class IpBillItemRequest implements OnInit {
     const billingTransaction = _.cloneDeep(this.BillingTransaction);
     const billingTransactionItems = _.cloneDeep(this.BillingTransaction.BillingTransactionItems);
     this._billingBLService.ProceedToBillingTransaction(billingTransaction, billingTransactionItems, "active", "provisional", false, this.CurrentPatientVisitContext)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
           this.AllRequestedData = res.Results;
           this.loading = false;
           this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Item added successfully"]);
@@ -486,8 +486,8 @@ export class IpBillItemRequest implements OnInit {
   PostToDepartmentRequisition(): void {
     //orderstatus="active" and billingStatus="provisional" when sent from billingpage.
     this._billingBLService.PostDepartmentOrders(this.BillingTransaction.BillingTransactionItems, "active", "provisional", false, this.CurrentPatientVisitContext)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.PostToBillingTransaction();
         }
         else {
@@ -501,8 +501,8 @@ export class IpBillItemRequest implements OnInit {
   PostToBillingTransaction(): void {
     this.BillingTransaction.BillingTransactionItems.forEach(a => a.PatientVisitId = this.VisitId);
     this._billingBLService.PostBillingTransactionItems(this.BillingTransaction.BillingTransactionItems)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.AllRequestedData = res.Results;
           this.loading = false;
           this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Item added successfully"]);
@@ -531,8 +531,8 @@ export class IpBillItemRequest implements OnInit {
   //start: get: master and patient data
   LoadPatientBillingContext(patientId): void {
     this._billingBLService.GetPatientBillingContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.CurrentBillingContext = res.Results;
           this.billingService.BillingType = this.CurrentBillingContext.BillingType;
           this.BillingType = this.CurrentBillingContext.BillingType;
@@ -554,8 +554,8 @@ export class IpBillItemRequest implements OnInit {
 
   GetPatientVisitList(patientId): void {
     this._billingBLService.GetPatientVisitsProviderWise(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length) {
           this.VisitList = res.Results;
           this.AssignDoctorsToFirstBillItem();
           this.GetVisitContext(this.PatientId, this.VisitList[0].PatientVisitId);
@@ -584,8 +584,8 @@ export class IpBillItemRequest implements OnInit {
   GetVisitContext(patientId: number, visitId: number): void {
     if (patientId && visitId) {
       this._billingBLService.GetDataOfInPatient(patientId, visitId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.Current_WardBed) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.Current_WardBed) {
             this.CurrentPatientVisitContext = res.Results;
             this.RequestingDepartmentId = this.CurrentPatientVisitContext.RequestingDepartmentId;
             // this.SchemePriceCategoryObj.SchemeId = this.currPatVisitContext.SchemeId;
@@ -1056,8 +1056,8 @@ export class IpBillItemRequest implements OnInit {
   //     //* fetch from mapping table
   //     if (this.SchemePriceCategory.SchemeId && this.SchemePriceCategory.PriceCategoryId) {
   //       this.billingMasterBlService.GetServiceItems(ENUM_ServiceBillingContext.IpBilling, this.SchemePriceCategory.SchemeId, this.SchemePriceCategory.PriceCategoryId)
-  //         .subscribe((res: DanpheHTTPResponse) => {
-  //           if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+  //         .subscribe((res: DsfHTTPResponse) => {
+  //           if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
   //             this.BilcfgItemsVsPriceCategoryMap = res.Results;
   //             this.FilterItemsByPriceCategoryAndAssignPrice(this.priceCategory);
   //           }

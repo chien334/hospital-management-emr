@@ -1174,7 +1174,7 @@
     ],
     "reusable": "COMMON.ACTION"
   },
-  "{{test.DateOfBirth | DanpheDateTime:'age'}}/{{test.Gender}}": {
+  "{{test.DateOfBirth | DsfDateTime:'age'}}/{{test.Gender}}": {
     "occurrences": [
       {
         "file": "notification/sms/send-sms.html",
@@ -3222,7 +3222,7 @@
     ],
     "reusable": null
   },
-  "SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}": {
+  "SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DsfDateTime:'format':'YYYY-MM-DD'}}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-master/lab-barcode.html",
@@ -4110,7 +4110,7 @@
     ],
     "reusable": null
   },
-  "Requested On: {{\n                  test.RequestDate |\n                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}": {
+  "Requested On: {{\n                  test.RequestDate |\n                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-add-result/lab-tests-add-result.html",
@@ -4560,7 +4560,7 @@
     ],
     "reusable": null
   },
-  ": {{templateReport.Lookups.DOB | DanpheDateTime:'age'}} /{{templateReport.Lookups.Gender}}": {
+  ": {{templateReport.Lookups.DOB | DsfDateTime:'age'}} /{{templateReport.Lookups.Gender}}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
@@ -4595,7 +4595,7 @@
     ],
     "reusable": null
   },
-  ": {{templateReport.Lookups.ReceivingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}} {{templateReport.Lookups.ReceivingDate | nepaliDate }}": {
+  ": {{templateReport.Lookups.ReceivingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}} {{templateReport.Lookups.ReceivingDate | nepaliDate }}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-collect-sample/lab-empty-report-template.html",
@@ -5181,7 +5181,7 @@
     ],
     "reusable": null
   },
-  ": {{templateReport.Lookups.DOB | DanpheDateTime:'age'}}\n                                                            /{{templateReport.Lookups.Gender}}": {
+  ": {{templateReport.Lookups.DOB | DsfDateTime:'age'}}\n                                                            /{{templateReport.Lookups.Gender}}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
@@ -5229,7 +5229,7 @@
     ],
     "reusable": null
   },
-  ":\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            nepaliDate }}": {
+  ":\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            nepaliDate }}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
@@ -5281,7 +5281,7 @@
     ],
     "reusable": null
   },
-  ": {{verificationEnabled ?\n                                                            (templateReport.Lookups.VerifiedOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}": {
+  ": {{verificationEnabled ?\n                                                            (templateReport.Lookups.VerifiedOn | DsfDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
@@ -5605,7 +5605,7 @@
     ],
     "reusable": null
   },
-  "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}": {
+  "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-tests-view-report.html",
@@ -5793,7 +5793,7 @@
     ],
     "reusable": null
   },
-  ":\n                              {{templateReport.Lookups.DOB |\n                              DanpheDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}": {
+  ":\n                              {{templateReport.Lookups.DOB |\n                              DsfDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -5802,7 +5802,7 @@
     ],
     "reusable": null
   },
-  ":\n                              {{templateReport.Lookups.ReceivingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceivingDate |\n                              nepaliDate }}": {
+  ":\n                              {{templateReport.Lookups.ReceivingDate |\n                              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceivingDate |\n                              nepaliDate }}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -5846,7 +5846,7 @@
     ],
     "reusable": null
   },
-  ":{{templateReport.Lookups.ReportingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliDate }}": {
+  ":{{templateReport.Lookups.ReportingDate |\n                              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliDate }}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -5864,7 +5864,7 @@
     ],
     "reusable": null
   },
-  ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                              (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliDate) }}": {
+  ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                              (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliDate) }}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -5909,7 +5909,7 @@
     ],
     "reusable": null
   },
-  ":\n                                  {{templateReport.Lookups.DOB |\n                                  DanpheDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}": {
+  ":\n                                  {{templateReport.Lookups.DOB |\n                                  DsfDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -5936,7 +5936,7 @@
     ],
     "reusable": null
   },
-  ":\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  nepaliDate }}": {
+  ":\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  nepaliDate }}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -5954,7 +5954,7 @@
     ],
     "reusable": null
   },
-  ":{{templateReport.Lookups.ReportingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliDate }}": {
+  ":{{templateReport.Lookups.ReportingDate |\n                                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliDate }}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -5972,7 +5972,7 @@
     ],
     "reusable": null
   },
-  ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                                  (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliDate) }}": {
+  ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                                  (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliDate) }}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -6026,7 +6026,7 @@
     ],
     "reusable": null
   },
-  ":\n                                  {{templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.VerifiedOn | nepaliDate}}": {
+  ":\n                                  {{templateReport.Lookups.VerifiedOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.VerifiedOn | nepaliDate}}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -6044,7 +6044,7 @@
     ],
     "reusable": null
   },
-  "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime |\n              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}": {
+  "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime |\n              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}": {
     "occurrences": [
       {
         "file": "lab-tests/lab-final-reports/lab-report-format2/lab-tests-view-report-format2.html",
@@ -6316,7 +6316,7 @@
     ],
     "reusable": null
   },
-  "Danphe Component": {
+  "Dsf Component": {
     "occurrences": [
       {
         "file": "lab-lis/lis-mapping/lis-mapping-add.html",

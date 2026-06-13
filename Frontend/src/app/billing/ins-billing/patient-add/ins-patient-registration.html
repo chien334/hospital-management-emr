@@ -163,7 +163,7 @@
                           <label class="control-label col-md-4">{{GeneralFieldLabel.DistrictState}}<b class="color-red"> *</b><b
                                style="float:right;">:</b></label>
                           <div class="col-md-7">
-                            <input class="form-control" danphe-auto-complete
+                            <input class="form-control" dsf-auto-complete
                                    formControlName="CountrySubDivisionId"
                                    [(ngModel)]="selectedDistrict"
                                    [list-formatter]="districtListFormatter"
@@ -183,7 +183,7 @@
                           <div class="col-md-1"> </div>
                           <label class="control-label col-md-4">Address<b style="float:right;">:</b></label>
                           <div class="col-md-7">
-                            <input danphe-auto-complete class="form-control"
+                            <input dsf-auto-complete class="form-control"
                                    [ngModelOptions]="{standalone: true}"
                                    [(ngModel)]="insPatient.Address"
                                    [source]="olderAddressList"

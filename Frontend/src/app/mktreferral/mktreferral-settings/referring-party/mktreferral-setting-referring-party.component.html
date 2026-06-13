@@ -16,10 +16,10 @@
     <a class="btn green btn-success" style="margin-left:16px ;" feature="button" (click)="ShowAddNewPage()"><i class="fa fa-plus"></i> Add Referring
         Party</a>
     <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="mktreferralReferringPartyListGridColumns"
+        <dsf-grid [grid-colDefaults]="mktreferralReferringPartyListGridColumns"
                      [grid-data]="referringPartyList"
                      (grid-actions)="ReferringPartyListGridActions($event)"
-                     [show-print-button]="false"></danphe-grid>
+                     [show-print-button]="false"></dsf-grid>
     </div>
 </div>
 
@@ -108,7 +108,7 @@
                                         </label>
                                     </div>
                                     <div class="col-md-7">
-                                        <input danphe-auto-complete class="form-control"
+                                        <input dsf-auto-complete class="form-control"
                                                id="id_party_organization_name"
                                                formControlName="ReferringOrganizationName"
                                                [(ngModel)]="selectedOrganizationObj" [source]="referringOrganizationList"

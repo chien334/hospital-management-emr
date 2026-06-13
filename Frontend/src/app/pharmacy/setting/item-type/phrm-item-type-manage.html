@@ -1,8 +1,8 @@
 <input type="button" class="btn btn-primary" (click)="AddItemType()" [value]="'PHARMACY.ADD_ITEMTYPE' | translate" />
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="itemtypeGridColumns" [grid-data]="itemtypeList"
-      (grid-actions)="ItemTypeGridActions($event)"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="itemtypeGridColumns" [grid-data]="itemtypeList"
+      (grid-actions)="ItemTypeGridActions($event)"> </dsf-grid>
   </div>
 </div>
 <!--Model Box Starting Here-->
@@ -32,7 +32,7 @@
               <div class="form-group">
                 <label class="control-label col-md-5">{{ 'PHARMACY.SELECT_CATEGORY' | translate }}<sup>*</sup><b>:</b></label>
                 <div class="col-md-7">
-                  <input id="categoryname" danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
+                  <input id="categoryname" dsf-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
                     [(ngModel)]="selCategory" [source]="categoryList" [placeholder]="'PHARMACY.CATEGORY' | translate"
                     (keyup.enter)="setFocusById('description')" formControlName="CategoryId"
                     display-property-name="CategoryName" value-property-name="CategoryName"

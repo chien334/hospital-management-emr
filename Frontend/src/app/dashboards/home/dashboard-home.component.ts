@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core'
-import { DanpheChartsService } from '../../dashboards/shared/danphe-charts.service';
+import { DsfChartsService } from '../../dashboards/shared/dsf-charts.service';
 import { DLService } from "../../shared/dl.service";
 import * as moment from 'moment/moment';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ export class DashboardHomeComponent {
   public dsbStats: any = "";
   public currentDate: string = "";
   public showCountryMap:boolean=true;
-  constructor(public danpheCharts: DanpheChartsService, public dlService: DLService,public coreService: CoreService,public changeDetector: ChangeDetectorRef) {
+  constructor(public dsfCharts: DsfChartsService, public dlService: DLService,public coreService: CoreService,public changeDetector: ChangeDetectorRef) {
     this.currentDate = moment().format("DD-MM-YYYY");
     this.showCountryMap=this.coreService.showCountryMapOnLandingPage;
   }
@@ -63,10 +63,10 @@ export class DashboardHomeComponent {
           let mapAreas = dataToParse.map(d => {
             return { id: d.MapAreaCode, value: d.PatientCount };
           });
-          this.danpheCharts.Home_Map_PatientDistributionByZone("dvZoneWisePatientMap", mapAreas);
+          this.dsfCharts.Home_Map_PatientDistributionByZone("dvZoneWisePatientMap", mapAreas);
         }
 
-        //this.danpheCharts.Billing_Mix_MonthlyBilling("dvMonthlyBilling", dataToParse);
+        //this.dsfCharts.Billing_Mix_MonthlyBilling("dvMonthlyBilling", dataToParse);
         //"[{"MapAreaCode":"NP-BA","PatientCount":5},{"MapAreaCode":"NP-BH","PatientCount":2},{"MapAreaCode":"NP-DH","PatientCount":0},{"MapAreaCode":"NP-GA","PatientCount":2},{"MapAreaCode":"NP-JA","PatientCount":2018},{"MapAreaCode":"NP-KA","PatientCount":0},{"MapAreaCode":"NP-KO","PatientCount":802},{"MapAreaCode":"NP-LU","PatientCount":0},{"MapAreaCode":"NP-MA","PatientCount":401},{"MapAreaCode":"NP-ME","PatientCount":1},{"MapAreaCode":"NP-NA","PatientCount":2},{"MapAreaCode":"NP-RA","PatientCount":0},{"MapAreaCode":"NP-SA","PatientCount":0},{"MapAreaCode":"NP-SE","PatientCount":400}]"
         //console.log("----LoadPatientMap----");
         // console.log(res);
@@ -88,7 +88,7 @@ export class DashboardHomeComponent {
             return { department: d.DepartmentName, apptCount: d.AppointmentCount };
           });
 
-          this.danpheCharts.Home_Pie_DepartmentWiseAppointmentCount("dvPieChart", formattedData);
+          this.dsfCharts.Home_Pie_DepartmentWiseAppointmentCount("dvPieChart", formattedData);
         }
 
       },

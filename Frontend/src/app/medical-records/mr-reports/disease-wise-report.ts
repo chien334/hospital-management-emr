@@ -7,7 +7,7 @@ import { DLService } from '../../shared/dl.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { ReportingService } from '../../reporting/shared/reporting-service';
 import * as moment from 'moment/moment';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 
 @Component({
   templateUrl: "./disease-wise-report.html"

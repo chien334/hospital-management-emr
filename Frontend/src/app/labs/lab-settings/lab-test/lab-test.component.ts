@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import LabGridColumnSettings from '../../shared/lab-gridcol-settings';
 import { LabTest } from "../../shared/lab-test.model";
 import { LabSettingsBLService } from '../shared/lab-settings.bl.service';
@@ -42,8 +42,8 @@ export class LabTestComponent {
 
     public GetLabTestList(): void {
         this.labSettingBlService.GetAllLabTests().
-            subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.labTestList = res.Results;
                     this.OnTestFiltersChanged();//call this to show default values.
                     //this.filteredLabTestList = res.Results;
@@ -152,8 +152,8 @@ export class LabTestComponent {
     //load report template list so that we can filter using them... 
     LoadReportTemplateList(): void {
         this.labSettingBlService.GetAllLabCategory().
-            subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     if (res.Results && res.Results.length > 0) {
                         this.rptCategoryList = res.Results.map(tmp => {
                             return { TestCategoryId: tmp.TestCategoryId, TestCategoryName: tmp.TestCategoryName };
@@ -195,7 +195,7 @@ export class LabTestComponent {
         this.labSettingBlService.DeactivateLab(currTest)
             .subscribe(
                 res => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         let responseMessage = res.Results.IsActive ? "LabTest is now activated." : "LabTest is now deactivated.";
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [responseMessage]);
                         //This for send to callbackadd function to update data in list

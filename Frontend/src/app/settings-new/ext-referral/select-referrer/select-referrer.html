@@ -40,7 +40,7 @@
   </div>-->
   <div class="col-md-6 pad-0-rt">
     <input *ngIf="filteredReferrerList" class="form-control cstm-form-control" id="id_input_currentRequestedByDoctor_selectReferral"
-           danphe-auto-complete
+           dsf-auto-complete
            [ngModelOptions]="{standalone: true}" [(ngModel)]="currentRequestedByDoctor"
            [source]="filteredReferrerList"
            [list-formatter]="AssignedToDocListFormatter" [placeholder]="'SETTINGS_NEW.ENTER_NAME' | translate"

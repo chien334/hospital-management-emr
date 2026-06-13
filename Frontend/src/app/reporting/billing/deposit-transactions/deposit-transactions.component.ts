@@ -1,12 +1,12 @@
 import { Component, Directive, ViewChild } from '@angular/core';
 import { ReportingService } from "../../../reporting/shared/reporting-service";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import * as moment from 'moment/moment';
 import { DLService } from '../../../shared/dl.service';
-import { DanpheCache } from '../../../shared/danphe-cache-service-utility/cache-services';
-import { MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache } from '../../../shared/dsf-cache-service-utility/cache-services';
+import { MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { User } from '../../../security/shared/user.model';
 import { CommonFunctions } from '../../../shared/common.functions';
 import { SecurityService } from '../../../security/shared/security.service';
@@ -70,7 +70,7 @@ export class RPT_BIL_DepositTransactionComponent {
 
   }
   LoadCounter(): void {
-    this.counterlist = DanpheCache.GetData(MasterType.BillingCounter, null);
+    this.counterlist = DsfCache.GetData(MasterType.BillingCounter, null);
   }
   Success(res) {
     if (res.Status == "OK") {

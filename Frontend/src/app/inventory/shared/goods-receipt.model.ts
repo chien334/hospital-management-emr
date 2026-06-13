@@ -42,7 +42,7 @@ export class GoodsReceipt {
 
     var _formBuilder = new UntypedFormBuilder();
     this.GoodsReceiptValidator = _formBuilder.group({
-      //sanjit: 2Apr'20: GoodsReceiptDate somehow throws validation error when use with danphe-date-picker, so it is commented. 
+      //sanjit: 2Apr'20: GoodsReceiptDate somehow throws validation error when use with dsf-date-picker, so it is commented. 
       // 'GoodsReceiptDate': ['', Validators.compose([Validators.required])],
       'BillNo': ['', Validators.compose([Validators.required])],
       // 'DonationId': ['', Validators.compose([Validators.required])],

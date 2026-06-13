@@ -4,7 +4,7 @@
   }
 </style>
 
-<div class="popup-static portlet box portlet-fullscreen inv_modal danphe-refer-visit">
+<div class="popup-static portlet box portlet-fullscreen inv_modal dsf-refer-visit">
   <div class="portlet-body form">
     <!--*ngIf="showEditDoctorPage"-->
     <div class="row">
@@ -46,7 +46,7 @@
                 <td> {{ 'RADIOLOGY.REPORTING_DOCTORRADIOLOGIST_1' | translate }} </td>
                 <td>
                   <div style="width:200px;">
-                    <input danphe-auto-complete  class="search-textbox"
+                    <input dsf-auto-complete  class="search-textbox"
                            [(ngModel)]="newPerformer"
                            [list-formatter]="PerformerListFormatter"
                            [source]="doctorList"
@@ -62,7 +62,7 @@
                 <td> {{ 'RADIOLOGY.CHANGE_PRESCRIBER_DOCTOR' | translate }} </td>
                 <td>
                   <div  style="width:200px;">
-                    <input danphe-auto-complete class="search-textbox"
+                    <input dsf-auto-complete class="search-textbox"
                            [(ngModel)]="newPrescriber"
                            [list-formatter]="PerformerListFormatter"
                            [source]="doctorList"

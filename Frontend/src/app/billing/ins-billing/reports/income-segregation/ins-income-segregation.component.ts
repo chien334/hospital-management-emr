@@ -7,7 +7,7 @@ import * as moment from 'moment/moment';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { CommonFunctions } from '../../../../shared/common.functions';
 
-import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../../shared/dsf-grid/grid-emit.model";
 import { RPT_BIL_IncomeSegregationModel } from '../../../../reporting/billing/income-segregation/income-segregation.model';
 import { RPT_BIL_SalesDaybookModel } from '../../../../reporting/billing/sales-daybook/sales-daybook.model';
 import { CoreService } from '../../../../core/shared/core.service';

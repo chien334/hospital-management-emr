@@ -8,8 +8,8 @@ import { Patient } from "../../patients/shared/patient.model";
 import { PatientService } from '../../patients/shared/patient.service';
 import { SecurityService } from "../../security/shared/security.service";
 import { CallbackService } from "../../shared/callback.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
+import { DsfHTTPResponse } from "../../shared/common-models";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
 import { ENUM_AdditionalServiceItemGroups, ENUM_ServiceBillingContext } from "../../shared/shared-enums";
 import { BillingMasterBlService } from "../shared/billing-master.bl.service";
 import { BillingBLService } from '../shared/billing.bl.service';
@@ -285,7 +285,7 @@ export class BillingSearchPatientNewComponent {
     this.billingService.PatLastVisitContext = new PatientLatestVisitContext_DTO();
     //we need to set visitcontext in billing before sending to billingtransaction component, else there's a good chance that we'll not get correct record..
     this.billingBLService.GetPatientLatestVisitContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == 'OK') {
           if (res.Results && res.Results.length) {
             let visContxt: PatientLatestVisitContext_DTO = res.Results[0];//we get array with single item from server-api.

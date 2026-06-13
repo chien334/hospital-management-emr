@@ -2,8 +2,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { Country } from '../../shared/country.model';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { SettingsService } from '../../shared/settings-service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 @Component({
     selector: 'country-list',
     templateUrl: './country-list.html'
@@ -29,7 +29,7 @@ export class CountryListComponent {
     }
 
     public getCountryList() {
-		this.countryList = DanpheCache.GetData(MasterType.Country,null);
+		this.countryList = DsfCache.GetData(MasterType.Country,null);
 		
         // this.settingsBLService.GetCountries()
             // .subscribe(res => {

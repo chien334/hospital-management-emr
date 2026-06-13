@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { LabsBLService } from "../labs.bl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { SecurityService } from "../../../security/shared/security.service";
 import { CoreService } from "../../../core/shared/core.service";
 import { LabSettingsBLService } from "../../lab-settings/shared/lab-settings.bl.service";
@@ -47,7 +47,7 @@ export class LabCategorySelectComponent {
 
   public GetAllLabCategory() {
     this.labBLService.GetAllLabCategory()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allCategories = res.Results;
           this.allCategories.forEach(c => {

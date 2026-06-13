@@ -13,9 +13,9 @@ import { SecurityService } from '../../../security/shared/security.service';
 import { User } from '../../../security/shared/user.model';
 import { SettingsBLService } from '../../../settings-new/shared/settings.bl.service';
 import { NepaliCalendarService } from '../../../shared/calendar/np/nepali-calendar.service';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 @Component({
   templateUrl: "./user-collection-report.html"
 })
@@ -132,7 +132,7 @@ export class RPT_BIL_UserCollectionReportComponent {
 
   }
   LoadCounter(): void {
-    this.counterlist = DanpheCache.GetData(MasterType.BillingCounter, null);
+    this.counterlist = DsfCache.GetData(MasterType.BillingCounter, null);
   }
   Success(res) {
     if (res.Status == "OK") {
@@ -408,8 +408,8 @@ export class RPT_BIL_UserCollectionReportComponent {
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     let documentContent = "<html><head>";
-    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head>';
     documentContent += '<body onload="window.print()">' + printContents + '</body></html>'

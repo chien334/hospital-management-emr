@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import * as _ from "lodash";
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { MedicarePatient_DTO } from '../shared/dto/mecicare-patient-dto';
 import { MedicareDependentModel } from '../shared/dto/medicare-dependent.model';
 import { MedicalCareType } from '../shared/medicare-member.model';
@@ -58,8 +58,8 @@ export class MedicareRegistrationMainComponent implements OnInit {
 
   public AssignMedicareType() {
     this.medicareBlService.GetAllMedicareTypes().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicareService.medicalCareTypeList = res.Results;
           let Categories = res.Results;
 
@@ -76,8 +76,8 @@ export class MedicareRegistrationMainComponent implements OnInit {
 
   public AssignDesignationList() {
     this.medicareBlService.GetAllDesignations().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicareService.designationList = res.Results;
         }
       }
@@ -89,8 +89,8 @@ export class MedicareRegistrationMainComponent implements OnInit {
 
   public AssingDepartments() {
     this.medicareBlService.GetAllDepartment().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicareService.departmentList = res.Results;
         }
       }
@@ -99,8 +99,8 @@ export class MedicareRegistrationMainComponent implements OnInit {
 
   public AsssignMedicareInstitute() {
     this.medicareBlService.GetAllMedicareInstitutes().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicareService.medicareInstituteList = res.Results;
         }
       }
@@ -109,8 +109,8 @@ export class MedicareRegistrationMainComponent implements OnInit {
 
   public AssingnInsuranceProvider(): void {
     this.medicareBlService.GetAllInsuranceProviderList().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicareService.insuranceProvidersList = res.Results;
         }
       }
@@ -119,8 +119,8 @@ export class MedicareRegistrationMainComponent implements OnInit {
 
   public GetMedicarePatients(): void {
     this.medicareBlService.GetMedicarePatientList().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicarePatients = res.Results;
           this.medicarePatients.forEach(a => {
             a.Age = this.getAgeFromDateOfBirth(a.DateOfBirth);

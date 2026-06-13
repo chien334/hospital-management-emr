@@ -4,14 +4,14 @@ import { VoucherModel } from '../shared/voucher.model';
 import { VoucherHeadModel } from '../shared/voucherhead.model';
 import { AccountingSettingsBLService } from '../shared/accounting-settings.bl.service';
 
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { AccountingService } from '../../shared/accounting.service';
 
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
-import { MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
-import { DanpheCache } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
+import { DsfCache } from "../../../shared/dsf-cache-service-utility/cache-services";
 
 
 @Component({
@@ -33,9 +33,9 @@ export class VoucherHeadListComponent {
         this.getVoucherHeadList();
     }
     public getVoucherHeadList() {
-        if(!!this.accountingService.accCacheData.VoucherHead && this.accountingService.accCacheData.VoucherHead.length>0){//mumbai-team-june2021-danphe-accounting-cache-change
-        this.voucherHeadList = this.accountingService.accCacheData.VoucherHead;//mumbai-team-june2021-danphe-accounting-cache-change
-        this.voucherHeadList = this.voucherHeadList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+        if(!!this.accountingService.accCacheData.VoucherHead && this.accountingService.accCacheData.VoucherHead.length>0){//mumbai-team-june2021-dsf-accounting-cache-change
+        this.voucherHeadList = this.accountingService.accCacheData.VoucherHead;//mumbai-team-june2021-dsf-accounting-cache-change
+        this.voucherHeadList = this.voucherHeadList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
          this.showVoucherHeadList = true;
         }   
     }
@@ -79,7 +79,7 @@ export class VoucherHeadListComponent {
     
     public UpdateVoucherHead() {
         try {
-          DanpheCache.clearDanpheCacheByType(MasterType.VoucherHead);
+          DsfCache.clearDsfCacheByType(MasterType.VoucherHead);
           this.accountingService.RefreshAccCacheData();
         }
         catch (ex) {

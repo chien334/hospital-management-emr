@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 import { VisitService } from "../../appointments/shared/visit.service";
 import { PatientService } from "../../patients/shared/patient.service";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { RouteFromService } from "../../shared/routefrom.service";
 import { NursingBLService } from "../shared/nursing.bl.service";
 
@@ -17,13 +17,13 @@ import { PHRMPatientConsumption } from "../../pharmacy/patient-consumption/share
 import { WardSubStoreMap_DTO } from "../../pharmacy/patient-consumption/shared/ward-substores-map.dto";
 import { PharmacyBLService } from "../../pharmacy/shared/pharmacy.bl.service";
 import { SecurityService } from "../../security/shared/security.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { APIsByType } from "../../shared/search.service";
-import { ENUM_DanpheHTTPResponses } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses } from "../../shared/shared-enums";
 import { NursingDLService } from "../shared/nursing.dl.service";
 
 
@@ -611,7 +611,7 @@ export class NursingInPatientComponent {
   public allDepartments: Array<any> = [];
   public LoadDepartments() {
     this.admissionBLService.GetDepartments()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         this.allDepartments = res.Results;
 
       });
@@ -646,16 +646,16 @@ export class NursingInPatientComponent {
     }
   }
   GetConsumptionsOfPatient(PatientId: number, PatientVisitId: number, StoreIds: string) {
-    this.pharmacyBLService.GetPatientConsumptionsFromNursingWard(PatientId, PatientVisitId, StoreIds).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetPatientConsumptionsFromNursingWard(PatientId, PatientVisitId, StoreIds).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.PatientConsumptionList = res.Results;
       }
       else {
-        this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get patient consumption list']);
+        this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get patient consumption list']);
       }
     },
       err => {
-        this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get patient consumption list']);
+        this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get patient consumption list']);
       })
   }
 
@@ -669,16 +669,16 @@ export class NursingInPatientComponent {
     if (this.WardSubStoreMapList && this.WardSubStoreMapList.length) {
       let StoreIds = this.WardSubStoreMapList.map(a => a.StoreId).toString()
 
-      this.pharmacyBLService.GetPatientConsumptionsOfNursingWard(StoreIds).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      this.pharmacyBLService.GetPatientConsumptionsOfNursingWard(StoreIds).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.PatientConsumptions = res.Results;
         }
         else {
-          this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get patient consumption list']);
+          this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get patient consumption list']);
         }
       },
         err => {
-          this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ['Failed to get patient consumption list']);
+          this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ['Failed to get patient consumption list']);
         }
       );
     }
@@ -714,8 +714,8 @@ export class NursingInPatientComponent {
   }
 
   GetStoreAssociatedWithWard(WardId: number) {
-    this.pharmacyBLService.GetWardSubStoreMapDetails(WardId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetWardSubStoreMapDetails(WardId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.WardSubStoreMapList = res.Results;
       }
     })
@@ -801,35 +801,35 @@ export class NursingGridColSetting {
   GetNursingActionsByPermission(params) {
     let template = "";
     let currPatient = params.data;
-    template += `<a danphe-grid-action="consumption" class="grid-action" title="Add patient consumption">
+    template += `<a dsf-grid-action="consumption" class="grid-action" title="Add patient consumption">
                        <i class="fa fa-plus"></i> Consumption
                     </a>`;
     if (NursingGridColSetting.serv.HasPermission("nursing-ip-summary-view")) {
-      template += `<i danphe-grid-action="patient-overview" class="fa fa-tv grid-action" style="padding: 3px;" title= "overview"></i>`;
+      template += `<i dsf-grid-action="patient-overview" class="fa fa-tv grid-action" style="padding: 3px;" title= "overview"></i>`;
     }
 
     if (NursingGridColSetting.serv.HasPermission("nursing-ip-wardbilling-view")) {
-      template += ` <a danphe-grid-action="orders" class="grid-action" title="Click to add Orders">
+      template += ` <a dsf-grid-action="orders" class="grid-action" title="Click to add Orders">
                         Ward Request
                     </a>`;
     }
 
     if (NursingGridColSetting.serv.HasPermission("nursing-transfer-view")) {
-      template += ` <a danphe-grid-action="transfer" class="grid-action" title="Click to transfer">
+      template += ` <a dsf-grid-action="transfer" class="grid-action" title="Click to transfer">
                         Transfer
                     </a>`;
     }
 
-    template += `<a danphe-grid-action="vitals" class="grid-action" title="Add patient vitals">
+    template += `<a dsf-grid-action="vitals" class="grid-action" title="Add patient vitals">
                         Vitals
                     </a>`;
     //for favourite patients
     if (currPatient.IsFavorite) {
       template +=
-        '<a danphe-grid-action="removefavorite" class="fa fa-heart" style="font-size:17px;top:-1px;padding: 5px;" title="remove favorite" ></a>';
+        '<a dsf-grid-action="removefavorite" class="fa fa-heart" style="font-size:17px;top:-1px;padding: 5px;" title="remove favorite" ></a>';
     } else {
       template +=
-        '<a danphe-grid-action="addfavorite" class="fa fa-heart-o" style="font-size:17px;top:-1px;padding: 5px" title="add favorite"></a>';
+        '<a dsf-grid-action="addfavorite" class="fa fa-heart-o" style="font-size:17px;top:-1px;padding: 5px" title="add favorite"></a>';
     }
 
     if (NursingGridColSetting.isReceiveEnabled) {
@@ -845,7 +845,7 @@ export class NursingGridColSetting {
           (params.data.BedInformation.Action == "admission" &&
             params.data.BedInformation.ReceivedBy == null)
         ) {
-          template = ` <a danphe-grid-action="receive" class="animated-btn blinking-btn-warning grid-action" title="Receive Transferred Patient">
+          template = ` <a dsf-grid-action="receive" class="animated-btn blinking-btn-warning grid-action" title="Receive Transferred Patient">
                         Receive
                     </a>`;
         }

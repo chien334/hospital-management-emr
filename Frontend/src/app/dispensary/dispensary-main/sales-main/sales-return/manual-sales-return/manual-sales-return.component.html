@@ -35,14 +35,14 @@
                 <div class="col-md-8">
                   <div class="div-relative autocomplete-item">
                     <input *ngIf="!isCurrentDispensaryInsurance; else normalPatientSearch" id="SearchPatientBox" autocomplete="off"
-                           danphe-auto-complete class="form-control searchtbx" formControlName="Patient" [(ngModel)]="searchedPatient"
+                           dsf-auto-complete class="form-control searchtbx" formControlName="Patient" [(ngModel)]="searchedPatient"
                            [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'" (ngModelChange)="onPatientChanged()"
                            (focusout)="onPatientChanged()" [list-formatter]="patientListFormatter" placeholder="-- Search Patient --"
                            display-property-name="ShortName" value-property-name=null onClick="this.select();" max-num-list="500" min-chars="3"
                            match-formatted="true" [grid-sort]="'ShortName'" (keyup.enter)="setFocusById('RefenenceInvoiceNo')">
                     <ng-template #normalPatientSearch>
                       <input *ngIf="isCurrentDispensaryInsurance; else normalPatientSearch" id="SearchPatientBox" autocomplete="off"
-                             danphe-auto-complete class="form-control searchtbx" formControlName="Patient" [(ngModel)]="searchedPatient"
+                             dsf-auto-complete class="form-control searchtbx" formControlName="Patient" [(ngModel)]="searchedPatient"
                              [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'" (ngModelChange)="onPatientChanged()"
                              (focusout)="onPatientChanged()" [list-formatter]="insPatientListFormatter" placeholder="-- Search Patient --"
                              display-property-name="ShortName" value-property-name=null onClick="this.select();" max-num-list="500" min-chars="3"
@@ -82,8 +82,8 @@
               <div class="row">
                 <label for="ReferenceInvoiceDate" class="col-md-7">Reference Invoice Date <sup class="color--red">*</sup>:</label>
                 <div class="col-md-5">
-                  <danphe-date-picker [CalendarTypes]="'np,en'" id="ReferenceInvoiceDate" [(ngModel)]="salesReturn.ReferenceInvoiceDate"
-                                      [ngModelOptions]="{standalone:true}" (keyup.enter)="setFocusById('drugName0')"> </danphe-date-picker>
+                  <dsf-date-picker [CalendarTypes]="'np,en'" id="ReferenceInvoiceDate" [(ngModel)]="salesReturn.ReferenceInvoiceDate"
+                                      [ngModelOptions]="{standalone:true}" (keyup.enter)="setFocusById('drugName0')"> </dsf-date-picker>
                 </div>
               </div>
             </div>
@@ -150,7 +150,7 @@
               <td> <a (click)="deleteRow(i)"><i class="btn btn-danger fa fa-times btn-rotate-animated"></i></a> </td>
               <td class="autocomplete-item">
                 <form [formGroup]="row.InvoiceItemsReturnValidator">
-                  <input id="drugName{{i}}" autocomplete="off" danphe-auto-complete class="form-control" [(ngModel)]="row.drugReturnItemObj"
+                  <input id="drugName{{i}}" autocomplete="off" dsf-auto-complete class="form-control" [(ngModel)]="row.drugReturnItemObj"
                          formControlName="DrugName" (valueChanged)="onDrugNameChanged(i)" (focusout)="onDrugNameChanged(i)" [source]="itemList"
                          [list-formatter]="phrmItemListFormatter" placeholder="-- Search Drug --" display-property-name="ItemName"
                          value-property-name=null onClick="this.select();" max-num-list="20" min-chars="1" match-formatted="true"
@@ -193,8 +193,8 @@
               </td>
               <td>
                 <ng-container *ngIf="row.allowNewBatch;else showSelectedExpiry">
-                  <danphe-date-picker [CalendarTypes]="'en'" id="expiryDate{{i}}" [(ngModel)]="row.ExpiryDate" [allow-future-date]="true"
-                                      (keyup.enter)="setFocusById('returnedQty'+i)"> </danphe-date-picker>
+                  <dsf-date-picker [CalendarTypes]="'en'" id="expiryDate{{i}}" [(ngModel)]="row.ExpiryDate" [allow-future-date]="true"
+                                      (keyup.enter)="setFocusById('returnedQty'+i)"> </dsf-date-picker>
                 </ng-container>
                 <ng-template #showSelectedExpiry>
                   {{row.ExpiryDate | date:'yyyy-MM-dd'}}

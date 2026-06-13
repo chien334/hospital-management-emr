@@ -158,7 +158,7 @@
             <div class="form-group">
               <label class="control-label col-md-5">Requesting Department<sup>*</sup>:</label>
               <div class="col-md-6">
-                <input id="RequestingDeptId" class="form-control" danphe-auto-complete
+                <input id="RequestingDeptId" class="form-control" dsf-auto-complete
                        formControlName="RequestingDeptId" [(ngModel)]="selectedDept" [list-formatter]="myListFormatterDept"
                        [source]="deptList" placeholder="Enter Department Name" display-property-name="Value" [min-chars]="1"
                        value-property-name=null (focusout)="FilterDoctorList()" onclick="this.select();" max-num-list="10"
@@ -179,7 +179,7 @@
               <label class="control-label col-md-5">Admitting Doctor<sup
                      *ngIf="AdmittingDoctorMandatory">*</sup>:</label>
               <div class="col-md-6">
-                <input id="AdmittingDoctorId" class="form-control" danphe-auto-complete [min-chars]="1"
+                <input id="AdmittingDoctorId" class="form-control" dsf-auto-complete [min-chars]="1"
                        formControlName="AdmittingDoctorId" [(ngModel)]="selectedPerformer" [list-formatter]="myListFormatter"
                        [source]="filteredDocList" placeholder="Enter Doctor Name" display-property-name="Value"
                        value-property-name=null (valueChanged)="DoctorDdlOnChange()" (focusout)="CheckForStrInDoctor()"
@@ -303,7 +303,7 @@
                       </tr>
                       <tr *ngFor="let row of AdditionBillItemList; let idx = index;">
                         <td style="padding:5px; font-size: 12px; font-weight: 600; width: 40%">
-                          <input danphe-auto-complete [(ngModel)]="selectedBillingRowData[idx]" autocomplete="false"
+                          <input dsf-auto-complete [(ngModel)]="selectedBillingRowData[idx]" autocomplete="false"
                                  [list-formatter]="ItemNameListFormatter" class="form-control"
                                  [source]="notAutoAddedBillingItem" value-property-name=null
                                  placeholder="Search Additional Item Name" display-property-name="ItemName"
@@ -395,14 +395,14 @@
                 <label class="control-label col-md-4">Admission Date:</label>
                 <div class="col-md-7">
                   <div class="flx">
-                    <danphe-date-picker formControlName="AdmissionDate" [(ngModel)]="CurrentAdmission.AdmissionDate"
+                    <dsf-date-picker formControlName="AdmissionDate" [(ngModel)]="CurrentAdmission.AdmissionDate"
                                         [showTime]="true" [CalendarTypes]="'en,np'">
-                    </danphe-date-picker>
+                    </dsf-date-picker>
                     <span class="inl-blk">
                       <i style="color: #0773bc;font-style: normal;font-size: 10px;line-height: 28px;
                 vertical-align: -webkit-baseline-middle;padding: 0 10px;
                 border: 1px  solid #0773bc;text-transform: uppercase;display: block;"> {{CurrentAdmission.AdmissionDate
-                        | DanpheDateTime:'timename'}} </i>
+                        | DsfDateTime:'timename'}} </i>
                     </span>
                   </div>
                   <div class="flx">
@@ -539,7 +539,7 @@
       <div class="col-md-12" style="margin-bottom: 50px;">
         <!-- <button id="SaveAdmission" type="button" class="btn green btn-success margin-7-hr"
                 (click)="loading=true;AddAdmission()" [disabled]="loading">Save Admission</button> -->
-        <input DanpheConfirmationDialog
+        <input DsfConfirmationDialog
                id="SaveAdmission"
                type="submit"
                [title]="confirmationTitle"

@@ -1,8 +1,8 @@
 import { Component, Directive, ViewChild } from '@angular/core';
 import { SystemAdminBLService } from '../shared/system-admin.bl.service';
 import { DatabaseLogModel } from '../shared/database-log.model';
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import * as moment from 'moment/moment';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { DLService } from "../../shared/dl.service";

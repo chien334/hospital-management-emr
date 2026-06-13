@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import * as moment from "moment";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { MarketingReferralInvoice_DTO } from "../../Shared/DTOs/referral-invoice.dto";
 import { MarketingReferralBLService } from "../../Shared/marketingreferral.bl.service";
 import { MarketingReferralService } from "../../Shared/marketingreferral.service";
@@ -86,8 +86,8 @@ export class MarketingReferralTransactionComponent implements OnInit {
     this.mktReferralBLService
       .GetInvoiceList(this.fromDate, this.toDate)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.referralInvoiceList = res.Results;
             this.loading = false;
           } else {

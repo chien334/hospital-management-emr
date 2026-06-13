@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 import * as moment from "moment";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { ReferralParty_DTO } from "../../Shared/DTOs/referral-party.dto";
 import { ReferralReport_DTO } from "../../Shared/DTOs/referral-report.dto";
 import { MarketingReferralBLService } from "../../Shared/marketingreferral.bl.service";
@@ -97,8 +97,8 @@ export class MarketingReferralDetailReportsComponent implements OnInit {
   }
   GetReferringParty() {
     this.mktReferralBLService.GetReferringParty().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results && res.Results.length > 0) {
             this.referringPartyList = res.Results;
           } else {
@@ -110,7 +110,7 @@ export class MarketingReferralDetailReportsComponent implements OnInit {
           ]);
         }
       },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [
           `Error: ${err.ErrorMessage}`,
         ]);
@@ -121,8 +121,8 @@ export class MarketingReferralDetailReportsComponent implements OnInit {
     this.mktReferralBLService
       .GetMarketingReferralDetailReport(this.fromDate, this.toDate, ReferringPartyId)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.marketingReferralReportList = res.Results;
             this.loading = false;
           } else {
@@ -138,7 +138,7 @@ export class MarketingReferralDetailReportsComponent implements OnInit {
         }
       );
   }
-  logError(err: DanpheHTTPResponse) {
+  logError(err: DsfHTTPResponse) {
     throw new Error("Something went wrong, please debug for more information.");
   }
   OnDateRangeChange($event) {

@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from '@angular/router';
 
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import { Requisition } from "../../../inventory/shared/requisition.model";
 import { InventoryBLService } from "../../../inventory/shared/inventory.bl.service"
@@ -10,7 +10,7 @@ import { InventoryService } from '../../../inventory/shared/inventory.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
 import { SecurityService } from "../../../security/shared/security.service";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import * as moment from "moment";
 import { WardSupplyBLService } from "../../shared/wardsupply.bl.service";
 import { CoreService } from "../../../core/shared/core.service";

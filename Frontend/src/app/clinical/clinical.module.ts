@@ -35,7 +35,7 @@ import { HomeMedicationListComponent } from "../clinical/medications/home-medica
 
 import { SharedModule } from "../shared/shared.module";
 //import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
-import { DanpheAutoCompleteModule } from "../shared/danphe-autocomplete/danphe-auto-complete.module";
+import { DsfAutoCompleteModule } from "../shared/dsf-autocomplete/dsf-auto-complete.module";
 //import { AssessmentPlanComponent } from './notes/assessment-plan.component';
 //import { SelectOrderComponent } from './notes/orderSelect.component';
 import { OrderService } from "../orders/shared/order.service";
@@ -83,7 +83,7 @@ import { ProblemsBLService } from "./shared/problems.bl.service";
         FormsModule,
         SharedModule,
         //Ng2AutoCompleteModule
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         LightboxModule,
         ClinicalSharedModule], providers: [
         HistoryBLService,

@@ -50,7 +50,7 @@ Các biến môi trường sau có thể được cấu hình cho tiến trình 
 | Biến môi trường | Giá trị mặc định | Mô tả |
 | :--- | :--- | :--- |
 | `PG_CONTAINER` | `pg-emr` | Tên Docker container chạy PostgreSQL |
-| `PG_DB` | `danphe_emr` | Tên Database dùng để thử biên dịch |
+| `PG_DB` | `dsf_emr` | Tên Database dùng để thử biên dịch |
 | `PG_USER` | `postgres` | Username kết nối PostgreSQL |
 | `RTK_PATH` | `/Users/macbbook/.local/bin/rtk` | Đường dẫn đến công cụ `rtk` (nếu không có sẽ gọi `docker` trực tiếp) |
 | `MSSQL_DIR` | (Xem converter.py) | Thư mục chứa các tệp `.sql` của MSSQL (cho bulk migration) |
@@ -79,7 +79,7 @@ Thêm cấu hình vào tệp `mcp_config.json` (thường nằm ở `~/.codeium/
       "args": ["/Users/macbbook/SourceCodes/hospital-management-emr/Database/sqlserver-to-postgresql-mcp/src/main.py"],
       "env": {
         "PG_CONTAINER": "pg-emr",
-        "PG_DB": "danphe_emr",
+        "PG_DB": "dsf_emr",
         "PG_USER": "postgres"
       }
     }

@@ -68,7 +68,7 @@
                     <b>{{question.SelectedAnswer}}</b>
                 </span>
                 <span *ngIf="question.Type=='table'">
-                    <danphe-json-table ngDefaultControl [data]="question.Options[0].Text" [(ngModel)]="question.SelectedAnswer"></danphe-json-table>
+                    <dsf-json-table ngDefaultControl [data]="question.Options[0].Text" [(ngModel)]="question.SelectedAnswer"></dsf-json-table>
                 </span>
 
             </div>
@@ -115,7 +115,7 @@
                     </select>
                 </span>
                 <span *ngIf="question.Type =='search-tbx'" style="display: inline-block;">
-                    <input danphe-auto-complete [(ngModel)]="question.SelectedAnswer"
+                    <input dsf-auto-complete [(ngModel)]="question.SelectedAnswer"
                            [source]="defaultDataSource"
                            placeholder="enter text"
                            value-property-name=null
@@ -125,7 +125,7 @@
                            style="width: 300px;" />
                 </span>
                 <span *ngIf="question.Type=='table'">
-                    <danphe-json-table ngDefaultControl [data]="question.Options[0].Text" [(ngModel)]="question.SelectedAnswer"></danphe-json-table>
+                    <dsf-json-table ngDefaultControl [data]="question.Options[0].Text" [(ngModel)]="question.SelectedAnswer"></dsf-json-table>
                 </span>
 
             </div>

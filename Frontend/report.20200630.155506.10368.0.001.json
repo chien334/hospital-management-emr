@@ -8,7 +8,7 @@
     "dumpEventTime": "2020-06-30T15:55:07Z",
     "dumpEventTimeStamp": "1593511807156",
     "processId": 10368,
-    "cwd": "C:\\Danphe\\danpheemr\\Code\\Websites\\DanpheEMR\\wwwroot\\DanpheApp",
+    "cwd": "C:\\Dsf\\dsfemr\\Code\\Websites\\DsfEMR\\wwwroot\\DsfApp",
     "commandLine": [
       "node",
       "C:\\Users\\Dell\\AppData\\Roaming\\npm\\\\node_modules\\@angular\\cli\\bin\\ng",
@@ -283,7 +283,7 @@
   "libuv": [
   ],
   "environmentVariables": {
-    "=C:": "C:\\Danphe\\danpheemr\\Code\\Websites\\DanpheEMR\\wwwroot\\DanpheApp",
+    "=C:": "C:\\Dsf\\dsfemr\\Code\\Websites\\DsfEMR\\wwwroot\\DsfApp",
     "ALLUSERSPROFILE": "C:\\ProgramData",
     "APPDATA": "C:\\Users\\Dell\\AppData\\Roaming",
     "BROWSERSLIST_IGNORE_OLD_DATA": "1",

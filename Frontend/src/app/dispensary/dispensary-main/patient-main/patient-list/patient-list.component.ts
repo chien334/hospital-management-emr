@@ -8,7 +8,7 @@ import { PharmacyBLService } from '../../../../pharmacy/shared/pharmacy.bl.servi
 import { SecurityService } from '../../../../security/shared/security.service';
 import { GeneralFieldLabels } from '../../../../shared/DTOs/general-field-label.dto';
 import { CallbackService } from '../../../../shared/callback.service';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../shared/routefrom.service';
 import { APIsByType } from '../../../../shared/search.service';

@@ -57,7 +57,7 @@
                         </td>
                         <td>
                             <div *ngIf="doctorList && doctorList.length>0">
-                                <input class="form-control cstm-form-control" danphe-auto-complete
+                                <input class="form-control cstm-form-control" dsf-auto-complete
                                        [(ngModel)]="requestingDoctor"
                                        [source]="docDDLSource"
                                        [list-formatter]="AssignedToDocListFormatter"
@@ -76,7 +76,7 @@
                         <td>Referrer:</td>
                         <td>
                             <div *ngIf="doctorList && doctorList.length>0">
-                                <input class="form-control cstm-form-control" danphe-auto-complete
+                                <input class="form-control cstm-form-control" dsf-auto-complete
                                        [(ngModel)]="referrer"
                                        [source]="referrerList"
                                        [list-formatter]="ReferrerListFormatter"

@@ -16,16 +16,16 @@ import * as moment from "moment/moment";
 import { SecurityService } from "../../security/shared/security.service";
 import { BillingBLService } from "../../billing/shared/billing.bl.service";
 import { BillingService } from "../../billing/shared/billing.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { PatientBillingContextVM } from "../../billing/shared/patient-billing-context-vm";
 import { LabsBLService } from "../../labs/shared/labs.bl.service";
 import { ServiceDepartmentVM } from "../../shared/common-masters.model";
 import { CoreService } from "../../core/shared/core.service";
 import { CurrentVisitContextVM } from "../../appointments/shared/current-visit-context.model";
 import {
-  DanpheCache,
+  DsfCache,
   MasterType,
-} from "../../shared/danphe-cache-service-utility/cache-services";
+} from "../../shared/dsf-cache-service-utility/cache-services";
 import {
   ENUM_BillingStatus,
   ENUM_BillingType,
@@ -120,7 +120,7 @@ export class NursingIpBillItemRequestComponent {
 
   GetBillingCounterForNursing() {
     let allBilCntrs: Array<any>;
-    allBilCntrs = DanpheCache.GetData(MasterType.BillingCounter, null);
+    allBilCntrs = DsfCache.GetData(MasterType.BillingCounter, null);
     let nursingCounter = allBilCntrs.filter(
       (cnt) => cnt.CounterType == "NURSING"
     );
@@ -130,7 +130,7 @@ export class NursingIpBillItemRequestComponent {
       ).CounterId;
     }
     // this.billingBLService.GetAllBillingCounters()
-    //     .subscribe((res: DanpheHTTPResponse) => {
+    //     .subscribe((res: DsfHTTPResponse) => {
     //         if (res.Status == "OK") {
     //             let allBilCntrs: Array<any> = res.Results;
     //             let nursingCounter = allBilCntrs.find(cnt => cnt.CounterType == "NURSING");
@@ -339,7 +339,7 @@ export class NursingIpBillItemRequestComponent {
   public LoadPatientBillingContext(patientId) {
     this.billingBLService
       .GetPatientBillingContext(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.currBillingContext = res.Results;
           this.billingService.BillingType = "inpatient";

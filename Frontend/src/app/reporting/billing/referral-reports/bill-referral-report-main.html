@@ -13,7 +13,7 @@
             <div class="form-group">
               <label class="control-label col-md-4">From Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
               <div class="col-md-8">
-                <danphe-date-picker [(ngModel)]="curRefReportMain.fromDate" ngDefaultControl [CalendarTypes]="calType" formControlName="fromDate"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="curRefReportMain.fromDate" ngDefaultControl [CalendarTypes]="calType" formControlName="fromDate"> </dsf-date-picker>
                 <span class="color-red font-sm" *ngIf="curRefReportMain.IsDirty('fromDate')" [hidden]="curRefReportMain.IsValidCheck('fromDate','required')"> From Date is required</span><br />
                 <span class="color-red font-sm" *ngIf="curRefReportMain.IsDirty('fromDate')" [hidden]="curRefReportMain.IsValidCheck('fromDate','wrongDate')"> Enter Valid Date</span> </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="form-group">
               <label class="control-label col-md-4">To Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
               <div class="col-md-8">
-                <danphe-date-picker [(ngModel)]="curRefReportMain.toDate" ngDefaultControl [CalendarTypes]="calType" formControlName="toDate"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="curRefReportMain.toDate" ngDefaultControl [CalendarTypes]="calType" formControlName="toDate"> </dsf-date-picker>
                 <span class="color-red font-sm" *ngIf="curRefReportMain.IsDirty('toDate')" [hidden]="curRefReportMain.IsValidCheck('toDate','required')"> To Date is required</span><br />
                 <span class="color-red font-sm" *ngIf="curRefReportMain.IsDirty('toDate')" [hidden]="curRefReportMain.IsValidCheck('toDate','wrongDate')"> Can't select future date</span> </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="form-group">
               <label class="control-label col-md-4">Select Prescriber<b style="float:right;">:</b></label>
               <div class="col-md-6">
-                <input class="form-control" danphe-auto-complete
+                <input class="form-control" dsf-auto-complete
                        [(ngModel)]="selReferrer"
                        [ngModelOptions]="{standalone: true}"
                        [list-formatter]="myListFormatter"

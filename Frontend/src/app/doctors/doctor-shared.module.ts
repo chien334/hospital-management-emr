@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
-import { DanpheAutoCompleteModule } from "../shared/danphe-autocomplete";
+import { DsfAutoCompleteModule } from "../shared/dsf-autocomplete";
 import { PatientOverviewComponent } from "./patient/patient-overview.component";
 import { PatientVisitHistoryComponent } from "./patient/patient-visit-history.component";
 import { OPDVisitSummaryComponent } from "./opd/opd-visit-summary.component";
@@ -24,7 +24,7 @@ import { ProblemsBLService } from "../clinical/shared/problems.bl.service";
     CommonModule,
     RouterModule,
     SharedModule,
-    DanpheAutoCompleteModule,
+    DsfAutoCompleteModule,
     DynTemplateModule,
   ],
   declarations: [

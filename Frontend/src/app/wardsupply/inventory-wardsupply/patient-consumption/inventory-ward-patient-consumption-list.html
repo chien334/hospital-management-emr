@@ -6,8 +6,8 @@
 <div>
   <div class="row" *ngIf="showComsumptionList">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="consumptionListDetailsGridColumns" [grid-data]="consumptionListDetails" (grid-actions)="ConsumptionListGridAction($event)" [rangeType]="dateRange" (onDateChange)="onDateChange($event)" [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-      </danphe-grid>
+      <dsf-grid [grid-colDefaults]="consumptionListDetailsGridColumns" [grid-data]="consumptionListDetails" (grid-actions)="ConsumptionListGridAction($event)" [rangeType]="dateRange" (onDateChange)="onDateChange($event)" [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings">
+      </dsf-grid>
     </div>
   </div>
 </div>

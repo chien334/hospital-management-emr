@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component } from "@angular/core";
 import { PatientService } from '../../../patients/shared/patient.service';
 import { LabsBLService } from '../../shared/labs.bl.service';
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import LabGridColumnSettings from '../../shared/lab-gridcol-settings';
 
 import * as moment from 'moment/moment';
@@ -16,7 +16,7 @@ import { LabSticker } from '../../shared/lab-sticker.model';
 import { LabPendingResultVM } from "../../shared/lab-view.models";
 
 @Component({
-  selector: "danphe-lab-pending-results",
+  selector: "dsf-lab-pending-results",
   templateUrl: "./lab-tests-pending-results.html",
   host: { '(window:keydown)': 'hotkeys($event)' }
 })

@@ -1,8 +1,8 @@
 ﻿import { Component } from '@angular/core';
 import { Chart } from 'chart.js';
 import { PatientsBLService } from '../../patients/shared/patients.bl.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { ENUM_DanpheHTTPResponseText } from '../../shared/shared-enums';
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { ENUM_DsfHTTPResponseText } from '../../shared/shared-enums';
 
 
 class DateRange {
@@ -325,8 +325,8 @@ export class PatientsDashboardComponent {
         return dateRange;
     }
     GetPatientDashboardCardSummaryCalculation(FromDate: string, ToDate: string) {
-        this.patientBLService.GetPatientDashboardCardSummaryCalculation(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.patientBLService.GetPatientDashboardCardSummaryCalculation(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.patientData = res.Results.Patients;
                 this.doctors = res.Results.Doctors;
                 this.Appointments = res.Results.Appointments;
@@ -348,8 +348,8 @@ export class PatientsDashboardComponent {
         })
     }
     GetPatientCountByDay(FromDate: string, ToDate: string) {
-        this.patientBLService.GetPatientCountByDay(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.patientBLService.GetPatientCountByDay(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.PatientCountByDay = res.Results;
                 let Label = res.Results.map(a => a.Label)
                 this.PatientData.Label = this.removeDuplicates(Label);
@@ -365,8 +365,8 @@ export class PatientsDashboardComponent {
             index) => arr.indexOf(item) === index);
     }
     GetAverageTreatmentCostbyAgeGroup(FromDate: string, ToDate: string) {
-        this.patientBLService.GetAverageTreatmentCostbyAgeGroup(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.patientBLService.GetAverageTreatmentCostbyAgeGroup(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.AverageTreatmentCostbyAgeGroup = res.Results;
                 this.males = this.AverageTreatmentCostbyAgeGroup.filter(x => x.Gender === 'Male').map(a => a.Total)
                 this.females = this.AverageTreatmentCostbyAgeGroup.filter(x => x.Gender === 'Female').map(a => a.Total)
@@ -377,8 +377,8 @@ export class PatientsDashboardComponent {
         })
     }
     GetDepartmentWiseAppointment(FromDate: string, ToDate: string) {
-        this.patientBLService.GetDepartmentWiseAppointment(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.patientBLService.GetDepartmentWiseAppointment(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.DepartmentWiseAppointment = res.Results;
                 this.DatasetAppointment = this.DepartmentWiseAppointment.map(row => row.AppointmentCount);
                 this.LabelAppointments = this.DepartmentWiseAppointment.map(row => row.DepartmentName)
@@ -389,8 +389,8 @@ export class PatientsDashboardComponent {
         })
     }
     GetPAtVisitByMembership(FromDate: string, ToDate: string) {
-        this.patientBLService.GetPAtVisitByMembership(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.patientBLService.GetPAtVisitByMembership(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.PatientVisitByMembership = res.Results;
                 const maximum = Math.max(...this.PatientVisitByMembership.map(o => o.Count), 0);
                 for (let i = 0; i < this.PatientVisitByMembership.length; i++) {
@@ -402,8 +402,8 @@ export class PatientsDashboardComponent {
         })
     }
     GetPatientDistributionBasedOnRank(FromDate: string, ToDate: string, DepartmentId: number) {
-        this.patientBLService.GetPatientDistributionBasedOnRank(FromDate, ToDate, DepartmentId).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.patientBLService.GetPatientDistributionBasedOnRank(FromDate, ToDate, DepartmentId).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.PatientDistributionBasedOnRank = res.Results;
                 this.FilteredPatientDistributionBasedOnRank = res.Results;
                 this.LabelPatient = res.Results.map(a => a.Rank);
@@ -417,8 +417,8 @@ export class PatientsDashboardComponent {
         })
     }
     GetHospitalManagement(FromDate: string, ToDate: string) {
-        this.patientBLService.GetHospitalManagement(FromDate, ToDate).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.patientBLService.GetHospitalManagement(FromDate, ToDate).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.HospitalManagement = [];
                 this.HospitalManagement = res.Results;
                 const max = Math.max(...this.HospitalManagement.map(o => o.Count), 0);
@@ -445,8 +445,8 @@ export class PatientsDashboardComponent {
 
     GetDepartments() {
         this.patientBLService.GetDepartment()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponseText.OK) {
                     this.DepartmentList = res.Results;
                     this.DepartmentList.unshift({ DepartmentId: null, DepartmentName: 'All' })
                 }

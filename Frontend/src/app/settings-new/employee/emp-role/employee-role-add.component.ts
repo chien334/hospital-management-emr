@@ -5,7 +5,7 @@ import { EmployeeRole } from "../../../employee/shared/employee-role.model";
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
-import { ENUM_DanpheHTTPResponses, ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 @Component({
     selector: "employee-role-add",
     templateUrl: "./employee-role-add.html",
@@ -102,7 +102,7 @@ export class EmployeeRoleAddComponent {
         }
     }
     CallBackAddUpdate(res) {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.showMessageBox(ENUM_MessageBox_Status.Success, "Successfully added/updated EmployeeRole.");
             this.callbackAdd.emit({ employee: res.Results });
         }

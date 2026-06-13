@@ -20,7 +20,7 @@ export default class VerificationGridColumns {
       headerName: "Action",
       field: "",
       width: 120,
-      template: `<a danphe-grid-action="view" class="grid-action">
+      template: `<a dsf-grid-action="view" class="grid-action">
             View
          </a>`
     }
@@ -34,7 +34,7 @@ export default class VerificationGridColumns {
     { headerName: "Status", field: "VerificationStatus", width: 40 },
     { headerName: "Verification Status", width: 100, cellRenderer: VerificationGridColumns.VerificationStatusRenderer },
     { headerName: "PO Created", field: "IsPOCreated", width: 60, cellRenderer: VerificationGridColumns.YesNoViewerforPurchaseRequest },
-    { headerName: "Action", field: "", width: 120, template: `<a danphe-grid-action="view" class="grid-action">View</a>` }
+    { headerName: "Action", field: "", width: 120, template: `<a dsf-grid-action="view" class="grid-action">View</a>` }
   ]
   static PurchaseOrderList = [
     { headerName: "PO No", field: "PONumber", width: 110 },
@@ -57,7 +57,7 @@ export default class VerificationGridColumns {
       headerName: "Action",
       field: "",
       width: 120,
-      template: `<a danphe-grid-action="verify" class="grid-action">
+      template: `<a dsf-grid-action="verify" class="grid-action">
             Verify
          </a>`
     }
@@ -83,7 +83,7 @@ export default class VerificationGridColumns {
       headerName: "Action",
       field: "",
       width: 120,
-      template: `<a danphe-grid-action="verify" class="grid-action">
+      template: `<a dsf-grid-action="verify" class="grid-action">
             Verify
          </a>`
     }

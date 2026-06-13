@@ -11,7 +11,7 @@ import { SystemAdminDLService } from './shared/system-admin.dl.service';
 import { SystemAdminMainComponent } from "./system-admin-main.component";
 import { SystemAdminRoutingModule } from "./system-admin-routing.module";
 //import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { SharedModule } from "../shared/shared.module";
 import { AuditTrailComponent } from './audit-trail/audit-trail.component';
 import { AuditTrailOlderComponent } from './audit-trail/main-older-audit-trail';
@@ -33,7 +33,7 @@ import { PHRMSalesBookComponent } from './sales-book/phrm-sales-book-report.comp
         ReactiveFormsModule,
         FormsModule,
         // Ng2AutoCompleteModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SharedModule], providers: [
         SystemAdminBLService,
         SystemAdminDLService,

@@ -5,7 +5,7 @@ import { EmergencyPatientModel } from '../shared/emergency-patient.model';
 import { CommonFunctions } from '../../shared/common.functions';
 import { EmergencyBLService } from '../shared/emergency.bl.service';
 import { EmergencyDLService } from '../shared/emergency.dl.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import * as moment from 'moment/moment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BillingBLService } from '../../billing/shared/billing.bl.service';

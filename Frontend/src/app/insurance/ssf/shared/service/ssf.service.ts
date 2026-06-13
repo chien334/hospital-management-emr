@@ -3,8 +3,8 @@ import * as moment from "moment";
 import { Subject } from "rxjs-compat";
 import { VisitBLService } from "../../../../appointments/shared/visit.bl.service";
 import { PatientScheme } from "../../../../billing/shared/patient-map-scheme";
-import { DanpheHTTPResponse } from "../../../../shared/common-models";
-import { ENUM_DanpheHTTPResponses, ENUM_DateFormats } from "../../../../shared/shared-enums";
+import { DsfHTTPResponse } from "../../../../shared/common-models";
+import { ENUM_DsfHTTPResponses, ENUM_DateFormats } from "../../../../shared/shared-enums";
 import { SSFEligibility, SsfEmployerCompany } from "../SSF-Models";
 import { SSFPatientDetailFromSsfServer_DTO } from "../ssf-patient-detail.dto";
 
@@ -24,10 +24,10 @@ export class SsfService {
     if (policyNo !== null) {
       const currentDate = moment().format(ENUM_DateFormats.Year_Month_Day); //* "YYYY-MM-DD", Do not change this unless needed. Krishna, 15thMarch'23
       let ssfData = new SsfDataStatus_DTO();
-      this.visitBlService.getSSFPatientDetailAndCheckSSFEligibilityFromSsfServer(policyNo, currentDate).subscribe((res: Array<DanpheHTTPResponse>) => {
+      this.visitBlService.getSSFPatientDetailAndCheckSSFEligibilityFromSsfServer(policyNo, currentDate).subscribe((res: Array<DsfHTTPResponse>) => {
         if (res) {
           console.log(res);
-          //* res will have an Array of DanpheHttpResponse where 0 index is for SSF Patient Detail and 1 index is for Eligibility
+          //* res will have an Array of DsfHttpResponse where 0 index is for SSF Patient Detail and 1 index is for Eligibility
           const ssfPatientDetail = res[0].Results;
           ssfData.ssfPatientDetail = this.GetSsfPatientDtoMappedFromSsfServerPatientDto(ssfPatientDetail);
 
@@ -53,8 +53,8 @@ export class SsfService {
   }
 
   GetSsfPatientDetailAndEligibilityLocally(patientId: number, schemeId: number) {
-    this.visitBlService.getSSFPatientDetailLocally(patientId, schemeId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this.visitBlService.getSSFPatientDetailLocally(patientId, schemeId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         let patientScheme = new PatientScheme();
         patientScheme = res.Results;
         this.PatientSchemeMap = patientScheme;
@@ -73,8 +73,8 @@ export class SsfService {
   }
 
   LoadSSFEmployer(policyHolderUid: string) {
-    this.visitBlService.GetSSFEmployerDetail(policyHolderUid).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this.visitBlService.GetSSFEmployerDetail(policyHolderUid).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.SsfDataLocally.employerList = res.Results[0];
         this.SsfDataLocally.isPatientInformationLoaded = true;
         this.SsfDataLocally.isPatientEligibilityLoaded = true;
@@ -89,8 +89,8 @@ export class SsfService {
 
   isClaimed(LatestClaimCode: number, PatientId: number): void {
     this.visitBlService.IsClaimed(LatestClaimCode, PatientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           // if(res.Results === true){
           this.isClaimSuccessful = res.Results;
           this.SsfDataLocally.IsClaimSuccessful = this.isClaimSuccessful;
@@ -105,7 +105,7 @@ export class SsfService {
           // }
         }
       },
-        (err: DanpheHTTPResponse) => {
+        (err: DsfHTTPResponse) => {
           console.log(err);
         }
       );
@@ -162,8 +162,8 @@ export class SsfDataStatus_DTO {
 export class SSFBackupClass {
   // getSSFPatientDetailLocally() {
   //     this.SSFEligibility = [];
-  //     this.visitBLService.getSSFPatientDetailLocally(this.patient.PatientId).subscribe((res: DanpheHTTPResponse) => {
-  //       if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+  //     this.visitBLService.getSSFPatientDetailLocally(this.patient.PatientId).subscribe((res: DsfHTTPResponse) => {
+  //       if (res.Status === ENUM_DsfHTTPResponses.OK) {
   //         let patientMapPriceCategory = new PatientMapPriceCategory();
   //         patientMapPriceCategory = res.Results;
   //         this.patient.PAT_Map_PriceCategory.RegistrationCase = patientMapPriceCategory.RegistrationCase;
@@ -186,23 +186,23 @@ export class SSFBackupClass {
   //         //this.LoadSSFEmployer();
   //         this.isClaimed(patientMapPriceCategory.LatestClaimCode, this.patient.PatientId);
   //       }
-  //     }, (err: DanpheHTTPResponse) => {
-  //       this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Unable to get SSF Patient Detail Locally"]);
+  //     }, (err: DsfHTTPResponse) => {
+  //       this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Unable to get SSF Patient Detail Locally"]);
   //     });
   //   }
 
   // isClaimed(LatestClaimCode: number, PatientId: number): void {
   //     this.visitBLService.IsClaimed(LatestClaimCode, PatientId)
-  //       .subscribe((res: DanpheHTTPResponse) => {
-  //         if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+  //       .subscribe((res: DsfHTTPResponse) => {
+  //         if (res.Status === ENUM_DsfHTTPResponses.OK) {
   //           if (res.Results === true) {
   //             this.isClaimSuccessful = true;
   //             this.getSSFPatientDetail();
   //           }
   //         }
   //       },
-  //         (err: DanpheHTTPResponse) => {
-  //           this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Unable to check for pending claims"]);
+  //         (err: DsfHTTPResponse) => {
+  //           this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Unable to check for pending claims"]);
   //         }
   //       );
   //   }

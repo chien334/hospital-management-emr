@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
 import { PHRMItemMasterModel } from '../../shared/phrm-item-master.model';
 import { PhrmRackModel } from '../../shared/rack/phrm-rack.model';
@@ -44,8 +44,8 @@ export class PhrmRackAllocationComponent {
     this.pageSize = 10;
   }
   public GetLocationList(): void {
-    this.pharmacyBLService.GetAllPharmacyStore().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetAllPharmacyStore().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.StoreList = []
         this.StoreList = res.Results;
       }
@@ -54,8 +54,8 @@ export class PhrmRackAllocationComponent {
   public getItemList(): void {
     this.loadingScreen = true;
     this.pharmacyBLService.GetItemList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.ItemList = [];
           this.ItemList = res.Results;
           this.collectionSize = this.ItemList.length;
@@ -85,8 +85,8 @@ export class PhrmRackAllocationComponent {
   }
 
   GetAllRackList() {
-    this.pharmacyBLService.GetAllRackList().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetAllRackList().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.RackListForAllocation = res.Results;
         this.GetAllocatedRackData();
       }
@@ -95,8 +95,8 @@ export class PhrmRackAllocationComponent {
 
   GetAllocatedRackData() {
     this.pharmacyBLService.GetItemRackAllocationData(null)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.RackData = [];
           this.RackData = res.Results;
           this.LoadItemRackAllocationData();
@@ -171,7 +171,7 @@ export class PhrmRackAllocationComponent {
       this.pharmacyBLService.PostItemToRack(phrmMapListToPost).finally(() => {
         this.loading = false;
       }).subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           for (let result of res.Results) {
             this.StoreRackAllocationDetails[indexI].StoreRackAllocationDatas[result.JIndex].previouslySelectedRack = { ItemId: result.ItemId, StoreId: result.StoreId, RackId: result.RackId, RackNo: result.RackNo };
           }

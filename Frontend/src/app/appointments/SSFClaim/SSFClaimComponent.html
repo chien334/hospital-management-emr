@@ -294,12 +294,12 @@
                   <div class="right-div print-detail">
                     <p class="no-margin" style="text-align:right;">
                       Transaction Date:
-                      {{InvoiceInfo.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                      {{InvoiceInfo.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}}
                     </p>
                     <p class="no-margin" style="text-align:right; ">
                       Invoice Date: {{
                       InvoiceInfo.TransactionDate |
-                      DanpheDateTime:'format':'YYYY-MM-DD'
+                      DsfDateTime:'format':'YYYY-MM-DD'
                       }}
                     </p>
                     <p class="no-margin" style="text-align:right;"> {{localDateTime}}</p>
@@ -500,7 +500,7 @@
           <div class="left" style="font-size:11px;"> User: {{InvoiceInfo.UserName}} </div>
           <div class="right" style="font-size:11px;">
             Time: {{
-            InvoiceInfo.TransactionDate | DanpheDateTime:'format':'hh:mm A'
+            InvoiceInfo.TransactionDate | DsfDateTime:'format':'hh:mm A'
             }}
           </div>
         </div>

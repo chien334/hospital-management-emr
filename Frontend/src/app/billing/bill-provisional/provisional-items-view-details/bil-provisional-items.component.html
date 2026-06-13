@@ -29,7 +29,7 @@
           </b>
         </div>
         <div class="col-md-4">
-          <input danphe-auto-complete class="form-control cstm-form-control" [(ngModel)]="SelectedItem"
+          <input dsf-auto-complete class="form-control cstm-form-control" [(ngModel)]="SelectedItem"
                  [source]="UniqueItemNames" placeholder="Enter ItemName" display-property-name="ItemName"
                  value-property-name="ItemName" style="width:100%" match-formatted="true" (valueChanged)="ItemValueChanged()"
                  (focusout)="ItemValueChanged()" [list-formatter]="SearchItemsListFormatter" max-num-list="10"
@@ -77,7 +77,7 @@
                            [(ngModel)]="row.IsSelected" (change)="SelectUnselectItem()" />
                   </td>
                   <td>{{i+1}}</td>
-                  <td>{{row.RequisitionDate | DanpheDateTime:'format':'YY/MM/DD HH:mm'}}</td>
+                  <td>{{row.RequisitionDate | DsfDateTime:'format':'YY/MM/DD HH:mm'}}</td>
                   <td>{{row.ServiceDepartment.ServiceDepartmentName}}</td>
                   <td>
                     <div>{{row.ItemName}}</div>
@@ -178,7 +178,7 @@
           </div>
           <p style="text-align:center">
             <b>Admitted On </b><b class="colon">:</b>
-            {{ admissionDetail.AdmittedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm' }}
+            {{ admissionDetail.AdmittedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm' }}
           </p>
           <table class="table doc-tbl">
             <tr>
@@ -211,7 +211,7 @@
             <td> {{row.ItemName}} </td>
             <td> {{row.Quantity}} </td>
             <td> {{row.TotalAmount}} </td>
-            <td> {{row.CancelledOn | DanpheDateTime:'format':'DD.MM.YY HH:mm'}} </td>
+            <td> {{row.CancelledOn | DsfDateTime:'format':'DD.MM.YY HH:mm'}} </td>
           </tr>
         </table>
       </div>
@@ -300,7 +300,7 @@
           </div>
           <div class="row">
             <div class="text-center">
-              <button *ngIf="ProvisionalDischargeListConfigs.EnableDiscardAllItem" DanpheConfirmationDialog
+              <button *ngIf="ProvisionalDischargeListConfigs.EnableDiscardAllItem" DsfConfirmationDialog
                       class="btn btn-danger"
                       [title]="ConfirmationTitle"
                       [message]="ConfirmationMessage"

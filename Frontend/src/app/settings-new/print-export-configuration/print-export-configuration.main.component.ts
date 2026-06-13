@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { CoreService } from "../../core/shared/core.service";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { PrintExportConfigurationModel } from "../shared/print-export-config.model";

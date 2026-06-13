@@ -5,7 +5,7 @@ import { PharmacyBLService } from '../../../../pharmacy/shared/pharmacy.bl.servi
 import PHRMGridColumns from '../../../../pharmacy/shared/phrm-grid-columns';
 import { PHRMStoreModel } from '../../../../pharmacy/shared/phrm-store.model';
 import { GeneralFieldLabels } from '../../../../shared/DTOs/general-field-label.dto';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { DLService } from '../../../../shared/dl.service';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { DispensaryService } from '../../../shared/dispensary.service';

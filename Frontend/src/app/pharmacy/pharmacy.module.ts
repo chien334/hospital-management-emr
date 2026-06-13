@@ -73,7 +73,7 @@ import { PHRMReturnItemToSupplierListComponent } from "./store/return-to-supplie
 import { PHRMReturnItemsToSupplierComponent } from "./store/return-to-supplier/phrm-return-items-to-supplier.component";
 import { PHRMStoreDetailsListComponent } from "./store/store-details/phrm-store-details-list.component";
 
-//sud:30Sept'18--to replace ng-autocomplete with danphe-autocomplete
+//sud:30Sept'18--to replace ng-autocomplete with dsf-autocomplete
 import { SalesReturnInvoiceViewComponent } from '../dispensary/dispensary-main/sales-main/sales-return/sales-return-invoice-view/sales-return-invoice-view.component';
 import { DispensaryRequisitionEndpoint } from '../dispensary/dispensary-main/stock-main/requisition/dispensary-requisition-endpoint';
 import { DispensaryRequisitionService } from '../dispensary/dispensary-main/stock-main/requisition/dispensary-requisition.service';
@@ -83,7 +83,7 @@ import { PatientSharedModule } from '../patients/patient-shared.module';
 import { PatientsBLService } from '../patients/shared/patients.bl.service';
 import { PHRMCreditOrganizationsComponent } from '../pharmacy/setting/credit-organization/phrm-credit-organizations.component';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { WardSupplyBLService } from '../wardsupply/shared/wardsupply.bl.service';
 import { WardSupplyDLService } from '../wardsupply/shared/wardsupply.dl.service';
 import { PHRMSuppliersListComponent } from './accounting/phrm-acc-supplier-list.component';
@@ -292,7 +292,7 @@ import { WardRequisitionItems } from './ward-requisition/phrm-ward-requisition.c
         FormsModule,
         // Ng2AutoCompleteModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SettingsSharedModule,
         PatientSharedModule], providers: [
         PharmacyBLService,

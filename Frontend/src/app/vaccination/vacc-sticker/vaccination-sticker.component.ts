@@ -11,7 +11,7 @@ import { CoreService } from "../../core/shared/core.service";
 import { VisitService } from "../../appointments/shared/visit.service";
 import * as moment from "moment";
 import { PrinterSettingsModel, ENUM_PrintingType } from "../../settings-new/printers/printer-settings.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { VaccinationBLService } from "../shared/vaccination.bl.service";
 import { VaccPatientWithVisitInfoVM } from "../shared/vacc-patwithvisit-info-vm";
 
@@ -90,7 +90,7 @@ export class VaccinationStickerComponent {
         }
 
         this.EnableShowTicketPrice = this.GetEnableShowTicketPrice();
-        this.printerName = localStorage.getItem('Danphe_OPD_Default_PrinterName');
+        this.printerName = localStorage.getItem('Dsf_OPD_Default_PrinterName');
         var allStickerFolderDetail = this.coreService.Parameters.find(a => a.ParameterGroupName.toLowerCase() == 'common' && a.ParameterName == 'StickerPrinterSettings');
         if (allStickerFolderDetail) {
             this.allPrinterName = JSON.parse(allStickerFolderDetail.ParameterValue);
@@ -126,7 +126,7 @@ export class VaccinationStickerComponent {
 
     GetDetailsForVaccSticker(patientVisitId) {
         this.vaccBlService.GetPatientAndVisitInfo(patientVisitId)
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 console.log(res.Results);
                 this.stickerDetail = res.Results;
 
@@ -224,7 +224,7 @@ export class VaccinationStickerComponent {
       margin: 8px 15px 0 0;
     }
     </style>`;
-        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanphePrintStyle.css"/>';
+        documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfPrintStyle.css"/>';
         /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
         documentContent += '</head>';
         documentContent += '<body>' + printContents + '</body></html>'

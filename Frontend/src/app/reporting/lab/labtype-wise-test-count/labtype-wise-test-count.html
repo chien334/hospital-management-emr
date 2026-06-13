@@ -16,7 +16,7 @@
         <div class="col-md-6">
           <input
             class="form-control"
-            danphe-auto-complete
+            dsf-auto-complete
             [(ngModel)]="category"
             [ngModelOptions]="{standalone: true}"
             placeholder="Enter Category Name"
@@ -44,7 +44,7 @@
             [(ngModel)]="test"
             [ngModelOptions]="{standalone: true}"
             placeholder="Enter Test Name"
-            danphe-auto-complete
+            dsf-auto-complete
             [list-formatter]="testListFormatter"
             [source]="labTestList"
             display-property-name="LabTestName"
@@ -73,7 +73,7 @@
 
   <div class="row" *ngIf="showGrid">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid
+      <dsf-grid
         *ngIf="showGrid"
         [grid-colDefaults]="labTypeWiseTestCountReportColumns"
         [grid-data]="labTypeWiseTestCountReportData"
@@ -83,7 +83,7 @@
         [report-for]="Lab"
         [grid-date-range]="dateRange"
       >
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
   <div *ngIf="showSummary" style="margin-bottom: 25px; width: 100%; float: left;"  id="summaryFooter">

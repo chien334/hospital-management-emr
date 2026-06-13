@@ -225,7 +225,7 @@ export enum ENUM_SSFSchemeTypeSubProduct {
   OtherAccident_ExceptEmploymentRelated = 18,
 }
 
-export enum ENUM_DanpheHTTPResponses {
+export enum ENUM_DsfHTTPResponses {
   OK = "OK",
   Failed = "Failed"
 }
@@ -349,7 +349,7 @@ export enum ENUM_HandOver_Status {
   Received = "received"
 }
 
-export enum ENUM_DanpheHTTPResponseText {
+export enum ENUM_DsfHTTPResponseText {
   OK = "OK",
   Failed = "Failed"
 }
@@ -469,7 +469,7 @@ export enum ENUM_Scheme_FieldSettingParamNames {
   ECHS = "ECHS"
 }
 
-export enum ENUM_DanpheSSFSchemes {
+export enum ENUM_DsfSSFSchemes {
   Medical = "SSF-Medical",
   Accidental_Work = "SSF-Accidental-Work Related",
   Accidental_Non_Work = "SSF-Accidental-Non Work Related"

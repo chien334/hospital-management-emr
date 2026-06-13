@@ -4,10 +4,10 @@ import * as moment from "moment";
 import { CoreService } from "../../core/shared/core.service";
 import { ENUM_PrintingType, PrinterSettingsModel } from "../../settings-new/printers/printer-settings.model";
 import { NepaliCalendarService } from "../calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../common-models";
+import { DsfHTTPResponse } from "../common-models";
 import { CommonFunctions } from "../common.functions";
 import { MessageboxService } from "../messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status, ENUM_VisitType } from "../shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status, ENUM_VisitType } from "../shared-enums";
 import { StickerBLService } from "./registration-sticker.bl.service";
 import { StickerSettingsAndData } from "./shared/sticker-settings-and-data-dto.model";
 
@@ -44,8 +44,8 @@ export class StickerComponent implements OnInit {
   }
 
   public GetRegistrationStickerSettingsAndData(PatientVisitId): void {
-    this.stickerBLService.GetRegistrationStickerSettingsAndData(PatientVisitId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.stickerBLService.GetRegistrationStickerSettingsAndData(PatientVisitId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.StickerSettingsAndData.RegistrationStickerSettings = res.Results.StickerSettings;
         this.StickerSettingsAndData.VisitStickerData = res.Results.StickerData;
         this.visitTime = moment(this.StickerSettingsAndData.VisitStickerData.VisitDateTime).format('hh:mm A');

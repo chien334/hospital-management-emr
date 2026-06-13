@@ -8,7 +8,7 @@
               <div class="form-group">
                 <label class="control-label col-md-6">Requesting Department<b style="float:right;">:</b></label>
                 <div class="col-md-6">
-                  <input class="form-control" danphe-auto-complete
+                  <input class="form-control" dsf-auto-complete
                        formControlName="RequestingDepartmentId"
                        [(ngModel)]="selectedDept"
                        [list-formatter]="myDeptListFormatter"
@@ -29,7 +29,7 @@
               <div class="form-group">
                 <label class="control-label col-md-6">Admitting Doctor<b class="color-red"> *</b><b style="float:right;">:</b></label>
                 <div class="col-md-6">
-                  <input class="form-control" danphe-auto-complete
+                  <input class="form-control" dsf-auto-complete
                        formControlName="AdmittingDoctorId"
                        [(ngModel)]="selectedDoctor"
                        [list-formatter]="myDocListFormatter"
@@ -98,13 +98,13 @@
                 <label class="control-label col-md-4">Admission Date<b style="float:right;">:</b></label>
                 <div class="col-md-8">
                   <div style="display: flex;">
-                    <danphe-date-picker formControlName="AdmissionStartsOn" [(ngModel)]="CurrentBedReservation.AdmissionStartsOn"
+                    <dsf-date-picker formControlName="AdmissionStartsOn" [(ngModel)]="CurrentBedReservation.AdmissionStartsOn"
                                         [showTime]="true" [allow-future-date]="true" [CalendarTypes]="'en,np'">
-                    </danphe-date-picker>
+                    </dsf-date-picker>
 
                     <span class="inl-blk">
                       <i style="color: blue;font-style: italic;font-size: small;vertical-align: -webkit-baseline-middle">
-                        {{CurrentBedReservation.AdmissionStartsOn | DanpheDateTime:'timename'}}
+                        {{CurrentBedReservation.AdmissionStartsOn | DsfDateTime:'timename'}}
                       </i>
                     </span>
                   </div>

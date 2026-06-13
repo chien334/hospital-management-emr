@@ -2,13 +2,13 @@ import { Component, Directive, ViewChild } from '@angular/core';
 import { FormControlName } from '@angular/forms';
 import * as moment from 'moment/moment';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { WardSupplyBLService } from "../shared/wardsupply.bl.service";
 import WARDGridColumns from "../shared/ward-grid-cloumns";
 import { WARDReportsModel } from '../shared/ward-report.model';
 import { Router } from '@angular/router';
 import { SecurityService } from '../../security/shared/security.service';
-import { IGridFilterParameter } from '../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../shared/dsf-grid/grid-filter-parameter.interface';
 
 
 @Component({

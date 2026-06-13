@@ -9,9 +9,9 @@ import * as moment from 'moment/moment';
 import { VendorMaster } from '../../shared/vendor-master.model';
 import { InventoryService } from '../../shared/inventory.service';
 import { ItemModel } from "../../../accounting/settings/shared/item.model";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { ActivateInventoryService } from '../../../shared/activate-inventory/activate-inventory.service';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
 @Component({
   //selector: 'my-app',
   templateUrl: "./purchase-order-summary.component.html"  //"/InventoryReports/PurchaseOrderSummery"

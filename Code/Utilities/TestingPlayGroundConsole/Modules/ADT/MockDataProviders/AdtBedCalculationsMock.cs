@@ -1,12 +1,12 @@
-﻿using DanpheEMR.ServerModel;
-using DanpheEMR.TestingPlayGroundConsole.ADT.Models;
+﻿using DsfEMR.ServerModel;
+using DsfEMR.TestingPlayGroundConsole.ADT.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
+namespace DsfEMR.TestingPlayGroundConsole.ADT.MockDataProviders
 {
     static class AdtBedCalculationsMock
     {
@@ -17,7 +17,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             List<PatientBedInfo> retData = new List<PatientBedInfo>();
             PatientBedInfo data1 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.General,
+                BedFeatureId = Enum_DsfBedFeatureIds.General,
                 Action = Enum_BedActions.Admission,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = Convert.ToDateTime("2023-01-20 01:07:00.000"),
@@ -39,7 +39,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             List<PatientBedInfo> retData = new List<PatientBedInfo>();
             PatientBedInfo data1 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.General,
+                BedFeatureId = Enum_DsfBedFeatureIds.General,
                 Action = Enum_BedActions.Admission,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = Convert.ToDateTime("2022-12-10 21:30:00.000"),
@@ -47,7 +47,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             };
             PatientBedInfo data2 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.ICU,
+                BedFeatureId = Enum_DsfBedFeatureIds.ICU,
                 Action = Enum_BedActions.Transfer,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = Convert.ToDateTime("2022-12-26 19:45:00.000"),
@@ -56,7 +56,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
 
             PatientBedInfo data3 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.General,
+                BedFeatureId = Enum_DsfBedFeatureIds.General,
                 Action = Enum_BedActions.Transfer,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = Convert.ToDateTime("2023-01-03 11:26:00.000"),
@@ -65,7 +65,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
 
             PatientBedInfo data4 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.ICU,
+                BedFeatureId = Enum_DsfBedFeatureIds.ICU,
                 Action = Enum_BedActions.Transfer,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = Convert.ToDateTime("2023-01-10 16:48:00.000"),
@@ -74,7 +74,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
 
             PatientBedInfo data5 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.General,
+                BedFeatureId = Enum_DsfBedFeatureIds.General,
                 Action = Enum_BedActions.Transfer,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = Convert.ToDateTime("2023-01-12 13:49:00.000"),
@@ -82,7 +82,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             };
             PatientBedInfo data6 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.ICU,
+                BedFeatureId = Enum_DsfBedFeatureIds.ICU,
                 Action = Enum_BedActions.Transfer,
                 OutAction = null,
                 StartedOn = Convert.ToDateTime("2023-01-19 10:25:00.000"),
@@ -103,7 +103,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             List<PatientBedInfo> retData = new List<PatientBedInfo>();
             PatientBedInfo data1 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.General,
+                BedFeatureId = Enum_DsfBedFeatureIds.General,
                 Action = Enum_BedActions.Admission,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = Convert.ToDateTime("2023-01-18 21:15:00.000"),
@@ -111,7 +111,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             };
             PatientBedInfo data2 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.ICU,
+                BedFeatureId = Enum_DsfBedFeatureIds.ICU,
                 Action = Enum_BedActions.Transfer,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = Convert.ToDateTime("2023-01-20 01:50:00.000"),
@@ -120,7 +120,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
 
             PatientBedInfo data3 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.General,
+                BedFeatureId = Enum_DsfBedFeatureIds.General,
                 Action = Enum_BedActions.Transfer,
                 OutAction = null,
                 StartedOn = Convert.ToDateTime("2023-01-20 01:52:00.000"),
@@ -140,7 +140,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             List<PatientBedInfo> retData = new List<PatientBedInfo>();
             PatientBedInfo data1 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.General,
+                BedFeatureId = Enum_DsfBedFeatureIds.General,
                 Action = Enum_BedActions.Admission,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = DateTime.Now.Date.AddHours(5),
@@ -148,7 +148,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             };
             PatientBedInfo data2 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.ICU,
+                BedFeatureId = Enum_DsfBedFeatureIds.ICU,
                 Action = Enum_BedActions.Transfer,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = DateTime.Now.Date.AddHours(8),
@@ -167,7 +167,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             List<PatientBedInfo> retData = new List<PatientBedInfo>();
             PatientBedInfo data1 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.General,
+                BedFeatureId = Enum_DsfBedFeatureIds.General,
                 Action = Enum_BedActions.Admission,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = DateTime.Now.Date.AddHours(5),
@@ -175,7 +175,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             };
             PatientBedInfo data2 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.ICU,
+                BedFeatureId = Enum_DsfBedFeatureIds.ICU,
                 Action = Enum_BedActions.Transfer,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = DateTime.Now.Date.AddHours(8),
@@ -183,7 +183,7 @@ namespace DanpheEMR.TestingPlayGroundConsole.ADT.MockDataProviders
             };
             PatientBedInfo data3 = new PatientBedInfo()
             {
-                BedFeatureId = Enum_DanpheBedFeatureIds.General,
+                BedFeatureId = Enum_DsfBedFeatureIds.General,
                 Action = Enum_BedActions.Transfer,
                 OutAction = Enum_BedActions.Transfer,
                 StartedOn = DateTime.Now.Date.AddHours(10),

@@ -18,8 +18,8 @@ import { DLService } from "../../../shared/dl.service";
 import * as moment from "moment/moment";
 import { NepaliDate } from "../../../shared/calendar/np/nepali-dates";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { CoreService } from "../../../core/shared/core.service";
 
 @Component({

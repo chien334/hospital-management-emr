@@ -5,6 +5,6 @@ RETURNS TABLE (
     "TABLE_NAME" VARCHAR
 ) AS $$
 BEGIN
-    RETURN QUERY SELECT 'danphe_emr'::VARCHAR, 'public'::VARCHAR, 'ACC_Ledger'::VARCHAR;
+    RETURN QUERY SELECT 'dsf_emr'::VARCHAR, 'public'::VARCHAR, 'ACC_Ledger'::VARCHAR;
 END;
 $$ LANGUAGE plpgsql;

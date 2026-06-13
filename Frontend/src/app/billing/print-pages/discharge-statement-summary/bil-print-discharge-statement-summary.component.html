@@ -80,7 +80,7 @@
                     <div class="col-left flex-2"><span class="text-uppercase text-bold txt-label">Age/Sex&nbsp;:&nbsp;</span>
                       <span class="text-uppercase text-bold txt-val">{{dischargeBill.PatientDetail.DateOfBirth
                         |
-                        DanpheDateTime:'age' }}/{{dischargeBill.PatientDetail.Gender}}</span>
+                        DsfDateTime:'age' }}/{{dischargeBill.PatientDetail.Gender}}</span>
                     </div>
 
 
@@ -88,7 +88,7 @@
                       <span class="text-uppercase text-bold txt-label">Print Date
                         &nbsp;:&nbsp;</span>
                       <span class="text-uppercase text-bold txt-label">
-                        {{printDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                        {{printDate | DsfDateTime:'format':'YYYY-MM-DD'}}
                       </span>
                     </div>
 
@@ -122,7 +122,7 @@
                     <div class="col-left flex-2">
                       <span class="text-uppercase text-bold txt-label">DOA&nbsp;:&nbsp;</span>
                       <span class="text-uppercase text-bold txt-val">{{dischargeBill.AdmissionDetail.AdmissionDate
-                        | DanpheDateTime:'format':'YYYY-MM-DD'}}{{dischargeBill.AdmissionDetail.AdmissionDate | nepaliDate}}</span>
+                        | DsfDateTime:'format':'YYYY-MM-DD'}}{{dischargeBill.AdmissionDetail.AdmissionDate | nepaliDate}}</span>
                     </div>
 
 
@@ -131,7 +131,7 @@
                     <div class="col-left flex-2"><span class="text-uppercase text-bold txt-label">DOD&nbsp;:&nbsp;</span>
                       <span class="text-uppercase text-bold txt-val">{{estDischargeDate
                         |
-                        DanpheDateTime:'format':'YYYY-MM-DD'}}{{dischargeBill.AdmissionDetail.DischargeDate | nepaliDate}}</span>
+                        DsfDateTime:'format':'YYYY-MM-DD'}}{{dischargeBill.AdmissionDetail.DischargeDate | nepaliDate}}</span>
                     </div>
 
                   </div>

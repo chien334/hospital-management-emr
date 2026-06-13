@@ -11,7 +11,7 @@ import * as moment from 'moment/moment';
 import { isNumeric } from "rxjs/internal-compatibility";
 import { CoreService } from "../../../core/shared/core.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { InventoryService } from "../../shared/inventory.service";
 import { ItemModel } from "../shared/item.model";
@@ -112,7 +112,7 @@ export class VendorsAddComponent {
   }
 
   GetCountry() {
-    this.Countries = DanpheCache.GetData(MasterType.Country, null);
+    this.Countries = DsfCache.GetData(MasterType.Country, null);
     this.CurrentVendor.CountryId = this.Countries[0].CountryId;
   }
 

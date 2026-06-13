@@ -9,7 +9,7 @@ import { CoreService } from "../../core/shared/core.service";
 import { LabTypesModel } from "../../labs/lab-selection/lab-type-selection.component";
 import { PharmacyCounter } from "../../pharmacy/shared/pharmacy-counter.model";
 import { PHRMStoreModel } from "../../pharmacy/shared/phrm-store.model";
-import { DanpheRoute } from "../../security/shared/danphe-route.model";
+import { DsfRoute } from "../../security/shared/dsf-route.model";
 import { Permission } from "../../security/shared/permission.model";
 import { CreditOrganization } from "../../settings-new/shared/creditOrganization.model";
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
@@ -218,8 +218,8 @@ export class SecurityService {
   // }
 
   //Get Child Navigation Routes
-  public UserNavigations: Array<DanpheRoute> = new Array<DanpheRoute>();
-  public GetChildRoutes(UrlFullPath): Array<DanpheRoute> {
+  public UserNavigations: Array<DsfRoute> = new Array<DsfRoute>();
+  public GetChildRoutes(UrlFullPath): Array<DsfRoute> {
     let showHideRoute = false;
     let currRoute = this.UserNavigations.find(
       (a) => a.UrlFullPath == UrlFullPath
@@ -234,8 +234,8 @@ export class SecurityService {
       return undefined;
     }
   }
-  public validRouteList: Array<DanpheRoute> = new Array<DanpheRoute>();
-  public GetAllValidRoutes(): Array<DanpheRoute> {
+  public validRouteList: Array<DsfRoute> = new Array<DsfRoute>();
+  public GetAllValidRoutes(): Array<DsfRoute> {
     return this.validRouteList;
   }
   public UserPermissions: Array<Permission> = new Array<Permission>();

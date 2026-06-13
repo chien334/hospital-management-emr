@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from "@angular/core";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { SecurityService } from "../../../security/shared/security.service";
 import { VaccinationBLService } from "../../shared/vaccination.bl.service";
 import VaccinationGridColumnSettings from "../../shared/vaccination.grid.settings";
 import { PatientVaccineDetailModel } from "../../shared/patient-vaccine-detail.model";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 
 @Component({
     templateUrl: './vaccination-appointment-details-report.html'

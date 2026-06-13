@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
 import * as moment from "moment";
-import { IGridFilterParameter } from "../../../shared/danphe-grid/grid-filter-parameter.interface";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { IGridFilterParameter } from "../../../shared/dsf-grid/grid-filter-parameter.interface";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import PHRMGridColumns from "../../shared/phrm-grid-columns";

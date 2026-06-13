@@ -1,6 +1,6 @@
-If you are looking forward to install the Danphe you can follow the below labs <br>
-<a href="https://youtu.be/lKORZmKG0sA"> Lab 1 :- Installing Danphe App in desktop mode. </a> <br>
-<a href="https://youtu.be/HmAAbFiPOKw"> Lab 2 :- Configuring Danphe inside IIS. </a> <br>
+If you are looking forward to install the Dsf you can follow the below labs <br>
+<a href="https://youtu.be/lKORZmKG0sA"> Lab 1 :- Installing Dsf App in desktop mode. </a> <br>
+<a href="https://youtu.be/HmAAbFiPOKw"> Lab 2 :- Configuring Dsf inside IIS. </a> <br>
 We will be adding more videos in coming time.
 <br>
 If you have any issues please send us mail at shiv_koirala@yahoo.com  more than happy to help you in understanding and installing. You can also <a href="https://www.ehospitalmanagementsystem.com/" target="_new">
@@ -8,7 +8,7 @@ If you have any issues please send us mail at shiv_koirala@yahoo.com  more than 
 </a> 
 <br> <br> <br><br>
 Scripts and tools will be listed here <br>
-<a href="https://github.com/opensource-emr/cleanupDanpheDM">Clean up script to start from scratch</a> <br>
+<a href="https://github.com/opensource-emr/cleanupDsfDM">Clean up script to start from scratch</a> <br>
  <br>
  If you wish to see demo <a href="http://202.51.74.168:302" target="_blank">
  Click here
@@ -17,11 +17,11 @@ Also please do read down for more details of how to install and configure.
 
 Introduction
 ==============
-Danphe EMR is a enterprise web-based application which covers all day to day aspects of Hospital management end to end. Its currently live 50 plus hospitals in Asia(India,Nepal and Bangladesh). 
+Dsf EMR is a enterprise web-based application which covers all day to day aspects of Hospital management end to end. Its currently live 50 plus hospitals in Asia(India,Nepal and Bangladesh). 
 
-![danphelogin](https://user-images.githubusercontent.com/48054642/159859670-05cbe026-f0eb-43cf-811a-0404a36a76f7.jpg) ![danphepatientregistration](https://user-images.githubusercontent.com/48054642/159859505-84b59b71-d271-4e33-b504-1c15ecba3580.jpg)
+![dsflogin](https://user-images.githubusercontent.com/48054642/159859670-05cbe026-f0eb-43cf-811a-0404a36a76f7.jpg) ![dsfpatientregistration](https://user-images.githubusercontent.com/48054642/159859505-84b59b71-d271-4e33-b504-1c15ecba3580.jpg)
 
-Modules in Danphe EMR
+Modules in Dsf EMR
 ==============
 It has around 40 modules and below are important ones listed.
 
@@ -44,14 +44,14 @@ It has around 40 modules and below are important ones listed.
 
 `and more...`
 
-Demo of Danphe EMR
+Demo of Dsf EMR
 ==============
 If you have any issues please sen us mail at shiv_koirala@yahoo.com 
 
 Click on below demo link and check out live application
 
 <a href="http://202.51.74.168:302/" target="_blank">
-  Danphe EMR Live Application
+  Dsf EMR Live Application
 </a>
 
 Use below `credentials` for login
@@ -67,7 +67,7 @@ If you have any issues please send us mail at shiv_koirala@yahoo.com  more than 
 
 Installation & Setup
 ======================
-Getting start with **DanpheEMR** Please visit <a href="https://opensource-emr.github.io/hospital-management-emr//#setup" target="_blank">
+Getting start with **DsfEMR** Please visit <a href="https://opensource-emr.github.io/hospital-management-emr//#setup" target="_blank">
     :point_right: Page
 </a>  and read it carefully. 
 Here you have details about requirements, configuration and setup.
@@ -75,7 +75,7 @@ Here you have details about requirements, configuration and setup.
 
 #### Development Setup
 
-+ This details for `developers` who wants to `clone DanpheEMR`, Use it and `help` us for improvements.
++ This details for `developers` who wants to `clone DsfEMR`, Use it and `help` us for improvements.
 + We have all details like software and tools `requirements`
 + Step by step guide for `build and run` project
 + Database creation 

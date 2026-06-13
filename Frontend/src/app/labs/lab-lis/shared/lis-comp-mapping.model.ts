@@ -18,7 +18,7 @@ export class LabToLisComponentMap {
 }
 
 export class LabToLisComponentMapTemp {
-    public DanpheComponent: any;
+    public DsfComponent: any;
     public LISComponent: any;
     public IsDuplicate: boolean;
     public ConversionFactor: number = 1;

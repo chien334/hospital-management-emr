@@ -96,7 +96,7 @@
                         </tr>
                         <tr *ngFor="let res of currentPatient.Problems">
                           <td><b>{{res.ICD10Description}}</b></td>
-                          <td><b>{{res.OnSetDate | DanpheDateTime:'datename':'DD.MM.YYYY'}}</b></td>
+                          <td><b>{{res.OnSetDate | DsfDateTime:'datename':'DD.MM.YYYY'}}</b></td>
 
                         </tr>
                       </table>
@@ -109,7 +109,7 @@
                           <tr>
                             <td><b>Recorded On</b></td>
                             <td *ngFor="let vital of currentPatient.Vitals;">
-                              {{vital.CreatedOn | DanpheDateTime:'format':'DD.MM.YY HH:mm'}}
+                              {{vital.CreatedOn | DsfDateTime:'format':'DD.MM.YY HH:mm'}}
                             </td>
                           </tr>
                           <tr>
@@ -159,7 +159,7 @@
                         <tr *ngFor="let req of currentPatient.ImagingItemRequisitions">
                           <td><b>{{req.ImagingTypeName}}</b></td>
                           <td>{{req.ImagingItemName}}</td>
-                          <td>{{req.ImagingDate | DanpheDateTime:'datename':'DD.MM.YYYY HH:mm'}}</td>
+                          <td>{{req.ImagingDate | DsfDateTime:'datename':'DD.MM.YYYY HH:mm'}}</td>
                           <td>
                             <a style="text-decoration:underline;font-weight:bold;cursor:pointer;" *ngIf="req.OrderStatus=='final'" (click)="ViewImagingReport(req.ImagingRequisitionId)">View</a>
                             <span *ngIf="req.OrderStatus!='final'">{{req.OrderStatus}}</span>
@@ -199,7 +199,7 @@
                        
                         <tr *ngFor="let med of currentPatient.MedicationPrescriptions">
                           <td><b>{{med.MedicationName}}</b>&nbsp;&nbsp;{{med.Frequency}}&nbsp;times a day</td>
-                          <td>&nbsp;&nbsp;&nbsp;&nbsp;Start Date- <b> {{med.CreatedOn | DanpheDateTime:'datename':'DD.MM.YYYY'}}</b></td>
+                          <td>&nbsp;&nbsp;&nbsp;&nbsp;Start Date- <b> {{med.CreatedOn | DsfDateTime:'datename':'DD.MM.YYYY'}}</b></td>
                         </tr>
                       </table>
                     </div>
@@ -215,7 +215,7 @@
                         <tbody>
                           <tr *ngFor="let res of currentPatient.LabRequisitions ">
                             <td>{{res.LabTestName}}</td>
-                            <td>{{res.OrderDateTime | DanpheDateTime:'datename':'DD.MM.YYYY HH:mm'}}</td>
+                            <td>{{res.OrderDateTime | DsfDateTime:'datename':'DD.MM.YYYY HH:mm'}}</td>
                             <td>
                               <a style="text-decoration:underline;font-weight:bold;cursor:pointer;" *ngIf="res.OrderStatus=='final'" (click)="ViewLabReport(res.RequisitionId)">View</a>
                               <span *ngIf="res.OrderStatus!='final'">{{res.OrderStatus}}</span>

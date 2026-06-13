@@ -12,7 +12,7 @@
               <div class="form-group row">
                 <label class="control-label col-md-4">Select Doctor<b style="float:right;">:</b></label>
                 <div class="col-md-8">
-                  <input class="form-control" danphe-auto-complete
+                  <input class="form-control" dsf-auto-complete
                        [(ngModel)]="selDoctor"
                        [ngModelOptions]="{standalone: true}"
                        [list-formatter]="myListFormatter"
@@ -35,7 +35,7 @@
       <div class="form-group">
         <label class="control-label col-md-3">From Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
         <div class="col-md-9">
-          <danphe-date-picker [(ngModel)]="currentDrIncome.fromDate" ngDefaultControl [CalendarTypes]="calType" formControlName="fromDate"> </danphe-date-picker>
+          <dsf-date-picker [(ngModel)]="currentDrIncome.fromDate" ngDefaultControl [CalendarTypes]="calType" formControlName="fromDate"> </dsf-date-picker>
           <span class="color-red font-sm" *ngIf="currentDrIncome.IsDirty('fromDate')" [hidden]="currentDrIncome.IsValidCheck('fromDate','required')"> From Date is required</span><br />
           <span class="color-red font-sm" *ngIf="currentDrIncome.IsDirty('fromDate')" [hidden]="currentDrIncome.IsValidCheck('fromDate','wrongDate')"> Enter Valid Date</span> </div>
       </div>
@@ -44,7 +44,7 @@
       <div class="form-group">
         <label class="control-label col-md-3">To Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
         <div class="col-md-9">
-          <danphe-date-picker [(ngModel)]="currentDrIncome.toDate" ngDefaultControl [CalendarTypes]="calType" formControlName="toDate"> </danphe-date-picker>
+          <dsf-date-picker [(ngModel)]="currentDrIncome.toDate" ngDefaultControl [CalendarTypes]="calType" formControlName="toDate"> </dsf-date-picker>
           <span class="color-red font-sm" *ngIf="currentDrIncome.IsDirty('toDate')" [hidden]="currentDrIncome.IsValidCheck('toDate','required')"> To Date is required</span><br />
           <span class="color-red font-sm" *ngIf="currentDrIncome.IsDirty('toDate')" [hidden]="currentDrIncome.IsValidCheck('toDate','wrongDate')"> Can't select future date</span> </div>
       </div>

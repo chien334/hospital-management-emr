@@ -43,7 +43,7 @@ export default class MaternityGridColumnSettings {
       headerName: "Actions",
       field: "",
       width: 80,
-      template: `<a danphe-grid-action="payment" class="grid-action">Payment</a>`,
+      template: `<a dsf-grid-action="payment" class="grid-action">Payment</a>`,
     }
   ]
   static MaternityPaymentHistory = [
@@ -66,20 +66,20 @@ export default class MaternityGridColumnSettings {
 
   static MaternityListButtonRenderer(params) {
     if (params.data.IsConcluded) {
-      return `<a danphe-grid-action="view-concluded-patient" class="grid-action">
+      return `<a dsf-grid-action="view-concluded-patient" class="grid-action">
                 View
              </a>`
     } else {
-      return `<a danphe-grid-action="view_active_patient" class="grid-action">View</a>
-              <a danphe-grid-action="anc" class="grid-action">ANC</a>
+      return `<a dsf-grid-action="view_active_patient" class="grid-action">View</a>
+              <a dsf-grid-action="anc" class="grid-action">ANC</a>
               <div class="dropdown" style="display:inline-block;">
                  <button class="dropdown-toggle grid-btnCstm" type="button" data-toggle="dropdown">...
                  <span class="caret"></span></button>
                  <ul class="dropdown-menu grid-ddlCstm">
-                   <li><a danphe-grid-action="maternity_register" >Mat-Register</a></li>
-                   <li><a danphe-grid-action="upload_files" >Upload</a></li>
-                   <li><a danphe-grid-action="conclude" >Conclude</a></li>
-                   <li><a danphe-grid-action="remove" >Remove</a></li>
+                   <li><a dsf-grid-action="maternity_register" >Mat-Register</a></li>
+                   <li><a dsf-grid-action="upload_files" >Upload</a></li>
+                   <li><a dsf-grid-action="conclude" >Conclude</a></li>
+                   <li><a dsf-grid-action="remove" >Remove</a></li>
                  </ul>
                 </div>
             `
@@ -111,7 +111,7 @@ export default class MaternityGridColumnSettings {
       headerName: "Action",
       field: "",
       width: 100,
-      template: `<a danphe-grid-action="viewDetails" class="grid-action">
+      template: `<a dsf-grid-action="viewDetails" class="grid-action">
       View Details
         </a>`,
     }

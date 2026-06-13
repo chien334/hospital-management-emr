@@ -28,7 +28,7 @@
                                     {{SelectedPatient.Age}}/{{SelectedPatient.Gender}}</p>
                                 <p class="patient-hdr-label"><b>{{ 'COMMON.ADDRESS' | translate }}</b>: &nbsp;{{SelectedPatient.Address}}</p>
                                 <p class="patient-hdr-label"><b>{{ 'COMMON.VISIT_DATE' | translate }}</b>: &nbsp;{{SelectedPatient.VisitDate |
-                                    DanpheDateTime:'format':'YYYY-MM-DD' }} </p>
+                                    DsfDateTime:'format':'YYYY-MM-DD' }} </p>
                                 <p *ngIf="SelectedPatient.VisitType" class="patient-hdr-label"> <b>{{ 'COMMON.VISIT_TYPE' | translate }}</b>: &nbsp; {{SelectedPatient.VisitType}} </p>
                                 <p class="patient-hdr-label"><b>{{ 'COMMON.CONTACT_NO' | translate }}</b>: &nbsp;{{SelectedPatient.PhoneNumber}}
                                 <p class="patient-hdr-label"><b>{{ 'COMMON.DEPARTMENT' | translate }}</b>: &nbsp;{{SelectedPatient.DepartmentName}}
@@ -56,7 +56,7 @@
                                 </label>
                                 <div class="col-md-7">
                                     <!-- <div class="form-group" style="padding:10px;"> -->
-                                    <input danphe-auto-complete autocomplete="off" class="form-control" [(ngModel)]="diagnosis" [source]="icd10List" [list-formatter]="DignosisFormatter" [placeholder]="IcdVersionDisplayName" display-property-name="ICD10Description" value-property-name="ICD10Code" (valueChanged)="MakeDiagnosisList()" min-chars="0" max-num-list="10" [ngModelOptions]="{standalone: true}" />
+                                    <input dsf-auto-complete autocomplete="off" class="form-control" [(ngModel)]="diagnosis" [source]="icd10List" [list-formatter]="DignosisFormatter" [placeholder]="IcdVersionDisplayName" display-property-name="ICD10Description" value-property-name="ICD10Code" (valueChanged)="MakeDiagnosisList()" min-chars="0" max-num-list="10" [ngModelOptions]="{standalone: true}" />
                                 </div>
                             </div>
                         </div>

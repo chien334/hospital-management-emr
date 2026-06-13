@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { CoreService } from '../../core/shared/core.service';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 import { OperationTheatreBookingModel } from '../shared/ot-booking.model';
 import { OperationTheatreBLService } from '../shared/ot.bl.service';
 import { Patient } from '../../patients/shared/patient.model';
@@ -58,7 +58,7 @@ export class OtBookingAddComponent {
         public msgBoxServ: MessageboxService,
         public patientService: PatientService,
         public changeDetector:ChangeDetectorRef) {
-        this.allEmployeeList = DanpheCache.GetData(MasterType.Employee, null);
+        this.allEmployeeList = DsfCache.GetData(MasterType.Employee, null);
 
         if (this.allEmployeeList && this.allEmployeeList.length > 0)
             this.otEmployeeList = this.allEmployeeList.filter(a => a.IsAppointmentApplicable == true);
@@ -161,7 +161,7 @@ export class OtBookingAddComponent {
     //         });
     // }
     public getEmpList() {
-        // this.employeeList = DanpheCache.GetData(MasterType.Employee,null);
+        // this.employeeList = DsfCache.GetData(MasterType.Employee,null);
         //  this.showGrid = true;
         this.otBlService.GetEmployeeList()
             .subscribe(res => {

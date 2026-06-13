@@ -8,7 +8,7 @@ import { CoreService } from '../../core/shared/core.service';
 import { Employee } from '../../employee/shared/employee.model';
 import { SecurityService } from "../../security/shared/security.service";
 import { GeneralFieldLabels } from '../../shared/DTOs/general-field-label.dto';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { MR_BLService } from '../shared/mr.bl.service';
 
@@ -51,7 +51,7 @@ export class DeathCertificateComponent {
   }
   ngOnInit() {
     this.GetHospital();
-    this.providerList = DanpheCache.GetData(MasterType.Employee, null);
+    this.providerList = DsfCache.GetData(MasterType.Employee, null);
     if (this.deathDetailId) { this.GetDeathDetailForCertificate(); }
   }
 
@@ -150,7 +150,7 @@ export class DeathCertificateComponent {
   //   popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
   //   popupWinindow.document.open();
   //   var documentContent = '<html><head>';
-  //   documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../themes/theme-default/DanpheStyle.css" />`
+  //   documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../themes/theme-default/DsfStyle.css" />`
   //     + `</head>`;
 
   //   documentContent += '<body onload="window.print()">' + printContents + '</body></html>';

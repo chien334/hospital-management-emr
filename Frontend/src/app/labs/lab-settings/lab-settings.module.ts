@@ -13,7 +13,7 @@ import { AddNewLabReportComponent } from "./lab-report-template/add-lab-report-t
 import { AddLabTestCompComponent } from "../lab-settings/lab-test-component/add-lab-test-comp.component";
 import { SettingsBLService } from '../../settings-new/shared/settings.bl.service';
 import { SettingsDLService } from '../../settings-new/shared/settings.dl.service';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { EditSignatoriesComponent } from './signatories/edit-signatories.component';
 import { LabTestCompComponent } from './lab-test-component/labTestComp.component';
 import { AddLabTestComponent } from './lab-test/add-labtest.component';
@@ -35,7 +35,7 @@ export const LabSettingsRoutingConstant = [
 
 @NgModule({
     providers: [LabSettingsBLService, LabSettingsDLService, SettingsBLService, SettingsDLService],
-    imports: [LabSettingsRoutingModule, SharedModule, ReactiveFormsModule, FormsModule, CommonModule,DanpheAutoCompleteModule
+    imports: [LabSettingsRoutingModule, SharedModule, ReactiveFormsModule, FormsModule, CommonModule,DsfAutoCompleteModule
     ],
     declarations: [LabSettingsMainComponent, ReportTemplateComponent, LabTestComponent, 
       AddNewLabReportComponent, AddLabTestCompComponent, AddLabTestComponent, AddLabCategoryComponent, LabCategoryComponent,

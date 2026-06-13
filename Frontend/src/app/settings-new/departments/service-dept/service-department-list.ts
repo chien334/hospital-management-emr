@@ -5,10 +5,10 @@ import { ServiceDepartment } from '../../shared/service-department.model';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 
 import { SettingsService } from '../../shared/settings-service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import * as moment from 'moment/moment';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { SecurityService } from "../../../security/shared/security.service";
 
@@ -113,7 +113,7 @@ export class ServiceDepartmentListComponent {
         selectedServDepartment.IsActive = status;
         this.settingsBLService.UpdateServiceDepartmentStatus(selectedServDepartment)
           .subscribe(
-            (res: DanpheHTTPResponse) => {
+            (res: DsfHTTPResponse) => {
 
               if (res.Status == "OK") {
                 this.msgBoxServ.showMessage("success", ['Service Department Status updated successfully']);

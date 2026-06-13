@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 
 @Injectable()
 export class CoreDLService {
@@ -102,7 +102,7 @@ export class CoreDLService {
         return this.http.get<any>("/api/Billing/PaymentPages", this.options);
     }
     public GetPriceCategories() {
-        return this.http.get<DanpheHTTPResponse>("/api/Master/GetPriceCategories", this.jsonOptions);
+        return this.http.get<DsfHTTPResponse>("/api/Master/GetPriceCategories", this.jsonOptions);
     }
 
     public GetMembershipTypeVsPriceCategory() {

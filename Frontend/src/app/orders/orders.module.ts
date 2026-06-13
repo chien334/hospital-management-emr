@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { LabsBLService } from '../labs/shared/labs.bl.service';
 import { LabsDLService } from '../labs/shared/labs.dl.service';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { OrderMainComponent } from './orders-main.component';
 import { OrderRequisitionsComponent } from './order/order-requisition.component';
 import { MedicationPrescriptionComponent } from "../clinical/medications/medication-prescription.component";
@@ -37,7 +37,7 @@ import { OrdersDLService } from './shared/orders.dl.service';
         FormsModule,
         CommonModule,
         //Ng2AutoCompleteModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         OrdersRoutingModule,
         SharedModule], providers: [OrderService,
         LabsBLService,

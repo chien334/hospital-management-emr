@@ -78,9 +78,9 @@
                                   right: 2px;
                                   top: -2px;
                                 ">
-                                                                <danphe-bar-code [barcode-number]="templateReport.BarCodeNumber" [width]="1.5"
+                                                                <dsf-bar-code [barcode-number]="templateReport.BarCodeNumber" [width]="1.5"
                                                                                  [height]="24" [barcode-margin]="2" [text-margin]="0">
-                                                                </danphe-bar-code>
+                                                                </dsf-bar-code>
                                                             </div>
                                                             <strong>{{ 'LABS.PATIENT_NO' | translate }}</strong> : {{templateReport.Lookups.PatientCode}} (
                                                             <b>{{templateReport.Lookups.VisitTypeCode}}</b>)
@@ -101,7 +101,7 @@
                                                 <div class="single-head">
                                                     <div class="right-col-data">
                                                         <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                                            <strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</strong> : {{templateReport.Lookups.DOB | DanpheDateTime:'age'}}
+                                                            <strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</strong> : {{templateReport.Lookups.DOB | DsfDateTime:'age'}}
                                                             /{{templateReport.Lookups.Gender}}
                                                         </div>
                                                     </div>
@@ -133,7 +133,7 @@
                                                         <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
                                                             <strong>{{ 'LABS.COLLECTION_DATE' | translate }}</strong> :
                                                             {{templateReport.Lookups.ReceivingDate |
-                                                            DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
+                                                            DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}
                                                             {{templateReport.Lookups.ReceivingDate |
                                                             nepaliDate }}
                                                         </div>
@@ -160,8 +160,8 @@
                                                     <div class="right-col-data">
                                                         <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
                                                             <strong>{{ 'LABS.REPORTING_DATE_1' | translate }}</strong> : {{verificationEnabled ?
-                                                            (templateReport.Lookups.VerifiedOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):
-                                                            (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}
+                                                            (templateReport.Lookups.VerifiedOn | DsfDateTime: 'format':'YYYY-MM-DD hh:mm A'):
+                                                            (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}
                                                             {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):
                                                             (templateReport.Lookups.ReportingDate |nepaliDate )}}
                                                         </div>
@@ -771,7 +771,7 @@
                             </label>
                         </div>
                         <div *ngIf="showPrintInfo" class="report-print-info">
-                            {{ 'LABS.PRINTED_BY' | translate }}: {{CreatedByUser.FullName}} on {{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}
+                            {{ 'LABS.PRINTED_BY' | translate }}: {{CreatedByUser.FullName}} on {{CurrentDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}
                         </div>
                     </div>
                 </div>
@@ -785,9 +785,9 @@
 
         <div *ngIf="templateReport && enableEdit" style="margin-top: 10px; padding-bottom: 50px; width: 100%; float: left;">
             <div class="lab-rpt-sign" *ngIf="showSignatoriesEdit" style="display: table;">
-                <danphe-signatories ngDefaultControl [(ngModel)]="signatories" [defaultEmployeeIdList]="defaultSigEmpIdList" [displayMode]="'edit'"
+                <dsf-signatories ngDefaultControl [(ngModel)]="signatories" [defaultEmployeeIdList]="defaultSigEmpIdList" [displayMode]="'edit'"
                                     [departmentName]="'lab'" (isSignatureSelected)="SignatureSelection($event)">
-                </danphe-signatories>
+                </dsf-signatories>
             </div>
             <div class="margin-20-tp">
                 <div class="text-center" *ngIf="showSignatoriesEdit">
@@ -873,7 +873,7 @@
                                 <label class="ref-label" for="refDoctor"><strong>{{ 'LABS.SELECT_PRESCRIBER' | translate }}</strong></label>
                             </div>
                             <div class="col-md-8">
-                                <!--<input class="form-control" danphe-auto-complete
+                                <!--<input class="form-control" dsf-auto-complete
               id="refDoctor"
               [(ngModel)]="doctorSelected"
               [source]="doctorsList"
@@ -920,8 +920,8 @@
                         <div class="row">
                             <div class="col-md-5">{{ 'LABS.SAMPLE_COLLECTION_DATE_1' | translate }}</div>
                             <div class="col-md-7">
-                                <danphe-date-picker [(ngModel)]="sampleCode.SampleCreatedOn" ngDefaultControl [CalendarTypes]="'np'"
-                                                    (ngModelChange)="SampleDateChanged()"></danphe-date-picker>
+                                <dsf-date-picker [(ngModel)]="sampleCode.SampleCreatedOn" ngDefaultControl [CalendarTypes]="'np'"
+                                                    (ngModelChange)="SampleDateChanged()"></dsf-date-picker>
                             </div>
                         </div>
                         <div class="row margin-15-tp">

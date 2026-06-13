@@ -80,7 +80,7 @@
         <div class="form-group col-md-4" style="margin-bottom:0px !important;">
             <label class="control-label no-padding col-md-4">{{ 'ACCOUNTING.LEDGER_GROUP_NAME' | translate }} <sup>*</sup><b>:</b> </label>
             <div class="col-md-8">
-                <input danphe-auto-complete class="col-md-11" [(ngModel)]="CurrentLedger.LedgerGroupName" [source]="ledgergroupList"
+                <input dsf-auto-complete class="col-md-11" [(ngModel)]="CurrentLedger.LedgerGroupName" [source]="ledgergroupList"
                        [placeholder]="'ACCOUNTING.LEDGER_GROUP_NAME' | translate" display-property-name="LedgerGroupName" value-property-name="LedgerGroupName"
                        (valueChanged)="AssignSelectedLedgerGroup()"
                        [list-formatter]="LedgerGroupListFormatter" max-num-list="10" onclick="this.select()" disabled
@@ -164,7 +164,7 @@
                         <td><label class="mt-checkbox mt-checkbox-outline checkbox-nolabel"> {{led.Code }}</label></td>
                         <td>
                             <form [formGroup]="led.LedgerValidator">
-                                <input danphe-auto-complete class="form-control" [(ngModel)]="led.LedgerName" [source]="ledgerListAutoComplete"
+                                <input dsf-auto-complete class="form-control" [(ngModel)]="led.LedgerName" [source]="ledgerListAutoComplete"
                                        [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" display-property-name="LedgerName" value-property-name=null
                                        [grid-sort]="'LedgerName'"
                                        (focusout)="AssignSelectedLedger(i)" formControlName="LedgerName"
@@ -177,7 +177,7 @@
                             </form>
                         </td>
 
-                        <td *ngIf="subLedgerAndCostCenterSetting.EnableSubLedger"><input danphe-auto-complete class="form-control"
+                        <td *ngIf="subLedgerAndCostCenterSetting.EnableSubLedger"><input dsf-auto-complete class="form-control"
                                    [(ngModel)]="selectedSubLedger[i]"
                                    [source]="subLedgerListForInventoryVendor"
                                    [placeholder]="'ACCOUNTING.SUB_LEDGER_NAME_HEADER' | translate" display-property-name="SubLedgerName" value-property-name=null

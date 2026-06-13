@@ -23,13 +23,13 @@
       <div class="col-md-8" style="display: flex;justify-content: flex-start; align-items: center;">
         <div>{{ 'INVENTORY.SUB_CATEGORY' | translate }}:</div>
         <div class="col-md-6">
-          <danphe-multiselect [ddl-data]="filteredSubCategoryList" [placeholder-text]="'---Select Subcategory Name---'" [value-property-name]="'SubCategoryId'" (selected-items-list)="onChangeColumnSelection($event)" [display-property-name]="'SubCategoryName'" [single-selection]="false">
-          </danphe-multiselect>
+          <dsf-multiselect [ddl-data]="filteredSubCategoryList" [placeholder-text]="'---Select Subcategory Name---'" [value-property-name]="'SubCategoryId'" (selected-items-list)="onChangeColumnSelection($event)" [display-property-name]="'SubCategoryName'" [single-selection]="false">
+          </dsf-multiselect>
         </div>
       </div>
     </div>
-    <danphe-grid [grid-colDefaults]="expirableStockGridColumns" [grid-data]="filteredItemList" (grid-actions)="handleGridAction($event)" [grid-exportOptions]="getGridExportOptions()" [grid-showExport]="false" [show-print-button]="false">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="expirableStockGridColumns" [grid-data]="filteredItemList" (grid-actions)="handleGridAction($event)" [grid-exportOptions]="getGridExportOptions()" [grid-showExport]="false" [show-print-button]="false">
+    </dsf-grid>
   </div>
 </form>
 

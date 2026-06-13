@@ -3,9 +3,9 @@ import { CoreService } from '../../../core/shared/core.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { User } from '../../../security/shared/user.model';
 import { ENUM_PrintingType, PrinterSettingsModel } from '../../../settings-new/printers/printer-settings.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { AdmissionSlipDetails_DTO } from '../../shared/DTOs/admission-slip-details.dto';
 import { ADT_BLService } from '../../shared/adt.bl.service';
 
@@ -49,8 +49,8 @@ export class AdmissionSlipComponent implements OnInit {
   public GetDetailsForAdmissionSlip(patientVisitId: number): void {
     try {
       this.adtBlService.GetDetailsForAdmissionSlip(patientVisitId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
             this.admissionSlipDetails = res.Results;
             this.showAdmissionSlip = true;
           }

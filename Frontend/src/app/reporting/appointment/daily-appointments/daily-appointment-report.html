@@ -22,7 +22,7 @@
               <div class="form-group">
                 <label class="control-label col-md-4">Doctor Name<b style="float:right;">:</b></label>
                 <div class="col-md-6">
-                  <input class="form-control" danphe-auto-complete [(ngModel)]="selProvider" [ngModelOptions]="{standalone: true}" [list-formatter]="myListFormatter" [source]="doctorList" placeholder="Enter Doctor Name" display-property-name="FullName" value-property-name=null (focusout)="providerChanged()" onClick="this.select()">
+                  <input class="form-control" dsf-auto-complete [(ngModel)]="selProvider" [ngModelOptions]="{standalone: true}" [list-formatter]="myListFormatter" [source]="doctorList" placeholder="Enter Doctor Name" display-property-name="FullName" value-property-name=null (focusout)="providerChanged()" onClick="this.select()">
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12" *ngIf="DailyAppointmentReportData.length>0">
-      <danphe-grid [grid-colDefaults]="DailyAppointmentReportColumns" [grid-data]="DailyAppointmentReportData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [show-header]="true" [report-title]="'Daily Appointment Report'" (grid-onExport)="OnGridExport($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-footer-content]="footer" [report-for]="'Report'" [filter-parameters]="filterParameters"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="DailyAppointmentReportColumns" [grid-data]="DailyAppointmentReportData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [show-header]="true" [report-title]="'Daily Appointment Report'" (grid-onExport)="OnGridExport($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-footer-content]="footer" [report-for]="'Report'" [filter-parameters]="filterParameters"> </dsf-grid>
     </div>
     <br>
     <br><br>

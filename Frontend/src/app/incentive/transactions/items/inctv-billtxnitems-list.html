@@ -8,7 +8,7 @@
         </button>
       </div> -->
       <div class="round-shadow-div no-padding">
-        <danphe-grid [grid-colDefaults]="billTxnItmGridColumns"
+        <dsf-grid [grid-colDefaults]="billTxnItmGridColumns"
                      [grid-data]="allBillTxnItemsList"
                      (grid-actions)="TxnItemGridActions($event)"
                      [show-ServerSideSearch]="false"
@@ -20,7 +20,7 @@
                      [show-CustomDate]="true" [date-settings-name]="'inctv-txns'"
                      (onDateChange)="LoadIncentiveTxnItemsList($event)">
 
-        </danphe-grid>
+        </dsf-grid>
       </div>
     </div>
 

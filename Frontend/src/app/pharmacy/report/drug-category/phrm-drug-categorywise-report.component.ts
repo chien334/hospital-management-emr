@@ -7,7 +7,7 @@ import PHRMReportsGridColumns from "../../shared/phrm-reports-grid-columns";
 import { DLService } from "../../../shared/dl.service"
 import { ReportingService } from "../../../reporting/shared/reporting-service"
 import { PHRMCategoryModel } from '../../shared/phrm-category.model';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 
 @Component({

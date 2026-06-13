@@ -11,10 +11,10 @@ import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from '../../../security/shared/security.service';
 import { SettingsBLService } from '../../../settings-new/shared/settings.bl.service';
 import { NepaliCalendarService } from '../../../shared/calendar/np/nepali-calendar.service';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 @Component({
   templateUrl: "./discount-report.html"
 
@@ -103,7 +103,7 @@ export class RPT_BIL_DiscountReportComponent {
   }
 
   public LoadCounter(): void {
-    this.counterList = DanpheCache.GetData(MasterType.BillingCounter, null);
+    this.counterList = DsfCache.GetData(MasterType.BillingCounter, null);
     // this.coreBlService.GetCounter()
     //     .subscribe(res => {
     //         if (res.Status == "OK") {
@@ -118,7 +118,7 @@ export class RPT_BIL_DiscountReportComponent {
   }
 
   public Success(res): void {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
       this.DiscountReportColumns = this._reportService.reportGridCols.DiscountReport;
       this.DiscountReportData = res.Results;
       //load export options to set fromDate and to date as custom headers..
@@ -126,7 +126,7 @@ export class RPT_BIL_DiscountReportComponent {
       this.LoadExportOptions();
       this.CalculateSummaryOfDifferentColumnForSum();
     }
-    else if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length === 0) {
+    else if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length === 0) {
       this._messageBoxService.showMessage(ENUM_MessageBox_Status.Notice, ['No Data is Available Between Selected Parameters...'])
       this.DiscountReportColumns = this._reportService.reportGridCols.DiscountReport;
       this.DiscountReportData = res.Results;
@@ -215,7 +215,7 @@ export class RPT_BIL_DiscountReportComponent {
   public LoadUser(): void {
     this._settingsBLService.GetUserList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.EmployeeList = res.Results;
           CommonFunctions.SortArrayOfObjects(this.EmployeeList, "EmployeeName");
           this.CurrentUser = this._securityService.loggedInUser.Employee.FullName;
@@ -285,8 +285,8 @@ export class RPT_BIL_DiscountReportComponent {
     popupWindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWindow.document.open();
     let documentContent = "<html><head>";
-    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head>';
     documentContent += '<body onload="window.print()">' + printContents + '</body></html>'

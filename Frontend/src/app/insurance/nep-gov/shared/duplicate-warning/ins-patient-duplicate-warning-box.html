@@ -48,7 +48,7 @@
                       <span *ngIf="!patient['NumberExists']">{{patient.PhoneNumber}}</span>
                       <mark *ngIf="patient['NumberExists']">{{patient.PhoneNumber}}</mark>
                     </td>
-                    <td> {{patient.DateOfBirth | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                    <td> {{patient.DateOfBirth | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                     <td> {{patient.CountrySubDivisionName}}</td>
                     <td> {{patient.Address}}</td>
                   </tr>

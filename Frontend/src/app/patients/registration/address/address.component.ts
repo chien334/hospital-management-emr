@@ -6,7 +6,7 @@ import { PatientsBLService } from '../../shared/patients.bl.service';
 
 import { CoreService } from "../../../core/shared/core.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { Address } from "../../shared/address.model";
 import { Patient } from "../../shared/patient.model";
@@ -172,7 +172,7 @@ export class AddressComponent implements IRouteGuard {
     }
 
     GetCountry() {
-        this.Countries = DanpheCache.GetData(MasterType.Country, null);
+        this.Countries = DsfCache.GetData(MasterType.Country, null);
         // this.patientBLService.GetCountries()
         // .subscribe(res => {
         // if (res.Status == 'OK') {

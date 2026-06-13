@@ -4,7 +4,7 @@ import { LabReportTemplateModel } from '../../shared/lab-report-template.model';
 import LabGridColumnSettings from '../../shared/lab-gridcol-settings';
 import { LabSettingsBLService } from '../shared/lab-settings.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { SecurityService } from '../../../security/shared/security.service';
 
 @Component({

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 import { CoreService } from '../../../core/shared/core.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { RPT_BIL_BilRefMainModel } from './bill-referral-main.model';
 import { CommonFunctions } from '../../../shared/common.functions';
 //import { RPT_BIL_BilDocMainModel } from './bill-doc-main.model';
@@ -118,8 +118,8 @@ export class RPT_BIL_ReferralSummaryMainComponent {
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     let documentContent = "<html><head>";
-    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DanphePrintStyle.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DsfPrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head><style> .non-printable { visibility: hidden; }</style>';
     documentContent += '<body onload="window.print()">' + HeaderContent + printContents + '</body></html>'

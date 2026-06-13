@@ -5,9 +5,9 @@ import { Employee } from '../../../employee/shared/employee.model';
 import { PatientService } from '../../../patients/shared/patient.service';
 import { ENUM_PrintingType, PrinterSettingsModel } from '../../../settings-new/printers/printer-settings.model';
 import { Department } from '../../../settings-new/shared/department.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { ConsultationRequestModel } from '../../shared/consultation-request.model';
 import { ConsultationRequestGridDTO } from '../../shared/dto/consultation-request-grid.dto';
 import { NursingService } from '../../shared/nursing-service';
@@ -69,8 +69,8 @@ export class ConsultationRequestViewPrintComponent implements OnInit {
 
     public async GetAllApptDepartment() {
         try {
-            const res: DanpheHTTPResponse = await this.nursingBLService.GetAllApptDepartment().toPromise();
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            const res: DsfHTTPResponse = await this.nursingBLService.GetAllApptDepartment().toPromise();
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.DepartmentList = res.Results;
             } else {
                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, [
@@ -86,8 +86,8 @@ export class ConsultationRequestViewPrintComponent implements OnInit {
 
     public async GetAllAppointmentApplicableDoctor() {
         try {
-            const res: DanpheHTTPResponse = await this.nursingBLService.GetAllAppointmentApplicableDoctor().toPromise();
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            const res: DsfHTTPResponse = await this.nursingBLService.GetAllAppointmentApplicableDoctor().toPromise();
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.DoctorList = res.Results;
             } else {
                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, [

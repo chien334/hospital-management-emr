@@ -104,10 +104,10 @@
                       <td><i class="fa fa-arrow-circle-o-right "></i><b>Disch. Date :</b>&nbsp;&nbsp; </td>
                       <td>
 
-                        <danphe-date-picker [(ngModel)]="dischargeDetail.DischargeDate"
+                        <dsf-date-picker [(ngModel)]="dischargeDetail.DischargeDate"
                                             (ngModelChange)="CalculateTotalDays()" [ngModelOptions]="{standalone: true}" [showTime]="true"
                                             [CalendarTypes]="'en,np'">
-                        </danphe-date-picker>
+                        </dsf-date-picker>
                         <label class="color-red font-sm" *ngIf="!validDischargeDate">
                           Please enter Valid Discharge
                           Date.
@@ -124,9 +124,9 @@
               </div>
               <br />
               <div class="col-md-12 mb10">
-                <danphe-grid [grid-colDefaults]="IPBillItemGridCol" [grid-data]="patAllPendingItems"
+                <dsf-grid [grid-colDefaults]="IPBillItemGridCol" [grid-data]="patAllPendingItems"
                              (grid-actions)="IPBillItemGridActions($event)" [show-print-button]="false" [supressPagination]="true"
-                             [resizeColumnToFit]="false" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </danphe-grid>
+                             [resizeColumnToFit]="false" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </dsf-grid>
               </div>
             </div>
             <div class="col-md-3">
@@ -379,7 +379,7 @@
             </tr>
             <tr>
               <td>Hospital No: {{admissionInfo.PatientNo}}</td>
-              <td> Age/Sex :{{admissionInfo.DateOfBirth | DanpheDateTime:'age'}} / {{admissionInfo.Gender}} </td>
+              <td> Age/Sex :{{admissionInfo.DateOfBirth | DsfDateTime:'age'}} / {{admissionInfo.Gender}} </td>
             </tr>
           </table>
           <div class="text-center">
@@ -418,9 +418,9 @@
             <tr>
               <td> Discharge Date :</td>
               <td>
-                <danphe-date-picker [(ngModel)]="dischargeDetail.DischargeDate" [ngModelOptions]="{standalone: true}"
+                <dsf-date-picker [(ngModel)]="dischargeDetail.DischargeDate" [ngModelOptions]="{standalone: true}"
                                     [showTime]="true" [CalendarTypes]="'en,np'">
-                </danphe-date-picker>
+                </dsf-date-picker>
               </td>
             </tr>
           </table>

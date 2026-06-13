@@ -117,7 +117,7 @@
                         <div>
                             <p class="patient-hdr-label "><strong>Patient Name</strong>: {{dsVM?.selectedADT?.Name}}</p>
                             <p class="patient-hdr-label "><strong>Age/Sex</strong>: {{dsVM?.selectedADT?.DOB |
-                                DanpheDateTime:'age'}}/{{dsVM?.selectedADT?.Gender}} </p>
+                                DsfDateTime:'age'}}/{{dsVM?.selectedADT?.Gender}} </p>
                             <p class="patient-hdr-label"><strong> Contact Number </strong>: {{dsVM?.selectedADT?.PhoneNumber}} </p>
                             <p *ngIf="dsVM?.selectedADT?.ModuleName != 'emergency'" class="patient-hdr-label">
                                 <strong>Ward</strong>: {{dsVM?.selectedADT?.BedInformation.Ward}}
@@ -134,10 +134,10 @@
                         <div>
                             <p class="patient-hdr-label"><strong>Inpatient No.</strong>: {{dsVM.VisitCode}}</p>
                             <p class="patient-hdr-label"><strong>Admission Date</strong>: {{dsVM?.selectedADT?.AdmittedDate |
-                                DanpheDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp; <strong>{{dsVM?.selectedADT?.AdmittedDate |
+                                DsfDateTime:'format':'YYYY-MM-DD HH:mm' }} AD &nbsp; <strong>{{dsVM?.selectedADT?.AdmittedDate |
                                     nepaliDate}}</strong> </p>
                             <p class="patient-hdr-label"><strong>Discharge Date</strong>: {{dsVM?.selectedADT?.DischargedDate |
-                                DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} AD &nbsp; <strong>{{dsVM?.selectedADT?.DischargedDate |
+                                DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} AD &nbsp; <strong>{{dsVM?.selectedADT?.DischargedDate |
                                     nepaliDate}}</strong> </p>
                             <p class="patient-hdr-label"><strong>Hospital stay:</strong> {{hospitalStayDate}}</p>
                         </div>

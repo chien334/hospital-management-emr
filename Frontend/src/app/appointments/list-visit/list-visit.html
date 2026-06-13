@@ -1,16 +1,16 @@
 <div class="wrapper">
   <!--Sud27June'19-- Transfer visit is handled from New-Visit with few conditions. so below page is not needed as of now-->
 
-  <!--<danphe-transfer-visit *ngIf="showTransferPage" [showTransferPage]="showTransferPage"
+  <!--<dsf-transfer-visit *ngIf="showTransferPage" [showTransferPage]="showTransferPage"
                        [visit]="selectedVisit"
-                       (callback-transfer)="CallBackContinueVisit($event)"></danphe-transfer-visit>-->
+                       (callback-transfer)="CallBackContinueVisit($event)"></dsf-transfer-visit>-->
 
-  <danphe-followup-visit *ngIf="showFollowupPage" [parent-visit]="selectedVisit"
-                         (on-followup-add)="FollowupPopupOnClose($event)"></danphe-followup-visit>
+  <dsf-followup-visit *ngIf="showFollowupPage" [parent-visit]="selectedVisit"
+                         (on-followup-add)="FollowupPopupOnClose($event)"></dsf-followup-visit>
 
   <!--Sud:3June2019--Free referral is not catered by our current flow, so created a new one-->
-  <danphe-free-referal-visit *ngIf="showReferralPopup" [visit]="selectedVisit"
-                             (add-referal)="FreeReferralPopupOnClose($event)"> </danphe-free-referal-visit>
+  <dsf-free-referal-visit *ngIf="showReferralPopup" [visit]="selectedVisit"
+                             (add-referal)="FreeReferralPopupOnClose($event)"> </dsf-free-referal-visit>
 
   <div class="popup-static portlet box portlet-fullscreen custom_modal" *ngIf="showOpdSticker">
     <div class="portlet-body form">
@@ -60,9 +60,9 @@
         <p>* Followup is valid upto {{maxLastVisitDays}} days of last visit with same doctor</p>
         <p *ngIf="maxInternalReferralDays">* Refer is valid upto {{maxInternalReferralDays}} days of last visit</p>
       </div>
-      <danphe-grid [grid-colDefaults]="visitGridColumns" [grid-data]="visits" (grid-actions)="VisitGridActions($event)"
+      <dsf-grid [grid-colDefaults]="visitGridColumns" [grid-data]="visits" (grid-actions)="VisitGridActions($event)"
                    (serverSearchText)="serverSearchTxt($event)" [customServerSearch]="enableServerSideSearch"
-                   [searchUsingHospitalNo]="SearchPatientUsingHospitalNo" [searchUsingIdCardNo]="SearchPatientUsingIdCardNo"> </danphe-grid>
+                   [searchUsingHospitalNo]="SearchPatientUsingHospitalNo" [searchUsingIdCardNo]="SearchPatientUsingIdCardNo"> </dsf-grid>
       <!-- [show-ServerSideSearch]="true"
     [api-type]="patGirdDataApi" -->
     </div>

@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { BedFeature } from "../../../adt/shared/bedfeature.model";
 import { DepositHead_DTO } from "../../../billing/shared/dto/deposit-head.dto";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { MinimumDepositAmount_DTO } from "../../shared/DTOs/minimum-deposit-amount.dto";
 import { BillingSchemeModel } from "../../shared/bill-scheme.model";
 import { MinimumDepositSettingsModel } from "../../shared/minimum-deposit-settings";
@@ -47,8 +47,8 @@ export class DepossitSettingsListComponent {
     }
     public GetBedFeatureList() {
         this.SettingsBLService.GetBedFeatureList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.bedFeatureList = res.Results;
                 }
             },
@@ -58,8 +58,8 @@ export class DepossitSettingsListComponent {
     }
     GetBillingSchemes() {
         this.SettingsBLService.GetBillingSchemes().subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.BillSchemeList = res.Results;
                 } else {
                     this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, ['Failed to load schemes']);
@@ -74,8 +74,8 @@ export class DepossitSettingsListComponent {
     GetDepositHead() {
         this.SettingsBLService
             .GetDepositHead()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.DepositHeadList = res.Results;
 
                 } else {
@@ -92,8 +92,8 @@ export class DepossitSettingsListComponent {
     }
     GetSettingDepositAmount() {
         this.SettingsBLService.GetSettingDepositAmount().subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.MinimumDepositSettingsList = res.Results;
                     this.loading = false;
                 } else {
@@ -168,8 +168,8 @@ export class DepossitSettingsListComponent {
             : "Are you sure you want to deactivate this Setting Deposit Amount?";
 
         if (window.confirm(message)) {
-            this.SettingsBLService.ActivateDeactivateSettingDepositAmount(AdtDepositSettingId).subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            this.SettingsBLService.ActivateDeactivateSettingDepositAmount(AdtDepositSettingId).subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.MinimumDepositSettingsList[this.index].IsActive = res.Results.IsActive;
                     this.MinimumDepositSettingsList = this.MinimumDepositSettingsList.slice();
                     if (IsActive == true) {

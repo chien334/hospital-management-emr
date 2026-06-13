@@ -225,7 +225,7 @@
                           <div class="col-md-5"><span class="parm-nam">DOB/Age<b>:</b></span></div>
                           <div class="col-md-7">
                             <div class="row">
-                              <span class="parm-val">{{selectedPat.DateOfBirth | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                              <span class="parm-val">{{selectedPat.DateOfBirth | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                             </div>
                           </div>
                         </div>
@@ -250,7 +250,7 @@
                           <div class="col-md-5"><span class="parm-nam">Issue Date<b>:</b></span></div>
                           <div class="col-md-7">
                             <div class="row">
-                              <span class="parm-val">{{selectedPat.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                              <span class="parm-val">{{selectedPat.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                             </div>
                           </div>
                         </div>
@@ -315,7 +315,7 @@
                           <div class="col-md-5"><span class="parm-nam">DOB/Age<b>:</b></span></div>
                           <div class="col-md-7">
                             <div class="row">
-                              <span class="parm-val">{{selectedPat.DateOfBirth | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                              <span class="parm-val">{{selectedPat.DateOfBirth | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                             </div>
                           </div>
                         </div>
@@ -340,7 +340,7 @@
                           <div class="col-md-5"><span class="parm-nam">Issue Date<b>:</b></span></div>
                           <div class="col-md-7">
                             <div class="row">
-                              <span class="parm-val">{{selectedPat.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                              <span class="parm-val">{{selectedPat.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                             </div>
                           </div>
                         </div>
@@ -365,10 +365,10 @@
                 {{patHealthCardStatus.BillStatus}}
               </b>
               <br />
-              <span *ngIf="patHealthCardStatus.BillStatus=='paid'">Paid Date: <b>{{patHealthCardStatus.PaidDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</b><br /></span>
-              <span *ngIf="patHealthCardStatus.BillStatus=='unpaid'">Billing Date: <b>{{patHealthCardStatus.BillingDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</b><br /></span>
+              <span *ngIf="patHealthCardStatus.BillStatus=='paid'">Paid Date: <b>{{patHealthCardStatus.PaidDate | DsfDateTime:'format':'YYYY-MM-DD'}}</b><br /></span>
+              <span *ngIf="patHealthCardStatus.BillStatus=='unpaid'">Billing Date: <b>{{patHealthCardStatus.BillingDate | DsfDateTime:'format':'YYYY-MM-DD'}}</b><br /></span>
               Is Card Printed: <b>{{patHealthCardStatus.IsPrinted?'Yes':'No'}}</b><br />
-              <span *ngIf="patHealthCardStatus.IsPrinted">Card Printed On:  <b>{{patHealthCardStatus.PrintedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</b></span>
+              <span *ngIf="patHealthCardStatus.IsPrinted">Card Printed On:  <b>{{patHealthCardStatus.PrintedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</b></span>
             </p>
           </div>
           <div style="width:100%;float:left;text-align:center;  margin-bottom: 25px;">
@@ -423,7 +423,7 @@
                             <div class="row">
                                 <div style="width: 320px;float:left;visibility: hidden;"><span class="parm-nam hd-visib">DOB/Age<b>:</b></span></div>
                                 <div style="width: 425px;float:right;min-height:63px;">
-                                    <span class="parm-val" style="font-size: 42px; line-height: 30px;">{{selectedPat.DateOfBirth | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                                    <span class="parm-val" style="font-size: 42px; line-height: 30px;">{{selectedPat.DateOfBirth | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
 
                                 </div>
                             </div>
@@ -444,7 +444,7 @@
                             <div class="row">
                                 <div style="width: 320px;float:left;visibility: hidden;"><span class="parm-nam hd-visib">Issue Date<b>:</b></span></div>
                                 <div style="width: 425px;float:right;min-height:63px;">
-                                    <span class="parm-val" style="font-size: 42px;">{{selectedPat.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                                    <span class="parm-val" style="font-size: 42px;">{{selectedPat.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                                 </div>
                             </div>
 
@@ -498,7 +498,7 @@
                   <span class="parm-val allwith-bg"><span style="visibility: hidden;">B</span>{{selectedPat.Gender}}</span>
                 </div>
                 <div>
-                  <span class="parm-val allwith-bg" style=" line-height: 46px; font-size: 32px;"><span style="visibility: hidden;">B</span>{{selectedPat.DateOfBirth | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                  <span class="parm-val allwith-bg" style=" line-height: 46px; font-size: 32px;"><span style="visibility: hidden;">B</span>{{selectedPat.DateOfBirth | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                 </div>
                 <div>
                   <span class="parm-val allwith-bg" style="line-height: 39px; font-size: 32px;"><span style="visibility: hidden; ">B</span>{{selectedPat.BloodGroup}}
@@ -508,7 +508,7 @@
                   <span style="line-height: 51px; font-size: 32px;" class="parm-val allwith-bg"><span style="visibility: hidden;">B</span>{{selectedPat.PhoneNumber}}</span>
                 </div>
                 <div>
-                  <span style="line-height: 48px; font-size: 32px;" class="parm-val allwith-bg"><span style="visibility: hidden;">B</span>{{selectedPat.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                  <span style="line-height: 48px; font-size: 32px;" class="parm-val allwith-bg"><span style="visibility: hidden;">B</span>{{selectedPat.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                 </div>
               </div>
             </div>

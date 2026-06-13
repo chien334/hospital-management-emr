@@ -4,10 +4,10 @@ import * as moment from "moment/moment";
 import { CoreService } from '../../../core/shared/core.service';
 import { SecurityService } from "../../../security/shared/security.service";
 import { CallbackService } from '../../../shared/callback.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PharmacyService } from "../../shared/pharmacy.service";
 import { PHRMCompanyModel } from "../../shared/phrm-company.model";
@@ -553,8 +553,8 @@ export class PHRMGoodsReceiptItemComponent {
     }
     public getRackNoByItemIdAndStoreId(ItemId: number): void {
         this.pharmacyBLService.GetRackNoByItemIdAndStoreId(ItemId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.goodReceiptItem.RackNo = res.Results;
                 }
             });

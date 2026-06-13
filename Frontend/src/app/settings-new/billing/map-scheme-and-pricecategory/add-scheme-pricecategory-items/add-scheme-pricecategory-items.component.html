@@ -14,7 +14,7 @@
                   </div>
                   <div class="col-md-8" style="padding: 0px;">
                     <input
-                           danphe-auto-complete type="text" class="form-control" id="id_SchemeName"
+                           dsf-auto-complete type="text" class="form-control" id="id_SchemeName"
                            display-property-name="SchemeName"
                            [list-formatter]="SchemeListFormatter"
                            (valueChanged)="AssignSelectedSchemeItem($event)"
@@ -32,7 +32,7 @@
                   </div>
                   <div class="col-md-8" style="padding: 0px;">
                     <input
-                           danphe-auto-complete type="text" class="form-control" id="id_PriceCategoryName"
+                           dsf-auto-complete type="text" class="form-control" id="id_PriceCategoryName"
                            display-property-name="PriceCategoryName"
                            [list-formatter]="PriceCategoryListFormatter"
                            (valueChanged)="AssignSelectedPriceCategoryItem($event)"
@@ -77,7 +77,7 @@
             </div>
           </div>
           <div style="margin: 5px 15px 40px 0px; padding: 0px;">
-            <input DanpheConfirmationDialog
+            <input DsfConfirmationDialog
                    *ngIf="!update"
                    id="btnSaveSchemePriceCategoryMapItem"
                    type="submit"
@@ -90,7 +90,7 @@
                    [value]="'COMMON.SAVE' | translate"
                    [disabled]="loading" />
 
-            <input DanpheConfirmationDialog
+            <input DsfConfirmationDialog
                    *ngIf="update"
                    id="btnUpdateSchemePriceCategoryMapItem"
                    type="submit"

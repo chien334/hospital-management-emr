@@ -221,7 +221,7 @@
                   <td>
                     LAB
                   </td>
-                  <td>{{res.LabTestName}} on <span>{{res.OrderDateTime | DanpheDateTime:'datename':'DD.MM.YYYY HH:mm'}}</span></td>
+                  <td>{{res.LabTestName}} on <span>{{res.OrderDateTime | DsfDateTime:'datename':'DD.MM.YYYY HH:mm'}}</span></td>
                   <td>
                     <a style="text-decoration:underline;font-weight:bold;cursor:pointer;" *ngIf="res.OrderStatus=='final'"
                        (click)="ViewLabReport(res.RequisitionId)">{{ 'PATIENT_OVERVIEW.VIEW' | translate }}</a>
@@ -232,7 +232,7 @@
                   <td>{{ 'PATIENT_OVERVIEW.MEDICATION_ORDER' | translate }}</td>
                   <td>
                     <b>{{med.MedicationName}}</b>&nbsp;&nbsp;{{med.Frequency}}&nbsp;{{ 'PATIENT_OVERVIEW.TIMES_A_DAY' | translate }}
-                    &nbsp;&nbsp;&nbsp;&nbsp;{{ 'PATIENT_OVERVIEW.START_DATE' | translate }} {{med.CreatedOn | DanpheDateTime:'datename':'DD.MM.YYYY'}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;{{ 'PATIENT_OVERVIEW.START_DATE' | translate }} {{med.CreatedOn | DsfDateTime:'datename':'DD.MM.YYYY'}}
                   </td>
                   <td>
                     active
@@ -241,7 +241,7 @@
                 </tr>
                 <tr *ngFor="let req of currPat.ImagingItemRequisitions">
                   <td>{{req.ImagingTypeName}}</td>
-                  <td>{{req.ImagingItemName}} &nbsp;&nbsp;{{req.ImagingDate | DanpheDateTime:'datename':'DD.MM.YYYY HH:mm'}}</td>
+                  <td>{{req.ImagingItemName}} &nbsp;&nbsp;{{req.ImagingDate | DsfDateTime:'datename':'DD.MM.YYYY HH:mm'}}</td>
                   <td>
                     {{req.OrderStatus}}
                   </td>
@@ -249,7 +249,7 @@
                 </tr>
                 <tr *ngFor="let otherOdr of otherActiveRequests">
                   <td>{{ 'PATIENT_OVERVIEW.OTHERS' | translate }}</td>
-                  <td>{{otherOdr.ItemName}} &nbsp;&nbsp;{{otherOdr.CreatedOn | DanpheDateTime:'datename':'DD.MM.YYYY HH:mm'}}</td>
+                  <td>{{otherOdr.ItemName}} &nbsp;&nbsp;{{otherOdr.CreatedOn | DsfDateTime:'datename':'DD.MM.YYYY HH:mm'}}</td>
                   <td>
                     {{otherOdr.BillStatus}}
                   </td>
@@ -283,7 +283,7 @@
               </div>
               <div class="col-md-9">
                 <div class="input-group srchTbx">
-                  <input danphe-auto-complete class="form-control round-input" aria-label="search"
+                  <input dsf-auto-complete class="form-control round-input" aria-label="search"
                          [(ngModel)]="selOrdItem"
                          [source]="ordItemsFiltered"
                          [list-formatter]="orderItemsListFormatter"
@@ -358,11 +358,11 @@
     <div class="modelbox-div" style="margin-left:15%;margin-right:15%;margin-top:2%">
       <div style="margin-left:0px;margin-right:-105px">
         <i class="btn btn-danger" style="float: right;margin-right:115px;" (click)="CloseLabReport()">X</i>
-        <danphe-lab-results [requisitionIdList]="labRequisitionIdList"
+        <dsf-lab-results [requisitionIdList]="labRequisitionIdList"
                             [showReport]="showLabReport"
                             [showHeader]="false"
                             [showSignatories]="false"
-                            [enableEdit]="false"></danphe-lab-results>
+                            [enableEdit]="false"></dsf-lab-results>
       </div>
     </div>
   </div>

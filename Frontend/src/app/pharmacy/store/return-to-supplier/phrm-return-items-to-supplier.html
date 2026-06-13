@@ -29,7 +29,7 @@
       <div class="form-group">
         <label class="control-label col-md-4 col-sm-3">{{ 'PHARMACY.SUPPLIER' | translate }}<b>:</b></label>
         <div class="col-md-8 col-sm-9">
-          <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)" [ngModelOptions]="{standalone:true}" [(ngModel)]="selSupplier" [source]="supplierList" [placeholder]="'PHARMACY.SEARCH_SUPPLIER' | translate" [list-formatter]="SupplierListFormatter" ngModelOptions="{standalone:true}" display-property-name="SupplierName" value-property-name="null" max-num-list="15" style="width: 100%;" />
+          <input dsf-auto-complete onClick="this.setSelectionRange(0, this.value.length)" [ngModelOptions]="{standalone:true}" [(ngModel)]="selSupplier" [source]="supplierList" [placeholder]="'PHARMACY.SEARCH_SUPPLIER' | translate" [list-formatter]="SupplierListFormatter" ngModelOptions="{standalone:true}" display-property-name="SupplierName" value-property-name="null" max-num-list="15" style="width: 100%;" />
         </div>
       </div>
     </div>
@@ -346,7 +346,7 @@
 </div>
 <div class="row" *ngIf="!showReturnSupp">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="returnToSupplierListGridColumns" [rangeType]="dateRange" (onDateChange)="onGridDateChange($event)" [date-range-options]="'1W,1M,3M'" [show-CustomDate]="true" [grid-data]="returnToSupplierData" (grid-actions)="ReturnToSupplierGridAction($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="returnToSupplierListGridColumns" [rangeType]="dateRange" (onDateChange)="onGridDateChange($event)" [date-range-options]="'1W,1M,3M'" [show-CustomDate]="true" [grid-data]="returnToSupplierData" (grid-actions)="ReturnToSupplierGridAction($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings"> </dsf-grid>
   </div>
 </div>
 <div *ngIf="showGoodReceipt">

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef, Renderer2 } from "@angular/core";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { PrintExportConfigurationModel } from "../../shared/print-export-config.model";
 
@@ -59,7 +59,7 @@ export class AddPrintExportConfigurationComponent {
     if (this.configuration.IsValidCheck(undefined, undefined)) {
 
       this.settingsBlService.AddPrintExportConfiguration(this.configuration)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.configuration = new PrintExportConfigurationModel();
             this.callbackAdd.emit({ action: "add", data: res.Results });
@@ -86,7 +86,7 @@ export class AddPrintExportConfigurationComponent {
     if (this.configuration.IsValidCheck(undefined, undefined)) {
 
       this.settingsBlService.UpdatePrintExportConfiguration(this.configuration)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
 
           if (res.Status == "OK") {
             this.configuration = new PrintExportConfigurationModel();

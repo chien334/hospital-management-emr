@@ -6,7 +6,7 @@ import { PatientService } from "../../patients/shared/patient.service";
 import { NursingBLService } from "../shared/nursing.bl.service";
 import { Router } from "@angular/router";
 import { ADT_BLService } from "../../adt/shared/adt.bl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 
 @Component({
   templateUrl: "./nursing-transfer.html",
@@ -81,7 +81,7 @@ export class NursingTransferComponent {
   public allDepartments: Array<any> = [];
   public LoadDepartments() {
     this.admissionBLService.GetDepartments()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         this.allDepartments = res.Results;
 
       });

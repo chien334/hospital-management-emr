@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { CoreBLService } from "../../core/shared/core.bl.service";
 import { CoreService } from "../../core/shared/core.service";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { CfgPaymentModesSettings } from "../shared/CfgPaymentModesSettings";
 import { SettingsService } from "../shared/settings-service";

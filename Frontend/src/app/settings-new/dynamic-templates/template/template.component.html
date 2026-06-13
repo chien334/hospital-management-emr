@@ -1,9 +1,9 @@
 <a feature="button" id="id_btn_template_newTemplate" class="btn blue bordered" (click)="NewTemplate()"><i class="fa fa-plus"></i>{{ 'SETTINGS_NEW.ADD_TEMPLATE' | translate }}</a>
 <div *ngIf="showGrid" class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="templateGridColumns" [grid-data]="templateList "
+    <dsf-grid [grid-colDefaults]="templateGridColumns" [grid-data]="templateList "
                  (grid-actions)="TemplateGridActions($event)" [show-print-button]="false">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 
@@ -95,9 +95,9 @@
                     <label class="control-label no-padding" style="font-size: 15px;">{{ 'SETTINGS_NEW.PRINT_FORMAT' | translate }} <b>:</b> </label>
                     <span class="color-red font-sm" *ngIf="!isValidTemplate">{{ 'SETTINGS_NEW.PRINT_FORMAT_REQUIRED' | translate }}</span>
                     <br>
-                    <danphe-ckeditor [readonly]="false" (get-html-content)="onChangeEditorData($event)"
+                    <dsf-ckeditor [readonly]="false" (get-html-content)="onChangeEditorData($event)"
                                      [set-html-content]="currentTemplate.PrintContentHTML" id="TemplateContent"
-                                     (keyup.enter)="FocusElementById('Add')"> </danphe-ckeditor>
+                                     (keyup.enter)="FocusElementById('Add')"> </dsf-ckeditor>
                   </div>
                 </div>
               </div>

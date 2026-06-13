@@ -1,11 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import * as moment from "moment";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { ReportingService } from "../../shared/reporting-service";
 import { RPT_RAD_Film_Type_CountModel } from "./film-type-count-report.model";
 
@@ -85,13 +85,13 @@ export class RPT_RAD_FilmTypeCountReportComponent {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [err.ErrorMessage]);
     }
     Success(res) {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
 
             this.FilmTypeCountColumns = this.reportServ.reportGridCols.RPT_RAD_FilmTypeCountColumns;
             this.NepaliDateInGridSettings.NepaliDateColumnList.push(new NepaliDateInGridColumnDetail("Date", false));
             this.FilmTypeCountData = res.Results;
         }
-        else if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length == 0) {
+        else if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length == 0) {
             this.FilmTypeCountData = null;
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Notice, ['Data is Not Available Between Selected dates...Try Different Dates']);
         }

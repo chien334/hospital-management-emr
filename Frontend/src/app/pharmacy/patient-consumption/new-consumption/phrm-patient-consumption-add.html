@@ -11,8 +11,8 @@
           <div class="row d-flex">
             <label for="id_input_search_patient" class="col-md-4">{{ 'DISPENSARY.SALE.SEARCH_PATIENT' | translate }} <sup class="color-red">*</sup></label>
             <div class="col-md-8">
-              <div class="danphe-auto-complete-wrapper" style="position: relative;">
-                <input type="text" id="id_input_search_patient" danphe-auto-complete
+              <div class="dsf-auto-complete-wrapper" style="position: relative;">
+                <input type="text" id="id_input_search_patient" dsf-auto-complete
                        [(ngModel)]="searchPatient"
                        [source]="AllPatientSearchAsync.bind(this)"
                        [path-to-data]="'Results'"
@@ -37,9 +37,9 @@
                     class="color-red">*</sup></label>
             <div class="col-md-9">
               <div class="d-flex justify-space-between align-items-center">
-                <div class="danphe-auto-complete-wrapper" style="position: relative; width: 100%;">
+                <div class="dsf-auto-complete-wrapper" style="position: relative; width: 100%;">
                   <input *ngIf="ReferrerList" type="text"
-                         id="id_input_selectReferral" danphe-auto-complete
+                         id="id_input_selectReferral" dsf-auto-complete
                          [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedPrescriber" [source]="ReferrerList"
                          [list-formatter]="AssignedToDocListFormatter" [placeholder]="'DISPENSARY.SALE.SELECT_DOCTOR' | translate"
                          display-property-name="FullName" value-property-name="'PrescriberId'" match-formatted="true"
@@ -58,9 +58,9 @@
           <div class="row">
             <label for="id_input_selectReferral" class="col-md-4">{{ 'DISPENSARY.STOCK.STORE_NAME' | translate }}:</label>
             <div class="col-md-8">
-              <div class="danphe-auto-complete-wrapper" style="position: relative;">
+              <div class="dsf-auto-complete-wrapper" style="position: relative;">
                 <input *ngIf="WardSubStoreMapList" type="text"
-                       id="id_input_selectReferral" danphe-auto-complete
+                       id="id_input_selectReferral" dsf-auto-complete
                        [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedStore" [source]="WardSubStoreMapList"
                        [list-formatter]="StoreListFormatter" [placeholder]="'DISPENSARY.STOCK.STORE_NAME' | translate"
                        display-property-name="StoreName" value-property-name="'StoreId'" match-formatted="true"
@@ -132,7 +132,7 @@
           <tr>
             <td>
               <form [formGroup]="patientConsumptionItem.PatientConsumptionValidator">
-                <input type="text" id="genric-box" danphe-auto-complete class="form-control" [placeholder]="'PATIENT_CONSUMPTION.GENERIC_PLACEHOLDER' | translate"
+                <input type="text" id="genric-box" dsf-auto-complete class="form-control" [placeholder]="'PATIENT_CONSUMPTION.GENERIC_PLACEHOLDER' | translate"
                        display-property-name="GenericName" value-property-name=null
                        [(ngModel)]="patientConsumptionGenericName" [source]="FilteredGenericList"
                        onClick="this.select();" match-formatted="true"
@@ -146,7 +146,7 @@
             </td>
             <td>
               <form [formGroup]="patientConsumptionItem.PatientConsumptionValidator">
-                <input danphe-auto-complete class="form-control" [(ngModel)]="SelectedItem"
+                <input dsf-auto-complete class="form-control" [(ngModel)]="SelectedItem"
                        formControlName="ItemName"
                        [source]="FilteredItems" [list-formatter]="phrmItemListFormatter"
                        [placeholder]="'PATIENT_CONSUMPTION.MEDICINE_PLACEHOLDER' | translate" display-property-name="ItemName" value-property-name=null
@@ -303,7 +303,7 @@
       </div>
       <div class="colrow">
         <div class="col text-right">
-          <input DanpheConfirmationDialog
+          <input DsfConfirmationDialog
                  type="submit"
                  [title]="confirmationTitle"
                  [message]="confirmationMessage"

@@ -50,7 +50,7 @@ import { ActivateInventoryGuardService } from "./shared/activate-inventory/activ
 import { ActivateInventoryComponent } from "./shared/activate-inventory/activate-inventory.component";
 import { ActivateInventoryEndpoint } from "./shared/activate-inventory/activate-inventory.endpoint";
 import { ActivateInventoryService } from "./shared/activate-inventory/activate-inventory.service";
-import { LoaderComponent } from "./shared/danphe-loader-intercepter/danphe-loader";
+import { LoaderComponent } from "./shared/dsf-loader-intercepter/dsf-loader";
 import { NavigationService } from "./shared/navigation-service";
 import { ActivateBillingCounterGuardService } from "./utilities/shared/activate-billing-counter-guard-service";
 import { ActivateBillingCounterService } from "./utilities/shared/activate-billing-counter.service";

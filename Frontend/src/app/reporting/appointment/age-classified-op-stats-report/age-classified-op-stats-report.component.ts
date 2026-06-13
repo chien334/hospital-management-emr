@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { DynamicReportComponent } from '../../../dynamic-report/dynamic-report.component';
 import { Department } from '../../../settings-new/shared/department.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { DynamicReport } from '../../shared/dynamic-report.model';
 
 @Component({
@@ -39,8 +39,8 @@ export class RPT_APPT_AgeClassifiedOPStatsReportComponent {
 
     GetDepartments() {
         this.dlService.GetDepartment()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK)
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK)
                     this.departmentList = res.Results;
             });
     }
@@ -65,7 +65,7 @@ export class RPT_APPT_AgeClassifiedOPStatsReportComponent {
                 + this.selectedAgeClassifiedOPStatsParameter.fromDate +
                 "&ToDate=" + this.selectedAgeClassifiedOPStatsParameter.toDate +
                 "&DepartmentId=" + this.deptId)
-                .map((res: DanpheHTTPResponse) => res)
+                .map((res: DsfHTTPResponse) => res)
                 .subscribe(res => this.Success(res),
                     res => this.Error(res));
         }
@@ -80,7 +80,7 @@ export class RPT_APPT_AgeClassifiedOPStatsReportComponent {
 
     public dynamicHeaders = [];
     Success(res) {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             if (Array.isArray(res.Results)) {
                 this.AgeClassifiedOPStatsReportData = res.Results;
             } else {

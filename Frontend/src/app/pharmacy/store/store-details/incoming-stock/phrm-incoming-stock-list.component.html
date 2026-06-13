@@ -12,8 +12,8 @@
   </div>
 </div>
 <div class="col-lg-12 col-sm-12" *ngIf="showIncomingStockGrid" [@enterAnimation]>
-  <danphe-grid [grid-colDefaults]="incomingStockGridColumns" [grid-data]="incomingStockList" [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="incomingStockGridAction($event)" [paginationPageSize]="5">
-  </danphe-grid>
+  <dsf-grid [grid-colDefaults]="incomingStockGridColumns" [grid-data]="incomingStockList" [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="incomingStockGridAction($event)" [paginationPageSize]="5">
+  </dsf-grid>
 </div>
 
 <app-receive-incoming-stock *ngIf="showReceiveStockPopUp" [dispatchId]="selectedDispatchId" (callback-update)="OnReceiveIncomingStockClosed($event)"></app-receive-incoming-stock>

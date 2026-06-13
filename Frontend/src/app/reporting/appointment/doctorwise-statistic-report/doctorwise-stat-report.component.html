@@ -23,7 +23,7 @@
                         <div class="form-group row">
                             <label class="control-label col-md-5">Doctor<b style="float:right;">:</b></label>
                             <div class="col-md-7">
-                                <input class="form-control" danphe-auto-complete
+                                <input class="form-control" dsf-auto-complete
                                        [(ngModel)]="doctors" [ngModelOptions]="{standalone: true}"
                                        [list-formatter]="DoctorListFormatter" [source]="doctorList"
                                        placeholder="Enter Doctor Name"
@@ -55,9 +55,9 @@
     </div>
     <div class="row">
         <div class="col-lg-12 col-sm-12" *ngIf="DoctorWiseStatisticsReportData">
-            <danphe-grid [grid-colDefaults]=" DoctorWiseStatisticsReportColumns" [grid-data]="DoctorWiseStatisticsReportData"
+            <dsf-grid [grid-colDefaults]=" DoctorWiseStatisticsReportColumns" [grid-data]="DoctorWiseStatisticsReportData"
                          [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [show-header]="true"
-                         [report-for]="'billing'" [filter-parameters]="FilterParameters" [grid-footer-content]="footer"> </danphe-grid>
+                         [report-for]="'billing'" [filter-parameters]="FilterParameters" [grid-footer-content]="footer"> </dsf-grid>
         </div>
         <div class="col-md-12" style="margin-bottom: 50px;margin-top: 20px;" id="id-doctorwise-stat-summaryFooter">
             <div id="deptStatSummary" *ngIf="DoctorWiseStatisticsReportData && DoctorWiseStatisticsReportData.length>0">

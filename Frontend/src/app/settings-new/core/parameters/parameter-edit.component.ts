@@ -270,7 +270,7 @@ export class ParameterEditComponent {
                     });
                     this.callbackAdd.emit({ submit: true });
                     this.msgBoxServ.showMessage("Success", ["Parameter updated successfully."])
-                    if(this.currentParameter.ParameterGroupName == "TeleMedicine" && this.currentParameter.ParameterName == "DanpheConfigurationForTeleMedicine"){
+                    if(this.currentParameter.ParameterGroupName == "TeleMedicine" && this.currentParameter.ParameterName == "DsfConfigurationForTeleMedicine"){
                         sessionStorage.clear();
                     }
                 } else {

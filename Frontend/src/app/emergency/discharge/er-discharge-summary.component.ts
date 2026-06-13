@@ -5,7 +5,7 @@ import { EmergencyPatientModel } from '../shared/emergency-patient.model';
 import { CommonFunctions } from '../../shared/common.functions';
 import { EmergencyBLService } from '../shared/emergency.bl.service';
 import { EmergencyDLService } from '../shared/emergency.dl.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { PatientService } from '../../patients/shared/patient.service';
 import * as moment from 'moment/moment';
 import { EmergencyDischargeSummaryVM } from '../shared/emergency-discharge-summaryVM';
@@ -41,7 +41,7 @@ export class ERDischargeSummaryComponent {
     GetDischargeDetails() {
         if (this.patientId && this.visitId) {
             this.emergencyBLService.GetDischargeSummaryDetail(this.patientId, this.visitId)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if (res.Status == "OK") {
                         this.PatientSummary = new EmergencyDischargeSummaryVM();
                         this.PatientSummary = res.Results;

@@ -24,7 +24,7 @@
                     <tr *ngFor="let vis of visits">
                         <td>{{vis.VisitType}}</td>
                         <td>{{vis.VisitCode}}</td>
-                        <td>{{vis.VisitDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                        <td>{{vis.VisitDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                         <td>{{vis.VisitTime }}</td>
                         <td>{{vis.ProviderName}}</td>
                         <td>{{vis.Comments}}</td>

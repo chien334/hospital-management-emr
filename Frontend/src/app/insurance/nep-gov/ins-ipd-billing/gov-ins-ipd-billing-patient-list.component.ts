@@ -6,10 +6,10 @@ import { PatientService } from '../../../patients/shared/patient.service';
 import { SecurityService } from "../../../security/shared/security.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
 import { CallbackService } from "../../../shared/callback.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { GovInsuranceService } from "../shared/ins-service";
@@ -53,7 +53,7 @@ export class GovINSIPDBillingComponent {
   LoadInpatientList() {
     this.dlService.Read("/api/GovInsurance/AdmittedPatients")
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allInpatList = res.Results;
           //ward/bed search wasnot working from grid so combining the columns as one to fill the grid data..
@@ -111,7 +111,7 @@ export class GovINSIPDBillingComponent {
   //we have to load all billing items into service variable, which will be used across this module. 
   public LoadAllBillingItems() {
     this.insuranceBlService.GetBillItemList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log("bill item prices are loaded successfully (billing-main).");
           this.insuranceService.LoadAllBillItemsPriceList(res.Results);
@@ -124,7 +124,7 @@ export class GovINSIPDBillingComponent {
 
   public LoadAllDoctorsList() {
     this.insuranceBlService.GetDoctorsList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log("doctors list are loaded successfully (billing-main).");
           this.insuranceService.SetAllDoctorList(res.Results);
@@ -136,7 +136,7 @@ export class GovINSIPDBillingComponent {
   }
   public LoadAllEmployeeList() {
     this.insuranceBlService.GetActiveEmployeesList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log("Employee list are loaded successfully (billing-main).");
           this.insuranceService.SetAllEmployeeList(res.Results);
@@ -149,7 +149,7 @@ export class GovINSIPDBillingComponent {
 
   public GetOrganizationList() {
     this.insuranceBlService.GetOrganizationList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == 'OK') {
           console.log("CreditOrganization list are loaded successfully (billing-main).");
           this.insuranceService.SetAllCreditOrgList(res.Results);

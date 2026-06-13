@@ -23,7 +23,7 @@
                 </span>
                 <span>
                     <i class="fa fa-calendar"></i>{{ 'MATERNITY.DISCHARGE_ON' | translate }} : {{patient.DischargeDate |
-                    DanpheDateTime:'format':'YYYY-MM-DD' }}
+                    DsfDateTime:'format':'YYYY-MM-DD' }}
                 </span>
             </b>
         </div>
@@ -91,9 +91,9 @@
                     <div class="text-left">
                         <h4 class="header-sm inner-header-sm"><b>{{ 'MATERNITY.PAYMENT_HISTORY' | translate }}</b></h4>
                     </div>
-                    <danphe-grid [show-print-button]="false" [customServerSearch]="false"
+                    <dsf-grid [show-print-button]="false" [customServerSearch]="false"
                         [grid-colDefaults]="maternityPatientGridColumns" [grid-data]="maternityPatientPaymentData">
-                    </danphe-grid>
+                    </dsf-grid>
                 </div>
             </div>
         </div>

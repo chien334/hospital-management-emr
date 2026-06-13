@@ -10,16 +10,16 @@
       <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true" (fiscalYearDate)="selectDate($event)"> </fiscal-year-calendar>
     </div>
     <div class="col-md-3">
-      <danphe-multiselect [ddl-data]="dynamicQtyColumList" [placeholder-text]="'---Select More Column---'" [value-property-name]="'field'"
+      <dsf-multiselect [ddl-data]="dynamicQtyColumList" [placeholder-text]="'---Select More Column---'" [value-property-name]="'field'"
                           (selected-items-list)="onChangeColumnSelection($event)" [display-property-name]="'headerName'" [single-selection]="false">
-      </danphe-multiselect>
+      </dsf-multiselect>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-3" style=" display: flex; align-items: center; flex-direction: row;">
         <label class="control-label"><b>Store :</b>&nbsp;</label>
-        <input danphe-auto-complete class="form-control" placeholder="select Store" [(ngModel)]="Store" [source]="storeList"
+        <input dsf-auto-complete class="form-control" placeholder="select Store" [(ngModel)]="Store" [source]="storeList"
                [list-formatter]="StoreListFormatter" display-property-name="StoreName" value-property-name="'StoreId'" [match-formatted]="true"
                onclick="this.select()" (valueChanged)="onStoreModelChanged()" />
       </div>
@@ -36,11 +36,11 @@
     </div>
     <div class="row">
       <div class="col-lg-12 col-sm-12" *ngIf="showDataGrid">
-        <danphe-grid [grid-colDefaults]="InventorySummaryReportColumns" [grid-data]="InventorySummaryReportData"
+        <dsf-grid [grid-colDefaults]="InventorySummaryReportColumns" [grid-data]="InventorySummaryReportData"
                      [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"
                      [report-for]="'inventory'" [report-title]="'Invetory Summary Report'" [show-header]="true"
                      [filter-parameters]="FilterParameters">
-        </danphe-grid>
+        </dsf-grid>
       </div>
 
       <!-- START: Summary -->

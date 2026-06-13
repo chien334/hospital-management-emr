@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import {
-  ENUM_DanpheHTTPResponses,
+  ENUM_DsfHTTPResponses,
   ENUM_MessageBox_Status,
 } from "../../../shared/shared-enums";
 import { BillingSchemeModel } from "../../shared/bill-scheme.model";
@@ -51,8 +51,8 @@ export class BillSchemeListComponent {
   }
   GetBillingSchemes() {
     this.settingsBlService.GetBillingSchemes().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.billSchemeList = res.Results;
           this.loading = false;
         } else {
@@ -68,7 +68,7 @@ export class BillSchemeListComponent {
       }
     );
   }
-  logError(err: DanpheHTTPResponse) {
+  logError(err: DsfHTTPResponse) {
     console.log(err);
   }
   getDataFromAdd($event) {
@@ -122,8 +122,8 @@ export class BillSchemeListComponent {
   // ActivateBillScheme(SchemeId: number, IsActive: boolean) {
   //   this.settingsBlService
   //     .BillSchemeActivation(SchemeId, IsActive)
-  //     .subscribe((res: DanpheHTTPResponse) => {
-  //       if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+  //     .subscribe((res: DsfHTTPResponse) => {
+  //       if (res.Status === ENUM_DsfHTTPResponses.OK) {
   //         this.billSchemeList[this.index].IsActive = res.Results.IsActive;
   //         this.billSchemeList = this.billSchemeList.slice();
   //         this.billScheme = new BillingScheme();
@@ -152,8 +152,8 @@ export class BillSchemeListComponent {
     if (window.confirm(message)) {
       this.settingsBlService
         .BillSchemeActivation(SchemeId, IsActive)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.billSchemeList[this.index].IsActive = res.Results.IsActive;
             this.billSchemeList = this.billSchemeList.slice();
             this.billScheme = new BillingSchemeModel();

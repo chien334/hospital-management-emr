@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DanpheEMR.Utilities.ServerSidePrinter
+namespace DsfEMR.Utilities.ServerSidePrinter
 {
     static class Program
     {

@@ -22,7 +22,7 @@ import { EditDoctorComponent } from './shared/edit-doctor/edit-doctor.component'
 import { BillSettlementsComponent } from '../billing/bill-settlements/bill-settlements.component';
 import { GroupDiscountComponent } from '../billing/ip-billing/group-discount/group-discount.component';
 //import { UpdateItemPriceComponent } from './ip-billing/update-item-price/update-item-price.component';
-import { QRCodeModule } from '../shared/danphe-qrcode/qr-code.module';
+import { QRCodeModule } from '../shared/dsf-qrcode/qr-code.module';
 import { LabsDLService } from '../labs/shared/labs.dl.service';
 import { PatientsDLService } from '../patients/shared/patients.dl.service';
 import { SharedModule } from '../shared/shared.module';
@@ -49,9 +49,9 @@ import { ChangeVisitTypeComponent } from './change-visit/change-visit-type.compo
 import { IpBillItemRequest } from './ip-billing/bill-request/ip-bill-item-request';
 import { IpBillMainComponent } from './ip-billing/ip-billing.main.component';
 import { PatientIpSummaryComponent } from './ip-billing/patient/patient-ip-summary.component';
-//sud:30Sept'18--to replace ng-autocomplete with danphe-autocomplete
+//sud:30Sept'18--to replace ng-autocomplete with dsf-autocomplete
 import { PatientsBLService } from '../patients/shared/patients.bl.service';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 //import { IPBillingRequestSlipComponent } from './print-pages/ip-item-request-print/ip-billing-request-slip.component';
 import { PatientSharedModule } from '../patients/patient-shared.module';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
@@ -120,7 +120,7 @@ import { BillingMasterDlService } from './shared/billing-master.dl.service';
     , imports: [BillingRoutingModule,
         CommonModule,
         ReactiveFormsModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         FormsModule, SharedModule, QRCodeModule,
         BillingSharedModule,
         PatientSharedModule,

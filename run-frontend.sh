@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to run the DanpheEMR frontend locally.
+# Script to run the DsfEMR frontend locally.
 
 # Exit immediately if a command exits with a non-zero status
 set -e
@@ -8,7 +8,7 @@ set -e
 cd "$(dirname "$0")"
 
 echo "======================================================="
-echo "   Starting DanpheEMR Frontend                        "
+echo "   Starting DsfEMR Frontend                        "
 echo "   Proxy Config: proxy.conf.json                      "
 echo "======================================================="
 

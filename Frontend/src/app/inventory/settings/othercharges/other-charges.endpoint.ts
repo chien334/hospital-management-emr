@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { OtherChargesMasterModel } from './other-charges.model';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class OtherChargesEndPoint {
     public GetOtherChargesList() {
         return this.http.get<any>("/api/InventorySettings/OtherCharges", this.options);
     }
-    createOtherCharges(form: OtherChargesMasterModel): Observable<DanpheHTTPResponse> {
+    createOtherCharges(form: OtherChargesMasterModel): Observable<DsfHTTPResponse> {
         return this.http.post<any>("/api/InventorySettings/OtherCharge", form, this.options);
     }
 

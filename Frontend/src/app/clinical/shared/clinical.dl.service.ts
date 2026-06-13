@@ -28,7 +28,7 @@ import { RefractionModel } from '../eye-examination/shared/Refraction.model';
 import { SmileIncisionsModel } from '../eye-examination/shared/SmileIncisions.model';
 import { SmileSettingsModel } from '../eye-examination/shared/SmileSettings.model';
 import { WavefrontModel } from '../eye-examination/shared/Wavefront.model';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 
 @Injectable()
 export class ClinicalDLService {
@@ -503,6 +503,6 @@ export class ClinicalDLService {
     return this.http.get<any>("/api/Clinical/bloodsugar?patientVisitId=" + patientVisitId, this.options);
   }
   public GetClinicalIntakeOutputParameterList() {
-    return this.http.get<DanpheHTTPResponse>("/api/Clinical/getClinicalIntakeOutputParameter", this.options);
+    return this.http.get<DsfHTTPResponse>("/api/Clinical/getClinicalIntakeOutputParameter", this.options);
   }
 }

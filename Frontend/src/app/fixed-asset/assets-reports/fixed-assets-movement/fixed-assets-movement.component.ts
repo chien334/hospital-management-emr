@@ -5,7 +5,7 @@ import { ReportingService } from "../../../reporting/shared/reporting-service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { FixedAssetsReportModel } from "../../shared/fixed-assets-report.model";
 import { FixedAssetBLService } from "../../shared/fixed-asset.bl.service";
-import { IGridFilterParameter } from "../../../shared/danphe-grid/grid-filter-parameter.interface";
+import { IGridFilterParameter } from "../../../shared/dsf-grid/grid-filter-parameter.interface";
 
 @Component({
 

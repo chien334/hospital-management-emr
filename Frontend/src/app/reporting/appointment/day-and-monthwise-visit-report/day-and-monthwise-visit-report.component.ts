@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Department } from '../../../settings-new/shared/department.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { CommonFunctions } from '../../../shared/common.functions';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { DynamicReport } from '../../shared/dynamic-report.model';
 import { ReportingService } from '../../shared/reporting-service';
 
@@ -57,8 +57,8 @@ export class RPT_ADT_DayAndMonthWiseVisitReportComponent implements OnInit {
 
       this.dlService.Read("/Reporting/DayAndMonthWiseVisitReport?FromDate="
         + this.currentdepartmentappointment.fromDate + "&ToDate=" + this.currentdepartmentappointment.toDate + "&DepartmentId=" + deptId + "&ReportType=" + this.ReportType)
-        .map((res: DanpheHTTPResponse) => res)
-        .subscribe((res: DanpheHTTPResponse) => this.Success(res),
+        .map((res: DsfHTTPResponse) => res)
+        .subscribe((res: DsfHTTPResponse) => this.Success(res),
           res => this.Error(res));
     } else {
       this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ['Dates Provided is not Proper']);
@@ -69,7 +69,7 @@ export class RPT_ADT_DayAndMonthWiseVisitReportComponent implements OnInit {
     this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [err]);
   }
   Success(res) {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
 
       this.DailyVisitReportData = res.Results;
       this.MonthVisitReportData = res.Results;

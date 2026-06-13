@@ -11,7 +11,7 @@
         <span>:</span>
       </div>
       <div class="col-md-7" style="padding-left:4px; padding-right:0px">
-        <input danphe-auto-complete id="srch_PatientList" class="col-md-12 form-control searchtbx" [(ngModel)]="patientObj"
+        <input dsf-auto-complete id="srch_PatientList" class="col-md-12 form-control searchtbx" [(ngModel)]="patientObj"
                [list-formatter]="PatientListFormatter" [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
                placeholder="search by HospitalNo, Patient Name" display-property-name="ShortName" value-property-name=null
                (ngModelChange)="PatientInfoChanged()" onClick="this.select();" max-num-list="500"
@@ -27,8 +27,8 @@
       </div>
       <div class="col-md-7" style="padding-left:0px;padding-right:0px;">
         <div class="flx">
-          <danphe-date-picker id="dateOfIllness" [(ngModel)]="dateOfIllness" [CalendarTypes]="'en,np'" (keyup.enter)="SetFocusOn('txtTotalAmount')">
-          </danphe-date-picker>
+          <dsf-date-picker id="dateOfIllness" [(ngModel)]="dateOfIllness" [CalendarTypes]="'en,np'" (keyup.enter)="SetFocusOn('txtTotalAmount')">
+          </dsf-date-picker>
         </div>
       </div>
     </div>

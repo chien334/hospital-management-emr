@@ -10,7 +10,7 @@ import { ImagingBLService } from './shared/imaging.bl.service';
 import { ImagingDLService } from './shared/imaging.dl.service';
 import { BillingDLService } from '../billing/shared/billing.dl.service';
 import { SharedModule } from "../shared/shared.module";
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { ImagingReportsListComponent } from "./reports-list/imaging-reports-list.component";
 import { PatientsDLService } from '../patients/shared/patients.dl.service';
 import { VisitDLService } from '../appointments/shared/visit.dl.service';
@@ -40,7 +40,7 @@ import { ImagingTypeSelectorComponent } from './shared/RadiologyTypeSelector/Ima
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SettingsSharedModule,
         BillingSharedModule], providers: [SelectVisitCanActivateGuard,
         ImagingBLService,

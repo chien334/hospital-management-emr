@@ -672,7 +672,7 @@
     "Age/Sex:"
   ],
   "SampleCollection Date": [
-    "SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DanpheDateTime:'format':'YYYY-MM-DD'}}"
+    "SampleCollection Date: {{allLabDataByBarCodeNumber.SampleCollectedOn  | DsfDateTime:'format':'YYYY-MM-DD'}}"
   ],
   "BarCodeNumber": [
     "BarCodeNumber: {{allLabDataByBarCodeNumber.BarCodeNumber}}",
@@ -877,8 +877,8 @@
   "1 More Isolated Organism": [
     "+1 More Isolated Organism"
   ],
-  "Requested On testRequestDate DanpheDateTimeformatYYYYMMDD hhmm A": [
-    "Requested On: {{\n                  test.RequestDate |\n                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}"
+  "Requested On testRequestDate DsfDateTimeformatYYYYMMDD hhmm A": [
+    "Requested On: {{\n                  test.RequestDate |\n                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'\n                  }}"
   ],
   "click to change report template": [
     "click to change report template"
@@ -1057,16 +1057,16 @@
   "Collection Date": [
     "Collection Date"
   ],
-  "templateReportLookupsReceivingDate DanpheDateTimeformatYYYYMMDD hhmm A templateReportLookupsReceivingDate nepaliDate": [
-    ":\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            nepaliDate }}",
-    ":\n                              {{templateReport.Lookups.ReceivingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceivingDate |\n                              nepaliDate }}",
-    ":\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  nepaliDate }}"
+  "templateReportLookupsReceivingDate DsfDateTimeformatYYYYMMDD hhmm A templateReportLookupsReceivingDate nepaliDate": [
+    ":\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                                            {{templateReport.Lookups.ReceivingDate |\n                                                            nepaliDate }}",
+    ":\n                              {{templateReport.Lookups.ReceivingDate |\n                              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReceivingDate |\n                              nepaliDate }}",
+    ":\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReceivingDate |\n                                  nepaliDate }}"
   ],
   "Click to Change Run Number": [
     "Click to Change Run Number."
   ],
-  "verificationEnabled templateReportLookupsVerifiedOn DanpheDateTime formatYYYYMMDD hhmm A templateReportLookupsReportingDate DanpheDateTimeformatYYYYMMDD hhmm A verificationEnabled templateReportLookupsVerifiedOn nepaliDate templateReportLookupsReportingDate nepaliDate": [
-    ": {{verificationEnabled ?\n                                                            (templateReport.Lookups.VerifiedOn | DanpheDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}"
+  "verificationEnabled templateReportLookupsVerifiedOn DsfDateTime formatYYYYMMDD hhmm A templateReportLookupsReportingDate DsfDateTimeformatYYYYMMDD hhmm A verificationEnabled templateReportLookupsVerifiedOn nepaliDate templateReportLookupsReportingDate nepaliDate": [
+    ": {{verificationEnabled ?\n                                                            (templateReport.Lookups.VerifiedOn | DsfDateTime: 'format':'YYYY-MM-DD hh:mm A'):\n                                                            (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                                            {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate):\n                                                            (templateReport.Lookups.ReportingDate |nepaliDate )}}"
   ],
   "PassPort Number": [
     "PassPort Number"
@@ -1117,7 +1117,7 @@
     "Comments:"
   ],
   "Printed By on": [
-    "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
+    "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
   ],
   "Update Signatories": [
     "Update Signatories {{ templateReport.ReportId ? '' : 'and Print'}}"
@@ -1143,9 +1143,9 @@
   "Insurance": [
     "/ (Insurance)"
   ],
-  "templateReportLookupsDOB DanpheDateTimeage": [
-    ":\n                              {{templateReport.Lookups.DOB |\n                              DanpheDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}",
-    ":\n                                  {{templateReport.Lookups.DOB |\n                                  DanpheDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}"
+  "templateReportLookupsDOB DsfDateTimeage": [
+    ":\n                              {{templateReport.Lookups.DOB |\n                              DsfDateTime:'age'}}\n                              /{{templateReport.Lookups.Gender}}",
+    ":\n                                  {{templateReport.Lookups.DOB |\n                                  DsfDateTime:'age'}}\n                                  /{{templateReport.Lookups.Gender}}"
   ],
   "Collection Site": [
     "Collection Site"
@@ -1153,13 +1153,13 @@
   "Testing Date": [
     "Testing Date"
   ],
-  "templateReportLookupsReportingDate DanpheDateTimeformatYYYYMMDD hhmm A templateReportLookupsReportingDate nepaliDate": [
-    ":{{templateReport.Lookups.ReportingDate |\n                              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliDate }}",
-    ":{{templateReport.Lookups.ReportingDate |\n                                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliDate }}"
+  "templateReportLookupsReportingDate DsfDateTimeformatYYYYMMDD hhmm A templateReportLookupsReportingDate nepaliDate": [
+    ":{{templateReport.Lookups.ReportingDate |\n                              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                              {{templateReport.Lookups.ReportingDate |\n                              nepaliDate }}",
+    ":{{templateReport.Lookups.ReportingDate |\n                                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}\n                                  {{templateReport.Lookups.ReportingDate |\n                                  nepaliDate }}"
   ],
-  "verificationEnabled templateReportLookupsVerifiedOn DanpheDateTimeformatYYYYMMDD hhmm A templateReportLookupsReportingDate DanpheDateTimeformatYYYYMMDD hhmm A verificationEnabled templateReportLookupsVerifiedOn nepaliDate templateReportLookupsReportingDate nepaliDate": [
-    ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                              (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliDate) }}",
-    ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                                  (templateReport.Lookups.ReportingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliDate) }}"
+  "verificationEnabled templateReportLookupsVerifiedOn DsfDateTimeformatYYYYMMDD hhmm A templateReportLookupsReportingDate DsfDateTimeformatYYYYMMDD hhmm A verificationEnabled templateReportLookupsVerifiedOn nepaliDate templateReportLookupsReportingDate nepaliDate": [
+    ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                              (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                              {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                              |nepaliDate) }}",
+    ":{{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | DsfDateTime:'format':'YYYY-MM-DD hh:mm A') :\n                                  (templateReport.Lookups.ReportingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A')}}\n                                  {{ verificationEnabled ? (templateReport.Lookups.VerifiedOn | nepaliDate) : (templateReport.Lookups.ReportingDate\n                                  |nepaliDate) }}"
   ],
   "Contact": [
     "Contact"
@@ -1170,8 +1170,8 @@
   "Ref Range": [
     "Ref. Range"
   ],
-  "Printed By on CurrentDateTime DanpheDateTimeformatYYYYMMDD hhmm A": [
-    "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime |\n              DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
+  "Printed By on CurrentDateTime DsfDateTimeformatYYYYMMDD hhmm A": [
+    "Printed By: {{CreatedByUser.FullName}} on {{CurrentDateTime |\n              DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}"
   ],
   "Prescriber Name": [
     "Prescriber Name"
@@ -1219,8 +1219,8 @@
   "Comp Unit": [
     "Comp. Unit"
   ],
-  "Danphe Component": [
-    "Danphe Component"
+  "Dsf Component": [
+    "Dsf Component"
   ],
   "Map To": [
     "Map To"

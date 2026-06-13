@@ -11,10 +11,10 @@ import { PatientService } from "../../patients/shared/patient.service";
 import { CountrySubdivision } from "../../settings-new/shared/country-subdivision.model";
 import { GeneralFieldLabels } from "../../shared/DTOs/general-field-label.dto";
 import { Municipality } from "../../shared/address-controls/municipality-model";
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_Country, ENUM_DanpheHTTPResponseText } from "../../shared/shared-enums";
+import { ENUM_Country, ENUM_DsfHTTPResponseText } from "../../shared/shared-enums";
 import { VisitBLService } from "../shared/visit.bl.service";
 import { VisitService } from "../shared/visit.service";
 
@@ -179,7 +179,7 @@ export class VisitPatientInfoComponent implements OnInit {
 
     this.visitBLService.GetCountrySubDivision(this.patient.CountryId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
           this.countrySubDivisions = [];
           this.countrySubDivisions = res.Results;
 
@@ -240,7 +240,7 @@ export class VisitPatientInfoComponent implements OnInit {
     }
   }
   GetCountries() {
-    this.countries = DanpheCache.GetData(MasterType.Country, null);
+    this.countries = DsfCache.GetData(MasterType.Country, null);
   }
 
   SeparateAgeAndUnit() {

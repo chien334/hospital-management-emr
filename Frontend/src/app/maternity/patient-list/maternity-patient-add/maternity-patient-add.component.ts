@@ -3,7 +3,7 @@ import { CoreService } from '../../../core/shared/core.service';
 import { Patient } from '../../../patients/shared/patient.model';
 import { CountrySubdivision } from '../../../settings-new/shared/country-subdivision.model';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { MaternityBLService } from '../../shared/maternity.bl.service';
 import { MaternityPatientVM } from '../../shared/maternity.model';
@@ -64,8 +64,8 @@ export class MaternityPatientAddComponent {
     }
 
     Initialize() {
-        this.allCountry = DanpheCache.GetData(MasterType.Country, null);
-        this.allDistricts = DanpheCache.GetData(MasterType.SubDivision, null);
+        this.allCountry = DsfCache.GetData(MasterType.Country, null);
+        this.allDistricts = DsfCache.GetData(MasterType.SubDivision, null);
         if (this.coreService.Masters.UniqueDataList && this.coreService.Masters.UniqueDataList.UniqueAddressList) {
             this.olderAddressList = this.coreService.Masters.UniqueDataList.UniqueAddressList;
         }

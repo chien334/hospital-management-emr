@@ -5,13 +5,13 @@ import { Application } from "../../security/shared/application.model";
 import { Permission } from "../../security/shared/permission.model";
 import { SecurityService } from "../../security/shared/security.service";
 import { SettingsBLService } from "../../settings-new/shared/settings.bl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { AccountingReportsBLService } from "../reports/shared/accounting-reports.bl.service";
 import { SectionModel } from "../settings/shared/section.model";
 import { AccountingBLService } from "../shared/accounting.bl.service";
@@ -96,8 +96,8 @@ export class VoucherVerificationComponent {
             if (this.sectionId > 0) {
                 this.accReportBLService.GetVoucherForVerification(this.fromDate, this.toDate, this.sectionId)
                     .finally(() => { this.btndisabled = false; })
-                    .subscribe((res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length) {
+                    .subscribe((res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length) {
                             this.txnListAll = res.Results;
                             this.AssignVoucher();
                         }
@@ -173,8 +173,8 @@ export class VoucherVerificationComponent {
 
     public GetSection() {
         this.settingsBLService.GetApplicationList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.applicationList = res.Results;
                     let sectionApplication = this.applicationList.filter(a => a.ApplicationCode == "ACC-Section" && a.ApplicationName == "Accounts-Sections")[0];
                     if (sectionApplication != null || sectionApplication != undefined) {

@@ -2,8 +2,8 @@ import { Component, ChangeDetectorRef } from '@angular/core'
 import { PayrollBLService } from '../../Shared/payroll.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service'
 import { LeaveRuleList } from '../../Shared/leave-rule-list.model';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import * as moment from 'moment';
 import { CoreService } from '../../../core/shared/core.service';
 

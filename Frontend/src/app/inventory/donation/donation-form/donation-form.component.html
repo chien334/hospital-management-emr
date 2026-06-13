@@ -10,7 +10,7 @@
               </label>
               <div class="col-md-8 no-padding no-margin">
                 <div class="div-relative">
-                  <input id="VendorName" danphe-auto-complete class="form-control" [source]="vendorList" [list-formatter]="donationVendorListFormatter" [placeholder]="'INVENTORY.SEARCH_VENDOR_NAME' | translate" display-property-name="VendorName" value-property-name=null max-num-list="20" match-formatted="true" [grid-sort]="'VendorName'" formControlName="VendorName" (ngModelChange)="SelectVendorFromSearchBox($event)" onclick="this.select();" (keyup.enter)="GoToNextInput('donationRefNo',0)" />
+                  <input id="VendorName" dsf-auto-complete class="form-control" [source]="vendorList" [list-formatter]="donationVendorListFormatter" [placeholder]="'INVENTORY.SEARCH_VENDOR_NAME' | translate" display-property-name="VendorName" value-property-name=null max-num-list="20" match-formatted="true" [grid-sort]="'VendorName'" formControlName="VendorName" (ngModelChange)="SelectVendorFromSearchBox($event)" onclick="this.select();" (keyup.enter)="GoToNextInput('donationRefNo',0)" />
                   <div *ngIf="VendorId.invalid && (VendorId.dirty || VendorId.touched)" class="alert alert-danger">
                     <div *ngIf="VendorId.errors.required">
                       {{ 'INVENTORY.VENDOR_IS_REQUIRED' | translate }}.
@@ -41,7 +41,7 @@
                 <b> {{ 'INVENTORY.DONATION_REFERENCE_DATE' | translate }} <sup style="color: red">*</sup>:</b>
               </label>
               <div class="col-md-7">
-                <danphe-date-picker [(ngModel)]="model.DonationReferenceDate" formControlName="DonationReferenceDate" ngDefaultControl [CalendarTypes]="'np,en'"> </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="model.DonationReferenceDate" formControlName="DonationReferenceDate" ngDefaultControl [CalendarTypes]="'np,en'"> </dsf-date-picker>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@
                       </select>
                     </td>
                     <td class="autocomplete-item">
-                      <input danphe-auto-complete id="itemName{{i}}" match-formatted="true" (keyup.enter)="GoToNextInput('Specification'+i)" [attr.disabled]="editMode ?  true : null" [grid-sort]="'ItemName'" [source]="filtereIitemList" [list-formatter]="itemListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null min-chars="1" max-num-list="20" formControlName="ItemName" onclick="this.select();" no-match-found-text="check ItemCategory or click ? to add new item" (valueChanged)="SelectItemFromSearchBox($event, i)" />
+                      <input dsf-auto-complete id="itemName{{i}}" match-formatted="true" (keyup.enter)="GoToNextInput('Specification'+i)" [attr.disabled]="editMode ?  true : null" [grid-sort]="'ItemName'" [source]="filtereIitemList" [list-formatter]="itemListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null min-chars="1" max-num-list="20" formControlName="ItemName" onclick="this.select();" no-match-found-text="check ItemCategory or click ? to add new item" (valueChanged)="SelectItemFromSearchBox($event, i)" />
                     </td>
                     <td>
                       <input class="form-control" type="text" id="Specification{{i}}" (keyup.enter)="GoToNextInput('ModelNo'+i)" formControlName="Specification" [attr.disabled]="editMode ?  true : null">

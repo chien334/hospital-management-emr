@@ -15,7 +15,7 @@ import { VisitService } from '../../appointments/shared/visit.service';
 import { DrugsRequisitonModel } from "../shared/drugs-requsition.model";
 import { DrugsRequistionItemModel } from "../shared/drugs-requistion-items.model";
 import { NursingBLService } from "../shared/nursing.bl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { ServiceDepartmentVM } from "../../shared/common-masters.model";
 import { CoreService } from "../../core/shared/core.service";
 import { EmergencyPatientModel } from "../../emergency/shared/emergency-patient.model";

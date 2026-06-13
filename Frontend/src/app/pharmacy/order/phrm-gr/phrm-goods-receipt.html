@@ -19,8 +19,8 @@
                 <div class="row">
                   <label class="col-md-5">{{ 'PHARMACY.SUPPLIER_BILL_DATE' | translate }}:</label>
                   <div class="col-md-7">
-                    <danphe-date-picker [(ngModel)]="goodsReceiptVM.goodReceipt.SupplierBillDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
-                    </danphe-date-picker>
+                    <dsf-date-picker [(ngModel)]="goodsReceiptVM.goodReceipt.SupplierBillDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
+                    </dsf-date-picker>
                   </div>
                 </div>
               </div>
@@ -28,8 +28,8 @@
                 <div class="row">
                   <label class="col-md-4">{{ 'PHARMACY.GOODS_RECEIPT_DATE' | translate }}:</label>
                   <div class="col-md-8">
-                    <danphe-date-picker [(ngModel)]="goodsReceiptVM.goodReceipt.GoodReceiptDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
-                    </danphe-date-picker>
+                    <dsf-date-picker [(ngModel)]="goodsReceiptVM.goodReceipt.GoodReceiptDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
+                    </dsf-date-picker>
                   </div>
                 </div>
               </div>
@@ -66,7 +66,7 @@
             <label class="col-md-4 pt5">{{ 'PHARMACY.SUPPLIER_NAME' | translate }}<sup>*</sup> <b>:</b></label>
             <div class="col-md-8 no-padding no-margin">
               <div class="div-relative">
-                <input danphe-auto-complete class="form-control mb-0" [(ngModel)]="currentSupplier" [source]="supplierList" [list-formatter]="supplierListFormatter" [placeholder]="'PHARMACY.SELECT_SUPPLIER' | translate" display-property-name="SupplierName" id="SupplierName" value-property-name=null min-chars="0" max-num-list="20" onClick="this.select();" (keyup.enter)="SetFocusById('InvoiceId')" match-formatted="true" [grid-sort]="'SupplierName'" [ngModelOptions]="{standalone: true}" [disabled]="IsPOorder" (change)="OnInvoiceChange()" />
+                <input dsf-auto-complete class="form-control mb-0" [(ngModel)]="currentSupplier" [source]="supplierList" [list-formatter]="supplierListFormatter" [placeholder]="'PHARMACY.SELECT_SUPPLIER' | translate" display-property-name="SupplierName" id="SupplierName" value-property-name=null min-chars="0" max-num-list="20" onClick="this.select();" (keyup.enter)="SetFocusById('InvoiceId')" match-formatted="true" [grid-sort]="'SupplierName'" [ngModelOptions]="{standalone: true}" [disabled]="IsPOorder" (change)="OnInvoiceChange()" />
                 <a style="z-index:initial" class="fa fa-question" (click)="AddSupplierPopUp()" *ngIf="!IsPOorder && loading == false " [title]="'PHARMACY.UNABLE_TO_FIND_SUPPLIER_CLICK_TO' | translate"></a>
                 <a *ngIf="loading == true" style="z-index:initial" [title]="'PHARMACY.SUPPLIER_IS_LOADING' | translate">
                   <i class="fa fa-spinner"></i>

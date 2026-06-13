@@ -8,7 +8,7 @@
     border: 3px solid #006687;
   }
 
-  danphe-date-change button {
+  dsf-date-change button {
     background: #5867dd;
     color: #fff;
     border: none;
@@ -84,8 +84,8 @@
                       <tr>
                         <th>
                           {{ 'ACCOUNTING.DATE' | translate }}
-                          <danphe-date-change [dataArr]="ledgerResult" [datecolumn]="'TransactionDate'">
-                          </danphe-date-change>
+                          <dsf-date-change [dataArr]="ledgerResult" [datecolumn]="'TransactionDate'">
+                          </dsf-date-change>
                         </th>
                         <th>{{ 'ACCOUNTING.VOUCHER_NO' | translate }}</th>
                         <th>{{ 'ACCOUNTING.VOUCHER_TYPE_LABEL' | translate }}</th>
@@ -123,7 +123,7 @@
                       </tr>
                       <tr *ngFor="let txnItm of ledgerResult" [ngClass]="{'tr-highlight': txnItm.IsHighlighted}"
                         (click)="HotKeysOnOff(txnItm)">
-                        <!-- | DanpheDateTime:'format':'YYYY-MM-DD' -->
+                        <!-- | DsfDateTime:'format':'YYYY-MM-DD' -->
                         <td>{{txnItm.TransactionDate}}</td>
                         <td>{{txnItm.VoucherNumber}}</td>
                         <td>{{txnItm.VoucherName}}</td>

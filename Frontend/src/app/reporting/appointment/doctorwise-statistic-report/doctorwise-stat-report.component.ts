@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { VisitBLService } from '../../../appointments/shared/visit.bl.service';
 import { VisitService } from '../../../appointments/shared/visit.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { DoctorsList_DTO } from '../../shared/doctor-list.dto';
 import { DoctorwiseStatisticsReport_DTO } from '../../shared/doctor-wise-statistics-report.dto';
 import { DynamicReport } from '../../shared/dynamic-report.model';
@@ -69,8 +69,8 @@ export class RPT_APPT_DoctortwiseStatisticsReportComponent {
 
     loadDoctorsList() {
         this.visitBLService.GetVisitDoctors()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                     this.visitService.ApptApplicableDoctorsList = res.Results;
                     this.doctorList = this.visitService.ApptApplicableDoctorsList;
                 }
@@ -111,7 +111,7 @@ export class RPT_APPT_DoctortwiseStatisticsReportComponent {
 
             this.dlService.Read("/Reporting/DoctorWiseStatisticReport?FromDate="
                 + this.selectedDepartmentwiseStatParameter.fromDate + "&ToDate=" + this.selectedDepartmentwiseStatParameter.toDate + "&EmployeeId=" + this.doctors.EmployeeId + "&gender=" + this.selGenderName)
-                .map((res: DanpheHTTPResponse) => res)
+                .map((res: DsfHTTPResponse) => res)
                 .subscribe(res => this.Success(res),
                     res => this.Error(res));
         }
@@ -125,7 +125,7 @@ export class RPT_APPT_DoctortwiseStatisticsReportComponent {
     }
 
     Success(res) {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.DoctorWiseStatisticsReportData = null;
             this.DoctorWiseStatisticsReportData = res.Results;
             this.SummaryCalculation();

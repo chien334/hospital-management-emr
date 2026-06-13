@@ -10,7 +10,7 @@ import { QuestionComponent } from './controls/question.component';
 import { QuestionHrcComponent } from './controls/question-hrc.component';
 import { DynamicTemplateService } from './shared/dynamic-template-service';
 //import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { SharedModule } from '../../shared/shared.module'; 
 
 @NgModule({ declarations: [
@@ -33,7 +33,7 @@ import { SharedModule } from '../../shared/shared.module';
     , imports: [CommonModule,
         FormsModule,
         //Ng2AutoCompleteModule
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SharedModule], providers: [DynamicTemplateService] })
 export class DynTemplateModule {
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DanpheEMR Dependency Visualizer</title>
+    <title>DsfEMR Dependency Visualizer</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
@@ -331,7 +331,7 @@
     <header>
         <div class="logo-area">
             <i class="fa-solid fa-network-wired logo-icon"></i>
-            <span class="logo-text">DanpheEMR <span style="font-weight: 300; font-size: 16px; color: var(--text-secondary);">Dependency Graph UI</span></span>
+            <span class="logo-text">DsfEMR <span style="font-weight: 300; font-size: 16px; color: var(--text-secondary);">Dependency Graph UI</span></span>
             <span class="badge-premium">Active</span>
         </div>
         <div class="nav-links">
@@ -432,7 +432,7 @@
         const metadata = {
             'postgres': {
                 description: 'PostgreSQL relational database storing EMR configuration, transactional tables, and relational indexing. Accessible case-sensitively in double-quotes.',
-                annotations: 'Host=localhost;Database=danphe_emr;Port=5432',
+                annotations: 'Host=localhost;Database=dsf_emr;Port=5432',
                 deps: ['MasterDbContext.cs', 'CoreDbContext.cs', 'BillingDbContext.cs'],
                 proc: 'hosts 10+ core PL/pgSQL database routines'
             },
@@ -505,7 +505,7 @@
             'ag_Grid': {
                 description: 'ag-Grid angular grid library providing interactive tabular grids. Fully restored with inline-flex overrides in grid-style-new.css to ignore block select wrappers.',
                 annotations: '.ag-theme-fresh .ag-paging-panel { display: flex !important; }',
-                deps: ['grid-style-new.css', 'DanpheStyle.css', 'grid-style.css'],
+                deps: ['grid-style-new.css', 'DsfStyle.css', 'grid-style.css'],
                 proc: 'ag-Grid component layer'
             },
             'AppMain_View': {

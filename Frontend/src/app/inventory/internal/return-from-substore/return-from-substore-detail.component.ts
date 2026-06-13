@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, Input, EventEmitter, Output } from "@angular/core";
 import { InventoryBLService } from "../../shared/inventory.bl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { ReturnItem } from "./return-item.model";
 @Component({
     selector: 'return-from-substore-detail',
@@ -46,8 +46,8 @@ export class ReturnFromSubstoreDetailComponent implements OnInit {
     }
     UpdateIncomingStock(ReturnId: number, ReceivedRemarks: string) {
         this.inventoryBLService.ReceiveRetunedItems(ReturnId, ReceivedRemarks)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponseText.OK && res.Results != null) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponseText.OK && res.Results != null) {
                     this.ReturnId = res.Results;
                     this.IsReceived = true;
                     this.ReturnIdEmit.emit(this.ReturnId);

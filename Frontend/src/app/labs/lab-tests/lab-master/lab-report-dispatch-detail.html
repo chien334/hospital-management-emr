@@ -152,16 +152,16 @@
           </div>
           <div class="lab-all-reports" id="all-lab-reports">
             <div *ngFor="let singleReport of templateReport" class="lab-single-report">
-              <danphe-lab-view-report *ngIf="showReport && labReportFormat == 'format1'" [showCustomHeader]= "showCustomHeader" [templateReport]="singleReport"
+              <dsf-lab-view-report *ngIf="showReport && labReportFormat == 'format1'" [showCustomHeader]= "showCustomHeader" [templateReport]="singleReport"
                 [showReport]="showReport" [showHeader]="showHeader" [showSignatories]="showSignatories"
                 [hidePrintButton]="true" [enableEdit]="enableEdit" [printReportFromGrid]="false"
                 (callBackToReportDispatch)="CallBackToReportDispatchAfterPrint($event)">
-              </danphe-lab-view-report>
-              <danphe-lab-view-report-format2 *ngIf="showReport && labReportFormat == 'format2'"
+              </dsf-lab-view-report>
+              <dsf-lab-view-report-format2 *ngIf="showReport && labReportFormat == 'format2'"
                 [hidePrintButton]="true" [templateReport]="singleReport" [showReport]="showReport" [showCustomHeader]= "showCustomHeader"
                 [showHeader]="showHeader" [showSignatories]="showSignatories" [enableEdit]="enableEdit"
                 [printReportFromGrid]="false" (callBackToReportDispatch)="CallBackToReportDispatchAfterPrint($event)">
-              </danphe-lab-view-report-format2>
+              </dsf-lab-view-report-format2>
             </div>
           </div>
           <div>

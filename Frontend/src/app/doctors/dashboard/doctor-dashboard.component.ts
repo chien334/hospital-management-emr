@@ -21,10 +21,10 @@ import { RouteFromService } from '../../shared/routefrom.service';
 
 import { Visit } from "../../appointments/shared/visit.model";
 import { Patient } from '../../patients/shared/patient.model';
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { SecurityService } from '../../security/shared/security.service';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 import { Employee } from '../../employee/shared/employee.model';
 @Component({
   templateUrl: "./doctor-dashboard.html" // "/DoctorsView/DoctorDashboard"
@@ -103,7 +103,7 @@ export class DoctorDashboardComponent implements OnDestroy {
   }
 
   GetICDList() {
-    var icd = DanpheCache.GetData(MasterType.ICD, null);
+    var icd = DsfCache.GetData(MasterType.ICD, null);
   }
 
   GetDepartMent() {

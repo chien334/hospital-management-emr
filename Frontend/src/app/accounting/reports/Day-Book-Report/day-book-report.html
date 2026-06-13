@@ -19,7 +19,7 @@
             <label class="control-label"> <b>{{ 'ACCOUNTING.SELECT_LEDGER' | translate }}</b> <b class="color-red"> *</b></label>
             <div style="margin-top: 5px;">
                 <div>
-                    <input danphe-auto-complete class="col-md-11 form-control" [(ngModel)]="selectedLedgerList" [source]="ledgerList" [placeholder]="'ACCOUNTING.SELECT_LEDGER' | translate" display-property-name="LedgerName" value-property-name="LedgerName"
+                    <input dsf-auto-complete class="col-md-11 form-control" [(ngModel)]="selectedLedgerList" [source]="ledgerList" [placeholder]="'ACCOUNTING.SELECT_LEDGER' | translate" display-property-name="LedgerName" value-property-name="LedgerName"
                     [list-formatter]="LedgerListFormatter" max-num-list="20" onclick="this.select()" style="background-color: azure;" [ngModelOptions]="{standalone: true}" (focusout)="HandleLedgerChange()" />
                 </div>
             </div>

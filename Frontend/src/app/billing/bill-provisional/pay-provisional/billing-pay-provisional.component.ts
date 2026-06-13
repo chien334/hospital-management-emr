@@ -7,11 +7,11 @@ import { PatientService } from '../../../patients/shared/patient.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { CreditOrganization } from '../../../settings-new/shared/creditOrganization.model';
 import { CallbackService } from '../../../shared/callback.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from '../../../shared/common.functions';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
-import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_BillingType, ENUM_DanpheHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from '../../../shared/shared-enums';
+import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_BillingType, ENUM_DsfHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from '../../../shared/shared-enums';
 import { BillingInvoiceBlService } from '../../shared/billing-invoice.bl.service';
 import { BillingTransactionItem } from "../../shared/billing-transaction-item.model";
 import { BillingTransaction, EmployeeCashTransaction } from '../../shared/billing-transaction.model';
@@ -150,7 +150,7 @@ export class BillingPayProvisionalComponent {
   //sud: 13May'18--to display patient's bill history
   LoadPatientPastBillSummary(patientId: number, schemeId: number) {
     this.BillingBLService.GetPatientPastBillSummary(patientId, schemeId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.patBillHistory = res.Results;
           //provisional amount should exclude itmes those are listed for payment in current window.
@@ -246,8 +246,8 @@ export class BillingPayProvisionalComponent {
           this.model.SchemeId = this.SchemePriceCategory.SchemeId;
           if (this.billingService.IsProvisionalDischargeClearance) {
             this.model.TransactionType = ENUM_BillingType.inpatient;
-            this.BillingBLService.PayProvisionalForProvisionalDischarge(this.model).subscribe((res: DanpheHTTPResponse) => {
-              if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+            this.BillingBLService.PayProvisionalForProvisionalDischarge(this.model).subscribe((res: DsfHTTPResponse) => {
+              if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
                 console.log(res);
                 this.DischargeStatementId = res.Results.DischargeStatementId;
                 this.PatientId = res.Results.PatientId;
@@ -263,7 +263,7 @@ export class BillingPayProvisionalComponent {
             });
           } else {
             this.BillingBLService.PayProvisional(this.model)
-              .subscribe((res: DanpheHTTPResponse) => {
+              .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
 
                   this.bil_InvoiceNo = res.Results.InvoiceNo;
@@ -654,14 +654,14 @@ export class BillingPayProvisionalComponent {
     if (patientId && patientVisitId) {
       this.BillingBLService.GetPatientVisitContextForProvisionalPayment(patientId, patientVisitId)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
             this.currPatVisitContext = res.Results;
             this.model.PatientVisitId = this.currPatVisitContext.PatientVisitId;
             this.SchemePriCeCategoryFromVisit.SchemeId = this.currPatVisitContext.SchemeId;
             this.SchemePriCeCategoryFromVisit.PriceCategoryId = this.currPatVisitContext.PriceCategoryId;
           }
           else {
-            console.log(ENUM_DanpheHTTPResponses.Failed, ["Problem! Cannot get the Current Visit Context ! "])
+            console.log(ENUM_DsfHTTPResponses.Failed, ["Problem! Cannot get the Current Visit Context ! "])
           }
         },
           err => { console.log(err.ErrorMessage); });

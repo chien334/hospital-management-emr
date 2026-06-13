@@ -92,16 +92,16 @@
                     <tr>
                       <td>{{ 'FIXED_ASSETS.START_DATE' | translate }}<sup>*</sup>:</td>
                       <td>
-                        <danphe-date-picker ngDefaultControl [CalendarTypes]="'np,en'" formControlName="StartDate"
-                          [(ngModel)]="depreciation.StartDate" style="width:100px;"></danphe-date-picker>
+                        <dsf-date-picker ngDefaultControl [CalendarTypes]="'np,en'" formControlName="StartDate"
+                          [(ngModel)]="depreciation.StartDate" style="width:100px;"></dsf-date-picker>
                         &nbsp;&nbsp;&nbsp;
                         <span Class="color-red font-sm"
                           [hidden]="depreciation.IsValidCheck('StartDate','required') || !(depreciation.IsDirty('StartDate'))">{{ 'FIXED_ASSETS.START_DATE_REQUIRED' | translate }}</span>
                       </td>
                       <td>{{ 'FIXED_ASSETS.END_DATE' | translate }}<sup>*</sup>:</td>
                       <td>
-                        <danphe-date-picker ngDefaultControl [CalendarTypes]="'np,en'" formControlName="EndDate"
-                          [(ngModel)]="depreciation.EndDate" style="width:100px;"></danphe-date-picker>
+                        <dsf-date-picker ngDefaultControl [CalendarTypes]="'np,en'" formControlName="EndDate"
+                          [(ngModel)]="depreciation.EndDate" style="width:100px;"></dsf-date-picker>
                         &nbsp;&nbsp;&nbsp;<span Class="color-red font-sm"
                           [hidden]="depreciation.IsValidCheck('EndDate','required') || !(depreciation.IsDirty('EndDate'))">{{ 'FIXED_ASSETS.END_DATE_REQUIRED' | translate }}</span>
                       </td>
@@ -173,7 +173,7 @@
                   <input type="text" [(ngModel)]="selectedAsset.YearOfUse"   style="width:100px;" />
                  </td>
                  <td>
-                  <danphe-date-picker  disbal ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}" [(ngModel)]="selectedAsset.ManufactureDate" [allow-future-date]="true" style="width:100px;" ></danphe-date-picker>
+                  <dsf-date-picker  disbal ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}" [(ngModel)]="selectedAsset.ManufactureDate" [allow-future-date]="true" style="width:100px;" ></dsf-date-picker>
                  </td>
                  <td>{{selectedAsset.WarrantyExpiryDate | date:'yyyy-MM-dd'}}</td>
                 <td>

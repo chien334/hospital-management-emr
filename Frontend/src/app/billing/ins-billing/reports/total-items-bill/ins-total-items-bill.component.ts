@@ -6,8 +6,8 @@ import { CoreService } from "../../../../core/shared/core.service";
 import { ReportingService } from "../../../../reporting/shared/reporting-service";
 import * as moment from 'moment/moment';
 import { CommonFunctions } from ".././../../../shared/common.functions";
-import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { GridEmitModel } from "../../../../shared/dsf-grid/grid-emit.model";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../../shared/dsf-grid/NepaliColGridSettingsModel";
 
 @Component({
   selector: 'ins-total-items-bill',

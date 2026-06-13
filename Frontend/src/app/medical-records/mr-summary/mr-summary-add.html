@@ -225,7 +225,7 @@
                 <div class="flex-1">
                   <p class="patient-hdr-label">
                     <b>{{ 'COMMON.AGE_SEX' | translate }}</b>&nbsp;:
-                    {{patientDetail.DateOfBirth | DanpheDateTime:'age' }}/{{patientDetail.Gender}}
+                    {{patientDetail.DateOfBirth | DsfDateTime:'age' }}/{{patientDetail.Gender}}
                   </p>
                 </div>
                 <div class="flex-1">
@@ -254,7 +254,7 @@
                       </div>
                       <div class="col-md-7">
                         <label for="inpatientDate" class="cstm-field-ip">{{patientDetail.AdmittedDate | nepaliDate}}
-                          &nbsp;&nbsp;({{patientDetail.AdmittedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}AD)</label>
+                          &nbsp;&nbsp;({{patientDetail.AdmittedDate | DsfDateTime:'format':'YYYY-MM-DD'}}AD)</label>
 
                       </div>
                     </div>
@@ -264,7 +264,7 @@
                       </div>
                       <div class="col-md-7">
                         <label class="cstm-field-ip">{{patientDetail.DischargedDate | nepaliDate}}
-                          &nbsp;&nbsp;({{patientDetail.DischargedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                          &nbsp;&nbsp;({{patientDetail.DischargedDate | DsfDateTime:'format':'YYYY-MM-DD'}}
                           &nbsp;AD)</label>
                       </div>
                     </div>
@@ -309,8 +309,8 @@
                         <label class="control-label lbl-text">{{ 'MEDICAL_RECORDS.REFERRED_DATE' | translate }} <b style="float:right;"></b></label>
                       </div>
                       <div class="col-md-7">
-                        <danphe-date-picker [ngModelOptions]="{standalone:true}" [(ngModel)]="RecordSummary.ReferredDate" ngDefaultControl [CalendarTypes]="'en,np'">
-                        </danphe-date-picker>
+                        <dsf-date-picker [ngModelOptions]="{standalone:true}" [(ngModel)]="RecordSummary.ReferredDate" ngDefaultControl [CalendarTypes]="'en,np'">
+                        </dsf-date-picker>
                       </div>
                     </div>
 
@@ -486,7 +486,7 @@
                       <div class="col-md-12">
                         <div>
                           <div class="margin-8-bt" *ngIf="allMasterDataForMR && allMasterDataForMR.AllICDCodes && allMasterDataForMR.AllICDCodes.length > 0" style="width: 100%;">
-                            <input class="cstm-field-ip" danphe-auto-complete [(ngModel)]="icdCode" [list-formatter]="myICDListFormatter" [source]="allMasterDataForMR.AllICDCodes" [placeholder]="IcdVersionDisplayName + ' ' + ('COMMON.CODES' | translate)" display-property-name="ICD10Description" value-property-name=null id="icd10code" max-num-list="50" match-formatted="true" (valueChanged)="ShowValueChangedData()" onClick="this.select();" />
+                            <input class="cstm-field-ip" dsf-auto-complete [(ngModel)]="icdCode" [list-formatter]="myICDListFormatter" [source]="allMasterDataForMR.AllICDCodes" [placeholder]="IcdVersionDisplayName + ' ' + ('COMMON.CODES' | translate)" display-property-name="ICD10Description" value-property-name=null id="icd10code" max-num-list="50" match-formatted="true" (valueChanged)="ShowValueChangedData()" onClick="this.select();" />
                           </div>
                           <div *ngIf="RecordSummary.ICDCodeList && RecordSummary.ICDCodeList.length > 0" class="board padding-8-all" style="border: 1px solid #bfbdbd; max-height: 205px; overflow-y: auto;">
                             <div class="flex-container" *ngFor="let icd of RecordSummary.ICDCodeList; let i=index;">
@@ -524,7 +524,7 @@
                         <label class="control-label lbl-text">{{ 'MEDICAL_RECORDS.OPERATION_DOC' | translate }}</label>
                       </div>
                       <div class="col-md-7">
-                        <input class="cstm-field-ip" danphe-auto-complete [(ngModel)]="RecordSummary.OperatedDoctor" [list-formatter]="myListFormatter" [source]="AllDoctors" [placeholder]="'COMMON.DOCTOR_NAME' | translate" display-property-name="FullName" value-property-name=null id="operatingDoc" max-num-list="10" onClick="this.select();" />
+                        <input class="cstm-field-ip" dsf-auto-complete [(ngModel)]="RecordSummary.OperatedDoctor" [list-formatter]="myListFormatter" [source]="AllDoctors" [placeholder]="'COMMON.DOCTOR_NAME' | translate" display-property-name="FullName" value-property-name=null id="operatingDoc" max-num-list="10" onClick="this.select();" />
                       </div>
                     </div>
                     <div *ngIf="RecordSummary.IsOperationConducted" class="row margin-8-tp">
@@ -532,8 +532,8 @@
                         <p>
                           <label class="control-label lbl-text">{{ 'MEDICAL_RECORDS.OPERATION_DATE' | translate }}</label>
                         </p>
-                        <danphe-date-picker [(ngModel)]="RecordSummary.OperationDate" ngDefaultControl [CalendarTypes]="'en,np'">
-                        </danphe-date-picker>
+                        <dsf-date-picker [(ngModel)]="RecordSummary.OperationDate" ngDefaultControl [CalendarTypes]="'en,np'">
+                        </dsf-date-picker>
                       </div>
                       <div class="col-md-12">
                         <p class="margin-0-bt">

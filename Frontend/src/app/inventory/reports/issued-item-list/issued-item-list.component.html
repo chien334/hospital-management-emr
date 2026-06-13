@@ -13,7 +13,7 @@
       <div class="form-group row">
         <label class="control-label col-md-5">{{ 'INVENTORY.SUBSTORE_NAME' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-6 autocomplete-item">
-          <input danphe-auto-complete class="form-control" (valueChanged)="onSubstoreChange($event)" [placeholder]="'INVENTORY.SELECT_SUBSTORE_NAME' | translate" [(ngModel)]="selectedSubstore" [list-formatter]="SubstoreListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="Name" value-property-name=StoreId [source]="SubstoreList" [match-formatted]="true" onclick="this.select();" />
+          <input dsf-auto-complete class="form-control" (valueChanged)="onSubstoreChange($event)" [placeholder]="'INVENTORY.SELECT_SUBSTORE_NAME' | translate" [(ngModel)]="selectedSubstore" [list-formatter]="SubstoreListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="Name" value-property-name=StoreId [source]="SubstoreList" [match-formatted]="true" onclick="this.select();" />
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
       <div class="form-group row">
         <label class="control-label col-md-4">{{ 'INVENTORY.ITEM' | translate }} {{ 'COMMON.NAME' | translate }} <b style="float:right;">:</b></label>
         <div class="col-md-6 autocomplete-item">
-          <input danphe-auto-complete class="form-control" (valueChanged)="onItemChange($event)" [placeholder]="'INVENTORY.SELECT_ITEMNAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" />
+          <input dsf-auto-complete class="form-control" (valueChanged)="onItemChange($event)" [placeholder]="'INVENTORY.SELECT_ITEMNAME' | translate" [(ngModel)]="selecteditem" [list-formatter]="ItemListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="ItemName" [source]="itemList" [match-formatted]="true" />
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
       <div class="form-group row">
         <label class="control-label col-md-5">{{ 'INVENTORY.SUBCATEGORY' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-6 autocomplete-item">
-          <input danphe-auto-complete class="form-control" (valueChanged)="onSubCategoryChange($event)" [placeholder]="'INVENTORY.SELECT_SUBCATEGORY' | translate" [(ngModel)]="selectedSubCategory" [list-formatter]="SubCategoryListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="SubCategoryName" value-property-name=SubCategoryId [source]="SubCategoryList" [match-formatted]="true" onclick="this.select()" />
+          <input dsf-auto-complete class="form-control" (valueChanged)="onSubCategoryChange($event)" [placeholder]="'INVENTORY.SELECT_SUBCATEGORY' | translate" [(ngModel)]="selectedSubCategory" [list-formatter]="SubCategoryListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="SubCategoryName" value-property-name=SubCategoryId [source]="SubCategoryList" [match-formatted]="true" onclick="this.select()" />
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
       <div class="form-group row">
         <label class="control-label col-md-5">{{ 'INVENTORY.EMPLOYEE_NAME' | translate }}<b style="float:right;">:</b></label>
         <div class="col-md-6 autocomplete-item">
-          <input danphe-auto-complete class="form-control" (valueChanged)="onEmployeeChange($event)" [placeholder]="'INVENTORY.SELECT_EMPLOYEE' | translate" [(ngModel)]="selectedEmployee" [list-formatter]="EmployeeListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="FullName" value-property-name=EmployeeId [source]="EmployeeList" [match-formatted]="true" onclick="this.select();" />
+          <input dsf-auto-complete class="form-control" (valueChanged)="onEmployeeChange($event)" [placeholder]="'INVENTORY.SELECT_EMPLOYEE' | translate" [(ngModel)]="selectedEmployee" [list-formatter]="EmployeeListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="FullName" value-property-name=EmployeeId [source]="EmployeeList" [match-formatted]="true" onclick="this.select();" />
         </div>
       </div>
     </div>
@@ -55,8 +55,8 @@
 </div>
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="IssuedItemListReportColumns" [grid-data]="IssuedItemListData" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="'inventory'" [report-title]="'Issued Item List Report'" [show-header]="true" [filter-parameters]="FilterParameters">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="IssuedItemListReportColumns" [grid-data]="IssuedItemListData" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="'inventory'" [report-title]="'Issued Item List Report'" [show-header]="true" [filter-parameters]="FilterParameters">
+    </dsf-grid>
   </div>
 </div>
 

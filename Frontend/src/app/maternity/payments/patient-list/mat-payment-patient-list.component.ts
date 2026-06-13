@@ -3,7 +3,7 @@ import MaternityGridColumnSettings from '../../shared/maternity.grid.settings';
 import { MaternityBLService } from '../../shared/maternity.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { CoreService } from '../../../core/shared/core.service';
-import { NepaliDateInGridParams,NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams,NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { Router } from '@angular/router';
 import { MaternityService } from '../../shared/maternity.service';
 

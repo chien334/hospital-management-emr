@@ -8,7 +8,7 @@ import {
     ReactiveFormsModule
 } from '@angular/forms';
 import * as moment from 'moment/moment';
-import { NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 export class RPT_RAD_Film_Type_CountModel {
 
     public Date: Date = null;

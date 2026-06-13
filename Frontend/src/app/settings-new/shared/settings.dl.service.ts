@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AdtBedFeatureSchemePriceCategoryMap_DTO } from '../../adt/shared/DTOs/adt-bedfeature-scheme-pricecategory-map.dto';
 import { BillingPackages_DTO } from '../../billing/shared/dto/billing-packages.dto';
 import { IntakeOutputParameterListModel } from '../../clinical/shared/intake-output-parameterlist.model';
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { SchemeVsPriceCategoryModel } from '../billing/map-scheme-and-pricecategory/shared/MapSchemeVsPriceCategory.model';
 import { MinimumDepositAmount_DTO } from './DTOs/minimum-deposit-amount.dto';
 
@@ -52,7 +52,7 @@ export class SettingsDLService {
   }
 
   public GetSchemePriceCategoryMappedItems() {
-    return this.http.get<DanpheHTTPResponse>("/api/BillSettings/SchemePriceCategoryMappedItems");
+    return this.http.get<DsfHTTPResponse>("/api/BillSettings/SchemePriceCategoryMappedItems");
   }
 
 
@@ -78,10 +78,10 @@ export class SettingsDLService {
   }
 
   public PostSchemePriceCategoryMapItems(SchemePriceCategoryMapList: SchemeVsPriceCategoryModel[]) {
-    return this.http.post<DanpheHTTPResponse>(`/api/BillSettings/SchemePriceCategoryMap`, SchemePriceCategoryMapList, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>(`/api/BillSettings/SchemePriceCategoryMap`, SchemePriceCategoryMapList, this.jsonOptions);
   }
   public UpdateSchemePriceCategoryMapItems(SchemePriceCategoryMap: SchemeVsPriceCategoryModel) {
-    return this.http.put<DanpheHTTPResponse>(`/api/BillSettings/SchemePriceCategoryMap`, SchemePriceCategoryMap, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/BillSettings/SchemePriceCategoryMap`, SchemePriceCategoryMap, this.jsonOptions);
   }
 
   public PutBed(CurrentBedMain) {
@@ -108,7 +108,7 @@ export class SettingsDLService {
   //start: department
   //add new service department
   public GetDepartments() {
-    return this.http.get<DanpheHTTPResponse>("/api/Settings/Departments");
+    return this.http.get<DsfHTTPResponse>("/api/Settings/Departments");
   }
   public GetStoreList() {
     return this.http.get<any>("/api/Settings/PharmacyStores");
@@ -137,7 +137,7 @@ export class SettingsDLService {
   }
 
   public GetOPDServiceItems() {
-    return this.http.get<DanpheHTTPResponse>("/api/Settings/OPDServiceItems");
+    return this.http.get<DsfHTTPResponse>("/api/Settings/OPDServiceItems");
   }
 
   public PostDepartment(CurrentServiceDepartment) {
@@ -155,7 +155,7 @@ export class SettingsDLService {
 
   public PutDepartment(department) {
     let data = JSON.stringify(department);
-    return this.http.put<DanpheHTTPResponse>("/api/Settings/Department", department, this.options);
+    return this.http.put<DsfHTTPResponse>("/api/Settings/Department", department, this.options);
   }
   public PutStore(store) {
     let data = JSON.stringify(store);
@@ -246,10 +246,10 @@ export class SettingsDLService {
     return this.http.get<any>("/api/EmployeeSettings/Employees");
   }
   public GetEmployeeRoleList() {
-    return this.http.get<DanpheHTTPResponse>("/api/EmployeeSettings/EmployeeRoles");
+    return this.http.get<DsfHTTPResponse>("/api/EmployeeSettings/EmployeeRoles");
   }
   public GetEmployeeTypeList(ShowIsActive: boolean) {
-    return this.http.get<DanpheHTTPResponse>("/api/EmployeeSettings/EmployeeTypes?ShowIsActive=" + ShowIsActive);
+    return this.http.get<DsfHTTPResponse>("/api/EmployeeSettings/EmployeeTypes?ShowIsActive=" + ShowIsActive);
   }
   public GetSignatoryImage(employeeId: number) {
     return this.http.get<any>("/api/EmployeeSettings/EmployeeSignatoryImage?employeeId=" + employeeId);
@@ -349,7 +349,7 @@ export class SettingsDLService {
     return this.http.get<any>("/api/SecuritySettings/Users");
   }
   public GetSchemeList() {
-    return this.http.get<DanpheHTTPResponse>("/api/BillSettings/SchemesForBillingReport");
+    return this.http.get<DsfHTTPResponse>("/api/BillSettings/SchemesForBillingReport");
   }
   public GetRolePermissionList(roleId: number) {
     return this.http.get<any>("/api/SecuritySettings/RolePermissions?roleId=" + roleId);
@@ -416,7 +416,7 @@ export class SettingsDLService {
   }
 
   public GetServiceItemList() {
-    return this.http.get<DanpheHTTPResponse>("/api/BillSettings/ServiceItemList");
+    return this.http.get<DsfHTTPResponse>("/api/BillSettings/ServiceItemList");
   }
 
 
@@ -479,23 +479,23 @@ export class SettingsDLService {
   }
   //start: billing-package
   public GetBillingPackageList() {
-    return this.http.get<DanpheHTTPResponse>("/api/BillSettings/BillingPackageList");
+    return this.http.get<DsfHTTPResponse>("/api/BillSettings/BillingPackageList");
   }
 
   public GetBillingPackageServiceItemList(BillingPackageId: number, PriceCategoryId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/BillSettings/BillingPackageServiceItemList?BillingPackageId=${BillingPackageId}&PriceCategoryId=${PriceCategoryId}`, this.options);
+    return this.http.get<DsfHTTPResponse>(`/api/BillSettings/BillingPackageServiceItemList?BillingPackageId=${BillingPackageId}&PriceCategoryId=${PriceCategoryId}`, this.options);
   }
 
   public PostBillingPackage(BillingPackage: BillingPackages_DTO) {
-    return this.http.post<DanpheHTTPResponse>("/api/BillSettings/BillingPackage", BillingPackage, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>("/api/BillSettings/BillingPackage", BillingPackage, this.jsonOptions);
   }
 
   public ActivateDeactivateBillingPackage(BillingPackageId: number) {
-    return this.http.put<DanpheHTTPResponse>(`/api/BillSettings/ActivateDeactivateBillingPackage?BillingPackageId=${BillingPackageId}`, this.options);
+    return this.http.put<DsfHTTPResponse>(`/api/BillSettings/ActivateDeactivateBillingPackage?BillingPackageId=${BillingPackageId}`, this.options);
   }
 
   public PutBillingPackage(BillingPackage: BillingPackages_DTO) {
-    return this.http.put<DanpheHTTPResponse>(`/api/BillSettings/BillingPackage`, BillingPackage, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/BillSettings/BillingPackage`, BillingPackage, this.jsonOptions);
   }
 
   public PostCreditOrganization(creditOrganization) {
@@ -691,18 +691,18 @@ export class SettingsDLService {
 
   public PutServiceItem(item) {
 
-    return this.http.put<DanpheHTTPResponse>("/api/BillSettings/ServiceItem", item, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>("/api/BillSettings/ServiceItem", item, this.jsonOptions);
   }
 
   public AddBillServiceItemsPriceCategoryMap(value) {
-    return this.http.post<DanpheHTTPResponse>("/api/BillSettings/BillServiceItemsPriceCategoryMap", value, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>("/api/BillSettings/BillServiceItemsPriceCategoryMap", value, this.jsonOptions);
   }
 
   public ActivateDeactivateServiceItem(item) {
-    return this.http.put<DanpheHTTPResponse>("/api/BillSettings/ActivateDeactivateServiceItem", item, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>("/api/BillSettings/ActivateDeactivateServiceItem", item, this.jsonOptions);
   }
   public UpdateBillServiceItemsPriceCategoryMap(value, PriceCategoryServiceItemMapId) {
-    return this.http.put<DanpheHTTPResponse>(`/api/BillSettings/BillServiceItemsPriceCategoryMap?PriceCategoryServiceItemMapId=${PriceCategoryServiceItemMapId}`, value, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/BillSettings/BillServiceItemsPriceCategoryMap?PriceCategoryServiceItemMapId=${PriceCategoryServiceItemMapId}`, value, this.jsonOptions);
   }
 
   //Start: Sud-10March'23--For Billing Structural Changes---
@@ -717,10 +717,10 @@ export class SettingsDLService {
   }
 
   public PostServiceItemSchemeSettings(value) {
-    return this.http.post<DanpheHTTPResponse>("/api/BillingMaster/ServiceItemSetting", value, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>("/api/BillingMaster/ServiceItemSetting", value, this.jsonOptions);
   }
   public PostNursingWardSupplyMap(nursingWardSupply) {
-    return this.http.post<DanpheHTTPResponse>("/api/Settings/NursingWardSupplyMap", nursingWardSupply, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>("/api/Settings/NursingWardSupplyMap", nursingWardSupply, this.jsonOptions);
   }
   public GetSubstoreWardMap() {
     return this.http.get<any>(`/api/Settings/NursingWardSupplyMap`);
@@ -729,112 +729,112 @@ export class SettingsDLService {
     return this.http.get<any>(`/api/Settings/NursingWardSupplyMapByWardId?WardId=${WardId}`);
   }
   public UpdateSubstoreMapData(nursingWardSupply) {
-    return this.http.put<DanpheHTTPResponse>("/api/Settings/NursingWardSupplyMap", nursingWardSupply, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>("/api/Settings/NursingWardSupplyMap", nursingWardSupply, this.jsonOptions);
   }
   public GetAdditionalServiceItems() {
-    return this.http.get<DanpheHTTPResponse>("/api/BillSettings/AdditionalServiceItems");
+    return this.http.get<DsfHTTPResponse>("/api/BillSettings/AdditionalServiceItems");
   }
   public PostAdditionalServiceItems(CurrentAdditionalServiceItem) {
-    return this.http.post<DanpheHTTPResponse>(`/api/BillSettings/AdditionalServiceItem`, CurrentAdditionalServiceItem, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>(`/api/BillSettings/AdditionalServiceItem`, CurrentAdditionalServiceItem, this.jsonOptions);
   }
   public PutAdditionalServiceItems(CurrentAdditionalServiceItem) {
-    return this.http.put<DanpheHTTPResponse>("/api/BillSettings/AdditionalServiceItem", CurrentAdditionalServiceItem, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>("/api/BillSettings/AdditionalServiceItem", CurrentAdditionalServiceItem, this.jsonOptions);
   }
   public PutActivateDeactivateAdditionalServiceItemStatus(additionalServiceItemId: number, isActive: boolean) {
-    return this.http.put<DanpheHTTPResponse>(`/api/BillSettings/ActivateDeactivateAdditionalServiceItem?additionalServiceItemId=${additionalServiceItemId}&isActive=${isActive}`, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/BillSettings/ActivateDeactivateAdditionalServiceItem?additionalServiceItemId=${additionalServiceItemId}&isActive=${isActive}`, this.jsonOptions);
   }
-  public GetBillingSchmes(): Observable<DanpheHTTPResponse> {
-    return this.http.get<DanpheHTTPResponse>(`/api/BillSettings/BillingSchemes`, this.jsonOptions);
+  public GetBillingSchmes(): Observable<DsfHTTPResponse> {
+    return this.http.get<DsfHTTPResponse>(`/api/BillSettings/BillingSchemes`, this.jsonOptions);
   }
-  public GetAutoBillingItemsList(): Observable<DanpheHTTPResponse> {
-    return this.http.get<DanpheHTTPResponse>(`/api/ADTSettings/AdtAutoBillingItems`, this.jsonOptions);
+  public GetAutoBillingItemsList(): Observable<DsfHTTPResponse> {
+    return this.http.get<DsfHTTPResponse>(`/api/ADTSettings/AdtAutoBillingItems`, this.jsonOptions);
   }
   public BillingItemActivation(AdtAutoBillingItemId: number, IsActive: boolean) {
     return this.http.put<any>("/api/ADTSettings/ActivateDeactivateAutoBillingItem?AdtAutoBillingItemId=" + AdtAutoBillingItemId + "&IsActive=" + IsActive, this.jsonOptions);
   }
   public ActivateDeactivateSchemePriceCategoryMapItem(PriceCategorySchemeMapId: number, Status: boolean) {
-    return this.http.put<DanpheHTTPResponse>(`/api/BillSettings/ActivateDeactivateSchemePriceCategoryMapItem?PriceCategorySchemeMapId=${PriceCategorySchemeMapId}&Status=${Status}`, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/BillSettings/ActivateDeactivateSchemePriceCategoryMapItem?PriceCategorySchemeMapId=${PriceCategorySchemeMapId}&Status=${Status}`, this.jsonOptions);
   }
 
   public PostDepositHead(currentDepositHead) {
-    return this.http.post<DanpheHTTPResponse>(`/api/BillSettings/DepositHead`, currentDepositHead, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>(`/api/BillSettings/DepositHead`, currentDepositHead, this.jsonOptions);
   }
   public PutDepositHead(currentDepositHead) {
-    return this.http.put<DanpheHTTPResponse>(`/api/BillSettings/DepositHead`, currentDepositHead, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/BillSettings/DepositHead`, currentDepositHead, this.jsonOptions);
   }
   public PutActivateDeactivateDepositHeadStatus(depositHeadId: number) {
-    return this.http.put<DanpheHTTPResponse>(`/api/BillSettings/ActivateDeactivateDepositHead?depositHeadId=${depositHeadId}`, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/BillSettings/ActivateDeactivateDepositHead?depositHeadId=${depositHeadId}`, this.jsonOptions);
   }
   public SaveBedFeatureSchemePriceCategory(bedfeatureschemepricecategoryData) {
-    return this.http.post<DanpheHTTPResponse>("/api/ADTSettings/BedFeatureSchemePriceCategoryMap", bedfeatureschemepricecategoryData, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>("/api/ADTSettings/BedFeatureSchemePriceCategoryMap", bedfeatureschemepricecategoryData, this.jsonOptions);
   }
   public GetBedFeatureSchemePriceCategoryMap() {
-    return this.http.get<DanpheHTTPResponse>("/api/ADTSettings/BedFeatureSchemePriceCataegoryMap", this.jsonOptions)
+    return this.http.get<DsfHTTPResponse>("/api/ADTSettings/BedFeatureSchemePriceCataegoryMap", this.jsonOptions)
   }
   public UpdateBedFeatureSchemePriceCategory(BedFeatureSchemePriceCategory: AdtBedFeatureSchemePriceCategoryMap_DTO) {
-    return this.http.put<DanpheHTTPResponse>("/api/ADTSettings/BedFeatureSchemePriceCategoryMap", BedFeatureSchemePriceCategory, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>("/api/ADTSettings/BedFeatureSchemePriceCategoryMap", BedFeatureSchemePriceCategory, this.jsonOptions);
   }
   ActivateDeactivateBedFeatureSchemePriceCategoryMap(BedFeatureSchemePriceCategoryMapId: number, IsActive: boolean) {
-    return this.http.put<DanpheHTTPResponse>(`/api/ADTSettings/ActivateDeactivateBedFeatureSchemePriceCategoryMap?BedFeatureSchemePriceCategoryMapId=${BedFeatureSchemePriceCategoryMapId}&IsActive=${IsActive}`, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/ADTSettings/ActivateDeactivateBedFeatureSchemePriceCategoryMap?BedFeatureSchemePriceCategoryMapId=${BedFeatureSchemePriceCategoryMapId}&IsActive=${IsActive}`, this.jsonOptions);
   }
   public ActivateDeactivateSubScheme(SubSchemeId: number) {
-    return this.http.put<DanpheHTTPResponse>(`/api/BillSettings/ActivateDeactivateSubScheme?SubSchemeId=${SubSchemeId}`, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/BillSettings/ActivateDeactivateSubScheme?SubSchemeId=${SubSchemeId}`, this.jsonOptions);
   }
 
   public GetBillingSubSchemesBySchemeId(SchemeId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/BillSettings/BillingSubSchemesBySchemeId?SchemeId=${SchemeId}`);
+    return this.http.get<DsfHTTPResponse>(`/api/BillSettings/BillingSubSchemesBySchemeId?SchemeId=${SchemeId}`);
   }
   public GetDepositHead() {
-    return this.http.get<DanpheHTTPResponse>("/api/BillingDeposit/AllDepositHeads", this.options);
+    return this.http.get<DsfHTTPResponse>("/api/BillingDeposit/AllDepositHeads", this.options);
   }
   public SaveMinimumDepositAmount(MinimumDepositAmount) {
-    return this.http.post<DanpheHTTPResponse>("/api/ADTSettings/MinimumDepositSetting", MinimumDepositAmount, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>("/api/ADTSettings/MinimumDepositSetting", MinimumDepositAmount, this.jsonOptions);
   }
   public GetSettingDepositAmount() {
-    return this.http.get<DanpheHTTPResponse>(`/api/ADTSettings/MinimumDepositSettings`, this.jsonOptions);
+    return this.http.get<DsfHTTPResponse>(`/api/ADTSettings/MinimumDepositSettings`, this.jsonOptions);
   }
   public UpdateSettingDepositAmount(SettingDepositAmountToUpdate: MinimumDepositAmount_DTO) {
-    return this.http.put<DanpheHTTPResponse>("/api/ADTSettings/MinimumDepositSetting", SettingDepositAmountToUpdate, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>("/api/ADTSettings/MinimumDepositSetting", SettingDepositAmountToUpdate, this.jsonOptions);
   }
   ActivateDeactivateSettingDepositAmount(AdtDepositSettingId: number) {
-    return this.http.put<DanpheHTTPResponse>(`/api/ADTSettings/ActivateDeactivateMinimumDepositSetting?AdtDepositSettingId=${AdtDepositSettingId}`, this.jsonOptions);
+    return this.http.put<DsfHTTPResponse>(`/api/ADTSettings/ActivateDeactivateMinimumDepositSetting?AdtDepositSettingId=${AdtDepositSettingId}`, this.jsonOptions);
   }
   public GetTemplateTypeList() {
-    return this.http.get<DanpheHTTPResponse>("/api/DynamicTemplate/TemplateTypes");
+    return this.http.get<DsfHTTPResponse>("/api/DynamicTemplate/TemplateTypes");
   }
   public GetTemplateList() {
-    return this.http.get<DanpheHTTPResponse>("/api/DynamicTemplate/Templates");
+    return this.http.get<DsfHTTPResponse>("/api/DynamicTemplate/Templates");
   }
   public PutTemplateSettings(templateId) {
-    return this.http.put<DanpheHTTPResponse>(`/api/DynamicTemplate/ActivateDeactivate?templateId=${templateId}`, this.options);
+    return this.http.put<DsfHTTPResponse>(`/api/DynamicTemplate/ActivateDeactivate?templateId=${templateId}`, this.options);
   }
   public GetFieldMasterList(templateTypeId: number = null) {
-    return this.http.get<DanpheHTTPResponse>(`/api/DynamicTemplate/FieldMaster?templateTypeId=${templateTypeId}`);
+    return this.http.get<DsfHTTPResponse>(`/api/DynamicTemplate/FieldMaster?templateTypeId=${templateTypeId}`);
   }
   public GetTemplateType() {
-    return this.http.get<DanpheHTTPResponse>("/api/DynamicTemplate/TemplateTypes");
+    return this.http.get<DsfHTTPResponse>("/api/DynamicTemplate/TemplateTypes");
   }
   AddNewTemplate(TemplateData) {
     let data = JSON.stringify(TemplateData);
-    return this.http.post<DanpheHTTPResponse>("/api/DynamicTemplate/AddNewTemplate", data, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>("/api/DynamicTemplate/AddNewTemplate", data, this.jsonOptions);
   }
   public PutDynTemplate(dynTemplate) {
     try {
       let data = JSON.stringify(dynTemplate);
-      return this.http.put<DanpheHTTPResponse>("/api/DynamicTemplate/UpdateDynamicTemplate", data, this.options);
+      return this.http.put<DsfHTTPResponse>("/api/DynamicTemplate/UpdateDynamicTemplate", data, this.options);
     } catch (exception) {
       throw exception;
     }
   }
   public GetDynTemplateDataById(templateId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/DynamicTemplate/GetSelectedTemplateData?templateId=${templateId}`);
+    return this.http.get<DsfHTTPResponse>(`/api/DynamicTemplate/GetSelectedTemplateData?templateId=${templateId}`);
   }
   public GetFieldMasterByTemplateId(templateId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/DynamicTemplate/GetFieldMasterByTemplateId?templateId=${templateId}`);
+    return this.http.get<DsfHTTPResponse>(`/api/DynamicTemplate/GetFieldMasterByTemplateId?templateId=${templateId}`);
   }
   AddUpdateFieldMapping(selectedFields) {
     let data = JSON.stringify(selectedFields);
-    return this.http.post<DanpheHTTPResponse>("/api/DynamicTemplate/AddUpdateFieldMapping", data, this.jsonOptions);
+    return this.http.post<DsfHTTPResponse>("/api/DynamicTemplate/AddUpdateFieldMapping", data, this.jsonOptions);
   }
   public GetIntakeOutputTypeList() {
     return this.http.get<any>("/api/Settings/IntakeOutputType", this.options);

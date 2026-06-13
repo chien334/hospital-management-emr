@@ -11,7 +11,7 @@ import { MessageboxService } from "../../../shared/messagebox/messagebox.service
 import { DLService } from "../../../shared/dl.service";
 import * as moment from "moment/moment";
 import { CoreService } from "../../../core/shared/core.service";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: "./status-wise-item-count.report.html"
@@ -99,9 +99,9 @@ export class RPT_LAB_StatusWiseItemCountComponent {
     popupWinindow.document.open();
     let documentContent = "<html><head>";
     documentContent +=
-      '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DanphePrintStyle.css"/>';
+      '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DsfPrintStyle.css"/>';
     documentContent +=
-      '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css"/>';
+      '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css"/>';
     documentContent +=
       '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += `</head><style> .non-printable { visibility: hidden; }.cat-tbl thead tr th,

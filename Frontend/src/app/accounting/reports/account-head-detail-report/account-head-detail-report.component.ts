@@ -2,8 +2,8 @@ import { Component } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { ENUM_DanpheHTTPResponseText } from "../../../shared/shared-enums";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { ENUM_DsfHTTPResponseText } from "../../../shared/shared-enums";
 import { AccountingService } from "../../shared/accounting.service";
 import { AccountingReportsBLService } from "../shared/accounting-reports.bl.service";
 import { CustomerHeader } from "../subledger-report/subledger-report-vm";
@@ -49,8 +49,8 @@ export class AccountHeadDetailReportComponent {
         this.Loading = true;
         this.accReportBLService.GetAccountHeadDetailReport()
             .finally(() => { this.Loading = false; })
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.Data = res.Results;
                     this.ShowButton = true;
                 }

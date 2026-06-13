@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, Renderer2 } from '@angular/core
 import { BillingTransactionItem } from '../shared/billing-transaction-item.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { BillingBLService } from '../shared/billing.bl.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { CommonFunctions } from '../../shared/common.functions';
 import { ENUM_PriceCategory } from '../../shared/shared-enums';
 import { CoreService } from '../../../../src/app/core/shared/core.service';
@@ -171,7 +171,7 @@ export class EditBillItemDocPriceComponent {
 
     // getAllReferrerList(){
     //     this.settingsBlService.GetAllReferrerList()
-    //     .subscribe((res: DanpheHTTPResponse) => {
+    //     .subscribe((res: DsfHTTPResponse) => {
     //       //console.log(res);
 
     //       if (res.Status == 'OK') {

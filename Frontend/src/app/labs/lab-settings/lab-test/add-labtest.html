@@ -56,7 +56,7 @@
                   <label for="labCategory" class="control-label col-md-4">{{ 'LABS.LAB_CATEGORY' | translate }}<sup
                          class="color-red">*</sup><b>:</b></label>
                   <div class="col-md-8">
-                    <input class="form-control" danphe-auto-complete [ngModelOptions]="{standalone: true}"
+                    <input class="form-control" dsf-auto-complete [ngModelOptions]="{standalone: true}"
                            [(ngModel)]="selectedCategory" [list-formatter]="myCategoryListFormatter" [source]="allCategories"
                            [placeholder]="'LABS.SELECT_LAB_CATEGORY' | translate" display-property-name="TestCategoryName"
                            value-property-name="null" id="labCategory" max-num-list="10" onClick="this.select();" />
@@ -69,11 +69,11 @@
                        padding-right: 20px;">{{ 'LABS.SELECT_SPECIMENS' | translate }}<sup
                        class="color-red">*</sup><b style="float: right">:</b></label>
                 <div class="col-md-8" style="padding-right:0px;">
-                  <danphe-multiselect *ngIf="specimens.length > 0" [ddl-data]="specimens" [pre-selected]="preSelectedSpecimens"
+                  <dsf-multiselect *ngIf="specimens.length > 0" [ddl-data]="specimens" [pre-selected]="preSelectedSpecimens"
                                       [placeholder-text]="'--Select Specimens --'" [value-property-name]="'SpecimenId'"
                                       (selected-items-list)="SpecimenChkOnChange($event)"
                                       [display-property-name]="'Name'" [single-selection]="false">
-                  </danphe-multiselect>
+                  </dsf-multiselect>
                 </div>
               </div>
               <div class="pull-right padding-15-hr" style="margin-top:15px; padding-right: 0px;">
@@ -178,7 +178,7 @@
                   <label for="reportTemplateId" class="control-label col-md-4">{{ 'LABS.REPORT_TEMPLATE_NAME' | translate }} <sup
                          class="color-red">*</sup><b>:</b></label>
                   <div class="col-md-8">
-                    <input id="reportTemplateId" class="form-control" danphe-auto-complete
+                    <input id="reportTemplateId" class="form-control" dsf-auto-complete
                            [ngModelOptions]="{standalone: true}"
                            [(ngModel)]="selectedReportTemplate" [list-formatter]="reportListFormatter"
                            [source]="labReportList" [placeholder]="'LABS.SELECT_REPORT_TEMPLATE_SHORT_NAME' | translate"
@@ -193,7 +193,7 @@
                   <label for="serviceDept" class="control-label col-md-4">{{ 'LABS.SERVICE_DEPARTMENT' | translate }}<sup
                          class="color-red">*</sup><b>:</b></label>
                   <div class="col-md-8">
-                    <input class="form-control" danphe-auto-complete [ngModelOptions]="{standalone: true}"
+                    <input class="form-control" dsf-auto-complete [ngModelOptions]="{standalone: true}"
                            [(ngModel)]="selectedDepartment"
                            [list-formatter]="myListFormatter" [source]="serviceDepartmentList"
                            [placeholder]="'LABS.SELECT_SERVICE_DEPARTMENT_NAME' | translate" display-property-name="ServiceDepartmentName"
@@ -273,7 +273,7 @@
                       </td>
                       <td>
                         <div>
-                          <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
+                          <input dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
                                  [(ngModel)]="testComponent.LabTestComponent" [list-formatter]="componentListFormatter"
                                  [source]="allLabTestComponentList" [placeholder]="'LABS.SELECT_COMPONENT' | translate"
                                  display-property-name="ComponentName" value-property-name="null"

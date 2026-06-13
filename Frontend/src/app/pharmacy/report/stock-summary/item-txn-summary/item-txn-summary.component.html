@@ -2,8 +2,8 @@
     {{ 'PHARMACY.TRANSACTION_REPORT_FOR_ITEM' | translate }} : <b>{{ItemName}}</b> {{ 'PHARMACY.FROM' | translate }} <b>{{FromDate}}</b> {{ 'PHARMACY.TO' | translate }} <b>{{ToDate}}</b>
     <span *ngIf="FromDate">&nbsp;{{FromDate | nepaliDate }}</span> {{ 'PHARMACY.TO' | translate }} <span *ngIf="ToDate">{{ToDate | nepaliDate }}</span>
 </div>
-<danphe-grid [grid-colDefaults]="ItemTxnSummaryReportColumns" [grid-data]="ItemTxnSummaryReportData" [grid-showExport]="true" [grid-exportOptions]="gridExportOptions" [report-for]="pharmacy" [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="ItemTxnSummaryGridAction($event)">
-</danphe-grid>
+<dsf-grid [grid-colDefaults]="ItemTxnSummaryReportColumns" [grid-data]="ItemTxnSummaryReportData" [grid-showExport]="true" [grid-exportOptions]="gridExportOptions" [report-for]="pharmacy" [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="ItemTxnSummaryGridAction($event)">
+</dsf-grid>
 
 <!-- GR POP UP -->
 <goods-receipt-view *ngIf="showGRPopUp" [goodsReceiptId]="selectedGRId" [showPopUp]="showGRPopUp" (call-back-close)="OnGRPopUpClose()"></goods-receipt-view>

@@ -22,13 +22,13 @@
         ><b style="float: right;">:</b></label
       >
       <div class="col-md-9">
-        <danphe-date-picker
+        <dsf-date-picker
           [(ngModel)]="currenttotalAdmittedPatient.fromDate"
           ngDefaultControl
           [CalendarTypes]="'np'"
           formControlName="fromDate"
         >
-        </danphe-date-picker>
+        </dsf-date-picker>
         <span
           class="color-red font-sm"
           *ngIf="currenttotalAdmittedPatient.IsDirty('fromDate')"
@@ -53,13 +53,13 @@
         ><b style="float: right;">:</b></label
       >
       <div class="col-md-9">
-        <danphe-date-picker
+        <dsf-date-picker
           [(ngModel)]="currenttotalAdmittedPatient.toDate"
           ngDefaultControl
           [CalendarTypes]="'np'"
           formControlName="toDate"
         >
-        </danphe-date-picker>
+        </dsf-date-picker>
         <span
           class="color-red font-sm"
           *ngIf="currenttotalAdmittedPatient.IsDirty('toDate')"
@@ -93,14 +93,14 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12" *ngIf="TotalAdmittedPatientData.length>0">
-      <danphe-grid
+      <dsf-grid
         [grid-colDefaults]="TotalAdmittedPatientColumns"
         [grid-data]="TotalAdmittedPatientData"
         [grid-exportOptions]="gridExportOptions"
         [grid-showExport]="true"
         [NepaliDateInGridParams] ="NepaliDateInGridSettings"
       >
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
 </div>

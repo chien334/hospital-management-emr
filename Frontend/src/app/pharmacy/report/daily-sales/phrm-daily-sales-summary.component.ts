@@ -2,15 +2,15 @@ import { ChangeDetectorRef, Component, Directive, ViewChild } from '@angular/cor
 import { DLService } from "../../../shared/dl.service"
 import * as moment from 'moment/moment';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import PHRMReportsGridColumns from "../../shared/phrm-reports-grid-columns";
 import PHRMGridColumns from "../../shared/phrm-grid-columns";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { DispensaryService } from '../../../dispensary/shared/dispensary.service';
 import { SettingsBLService } from '../../../settings-new/shared/settings.bl.service';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 @Component({
     selector: 'my-app',
     templateUrl: "./phrm-daily-sales-summary.html"
@@ -91,7 +91,7 @@ export class PHRMDailySalesSummaryComponent {
         }
     }
     LoadCounter(): void {
-        this.counterlist = DanpheCache.GetData(MasterType.PhrmCounter, null);
+        this.counterlist = DsfCache.GetData(MasterType.PhrmCounter, null);
     }
 
     LoadUser() {

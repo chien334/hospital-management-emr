@@ -3,7 +3,7 @@ import { Input, Output, EventEmitter, OnInit } from "@angular/core"
 import { MessageboxService } from './messagebox.service';
 
 @Component({
-  selector: "danphe-msgbox",
+  selector: "dsf-msgbox",
   templateUrl: "./messagebox.html"
 })
 export class MessageBoxComponent {

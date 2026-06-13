@@ -6,7 +6,7 @@
         <div class="caption lb-caption">
           <h3><span> <i class="fa fa-barcode"></i>Scan Patient Card for Billing</span> </h3>
         </div>
-        <danphe-qr-reader *ngIf="qrService.show" [department]="'billing'" (on-success)="OnQrReadSuccess($event)"> </danphe-qr-reader>
+        <dsf-qr-reader *ngIf="qrService.show" [department]="'billing'" (on-success)="OnQrReadSuccess($event)"> </dsf-qr-reader>
         <div *ngIf="showBillingPanel">
           <div class="page-bar-secondary">
             <button class="btn green" (click)="NewBillingRequest()">New Billing Request</button>

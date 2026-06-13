@@ -39,7 +39,7 @@
             <span class="error-msg" *ngIf="row.AvailableQuantity<row.DispachedQuantity">{{ 'WARD_SUPPLY.RETURN_QTY_VALIDATION' | translate }}</span>
           </td>
           <td><input [(ngModel)]="row.Quantity" [ngModelOptions]="{standalone: true}" style="width:80px ; " (ngModelChange)="ValueChanged(i)" min="0" class="form-control" type="text" value="" disabled></td>
-          <td>{{row.ExpiryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+          <td>{{row.ExpiryDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
           <td><input class="zoomcheckbox" [(ngModel)]="row.IsSelected" name="IsSelected" type="checkbox" ng-checked="row.IsSelected" (change)="SelectItemChkOnChange(row)" [ngModelOptions]="{standalone: true}" [title]="'WARD_SUPPLY.SELECT_ITEM' | translate"></td>
           </tr>
           </table>
@@ -62,7 +62,7 @@
               <th>{{ 'WARD_SUPPLY.RETURN_QUANTITY' | translate }}</th>
             </tr>
             <tr *ngFor="let row of returnItems;let i = index">
-              <td>{{row.ExpiryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td>{{row.ExpiryDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
               <td>{{row.ItemName}}</td>
               <td>{{row.BatchNo}}</td>
               <td>{{row.WardName}}</td>

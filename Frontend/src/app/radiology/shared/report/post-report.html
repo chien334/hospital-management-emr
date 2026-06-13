@@ -72,7 +72,7 @@
                         <div class="rad-pat-info margin-15-bt">
                             <div class="flex-container flex-align-center">
                                 <div class="flex-2 single-flx">
-                                    <strong>{{ 'GRID_HEADERS.PATIENT_NAME' | translate }} </strong>&nbsp;{{patient.ShortName}}( {{patient.DateOfBirth | DanpheDateTime:'age' }}/{{patient.Gender}} )
+                                    <strong>{{ 'GRID_HEADERS.PATIENT_NAME' | translate }} </strong>&nbsp;{{patient.ShortName}}( {{patient.DateOfBirth | DsfDateTime:'age' }}/{{patient.Gender}} )
                                 </div>
                                 <div class="flex-1 single-flx">
                                     <strong>{{ 'GRID_HEADERS.HOSPITAL_NO_' | translate }} </strong>&nbsp;{{patient.PatientCode}}
@@ -82,7 +82,7 @@
                   <div class="flex-container flex-align-center">
                     <div class="flex-1 txt-autocomp"><strong>{{ 'RADIOLOGY.PRESCRIBER' | translate }}</strong></div>
                     <!-- <div class="flex-3">
-                    <input class="form-control" danphe-auto-complete
+                    <input class="form-control" dsf-auto-complete
                            style="font-weight:bold;"
                            [(ngModel)]="selReferredByDr"
                            [list-formatter]="ReferredByDrListFormatter"
@@ -119,7 +119,7 @@
                                         <div class="flex-1">
                                             <div class="flex-container flex-align-center">
                                                 <div class="flex-3">
-                                                    <strong>{{ 'RADIOLOGY.REQ_ON' | translate }} </strong> {{report.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}
+                                                    <strong>{{ 'RADIOLOGY.REQ_ON' | translate }} </strong> {{report.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}
                                                 </div>
                                             </div>
                                         </div>
@@ -127,7 +127,7 @@
                                         <div class="flex-1">
                                             <div class="flex-container flex-align-center">
                                                 <div class="flex-3">
-                                                    <strong>{{ 'RADIOLOGY.SCANNED_ON_1' | translate }} </strong> {{report.ScannedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}
+                                                    <strong>{{ 'RADIOLOGY.SCANNED_ON_1' | translate }} </strong> {{report.ScannedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@
                                     <a *ngIf="!changeReportTemplate" (click)="GetAllReportTemplates()" [title]="'RADIOLOGY.CLICK_TO_CHANGE_REPORT_TEMPLATE' | translate" style="color:#b56714;font-size:13px;">
                     {{ 'RADIOLOGY.SELECT_DIFFERENT_TEMPLATE' | translate }}
                   </a>
-                                    <input *ngIf="changeReportTemplate" class="form-control" danphe-auto-complete [(ngModel)]="selectedTemplate" [list-formatter]="ReportTempListFormatter" [source]="reportTemplates" [placeholder]="'RADIOLOGY.SEARCH_TEMPLATE' | translate" display-property-name="TemplateName" value-property-name=null
+                                    <input *ngIf="changeReportTemplate" class="form-control" dsf-auto-complete [(ngModel)]="selectedTemplate" [list-formatter]="ReportTempListFormatter" [source]="reportTemplates" [placeholder]="'RADIOLOGY.SEARCH_TEMPLATE' | translate" display-property-name="TemplateName" value-property-name=null
                                         match-formatted="true" (valueChanged)="AssignSelectedReport()" onClick="this.select();" max-num-list="10" />
                                 </div>
                                 <div class="flex-2 single-flx text-center">
@@ -200,8 +200,8 @@
                         <div class="editor-content">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12 col-sm-12" style="min-height:460px;">
-                                    <danphe-ckeditor [readonly]="isReadOnly" (get-html-content)="onChangeEditorData($event)" (get-shortcut)="onShortCutPressed($event)" [set-html-content]="report.ReportText">
-                                    </danphe-ckeditor>
+                                    <dsf-ckeditor [readonly]="isReadOnly" (get-html-content)="onChangeEditorData($event)" (get-shortcut)="onShortCutPressed($event)" [set-html-content]="report.ReportText">
+                                    </dsf-ckeditor>
                                 </div>
                             </div>
                         </div>
@@ -219,8 +219,8 @@
 
                                     <div class="row">
                                         <div class="col-md-12 margin-20-tp">
-                                            <danphe-signatories ngDefaultControl [(ngModel)]="report.Signatories" [defaultEmployeeIdList]="defaultSigEmpIdList" [displayMode]="'edit'" [departmentName]="'radiology'">
-                                            </danphe-signatories>
+                                            <dsf-signatories ngDefaultControl [(ngModel)]="report.Signatories" [defaultEmployeeIdList]="defaultSigEmpIdList" [displayMode]="'edit'" [departmentName]="'radiology'">
+                                            </dsf-signatories>
                                             <!--<div class="color-red font-sm" *ngIf="IsDirty('Signatories')" [hidden]="IsValidCheck('Signatories','required')"> Please select Reporting Doctors.</div>-->
                                         </div>
                                     </div>
@@ -318,7 +318,7 @@
                             <div class="col-md-12" style="margin-bottom: 5px; border-bottom: 1px solid black;  line-height:2; margin-left:0px">
                                 <div class="col-md-4">
                                     {{ 'GRID_HEADERS.PATIENT_NAME' | translate }} <span> <b> {{patient.ShortName}}</b> </span>
-                                    <b>( {{patient.DateOfBirth | DanpheDateTime:'age' }}/{{patient.Gender}} )</b>
+                                    <b>( {{patient.DateOfBirth | DsfDateTime:'age' }}/{{patient.Gender}} )</b>
                                 </div>
                                 <div class="col-md-4">
                                     {{ 'GRID_HEADERS.HOSPITAL_NO_' | translate }} <span><b>{{patient.PatientCode}}</b> </span>
@@ -328,7 +328,7 @@
                                     {{ 'RADIOLOGY.VISIT_CODE' | translate }} <span><b>{{report.PatientVisitId}}</b> </span>
                                 </div>
                                 <div class="col-md-4">
-                                    {{ 'RADIOLOGY.REQUESTED_ON' | translate }}<span> {{report.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</span>
+                                    {{ 'RADIOLOGY.REQUESTED_ON' | translate }}<span> {{report.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</span>
                                 </div>
 
                             </div>
@@ -349,8 +349,8 @@
                                     <tr *ngFor="let img of dicomImageDatas">
                                         <td>{{img.PatientId}}</td>&nbsp;&nbsp;
                                         <td>{{img.PatientName}}</td>&nbsp;&nbsp;
-                                        <td>{{img.StudyDate| DanpheDateTime:'format':'DD-MM-YYYY'}}</td>&nbsp;&nbsp;
-                                        <td>{{img.CreatedOn| DanpheDateTime:'format':'DD-MM-YYYY'}}</td>&nbsp;&nbsp;
+                                        <td>{{img.StudyDate| DsfDateTime:'format':'DD-MM-YYYY'}}</td>&nbsp;&nbsp;
+                                        <td>{{img.CreatedOn| DsfDateTime:'format':'DD-MM-YYYY'}}</td>&nbsp;&nbsp;
                                         <td>
                                             <input type="checkbox" class="zoomcheckbox" [(ngModel)]="img.IsMapped" style="font-size:10px;" />
                                             <span></span>

@@ -37,7 +37,7 @@
                                 <div class="form-group col-md-5">
                                     <label for="dietname" style="margin-top:0px">{{ 'NURSING.DIET_TYPE' | translate }}:</label>
                                     <div style="display: inline-block;">
-                                        <input danphe-auto-complete [source]="dietTypes" placeholder="{{ 'NURSING.SELECT_DIET_TYPE' | translate }}" [list-formatter]="DietTypeFormatter" display-property-name="DietTypeName" [(ngModel)]="selectedDietType" (focusout)="SelectDietType();" id="dietname" name="dietname">
+                                        <input dsf-auto-complete [source]="dietTypes" placeholder="{{ 'NURSING.SELECT_DIET_TYPE' | translate }}" [list-formatter]="DietTypeFormatter" display-property-name="DietTypeName" [(ngModel)]="selectedDietType" (focusout)="SelectDietType();" id="dietname" name="dietname">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-3">

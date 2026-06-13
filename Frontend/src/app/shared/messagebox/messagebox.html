@@ -1,8 +1,8 @@
 
 
-  <div class="all-danphe-msgbox" *ngIf="this.msgBoxService.globalMsgbox && this.msgBoxService.globalMsgbox.length > 0">
+  <div class="all-dsf-msgbox" *ngIf="this.msgBoxService.globalMsgbox && this.msgBoxService.globalMsgbox.length > 0">
     <ng-container *ngFor="let msg of this.msgBoxService.globalMsgbox; let i=index;">
-      <div class="danphe-msgbox" [ngClass]="'msgbox-'+ msg.status.toLowerCase()" *ngIf="msg.show">
+      <div class="dsf-msgbox" [ngClass]="'msgbox-'+ msg.status.toLowerCase()" *ngIf="msg.show">
         <div class="msg-icon">
           <div class="padding-8-all">
             <i *ngIf="msg.status.toLowerCase()=='success'" class="fa fa-check msg-success"></i>

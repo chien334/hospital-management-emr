@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { WebcamImage } from 'ngx-webcam';
 @Component({
-  selector: "danphe-photo-cropper",
+  selector: "dsf-photo-cropper",
   templateUrl: "./photo-cropper.html"
 })
 export class PhotoCropperComponent {

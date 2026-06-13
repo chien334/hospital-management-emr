@@ -7,7 +7,7 @@ import { BillingBLService } from '../shared/billing.bl.service';
 import { BillingCounter } from '../shared/billing-counter.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { CallbackService } from '../../shared/callback.service';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 @Component({
    templateUrl: "./billing-counter-activate.html" // "/BillingView/CounterActivate"  //controller in BillingViewController
 })
@@ -45,7 +45,7 @@ export class BillingCounterActivateComponent {
     LoadCounter(): void {
            
         let allCounters: Array<BillingCounter> ;
-        allCounters=DanpheCache.GetData(MasterType.BillingCounter,null);
+        allCounters=DsfCache.GetData(MasterType.BillingCounter,null);
         if (allCounters && allCounters.length) {
             this.counterlist = allCounters.filter(cnt => cnt.CounterType == null || cnt.CounterType == "BILLING");
             this.disable = true;

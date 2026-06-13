@@ -1,7 +1,7 @@
 ﻿import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { EmergencyPatientModel } from '../shared/emergency-patient.model';
 import { EmergencyBLService } from '../shared/emergency.bl.service';
 
@@ -40,8 +40,8 @@ export class ERDoctorAssignComponent {
             if (this.ERPatient.FinalizedRemarks && this.ERPatient.FinalizedRemarks.trim() !== "") {
                 this.ERPatient.FinalizedRemarks = this.ERPatient.FinalizedRemarks.trim();
                 this._emergencyBLService.PutLamaOfERPatient(this.ERPatient, actionString)
-                    .subscribe((res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    .subscribe((res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponses.OK) {
                             this.SendERPatientData.emit({ submit: true, callBackFrom: 'lama', ERPatient: res.Results });
                             this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Doctor Assigned to ' + this.ERPatient.FullName + 'is successfully Updated']);
                             this.loading = false;
@@ -82,8 +82,8 @@ export class ERDoctorAssignComponent {
         this.ERPatient.PerformerName = this.DoctorSelected.LongSignature;
         if (this.loading) {
             this._emergencyBLService.UpdateAssignedToDoctor(this.ERPatient)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.SendERPatientData.emit({ submit: true, ERPatient: res.Results });
                         this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Doctor Assigned to ' + this.ERPatient.FullName + 'is successfully Updated']);
                         this.loading = false;

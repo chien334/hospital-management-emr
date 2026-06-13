@@ -11,14 +11,14 @@ import { Patient } from '../../../patients/shared/patient.model';
 //import { BillingTransaction } from '../shared/billing-transaction.model';
 //import { BillingTransactionItem } from "../shared/billing-transaction-item.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-//to add danphe-grid in credit-details page:sudarshan 26Mar'17
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
+//to add dsf-grid in credit-details page:sudarshan 26Mar'17
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
 import { RouteFromService } from '../../../shared/routefrom.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { CallbackService } from '../../../shared/callback.service';
 //import { BillingReceiptModel } from "../shared/billing-receipt.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { PharmacyService } from '../../shared/pharmacy.service';
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
@@ -90,7 +90,7 @@ export class PHRMSettlementComponent implements OnDestroy {
   // GetBillsForSettlement() {
   //   this.allPHRMPendingSettlements = [];
   //   this.pharmacyBLService.GetPHRMPendingBillsForSettlement()
-  //     .subscribe((res: DanpheHTTPResponse) => {
+  //     .subscribe((res: DsfHTTPResponse) => {
   //       if (res.Status == "OK") {
   //         this.allPHRMPendingSettlements = res.Results;
   //         this.filteredPHRMPendingSettlements = this.allPHRMPendingSettlements;
@@ -139,7 +139,7 @@ export class PHRMSettlementComponent implements OnDestroy {
     patient.PhoneNumber = row.PhoneNumber;
 
     this.pharmacyBLService.GetCreditInvoicesByPatient(patient.PatientId,1) // Dev Narayan 8 June 22: This component is no longer in use. But it has referecne to function defined in PharmacyBlService which is changed to accept two arguments. Therefore we are passing 1 as default second parameter just for safety.
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.patCrInvoicDetails = res.Results.CreditItems;
           this.patientService.globalPatient = res.Results.Patient;
@@ -309,7 +309,7 @@ export class PHRMSettlementComponent implements OnDestroy {
       let setlmntToPost = this.GetSettlementInvoiceFormatted();
 
       this.pharmacyBLService.PostSettlementInvoice(setlmntToPost)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           console.log("Response from server:");
           console.log(res);
 
@@ -445,7 +445,7 @@ export class PHRMSettlementComponent implements OnDestroy {
 
   GetPaidSettlementsDetails(settlementData) {
     this.pharmacyBLService.GetPHRMSettlementDuplicateDetails(settlementData.SettlementId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         this.setlmntToDisplay = res.Results;
         this.setlmntToDisplay.BillingUser = this.securityService.GetLoggedInUser().UserName;
         this.showReceipt = true;
@@ -459,7 +459,7 @@ export class PHRMSettlementComponent implements OnDestroy {
 
   GetUnPaidSettlementsDetails(row) {
     this.pharmacyBLService.GetCreditInvoicesByPatient(row.PatientId,1)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.patCrInvoicDetails = res.Results.CreditItems;
           this.patientService.globalPatient = res.Results.Patient;

@@ -3,8 +3,8 @@ import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { BillingGridColumnSettings } from "../../shared/billing-grid-columns";
 import { BillingBLService } from "../../shared/billing.bl.service";
 

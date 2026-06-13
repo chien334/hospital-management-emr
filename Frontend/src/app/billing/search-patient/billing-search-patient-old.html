@@ -24,10 +24,10 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="patientGridColumns" [grid-data]="filteredPatients" (grid-actions)="PatientGridActions($event)"
+      <dsf-grid [grid-colDefaults]="patientGridColumns" [grid-data]="filteredPatients" (grid-actions)="PatientGridActions($event)"
                  (result-data)="GetResults($event)"
                  (serverSearchText)="serverSearchTxt($event)"
-                 [customServerSearch]="enableServerSideSearch"> </danphe-grid>
+                 [customServerSearch]="enableServerSideSearch"> </dsf-grid>
       <!-- [show-ServerSideSearch]="true"
     [api-type]="patGirdDataApi" --> 
     </div>

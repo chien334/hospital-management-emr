@@ -79,10 +79,10 @@
                                         </select>
                                     </td>
                                     <!-- <td>
-                                        <danphe-date-picker [(ngModel)]="dispatchingItem.ExpiryDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}" [attr.disabled] ="true">
-                                        </danphe-date-picker>
+                                        <dsf-date-picker [(ngModel)]="dispatchingItem.ExpiryDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}" [attr.disabled] ="true">
+                                        </dsf-date-picker>
                                     </td> -->
-                                    <td>{{dispatchingItem.ExpiryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                                    <td>{{dispatchingItem.ExpiryDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                                     <td>
                                         <input type="number" name="AvailableQuantity" [attr.disabled]="true" id="AvailableQuantity{{i}}{{j}}" min="0" [(ngModel)]="dispatchingItem.AvailableQuantity">
                                     </td>

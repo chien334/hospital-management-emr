@@ -91,7 +91,7 @@
                     <tbody>
                       <tr *ngFor="let row of InTyrow.reportData;let i=index">
                         <td style="text-align:center">{{i+1}}</td>
-                        <td style="width: 6%;" *ngIf="!isDateFormatBS">{{row.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                        <td style="width: 6%;" *ngIf="!isDateFormatBS">{{row.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                         <td style="width: 6%;" *ngIf="isDateFormatBS">{{row.TransactionDate | nepaliDate:'format':'YYYY-MM-DD'}}</td>
                         <td style="width: 6%;" *ngIf="!row.IsReturnTxn">{{ 'INCENTIVE.SALES' | translate }}</td>
                         <td style="width: 6%;" *ngIf="row.IsReturnTxn">{{ 'INCENTIVE.SALES_RETURN' | translate }}</td>

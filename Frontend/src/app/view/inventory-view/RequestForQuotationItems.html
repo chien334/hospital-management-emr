@@ -40,8 +40,8 @@
       <div class="form-group row clearfix">
         <label class="control-label col-md-4">Request Date<sup class="color-red">  *</sup><b>:</b></label>
         <div class="col-md-8">
-          <danphe-date-picker [(ngModel)]="ReqForQuotation.RequestedOn" formControlName="RequestedOn" ngDefaultControl >
-          </danphe-date-picker>
+          <dsf-date-picker [(ngModel)]="ReqForQuotation.RequestedOn" formControlName="RequestedOn" ngDefaultControl >
+          </dsf-date-picker>
           <span class="color-red font-sm" [hidden]="ReqForQuotation.IsValidCheck('RequestedOn','required') || !(ReqForQuotation.IsDirty('RequestedOn'))">Date is required</span>              
         </div>
       </div>
@@ -50,8 +50,8 @@
       <div class="form-group row clearfix">
         <label class="control-label col-md-4">Request Close Date<sup class="color-red">*</sup><b>:</b></label>
         <div class="col-md-8">
-          <danphe-date-picker [(ngModel)]="ReqForQuotation.RequestedCloseOn" formControlName="RequestedCloseOn" ngDefaultControl >
-          </danphe-date-picker>
+          <dsf-date-picker [(ngModel)]="ReqForQuotation.RequestedCloseOn" formControlName="RequestedCloseOn" ngDefaultControl >
+          </dsf-date-picker>
           <span class="color-red font-sm" [hidden]="ReqForQuotation.IsValidCheck('RequestedCloseOn','required') || !(ReqForQuotation.IsDirty('RequestedCloseOn'))">Date is required</span>
           <span class="color-red font-sm" [hidden]="ReqForQuotation.IsValidCheck('RequestedCloseOn','invalidReqDates') || !(ReqForQuotation.IsDirty('RequestedCloseOn'))">Request Closed Date must be greater than Request Date.</span>
           <br />
@@ -80,7 +80,7 @@
             <td style="width:1%;"><a (click)="DeleteRow(i)"><i class="btn btn-danger fa fa-times"></i></a></td>
             <td>
               <form [formGroup]="row.ReqForQuotationItemValidator">
-                <input  danphe-auto-complete class="form-control col-md-11"
+                <input  dsf-auto-complete class="form-control col-md-11"
                        [(ngModel)]="row.SelectedItem"
                        [source]="ItemList"
                        [list-formatter]="myListFormatter"

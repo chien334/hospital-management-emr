@@ -172,7 +172,7 @@ export class TransferredPatientPendingComponent {
     return CommonFunctions.GetFormattedAgeSex(dob, gender);
   }
   public UndoAction() {
-    return `<a danphe-grid-action="undo-transfer" class="grid-action" title="Receive Transferred Patient">
+    return `<a dsf-grid-action="undo-transfer" class="grid-action" title="Receive Transferred Patient">
                         Undo-Transfer
                     </a>`;
   }

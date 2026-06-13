@@ -3,9 +3,9 @@ import { CoreService } from '../../../../core/shared/core.service';
 import { Scheme_DTO } from '../../../../pharmacy/patient-consumption/shared/scheme.dto';
 import { PriceCategory_DTO } from '../../../../settings-new/shared/DTOs/price-category.dto';
 import { SettingsBLService } from '../../../../settings-new/shared/settings.bl.service';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
 import { SchemeVsPriceCategoryDTO } from '../shared/MapSchemeVsPriceCategory.dto';
 import { SchemeVsPriceCategoryModel } from '../shared/MapSchemeVsPriceCategory.model';
 
@@ -109,9 +109,9 @@ export class AddSchemePriceCategoryItemsComponent implements OnInit {
 
   public async GetBillingSchemes() {
     try {
-      const res: DanpheHTTPResponse = await this.settingsBLService.GetBillingSchemes().toPromise();
+      const res: DsfHTTPResponse = await this.settingsBLService.GetBillingSchemes().toPromise();
 
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.Schemes = res.Results;
       } else {
         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, [
@@ -127,9 +127,9 @@ export class AddSchemePriceCategoryItemsComponent implements OnInit {
 
   public async GetPriceCategory() {
     try {
-      const res: DanpheHTTPResponse = await this.settingsBLService.GetPriceCategory().toPromise();
+      const res: DsfHTTPResponse = await this.settingsBLService.GetPriceCategory().toPromise();
 
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.PriceCategories = res.Results;
       } else {
         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, [
@@ -190,8 +190,8 @@ export class AddSchemePriceCategoryItemsComponent implements OnInit {
       this.settingsBLService.PostSchemePriceCategoryMapItems(TempSchemePriceCategoryMapList)
         .finally(() => { this.loading = false; })
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.SchemePriceCategoryMapList = new Array<SchemeVsPriceCategoryDTO>();
               this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [
                 "Scheme PriceCategory Mapped Successfully.",
@@ -226,8 +226,8 @@ export class AddSchemePriceCategoryItemsComponent implements OnInit {
       this.settingsBLService.UpdateSchemePriceCategoryMapItems(TempSchemePriceCategoryMap)
         .finally(() => { this.loading = false; })
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.CloseAddSchemePricePriceCategoryItemPopUp();
               this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [
                 "Scheme PriceCategory Updated Successfully.",

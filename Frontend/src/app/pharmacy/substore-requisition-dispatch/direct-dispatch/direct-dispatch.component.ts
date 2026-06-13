@@ -5,9 +5,9 @@ import * as moment from 'moment';
 import { CoreService } from '../../../core/shared/core.service';
 import { DispensaryService } from '../../../dispensary/shared/dispensary.service';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_StoreCategory } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_StoreCategory } from '../../../shared/shared-enums';
 import { SharedModule } from '../../../shared/shared.module';
 import { PharmacyStore_DTO } from '../../shared/dtos/pharmacy-store.dto';
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
@@ -146,7 +146,7 @@ export class DirectDispatchComponent implements OnInit {
   }
   DirectDispatch() {
     if (this.showSubstore && !this.DispatchNo) {
-      return this.messageBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Issue No is required for direct dispatch to Sub Store"]);
+      return this.messageBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["Issue No is required for direct dispatch to Sub Store"]);
     }
     this.loading = true;
     var errorMessages: Array<string> = [];
@@ -187,8 +187,8 @@ export class DirectDispatchComponent implements OnInit {
       }
       this.pharmacyBLService.PostDirectDispatch(this.dispatchItems)
         .finally(() => this.loading = false)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status == ENUM_DsfHTTPResponses.OK) {
             this.messageBoxService.showMessage("success", ["Dispatch done successfully."]);
             this.DispatchId = res.Results.Result;
             this.pharmacyService._Id = this.DispatchId;
@@ -365,8 +365,8 @@ export class DirectDispatchComponent implements OnInit {
   }
   GetRackByItemId(ItemId: number, StoreId: number, index: number): void {
     this.pharmacyBLService.GetRackNoByItemIdAndStoreId(ItemId, StoreId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.dispatchItems[index].ToRackNo = res.Results;
         }
         else {

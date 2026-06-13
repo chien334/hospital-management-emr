@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, Renderer2 } from '@angular/core
 import { BillingTransactionItem } from '../../../../billing/shared/billing-transaction-item.model';
 import { CoreService } from '../../../../core/shared/core.service';
 import { Patient } from '../../../../patients/shared/patient.model';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from '../../../../shared/common.functions';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { GovInsuranceService } from '../../shared/ins-service';
@@ -106,7 +106,7 @@ export class GovInsuranceEditBillItemComponent {
 
     if (valSummary.IsValid) {
       this.insuranceBlService.UpdateBillItem_PriceQtyDiscNDoctor(this.itemToEdit)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.onClose.emit({ CloseWindow: true, EventName: "update", updatedItem: res.Results });
           }
@@ -137,7 +137,7 @@ export class GovInsuranceEditBillItemComponent {
       let sure = window.confirm("This item will be cancelled. Are you sure you want to continue ?");
       if (sure) {
         this.insuranceBlService.CancelMultipleTxnItems([this.itemToEdit])
-          .subscribe((res: DanpheHTTPResponse) => {
+          .subscribe((res: DsfHTTPResponse) => {
             if (res.Status == "OK") {
 
               this.showCancleDeatils = true;
@@ -157,8 +157,8 @@ export class GovInsuranceEditBillItemComponent {
       popupWinindow.document.open();
 
       let documentContent = "<html><head>";
-      documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DanphePrintStyle.css"/>';
-      documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+      documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../themes/theme-default/DsfPrintStyle.css"/>';
+      documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
       documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
       documentContent += '</head>';
       documentContent += '<body onload="window.print()">' + printContents + '</body></html>'

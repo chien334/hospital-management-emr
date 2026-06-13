@@ -26,7 +26,7 @@
                     <label class="control-label col-md-5">Search Problem<sup class="color-red">*</sup><b>:</b></label>
                     <div class="col-md-7">
                         <div class="autocomplete-item" *ngIf="ICD10List && ICD10List.length>0">
-                            <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" formControlName="ICD10Code" [list-formatter]="ICDListFormatter" placeholder="{{IcdVersionDisplayName}}" display-property-name="ICD10Description" value-property-name=null (valueChanged)="AssignSelectedICD()" onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" />
+                            <input dsf-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" formControlName="ICD10Code" [list-formatter]="ICDListFormatter" placeholder="{{IcdVersionDisplayName}}" display-property-name="ICD10Description" value-property-name=null (valueChanged)="AssignSelectedICD()" onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" />
                             <span class="color-red font-sm" *ngIf="CurrentPastProblem.IsDirty('ICD10Code')" [hidden]="CurrentPastProblem.IsValidCheck('ICD10Code','required')">Select {{IcdVersionDisplayName}} Code</span>
                         </div>
                     </div>

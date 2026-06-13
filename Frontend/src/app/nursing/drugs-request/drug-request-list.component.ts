@@ -3,7 +3,7 @@ import { Component, ChangeDetectorRef } from "@angular/core"
 import PHRMGridColumns from '../../pharmacy/shared/phrm-grid-columns';
 import { PharmacyService } from "../../pharmacy/shared/pharmacy.service"
 import { MessageboxService } from "../../shared/messagebox/messagebox.service"
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { Router } from '@angular/router';
 import { PharmacyBLService } from "../../pharmacy/shared/pharmacy.bl.service";
 import { PHRMInvoiceItemsModel } from "../../pharmacy/shared/phrm-invoice-items.model"
@@ -15,7 +15,7 @@ import * as moment from 'moment/moment';
 import { Patient } from "../../patients/shared/patient.model";
 import { PatientService } from "../../patients/shared/patient.service";
 import { PatientsBLService } from "../../patients/shared/patients.bl.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { NursingBLService } from "../shared/nursing.bl.service";
 
 @Component({

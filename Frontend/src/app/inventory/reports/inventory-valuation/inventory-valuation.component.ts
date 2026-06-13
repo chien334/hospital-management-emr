@@ -6,7 +6,7 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { InventoryReportsBLService } from '../shared/inventory-reports.bl.service';
 import { InventoryReportsDLService } from '../shared/inventory-reports.dl.service';
 import * as moment from 'moment/moment';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 
 @Component({
     templateUrl: "../../../view/inventory-view/Reports/InventoryValuation.html"  //"/InventoryReports/InventoryValuation"

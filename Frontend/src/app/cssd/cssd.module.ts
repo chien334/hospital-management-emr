@@ -11,11 +11,11 @@ import { IntegratedCssdReportComponent } from './cssd-main/reports/integrated-cs
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { DisinfectItemComponent } from './cssd-main/sterilization/sterilization-pending-items/disinfect-item/disinfect-item.component';
 import { SterilizationService } from './cssd-main/sterilization/sterilization.service';
 import { SterilizationEndpoint } from './cssd-main/sterilization/sterilization.endpoint';
 import { CssdReportEndpointService } from './cssd-main/reports/cssd-report.endpoint';
 
-@NgModule({ declarations: [CssdMainComponent, SterilizationComponent, ReportsComponent, SterilizationPendingItemsComponent, SterilizationFinalizedItemsComponent, IntegratedCssdReportComponent, DisinfectItemComponent], imports: [CommonModule, CssdRoutingModule, FormsModule, ReactiveFormsModule, SharedModule, DanpheAutoCompleteModule], providers: [SterilizationService, SterilizationEndpoint, CssdReportEndpointService] })
+@NgModule({ declarations: [CssdMainComponent, SterilizationComponent, ReportsComponent, SterilizationPendingItemsComponent, SterilizationFinalizedItemsComponent, IntegratedCssdReportComponent, DisinfectItemComponent], imports: [CommonModule, CssdRoutingModule, FormsModule, ReactiveFormsModule, SharedModule, DsfAutoCompleteModule], providers: [SterilizationService, SterilizationEndpoint, CssdReportEndpointService] })
 export class CssdModule { }

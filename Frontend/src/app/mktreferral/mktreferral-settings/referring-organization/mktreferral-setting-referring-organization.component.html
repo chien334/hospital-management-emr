@@ -9,10 +9,10 @@
     <a class="btn green btn-success" style="margin-left:16px ;" feature="button" (click)="ShowAddNewPage()"><i class="fa fa-plus"></i> Add Referring
         Organization</a>
     <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="mktreferralReferringOrganizationListGridColumns"
+        <dsf-grid [grid-colDefaults]="mktreferralReferringOrganizationListGridColumns"
                      [grid-data]="referringOrganizationList"
                      (grid-actions)="ReferringOrganizationListGridActions($event)"
-                     [show-print-button]="false"></danphe-grid>
+                     [show-print-button]="false"></dsf-grid>
     </div>
 </div>
 <style>

@@ -2,12 +2,12 @@
 import { Component, ChangeDetectorRef } from '@angular/core'
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
 import { PHRMInvoiceModel } from '../../shared/phrm-invoice.model';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
 import { Router } from '@angular/router';
 import { PatientService } from '../../../patients/shared/patient.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { RouteFromService } from '../../../shared/routefrom.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { CallbackService } from '../../../shared/callback.service';
@@ -37,7 +37,7 @@ export class PHRMSettlementDuplicateComponent {
     GetPHRMSettlementDuplicatePrints() {
         this.allPHRMSettlementsDuplicate = [];
         this.pharmacyBLService.GetPHRMSettlementDuplicatePrints()
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
                     this.allPHRMSettlementsDuplicate = res.Results;
                 }
@@ -57,7 +57,7 @@ export class PHRMSettlementDuplicateComponent {
     }
     GetSettlementsDetails(settlementData) {
         this.pharmacyBLService.GetPHRMSettlementDuplicateDetails(settlementData.SettlementId)
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 this.setlmntToDisplay = res.Results;
                 this.setlmntToDisplay.BillingUser = this.securityService.GetLoggedInUser().UserName;
                 this.showReceipt = true;

@@ -16,7 +16,7 @@ import { ImagingItemRequisition } from "../../radiology/shared/imaging-item-requ
 import { PHRMPrescriptionItem } from "../../pharmacy/shared/phrm-prescription-item.model";
 import { OrderService } from "../../orders/shared/order.service";
 import { IcdWithOrdersViewModel } from "../../clinical/shared/all-icd-with-orders.viewmodel";
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { CoreService } from "../../core/shared/core.service";
 
 
@@ -85,8 +85,8 @@ export class AssessmentPlanComponent {
 
 
   public GetICDList() {
-    // this.ICD10List = DanpheCache.GetData(MasterType.ICD, null);
-    var icd11List = DanpheCache.GetData(MasterType.ICD, null);
+    // this.ICD10List = DsfCache.GetData(MasterType.ICD, null);
+    var icd11List = DsfCache.GetData(MasterType.ICD, null);
     this.ICD10List = icd11List.filter(x => x.Active == true);
     //this.problemsBLService.GetICDList()
     //  .subscribe(res => {

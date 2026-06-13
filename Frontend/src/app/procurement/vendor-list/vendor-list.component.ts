@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { CoreService } from '../../core/shared/core.service';
 import { InventoryService } from '../../inventory/shared/inventory.service';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { GoodsReceipt } from '../goods-receipt/goods-receipt.model';
 import ProcurementGridColumns from '../shared/procurement-grid-column';

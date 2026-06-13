@@ -51,7 +51,7 @@
             <!--<div *ngIf="editable">
     </div>-->
             <div class="autocomplete-item" *ngIf="ICD10List && ICD10List.length>0">
-                <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="{{ 'CLINICAL.SELECT_ICD' | translate: { IcdVersionDisplayName: IcdVersionDisplayName } }}" display-property-name="ICD10Description" value-property-name=null (valueChanged)="AssignSelectedICD()" onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" />
+                <input dsf-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="{{ 'CLINICAL.SELECT_ICD' | translate: { IcdVersionDisplayName: IcdVersionDisplayName } }}" display-property-name="ICD10Description" value-property-name=null (valueChanged)="AssignSelectedICD()" onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" />
             </div>
 
             <!--<span (click)="makeEditable(icd10Selected.ICD10Code)" *ngIf="!editable"><span>{{icd10Selected.ICD10Code}}</span>{{icd10Selected.ICD10Description}}</span>-->

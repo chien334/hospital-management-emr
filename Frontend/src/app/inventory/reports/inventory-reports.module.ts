@@ -17,7 +17,7 @@ import { InventoryValuationComponent } from './inventory-valuation/inventory-val
 import { ComparisonPOGR } from './inv-purchase-report-main/comparisonPO-GR/comparisonPO-GR.component';
 import { PurchaseReport } from './inv-purchase-report-main/purchase-report/purchase-report.component';
 import { FixedAssetsComponent } from './fixed-assets/fixed-assets.component';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { CancelledPOandGR } from './inv-purchase-report-main/cancelledPO-GR/cancelledPOandGR.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ReportingService } from '../../reporting/shared/reporting-service';
@@ -58,7 +58,7 @@ import { SubstoreWiseSummaryComponent } from './substore-wise-summary/substore-w
     FormsModule,
     InventoryReportsRoutingModule,
     SharedModule,
-    DanpheAutoCompleteModule],
+    DsfAutoCompleteModule],
   declarations: [
     InventoryReportsComponent,
     StockLevelComponent,

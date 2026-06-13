@@ -6,7 +6,7 @@ import { SecurityService } from '../../security/shared/security.service';
 import { EmployeeProfile } from './../shared/employee-profile.model';
 import { Routes, RouterModule, RouterOutlet } from '@angular/router';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { DanpheRoute } from '../../security/shared/danphe-route.model';
+import { DsfRoute } from '../../security/shared/dsf-route.model';
 @Component({
 
   templateUrl: "../../view/employee-view/UserProfile.html" //"/EmployeeView/UserProfile"
@@ -16,11 +16,11 @@ export class UserProfileComponent {
   public http: HttpClient;
   public userProfileInfo: EmployeeProfile = new EmployeeProfile();
   public pathToImage: string = null;
-  public userRoutes: Array<DanpheRoute>;
+  public userRoutes: Array<DsfRoute>;
   private landingRouteId: number = 0;
   public landingModuleRouteId: number = 0;
   public landingChildRouteId: number = 0;
-  public childRouteList: Array<DanpheRoute>;
+  public childRouteList: Array<DsfRoute>;
 
   constructor(
     private securityService: SecurityService,

@@ -32,9 +32,9 @@
         <br>
         <div style="margin-top: 5px;">
           <div>
-            <danphe-multiselect [ddl-data]="ledgerList" [placeholder-text]="'ACCOUNTING.LEDGER_NAME' | translate" [value-property-name]="'LedgerId'"
+            <dsf-multiselect [ddl-data]="ledgerList" [placeholder-text]="'ACCOUNTING.LEDGER_NAME' | translate" [value-property-name]="'LedgerId'"
                                 (selected-items-list)="OnLedgerSelected($event)" [display-property-name]="'LedgerName'"
-                                [single-selection]="false"></danphe-multiselect>
+                                [single-selection]="false"></dsf-multiselect>
           </div>
         </div>
       </div>
@@ -43,9 +43,9 @@
         </label>
         <div style="margin-top: 5px;">
           <div>
-            <danphe-multiselect [ddl-data]="filteredSubLedgerList" [placeholder-text]="'ACCOUNTING.SUBLEDGER_NAME' | translate" [value-property-name]="'SubLedgerId'"
+            <dsf-multiselect [ddl-data]="filteredSubLedgerList" [placeholder-text]="'ACCOUNTING.SUBLEDGER_NAME' | translate" [value-property-name]="'SubLedgerId'"
                                 (selected-items-list)="OnSubLedgerSelected($event)" [display-property-name]="'SubLedgerName'"
-                                [single-selection]="false"></danphe-multiselect>
+                                [single-selection]="false"></dsf-multiselect>
           </div>
         </div>
       </div>

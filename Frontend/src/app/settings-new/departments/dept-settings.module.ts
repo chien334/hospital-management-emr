@@ -9,7 +9,7 @@ import { DepartmentSettingsMainComponent } from './dept-settings-main.component'
 //import { ServiceDepartmentAddComponent } from './service-dept/service-department-add.component';
 //import { ServiceDepartmentListComponent } from './service-dept/service-department-list';
 import { AuthGuardService } from '../../security/shared/auth-guard.service';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 import { SubstoreAddComponent } from './sub-store/substore-add.component';
 import { SubstoreListComponent } from './sub-store/substore-list.component';
@@ -50,7 +50,7 @@ export const deptSettingsRoutes: Routes =
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         RouterModule.forChild(deptSettingsRoutes)], providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })

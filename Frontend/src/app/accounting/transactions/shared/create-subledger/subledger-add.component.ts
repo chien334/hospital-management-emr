@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { CoreService } from "../../../../core/shared/core.service";
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
-import { ENUM_ACC_DrCr, ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
+import { ENUM_ACC_DrCr, ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
 import { AccountingSettingsBLService } from "../../../settings/shared/accounting-settings.bl.service";
 import { LedgerModel } from "../../../settings/shared/ledger.model";
 import { SubLedgerForMakePayment } from "../DTOs/sub-ledger-for-payment.dto";
@@ -74,7 +74,7 @@ export class SubLedgerAddComponent implements OnInit {
             this.accountingSettingsBLService.AddSubLedgers(subLedgers)
                 .subscribe(
                     res => {
-                        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                             this.SelectedSubledger = new SubLedgerForMakePayment();
                             this.LedgerForSubLedger = new LedgerModel();
                             this.Close();

@@ -112,7 +112,7 @@
             </td>
             <td>
               <form [formGroup]="row.BillingTransactionItemValidator" class="bill-itemname">
-                <input class="form-control cstm-form-control" danphe-auto-complete title="{{row.ServiceDepartmentName}}"
+                <input class="form-control cstm-form-control" dsf-auto-complete title="{{row.ServiceDepartmentName}}"
                        formControlName="ServiceDepartmentId"
                        [ngClass]="{'border-red': row.IsDirty('ServiceDepartmentId') && !row.IsValid('ServiceDepartmentId','required'), 'border-red': !row.IsValidSelDepartment }"
                        [(ngModel)]="selectedServDepts[i]" [list-formatter]="ServiceDeptListFormatter" [source]="serviceDeptList"
@@ -125,7 +125,7 @@
             </td>
             <td>
               <form [formGroup]="row.BillingTransactionItemValidator">
-                <input class="form-control cstm-form-control" danphe-auto-complete [(ngModel)]="selectedRequestedByDr[i]"
+                <input class="form-control cstm-form-control" dsf-auto-complete [(ngModel)]="selectedRequestedByDr[i]"
                        [source]="doctorsList"
                        [ngClass]="{'border-red': row.IsDirty('PrescriberId') && !row.IsValid('PrescriberId','required'), 'border-red': !row.IsValidSelPrescriberDr }"
                        [list-formatter]="DoctorListFormatter" placeholder="{{ 'NURSING.ENTER_NAME' | translate }}" display-property-name="FullName" value-property-name="null"
@@ -138,7 +138,7 @@
             </td>
             <td>
               <form [formGroup]="row.BillingTransactionItemValidator" class="bill-itemname">
-                <input class="form-control cstm-form-control" danphe-auto-complete formControlName="PerformerId"
+                <input class="form-control cstm-form-control" dsf-auto-complete formControlName="PerformerId"
                        [ngClass]="{'border-red': row.IsDirty('PerformerId') && !row.IsValid('PerformerId','required'), 'border-red': !row.IsvalidSelPerformerDr }"
                        [(ngModel)]="selectedAssignedToDr[i]" [source]="row.AssignedDoctorList" [list-formatter]="DoctorListFormatter"
                        placeholder="{{ 'NURSING.ENTER_NAME' | translate }}" display-property-name="FullName" value-property-name="null" match-formatted="true"
@@ -157,7 +157,7 @@
             <td [ngClass]="{'duplication-item':row.IsDoubleEntry_Now || row.IsDoubleEntry_Past}">
               <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
                 <div>
-                  <input (keyup.enter)="SetFocusById(i);AddNewBillTxnItemRow(i);" class="form-control cstm-form-control" danphe-auto-complete
+                  <input (keyup.enter)="SetFocusById(i);AddNewBillTxnItemRow(i);" class="form-control cstm-form-control" dsf-auto-complete
                          title="{{row.ItemName}}"
                          autocomplete="off" formControlName="ItemName"
                          [ngClass]="{'border-red': row.IsDirty('ItemName') && !row.IsValid('ItemName','required'), 'border-red': !row.IsValidSelItemName}"

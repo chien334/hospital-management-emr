@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import * as moment from "moment";
 import { CoreService } from "../../../../app/core/shared/core.service";
 import { CountrySubdivision } from "../../../../app/settings-new/shared/country-subdivision.model";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../../app/shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../../app/shared/dsf-grid/NepaliColGridSettingsModel";
 import { DLService } from "../../../../app/shared/dl.service";
 import { MessageboxService } from "../../../../app/shared/messagebox/messagebox.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";

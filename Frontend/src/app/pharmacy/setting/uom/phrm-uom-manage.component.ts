@@ -1,13 +1,13 @@
 ﻿import { ChangeDetectorRef, Component, EventEmitter, Input, Output, Renderer2 } from "@angular/core";
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMUnitOfMeasurementModel } from "../../shared/phrm-unit-of-measurement.model";
 
@@ -116,8 +116,8 @@ export class PHRMUnitOfMeasurementManageComponent {
             this.CurrentUnitOfMeasurement.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.AddUnitOfMeasurement(this.CurrentUnitOfMeasurement)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Unit Of Measurement Added."]);
                             this.CallBackAddUpdate(res)
                             this.CurrentUnitOfMeasurement = new PHRMUnitOfMeasurementModel();
@@ -141,8 +141,8 @@ export class PHRMUnitOfMeasurementManageComponent {
             this.CurrentUnitOfMeasurement.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.UpdateUnitOfMeasurement(this.CurrentUnitOfMeasurement)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Unit Of Measurement Details Updated.']);
                             this.CallBackAddUpdate(res)
                             this.CurrentUnitOfMeasurement = new PHRMUnitOfMeasurementModel();

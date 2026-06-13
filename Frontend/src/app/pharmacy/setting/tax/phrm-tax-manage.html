@@ -1,8 +1,8 @@
 ﻿<input type="button" class="btn btn-primary" (click)="AddTAX()" [value]="'PHARMACY.ADD_TAX' | translate" />
 <div class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="taxGridColumns" [grid-data]="taxList" (grid-actions)="TAXGridActions($event)">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="taxGridColumns" [grid-data]="taxList" (grid-actions)="TAXGridActions($event)">
+    </dsf-grid>
   </div>
 </div>
 <!--Model Box Starting Here-->

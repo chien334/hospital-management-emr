@@ -31,7 +31,7 @@
           <div class="form-group">
             <label class="control-label col-md-3">From Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
             <div class="col-md-9">
-              <danphe-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'"> </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="fromDate" ngDefaultControl [CalendarTypes]="'en,np'"> </dsf-date-picker>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
           <div class="form-group">
             <label class="control-label col-md-3">To Date<b class="color-red"> *</b><b style="float:right;">:</b></label>
             <div class="col-md-9">
-              <danphe-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'"> </danphe-date-picker>
+              <dsf-date-picker [(ngModel)]="toDate" ngDefaultControl [CalendarTypes]="'en,np'"> </dsf-date-picker>
             </div>
           </div>
         </div>--> 
@@ -52,20 +52,20 @@
     <div style="width: 100%;float: left;">
       <div class="col-md-12">
         <h3 style="font-weight: 700; font-size: 16px;">Paid Bill History</h3>
-        <danphe-grid [grid-colDefaults]="PaidBillColumns"
-                     [grid-data]="PaidBillData" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </danphe-grid>
+        <dsf-grid [grid-colDefaults]="PaidBillColumns"
+                     [grid-data]="PaidBillData" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </dsf-grid>
         <br />
       </div>
       <div class="col-md-12">
         <h3>Unpaid Bill History</h3>
-        <danphe-grid [grid-colDefaults]="UnpaidBillColumns"
-                     [grid-data]="UnpaidBillData" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </danphe-grid>
+        <dsf-grid [grid-colDefaults]="UnpaidBillColumns"
+                     [grid-data]="UnpaidBillData" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </dsf-grid>
         <br />
       </div>
       <div class="col-md-12">
         <h3>Returned Bill History</h3>
-        <danphe-grid [grid-colDefaults]="ReturnedBillColumns"
-                     [grid-data]="ReturnedBillData" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </danphe-grid>
+        <dsf-grid [grid-colDefaults]="ReturnedBillColumns"
+                     [grid-data]="ReturnedBillData" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true"> </dsf-grid>
       </div>
     </div>
   </div>

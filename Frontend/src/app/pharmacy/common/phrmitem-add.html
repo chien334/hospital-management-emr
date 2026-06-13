@@ -22,7 +22,7 @@
                             <div class="form-group">
                               <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_SALES_CATEGORY' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
-                                <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
+                                <input dsf-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
                                        [(ngModel)]="selCategory"
                                        [source]="categoryList"
                                        [placeholder]="'PHARMACY.CATEGORY_TYPE' | translate"
@@ -61,7 +61,7 @@
                             <div class="form-group">
                               <label class="control-label col-md-4">{{ 'PHARMACY.SELECT_COMPANY' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
-                                <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
+                                <input dsf-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
                                        [(ngModel)]="selCompany"
                                        [source]="companyList"
                                        [placeholder]="'PHARMACY.COMPANY_NAME' | translate"
@@ -81,7 +81,7 @@
                             <div class="form-group">
                               <label class="control-label col-md-4">{{ 'PHARMACY.ITEM_TYPE' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
-                                <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
+                                <input dsf-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
                                        [(ngModel)]="selItemType"
                                        [source]="itemtypeList"
                                        placeholder="Item Type"
@@ -112,7 +112,7 @@
                             <div class="form-group">
                               <label class="control-label col-md-4">{{ 'PHARMACY.GENERIC_NAME' | translate }}<b class="color-red">*</b><b style="float:right;">:</b></label>
                               <div class="col-md-8">
-                                <input danphe-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
+                                <input dsf-auto-complete onClick="this.setSelectionRange(0, this.value.length)"
                                        [(ngModel)]="selGenName"
                                        [source]="genericList"
                                        placeholder="Generic Name"

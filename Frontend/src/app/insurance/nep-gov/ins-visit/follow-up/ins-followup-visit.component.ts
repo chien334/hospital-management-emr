@@ -10,7 +10,7 @@ import { CoreService } from '../../../../core/shared/core.service';
 import { PatientService } from '../../../../patients/shared/patient.service';
 import { PatientsDLService } from '../../../../patients/shared/patients.dl.service';
 import { SecurityService } from '../../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../shared/routefrom.service';
 import { ENUM_AppointmentType, ENUM_BillingStatus, ENUM_OrderStatus, ENUM_VisitType } from '../../../../shared/shared-enums';
@@ -18,7 +18,7 @@ import { GovInsuranceService } from '../../shared/ins-service';
 import { GovInsuranceBlService } from '../../shared/insurance.bl.service';
 
 @Component({
-  selector: "ins-danphe-followup-visit",
+  selector: "ins-dsf-followup-visit",
   templateUrl: "./ins-followup-visit.html"
 })
 export class GovInsFollowUpVisitComponent {
@@ -249,7 +249,7 @@ export class GovInsFollowUpVisitComponent {
   PostFreeFollowup() {
     this.loading = true;//disables FollowUp button
     this.insuranceBLservice.PostFreeFollowupVisit(this.newVisitForChangeDoctor, this.parentVisit.PatientVisitId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.msgBoxServ.showMessage("success", ["Followup created successfully."]);
           this.ResetVisitContext();
@@ -285,7 +285,7 @@ export class GovInsFollowUpVisitComponent {
     });
 
     this.insuranceBLservice.PostPaidFollowupVisit(qckVisit_Fwup)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let fwupVisit = this.GetFormattedForPaidFollowup(res.Results);
           this.PaidFollowUpInvoiceDetails(res);
@@ -452,7 +452,7 @@ export class GovInsFollowUpVisitComponent {
     this.insuranceService.PatientTodaysVisitList = [];
 
     this.insuranceBLservice.GetPatientVisits_Today(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.insuranceService.PatientTodaysVisitList = res.Results;
         }

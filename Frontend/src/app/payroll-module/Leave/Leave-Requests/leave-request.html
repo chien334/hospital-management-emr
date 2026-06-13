@@ -9,7 +9,7 @@
 
   <!-- <div class="col-md-4" style="padding-left: 100px;">
     <form [formGroup]="employee.EmployeeValidator">
-      <input danphe-auto-complete [(ngModel)]="selectedEmployee[i]" [source]="EmployeeList"
+      <input dsf-auto-complete [(ngModel)]="selectedEmployee[i]" [source]="EmployeeList"
         placeholder="Select Employee" formControlName="FirstName" display-property-name="EmployeeName"
         value-property-name="FirstName" [list-formatter]="EmployeeListFormatter"
         (valueChanged)="AssignSelectedEmployee(i)" max-num-list="15" onclick="this.select()"
@@ -58,8 +58,8 @@
 <div>
   <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="LeaveRequestListComlumns" [grid-data]="LeaveRequestList">
-      </danphe-grid>
+      <dsf-grid [grid-colDefaults]="LeaveRequestListComlumns" [grid-data]="LeaveRequestList">
+      </dsf-grid>
     </div>
   </div>
 </div>

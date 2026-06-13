@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import * as moment from 'moment/moment';
 import { Patient } from '../../patients/shared/patient.model';
 import { PatientService } from '../../patients/shared/patient.service';
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../shared/routefrom.service';
 import { AppointmentBLService } from '../shared/appointment.bl.service';
@@ -144,7 +144,7 @@ export class AppointmentListComponent {
 
   getDocts() {
     this.visitBLService.GetVisitDoctors()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.ApptApplicableDoctorsList = res.Results;
           // var defaultProvider = new Object({ PerformerId: 0, PerformerName: 'All Doctors' });

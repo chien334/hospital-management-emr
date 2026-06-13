@@ -12,7 +12,7 @@
                   <div class="right-col-data">
                     <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'" style="position: relative;">
                       <div *ngIf="showBarCode" class="lab-barcode-holder" style="position: absolute; right: 2px; top: -2px;">
-                        <danphe-bar-code [barcode-number]="templateReport.BarCodeNumber" [width]="1.5" [height]="24" [barcode-margin]="2" [text-margin]="0"> </danphe-bar-code>
+                        <dsf-bar-code [barcode-number]="templateReport.BarCodeNumber" [width]="1.5" [height]="24" [barcode-margin]="2" [text-margin]="0"> </dsf-bar-code>
                       </div>
                       <strong>{{ 'LABS.PATIENT_NO' | translate }}</strong> : {{templateReport.Lookups.PatientCode}} ( <b *ngIf="templateReport.Lookups.VisitType.toLowerCase() == 'emergency'">{{ 'LABS.ER' | translate }}</b> <b *ngIf="templateReport.Lookups.VisitType.toLowerCase() == 'inpatient'">{{ 'LABS.IP' | translate }}</b> <b *ngIf="templateReport.Lookups.VisitType.toLowerCase() == 'outpatient'">{{ 'LABS.OP' | translate }}</b> ) </div>
                   </div>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="single-head">
                   <div class="right-col-data">
-                    <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'"> <strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</strong> : {{templateReport.Lookups.DOB | DanpheDateTime:'age'}} /{{templateReport.Lookups.Gender}} </div>
+                    <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'"> <strong>{{ 'GRID_HEADERS.AGE_SEX' | translate }}</strong> : {{templateReport.Lookups.DOB | DsfDateTime:'age'}} /{{templateReport.Lookups.Gender}} </div>
                   </div>
                 </div>
               </div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="single-head">
                   <div class="right-col-data">
-                    <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'"> <strong>{{ 'LABS.RECEIVING_DATE' | translate }}</strong> : {{templateReport.Lookups.ReceivingDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}} {{templateReport.Lookups.ReceivingDate | nepaliDate }} </div>
+                    <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'"> <strong>{{ 'LABS.RECEIVING_DATE' | translate }}</strong> : {{templateReport.Lookups.ReceivingDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}} {{templateReport.Lookups.ReceivingDate | nepaliDate }} </div>
                   </div>
                 </div>
               </div>

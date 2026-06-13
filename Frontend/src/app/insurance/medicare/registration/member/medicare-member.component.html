@@ -16,7 +16,7 @@
                   <label class="col-md-4 pt5">Hospital Number<sup>*</sup> <b>:</b></label>
                   <div class="col-md-8 no-padding no-margin">
                     <div class="div-relative" *ngIf="!isUpdate">
-                      <input danphe-auto-complete id="id_input_hospitalNumber_medicareMember" class="form-control searchtbx w-100"
+                      <input dsf-auto-complete id="id_input_hospitalNumber_medicareMember" class="form-control searchtbx w-100"
                              [(ngModel)]="memberObj" [disabled]="isUpdate"
                              [list-formatter]="PatientListFormatter" [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
                              placeholder="search by HospitalNo/Patient Name" display-property-name="PatientCode" value-property-name=null
@@ -147,11 +147,11 @@
                   <label class="col-md-4 pt5">Medicare Start Date <b>:</b></label>
                   <div class="col-md-8" style="padding-left: 6px !important;">
                     <div class="flx date-insurance">
-                      <danphe-date-picker id="id_medicareStartDate_medicareMember"
+                      <dsf-date-picker id="id_medicareStartDate_medicareMember"
                                           [(ngModel)]="memberDetails.MedicareStartDate"
                                           [CalendarTypes]="'en,np'"
                                           formControlName="MedicareStartDate">
-                      </danphe-date-picker>
+                      </dsf-date-picker>
                     </div>
                   </div>
                 </div>

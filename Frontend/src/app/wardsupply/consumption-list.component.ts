@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef, EventEmitter, Output, Input } from '@angular/core'
 import { RouterOutlet, RouterModule, Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
-import { GridEmitModel } from "../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../shared/dsf-grid/grid-emit.model";
 import { WardStockModel } from './shared/ward-stock.model'
 import WARDGridColumns from './shared/ward-grid-cloumns';
 import { WardSupplyBLService } from "./shared/wardsupply.bl.service";

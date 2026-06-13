@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { BabyBirthDetails } from '../../adt/shared/baby-birth-details.model';
 import MRGridColumnSettings from '../shared/Mr-gridcol.settings';
 import { Employee } from '../../employee/shared/employee.model';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 
 @Component({
   selector: 'birth-certificate',
@@ -57,7 +57,7 @@ export class BirthCertificateComponent {
 
   }
   ngOnInit() {
-    this.providerList = DanpheCache.GetData(MasterType.Employee, null);
+    this.providerList = DsfCache.GetData(MasterType.Employee, null);
     this.GetHospital();
     this.GetBirthType();
     this.GetBirthCertificateParamter();

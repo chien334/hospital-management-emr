@@ -58,7 +58,7 @@
                   <td>
                     <date-lbl [value]="res.OrderDateTime" [show-time]="true"></date-lbl>
 
-                    <!-- {{res.OrderDateTime | DanpheDateTime:'datename':'DD.MM.YYYY
+                    <!-- {{res.OrderDateTime | DsfDateTime:'datename':'DD.MM.YYYY
                   HH:mm'}}  -->
                   </td>
                   <td>
@@ -108,7 +108,7 @@
                 <td>{{req.ImagingItemName}}</td>
                 <td>
                   <date-lbl [value]="req.ImagingDate" [show-time]="true"></date-lbl>
-                  <!-- {{req.ImagingDate | DanpheDateTime:'datename':'DD.MM.YYYY
+                  <!-- {{req.ImagingDate | DsfDateTime:'datename':'DD.MM.YYYY
                 HH:mm'}}  -->
 
                 </td>
@@ -155,7 +155,7 @@
               <td>
 
                 <b>
-                  <!-- {{res.OnSetDate | DanpheDateTime:'datename':'DD.MM.YYYY'}} -->
+                  <!-- {{res.OnSetDate | DsfDateTime:'datename':'DD.MM.YYYY'}} -->
                   <date-lbl [value]="res.OnSetDate"></date-lbl>
                 </b>
 
@@ -192,7 +192,7 @@
             <tr *ngFor="let med of currentPatient.MedicationPrescriptions">
               <td><b>{{med.MedicationName}}</b>&nbsp;&nbsp;{{med.Frequency}}&nbsp;{{'PATIENT_OVERVIEW.TIMES_A_DAY' | translate}} </td>
               <td>
-                &nbsp;&nbsp;&nbsp;&nbsp;{{'PATIENT_OVERVIEW.START_DATE' | translate}} <b> {{med.CreatedOn | DanpheDateTime:'datename':'DD.MM.YYYY'}}</b>
+                &nbsp;&nbsp;&nbsp;&nbsp;{{'PATIENT_OVERVIEW.START_DATE' | translate}} <b> {{med.CreatedOn | DsfDateTime:'datename':'DD.MM.YYYY'}}</b>
               </td>
             </tr>
           </table>
@@ -231,7 +231,7 @@
                 <td><b>{{'PATIENT_OVERVIEW.RECORDED_ON' | translate}}</b></td>
                 <td *ngFor="let vital of currentPatient.Vitals;">
                   <date-lbl [value]="vital.CreatedOn" [show-time]="true"></date-lbl>
-                  <!-- {{vital.CreatedOn | DanpheDateTime:'format':'DD.MM.YY HH:mm'}} </td> -->
+                  <!-- {{vital.CreatedOn | DsfDateTime:'format':'DD.MM.YY HH:mm'}} </td> -->
               </tr>
               <tr>
                 <td>{{'PATIENT_OVERVIEW.HEIGHT' | translate}}</td>
@@ -417,16 +417,16 @@
   </div>
 </div>
 <div *ngIf="showImagingReport==true">
-  <danphe-view-imaging-report *ngIf="showImagingReport" [requisitionId]="imagingRequisitionId">
-  </danphe-view-imaging-report>
+  <dsf-view-imaging-report *ngIf="showImagingReport" [requisitionId]="imagingRequisitionId">
+  </dsf-view-imaging-report>
 </div>
 <div class="popup-static portlet box portlet-fullscreen" *ngIf="showLabReport">
   <div class="portlet-body form">
     <div class="modelbox-div" style="width: 90%; margin: 0 auto;">
       <div style="margin-left: 0px;"> <i class="btn btn-danger" style="float: right;" (click)="CloseLabReport()">X</i>
-        <danphe-lab-results [requisitionIdList]="labRequisitionIdList" [showReport]="showLabReport" [showHeader]="false"
+        <dsf-lab-results [requisitionIdList]="labRequisitionIdList" [showReport]="showLabReport" [showHeader]="false"
           [enableEdit]="false" [enableResultEdit]="false" [showSignatories]="false" [showAddEditResult]="false">
-        </danphe-lab-results>
+        </dsf-lab-results>
       </div>
     </div>
   </div>

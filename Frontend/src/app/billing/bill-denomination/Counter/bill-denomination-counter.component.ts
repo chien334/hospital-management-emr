@@ -5,11 +5,11 @@ import { CoreService } from "../../../core/shared/core.service";
 import { Employee } from "../../../employee/shared/employee.model";
 import { SecurityService } from "../../../security/shared/security.service";
 import { CallbackService } from "../../../shared/callback.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_DateTimeFormat, ENUM_HandOver_Type, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_DateTimeFormat, ENUM_HandOver_Type, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { BillingGridColumnSettings } from "../../shared/billing-grid-columns";
 import { BillingBLService } from "../../shared/billing.bl.service";
 import { DenominationModel, HandOverEmployeeListVM, PendingHandOverListVM, PendingOutgoingHandoverListVM } from "../../shared/denomination.model";
@@ -122,8 +122,8 @@ export class BillingDenominationCounterComponent {
 
   public GetBanksList(): void {
     this.billingBLService.GetBankList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results.length)
             this.Banklist = res.Results;
         }
@@ -137,8 +137,8 @@ export class BillingDenominationCounterComponent {
 
   public GetUsersList(): void {
     this.billingBLService.GetUserList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           if (res.Results.length)
             this.userlist = res.Results;
         }
@@ -151,8 +151,8 @@ export class BillingDenominationCounterComponent {
 
   public GetEmpDueAmount(): void {
     this.billingBLService.GetEmpDueAmount()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponseText.OK) {
           this.LatestDueAmount = res.Results.LatestDueAmount;
           this.PendingReceiveAmount = res.Results.PendingReceiveAmount;
           this.PendingOutgoingUser = res.Results.PendingOutgoingUser;
@@ -170,7 +170,7 @@ export class BillingDenominationCounterComponent {
     this.dLService.Read("/BillingReports/BIL_TXN_GetHandoverCalculationDateWise?FromDate=" + this.FromDate + "&ToDate=" + this.ToDate)
       .map(res => res)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           let data = JSON.parse(res.Results.JsonData);
           if (data && data.Table1) {
             let currUsrHandoverInfo = data.Table1.find(a => a.EmployeeId == this.currentEmpId);
@@ -218,7 +218,7 @@ export class BillingDenominationCounterComponent {
       this.billingBLService.PostHandoverTransactionDetails(this.HandoverTransactionAccount)
         .subscribe(
           res => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
               this.HandoverTransactionAccount = new HandOverTransactionModel();
               this.HandoverTransactionAccount.VoucherDate = moment().format(ENUM_DateTimeFormat.Year_Month_Day);
               this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Handover Transaction Detailed added successfully."]);
@@ -258,8 +258,8 @@ export class BillingDenominationCounterComponent {
     this.HandoverTransactionUser.CounterId = this.currentCounter;
     this.HandoverTransactionUser.HandoverByEmpId = this.currentEmpId;
     this.HandoverTransactionUser.HandoverType = ENUM_HandOver_Type.User;
-    this.billingBLService.PostHandoverTransactionDetails(this.HandoverTransactionUser).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.billingBLService.PostHandoverTransactionDetails(this.HandoverTransactionUser).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.HandoverTransactionUser = new HandOverTransactionModel()
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Handover Transaction Detailed added successfully."]);
         this.selectedHandOverToUser = new HandOverEmployeeListVM();
@@ -270,7 +270,7 @@ export class BillingDenominationCounterComponent {
         console.log(res.ErrorMessage);
       }
     },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [err.ErrorMessage]);
       },
       () => {
@@ -325,8 +325,8 @@ export class BillingDenominationCounterComponent {
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     var documentContent = '<html><head>';
-    documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanpheStyle.css" />`
-      + `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanphePrintStyle.css" /></head>`;
+    documentContent += `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfStyle.css" />`
+      + `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfPrintStyle.css" /></head>`;
 
     /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     ///Sud:22Aug'18--added no-print class in below documeentContent
@@ -530,43 +530,43 @@ export class BillingDenominationCounterComponent {
   }
 
   public GetPendingIncomingHandover(): void {
-    this.billingBLService.GetPendingIncomingHandOver().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.billingBLService.GetPendingIncomingHandOver().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.PendingIncomingHandoverList = res.Results;
       }
       else {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Unable to get pending incoming handover list."]);
       }
     },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Something went wrong please try again."]);
       });
   }
 
   public GetPendingOutgoingUserHandover(): void {
-    this.billingBLService.GetPendingOutgoingHandOver(ENUM_HandOver_Type.User).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.billingBLService.GetPendingOutgoingHandOver(ENUM_HandOver_Type.User).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.PendingOutgoingUserHandoverList = res.Results;
       }
       else {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Unable to get outgoing user handover list."]);
       }
     },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Something went wrong please try again."]);
       });
   }
 
   public GetPendingOutgoingAccountHandover(): void {
-    this.billingBLService.GetPendingOutgoingHandOver(ENUM_HandOver_Type.Account).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.billingBLService.GetPendingOutgoingHandOver(ENUM_HandOver_Type.Account).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.PendingOutgoingAccountHandoverList = res.Results;
       }
       else {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Unable to get outgoing account handover list."]);
       }
     },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, ["Something went wrong please try again."]);
       });
   }

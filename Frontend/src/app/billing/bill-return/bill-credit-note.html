@@ -133,9 +133,9 @@
               Invoice No: {{crnInfoVM.InvoiceInfo.InvoiceNoFormatted}}
             </td>
             <td>
-              Invoice Date: {{crnInfoVM.InvoiceInfo.InvoiceDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+              Invoice Date: {{crnInfoVM.InvoiceInfo.InvoiceDate | DsfDateTime:'format':'YYYY-MM-DD'}}
               {{crnInfoVM.InvoiceInfo.InvoiceDate | nepaliDate}}
-              Time : {{crnInfoVM.InvoiceInfo.InvoiceDate | DanpheDateTime:'format':'HH:mm'}}
+              Time : {{crnInfoVM.InvoiceInfo.InvoiceDate | DsfDateTime:'format':'HH:mm'}}
             </td>
             <td>
               Bill Status: <span>{{crnInfoVM.InvoiceInfo.BillStatus | uppercase}}</span>
@@ -240,7 +240,7 @@
             </div>
             <!-- <button type="button" id="btnSubmit" class="btn green btn-success" (click)="GotoProcessConfirmation()"
                     [disabled]="loading" style="margin-top:10px;">Submit</button> -->
-            <input DanpheConfirmationDialog
+            <input DsfConfirmationDialog
                    type="submit"
                    [title]="confirmationTitle"
                    [message]="confirmationMessage"

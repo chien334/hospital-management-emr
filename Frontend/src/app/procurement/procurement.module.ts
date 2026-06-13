@@ -17,7 +17,7 @@ import { InventoryDLService } from '../inventory/shared/inventory.dl.service';
 import { InventoryService } from '../inventory/shared/inventory.service';
 import { PharmacyBLService } from '../pharmacy/shared/pharmacy.bl.service';
 import { PharmacyDLService } from '../pharmacy/shared/pharmacy.dl.service';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { SharedModule } from '../shared/shared.module';
 import { WardSupplyBLService } from '../wardsupply/shared/wardsupply.bl.service';
 import { WardSupplyDLService } from '../wardsupply/shared/wardsupply.dl.service';
@@ -78,7 +78,7 @@ import { VendorListComponent } from './vendor-list/vendor-list.component';
         FormsModule,
         ProcurementRoutingModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         InventorySharedModule], providers: [
         ProcurementBLService, QuotationBLService,
         InventoryBLService,

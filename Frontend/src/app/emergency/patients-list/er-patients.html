@@ -41,14 +41,14 @@
         <div class="row clearfix">
             <div class="col-md-4">
                 <!--<input type="text"  name="Existing Patient Name" placeholder="Patient Name" />
-                <input danphe-auto-complete id="srch_PatientList" class="form-control searchtbx" [(ngModel)]="PatientObj"
+                <input dsf-auto-complete id="srch_PatientList" class="form-control searchtbx" [(ngModel)]="PatientObj"
           [list-formatter]="PatientListFormatter" [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
           placeholder="search by HospitalNo, Patient Name" display-property-name="ShortName" value-property-name=null
           (ngModelChange)="PatientInfoChanged()" onClick="this.select();" max-num-list="500"
           (keyup.enter)="SetFocusOnButton('btn_billRequest')" [min-chars]="3" match-formatted="true"
           [grid-sort]="'ShortName'" style="width: 100% !important;" />
                 -->
-                <input danphe-auto-complete class="form-control" [(ngModel)]="selectedExistingPatient"
+                <input dsf-auto-complete class="form-control" [(ngModel)]="selectedExistingPatient"
                        [list-formatter]="patientListFormatter" [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
                        [placeholder]="'EMERGENCY.EXISTING_PATIENT_NAME' | translate"
                        display-property-name="ShortName" value-property-name=null
@@ -68,8 +68,8 @@
         </div>
     </div>
     <div class="er-patient-grid">
-        <danphe-grid [grid-colDefaults]="ERPatientGridCol" [grid-data]="filteredData" (grid-actions)="EditAction($event)">
-        </danphe-grid>
+        <dsf-grid [grid-colDefaults]="ERPatientGridCol" [grid-data]="filteredData" (grid-actions)="EditAction($event)">
+        </dsf-grid>
     </div>
     <div *ngIf="showUploadConsent.upload_files" class="popup-static portlet box portlet-fullscreen custom_modal">
         <div class="portlet-body form">

@@ -9,10 +9,10 @@
 
   <button class="btn primary-btn pull-left margin-7-lft" *ngIf="showAddEditResult && isEditResult"
           (click)="BackToViewReport()"> <i class="fa fa-arrow-left"></i> {{ 'LABS.BACK_TO_REPORT_VIEW' | translate }} </button>
-  <danphe-lab-add-result *ngIf="showAddEditResult" [templateReport]="templateReport"
+  <dsf-lab-add-result *ngIf="showAddEditResult" [templateReport]="templateReport"
                          [showAddEditResult]="showAddEditResult" [isEditResult]="isEditResult" [barcodeNumber]="barcodeNumber"
-                         (callback-addupdate)="CallBackAddUpdate($event)" (callback-cancel)="CallbackCancel($event)"></danphe-lab-add-result>
-  <danphe-lab-view-report *ngIf="showReport && labReportFormat == 'format1'" [templateReport]="templateReport"
+                         (callback-addupdate)="CallBackAddUpdate($event)" (callback-cancel)="CallbackCancel($event)"></dsf-lab-add-result>
+  <dsf-lab-view-report *ngIf="showReport && labReportFormat == 'format1'" [templateReport]="templateReport"
                           [hidePrintButton]="hidePrintButton" [showReport]="showReport" [showHeader]="showHeader"
                           [showUplaodToTeleMedicine]="showUplaodToTeleMedicine"
                           [showSignatories]="showSignatories" [enableEdit]="enableEdit" [verificationRequired]="verificationRequired"
@@ -20,8 +20,8 @@
                           [printReportFromGrid]="printReportFromGrid" (callBackToReportAddUpdate)="ReportAddUpdateSuccess($event)"
                           (callbackBackToGrid)="CallBackBackToGrid($event)" (callBackUplaod)="exportToPdf()"
                           (updatePrintStatus)="updatePrintStatus($event)">
-  </danphe-lab-view-report>
-  <danphe-lab-view-report-format2 *ngIf="showReport && labReportFormat == 'format2'" [templateReport]="templateReport"
+  </dsf-lab-view-report>
+  <dsf-lab-view-report-format2 *ngIf="showReport && labReportFormat == 'format2'" [templateReport]="templateReport"
                                   [showReport]="showReport" [showHeader]="showHeader" [showSignatories]="showSignatories" [enableEdit]="enableEdit"
                                   [IsFileUploaded]="IsFileUploaded"
                                   [hidePrintButton]="hidePrintButton" [verificationRequired]="verificationRequired"
@@ -29,7 +29,7 @@
                                   [printReportFromGrid]="printReportFromGrid" (callbackBackToGrid)="CallBackBackToGrid($event)"
                                   (callBackUplaod)="exportToPdf()"
                                   (updatePrintStatus)="updatePrintStatus($event)">
-  </danphe-lab-view-report-format2>
+  </dsf-lab-view-report-format2>
 
   <div class="popup-static portlet box portlet-fullscreen" *ngIf="showReUploadPopup">
     <div class="col-md-6 col-md-offset-3">

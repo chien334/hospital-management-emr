@@ -39,7 +39,7 @@
                 <label class="control-label col-md-3">Rank<b>:</b></label>
                 <div class="col-md-4 pr-0">
                     <!-- <input class="form-control" #rank type="text" maxlength="100" formControlName="Rank" placeholder="Rank" [(ngModel)]="patient.Rank" (keyup.enter)="GoToNext(firstname)" /> -->
-                    <input danphe-auto-complete #rank class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedRank"
+                    <input dsf-auto-complete #rank class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedRank"
                            [list-formatter]="RankFormatter" [source]="RankList" placeholder="Rank" display-property-name="RankName"
                            value-property-name="RankName" [grid-sort]="'RankName'" [match-formatted]="true" (valueChanged)="OnRankChange($event)"
                            onClick="this.select();" />

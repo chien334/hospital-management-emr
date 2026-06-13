@@ -7,7 +7,7 @@ import { ENUM_PrintingType, PrinterSettingsModel } from "../../../settings-new/p
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_BillPaymentMode, ENUM_Country, ENUM_DanpheHTTPResponses, ENUM_MembershipTypeName, ENUM_PriceCategory } from "../../../shared/shared-enums";
+import { ENUM_BillPaymentMode, ENUM_Country, ENUM_DsfHTTPResponses, ENUM_MembershipTypeName, ENUM_PriceCategory } from "../../../shared/shared-enums";
 import { BillingBLService } from "../../shared/billing.bl.service";
 import { BillingService } from "../../shared/billing.service";
 import { BilPrint_VM } from "../../shared/invoice-print-vms";
@@ -399,7 +399,7 @@ export class BIL_Print_Invoice_Discharge_Component {
     let printCount = this.invoice.InvoiceInfo.PrintCount + 1;
     this.billingBLService.PutPrintCount(printCount, this.invoice.InvoiceInfo.BillingTransactionId)
       .subscribe(res => {
-        if (res.Status !== ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status !== ENUM_DsfHTTPResponses.OK) {
           //if OK then do nothing.
           console.log("Failed to Update Print Count");
         }

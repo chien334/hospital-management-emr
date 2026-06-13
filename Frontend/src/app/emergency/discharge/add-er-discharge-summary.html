@@ -170,7 +170,7 @@
                     <td colspan="1">
                         <p style="display: inline-block;width: auto;">{{ 'EMERGENCY.DOCTOR_NAME' | translate }}: </p>
                         <div style="display: inline-block; width: 75%;">
-                            <input class="form-control cstm-form-control" danphe-auto-complete title="Doctor Name" autocomplete="off" [(ngModel)]="DischargeSummary.DoctorSelected" [list-formatter]="DoctorListFormatter" [source]="doctorsList" [placeholder]="'EMERGENCY.ENTER_DOCTOR_NAME' | translate" display-property-name="FullName" value-property-name=null style="width:100%" max-num-list="15" onClick="this.select();" />
+                            <input class="form-control cstm-form-control" dsf-auto-complete title="Doctor Name" autocomplete="off" [(ngModel)]="DischargeSummary.DoctorSelected" [list-formatter]="DoctorListFormatter" [source]="doctorsList" [placeholder]="'EMERGENCY.ENTER_DOCTOR_NAME' | translate" display-property-name="FullName" value-property-name=null style="width:100%" max-num-list="15" onClick="this.select();" />
                         </div>
 
                     </td>
@@ -178,7 +178,7 @@
                         <p style="display: inline-block;width: auto;">
                             {{ 'EMERGENCY.DMO' | translate }}:</p>
                         <div style="display: inline-block; width: 75%;">
-                            <input class="form-control cstm-form-control" danphe-auto-complete title="Medical Officer" [(ngModel)]="DischargeSummary.MedicalOfficerSelected" [list-formatter]="DoctorListFormatter" [source]="doctorsList" [placeholder]="'EMERGENCY.ENTER_DMO' | translate" display-property-name="FullName" value-property-name=null style="width:100%" max-num-list="15" onClick="this.select();" />
+                            <input class="form-control cstm-form-control" dsf-auto-complete title="Medical Officer" [(ngModel)]="DischargeSummary.MedicalOfficerSelected" [list-formatter]="DoctorListFormatter" [source]="doctorsList" [placeholder]="'EMERGENCY.ENTER_DMO' | translate" display-property-name="FullName" value-property-name=null style="width:100%" max-num-list="15" onClick="this.select();" />
                         </div>
                     </td>
                 </tr>

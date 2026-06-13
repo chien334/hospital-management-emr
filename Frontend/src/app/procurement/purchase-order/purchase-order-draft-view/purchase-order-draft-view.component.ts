@@ -6,7 +6,7 @@ import { CoreService } from '../../../core/shared/core.service';
 import { InventoryBLService } from '../../../inventory/shared/inventory.bl.service';
 import { InventoryService } from '../../../inventory/shared/inventory.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { ProcurementBLService } from '../../shared/procurement.bl.service';
 import { PurchaseOrderDraftItem } from '../purchase-order-draft-item.model';
 import { PurchaseOrderDraft } from '../purchase-order-draft.model';
@@ -48,7 +48,7 @@ export class PurchaseOrderDraftViewComponent implements OnInit {
         this.callBackClose.emit();
     }
     ShowPurchaseOrderDraftDetails(res) {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.purchaseorderDraft = res.Results.poDraftDetails;
             this.purchaseorderDraft.PurchaseOrderDraftItems = res.Results.poDraftItems;
             if (this.purchaseorderDraft.Status === "InProgress") {
@@ -78,7 +78,7 @@ export class PurchaseOrderDraftViewComponent implements OnInit {
         this.procBLService.PostDiscardPurchaseOrderDraft(this.inventoryService.DraftPurchaseOrderId, this.purchaseorderDraft.DiscardRemarks)
             .subscribe(
                 res => {
-                    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                         this.BackToPurchaseOrderDraftList();
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Purchase Order Draft ${this.purchaseorderDraft.DraftPurchaseOrderId} Discarded`]);
                     } else {

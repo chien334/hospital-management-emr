@@ -2,16 +2,16 @@ import { Component, Directive, ViewChild } from '@angular/core';
 import { FormControlName } from '@angular/forms';
 import * as moment from 'moment/moment';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { WardSupplyBLService } from "../../shared/wardsupply.bl.service";
 import WARDGridColumns from "../../shared/ward-grid-cloumns";
 import { WARDReportsModel } from '../../shared/ward-report.model';
 import { SecurityService } from '../../../security/shared/security.service';
 import { Router } from '@angular/router';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
 import { ItemSubCategoryModel } from '../../../inventory/settings/shared/item-subcategory.model';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 
 
 @Component({
@@ -65,8 +65,8 @@ export class RequisitionDispatchReportComponent {
       { DisplayName: "DateRange:", Value: this.dateRange }
     ]
     this.wardBLService.GetRequisitionDispatchReport(this.wardReports)
-      .subscribe((res:DanpheHTTPResponse) => {
-        if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res:DsfHTTPResponse) => {
+        if (res.Status == ENUM_DsfHTTPResponseText.OK) {
           this.RequisitionDispatchReportData = res.Results;
           this.FilteredRequisitionDispatchReportData = res.Results;
           this.selectedSubCategory = null;
@@ -88,7 +88,7 @@ export class RequisitionDispatchReportComponent {
 
   GetItemSubCategory(): void {
     this.wardBLService.GetItemSubCategory().subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.SubCategoryList = [];
         let SubCategoryList = res.Results;
         SubCategoryList.unshift({ SubCategoryId: null, SubCategoryName: 'All' });

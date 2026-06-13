@@ -4,7 +4,7 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 import PHRMReportsGridColumns from '../../shared/phrm-reports-grid-columns';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { DispensaryService } from '../../../dispensary/shared/dispensary.service';
 
 @Component({

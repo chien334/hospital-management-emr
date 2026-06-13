@@ -16,15 +16,15 @@ import { PHRMPatient } from '../../../../pharmacy/shared/phrm-patient.model';
 import { PHRMStoreModel } from '../../../../pharmacy/shared/phrm-store.model';
 import { SecurityService } from '../../../../security/shared/security.service';
 import { CallbackService } from '../../../../shared/callback.service';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from '../../../../shared/common.functions';
-import { ThumbnailDirective } from '../../../../shared/danphe-dicom-viewer/dicom-viewer/dicom-viewer.thumbnail.directive';
-import GridColumnSettings from '../../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { ThumbnailDirective } from '../../../../shared/dsf-dicom-viewer/dicom-viewer/dicom-viewer.thumbnail.directive';
+import GridColumnSettings from '../../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../shared/routefrom.service';
-import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
+import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
 import { DispensaryService } from '../../../shared/dispensary.service';
 import { PharmacySchemePriceCategory_DTO } from '../../../../pharmacy/shared/dtos/pharmacy-scheme-pricecategory.dto';
 import * as _ from "lodash";
@@ -185,7 +185,7 @@ export class CreditBillsComponent implements OnInit {
   //gets summary of all patients
   GetUnpaidTotalBills() {
     this.pharmacyBLService.GetAllCreditSummary(this.fromDate, this.toDate, this.currentActiveDispensary.StoreId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         this.patientService
         this.provisionalBillsSummary = res.Results;
       });
@@ -194,7 +194,7 @@ export class CreditBillsComponent implements OnInit {
   GetPatientProvisionalItems(patientId: number, PatientVisitId?: number) {
 
     this.pharmacyBLService.GetPatientCreditItems(patientId, this.currentActiveDispensary.StoreId, PatientVisitId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allCreditItems = res.Results.PatientCreditItems;
           this.SchemePriceCategory = res.Results.SchemePriceCategory;
@@ -731,8 +731,8 @@ export class CreditBillsComponent implements OnInit {
         .finally(() => {
           this.loading = false;
         })
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.InvoiceId = res.Results;
             this.showSaleInvoice = true;
             this.GetUnpaidTotalBills();
@@ -780,8 +780,8 @@ export class CreditBillsComponent implements OnInit {
         }
         this.pharmacyBLService.updateInvoiceForCreditItems(this.newCurrSaleItems).finally(() => {
           this.loading = false;
-        }).subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        }).subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.ReturnReceiptNo = res.Results;
             this.GetUnpaidTotalBills();
             this.showAllPatient = true;
@@ -835,8 +835,8 @@ export class CreditBillsComponent implements OnInit {
       try {
         this.pharmacyBLService.CancelCreditBill(this.allCreditItems)
           .finally(() => this.loading = false)
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results != null) {
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results != null) {
               this.ReturnReceiptNo = res.Results;
               this.GetUnpaidTotalBills();
               this.showAllPatient = true;
@@ -873,8 +873,8 @@ export class CreditBillsComponent implements OnInit {
     var printContents = document.getElementById("printpage").innerHTML;
     popupWinindow = window.open('', '_blank', 'width=1600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
-    //popupWinindow.document.write('<html><head><link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
-    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+    //popupWinindow.document.write('<html><head><link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
 
     popupWinindow.document.close();
     this.showSaleItemsPopup = false;
@@ -886,8 +886,8 @@ export class CreditBillsComponent implements OnInit {
   LoadPatientInvoiceSummary(patientId: number, SchemeId?: number, PatientVisitId?: number) {
     if (patientId > 0) {
       this.pharmacyBLService.GetPatientSummary(patientId, SchemeId, PatientVisitId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.patSummary = res.Results;
             this.patSummary.CreditAmount = CommonFunctions.parseAmount(this.patSummary.CreditAmount);
             this.patSummary.ProvisionalAmt = CommonFunctions.parseAmount(this.patSummary.ProvisionalAmt);

@@ -3,7 +3,7 @@ import { Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { ADT_BLService } from '../shared/adt.bl.service';
 import { PatientBedInfo } from '../shared/patient-bed-info.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { Bed } from '../shared/bed.model';
 import { Ward } from '../shared/ward.model';
 import { Patient } from '../../patients/shared/patient.model';
@@ -89,7 +89,7 @@ export class AdmittedPatientHistory {
     }
     if (this.IsValidCheck(undefined, undefined)) {
       this.admissionBLService.UpdateAdmittedPatientInfo(this.patWardList[index])
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.msgBoxServ.showMessage("success", ["Dates changed successfully."]);
             this.GetPatientWardInfo(this.ipVisitid);

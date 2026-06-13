@@ -9,9 +9,9 @@ import { ItemMaster } from "../../../inventory/shared/item-master.model";
 import { RequisitionItems } from "../../../inventory/shared/requisition-items.model";
 import { Requisition } from "../../../inventory/shared/requisition.model";
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_GRItemCategory, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_GRItemCategory, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { WardSupplyBLService } from '../../shared/wardsupply.bl.service';
 import { InventoryWardRequisitionVerifier_DTO } from './shared/inventory-ward-requisition-verifier.dto';
 @Component({ templateUrl: "./inventory-ward-requisition-item.html" })
@@ -62,7 +62,7 @@ export class InventoryWardRequisitionItemComponent implements OnDestroy {
     GetInventoryList() {
         this.inventoryBLService.GetActiveInventoryList()
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.inventoryList = res.Results;
                 }
             })
@@ -428,8 +428,8 @@ export class InventoryWardRequisitionItemComponent implements OnDestroy {
             }
             this.loading = true;
             this.inventoryBLService.PostToRequisition(this.requisition).finally(() => { this.loading = false })
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Requisition is Generated and Saved"]);
                         this.requisition.RequisitionItems = new Array<RequisitionItems>();
                         this.requisition = new Requisition();
@@ -498,7 +498,7 @@ export class InventoryWardRequisitionItemComponent implements OnDestroy {
             this.loading = true;
             this.wardsupplyBLService.PutUpdateRequisition(this.requisition).finally(() => { this.loading = false })
                 .subscribe(res => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.changeDetectorRef.detectChanges();
                         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Requisition is Updated."]);
 
@@ -576,8 +576,8 @@ export class InventoryWardRequisitionItemComponent implements OnDestroy {
 
     GetAvailableQuantityByItemIdAndStoreId(CurrentItemId: number, CurrentStoreId: number, index: number) {
         this.inventoryBLService.GetAvailableQuantityByItemIdAndStoreId(CurrentItemId, CurrentStoreId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     if (res.Results != null)
                         this.requisition.RequisitionItems[index].AvailableQuantity = res.Results.AvailableQuantity;
                 }
@@ -650,8 +650,8 @@ export class InventoryWardRequisitionItemComponent implements OnDestroy {
 
     public LoadVerifiersForRequisition() {
         this.wardsupplyBLService.GetVerifiers()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.VerifierList = res.Results;
                     this.SetDefaultVerifier();
                 }

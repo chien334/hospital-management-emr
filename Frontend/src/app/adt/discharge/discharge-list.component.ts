@@ -6,11 +6,11 @@ import * as moment from 'moment/moment';
 import { CoreService } from '../../core/shared/core.service';
 import { SecurityService } from '../../security/shared/security.service';
 import { CallbackService } from '../../shared/callback.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from '../../shared/common-models';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { DischargeCancel_DTO } from '../shared/DTOs/discharge-cancel.dto';
 import { AdmissionModel } from "../shared/admission.model";
 import { ADTGridColumnSettings } from '../shared/adt-grid-column-settings';
@@ -121,7 +121,7 @@ export class DischargedListComponent {
   GetDischargedPatientsList(): void {
     this.admissionBLService.GetDischargedPatientsList(this.fromDate, this.toDate)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.dischargedList = res.Results;
           this.allItemList = res.Results;
           this.FilterGridItems(this.showIsInsurancePatient);
@@ -184,7 +184,7 @@ export class DischargedListComponent {
   ClearDue() {
     this.admissionBLService.CheckPatientCreditBillStatus(this.selectedDischarge.PatientVisitId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results) {
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Failed, ["Clear the due before proceeding.Total Due=" + res.Results]);
           }
@@ -192,7 +192,7 @@ export class DischargedListComponent {
           else {
             this.admissionBLService.ClearDue(this.admission.PatientVisitId)
               .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                   this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Cleared Patient due"]);
                   this.dischargedList[this.selectedIndex].BillStatusOnDischarge = "paid";
                   this.dischargedList = this.dischargedList.slice();
@@ -253,7 +253,7 @@ export class DischargedListComponent {
       }
       this.admissionBLService.PostDischargeCancelBill(this.selectedDischargeCancel)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.messageBoxService.showMessage("Success", ["Discharged of Patient is cancelled Successfully.."]);
             this.IsCancelDischargePage = false;
             this.loading = false;
@@ -278,8 +278,8 @@ export class DischargedListComponent {
 
   IsPreviousBedAvailable() {
     const patientVisitId = this.selectedDischarge.PatientVisitId;
-    this.admissionBLService.IsPreviousBedAvailable(patientVisitId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this.admissionBLService.IsPreviousBedAvailable(patientVisitId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         const available = res.Results.available;
         this.PatientBedInfoNew = res.Results.bedInfo;
         this.bedList = res.Results.bedsInBedFeature;
@@ -318,7 +318,7 @@ export class DischargedListComponent {
     }
   }
   public DischargeSummaryCallback(data) {
-    if (data.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (data.Status === ENUM_DsfHTTPResponses.OK) {
       this.HideDischargeSummary();
     }
   }

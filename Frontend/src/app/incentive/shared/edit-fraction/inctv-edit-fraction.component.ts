@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 
@@ -75,7 +75,7 @@ export class INCTV_EditFractionComponent {
 ${this.selTxnItem.BillingTransactionItemId}`
       )
       .map((res) => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.fractionItems = res.Results;
           if (this.fractionItems && this.fractionItems.length > 0) {
@@ -153,7 +153,7 @@ ${this.selTxnItem.BillingTransactionItemId}`
       this.dlService
         .Add(data, url)
         .map((res) => res)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             console.log("saved successfully");
             this.msgBoxServ.showMessage("success", [
@@ -480,7 +480,7 @@ ${this.selTxnItem.BillingTransactionItemId}`
   public LoadAllBillingItems() {
     this.incentiveBLService
       .GetBillItemList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allItemList = res.Results;
         } else {
@@ -494,7 +494,7 @@ ${this.selTxnItem.BillingTransactionItemId}`
       this.EmployeeBillItemsList = [];
       this.incentiveBLService
         .GetEmployeeBillItemsList(frcItem.IncentiveReceiverId)
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == "OK") {
             this.EmployeeBillItemsList = res.Results;
             this.AssignPercentage(frcItem, this.EmployeeBillItemsList);

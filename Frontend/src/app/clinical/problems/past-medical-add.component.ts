@@ -8,8 +8,8 @@ import { ActiveMedical } from "../shared/active-medical.model";
 import { ICD10 } from '../shared/icd10.model';
 import * as moment from 'moment/moment';
 import { PastMedical } from "../shared/past-medical.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { CoreService } from "../../core/shared/core.service";
 
 @Component({
@@ -85,7 +85,7 @@ export class PastMedicalAddComponent {
 
     //getting ICD list
     public GetICDList() {
-        this.ICD10List = DanpheCache.GetData(MasterType.ICD, null);
+        this.ICD10List = DsfCache.GetData(MasterType.ICD, null);
         // this.problemsBLService.GetICDList()
         // .subscribe(res => {
         // if (res.Status == "OK") {

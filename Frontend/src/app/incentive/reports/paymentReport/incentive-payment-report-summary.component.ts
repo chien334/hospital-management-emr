@@ -3,11 +3,11 @@ import * as moment from 'moment/moment';
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { DLService } from "../../../shared/dl.service";
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { RPT_BIL_IncentiveReportModel } from "../incentive-report.model";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { INCTVGridColumnSettings } from "../../shared/inctv-grid-column-settings";
 
 @Component({
@@ -74,7 +74,7 @@ export class RPT_INCTV_PaymentReportSummaryComponent {
   public loadDocPaymentSummary() {
     this.dlService.Read("/BillingReports/INCTV_DocterPaymentSummary?FromDate=" + this.curDocReportMain.fromDate + "&ToDate=" + this.curDocReportMain.toDate)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let data = JSON.parse(res.Results.JsonData);
           if (data.length > 0) {

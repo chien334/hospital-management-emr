@@ -3,7 +3,7 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { AccountingSettingsRoutingModule } from './accounting-settings-routing.module';
 import { AccountingSettingsComponent } from './accounting-settings.component';
 
@@ -63,7 +63,7 @@ import { SubLedgerComponent } from './subLedger/sub-ledger.component';
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         AccountingSettingsRoutingModule,
         SharedModule, ScrollingModule],
     declarations: [

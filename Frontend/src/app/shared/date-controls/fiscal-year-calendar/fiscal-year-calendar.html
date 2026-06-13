@@ -16,10 +16,10 @@
 
   <ng-container *ngIf="showSingleDatePicker && showDatePicker && !ShowMonthCalendar">
     <div class="mx-160">
-      <danphe-date-picker *ngIf="showDatePicker" [ngModel]="selectedDate" [allow-future-date]="allowFutureDate"
+      <dsf-date-picker *ngIf="showDatePicker" [ngModel]="selectedDate" [allow-future-date]="allowFutureDate"
                           (ngModelChange)="CheckSelectedDate($event)"
                           [CalendarTypes]="calType" [invalid-date-error-msg]="invalidMessage"
-                          [min-date]="minimumDate" [max-date]="maximumDate"></danphe-date-picker>
+                          [min-date]="minimumDate" [max-date]="maximumDate"></dsf-date-picker>
 
     </div>
 
@@ -31,15 +31,15 @@
   <ng-container *ngIf="!showSingleDatePicker && showDatePicker && !ShowMonthCalendar">
     <div class="label-frm-to">From:</div>
     <div class="mx-160">
-      <danphe-date-picker *ngIf="showDatePicker" [ngModel]="fromDate" [allow-future-date]="allowFutureDate" (ngModelChange)="CheckFromDate($event)"
+      <dsf-date-picker *ngIf="showDatePicker" [ngModel]="fromDate" [allow-future-date]="allowFutureDate" (ngModelChange)="CheckFromDate($event)"
                           [CalendarTypes]="calType" [invalid-date-error-msg]="invalidMessage"
-                          [min-date]="minimumDate" [max-date]="maximumDate"></danphe-date-picker>
+                          [min-date]="minimumDate" [max-date]="maximumDate"></dsf-date-picker>
     </div>
     <div class="label-frm-to">To:</div>
     <div class="mx-160">
-      <danphe-date-picker *ngIf="showDatePicker" [ngModel]="toDate" [allow-future-date]="allowFutureDate" (ngModelChange)="CheckToDate($event)"
+      <dsf-date-picker *ngIf="showDatePicker" [ngModel]="toDate" [allow-future-date]="allowFutureDate" (ngModelChange)="CheckToDate($event)"
                           [CalendarTypes]="calType" [invalid-date-error-msg]="invalidMessage"
-                          [min-date]="minimumDate" [max-date]="maximumDate"></danphe-date-picker>
+                          [min-date]="minimumDate" [max-date]="maximumDate"></dsf-date-picker>
     </div>
 
     <div style="width: 20px; margin-top: 8px; margin-left:8px;">

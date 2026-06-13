@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { DanpheAutoCompleteModule } from "../shared/danphe-autocomplete";
+import { DsfAutoCompleteModule } from "../shared/dsf-autocomplete";
 import { PastMedicalAddComponent } from "./problems/past-medical-add.component";
 import { FamilyHistoryAddComponent } from "./history/family-history-add.component";
 import { SurgicalHistoryAddComponent } from "./history/surgical-history-add.component";
@@ -28,7 +28,7 @@ import { AllergyListComponent } from "./others/allergy-list.component";
     FormsModule,
     CommonModule,
     RouterModule,
-    DanpheAutoCompleteModule,
+    DsfAutoCompleteModule,
     SharedModule,
   ],
   declarations: [

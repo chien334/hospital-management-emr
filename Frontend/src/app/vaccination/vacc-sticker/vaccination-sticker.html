@@ -28,7 +28,7 @@
                 <span>{{stickerDetail.DepartmentName}}</span>
               </div>
               <span> {{ 'GRID_HEADERS.DATE' | translate }}: {{stickerDetail.VisitDateTime |
-                DanpheDateTime:'format':'YYYY-MM-DD'}}&nbsp;&nbsp;{{stickerDetail.VisitDateTime |
+                DsfDateTime:'format':'YYYY-MM-DD'}}&nbsp;&nbsp;{{stickerDetail.VisitDateTime |
                 nepaliDate:'format':'YYYY-MM-DD'}}  </span>
 
               <div style="display: flex; justify-content:space-between;">
@@ -71,7 +71,7 @@
               <span style="float:right;padding-right: 20px;"> {{ 'VACCINATION.USER' | translate }}&nbsp;: {{stickerDetail.UserName}} </span>
 
               <span style="float:right;padding-right: 20px;"> {{ 'COMMON.TIME' | translate }}&nbsp;: {{stickerDetail.VisitDateTime |
-                DanpheDateTime:'format':'HH:mm'}} </span>
+                DsfDateTime:'format':'HH:mm'}} </span>
             </div>
           </div>
 

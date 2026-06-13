@@ -2,9 +2,9 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from "@angu
 import * as _ from 'lodash';
 import { Ward } from "../../../adt/shared/ward.model";
 import { PHRMStoreModel } from "../../../pharmacy/shared/phrm-store.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { NursingWardSubStoresMapModel } from "../../shared/nur-ward-substore-map.model";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
@@ -38,8 +38,8 @@ export class WardSubstoreMapManageAddComponent {
 
     public getWardList() {
         this.settingsBLService.GetWardList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.wardList = res.Results;
                 }
                 else {
@@ -49,8 +49,8 @@ export class WardSubstoreMapManageAddComponent {
     }
     GetActiveSubStore() {
         this.settingsBLService.GetActiveStoreList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.subStoreList = res.Results;
                 }
             });
@@ -108,8 +108,8 @@ export class WardSubstoreMapManageAddComponent {
 
         this.settingsBLService.PostNursingWardSupplyMap(this.wardStoreMapData)
             .subscribe(
-                (res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+                (res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
                         this.msgBox.showMessage(ENUM_MessageBox_Status.Success, ["Successfully Added"]);
                         this.wardStoreMap = new NursingWardSubStoresMapModel();
                         this.wardStoreMapData = [];

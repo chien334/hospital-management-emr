@@ -5,7 +5,7 @@ import { RPT_BIL_IncomeSegregationModel } from '../../../../reporting/billing/in
 import { RPT_BIL_SalesDaybookModel } from '../../../../reporting/billing/sales-daybook/sales-daybook.model';
 import { ReportingService } from '../../../../reporting/shared/reporting-service';
 import { CommonFunctions } from '../../../../shared/common.functions';
-import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../../shared/dsf-grid/grid-emit.model";
 import { DLService } from '../../../../shared/dl.service';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 

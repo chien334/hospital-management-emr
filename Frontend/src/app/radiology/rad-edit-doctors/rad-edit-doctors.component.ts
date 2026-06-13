@@ -1,17 +1,17 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { BillingTransaction } from "../../billing/shared/billing-transaction.model";
 import { BillingBLService } from "../../billing/shared/billing.bl.service";
 import { SecurityService } from "../../security/shared/security.service";
 import { Router } from "@angular/router";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { CoreService } from "../../core/shared/core.service";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
 import { APIsByType } from "../../shared/search.service";
 import * as moment from 'moment/moment';
 import { EditDoctorFeatureViewModel } from "../../billing/shared/edit-doctor-feature-view.model";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { ImagingBLService } from "../shared/imaging.bl.service";
 import { ImagingItemReport } from "../shared/imaging-item-report.model";
 import { ImagingType } from "../shared/imaging-type.model";
@@ -146,7 +146,7 @@ export class RadiologyEditDoctorsComponent {
   //load doctor  
   GetProviderList(): void {
     this.billingBLService.GetAllReferrerList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.doctorList = [];
           //format return list into Key:Value form, since it searches also by the property name of json.

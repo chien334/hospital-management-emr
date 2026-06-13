@@ -13,7 +13,7 @@ import { FinalDiagnosisModel } from '../../medical-records/outpatient-list/final
 import { MR_BLService } from '../../medical-records/shared/mr.bl.service';
 import { Department } from '../../settings-new/shared/department.model';
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status, ENUM_VisitType } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status, ENUM_VisitType } from '../../shared/shared-enums';
 import { NursingOPDExchangedDoctorDepartment_DTO } from '../shared/dto/nursing-opd-exchanged-doctor-department.dto';
 import { PerformerDetails_DTO } from '../shared/dto/performer-details.dto';
 import { NursingBLService } from "../shared/nursing.bl.service";
@@ -102,7 +102,7 @@ export class ExchangeDoctorDepartmentComponent implements OnInit {
   GetICDList(): void {
     this._mrBLService.GetICDList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.ICD10MainList = res.Results;
         }
         else {
@@ -135,7 +135,7 @@ export class ExchangeDoctorDepartmentComponent implements OnInit {
   GetDepartments(): void {
     this._visitBLService.GetDepartment()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK)
+        if (res.Status === ENUM_DsfHTTPResponses.OK)
           this.DepartmentList = res.Results;
       },
         error => {
@@ -180,7 +180,7 @@ export class ExchangeDoctorDepartmentComponent implements OnInit {
   GetProviderList(): void {
     this._admissionDLService.GetProviderList().subscribe(
       res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.DoctorList = res.Results.filter(doctor => doctor.EmployeeId > 0);
           this.FilteredDocList = this.DoctorList;
           this.AssignSelectedDoctor();
@@ -334,7 +334,7 @@ export class ExchangeDoctorDepartmentComponent implements OnInit {
     } else {
       this.nursingBLService.UpdateExchangedDoctorDepartmentDetails(this.ExchangedDoctorDepartment)
         .subscribe((res) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.SelectedDiagnosis = [];
             this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Exchanged Successfully']);
             this.ExchangedValidator.reset();

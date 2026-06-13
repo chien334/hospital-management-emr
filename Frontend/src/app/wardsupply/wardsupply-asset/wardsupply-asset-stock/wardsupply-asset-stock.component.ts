@@ -5,7 +5,7 @@ import { WardStockModel } from '../../shared/ward-stock.model'
 import WARDGridColumns from '../../shared/ward-grid-cloumns';
 import { Router } from '@angular/router';
 import * as moment from 'moment/moment'
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { SecurityService } from '../../../security/shared/security.service';
 import { FixedAssetStockModel } from '../../../fixed-asset/shared/fixed-asset-stock.model';
 import { ActivateInventoryService } from '../../../shared/activate-inventory/activate-inventory.service';

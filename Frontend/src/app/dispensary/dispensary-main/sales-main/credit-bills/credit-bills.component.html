@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="creditBillGridColumns" [grid-data]="provisionalBillsSummary" [rangeType]="dateRange" [date-range-options]="'1W,1M,3M'" [NepaliDateInGridParams]="NepaliDateInGridSettings" (onDateChange)="onGridDateChange($event)" (grid-actions)="CreditBillGridActions($event)" [show-CustomDate]="true" [hidden]="!showAllPatient"></danphe-grid>
+    <dsf-grid [grid-colDefaults]="creditBillGridColumns" [grid-data]="provisionalBillsSummary" [rangeType]="dateRange" [date-range-options]="'1W,1M,3M'" [NepaliDateInGridParams]="NepaliDateInGridSettings" (onDateChange)="onGridDateChange($event)" (grid-actions)="CreditBillGridActions($event)" [show-CustomDate]="true" [hidden]="!showAllPatient"></dsf-grid>
   </div>
 </div>
 <div [hidden]="showAllPatient">
@@ -50,10 +50,10 @@
         <tbody>
           <tr *ngFor="let row of currSaleItems;let i = index">
             <td>{{i+1}}</td>
-            <td>{{row.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+            <td>{{row.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
             <td>{{row.ItemName}}</td>
             <td>{{row.BatchNo}}</td>
-            <td>{{row.ExpiryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+            <td>{{row.ExpiryDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
             <td>{{row.SalePrice}}</td>
             <td><input [(ngModel)]="row.DispatchQty" [ngModelOptions]="{standalone: true}" style="width:80px ; " min="0" class="form-control" type="text" value="" disabled></td>
             <td *ngIf="BillMode != 'FinalizeInvoice'">
@@ -275,9 +275,9 @@
           </tr>
         </table>
         <div class="col-md-12" style="padding-top:5px; margin-top: 10px;">
-          <input *ngIf="BillMode == 'FinalizeInvoice'" DanpheConfirmationDialog type="submit" id="btnPrint" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="PrintReceipt()" (cancel)="handleCancel()" class="btn green btn-success tooltip" [disabled]="loading" value="Print Invoice">
+          <input *ngIf="BillMode == 'FinalizeInvoice'" DsfConfirmationDialog type="submit" id="btnPrint" [title]="confirmationTitle" [message]="confirmationMessage" (confirm)="PrintReceipt()" (cancel)="handleCancel()" class="btn green btn-success tooltip" [disabled]="loading" value="Print Invoice">
           <span></span>
-          <input *ngIf="BillMode == 'UpdateInvoice'" DanpheConfirmationDialog type="submit" id="btnPrint" [title]="confirmationTitle" [message]="confirmationMessageForProvisionalInvoiceUpdate" (confirm)="update()" (cancel)="handleCancel()" class="btn green btn-success tooltip" [disabled]="loading" value="Update">
+          <input *ngIf="BillMode == 'UpdateInvoice'" DsfConfirmationDialog type="submit" id="btnPrint" [title]="confirmationTitle" [message]="confirmationMessageForProvisionalInvoiceUpdate" (confirm)="update()" (cancel)="handleCancel()" class="btn green btn-success tooltip" [disabled]="loading" value="Update">
           <span></span>
           <input type="button" class="btn btn-danger" (click)="Cancel()" value="Cancel All items" [disabled]="loading">
           <span></span>
@@ -301,7 +301,7 @@
           <td> {{row.ItemName}} </td>
           <td> {{row.Quantity}} </td>
           <td> {{row.TotalAmount}} </td>
-          <td> {{row.CancelledOn | DanpheDateTime:'format':'DD.MM.YY HH:mm'}} </td>
+          <td> {{row.CancelledOn | DsfDateTime:'format':'DD.MM.YY HH:mm'}} </td>
         </tr>
       </table>
     </div>
@@ -347,7 +347,7 @@
                           <p class="no-margin" style="text-align:left;font-size:11px;">Address: {{currentPatient.Address}}, {{currentPatient.CountrySubDivisionName}} </p>
                         </div>
                         <div class="right" style="width:31%">
-                          <p class="no-margin" style="text-align:right;font-size:11px;"> Age/Sex : {{currentPatient.DateOfBirth | DanpheDateTime:'age' }}/{{currentPatient.Gender}}</p>
+                          <p class="no-margin" style="text-align:right;font-size:11px;"> Age/Sex : {{currentPatient.DateOfBirth | DsfDateTime:'age' }}/{{currentPatient.Gender}}</p>
                         </div>
                       </div>
                       <div class="col-md-12" style="padding:0px;">

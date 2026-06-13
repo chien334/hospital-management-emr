@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 
 @Injectable()
 export class DischargeSummaryDLService {
@@ -69,13 +69,13 @@ export class DischargeSummaryDLService {
     return this.http.put<any>("/api/Admission/BirthCertificate", data, this.options);
   }
   public GetDischargeSummaryTemplates(TemplateTypeName: string) {
-    return this.http.get<DanpheHTTPResponse>(`/api/DynamicTemplate/Templates?templateTypeName=${TemplateTypeName}`, this.optionJson);
+    return this.http.get<DsfHTTPResponse>(`/api/DynamicTemplate/Templates?templateTypeName=${TemplateTypeName}`, this.optionJson);
   }
   public LoadTemplateFields(TemplateId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/DynamicTemplate/TemplateFields?templateId=${TemplateId}`, this.optionJson)
+    return this.http.get<DsfHTTPResponse>(`/api/DynamicTemplate/TemplateFields?templateId=${TemplateId}`, this.optionJson)
   }
   public LoadTemplate(TemplateId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/DynamicTemplate/TemplatePrintHtml?templateId=${TemplateId}`, this.optionJson);
+    return this.http.get<DsfHTTPResponse>(`/api/DynamicTemplate/TemplatePrintHtml?templateId=${TemplateId}`, this.optionJson);
   }
 }
 

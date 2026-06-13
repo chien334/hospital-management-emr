@@ -3,7 +3,7 @@ import { LabComponentModel } from '../../shared/lab-component-json.model';
 import * as _ from 'lodash';
 import { LabSettingsBLService } from '../shared/lab-settings.bl.service';
 import { MessageboxService } from '../../../../../src/app/shared/messagebox/messagebox.service';
-import { DanpheHTTPResponse } from '../../../../../src/app/shared/common-models';
+import { DsfHTTPResponse } from '../../../../../src/app/shared/common-models';
 import { CoreCFGLookUp } from '../shared/coreCFGLookUp.model';
 
 @Component({
@@ -279,7 +279,7 @@ export class AddLabTestCompComponent {
         if (this.loading) {
             if (validationMsg.IsValid) {
                 this.labSettingBlServ.PostLabTestComponent(this.lbtstcomponentList)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if(res.Status == "OK"){
                         this.sendDataBack.emit({components: res.Results, success: true});
                         this.msgBoxServ.showMessage("success", ["Labtest component posted successfully!"]);
@@ -303,7 +303,7 @@ export class AddLabTestCompComponent {
         if (this.loading) {
             if (validationMsg.IsValid) {     
                 this.labSettingBlServ.UpdateLabTestComponent(this.lbtstcomponentList)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     if(res.Status == "OK"){
                         this.sendDataBack.emit({components: this.lbtstcomponentList, success: true});
                         this.msgBoxServ.showMessage("success", [this.lbtstcomponentList[0].ComponentName + "Labtest component Updated successfully!"]);

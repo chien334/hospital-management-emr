@@ -1,8 +1,8 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 
 import { AccountingReportsBLService } from "../shared/accounting-reports.bl.service";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import * as moment from 'moment/moment';
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
@@ -49,9 +49,9 @@ export class DaywiseVoucherReportComponent {
     }
     GetVoucher() {
         try {
-            if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-                this.voucherList = this.accountingService.accCacheData.VoucherType; //mumbai-team-june2021-danphe-accounting-cache-change
-                this.voucherList = this.voucherList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+            if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+                this.voucherList = this.accountingService.accCacheData.VoucherType; //mumbai-team-june2021-dsf-accounting-cache-change
+                this.voucherList = this.voucherList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
                 this.AssignVoucher();
                 this.selVoucher.VoucherId = -1;
             }
@@ -121,10 +121,10 @@ export class DaywiseVoucherReportComponent {
     }
     public GetSection() {
         try {
-              let sectionListData = this.accountingService.accCacheData.Sections; //mumbai-team-june2021-danphe-accounting-cache-change
+              let sectionListData = this.accountingService.accCacheData.Sections; //mumbai-team-june2021-dsf-accounting-cache-change
            if (sectionListData.length > 0) {
             this.sectionList = sectionListData;
-            this.sectionList = this.sectionList.slice(); //mumbai-team-june2021-danphe-accounting-cache-change
+            this.sectionList = this.sectionList.slice(); //mumbai-team-june2021-dsf-accounting-cache-change
                 this.sectionId = this.sectionList[1].SectionId;
             } else {
                 this.msgBoxServ.showMessage("error", ['Please provide section (Module) name(s) !']);

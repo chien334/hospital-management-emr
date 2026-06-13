@@ -13,11 +13,11 @@ import { CreditOrganization } from "../../settings-new/shared/creditOrganization
 import { Department } from "../../settings-new/shared/department.model";
 import { CallbackService } from "../../shared/callback.service";
 import { ServiceDepartmentVM } from "../../shared/common-masters.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_AdditionalServiceItemGroups, ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_BillingType, ENUM_CurrentBillingFlow, ENUM_DanpheHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_ServiceBillingContext } from "../../shared/shared-enums";
+import { ENUM_AdditionalServiceItemGroups, ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_BillingType, ENUM_CurrentBillingFlow, ENUM_DsfHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_ServiceBillingContext } from "../../shared/shared-enums";
 import { BillingInvoiceBlService } from "../shared/billing-invoice.bl.service";
 import { BillingMasterBlService } from "../shared/billing-master.bl.service";
 import { BillingTransactionItem } from "../shared/billing-transaction-item.model";
@@ -539,8 +539,8 @@ export class BillingTransactionComponent_New {
 
   LoadAdditionalServiceItems(priceCategoryId: number): void {
     this.billingMasterBlService.GetAdditionalServiceItems(ENUM_AdditionalServiceItemGroups.Anaesthesia, priceCategoryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
           this.BillingAdditionalServiceItems = res.Results;
         }
       }, err => {
@@ -741,7 +741,7 @@ export class BillingTransactionComponent_New {
   LoadPatientPastBillSummary(patientId: number) {
     this.billingBlService.GetPatientPastBillSummary(patientId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
 
           this.patBillHistory = res.Results;
           this.patBillHistory.ProvisionalAmt = CommonFunctions.parseAmount(this.patBillHistory.ProvisionalAmt, 3);
@@ -754,7 +754,7 @@ export class BillingTransactionComponent_New {
           this.MarkDepositFromDeduct();
         }
         else {
-          this.msgBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, [res.ErrorMessage]);
+          this.msgBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, [res.ErrorMessage]);
           this.loading = false;
         }
       });
@@ -776,8 +776,8 @@ export class BillingTransactionComponent_New {
     //we get billing context from earlier invoice incase of copy from earlier invoice.
     if (this.currentBillingFlow !== ENUM_CurrentBillingFlow.BillReturn) {//&& this.currentVisitType != "inpatient"
       this.billingBlService.GetPatientBillingContext(this.patientService.globalPatient.PatientId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             if (res.Results) {
               this.currBillingContext = res.Results;
               const currentPatientSchemeMap = this.currBillingContext.PatientSchemeMap;
@@ -793,8 +793,8 @@ export class BillingTransactionComponent_New {
 
   public GetPatientVisitList(patientId: number) {
     this.billingBlService.GetPatientVisitsProviderWise(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results && res.Results.length) {
             this.visitList = res.Results;
             //Default Value for RequestedBy: Assign provider from latest visit
@@ -814,7 +814,7 @@ export class BillingTransactionComponent_New {
         this.isReferrerLoaded = true;
       },
         err => {
-          this.msgBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["unable to get PatientVisit list.. check log for more details."]);
+          this.msgBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["unable to get PatientVisit list.. check log for more details."]);
           console.log(err.ErrorMessage);
 
         });
@@ -824,7 +824,7 @@ export class BillingTransactionComponent_New {
     if (patientId && visitId) {
       this.billingBlService.GetDataOfInPatient(patientId, visitId)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
             this.currPatVisitContext = res.Results;
             this.RequestingDepartmentId = this.currPatVisitContext.RequestingDepartmentId;
             this.selectedDepartment = this.DepartmentList.find(a => a.DepartmentId === this.RequestingDepartmentId);
@@ -843,7 +843,7 @@ export class BillingTransactionComponent_New {
           }
           else {
             this.DisplaySystemDefaultSchemePriceCategory = true;
-            console.log(ENUM_DanpheHTTPResponses.Failed, ["Problem! Cannot get the Current Visit Context ! "]);
+            console.log(ENUM_DsfHTTPResponses.Failed, ["Problem! Cannot get the Current Visit Context ! "]);
           }
         },
           err => { console.log(err.ErrorMessage); });
@@ -875,15 +875,15 @@ export class BillingTransactionComponent_New {
 
   isClaimed(LatestClaimCode: number, PatientId: number): void {
     this.billingBlService.IsClaimed(LatestClaimCode, PatientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results === true) {
             this.isClaimSuccessful = true;
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
-          this.msgBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Unable to check for pending claims"]);
+        (err: DsfHTTPResponse) => {
+          this.msgBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["Unable to check for pending claims"]);
         }
       );
   }
@@ -1484,7 +1484,7 @@ export class BillingTransactionComponent_New {
     }
 
     if (this.isClaimSuccessful) {
-      this.msgBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["This Visit context is claimed, create a new visit"]);
+      this.msgBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["This Visit context is claimed, create a new visit"]);
     }
 
     if (this.model && this.model.BillingTransactionItems.length) {
@@ -1531,7 +1531,7 @@ export class BillingTransactionComponent_New {
     if (this.isProvisionalBilling === true) {
       if (this.model.PatientVisitId) {
         this.billingBlService.ProceedToBillingTransaction(this.model, billTxnItems, "active", "provisional", this.insuranceApplicableFlag, this.currPatVisitContext).subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             let result = res.Results;
             this.provReceiptInputs.PatientId = this.model.PatientId;
             this.provReceiptInputs.ProvFiscalYrId = result[0].ProvisionalFiscalYearId;
@@ -1564,7 +1564,7 @@ export class BillingTransactionComponent_New {
         this.model.InvoiceType = ENUM_InvoiceType.outpatient;
       }
       this.billingBlService.ProceedToBillingTransaction(this.model, billTxnItems, "active", "provisional", this.insuranceApplicableFlag, this.currPatVisitContext).subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.bil_FiscalYrId = res.Results.FiscalYearId;
           this.bil_BilTxnId = res.Results.BillingTransactionId;
           this.bil_InvoiceNo = res.Results.InvoiceNo;
@@ -1793,8 +1793,8 @@ export class BillingTransactionComponent_New {
   GetServicePackages(schemeId: number, priceCategoryId: number): void {
     if (schemeId && priceCategoryId) {
 
-      this.billingMasterBlService.GetServicePackages(schemeId, priceCategoryId).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+      this.billingMasterBlService.GetServicePackages(schemeId, priceCategoryId).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
           this.ServicePackages = res.Results;
         } else {
           console.log(res);
@@ -1917,8 +1917,8 @@ export class BillingTransactionComponent_New {
     this.ServiceItems = new Array<ServiceItemDetails_DTO>();
     this.loadingScreen = true;
     this.billingMasterBlService.GetServiceItems(serviceBillingContext, schemeId, priceCategoryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
           this.ServiceItems = res.Results;
           if (this.ServiceItems && this.ServiceItems.length > 0) {
             this.coreService.FocusInputById('id_billing_serviceItemName', 1000);
@@ -1941,8 +1941,8 @@ export class BillingTransactionComponent_New {
   GetServiceItemSchemeSetting(serviceBillingContext: string, schemeId: number, priceCategoryId: number): void {
     this.loadingScreen = true;
     this.billingMasterBlService.GetServiceItemSchemeSetting(serviceBillingContext, schemeId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
           this.ServiceItemSchemeSettings = res.Results;
           this.MapServiceItemSchemeSettingsToServiceItems(this.ServiceItemSchemeSettings);
         } else {

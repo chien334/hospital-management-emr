@@ -3,13 +3,13 @@ import { FormGroup, FormControl } from '@angular/forms'
 import { RouterOutlet, RouterModule } from '@angular/router'
 import { PhrmRackService } from "../shared/rack/phrm-rack.service"
 import PHRMGridColumns from "../shared/phrm-grid-columns"
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from "../../shared/routefrom.service";
 import { PhrmRackModel } from '../shared/rack/phrm-rack.model';
-import { ENUM_DanpheHTTPResponses, ENUM_StockLocations } from '../../shared/shared-enums'
+import { ENUM_DsfHTTPResponses, ENUM_StockLocations } from '../../shared/shared-enums'
 import { PharmacyBLService } from '../shared/pharmacy.bl.service'
-import { DanpheHTTPResponse } from '../../shared/common-models'
+import { DsfHTTPResponse } from '../../shared/common-models'
 import * as moment from 'moment'
 
 @Component({
@@ -38,8 +38,8 @@ export class PhrmRackComponent {
         this.GetParentList();
     }
     public GetLocationList(): void {
-        this.pharmacyBLService.GetAllPharmacyStore().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.GetAllPharmacyStore().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 let StoreList = []
                 StoreList = res.Results;
                 // StoreList.unshift({ StoreId: null, StoreName: 'All' });
@@ -110,7 +110,7 @@ export class PhrmRackComponent {
                 .subscribe(res => {
                     this.drugList = [];
                     let response = JSON.parse(res)
-                    if (response.Status == ENUM_DanpheHTTPResponses.OK) {
+                    if (response.Status == ENUM_DsfHTTPResponses.OK) {
                         this.drugList = response.Results;
                     }
                 });

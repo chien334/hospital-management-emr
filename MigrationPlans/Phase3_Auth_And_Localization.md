@@ -65,8 +65,8 @@ public class AuthController : ControllerBase
 {
   "Jwt": {
     "Key": "SuperSecretKeyEnsure32CharactersOrMoreLongHere!!",
-    "Issuer": "DanpheEmrAPI",
-    "Audience": "DanpheEmrClient"
+    "Issuer": "DsfEmrAPI",
+    "Audience": "DsfEmrClient"
   }
 }
 ```

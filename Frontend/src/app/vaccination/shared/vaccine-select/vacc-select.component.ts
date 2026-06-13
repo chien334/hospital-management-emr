@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { SecurityService } from "../../../security/shared/security.service";
 import { VaccinationBLService } from "../vaccination.bl.service";
 

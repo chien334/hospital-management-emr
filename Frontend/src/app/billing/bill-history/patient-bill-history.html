@@ -140,7 +140,7 @@
                                         </thead>
                                         <tr *ngFor="let invoice of returnedPatBillHistoryDetail" class="returned">
                                             <td>
-                                                <!-- {{invoice.Date | DanpheDateTime:'format':'YYYY-MM-DD'}} -->
+                                                <!-- {{invoice.Date | DsfDateTime:'format':'YYYY-MM-DD'}} -->
                                                 <date-lbl [value]="invoice.Date"> </date-lbl>
 
                                             </td>
@@ -170,7 +170,7 @@
                                         </thead>
                                         <tr *ngFor="let invoice of insuranceBillDetail" class="insurance">
                                             <td>
-                                                <!-- {{invoice.Date | DanpheDateTime:'format':'YYYY-MM-DD'}} -->
+                                                <!-- {{invoice.Date | DsfDateTime:'format':'YYYY-MM-DD'}} -->
                                                 <date-lbl [value]="invoice.Date"> </date-lbl>
                                             </td>
                                             <td>{{invoice.InvoiceNo}}</td>
@@ -205,7 +205,7 @@
                                         </thead>
                                         <tr *ngFor="let prItems of patBillHistoryDetail.ProvisionalItems">
                                             <td>
-                                                <!-- {{prItems.Date | DanpheDateTime:'format':'YYYY.MM.DD HH:mm'}} -->
+                                                <!-- {{prItems.Date | DsfDateTime:'format':'YYYY.MM.DD HH:mm'}} -->
                                                 <date-lbl [value]="prItems.Date" [show-time]="true"></date-lbl>
                                             </td>
                                             <td>{{prItems.ServiceDepartmentName}}</td>
@@ -240,7 +240,7 @@
                                             <td *ngIf="deposit.ReceiptNum">{{deposit.ReceiptNo}}</td>
                                             <td *ngIf="!deposit.ReceiptNum"></td>
                                             <td>
-                                                <!-- {{deposit.Date | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                                                <!-- {{deposit.Date | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                                                 <date-lbl [value]="deposit.Date" [show-time]="true"></date-lbl>
                                             </td>
                                             <td>
@@ -273,7 +273,7 @@
                                         </thead>
                                         <tr *ngFor="let settlement of patBillHistoryDetail.Settlements">
                                             <td>
-                                                <!-- {{settlement.SettlementDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                                                <!-- {{settlement.SettlementDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                                                 <date-lbl [value]="settlement.SettlementDate" [show-time]="true"></date-lbl>
                                             </td>
                                             <td>{{settlement.SettlementReceipt}}</td>
@@ -301,7 +301,7 @@
                                         </thead>
                                         <tr *ngFor="let canItems of patBillHistoryDetail.CancelledItems" class="cancel">
                                             <td>
-                                                <!-- {{canItems.CancelledDate | DanpheDateTime:'format':'YYYY-MM-DD'}} -->
+                                                <!-- {{canItems.CancelledDate | DsfDateTime:'format':'YYYY-MM-DD'}} -->
                                                 <date-lbl [value]="canItems.CancelledDate"></date-lbl>
                                             </td>
                                             <td>{{canItems.ServiceDepartmentName}}</td>
@@ -330,7 +330,7 @@
                                         No:{{patient.PatientCode}}</label>
                                     <label
                                            style="display: block; font-weight: 600; border: none;font-family: 'Verdana'; padding: 3px; font-size: 12px;">Patient:
-                                        {{patient.ShortName}} | ( {{patient.DateOfBirth | DanpheDateTime:'age' }}/{{patient.Gender}}
+                                        {{patient.ShortName}} | ( {{patient.DateOfBirth | DsfDateTime:'age' }}/{{patient.Gender}}
                                         )</label>
                                 </td>
                                 <td align="right" style="border: none; padding:0px">
@@ -392,7 +392,7 @@
                                             <tr *ngFor="let bill of patBillHistoryDetail.PaidItems">
                                                 <td
                                                     style="font-weight: 500; border: 1px solid #000;font-family: 'Verdana'; padding: 7px; font-size: 12px;">
-                                                    <!-- {{bill.Date | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                                                    <!-- {{bill.Date | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                                                     <date-lbl [value]="bill.Date" [show-time]="true"></date-lbl>
                                                 </td>
                                                 <td
@@ -469,7 +469,7 @@
                                             <tr *ngFor="let bill of patBillHistoryDetail.UnpaidItems">
                                                 <td
                                                     style="font-weight: 500; border: 1px solid #000;font-family: 'Verdana'; padding: 7px; font-size: 12px;">
-                                                    <!-- {{bill.Date | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                                                    <!-- {{bill.Date | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                                                     <date-lbl [value]="bill.Date" [show-time]="true"></date-lbl>
                                                 </td>
                                                 <td
@@ -546,7 +546,7 @@
                                             <tr *ngFor="let bill of patBillHistoryDetail.ReturnedItems">
                                                 <td
                                                     style="font-weight: 500; border: 1px solid #000;font-family: 'Verdana'; padding: 7px; font-size: 12px;">
-                                                    <!-- {{bill.Date | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                                                    <!-- {{bill.Date | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                                                     <date-lbl [value]="bill.Date" [show-time]="true"></date-lbl>
                                                 </td>
                                                 <td
@@ -623,7 +623,7 @@
                                             <tr *ngFor="let bill of patBillHistoryDetail.ProvisionalItems">
                                                 <td
                                                     style="font-weight: 500; border: 1px solid #000;font-family: 'Verdana'; padding: 7px; font-size: 12px;">
-                                                    <!-- {{bill.Date | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                                                    <!-- {{bill.Date | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                                                     <date-lbl [value]="bill.Date" [show-time]="true"></date-lbl>
                                                 </td>
                                                 <td
@@ -697,7 +697,7 @@
                                             <tr *ngFor="let bill of patBillHistoryDetail.CancelledItems">
                                                 <td
                                                     style="font-weight: 500; border: 1px solid #000;font-family: 'Verdana'; padding: 7px; font-size: 12px;">
-                                                    <!-- {{bill.CancelledDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                                                    <!-- {{bill.CancelledDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                                                     <date-lbl [value]="bill.CancelledDate" [show-time]="true"></date-lbl>
                                                 </td>
                                                 <td
@@ -766,7 +766,7 @@
                                             <tr *ngFor="let bill of patBillHistoryDetail.InsuranceItems">
                                                 <td
                                                     style="font-weight: 500; border: 1px solid #000;font-family: 'Verdana'; padding: 7px; font-size: 12px;">
-                                                    <!-- {{bill.Date | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                                                    <!-- {{bill.Date | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                                                     <date-lbl [value]="bill.Date" [show-time]="true"></date-lbl>
                                                 </td>
                                                 <td
@@ -839,7 +839,7 @@
                                             <tr *ngFor="let deposit of patBillHistoryDetail.Deposits">
                                                 <td
                                                     style="font-weight: 500; border: 1px solid #000;font-family: 'Verdana'; padding: 7px; font-size: 12px;">
-                                                    <!-- {{deposit.Date | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
+                                                    <!-- {{deposit.Date | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} -->
                                                     <date-lbl [value]="deposit.Date" [show-time]="true"></date-lbl>
                                                 </td>
                                                 <td *ngIf="!deposit.ReceiptNum"

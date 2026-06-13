@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportingService } from '../../../../reporting/shared/reporting-service';
 import { DLService } from '../../../../shared/dl.service';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import * as moment from 'moment';
 import { AdmissionAndDischargeVM, BedFeatureModel, DepartmentModel, WardModel } from './AdmissionAndDischargeVM';
 import { Observable } from 'rxjs-compat';

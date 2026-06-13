@@ -36,10 +36,10 @@ import { PriceCategory } from "../../../settings-new/shared/price.category.model
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
 import { NepaliDate } from "../../../shared/calendar/np/nepali-dates";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonValidators } from "../../../shared/common-validator";
 import { CommonFunctions } from '../../../shared/common.functions';
-import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_BillingType, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_IntegrationNames, ENUM_MessageBox_Status, ENUM_PriceCategory, ENUM_RegistrationSubCases, ENUM_SSF_EligibilityType, ENUM_ServiceBillingContext, ENUM_ValidatorTypes, ENUM_VisitType } from "../../../shared/shared-enums";
+import { ENUM_BillPaymentMode, ENUM_BillingStatus, ENUM_BillingType, ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_IntegrationNames, ENUM_MessageBox_Status, ENUM_PriceCategory, ENUM_RegistrationSubCases, ENUM_SSF_EligibilityType, ENUM_ServiceBillingContext, ENUM_ValidatorTypes, ENUM_VisitType } from "../../../shared/shared-enums";
 import { AdmissionSlipDetails_DTO } from "../../shared/DTOs/admission-slip-details.dto";
 import { AdtAutoBillingItem_DTO } from "../../shared/DTOs/adt-auto-billingItems.dto";
 import { AdtBedFeatureSchemePriceCategoryMap_DTO } from "../../shared/DTOs/adt-bedfeature-scheme-pricecategory-map.dto";
@@ -52,7 +52,7 @@ import { SchemePriceCategoryCustomType } from "../../../billing/shared/custom-da
 @Component({
   templateUrl: "./admission-create.html",
   styleUrls: ['./admission-create.component.css'],
-  styles: [`.inl-blk, danphe-date-picker{display: inline-block;} .flx{display: flex;}`],
+  styles: [`.inl-blk, dsf-date-picker{display: inline-block;} .flx{display: flex;}`],
   host: { '(window:keydown)': 'hotkeys($event)' }
 })
 export class AdmissionCreateComponent {
@@ -248,7 +248,7 @@ export class AdmissionCreateComponent {
   //   else {
   //     this.admissionBLService.GetBillItemList(srvIdList, itemIdList)
   //       .subscribe((res) => {
-  //         if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+  //         if (res.Status === ENUM_DsfHTTPResponseText.OK) {
   //           if (res.Results && res.Results.length) {
   //             let items = [];
   //             this.additionalBillingItemsInAdt.forEach(v => {
@@ -467,8 +467,8 @@ export class AdmissionCreateComponent {
     // }
   }
   GetPatientLastVisitContext(PatientId: number): void {
-    this.billingBlService.GetPatientLatestVisitContext(this.patientId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this.billingBlService.GetPatientLatestVisitContext(this.patientId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.PatientLastVisitContext = res.Results[0];
         if (this.PatientLastVisitContext && this.PatientLastVisitContext.VisitType && this.PatientLastVisitContext.VisitType.toLowerCase() === ENUM_VisitType.outpatient.toLowerCase()) {
           this.SchemePriceCategoryFromVisit.SchemeId = this.PatientLastVisitContext.SchemeId;
@@ -486,7 +486,7 @@ export class AdmissionCreateComponent {
 
   GetSchemeAdtAutoBillingItemsAndDepositSettings(schemeId: number, priceCategoryId: number): void {
     this._admissionMasterBlService.GetSchemeAdtAutoBillingItemsAndDepositSettings(schemeId, priceCategoryId, ENUM_ServiceBillingContext.IpBilling).subscribe(
-      (res: Array<DanpheHTTPResponse>) => {
+      (res: Array<DsfHTTPResponse>) => {
         if (res && res.length > 0) {
           //* Krishna, 15th,June'23, Taking index 0 for AutoBillingItems and index 1 for DepositSettings because forkJoin is used at its back.
           const adtSchemeAutoBillingItems = res[0];
@@ -542,10 +542,10 @@ export class AdmissionCreateComponent {
   GetNewClaimCode() {
     this.admissionBLService.GetNewClaimCode()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.CurrentAdmission.ClaimCode = res.Results;
         }
-        else if (res.Status === ENUM_DanpheHTTPResponses.Failed) {
+        else if (res.Status === ENUM_DsfHTTPResponses.Failed) {
           this.CurrentAdmission.ClaimCode = res.Results;
           this.msgBoxServ.showMessage("warning", [res.ErrorMessage]);
           console.log(res.Errors);
@@ -560,10 +560,10 @@ export class AdmissionCreateComponent {
   GetOldClaimCode() {
     this.admissionBLService.GetOldClaimCode(this.CurrentAdmission.PatientId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.CurrentAdmission.ClaimCode = res.Results;
         }
-        else if (res.Status === ENUM_DanpheHTTPResponses.Failed) {
+        else if (res.Status === ENUM_DsfHTTPResponses.Failed) {
           this.CurrentAdmission.ClaimCode = res.Results;
           this.msgBoxServ.showMessage("warning", [res.ErrorMessage]);
           console.log(res.Errors);
@@ -579,7 +579,7 @@ export class AdmissionCreateComponent {
   public GetDocDptAndWardList() {
     this.admissionBLService.GetDocDptAndWardList(this.patientId, this.patientVisitId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.doctorList = res.Results.DoctorList;
           this.filteredDocList = res.Results.DoctorList;
           this.deptList = res.Results.DepartmentList;
@@ -637,7 +637,7 @@ export class AdmissionCreateComponent {
   GetPatientDeposit() {
     this.admissionBLService.GetPatientDeposits(this.CurrentAdmission.PatientId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK)
+        if (res.Status === ENUM_DsfHTTPResponses.OK)
           this.CalculatePatDepositBalance(res.Results);
         else {
           this.msgBoxServ.showMessage("failed", ["Unable to get deposit detail"]);
@@ -665,7 +665,7 @@ export class AdmissionCreateComponent {
   }
 
   CallBackGenerateDoctor(res) {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       this.doctorList = [];
       if (res && res.Results) {
 
@@ -807,7 +807,7 @@ export class AdmissionCreateComponent {
       this.admissionBLService.PostAdmission(this.CurrentAdmission, this.CurrentPatientBedInfo, this.CurrentDeposit, this.CurrentAdmission.BillingTransaction)
         .subscribe(
           res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
               this.GetDetailsForAdmissionSlip(res.Results.PatientVisitId);
               this.coreService.loading = false;
               let retObj = res.Results;
@@ -873,7 +873,7 @@ export class AdmissionCreateComponent {
     try {
       this.admissionBLService.GetWards()
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             if (res.Results.length) {
               this.wardList = res.Results;
             }
@@ -899,7 +899,7 @@ export class AdmissionCreateComponent {
       this.CurrentPatientBedInfo.BedPrice = null;
       this.admissionBLService.GetWardBedFeatures(wardId, this.CurrentAdmission.PriceCategoryId)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             if (res.Results.length) {
               this.bedFeatureList = res.Results;
               this.OriginalBedFeatureList = res.Results;
@@ -1377,8 +1377,8 @@ export class AdmissionCreateComponent {
 
   getSSFPatientDetailLocally() {
     this.SSFEligibility = [];
-    this.visitBLService.getSSFPatientDetailLocally(this.CurrentAdmission.PatientId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.visitBLService.getSSFPatientDetailLocally(this.CurrentAdmission.PatientId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         let patientMapPriceCategory = new PatientScheme();
         patientMapPriceCategory = res.Results;
         this.CurrentAdmission.PatientSchemesMap.RegistrationCase = patientMapPriceCategory.RegistrationCase;
@@ -1401,14 +1401,14 @@ export class AdmissionCreateComponent {
         this.LoadSSFEmployer();
         this.isClaimed(patientMapPriceCategory.LatestClaimCode, this.CurrentAdmission.PatientId);
       }
-    }, (err: DanpheHTTPResponse) => {
-      this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Unable to get SSF Patient Detail Locally"]);
+    }, (err: DsfHTTPResponse) => {
+      this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Unable to get SSF Patient Detail Locally"]);
     });
   }
 
   LoadSSFEmployer() {
-    this.visitBLService.GetSSFEmployerDetail(this.CurrentAdmission.PatientSchemesMap.PolicyHolderUID).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this.visitBLService.GetSSFEmployerDetail(this.CurrentAdmission.PatientSchemesMap.PolicyHolderUID).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.SSFCompany = res.Results[0];
       }
     },
@@ -1420,16 +1420,16 @@ export class AdmissionCreateComponent {
 
   isClaimed(LatestClaimCode: number, PatientId: number): void {
     this.visitBLService.IsClaimed(LatestClaimCode, PatientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results === true) {
             this.isClaimSuccessful = true;
             this.getSSFPatientDetail();
           }
         }
       },
-        (err: DanpheHTTPResponse) => {
-          this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Unable to check for pending claims"]);
+        (err: DsfHTTPResponse) => {
+          this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Unable to check for pending claims"]);
         }
       );
   }
@@ -1443,7 +1443,7 @@ export class AdmissionCreateComponent {
       this.CurrentAdmission.PatientSchemesMap.PolicyHolderEmployerID = "";
       this.CurrentAdmission.PatientSchemesMap.RegistrationSubCase = "non work related";
       this.visitBLService.GetSSFPatientDetail(this.CurrentAdmission.PatientSchemesMap.PolicyNo).subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.UUID !== null) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.UUID !== null) {
           let result = res.Results;
           this.patient.FirstName = result.name;
           this.patient.MiddleName = "";
@@ -1547,8 +1547,8 @@ export class AdmissionCreateComponent {
     }
   }
   GetBedFeatureSchemePriceCategoryMap(schemeId: number): void {
-    this._admissionMasterBlService.GetBedFeatureSchemePriceCategoryMap(schemeId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this._admissionMasterBlService.GetBedFeatureSchemePriceCategoryMap(schemeId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.AdtBedFeatureSchemePriceCategoryMap = res.Results;
 
         if (this.OriginalBedFeatureList && this.OriginalBedFeatureList.length > 0) {
@@ -1588,8 +1588,8 @@ export class AdmissionCreateComponent {
   public GetDetailsForAdmissionSlip(PatientVisitId: number): void {
     try {
       this.admissionBLService.GetDetailsForAdmissionSlip(PatientVisitId)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
             this.admissionSlipDetails = res.Results;
             this.showAdmissionSlip = true;
           }

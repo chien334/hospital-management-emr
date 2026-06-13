@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from "@angular/core";
 import { PharmacyBLService } from '../../shared/pharmacy.bl.service';
 import { PharmacyService } from '../../shared/pharmacy.service';
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { CreditOrganization } from "../../shared/pharmacy-credit-organizations.model";
 
 import * as moment from 'moment/moment';

@@ -6,12 +6,12 @@ import WARDGridColumns from "../../shared/ward-grid-cloumns";
 import { WARDReportsModel } from '../../shared/ward-report.model';
 import { SecurityService } from '../../../security/shared/security.service';
 import { Router } from '@angular/router';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
 import { InventoryBLService } from '../../../inventory/shared/inventory.bl.service';
 import { ItemSubCategory } from '../../shared/SubCategory.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 
 
 @Component({
@@ -81,8 +81,8 @@ export class ConsumptionReportComponent {
       this.isInternalConsumption = false;
       this.isPatientConsumption = false;
       this.wardBLService.GetConsumptionReport(this.wardReports)
-          .subscribe((res: DanpheHTTPResponse) => {
-              if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+          .subscribe((res: DsfHTTPResponse) => {
+              if (res.Status == ENUM_DsfHTTPResponseText.OK) {
             this.ConsumptionReportData = res.Results;
             this.NewWardConsumptionData = res.Results;
           }

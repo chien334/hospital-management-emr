@@ -31,8 +31,8 @@
                       <p>{{GeneralFieldLabel.PANNo}}:<b>{{currentGR.Pin}}</b>
                     </div>
                     <div class="right" style="text-align:right;">
-                      <p>{{ 'PHARMACY.SUPPLIER_BILL_DATE' | translate }} :<b> {{currentGR.SupplierBillDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</b></p>
-                      <p>{{ 'PHARMACY.GOOD_RECEIPT_DATE' | translate }} :<b> {{currentGR.GoodReceiptDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</b></p>
+                      <p>{{ 'PHARMACY.SUPPLIER_BILL_DATE' | translate }} :<b> {{currentGR.SupplierBillDate | DsfDateTime:'format':'YYYY-MM-DD'}}</b></p>
+                      <p>{{ 'PHARMACY.GOOD_RECEIPT_DATE' | translate }} :<b> {{currentGR.GoodReceiptDate | DsfDateTime:'format':'YYYY-MM-DD'}}</b></p>
                       <p>{{ 'PHARMACY.INVOICE_NO' | translate }}: <b>{{currentGR.InvoiceNo}}</b></p>
                       <p *ngIf="currentGR.CreditPeriod">{{ 'PHARMACY.CREDIT_PERIOD' | translate }}: <strong>{{currentGR.CreditPeriod}}</strong></p>
                     </div>
@@ -73,8 +73,8 @@
                                   </span>
                                   <p class="tooltiptext ttptextdown no-print">
                                     {{ 'PHARMACY.CLICK_TO_PRINT_BARCODE' | translate }}
-                                    <danphe-bar-code id="barcode{{i}}" [barcode-number]="row.BarcodeNumber" [height]="15">
-                                    </danphe-bar-code>
+                                    <dsf-bar-code id="barcode{{i}}" [barcode-number]="row.BarcodeNumber" [height]="15">
+                                    </dsf-bar-code>
                                   </p>
                                 </span>
                               </button>
@@ -84,7 +84,7 @@
                             <td>{{row.BatchNo}}</td>
                             <td>{{row.RackNo}}</td>
                             <td>{{row.SalePrice | number : "1.2-2"}}</td>
-                            <td style="width:100px">{{row.ExpiryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                            <td style="width:100px">{{row.ExpiryDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                             <td *ngIf="isPackingEnabled">{{row.PackingName}}</td>
                             <td *ngIf="isPackingEnabled">{{row.PackingQuantity}}</td>
                             <td>{{row.ReceivedQuantity}}</td>
@@ -146,10 +146,10 @@
                       </div>
                       <div class="col-md-6 right text-right">
                         <div *ngIf="!currentGR.IsCancel && currentGR.CreatedOn">
-                          {{ 'COMMON.TIME' | translate }}: {{currentGR.CreatedOn | DanpheDateTime:'format':'HH:mm'}}
+                          {{ 'COMMON.TIME' | translate }}: {{currentGR.CreatedOn | DsfDateTime:'format':'HH:mm'}}
                         </div>
                         <div *ngIf="currentGR.IsCancel">
-                          {{ 'PHARMACY.CANCELLEDON' | translate }}: {{currentGR.CancelledOn | DanpheDateTime:'format':'YYYY-MM-DD' }}
+                          {{ 'PHARMACY.CANCELLEDON' | translate }}: {{currentGR.CancelledOn | DsfDateTime:'format':'YYYY-MM-DD' }}
                         </div>
                       </div>
                     </div>

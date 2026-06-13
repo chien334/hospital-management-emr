@@ -1,9 +1,9 @@
 import { Component, Directive } from '@angular/core';
 import { Input } from "@angular/core"
 @Component({
-    selector: "danphe-loading",
+    selector: "dsf-loading",
     template: `
-   <div class="danphe-loading-image" [hidden]="!showLoading">
+   <div class="dsf-loading-image" [hidden]="!showLoading">
     <img style="margin-top: 60px;width: 120px; height: 120px;" [src]="pathToImage" />
     <p style="font-size: 24px;color: #fff;"><b>{{ 'NAVBAR.LOADING' | translate }}</b></p>
     </div>`,

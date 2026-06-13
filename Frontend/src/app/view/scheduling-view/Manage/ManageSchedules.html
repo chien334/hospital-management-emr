@@ -10,13 +10,13 @@
             <b style="float:right;">:</b>
         </label>
         <div class="col-md-8">
-            <danphe-multiselect [ddl-data]="EmployeeList"
+            <dsf-multiselect [ddl-data]="EmployeeList"
                                 [placeholder-text]="'SCHEDULING.SELECT_EMPLOYEES' | translate"
                                 [value-property-name]="'EmployeeId'"
                                 (selected-items-list)="onChange($event)"
                                 [display-property-name]="'EmployeeName'"
                                 [single-selection]="false">
-            </danphe-multiselect>
+            </dsf-multiselect>
         </div>
     </div>
     <div class="col-md-2">

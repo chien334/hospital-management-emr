@@ -4,10 +4,10 @@ import { Patient_DTO } from "../../../claim-management/shared/DTOs/patient.dto";
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { BillingScheme_DTO } from "../../../settings-new/billing/shared/dto/billing-scheme.dto";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import {
-  ENUM_DanpheHTTPResponses,
+  ENUM_DsfHTTPResponses,
   ENUM_Data_Type,
   ENUM_MessageBox_Status,
   ENUM_ProcessConfirmationActions,
@@ -59,8 +59,8 @@ export class SchemeRefundComponent implements OnInit {
   }
   public GetBillingSchems() {
     this.utilitiesBlService.GetBillingSchmes().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results && res.Results.length > 0) {
             this.billingSchmes = res.Results;
           } else {
@@ -72,7 +72,7 @@ export class SchemeRefundComponent implements OnInit {
           ]);
         }
       },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [
           `Error: ${err.ErrorMessage}`,
         ]);
@@ -84,8 +84,8 @@ export class SchemeRefundComponent implements OnInit {
     let searchPatient = this.utilitiesBlService.GetPatientsWithVisitsInfo(keyword);
 
     searchPatient.subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.patientSearchResult = res.Results;
         }
         else {
@@ -211,8 +211,8 @@ export class SchemeRefundComponent implements OnInit {
           this.PreviousSchemeRefundDetail = new Array<PatientSchemeRefundsList_DTO>();
         })
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               if (res.Results) {
                 this.messageBoxService.showMessage(
                   ENUM_MessageBox_Status.Success,
@@ -224,7 +224,7 @@ export class SchemeRefundComponent implements OnInit {
               this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error: ${res.ErrorMessage}`,]);
             }
           },
-          (err: DanpheHTTPResponse) => {
+          (err: DsfHTTPResponse) => {
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Error: ${err.ErrorMessage}`,]);
           }
         );
@@ -253,8 +253,8 @@ export class SchemeRefundComponent implements OnInit {
     this.utilitiesBlService
       .GetPatientSchemeRefunds(this.schemeRefundObject.PatientId)
       .subscribe(
-        (res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        (res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.PreviousSchemeRefundDetail = res.Results;
             this.loading = false;
           } else {

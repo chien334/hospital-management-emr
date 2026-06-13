@@ -35,7 +35,7 @@
 </div>
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="deptwiseGridColumns" [grid-data]="RequisitionGridDataFiltered" [show-CustomDate]="true" [rangeType]="dateRange" [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="RequisitionGridAction($event)" (onDateChange)="onDateChange($event)"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="deptwiseGridColumns" [grid-data]="RequisitionGridDataFiltered" [show-CustomDate]="true" [rangeType]="dateRange" [NepaliDateInGridParams]="NepaliDateInGridSettings" (grid-actions)="RequisitionGridAction($event)" (onDateChange)="onDateChange($event)"> </dsf-grid>
   </div>
 </div>
 <inventory-ward-requisition-details *ngIf="showInventoryRequisitionDetails" (call-back-inventory-requisition-details-popup-close)="CloseInventoryRequisitionDetailsPopup($event)">

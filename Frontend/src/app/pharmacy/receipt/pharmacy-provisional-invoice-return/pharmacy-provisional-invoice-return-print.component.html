@@ -106,7 +106,7 @@
                   </td>
                   <td colspan="6" style="text-align: right;">
                     <p class="c_paragraphs"><strong>{{ 'PHARMACY.RETURN_DATE' | translate }}:</strong> {{ProvisionalInvoiceReturn.ReturnDate |
-                      DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
+                      DsfDateTime:'format':'YYYY-MM-DD'}}</p>
                   </td>
                 </tr>
                 <tr>
@@ -124,7 +124,7 @@
                       {{ProvisionalInvoiceReturn.PatientInfo.CountrySubDivisionName}} </p>
                   </td>
                   <td colspan="6" style="text-align: right;">
-                    <p class="c_paragraphs"><strong> {{ 'GRID_HEADERS.AGE_SEX' | translate }} :</strong>{{ProvisionalInvoiceReturn.PatientInfo.DateOfBirth | DanpheDateTime:'age'
+                    <p class="c_paragraphs"><strong> {{ 'GRID_HEADERS.AGE_SEX' | translate }} :</strong>{{ProvisionalInvoiceReturn.PatientInfo.DateOfBirth | DsfDateTime:'age'
                       }}/{{ProvisionalInvoiceReturn.PatientInfo.Gender}}</p>
                   </td>
                 </tr>
@@ -208,7 +208,7 @@
             </td>
             <td colspan="6" style="padding: 5px!important; vertical-align: top; text-align: right;" style="color:black!important;">
               <p class="c_paragraphs" style="text-align: right;"><strong>{{ 'COMMON.TIME' | translate }}: </strong>{{ProvisionalInvoiceReturn.ReturnDate |
-                DanpheDateTime:'format':'HH:mm'}}</p>
+                DsfDateTime:'format':'HH:mm'}}</p>
             </td>
           </tr>
           <tr>

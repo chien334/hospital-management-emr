@@ -285,11 +285,11 @@ DBCC CHECKIDENT ('CSSD_TXN_ItemTransaction', RESEED, 0);
 delete from CLN_SurgicalHistory
 DBCC CHECKIDENT ('CLN_SurgicalHistory', RESEED, 0);
 
-delete from DanpheAudit
-DBCC CHECKIDENT ('DanpheAudit', RESEED, 0);
+delete from DsfAudit
+DBCC CHECKIDENT ('DsfAudit', RESEED, 0);
 
-delete from DanpheLogInInformation
-DBCC CHECKIDENT ('DanpheLogInInformation', RESEED, 0);
+delete from DsfLogInInformation
+DBCC CHECKIDENT ('DsfLogInInformation', RESEED, 0);
 
 delete from DOC_TXN_VisitSummary
 DBCC CHECKIDENT ('DOC_TXN_VisitSummary', RESEED, 0);

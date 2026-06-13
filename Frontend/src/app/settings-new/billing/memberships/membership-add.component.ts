@@ -5,7 +5,7 @@ import { SettingsBLService } from '../../shared/settings.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 import { CommonFunctions } from "../../../shared/common.functions";
-import { ENUM_DanpheHTTPResponseText } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText } from '../../../shared/shared-enums';
 
 @Component({
   selector: "membership-add",
@@ -64,7 +64,7 @@ export class MembershipAddComponent {
     }
     if (this.CurrentMembership.IsValidCheck(undefined, undefined)) {
       if(this.CurrentMembership.IsDiscountApplicable && this.CurrentMembership.DiscountPercent <= 0){
-        this.showMessageBox(ENUM_DanpheHTTPResponseText.Failed,"Discount Percent should be greater than 0 when Membership is Applicable for Discount");
+        this.showMessageBox(ENUM_DsfHTTPResponseText.Failed,"Discount Percent should be greater than 0 when Membership is Applicable for Discount");
         return;
       }
       this.settingsBLService.AddMembership(this.CurrentMembership)
@@ -86,7 +86,7 @@ export class MembershipAddComponent {
       this.CurrentMembership.MembershipValidator.controls[i].updateValueAndValidity();
     }
     if(this.CurrentMembership.IsDiscountApplicable && this.CurrentMembership.DiscountPercent <= 0){
-      this.showMessageBox(ENUM_DanpheHTTPResponseText.Failed,"Discount Percent should be greater than 0 when Membership is Applicable for Discount");
+      this.showMessageBox(ENUM_DsfHTTPResponseText.Failed,"Discount Percent should be greater than 0 when Membership is Applicable for Discount");
       return;
     }
     if (this.CurrentMembership.IsValidCheck(undefined, undefined)) {

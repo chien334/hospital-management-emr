@@ -41,19 +41,19 @@ export default class VaccinationGridColumnSettings {
     //by default: print sticker wil be there in the action.
     let templateHtml = "";
 
-    templateHtml += `<a danphe-grid-action="sticker" class="grid-action">Sticker</a>`;
+    templateHtml += `<a dsf-grid-action="sticker" class="grid-action">Sticker</a>`;
 
     //show followup button only for past days visits.
     if (moment(todaysdate).diff(visitdate, "days") > 0) {
-      templateHtml += `<a danphe-grid-action="followup" class="grid-action">Followup</a>`;
+      templateHtml += `<a dsf-grid-action="followup" class="grid-action">Followup</a>`;
     }
 
     templateHtml += `<div class="dropdown" style="display:inline-block;">
                       <button class="dropdown-toggle grid-btnCstm" type="button" data-toggle="dropdown">...
                       <span class="caret"></span></button>
                       <ul class="dropdown-menu grid-ddlCstm">
-                        <li><a danphe-grid-action="edit">Edit Patient Info</a></li>
-                        <li><a danphe-grid-action="vaccination">Vaccination</a></li>
+                        <li><a dsf-grid-action="edit">Edit Patient Info</a></li>
+                        <li><a dsf-grid-action="vaccination">Vaccination</a></li>
                       </ul>
                     </div>`;
 
@@ -107,7 +107,7 @@ export default class VaccinationGridColumnSettings {
       headerName: "Actions",
       field: "",
       width: 40,
-      template: `<a danphe-grid-action="edit" class="grid-action">Edit</a>`
+      template: `<a dsf-grid-action="edit" class="grid-action">Edit</a>`
     }
   ];
 

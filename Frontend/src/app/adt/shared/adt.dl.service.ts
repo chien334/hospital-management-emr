@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { DischargeDetailBillingVM } from "../../billing/ip-billing/shared/discharge-bill.view.models";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { AdmissionCancelVM, AdmittingDocInfoVM } from "./admission.view.model";
 import { PatientBedInfo } from "./patient-bed-info.model";
 
@@ -51,11 +51,11 @@ export class ADT_DLService {
   }
 
   public GetDetailsForAdmissionSlip(PatientVisitId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Admission/AdmissionSlipDetails?PatientVisitId=${PatientVisitId}`, this.options);
+    return this.http.get<DsfHTTPResponse>(`/api/Admission/AdmissionSlipDetails?PatientVisitId=${PatientVisitId}`, this.options);
   }
 
   public GetDetailsForDischargeSlip(PatientVisitId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Admission/DischargeSlipDetails?PatientVisitId=${PatientVisitId}`, this.options);
+    return this.http.get<DsfHTTPResponse>(`/api/Admission/DischargeSlipDetails?PatientVisitId=${PatientVisitId}`, this.options);
   }
 
   // used for discharge summary of admitted patient
@@ -271,7 +271,7 @@ export class ADT_DLService {
   }
   public PostDischargeCancelBill(dischargeCancel) {
     let data = JSON.stringify(dischargeCancel);
-    return this.http.post<DanpheHTTPResponse>("/api/Admission/CancelDischargeBill", data, this.options);
+    return this.http.post<DsfHTTPResponse>("/api/Admission/CancelDischargeBill", data, this.options);
   }
 
   public PostAdmissionRemark(admission) {
@@ -445,13 +445,13 @@ export class ADT_DLService {
   }
 
   public GetAdmissionSchemePriceCategoryInfo(patientVisitId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Admission/AdmissionSchemePriceCategoryInfo?patientVisitId=${patientVisitId}`);
+    return this.http.get<DsfHTTPResponse>(`/api/Admission/AdmissionSchemePriceCategoryInfo?patientVisitId=${patientVisitId}`);
   }
   public GetAvailableBedAndBedFeaturePrice(wardId: number, bedFeatureId: number, priceCategoryId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Admission/AvailableBedsAndBedFeaturePrice?wardId=${wardId}&bedFeatureId=${bedFeatureId}&priceCategoryId=${priceCategoryId}`);
+    return this.http.get<DsfHTTPResponse>(`/api/Admission/AvailableBedsAndBedFeaturePrice?wardId=${wardId}&bedFeatureId=${bedFeatureId}&priceCategoryId=${priceCategoryId}`);
   }
   public IsPreviousBedAvailable(patientVisitId: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Admission/IsPreviousBedAvailable?patientVisitId=${patientVisitId}`);
+    return this.http.get<DsfHTTPResponse>(`/api/Admission/IsPreviousBedAvailable?patientVisitId=${patientVisitId}`);
   }
   public GetAppointmentApplicableDoctorsInfo() {
     return this.http.get<any>(

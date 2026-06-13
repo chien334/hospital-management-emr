@@ -23,8 +23,8 @@
         <div class="row">
           <label class="control-label col-md-4"><b>{{ 'WARD_SUPPLY.REQUISITION_DATE' | translate }}<b style="float:right">:</b> </b></label>
           <div class="col-md-8">
-            <danphe-date-picker [(ngModel)]="requisition.RequisitionDate" [ngModelOptions]="{standalone:true}"
-              ngDefaultControl [CalendarTypes]="'np,en'"> </danphe-date-picker>
+            <dsf-date-picker [(ngModel)]="requisition.RequisitionDate" [ngModelOptions]="{standalone:true}"
+              ngDefaultControl [CalendarTypes]="'np,en'"> </dsf-date-picker>
               <div class="error-message" *ngIf="IsReqDateValid == false"> {{ 'WARD_SUPPLY.INVALID_FISCAL_YEAR_DATE' | translate }} </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
             </td>
             <td style="width:250px">
               <form [formGroup]="row.RequisitionItemValidator">
-                <input danphe-auto-complete class="form-control" id="itemName{{i}}" *ngIf="row.IsEditApplicable == true"
+                <input dsf-auto-complete class="form-control" id="itemName{{i}}" *ngIf="row.IsEditApplicable == true"
                   [(ngModel)]="row.SelectedItem" [source]="ItemList" [list-formatter]="myListFormatter"
                   [placeholder]="'WARD_SUPPLY.ITEM_NAME' | translate" display-property-name="ItemName" value-property-name=null
                   onclick="this.select();" (valueChanged)="SelectItemFromSearchBox(row.SelectedItem,i)" min-chars="1" max-num-list="20"

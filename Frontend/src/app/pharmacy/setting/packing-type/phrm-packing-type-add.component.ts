@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Renderer2 } from "@angular/core";
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMCategoryModel } from "../../shared/phrm-category.model";
 import { PHRMPackingTypeModel } from "../../shared/phrm-packing-type.model";
@@ -73,8 +73,8 @@ export class PHRMPackingTypeAddComponent implements OnInit {
     }
     public GetPackingTypeList() {
         this.pharmacyBLService.GetPackingTypeList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                     this.packingtypeList = res.Results;
                 }
                 else {
@@ -94,8 +94,8 @@ export class PHRMPackingTypeAddComponent implements OnInit {
             this.CurrentPackingType.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.AddPackingType(this.CurrentPackingType)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Packing Type Added."]);
                             this.CallBackAddUpdate(res)
                         }
@@ -118,8 +118,8 @@ export class PHRMPackingTypeAddComponent implements OnInit {
             this.CurrentPackingType.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.UpdatePackingType(this.CurrentPackingType)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Packing Type Details Updated.']);
                             this.CallBackAddUpdate(res)
                         }

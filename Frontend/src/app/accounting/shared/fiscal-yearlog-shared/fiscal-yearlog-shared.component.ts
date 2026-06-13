@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import  GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
+import  GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
 import { AccountingSettingsBLService } from "../../settings/shared/accounting-settings.bl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 

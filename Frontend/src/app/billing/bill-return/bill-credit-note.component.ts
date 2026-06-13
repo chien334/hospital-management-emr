@@ -12,8 +12,8 @@ import { BillingBLService } from '../shared/billing.bl.service';
 import { BillingService } from '../shared/billing.service';
 
 import { PriceCategory } from "../../settings-new/shared/price.category.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import { ENUM_BillPaymentMode, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_ProcessConfirmationActions, ENUM_ProcessesToConfirmDisplayNames } from "../../shared/shared-enums";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import { ENUM_BillPaymentMode, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_ProcessConfirmationActions, ENUM_ProcessesToConfirmDisplayNames } from "../../shared/shared-enums";
 import { BillInvoiceReturnItemsModel } from "../shared/bill-invoice-return-items.model";
 import { CRN_CreditNoteAllInfoVM, CRN_InvoiceItemsVM } from "../shared/credit-note-vms";
 
@@ -135,7 +135,7 @@ export class BILL_CreditNoteComponent {
       this.loading = true;
       this.BillingBLService.GetInvoiceDetailsForCreditNote(recptNo, this.selFiscYrId, getVisitInfo, this.isInsuranceReceipt)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results && res.Results.IsInvoiceFound) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results && res.Results.IsInvoiceFound) {
             this.crnInfoVM = res.Results;
             // const priceCategory = this.allPriceCategories.find(a => a.PriceCategoryId === this.crnInfoVM.InvoiceInfo.PriceCategoryId);
             // this.InvoicePriceCategory = priceCategory;
@@ -188,13 +188,13 @@ export class BILL_CreditNoteComponent {
 
   CheckClaimStatus(claimCode: number, patientId: number): void {
     this.BillingBLService.IsClaimed(claimCode, patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.IsInvoiceClaimed = res.Results;
         }
       },
-        (err: DanpheHTTPResponse) => {
-          this.messageBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Cannot Check the Claim Status"]);
+        (err: DsfHTTPResponse) => {
+          this.messageBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["Cannot Check the Claim Status"]);
         }
       );
   }
@@ -212,7 +212,7 @@ export class BILL_CreditNoteComponent {
   SetCurrentFiscalYear() {
     //We may do this in client side itself since we already have list of all fiscal years with us. [Part of optimization.]
     this.BillingBLService.GetCurrentFiscalYear()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let fiscYr: BillingFiscalYear = res.Results;
           if (fiscYr) {

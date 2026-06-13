@@ -22,7 +22,7 @@ import { ClinicalDLService } from "../clinical/shared/clinical.dl.service";
 import { DoctorRevenueComponent } from "./summary/doctor-summary.component";
 
 //import { Ng2AutoCompleteModule } from  'ng2-auto-complete'
-import { DanpheAutoCompleteModule } from "../shared/danphe-autocomplete/danphe-auto-complete.module";
+import { DsfAutoCompleteModule } from "../shared/dsf-autocomplete/dsf-auto-complete.module";
 
 //moved Problems+History from Clinical to Doctors Module : sud-10June'18
 //import { FamilyHistoryListComponent } from '../clinical/history/family-history-list.component';
@@ -84,7 +84,7 @@ import { OutpatientMainComponent } from "./opd/outpatient-main.component";
         FormsModule,
         RouterModule.forChild(DoctorsRoutingConstant),
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         DynTemplateModule,
         ClinicalSharedModule,
         DoctorSharedModule], providers: [

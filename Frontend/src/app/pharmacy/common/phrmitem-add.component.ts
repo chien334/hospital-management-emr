@@ -2,7 +2,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from "@angular/core";
 import { Router } from '@angular/router';
 import PHRMGridColumns from '../shared/phrm-grid-columns';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 
 import { PHRMItemMasterModel } from "../shared/phrm-item-master.model";
 import { PHRMItemTypeModel } from "../shared/phrm-item-type.model";

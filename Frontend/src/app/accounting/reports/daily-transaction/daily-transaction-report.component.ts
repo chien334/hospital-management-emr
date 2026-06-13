@@ -2,8 +2,8 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import * as moment from 'moment/moment';
 import { CoreService } from '../../../core/shared/core.service';
 import { CommonFunctions } from '../../../shared/common.functions';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { AccountingService } from '../../shared/accounting.service';
@@ -64,9 +64,9 @@ export class DailyTransactionReportComponent {
   };
 
   public GetFiscalYearList() {
-    if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-      this.fiscalyearList = this.accountingService.accCacheData.FiscalYearList; //mumbai-team-june2021-danphe-accounting-cache-change
-      this.fiscalyearList = this.fiscalyearList.slice(); //mumbai-team-june2021-danphe-accounting-cache-change
+    if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+      this.fiscalyearList = this.accountingService.accCacheData.FiscalYearList; //mumbai-team-june2021-dsf-accounting-cache-change
+      this.fiscalyearList = this.fiscalyearList.slice(); //mumbai-team-june2021-dsf-accounting-cache-change
     }
   }
   public validDate: boolean = true;

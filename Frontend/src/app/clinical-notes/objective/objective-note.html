@@ -105,7 +105,7 @@
                             </tr>
                         </thead>
                         <tr *ngFor="let allergy of clinicalDetail.Allergies">
-                            <td>{{allergy.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                            <td>{{allergy.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                             <td>{{allergy.AllergyType}}</td>
                             <td>{{allergy.AllergenAdvRecName}}</td>
                             <td>{{allergy.Verified}}</td>
@@ -117,7 +117,7 @@
                             <tbody>
                                 <tr>
                                     <td>{{ 'CLINICAL.TAKEN_ON' | translate }}</td>
-                                    <td *ngFor="let vitals of vitalsList"><strong>{{vitals.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</strong></td>
+                                    <td *ngFor="let vitals of vitalsList"><strong>{{vitals.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</strong></td>
                                 </tr>
                                 <tr>
                                     <td>{{ 'CLINICAL.HEIGHT' | translate }}</td>

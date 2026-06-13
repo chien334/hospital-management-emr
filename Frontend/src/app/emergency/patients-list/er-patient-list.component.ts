@@ -7,7 +7,7 @@ import { Patient } from '../../patients/shared/patient.model';
 import { PatientService } from '../../patients/shared/patient.service';
 import { PatientsBLService } from '../../patients/shared/patients.bl.service';
 import { Municipality } from '../../shared/address-controls/municipality-model';
-import { GridEmitModel } from '../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../shared/dsf-grid/grid-emit.model';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import EmergencyGridColumnSettings from '../shared/emergency-gridcol-settings';
 import { EmergencyPatientModel } from '../shared/emergency-patient.model';

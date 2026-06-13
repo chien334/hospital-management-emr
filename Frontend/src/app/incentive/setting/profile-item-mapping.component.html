@@ -274,7 +274,7 @@
                       <div class="row">
                         <span class="col-md-5" style="text-align: right;">{{ 'INCENTIVE.PROFILE_NAME' | translate }} <b>:</b></span>
                         <div class="col-md-7">
-                          <input danphe-auto-complete [(ngModel)]="ProfileObj" [list-formatter]="profileListFormatter"
+                          <input dsf-auto-complete [(ngModel)]="ProfileObj" [list-formatter]="profileListFormatter"
                                  [source]="profileList" [placeholder]="'INCENTIVE.ENTER_PROFILE_NAME_PLACEHOLDER' | translate" display-property-name="ProfileName"
                                  value-property-name=null onclick="this.select()" max-num-list="10"
                                  (ngModelChange)="OnChangeProfile()" class="incentive-search-doctor" [disabled]="update" />
@@ -321,7 +321,7 @@
                       <tr>
                         <td>
                           <form class="bill-itemname">
-                            <input class="form-control cstm-form-control" danphe-auto-complete
+                            <input class="form-control cstm-form-control" dsf-auto-complete
                                    title="{{ProfileItemSetup.SelServDepartment}}" [(ngModel)]="ProfileItemSetup.SelServDepartment"
                                    [list-formatter]="ServiceDeptListFormatter" [source]="uniqueDeptNames"
                                    [placeholder]="'INCENTIVE.ENTER_DEPARTMENT_PLACEHOLDER' | translate" display-property-name="ServiceDepartmentName"
@@ -332,7 +332,7 @@
                         <td style="width:250px">
                           <form class="bill-itemname">
                             <div class="autocomplete-item">
-                              <input id="srch_itemName" class="form-control cstm-form-control" danphe-auto-complete
+                              <input id="srch_itemName" class="form-control cstm-form-control" dsf-auto-complete
                                      title="{{ProfileItemSetup.ItemName}}" autocomplete="off" [(ngModel)]="SelectedItem"
                                      [list-formatter]="ItemsListFormatter" [source]="FilteredItemList"
                                      [placeholder]="'INCENTIVE.ENTER_ITEM_NAME_PLACEHOLDER' | translate" display-property-name="ItemName" value-property-name=null
@@ -442,10 +442,10 @@
                       </div>
                     </div>
                     <div class="col-md-7">
-                      <danphe-grid [grid-colDefaults]="ProfileBillItemGridColumns" [grid-data]="PreviousProfileBillItems"
+                      <dsf-grid [grid-colDefaults]="ProfileBillItemGridColumns" [grid-data]="PreviousProfileBillItems"
                                    (grid-actions)="ProfileBillItemGridActions($event)" [supressPagination]="true"
                                    [fixed-height-px]="'400px'">
-                      </danphe-grid>
+                      </dsf-grid>
                     </div>
                     <div class="col-md-5" style="margin-top: 45px;" *ngIf="ShowEditItem">
                       <div class="row">

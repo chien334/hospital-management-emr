@@ -32,7 +32,7 @@
             <div class="flex-table-body-holder">
               <div *ngFor="let test of labTestList; let i = index;" class="flex-container justify-sp-between flex-align-center table-row tbl-body">
                 <div class="tbl-text"><span class="inline-block">{{test.ItemName}}</span></div>
-                <div class="tbl-text" *ngIf="!IsLocalDate" style="width: 120px;"><span class="inline-block">{{test.RequisitionDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</span></div>
+                <div class="tbl-text" *ngIf="!IsLocalDate" style="width: 120px;"><span class="inline-block">{{test.RequisitionDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</span></div>
                 <div class="tbl-text" *ngIf="IsLocalDate" style="width: 120px;"><span class="inline-block">{{test.RequisitionDate | nepaliDate:'format':'YYYY-MM-DD hh:mm'}}</span></div>
                 <div class="tbl-text"><span class="inline-block">{{test.OrderStatus}}</span></div>
                 <div class="tbl-text"><span class="inline-block">

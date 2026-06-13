@@ -6,7 +6,7 @@
         <label class="control-label"><b>Supplier</b><b class="color-red"> *</b><b style="float:right;">:</b></label>
         <form [formGroup]="QuotationAdd.QuotationValidator">
           <div>
-            <input danphe-auto-complete class="form-control col-md-11" [(ngModel)]="QuotationAdd.SelectedItem"
+            <input dsf-auto-complete class="form-control col-md-11" [(ngModel)]="QuotationAdd.SelectedItem"
               [source]="VendorList" [list-formatter]="myVendorListFormatter" placeholder="Supplier Name"
               display-property-name="VendorName" value-property-name=null max-num-list="10" name=" VendorName"
               formControlName="VendorId" (valueChanged)="SelectVendorFromSearchBox(QuotationAdd.SelectedItem)"
@@ -84,7 +84,7 @@
           <td style=" width: 120px;
           position: absolute;">            
             <div>
-              <input danphe-auto-complete class="form-control col-md-11" [(ngModel)]="row.ItemName"
+              <input dsf-auto-complete class="form-control col-md-11" [(ngModel)]="row.ItemName"
                 [source]="RFQItemsList" [list-formatter]="myListFormatter" placeholder="Item Name"
                 display-property-name="ItemName" value-property-name=null
                 (valueChanged)="SelectItemFromSearchBox(row.ItemName,i)" max-num-list="10" onclick="this.select();"

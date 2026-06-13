@@ -42,7 +42,7 @@
                                     <tr>
                                         <td>{{ERPatient.FullName}}</td>
                                         <td>{{ERPatient.Age}}/{{ERPatient.Gender}}</td>
-                                        <td>{{ERPatient.VisitDateTime | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
+                                        <td>{{ERPatient.VisitDateTime | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -54,7 +54,7 @@
                             <div style="width: 100%; height: 200px;">
                                 <label><strong>{{ 'DISPENSARY.SALE.SELECT_DOCTOR' | translate }}:</strong></label>
                                 <div style="color: #000;">
-                                    <input style="color: #000;width: 30%;" class="form-control cstm-form-control" danphe-auto-complete
+                                    <input style="color: #000;width: 30%;" class="form-control cstm-form-control" dsf-auto-complete
                                            [(ngModel)]="DoctorSelected"
                                            [source]="AllDoctorList"
                                            [list-formatter]="AssignedToDocListFormatter"

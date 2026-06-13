@@ -10,10 +10,10 @@
                  (callback-add)="CallBackAdd($event)"></reporting-items-add>
 <div *ngIf="showGrid" class="row">
   <div class="col-md-12 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="reportingItemsGridColumns"
+    <dsf-grid [grid-colDefaults]="reportingItemsGridColumns"
                  [grid-data]="reportingItemsList"
                  (grid-actions)="ReportingItemGridActions($event)">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 

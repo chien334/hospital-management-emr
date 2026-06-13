@@ -14,7 +14,7 @@ import { SecurityService } from '../../../security/shared/security.service';
 import { ActivateInventoryService } from '../../../shared/activate-inventory/activate-inventory.service';
 import { InventoryFieldCustomizationService } from '../../../shared/inventory-field-customization.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_GRItemCategory, ENUM_MessageBox_Status, ENUM_TermsApplication } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_GRItemCategory, ENUM_MessageBox_Status, ENUM_TermsApplication } from '../../../shared/shared-enums';
 import { ProcurementBLService } from '../../shared/procurement.bl.service';
 import { PurchaseOrderItems } from '../purchase-order-items.model';
 import { POVerifier, PurchaseOrder } from '../purchase-order.model';
@@ -944,7 +944,7 @@ export class PurchaseOrderAddComponent implements AfterViewInit {
 
 
   ShowPurchaseOrderDraftDetails(res) {
-    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
       const { poDraftDetails, poDraftItems } = res.Results;
 
       this.currentPO = Object.assign(new PurchaseOrder(), poDraftDetails);

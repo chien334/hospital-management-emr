@@ -54,7 +54,7 @@
                       <div class="col-md-4">
                         <div class="ac-check-wrapper">
                           <div><b>{{ 'ACCOUNTING.VOUCHER_DATE' | translate }}:</b> {{TransactionDate | nepaliDate:'format':'YYYY-MM-DD'}}(BS) <br />
-                            {{TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}} (AD)</div>
+                            {{TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}} (AD)</div>
                         </div>
                       </div>
                     </div>
@@ -68,8 +68,8 @@
                     <fiscal-year-calendar [showSingleDatePicker]="true" [showAllFiscalYear]="false" [SingleFiscalYearId]="fiscalYearId"
                                           (fiscalYearDate)="selectDate($event)"> </fiscal-year-calendar> -->
 
-<!-- <danphe-date-picker [(ngModel)]="TransactionDate" [ngModelOptions]="{standalone: true}"
-                      ngDefaultControl [CalendarTypes]="calType"> </danphe-date-picker> -->
+<!-- <dsf-date-picker [(ngModel)]="TransactionDate" [ngModelOptions]="{standalone: true}"
+                      ngDefaultControl [CalendarTypes]="calType"> </dsf-date-picker> -->
 <!-- </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@
                     <td><b>{{i+1}}</b></td>
                     <td class="form-group">
                       <form [formGroup]="itm.TransactionItemValidator" style="width:80px;">
-                        <input danphe-auto-complete [(ngModel)]="DrCr[i]" [source]="DrCrList" formControlName="DrCr"
+                        <input dsf-auto-complete [(ngModel)]="DrCr[i]" [source]="DrCrList" formControlName="DrCr"
                                placeholder="{{ 'ACCOUNTING.DR_CR' | translate }}" display-property-name="DrCr" value-property-name="DrCr"
                                match-formatted="true" (valueChanged)="onDrCrChange(i)" [list-formatter]="DrCrListFormatter"
                                max-num-list="2" onclick="this.select()" id="DrCr_{{i+1}}" style="width:60px" />
@@ -106,7 +106,7 @@
                       <form [formGroup]="itm.TransactionItemValidator">
                         <div> <span style="float: left !important;
                   margin-right: 5px;">{{itm.Code}}</span>
-                          <input *ngIf="showledger" danphe-auto-complete [(ngModel)]="selLedger[i]"
+                          <input *ngIf="showledger" dsf-auto-complete [(ngModel)]="selLedger[i]"
                                  [source]="ledgerList" placeholder="{{ 'ACCOUNTING.LEDGER_NAME' | translate }}" display-property-name="LedgerName"
                                  formControlName="LedgerId" value-property-name=null [grid-sort]="'LedgerName'"
                                  (valueChanged)="AssignSelectedLedger(i)" [list-formatter]="LedgerListFormatter"
@@ -250,7 +250,7 @@
                       <ng-container *ngFor="let row of subLedgers ; let i=index">
                         <tr>
                           <td>
-                            <input danphe-auto-complete
+                            <input dsf-auto-complete
                                    [(ngModel)]="selectedSubLedger[i]" class="form-control"
                                    id="subLedgerName{{i}}" [source]="LedgerwiseSubLedgerMaster"
                                    [list-formatter]="SubLedgerListFormatter" placeholder="{{ 'ACCOUNTING.SUB_LEDGER_NAME' | translate }}" display-property-name="SubLedgerName"

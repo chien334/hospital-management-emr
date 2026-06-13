@@ -2,15 +2,15 @@ import { Component, Directive, ViewChild } from '@angular/core';
 import { ReportingService } from "../../../reporting/shared/reporting-service";
 import { DLService } from "../../../shared/dl.service"
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import * as moment from 'moment/moment';
 import { HandOverModel } from '../../../billing/shared/hand-over.model';
 import { BillingBLService } from '../../../billing/shared/billing.bl.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { HandoverDenominationVM } from './HandoverDenominationVM.model';
 import { Employee } from '../../../employee/shared/employee.model';
 import { CommonFunctions } from "../../../shared/common.functions";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 @Component({
   selector: 'denomination-report',
   templateUrl: "./bil-denomination-report.html"
@@ -106,7 +106,7 @@ export class RPT_BIL_BilDenominationReportComponent {
 
   public GetUsersList() {
     this.billingBLService.GetUserList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           if (res.Results.length) {
             this.userList = res.Results;

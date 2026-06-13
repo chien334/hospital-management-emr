@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PriceCategory } from "../../shared/price.category.model";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
@@ -40,8 +40,8 @@ export class PriceCategoryListComponent {
     GetBillingCreditOrganization() {
         this.settingsBlService.GetBillingCreditOrganization()
             .subscribe(
-                (res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                (res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.BillingCreditOrganizationList = res.Results;
                         this.loading = false;
                     }
@@ -58,8 +58,8 @@ export class PriceCategoryListComponent {
     GetPharmacyCreditOrganization() {
         this.settingsBlService.GetPharmacyCreditOrganization()
             .subscribe(
-                (res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                (res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.PharmacyCreditOrganizationList = res.Results;
                         this.loading = false;
                     }
@@ -76,8 +76,8 @@ export class PriceCategoryListComponent {
     GetPaymentModes() {
         this.settingsBlService.GetPaymentModes()
             .subscribe(
-                (res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                (res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.paymentModesList = res.Results;
                         this.loading = false;
                     }
@@ -101,8 +101,8 @@ export class PriceCategoryListComponent {
     GetPriceCategory() {
         this.settingsBlService.GetPriceCategory()
             .subscribe(
-                (res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                (res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.priceCategoryList = res.Results
                         this.loading = false;
                     }
@@ -161,8 +161,8 @@ export class PriceCategoryListComponent {
 
     ActivatePriceCategory(PriceCategoryId: number, IsActive: boolean) {
         this.settingsBlService.PriceCategoryActivation(PriceCategoryId, IsActive)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.priceCategoryList[this.index].IsActive = res.Results.IsActive;
                     this.priceCategoryList = this.priceCategoryList.slice();
                     this.priceCategory = new PriceCategory();

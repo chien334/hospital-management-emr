@@ -44,8 +44,8 @@
           <div>
             <fiscal-year-calendar [showSingleDatePicker]="false" [showAllFiscalYear]="true"
                                   (fiscalYearDate)="selectDate($event)"> </fiscal-year-calendar>
-            <!-- <danphe-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
-                </danphe-date-picker> -->
+            <!-- <dsf-date-picker [(ngModel)]="fromDate" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+                </dsf-date-picker> -->
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@
         <label class="control-label no-padding">{{ 'ACCOUNTING.SELECT_GROUP' | translate }} :</label><br>
         <div>
           <div class="div-relative">
-            <input danphe-auto-complete class="col-md-11 form-control" [(ngModel)]="selectedLedgerGroup" [source]="ledgergroupList"
+            <input dsf-auto-complete class="col-md-11 form-control" [(ngModel)]="selectedLedgerGroup" [source]="ledgergroupList"
                    [placeholder]="'ACCOUNTING.SELECT_LEDGER_GROUP' | translate" display-property-name="LedgerGroupName"
                    value-property-name="LedgerGroupName" (focusout)="AssignSelectedLedgerGroup()"
                    [list-formatter]="LedgerGroupListFormatter" max-num-list="20" onclick="this.select()"
@@ -78,15 +78,15 @@
           <!-- <span *ngIf="selLedger" style="float: left !important; margin-top: 5px;
               margin-right: 5px;">{{selLedger.Code}}</span> -->
           <div>
-            <danphe-multiselect
+            <dsf-multiselect
                                 [ddl-data]="filteredLedgerList"
                                 [placeholder-text]="'ACCOUNTING.LEDGER_NAME' | translate"
                                 [value-property-name]="'LedgerId'"
                                 (selected-items-list)="OnLedgerSelected($event)"
                                 [display-property-name]="'LedgerName'"
                                 [single-selection]="false">
-            </danphe-multiselect>
-            <!-- <input danphe-auto-complete [(ngModel)]="selLedger" [source]="ledgerList" placeholder="Ledger Name"
+            </dsf-multiselect>
+            <!-- <input dsf-auto-complete [(ngModel)]="selLedger" [source]="ledgerList" placeholder="Ledger Name"
               display-property-name="LedgerName" value-property-name="LedgerName" [list-formatter]="LedgerListFormatter"
               max-num-list="15" [grid-sort]="'LedgerName'" onClick="this.select();"
               style="background-color: azure; height: 30px; width: 90% !important;" /> -->
@@ -186,8 +186,8 @@
                   <tr style="background-color: #599be0; color:white;">
                     <th>
                       {{ 'ACCOUNTING.DATE' | translate }}
-                      <danphe-date-change class="ADBS_btn" [dataArr]="row.ledgerResult" [datecolumn]="'TransactionDate'">
-                      </danphe-date-change>
+                      <dsf-date-change class="ADBS_btn" [dataArr]="row.ledgerResult" [datecolumn]="'TransactionDate'">
+                      </dsf-date-change>
                     </th>
                     <th>{{ 'ACCOUNTING.VOUCHER_NO' | translate }}</th>
                     <th>{{ 'ACCOUNTING.VOUCHER_TYPE_LABEL' | translate }}</th>
@@ -241,7 +241,7 @@
                     <tr class="tr" *ngFor="let txnItm of row.ledgerResult;let i = index"
                         [ngClass]="{'tr-highlight': txnItm.IsHighlighted}" (click)="HotKeysOnOff(txnItm)">
                       <td>
-                        <!-- <span *ngIf="!isDateFormatBS">{{txnItm.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                        <!-- <span *ngIf="!isDateFormatBS">{{txnItm.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                           <span *ngIf="isDateFormatBS">{{txnItm.TransactionDate | nepaliDate:'format':'YYYY-MM-DD'}}</span>
                            -->
                         {{txnItm.TransactionDate}}

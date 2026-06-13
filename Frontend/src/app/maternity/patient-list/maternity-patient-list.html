@@ -44,7 +44,7 @@
         &nbsp;&nbsp;
         <!--[source]="allPatientsForDDL"-->
         <div class="flex-item bs-55">
-          <input danphe-auto-complete class="form-control" [(ngModel)]="selectedPatientForEdit"
+          <input dsf-auto-complete class="form-control" [(ngModel)]="selectedPatientForEdit"
             [list-formatter]="patientListFormatter" [source]="SearchPatientForEdit(this)"
             [placeholder]="'MATERNITY.EXISTING_PATIENT_NAME' | translate" display-property-name="ShortName" value-property-name=null
             (valueChanged)="EditExistingPatientInfo()" onClick="this.select();" id="maternityPats" min-chars="3"
@@ -69,10 +69,10 @@
 
   <div class="row">
     <div class="col-lg-12 col-sm-12" id="maternityPatGridHolder">
-      <danphe-grid [grid-colDefaults]="maternityPatientGridColumns" [grid-data]="allMaternityPatient"
+      <dsf-grid [grid-colDefaults]="maternityPatientGridColumns" [grid-data]="allMaternityPatient"
         (onDateChange)="onDateChange($event)" [show-CustomDate]="true"
         (grid-actions)="MaternityPatientGridActions($event)" [date-settings-name]="'common-range-with-today'">
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
 
@@ -152,10 +152,10 @@
                     </b><b style="float:right;">:</b></label>
 
                   <div class="col-md-7">
-                    <danphe-date-picker *ngIf="showHideButtonObj.view_active_patient && matPatToUpdate"
+                    <dsf-date-picker *ngIf="showHideButtonObj.view_active_patient && matPatToUpdate"
                       [(ngModel)]="matPatToUpdate.LastMenstrualPeriod" [CalendarTypes]="'en,np'" ngDefaultControl
                       [ngModelOptions]="{standalone: true}">
-                    </danphe-date-picker>
+                    </dsf-date-picker>
                   </div>
                 </div>
 
@@ -165,10 +165,10 @@
                     </b><b style="float:right;">:</b></label>
 
                   <div class="col-md-7">
-                    <danphe-date-picker [(ngModel)]="matPatToUpdate.ExpectedDeliveryDate" [CalendarTypes]="'en,np'"
+                    <dsf-date-picker [(ngModel)]="matPatToUpdate.ExpectedDeliveryDate" [CalendarTypes]="'en,np'"
                       *ngIf="showHideButtonObj.view_active_patient && matPatToUpdate" ngDefaultControl
                       [allow-future-date]="true" [ngModelOptions]="{standalone: true}">
-                    </danphe-date-picker>
+                    </dsf-date-picker>
                   </div>
                 </div>
                 <div class="form-group">
@@ -261,10 +261,10 @@
                     </b><b style="float:right;">:</b></label>
 
                   <div class="col-md-7">
-                    <danphe-date-picker *ngIf="showHideButtonObj.view_concluded_patient && matPatToUpdate"
+                    <dsf-date-picker *ngIf="showHideButtonObj.view_concluded_patient && matPatToUpdate"
                       [(ngModel)]="matPatToUpdate.LastMenstrualPeriod" [CalendarTypes]="'en,np'" ngDefaultControl
                       [ngModelOptions]="{standalone: true}">
-                    </danphe-date-picker>
+                    </dsf-date-picker>
                   </div>
                 </div>
 
@@ -274,10 +274,10 @@
                     </b><b style="float:right;">:</b></label>
 
                   <div class="col-md-7">
-                    <danphe-date-picker [(ngModel)]="matPatToUpdate.ExpectedDeliveryDate" [CalendarTypes]="'en,np'"
+                    <dsf-date-picker [(ngModel)]="matPatToUpdate.ExpectedDeliveryDate" [CalendarTypes]="'en,np'"
                       *ngIf="showHideButtonObj.view_concluded_patient && matPatToUpdate" ngDefaultControl
                       [allow-future-date]="true" [ngModelOptions]="{standalone: true}">
-                    </danphe-date-picker>
+                    </dsf-date-picker>
                   </div>
                 </div>
                 <div class="form-group">

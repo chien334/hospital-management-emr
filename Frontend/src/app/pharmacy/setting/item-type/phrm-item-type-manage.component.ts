@@ -1,13 +1,13 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Renderer2 } from "@angular/core";
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
 
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMCategoryModel } from "../../shared/phrm-category.model";
 import { PHRMItemTypeModel } from "../../shared/phrm-item-type.model";
@@ -61,8 +61,8 @@ export class PHRMItemTypeManageComponent implements OnInit {
     }
     public getItemTypeList() {
         this.pharmacyBLService.GetItemTypeList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                     this.itemtypeList = res.Results;
                 }
                 else {
@@ -74,8 +74,8 @@ export class PHRMItemTypeManageComponent implements OnInit {
 
     public getCategorys() {
         this.pharmacyBLService.GetCategoryList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status == ENUM_DsfHTTPResponses.OK) {
                     if (res.Results.length) {
                         this.categoryList = res.Results;
                     }
@@ -139,8 +139,8 @@ export class PHRMItemTypeManageComponent implements OnInit {
             this.CurrentItemType.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.AddItemType(this.CurrentItemType)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Item Type Added."]);
                             this.CallBackAddUpdate(res)
                             this.CurrentItemType = new PHRMItemTypeModel();
@@ -164,8 +164,8 @@ export class PHRMItemTypeManageComponent implements OnInit {
             this.CurrentItemType.CreatedOn = moment().format('YYYY-MM-DD');
             this.pharmacyBLService.UpdateItemType(this.CurrentItemType)
                 .subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status == ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ['Item Type Details Updated.']);
                             this.CallBackAddUpdate(res)
                             this.CurrentItemType = new PHRMItemTypeModel();
@@ -181,7 +181,7 @@ export class PHRMItemTypeManageComponent implements OnInit {
     }
 
     CallBackAddUpdate(res) {
-        if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status == ENUM_DsfHTTPResponses.OK) {
             var itemtype: any = {};
             itemtype.ItemTypeId = res.Results.ItemTypeId;
             itemtype.CategoryId = res.Results.CategoryId;
@@ -222,8 +222,8 @@ export class PHRMItemTypeManageComponent implements OnInit {
                 currItemType.IsActive = status;
                 this.pharmacyBLService.UpdateItemType(currItemType)
                     .subscribe(
-                        (res: DanpheHTTPResponse) => {
-                            if (res.Status == ENUM_DanpheHTTPResponses.OK) {
+                        (res: DsfHTTPResponse) => {
+                            if (res.Status == ENUM_DsfHTTPResponses.OK) {
                                 let responseMessage = res.Results.IsActive ? "Item-Type is now activated." : "Item-Type is now Deactivated.";
                                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, [responseMessage]);
                                 this.getItemTypeList();

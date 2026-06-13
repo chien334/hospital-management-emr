@@ -74,9 +74,9 @@
             </div>
           </div>
           <div class="col-md-8" *ngIf="patient.IsDobVerified">
-            <danphe-date-picker [(ngModel)]="patient.DateOfBirth" ngDefaultControl [CalendarTypes]="calendarType"
+            <dsf-date-picker [(ngModel)]="patient.DateOfBirth" ngDefaultControl [CalendarTypes]="calendarType"
                                 formControlName="DateOfBirth" (ngModelChange)="CalculateAge()" [year-settings]="'DateOfBirth'">
-            </danphe-date-picker>
+            </dsf-date-picker>
             <span class="color-red font-sm" *ngIf="patient.IsDirty('DateOfBirth')"
                   [hidden]="patient.IsValidCheck('DateOfBirth','required')">DateOfBirth is required.</span> <span
                   class="color-red font-sm" *ngIf="patient.IsDirty('DateOfBirth')"
@@ -158,7 +158,7 @@
                 [hidden]="patient.IsValidCheck('CountryId','required')"> Country is required.</span>
         </div>
         <div *ngIf="patient.CountryId == 1" class="col-md-3 pr-0">
-          <input id="ddlCountrySubdivision" class="form-control" danphe-auto-complete
+          <input id="ddlCountrySubdivision" class="form-control" dsf-auto-complete
                  formControlName="CountrySubDivisionId" [(ngModel)]="countrySubDivision"
                  [list-formatter]="districtListFormatter" [source]="countrySubDivisions" placeholder="{{GeneralFieldLabel.DistrictState}}"
                  display-property-name="CountrySubDivisionName" value-property-name=null
@@ -168,7 +168,7 @@
                 [hidden]="patient.IsValidCheck('CountrySubDivisionId','required')"> {{GeneralFieldLabel.DistrictState}} is required.</span>
         </div>
         <div class="col-md-3">
-          <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
+          <input dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
                  [(ngModel)]="patient.Address" [source]="olderAddressList" placeholder="Address"
                  display-property-name="PatAddress" value-property-name=null no-match-found-text=" " onClick="this.select();"
                  min-chars="2" style="text-transform: capitalize;" [grid-sort]="'sortonbasicdatatype'" max-num-list="10"

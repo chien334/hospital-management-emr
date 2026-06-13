@@ -194,7 +194,7 @@
         <div class="card">
           <div class="chart-title">
             <div class="d-flex justify-content-between align-items-center">
-              <h4>Patient Distribution based on Rank</h4> <h4><input id="txtDepartment" class="form-control" danphe-auto-complete [(ngModel)]="selectedDepartment" [list-formatter]="DepartmentListFormatter" [source]="DepartmentList" placeholder="Department Name" display-property-name="DepartmentName" onClick="this.select();" (valueChanged)="onDepartmentChange()" match-formatted="true" [grid-sort]="'DepartmentName'" max-num-list="10" [min-chars]="1" style="width: 200px;" /></h4>
+              <h4>Patient Distribution based on Rank</h4> <h4><input id="txtDepartment" class="form-control" dsf-auto-complete [(ngModel)]="selectedDepartment" [list-formatter]="DepartmentListFormatter" [source]="DepartmentList" placeholder="Department Name" display-property-name="DepartmentName" onClick="this.select();" (valueChanged)="onDepartmentChange()" match-formatted="true" [grid-sort]="'DepartmentName'" max-num-list="10" [min-chars]="1" style="width: 200px;" /></h4>
             </div>
           </div>
 

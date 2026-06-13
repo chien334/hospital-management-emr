@@ -10,9 +10,9 @@
         <a class="btn blue bordered " name="name" (click)="AddLedgerGroup()">
             <span class="glyphicon glyphicon-plus"></span>{{ 'ACCOUNTING.CREATE_LEDGER_GROUP' | translate }}
         </a>
-        <danphe-grid [grid-colDefaults]="ledgerGroupGridColumns" [grid-data]="ledgerGroupList"
+        <dsf-grid [grid-colDefaults]="ledgerGroupGridColumns" [grid-data]="ledgerGroupList"
                      (grid-actions)="LedgerGroupGridActions($event)">
-        </danphe-grid>
+        </dsf-grid>
     </div>
 </div>
 

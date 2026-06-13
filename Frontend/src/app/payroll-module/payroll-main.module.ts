@@ -23,7 +23,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import { CommonPayrollService } from './Shared/common-payroll.service';
 import { LeaveRuleListComponent } from './Leave/LeaveRuleList/leave-rule-list.component';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { HolidayComponent } from './Leave/holiday/holiday-component';
 import { NgxPaginationModule } from 'ngx-pagination'
 import { GrdFilterPipe } from './Attendance/serach-pipe.component';
@@ -48,7 +48,7 @@ import { EmployeeLeaveComponent } from './Leave/employee-leave-details/emp-leave
         MatRadioModule,
         MatSelectModule,
         ReactiveFormsModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         NgxPaginationModule,
         MatTooltipModule
     ],

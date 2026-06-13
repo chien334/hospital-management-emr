@@ -46,7 +46,7 @@
             <div class="col-md-8">
               <form [formGroup]="ReturnValidator">
                 <div class="div-relative">
-                  <input id="vendor" (keyup.enter)="setFocusById('GrNo')" danphe-auto-complete class="form-control" [(ngModel)]="selectedVendor"
+                  <input id="vendor" (keyup.enter)="setFocusById('GrNo')" dsf-auto-complete class="form-control" [(ngModel)]="selectedVendor"
                          [source]="Vendors" [list-formatter]="myVendorListFormatter" [placeholder]="'INVENTORY.SEARCH_VENDOR_NAME' | translate"
                          display-property-name="VendorName" value-property-name=null max-num-list="20" match-formatted="true"
                          [grid-sort]="'VendorName'" formControlName="VendorId" (focusout)="SelectVendorFromSearchBox()" onclick="this.select();" />
@@ -129,7 +129,7 @@
             <td><a (click)="DeleteRow(i)"><i class="btn btn-danger fa">X</i></a></td>
             <td style="width:200px">
               <form [formGroup]="row.ReturnItemValidator">
-                <input danphe-auto-complete class="form-control" [(ngModel)]="row.Item" [source]="itemList" [list-formatter]="myListFormatter"
+                <input dsf-auto-complete class="form-control" [(ngModel)]="row.Item" [source]="itemList" [list-formatter]="myListFormatter"
                        id="itemName{{i}}" placeholder="Item Name" display-property-name="ItemName" value-property-name=null onclick="this.select();"
                        max-num-list="10" [min-chars]="0" (valueChanged)="SelectItemFromSearchBox(row.Item,i)" formControlName="ItemId"
                        style="width:150px ;" (keyup.enter)="GoToNextInput('returnrate'+i,row.Item,i)" />

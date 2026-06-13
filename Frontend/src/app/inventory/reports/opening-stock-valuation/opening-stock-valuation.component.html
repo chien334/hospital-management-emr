@@ -7,12 +7,12 @@
           <label class="col-md-4" for="TillDate">{{ 'INVENTORY.OPENING_ON_DATE' | translate }}:</label>
 
           <div class="col-md-8">
-            <danphe-date-picker id="TillDate" ngDefaultControl [CalendarTypes]="'np,en'" [(ngModel)]="tillDate" (ngModelChange)="OnDateChange()">
-            </danphe-date-picker>
+            <dsf-date-picker id="TillDate" ngDefaultControl [CalendarTypes]="'np,en'" [(ngModel)]="tillDate" (ngModelChange)="OnDateChange()">
+            </dsf-date-picker>
           </div>
         </div>
         <div class="col-md-3">
-          <input danphe-auto-complete class="form-control" (valueChanged)="onStoreChange()" [placeholder]="'INVENTORY.SELECT_STORENAME' | translate" [(ngModel)]="selectedStore" [list-formatter]="StoreListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="StoreName" value-property-name="StoreId" [source]="storeList" [match-formatted]="true" [grid-sort]="'StoreName'" onclick="this.select()" />
+          <input dsf-auto-complete class="form-control" (valueChanged)="onStoreChange()" [placeholder]="'INVENTORY.SELECT_STORENAME' | translate" [(ngModel)]="selectedStore" [list-formatter]="StoreListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="StoreName" value-property-name="StoreId" [source]="storeList" [match-formatted]="true" [grid-sort]="'StoreName'" onclick="this.select()" />
         </div>
         <div class="col-md-1 col-xs-12">
           <div class="form-group">
@@ -29,6 +29,6 @@
 </div>
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="InvOpeningStockReportColumns" [grid-data]="InvOpeningStockReportResult" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [grid-date-range]="dateRange" [report-for]="'inventory'" [show-header]="true" [filter-parameters]="FilterParameters"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="InvOpeningStockReportColumns" [grid-data]="InvOpeningStockReportResult" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [grid-date-range]="dateRange" [report-for]="'inventory'" [show-header]="true" [filter-parameters]="FilterParameters"> </dsf-grid>
   </div>
 </div>

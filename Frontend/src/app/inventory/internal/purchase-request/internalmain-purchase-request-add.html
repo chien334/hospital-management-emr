@@ -37,7 +37,7 @@
               <label class="control-label col-md-3">Vendor<b>:</b></label>
               <div class="col-md-8">
                 <div class="div-relative">
-                  <input danphe-auto-complete class="form-control" [(ngModel)]="selectedVendor" [source]="VendorList" [list-formatter]="VendorListFormatter" [placeholder]="'INVENTORY.VENDOR_NAME' | translate" display-property-name="VendorName" value-property-name=null max-num-list="10" [ngModelOptions]="{standalone:true}" (focusout)="SelectVendorFromSearchBox()" onclick="this.select();" />
+                  <input dsf-auto-complete class="form-control" [(ngModel)]="selectedVendor" [source]="VendorList" [list-formatter]="VendorListFormatter" [placeholder]="'INVENTORY.VENDOR_NAME' | translate" display-property-name="VendorName" value-property-name=null max-num-list="10" [ngModelOptions]="{standalone:true}" (focusout)="SelectVendorFromSearchBox()" onclick="this.select();" />
                   <a *ngIf="!selectedVendor" class="fa fa-question" (click)="AddVendorPopUp()" [title]="'INVENTORY.UNABLE_TO_FIND_VENDOR_CLICK_TO_ADD_VENDOR' | translate"></a>
                 </div>
               </div>
@@ -49,8 +49,8 @@
             <form [formGroup]="currentPurchaseRequest.PurchaseRequestValidator" class="form-inline hm-form">
               <label class="control-label col-md-4">{{ 'INVENTORY.REQUEST_DATE' | translate }}<b>:</b></label>
               <div class="col-md-8 col-sm-6">
-                <danphe-date-picker [(ngModel)]="currentPurchaseRequest.RequestDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
-                </danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="currentPurchaseRequest.RequestDate" ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}">
+                </dsf-date-picker>
               </div>
             </form>
           </div>
@@ -88,7 +88,7 @@
                 <td>
                   <div class="div-relative autocomplete-item">
                     <form [formGroup]="row.PurchaseRequestItemValidator">
-                      <input id="itemName{{i}}" danphe-auto-complete class="form-control " [(ngModel)]="row.SelectedItem" [source]="row.filteredItemList" [list-formatter]="ItemListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null (focusout)="SelectItemFromSearchBox(row.SelectedItem,i)" max-num-list="20" formControlName="ItemId" onclick="this.select();" [min-chars]="1" (keyup.enter)="GoToNextInput('qty'+i,row.SelectedItem,i)" no-match-found-text="click ? to add new item" match-formatted="true" />
+                      <input id="itemName{{i}}" dsf-auto-complete class="form-control " [(ngModel)]="row.SelectedItem" [source]="row.filteredItemList" [list-formatter]="ItemListFormatter" placeholder="Item Name" display-property-name="ItemName" value-property-name=null (focusout)="SelectItemFromSearchBox(row.SelectedItem,i)" max-num-list="20" formControlName="ItemId" onclick="this.select();" [min-chars]="1" (keyup.enter)="GoToNextInput('qty'+i,row.SelectedItem,i)" no-match-found-text="click ? to add new item" match-formatted="true" />
 
                       <a *ngIf="!row.SelectedItem || !row.SelectedItem.ItemId" class="fa fa-question" (click)="AddItemPopUp(i)" [title]="'INVENTORY.UNABLE_TO_FIND_ITEM_CLICK_TO_ADD_TO_MASTER' | translate"></a>
                     </form>
@@ -115,7 +115,7 @@
                   <ng-template #availableQty0>0</ng-template>
                 </td>
                 <td>
-                  <danphe-date-picker ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}" [(ngModel)]="row.QuantityVerifiedOn"></danphe-date-picker>
+                  <dsf-date-picker ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}" [(ngModel)]="row.QuantityVerifiedOn"></dsf-date-picker>
 
                 </td>
                 <td>

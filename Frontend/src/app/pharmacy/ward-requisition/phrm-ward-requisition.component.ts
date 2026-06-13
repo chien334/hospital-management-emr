@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import * as moment from "moment";
 import { CoreService } from "../../core/shared/core.service";
 import { DispensaryRequisitionService } from "../../dispensary/dispensary-main/stock-main/requisition/dispensary-requisition.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/danphe-grid/NepaliColGridSettingsModel";
-import GridColumnSettings from "../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../shared/dsf-grid/NepaliColGridSettingsModel";
+import GridColumnSettings from "../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { PharmacyBLService } from "../shared/pharmacy.bl.service";
 import { PharmacyService } from "../shared/pharmacy.service";
 import { PHRMStoreDispatchItems } from "../shared/phrm-store-dispatch-items.model";
@@ -110,7 +110,7 @@ export class WardRequisitionItems implements OnInit {
   LoadRequisitionList(): void {
     this.pharmacyBLService.GetWardRequestedItemList(this.fromDate, this.toDate)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.requisitionList = res.Results;
           this.filterRequisitionList = res.Results;
         }
@@ -165,7 +165,7 @@ export class WardRequisitionItems implements OnInit {
           this.requisitionId = data.RequisitionId;
           this.dispensaryRequisitionService.ApproveRequisition(this.requisitionId)
             .subscribe(res => {
-              if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+              if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, [`Requisition ${data.RequisitionNo} is approved successfully.`]);
                 let selectedRequisition = this.filterRequisitionList.find(r => r.RequisitionId == this.requisitionId);
                 selectedRequisition.RequisitionStatus = "complete";
@@ -187,7 +187,7 @@ export class WardRequisitionItems implements OnInit {
   }
 
   ShoWDispatchbyRequisitionId(res) {
-    if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length !== 0) {
+    if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length !== 0) {
       this.dispatchList = res.Results;
     }
     else {
@@ -221,7 +221,7 @@ export class WardRequisitionItems implements OnInit {
   ShowbyDispatchId(DispatchId) {
     this.pharmacyBLService.GetDispatchItemByDispatchId(DispatchId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.dispatchListbyId = res.Results;
           for (var i = 0; i < this.dispatchListbyId.length; i++) {
             this.Sum += (this.dispatchListbyId[i].StandardRate * this.dispatchListbyId[i].DispatchedQuantity);
@@ -299,7 +299,7 @@ export class WardRequisitionItems implements OnInit {
   }
 
   ShowRequisitionDetails(res) {
-    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
       this.requisition = res.Results.requisition;
     }
     else {
@@ -319,7 +319,7 @@ export class WardRequisitionItems implements OnInit {
       let cancelRequisitionItemDto: CancellRequisitionDTO = new CancellRequisitionDTO(this.requisitionId, cancelledRequisitionItemIds, this.cancelRemarks);
       this.dispensaryRequisitionService.CancelRequisitionItems(cancelRequisitionItemDto).
         subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Requisition is Cancel and Saved"]);
             this.Close();
           }
@@ -345,7 +345,7 @@ export class WardRequisitionItems implements OnInit {
     if (RequisitionId != null && RequisitionId != 0) {
       this.pharmacyBLService.GetRequisitionDetailsForDispatch(RequisitionId)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.requisitionToDispatch = res.Results.Requisition;
             this.showDispatchPage = true;
             this.checkIfAllSelected();
@@ -419,8 +419,8 @@ export class WardRequisitionItems implements OnInit {
       });
       this.pharmacyBLService.PostSubStoreDispatch(dispatchItemList).finally(() => this.loading = false)
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
               this.messageBoxService.showMessage("success", ["Dispatch Items detail Saved."]);
               this.showDispatchDetailPage = true;
               this.LoadRequisitionDispatchDetails(this.requisitionId);
@@ -446,7 +446,7 @@ export class WardRequisitionItems implements OnInit {
   }
 
   ShowRequisitionDispatchDetails(res) {
-    if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    if (res.Status === ENUM_DsfHTTPResponseText.OK) {
       this.requisitionItemsDetails = res.Results;
 
       if (this.requisitionItemsDetails.length > 0) {

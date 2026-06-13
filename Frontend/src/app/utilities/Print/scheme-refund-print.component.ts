@@ -6,9 +6,9 @@ import { SecurityService } from '../../security/shared/security.service';
 import { User } from '../../security/shared/user.model';
 import { ENUM_PrintingType, PrinterSettingsModel } from '../../settings-new/printers/printer-settings.model';
 import { NepaliCalendarService } from '../../shared/calendar/np/nepali-calendar.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { SchemeRefund_DTO } from '../shared/DTOs/scheme-refund.dto';
 import { UtilitiesBLService } from '../shared/utilities.bl.service';
 
@@ -81,8 +81,8 @@ export class SchemeRefundPrintComponent implements OnInit {
 
   GetDepositDetails() {
     if (this.depositId) {
-      this.utilitiesBlService.GetDepositDetails(this.depositId).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      this.utilitiesBlService.GetDepositDetails(this.depositId).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.schemeRefundDetails = res.Results;
         }
       });
@@ -92,8 +92,8 @@ export class SchemeRefundPrintComponent implements OnInit {
   GetSchemeRefund() {
     this.showReceipt = true;
     this.utilitiesBlService.GetSchemeRefundById(this.receiptNo).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.schemePrintDetails = res.Results;
           this.localDate = this.GetLocalDate(this.schemePrintDetails.CreatedOn);
           this.loading = false;

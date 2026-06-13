@@ -18,7 +18,7 @@ import { StockManageComponent } from "./stock/stock-manage.component";
 import { InventoryBLService } from "./shared/inventory.bl.service";
 import { InventoryDLService } from "./shared/inventory.dl.service";
 import { InventoryService } from "./shared/inventory.service";
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { SharedModule } from "../shared/shared.module";
 import { InventoryDashboardComponent } from '../dashboards/inventory/inventory-dashboard.component';
 import { InventorySharedModule } from './shared/inventory-shared.module';
@@ -101,7 +101,7 @@ import { ReturnFromSubstoreDetailComponent } from './internal/return-from-substo
         FormsModule,
         InventoryRoutingModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         InventorySharedModule], providers: [InventoryBLService, InventoryDLService, InventoryService, WardSupplyBLService,
         WardSupplyDLService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },

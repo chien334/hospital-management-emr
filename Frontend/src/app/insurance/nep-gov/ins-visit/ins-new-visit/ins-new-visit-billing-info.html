@@ -148,7 +148,7 @@
                       </a>
                     </td>
                     <td>
-                      <input danphe-auto-complete [(ngModel)]="row.ItmObj" [list-formatter]="ItemNameListFormatter"
+                      <input dsf-auto-complete [(ngModel)]="row.ItmObj" [list-formatter]="ItemNameListFormatter"
                              [source]="AdditionalBilItems" placeholder="Search Additional Item Name"
                              display-property-name="ItemName" value-property-name=null onclick="this.select()"
                              max-num-list="10" (ngModelChange)="ItemChange(row,indx)" />
@@ -248,8 +248,8 @@
         Transferred From : <b>
           {{previousVisitDetail.DepartmentName}}
           {{previousVisitDetail.PerformerName}}
-          ({{previousVisitDetail.VisitDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
-          {{previousVisitDetail.VisitTime | DanpheDateTime:'format-time'}})
+          ({{previousVisitDetail.VisitDate | DsfDateTime:'format':'YYYY-MM-DD'}}
+          {{previousVisitDetail.VisitTime | DsfDateTime:'format-time'}})
         </b>
       </p>
       <p><b style="text-align:center">Below Invoice will be returned:</b></p>

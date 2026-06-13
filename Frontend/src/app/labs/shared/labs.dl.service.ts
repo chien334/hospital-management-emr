@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs-compat';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { ExternalLabStatus_DTO } from './DTOs/external-lab-sample-satatus.dto';
 import { LoginToTelemed } from './labMasterData.model';
 
@@ -88,7 +88,7 @@ export class LabsDLService {
 
   //sud/DevN: 9thJan'23 -- WorkList API separated.
   public GetLabWorkListData(fromDate: string, toDate: string, categoryIdCsv: string) {
-    return this.http.get<DanpheHTTPResponse>(`/api/Lab/WorkList?fromDate=${fromDate}&toDate=${toDate}&categoryIdCsv=${categoryIdCsv}`, this.options);
+    return this.http.get<DsfHTTPResponse>(`/api/Lab/WorkList?fromDate=${fromDate}&toDate=${toDate}&categoryIdCsv=${categoryIdCsv}`, this.options);
   }
 
   //getting report for pending templates in a single patient where isprint is false..(used in patient-template-list.component)
@@ -471,7 +471,7 @@ export class LabsDLService {
   }
 
   public GetOutsourceApplicableTests() {
-    return this.http.get<DanpheHTTPResponse>(`/api/LabSetting/OutsourceApplicableLabTests`, this.options);
+    return this.http.get<DsfHTTPResponse>(`/api/LabSetting/OutsourceApplicableLabTests`, this.options);
   }
 
   public AddMachineOrder(data): Promise<any> {
@@ -479,15 +479,15 @@ export class LabsDLService {
   }
 
   public GetAllMachineResultByBarcodeNumber(barcodeNumber: number) {
-    return this.http.get<DanpheHTTPResponse>(`/api/LIS/GetResultByBarcodeNumber?BarcodeNumber=${barcodeNumber}`, this.options);
+    return this.http.get<DsfHTTPResponse>(`/api/LIS/GetResultByBarcodeNumber?BarcodeNumber=${barcodeNumber}`, this.options);
   }
 
   public UpdateMachineDataSyncStatus(resultIds: Array<number>) {
-    return this.http.put<DanpheHTTPResponse>(`/api/LIS/MachineResultSync`, resultIds, this.optionsJson);
+    return this.http.put<DsfHTTPResponse>(`/api/LIS/MachineResultSync`, resultIds, this.optionsJson);
   }
 
 
   public UpdateExternalLabStatus(externalLabDataStatus: ExternalLabStatus_DTO) {
-    return this.http.put<DanpheHTTPResponse>(`/api/lab/ExternalLabStatus`, externalLabDataStatus, this.optionsJson);
+    return this.http.put<DsfHTTPResponse>(`/api/lab/ExternalLabStatus`, externalLabDataStatus, this.optionsJson);
   }
 }

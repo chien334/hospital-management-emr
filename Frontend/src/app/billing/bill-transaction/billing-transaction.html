@@ -24,7 +24,7 @@
         left: -15px !important;
     }
 
-    danphe-auto-complete {
+    dsf-auto-complete {
         font-family: 'Source Sans Pro';
         font-size: 0.95em;
         font-weight: bold;
@@ -254,7 +254,7 @@
                             <td><label class="" style="text-align:center">{{i+1}}</label></td>
                             <td>
                                 <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
-                                    <input class="form-control cstm-form-control" danphe-auto-complete title="{{row.ServiceDepartmentName}}"
+                                    <input class="form-control cstm-form-control" dsf-auto-complete title="{{row.ServiceDepartmentName}}"
                                            formControlName="ServiceDepartmentId"
                                            [ngClass]="{'border-red': row.IsDirty('ServiceDepartmentId') && !row.IsValidCheck('ServiceDepartmentId','required'), 'border-red': !row.IsValidSelDepartment }"
                                            [(ngModel)]="selectedServDepts[i]" [list-formatter]="ServiceDeptListFormatter" [source]="serviceDeptList"
@@ -271,7 +271,7 @@
                                     <!--sud:1Oct'19: use below syntax if you want to conditionally disable the form control from UI.
               here the validator will still work.-->
                                     <input [attr.disabled]="row.DisableAssignedDrField ? true:null" class="form-control cstm-form-control"
-                                           danphe-auto-complete formControlName="PerformerId"
+                                           dsf-auto-complete formControlName="PerformerId"
                                            [ngClass]="{'border-red': row.BillingTransactionItemValidator.get('PerformerId').errors, 'border-red': !row.IsvalidSelPerformerDr }"
                                            [(ngModel)]="selectedAssignedToDr[i]" [source]="row.AssignedDoctorList"
                                            [list-formatter]="AssignedToDocListFormatter" placeholder="Enter Name" display-property-name="FullName"
@@ -296,7 +296,7 @@
 
                             <td style="width:250px" [ngClass]="{'duplication-item':row.IsDoubleEntry_Now || row.IsDoubleEntry_Past}">
                                 <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
-                                    <input class="form-control cstm-form-control" danphe-auto-complete title="{{row.ItemName}}" autocomplete="off"
+                                    <input class="form-control cstm-form-control" dsf-auto-complete title="{{row.ItemName}}" autocomplete="off"
                                            formControlName="ItemName" display-property-name="ItemName"
                                            [ngClass]="{'border-red': row.IsDirty('ItemName') && !row.IsValidCheck('ItemName','required'), 'border-red': !row.IsValidSelItemName}"
                                            [(ngModel)]="selectedItems[i]" [list-formatter]="ItemsListFormatter" [source]="row.ItemList"

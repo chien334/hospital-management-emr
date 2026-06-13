@@ -5,10 +5,10 @@
         Processing</span>
     </div>
   </div>
-  <danphe-grid *ngIf="paymentPendingClaimList.length > 0" [grid-colDefaults]="paymentPendingClaimListGridColumns"
+  <dsf-grid *ngIf="paymentPendingClaimList.length > 0" [grid-colDefaults]="paymentPendingClaimListGridColumns"
                [grid-data]="paymentPendingClaimList"
                (grid-actions)="PendingClaimGridActions($event)">
-  </danphe-grid>
+  </dsf-grid>
   <new-claim-payment *ngIf="showNewPaymentEntryPopUp" [Claim]="selectedClaim" (CloseNewPaymentPopUp)="CallBackNewPayment()">
 
   </new-claim-payment>
@@ -150,7 +150,7 @@
                     <div class="row" style="margin-top: 10px;">
                       <div class="col-md-5"></div>
                       <div class="col-md-7">
-                        <input DanpheConfirmationDialog
+                        <input DsfConfirmationDialog
                                id="btnUpdateAmount"
                                type="submit"
                                [title]="confirmationTitle"

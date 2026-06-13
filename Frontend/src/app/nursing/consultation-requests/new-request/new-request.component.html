@@ -36,7 +36,7 @@
                             <label><b>{{ 'NURSING.WARD_BED' | translate }}:&nbsp;</b></label>{{ patientService.globalPatient.WardName }}/{{patientService.globalPatient.BedNo}}
                         </div>
                         <div class="col-md-6" style="padding-left: 45px !important">
-                            <label><b>{{ 'NURSING.DATE_OF_REQUEST' | translate }}:&nbsp;</b></label>{{ConsultationRequest.RequestedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm
+                            <label><b>{{ 'NURSING.DATE_OF_REQUEST' | translate }}:&nbsp;</b></label>{{ConsultationRequest.RequestedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm
                             A'}}
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             <div class="col-md-6">
                                 <input
                                        id="id_txt_request_to_department"
-                                       danphe-auto-complete
+                                       dsf-auto-complete
                                        class="form-control"
                                        display-property-name="DepartmentName"
                                        [list-formatter]="DepartmentListFormatter"
@@ -80,7 +80,7 @@
                             <div class="col-md-6">
                                 <input
                                        id="id_txt_request_to_doctor"
-                                       danphe-auto-complete
+                                       dsf-auto-complete
                                        class="form-control"
                                        display-property-name="FullName"
                                        [list-formatter]="DoctorListFormatter"
@@ -118,7 +118,7 @@
                                 <div class="col-md-6">
                                     <input
                                            id="id_txt_requesting_department"
-                                           danphe-auto-complete
+                                           dsf-auto-complete
                                            class="form-control"
                                            display-property-name="DepartmentName"
                                            [list-formatter]="DepartmentListFormatter"
@@ -141,7 +141,7 @@
                                 <div class="col-md-6">
                                     <input
                                            id="id_txt_requesting_doctor"
-                                           danphe-auto-complete
+                                           dsf-auto-complete
                                            class="form-control"
                                            display-property-name="FullName"
                                            [list-formatter]="DoctorListFormatter"
@@ -180,7 +180,7 @@
                                 <div class="col-md-6">
                                     <input
                                            id="id_txt_consulting_department"
-                                           danphe-auto-complete
+                                           dsf-auto-complete
                                            class="form-control"
                                            display-property-name="DepartmentName"
                                            [list-formatter]="DepartmentListFormatter"
@@ -203,7 +203,7 @@
                                 <div class="col-md-6">
                                     <input
                                            id="id_txt_consulting_doctor"
-                                           danphe-auto-complete
+                                           dsf-auto-complete
                                            class="form-control"
                                            display-property-name="FullName"
                                            [list-formatter]="DoctorListFormatter"

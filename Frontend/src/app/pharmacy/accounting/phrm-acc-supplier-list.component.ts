@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef } from "@angular/core";
 
 import PHRMGridColumns from '../shared/phrm-grid-columns';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 
 import { PHRMSupplierModel } from "../shared/phrm-supplier.model"
 import { PHRMACCSuppliersModel } from "../shared/phrm-acc-suppliers.model"
@@ -11,7 +11,7 @@ import { MessageboxService } from "../../shared/messagebox/messagebox.service"
 import { CommonFunctions } from "../../shared/common.functions"
 import * as moment from 'moment/moment';
 import { CoreService } from "../../core/shared/core.service";
-import { IGridFilterParameter } from "../../shared/danphe-grid/grid-filter-parameter.interface";
+import { IGridFilterParameter } from "../../shared/dsf-grid/grid-filter-parameter.interface";
 import { GeneralFieldLabels } from "../../shared/DTOs/general-field-label.dto";
 
 @Component({

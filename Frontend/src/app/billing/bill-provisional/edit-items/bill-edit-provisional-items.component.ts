@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
 import { PriceCategory } from "../../../settings-new/shared/price.category.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { BillingInvoiceBlService } from "../../shared/billing-invoice.bl.service";
 import { BillingMasterBlService } from "../../shared/billing-master.bl.service";
 import { BillingTransactionItem } from "../../shared/billing-transaction-item.model";
@@ -108,7 +108,7 @@ export class BillEditProvisionalItemsComponent {
   }
 
   CallBackGenerateDoctor(res): void {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       this.PerformerList = [];
       if (res && res.Results) {
         let docList: Array<any> = res.Results;
@@ -238,7 +238,7 @@ export class BillEditProvisionalItemsComponent {
   PutTransactionItems(modifiedItems: Array<BillingTransactionItem>) {
     this._billingBlService.UpdateProvisionalItems(modifiedItems)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this._msgBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Item/s updated successfully"]);
           this.CloseEditItemsPopup.emit({ modifiedItems: modifiedItems });
           this.Loading = false;
@@ -264,8 +264,8 @@ export class BillEditProvisionalItemsComponent {
   }
 
   GetServiceItemsByPriceCategoryId(priceCategoryId: number): void {
-    this._billingMasterBlService.GetServiceItemsByPriceCategoryId(priceCategoryId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this._billingMasterBlService.GetServiceItemsByPriceCategoryId(priceCategoryId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.PriceCategoryServiceItems = res.Results;
         this.UpdateServiceItemsPriceWithNewPrice(this.PriceCategoryServiceItems);
       }

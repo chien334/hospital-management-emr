@@ -26,7 +26,7 @@
               Select District:
             </label>
             <div class="col-md-7">
-              <input danphe-auto-complete id="ddlCountrySubdivision" class="form-control" [ngModelOptions]="{standalone: true}"
+              <input dsf-auto-complete id="ddlCountrySubdivision" class="form-control" [ngModelOptions]="{standalone: true}"
                      [(ngModel)]="countrySubDivision" [list-formatter]="districtListFormatter" [source]="countrySubDivisions"
                      placeholder="Select District" display-property-name="CountrySubDivisionName"
                      value-property-name=null (ngModelChange)="AssignSelectedDistrict($event)" onClick="this.select();" match-formatted="true"
@@ -61,7 +61,7 @@
               Select {{GeneralFieldLabel.Municipality}}:
             </label>
             <div class="col-md-7">
-              <input danphe-auto-complete id="ddlMunicipality" class="form-control" [ngModelOptions]="{standalone: true}"
+              <input dsf-auto-complete id="ddlMunicipality" class="form-control" [ngModelOptions]="{standalone: true}"
                      [(ngModel)]="municipality" [list-formatter]="municipalityListFormatter" [source]="FilteredMunicipalitiesList"
                      placeholder="Select Municipality" display-property-name="MunicipalityName"
                      value-property-name=null (ngModelChange)="updateGeoStatType();AssignSelectedMunicipality($event)"
@@ -79,14 +79,14 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12" *ngIf="GeoStatType === 'District'">
-      <danphe-grid [grid-colDefaults]="DistrictWiseReportColumn"
+      <dsf-grid [grid-colDefaults]="DistrictWiseReportColumn"
                    [grid-data]="DistrictWiseReportData" [grid-exportOptions]="gridExportOptions"
-                   [grid-showExport]="true"></danphe-grid>
+                   [grid-showExport]="true"></dsf-grid>
     </div>
     <div class="col-lg-12 col-sm-12" *ngIf="GeoStatType === 'Municipality'">
-      <danphe-grid [grid-colDefaults]="MunicipalityWiseReportColumn"
+      <dsf-grid [grid-colDefaults]="MunicipalityWiseReportColumn"
                    [grid-data]="filteredMunicipalityWiseReportData" [grid-exportOptions]="gridExportOptions"
-                   [grid-showExport]="true"></danphe-grid>
+                   [grid-showExport]="true"></dsf-grid>
     </div>
   </div>
 </div>

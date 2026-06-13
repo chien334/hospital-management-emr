@@ -26,7 +26,7 @@
           <tbody>
             <tr *ngFor="let req of allLabRequisitions;">
               <td colspan="2" >{{req.LabTestName}}</td>
-              <td>{{req.OrderDateTime  | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
+              <td>{{req.OrderDateTime  | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
               <td><label class="mt-checkbox mt-checkbox-outline">
                   <input type="checkbox" [(ngModel)]="req.IsSelected"  [title]="'LABS.SAMPLECODE_OF_CHECKED_TEST_WILL_RESET' | translate" />
                   <span></span> </label></td>

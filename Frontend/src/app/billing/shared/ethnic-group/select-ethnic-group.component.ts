@@ -3,9 +3,9 @@ import { CoreService } from "../../../core/shared/core.service";
 import { EthnicGroup } from "../../../patients/shared/ethnic-group.model";
 import { PatientsBLService } from "../../../patients/shared/patients.bl.service";
 import { GeneralFieldLabels } from "../../../shared/DTOs/general-field-label.dto";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses } from "../../../shared/shared-enums";
 
 
 @Component({
@@ -59,8 +59,8 @@ export class SelectEthnicGroupComponent {
     // }
 
     LoadEthnicGroups(): void {
-        this.patientBlService.GetCastEthnicGroupList().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.patientBlService.GetCastEthnicGroupList().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 let temp = [];
                 temp = res.Results;
                 if (temp.length > 0) {
@@ -75,8 +75,8 @@ export class SelectEthnicGroupComponent {
                 this.CastEthnicGroupList = temp;
             }
         },
-            (err: DanpheHTTPResponse) => {
-                this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Couldn't fetch Cast Ethnic Groups"]);
+            (err: DsfHTTPResponse) => {
+                this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Couldn't fetch Cast Ethnic Groups"]);
             });
     }
 

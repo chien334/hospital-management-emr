@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import * as moment from "moment";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_PharmacyPurchaseOrderVerificationStatus } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_PharmacyPurchaseOrderVerificationStatus } from "../../../shared/shared-enums";
 import { VerificationBLService } from "../../shared/verification.bl.service";
 import { VerificationService } from "../../shared/verification.service";
 import { PharmacyVerificationGridColumn } from "../shared/pharmacy-verification-grid-column";
@@ -87,8 +87,8 @@ export class PharmacyVerificationPurchaseOrderListComponent {
     GetPharmacyPurchaseOrdersBasedOnUser() {
         this.verificationBLService.GetPharmacyPurchaseOrdersBasedOnUser(this.fromDate, this.toDate)
             .finally(() => this.loading = false)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.PurchaseOrderGridData = res.Results;
                     this.PurchaseOrderGridDataFiltered = res.Results;
                     this.LoadPurchaseOrderListByStatus();

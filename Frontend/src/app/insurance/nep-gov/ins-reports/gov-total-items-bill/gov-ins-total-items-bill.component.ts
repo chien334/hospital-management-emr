@@ -4,8 +4,8 @@ import { CoreService } from "../../../../core/shared/core.service";
 import { RPT_BIL_TotalItemsBillModel } from "../../../../reporting/billing/total-items-bill/total-items-bill-report.model";
 import { ReportingService } from "../../../../reporting/shared/reporting-service";
 import { CommonFunctions } from "../../../../shared/common.functions";
-import { GridEmitModel } from "../../../../shared/danphe-grid/grid-emit.model";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { GridEmitModel } from "../../../../shared/dsf-grid/grid-emit.model";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { DLService } from "../../../../shared/dl.service";
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
 

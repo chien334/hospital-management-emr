@@ -155,9 +155,9 @@ export class MaternityANCComponent {
     var documentContent = "<html><head>";
     documentContent +=
       `<link rel="stylesheet" type="text/css" href="../../../../../../assets-dph/external/global/plugins/bootstrap/css/bootstrap.min.css" />` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanpheStyle.css" />` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/Danphe_ui_style.css" /></head>` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanphePrintStyle.css" /></head>`;
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfStyle.css" />` +
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/Dsf_ui_style.css" /></head>` +
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfPrintStyle.css" /></head>`;
 
     /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     ///Sud:22Aug'18--added no-print class in below documeentContent

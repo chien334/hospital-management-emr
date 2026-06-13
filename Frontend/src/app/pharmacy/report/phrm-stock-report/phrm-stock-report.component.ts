@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DanpheRoute } from '../../../security/shared/danphe-route.model';
+import { DsfRoute } from '../../../security/shared/dsf-route.model';
 import { SecurityService } from '../../../security/shared/security.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { SecurityService } from '../../../security/shared/security.service';
   styles: []
 })
 export class PHRMStockReportComponent {
-  validRoutes: DanpheRoute[];
+  validRoutes: DsfRoute[];
 
   constructor(public securityService: SecurityService) {
     this.validRoutes = this.securityService.GetChildRoutes("Pharmacy/Report/Stock");

@@ -19,7 +19,7 @@
                     <label class="control-label col-md-4">{{ 'SETTINGS_NEW.SERVICE_DEPARTMENT' | translate }}<sup>*</sup><b>:</b> </label>
                     <div class="col-md-8">
                       <div class="div-relative">
-                        <input id="ServiceDepartmentName" (keyup.enter)="GoToNextInput('ItemName')" danphe-auto-complete
+                        <input id="ServiceDepartmentName" (keyup.enter)="GoToNextInput('ItemName')" dsf-auto-complete
                                [(ngModel)]="selectedSrvDept" class="form-control" [list-formatter]="ServiceDeptListFormatter"
                                [source]="srvdeptList" [placeholder]="'SETTINGS_NEW.ENTER_DEPARTMENT_NAME' | translate"
                                display-property-name="ServiceDepartmentName" value-property-name=null onClick="this.select();"
@@ -46,7 +46,7 @@
                     </label>
                     <div class="col-md-8">
                       <div class="div-relative">
-                        <input id="ServiceCategoryId" danphe-auto-complete
+                        <input id="ServiceCategoryId" dsf-auto-complete
                                class="form-control" [list-formatter]="ServiceCatListFormatter"
                                [source]="ServiceCategoryList" [placeholder]="'SETTINGS_NEW.SELECT_CATEGORY' | translate" [(ngModel)]="selectedServiceCategory"
                                display-property-name="ServiceCategoryName" value-property-name=null onClick="this.select();"
@@ -121,7 +121,7 @@
                     </label>
                     <div class="col-md-8">
                       <div class="div-relative">
-                        <input id="IntegrationName" danphe-auto-complete
+                        <input id="IntegrationName" dsf-auto-complete
                                formControlName="IntegrationName"
                                [(ngModel)]="selectedIntegration" class="form-control" [list-formatter]="IntegrationNameListFormatter"
                                [source]="integrationNameList" [placeholder]="'SETTINGS_NEW.SELECT_INTEGRATION_NAME' | translate"
@@ -260,10 +260,10 @@
                           <b>:</b>
                         </label>
                         <div class="col-md-7">
-                          <danphe-multiselect [ddl-data]="docterList" [pre-selected]="PreSelectedDoctors"
+                          <dsf-multiselect [ddl-data]="docterList" [pre-selected]="PreSelectedDoctors"
                                               [placeholder-text]="'---Select Doctor---'" [value-property-name]="'EmployeeId'"
                                               (selected-items-list)="AssignDefaultDocter($event)" [display-property-name]="'FullName'"
-                                              [single-selection]="false"> </danphe-multiselect>
+                                              [single-selection]="false"> </dsf-multiselect>
                         </div>
                       </div>
                       <div class="form-group">

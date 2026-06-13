@@ -8,7 +8,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Search Problem<b style="float:right;">:</b></label>
                                 <div class="col-md-8">
-                                    <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" formControlName="ICD10Code" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="{{IcdVersionDisplayName}}" (valueChanged)="AssignSelectedICD()" display-property-name="ICD10Description" value-property-name=null min-chars="2" onClick="this.select();" max-num-list="10" />
+                                    <input dsf-auto-complete class="form-control" [(ngModel)]="icd10Selected" formControlName="ICD10Code" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="{{IcdVersionDisplayName}}" (valueChanged)="AssignSelectedICD()" display-property-name="ICD10Description" value-property-name=null min-chars="2" onClick="this.select();" max-num-list="10" />
                                     <span class="error-msg" *ngIf="PastMedical.IsDirty('ICD10Code')" [hidden]="PastMedical.IsValidCheck('ICD10Code','required')">Select {{IcdVersionDisplayName}} Code</span>
 
                                 </div>
@@ -74,8 +74,8 @@
                                             <td>{{add.ICD10Description}}</td>
                                             <td>{{add.ICD10Code}}</td>
                                             <td>{{add.CurrentStatus}}</td>
-                                            <td>{{add.OnSetDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
-                                            <td>{{add.ResolvedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                                            <td>{{add.OnSetDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
+                                            <td>{{add.ResolvedDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                                             <td>{{add.Note}}</td>
                                             <td><a style="cursor:pointer" (click)="SetAsActive(add)">Set as Active</a></td>
 

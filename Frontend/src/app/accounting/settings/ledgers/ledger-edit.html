@@ -55,7 +55,7 @@
                   <label class="control-label col-md-4">{{ 'ACCOUNTING.LEDGER_GROUP_NAME' | translate }} <sup>*</sup><b>:</b> </label>
                   <div class="col-md-8" *ngIf="typeledger">
                     <div class="div-relative">
-                      <input danphe-auto-complete class="col-md-11"
+                      <input dsf-auto-complete class="col-md-11"
                            [(ngModel)]="CurrentLedger.LedgerGroupName"
                            [source]="ledgergroupList"
                            [placeholder]="'ACCOUNTING.LEDGER_GROUP_NAME' | translate"
@@ -72,7 +72,7 @@
                     <span class="color-red font-sm" [hidden]="CurrentLedger.IsValidCheck('LedgerGroupName','required') || !(CurrentLedger.IsDirty('LedgerGroupName'))">{{ 'ACCOUNTING.LEDGER_GROUP_NAME_REQUIRED_ERR' | translate }}</span><br />
                     <span class="color-red" *ngIf="CurrentLedger.checkSelectedLedger==true">{{ 'ACCOUNTING.SELECT_PROPER_LEDGER_GROUP' | translate }}</span> </div>
                   <!-- <div class="col-md-5" *ngIf="update || !typeledger">
-                    <input danphe-auto-complete
+                    <input dsf-auto-complete
                            [(ngModel)]="CurrentLedger.LedgerGroupName"
                            [source]="ledgergroupList"
                            placeholder="Ledger GroupName"
@@ -92,7 +92,7 @@
                   <!--As per enhancement-->
                   <label class="control-label col-md-4">{{ 'ACCOUNTING.LEDGER_NAME_HEADER' | translate }}<sup>*</sup><b>:</b></label>
                   <div class="col-md-6" *ngIf="typeledger">
-                    <input danphe-auto-complete
+                    <input dsf-auto-complete
                            [(ngModel)]="CurrentLedger.LedgerName"
                            [source]="ledgerList"
                            [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate"
@@ -113,7 +113,7 @@
                            [placeholder]="'ACCOUNTING.LEDGER_CODE' | translate" />
                   </div>
                   <div class="col-md-5" *ngIf="!typeledger">
-                    <input danphe-auto-complete
+                    <input dsf-auto-complete
                            [(ngModel)]="CurrentLedger.LedgerName"
                            [source]="phrmSupplierList"
                            [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate"
@@ -132,7 +132,7 @@
                 <!--<div class="form-group col-md-6">
                                   <label class="control-label col-md-5">Ledger Name<sup>*</sup><b>:</b></label>
                                   <div class="col-md-7" *ngIf="typeledger">
-                                      <input danphe-auto-complete
+                                      <input dsf-auto-complete
                                              [(ngModel)]="CurrentLedger.LedgerName"
                                              [source]="ledgerList"
                                              placeholder="Ledger Name"
@@ -148,7 +148,7 @@
                                       <span class="color-red font-sm" *ngIf="CurrentLedger.IsDirty('LedgerName')" [hidden]="CurrentLedger.IsValidCheck('LedgerName','maxlength')"> Length is not proper</span>
                 </div>
                                   <div class="col-md-7" *ngIf="!typeledger">
-                                      <input danphe-auto-complete
+                                      <input dsf-auto-complete
                                              [(ngModel)]="CurrentLedger.LedgerName"
                                              [source]="phrmSupplierList"
                                              placeholder="Ledger Name"

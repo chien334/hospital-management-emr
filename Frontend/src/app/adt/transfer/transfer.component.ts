@@ -10,14 +10,14 @@ import { SecurityService } from "../../security/shared/security.service";
 import { Department } from "../../settings-new/shared/department.model";
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
 import { NepaliDate } from "../../shared/calendar/np/nepali-dates";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
-import { DanpheCache, MasterType } from "../../shared/danphe-cache-service-utility/cache-services";
+import { DsfCache, MasterType } from "../../shared/dsf-cache-service-utility/cache-services";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import {
   ENUM_BillingStatus,
   ENUM_BillingType,
-  ENUM_DanpheHTTPResponses,
+  ENUM_DsfHTTPResponses,
   ENUM_MessageBox_Status,
   ENUM_VisitType
 } from "../../shared/shared-enums";
@@ -32,7 +32,7 @@ import { PatientBedInfo } from "../shared/patient-bed-info.model";
 import { Ward } from "../shared/ward.model";
 
 @Component({
-  selector: "danphe-bed-transfer",
+  selector: "dsf-bed-transfer",
   templateUrl: "./transfer.html",
   styles: [
     `
@@ -182,8 +182,8 @@ export class TransferComponent {
   public SchemeName: string = "";
   public PriceCategoryName: string = "";
   GetAdmissionSchemePriceCategoryInfo(patientVisitId: number) {
-    this.admissionBLService.GetAdmissionSchemePriceCategoryInfo(patientVisitId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this.admissionBLService.GetAdmissionSchemePriceCategoryInfo(patientVisitId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.SchemePriceCategoryFromVisit.SchemeId = res.Results.SchemeId;
         this.SchemePriceCategoryFromVisit.PriceCategoryId = res.Results.PriceCategoryId;
         this.priceCategoryId = this.SchemePriceCategoryFromVisit.PriceCategoryId;
@@ -197,8 +197,8 @@ export class TransferComponent {
   }
 
   private GetAdtBedFeatureSchemePriceCategoryMap(): void {
-    this._admissionMasterBlService.GetBedFeatureSchemePriceCategoryMap(this.SchemePriceCategoryFromVisit.SchemeId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this._admissionMasterBlService.GetBedFeatureSchemePriceCategoryMap(this.SchemePriceCategoryFromVisit.SchemeId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.AdtBedFeatureSchemePriceCategoryMap = res.Results;
         if (this.OriginalBedFeatureList && this.OriginalBedFeatureList.length > 0) {
           this.FilterBedFeatureAsPerSelectedScheme();
@@ -223,7 +223,7 @@ export class TransferComponent {
     //this.newBedInfo.PatientVisitId
     this.visitBLService
       .GetRequestingDepartmentByVisitId(this.newBedInfo.PatientVisitId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let selectedDept = this.allDepartments.find(d => d.DepartmentId == res.Results.DepartmentId);
           this.selectedReqDept = selectedDept.DepartmentName;
@@ -267,7 +267,7 @@ export class TransferComponent {
   getDocts() {
     this.visitBLService
       .GetVisitDoctors()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.visitService.ApptApplicableDoctorsList = res.Results;
 
@@ -486,8 +486,8 @@ export class TransferComponent {
   private GetAvailableBedAndBedFeaturePrice(selectedBedFeature: BedFeature, wardId: number, bedFeatureId: number, priceCategoryId: number): void {
     this.disableBed = false;
     this.admissionBLService.GetAvailableBedAndBedFeaturePrice(wardId, bedFeatureId, priceCategoryId).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
           this.newBedInfo.BedPrice = res.Results.bedFeaturePrice;
 
           if (res.Results.availableBedsObj && res.Results.availableBedsObj.availableBeds.length) {
@@ -622,7 +622,7 @@ export class TransferComponent {
   // LoadDepartments() {
   //   this.admissionBLService
   //     .GetDepartments()
-  //     .subscribe((res: DanpheHTTPResponse) => {
+  //     .subscribe((res: DsfHTTPResponse) => {
   //       this.allDepartments = res.Results;
 
   //       //bikash:28May'20: awaitting for departments response data
@@ -670,7 +670,7 @@ export class TransferComponent {
         this.selectedBedInfo.PatientId,
         this.selectedBedInfo.PatientVisitId
       )
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.existingBedFeatures = res.Results;
         } else {
@@ -764,7 +764,7 @@ export class TransferComponent {
     popupWinindow.document.open();
     let documentContent = "<html><head>";
     documentContent +=
-      '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+      '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
     /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += "</head>";
     documentContent +=
@@ -821,7 +821,7 @@ export class TransferComponent {
   }
   public LoadCounter(): number {
     let allCounters: Array<BillingCounter>;
-    allCounters = DanpheCache.GetData(MasterType.BillingCounter, null);
+    allCounters = DsfCache.GetData(MasterType.BillingCounter, null);
     this.counter = allCounters.find(c => c.CounterType == "NURSING");
     if (this.counter && this.counter.CounterId)
       return this.counter.CounterId;

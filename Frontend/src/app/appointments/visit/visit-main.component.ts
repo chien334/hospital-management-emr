@@ -23,11 +23,11 @@ import { Patient } from '../../patients/shared/patient.model';
 import { PatientService } from '../../patients/shared/patient.service';
 import { SecurityService } from '../../security/shared/security.service';
 import { CallbackService } from '../../shared/callback.service';
-import { DanpheHTTPResponse } from '../../shared/common-models';
+import { DsfHTTPResponse } from '../../shared/common-models';
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../shared/routefrom.service';
-import { ENUM_AppointmentType, ENUM_BillPaymentMode, ENUM_BillingType, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_Scheme_ApiIntegrationNames, ENUM_ServiceBillingContext, ENUM_VisitType } from '../../shared/shared-enums';
+import { ENUM_AppointmentType, ENUM_BillPaymentMode, ENUM_BillingType, ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_InvoiceType, ENUM_MessageBox_Status, ENUM_OrderStatus, ENUM_Scheme_ApiIntegrationNames, ENUM_ServiceBillingContext, ENUM_VisitType } from '../../shared/shared-enums';
 import { AppointmentService } from '../shared/appointment.service';
 import { CurrentVisitContextVM } from '../shared/current-visit-context.model';
 import { PatientLatestVisitContext_DTO } from '../shared/dto/patient-lastvisit-context.dto';
@@ -120,7 +120,7 @@ export class VisitMainComponent {
     public settingsBLService: SettingsBLService) {
     this.CheckAndSetCounter();
     this.Initialize();
-    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DanpheConfigurationForTeleMedicine").ParameterValue;
+    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DsfConfigurationForTeleMedicine").ParameterValue;
     this.teleMedicineConfiguration = JSON.parse(TeleMedicineConfig);
     this.restrictApptOnDepartmentLevel = this.coreService.EnableDepartmentLevelAppointment();
     // this.CreditOrganizationMandatory = this.coreService.LoadCreditOrganizationMandatory();
@@ -237,8 +237,8 @@ export class VisitMainComponent {
     this.visitService.PatientTodaysVisitList = [];
     var followup: boolean = true;
     this.visitBLService.GetPatientVisits_Today(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.visitService.PatientTodaysVisitList = res.Results;
         }
         else {
@@ -261,7 +261,7 @@ export class VisitMainComponent {
     if (this.loading) {
       this.visitBLService.GetApptForDeptOnSelectedDate(this.quickVisit.Visit.DepartmentId, this.quickVisit.Visit.PerformerId, this.quickVisit.Visit.VisitDate, this.quickVisit.Patient.PatientId)
         .subscribe(res => {
-          if ((res.Status === ENUM_DanpheHTTPResponseText.OK) && res.Results && this.restrictApptOnDepartmentLevel) {
+          if ((res.Status === ENUM_DsfHTTPResponseText.OK) && res.Results && this.restrictApptOnDepartmentLevel) {
             this.msgBoxServ.showMessage("failed", ['Patient has already appointment for this department on selected date.']);
             this.loading = false;
           } else {
@@ -302,7 +302,7 @@ export class VisitMainComponent {
       let age = this.quickVisit.Patient.Age + this.quickVisit.Patient.AgeUnit;
       this.visitBLService.GetExistedMatchingPatientList(this.quickVisit.Patient.FirstName, this.quickVisit.Patient.LastName, this.quickVisit.Patient.PhoneNumber, age, this.quickVisit.Patient.Gender)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length) {
             this.matchedPatientList = res.Results;
             this.showExstingPatientListPage = true;//re-enable the button if there are duplicate patients..
             this.loading = false;
@@ -605,7 +605,7 @@ export class VisitMainComponent {
   ReturnPreviousVisitBillingTxnAndCreateVisit() {
     this.visitBLService.PostReturnTransaction(this.previousVisitBillingTxn, "transfer-visit")
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
 
           this.AssignValuesToBillTxn();
           this.CreateVisit();
@@ -650,8 +650,8 @@ export class VisitMainComponent {
       this.quickVisit.Visit.CreatedBy = this.securityService.GetLoggedInUser().EmployeeId;
       this.visitBLService.PostVisitToDB(this.quickVisit)
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
               this.CallBackCreateVisit(res);
             }
             else {
@@ -697,7 +697,7 @@ export class VisitMainComponent {
   public bil_BilTxnId: number = null;//sud:15Sept--For BillingInvoice Print Correction
 
   CallBackCreateVisit(res) {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
       let bilTxn = res.Results.BillingTransaction;
       this.bil_InvoiceNo = bilTxn.InvoiceNo;
       this.bil_FiscalYrId = bilTxn.FiscalYearId;
@@ -749,7 +749,7 @@ export class VisitMainComponent {
       try {
         this.visitBLService.UpdateAppointmentStatus(appointment.AppointmentId, "checkedin", PerformerId, PerformerName)
           .subscribe(res => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
               console.log("appointment status of apptId:" + appointment.AppointmentId + " updated successfully. ");
             }
             else {
@@ -948,8 +948,8 @@ export class VisitMainComponent {
   }
   // GetPatientCreditLimitsByScheme(schemeId: number, patientId: number, serviceBillingContext: string) {
   //   this.CreditLimit = 0;
-  //   this.visitBLService.GetPatientCreditLimitsByScheme(schemeId, patientId, serviceBillingContext).subscribe((res: DanpheHTTPResponse) => {
-  //     if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+  //   this.visitBLService.GetPatientCreditLimitsByScheme(schemeId, patientId, serviceBillingContext).subscribe((res: DsfHTTPResponse) => {
+  //     if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
   //       this.CreditLimit = res.Results;
   //     } else {
   //       this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, ["Failed to get Credit Limit"]);

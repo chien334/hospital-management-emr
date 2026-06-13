@@ -29,7 +29,7 @@
         <input type="checkbox" [(ngModel)]="ordServ.showAllLabTest" value="" />
         <span></span>Show All Lab Test </label>
       <div *ngIf="ordServ.allLabtests.length >0 && ordServ.showAllLabTest" style="float: left; width: auto; margin-left: 25px;">
-        <input danphe-auto-complete class="searchtbx"
+        <input dsf-auto-complete class="searchtbx"
                    [(ngModel)]="labTest"
                    [source]="testNameServerPath"
                    [list-formatter]="myListFormatter"

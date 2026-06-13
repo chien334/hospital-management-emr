@@ -106,7 +106,7 @@
                                                                       class="text-uppercase text-bold txt-label">Admission
                                                                     Date&nbsp;:&nbsp;</span>
                                                                 <span class="text-bold txt-val">{{admissionDate|
-                                                                    DanpheDateTime:'format':'YYYY-MM-DD'}}
+                                                                    DsfDateTime:'format':'YYYY-MM-DD'}}
                                                                     {{admissionDate |
                                                                     nepaliDate:'format':'YYYY-MM-DD'}} </span>
                                                             </div>
@@ -115,7 +115,7 @@
                                                                       class="text-uppercase text-bold txt-label">Discharge
                                                                     Date&nbsp;:&nbsp;</span>
                                                                 <span class="text-bold txt-val"> {{dischargeDate |
-                                                                    DanpheDateTime:'format':'YYYY-MM-DD'}}
+                                                                    DsfDateTime:'format':'YYYY-MM-DD'}}
                                                                     {{dischargeDate |
                                                                     nepaliDate:'format':'YYYY-MM-DD'}}
                                                                 </span>
@@ -247,7 +247,7 @@
                                                                         {{row.GenericName}} ({{row.ItemName}})</td>
                                                                     <td style="text-align:left; font-size:11px;">
                                                                         {{row.BatchNo}}|{{row.ExpiryDate
-                                                                        |DanpheDateTime:'format':'YYYY-MM'}}</td>
+                                                                        |DsfDateTime:'format':'YYYY-MM'}}</td>
                                                                     <td style="text-align:left; font-size:11px;">
                                                                         {{row.MRP}}</td>
                                                                     <td style="text-align:left; font-size:11px;">

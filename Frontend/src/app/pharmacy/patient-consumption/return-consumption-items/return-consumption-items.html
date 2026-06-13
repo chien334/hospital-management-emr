@@ -94,7 +94,7 @@
                             <div class="col-md-5"><label>{{ 'PHARMACY.RETURNING_STORE' | translate }}:</label></div>
                             <div class="col-md-7">
                                 <input *ngIf="WardSubStoreMapList"
-                                       id="id_input_returning_store" danphe-auto-complete
+                                       id="id_input_returning_store" dsf-auto-complete
                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedStore" [source]="WardSubStoreMapList"
                                        [list-formatter]="StoreListFormatter" [placeholder]="'PHARMACY.SELECT_STORE' | translate"
                                        display-property-name="StoreName" value-property-name="'StoreId'" match-formatted="true"
@@ -125,7 +125,7 @@
                     </div>
                     <div class="col-md-12" style="margin: 10px 0 10px 0;">
                         <div class="row text-right">
-                            <input DanpheConfirmationDialog
+                            <input DsfConfirmationDialog
                                    type="submit"
                                    [title]="confirmationTitle"
                                    [message]="confirmationMessage"

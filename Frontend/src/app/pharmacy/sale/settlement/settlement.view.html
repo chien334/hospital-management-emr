@@ -45,12 +45,12 @@
       {{ 'PHARMACY.UNPAID' | translate }} </label>
   </div>
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="PHRMSettlementGridCols"
+    <dsf-grid [grid-colDefaults]="PHRMSettlementGridCols"
                  [grid-data]="filteredPHRMPendingSettlements"
                  (grid-actions)="PHRMSettlementGridActions($event)"
                  [grid-exportOptions]="gridExportOptions"
                  [grid-showExport]="true">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 

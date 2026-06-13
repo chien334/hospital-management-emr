@@ -58,7 +58,7 @@
                     <label class="control-label cstm-control-label col-md-3">{{CurrentAllergy.AllergyType}}<sup
                             class="color-red"> *</sup><b>:</b></label>
                     <div class="col-md-9">
-                        <input danphe-auto-complete class="form-control cstm-form-control"
+                        <input dsf-auto-complete class="form-control cstm-form-control"
                             [(ngModel)]="allergenSelected" [ngModelOptions]="{standalone: true}"
                             [source]="allergicGenList" placeholder="Allergen" display-property-name="GenericName"
                             (valueChanged)="AssignSelectedAllergen()" [list-formatter]="allergenListFormatter"
@@ -141,7 +141,7 @@
                     <label class="control-label cstm-control-label col-md-3">Reaction<sup class="color-red">
                             *</sup><b>:</b></label>
                     <div class="col-md-9">
-                        <input danphe-auto-complete class="form-control cstm-form-control"
+                        <input dsf-auto-complete class="form-control cstm-form-control"
                             [(ngModel)]="reactionSelected" formControlName="Reaction" [source]="reactionList"
                             [list-formatter]="reactionListFormatter" placeholder="Reaction"
                             display-property-name="ReactionName" (valueChanged)="AssignSelectedReaction()"

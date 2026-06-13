@@ -13,11 +13,11 @@ import { LabsBLService } from '../labs/shared/labs.bl.service';
 import { Patient } from '../patients/shared/patient.model';
 import { PatientService } from '../patients/shared/patient.service';
 import { SecurityService } from "../security/shared/security.service";
-import { DanpheHTTPResponse } from '../shared/common-models';
+import { DsfHTTPResponse } from '../shared/common-models';
 import { CommonFunctions } from '../shared/common.functions';
 import { MessageboxService } from '../shared/messagebox/messagebox.service';
 import { RouteFromService } from "../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../shared/shared-enums';
 import { OrderItemsVM } from './shared/orders-vms';
 
 @Component({
@@ -108,11 +108,11 @@ export class OrderMainComponent {
     let patientVisitId = this.visitService.getGlobal().PatientVisitId;
     this.labBLService.GetDataOfInPatient(patientId, patientVisitId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.currPatVisitContext = res.Results;
           this.LoadAllOrderItems();
         } else {
-          this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Problem! Cannot get the Current Visit Context ! "])
+          this.msgBoxServ.showMessage(ENUM_DsfHTTPResponses.Failed, ["Problem! Cannot get the Current Visit Context ! "])
         }
       });
   }
@@ -163,8 +163,8 @@ export class OrderMainComponent {
   LoadAllOrderItems() {
     if (this.currPatVisitContext && this.currPatVisitContext.PriceCategoryId) {
       this.http.get<any>('/api/Orders/OrderItems?priceCategoryId=' + this.currPatVisitContext.PriceCategoryId, this.options).map(res => res)
-        .subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        .subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.allOrdItems = res.Results;
             this.allOrdItems.forEach(itm => {
               itm.IsSelected = false;
@@ -207,7 +207,7 @@ export class OrderMainComponent {
   LoadAllPreferences() {
 
     this.http.get<any>('/api/Orders/EmployeePreferences', this.options).map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.empAllPreferences = res.Results;
           this.empAllPreferences.forEach(itm => {
@@ -344,7 +344,7 @@ export class OrderMainComponent {
   RemoveFromPreference_New(item) {
     this.http.put<any>("/api/Orders/EmployeePreference/?itemId=" + item.ItemId + "&preferenceType=" + item.PreferenceType, this.options)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let itmIndex = this.empAllPreferences.findIndex(itm => itm.Type == item.Type && itm.ItemId == item.ItemId);
           item.IsPreference = false;
@@ -363,7 +363,7 @@ export class OrderMainComponent {
     let data = JSON.stringify(item.ItemId);
     this.http.post<any>("/api/Orders/EmployeePreference?itemId=" + item.ItemId + "&preferenceType=" + item.PreferenceType, data, this.options)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           //let itmIndex = this.empAllPreferences.findIndex(itm => itm.Type == item.Type && itm.ItemId == item.ItemId);
           //this.empAllPreferences.splice(itmIndex, 1);

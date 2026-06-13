@@ -10,7 +10,7 @@ import { RouteFromService } from "../../routefrom.service";
 import { QrService } from "../qr-service";
 
 @Component({
-  //selector: 'danphe-qr-billing',
+  //selector: 'dsf-qr-billing',
   templateUrl: "./qr-billing.html",
 })
 export class QrBillingComponent {

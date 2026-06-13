@@ -62,7 +62,7 @@
                      class=" fa fa-times"></i></a></td>
               <td>
                 <form [formGroup]="row.BillingTransactionItemValidator" class="bill-itemname">
-                  <input class="form-control cstm-form-control" danphe-auto-complete
+                  <input class="form-control cstm-form-control" dsf-auto-complete
                          title="{{row.ServiceDepartmentName}}"
                          formControlName="ServiceDepartmentId"
                          [ngClass]="{'border-red': row.IsDirty('ServiceDepartmentId') && !row.IsValid('ServiceDepartmentId','required'), 'border-red': !row.IsValidSelDepartment }"
@@ -81,7 +81,7 @@
               </td>
               <td>
                 <form [formGroup]="row.BillingTransactionItemValidator">
-                  <input class="form-control cstm-form-control" danphe-auto-complete
+                  <input class="form-control cstm-form-control" dsf-auto-complete
                          [(ngModel)]="SelectedRequestedByDr[i]"
                          [source]="DoctorsList"
                          [ngClass]="{'border-red': row.IsDirty('PrescriberId') && !row.IsValid('PrescriberId','required'), 'border-red': !row.IsValidSelPrescriberDr }"
@@ -101,7 +101,7 @@
               </td>
               <td>
                 <form [formGroup]="row.BillingTransactionItemValidator" class="bill-itemname">
-                  <input class="form-control cstm-form-control" danphe-auto-complete
+                  <input class="form-control cstm-form-control" dsf-auto-complete
                          formControlName="PerformerId"
                          [ngClass]="{'border-red': row.IsDirty('PerformerId') && !row.IsValid('PerformerId','required'), 'border-red': !row.IsvalidSelPerformerDr }"
                          [(ngModel)]="SelectedAssignedToDr[i]"
@@ -123,7 +123,7 @@
               <td style="width:250px" [ngClass]="{'duplication-item':row.IsDoubleEntry_Now || row.IsDoubleEntry_Past}">
                 <form [formGroup]="row.BillingTransactionItemValidator" class="bill-itemname">
                   <div class="autocomplete-item">
-                    <input class="form-control cstm-form-control" danphe-auto-complete
+                    <input class="form-control cstm-form-control" dsf-auto-complete
                            title="{{row.ItemName}}" autocomplete="off"
                            formControlName="ItemName"
                            [ngClass]="{'border-red': row.IsDirty('ItemName') && !row.IsValid('ItemName','required'), 'border-red': !row.IsValidSelItemName}"

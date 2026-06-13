@@ -95,7 +95,7 @@
                 <label class="control-label no-padding">{{ 'ACCOUNTING.SELECT_GROUP' | translate }}<b class="color-red"> *</b><b
                        style="float:right;">:</b></label><br>
                 <div>
-                    <input danphe-auto-complete class="form-control" [(ngModel)]="selectedLedgerGroup"
+                    <input dsf-auto-complete class="form-control" [(ngModel)]="selectedLedgerGroup"
                            [source]="ledgergroupList" [placeholder]="'ACCOUNTING.SELECT_LEDGER_GROUP' | translate"
                            display-property-name="LedgerGroupName" value-property-name="LedgerGroupName"
                            (valueChanged)="AssignSelectedLedgerGroup()" [list-formatter]="LedgerGroupListFormatter"

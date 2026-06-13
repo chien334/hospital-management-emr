@@ -4,7 +4,7 @@ import { PayrollBLService } from '../../Shared/payroll.bl.service';
 import { HolidayModel } from '../../Shared/payroll-holiday.model';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { SecurityService } from '../../../security/shared/security.service';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import * as moment from 'moment/moment';
 @Component({
 

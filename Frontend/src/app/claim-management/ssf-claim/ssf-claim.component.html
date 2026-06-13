@@ -67,20 +67,20 @@
   }
 </style>
 <div *ngIf="showReport">
-  <danphe-lab-view-report *ngIf="showReport && labReportFormat == 'format1'" [templateReport]="singleReport"
+  <dsf-lab-view-report *ngIf="showReport && labReportFormat == 'format1'" [templateReport]="singleReport"
                           [hidePrintButton]="true" [showReport]="showReport" [showHeader]="showHeader" [printReportFromGrid]="false"
                           [enableEdit]="false" [create-report-for-claim]="true">
-  </danphe-lab-view-report>
+  </dsf-lab-view-report>
 
-  <danphe-lab-view-report-format2 *ngIf="showReport && labReportFormat == 'format2'" [templateReport]="singleReport"
+  <dsf-lab-view-report-format2 *ngIf="showReport && labReportFormat == 'format2'" [templateReport]="singleReport"
                                   [showReport]="showReport" [showHeader]="showHeader" [printReportFromGrid]="false" [enableEdit]="false"
                                   [create-report-for-claim]="true">
-  </danphe-lab-view-report-format2>
+  </dsf-lab-view-report-format2>
 </div>
-<danphe-view-imaging-report *ngIf="showImagingReport" [requisitionId]="imagingRequisitionId"
+<dsf-view-imaging-report *ngIf="showImagingReport" [requisitionId]="imagingRequisitionId"
                             [create-report-for-claim]="true">
 
-</danphe-view-imaging-report>
+</dsf-view-imaging-report>
 
 <registration-sticker *ngIf="showOpdSticker" [patientVisitId]="selectedVisit.PatientVisitId">
 </registration-sticker>
@@ -185,7 +185,7 @@
                   [disabled]="(disableProcessClaimButton === true) ? true : null"
                   (click)="ProcessFinalClaim()"> Process Claim </button>
           <input
-                 DanpheConfirmationDialog
+                 DsfConfirmationDialog
                  id="btn_submit_claim"
                  type="submit"
                  [title]="confirmationTitle"
@@ -543,7 +543,7 @@
                     </td>
                     <td colspan="4" style="text-align: right;">
                       <p class="c_paragraphs" style="margin-bottom: 0px;">Transaction Date:<strong> {{BillingInvoiceInfo.TransactionDate |
-                          DanpheDateTime:'format':'YYYY-MM-DD'}}</strong></p>
+                          DsfDateTime:'format':'YYYY-MM-DD'}}</strong></p>
                     </td>
                   </tr>
                   <tr>
@@ -554,7 +554,7 @@
                     </td>
                     <td colspan="4" style="text-align: right;">
                       <p class="c_paragraphs" style="margin-bottom: 0px;">Invoice Date:
-                        <strong>{{BillingInvoiceInfo.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</strong>
+                        <strong>{{BillingInvoiceInfo.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}}</strong>
                       </p>
                     </td>
                   </tr>
@@ -706,7 +706,7 @@
               </td>
               <td colspan="6" style="padding: 5px !important; vertical-align: top; text-align: right;">
                 <p class="c_paragraphs" style="margin: 0px;"><strong>Time:
-                  </strong>{{BillingInvoiceInfo.TransactionDate | DanpheDateTime:'format':'hh:mm A'}}</p>
+                  </strong>{{BillingInvoiceInfo.TransactionDate | DsfDateTime:'format':'hh:mm A'}}</p>
               </td>
             </tr>
             <tr>
@@ -926,7 +926,7 @@
                       <td colspan="6" style="text-align: right;">
                         <p class="c_paragraphs" style="margin-bottom: 0px !important;"><strong>Transaction Date:</strong>
                           {{pharmacyReceipt.ReceiptDate |
-                          DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
+                          DsfDateTime:'format':'YYYY-MM-DD'}}</p>
                       </td>
                     </tr>
                     <tr>
@@ -936,7 +936,7 @@
                       </td>
                       <td colspan="6" style="text-align: right;" *ngIf="pharmacyHeaderDetail.hospitalName">
                         <p class="c_paragraphs" style="margin-bottom: 0px !important;"><strong>Invoice Date:</strong>
-                          {{pharmacyReceipt.ReceiptDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</p>
+                          {{pharmacyReceipt.ReceiptDate | DsfDateTime:'format':'YYYY-MM-DD'}}</p>
                       </td>
                     </tr>
                     <tr>
@@ -958,7 +958,7 @@
                       </td>
                       <td colspan="6" style="text-align: right;">
                         <p class="c_paragraphs" style="margin-bottom: 0px !important;"> Age/Sex :{{pharmacyReceipt.Patient.DateOfBirth |
-                          DanpheDateTime:'age'
+                          DsfDateTime:'age'
                           }}/{{pharmacyReceipt.Patient.Gender}}</p>
                       </td>
                     </tr>
@@ -1101,7 +1101,7 @@
                 </td>
                 <td colspan="6" style="padding: 0 10px !important; vertical-align: top; text-align: right;" style="color:black!important;">
                   <p class="c_paragraphs" style="text-align: right;"><strong>Time: </strong>{{pharmacyReceipt.ReceiptDate |
-                    DanpheDateTime:'format':'HH:mm'}}</p>
+                    DsfDateTime:'format':'HH:mm'}}</p>
                 </td>
               </tr>
               <tr>

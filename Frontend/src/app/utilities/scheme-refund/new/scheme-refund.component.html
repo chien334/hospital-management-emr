@@ -37,7 +37,7 @@
                       </label>
                     </div>
                     <div class="col-md-7">
-                      <input danphe-auto-complete id="id_patient_number"
+                      <input dsf-auto-complete id="id_patient_number"
                              class="form-control searchtbx w-100" [(ngModel)]="selectedPatient"
                              (ngModelChange)="AssignSelectedPatient()"
                              [list-formatter]="PatientListFormatter"
@@ -116,7 +116,7 @@
                       </label>
                     </div>
                     <div class="col-md-7">
-                      <input danphe-auto-complete id="refundscheme" name="refundscheme" class="form-control"
+                      <input dsf-auto-complete id="refundscheme" name="refundscheme" class="form-control"
                              [(ngModel)]="selectedSchme"
                              [list-formatter]="'SchemeName'" [source]="billingSchmes"
                              (keyup.enter)="GoToNextInput('refundamount')"
@@ -213,7 +213,7 @@
                 <tbody class="previous_scheme_data">
                   <tr *ngFor=" let sch of PreviousSchemeRefundDetail; let i=index;">
                     <td style="text-align: center;">{{i+1}}.</td>
-                    <td>{{sch.RefundedDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                    <td>{{sch.RefundedDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                     <td>{{sch.SchemeName}}</td>
                     <td>{{sch.RefundAmount}}</td>
                     <td>{{sch.FullName}}</td>

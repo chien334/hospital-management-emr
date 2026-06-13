@@ -4,10 +4,10 @@ import { VerificationBLService } from "../../shared/verification.bl.service";
 import { VerificationService } from "../../shared/verification.service";
 import { Router } from "@angular/router";
 import { RouteFromService } from "../../../shared/routefrom.service";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import VerificationGridColumns from '../../shared/verification-grid-column';
 import * as moment from 'moment';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
 import { ENUM_Requisition_VerificationStatus } from '../../../shared/shared-enums';
 import { PurchaseOrder } from '../../../inventory/shared/purchase-order.model';
 

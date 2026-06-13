@@ -7,8 +7,8 @@ import { PatientService } from '../../../patients/shared/patient.service';
 import { PrescriptionSlipBLService } from '../prescription-slip/shared/prescription-slip.bl.service'
 import * as moment from 'moment/moment';
 
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import { Patient } from '../../../patients/shared/patient.model';
 import { Visit } from '../../../appointments/shared/visit.model';

@@ -146,11 +146,11 @@ export class VoucherEditComponent {
 
   // @Input("editvoucherNumber")
   // public set value(val: string) {
-  //   if (!!val) {//mumbai-team-june2021-danphe-accounting-cache-change
+  //   if (!!val) {//mumbai-team-june2021-dsf-accounting-cache-change
   //     // this.Reset();
   //     // this.GetTxn(val);
   //     this.showeditPage = false;
-  //     this.editVoucherNo = val;//mumbai-team-june2021-danphe-accounting-cache-change
+  //     this.editVoucherNo = val;//mumbai-team-june2021-dsf-accounting-cache-change
   //     this.costCenterList = this.accountingService.accCacheData.CostCenters ? this.accountingService.accCacheData.CostCenters.filter(c => c.ParentCostCenterId === 0) : [];
   //     this.GetLedgerList();
   //     this.GetVoucher();
@@ -195,9 +195,9 @@ export class VoucherEditComponent {
 
   // GetVoucher() {
   //   try {
-  //     if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.voucherList = this.accountingService.accCacheData.VoucherType;//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.voucherList = this.voucherList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+  //     if (!!this.accountingService.accCacheData.VoucherType && this.accountingService.accCacheData.VoucherType.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.voucherList = this.accountingService.accCacheData.VoucherType;//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.voucherList = this.voucherList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
   //       this.AssignVoucher();
   //     }
   //   } catch (ex) {
@@ -206,9 +206,9 @@ export class VoucherEditComponent {
   // }
   // GetVoucherHead() {
   //   try {
-  //     if (!!this.accountingService.accCacheData.VoucherHead && this.accountingService.accCacheData.VoucherHead.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.voucherHeadList = this.accountingService.accCacheData.VoucherHead;//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.voucherHeadList = this.voucherHeadList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+  //     if (!!this.accountingService.accCacheData.VoucherHead && this.accountingService.accCacheData.VoucherHead.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.voucherHeadList = this.accountingService.accCacheData.VoucherHead;//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.voucherHeadList = this.voucherHeadList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
   //     }
   //   } catch (ex) {
   //     this.ShowCatchErrMessage(ex);
@@ -260,9 +260,9 @@ export class VoucherEditComponent {
   // //get all Ledger
   // GetLedgerList() {
   //   try {
-  //     if (!!this.accountingService.accCacheData.Ledgers.length && this.accountingService.accCacheData.Ledgers.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.ledgerList = this.accountingService.accCacheData.Ledgers;//mumbai-team-june2021-danphe-accounting-cache-change
-  //       this.ledgerList = this.ledgerList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+  //     if (!!this.accountingService.accCacheData.Ledgers.length && this.accountingService.accCacheData.Ledgers.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.ledgerList = this.accountingService.accCacheData.Ledgers;//mumbai-team-june2021-dsf-accounting-cache-change
+  //       this.ledgerList = this.ledgerList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
   //       this.GetVoucherDetailForEdit(this.editVoucherNo, this.fiscalYearId);
   //       this.ledgerList.forEach((a) => {
   //         if (a.ClosingBalance > 0) {
@@ -785,7 +785,7 @@ export class VoucherEditComponent {
   //   this.accountingBLService
   //     .GetVoucherforedit(GetVoucherDetailForEdit, secId, FsYId)
   //     .subscribe((res) => {
-  //       if ((res.Status === ENUM_DanpheHTTPResponseText.OK)) {
+  //       if ((res.Status === ENUM_DsfHTTPResponseText.OK)) {
   //         let td = new TransactionModel();
   //         td = res.Results;
   //         this.selVoucher.VoucherId = td.VoucherId;
@@ -1050,13 +1050,13 @@ export class VoucherEditComponent {
   // }
 
   // public GetSubLedger() {
-  //   this.accountingSettingBlService.GetSubLedger().subscribe((res: DanpheHTTPResponse) => {
-  //     if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+  //   this.accountingSettingBlService.GetSubLedger().subscribe((res: DsfHTTPResponse) => {
+  //     if (res.Status === ENUM_DsfHTTPResponseText.OK) {
   //       this.subLedgerMaster = res.Results;
   //       this.subLedgerMaster = this.subLedgerMaster.filter(a => a.IsActive === true);
   //     }
   //   },
-  //     (err: DanpheHTTPResponse) => {
+  //     (err: DsfHTTPResponse) => {
   //       this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [`Unable to get subLedger list.`]);
   //     });
   // }

@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { DanpheHTTPResponse } from '../../../../src/app/shared/common-models';
+import { DsfHTTPResponse } from '../../../../src/app/shared/common-models';
 import { VisitService } from '../../appointments/shared/visit.service';
 import { SecurityService } from '../../security/shared/security.service';
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { BloodSugarMonitoring } from '../shared/blood-sugar-monitoring.model';
 import { IOAllergyVitalsBLService } from '../shared/io-allergy-vitals.bl.service';
 import { PatientInfoDTO } from '../shared/patient-info.dto';
@@ -52,8 +52,8 @@ export class BloodSugarMonitoringComponent implements OnInit {
 
     public GetPatientBloodSugarList(): void {
         this.ioAllergyVitalsBLService.GetPatientBloodSugarList(this.patientVisitId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.BloodSugarMonitoringList = res.Results;
                     this.showBloodSugarMonitoringList = true;
                 }

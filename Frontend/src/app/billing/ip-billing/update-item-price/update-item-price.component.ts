@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CoreService } from '../../../core/shared/core.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { PriceCategory } from '../../../settings-new/shared/price.category.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { BillingMasterBlService } from '../../shared/billing-master.bl.service';
 import { BillingTransactionItem } from '../../shared/billing-transaction-item.model';
 import { BillingBLService } from '../../shared/billing.bl.service';
@@ -338,8 +338,8 @@ export class UpdateItemPriceComponent implements OnInit {
   }
 
   GetServiceItemsByPriceCategoryId(priceCategoryId: number): void {
-    this.billingMasterBlService.GetServiceItemsByPriceCategoryId(priceCategoryId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+    this.billingMasterBlService.GetServiceItemsByPriceCategoryId(priceCategoryId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
         this.PriceCategoryServiceItems = res.Results;
         this.UpdateServiceItemsPriceWithNewPrice(this.PriceCategoryServiceItems);
       }

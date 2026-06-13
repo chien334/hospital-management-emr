@@ -10,9 +10,9 @@
 
 <div *ngIf="serviceDepartmentList" class="row">
   <div class="col-md-9 col-xs-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="servDeptGridColumns" [grid-data]="serviceDepartmentList" (grid-actions)="ServDeptGridActions($event)"
+    <dsf-grid [grid-colDefaults]="servDeptGridColumns" [grid-data]="serviceDepartmentList" (grid-actions)="ServDeptGridActions($event)"
                  [show-print-button]="false">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>
 

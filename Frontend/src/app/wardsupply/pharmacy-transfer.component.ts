@@ -10,7 +10,7 @@ import WARDGridColumns from './shared/ward-grid-cloumns';
 import { WardModel } from "./shared/ward.model";
 import { WardStockModel } from './shared/ward-stock.model';
 import { SecurityService } from '../security/shared/security.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../shared/shared-enums';
 
 @Component({
   templateUrl: "./pharmacy-transfer.html"
@@ -89,7 +89,7 @@ export class PharmacyTransferComponent {
     try {
       this.wardSupplyBLService.GetAvailableWardItemsStockDetailsList(this.CurrentStoreId)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             if (res.Results.length) {
               this.medicineList = [];
               this.medicineList = res.Results;

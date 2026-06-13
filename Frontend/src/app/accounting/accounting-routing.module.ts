@@ -56,7 +56,7 @@ import { VoucherVerificationComponent } from './voucher-verification/voucher-ver
 
                     { path: 'Settings', loadChildren: () => import('./settings/accounting-settings.module').then(m => m.AccountingSettingsModule), canActivate: [AuthGuardService] },
 
-                    // START: mumbai-team-june2021-danphe-accounting-cache-change*
+                    // START: mumbai-team-june2021-dsf-accounting-cache-change*
                     { path: 'Reports', component: AccountingReportsComponent, canActivate: [AuthGuardService] },
                     { path: 'Reports/BalanceSheetReport', component: BalanceSheetReportComponent, canActivate: [AuthGuardService] },
                     { path: 'Reports/LedgerReport', component: LedgerReportComponent, canActivate: [AuthGuardService] },
@@ -69,7 +69,7 @@ import { VoucherVerificationComponent } from './voucher-verification/voucher-ver
                     { path: 'Reports/SystemAuditReport', component: SystemAuditReportComponent, canActivate: [AuthGuardService] },
                     { path: 'Reports/GroupStatementReport', component: GroupStatementReportComponent, canActivate: [AuthGuardService] },
                     //{ path: 'Reports/BankReconciliation', component: BankReconciliationComponent, canActivate: [AuthGuardService] },
-                    // END: mumbai-team-june2021-danphe-accounting-cache-change*
+                    // END: mumbai-team-june2021-dsf-accounting-cache-change*
                     { path: 'Reports/Cash-BankBookReport', component: CashBankBookReportComponent, canActivate: [AuthGuardService] },
                     { path: 'Reports/DayBookReport', component: DayBookReportComponent, canActivate: [AuthGuardService] },
                     { path: 'Reports/SubLedgerReport', component: SubLedgerReportComponent, canActivate: [AuthGuardService] },

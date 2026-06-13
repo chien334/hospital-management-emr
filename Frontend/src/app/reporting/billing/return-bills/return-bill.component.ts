@@ -9,9 +9,9 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 
 import { CommonFunctions } from '../../../shared/common.functions';
 
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { CoreService } from '../../../core/shared/core.service';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
   templateUrl: "./return-bill.html"

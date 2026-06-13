@@ -11,7 +11,7 @@
           </p>
         </div>
         <p> This patient <b>({{currPatientInfo.ShortName}}) </b>has last visited Emergency on
-          {{currPatientInfo.LatestVisitDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm A'}} <br />
+          {{currPatientInfo.LatestVisitDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm A'}} <br />
           Do you want to continue with Emergency Billing ? </p>
         <button class="btn blue" (click)="ContinueERBilling()"> Yes, Continue with ER-Billing </button>
         <button class="btn blue" (click)="ChangeToOutpatient()"

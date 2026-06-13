@@ -2,11 +2,11 @@ import { Component } from "@angular/core";
 import * as moment from "moment";
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
-import { DanpheCache, MasterType } from "../../../shared/danphe-cache-service-utility/cache-services";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfCache, MasterType } from "../../../shared/dsf-cache-service-utility/cache-services";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_ACC_ADDLedgerLedgerType, ENUM_ACC_PaymentMode, ENUM_DanpheHTTPResponseText, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_ACC_ADDLedgerLedgerType, ENUM_ACC_PaymentMode, ENUM_DsfHTTPResponseText, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { LedgerModel } from "../../settings/shared/ledger.model";
 import { SectionModel } from "../../settings/shared/section.model";
 import { SubLedgerTransactionModel } from "../../settings/shared/sub-ledger.model";
@@ -125,15 +125,15 @@ export class PaymentComponent {
     }
   }
   public loadCacheList() {
-    if (!!this.accountingService.accCacheData.Sections && this.accountingService.accCacheData.Sections.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-      this.SectionList = this.accountingService.accCacheData.Sections;//mumbai-team-june2021-danphe-accounting-cache-change
-      this.SectionList = this.SectionList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+    if (!!this.accountingService.accCacheData.Sections && this.accountingService.accCacheData.Sections.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+      this.SectionList = this.accountingService.accCacheData.Sections;//mumbai-team-june2021-dsf-accounting-cache-change
+      this.SectionList = this.SectionList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
       this.FilteredSectionList = this.SectionList.filter(a => a.SectionId != 4);
       this.FilteredSectionList = this.FilteredSectionList.filter(a => a.SectionId != 2);
     }
-    if (!!this.accountingService.accCacheData.LedgersALL && this.accountingService.accCacheData.LedgersALL.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-      this.AllLedgerList = this.accountingService.accCacheData.LedgersALL;//mumbai-team-june2021-danphe-accounting-cache-change
-      this.AllLedgerList = this.FilteredLedgerList = this.AllLedgerList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+    if (!!this.accountingService.accCacheData.LedgersALL && this.accountingService.accCacheData.LedgersALL.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+      this.AllLedgerList = this.accountingService.accCacheData.LedgersALL;//mumbai-team-june2021-dsf-accounting-cache-change
+      this.AllLedgerList = this.FilteredLedgerList = this.AllLedgerList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
     }
   }
   public onSectionChange() {
@@ -167,7 +167,7 @@ export class PaymentComponent {
     this.accountingBlService.GetInvVendorList()
       .finally(() => { this.OtherSectionFlag = false })
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.VendorList = res.Results;
           this.SetupInvGridColumns = GridColumnSettings.VendorList;
           this.InvSectionFlag = true;
@@ -178,7 +178,7 @@ export class PaymentComponent {
   public getPharmacySupplierlist() {
     this.accountingBlService.GetPharmacySupplier()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.SupplierList = res.Results;
           this.SetupPhrmGridColumns = GridColumnSettings.SupplierList;
           this.PhrmSectionFlag = true;
@@ -229,7 +229,7 @@ export class PaymentComponent {
   public loadInvGrList(grId, SectionId, number, Date) {
     this.accountingBlService.GetGRList(grId, SectionId, number, Date)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length) {
           this.GrList = res.Results;
         }
         else {
@@ -249,7 +249,7 @@ export class PaymentComponent {
   public loadPhrmGrList(grId, SectionId, number, Date) {
     this.accountingBlService.GetGRList(grId, SectionId, number, Date)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results.length) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results.length) {
           this.GrList = res.Results;
         } else {
           this.GrList = [];
@@ -413,7 +413,7 @@ export class PaymentComponent {
       this.MakePayment.Transaction = this.Transaction;
       this.accountingBlService.PostPayment(this.MakePayment)
         .subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.Loading = false;
             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Your Payment voucher is posted"]);
             this.ShowPaymentPopup = false;
@@ -578,7 +578,7 @@ export class PaymentComponent {
   }
   public UpdateLedgers() {
     try {
-      DanpheCache.clearDanpheCacheByType(MasterType.LedgersAll);
+      DsfCache.clearDsfCacheByType(MasterType.LedgersAll);
       this.accountingService.RefreshAccCacheData();
     }
     catch (ex) {

@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
 import { OperationTheatreBLService } from './shared/ot.bl.service';
 import { OperationTheatreDLService } from './shared/ot.dl.service';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         CommonModule,
         SharedModule,
         SettingsSharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         ReactiveFormsModule,
         FormsModule
     ],

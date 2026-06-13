@@ -46,12 +46,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <danphe-grid [grid-colDefaults]="billingLedgerGridColumns"
+                    <dsf-grid [grid-colDefaults]="billingLedgerGridColumns"
                                  [grid-data]="filteredBillingLedgerList"
                                  [show-print-button]="false"
                                  (grid-actions)="BillingLedgerMappingGridActions($event)">
 
-                    </danphe-grid>
+                    </dsf-grid>
                 </div>
 
             </div>
@@ -127,7 +127,7 @@
                             <label class="control-label col-md-5">{{ 'ACCOUNTING.SELECT_MAIN_LEDGER' | translate }}<sup>*</sup><b>:</b> </label>
                             <div class="col-md-7">
                                 <div class="div-relative">
-                                    <input danphe-auto-complete class="form-control" [(ngModel)]="selectedLedger"
+                                    <input dsf-auto-complete class="form-control" [(ngModel)]="selectedLedger"
                                            [source]="ledgerListAutoComplete" [placeholder]="'ACCOUNTING.LEDGER_NAME_HEADER' | translate" display-property-name="LedgerName"
                                            value-property-name=LedgerId (ngModelChange)="AssignSelectedLedger($event)"
                                            [list-formatter]="LedgerListFormatter" max-num-list="50"
@@ -145,7 +145,7 @@
                             <label class="control-label col-md-5">{{ 'ACCOUNTING.SELECT_SUB_LEDGER' | translate }}<sup>*</sup><b>:</b> </label>
                             <div class="col-md-7">
                                 <div class="div-relative">
-                                    <input danphe-auto-complete class="form-control"
+                                    <input dsf-auto-complete class="form-control"
                                            [(ngModel)]="selectedSubLedger"
                                            [source]="subLedgerListForBillingItems"
                                            [placeholder]="'ACCOUNTING.SUB_LEDGER_NAME_HEADER' | translate" display-property-name="SubLedgerName" value-property-name=null

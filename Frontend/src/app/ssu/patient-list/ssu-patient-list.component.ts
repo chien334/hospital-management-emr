@@ -5,8 +5,8 @@ import * as moment from 'moment/moment';
 import { PatientService } from '../../patients/shared/patient.service';
 import { AppointmentService } from '../../appointments/shared/appointment.service';
 
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 
 import { Patient } from "../../patients/shared/patient.model";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
@@ -65,7 +65,7 @@ export class SSU_PatientListComponent {
     //this.TestCode();
   }
   //public TestCode() {
-  //    this.msgBoxServ.showMessage("success", ["Welcome to messagebox service of Danphe.!"])
+  //    this.msgBoxServ.showMessage("success", ["Welcome to messagebox service of Dsf.!"])
   //}
   //Test() {
   //    this.msgBoxServ.showMessage("success", ["Message box"])

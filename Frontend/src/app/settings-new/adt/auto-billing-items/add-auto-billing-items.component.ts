@@ -5,9 +5,9 @@ import { Bed } from '../../../adt/shared/bed.model';
 import { BedFeature } from '../../../adt/shared/bedfeature.model';
 import { CoreService } from '../../../core/shared/core.service';
 import { Scheme_DTO } from '../../../pharmacy/patient-consumption/shared/scheme.dto';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { BillServiceItemModel } from '../../billing/shared/bill-service-item.model';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 
@@ -195,8 +195,8 @@ export class AddAutoBillingItemsComponent implements OnInit {
   }
   public GetSchemList() {
     this.settingsBLService.GetBillingSchmes().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.SchemeList = res.Results;
         } else {
           this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [
@@ -204,7 +204,7 @@ export class AddAutoBillingItemsComponent implements OnInit {
           ]);
         }
       },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Error, [
           `Error: ${err.ErrorMessage}`,
         ]);
@@ -214,7 +214,7 @@ export class AddAutoBillingItemsComponent implements OnInit {
   public GetServiceItems() {
     this.settingsBLService.GetServiceItemList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.ServiceItemList = res.Results;
         }
         else {
@@ -237,7 +237,7 @@ export class AddAutoBillingItemsComponent implements OnInit {
       if (hasData) {
         this.settingsBLService.AddAutoBillingItems(this.AutoBillingItems)
           .subscribe(
-            (res: DanpheHTTPResponse) => {
+            (res: DsfHTTPResponse) => {
               if (res.Status == "OK") {
                 this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Save successful"]);
                 this.Close();
@@ -269,8 +269,8 @@ export class AddAutoBillingItemsComponent implements OnInit {
     if (this.IsValidCheck(undefined, undefined)) {
       this.settingsBLService.UpdateAdtAutoBillingItems(this.AutoBillingItems)
         .subscribe(
-          (res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+          (res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
               this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Auto Billing Item Details Updated"]);
               this.AssignValueToCallBackUpdate(res.Results);
               this.Close();

@@ -5,7 +5,7 @@ import { MR_BLService } from '../shared/mr.bl.service';
 import { CoreService } from '../../core/shared/core.service';
 import { MedicalRecordsMasterDataVM, DischargeConditionTypeModel, DischargeTypeModel } from '../shared/DischargeMasterData.model';
 import { Employee } from '../../employee/shared/employee.model';
-import { MasterType, DanpheCache } from '../../shared/danphe-cache-service-utility/cache-services';
+import { MasterType, DsfCache } from '../../shared/dsf-cache-service-utility/cache-services';
 import { MedicalRecordsSummary } from '../shared/medical-records.model';
 import { BabyBirthDetails } from '../../adt/shared/baby-birth-details.model';
 import { DeathDetails } from '../../adt/shared/death.detail.model';
@@ -93,7 +93,7 @@ export class AddNewMedicalRecordComponent {
     this.medicalRecordId = this.patientDetail.MedicalRecordId;
     this.allMasterDataForMR.AllICDCodes = this.coreService.Masters.ICD10List.filter(x => x.Active == true);
     this.AssignDeliveryICD10();
-    this.AllDoctors = DanpheCache.GetData(MasterType.Employee, null);
+    this.AllDoctors = DsfCache.GetData(MasterType.Employee, null);
 
     this.IcdVersionDisplayName = this.coreService.Parameters.find(p => p.ParameterGroupName == "Common" && p.ParameterName == "IcdVersionDisplayName").ParameterValue;
 

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Router } from "@angular/router";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { NursingWardSubStoresMapModel } from "../../shared/nur-ward-substore-map.model";
 import { SettingsService } from "../../shared/settings-service";
 import { SettingsBLService } from "../../shared/settings.bl.service";
@@ -27,25 +27,25 @@ export class WardSubstoreMapManageEditComponent {
     }
     Update() {
         this.settingsBLService.UpdateSubstoreMapData(this.mappedSubstoreWardDetails)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
                     this.Close();
                     this.msgBox.showMessage(ENUM_MessageBox_Status.Success, ["successfully Updated"]);
                 }
                 else {
-                    this.msgBox.showMessage(ENUM_DanpheHTTPResponses.Failed, ["No data"]);
+                    this.msgBox.showMessage(ENUM_DsfHTTPResponses.Failed, ["No data"]);
                 }
             });
     }
 
     public GetSubstoreWardMapByWardId(WardId: number) {
         this.settingsBLService.GetSubstoreWardMapByWardId(WardId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.mappedSubstoreWardDetails = res.Results;
                 }
                 else {
-                    this.msgBox.showMessage(ENUM_DanpheHTTPResponses.Failed, ["No data"]);
+                    this.msgBox.showMessage(ENUM_DsfHTTPResponses.Failed, ["No data"]);
                 }
             });
     }

@@ -186,7 +186,7 @@
       <div class="form-group row">
         <label class="control-label col-md-3">{{ 'CLINICAL.ER_COURSE' | translate }}:</label>
         <div class="autocomplete-item col-md-4" *ngIf="ICD10List">
-          <input danphe-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="{{ 'CLINICAL.SELECT_ICD10' | translate }}" display-property-name="ICD10Description" value-property-name=null onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" />
+          <input dsf-auto-complete class="form-control" [(ngModel)]="icd10Selected" [source]="ICD10List" [list-formatter]="ICDListFormatter" placeholder="{{ 'CLINICAL.SELECT_ICD10' | translate }}" display-property-name="ICD10Description" value-property-name=null onClick="this.select();" match-formatted="true" [grid-sort]="'ICD10Description'" max-num-list="20" (focusout)="FocusOut()" [ngModelOptions]="{standalone:true}" />
         </div>
       </div>
     </div>
@@ -249,7 +249,7 @@
             <span></span>{{ 'CLINICAL.ELOPED' | translate }} </label>
         </div>
         <div class="col-md-3" *ngIf="notes.EmergencyNote.Disposition == 'admitted'">
-          <input class="form-control" danphe-auto-complete [(ngModel)]="selectedDepartment" [list-formatter]="myDepartmentListFormatter" [source]="departmentList" [ngModelOptions]="{standalone: true}" placeholder="{{ 'CLINICAL.DEPARTMENT_NAME_PLACEHOLDER' | translate }}" display-property-name="DepartmentName" (focusout)="FocusOut()" onClick="this.select()" (focus)="AssignSelectedDepartment()" match-formatted="true" (valueChanged)="AssignDispositionDepartment()" [grid-sort]="'DepartmentName'" max-num-list="10" />
+          <input class="form-control" dsf-auto-complete [(ngModel)]="selectedDepartment" [list-formatter]="myDepartmentListFormatter" [source]="departmentList" [ngModelOptions]="{standalone: true}" placeholder="{{ 'CLINICAL.DEPARTMENT_NAME_PLACEHOLDER' | translate }}" display-property-name="DepartmentName" (focusout)="FocusOut()" onClick="this.select()" (focus)="AssignSelectedDepartment()" match-formatted="true" (valueChanged)="AssignDispositionDepartment()" [grid-sort]="'DepartmentName'" max-num-list="10" />
         </div>
       </div>
     </div>

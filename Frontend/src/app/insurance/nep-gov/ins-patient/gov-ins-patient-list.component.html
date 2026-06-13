@@ -38,7 +38,7 @@
         &nbsp;&nbsp;
         <!--[source]="allPatientsForDDL"-->
         <div class="flex-item bs-65">
-          <input danphe-auto-complete
+          <input dsf-auto-complete
                  class="form-control"
                  [(ngModel)]="selectedINSPatientToEdit"
                  [list-formatter]="patientListFormatter"
@@ -57,10 +57,10 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="patListGridCols"
+      <dsf-grid [grid-colDefaults]="patListGridCols"
                    [grid-data]="insurancePatientsList" (grid-actions)="PatientGridActions($event)"
                    [setFocusOnGridSearch]="true" (serverSearchText)="SearchPatientFromGrid($event)" [customServerSearch]="true">
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
   <gov-insurance-update-balance *ngIf="showBalanceUpdatePage"

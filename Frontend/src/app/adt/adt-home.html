@@ -310,8 +310,8 @@
                 <button class="btn blue">Admit</button>
             </div>-->
           <vitals-add *ngIf="showVitalAddBox" style="position: absolute; top: -1px; left: -1px; width: 475px;" [visitIdfromADT]="requestedBed.PatientVisitId" (notify-adt)="hideVitals($event)"></vitals-add>
-          <danphe-bed-transfer *ngIf="showTransferPage" [selectedBedInfo]="selectedBedInfo" (notify-adt)="hideTransfer($event)" [all-Departments]="allDepartments">
-          </danphe-bed-transfer>
+          <dsf-bed-transfer *ngIf="showTransferPage" [selectedBedInfo]="selectedBedInfo" (notify-adt)="hideTransfer($event)" [all-Departments]="allDepartments">
+          </dsf-bed-transfer>
 
           <div class="row" *ngIf="showVitalList" style="position: absolute; top: -1px; left: -1px; width: 480px;">
             <div class="col-xs-12">
@@ -332,7 +332,7 @@
                           <td>Recorded On</td>
                           <td *ngFor="let vitals of vitalsList">
                             <strong>{{vitals.CreatedOn |
-                              DanpheDateTime:'format':'YYYY-MM-DD
+                              DsfDateTime:'format':'YYYY-MM-DD
                               HH:mm'}}</strong>
                           </td>
                         </tr>

@@ -14,7 +14,7 @@ import * as _ from 'lodash';
 import { LabSticker } from "../../shared/lab-sticker.model";
 import { CoreService } from "../../../core/shared/core.service";
 import { LabReportVM, ReportLookup } from "../../reports/lab-report-vm";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 
 @Component({
   selector: 'empty-add-report',
@@ -59,7 +59,7 @@ export class LabTestsEmptyAddReportComponent {
     //remove hardcoded id: 1 from below and pass correct one.
     //or pass list of requisitionIds as per necessity
     this.labBLService.GetReportFromReqIdList(this.allReqIdListForPrint)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK" && res.Results) {
           this.templateReport = res.Results;
           this.MapTestAndComponents();
@@ -149,7 +149,7 @@ export class LabTestsEmptyAddReportComponent {
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
     var documentContent = '<html><head>';
-    documentContent +=  `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanphePrintStyle.css" /></head>`;
+    documentContent +=  `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfPrintStyle.css" /></head>`;
 
     documentContent += '<body class="lab-rpt4moz" onload="window.print()">' + printContents + '</body></html>';
     popupWinindow.document.write(documentContent);

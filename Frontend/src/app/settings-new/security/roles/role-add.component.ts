@@ -8,7 +8,7 @@ import { Route } from "../../../security/shared/route.model";
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 @Component({
   selector: "role-add",
@@ -108,7 +108,7 @@ export class RoleAddComponent {
   //}
   public GetRouteList() {
     this.settingsBLService.GetRouteList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == 'OK') {
           if (res.Results.length) {
             //show only parent level routes for now.

@@ -10,9 +10,9 @@ import { DLService } from "../../../shared/dl.service";
 import { HttpClient } from "@angular/common/http";
 import * as moment from "moment/moment";
 import { ReportingService } from "../../../reporting/shared/reporting-service";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { Patient } from "../../../patients/shared/patient.model";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 
 @Component({
   templateUrl: "./discharged-patient.html",

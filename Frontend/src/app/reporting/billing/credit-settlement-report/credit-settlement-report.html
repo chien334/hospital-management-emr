@@ -21,11 +21,11 @@
     </div>
     <div class="row">
         <div class="col-lg-12 col-sm-12" *ngIf = "creditSettlementReportData.length > 0">
-            <danphe-grid [grid-colDefaults]="creditSettlementReportColumns" [grid-data]="creditSettlementReportData"
+            <dsf-grid [grid-colDefaults]="creditSettlementReportColumns" [grid-data]="creditSettlementReportData"
                 [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [grid-date-range]="dateRange"
                 [report-for]="'billing'"
                 (grid-actions) = "CreditSettlementReportGridActions($event)">
-            </danphe-grid>
+            </dsf-grid>
         </div>
     </div>
 </div>

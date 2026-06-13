@@ -51,15 +51,15 @@
   </div>
   <div class="row" *ngIf="showGrid">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="gridColumns" [grid-data]="reportList" (grid-actions)="GridActions($event)"
-        [rangeType]="dateRange"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="gridColumns" [grid-data]="reportList" (grid-actions)="GridActions($event)"
+        [rangeType]="dateRange"> </dsf-grid>
     </div>
   </div>
   <div style="margin-top: 5px;" *ngIf="!showGrid">
     <button class="btn primary-btn pull-left margin-7-rt" (click)="BackToGrid();"> <i class="fa fa-arrow-left"></i> {{ 'LABS.BACK_TO_GRID_1' | translate }} </button>
-    <danphe-lab-results [showReport]="showReport" [showAddEditResult]="showAddEditResult"
+    <dsf-lab-results [showReport]="showReport" [showAddEditResult]="showAddEditResult"
       [requisitionIdList]="requisitionIdList" [verificationRequired]="verificationRequired"
-      (callbackAddUpdate)="CallBackBackToGrid($event)"></danphe-lab-results>
+      (callbackAddUpdate)="CallBackBackToGrid($event)"></dsf-lab-results>
   </div>
   <div *ngIf="showlabsticker" class="popup-static portlet box portlet-fullscreen">
     <div class="portlet-body form">

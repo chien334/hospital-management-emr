@@ -8,10 +8,10 @@ import { InventorySummaryReport } from '../shared/inventory-summary-report.model
 import * as moment from 'moment/moment';
 import { CoreService } from '../../../core/shared/core.service';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
-import { IGridFilterParameter } from '../../../shared/danphe-grid/grid-filter-parameter.interface';
-import { ReportGridColumnSettings } from '../../../shared/danphe-grid/report-grid-column-settings.constant';
-import { ENUM_DanpheHTTPResponseText } from '../../../shared/shared-enums';
+import { NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
+import { IGridFilterParameter } from '../../../shared/dsf-grid/grid-filter-parameter.interface';
+import { ReportGridColumnSettings } from '../../../shared/dsf-grid/report-grid-column-settings.constant';
+import { ENUM_DsfHTTPResponseText } from '../../../shared/shared-enums';
 import { INV_RPT_InventorySummaryReport_DTO } from '../dto/inv_rpt_inventory-summary-report.dto';
 @Component({
     //selector: 'my-app',
@@ -77,7 +77,7 @@ export class InventorySummaryComponent implements OnInit, OnDestroy {
     }
     private GetAllStoreList() {
         this.inventoryBLService.GetAllSubStores().subscribe(res => {
-            if (res.Status == ENUM_DanpheHTTPResponseText.OK) {
+            if (res.Status == ENUM_DsfHTTPResponseText.OK) {
                 this.storeList = res.Results;
                 this.storeList.unshift({ StoreId: null, StoreName: 'All' });
 
@@ -158,7 +158,7 @@ export class InventorySummaryComponent implements OnInit, OnDestroy {
         this.loading = false;
     }
     Success(res) {
-        if (res.Status == ENUM_DanpheHTTPResponseText.OK && res.Results.length > 0) {
+        if (res.Status == ENUM_DsfHTTPResponseText.OK && res.Results.length > 0) {
 
             this.CalculateSummaryData(res.Results);
 
@@ -182,7 +182,7 @@ export class InventorySummaryComponent implements OnInit, OnDestroy {
             //this.TotalSummary(this.InventorySummaryReportData);
 
         }
-        else if (res.Status == ENUM_DanpheHTTPResponseText.OK && res.Results.length == 0) {
+        else if (res.Status == ENUM_DsfHTTPResponseText.OK && res.Results.length == 0) {
             this.msgBoxServ.showMessage("Error", ["There is no data available."]);
         }
         else {

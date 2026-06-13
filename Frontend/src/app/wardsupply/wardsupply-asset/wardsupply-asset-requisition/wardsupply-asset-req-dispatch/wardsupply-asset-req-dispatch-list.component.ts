@@ -9,8 +9,8 @@ import { WardSupplyBLService } from "../../../shared/wardsupply.bl.service";
 import { CoreService } from "../../../../core/shared/core.service";
 import { wardsupplyService } from "../../../shared/wardsupply.service";
 import WARDGridColumns from "../../../shared/ward-grid-cloumns";
-import { GridEmitModel } from '../../../../shared/danphe-grid/grid-emit.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { GridEmitModel } from '../../../../shared/dsf-grid/grid-emit.model';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 import {FixedAssetDispatch} from "../../../../fixed-asset/shared/fixed-asset-dispatch.model";
 import {FixedAssetDispatchItems} from "../../../../fixed-asset/shared/fixed-asset-dispatch-items.model"

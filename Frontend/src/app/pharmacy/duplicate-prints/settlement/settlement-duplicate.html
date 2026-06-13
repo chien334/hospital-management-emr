@@ -1,11 +1,11 @@
 
 <div class="row" *ngIf="!showReceipt">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="PHRMSettlementDuplicateGridCols"
+      <dsf-grid [grid-colDefaults]="PHRMSettlementDuplicateGridCols"
                    [grid-data]="allPHRMSettlementsDuplicate"
                    (grid-actions)="PHRMSettlementGridActions($event)"
                    [grid-showExport]="false">
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
 

@@ -98,7 +98,7 @@
                           Date&nbsp;:&nbsp;</span>
                         <span class="text-uppercase text-bold txt-val">
                           {{invoice.DischargeInfo.StatementDate |
-                          DanpheDateTime:'format':'YYYY-MM-DD'}}&nbsp;
+                          DsfDateTime:'format':'YYYY-MM-DD'}}&nbsp;
                         </span>
                       </div>
 
@@ -126,7 +126,7 @@
                         <span class="text-uppercase text-bold txt-label">Invoice
                           Date&nbsp;:&nbsp;</span>
                         <span class="text-uppercase text-bold txt-val">{{invoice.DischargeInfo.StatementDate
-                          | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                          | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                       </div>
                     </div>
 
@@ -149,7 +149,7 @@
                       <div class="col-left flex-2">
                         <span class="text-uppercase text-bold txt-label">DOA&nbsp;:&nbsp;</span>
                         <span class="text-uppercase text-bold txt-val">{{invoice.VisitInfo.AdmissionDate
-                          | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                          | DsfDateTime:'format':'YYYY-MM-DD'}}
                           {{invoice.VisitInfo.AdmissionDate | nepaliDate}}</span>
                       </div>
 
@@ -163,7 +163,7 @@
                       <div class="col-left flex-2"><span class="text-uppercase text-bold txt-label">DOD&nbsp;:&nbsp;</span>
                         <span class="text-uppercase text-bold txt-val">{{invoice.VisitInfo.DischargeDate
                           |
-                          DanpheDateTime:'format':'YYYY-MM-DD'}}
+                          DsfDateTime:'format':'YYYY-MM-DD'}}
                           {{invoice.VisitInfo.DischargeDate | nepaliDate}}</span>
                       </div>
                       <div class="col-right" *ngIf="invoice.InvoiceInfo && invoice.InvoiceInfo.PaymentMode">
@@ -347,7 +347,7 @@
                         </div>
                         <div>
                           <span class="text-uppercase">Print Date: </span><span>{{this.invoice.InvoiceInfo.TransactionDate|
-                            DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                            DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                         </div>
                         <div>
                           <span class="text-uppercase">Printed On: </span><span>{{currTime}}</span>

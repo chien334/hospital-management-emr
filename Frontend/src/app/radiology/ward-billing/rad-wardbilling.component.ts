@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef, EventEmitter, Output, OnInit, Input } fro
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { CoreService } from '../../core/shared/core.service';
 import { CommonFunctions } from '../../shared/common.functions';
-import { DanpheHTTPResponse, CancelStatusHoldingModel } from '../../shared/common-models';
+import { DsfHTTPResponse, CancelStatusHoldingModel } from '../../shared/common-models';
 import * as moment from 'moment/moment';
 import { BillingTransactionItem } from '../../billing/shared/billing-transaction-item.model';
 import { InPatientLabTest } from '../../labs/shared/InpatientLabTest';
@@ -10,7 +10,7 @@ import { Patient } from '../../patients/shared/patient.model';
 import { ImagingBLService } from '../shared/imaging.bl.service';
 import { WardPatientVM } from './ward-patient-view-model';
 import { BillingBLService } from '../../billing/shared/billing.bl.service';
-import { DanpheCache, MasterType } from '../../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../../shared/dsf-cache-service-utility/cache-services';
 import { ENUM_OrderStatusNumber } from "../../shared/shared-enums";
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -150,14 +150,14 @@ export class RadiologyWardBillingComponent {
   GetBillingCounterForRadiology() {
 
     let allBilCntrs: Array<any>;
-    allBilCntrs = DanpheCache.GetData(MasterType.BillingCounter, null);
+    allBilCntrs = DsfCache.GetData(MasterType.BillingCounter, null);
     let counter = allBilCntrs.filter(cnt => cnt.CounterType == "RADIOLOGY");
     if (counter) {
       this.radiologyBillingCounterId = counter.find(cntr => cntr.CounterId).CounterId;
     }
 
     // this.billingBLService.GetAllBillingCounters()
-    //     .subscribe((res: DanpheHTTPResponse) => {
+    //     .subscribe((res: DsfHTTPResponse) => {
     //         if (res.Status == "OK") {
     //             let allBilCntrs: Array<any> = res.Results;
     //             let counter = allBilCntrs.find(cnt => cnt.CounterType == "RADIOLOGY");

@@ -9,8 +9,8 @@
 </div>
 <div class="row">
     <div class="col-lg-12 col-sm-12" *ngIf="INVValuationData.length>0">
-        <danphe-grid [grid-colDefaults]="INVValuationColumns" [grid-data]="INVValuationData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-title]="'Inventory Valuation Report'" [report-for]="'inventory'" [show-header]="true" (grid-actions)="BarCodeGridActions($event)">
-        </danphe-grid>
+        <dsf-grid [grid-colDefaults]="INVValuationColumns" [grid-data]="INVValuationData" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-title]="'Inventory Valuation Report'" [report-for]="'inventory'" [show-header]="true" (grid-actions)="BarCodeGridActions($event)">
+        </dsf-grid>
     </div>
 </div>
 

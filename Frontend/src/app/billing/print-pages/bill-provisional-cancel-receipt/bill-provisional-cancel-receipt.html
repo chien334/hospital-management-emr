@@ -152,7 +152,7 @@
           <td style="padding: 5px 5px;  width: 5%">{{1}}</td>
           <td style="padding: 5px 5px;  width: 5%">PRC/{{ ProvisionalDetails.CancellationReceiptNo}}</td>
           <td style="padding: 5px 5px;  width: 5%">PR/{{ ProvisionalDetails.ReferenceProvisionalReceiptNo}}</td>
-          <td style="padding: 5px 5px;  width: 5%">{{ProvisionalDetails.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+          <td style="padding: 5px 5px;  width: 5%">{{ProvisionalDetails.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
           <td colspan="4" style="padding: 5px 5px; width: 60%">{{ProvisionalDetails.ItemName}} <span
                   *ngIf="ProvisionalDetails.AssignedToDrName!=null && ShowProviderName">
               ({{ProvisionalDetails.AssignedToDrName}})</span></td>

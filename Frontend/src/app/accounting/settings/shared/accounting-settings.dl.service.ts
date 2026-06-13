@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { response } from '../../../core/response.model';
 import { MedicalCareType } from '../../../insurance/medicare/shared/medicare-member.model';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { BankReconciliationCategory } from '../../bank-reconciliation/reconcile-bank-transactions/bank-reconciliation.model';
 import { SubLedgerForMakePayment } from '../../transactions/shared/DTOs/sub-ledger-for-payment.dto';
 import { SubLedgerModel } from './sub-ledger.model';
@@ -22,25 +22,25 @@ export class AccountingSettingsDLService {
     }
 
     public GetSubLedger() {
-        return this.http.get<DanpheHTTPResponse>(`/api/AccountingSettings/GetSubLedgers`, this.options);
+        return this.http.get<DsfHTTPResponse>(`/api/AccountingSettings/GetSubLedgers`, this.options);
     }
 
     public AddSubLedger(subLedger: string) {
-        return this.http.post<DanpheHTTPResponse>(`/api/AccountingSettings/AddSubLedger?ledger=${subLedger}`, this.options);
+        return this.http.post<DsfHTTPResponse>(`/api/AccountingSettings/AddSubLedger?ledger=${subLedger}`, this.options);
     }
 
     public UpdateSubLedger(subLedger: SubLedgerModel) {
         let options = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return this.http.put<DanpheHTTPResponse>(`/api/AccountingSettings/UpdateSubLedger`, subLedger, options);
+        return this.http.put<DsfHTTPResponse>(`/api/AccountingSettings/UpdateSubLedger`, subLedger, options);
     }
 
     public ActivateDeactiveSubLedger(subLedger: SubLedgerModel) {
         let options = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return this.http.put<DanpheHTTPResponse>(`/api/AccountingSettings/ActivateDeactiveSubLedger`, subLedger, options);
+        return this.http.put<DsfHTTPResponse>(`/api/AccountingSettings/ActivateDeactiveSubLedger`, subLedger, options);
     }
     public getPrimaryGroupList() {
         return this.http.get<any>("/api/AccountingSettings/PrimaryList");
@@ -344,7 +344,7 @@ export class AccountingSettingsDLService {
         return this.http.put("/api/AccountingSettings/CostCenter/ActivateDeactivate", data);
     }
     UpdateBillingLedgerMappingStatus(BillLedgerMappingId: number, IsActive: boolean) {
-        return this.http.put<DanpheHTTPResponse>(`/api/AccLedgerMapping/ActivateDeactivateBillingLedgerMapping?BillLedgerMappingId=${BillLedgerMappingId}&IsActive=${IsActive}`, this.options);
+        return this.http.put<DsfHTTPResponse>(`/api/AccLedgerMapping/ActivateDeactivateBillingLedgerMapping?BillLedgerMappingId=${BillLedgerMappingId}&IsActive=${IsActive}`, this.options);
     }
     UpdateMedicareType(medicareType: Array<MedicalCareType>) {
         const httpOptions = {
@@ -357,6 +357,6 @@ export class AccountingSettingsDLService {
         }
     }
     AddSubLedgers(subLedgers: Array<SubLedgerForMakePayment>) {
-        return this.http.post<DanpheHTTPResponse>("/api/AccountingSettings/SubLedger", subLedgers, this.jsonOptions);
+        return this.http.post<DsfHTTPResponse>("/api/AccountingSettings/SubLedger", subLedgers, this.jsonOptions);
     }
 }

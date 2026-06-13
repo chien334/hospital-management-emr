@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { SharedModule } from '../../shared/shared.module';
 import { BillingSharedModule } from '../billing-shared.module';
 import { InsuranceBillItemRequest } from './add-new-items/insurance-bill-item-request.component';
@@ -64,7 +64,7 @@ export const InsBillingRoutes: Routes =
         CommonModule,
         ReactiveFormsModule,
         RouterModule.forChild(InsBillingRoutes),
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         FormsModule,
         BillingSharedModule,
         PatientSharedModule], providers: [

@@ -22,7 +22,7 @@
                     <input class="zoomcheckbox" [(ngModel)]="itm.IsSelected" name="IsSelected" width="100" type="checkbox" ng-checked="itm.IsSelected=true"
                            (change)="ToggleItemSelection(i)">
                 </td>
-                <td>{{itm.GoodsReceiptDate  | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                <td>{{itm.GoodsReceiptDate  | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                 <td>{{itm.VendorName}}</td>
                 <td>{{itm.TotalAmount | ParseAmount  | Currency:'4'}}</td>
                 <td>{{itm.Remarks | CapitalFirstLetter}}</td>
@@ -43,7 +43,7 @@
                 <div class="col-md-12">
                     <div class="caption" style="color:blue;">
                         <h3 style="text-align:center">
-                            <b>{{ 'ACCOUNTING.DETAILS_OF_GOODS_RECEIPT_ON' | translate: {date: (selItem.GoodsReceiptDate  | DanpheDateTime:'format':'YYYY-MM-DD')} }}</b>
+                            <b>{{ 'ACCOUNTING.DETAILS_OF_GOODS_RECEIPT_ON' | translate: {date: (selItem.GoodsReceiptDate  | DsfDateTime:'format':'YYYY-MM-DD')} }}</b>
                         </h3>
                     </div>
                     <a style="float:right;  margin-top:-32px;" class="btn btn-danger" (click)="selItem=null" title="{{ 'COMMON.CANCEL' | translate }}">X</a>

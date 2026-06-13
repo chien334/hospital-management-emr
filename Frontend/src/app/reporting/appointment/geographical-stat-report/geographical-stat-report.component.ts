@@ -3,10 +3,10 @@ import * as moment from 'moment';
 import { CoreService } from '../../../core/shared/core.service';
 import { CountrySubdivision, Municipality } from '../../../settings-new/shared/country-subdivision.model';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_GeographicalReportType, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_GeographicalReportType, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { DynamicReport } from '../../shared/dynamic-report.model';
 import { ReportingService } from '../../shared/reporting-service';
 
@@ -74,8 +74,8 @@ export class RPT_ADT_GeographicalStatReportComponent implements OnInit {
         "&CountrySubDivisionName=" + this.CountrySubDivisionName + "&MunicipalityName=" + this.MunicipalityName
         + "&GeoStatType=" + geoStatTypeToSend
       )
-        .map((res: DanpheHTTPResponse) => res)
-        .subscribe((res: DanpheHTTPResponse) => this.Success(res),
+        .map((res: DsfHTTPResponse) => res)
+        .subscribe((res: DsfHTTPResponse) => this.Success(res),
           res => this.Error(res));
     } else {
       this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, ['Dates Provided is not Proper']);
@@ -84,7 +84,7 @@ export class RPT_ADT_GeographicalStatReportComponent implements OnInit {
 
 
   Success(res) {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
       if (this.GeoStatType === ENUM_GeographicalReportType.District) {
 
         this.DistrictWiseReportData = res.Results;
@@ -125,8 +125,8 @@ export class RPT_ADT_GeographicalStatReportComponent implements OnInit {
     this.CountryName = country ? country.CountryName : "";
 
     this.dlService.GetCountrySubDivision(this.CountryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
           this.countrySubDivisions = [];
           this.countrySubDivisions = res.Results;
 
@@ -165,8 +165,8 @@ export class RPT_ADT_GeographicalStatReportComponent implements OnInit {
     // this.FilteredMunicipalitiesList = this.municipalities.find(a => a.municipalityId === Number(this.municipalityId))
     // this.MunicipalityName = municipality ? municipality.MunicipalityName : "";
     this.dlService.GetMunicipality(this.CountryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
           this.MunicipalitiesList = [];
           this.MunicipalitiesList = res.Results;
           this.FilteredMunicipalitiesList = this.MunicipalitiesList.filter(m => m.CountrySubDivisionId === this.selectedDistrictId);

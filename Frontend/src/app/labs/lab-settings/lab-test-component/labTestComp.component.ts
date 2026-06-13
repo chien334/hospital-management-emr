@@ -5,8 +5,8 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { LabComponentModel } from '../../shared/lab-component-json.model';
 import * as _ from 'lodash';
 import { SettingsBLService } from '../../../settings-new/shared/settings.bl.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { GridEmitModel } from '../../../../../src/app/shared/danphe-grid/grid-emit.model';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { GridEmitModel } from '../../../../../src/app/shared/dsf-grid/grid-emit.model';
 import { CoreCFGLookUp } from '../shared/coreCFGLookUp.model';
 
 @Component({
@@ -50,7 +50,7 @@ export class LabTestCompComponent{
 
     public GetAllLabTestComponents(){
         this.labSettingBlServ.GetAllLabTestComponents()
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
             if(res.Status == "OK"){
                 this.labTestComponentList = res.Results;
             } else {

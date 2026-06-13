@@ -15,9 +15,9 @@ import { SchemePriceCategory_DTO } from "../../../billing/shared/dto/scheme-pric
 import { ServiceItemDetails_DTO } from "../../../billing/shared/dto/service-item-details.dto";
 import { CoreService } from "../../../core/shared/core.service";
 import { Employee } from "../../../employee/shared/employee.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from '../../../shared/common.functions';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from "../../../shared/shared-enums";
 import { Department } from "../../shared/department.model";
 import { BillingPackageForGrid_DTO } from "../shared/dto/bill-package-for-grid.dto";
 import { BillingPackageServiceItem_DTO } from "../shared/dto/billing-package-service-item.dto";
@@ -101,7 +101,7 @@ export class BillingPackageAddComponent {
   public GetBillingPackageServiceItemList(BillingPackageId: number, PriceCategoryId: number): void {
     this._settingsBLService.GetBillingPackageServiceItemList(BillingPackageId, PriceCategoryId)
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.SelectedServiceItemList = res.Results;
             this.SchemePriCeCategory.SchemeId = this.selectedItem.SchemeId;
@@ -347,8 +347,8 @@ export class BillingPackageAddComponent {
     this.ServiceItems = new Array<ServiceItemDetails_DTO>();
     this.loadingScreen = true; //not implement as in view as of now
     this._billingMasterBlService.GetServiceItems(serviceBillingContext, schemeId, priceCategoryId)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results.length > 0) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results.length > 0) {
           this.ServiceItems = res.Results;
           if (this.ServiceItems && this.ServiceItems.length > 0) {
             this.loadingScreen = false;
@@ -369,7 +369,7 @@ export class BillingPackageAddComponent {
   public GetSrvDeptList(): void {
     this._settingsBLService.GetBillingServDepartments()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           if (res.Results.length) {
             this.srvdeptList = res.Results;
           }
@@ -388,7 +388,7 @@ export class BillingPackageAddComponent {
   public LoadAllDoctorsList(): void {
     this._settingsBLService.GetDoctorsList()
       .subscribe((res) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           console.log("doctors list are loaded successfully (billing-main).");
           this.doctorList = res.Results;
         }
@@ -477,7 +477,7 @@ export class BillingPackageAddComponent {
     this._settingsBLService.AddBillingPackage(this.BillingPackage)
       .subscribe(
         res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.callbackAdd.emit({ packageItem: res.Results });
             this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Billing Package Added"]);
             this.CurrentBillingPackage = new BillingPackage();
@@ -490,7 +490,7 @@ export class BillingPackageAddComponent {
             this.Close();
           }
           else {
-            this._messageBoxService.showMessage(ENUM_DanpheHTTPResponses.OK, ["Check log for details"]);
+            this._messageBoxService.showMessage(ENUM_DsfHTTPResponses.OK, ["Check log for details"]);
             this.CurrentBillingPackage.PackageServiceItems = new Array<BillingPackageItem>();
             console.log(res.ErrorMessage);
           }
@@ -506,7 +506,7 @@ export class BillingPackageAddComponent {
     this._settingsBLService.UpdateBillingPackage(this.BillingPackage)
       .subscribe(
         res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this._messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Billing Package Updated"]);
             this.callbackAdd.emit({ packageItem: res.Results });
             this.Close();
@@ -524,7 +524,7 @@ export class BillingPackageAddComponent {
   public CheckValidation(): boolean {
     let isValid = true;
     if (!this.CurrentBillingPackage.IsValidCheck(undefined, undefined)) {
-      this._messageBoxService.showMessage(ENUM_DanpheHTTPResponses.Failed, ["Please fill madatory fields."]);
+      this._messageBoxService.showMessage(ENUM_DsfHTTPResponses.Failed, ["Please fill madatory fields."]);
       isValid = false;
     }
     if (this.CurrentBillingPackage.PackageServiceItems.length === 0) {

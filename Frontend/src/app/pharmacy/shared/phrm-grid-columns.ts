@@ -22,10 +22,10 @@ export default class PHRMGridColumns {
             field: "",
             width: 150,
             template:
-                `<a danphe-grid-action="edit" class="grid-action">
+                `<a dsf-grid-action="edit" class="grid-action">
                    Edit </a>`
 
-            //< /a><a danphe-grid-action="admit" class="grid-action">
+            //< /a><a dsf-grid-action="admit" class="grid-action">
             //   Admit
             //    </a >
         }
@@ -109,7 +109,7 @@ export default class PHRMGridColumns {
         { headerName: "TAX Name", field: "TAXName", width: 270 },
         { headerName: "TAX Percentage", field: "TAXPercentage", width: 100 },
         { headerName: "Description", field: "Description", width: 100 },
-        { headerName: "Action", field: "", width: 150, template: '<a danphe-grid-action="edit" class="grid-action">Edit</a>' },
+        { headerName: "Action", field: "", width: 150, template: '<a dsf-grid-action="edit" class="grid-action">Edit</a>' },
     ]
     static PHRMGoodsReceiptList = [
         { headerName: "G.R. No.", field: "GoodReceiptPrintId", width: 80 },//using GoodReceiptPrintId instead of GrID
@@ -124,7 +124,7 @@ export default class PHRMGridColumns {
         { headerName: "Total Amount", field: "TotalAmount", width: 100 },
         { headerName: "Remarks", field: "Remarks", width: 100 },
         { headerName: "Aging Days", field: "AgingDays", width: 100 },
-        { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' },
+        { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' },
     ]
     static PHRMACCTGoodsReceiptList = [
         { headerName: "Supplier Name", field: "SupplierName", width: 150 },
@@ -137,7 +137,7 @@ export default class PHRMGridColumns {
     static PHRMACCTGoodsReceiptListAction(params) {
         let count = params.data.GoodReceiptDate;
         if (count != null) {
-            return `<a danphe-grid-action="view" class="grid-action">View</a>`
+            return `<a dsf-grid-action="view" class="grid-action">View</a>`
         }
     }
     static PHRMACCTSuppliersList = [
@@ -151,7 +151,7 @@ export default class PHRMGridColumns {
         { headerName: "Total Amount", field: "TotalAmount", width: 100 },
         { headerName: "Credit Period", field: "CreditPeriod", width: 100 },
         { headerName: "GoodReceiptType", field: "GoodReceiptType", width: 100 },
-        { headerName: "Action", field: "", width: 100, template: `<a danphe-grid-action="view" class="grid-action">View</a>` },
+        { headerName: "Action", field: "", width: 100, template: `<a dsf-grid-action="view" class="grid-action">View</a>` },
     ]
 
     static PHRMReturnToSupplier = [
@@ -164,7 +164,7 @@ export default class PHRMGridColumns {
         { headerName: "Discount Amount", field: "DiscountAmount", width: 100 },
         { headerName: "VAT Amount", field: "VATAmount", width: 100 },
         { headerName: "Total Amount", field: "TotalAmount", width: 100 },
-        { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="return" class="grid-action">Return</a> &nbsp;<a danphe-grid-action="preview" class="grid-action">Preview</a>' },
+        { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="return" class="grid-action">Return</a> &nbsp;<a dsf-grid-action="preview" class="grid-action">Preview</a>' },
     ]
 
     static PHRMReturnItemToSupplierList = [
@@ -177,7 +177,7 @@ export default class PHRMGridColumns {
         { headerName: "VAT Amount", field: "VATAmount", width: 100 },
         { headerName: "CC Amount", field: "CCAmount", width: 100 },
         { headerName: "Total Amount", field: "TotalAmount", width: 100 },
-        { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' },
+        { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' },
     ]
     static PHRMWriteOffList = [
         { headerName: "WriteOff Date", field: "WriteOffDate", width: 100, cellRenderer: PHRMGridColumns.PHRMReturnDateRenderer },
@@ -190,7 +190,7 @@ export default class PHRMGridColumns {
         { headerName: "VAT Amount", field: "VATAmount", width: 100 },
         { headerName: "Total Amount", field: "TotalAmount", width: 100 },
         { headerName: "Remarks", field: "Remarks", width: 100 },
-        { headerName: "Action", field: "", width: 100, template: '<a danphe-grid-action="view" class="grid-action">View</a>' },
+        { headerName: "Action", field: "", width: 100, template: '<a dsf-grid-action="view" class="grid-action">View</a>' },
 
     ]
     static creditOrganizationList = [
@@ -202,7 +202,7 @@ export default class PHRMGridColumns {
 
             width: 80,
             template:
-                `<a danphe-grid-action="edit" class="grid-action">
+                `<a dsf-grid-action="edit" class="grid-action">
                     Edit
                  </a>`
         }]
@@ -336,7 +336,7 @@ export default class PHRMGridColumns {
     static ShowActionForSettlementList() {
 
         let template =
-            `<a danphe-grid-action="view" class="grid-action">
+            `<a dsf-grid-action="view" class="grid-action">
                 View Details
             </a>`
 
@@ -384,13 +384,13 @@ export default class PHRMGridColumns {
         //   headerName: "Action",
         //   field: "", width: 150,
         //   template:
-        //     ` <a  danphe-grid-action="manage-stock" class="grid-action">
+        //     ` <a  dsf-grid-action="manage-stock" class="grid-action">
         //                     Manage Stock </a>
-        //       <a  danphe-grid-action="transfer-store" class="grid-action">
+        //       <a  dsf-grid-action="transfer-store" class="grid-action">
         //                     Store Transfer </a>
         //                  `
         // },
-        //<a danphe- grid - action="view" class="grid-action" >
+        //<a dsf- grid - action="view" class="grid-action" >
         //View
         //< /a>
     ]
@@ -468,7 +468,7 @@ export default class PHRMGridColumns {
             width: 100,
             template:
                 `
-                	<a danphe-grid-action="dispatch" class="grid-action">
+                	<a dsf-grid-action="dispatch" class="grid-action">
 					 Dispatch
                      </a>                      
                      `
@@ -488,7 +488,7 @@ export default class PHRMGridColumns {
             pinned: true,
             width: 200,
             template:
-                ` <a danphe-grid-action="view" class="grid-action">
+                ` <a dsf-grid-action="view" class="grid-action">
                         Print
                      </a>`
         }
@@ -504,7 +504,7 @@ export default class PHRMGridColumns {
             field: "",
             width: 100,
             template:
-                `<a danphe-grid-action="dispatch" class="grid-action">
+                `<a dsf-grid-action="dispatch" class="grid-action">
                        Dispatch
                      </a>                      
                      `
@@ -549,7 +549,7 @@ export default class PHRMGridColumns {
             width: 100,
             template:
                 `</a>
-                        <a danphe-grid-action="view" class="grid-action">
+                        <a dsf-grid-action="view" class="grid-action">
                        View
                      </a>                      
                      `
@@ -574,7 +574,7 @@ export default class PHRMGridColumns {
             field: "", width: 100,
             template:
                 `</a>
-                        <a danphe-grid-action="update-mrp" class="grid-action">
+                        <a dsf-grid-action="update-mrp" class="grid-action">
                        Update SalePrice
                      </a>                      
                      `
@@ -606,15 +606,15 @@ export default class PHRMGridColumns {
         if (params.data.IsActive == true) {
             let template =
                 `
-                    <a danphe-grid-action="edit" class="grid-action">Edit</a>                    
-                    <a danphe-grid-action="activateDeactivateIsActive" class="grid-action">Deactivate</a>            
+                    <a dsf-grid-action="edit" class="grid-action">Edit</a>                    
+                    <a dsf-grid-action="activateDeactivateIsActive" class="grid-action">Deactivate</a>            
                 `
             return template
         }
         else {
             let template =
                 `
-                    <a danphe-grid-action="activateDeactivateIsActive" class="grid-action">Activate</a>
+                    <a dsf-grid-action="activateDeactivateIsActive" class="grid-action">Activate</a>
                 `
             return template;
         }
@@ -624,16 +624,16 @@ export default class PHRMGridColumns {
         if (params.data.IsActive == true) {
             let template =
                 `
-                    <a danphe-grid-action="edit" class="grid-action">Edit</a>                    
-                    <a danphe-grid-action="activateDeactivateIsActive" class="grid-action">Deactivate</a>             
-                    <a danphe-grid-action="showPaymentModes" class="grid-action">Payment Modes</a>             
+                    <a dsf-grid-action="edit" class="grid-action">Edit</a>                    
+                    <a dsf-grid-action="activateDeactivateIsActive" class="grid-action">Deactivate</a>             
+                    <a dsf-grid-action="showPaymentModes" class="grid-action">Payment Modes</a>             
                 `
             return template
         }
         else {
             let template =
                 `
-                    <a danphe-grid-action="activateDeactivateIsActive" class="grid-action">Activate</a>
+                    <a dsf-grid-action="activateDeactivateIsActive" class="grid-action">Activate</a>
                 `
             return template;
         }
@@ -644,16 +644,16 @@ export default class PHRMGridColumns {
         if (params.data.IsActive == true) {
             let template =
                 `  
-                    <a danphe-grid-action="add-rack" class="grid-action">Add to Rack</a>
-                    <a danphe-grid-action="edit" class="grid-action">Edit</a>                    
-                    <a danphe-grid-action="activateDeactivateIsActive" class="grid-action">Deactivate</a>             
+                    <a dsf-grid-action="add-rack" class="grid-action">Add to Rack</a>
+                    <a dsf-grid-action="edit" class="grid-action">Edit</a>                    
+                    <a dsf-grid-action="activateDeactivateIsActive" class="grid-action">Deactivate</a>             
                 `
             return template
         }
         else {
             let template =
                 `
-                    <a danphe-grid-action="activateDeactivateIsActive" class="grid-action">Activate</a>
+                    <a dsf-grid-action="activateDeactivateIsActive" class="grid-action">Activate</a>
                 `
             return template;
         }
@@ -728,11 +728,11 @@ export default class PHRMGridColumns {
             field: "",
             width: 320,
             template:
-                `<a danphe-grid-action="sale" class="grid-action">
+                `<a dsf-grid-action="sale" class="grid-action">
                     Sale
                 </a>
                 &nbsp;
-                <a danphe-grid-action="deposit" class="grid-action">
+                <a dsf-grid-action="deposit" class="grid-action">
                     Deposit
                 </a>`
         }
@@ -756,7 +756,7 @@ export default class PHRMGridColumns {
             field: "",
             width: 200,
             template:
-                `<a danphe-grid-action="view" class="grid-action">
+                `<a dsf-grid-action="view" class="grid-action">
                 View Availability
              </a>
             `
@@ -798,7 +798,7 @@ export default class PHRMGridColumns {
         //    field: "",
         //    width: 200,
         //    template:
-        //    `<a danphe-grid-action="view" class="grid-action">
+        //    `<a dsf-grid-action="view" class="grid-action">
         //        View
         //     </a>
         //    `
@@ -822,7 +822,7 @@ export default class PHRMGridColumns {
             field: "",
             width: 100,
             template:
-                `<a danphe-grid-action="view" class="grid-action">
+                `<a dsf-grid-action="view" class="grid-action">
            Print
         </a>
        `
@@ -845,7 +845,7 @@ export default class PHRMGridColumns {
             field: "",
             width: 100,
             template:
-                `<a danphe-grid-action="view" class="grid-action">
+                `<a dsf-grid-action="view" class="grid-action">
            Print
         </a>
        `
@@ -862,11 +862,11 @@ export default class PHRMGridColumns {
         //            {
         //         let template =
         //         `
-        //                 <a danphe-grid-action="view" class="grid-action">
+        //                 <a dsf-grid-action="view" class="grid-action">
         //                 Print
         //              </a>
 
-        //                <a  danphe-grid-action="saleCredit" class="grid-action">
+        //                <a  dsf-grid-action="saleCredit" class="grid-action">
         //                 Make Payment </a>
         //              `
         //     return template
@@ -874,7 +874,7 @@ export default class PHRMGridColumns {
         //            else{
         //             let template =
         //             `
-        //                     <a danphe-grid-action="view" class="grid-action">
+        //                     <a dsf-grid-action="view" class="grid-action">
         //                     Print
         //                  </a>
         //                  `
@@ -885,11 +885,11 @@ export default class PHRMGridColumns {
         //        else{
         //         let template =
         //         `
-        //                 <a danphe-grid-action="view" class="grid-action">
+        //                 <a dsf-grid-action="view" class="grid-action">
         //                 Print
         //              </a>
 
-        //                <a  danphe-grid-action="saleCredit" class="grid-action">
+        //                <a  dsf-grid-action="saleCredit" class="grid-action">
         //                 Make Payment </a>
         //              `
         //              return template
@@ -899,7 +899,7 @@ export default class PHRMGridColumns {
         // }
         // else {
         let template =
-            `<a danphe-grid-action="view" class="grid-action">
+            `<a dsf-grid-action="view" class="grid-action">
                 Print
              </a>`
         return template;
@@ -929,18 +929,18 @@ export default class PHRMGridColumns {
         if (["active", "partial"].includes(params.data.POStatus)) {
             let template =
                 `</a>
-                        <a danphe-grid-action="view" class="grid-action">
+                        <a dsf-grid-action="view" class="grid-action">
                         View
                      </a>
 
-                       <a  danphe-grid-action="genReceipt" class="grid-action">
+                       <a  dsf-grid-action="genReceipt" class="grid-action">
                         Add Goods Receipt
                      `
             return template
         }
         else {
             let template =
-                `<a danphe-grid-action="view" class="grid-action">
+                `<a dsf-grid-action="view" class="grid-action">
                 View
              </a>`
             return template;
@@ -978,10 +978,10 @@ export default class PHRMGridColumns {
         ]
 
     static GetRackActions(params) {
-        return `<a danphe-grid-action="view" class="grid-action">
+        return `<a dsf-grid-action="view" class="grid-action">
                            View Drugs
                  </a>
-                 <a danphe-grid-action="edit" class="grid-action">
+                 <a dsf-grid-action="edit" class="grid-action">
                    Edit
                  </a>`;
     }
@@ -1010,20 +1010,20 @@ export default class PHRMGridColumns {
     }
     static GetStoreStockActions(params) {
         let template = ``;
-        template += '<a danphe-grid-action="print-barcode" class="grid-action phrm-stock-action fa fa-barcode" title = "Print Barcode" > </a>'
+        template += '<a dsf-grid-action="print-barcode" class="grid-action phrm-stock-action fa fa-barcode" title = "Print Barcode" > </a>'
         if (PHRMGridColumns.securityService.HasPermission('store-update-mrp-button'))
-            template += `<a danphe-grid-action="update-mrp" class="grid-action">Update SalePrice</a>`
+            template += `<a dsf-grid-action="update-mrp" class="grid-action">Update SalePrice</a>`
         if (PHRMGridColumns.securityService.HasPermission('store-update-expirydate-batchno-button'))
-            template += `<a danphe-grid-action="update-expirydate-batchno" class="grid-action">Update Exp&Batch</a>`
+            template += `<a dsf-grid-action="update-expirydate-batchno" class="grid-action">Update Exp&Batch</a>`
         if (PHRMGridColumns.securityService.HasPermission('show-pharmacy-manage-stock-item-button'))
-            template += `<a danphe-grid-action="manage-stock" class="grid-action">Manage Stock</a >`;
+            template += `<a dsf-grid-action="manage-stock" class="grid-action">Manage Stock</a >`;
         return template;
 
     }
     GetDispensaryStockActions() {
-        let template = `<a  danphe-grid-action="transfer-store" class="grid-action">Store Transfer</a>`;
+        let template = `<a  dsf-grid-action="transfer-store" class="grid-action">Store Transfer</a>`;
         if (PHRMGridColumns.securityService.HasPermission('dispensary-update-mrp-button'))
-            template += `<a danphe-grid-action="update-mrp" class="grid-action">Update SalePrice</a>`
+            template += `<a dsf-grid-action="update-mrp" class="grid-action">Update SalePrice</a>`
         return template;
     }
 
@@ -1039,7 +1039,7 @@ export default class PHRMGridColumns {
             field: "",
             width: 200,
             template:
-                `<a danphe-grid-action="view" class="grid-action">
+                `<a dsf-grid-action="view" class="grid-action">
            View Details
         </a>
        `
@@ -1054,7 +1054,7 @@ export default class PHRMGridColumns {
             field: "",
             width: 200,
             template:
-                `<a danphe-grid-action="pay" class="grid-action">
+                `<a dsf-grid-action="pay" class="grid-action">
            Payment
         </a>
        `

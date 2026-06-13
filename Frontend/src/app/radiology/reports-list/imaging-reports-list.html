@@ -12,8 +12,8 @@
   </div>
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-      <danphe-view-imaging-report *ngIf="showImagingReport" (on-report-edit)="GetBackOnClose($event)" [requisitionId]="requisitionId"></danphe-view-imaging-report>
-      <danphe-grid [grid-colDefaults]="imgReportsListGridColumns" [grid-data]="allImagingFilteredReports" [rangeType]="dateRange" (onDateChange)="onDateChange($event)" [date-range-options]="'1W,1M,3M'" [show-CustomDate]="true" [show-print-button]="true" (grid-actions)="ImagingReportListGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-header]="'IMAGING REPORTS OF ALL PATIENTS'"> </danphe-grid>
+      <dsf-view-imaging-report *ngIf="showImagingReport" (on-report-edit)="GetBackOnClose($event)" [requisitionId]="requisitionId"></dsf-view-imaging-report>
+      <dsf-grid [grid-colDefaults]="imgReportsListGridColumns" [grid-data]="allImagingFilteredReports" [rangeType]="dateRange" (onDateChange)="onDateChange($event)" [date-range-options]="'1W,1M,3M'" [show-CustomDate]="true" [show-print-button]="true" (grid-actions)="ImagingReportListGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-header]="'IMAGING REPORTS OF ALL PATIENTS'"> </dsf-grid>
     </div>
   </div>
 </div>

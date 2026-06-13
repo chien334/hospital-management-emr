@@ -6,7 +6,7 @@ import { SecurityService } from '../../security/shared/security.service';
 /*
  * Separate grid-column settings for incentive module with option to use parameter value from Core-Services.
  Created:9Nov'2020-Prtik
- Remarks: Most of the Properties/Methods are moved from grid-column-settings.constant.ts file (app/shared/danphe-grid)
+ Remarks: Most of the Properties/Methods are moved from grid-column-settings.constant.ts file (app/shared/dsf-grid)
  */
 
 export class INCTVGridColumnSettings {
@@ -32,8 +32,8 @@ export class INCTVGridColumnSettings {
     //  field: "",
     //  width: 150,
     //  template: `
-    //    <a danphe-grid-action="edit" class="grid-action">Edit</a>
-    //    <a danphe-grid-action="editItemsPercent" class="grid-action">Edit Items Percentage</a>
+    //    <a dsf-grid-action="edit" class="grid-action">Edit</a>
+    //    <a dsf-grid-action="editItemsPercent" class="grid-action">Edit Items Percentage</a>
     //    `,
     //},
     {
@@ -50,8 +50,8 @@ export class INCTVGridColumnSettings {
       field: "",
       width: 150,
       template: `
-        <a danphe-grid-action="edit" class="grid-action">Edit</a>
-        <a danphe-grid-action="viewDetails" class="grid-action">View All Items</a>
+        <a dsf-grid-action="edit" class="grid-action">Edit</a>
+        <a dsf-grid-action="viewDetails" class="grid-action">View All Items</a>
         `,
     },
   ];
@@ -70,7 +70,7 @@ export class INCTVGridColumnSettings {
       field: "",
       width: 90,
       template:
-        `<a danphe-grid-action="viewDetail" class="grid-action">
+        `<a dsf-grid-action="viewDetail" class="grid-action">
           View Payment Voucher
        </a>`,
     },
@@ -101,10 +101,10 @@ export class INCTVGridColumnSettings {
     {
       headerName: 'Edit', field: '', width: 120,
       template:
-        `<a danphe-grid-action="edititem" class="grid-action fa fa-pencil"  style="background-color: orange;color: black;">
+        `<a dsf-grid-action="edititem" class="grid-action fa fa-pencil"  style="background-color: orange;color: black;">
             Edit
           </a>
-          <a danphe-grid-action="removeitem" class="grid-action blinking-btn-warning fa fa fa-times"  style="background-color: orange;color: black;">
+          <a dsf-grid-action="removeitem" class="grid-action blinking-btn-warning fa fa fa-times"  style="background-color: orange;color: black;">
             Remove
           </a>`
     },
@@ -124,10 +124,10 @@ export class INCTVGridColumnSettings {
     {
       headerName: 'Edit', field: '', width: 120,
       template:
-        `<a danphe-grid-action="edititem" class="grid-action fa fa-pencil"  style="background-color: orange;color: black;">
+        `<a dsf-grid-action="edititem" class="grid-action fa fa-pencil"  style="background-color: orange;color: black;">
             Edit
           </a>
-          <a danphe-grid-action="removeitem" class="grid-action blinking-btn-warning fa fa fa-times"  style="background-color: orange;color: black;">
+          <a dsf-grid-action="removeitem" class="grid-action blinking-btn-warning fa fa fa-times"  style="background-color: orange;color: black;">
             Remove
           </a>`
     },
@@ -158,10 +158,10 @@ export class INCTVGridColumnSettings {
     {
       headerName: 'Edit', field: '', width: 120,
       template:
-        `<a danphe-grid-action="edititem" class="grid-action fa fa-pencil"  style="background-color: orange;color: black;">
+        `<a dsf-grid-action="edititem" class="grid-action fa fa-pencil"  style="background-color: orange;color: black;">
             Edit
           </a>
-          <a danphe-grid-action="removeitem" class="grid-action blinking-btn-warning fa fa fa-times"  style="background-color: orange;color: black;">
+          <a dsf-grid-action="removeitem" class="grid-action blinking-btn-warning fa fa fa-times"  style="background-color: orange;color: black;">
             Remove
           </a>`
     },
@@ -175,10 +175,10 @@ export class INCTVGridColumnSettings {
     {
       headerName: 'Edit', field: '', width: 120,
       template:
-        `<a danphe-grid-action="edititem" class="grid-action fa fa-pencil"  style="background-color: orange;color: black;">
+        `<a dsf-grid-action="edititem" class="grid-action fa fa-pencil"  style="background-color: orange;color: black;">
             Edit
           </a>
-          <a danphe-grid-action="removeitem" class="grid-action blinking-btn-warning fa fa fa-times"  style="background-color: orange;color: black;">
+          <a dsf-grid-action="removeitem" class="grid-action blinking-btn-warning fa fa fa-times"  style="background-color: orange;color: black;">
             Remove
           </a>`
     },
@@ -216,9 +216,9 @@ export class INCTVGridColumnSettings {
   static ProfileListActionTemplate(params) {
     if (params.data.IsActive == true) {
       let template =
-        `<a danphe-grid-action="edit" class="grid-action">Rename</a>
-         <a danphe-grid-action="editItemsPercent" class="grid-action">Edit Items Percentage</a>
-         <a danphe-grid-action="deactivateProfile" class="grid-action blinking-btn-warning"  style="background-color: orange;color: black;">
+        `<a dsf-grid-action="edit" class="grid-action">Rename</a>
+         <a dsf-grid-action="editItemsPercent" class="grid-action">Edit Items Percentage</a>
+         <a dsf-grid-action="deactivateProfile" class="grid-action blinking-btn-warning"  style="background-color: orange;color: black;">
               Deactivate
             </a>
             `
@@ -226,7 +226,7 @@ export class INCTVGridColumnSettings {
     }
     else {
       let template =
-        ` <a danphe-grid-action="activateProfile" class="grid-action blinking-btn-secondary"  style="background-color: #afb8af;color: black;">
+        ` <a dsf-grid-action="activateProfile" class="grid-action blinking-btn-secondary"  style="background-color: #afb8af;color: black;">
                 Activate
                </a>
                `
@@ -237,13 +237,13 @@ export class INCTVGridColumnSettings {
   static IncentiveEmployeeListActionTemplate(params) {
     if (params.data.IsActive == true) {
       let template =
-        `<a danphe-grid-action="editItemsPercent" class="grid-action">
+        `<a dsf-grid-action="editItemsPercent" class="grid-action">
                 Edit Items
              </a>
-         <a danphe-grid-action="deactivateEmployeeIncentiveSetup" class="grid-action blinking-btn-warning"  style="background-color: orange;color: black;">
+         <a dsf-grid-action="deactivateEmployeeIncentiveSetup" class="grid-action blinking-btn-warning"  style="background-color: orange;color: black;">
               Deactivate
             </a>
-            <a danphe-grid-action="edit-tds" class="grid-action">
+            <a dsf-grid-action="edit-tds" class="grid-action">
                 Edit TDS%
              </a>
             `
@@ -251,7 +251,7 @@ export class INCTVGridColumnSettings {
     }
     else {
       let template =
-        ` <a danphe-grid-action="activateEmployeeIncentiveSetup" class="grid-action blinking-btn-secondary"  style="background-color: #afb8af;color: black;">
+        ` <a dsf-grid-action="activateEmployeeIncentiveSetup" class="grid-action blinking-btn-secondary"  style="background-color: #afb8af;color: black;">
                 Activate
                </a>
                `
@@ -262,14 +262,14 @@ export class INCTVGridColumnSettings {
   static GroupDistributionActionTemplate(params) {
     if (params.data.HasGroupDistribution == false) {
       let template =
-        `<a danphe-grid-action="groupdistribution" class="grid-action fa fa-pencil">
+        `<a dsf-grid-action="groupdistribution" class="grid-action fa fa-pencil">
             No
            </a>`
       return template
     }
     else {
       let template =
-        `<a danphe-grid-action="groupdistribution" class="grid-action blinking-btn-secondary fa fa-pencil">
+        `<a dsf-grid-action="groupdistribution" class="grid-action blinking-btn-secondary fa fa-pencil">
              Yes(`+ params.data.GroupDistributionCount + `)
            </a>`
       return template;
@@ -284,14 +284,14 @@ export class INCTVGridColumnSettings {
 
   static InctvTxnItm_ActionRenderer(params) {
     if (!params.data.FractionCount) {
-      let template = `<a class="fa fa-pencil" danphe-grid-action="edit" style='background-color:orange;font-weight:bold;padding: 5px 9px 5px 8px;width: 100%; color: black;'>
+      let template = `<a class="fa fa-pencil" dsf-grid-action="edit" style='background-color:orange;font-weight:bold;padding: 5px 9px 5px 8px;width: 100%; color: black;'>
               NO (0)
            </a>
           `;
       return template;
     } else {
       let template =
-        `<a class="fa fa-pencil" danphe-grid-action="edit" style='background-color:lightgreen;font-weight:bold;padding: 5px 9px 5px 8px;width: 100%; color: black;'>
+        `<a class="fa fa-pencil" dsf-grid-action="edit" style='background-color:lightgreen;font-weight:bold;padding: 5px 9px 5px 8px;width: 100%; color: black;'>
           YES(` +
         params.data.FractionCount +
         `)

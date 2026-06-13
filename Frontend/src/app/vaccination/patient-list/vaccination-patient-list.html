@@ -6,7 +6,7 @@
         </div>
         <!-- Sud:2-Oct'21--below functionality: Enrolling external patients is incomplete, until then hiding the searchbox. -->
         <!-- <div class="col-md-offset-3 col-md-4 text-right">
-            <input danphe-auto-complete id="srch_PatientList" class="form-control searchtbx" [(ngModel)]="PatientObj"
+            <input dsf-auto-complete id="srch_PatientList" class="form-control searchtbx" [(ngModel)]="PatientObj"
                 [list-formatter]="PatientListFormatter" [source]="AllPatientSearchAsync.bind(this)"
                 [path-to-data]="'Results'" placeholder="search to Enroll other Patients into Vaccination"
                 display-property-name="ShortName" value-property-name=null (ngModelChange)="PatientInfoChanged()"
@@ -30,9 +30,9 @@
 
     <div class="row">
         <div class="col-lg-12 col-sm-12">
-            <danphe-grid [grid-colDefaults]="vaccinationPatientGridColumns" [grid-data]="vaccinationPatList"
+            <dsf-grid [grid-colDefaults]="vaccinationPatientGridColumns" [grid-data]="vaccinationPatList"
                 (grid-actions)="VaccinationPatientGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings" >
-            </danphe-grid>
+            </dsf-grid>
         </div>
     </div>
 </div>

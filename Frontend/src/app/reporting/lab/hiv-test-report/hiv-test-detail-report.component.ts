@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../../app/shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../../app/shared/dsf-grid/NepaliColGridSettingsModel";
 import { CoreService } from "../../../../app/core/shared/core.service";
 import { DLService } from "../../../../app/shared/dl.service";
 import { MessageboxService } from "../../../../app/shared/messagebox/messagebox.service";

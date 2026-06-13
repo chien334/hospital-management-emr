@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { CoreService } from '../../../../core/shared/core.service';
 import { InsuranceProviderModel } from '../../../../patients/shared/insurance-provider.model';
 import { Department } from '../../../../settings-new/shared/department.model';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../../../shared/shared-enums';
 import { MedicareDependentModel } from '../../shared/dto/medicare-dependent.model';
 import { Medicare_EmployeeDesignation_DTO } from '../../shared/dto/medicare-employee-designation.dto';
 import { MedicalCareType, MedicareInstitute, MedicareMemberModel } from '../../shared/medicare-member.model';
@@ -115,8 +115,8 @@ export class MedicareDependentComponent {
   }
   public GetAllDepartments(): void {
     this.medicareBlService.GetAllDepartment().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.departmentsList = res.Results;
         }
       }
@@ -128,8 +128,8 @@ export class MedicareDependentComponent {
   }
   GetAllInsuranceProvidersList(): void {
     this.medicareBlService.GetAllInsuranceProviderList().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.insuranceProvidersList = res.Results;
         }
       }
@@ -137,8 +137,8 @@ export class MedicareDependentComponent {
   }
   public GetAllDesignations(): void {
     this.medicareBlService.GetAllDesignations().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.designationList = res.Results;
         }
       }
@@ -146,8 +146,8 @@ export class MedicareDependentComponent {
   }
   public GetAllMedicareTypes(): void {
     this.medicareBlService.GetAllMedicareTypes().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicalCareTypeList = res.Results;
         }
       }
@@ -155,8 +155,8 @@ export class MedicareDependentComponent {
   }
   GetAllMedicareInstitutes(): void {
     this.medicareBlService.GetAllMedicareInstitutes().subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.medicareInstituteList = res.Results;
         }
       }
@@ -167,8 +167,8 @@ export class MedicareDependentComponent {
       if (this.dependentDetails.LedgerId !== null) {
         if (this.isUpdate === true) {
           this.medicareBlService.PutMedicareDependentDetails(this.dependentDetails).subscribe(
-            (res: DanpheHTTPResponse) => {
-              if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            (res: DsfHTTPResponse) => {
+              if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.isUpdate = false;
                 this.msgBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Details has been Updated Successfully']);
                 this.callbackAdd.emit(true);
@@ -178,14 +178,14 @@ export class MedicareDependentComponent {
                 this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, ['Unable to Update member Details']);
               }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
               this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Something went wrong ${err.ErrorMessage}`]);
             });
         }
         else {
           this.medicareBlService.PostMedicareDependentDetails(this.dependentDetails).subscribe(
-            (res: DanpheHTTPResponse) => {
-              if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            (res: DsfHTTPResponse) => {
+              if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.msgBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Member has been added Successfully']);
                 this.callbackAdd.emit(true);
                 this.Close();
@@ -193,7 +193,7 @@ export class MedicareDependentComponent {
                 this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, ['Could not add Member']);
               }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
               this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Something went wrong ${err.ErrorMessage}`]);
             });
         }
@@ -262,8 +262,8 @@ export class MedicareDependentComponent {
   SearchMedicareMemByParentMedicareNo(): void {
     this.invalidParentMedicareNo = false;
     this.medicareBlService.GetMedicareMemberDetailByMedicareNumber(this.memberNo).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           this.parentDetails = res.Results;
           if (this.parentDetails) {
 
@@ -291,7 +291,7 @@ export class MedicareDependentComponent {
             this.dependentDetails.MedicareDependentValidator.invalid;
           }
         }
-        else if (res.Status === ENUM_DanpheHTTPResponseText.Failed) {
+        else if (res.Status === ENUM_DsfHTTPResponseText.Failed) {
           this.msgBoxService.showMessage(ENUM_MessageBox_Status.Warning, ["No record found. Please check Parent Medicare No"]);
           this.dependentDetails.MedicareDependentValidator.invalid;
         }
@@ -300,15 +300,15 @@ export class MedicareDependentComponent {
           this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, ["Something went wrong please check logs."]);
         }
       },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Something went wrong! ${err.ErrorMessage}`]);
       });
   }
   GetMemberDetailsByPatientId(patientId: number): void {
     this.disableBtn = true;
     this.medicareBlService.GetMedicareDependentMemberDetailByPatientId(patientId).subscribe(
-      (res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      (res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           let dependentMedicareMember = res.Results ? res.Results.MedicareDependent : null;
           let parentMedicareMember = res.Results ? res.Results.ParentMedicareMember : null;
           this.disableBtn = false;
@@ -326,7 +326,7 @@ export class MedicareDependentComponent {
             this.dependentDetails.MedicareDependentValidator.controls["Relation"].setValue(dependentMedicareMember.Relation);
           }
         }
-        else if (res.Status === ENUM_DanpheHTTPResponseText.Failed) {
+        else if (res.Status === ENUM_DsfHTTPResponseText.Failed) {
           this.msgBoxService.showMessage(ENUM_MessageBox_Status.Warning, ['This patient has already been registered as dependent.Please select another one.']);
           this.disableBtn = true;
           this.isUpdate = false;
@@ -337,7 +337,7 @@ export class MedicareDependentComponent {
           this.isUpdate = false;
         }
       },
-      (err: DanpheHTTPResponse) => {
+      (err: DsfHTTPResponse) => {
         this.msgBoxService.showMessage(ENUM_MessageBox_Status.Error, [`Something went wrong! ${err.ErrorMessage}`]);
       });
   }

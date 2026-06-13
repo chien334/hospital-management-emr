@@ -20,11 +20,11 @@ import { SettingsBLService } from '../../../../settings-new/shared/settings.bl.s
 import { GeneralFieldLabels } from '../../../../shared/DTOs/general-field-label.dto';
 import { NepaliCalendarService } from '../../../../shared/calendar/np/nepali-calendar.service';
 import { CallbackService } from '../../../../shared/callback.service';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from '../../../../shared/common.functions';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../shared/routefrom.service';
-import { ENUM_BillPaymentMode, ENUM_DanpheHTTPResponses, ENUM_Dispensary_ReturnInvoiceBy, ENUM_MessageBox_Status, ENUM_PriceCategory, ENUM_ServiceBillingContext, ENUM_VisitType } from '../../../../shared/shared-enums';
+import { ENUM_BillPaymentMode, ENUM_DsfHTTPResponses, ENUM_Dispensary_ReturnInvoiceBy, ENUM_MessageBox_Status, ENUM_PriceCategory, ENUM_ServiceBillingContext, ENUM_VisitType } from '../../../../shared/shared-enums';
 import { DispensaryService } from '../../../shared/dispensary.service';
 import { InvoiceDetailToBeReturn } from './model/invoice-detail-tobe-return.model';
 
@@ -173,7 +173,7 @@ export class SalesReturnComponent implements OnInit {
   GetAllFiscalYrs() {
     this.pharmacyBLService.GetAllFiscalYears()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.allFiscalYrs = res.Results;
         }
       });
@@ -199,8 +199,8 @@ export class SalesReturnComponent implements OnInit {
       if (this.invoicePrintId && fiscYrId) {
         this.pharmacyBLService.GetReturnFromCustomerModelDataByInvoiceId(this.invoicePrintId, fiscYrId, this.storeId)
           .finally(() => this.disableSearchBtn = false)
-          .subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          .subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.saleReturnModelList = [];
               this.pharmacyReceipt.InvoiceItems = [];//sanjit/rajib: reset the invoice header to prevent duplication of item.
               this.returnAmount = 0;//sud: 15Mar'19--Reset returnamount -- bugId: #155 Pharmacy
@@ -237,10 +237,10 @@ export class SalesReturnComponent implements OnInit {
     this.messageboxService.showMessage(ENUM_MessageBox_Status.Error, ["No sale for entered InvoiceNo. in selected Dispensary."]);
   }
 
-  private checkIfInvoiceIsClaimedForSSF(res: DanpheHTTPResponse) {
+  private checkIfInvoiceIsClaimedForSSF(res: DsfHTTPResponse) {
     this.pharmacyBLService.IsClaimed(res.Results.invoiceHeader.ClaimCode, res.Results.patient.PatientId)
-      .subscribe((response: DanpheHTTPResponse) => {
-        if (response.Status === ENUM_DanpheHTTPResponses.OK && response.Results === true) {
+      .subscribe((response: DsfHTTPResponse) => {
+        if (response.Status === ENUM_DsfHTTPResponses.OK && response.Results === true) {
           this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, ["This invoice is already claimed"]);
           this.disableSearchBtn = false;
         }
@@ -251,7 +251,7 @@ export class SalesReturnComponent implements OnInit {
       });
   }
 
-  private handleNormalInvoiceReturnScenario(res: DanpheHTTPResponse) {
+  private handleNormalInvoiceReturnScenario(res: DsfHTTPResponse) {
     this.CheckIfReturnValid();
     res.Results.invoiceItems.forEach(itm => {
       let itemObj = new PHRMInvoiceReturnItemsModel();
@@ -280,7 +280,7 @@ export class SalesReturnComponent implements OnInit {
     }
   }
 
-  private setInvoiceReturnDetailsToReturn(i: number, res: DanpheHTTPResponse) {
+  private setInvoiceReturnDetailsToReturn(i: number, res: DsfHTTPResponse) {
     this.returnAmount = CommonFunctions.parseAmount(this.returnAmount + this.saleReturnModelList[i].TotalAmount);
     let invoiceitems = new PHRMInvoiceItemsModel();
     invoiceitems.ItemId = this.saleReturnModelList[i].ItemId;
@@ -483,11 +483,11 @@ export class SalesReturnComponent implements OnInit {
           saleReturnObjForServer.CreatedOn = moment().format('YYYY-MM-DD');
           this.pharmacyBLService.PostReturnFromCustomerData(saleReturnObjForServer)
             .finally(() => this.loading = false)
-            .subscribe((res: DanpheHTTPResponse) => {
-              if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+              if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.CallBackPostReturnInvoice(res);
               }
-              else if (res.Status === ENUM_DanpheHTTPResponses.Failed) {
+              else if (res.Status === ENUM_DsfHTTPResponses.Failed) {
                 this.messageboxService.showMessage(ENUM_MessageBox_Status.Error, [res.ErrorMessage]);
               }
             },
@@ -537,7 +537,7 @@ export class SalesReturnComponent implements OnInit {
   //call this function after post successfully
   CallBackPostReturnInvoice(res) {
     try {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.messageboxService.showMessage(ENUM_MessageBox_Status.Success, ["Returned successfully."]);
         this.InvoiceReturnId = res.Results;
         this.showSaleItemsPopup = true;
@@ -701,8 +701,8 @@ export class SalesReturnComponent implements OnInit {
     //We may do this in client side itself since we already have list of all fiscal years with us. [Part of optimization.]
 
     this.billingBLService.GetCurrentFiscalYear()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           let fiscYr: BillingFiscalYear = res.Results;
           if (fiscYr) {
             this.selFiscYrId = fiscYr.FiscalYearId;
@@ -800,7 +800,7 @@ export class SalesReturnComponent implements OnInit {
   GetActiveDispensarylist(): void {
     this._dispensaryService.GetAllDispensaryList()
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.dispensaryList = JSON.parse(JSON.stringify(res.Results));
         }
       });
@@ -824,8 +824,8 @@ export class SalesReturnComponent implements OnInit {
       return;
     }
 
-    this.pharmacyBLService.GetReturnFromCustomerModelDataByHospitalNo(this.HospitalNo, this.PaymentMode, this.fromDate, this.toDate, this.storeId, this.SchemeId).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.pharmacyBLService.GetReturnFromCustomerModelDataByHospitalNo(this.HospitalNo, this.PaymentMode, this.fromDate, this.toDate, this.storeId, this.SchemeId).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.PatientDetail = res.Results.PatientInfo;
         this.schemeData = res.Results.schemeDetails[0];
         let invoiceItems = res.Results.InvoiceItems;
@@ -1038,8 +1038,8 @@ export class SalesReturnComponent implements OnInit {
       .finally(() => {
         this.loading = false;
       })
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.messageboxService.showMessage(ENUM_MessageBox_Status.Success, ['Return Successfully']);
           this.ClearField();
           this.HospitalNo = null;
@@ -1077,8 +1077,8 @@ export class SalesReturnComponent implements OnInit {
   }
 
   public GetPriceCategories(): void {
-    this.coreBLService.GetPriceCategories().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.coreBLService.GetPriceCategories().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         let allPriceCategories = res.Results;
         this.enabledPriceCategories = allPriceCategories.filter(pc => pc.IsActive === true);
       }

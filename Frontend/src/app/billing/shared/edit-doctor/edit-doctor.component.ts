@@ -9,7 +9,7 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { BillingBLService } from '../billing.bl.service';
 
 @Component({
-  selector: "danphe-edit-doctor",
+  selector: "dsf-edit-doctor",
   templateUrl: "./edit-doctor-popup.html",
   host: { '(window:keydown)': 'hotkeys($event)' }
 })

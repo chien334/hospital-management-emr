@@ -119,7 +119,7 @@
                     <label class="control-label col-md-5" style="margin-top: 10px;"> {{ 'NURSING.REFERRED_DEPARTMENT' | translate }}<b><sup class="color-red">
                            *</sup>&nbsp;:</b></label>
                     <div class="col-md-7" style="padding: 0 !important;">
-                      <input id="txtDepartment" class="form-control" danphe-auto-complete autocomplete="off"
+                      <input id="txtDepartment" class="form-control" dsf-auto-complete autocomplete="off"
                              [(ngModel)]="selectedDepartment"
                              [list-formatter]="myDepartmentListFormatter"
                              [source]="departmentList"
@@ -145,7 +145,7 @@
                            *</sup>&nbsp;:</b></label>
                     <div class="col-md-7" style="">
                       <input class="form-control"
-                             id="doctorName" danphe-auto-complete autocomplete="off"
+                             id="doctorName" dsf-auto-complete autocomplete="off"
                              [(ngModel)]="selectedDoctor"
                              [list-formatter]="DocListFormatter"
                              [source]="filteredDocList"

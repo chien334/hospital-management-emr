@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { BillingBLService } from '../../shared/billing.bl.service';
 import { DischargeStatementViewModel } from './discharge-statement-view.model';
 
@@ -39,8 +39,8 @@ export class Bil_DuplicateDischargeStatementInvoiceListComponent implements OnIn
     if (this.fromDate === null || this.toDate === null) {
       return this.messageBox.showMessage(ENUM_MessageBox_Status.Notice, ['Please select valid date']);
     }
-    this.billingBLService.GetDuplicateDischargeStatementList(this.fromDate, this.toDate).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.billingBLService.GetDuplicateDischargeStatementList(this.fromDate, this.toDate).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         this.dischargeStatementList = [];
         this.dischargeStatementList = res.Results;
       }

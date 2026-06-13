@@ -2,10 +2,10 @@ import { Component } from '@angular/core'
 import { RouterOutlet, RouterModule, Router } from '@angular/router'
 //Security Service for Loading Child Route from Security Service
 import { SecurityService } from "../security/shared/security.service"
-import { DanpheCache, MasterType } from '../shared/danphe-cache-service-utility/cache-services';
+import { DsfCache, MasterType } from '../shared/dsf-cache-service-utility/cache-services';
 import { InventoryService } from './shared/inventory.service';
 import { InventoryBLService } from './shared/inventory.bl.service';
-import { DanpheHTTPResponse } from '../shared/common-models';
+import { DsfHTTPResponse } from '../shared/common-models';
 import { SecurityBLService } from '../security/shared/security.bl.service';
 import { ActivateInventoryService } from '../shared/activate-inventory/activate-inventory.service';
 import { PHRMStoreModel } from '../pharmacy/shared/phrm-store.model';
@@ -31,7 +31,7 @@ export class InventoryComponent {
     public _activateInventoryService: ActivateInventoryService,
     public messBoxService: MessageboxService,
     public router: Router) {
-    DanpheCache.GetData(MasterType.AllMasters, null);
+    DsfCache.GetData(MasterType.AllMasters, null);
     //get the chld routes of Inventory from valid routes available for this user.
     this.validRoutes = this.securityService.GetChildRoutes("Inventory");
     this.primaryNavItems = this.validRoutes.filter(a => a.IsSecondaryNavInDropdown == null || a.IsSecondaryNavInDropdown == 0);
@@ -51,7 +51,7 @@ export class InventoryComponent {
     this.securityService.SetModuleName('inventory');
     if (!(this.securityService.INVHospitalInfo.CurrFiscalYear.FiscalYearId > 0)) {//if information not there then get and set
       this.securityBlService.GetINVHospitalInfo()
-        .subscribe((res: DanpheHTTPResponse) => {
+        .subscribe((res: DsfHTTPResponse) => {
           if (res.Status == 'OK') {
             this.securityService.SetINVHospitalInfo(res.Results);
           }
@@ -65,7 +65,7 @@ export class InventoryComponent {
   //we have to load all billing items into service variable, which will be used across this module. 
   public LoadAllVendors() {
     this.inventoryBLService.GetVendorList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log("vendor list is loaded successfully (inventory-main).");
           this.inventoryService.LoadAllVendorList(res.Results);
@@ -78,7 +78,7 @@ export class InventoryComponent {
   }
   public LoadAllInventoryItems() {
     this.inventoryBLService.GetItemListByStoreId(this.selectedInventory.StoreId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           console.log("item list is loaded successfully (inventory-main).");
           this.inventoryService.LoadAllItemList(res.Results);

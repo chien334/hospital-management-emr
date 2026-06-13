@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 //import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete/dsf-auto-complete.module';
 
 import { SharedModule } from '../../shared/shared.module';
 import { AccountingSyncRoutingModule } from './accounting-sync-routing.module';
@@ -17,7 +17,7 @@ import { AccountingSharedModule } from "../shared/accounting-shared.module";
         CommonModule,
         ReactiveFormsModule,
         FormsModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         AccountingSyncRoutingModule,
         AccountingSharedModule
     ],

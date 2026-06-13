@@ -20,7 +20,7 @@
                 <div class="form-group row">
                     <label class="control-label col-md-5">{{ 'DISPENSARY.REPORTS.SELECT_DISPENSARY' | translate }}<b style="float:right;">:</b></label>
                     <div class="col-md-7">
-                        <input danphe-auto-complete [(ngModel)]="selectedDispensary" class="form-control"
+                        <input dsf-auto-complete [(ngModel)]="selectedDispensary" class="form-control"
                             [list-formatter]="DispensaryListFormatter" [source]="dispensaryList"
                             [placeholder]="'DISPENSARY.REPORTS.SELECT_DISPENSARY' | translate" display-property-name="Name" value-property-name=null
                             onclick="this.select();" id="dispensary" (valueChanged)="OnDispensaryChange()"
@@ -36,7 +36,7 @@
                                 style="float:right;">:</b></label>
                         <div class="col-md-8">
                             <div class="form-group">
-                                <input danphe-auto-complete class="form-control" [(ngModel)]="selectedItem"
+                                <input dsf-auto-complete class="form-control" [(ngModel)]="selectedItem"
                                     [source]="itemList" [list-formatter]="myItemListFormatter"
                                     [placeholder]="'DISPENSARY.REPORTS.SELECT_ITEM_PLACEHOLDER' | translate" display-property-name="ItemName"
                                     value-property-name=null onClick="this.select();"
@@ -60,9 +60,9 @@
 </div>
 <div class="row">
     <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="NarcoticsDailySalesSummaryReportColumns"
+        <dsf-grid [grid-colDefaults]="NarcoticsDailySalesSummaryReportColumns"
             [NepaliDateInGridParams]="NepaliDateInGridSettings" [grid-data]="NarcoticsDailySalesSummaryReportData"
             [grid-exportOptions]="gridExportOptions" [grid-showExport]="true">
-        </danphe-grid>
+        </dsf-grid>
     </div>
 </div>

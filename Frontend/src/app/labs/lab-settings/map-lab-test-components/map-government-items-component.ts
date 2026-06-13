@@ -5,7 +5,7 @@ import { LabSettingsBLService } from "../shared/lab-settings.bl.service";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { MappedGovernmentItems } from "../../shared/map-government-items.model";
 import LabGridColumnSettings from "../../shared/lab-gridcol-settings";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 @Component({
     selector: "map-government-items-component",

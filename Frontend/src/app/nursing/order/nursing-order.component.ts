@@ -16,7 +16,7 @@ import { VisitService } from '../../appointments/shared/visit.service';
 import { PatientService } from '../../patients/shared/patient.service';
 
 import { BillingService } from '../../billing/shared/billing.service';
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { ENUM_BillingStatus } from '../../shared/shared-enums';
 
 @Component({
@@ -337,7 +337,7 @@ export class NursingOrderComponent {
 
   public GetDoctorsList() {
     this.billingBLService.GetDoctorsList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == 'OK') {
           if (res.Results.length) {
             this.doctorsList = res.Results;

@@ -33,7 +33,7 @@
         <div class="form-group row col-md-4">
             <label class="control-label col-md-4">{{ 'INVENTORY.SUBCATEGORY' | translate }} <sup style="color: red">*</sup><b style="float:right;">:</b></label>
             <div class="col-md-6 autocomplete-item">
-                <input danphe-auto-complete class="form-control" (valueChanged)="onSubCategoryChange($event)" [placeholder]="'INVENTORY.SELECT_SUBCATEGORY' | translate" [(ngModel)]="selectedSubCategory" [list-formatter]="SubCategoryListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="SubCategoryName" [source]="SubCategoryList" [match-formatted]="true" onclick="this.select()" />
+                <input dsf-auto-complete class="form-control" (valueChanged)="onSubCategoryChange($event)" [placeholder]="'INVENTORY.SELECT_SUBCATEGORY' | translate" [(ngModel)]="selectedSubCategory" [list-formatter]="SubCategoryListFormatter" [ngModelOptions]="{standalone: true}" display-property-name="SubCategoryName" [source]="SubCategoryList" [match-formatted]="true" onclick="this.select()" />
             </div>
         </div>
         <div>
@@ -56,8 +56,8 @@
     </div>
 
     <div class="col-lg-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="stockListGridColumns" [grid-data]="filteredStockList" (grid-actions)="StockListGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="'inventory'" [report-title]="'SubCategory Wise Stock Details'" [report-for]="'inventory'" [show-header]="true" [filter-parameters]="FilterParameters" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-        </danphe-grid>
+        <dsf-grid [grid-colDefaults]="stockListGridColumns" [grid-data]="filteredStockList" (grid-actions)="StockListGridAction($event)" [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [report-for]="'inventory'" [report-title]="'SubCategory Wise Stock Details'" [report-for]="'inventory'" [show-header]="true" [filter-parameters]="FilterParameters" [NepaliDateInGridParams]="NepaliDateInGridSettings">
+        </dsf-grid>
     </div>
 </div>
 <div *ngIf="stockReconciliationPopupOpen">

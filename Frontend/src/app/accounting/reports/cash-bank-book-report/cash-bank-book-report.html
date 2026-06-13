@@ -27,7 +27,7 @@
             <label class="control-label no-padding">Select Group :</label><br>
             <div>
                 <div class="div-relative">
-                    <input danphe-auto-complete class="col-md-11 form-control" [(ngModel)]="selectedLedgerGroup" [source]="ledgerGroupList"
+                    <input dsf-auto-complete class="col-md-11 form-control" [(ngModel)]="selectedLedgerGroup" [source]="ledgerGroupList"
                            placeholder="select ledger group" display-property-name="LedgerGroupName" value-property-name="LedgerGroupName"
                            (focusout)="AssignSelectedLedgerGroup()"
                            [list-formatter]="LedgerGroupListFormatter" max-num-list="20" onclick="this.select()" style="background-color: azure;"
@@ -39,10 +39,10 @@
             <label class="control-label"> <b>Select Ledger</b> <b class="color-red"> *</b></label>
             <div style="margin-top: 5px;">
                 <div>
-                    <danphe-multiselect [ddl-data]="filteredLedgerList" [pre-selected]="selectedLedgers" [placeholder-text]="'Ledger Name'"
+                    <dsf-multiselect [ddl-data]="filteredLedgerList" [pre-selected]="selectedLedgers" [placeholder-text]="'Ledger Name'"
                                         [value-property-name]="'LedgerId'" (selected-items-list)="OnLedgerSelected($event)"
                                         [display-property-name]="'LedgerName'" [single-selection]="false">
-                    </danphe-multiselect>
+                    </dsf-multiselect>
                 </div>
             </div>
         </div>

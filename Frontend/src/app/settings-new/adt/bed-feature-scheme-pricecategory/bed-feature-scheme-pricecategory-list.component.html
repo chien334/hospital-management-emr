@@ -3,9 +3,9 @@
 
 <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="BedFeatureSchemePriceCategoryColumns" [grid-data]="BedFeatureSchemePriceCategoryList"
+        <dsf-grid [grid-colDefaults]="BedFeatureSchemePriceCategoryColumns" [grid-data]="BedFeatureSchemePriceCategoryList"
                      (grid-actions)="BedFeatureSchemePriceCategoryMapGridActions($event)" [show-print-button]="false">
-        </danphe-grid>
+        </dsf-grid>
     </div>
 </div>
 <bed-feature-scheme-pricecategory-add *ngIf="showAddPage"

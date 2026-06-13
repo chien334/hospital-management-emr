@@ -1,15 +1,15 @@
 import * as moment from "moment";
 import { Component } from "@angular/core";
-import { DanpheHTTPResponse } from "../../../../../app/shared/common-models";
+import { DsfHTTPResponse } from "../../../../../app/shared/common-models";
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
 import {
-  ENUM_DanpheHTTPResponseText,
+  ENUM_DsfHTTPResponseText,
   ENUM_MessageBox_Status,
 } from "../../../../../app/shared/shared-enums";
 import {
   NepaliDateInGridColumnDetail,
   NepaliDateInGridParams,
-} from "../../../../shared/danphe-grid/NepaliColGridSettingsModel";
+} from "../../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { DLService } from "../../../../shared/dl.service";
 import {
   MembershipModel,
@@ -22,7 +22,7 @@ import { SettingsBLService } from "../../../../settings-new/shared/settings.bl.s
 import { BillingBLService } from "../../../../billing/shared/billing.bl.service";
 
 import * as _ from "lodash";
-import { IGridFilterParameter } from "../../../../shared/danphe-grid/grid-filter-parameter.interface";
+import { IGridFilterParameter } from "../../../../shared/dsf-grid/grid-filter-parameter.interface";
 
 @Component({
   selector: "app-rpt-adt-rank-membershipwise-admitted-patient-list",
@@ -77,8 +77,8 @@ export class RankMembershipwiseAdmittedPatientReportComponent {
   }
 
   public LoadRanks(): void {
-    this.billingBLService.GetRank().subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+    this.billingBLService.GetRank().subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponseText.OK) {
         let ranks = [];
         ranks = res.Results;
         ranks.forEach((x) => {
@@ -101,8 +101,8 @@ export class RankMembershipwiseAdmittedPatientReportComponent {
   public LoadMembershipList(): void {
     this.settingsBLService
       .GetMembershipType()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
           let membershipList = [];
           membershipList = res.Results;
           membershipList.forEach((p) => {
@@ -140,7 +140,7 @@ export class RankMembershipwiseAdmittedPatientReportComponent {
       .Read(
         `/Reporting/RankMembershipwiseAdmittedPatientReport?fromDate=${this.fromDate}&toDate=${this.toDate}&memberships=${this.memberships}&ranks=${this.ranks}`
       )
-      .map((res: DanpheHTTPResponse) => res)
+      .map((res: DsfHTTPResponse) => res)
       .finally(() => {
         this.loading = false;
       }) //re-enable button after response comes back.
@@ -152,13 +152,13 @@ export class RankMembershipwiseAdmittedPatientReportComponent {
 
   Success(res): void {
     if (
-      res.Status === ENUM_DanpheHTTPResponseText.OK &&
+      res.Status === ENUM_DsfHTTPResponseText.OK &&
       res.Results.length > 0
     ) {
       this.showGrid = true;
       this.TotalAdmittedPatientReport = res.Results;
     } else if (
-      res.Status === ENUM_DanpheHTTPResponseText.OK &&
+      res.Status === ENUM_DsfHTTPResponseText.OK &&
       res.Results.length === 0
     )
       this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Notice, [

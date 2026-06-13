@@ -12,8 +12,8 @@ import { BabyBirthDetails } from "../../adt/shared/baby-birth-details.model";
 import { CoreService } from "../../core/shared/core.service";
 import { SecurityService } from "../../security/shared/security.service";
 import { ENUM_PrintingType, PrinterSettingsModel } from "../../settings-new/printers/printer-settings.model";
-import { DanpheHTTPResponse } from "../../shared/common-models";
-import { ENUM_DanpheHTTPResponses, ENUM_DischargeSummaryDisplayLabels, ENUM_DischargeType, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { DsfHTTPResponse } from "../../shared/common-models";
+import { ENUM_DsfHTTPResponses, ENUM_DischargeSummaryDisplayLabels, ENUM_DischargeType, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { DischargeSummaryConsultantViewModel } from "../add-view-summary/view-templates/consultant-view-model";
 import { DischargeSummaryViewModel } from "../add-view-summary/view-templates/discharge-summary-view-model";
 
@@ -173,8 +173,8 @@ export class DischargeSummaryViewComponent {
     }
     GetMedicationFrequency() {
         this.dischargeSummaryBLService.GetMedicationFrequency()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.medicationFrequency = res.Results;
                 }
                 else {
@@ -189,7 +189,7 @@ export class DischargeSummaryViewComponent {
 
     GetDischargeSummary(res) {
         //this.dischargeSummaryViewModel.selectedADT = this.selectedADT;
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
             if (res.Results) {
 
                 this.dischargeSummaryViewModel = res.Results;
@@ -257,8 +257,8 @@ export class DischargeSummaryViewComponent {
 
     LoadTemplate(TemplateId: number) {
         this.dischargeSummaryBLService.LoadTemplate(TemplateId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.dynamicTemplateContent = res.Results;
                     this.innerHtml = this.sanitizer.bypassSecurityTrustHtml(res.Results.PrintContentHTML)
                     // console.log(this.innerHtml);
@@ -283,7 +283,7 @@ export class DischargeSummaryViewComponent {
         //             this.logError(err.ErrorMessage);
         //         });
 
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.dischargeSummaryViewModel.labRequests = res.Results;
         }
         else {
@@ -300,7 +300,7 @@ export class DischargeSummaryViewComponent {
         //             this.msgBoxServ.showMessage("error", ['Failed to get imaging results.. please check log for details.'], err.ErrorMessage);
         //         });
 
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
             if (res.Results.length)
                 this.dischargeSummaryViewModel.imagingResults = res.Results;
         } else {

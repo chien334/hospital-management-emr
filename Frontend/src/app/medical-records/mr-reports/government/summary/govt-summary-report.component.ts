@@ -85,7 +85,7 @@ export class GovSummaryReportComponent {
         }
         //CounterId	CounterName	CounterCollection
 
-        //this.danpheCharts.Billing_Mix_MonthlyBilling("dvMonthlyBilling", dataToParse);
+        //this.dsfCharts.Billing_Mix_MonthlyBilling("dvMonthlyBilling", dataToParse);
       }
 
       this.GovTemplate1Data = res.Results;
@@ -131,7 +131,7 @@ export class GovSummaryReportComponent {
     popupWindow.document.write(`
     <html>
       <head>
-        <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css" />
+        <link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css" />
       </head>
       <style type="text/css">
         .Selected {border-collapse: collapse; border-spacing: 3px; border: 1px solid black;padding: 3px;}

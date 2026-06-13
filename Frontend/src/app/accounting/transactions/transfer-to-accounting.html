@@ -32,7 +32,7 @@
 
 <div class="popup-static portlet box portlet-fullscreen" *ngIf="loadingScreen">
   <div class="portlet-body form" style="background-color:white">
-    <div class="danphe-loading-image" style="display: block;padding-left: 49%;padding-top: 15%;" id='danpheLoading'>
+    <div class="dsf-loading-image" style="display: block;padding-left: 49%;padding-top: 15%;" id='dsfLoading'>
       <img style="margin-top: 60px;width: 120px; height: 120px;"
            src="../../../../../themes/theme-default/images/loading-child.gif" alt="" />
       <p style="font-size: 24px;color: #fff;"><b>{{ 'ACCOUNTING.LOADING' | translate }}</b></p>
@@ -94,7 +94,7 @@
                 <tr>
                   <th style="width: 30px">{{ 'ACCOUNTING.SN' | translate }}</th>
                   <th style="font-size:larger;width: 110px;">
-                    <danphe-date-change [dataArr]="pendingtxnList" [datecolumn]="'TransactionDate'"> </danphe-date-change>
+                    <dsf-date-change [dataArr]="pendingtxnList" [datecolumn]="'TransactionDate'"> </dsf-date-change>
                     {{ 'ACCOUNTING.TRANSACTION_DATE' | translate }}
                   </th>
                   <th style="font-size:larger;width: 150px; text-align: center;">{{ 'ACCOUNTING.ACTION' | translate }}</th>
@@ -219,7 +219,7 @@
                       <td style="text-align:center;"></td>
                       <td style="text-align:center;padding-right:10px;"><b>{{ 'ACCOUNTING.TRANSACTION_DATE' | translate }}:</b> <span> &nbsp;
                           {{transactionDate | nepaliDate:'format':'YYYY-MM-DD'}} </span> <span> &nbsp;
-                          {{transactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}} AD </span></td>
+                          {{transactionDate | DsfDateTime:'format':'YYYY-MM-DD'}} AD </span></td>
                     </tr>
                   </table>
                 </div>

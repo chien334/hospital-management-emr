@@ -32,7 +32,7 @@
     </div>
     
     <div class="col-md-3">
-      <h4 *ngIf="selectedPatient.DateOfBirth"><b>DOB:</b> {{selectedPatient.DateOfBirth | DanpheDateTime:'format':'YYYY-MM-DD'}}</h4>
+      <h4 *ngIf="selectedPatient.DateOfBirth"><b>DOB:</b> {{selectedPatient.DateOfBirth | DsfDateTime:'format':'YYYY-MM-DD'}}</h4>
       <h4 *ngIf="selectedPatient.Age"><b>Age.:</b> {{selectedPatient.Age}}</h4>
       <h4><b>Gender:</b> {{selectedPatient.Gender}} </h4>
     </div>
@@ -64,7 +64,7 @@
             </tr>
           </thead>
           <tr *ngFor="let visit of visitHistory">
-            <td>{{visit.VisitDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+            <td>{{visit.VisitDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
             <td>{{visit.VisitTime}}</td>
             <td>{{visit.VisitCode}}</td>
             <td>{{visit.PerformerName}}</td>
@@ -90,9 +90,9 @@
                   <th><b>IP Number</b></th>
                   <td>{{adt.IPNumber}}</td>
                   <th><b>AdmittedOn</b></th>
-                  <td>{{adt.AdmittedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+                  <td>{{adt.AdmittedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
                   <th><b>DischargedOn</b></th>
-                  <td>{{adt.DischaragedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+                  <td>{{adt.DischaragedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
                 </tr>
                 <tr style="background-color:whitesmoke">
                   <th>S.No</th>
@@ -107,8 +107,8 @@
               <tr *ngFor="let bed of adt.BedInformations;let i = index">
                 <td>{{i+1}}</td>
                 <th>{{bed.Action}}</th>
-                <td>{{bed.StartDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
-                <td>{{bed.EndDate | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+                <td>{{bed.StartDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+                <td>{{bed.EndDate | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
                 <td>{{bed.BedCode}}</td>
                 <td>{{bed.BedFeature}}</td>
                 <td>{{bed.Days}}</td>
@@ -137,7 +137,7 @@
             </tr>
           </thead>
           <tr *ngFor="let add of drugDetails">
-            <td>{{add.Date | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+            <td>{{add.Date | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
             <td>{{add.MedicationName}}</td>
             <td>{{add.Route}}</td>
             <td>{{add.Dose}}</td>
@@ -169,7 +169,7 @@
               </tr>
             </thead>
             <tr *ngFor="let comp of history.Components">
-              <td>{{comp.Date | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+              <td>{{comp.Date | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
               <td>{{comp.Component}}</td>
               <td *ngIf="comp.IsAbnormal"><b>{{comp.Value}} *</b></td>
               <td *ngIf="!comp.IsAbnormal">{{comp.Value}}</td>
@@ -198,7 +198,7 @@
             </tr>
           </thead>
           <tr *ngFor="let img of imagingHistory">
-            <td>{{img.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
+            <td>{{img.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm'}}</td>
             <td>{{img.ImagingTypeName}}</td>
             <td>{{img.ImagingItemName}}</td>
             <!--<td>{{img.ReportText}}</td>--> 

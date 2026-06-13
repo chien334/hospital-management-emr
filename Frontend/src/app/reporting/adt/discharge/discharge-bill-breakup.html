@@ -52,7 +52,7 @@
                 <th style="padding:0px;">IP No</th>
                 <td style="padding:0px;">{{patient.IPNumber}}</td>
                 <th style="padding:0px;">Invoice Date</th>
-                <td style="padding:0px;">{{patient.InvoiceDateTime | DanpheDateTime:'format':'YYYY.MM.DD'}}</td>
+                <td style="padding:0px;">{{patient.InvoiceDateTime | DsfDateTime:'format':'YYYY.MM.DD'}}</td>
               </tr>
               <tr>
                 <th style="padding:0px;">Name</th>
@@ -60,7 +60,7 @@
                 <th style="padding:0px;">Age/Gender</th>
                 <td style="padding:0px;">{{patient.Age}} /{{patient.Gender}}</td>
                 <th style="padding:0px;">Invoice Time</th>
-                <td style="padding:0px;">{{patient.InvoiceDateTime | DanpheDateTime:'format':'HH:mm'}}</td>
+                <td style="padding:0px;">{{patient.InvoiceDateTime | DsfDateTime:'format':'HH:mm'}}</td>
               </tr>
               <tr>
                 <th style="padding:0px;">Address</th>
@@ -68,7 +68,7 @@
                 <th style="padding:0px;">Admitted Doctor</th>
                 <td style="padding:0px;">{{patient.AdmittedDoctor}}</td>
                 <th style="padding:0px;">Admission Date</th>
-                <td style="padding:0px;">{{patient.AdmissionDate | DanpheDateTime:'format':'YYYY.MM.DD HH:mm'}}</td>
+                <td style="padding:0px;">{{patient.AdmissionDate | DsfDateTime:'format':'YYYY.MM.DD HH:mm'}}</td>
               </tr>
               <tr>
                 <th style="padding:0px;">Ward</th>
@@ -76,7 +76,7 @@
                 <th style="padding:0px;">Bed No</th>
                 <td style="padding:0px;">{{patient.BedNo}}</td>
                 <th style="padding:0px;">Discharge Date</th>
-                <td style="padding:0px;">{{patient.DischargeDate | DanpheDateTime:'format':'YYYY.MM.DD HH:mm'}}</td>
+                <td style="padding:0px;">{{patient.DischargeDate | DsfDateTime:'format':'YYYY.MM.DD HH:mm'}}</td>
               </tr>
             </table>
           </div>
@@ -96,7 +96,7 @@
                 </tr>
               </thead>
               <tr *ngFor="let itm of rpt.itemList">
-                <td>{{itm.billDate | DanpheDateTime:'format':'YYYY.MM.DD HH:mm'}}</td>
+                <td>{{itm.billDate | DsfDateTime:'format':'YYYY.MM.DD HH:mm'}}</td>
                 <td>{{itm.description}}</td>
                 <td>{{itm.qty}}</td>
                 <td>{{itm.amount}}</td>

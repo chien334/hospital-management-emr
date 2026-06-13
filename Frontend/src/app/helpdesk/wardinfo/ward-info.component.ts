@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HelpDeskBLService } from '../shared/helpdesk.bl.service'
 import { HlpDskWardInfo } from '../shared/ward-info.model';
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 
 

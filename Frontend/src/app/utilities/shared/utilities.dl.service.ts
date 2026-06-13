@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { ChangeVisitScheme_DTO } from "./DTOs/change-visit-scheme.dto";
 import { OrganizationDeposit_DTO } from "./DTOs/organization-deposit.dto";
 import { ProcessConfirmationUserCredentials_DTO } from "./DTOs/process-confirmation-userCredentials.dto";
@@ -19,8 +19,8 @@ export class UtilitiesDLService {
   };
   constructor(public http: HttpClient) {
   }
-  public GetBillingSchemes(): Observable<DanpheHTTPResponse> {
-    return this.http.get<DanpheHTTPResponse>(`/api/BillSettings/BillingSchemes`, this.optionsJson);
+  public GetBillingSchemes(): Observable<DsfHTTPResponse> {
+    return this.http.get<DsfHTTPResponse>(`/api/BillSettings/BillingSchemes`, this.optionsJson);
   }
   public GetPatientsWithVisitsInfo(searchTxt) {
     return this.http.get<any>(`/api/Patient/PatientWithVisitInfo?search=${searchTxt}&showIpPatinet=${true}`, this.options);
@@ -32,34 +32,34 @@ export class UtilitiesDLService {
     return this.http.get<any>(`/api/Patient/PatientLastVisitContext?patientId=` + patientId, this.options);
   }
 
-  public SaveSchemeRefund(schemeRefundDTO: SchemeRefund_DTO): Observable<DanpheHTTPResponse> {
-    return this.http.post<DanpheHTTPResponse>(`/api/Utilities/SchemeRefund`, schemeRefundDTO, this.optionsJson);
+  public SaveSchemeRefund(schemeRefundDTO: SchemeRefund_DTO): Observable<DsfHTTPResponse> {
+    return this.http.post<DsfHTTPResponse>(`/api/Utilities/SchemeRefund`, schemeRefundDTO, this.optionsJson);
   }
 
-  public SaveChangedVisitScheme(changeVisitScheme_DTO: ChangeVisitScheme_DTO): Observable<DanpheHTTPResponse> {
-    return this.http.post<DanpheHTTPResponse>(`/api/Utilities/ChangeVisitScheme`, changeVisitScheme_DTO, this.optionsJson);
+  public SaveChangedVisitScheme(changeVisitScheme_DTO: ChangeVisitScheme_DTO): Observable<DsfHTTPResponse> {
+    return this.http.post<DsfHTTPResponse>(`/api/Utilities/ChangeVisitScheme`, changeVisitScheme_DTO, this.optionsJson);
   }
 
-  public GetSchemeRefund(fromDate, toDate): Observable<DanpheHTTPResponse> {
-    return this.http.get<DanpheHTTPResponse>("/api/Utilities/SchemeRefund?FromDate=" + fromDate + "&ToDate=" + toDate, this.optionsJson);
+  public GetSchemeRefund(fromDate, toDate): Observable<DsfHTTPResponse> {
+    return this.http.get<DsfHTTPResponse>("/api/Utilities/SchemeRefund?FromDate=" + fromDate + "&ToDate=" + toDate, this.optionsJson);
   }
-  public GetSchemeRefundById(receiptNo: number): Observable<DanpheHTTPResponse> {
-    return this.http.get<DanpheHTTPResponse>("/api/Utilities/SchemeRefundById?receiptNo=" + receiptNo, this.optionsJson);
+  public GetSchemeRefundById(receiptNo: number): Observable<DsfHTTPResponse> {
+    return this.http.get<DsfHTTPResponse>("/api/Utilities/SchemeRefundById?receiptNo=" + receiptNo, this.optionsJson);
   }
   public GetPriceCategory() {
     return this.http.get<any>("/api/Settings/PriceCategories");
   }
   public GetCreditOrganizationList(searchTxt) {
-    return this.http.get<DanpheHTTPResponse>("/api/BillSettings/CreditOrganizations");
+    return this.http.get<DsfHTTPResponse>("/api/BillSettings/CreditOrganizations");
   }
   public GetDepositHead() {
-    return this.http.get<DanpheHTTPResponse>("/api/BillingDeposit/GetDepositHead", this.options);
+    return this.http.get<DsfHTTPResponse>("/api/BillingDeposit/GetDepositHead", this.options);
   }
   public GetPatientPastBillSummary(patientId: number) {
-    return this.http.get<DanpheHTTPResponse>("/api/Billing/PatientsPastBillSummary?patientId=" + patientId, this.options);
+    return this.http.get<DsfHTTPResponse>("/api/Billing/PatientsPastBillSummary?patientId=" + patientId, this.options);
   }
-  public PostOrganizationDeposit(organizationDeposit: OrganizationDeposit_DTO): Observable<DanpheHTTPResponse> {
-    return this.http.post<DanpheHTTPResponse>("/api/Utilities/OrganizationDeposit", organizationDeposit, this.optionsJson);
+  public PostOrganizationDeposit(organizationDeposit: OrganizationDeposit_DTO): Observable<DsfHTTPResponse> {
+    return this.http.post<DsfHTTPResponse>("/api/Utilities/OrganizationDeposit", organizationDeposit, this.optionsJson);
   }
   public GetOrganizationDepositBalance(organizationId: number) {
     return this.http.get<any>("/api/Utilities/OrganizationDepositBalance?OrganizationId=" + organizationId, this.optionsJson);
@@ -67,11 +67,11 @@ export class UtilitiesDLService {
   public GetDepositDetails(depositId: number) {
     return this.http.get<any>("/api/Utilities/OrganizationDepositDetailById?depositId=" + depositId, this.optionsJson);
   }
-  public GetPatientSchemeRefunds(patientId): Observable<DanpheHTTPResponse> {
-    return this.http.get<DanpheHTTPResponse>("/api/Utilities/PatientSchemeRefunds?patientId=" + patientId, this.optionsJson);
+  public GetPatientSchemeRefunds(patientId): Observable<DsfHTTPResponse> {
+    return this.http.get<DsfHTTPResponse>("/api/Utilities/PatientSchemeRefunds?patientId=" + patientId, this.optionsJson);
   }
   public ConfirmProcess(processToConfirmUserCredentials: ProcessConfirmationUserCredentials_DTO) {
-    return this.http.post<DanpheHTTPResponse>(`/api/ProcessConfirmation/ConfirmProcess`, processToConfirmUserCredentials, this.optionsJson);
+    return this.http.post<DsfHTTPResponse>(`/api/ProcessConfirmation/ConfirmProcess`, processToConfirmUserCredentials, this.optionsJson);
   }
 
 

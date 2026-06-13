@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-md-4">
         <label for="srch_PatientList" style="font-size:16px !important">Search OPD Patients:</label>
-        <input danphe-auto-complete id="srch_PatientList" class="form-control searchtbx" [(ngModel)]="PatientObj"
+        <input dsf-auto-complete id="srch_PatientList" class="form-control searchtbx" [(ngModel)]="PatientObj"
                [list-formatter]="PatientListFormatter" [source]="AllPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
                placeholder="search by HospitalNo, Patient Name, Phone Number" display-property-name="ShortName" value-property-name=null
                (ngModelChange)="PatientInfoChanged()" onClick="this.select();" max-num-list="500"
@@ -52,7 +52,7 @@
           </div> -->
           <div class="col-md-9">
             <label for="srchIP_PatientList" style="font-size:16px !important">Search IPD Patients:</label>
-            <input danphe-auto-complete id="srchIP_PatientList" class="form-control searchtbx"
+            <input dsf-auto-complete id="srchIP_PatientList" class="form-control searchtbx"
                    [(ngModel)]="PatientIPObj" [list-formatter]="IPPatientListFormatter"
                    [source]="IpdPatientSearchAsync.bind(this)" [path-to-data]="'Results'"
                    placeholder="Search by IPD-No, Patient Name, Hospital No, Phone Number" display-property-name="ShortName" value-property-name=null

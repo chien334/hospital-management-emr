@@ -1,6 +1,6 @@
 import { Component, Directive, ViewChild, ChangeDetectorRef, Input } from '@angular/core';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { AccountingReportsBLService } from "../shared/accounting-reports.bl.service";
 import { CommonFunctions } from '../../../shared/common.functions';
 import * as moment from 'moment/moment';

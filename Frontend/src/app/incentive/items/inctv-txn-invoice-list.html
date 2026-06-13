@@ -38,7 +38,7 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-6">
-        <input danphe-auto-complete id="srch_invoiceList" class="form-control" [(ngModel)]="selInvoiceInfo"
+        <input dsf-auto-complete id="srch_invoiceList" class="form-control" [(ngModel)]="selInvoiceInfo"
                [list-formatter]="invoiceListFormatter" [source]="allInvoiceInfoList" [placeholder]="'INCENTIVE.TYPE_TO_SEARCH' | translate"
                display-property-name="PatientName" value-property-name=null (focusout)="InvoiceInfoChanged()"
                onClick="this.select();" max-num-list="100" />
@@ -58,7 +58,7 @@
           <div class="col-md-6 margin-8-bt">
             <div class="margin-8-bt"> <b> {{ 'INCENTIVE.INVOICE_NO' | translate }}: </b><span *ngIf="selInvoiceInfo">{{selInvoiceInfo.InvoiceNo}}</span> </div>
             <div class="margin-8-bt"> <b>{{ 'INCENTIVE.DATE' | translate }}: </b> <span *ngIf="selInvoiceInfo"> {{selInvoiceInfo.TransactionDate |
-                DanpheDateTime:'format':'YYYY-MM-DD HH:mm'}} <i>{{selInvoiceInfo.TransactionDate | nepaliDate:'format':'YYYY-MM-DD HH:mm'}} </i>
+                DsfDateTime:'format':'YYYY-MM-DD HH:mm'}} <i>{{selInvoiceInfo.TransactionDate | nepaliDate:'format':'YYYY-MM-DD HH:mm'}} </i>
               </span> </div>
           </div>
           <div class="col-md-6 text-right">

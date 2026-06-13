@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReportingService } from '../../../reporting/shared/reporting-service';
-import { DanpheAutoCompleteModule } from '../../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../../shared/dsf-autocomplete';
 import { SharedModule } from '../../../shared/shared.module';
 import { InsPatientClaimDetailsView } from '../shared/ins-pat-claim-details-view/ins-pat-claim-details-view.component';
 import { GovInsuranceService } from '../shared/ins-service';
@@ -28,7 +28,7 @@ import { GOVINSTotalItemsBillComponent } from './gov-total-items-bill/gov-ins-to
         ReactiveFormsModule,
         GovInsuranceReportsRoutingModule,
         FormsModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SharedModule], providers: [
         GovInsuranceDlService,
         GovInsuranceBlService,

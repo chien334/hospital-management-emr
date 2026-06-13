@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BillingSharedModule } from "../../billing/billing-shared.module";
 import { SettingsSharedModule } from "../../settings-new/settings-shared.module";
-import { DanpheAutoCompleteModule } from "../../shared/danphe-autocomplete";
+import { DsfAutoCompleteModule } from "../../shared/dsf-autocomplete";
 import { SharedModule } from "../../shared/shared.module";
 import { PHRMFinalizeInvoiceComponent } from "./Finalize-Invoice/phrm-finalize-invoice.component";
 import { ConsumptionReceiptComponent } from './consumption-receipt/consumption-receipt.component';
@@ -19,7 +19,7 @@ import { ReturnConsumptionListComponent } from './return-consumption-list/return
 @NgModule({
     providers: [],
     imports: [
-        CommonModule, FormsModule, ReactiveFormsModule, SharedModule, SettingsSharedModule, DanpheAutoCompleteModule, BillingSharedModule
+        CommonModule, FormsModule, ReactiveFormsModule, SharedModule, SettingsSharedModule, DsfAutoCompleteModule, BillingSharedModule
     ],
     declarations: [
         PHRMPatientConsumptionListComponent,

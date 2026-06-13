@@ -33,7 +33,7 @@
                                         <td>{{add.SurgeryType}}</td>
                                         <td>{{add.ICD10Description}}</td>
                                         <td>{{add.ICD10Code}}</td>
-                                        <td>{{add.SurgeryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                                        <td>{{add.SurgeryDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                                         <td>{{add.Note}}</td>
                                         <td>
                                             <a (click)="Edit(add,i)" class="bs-glyphicon-class btn yello"><span class="glyphicon glyphicon-edit"></span>Edit</a>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { ENUM_DanpheHTTPResponses } from '../../../shared/shared-enums';
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { ENUM_DsfHTTPResponses } from '../../../shared/shared-enums';
 import { SettingsService } from '../../shared/settings-service';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { TemplateType } from '../shared/template-type.model';
@@ -23,8 +23,8 @@ export class TemplateTypeComponent {
   }
   GetTemplateTypeList() {
     this.settingsBLService.GetTemplateTypeList()
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.templateTypeList = res.Results;
           this.showGrid = true;
         }

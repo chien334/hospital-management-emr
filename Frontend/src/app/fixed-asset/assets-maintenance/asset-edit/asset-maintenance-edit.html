@@ -31,7 +31,7 @@
                   <input type="text" [(ngModel)]="selectedAssetForEdit.YearOfUse"   style="width:100px;" />
                  </td>
                  <td>
-                  <danphe-date-picker  disbal ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}" [(ngModel)]="selectedAssetForEdit.ManufactureDate" [allow-future-date]="true" style="width:100px;" ></danphe-date-picker>
+                  <dsf-date-picker  disbal ngDefaultControl [CalendarTypes]="'np,en'" [ngModelOptions]="{standalone:true}" [(ngModel)]="selectedAssetForEdit.ManufactureDate" [allow-future-date]="true" style="width:100px;" ></dsf-date-picker>
                  </td>
                  <td>{{selectedAssetForEdit.WarrantyExpiryDate | date:'yyyy-MM-dd'}}</td>
    
@@ -165,13 +165,13 @@
                       <div class="row">
                         <label class="control-label col-md-6">{{ 'FIXED_ASSETS.MANUFACTURE_DATE' | translate }} <b>:</b></label>
                         <div class="col-md-6">
-                          <danphe-date-picker [CalendarTypes]="'np,en'" formControlName="ManufactureDate"
+                          <dsf-date-picker [CalendarTypes]="'np,en'" formControlName="ManufactureDate"
                             [(ngModel)]="selectedAssetForEdit.ManufactureDate" style="width:100px;">
-                          </danphe-date-picker>
+                          </dsf-date-picker>
 
-                          <!-- <danphe-date-picker [CalendarTypes]="'np,en'" formControlName="ManufactureDate"
+                          <!-- <dsf-date-picker [CalendarTypes]="'np,en'" formControlName="ManufactureDate"
                             [(ngModel)]="selectedAssetForEdit.ManufactureDate" style="width:100px;">
-                          </danphe-date-picker> -->
+                          </dsf-date-picker> -->
                         </div>
                       </div>
                     </div>
@@ -193,14 +193,14 @@
                       <div class="row">
                         <label class="control-label col-md-6">{{ 'FIXED_ASSETS.INSTALLATION_DATE' | translate }} <b>:</b></label>
                         <div class="col-md-6">
-                          <danphe-date-picker [CalendarTypes]="'np,en'" formControlName="InstallationDate"
+                          <dsf-date-picker [CalendarTypes]="'np,en'" formControlName="InstallationDate"
                             [(ngModel)]="selectedAssetForEdit.InstallationDate" style="width:100px;">
-                          </danphe-date-picker>
+                          </dsf-date-picker>
 
 
-                          <!-- <danphe-date-picker [CalendarTypes]="'np,en'" formControlName="InstallationDate"
+                          <!-- <dsf-date-picker [CalendarTypes]="'np,en'" formControlName="InstallationDate"
                             [(ngModel)]="selectedAssetForEdit.InstallationDate" style="width:100px;">
-                          </danphe-date-picker> -->
+                          </dsf-date-picker> -->
                         </div>
                       </div>
                     </div>

@@ -6,7 +6,7 @@ import { SecurityService } from '../../../security/shared/security.service';
 import { User } from '../../../security/shared/user.model';
 import { SettingsBLService } from '../../../settings-new/shared/settings.bl.service';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { DLService } from '../../../shared/dl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 

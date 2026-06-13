@@ -118,7 +118,7 @@
                       <div class="flex-1 text-black text-center">
                         <b>{{ 'LABS.REQUESTED_ON' | translate }}</b> {{
                         test.RequestDate |
-                        DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'
+                        DsfDateTime:'format':'YYYY-MM-DD hh:mm A'
                         }}
                       </div>
                       <div class="flex-1 text-black text-center">
@@ -193,7 +193,7 @@
                       <span class="color-red font-sm" *ngIf="comp.ControlType=='Label'"></span>
                       <div class="cstm-res-autocomplete pull-right"
                            *ngIf="comp.ValueType == 'string' && comp.ControlType=='SearchBox'">
-                        <input autocomplete="off" danphe-auto-complete class="form-control cstm-res-input inputbox"
+                        <input autocomplete="off" dsf-auto-complete class="form-control cstm-res-input inputbox"
                                id="inputbox{{i}}{{j}}{{k}}" (keyup.enter)="GoToNextBox(i,j,k)"
                                [ngClass]="comp.IsValueValid ? 'bg-on' : 'bg-off'" formControlName="Value"
                                [(ngModel)]="comp.Value" [source]="comp.ValueDataSource" [placeholder]="'LABS.ENTER_TEXT_1' | translate"
@@ -321,7 +321,7 @@
                       <div class="flex-1 text-black text-center">
                         <b>{{ 'LABS.REQUESTED_ON' | translate }}</b> {{
                         test.RequestDate |
-                        DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'
+                        DsfDateTime:'format':'YYYY-MM-DD hh:mm A'
                         }}
                       </div>
                       <div class="flex-1 text-black text-center">
@@ -434,7 +434,7 @@
                           <span class="color-red font-sm" *ngIf="comp.ControlType=='Label'"></span>
                           <div class="cstm-res-autocomplete pull-left"
                                *ngIf="comp.ValueType == 'string' && comp.ControlType=='SearchBox'">
-                            <input autocomplete="off" danphe-auto-complete class="form-control cstm-res-input inputbox"
+                            <input autocomplete="off" dsf-auto-complete class="form-control cstm-res-input inputbox"
                                    id="inputbox{{i}}{{j}}{{k}}" (keyup.enter)="GoToNextBox(i,j,k)"
                                    [ngClass]="comp.IsValueValid ? 'bg-on' : 'bg-off'" [(ngModel)]="comp.Value"
                                    [ngModelOptions]="{standalone: true}" [source]="comp.ValueDataSource"
@@ -459,7 +459,7 @@
                                  (focusout)="CheckIfAbnormal(compgrp,test)" />
                           <div class="cstm-res-autocomplete pull-left"
                                *ngIf="compgrp.ValueType == 'string' && compgrp.ControlType=='SearchBox'">
-                            <input autocomplete="off" danphe-auto-complete
+                            <input autocomplete="off" dsf-auto-complete
                                    class="form-control cstm-res-input inputbox bg-off" id="inputboxGrp{{i}}{{j}}{{k}}{{g}}"
                                    (keyup.enter)="GoToNextGroupBox(i,j,k,g)" [(ngModel)]="compgrp.Value"
                                    [source]="compgrp.ValueDataSource" [placeholder]="'LABS.ENTER_TEXT_1' | translate" display-property-name="Value"
@@ -564,7 +564,7 @@
                 <span class="text-black">
                   <b>{{ 'LABS.REQUESTED_ON' | translate }}</b> {{
                   test.RequestDate |
-                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'
+                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'
                   }}
                 </span>
               </div>
@@ -576,7 +576,7 @@
                 <span class="text-black">
                   {{ 'LABS.REQUESTED_ON' | translate }} {{
                   test.RequestDate |
-                  DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'
+                  DsfDateTime:'format':'YYYY-MM-DD hh:mm A'
                   }}
                 </span>
               </div>
@@ -604,7 +604,7 @@
                       {{ 'LABS.SELECT_DIFFERENT_TEMPLATE' | translate }}
                     </a>
                     <div *ngIf="changeReportTemplate">
-                      <input autocomplete="off" class="form-control" danphe-auto-complete
+                      <input autocomplete="off" class="form-control" dsf-auto-complete
                              [(ngModel)]="selectedHTMLTemplate" [source]="reportTemplates" [placeholder]="'LABS.SEARCH_TEMPLATE' | translate"
                              [list-formatter]="ReportTempListFormatter" display-property-name="ReportTemplateName"
                              value-property-name="null" match-formatted="true" (focusout)="AssignSelectedTemplate()"
@@ -617,9 +617,9 @@
             </div>
             <div class="row">
               <div *ngFor="let comp of test.Components; let k=index;">
-                <danphe-ckeditor [readonly]="isReadOnly" (get-html-content)="onChangeEditorData($event,i,j,k)"
+                <dsf-ckeditor [readonly]="isReadOnly" (get-html-content)="onChangeEditorData($event,i,j,k)"
                                  [set-html-content]="ckHtmlContent">
-                </danphe-ckeditor>
+                </dsf-ckeditor>
               </div>
             </div>
           </div>
@@ -689,8 +689,8 @@
             <div class="row">
               <div class="col-md-5">{{ 'LABS.SAMPLE_COLLECTION_DATE_1' | translate }} <b>:</b></div>
               <div class="col-md-7">
-                <danphe-date-picker [(ngModel)]="sampleCode.SampleCreatedOn" ngDefaultControl [CalendarTypes]="'np'"
-                                    (ngModelChange)="SampleDateChanged()"></danphe-date-picker>
+                <dsf-date-picker [(ngModel)]="sampleCode.SampleCreatedOn" ngDefaultControl [CalendarTypes]="'np'"
+                                    (ngModelChange)="SampleDateChanged()"></dsf-date-picker>
               </div>
             </div>
             <div class="row margin-15-tp">

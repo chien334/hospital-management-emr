@@ -29,8 +29,8 @@
   </div>
   <div class="row" *ngIf="showGrid">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="SettlementGridCols" [grid-data]="allPendingSettlements"
-                   (grid-actions)="SettlementGridActions($event)"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="SettlementGridCols" [grid-data]="allPendingSettlements"
+                   (grid-actions)="SettlementGridActions($event)"> </dsf-grid>
     </div>
   </div>
   <div class="row" *ngIf="showReceipt || showActionPanel">
@@ -160,7 +160,7 @@
         <div class="button-wrapper">
           <!-- <input style="margin-top: 10px;" type="button" class="btn green-meadow" (click)="SettlePatientBills()"
                  [disabled]="loading || !settelmentProceedEnable" value="Proceed" /> -->
-          <input DanpheConfirmationDialog
+          <input DsfConfirmationDialog
                  type="button"
                  [title]="confirmationTitle"
                  [message]="confirmationMessage"

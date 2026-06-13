@@ -2,9 +2,9 @@
 import { Component } from "@angular/core";
 import { MedicalCareType } from "../../../../insurance/medicare/shared/medicare-member.model";
 import { MedicareBLService } from "../../../../insurance/medicare/shared/medicare.bl.service";
-import { DanpheHTTPResponse } from "../../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../../shared/common-models";
 import { MessageboxService } from "../../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
 import { AccountingService } from "../../../shared/accounting.service";
 import { AccountingSettingsBLService } from "../../shared/accounting-settings.bl.service";
 import { LedgerModel } from "../../shared/ledger.model";
@@ -33,8 +33,8 @@ export class MedicareTypesLedgerMappingComponent {
     }
     public GetMedicareType() {
         this.medicareBlService.GetAllMedicareTypes().subscribe(
-            (res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            (res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.mediCareTypeList = new Array<MedicalCareType>();
                     this.mediCareTypeList = res.Results;
                     this.mediCareTypeList.forEach((a, index) => {
@@ -79,14 +79,14 @@ export class MedicareTypesLedgerMappingComponent {
             }
             else {
                 this.accountingSettingsBLService.UpdateMedicareType(selectedMedicareTypeData).subscribe(
-                    (res: DanpheHTTPResponse) => {
-                        if (res.Status = ENUM_DanpheHTTPResponses.OK) {
+                    (res: DsfHTTPResponse) => {
+                        if (res.Status = ENUM_DsfHTTPResponses.OK) {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Medicare Type is successfully mapped to the ledger."]);
                         } else {
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, ["Unable to map selected Ledger."]);
                         }
                     },
-                    (err: DanpheHTTPResponse) => {
+                    (err: DsfHTTPResponse) => {
                         this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Failed, [`Error: ${err.ErrorMessage}`]);
                         this.GetMedicareType();
                         this.loading = false;

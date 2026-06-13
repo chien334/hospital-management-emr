@@ -10,7 +10,7 @@ import { VendorMaster } from '../../../inventory/shared/vendor-master.model';
 import { PharmacyBLService } from '../../../pharmacy/shared/pharmacy.bl.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { ActivateInventoryService } from '../../../shared/activate-inventory/activate-inventory.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { InventoryBLService } from '../../shared/inventory.bl.service';
 import { ReturnToVendorItem } from '../return-to-vendor-items.model';
@@ -103,7 +103,7 @@ export class ReturnToVendorAddComponent implements OnInit {
     //We may do this in client side itself since we already have list of all fiscal years with us. [Part of optimization.]
 
     this.BillingBLService.GetCurrentFiscalYear()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let fiscYr: BillingFiscalYear = res.Results;
           if (fiscYr) {

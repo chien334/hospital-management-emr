@@ -9,9 +9,9 @@ import { PHRMInvoiceModel } from "../../../../../pharmacy/shared/phrm-invoice.mo
 import { PHRMStoreModel } from "../../../../../pharmacy/shared/phrm-store.model";
 import { SecurityService } from "../../../../../security/shared/security.service";
 import { CallbackService } from "../../../../../shared/callback.service";
-import { DanpheHTTPResponse } from "../../../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../../../shared/common-models";
 import { CommonFunctions } from "../../../../../shared/common.functions";
-import { GridEmitModel } from "../../../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from "../../../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../../../shared/routefrom.service";
 import DispensaryGridColumns from "../../../../shared/dispensary-grid.column";
@@ -103,7 +103,7 @@ export class PHRMDuplicatePrintSettlementListComponent {
     GetAllSettlement() {
         this.allPHRMPendingSettlements = [];
         this.pharmacyBLService.GetPHRMSettlements(this.currentActiveDispensary.StoreId, this.FromDate, this.ToDate)
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
                 if (res.Status == "OK") {
                     this.allPHRMPSettlements = res.Results;
 
@@ -147,7 +147,7 @@ export class PHRMDuplicatePrintSettlementListComponent {
     //     patient.PhoneNumber = row.PhoneNumber;
 
     //     this.pharmacyBLService.GetCreditInvoicesByPatient(patient.PatientId)
-    //         .subscribe((res: DanpheHTTPResponse) => {
+    //         .subscribe((res: DsfHTTPResponse) => {
     //             if (res.Status == "OK") {
     //                 this.patCrInvoicDetails = res.Results.CreditInvoiceInfo;
     //                 this.PatientInfo = res.Results.PatientInfo;
@@ -306,7 +306,7 @@ export class PHRMDuplicatePrintSettlementListComponent {
             let setlmntToPost = this.GetSettlementInvoiceFormatted();
 
             this.pharmacyBLService.PostSettlementInvoice(setlmntToPost)
-                .subscribe((res: DanpheHTTPResponse) => {
+                .subscribe((res: DsfHTTPResponse) => {
                     console.log("Response from server:");
                     console.log(res);
 
@@ -439,7 +439,7 @@ export class PHRMDuplicatePrintSettlementListComponent {
     //     this.showReceipt = true;
     //     this.showGrid = false;
     //     this.pharmacyBLService.GetPHRMSettlementDuplicateDetails(settlementData.SettlementId)
-    //       .subscribe((res: DanpheHTTPResponse) => {
+    //       .subscribe((res: DsfHTTPResponse) => {
     //         this.setlmntToDisplay = res.Results;
     //         // this.SettlementId = this.setlmntToDisplay.SettlementInfo.SettlementId;
     //         this.setlmntToDisplay.BillingUser = this.securityService.GetLoggedInUser().UserName;
@@ -454,7 +454,7 @@ export class PHRMDuplicatePrintSettlementListComponent {
 
     // GetUnPaidSettlementsDetails(row) {
     //     this.pharmacyBLService.GetCreditInvoicesByPatient(row.PatientId)
-    //         .subscribe((res: DanpheHTTPResponse) => {
+    //         .subscribe((res: DsfHTTPResponse) => {
     //             if (res.Status == "OK") {
     //                 this.patCrInvoicDetails = res.Results.CreditInvoiceInfo;
     //                 this.patientService.globalPatient = res.Results.PatientInfo;

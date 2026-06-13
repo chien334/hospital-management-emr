@@ -8,9 +8,9 @@
     </div>
 
     <div class="col-md-6" *ngIf="nestedCases && nestedCases.length >1 ">
-        <danphe-multiselect [ddl-data]="nestedCases" [pre-selected]="selectedData"
+        <dsf-multiselect [ddl-data]="nestedCases" [pre-selected]="selectedData"
             [placeholder-text]="'--Nested Cases--'" [value-property-name]="'Id'"
             (selected-items-list)="CasesOnChange($event)" [display-property-name]="'Name'" [single-selection]="false">
-        </danphe-multiselect>
+        </dsf-multiselect>
     </div>
 </div>

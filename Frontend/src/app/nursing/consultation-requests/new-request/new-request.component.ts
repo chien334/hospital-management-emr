@@ -7,7 +7,7 @@ import { Department } from "../../../settings-new/shared/department.model";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import {
     ENUM_ConsultationRequestStatus,
-    ENUM_DanpheHTTPResponses,
+    ENUM_DsfHTTPResponses,
     ENUM_MessageBox_Status,
 } from "../../../shared/shared-enums";
 import { ConsultationRequestModel } from "../../shared/consultation-request.model";
@@ -121,7 +121,7 @@ export class NewRequestComponent implements OnInit {
                 this.loading = false;
             })
             .subscribe((res) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['New Consultation Request has been created successfully']);
                     this.CloseAddNewRequestPopup();
                 } else {
@@ -149,7 +149,7 @@ export class NewRequestComponent implements OnInit {
                 this.loading = false;
             })
             .subscribe((res) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ['Consultation Response has been created successfully']);
                     this.CloseAddNewRequestPopup();
                 } else {

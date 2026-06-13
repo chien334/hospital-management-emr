@@ -39,9 +39,9 @@ import { SecurityService } from "../../../../../../src/app/security/shared/secur
 import { CoreService } from "../../../../core/shared/core.service";
 import { NepaliCalendarService } from "../../../../shared/calendar/np/nepali-calendar.service";
 import {
-  DanpheCache,
+  DsfCache,
   MasterType,
-} from "../../../../shared/danphe-cache-service-utility/cache-services";
+} from "../../../../shared/dsf-cache-service-utility/cache-services";
 import { ENUM_MessageBox_Status } from "../../../../shared/shared-enums";
 import { LabTestComponent } from "../../../shared/lab-component.model";
 import { LabReportColumnsModel } from "../../../shared/lab-report-template.model";
@@ -52,7 +52,7 @@ import {
 import { LabService } from "../../../shared/lab.service";
 
 @Component({
-  selector: "danphe-lab-view-report-format2",
+  selector: "dsf-lab-view-report-format2",
   templateUrl: "./lab-tests-view-report-format2.html",
   styleUrls: ["./lab-tests-view-report-format2.style.css"],
 })
@@ -186,7 +186,7 @@ export class LabTestsViewReportFormat2Component {
     this.CurrentDateTime = moment().format("YYYY-MM-DD HH:mm");
     this.GetDoctorsList();
     this.CreatedByUser = this.securityService.GetLoggedInUser().Employee;
-    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DanpheConfigurationForTeleMedicine").ParameterValue;
+    let TeleMedicineConfig = this.coreService.Parameters.find(p => p.ParameterGroupName == "TeleMedicine" && p.ParameterName == "DsfConfigurationForTeleMedicine").ParameterValue;
     this.IsTeleMedicineEnabled = JSON.parse(JSON.parse(TeleMedicineConfig).IsTeleMedicineEnabled);
     this.allValues = this.coreService.GetAllParametersDataForLabReport();
     if (this.allValues) {
@@ -247,7 +247,7 @@ export class LabTestsViewReportFormat2Component {
   @Input("templateReport")
   public set tempReport(_templateReport: LabReportVM) {
 
-    this.allEmployeeList = DanpheCache.GetData(MasterType.Employee, null);
+    this.allEmployeeList = DsfCache.GetData(MasterType.Employee, null);
     this.isCultureRptLoaded = true; //reset value at beginning: sud: 3sept'18
 
     if (_templateReport) {
@@ -773,7 +773,7 @@ export class LabTestsViewReportFormat2Component {
     var documentContent = "<html><head>";
     documentContent +=
       `<link href="../../../../../../assets-dph/external/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />` +
-      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DanpheStyle.css" />` +
+      `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/DsfStyle.css" />` +
       `<link rel="stylesheet" type="text/css" href="../../../../../../themes/theme-default/LabReportPrint-format2.css" /></head>`;
 
     /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';

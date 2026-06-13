@@ -20,7 +20,7 @@ export class PharmacyVerificationGridColumn {
             headerName: "Action",
             field: "",
             width: 120,
-            template: `<a danphe-grid-action="verify" class="grid-action">
+            template: `<a dsf-grid-action="verify" class="grid-action">
             Verify
          </a>`
         }
@@ -50,7 +50,7 @@ export class PharmacyVerificationGridColumn {
             headerName: "Action",
             field: "",
             width: 120,
-            template: `<a danphe-grid-action="verify" class="grid-action">
+            template: `<a dsf-grid-action="verify" class="grid-action">
             Verify
          </a>`
         }

@@ -1,10 +1,10 @@
 <div class="wrapper">
   <div class="row" *ngIf="!showReceipt">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="duplicateProvisionalBillGridColumns" [grid-data]="provisionalInvoiceList"
+      <dsf-grid [grid-colDefaults]="duplicateProvisionalBillGridColumns" [grid-data]="provisionalInvoiceList"
                    (grid-actions)="DuplicateProvisionalBillPrintGridActions($event)" [NepaliDateInGridParams]="NepaliDateInGridSettings">
         <!-- [rangeType]="dateRange"  (onDateChange)="onDateChange($event)" [show-CustomDate]="true"> -->
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
 </div>

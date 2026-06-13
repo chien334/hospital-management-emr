@@ -13,8 +13,8 @@ HAMS_Requirements/
 .tfignore
 *.txt
 *.xlsx
-/Database/DanpheEMR_CompleteDB_4th_August_2019.bak
-/Code/Websites/DanpheEMR/DanpheEmrAPI.xml
+/Database/DsfEMR_CompleteDB_4th_August_2019.bak
+/Code/Websites/DsfEMR/DsfEmrAPI.xml
 .codegraph/
 Frontend/.angular/cache/**
 *.bak

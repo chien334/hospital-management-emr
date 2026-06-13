@@ -3,11 +3,11 @@ import { LabsBLService } from '../shared/labs.bl.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
 import { Router } from '@angular/router';
 import { Patient } from "../../patients/shared/patient.model";
-import GridColumnSettings from '../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../shared/dsf-grid/grid-emit.model";
 import { InPatientVM } from '../shared/InPatientVM';
 import { ADT_BLService } from '../../adt/shared/adt.bl.service';
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
 

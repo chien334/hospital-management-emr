@@ -83,9 +83,9 @@
                         <div class="form-group">
                             <label class="control-label col-md-4 left" style="padding-top: 1px;">{{ 'VACCINATION.DATE_OF_BIRTH' | translate }}<b style="float:right;">:</b></label>
                             <div class="col-md-8 datepicker-wrap">
-                                <danphe-date-picker [(ngModel)]="model.DateOfBirth" ngDefaultControl id="dateOfBirth"
+                                <dsf-date-picker [(ngModel)]="model.DateOfBirth" ngDefaultControl id="dateOfBirth"
                                                      (keyup.enter)="SetFocusById('gender')" [CalendarTypes]="calType"
-                                                     formControlName="DateOfBirth" [year-settings]="'DateOfBirth'"> </danphe-date-picker>
+                                                     formControlName="DateOfBirth" [year-settings]="'DateOfBirth'"> </dsf-date-picker>
                                 <span class="error-msg" *ngIf="model.IsDirty('DateOfBirth')"
                                       [hidden]="model.IsValidCheck('DateOfBirth','required')"> {{ 'VACCINATION.DATE_OF_BIRTH_REQUIRED' | translate }}</span> <span class="error-msg" *ngIf="model.IsDirty('DateOfBirth')"
                                       [hidden]="model.IsValidCheck('DateOfBirth','wrongDate')">{{ 'VACCINATION.WRONG_DATE_SELECTED' | translate }}</span>
@@ -135,7 +135,7 @@
                             <label class="control-label col-md-4">{{GeneralFieldLabel.DistrictState}}<b class="color-red"> *</b><b
                                    style="float:right;">:</b></label>
                             <div class="col-md-7">
-                                <input class="form-control" danphe-auto-complete formControlName="CountrySubDivisionId"
+                                <input class="form-control" dsf-auto-complete formControlName="CountrySubDivisionId"
                                        id="countrySubdivision" [(ngModel)]="selectedDistrict"
                                        [list-formatter]="districtListFormatter" [source]="districts_Filtered"
                                        placeholder="{{GeneralFieldLabel.DistrictState}}" display-property-name="CountrySubDivisionName"
@@ -160,7 +160,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">{{ 'GRID_HEADERS.ADDRESS' | translate }}<b style="float:right;">:</b></label>
                             <div class="col-md-8">
-                                <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
+                                <input dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
                                        id="address" [(ngModel)]="model.Address" [source]="olderAddressList"
                                        [placeholder]="'GRID_HEADERS.ADDRESS' | translate" display-property-name="PatAddress" value-property-name=null
                                        no-match-found-text=" " onClick="this.select();" min-chars="2"

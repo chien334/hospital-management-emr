@@ -4,8 +4,8 @@ import { Component, ChangeDetectorRef } from "@angular/core";
 import { ItemModel } from '../shared/item.model';
 import { AccountingSettingsBLService } from '../shared/accounting-settings.bl.service';
 
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 

@@ -35,9 +35,9 @@
   </div>
   <div class="row" *ngIf="showRequisitionList">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="SubstoreAssetRequisitionGridColumns" [grid-data]="RequisitionGridDataFiltered"
+      <dsf-grid [grid-colDefaults]="SubstoreAssetRequisitionGridColumns" [grid-data]="RequisitionGridDataFiltered"
         [show-CustomDate]="true" [rangeType]="dateRange" [NepaliDateInGridParams]="NepaliDateInGridSettings"
-        (grid-actions)="RequisitionGridAction($event)" (onDateChange)="onDateChange($event)"> </danphe-grid>
+        (grid-actions)="RequisitionGridAction($event)" (onDateChange)="onDateChange($event)"> </dsf-grid>
     </div>
   </div>
   <!-- //swapnil-2-april-2021 -->
@@ -130,7 +130,7 @@
                           <table class="table table-condensed">
                               <tr *ngFor="let dispatchingItem of row.DispatchedItems; let j = index">
                                 <td>                          
-                                  <input danphe-auto-complete style="width:150px !important;" class="form-control" id="barCodeNumber{{i}}" [attr.disabled]="(row.IsDispatchingNow == false) ? true : null" 
+                                  <input dsf-auto-complete style="width:150px !important;" class="form-control" id="barCodeNumber{{i}}" [attr.disabled]="(row.IsDispatchingNow == false) ? true : null" 
                                    [(ngModel)]="dispatchingItem.SelectedBarCode" [source]="dispatchingItem.BarCodeNumberList" [list-formatter]="ListFormatter"
                                       [placeholder]="'FIXED_ASSETS.BAR_CODE_NUMBER' | translate" display-property-name="BarCodeNumber" value-property-name=null name="BarCodeNumber"
                                     onclick="this.select();" (valueChanged)="OnBarCodeChange(i,j,dispatchingItem.SelectedBarCode,row.ItemId)" max-num-list="50"                

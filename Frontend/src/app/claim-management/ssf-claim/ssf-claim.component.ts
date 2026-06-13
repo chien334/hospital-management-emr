@@ -20,11 +20,11 @@ import { PatientService } from "../../patients/shared/patient.service";
 import { PharmacyReceiptModel } from "../../pharmacy/shared/pharmacy-receipt.model";
 import { GeneralFieldLabels } from "../../shared/DTOs/general-field-label.dto";
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_ClaimCategory, ENUM_ClaimExtensionUrl, ENUM_ClaimResourceType, ENUM_Country, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_DefaultICDCode, ENUM_FileSizeUnits, ENUM_ICDCoding, ENUM_MessageBox_Status, ENUM_SSFSchemeTypeSubProduct, ENUM_SSF_BookingStatus, ENUM_ValidFileFormats, ENUM_VisitType } from "../../shared/shared-enums";
+import { ENUM_ClaimCategory, ENUM_ClaimExtensionUrl, ENUM_ClaimResourceType, ENUM_Country, ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_DefaultICDCode, ENUM_FileSizeUnits, ENUM_ICDCoding, ENUM_MessageBox_Status, ENUM_SSFSchemeTypeSubProduct, ENUM_SSF_BookingStatus, ENUM_ValidFileFormats, ENUM_VisitType } from "../../shared/shared-enums";
 import { Category, ClaimBillablePeriod, ClaimBookingRoot_DTO, ClaimCategory, ClaimCoding, ClaimDiagnosis, ClaimDiagnosisCodeableConcept, ClaimEnterer, ClaimExtension, ClaimFacility, ClaimItem, ClaimPatient, ClaimProductOrService, ClaimProvider, ClaimQuantity, ClaimRoot, ClaimSupportingInfo, ClaimTotal, ClaimType, ClaimUnitPrice, Coding, SSFClaimResponseInfo, SSFSchemeTypeSubProduct, ValueAttachement } from "../shared/SSF-Models";
 import { SsfDlService } from "./ssf-dl.services";
 
@@ -645,8 +645,8 @@ export class SSFClaimComponent implements OnInit {
     const PharmacyInvoiceIds = this.SelectedClaimObject.PhrmInvoices.map(a => a.InvoiceId);
     if (PharmacyInvoiceIds && PharmacyInvoiceIds.length > 0) {
       this._ssfDlService.GetPharmacyInvoices(PharmacyInvoiceIds)
-        .finally(() => this.GeneratePharmacyInvoicesDocument()).subscribe((res: DanpheHTTPResponse) => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK && res.Results) {
+        .finally(() => this.GeneratePharmacyInvoicesDocument()).subscribe((res: DsfHTTPResponse) => {
+          if (res.Status === ENUM_DsfHTTPResponses.OK && res.Results) {
             this.PharmacyReceipts.push(res.Results.pharmacyReceipt);
           }
         });
@@ -840,8 +840,8 @@ export class SSFClaimComponent implements OnInit {
   }
 
   public GetSSFInvoiceDetail() {
-    this.visitBlService.GetSSFInvoiceDetail(this.fromDate, this.toDate, this.patientType).subscribe((res: DanpheHTTPResponse) => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    this.visitBlService.GetSSFInvoiceDetail(this.fromDate, this.toDate, this.patientType).subscribe((res: DsfHTTPResponse) => {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.SsfClaimObject = res.Results;
         this.BillingInvoiceItemList = this.SsfClaimObject.BillingInvoiceItems;
         this.PatientWiseClaimList = [];
@@ -999,8 +999,8 @@ export class SSFClaimComponent implements OnInit {
         console.log(this.ClaimRoot.supportingInfo);
         this.visitBlService.SubmitClaim(this.ClaimRoot)
           .finally(() => { this.CloseFileUploadPopUp(); this.GetSSFInvoiceDetail(); this.loading = false; }).subscribe(
-            (res: DanpheHTTPResponse) => {
-              if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            (res: DsfHTTPResponse) => {
+              if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.msgBox.showMessage(ENUM_MessageBox_Status.Success, ["SSF Claim Successfully Submitted."]);
               }
               else {
@@ -1008,7 +1008,7 @@ export class SSFClaimComponent implements OnInit {
                 this.msgBox.showMessage(ENUM_MessageBox_Status.Error, [`Claim Failed:<br> ${res.ErrorMessage}`]);
               }
             },
-            (err: DanpheHTTPResponse) => {
+            (err: DsfHTTPResponse) => {
               this.msgBox.showMessage(ENUM_MessageBox_Status.Error, ["Something went wrong please try again."]);
             }
           )
@@ -1260,8 +1260,8 @@ export class SSFClaimComponent implements OnInit {
     this.coreService.loading = true;
     let requsitions = JSON.parse(`[${reqs.join(",")}]`);
     this.labBLService.GetReportFromListOfReqIdList(requsitions)
-      .subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK && res.Results) {
+      .subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK && res.Results) {
           this.templateReport = res.Results;
           this.MapSequence();
           this.singleReport = this.templateReport[0];
@@ -1631,7 +1631,7 @@ export class SSFClaimComponent implements OnInit {
   }
   private GetClaimBookingDetails(latestClaimCode: number, requestingFrom: string) {
     this.visitBlService.GetClaimBookingDetails(latestClaimCode).subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         console.log(res.Results);
         let invoices = res.Results;
         if (invoices !== null && invoices.length > 0) {
@@ -1719,7 +1719,7 @@ export class SSFClaimComponent implements OnInit {
       if (claimBookingObj && (claimBookingObj.BookedAmount > 0 || claimBookingObj.BookedAmount < 0)) {
         this.bookClaimClicked = true;
         this.visitBlService.BookClaim(claimBookingObj).finally(() => { this.bookClaimClicked = false; }).subscribe(res => {
-          if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+          if (res.Status === ENUM_DsfHTTPResponses.OK) {
             this.GetClaimBookingDetails(claimBookingObj.LatestClaimCode, "BookClaim");
             this.msgBox.showMessage(ENUM_MessageBox_Status.Success, ["Claim Booked Successfully!"]);
           } else {

@@ -7,7 +7,7 @@ import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { SharedModule } from '../../shared/shared.module';
 import { SettingsSharedModule } from '../settings-shared.module';
 import { PriceCategoryListComponent } from './price-category-list/price-category-list.component';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { AddPriceCategoryComponent } from './add-price-category/add-price-category.component';
 
 
@@ -29,7 +29,7 @@ export const priceCategorySettingsRoutes =
         SharedModule,
         RouterModule.forChild(priceCategorySettingsRoutes),
         SettingsSharedModule,
-        DanpheAutoCompleteModule], providers: [
+        DsfAutoCompleteModule], providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })
 

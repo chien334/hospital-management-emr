@@ -68,7 +68,7 @@
                         </td>
                         <td>
                           <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
-                            <input class="form-control cstm-form-control" danphe-auto-complete
+                            <input class="form-control cstm-form-control" dsf-auto-complete
                                    title="{{row.ServiceDepartmentName}}" formControlName="ServiceDepartmentId"
                                    [ngClass]="{'border-red': row.IsDirty('ServiceDepartmentId') && !row.IsValidCheck('ServiceDepartmentId','required'), 'border-red': !row.IsValidSelDepartment }"
                                    [(ngModel)]="selectedServDepts[i]" [list-formatter]="ServiceDeptListFormatter"
@@ -82,7 +82,7 @@
                         <td>
                           <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
                             <input [disabled]="disableTextBox" class="form-control cstm-form-control "
-                                   danphe-auto-complete [(ngModel)]="selectedRequestedByDr[i]" formControlName="PrescriberId"
+                                   dsf-auto-complete [(ngModel)]="selectedRequestedByDr[i]" formControlName="PrescriberId"
                                    [source]="doctorsList" [list-formatter]="DoctorListFormatter" placeholder="Enter Name"
                                    display-property-name="FullName" value-property-name=null match-formatted="true"
                                    (focusout)="AssignRequestedByDoctor(i)" onClick="this.select();" max-num-list="10" />
@@ -93,7 +93,7 @@
                         <!-- <td>  [ngClass]="{'border-red': row.IsDirty('RequestedBy') && !row.IsValidCheck('RequestedBy','required'), 'border-red': !row.RequestedBy }"
                           <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
                             <input [disabled]="disableTextBox" class="form-control cstm-form-control"
-                                   danphe-auto-complete formControlName="ProviderId"
+                                   dsf-auto-complete formControlName="ProviderId"
                                    [ngClass]="{'border-red': row.IsDirty('ProviderId') && !row.IsValidCheck('ProviderId','required'), 'border-red': !row.IsValidSelAssignedToDr }"
                                    [(ngModel)]="selectedAssignedToDr[i]" [source]="row.AssignedDoctorList"
                                    [list-formatter]="DoctorListFormatter" placeholder="Enter Name"
@@ -111,7 +111,7 @@
                         <td style="width:250px" [ngClass]="{'duplication-item':row.IsDoubleEntry_Now || row.IsDoubleEntry_Past}">
                           <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
                             <input class="form-control cstm-form-control"
-                                   danphe-auto-complete title="{{row.ItemName}}" autocomplete="off"
+                                   dsf-auto-complete title="{{row.ItemName}}" autocomplete="off"
                                    formControlName="ItemName" [min-chars]="1"
                                    [ngClass]="{'border-red': row.IsDirty('ItemName') && !row.IsValidCheck('ItemName','required'), 'border-red': !row.IsValidSelItemName}"
                                    [(ngModel)]="selectedItems[i]" [list-formatter]="ItemsListFormatter"

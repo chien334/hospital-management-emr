@@ -6,12 +6,12 @@ import { DispensaryService } from "../../dispensary/shared/dispensary.service";
 import { PatientService } from "../../patients/shared/patient.service";
 import { ENUM_PrintingType, PrinterSettingsModel } from "../../settings-new/printers/printer-settings.model";
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
-import { DanpheHTTPResponse } from "../../shared/common-models";
+import { DsfHTTPResponse } from "../../shared/common-models";
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from "../../shared/messagebox/messagebox.service";
 import { PaymentDetailsPipe } from "../../shared/pipes/payment-details.pipe";
 import { RouteFromService } from "../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponses, ENUM_InvoiceReceiptMode, ENUM_MessageBox_Status } from "../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses, ENUM_InvoiceReceiptMode, ENUM_MessageBox_Status } from "../../shared/shared-enums";
 import { PharmacyBLService } from "../shared/pharmacy.bl.service";
 import { PharmacyService } from "../shared/pharmacy.service";
 import { PHRMInvoiceReturnItemsModel } from "../shared/phrm-invoice-return-items.model";
@@ -182,8 +182,8 @@ export class PharmacyReceiptComponent {
 
   GetInvoiceInfo(InvoiceId) {
     if (InvoiceId > 0) {
-      this.pharmacyBLService.GetInvoiceReceiptByInvoiceId(InvoiceId).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      this.pharmacyBLService.GetInvoiceReceiptByInvoiceId(InvoiceId).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.receipt = res.Results;
           this.updateItemDisplayName(this.showGenericName, this.showItemName, this.LeadingSeparator, this.showGenNameAfterItemName);
         }
@@ -200,8 +200,8 @@ export class PharmacyReceiptComponent {
 
   GetCreditNoteInfo(InvoiceIdReturnId) {
     if (InvoiceIdReturnId > 0) {
-      this.pharmacyBLService.GetSaleReturnInvoiceItemsByInvoiceRetId(InvoiceIdReturnId).subscribe((res: DanpheHTTPResponse) => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      this.pharmacyBLService.GetSaleReturnInvoiceItemsByInvoiceRetId(InvoiceIdReturnId).subscribe((res: DsfHTTPResponse) => {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.receipt = res.Results;
           this.updateItemDisplayName(this.showGenericName, this.showItemName, this.LeadingSeparator, this.showGenNameAfterItemName);
         }

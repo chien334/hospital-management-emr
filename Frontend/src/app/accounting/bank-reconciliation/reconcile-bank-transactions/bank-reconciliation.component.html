@@ -150,7 +150,7 @@
           <div style="margin-top: 5px;">
             <!-- <span *ngIf="selLedger" style="float: left !important; margin-top: 5px;
             margin-right: 5px;">{{selLedger.Code}}</span> -->
-            <input danphe-auto-complete class="form-control" [(ngModel)]="selLedger" [source]="ledgerList" placeholder="{{ 'ACCOUNTING.LEDGER_NAME' | translate }}"
+            <input dsf-auto-complete class="form-control" [(ngModel)]="selLedger" [source]="ledgerList" placeholder="{{ 'ACCOUNTING.LEDGER_NAME' | translate }}"
                    display-property-name="LedgerName" value-property-name="LedgerName" [list-formatter]="LedgerListFormatter"
                    max-num-list="15" [grid-sort]="'LedgerName'" onClick="this.select();"
                    style="height: 30px; width: 90% !important;" />
@@ -185,7 +185,7 @@
         <label>{{ 'ACCOUNTING.MODE' | translate }}:</label>
       </div>
       <div class="col-md-2">
-        <input danphe-auto-complete class="form-control" [(ngModel)]="selectedVoucher" [source]="voucherTypeList"
+        <input dsf-auto-complete class="form-control" [(ngModel)]="selectedVoucher" [source]="voucherTypeList"
                placeholder="{{ 'ACCOUNTING.SELECT_MODE_VOUCHER_TYPE' | translate }}"
                display-property-name="VoucherName" value-property-name="VoucherName" [list-formatter]="VoucherListFormatter"
                max-num-list="15" [grid-sort]="'VoucherName'" onClick="this.select();" />
@@ -261,15 +261,15 @@
               <th></th>
               <th>{{ 'ACCOUNTING.SN' | translate }}</th>
               <th>{{ 'ACCOUNTING.VOUCHER_NO' | translate }}</th>
-              <th>{{ 'ACCOUNTING.TXN_DATE' | translate }} <danphe-date-change class="ADBS_btn" [dataArr]="ledgerResult" [datecolumn]="'TransactionDate'">
-                </danphe-date-change>
+              <th>{{ 'ACCOUNTING.TXN_DATE' | translate }} <dsf-date-change class="ADBS_btn" [dataArr]="ledgerResult" [datecolumn]="'TransactionDate'">
+                </dsf-date-change>
               </th>
               <th>{{ 'ACCOUNTING.LEDGER_MAIN' | translate }}</th>
               <th>{{ 'ACCOUNTING.SUB_LEDGER' | translate }}</th>
               <th>{{ 'ACCOUNTING.MODE' | translate }}</th>
               <th>{{ 'ACCOUNTING.CHEQUE_NO' | translate }}</th>
-              <th>{{ 'ACCOUNTING.CHEQUE_DATE' | translate }} <danphe-date-change class="ADBS_btn" [dataArr]="ledgerResult" [datecolumn]="'ChequeDate'">
-                </danphe-date-change></th>
+              <th>{{ 'ACCOUNTING.CHEQUE_DATE' | translate }} <dsf-date-change class="ADBS_btn" [dataArr]="ledgerResult" [datecolumn]="'ChequeDate'">
+                </dsf-date-change></th>
               <th>{{ 'ACCOUNTING.DEBIT' | translate }}</th>
               <th>{{ 'ACCOUNTING.CREDIT' | translate }}</th>
               <th>{{ 'ACCOUNTING.BANK_DATE' | translate }} </th>
@@ -291,12 +291,12 @@
               </td>
               <td>{{ i+1 }}</td>
               <td>{{txnItm.VoucherNumber}}</td>
-              <td>{{txnItm.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD' }}</td>
+              <td>{{txnItm.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD' }}</td>
               <td>{{txnItm.PartyLedgerName}}</td>
               <td>{{txnItm.PartySubLedgerName}}</td>
               <td>{{txnItm.VoucherName}}</td>
               <td>{{txnItm.ChequeNumber}}</td>
-              <td>{{txnItm.ChequeDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+              <td>{{txnItm.ChequeDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
               <td>
                 <p>
                   {{txnItm.LedgerDr | Currency:'4'}}
@@ -308,9 +308,9 @@
                 </p>
               </td>
               <td>
-                <danphe-date-picker (ngModelChange)="dateChanged($event,i)" ngDefaultControl [isFromToDateSelect]="true"
+                <dsf-date-picker (ngModelChange)="dateChanged($event,i)" ngDefaultControl [isFromToDateSelect]="true"
                                     [(ngModel)]="txnItm.BankTransactionDate" [CalendarTypes]="calType"
-                                    [ngModelOptions]="{standalone: true}"> </danphe-date-picker>
+                                    [ngModelOptions]="{standalone: true}"> </dsf-date-picker>
 
               </td>
               <td>
@@ -473,7 +473,7 @@
                                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                 {{selectedTxn.TransactionDate |
-                                DanpheDateTime:'format':'YYYY-MM-DD'}} <b>AD</b>
+                                DsfDateTime:'format':'YYYY-MM-DD'}} <b>AD</b>
                               </span>
                             </td>
                             <td style="width: 35%;">
@@ -482,7 +482,7 @@
                                  <br />
                                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{selectedTxn.BankTransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}} <b> AD
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{selectedTxn.BankTransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}} <b> AD
                                 </b>
                               </span>
                             </td>
@@ -664,7 +664,7 @@
                   <tbody>
                     <tr *ngFor="let row of txnHistory;let i=index;">
                       <td><span style="font-weight:bold;text-align:center;">{{i+1}}</span></td>
-                      <td>{{row.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+                      <td>{{row.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
                       <td>{{row.CategoryName}}</td>
                       <td>{{row.BankBalance | Currency:'4'}}</td>
                       <td>{{row.Difference | Currency:'4'}}</td>
@@ -787,7 +787,7 @@
                               {{r.VoucherNumber }}
                             </td>
                             <td>
-                              {{r.TransactionDate | DanpheDateTime:'format':'YYYY-MM-DD' }}<br />
+                              {{r.TransactionDate | DsfDateTime:'format':'YYYY-MM-DD' }}<br />
                             </td>
                             <td>
                               {{r.PartyLedgerName}}
@@ -802,13 +802,13 @@
                               {{r.ChequeNumber}}
                             </td>
                             <td>
-                              {{r.ChequeDate | DanpheDateTime:'format':'YYYY-MM-DD' }}
+                              {{r.ChequeDate | DsfDateTime:'format':'YYYY-MM-DD' }}
                             </td>
                             <td>
                               {{r.LedgerDr | Currency:'4'}}
                             </td>
                             <td>{{r.LedgerCr | Currency:'4'}}</td>
-                            <td>{{r.BankTransactionDate | DanpheDateTime: 'format':'YYYY-MM-DD'}}</td>
+                            <td>{{r.BankTransactionDate | DsfDateTime: 'format':'YYYY-MM-DD'}}</td>
                             <td>{{r.BankRefNumber}}</td>
                             <td>{{r.Status}}</td>
                           </tr>

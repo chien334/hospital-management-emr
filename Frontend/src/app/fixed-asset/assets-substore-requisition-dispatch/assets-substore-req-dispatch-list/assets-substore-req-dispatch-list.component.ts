@@ -8,9 +8,9 @@ import { SecurityService } from "../../../security/shared/security.service";
 import { FixedAssetBLService } from "../../shared/fixed-asset.bl.service";
 import { CoreService } from "../../../core/shared/core.service";
 import { FixedAssetService } from "../../shared/fixed-asset.service";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from '../../../shared/danphe-grid/grid-emit.model';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from '../../../shared/dsf-grid/grid-emit.model';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 import {FixedAssetDispatch} from "../../../fixed-asset/shared/fixed-asset-dispatch.model";
 import {FixedAssetDispatchItems} from "../../../fixed-asset/shared/fixed-asset-dispatch-items.model"

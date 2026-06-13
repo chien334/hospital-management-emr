@@ -32,7 +32,7 @@ import { LabStickerComponent } from './shared/lab-sticker.component';
 import { LabBarCodeComponent } from './lab-tests/lab-master/lab-barcode';
 import { ADT_BLService } from '../adt/shared/adt.bl.service';
 import { UndoLabSampleCode } from './lab-tests/lab-collect-sample/undo-lab-samplecode.component';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { LabRequestsComponent } from './lab-requests/lab-requests.component';
 import { ExternalLabsMainComponent } from './external-labs/external-labs-main.component';
 import { InternalTestListComponent } from './external-labs/tests-list/internal-test-list.component';
@@ -88,7 +88,7 @@ import { LabImuUploadComponent } from './notification/imu/imu-upload.component';
         CommonModule,
         AngularMultiSelectModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         BillingSharedModule,
         SettingsSharedModule,
         NgxPaginationModule,

@@ -3,10 +3,10 @@ import * as moment from "moment";
 import { Rank_ApfHospital } from "../../../appointments/visit/visit-patient-info.component";
 import { CoreBLService } from "../../../core/shared/core.bl.service";
 import { CoreService } from "../../../core/shared/core.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import { IGridFilterParameter } from "../../../shared/danphe-grid/grid-filter-parameter.interface";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import { IGridFilterParameter } from "../../../shared/dsf-grid/grid-filter-parameter.interface";
 import { DLService } from "../../../shared/dl.service";
-import { ENUM_DanpheHTTPResponseText } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText } from "../../../shared/shared-enums";
 import { ReportingService } from "../../shared/reporting-service";
 
 @Component({
@@ -41,15 +41,15 @@ export class DepartmentWiseRankCountReportComponent {
 
     LoadDepartments(): void {
         this.DepartmentList = [];
-        this.dlService.getDepartment().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.dlService.getDepartment().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.DepartmentList = res.Results;
             }
         })
     }
     GetRanks(): void {
-        this.dlService.GetRank().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.dlService.GetRank().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.RankList = [];
                 this.RankList = res.Results;
             }
@@ -65,8 +65,8 @@ export class DepartmentWiseRankCountReportComponent {
         this.loading = true;
         this.dlService.LoadDepartmentWiseRankCountReportData(this.FromDate, this.ToDate, this.DepartmentIds, this.RankNameCSV).finally(() => {
             this.loading = false;
-        }).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        }).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.DepartmentWiseRankCountReportData = res.Results;
 
                 let Columns = [];

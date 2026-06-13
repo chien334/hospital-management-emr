@@ -21,7 +21,7 @@ import { SalesListComponent } from './dispensary-main/sales-main/sales-list/sale
 import { NewSalesComponent } from './dispensary-main/sales-main/new-sales/new-sales.component';
 import { PhrmOutpatientAddComponent } from '../pharmacy/sale/op-patient-add/phrm-op-patient-add.component';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete/danphe-auto-complete.module';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete/dsf-auto-complete.module';
 import { PatientSharedModule } from '../patients/patient-shared.module';
 import { PatientsBLService } from '../patients/shared/patients.bl.service';
 import { AppointmentDLService } from '../appointments/shared/appointment.dl.service';
@@ -66,6 +66,6 @@ import { PHRMPatientConsumptionModule } from '../pharmacy/patient-consumption/ph
 @NgModule({
   declarations: [DispensaryMainComponent, ActivateDispensaryComponent, ReportsMainComponent, ActivateCounterComponent, PatientMainComponent, PatientListComponent, PatientDepositAddComponent, PrescriptionMainComponent, PrescriptionListComponent, SalesMainComponent, SalesListComponent, NewSalesComponent, PhrmOutpatientAddComponent, SalesReturnComponent, SalesReturnListComponent, PrintReceiptComponent, CreditBillsComponent, SettlementComponent, SettlementReceiptComponent, ProvisionalReturnComponent, StockMainComponent, StockListComponent, RequisitionListComponent, RequisitionAddComponent, RequisitionViewComponent, ReceiveDispatchedStockComponent, TransferMainComponent, TransferCreateComponent, TransferViewComponent, TransferListComponent, PHRMStockListComponent, DISPNarcoticsDailySalesReportComponent, DispUserwiseCollectionReportComponent, DispCashCollectionSummaryReportComponent, ManualSalesReturnComponent, DispDailySalesReportComponent, PHRMSettlementInvoiceDetail, PHRMDuplicatePrintSettlementListComponent, PendingPHRMSettlementListComponent, SettlementSummaryReportComponent, PaymentmodeWiseReportComponent],
   providers: [DispensaryGuardService, PharmacyBLService, PharmacyDLService, PharmacyService, PatientsBLService, AppointmentDLService, VisitDLService, ADT_DLService, BillingBLService, DispensaryRequisitionService, DispensaryRequisitionEndpoint, TransferService, TransferEndpointService],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, DispensaryRoutingModule, SharedModule, SettingsSharedModule, DanpheAutoCompleteModule, PatientSharedModule, BillingSharedModule, PHRMPatientConsumptionModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, DispensaryRoutingModule, SharedModule, SettingsSharedModule, DsfAutoCompleteModule, PatientSharedModule, BillingSharedModule, PHRMPatientConsumptionModule]
 })
 export class DispensaryModule { }

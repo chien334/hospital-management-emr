@@ -3,8 +3,8 @@ import * as moment from 'moment/moment';
 import { CoreService } from "../../../core/shared/core.service";
 import { DLService } from "../../../shared/dl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
-import { NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { BillingGridColumnSettings } from "../../shared/billing-grid-columns";
 import { BillingBLService } from "../../shared/billing.bl.service";
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
@@ -187,7 +187,7 @@ export class BillingDailyCollectionVsHandoverReportComponent {
 
   PrintSummary(){
     let popupWindow;
-    let headerContent = {"hospitalName":"Danphe Health Pvt. Ltd", "address":"Dillibazar, Kathmandu, Nepal","email":"info@danphehealth.com","tel":"01-430363/4416468"};
+    let headerContent = {"hospitalName":"Dsf Health Pvt. Ltd", "address":"Dillibazar, Kathmandu, Nepal","email":"info@dsfhealth.com","tel":"01-430363/4416468"};
     let customerHeader = this.coreService.Parameters.find(a => a.ParameterGroupName == "Common" && a.ParameterName == "CustomerHeader");
     if(customerHeader){
       headerContent = JSON.parse(customerHeader.ParameterValue);
@@ -213,8 +213,8 @@ export class BillingDailyCollectionVsHandoverReportComponent {
     popupWindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWindow.document.open();
     let documentContent = "<html><head>";
-    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DanphePrintStyle.css"/>';
-    documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DsfPrintStyle.css"/>';
+    documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css"/>';
     documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
     documentContent += '</head>';
     documentContent += '<body onload="window.print()">' + printContents + '</body></html>'

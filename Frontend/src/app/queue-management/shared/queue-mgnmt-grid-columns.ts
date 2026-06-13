@@ -61,7 +61,7 @@ export default class QueueManagementGridColumns{
         if (params.data.QueueStatus == "checkedin") {
           let template =
             `<label style="font-weight: bold;border: 2px solid green;background-color:green;color: white;padding:0px 4px;margin-left: 4px;">CheckedIn.</label>`;
-            template +=`<a danphe-grid-action="undo" class="grid-action">
+            template +=`<a dsf-grid-action="undo" class="grid-action">
             <i class="fa fa-undo"></i>Undo
            </a>`;
           return template;
@@ -69,16 +69,16 @@ export default class QueueManagementGridColumns{
         else if (params.data.QueueStatus == "skipped") {
           let template =
             `<label style="font-weight: bold;border: 2px solid red;background-color:red;color: white;padding:0px 4px;margin-left: 4px;">Skipped.</label>`;
-            template +=`<a danphe-grid-action="undo" class="grid-action">
+            template +=`<a dsf-grid-action="undo" class="grid-action">
             <i class="fa fa-undo"></i>Undo
            </a>`;
           return template;
         }
         else {
-          let template =` <a danphe-grid-action="checkin" class="grid-action">
+          let template =` <a dsf-grid-action="checkin" class="grid-action">
           <i class="fa fa-check"></i>CheckIn
          </a>
-         <a danphe-grid-action="skip" class="grid-action">
+         <a dsf-grid-action="skip" class="grid-action">
           <i class="fa fa-fast-forward"></i>Skip
          </a>`
         return template;

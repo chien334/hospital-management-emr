@@ -13,9 +13,9 @@
                 style="float:right;">:</b></label>
             <div class="col-md-9">
 
-              <danphe-date-picker [(ngModel)]="CurrentAudit.FromDate" ngDefaultControl [CalendarTypes]="'en,np'"
+              <dsf-date-picker [(ngModel)]="CurrentAudit.FromDate" ngDefaultControl [CalendarTypes]="'en,np'"
                 formControlName="FromDate">
-              </danphe-date-picker>
+              </dsf-date-picker>
 
 
               <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('FromDate')"
@@ -32,9 +32,9 @@
                 style="float:right;">:</b></label>
             <div class="col-md-9">
 
-              <danphe-date-picker [(ngModel)]="CurrentAudit.ToDate" ngDefaultControl [CalendarTypes]="'en,np'"
+              <dsf-date-picker [(ngModel)]="CurrentAudit.ToDate" ngDefaultControl [CalendarTypes]="'en,np'"
                 formControlName="ToDate">
-              </danphe-date-picker>
+              </dsf-date-picker>
               <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('ToDate')"
                 [hidden]="CurrentAudit.IsValid('ToDate','required')"> To Date is required</span><br />
               <span class="color-red font-sm" *ngIf="CurrentAudit.IsDirty('ToDate')"
@@ -57,16 +57,16 @@
             <div class="form-group">
               <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.USER_NAME' | translate }}<b style="float:right;">:</b></label>
               <div class="col-md-9" style="padding-right: 30px;">
-                <!-- <input danphe-auto-complete class="form-control " [(ngModel)]="auditUserName" [source]="userNameList"
+                <!-- <input dsf-auto-complete class="form-control " [(ngModel)]="auditUserName" [source]="userNameList"
                 [list-formatter]="userNameFormatter" placeholder="--select UserName--" display-property-name="UserName"
                 value-property-name=null min-chars="0" max-num-list="100" onClick="this.select();"
                 match-formatted="true" [grid-sort]="'UserName'" [ngModelOptions]="{standalone: true}"
                 (valueChanged)="onChangeUserName($event)" style="width:250px " /> -->
 
-                <danphe-multiselect [ddl-data]="userNameList" [placeholder-text]="'SYSTEM_ADMIN.SELECT_USERS_PLACEHOLDER' | translate"
+                <dsf-multiselect [ddl-data]="userNameList" [placeholder-text]="'SYSTEM_ADMIN.SELECT_USERS_PLACEHOLDER' | translate"
                   value-property-name="UserNameValue" (selected-items-list)="onChangeUserName($event)"
                   display-property-name="UserName" [single-selection]="false">
-                </danphe-multiselect>
+                </dsf-multiselect>
               </div>
             </div>
           </div>
@@ -74,16 +74,16 @@
             <div class="form-group">
               <label class="control-label col-md-3" style="padding:0px;">{{ 'SYSTEM_ADMIN.TABLE_NAME' | translate }}<b style="float:right;">:</b></label>
               <div class="col-md-9" style="padding-right: 30px;">
-                <!-- <input danphe-auto-complete class="form-control " [(ngModel)]="auditTableName"
+                <!-- <input dsf-auto-complete class="form-control " [(ngModel)]="auditTableName"
                 [source]="tableNameMappingList" [list-formatter]="tableNameFormatter" placeholder="--select TableName--"
                 display-property-name="TableDisplayName" value-property-name=null min-chars="0" max-num-list="200"
                 onClick="this.select();" (valueChanged)="onChangeTableName($event)"
                 [ngModelOptions]="{standalone: true}" style="width:250px" /> -->
 
-                <danphe-multiselect [ddl-data]="tableNameMappingList" [placeholder-text]="'SYSTEM_ADMIN.SELECT_TABLES_PLACEHOLDER' | translate"
+                <dsf-multiselect [ddl-data]="tableNameMappingList" [placeholder-text]="'SYSTEM_ADMIN.SELECT_TABLES_PLACEHOLDER' | translate"
                   value-property-name="Table_Name" (selected-items-list)="onChangeTableName($event)"
                   display-property-name="TableDisplayName" [single-selection]="false">
-                </danphe-multiselect>
+                </dsf-multiselect>
               </div>
             </div>
           </div>
@@ -106,12 +106,12 @@
 </div>
 <div class="row">
   <div class="col-md-12 col-xs-12">
-    <danphe-grid [grid-colDefaults]="auditTrailGridColumns" [grid-data]="auditTrailData"
+    <dsf-grid [grid-colDefaults]="auditTrailGridColumns" [grid-data]="auditTrailData"
       [grid-exportOptions]="gridExportOptions" [grid-showExport]="true" [show-print-button]="showPrintButton"
       [rangeType]="dateRange"
       [report-header]="reportHeaderHtml_auditTrail"
       (onDateChange)="onDateChangeForAuditTrail($event)" [show-CustomDate]="true" [NepaliDateInGridParams]="NepaliDateInGridSettings">
-    </danphe-grid>
+    </dsf-grid>
 
   </div>
 </div>
@@ -123,10 +123,10 @@
     <span class="caption-subject"style="text-transform: uppercase;">{{ 'SYSTEM_ADMIN.LOGIN_INFORMATIONS' | translate }}</span>
   </div>
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="loginInfoGridColumns" [grid-data]="loginList" [rangeType]="dateRange"
+    <dsf-grid [grid-colDefaults]="loginInfoGridColumns" [grid-data]="loginList" [rangeType]="dateRange"
       [show-print-button]="showPrintButton"
       [report-header]="reportHeaderHtml_loginInfo"
       (onDateChange)="onDateChange($event)" [show-CustomDate]="true" [NepaliDateInGridParams]="ConvertToNepaliDate">
-    </danphe-grid>
+    </dsf-grid>
   </div>
 </div>

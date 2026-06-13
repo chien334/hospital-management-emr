@@ -3,7 +3,7 @@ import { Option, Question } from "../shared/dnamic-template-models";
 import { DynamicTemplateService } from "../shared/dynamic-template-service";
 
 @Component({
-    selector: "danphe-question",
+    selector: "dsf-question",
     templateUrl: "./question.html"
 })
 

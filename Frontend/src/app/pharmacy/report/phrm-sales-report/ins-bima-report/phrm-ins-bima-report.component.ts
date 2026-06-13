@@ -4,8 +4,8 @@ import { CoreService } from '../../../../core/shared/core.service';
 import { SettingsBLService } from '../../../../settings-new/shared/settings.bl.service';
 import { GeneralFieldLabels } from '../../../../shared/DTOs/general-field-label.dto';
 import { CommonFunctions } from '../../../../shared/common.functions';
-import { DanpheCache, MasterType } from '../../../../shared/danphe-cache-service-utility/cache-services';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { DsfCache, MasterType } from '../../../../shared/dsf-cache-service-utility/cache-services';
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from '../../../../shared/dsf-grid/NepaliColGridSettingsModel';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { PharmacyBLService } from '../../../shared/pharmacy.bl.service';
 import PHRMReportsGridColumns from '../../../shared/phrm-reports-grid-columns';
@@ -74,7 +74,7 @@ export class PhrmInsBimaReportComponent implements OnInit {
       });
   }
   LoadCounter(): void {
-    this.counterlist = DanpheCache.GetData(MasterType.PhrmCounter, null);
+    this.counterlist = DsfCache.GetData(MasterType.PhrmCounter, null);
   }
 
   LoadUser() {

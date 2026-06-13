@@ -11,7 +11,7 @@ import { GeneralFieldLabels } from "../../shared/DTOs/general-field-label.dto";
 import { NepaliCalendarService } from '../../shared/calendar/np/nepali-calendar.service';
 import { CommonFunctions } from "../../shared/common.functions";
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_Country, ENUM_DanpheHTTPResponseText, ENUM_MembershipTypeName, ENUM_PriceCategory } from "../../shared/shared-enums";
+import { ENUM_Country, ENUM_DsfHTTPResponseText, ENUM_MembershipTypeName, ENUM_PriceCategory } from "../../shared/shared-enums";
 import { AdmissionStickerViewModel } from './admission-sticker.model';
 @Component({
     selector: 'admission-sticker',
@@ -74,7 +74,7 @@ export class AdmissionPrintStickerComponent {
 
         this.showHidePrintButton();
 
-        this.printerName = localStorage.getItem('Danphe_ADT_Default_PrinterName');
+        this.printerName = localStorage.getItem('Dsf_ADT_Default_PrinterName');
         var allStickerFolderDetail = this.coreService.Parameters.find(a => a.ParameterGroupName.toLowerCase() === 'common' && a.ParameterName === 'StickerPrinterSettings');
 
         if (allStickerFolderDetail) {
@@ -135,7 +135,7 @@ export class AdmissionPrintStickerComponent {
         this.http.get<any>('/api/Admission/AdmissionSticker?' + 'patientVisitId=' + this.patientVisitId, this.options)
             .map(res => res)
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.showSticker = true;
                     this.CallBackGetStickerDetail(res);
                     this.focusOnPrint();
@@ -173,7 +173,7 @@ Address: `+ this.stickerDetail.Address;
             popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
             popupWinindow.document.open();
             let documentContent = '<html><head>';
-            documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css"/>';
+            documentContent += '<link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css"/>';
             /// documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
             documentContent += '</head>';
             documentContent += '<body>' + printContents + '</body></html>';
@@ -307,7 +307,7 @@ Address: `+ this.stickerDetail.Address;
 
     printStickerServer() {
         let printContents = document.getElementById("sticker").innerHTML;
-        var printableHTML = '<html><head><link rel="stylesheet" type="text/css" href="DanpheStyle.css" />';
+        var printableHTML = '<html><head><link rel="stylesheet" type="text/css" href="DsfStyle.css" />';
         printableHTML += '<meta http-equiv="X-UA-Compatible" content="IE= edge"/></head>';
         printableHTML += '<body>' + printContents + '</body></html>';
         var PrinterName = this.LoadPrinterSetting();
@@ -321,7 +321,7 @@ Address: `+ this.stickerDetail.Address;
         this.showLoading = true;
         this.http.post<any>("/api/Billing/saveHTMLfile?PrinterName=" + PrinterName + "&FilePath=" + filePath, printableHTML, this.options)
             .map(res => res).subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.timerFunction();
                 }
                 else {
@@ -357,10 +357,10 @@ Address: `+ this.stickerDetail.Address;
 
     public UpdateNewPrinter() {
         if (this.printerNameSelected) {
-            if (localStorage.getItem('Danphe_ADT_Default_PrinterName')) {
-                localStorage.removeItem('Danphe_ADT_Default_PrinterName');
+            if (localStorage.getItem('Dsf_ADT_Default_PrinterName')) {
+                localStorage.removeItem('Dsf_ADT_Default_PrinterName');
             }
-            localStorage.setItem('Danphe_ADT_Default_PrinterName', this.printerNameSelected);
+            localStorage.setItem('Dsf_ADT_Default_PrinterName', this.printerNameSelected);
             this.printerName = this.printerNameSelected;
             this.showStickerChange = false;
         } else {

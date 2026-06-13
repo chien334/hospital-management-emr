@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 
 
 import { NotesRoutingConstant } from './notes-routing.constant';
@@ -55,7 +55,7 @@ import { ViewClinicalPrescriptionNoteComponent } from './prescription-note/view-
         FormsModule,
         SharedModule,
         //Ng2AutoCompleteModule
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         RouterModule.forChild(NotesRoutingConstant),
         ClinicalSharedModule], providers: [
         NoteTemplateBLService

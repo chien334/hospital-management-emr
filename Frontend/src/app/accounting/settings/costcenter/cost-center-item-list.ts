@@ -1,9 +1,9 @@
 ﻿import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from "@angular/core";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
-import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
+import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponseText, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_Data_Type, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { AccountingService } from "../../shared/accounting.service";
 import { AccountingSettingsBLService } from '../shared/accounting-settings.bl.service';
 import { CostCenterModel } from "../shared/cost-center.model";
@@ -41,8 +41,8 @@ export class CostCenterItemListComponent {
     }
     public GetCostCenters(): void {
         try {
-            this.accountingSettingsBLService.GetCostCenters().subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            this.accountingSettingsBLService.GetCostCenters().subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.costCenters = res.Results;
                 }
                 else {
@@ -57,8 +57,8 @@ export class CostCenterItemListComponent {
         }
     }
     public GetParentCostCenters(): void {
-        this.accountingSettingsBLService.GetParentCostCenter().subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        this.accountingSettingsBLService.GetParentCostCenter().subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                 this.parentCostCenters = res.Results;
             }
         });
@@ -112,7 +112,7 @@ export class CostCenterItemListComponent {
                 this.accountingSettingsBLService.UpdateCostCenterItemStatus(selecttedCostCenterItm)
                     .subscribe(
                         res => {
-                            if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                            if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                                 let responseMessage = res.Results.IsActive ? "is now activated." : "is now Deactivated.";
                                 this.msgBox.showMessage(ENUM_MessageBox_Status.Success, [res.Results.CostCenterItemName + ' ' + responseMessage]);
                                 //This for send to callbackadd function to update data in list                                
@@ -133,8 +133,8 @@ export class CostCenterItemListComponent {
             this.loading = true;
             this.accountingSettingsBLService.AddCostCenter(this.CostCenter).finally(() => {
                 this.loading = false;
-            }).subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            }).subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.costCenters.unshift(res.Results);
                     this.GetCostCenters();
                     this.GetParentCostCenters();
@@ -166,7 +166,7 @@ export class CostCenterItemListComponent {
         }
     }
     CallBackAddCostCenter(res) {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.callbackAdd.emit({ costCenter: res.Results });
         }
         else {
@@ -210,8 +210,8 @@ export class CostCenterItemListComponent {
                     this.CostCenter.CostCenterValidator.controls[i].updateValueAndValidity();
                 }
                 if (this.CostCenter.IsValidCheck(undefined, undefined)) {
-                    this.accountingSettingsBLService.UpdateCostCenter(this.CostCenter).subscribe((res: DanpheHTTPResponse) => {
-                        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                    this.accountingSettingsBLService.UpdateCostCenter(this.CostCenter).subscribe((res: DsfHTTPResponse) => {
+                        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                             this.CostCenter = new CostCenterModel();
                             this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Updated."]);
                             this.GetCostCenters();
@@ -219,7 +219,7 @@ export class CostCenterItemListComponent {
                             this.selectedParentCostCenter = new ParentCostCenter();
                         }
                         else {
-                            this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Failed to update costcenter details."]);
+                            this.msgBoxServ.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Failed to update costcenter details."]);
                             this.SetFocusById("CostCenterName");
                         }
                     });
@@ -235,8 +235,8 @@ export class CostCenterItemListComponent {
     }
     ActivateDeactivateCostCenter(costCenter: CostCenterModel) {
         try {
-            this.accountingSettingsBLService.ActivateDeactiveCostCenter(costCenter).subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            this.accountingSettingsBLService.ActivateDeactiveCostCenter(costCenter).subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.CostCenter = new CostCenterModel();
                     this.costCenters[this.index].IsActive = res.Results;
                     this.costCenters = this.costCenters.slice();
@@ -246,7 +246,7 @@ export class CostCenterItemListComponent {
                     res.Results ? this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Activated."]) : this.msgBoxServ.showMessage(ENUM_MessageBox_Status.Success, ["Deactivated."]);
                 }
                 else {
-                    this.msgBoxServ.showMessage(ENUM_DanpheHTTPResponseText.Failed, ["Failed to update costcenter details."]);
+                    this.msgBoxServ.showMessage(ENUM_DsfHTTPResponseText.Failed, ["Failed to update costcenter details."]);
                     this.SetFocusById("CostCenterName");
                 }
             });

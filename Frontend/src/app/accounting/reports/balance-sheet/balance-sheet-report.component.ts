@@ -1,6 +1,6 @@
 import { ChangeDetectorRef,Component, Directive, ViewChild } from '@angular/core';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { AccountingReportsBLService } from "../shared/accounting-reports.bl.service";
 import { BalanceSheetReportVMModel } from "../shared/balance-sheet-reportVM.model";
 import { FiscalYearModel } from '../../settings/shared/fiscalyear.model';
@@ -251,9 +251,9 @@ export class BalanceSheetReportComponent {
 
 
   loadFiscalYearList() {
-    if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-      this.fiscalYears = this.accountingService.accCacheData.FiscalYearList; //mumbai-team-june2021-danphe-accounting-cache-change
-      this.fiscalYears = this.fiscalYears.slice(); //mumbai-team-june2021-danphe-accounting-cache-change
+    if (!!this.accountingService.accCacheData.FiscalYearList && this.accountingService.accCacheData.FiscalYearList.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+      this.fiscalYears = this.accountingService.accCacheData.FiscalYearList; //mumbai-team-june2021-dsf-accounting-cache-change
+      this.fiscalYears = this.fiscalYears.slice(); //mumbai-team-june2021-dsf-accounting-cache-change
       this.IsDataLoaded = true;
 
       //sud:14June'20--to assign Correct FromDate(fiscYearStartDate), otherwise it's not showing anytingin Reusable-Ledger Popup.

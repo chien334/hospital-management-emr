@@ -23,7 +23,7 @@
 
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="creditBillGridColumns" [grid-data]="provisionalBillsSummary" (grid-actions)="CreditBillGridActions($event)" [hidden]="!showAllPatient"> </danphe-grid>
+    <dsf-grid [grid-colDefaults]="creditBillGridColumns" [grid-data]="provisionalBillsSummary" (grid-actions)="CreditBillGridActions($event)" [hidden]="!showAllPatient"> </dsf-grid>
   </div>
 </div>
 <div [hidden]="showAllPatient">
@@ -56,10 +56,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let row of allCreditItems;let i = index">
-            <td>{{row.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+            <td>{{row.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
             <td>{{row.ItemName}}</td>
             <td>{{row.BatchNo}}</td>
-            <td>{{row.ExpiryDate | DanpheDateTime:'format':'YYYY-MM-DD'}}</td>
+            <td>{{row.ExpiryDate | DsfDateTime:'format':'YYYY-MM-DD'}}</td>
             <td><input [(ngModel)]="row.DispatchQty"
                    [ngModelOptions]="{standalone: true}" style="width:80px ; "
                    min="0" class="form-control" type="text" value="" disabled></td>
@@ -406,7 +406,7 @@
           <td> {{row.ItemName}} </td>
           <td> {{row.Quantity}} </td>
           <td> {{row.TotalAmount}} </td>
-          <td> {{row.CancelledOn | DanpheDateTime:'format':'DD.MM.YY HH:mm'}} </td>
+          <td> {{row.CancelledOn | DsfDateTime:'format':'DD.MM.YY HH:mm'}} </td>
         </tr>
       </table>
     </div>
@@ -449,7 +449,7 @@
                           <p class="no-margin" style="text-align:left;font-size:11px;">{{ 'GRID_HEADERS.ADDRESS' | translate }}: {{currentPatient.Address}}, {{currentPatient.CountrySubDivisionName}} </p>
                         </div>
                         <div class="right" style="width:31%">
-                          <p class="no-margin" style="text-align:right;font-size:11px;"> {{ 'GRID_HEADERS.AGE_SEX' | translate }} : {{currentPatient.DateOfBirth | DanpheDateTime:'age'  }}/{{currentPatient.Gender}}</p>
+                          <p class="no-margin" style="text-align:right;font-size:11px;"> {{ 'GRID_HEADERS.AGE_SEX' | translate }} : {{currentPatient.DateOfBirth | DsfDateTime:'age'  }}/{{currentPatient.Gender}}</p>
                         </div>
                       </div>
                       <div class="col-md-12" style="padding:0px;">

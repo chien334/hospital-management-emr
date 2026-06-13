@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LabSettingsBLService } from '../lab-settings/shared/lab-settings.bl.service';
 import { LabSettingsDLService } from '../lab-settings/shared/lab-settings.dl.service';
 import { SharedModule } from '../../shared/shared.module';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { LISMainComponent } from './lis-main.component';
 import { LISRoutingModule } from './lis-routing-module';
 import { LISMappingComponent } from './lis-mapping/lis-mapping.component';
@@ -16,7 +16,7 @@ import { LISMachineResultComponent } from './lis-machine-result/lis-machine-resu
 
 @NgModule({
     providers: [LabSettingsBLService, LabSettingsDLService, LabLISBLService, LabLISDLService],
-    imports: [LISRoutingModule, SharedModule, ReactiveFormsModule, FormsModule, CommonModule, DanpheAutoCompleteModule
+    imports: [LISRoutingModule, SharedModule, ReactiveFormsModule, FormsModule, CommonModule, DsfAutoCompleteModule
     ],
     declarations: [LISMainComponent, LISMappingComponent, LISMappingAddComponent, LISMachineResultComponent],
     bootstrap: []

@@ -38,7 +38,7 @@
                 </div>
                 <div class="right">
                     <p class="no-margin" style="text-align:right">
-                        {{ 'GRID_HEADERS.DATE' | translate }}: {{settlementInfo.CreatedOn | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                        {{ 'GRID_HEADERS.DATE' | translate }}: {{settlementInfo.CreatedOn | DsfDateTime:'format':'YYYY-MM-DD'}}
                         {{localDate}}
                     </p>
                 </div>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="right" style="width:31%">
                     <p class="no-margin" style="text-align:right"> Age/Sex : {{settlementInfo.Patient.DateOfBirth |
-                        DanpheDateTime:'age' }}/{{settlementInfo.Patient.Gender}}</p>
+                        DsfDateTime:'age' }}/{{settlementInfo.Patient.Gender}}</p>
                 </div>
             </div>
             <div class="col-md-12" style="padding:0px;">
@@ -105,7 +105,7 @@
                             {{i+1}}
                         </td>
                         <td>
-                            {{txn.CreateOn | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                            {{txn.CreateOn | DsfDateTime:'format':'YYYY-MM-DD'}}
                         </td>
                         <td>
                             {{txn.InvoiceCode}}{{txn.InvoicePrintId}}
@@ -194,7 +194,7 @@
                 <div class="left">
                     <p class="no-margin" style="text-align:left">{{ 'PHARMACY.PROCESSED_BY' | translate }}</p>
                     <p class="no-margin" style="text-align:left">{{settlementInfo.BillingUser}}</p>
-                    <p style="text-align:left">{{ 'COMMON.TIME' | translate }}: {{settlementInfo.CreatedOn | DanpheDateTime:'format':'HH:mm'}}</p>
+                    <p style="text-align:left">{{ 'COMMON.TIME' | translate }}: {{settlementInfo.CreatedOn | DsfDateTime:'format':'HH:mm'}}</p>
                 </div>
 
                 <div class="right" style="width:50%;">

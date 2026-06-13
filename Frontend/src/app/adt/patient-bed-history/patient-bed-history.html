@@ -26,7 +26,7 @@
             <td align="left"><b>Action</b></td>
           </tr>
           <tr *ngFor="let info of patWardList;let i=index" (dblclick)="EditSelectedInfoOnClick(i)">
-            <td width="190px"><label *ngIf="!showDatePicker[i]" align="left"> {{info.StartedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm A'}} </label>
+            <td width="190px"><label *ngIf="!showDatePicker[i]" align="left"> {{info.StartedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm A'}} </label>
               <label *ngIf="showDatePicker[i]" align="left">
                 <input formControlName="StartedOn" type="datetime-local" [(ngModel)]="info.StartedOn" (ngModelChange)="compareStartDate(i)" style="width:80%" />
               </label>
@@ -34,7 +34,7 @@
               <br />
               <label *ngIf="showDatePicker[i] && (this.IsDirty('StartedOn')== true)" [hidden]="IsValid('StartedOn','required')" style="color:red"> Start date cannot be empty </label></td>
             <td align="left"><label *ngIf="info.EndedOn==null" align="left"> Till now </label>
-              <label *ngIf="!showDatePicker[i] && info.EndedOn!=null" align="left"> {{info.EndedOn | DanpheDateTime:'format':'YYYY-MM-DD HH:mm A'}} </label>
+              <label *ngIf="!showDatePicker[i] && info.EndedOn!=null" align="left"> {{info.EndedOn | DsfDateTime:'format':'YYYY-MM-DD HH:mm A'}} </label>
               <label *ngIf="showDatePicker[i] && info.EndedOn!=null" align="left">
                 <input formControlName="EndedOn" type="datetime-local" [(ngModel)]="info.EndedOn" (ngModelChange)="compareEndDate(i)" style="width:80%" />
               </label>

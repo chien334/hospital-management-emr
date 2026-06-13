@@ -8,7 +8,7 @@ import { PharmacyBLService } from '../../../../pharmacy/shared/pharmacy.bl.servi
 import { PharmacyService } from '../../../../pharmacy/shared/pharmacy.service';
 import { SecurityService } from '../../../../security/shared/security.service';
 import { CallbackService } from '../../../../shared/callback.service';
-import { DanpheHTTPResponse } from '../../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../../shared/common-models';
 import { CommonFunctions } from '../../../../shared/common.functions';
 import { MessageboxService } from '../../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../../shared/routefrom.service';
@@ -84,7 +84,7 @@ export class PatientDepositAddComponent implements OnInit {
 
   GetPatientDeposit(patientId: number): void {
     this.pharmacyBLService.GetDepositFromPatient(patientId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           if (res.Results.length)
             this.CalculateDepositBalance(res);
@@ -209,8 +209,8 @@ export class PatientDepositAddComponent implements OnInit {
           popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
           popupWinindow.document.open();
           let documentContent = "<html><head>";
-          documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DanphePrintStyle.css"/>';
-          documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DanpheStyle.css"/>';
+          documentContent += '<link rel="stylesheet" type="text/css" media="print" href="../../../themes/theme-default/DsfPrintStyle.css"/>';
+          documentContent += '<link rel="stylesheet" type="text/css" href="../../../themes/theme-default/DsfStyle.css"/>';
           documentContent += '<link rel="stylesheet" type="text/css" href="../../../assets/global/plugins/bootstrap/css/bootstrap.min.css"/>';
           documentContent += '</head>';
           documentContent += '<body onload="window.print()">' + printContents + '</body></html>'

@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SecurityService } from '../../../security/shared/security.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from "../../../shared/routefrom.service";
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PharmacyService } from '../../shared/pharmacy.service';
 import { PHRMStoreDispatchItems } from "../../shared/phrm-store-dispatch-items.model";
@@ -42,8 +42,8 @@ export class PHRMStoreDispatchItemsComponent {
       Load(RequisitionId: number) {
             if (RequisitionId != null && RequisitionId != 0) {
                   this.PharmacyBLService.GetRequisitionDetailsForDispatch(RequisitionId)
-                        .subscribe((res: DanpheHTTPResponse) => {
-                              if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                        .subscribe((res: DsfHTTPResponse) => {
+                              if (res.Status === ENUM_DsfHTTPResponses.OK) {
                                     this.requisition = res.Results.Result.Requisition;
                                     this.checkIfAllSelected();
                                     this.checkIfDispatchIsAllowed();
@@ -147,8 +147,8 @@ export class PHRMStoreDispatchItemsComponent {
                   });
                   this.PharmacyBLService.PostDispatch(dispatchItemList).finally(() => this.loading = false)
                         .subscribe(
-                              (res: DanpheHTTPResponse) => {
-                                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                              (res: DsfHTTPResponse) => {
+                                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                                           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Dispatch Items detail Saved."]);
                                           this.PharmacyService._Id = res.Results.Result;
                                           this.RouteToDispatchDetailPage();

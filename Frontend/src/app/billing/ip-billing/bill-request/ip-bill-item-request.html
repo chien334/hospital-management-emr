@@ -63,7 +63,7 @@
                 <div class="col-md-12" style="display: flex; justify-content: flex-start; margin-bottom: 10px;" *ngIf="IsPackageBilling">
                   <div><label>Search Packages</label></div>
                   <div style="margin-left: 5px;">
-                    <input danphe-auto-complete class="form-control"
+                    <input dsf-auto-complete class="form-control"
                            id="search_packages"
                            [(ngModel)]="SelectedPackage"
                            [source]="ServicePackages"
@@ -116,7 +116,7 @@
                         </td>
                         <td>
                           <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
-                            <input class="form-control cstm-form-control" danphe-auto-complete
+                            <input class="form-control cstm-form-control" dsf-auto-complete
                                    title="{{row.ServiceDepartmentName}}" formControlName="ServiceDepartmentId"
                                    [ngClass]="{'border-red': row.IsDirty('ServiceDepartmentId') && !row.IsValidCheck('ServiceDepartmentId','required'), 'border-red': !row.IsValidSelDepartment }"
                                    [(ngModel)]="SelectedServiceDepartments[i]" [list-formatter]="ServiceDeptListFormatter"
@@ -131,7 +131,7 @@
                         <td *ngIf="BillingRequestDisplaySettings.Prescriber">
                           <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
                             <input class="form-control cstm-form-control "
-                                   danphe-auto-complete [(ngModel)]="SelectedRequestedByDoctor[i]" formControlName="PrescriberId"
+                                   dsf-auto-complete [(ngModel)]="SelectedRequestedByDoctor[i]" formControlName="PrescriberId"
                                    [ngClass]="{'border-red': row.IsDirty('PrescriberId') && !row.IsValidCheck('PrescriberId','required'), 'border-red': !row.PrescriberId }"
                                    [source]="DoctorsList" [list-formatter]="DoctorListFormatter" placeholder="Enter Name"
                                    display-property-name="FullName" value-property-name=null match-formatted="true"
@@ -143,7 +143,7 @@
                         <td *ngIf="BillingRequestDisplaySettings.Performer">
                           <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
                             <input class="form-control cstm-form-control"
-                                   danphe-auto-complete formControlName="PerformerId"
+                                   dsf-auto-complete formControlName="PerformerId"
                                    [ngClass]="{'border-red': row.IsDirty('PerformerId') && !row.IsValidCheck('PerformerId','required'), 'border-red': !row.IsvalidSelPerformerDr }"
                                    [(ngModel)]="SelectedAssignedToDoctor[i]" [source]="row.AssignedDoctorList"
                                    [list-formatter]="DoctorListFormatter" placeholder="Enter Name"
@@ -163,7 +163,7 @@
                             [ngClass]="{'duplication-item':row.IsDoubleEntry_Now || row.IsDoubleEntry_Past}">
                           <form [formGroup]="row.BillingTransactionItemValidator" class="autocomplete-item">
                             <input (keyup.enter)="AddTxnItemRowOnClick(i)" class="form-control cstm-form-control"
-                                   danphe-auto-complete title="{{row.ItemName}}" autocomplete="off"
+                                   dsf-auto-complete title="{{row.ItemName}}" autocomplete="off"
                                    formControlName="ItemName" [min-chars]="1"
                                    [ngClass]="{'border-red': row.IsDirty('ItemName') && !row.IsValidCheck('ItemName','required'), 'border-red': !row.IsValidSelItemName}"
                                    [(ngModel)]="SelectedItems[i]" [list-formatter]="ItemsListFormatter"
@@ -283,7 +283,7 @@
                 <input id="billRequest" type="submit" class="btn green btn-success" [disabled]="loading" value="Request"
                        (click)="loading=true;PostSuccessBool=false;SubmitBillingTransaction();" /> -->
 
-                <input DanpheConfirmationDialog
+                <input DsfConfirmationDialog
                        type="submit"
                        *ngIf="'EnableBillRequestSlip' | booleanParameter : 'Billing'"
                        [title]="ConfirmationTitle"
@@ -295,7 +295,7 @@
                        [disabled]="loading"
                        value="Print Slip"> &nbsp;
 
-                <input DanpheConfirmationDialog
+                <input DsfConfirmationDialog
                        type="submit"
                        [title]="ConfirmationTitle"
                        [message]="ConfirmationMessage"

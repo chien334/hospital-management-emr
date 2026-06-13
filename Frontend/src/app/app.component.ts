@@ -11,7 +11,7 @@ import {
 import { VisitService } from "./appointments/shared/visit.service";
 import { CoreService } from './core/shared/core.service';
 import { PatientService } from "./patients/shared/patient.service";
-import { DanpheRoute } from "./security/shared/danphe-route.model";
+import { DsfRoute } from "./security/shared/dsf-route.model";
 import { SecurityBLService } from './security/shared/security.bl.service';
 import { SecurityService } from './security/shared/security.service';
 import { User } from "./security/shared/user.model";
@@ -22,10 +22,10 @@ import 'rxjs/add/operator/map'; //needed to subscribe from rxjs.
 import { TranslateService } from '@ngx-translate/core';
 import { EmployeeService } from './employee/shared/employee.service';
 import { LabTypesModel } from './labs/lab-selection/lab-type-selection.component';
-import { DanpheHTTPResponse } from './shared/common-models';
-import { DanpheCache, MasterType } from './shared/danphe-cache-service-utility/cache-services';
+import { DsfHTTPResponse } from './shared/common-models';
+import { DsfCache, MasterType } from './shared/dsf-cache-service-utility/cache-services';
 import { NavigationService } from './shared/navigation-service';
-import { ENUM_CalendarTypes, ENUM_DanpheHTTPResponses, ENUM_LocalStorageKeys, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from './shared/shared-enums';
+import { ENUM_CalendarTypes, ENUM_DsfHTTPResponses, ENUM_LocalStorageKeys, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from './shared/shared-enums';
 // import { parse } from 'path';
 
 
@@ -43,7 +43,7 @@ export class AppComponent {
   public pageParameters = { CustomerName: "", LandingPageCustLogo: "", EmpiLabel: "" };
   public currUser: User = new User();
   public nepDate: any;
-  public validRoutes: Array<DanpheRoute> = new Array<DanpheRoute>();
+  public validRoutes: Array<DsfRoute> = new Array<DsfRoute>();
   public showDatePopup: boolean = false;
   public empPre = { np: false, en: false };
   public selectedDatePref: string = "";
@@ -78,11 +78,11 @@ export class AppComponent {
 
     if (token) {
       //START:data loads from api into cache memory.
-      DanpheCache.GetData(MasterType.Country, null);
-      DanpheCache.GetData(MasterType.SubDivision, null);
-      DanpheCache.GetData(MasterType.BillingCounter, null);
-      DanpheCache.GetData(MasterType.PhrmCounter, null);
-      DanpheCache.GetData(MasterType.Employee, null);
+      DsfCache.GetData(MasterType.Country, null);
+      DsfCache.GetData(MasterType.SubDivision, null);
+      DsfCache.GetData(MasterType.BillingCounter, null);
+      DsfCache.GetData(MasterType.PhrmCounter, null);
+      DsfCache.GetData(MasterType.Employee, null);
       //END:data loads from api into cache memory.
 
       this.GetAllValidRouteList();
@@ -111,7 +111,7 @@ export class AppComponent {
       this.SetValidUserPermissions();
 
       //load appsettings --sud:25Dec'18
-      this.coreService.InitializeAppSettings().subscribe((res: DanpheHTTPResponse) => {
+      this.coreService.InitializeAppSettings().subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.coreService.AppSettings = res.Results;
           this.coreService.SetAppVersionNum();
@@ -485,7 +485,7 @@ export class AppComponent {
         let blob = data;
         let a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
-        a.download = "DanpheEMR-UserManual.pdf";
+        a.download = "DsfEMR-UserManual.pdf";
         document.body.appendChild(a);
         a.click();
       },
@@ -557,7 +557,7 @@ export class AppComponent {
   SaveEmpPref() {
     this.dlService.Add(this.selectedDatePref, "/api/Core/EmployeeDatePreference")
       .subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           let data = res.Results;
           this.coreService.DatePreference = (data != null) ? data.PreferenceValue : null;
           if (this.coreService.DatePreference != null) {
@@ -576,7 +576,7 @@ export class AppComponent {
 
   LoadAccountingHospitalInfo(): void {
     this.securityBlService.GetAccountingHopitalInfo()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == 'OK') {
           this.securityService.SetAccHospitalInfo(res.Results);
           this.coreService.GetCodeDetails().subscribe(res => {

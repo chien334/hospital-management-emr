@@ -7,7 +7,7 @@ import { CommonFunctions } from '../../shared/common.functions';
 /*
  * Separate grid-column settings for ADT module with option to use parameter value from Core-Services.
  Created:11Jan'18-Sud
- Remarks: Most of the Properties/Methods are moved from grid-column-settings.constant.ts file (app/shared/danphe-grid)
+ Remarks: Most of the Properties/Methods are moved from grid-column-settings.constant.ts file (app/shared/dsf-grid)
  */
 
 export class ADTGridColumnSettings {
@@ -48,15 +48,15 @@ export class ADTGridColumnSettings {
     else if (params.data.BedReserved == true) {
       tmplate =
         `<label style="font-weight: bold;background-color:#e4de1d;color: #151515;line-height: 18px;padding: 0 5px;">Reserved</label>
-              <a danphe-grid-action="view-reserved-patient" class="grid-action">View</a>
-              <a danphe-grid-action="admit" class="grid-action">Admit</a>`;
+              <a dsf-grid-action="view-reserved-patient" class="grid-action">View</a>
+              <a dsf-grid-action="admit" class="grid-action">Admit</a>`;
     }
     else if (ADTGridColumnSettings.securityServ.HasPermission("admit-button")) {
-      tmplate = `<a danphe-grid-action="admit" class="grid-action">Admit</a>`;
+      tmplate = `<a dsf-grid-action="admit" class="grid-action">Admit</a>`;
     }
     // else if (params.data.AdmitButton == "admit-button") {
     //   let template =
-    //     `<a danphe-grid-action="admit" class="grid-action">Admit</a>`
+    //     `<a dsf-grid-action="admit" class="grid-action">Admit</a>`
     //   return template;
     // }
     else {
@@ -77,18 +77,18 @@ export class ADTGridColumnSettings {
     else if (params.data.BedReserved == true) {
       let template =
         `<label style="font-weight: bold;background-color:#e4de1d;color: #151515;line-height: 18px;padding: 0 5px;">Reserved</label>
-              <a danphe-grid-action="view-reserved-patient" class="grid-action">View</a>
-              <a danphe-grid-action="admit" class="grid-action">Admit</a>`;
+              <a dsf-grid-action="view-reserved-patient" class="grid-action">View</a>
+              <a dsf-grid-action="admit" class="grid-action">Admit</a>`;
       return template;
     }
     //else {
     //    let template =
-    //        `<a danphe-grid-action="admit" class="grid-action">Admit</a>`
+    //        `<a dsf-grid-action="admit" class="grid-action">Admit</a>`
     //    return template;
     //}
     else if (params.data.AdmitButton == "admit-button") {
       let template =
-        `<a danphe-grid-action="admit" class="grid-action">Admit</a>`
+        `<a dsf-grid-action="admit" class="grid-action">Admit</a>`
       return template;
     }
     else {
@@ -137,16 +137,16 @@ export class ADTGridColumnSettings {
       && !params.data.BedInformation.ReceivedBy
       && ((params.data.BedInformation.Action.toLowerCase() == "transfer" && params.data.BedInformation.BedOnHoldEnabled)
         || (params.data.BedInformation.Action.toLowerCase() == "admission"))) {
-      tmplate = '<a danphe-grid-action="transfer-hold" class="blinking-btn-danger grid-action" title="Cannot do further action until Received by Nursing">Transfer</a>';
+      tmplate = '<a dsf-grid-action="transfer-hold" class="blinking-btn-danger grid-action" title="Cannot do further action until Received by Nursing">Transfer</a>';
     } else {
       if (ADTGridColumnSettings.securityServ.HasPermission("transfer-button")) {
-        tmplate = `<a danphe-grid-action="transfer" class="grid-action">Transfer</a>`
+        tmplate = `<a dsf-grid-action="transfer" class="grid-action">Transfer</a>`
       }
     }
 
 
     if (ADTGridColumnSettings.securityServ.HasPermission("sticker-button")) {
-      tmplate += `<a danphe-grid-action="show-sticker"  title="Print Sticker" class="grid-action">
+      tmplate += `<a dsf-grid-action="show-sticker"  title="Print Sticker" class="grid-action">
                           <i class="glyphicon glyphicon-print"></i>&nbsp;sticker </a>`
     }
 
@@ -154,32 +154,32 @@ export class ADTGridColumnSettings {
 
     //read ShowWristBandFeature from parameter, if show then add below html, else don't add.
     if (ADTGridColumnSettings.securityServ.HasPermission("print-wristband-button")) {
-      tmplateInDropDown += `<li><a danphe-grid-action="ip-wrist-band">Print WristBand</a></li>`;
+      tmplateInDropDown += `<li><a dsf-grid-action="ip-wrist-band">Print WristBand</a></li>`;
     }
 
     if (ADTGridColumnSettings.securityServ.HasPermission("bill-history-button")) {
-      tmplateInDropDown += `<li><a danphe-grid-action="billdetail">&nbsp;Bill History</a></li>`
+      tmplateInDropDown += `<li><a dsf-grid-action="billdetail">&nbsp;Bill History</a></li>`
     }
 
     if (ADTGridColumnSettings.securityServ.HasPermission("change-doctor-button")) {
-      tmplateInDropDown += `<li><a danphe-grid-action="changedr">&nbsp;Change Doctor</a></li>`
+      tmplateInDropDown += `<li><a dsf-grid-action="changedr">&nbsp;Change Doctor</a></li>`
     }
 
     //if generic sticker to be shown then add below html, else it won't add.
     if (ADTGridColumnSettings.securityServ.HasPermission("generic-sticker-button")) {
-      tmplateInDropDown += `<li><a danphe-grid-action="generic-sticker">&nbsp;Print Generic Sticker</a></li>`;
+      tmplateInDropDown += `<li><a dsf-grid-action="generic-sticker">&nbsp;Print Generic Sticker</a></li>`;
     }
 
     if (ADTGridColumnSettings.securityServ.HasPermission("change-bed-feature-button")) {
-      tmplateInDropDown += `<li><a danphe-grid-action="upgrade">&nbsp;Change Bed Feature</a></li>`
+      tmplateInDropDown += `<li><a dsf-grid-action="upgrade">&nbsp;Change Bed Feature</a></li>`
     }
 
     if (ADTGridColumnSettings.securityServ.HasPermission("cancel-admission-button")) {
-      tmplateInDropDown += `<li><a danphe-grid-action="cancel">&nbsp;Cancel Admission</a></li>`
+      tmplateInDropDown += `<li><a dsf-grid-action="cancel">&nbsp;Cancel Admission</a></li>`
     }
 
     if (ADTGridColumnSettings.securityServ.HasPermission("btn-adt-admission-slip-view")) {
-      tmplateInDropDown += `<li><a danphe-grid-action="admission-slip">&nbsp;Admission Slip</a></li>`
+      tmplateInDropDown += `<li><a dsf-grid-action="admission-slip">&nbsp;Admission Slip</a></li>`
     }
 
 
@@ -200,33 +200,33 @@ export class ADTGridColumnSettings {
 
   //  //params.data.BtnPermissionList.forEach(item => {
   //  if (params.data.TransferButton == "transfer-button") {
-  //      tmplate = `<a danphe-grid-action="transfer" class="grid-action">Transfer</a>`
+  //      tmplate = `<a dsf-grid-action="transfer" class="grid-action">Transfer</a>`
   //  }
 
   //  if (params.data.StickerButton == "sticker-button") {
-  //      tmplate += `<a danphe-grid-action="show-sticker"  title="Print Sticker" class="grid-action">
+  //      tmplate += `<a dsf-grid-action="show-sticker"  title="Print Sticker" class="grid-action">
   //                        <i class="glyphicon glyphicon-print"></i>&nbsp;sticker </a>`
   //  }
   //  if (params.data.ChangeDoctorButton == "change-doctor-button") {
-  //      tmplate += ` <i danphe-grid-action="changedr" class="fa-user-md grid-action" style="padding: 3px;" title="Change Doctor"></i>`
+  //      tmplate += ` <i dsf-grid-action="changedr" class="fa-user-md grid-action" style="padding: 3px;" title="Change Doctor"></i>`
   //  }
   //  if (params.data.ChangeBedButton == "change-bed-feature-button") {
-  //      tmplate += `<i danphe-grid-action="upgrade" class="fa fa-exchange grid-action" style="padding: 3px;" title="Change Bed Feature"></i> `
+  //      tmplate += `<i dsf-grid-action="upgrade" class="fa fa-exchange grid-action" style="padding: 3px;" title="Change Bed Feature"></i> `
   //  }
   //  if (params.data.BillHistoryButton == "bill-history-button") {
-  //      tmplate += `<i danphe-grid-action="billdetail" class="fa fa-money grid-action" style="padding: 3px;" title="Bill History"></i> `
+  //      tmplate += `<i dsf-grid-action="billdetail" class="fa fa-money grid-action" style="padding: 3px;" title="Bill History"></i> `
   //  }
   //  if (params.data.CancelAdmButton == "cancel-admission-button") {
-  //      tmplate += `<i danphe-grid-action="cancel" class="fa fa-close grid-action" style="padding: 3px;" title="Cancel Admission"></i>  `
+  //      tmplate += `<i dsf-grid-action="cancel" class="fa fa-close grid-action" style="padding: 3px;" title="Cancel Admission"></i>  `
   //  }
   //  //if generic sticker to be shown then add below html, else it won't add.
   //  if (params.data.GenericStickerButton == "generic-sticker-button") {
-  //      tmplate += `  <i danphe-grid-action="generic-sticker" class="glyphicon glyphicon-print grid-action" style="padding: 3px;" title="Print Generic Sticker"></i> `;
+  //      tmplate += `  <i dsf-grid-action="generic-sticker" class="glyphicon glyphicon-print grid-action" style="padding: 3px;" title="Print Generic Sticker"></i> `;
   //  }
 
   //  //read ShowWristBandFeature from parameter, if show then add below html, else don't add.
   //  if (params.data.PrintWristButton == "print-wristband-button") {
-  //      tmplate += `<i danphe-grid-action="ip-wrist-band" class="glyphicon glyphicon-print grid-action" style="padding: 3px;" title="Print WristBand"></i>`;
+  //      tmplate += `<i dsf-grid-action="ip-wrist-band" class="glyphicon glyphicon-print grid-action" style="padding: 3px;" title="Print WristBand"></i>`;
   //  }
   //  return tmplate;
   //}
@@ -265,24 +265,24 @@ export class ADTGridColumnSettings {
 
   ShowActionsforAdmittedPatientList(showWristBand, showGenSticker) {
 
-    let tmplate = `<a danphe-grid-action="transfer" class="grid-action">Transfer</a>
-                         <a danphe-grid-action="show-sticker"  title="Print Sticker" class="grid-action">
+    let tmplate = `<a dsf-grid-action="transfer" class="grid-action">Transfer</a>
+                         <a dsf-grid-action="show-sticker"  title="Print Sticker" class="grid-action">
                               <i class="glyphicon glyphicon-print"></i>&nbsp;sticker </a>
 
-                <i danphe-grid-action="changedr" class="fa-user-md grid-action" style="padding: 3px;" title="Change Doctor"></i>
-                <i danphe-grid-action="upgrade" class="fa fa-exchange grid-action" style="padding: 3px;" title="Change Bed Feature"></i>
-                <i danphe-grid-action="billdetail" class="fa fa-money grid-action" style="padding: 3px;" title="Bill History"></i>
-                <i danphe-grid-action="cancel" class="fa fa-close grid-action" style="padding: 3px;" title="Cancel Admission"></i>
+                <i dsf-grid-action="changedr" class="fa-user-md grid-action" style="padding: 3px;" title="Change Doctor"></i>
+                <i dsf-grid-action="upgrade" class="fa fa-exchange grid-action" style="padding: 3px;" title="Change Bed Feature"></i>
+                <i dsf-grid-action="billdetail" class="fa fa-money grid-action" style="padding: 3px;" title="Bill History"></i>
+                <i dsf-grid-action="cancel" class="fa fa-close grid-action" style="padding: 3px;" title="Cancel Admission"></i>
                     `;
 
     //if generic sticker to be shown then add below html, else it won't add.
     if (showGenSticker) {
-      tmplate += `  <i danphe-grid-action="generic-sticker" class="glyphicon glyphicon-print grid-action" style="padding: 3px;" title="Print Generic Sticker"></i> `;
+      tmplate += `  <i dsf-grid-action="generic-sticker" class="glyphicon glyphicon-print grid-action" style="padding: 3px;" title="Print Generic Sticker"></i> `;
     }
 
     //read ShowWristBandFeature from parameter, if show then add below html, else don't add.
     if (showWristBand) {
-      tmplate += `<i danphe-grid-action="ip-wrist-band" class="glyphicon glyphicon-print grid-action" style="padding: 3px;" title="Print WristBand"></i>`;
+      tmplate += `<i dsf-grid-action="ip-wrist-band" class="glyphicon glyphicon-print grid-action" style="padding: 3px;" title="Print WristBand"></i>`;
     }
 
     return tmplate;
@@ -315,31 +315,31 @@ export class ADTGridColumnSettings {
     let template = "";
     //by default: ViewSummary action will be there
     if (currDischarge.DischargeSummaryId > 0 && currDischarge.IsSubmitted == 1 && !ADTGridColumnSettings.hasEditSummaryReportPermission) {
-      template = `<a danphe-grid-action="dischargeSummary" class="grid-action">
+      template = `<a dsf-grid-action="dischargeSummary" class="grid-action">
                             View Summary</a>`;
     }
 
     else if (currDischarge.DischargeSummaryId > 0 && (currDischarge.IsSubmitted == 0 || (currDischarge.IsSubmitted == 1 && ADTGridColumnSettings.hasEditSummaryReportPermission))) {
-      template = `<a danphe-grid-action="dischargeSummary" class="grid-action">
+      template = `<a dsf-grid-action="dischargeSummary" class="grid-action">
       View Summary</a>
-      <a danphe-grid-action="dischargeSummary" class="grid-action">
+      <a dsf-grid-action="dischargeSummary" class="grid-action">
                             Edit Summary</a>`;
     }
     // else if (currDischarge.DischargeSummaryId > 0 && currDischarge.IsSubmitted ==0 && this.hasEditSummaryReportPermission == false) {
     //   templateHtml = templateHtml + `
 
-    //   <a danphe-grid-action="dischargeSummary" class="grid-action">
+    //   <a dsf-grid-action="dischargeSummary" class="grid-action">
     //   View Summary</a>
-    //   <a danphe-grid-action="dischargeSummary" class="grid-action">
+    //   <a dsf-grid-action="dischargeSummary" class="grid-action">
     //                         Edit Summary</a>`;
     // }
     else {
-      template = `<a danphe-grid-action="dischargeSummary" class="grid-action">
+      template = `<a dsf-grid-action="dischargeSummary" class="grid-action">
                             Add Summary </a>`;
     }
     //Show clearDue.
     if (currDischarge.BillStatusOnDischarge == "unpaid") {
-      template += `<a danphe-grid-action="clear-due" class="grid-action">
+      template += `<a dsf-grid-action="clear-due" class="grid-action">
                              Clear Due</a>`;
     }
 
@@ -348,14 +348,14 @@ export class ADTGridColumnSettings {
     let checkHrs = CommonFunctions.findDateTimeDifference(new Date(), new Date(currDischarge.DischargedDate));
     // if ((((checkHrs / 1000) / 60)) / 60 < 120) {
     // if (currDischarge.BillStatusOnDischarge === ENUM_BillingStatus.unpaid) {
-    //   template += `<a danphe-grid-action="discharge-cancel" class="grid-action">
+    //   template += `<a dsf-grid-action="discharge-cancel" class="grid-action">
     //         Cancel Discharge</a>`;
     // }
 
     let templateInDropDown = '';
 
     if (ADTGridColumnSettings.securityServ.HasPermission("btn-adt-discharge-slip-view")) {
-      templateInDropDown += `<li><a danphe-grid-action="discharge-slip">&nbsp;Discharge Slip</a></li>`
+      templateInDropDown += `<li><a dsf-grid-action="discharge-slip">&nbsp;Discharge Slip</a></li>`
     }
 
 
@@ -395,28 +395,28 @@ export class ADTGridColumnSettings {
     let templateHtml: string;
     //by default: ViewSummary action will be there
     if (currDischarge.DischargeSummaryId > 0 && currDischarge.IsSubmitted == 1 && !ADTGridColumnSettings.hasEditSummaryReportPermission) {
-      templateHtml = `<a danphe-grid-action="dischargeSummary" class="grid-action">
+      templateHtml = `<a dsf-grid-action="dischargeSummary" class="grid-action">
       View</a>`;
     }
 
     else if (currDischarge.DischargeSummaryId > 0 && (currDischarge.IsSubmitted == 0 || (currDischarge.IsSubmitted == 1 && ADTGridColumnSettings.hasEditSummaryReportPermission))) {
-      templateHtml = `<a danphe-grid-action="dischargeSummary" class="grid-action">
+      templateHtml = `<a dsf-grid-action="dischargeSummary" class="grid-action">
       View </a>
-      <a danphe-grid-action="dischargeSummary" class="grid-action">
+      <a dsf-grid-action="dischargeSummary" class="grid-action">
       Edit</a>`;
     }
     else {
-      templateHtml = `<a danphe-grid-action="dischargeSummary" class="grid-action">
+      templateHtml = `<a dsf-grid-action="dischargeSummary" class="grid-action">
                             Add  </a>`;
     }
     //Show clearDue.
     //if (currDischarge.BillStatusOnDischarge == "unpaid") {
-    //  templateHtml += `<a danphe-grid-action="clear-due" class="grid-action">
+    //  templateHtml += `<a dsf-grid-action="clear-due" class="grid-action">
     //                         Clear Due</a>`;
     //}
     //var checkHrs = CommonFunctions.findDateTimeDifference(new Date(), new Date(currDischarge.DischargedDate));
     //if ((((checkHrs / 1000) / 60)) / 60 < 120) {
-    //  templateHtml += `<a danphe-grid-action="discharge-cancel" class="grid-action">
+    //  templateHtml += `<a dsf-grid-action="discharge-cancel" class="grid-action">
     //        Cancel Discharge</a>`;
     //}
     return templateHtml;
@@ -443,19 +443,19 @@ export class ADTGridColumnSettings {
     let currDischarge = params.data;
     let templateHtml: string = '';
     if (currDischarge.DischargeSummaryId > 0 && currDischarge.IsSubmitted == 1 && !ADTGridColumnSettings.hasEditSummaryReportPermission) {
-      templateHtml = `<a danphe-grid-action="dischargeSummary" class="grid-action">
+      templateHtml = `<a dsf-grid-action="dischargeSummary" class="grid-action">
       View</a>`;
     }
 
     else if (currDischarge.DischargeSummaryId > 0 && (currDischarge.IsSubmitted == 0 || (currDischarge.IsSubmitted == 1 && ADTGridColumnSettings.hasEditSummaryReportPermission))) {
-      templateHtml = `<a danphe-grid-action="dischargeSummary" class="grid-action">
+      templateHtml = `<a dsf-grid-action="dischargeSummary" class="grid-action">
       View </a>
-      <a danphe-grid-action="dischargeSummary" class="grid-action">
+      <a dsf-grid-action="dischargeSummary" class="grid-action">
       Edit</a>`;
     }
 
     else {
-      templateHtml = `<a danphe-grid-action="dischargeSummary" class="grid-action">
+      templateHtml = `<a dsf-grid-action="dischargeSummary" class="grid-action">
                             Add</a>`;
     }
     return templateHtml;

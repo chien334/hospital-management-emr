@@ -172,7 +172,7 @@ Address: `+ this.insStickerDetails.Address;
   //06April2018 print from server
   printStickerServer() {
     let printContents = document.getElementById("insSticker").innerHTML;
-    var printableHTML = '<html><head><link rel="stylesheet" type="text/css" href="Style/DanphePrintStyle.css" />';
+    var printableHTML = '<html><head><link rel="stylesheet" type="text/css" href="Style/DsfPrintStyle.css" />';
     printableHTML += `<style>
       .opdstickercontainer {
       width: 370px;

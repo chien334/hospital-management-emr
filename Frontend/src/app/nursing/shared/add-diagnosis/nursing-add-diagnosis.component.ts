@@ -3,7 +3,7 @@ import { ICD10 } from "../../../clinical/shared/icd10.model";
 import { CoreService } from "../../../core/shared/core.service";
 import { MR_BLService } from "../../../medical-records/shared/mr.bl.service";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponses } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponses } from "../../../shared/shared-enums";
 import { DiseaseGroup_DTO } from "../dto/disease-group.dto";
 import { ReportingGroup_DTO } from "../dto/reporting-group.dto";
 import { NursingBLService } from "../nursing.bl.service";
@@ -54,14 +54,14 @@ export class NursingAddDiagnosisComponent {
 
   public GetICD10ReportingGroup() {
     this.mrBLService.GetICD10ReportingGroup().subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.ICD10ReportingGroupList = res.Results;
       }
     });
   }
   public GetICD10DiseaseGroup() {
     this.mrBLService.GetICD10DiseaseGroup().subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
         this.ICD10DiseaseGroupList = res.Results;
         this.ICD10DiseaseGroupList.forEach
           (a => this.icd10List.push({ ICD10Code: a.ICDCode, ICD10Description: a.DiseaseGroupName }));
@@ -88,7 +88,7 @@ export class NursingAddDiagnosisComponent {
 
   public LoadExistingDiagnosis() {
     this.mrBLService.GetOutpatientDiagnosisByVisitId(this.patientId, this.patientVisitId).subscribe(res => {
-      if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+      if (res.Status === ENUM_DsfHTTPResponses.OK) {
 
         if (res.Results && res.Results.length > 0) {
           this.SelectedICD10List = res.Results;

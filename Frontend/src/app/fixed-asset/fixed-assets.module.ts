@@ -15,7 +15,7 @@ import { AssetDepreciationComponent } from './assets-depreciation-discarding/dep
 import { AssetConditionCheckListComponent } from './assets-maintenance/environment-condition-checklist/asset-condition-check-list.componet';
 import { AssetFaultUpdateComponent } from './assets-maintenance/fault-update/asset-fault-update.componet';
 import { AssetInsuranceComponent } from './assets-management/insurance-add-edit/asset-insurance.componet';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 import { AssetScrapComponent } from './assets-depreciation-discarding/scraping/asset-scrap.component';
 import { AssetServiceComponent } from './assets-maintenance/periodic-service/asset-service.componet';
 import { FixedAssetDLService } from './shared/fixed-asset.dl.service';
@@ -36,7 +36,7 @@ import { FixedAssetReqDispatchComponent } from './assets-substore-requisition-di
     FormsModule,
     FixedAssetsRoutingModule,
     SharedModule,
-    DanpheAutoCompleteModule,
+    DsfAutoCompleteModule,
   ],
   declarations: [
     FixedAssetsMainComponent,

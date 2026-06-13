@@ -21,7 +21,7 @@
         <span class="glyphicon glyphicon-plus"></span> {{ 'WARD_SUPPLY.INTERNAL_CONSUMPTION' | translate }}</a>
     </div>
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="consumptioninternalColumns" [grid-data]="consumptionLists" (grid-actions)="ConsumptionListGridAction($event)"> </danphe-grid>
+      <dsf-grid [grid-colDefaults]="consumptioninternalColumns" [grid-data]="consumptionLists" (grid-actions)="ConsumptionListGridAction($event)"> </dsf-grid>
     </div>
   </div>
   <div class="popup-static portlet box portlet-fullscreen" style="margin-bottom:25px" *ngIf="showConsumptionItemList">

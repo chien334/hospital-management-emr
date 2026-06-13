@@ -8,7 +8,7 @@ import { DLService } from "../../../shared/dl.service"
 import { ReportingService } from "../../../reporting/shared/reporting-service"
 import { PHRMItemMasterModel } from "../../shared/phrm-item-master.model"
 import { PHRMGoodsReceiptModel } from "../../shared/phrm-goods-receipt.model"
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/danphe-grid/NepaliColGridSettingsModel';
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from '../../../shared/dsf-grid/NepaliColGridSettingsModel';
 
 @Component({
     templateUrl: "./phrm-good-receipt-product-report.html"

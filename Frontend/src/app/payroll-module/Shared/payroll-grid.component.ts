@@ -14,8 +14,8 @@ export default class PayrollGridColumns {
       field: "",
       width: 150,
       template:
-        `<a danphe-grid-action="edit" class="grid-action"><i class="icon-pencil"></i> Edit </a> 
-         <a danphe-grid-action="delete" class="grid-action"><i class="glyphicon glyphicon-trash"></i>Delete</a >`      
+        `<a dsf-grid-action="edit" class="grid-action"><i class="icon-pencil"></i> Edit </a> 
+         <a dsf-grid-action="delete" class="grid-action"><i class="glyphicon glyphicon-trash"></i>Delete</a >`      
     }
   ]
 

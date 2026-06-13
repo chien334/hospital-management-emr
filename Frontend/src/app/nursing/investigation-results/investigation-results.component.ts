@@ -4,7 +4,7 @@ import { VisitService } from '../../appointments/shared/visit.service';
 import { CoreService } from '../../core/shared/core.service';
 import { PatientService } from '../../patients/shared/patient.service';
 import { MessageboxService } from '../../shared/messagebox/messagebox.service';
-import { ENUM_DanpheHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_DateTimeFormat, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { InvestigationResultsView_DTO } from '../shared/dto/investigation-results-view.dto';
 import { InvestigationResult_DTO } from '../shared/dto/investigation-results.dto';
 import { NursingBLService } from '../shared/nursing.bl.service';
@@ -70,7 +70,7 @@ export class InvestigationResultsComponent {
         let patientVisitId = this.visitservice.getGlobal().PatientVisitId;
         this.nursingBLService.GetInvestigationResults(this.FromDate, this.ToDate, patientId, patientVisitId)
             .subscribe(res => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.investigationResultList = res.Results;
                     this.FormatInvestigationResult(this.investigationResultList);
                 }

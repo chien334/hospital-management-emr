@@ -13,8 +13,8 @@ import { CoreService } from '../../../core/shared/core.service';
 import { PatientsBLService } from '../../../patients/shared/patients.bl.service';
 import { SecurityService } from '../../../security/shared/security.service';
 import { GeneralFieldLabels } from '../../../shared/DTOs/general-field-label.dto';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { DsfHTTPResponse } from '../../../shared/common-models';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { APIsByType } from '../../../shared/search.service';
 import { ADTGridColumnSettings } from '../../shared/adt-grid-column-settings';
 
@@ -186,7 +186,7 @@ export class AdmissionSearchPatient {
 
   public GetOrganizationList() {
     this.billingBlService.GetOrganizationList()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == 'OK') {
           console.log("CreditOrganization list are loaded successfully (billing-main).");
           this.billingservice.SetAllCreditOrgList(res.Results);

@@ -46,9 +46,9 @@
             <b>:</b>
           </label>
           <div class="col-md-8">
-            <danphe-date-picker [(ngModel)]="note.ReceivedOn" [ngModelOptions]="{standalone: true}"
+            <dsf-date-picker [(ngModel)]="note.ReceivedOn" [ngModelOptions]="{standalone: true}"
                             [showTime]="true" [CalendarTypes]="'en,np'">
-            </danphe-date-picker>
+            </dsf-date-picker>
           </div>
         </div>
 
@@ -68,8 +68,8 @@
                name="receiveNote"
                [(ngModel)]="note.FreeTextNote.FreeText">
           </textarea>-->
-          <danphe-ckeditor [readonly]="false" (get-html-content)="onChangeEditorData($event)" [panel-height]="'270px'">
-          </danphe-ckeditor>
+          <dsf-ckeditor [readonly]="false" (get-html-content)="onChangeEditorData($event)" [panel-height]="'270px'">
+          </dsf-ckeditor>
         </div>
         <!--End: Add Receive note -->
       </div>

@@ -102,13 +102,13 @@ export class ReverseTransaction {
           if (sectionApplication != null || sectionApplication != undefined) {
             this.permissions = this.securityService.UserPermissions.filter(p => p.ApplicationId == sectionApplication.ApplicationId);
           }
-          let sList = this.accountingService.accCacheData.Sections.filter(sec => sec.SectionId != 4); // 4 is Manual_Voucher (FIXED for DanpheEMR) //mumbai-team-june2021-danphe-accounting-cache-change
+          let sList = this.accountingService.accCacheData.Sections.filter(sec => sec.SectionId != 4); // 4 is Manual_Voucher (FIXED for DsfEMR) //mumbai-team-june2021-dsf-accounting-cache-change
           sList.forEach(s => {
             let sname = s.SectionName.toLowerCase();
             let pp = this.permissions.filter(f => f.PermissionName.includes(sname))[0];
             if (pp != null || pp != undefined) {
               this.sectionList.push(s);
-              this.sectionList = this.sectionList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+              this.sectionList = this.sectionList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
             }
           })
           let defSection = this.sectionList.find(s => s.IsDefault == true);

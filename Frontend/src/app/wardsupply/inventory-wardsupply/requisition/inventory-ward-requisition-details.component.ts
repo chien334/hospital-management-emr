@@ -14,7 +14,7 @@ import { DispatchVerificationActor } from '../../../inventory/shared/track-requi
 import { VerificationActor } from '../../../verification/inventory/requisition-details/inventory-requisition-details.component';
 import { SubStoreRequisitionItems_DTO } from '../../../inventory/shared/dtos/substore-requisition-item.dto';
 import { SubStoreRequisition_DTO } from '../../../inventory/shared/dtos/substore-requisition.dto';
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../../shared/shared-enums';
 @Component({
   selector: 'inventory-ward-requisition-details',
   templateUrl: "./inventory-ward-requisition-details.html"  // "/InventoryView/RequisitionDetails"
@@ -116,7 +116,7 @@ export class InventoryRequisitionDetailsComponent {
   }
 
   ShowRequisitionDetails(res) {
-    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+    if (res.Status === ENUM_DsfHTTPResponses.OK) {
       this.Requisition = res.Results.Requisition;
       this.Verifiers = res.Results.Verifiers;
       this.Dispatchers = res.Results.Dispatchers;
@@ -198,7 +198,7 @@ export class InventoryRequisitionDetailsComponent {
         .finally(() => this.loading = false)
         .subscribe(
           res => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
               this.messageBoxService.showMessage(ENUM_MessageBox_Status.Success, ["Requisition " + this.requisitionId + " Withdrawn"]);
               this.showCancelRequisitionPopUp = false;
               this.callBackInventoryRequisitionDetailsPopupClose.emit({ context: 'requisitionWidthDrawn' });

@@ -41,7 +41,7 @@
 
                         <td>
                             <form [formGroup]="row.BillingTransactionItemValidator" title="{{row.ItemName}}">
-                                <input class="form-control" danphe-auto-complete
+                                <input class="form-control" dsf-auto-complete
                                        formControlName="ItemName"
                                        style="width:250px"
                                        [ngClass]="{'border-red': row.IsDirty('ItemName') && !row.IsValidCheck('ItemName','required')}"
@@ -73,7 +73,7 @@
                             </form>
                         </td>                    
                         <td>
-                            <input class="form-control" danphe-auto-complete
+                            <input class="form-control" dsf-auto-complete
                                    style="width:150px"
                                    [ngModelOptions]="{standalone: true}"
                                    [(ngModel)]="selectedAssignedToDr[i]"

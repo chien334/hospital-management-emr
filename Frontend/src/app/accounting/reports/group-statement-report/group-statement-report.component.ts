@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from "@angular/core";
 import { CoreService } from "../../../core/shared/core.service";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
-import { ENUM_DanpheHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
+import { ENUM_DsfHTTPResponseText, ENUM_MessageBox_Status } from "../../../shared/shared-enums";
 import { ledgerGroupModel } from "../../settings/shared/ledgerGroup.model";
 import { AccountingService } from "../../shared/accounting.service";
 import { AccountingReportsBLService } from "../shared/accounting-reports.bl.service";
@@ -78,8 +78,8 @@ export class GroupStatementReportComponent {
 
   //get all ledger group
   GetLedgerGroup() {
-    if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) { //mumbai-team-june2021-danphe-accounting-cache-change
-      this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups) //mumbai-team-june2021-danphe-accounting-cache-change
+    if (!!this.accountingService.accCacheData.LedgerGroups && this.accountingService.accCacheData.LedgerGroups.length > 0) { //mumbai-team-june2021-dsf-accounting-cache-change
+      this.CallBackLedgerGroup(this.accountingService.accCacheData.LedgerGroups) //mumbai-team-june2021-dsf-accounting-cache-change
     }
   }
 
@@ -87,7 +87,7 @@ export class GroupStatementReportComponent {
     if (res) {
       this.ledgergroupList = new Array<ledgerGroupModel>();
       this.ledgergroupList = res.filter((lg) => lg.IsActive == true); //only isActive true ledgergroup here
-      this.ledgergroupList = this.ledgergroupList.slice(); //mumbai-team-june2021-danphe-accounting-cache-change
+      this.ledgergroupList = this.ledgergroupList.slice(); //mumbai-team-june2021-dsf-accounting-cache-change
     }
   }
   //format ledgergroup for autocomplete
@@ -108,7 +108,7 @@ export class GroupStatementReportComponent {
       this.accReportBLServ
         .GetGroupStatementReport(this.fromDate, this.toDate, this.fiscalYearId, this.selectedLedgerGroup.LedgerGroupId)
         .subscribe((res) => {
-          if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+          if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             this.btndisabled = false;
             this.reportData = new Array<GroupStatementReportVM>()
             this.reportData = res.Results;

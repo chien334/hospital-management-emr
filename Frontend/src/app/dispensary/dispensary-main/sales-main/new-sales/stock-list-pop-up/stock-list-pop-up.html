@@ -17,7 +17,7 @@
 </div>
 <div class="row" *ngIf="showStockList">
   <div class="col-lg-12 col-sm-12">
-    <danphe-grid [grid-colDefaults]="stockDetailsGridColumns" [grid-data]="stockDetailsList" (grid-actions)="StockDetailsGridAction($event)">
-    </danphe-grid>
+    <dsf-grid [grid-colDefaults]="stockDetailsGridColumns" [grid-data]="stockDetailsList" (grid-actions)="StockDetailsGridAction($event)">
+    </dsf-grid>
   </div>
 </div>

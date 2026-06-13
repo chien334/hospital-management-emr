@@ -2,15 +2,15 @@
 @using System.Collections.Generic;
 @using System.Linq;
 @using System.Text;
-@using DanpheEMR.ServerModel;
-@using DanpheEMR.DalLayer;
-@using DanpheEMR.Core.Caching;
-@using DanpheEMR.Security;
+@using DsfEMR.ServerModel;
+@using DsfEMR.DalLayer;
+@using DsfEMR.Core.Caching;
+@using DsfEMR.Security;
 @{
     string connString = ViewData["ConnectionString"].ToString();
     RbacDbContext rbacDbcontext = new RbacDbContext(ViewData["ConnectionString"].ToString());
     var applications = rbacDbcontext.Applications.ToList<RbacApplication>();
-    var routes = rbacDbcontext.Routes.Where(r => r.PermissionId != null).ToList<DanpheRoute>();
+    var routes = rbacDbcontext.Routes.Where(r => r.PermissionId != null).ToList<DsfRoute>();
 
 }-->
 <section id="addroleSection">

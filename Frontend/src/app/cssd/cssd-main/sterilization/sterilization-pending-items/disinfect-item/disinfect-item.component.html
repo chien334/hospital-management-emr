@@ -11,7 +11,7 @@
           <div class="form-group">
             <label class="control-label col-md-4">{{ 'CSSD.DISINFECTED_ON' | translate }}<sup class="color-red">*</sup><b>:</b></label>
             <div class="col-md-8">
-              <danphe-date-picker formControlName="DisinfectedDate" [(ngModel)]="disinfectionDate" [CalendarTypes]="'en,np'" showTime="true"></danphe-date-picker>
+              <dsf-date-picker formControlName="DisinfectedDate" [(ngModel)]="disinfectionDate" [CalendarTypes]="'en,np'" showTime="true"></dsf-date-picker>
               <div *ngIf="storeForm.get('DisinfectedDate').invalid && (storeForm.get('DisinfectedDate').dirty || storeForm.get('DisinfectedDate').touched)">
                 <div *ngIf="storeForm.get('DisinfectedDate').errors.required">
                   <span class="color-red font-sm">{{ 'CSSD.DISINFECTION_DATE_IS_REQUIRED' | translate }}</span>

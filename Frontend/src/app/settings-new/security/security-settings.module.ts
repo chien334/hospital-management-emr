@@ -6,7 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { SecuritySettingsMainComponent } from './security-setting.main.component';
 import { SharedModule } from '../../shared/shared.module';
-import { DanpheAutoCompleteModule } from '../../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../../shared/dsf-autocomplete';
 import { UserAddComponent } from './users/user-add.component';
 import { UserListComponent } from './users/user-list.component';
 import { UserRoleMapComponent } from './user-role-map/user-role-map.component';
@@ -45,7 +45,7 @@ export const securitySettingsRoutes: Routes =
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         RouterModule.forChild(securitySettingsRoutes)], providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
     ] })

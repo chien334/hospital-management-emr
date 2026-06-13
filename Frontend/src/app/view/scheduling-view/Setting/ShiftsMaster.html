@@ -1,10 +1,10 @@
 <input type="button" class="btn btn-primary" (click)="AddShifts()" [value]="'SCHEDULING.ADD_SHIFT' | translate" />
 <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12">
-        <danphe-grid [grid-colDefaults]="shiftsGridColumns"
+        <dsf-grid [grid-colDefaults]="shiftsGridColumns"
                      [grid-data]="shiftsList"
                      (grid-actions)="ShiftsGridActions($event)">
-        </danphe-grid>
+        </dsf-grid>
     </div>
 </div>
 <div class="popup-static portlet box portlet-fullscreen" *ngIf="showShiftsAddPage">

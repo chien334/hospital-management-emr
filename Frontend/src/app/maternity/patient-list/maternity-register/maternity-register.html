@@ -24,9 +24,9 @@
                             </b><b style="float:right;">:</b></label>
 
                         <div class="col-md-8">
-                            <danphe-date-picker [(ngModel)]="matPat.DeliveryDate" id="deliveryDate"
+                            <dsf-date-picker [(ngModel)]="matPat.DeliveryDate" id="deliveryDate"
                                 [CalendarTypes]="'en,np'" [showTime]="true" [ngModelOptions]="{standalone: true}">
-                            </danphe-date-picker>
+                            </dsf-date-picker>
                         </div>
                     </div>
 
@@ -221,7 +221,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let data of matRegDataList">
-                    <td>{{data.DeliveryDate | DanpheDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
+                    <td>{{data.DeliveryDate | DsfDateTime:'format':'YYYY-MM-DD hh:mm A'}}</td>
                     <td>{{data.Gender}}</td>
                     <td>{{data.WeightInGram}}</td>
                     <td>{{data.OutcomeOfBaby}}</td>

@@ -8,7 +8,7 @@ import { CommonFunctions } from '../../shared/common.functions';
 import { NepaliCalendarService } from "../../shared/calendar/np/nepali-calendar.service";
 import { NepaliDate } from '../../shared/calendar/np/nepali-dates';
 import { PhrmInvoiceDetailsModel } from '../shared/phrm-invoice-details.model'
-import { ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
+import { ENUM_DsfHTTPResponses, ENUM_MessageBox_Status } from '../../shared/shared-enums';
 import { GeneralFieldLabels } from '../../shared/DTOs/general-field-label.dto';
 @Component({
   selector: 'new-sales-book',
@@ -73,7 +73,7 @@ export class NewSalesBookComponent implements OnInit {
   public GetBillingInvoiceDetails(): void {
     this.systemAdminBLService.GetAllInvoiceDetails(this.displayStartDate, this.displayEndDate).
       subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           this.finalData = new Array<InvoiceDetailsModel>();
           let salesDetails: Array<any> = res.Results;
           salesDetails.forEach(itm => {
@@ -103,7 +103,7 @@ export class NewSalesBookComponent implements OnInit {
           this.Calculation();
           this.finalData = Object.assign(this.finalData, this.curtSalesBookDetail);
         }
-        else if (res.Status === ENUM_DanpheHTTPResponses.Failed) {
+        else if (res.Status === ENUM_DsfHTTPResponses.Failed) {
           console.log(res.ErrorMessage);
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, ['error please check console log for details']);
         }
@@ -116,7 +116,7 @@ export class NewSalesBookComponent implements OnInit {
   public callBackBillingInvoiceDetails(): void {
     this.systemAdminBLService.GetPhrmInvoiceDetails(this.displayStartDate, this.displayEndDate).
       subscribe(res => {
-        if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        if (res.Status === ENUM_DsfHTTPResponses.OK) {
           let salesDetails: Array<any> = res.Results;
           salesDetails.forEach(itm => {
             itm.BillDate_Np = this.npCalService.ConvertEngToNepDateString(itm.BillDate);
@@ -140,7 +140,7 @@ export class NewSalesBookComponent implements OnInit {
           this.finalData = Object.assign(this.finalData, this.curtSalesBookDetail);
           this.changeDetectorRef.detectChanges();
         }
-        else if (res.Status === ENUM_DanpheHTTPResponses.Failed) {
+        else if (res.Status === ENUM_DsfHTTPResponses.Failed) {
           console.log(res.ErrorMessage);
           this.messageBoxService.showMessage(ENUM_MessageBox_Status.Error, ['error please check console log for details']);
         }
@@ -199,7 +199,7 @@ export class NewSalesBookComponent implements OnInit {
     var printContents = document.getElementById("dvReport").innerHTML;
     popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
     popupWinindow.document.open();
-    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DanpheStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+    popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="../../themes/theme-default/DsfStyle.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
     popupWinindow.document.close();
   }
 

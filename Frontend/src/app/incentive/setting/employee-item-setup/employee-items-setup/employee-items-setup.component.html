@@ -179,7 +179,7 @@
                     <div class="row">
                       <span class="col-md-5">{{ 'INCENTIVE.EMPLOYEE_NAME' | translate }} <b>:</b></span>
                       <div class="col-md-7">
-                        <input danphe-auto-complete [(ngModel)]="DocObj" [list-formatter]="EmployeeListFormatter"
+                        <input dsf-auto-complete [(ngModel)]="DocObj" [list-formatter]="EmployeeListFormatter"
                                [source]="filteredEmpList" [placeholder]="'INCENTIVE.SEARCH_DOCTOR_NAME' | translate" display-property-name="FullName"
                                value-property-name=null onclick="this.select()" max-num-list="10"
                                (ngModelChange)="ChangeDoctor()" class="incentive-search-doctor" [disabled]="update"
@@ -240,7 +240,7 @@
                     <div class="row">
                       <label class="col-md-3">{{ 'INCENTIVE.SELECT_PROFILE' | translate }} <b>:</b> {{selectedProfile? selectedProfile.ProfileName:''}}</label>
                       <div class="col-md-9">
-                        <!-- <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
+                        <!-- <input dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}"
                                [(ngModel)]="selProfileForAttach" [list-formatter]="profileListFormatter"
                                [source]="profileList" placeholder="Enter Profile Name" display-property-name="ProfileName"
                                value-property-name=null (focusout)="profileChanged()" onClick="this.select();"
@@ -318,7 +318,7 @@
                     <tr>
                       <td>
                         <form class="bill-itemname">
-                          <input class="form-control cstm-form-control" danphe-auto-complete
+                          <input class="form-control cstm-form-control" dsf-auto-complete
                                  title="{{ItemsSetup.SelServDepartment}}" [(ngModel)]="ItemsSetup.SelServDepartment"
                                  [list-formatter]="ServiceDeptListFormatter" [source]="uniqueDeptNames"
                                  [placeholder]="'INCENTIVE.ENTER_DEPARTMENT' | translate" display-property-name="ServiceDepartmentName"
@@ -330,7 +330,7 @@
                       <td style="width:250px">
                         <form class="bill-itemname">
                           <div class="autocomplete-item">
-                            <input id="srch_itemName" class="form-control cstm-form-control" danphe-auto-complete
+                            <input id="srch_itemName" class="form-control cstm-form-control" dsf-auto-complete
                                    title="{{ItemsSetup.ItemName}}" autocomplete="off" [(ngModel)]="ItemsSetup.ItemName"
                                    [list-formatter]="ItemsListFormatter" [source]="FilteredItemList"
                                    [placeholder]="'INCENTIVE.ENTER_ITEM_NAME' | translate" display-property-name="ItemName" value-property-name=null
@@ -440,10 +440,10 @@
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <danphe-grid [grid-colDefaults]="EmployeeItemGridColumns" [grid-data]="EmployeePreviousBillItems"
+                    <dsf-grid [grid-colDefaults]="EmployeeItemGridColumns" [grid-data]="EmployeePreviousBillItems"
                                  (grid-actions)="EmployeeItemGridActions($event)" [supressPagination]="true"
                                  [fixed-height-px]="'400px'">
-                    </danphe-grid>
+                    </dsf-grid>
                   </div>
                   <div class="col-md-4" style="margin-top: 45px;" *ngIf="ShowItemGroupDistribution">
                     <div class="row">
@@ -478,7 +478,7 @@
                                     <tr *ngFor="let GroupDist of ItemGroupDistribution;let indx = index"
                                         [ngClass]="{'frc-removed': GroupDist.IsRemoved || !GroupDist.IsActive}">
                                       <td>
-                                        <input danphe-auto-complete [(ngModel)]="GroupDist.DocObj"
+                                        <input dsf-auto-complete [(ngModel)]="GroupDist.DocObj"
                                                [list-formatter]="EmployeeListFormatter" [source]="allDoctorList"
                                                [placeholder]="'INCENTIVE.SEARCH_DOCTOR_NAME' | translate" display-property-name="FullName"
                                                value-property-name=null onclick="this.select()"
@@ -672,10 +672,10 @@
                 </div>
               </div>
               <div class="col-md-7">
-                <danphe-grid [grid-colDefaults]="ProfilePreviewGridColumns" [grid-data]="EmployeePreviousBillItems"
+                <dsf-grid [grid-colDefaults]="ProfilePreviewGridColumns" [grid-data]="EmployeePreviousBillItems"
                              [supressPagination]="true"
                              [fixed-height-px]="'400px'">
-                </danphe-grid>
+                </dsf-grid>
               </div>
             </div>
           </div>

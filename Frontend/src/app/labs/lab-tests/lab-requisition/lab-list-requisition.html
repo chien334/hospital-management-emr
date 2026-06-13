@@ -18,11 +18,11 @@
   <!-- <div class="row"></div> -->
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-      <danphe-grid [grid-colDefaults]="LabGridColumns" [NepaliDateInGridParams]="NepaliDateInGridSettings"
+      <dsf-grid [grid-colDefaults]="LabGridColumns" [NepaliDateInGridParams]="NepaliDateInGridSettings"
         [grid-data]="requisitions" [rangeType]="dateRange" (onDateChange)="onDateChange($event)"
         [show-CustomDate]="true" [date-settings-name]="'common-range-with-today'"
         (grid-actions)="LabGridActions($event)">
-      </danphe-grid>
+      </dsf-grid>
     </div>
   </div>
 </div>
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="form-body">
-            <danphe-grid
+            <dsf-grid
                  [grid-colDefaults]="SamplesCollectedGridColumns"
                  [grid-data]="sampleCollectedList"
                  [grid-exportOptions]="gridExportOptions"
@@ -51,7 +51,7 @@
                  [show-print-button] = "true"
                  [report-header]="reportHeaderHtml_SamplesCollectedList"
                  [NepaliDateInGridParams] ="NepaliDateForSampleCollectedList">
-            </danphe-grid>
+            </dsf-grid>
             
           </div>
         </div>

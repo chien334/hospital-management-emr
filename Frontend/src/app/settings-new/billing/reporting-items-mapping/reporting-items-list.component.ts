@@ -2,11 +2,11 @@ import { Component, ChangeDetectorRef } from "@angular/core";
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { SettingsService } from '../../shared/settings-service';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CoreService } from "../../../core/shared/core.service";
 import { SecurityService } from "../../../security/shared/security.service";
-import { SettingsGridColumnSettings } from "../../../shared/danphe-grid/settings-grid-column-settings";
+import { SettingsGridColumnSettings } from "../../../shared/dsf-grid/settings-grid-column-settings";
 import { ReportingItemsModel } from "../../shared/reporting-items.model";
 import { DynamicReportNameModel } from "../../shared/dynamic-report-names.model";
 
@@ -162,7 +162,7 @@ export class ReportingItemsListComponent {
         currReportingItem.IsActive = status;
         this.settingsBLService.UpdateReportingItem(currReportingItem)
           .subscribe(
-            (res: DanpheHTTPResponse) => {
+            (res: DsfHTTPResponse) => {
 
               if (res.Status == "OK") {
                 this.msgBoxServ.showMessage("success", ['Service Status updated successfully']);

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule, Router } from '@angular/router'
 import { BillingTransaction } from "../../shared/billing-transaction.model";
 import { BillingBLService } from '../../shared/billing.bl.service';
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 import { SecurityService } from '../../../security/shared/security.service';
@@ -62,7 +62,7 @@ export class InsuranceSettlementsComponent {
   public GetUnclaimedBills(): void {
     this.unclaimedInvoices = [];
     this.billingBLService.GetUnclaimedInvoices(this.fromDate, this.toDate)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.unclaimedInvoices = res.Results;
           this.unclaimedInvoices = this.unclaimedInvoices.slice();

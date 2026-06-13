@@ -26,7 +26,7 @@
           <div class="col-md-4">
             <div *ngIf="currentSchemeParams.SelectEmployer">
               Employer<b>:</b>
-              <input danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedSsfEmployer"
+              <input dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedSsfEmployer"
                      [list-formatter]="SFFEmployerListFormatter" [source]="SsfEmployer" placeholder="Select Employer"
                      display-property-name="name"
                      value-property-name=null (focusout)="AssignSSFEmployerDetail()" onClick="this.select();" />
@@ -90,7 +90,7 @@
           <div>SubScheme: </div>
           <div class="col-md-3">
             <input type="text" id="is_registration_subScheme"
-                   danphe-auto-complete class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedSubScheme"
+                   dsf-auto-complete class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="SelectedSubScheme"
                    [list-formatter]="SubSchemeListFormatter" [source]="BillingSubSchemes" placeholder="Select SubScheme"
                    display-property-name="SubSchemeName" [match-formatted]="true" [min-chars]="1"
                    onClick="this.select();" [match-property-csv]="'SubSchemeName'" [grid-sort]="'SubSchemeName'"

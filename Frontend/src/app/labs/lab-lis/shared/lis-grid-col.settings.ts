@@ -20,10 +20,10 @@ export default class LabLISGridColumnSettings {
             headerName: "Actions",
             width: 100,
             template:
-                `<a danphe-grid-action="edit" class="grid-action">
+                `<a dsf-grid-action="edit" class="grid-action">
                 Edit
                 </a>
-                <a danphe-grid-action="delete" class="grid-action">
+                <a dsf-grid-action="delete" class="grid-action">
                 Remove
                 </a>
                 `

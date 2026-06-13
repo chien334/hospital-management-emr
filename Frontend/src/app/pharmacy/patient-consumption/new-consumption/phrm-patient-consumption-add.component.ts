@@ -11,11 +11,11 @@ import { PatientService } from "../../../patients/shared/patient.service";
 import { SecurityService } from "../../../security/shared/security.service";
 import { SettingsBLService } from "../../../settings-new/shared/settings.bl.service";
 import { CallbackService } from "../../../shared/callback.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { CommonFunctions } from "../../../shared/common.functions";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { RouteFromService } from "../../../shared/routefrom.service";
-import { ENUM_BillingStatus, ENUM_DanpheHTTPResponseText, ENUM_DanpheHTTPResponses, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from "../../../shared/shared-enums";
+import { ENUM_BillingStatus, ENUM_DsfHTTPResponseText, ENUM_DsfHTTPResponses, ENUM_MessageBox_Status, ENUM_ServiceBillingContext } from "../../../shared/shared-enums";
 import { PharmacySchemePriceCategory_DTO } from "../../shared/dtos/pharmacy-scheme-pricecategory.dto";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service";
 import { PHRMPatient } from "../../shared/phrm-patient.model";
@@ -138,8 +138,8 @@ export class PHRMPatientConsumptionAddComponent {
     }
     private GetPatientDetails(PatientId: number) {
         this.pharmacyBLService.GetPatientByPatId(PatientId)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     if (res.Results.VisitType === null) {
                         this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.PATIENT_VISIT_NOT_FOUND')]);
                         return;
@@ -236,8 +236,8 @@ export class PHRMPatientConsumptionAddComponent {
 
     public getGenericList() {
         this.pharmacyBLService.GetGenericList()
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.GenericList = res.Results;
                     this.FilteredGenericList = res.Results;
                 }
@@ -247,8 +247,8 @@ export class PHRMPatientConsumptionAddComponent {
 
     GetDefaultStore() {
         if (this.WardId) {
-            this.pharmacyBLService.GetWardSubStoreMapDetails(this.WardId).subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+            this.pharmacyBLService.GetWardSubStoreMapDetails(this.WardId).subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponses.OK) {
                     this.WardSubStoreMapList = res.Results;
                     let WardDefaultSubStore = this.WardSubStoreMapList.find(a => a.IsDefault === true);
                     this.SelectedStore = WardDefaultSubStore;
@@ -272,7 +272,7 @@ export class PHRMPatientConsumptionAddComponent {
             .subscribe(res => this.CallBackGetItemTypeList(res));
     }
     CallBackGetItemTypeList(res) {
-        if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+        if (res.Status === ENUM_DsfHTTPResponseText.OK) {
             if (res.Results) {
                 this.Items = [];
                 this.Items = res.Results;
@@ -378,8 +378,8 @@ export class PHRMPatientConsumptionAddComponent {
 
         this.pharmacyBLService.PostPatientConsumption(this.patientConsumption)
             .finally(() => this.loading = false)
-            .subscribe((res: DanpheHTTPResponse) => {
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+            .subscribe((res: DsfHTTPResponse) => {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
                     this.PatientConsumptionId = res.Results;
                     this.showPrintPage = true;
                     this.messageboxService.showMessage(ENUM_MessageBox_Status.Success, [this.translate.instant('PATIENT_CONSUMPTION.CONSUMPTION_SUCCESS')]);
@@ -433,9 +433,9 @@ export class PHRMPatientConsumptionAddComponent {
     }
     GetReferrals() {
         this.settingsBlService.GetAllReferrerList()
-            .subscribe((res: DanpheHTTPResponse) => {
+            .subscribe((res: DsfHTTPResponse) => {
 
-                if (res.Status === ENUM_DanpheHTTPResponseText.OK) {
+                if (res.Status === ENUM_DsfHTTPResponseText.OK) {
 
                     if (res.Results.length) {
                         this.ReferrerList = res.Results;
@@ -532,8 +532,8 @@ export class PHRMPatientConsumptionAddComponent {
     LoadPatientInvoiceSummary(patientId: number, SchemeId?: number, PatientVisitId?: number) {
         if (patientId > 0) {
             this.pharmacyBLService.GetPatientSummary(patientId, SchemeId, PatientVisitId)
-                .subscribe((res: DanpheHTTPResponse) => {
-                    if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+                .subscribe((res: DsfHTTPResponse) => {
+                    if (res.Status === ENUM_DsfHTTPResponses.OK) {
                         this.patSummary = res.Results;
                         this.patSummary.CreditAmount = CommonFunctions.parseAmount(this.patSummary.CreditAmount);
                         this.patSummary.ProvisionalAmt = CommonFunctions.parseAmount(this.patSummary.ProvisionalAmt);
@@ -567,8 +567,8 @@ export class PHRMPatientConsumptionAddComponent {
             this.messageboxService.showMessage(ENUM_MessageBox_Status.Notice, [this.translate.instant('PATIENT_CONSUMPTION.PROVIDE_NMC')]);
             return;
         }
-        this.pharmacyBLService.UpdateNMCNo(this.SelectedPrescriber.EmployeeId, this.MedicalCertificateNo).subscribe((res: DanpheHTTPResponse) => {
-            if (res.Status === ENUM_DanpheHTTPResponses.OK) {
+        this.pharmacyBLService.UpdateNMCNo(this.SelectedPrescriber.EmployeeId, this.MedicalCertificateNo).subscribe((res: DsfHTTPResponse) => {
+            if (res.Status === ENUM_DsfHTTPResponses.OK) {
                 this.NMCNoAddPopup = false;
                 this.EmployeeDetails = res.Results;
                 if (this.EmployeeDetails) {

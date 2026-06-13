@@ -5,8 +5,8 @@ import * as moment from 'moment/moment';
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { ActivateInventoryService } from "../../../shared/activate-inventory/activate-inventory.service";
 import { InventoryService } from '../../shared/inventory.service';
-import { IGridFilterParameter } from "../../../shared/danphe-grid/grid-filter-parameter.interface";
-import { NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { IGridFilterParameter } from "../../../shared/dsf-grid/grid-filter-parameter.interface";
+import { NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 
 @Component({
   templateUrl: "./expiry-item.component.html"

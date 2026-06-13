@@ -2,8 +2,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { SettingsBLService } from '../../shared/settings.bl.service';
 import { SettingsService } from '../../shared/settings-service';
 import { CountrySubdivision } from '../../shared/country-subdivision.model';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import { DanpheCache, MasterType } from '../../../shared/danphe-cache-service-utility/cache-services';
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import { DsfCache, MasterType } from '../../../shared/dsf-cache-service-utility/cache-services';
 
 @Component({
     selector: 'country-subdivision-list',
@@ -38,7 +38,7 @@ export class CountrySubdivisionListComponent {
         //         }
 
         //     });
-        this.subDivisionList=DanpheCache.GetData(MasterType.SubDivision,null);
+        this.subDivisionList=DsfCache.GetData(MasterType.SubDivision,null);
          this.showSubDivisionList = true;
 
     }

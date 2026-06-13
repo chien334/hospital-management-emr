@@ -83,7 +83,7 @@
                             <span
                                   class="text-uppercase text-bold txt-val">{{dischargeBill.PatientDetail.DateOfBirth
                               |
-                              DanpheDateTime:'age' }}/{{dischargeBill.PatientDetail.Gender}}</span>
+                              DsfDateTime:'age' }}/{{dischargeBill.PatientDetail.Gender}}</span>
                           </div>
 
 
@@ -91,7 +91,7 @@
                             <span class="text-uppercase text-bold txt-label">Print Date
                               &nbsp;:&nbsp;</span>
                             <span class="text-uppercase text-bold txt-label">
-                              {{printDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                              {{printDate | DsfDateTime:'format':'YYYY-MM-DD'}}
                             </span>
                           </div>
 
@@ -131,7 +131,7 @@
                             <span class="text-uppercase text-bold txt-label">DOA&nbsp;:&nbsp;</span>
                             <span
                                   class="text-uppercase text-bold txt-val">{{dischargeBill.AdmissionDetail.AdmissionDate
-                              | DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                              | DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                           </div>
 
                           <div class="col-right">
@@ -148,7 +148,7 @@
                             <span
                                   class="text-uppercase text-bold txt-val">{{estDischargeDate
                               |
-                              DanpheDateTime:'format':'YYYY-MM-DD'}}</span>
+                              DsfDateTime:'format':'YYYY-MM-DD'}}</span>
                           </div>
                           <div class="col-right"
                                *ngIf="dischargeBill.PatientDetail.SSFPolicyNo && dischargeBill.PatientDetail.MembershipTypeName === SSFMembershipTypeName">
@@ -218,7 +218,7 @@
                           <tbody>
                             <tr *ngFor="let row of IpBillingSummary; let i=index;">
                               <td style="text-align:left; font-size:11px;">{{i+1}}</td>
-                              <!-- <td style="text-align:left; font-size:11px;">{{row.BillDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                              <!-- <td style="text-align:left; font-size:11px;">{{row.BillDate | DsfDateTime:'format':'YYYY-MM-DD'}}
                               </td> -->
                               <!-- <td style="text-align:left; font-size:11px;">{{row.ItemCode}}</td> -->
                               <td style="text-align:left; font-size:11px;">{{row.GroupName}}</td>
@@ -278,7 +278,7 @@
                           <tbody>
                             <tr *ngFor="let row of pharmacyBillingItems; let i=index;">
                               <td style="text-align:left; font-size:11px;">{{i+1}}</td>
-                              <td style="text-align:left; font-size:11px;">{{row.BillDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                              <td style="text-align:left; font-size:11px;">{{row.BillDate | DsfDateTime:'format':'YYYY-MM-DD'}}
                               </td>
                               <td style="text-align:left; font-size:11px;">{{row.ItemCode}}
                               <td style="text-align:left; font-size:11px;">{{row.ItemName}}

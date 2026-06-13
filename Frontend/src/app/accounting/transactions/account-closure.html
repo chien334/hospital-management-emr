@@ -21,7 +21,7 @@
                 <label><b> {{ 'ACCOUNTING.STARTING_DATE' | translate }} : </b> </label>
             </div>
             <div class="col-md-4">
-                <b> AD </b> {{activeFiscalYear.StartDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                <b> AD </b> {{activeFiscalYear.StartDate | DsfDateTime:'format':'YYYY-MM-DD'}}
             </div>
             <div class="col-md-4" *ngIf="!this.EnableEnglishCalendarOnly">
                 {{ activeFiscalYear.nStartDate}}
@@ -32,7 +32,7 @@
                 <label> <b> {{ 'ACCOUNTING.END_DATE' | translate }} : </b></label>
             </div>
             <div class="col-md-4">
-                <b> AD </b> {{ activeFiscalYear.EndDate | DanpheDateTime:'format':'YYYY-MM-DD'}}
+                <b> AD </b> {{ activeFiscalYear.EndDate | DsfDateTime:'format':'YYYY-MM-DD'}}
             </div>
             <div class="col-md-4" *ngIf="!this.EnableEnglishCalendarOnly">
                 {{ activeFiscalYear.nEndDate }}

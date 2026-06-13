@@ -2,12 +2,12 @@ import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from "@angu
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import * as moment from 'moment/moment';
 import { DLService } from "../../../shared/dl.service";
-import { DanpheHTTPResponse } from "../../../shared/common-models";
+import { DsfHTTPResponse } from "../../../shared/common-models";
 import { SecurityService } from "../../../security/shared/security.service";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 import { IncentiveBLService } from "../../shared/incentive.bl.service";
-import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridParams, NepaliDateInGridColumnDetail } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { CoreService } from "../../../core/shared/core.service";
 import { INCTVGridColumnSettings } from "../../shared/inctv-grid-column-settings";
 import { CommonFunctions } from "../../../shared/common.functions";
@@ -51,7 +51,7 @@ export class INCTV_BillTxnItemListComponent {
 
     this.dlService.Read(`/api/Incentive/TransactionItems?fromDate=${this.fromDate}&toDate=${this.toDate}`)
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.allBillTxnItemsList = res.Results;
 
@@ -129,7 +129,7 @@ export class INCTV_BillTxnItemListComponent {
 
   //LoadEmpProfileMap() {
   //  this.incentiveBLService.GetEmpIncentiveInfo()
-  //    .subscribe((res: DanpheHTTPResponse) => {
+  //    .subscribe((res: DsfHTTPResponse) => {
   //      if (res.Status == "OK") {
   //        this.EmpProfMap_All = res.Results;
   //      }
@@ -145,7 +145,7 @@ export class INCTV_BillTxnItemListComponent {
   LoadAllDocList() {
     // this.dlService.Read("/BillingReports/GetReferralList")
     //   .map(res => res)
-    //   .subscribe((res: DanpheHTTPResponse) => {
+    //   .subscribe((res: DsfHTTPResponse) => {
     //     if (res.Status == "OK") {
     //       let doclist: Array<any> = res.Results;
     //       this.allEmpList = doclist.map(a => {
@@ -162,7 +162,7 @@ export class INCTV_BillTxnItemListComponent {
 
     this.incentiveBLService.GetIncentiveApplicableDocterList()
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           let doclist: Array<any> = res.Results;
           this.allEmpList = doclist.map(a => {
@@ -183,7 +183,7 @@ export class INCTV_BillTxnItemListComponent {
   public GetEmpIncentiveInfo() {
     this.incentiveBLService.GetEmpIncentiveInfo()
       .map(res => res)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           this.EmpIncentiveInfo = res.Results;
         }

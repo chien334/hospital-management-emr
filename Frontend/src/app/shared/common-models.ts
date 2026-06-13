@@ -3,14 +3,14 @@
 Created: sud:12May'18
 Remarks: Need to add other modules in this file and import required models at once.
  */
-export class DanpheHTTPResponse {
+export class DsfHTTPResponse {
     public Status: string = null;
     public ErrorMessage: string = null;
     public Results: any = null;
 }
 
 //this class is called as MyConfiguration in server side.
-export class DanpheAppSettings {
+export class DsfAppSettings {
 
     public ApplicationVersionNum: string = null;
     public highlightAbnormalLabResult: boolean = false;

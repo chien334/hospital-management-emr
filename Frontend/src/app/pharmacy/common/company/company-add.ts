@@ -1,7 +1,7 @@
 ﻿import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from "@angular/core";
 
 import PHRMGridColumns from '../../shared/phrm-grid-columns';
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import { PHRMCompanyModel } from "../../shared/phrm-company.model";
 import { PharmacyBLService } from "../../shared/pharmacy.bl.service"

@@ -17,7 +17,7 @@
                     <div class="col-md-12 text-left">
                       <h1 class="header" style="color: #1bbc9b;"><i class="fa fa-user"></i>{{patientDetails.PatientName || patientDetails.ShortName}}
                       </h1>
-                      <p class="text-muted"><span><i class="fa fa-male"></i>{{patientDetails.DateOfBirth | DanpheDateTime:'age'}} &nbsp;|&nbsp;
+                      <p class="text-muted"><span><i class="fa fa-male"></i>{{patientDetails.DateOfBirth | DsfDateTime:'age'}} &nbsp;|&nbsp;
                           {{patientDetails.Gender}}</span> &nbsp;|&nbsp; <i class="fa fa-phone"></i> {{patientDetails.PhoneNumber}}</p>
                     </div>
                   </div>

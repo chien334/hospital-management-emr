@@ -11,7 +11,7 @@ import { SSU_DLService } from './shared/ssu.dl.service';
 import { SSU_BLService } from './shared/ssu.bl.service';
 import { SSU_PatientComponent } from './patient/ssu-patient.component';
 import { SettingsSharedModule } from '../settings-new/settings-shared.module';
-import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
+import { DsfAutoCompleteModule } from '../shared/dsf-autocomplete';
 
 @NgModule({ declarations: [
         SocialServiceUnitMainComponent,
@@ -22,7 +22,7 @@ import { DanpheAutoCompleteModule } from '../shared/danphe-autocomplete';
         SocialServiceUnitRoutingModule,
         FormsModule,
         SharedModule,
-        DanpheAutoCompleteModule,
+        DsfAutoCompleteModule,
         SettingsSharedModule], providers: [
         SSU_DLService,
         SSU_BLService

@@ -5,21 +5,21 @@ import { MessageboxService } from '../../../shared/messagebox/messagebox.service
 import { AdmissionModel } from "../../shared/admission.model";
 import { ADT_BLService } from '../../shared/adt.bl.service';
 import { BedFeature } from '../../shared/bedfeature.model';
-//import GridColumnSettings from '../../../shared/danphe-grid/grid-column-settings.constant';
+//import GridColumnSettings from '../../../shared/dsf-grid/grid-column-settings.constant';
 import * as _ from 'lodash';
 import * as moment from 'moment/moment';
 import { Patient } from '../../../patients/shared/patient.model';
 import { SecurityService } from '../../../security/shared/security.service';
 import { NepaliCalendarService } from "../../../shared/calendar/np/nepali-calendar.service";
 import { NepaliDate } from "../../../shared/calendar/np/nepali-dates";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
 
 import { BillingBLService } from '../../../billing/shared/billing.bl.service';
 import { CoreService } from '../../../core/shared/core.service';
-import { DanpheHTTPResponse } from '../../../shared/common-models';
+import { DsfHTTPResponse } from '../../../shared/common-models';
 import { CommonValidators } from '../../../shared/common-validator';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/danphe-grid/NepaliColGridSettingsModel";
+import { NepaliDateInGridColumnDetail, NepaliDateInGridParams } from "../../../shared/dsf-grid/NepaliColGridSettingsModel";
 import { ENUM_ValidatorTypes } from '../../../shared/shared-enums';
 import { VisitGenericStickerModel } from '../../../shared/visit-generic-stickers/visit-generic-sticker.model';
 import { AdmittingDocInfoVM } from '../../shared/admission.view.model';
@@ -119,7 +119,7 @@ export class AdmittedListComponent {
 
   UpdateBedDurations(visitId: number) {
     this.billingBLService.UpdateBedDurationBillTxn(visitId)
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         if (res.Status == "OK") {
           //console.log("ADT Bill Items Quantity updated.");
         }
@@ -440,7 +440,7 @@ export class AdmittedListComponent {
   public allDepartments: Array<any> = [];
   public LoadDepartments() {
     this.admissionBLService.GetDepartments()
-      .subscribe((res: DanpheHTTPResponse) => {
+      .subscribe((res: DsfHTTPResponse) => {
         this.allDepartments = res.Results;
 
       });

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { GridEmitModel } from "../../../shared/danphe-grid/grid-emit.model";
-import GridColumnSettings from "../../../shared/danphe-grid/grid-column-settings.constant";
+import { GridEmitModel } from "../../../shared/dsf-grid/grid-emit.model";
+import GridColumnSettings from "../../../shared/dsf-grid/grid-column-settings.constant";
 import { MessageboxService } from "../../../shared/messagebox/messagebox.service";
 import { AccountingSettingsBLService } from "../shared/accounting-settings.bl.service";
 import { AccountingService } from '../../shared/accounting.service';
@@ -26,10 +26,10 @@ export class TransferRulesComponent {
   }
 
   GetSection() {
-    if (!!this.accountingservice.accCacheData.Sections && this.accountingservice.accCacheData.Sections.length > 0) {//mumbai-team-june2021-danphe-accounting-cache-change
-      this.sectionList = this.accountingservice.accCacheData.Sections;//mumbai-team-june2021-danphe-accounting-cache-change
-      this.sectionList = this.accountingservice.accCacheData.Sections.filter(sec => sec.SectionId != 4); // 4 is Manual_Voucher (FIXED for DanpheEMR) //mumbai-team-june2021-danphe-accounting-cache-change
-      this.sectionList = this.sectionList.slice();//mumbai-team-june2021-danphe-accounting-cache-change
+    if (!!this.accountingservice.accCacheData.Sections && this.accountingservice.accCacheData.Sections.length > 0) {//mumbai-team-june2021-dsf-accounting-cache-change
+      this.sectionList = this.accountingservice.accCacheData.Sections;//mumbai-team-june2021-dsf-accounting-cache-change
+      this.sectionList = this.accountingservice.accCacheData.Sections.filter(sec => sec.SectionId != 4); // 4 is Manual_Voucher (FIXED for DsfEMR) //mumbai-team-june2021-dsf-accounting-cache-change
+      this.sectionList = this.sectionList.slice();//mumbai-team-june2021-dsf-accounting-cache-change
       let defSection = this.sectionList.find(s => s.IsDefault == true);
       if (defSection) {
         this.sectionId = defSection.SectionId;

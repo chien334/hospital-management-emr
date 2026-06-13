@@ -6,7 +6,7 @@ import { CoreService } from '../../../core/shared/core.service';
 import { ENUM_PrintingType, PrinterSettingsModel } from '../../../settings-new/printers/printer-settings.model';
 import { NepaliCalendarService } from '../../../shared/calendar/np/nepali-calendar.service';
 import { CommonFunctions } from '../../../shared/common.functions';
-import { DanpheLoadingInterceptor } from '../../../shared/danphe-loader-intercepter/danphe-loading.services';
+import { DsfLoadingInterceptor } from '../../../shared/dsf-loader-intercepter/dsf-loading.services';
 import { MessageboxService } from '../../../shared/messagebox/messagebox.service';
 import { RouteFromService } from '../../../shared/routefrom.service';
 import { BillInvoiceReturnModel } from '../../shared/bill-invoice-return.model';
@@ -18,7 +18,7 @@ import { BillingService } from '../../shared/billing.service';
   templateUrl: './bill-print-credit-note.html',
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: DanpheLoadingInterceptor,
+    useClass: DsfLoadingInterceptor,
     multi: true,
   }]
 })
